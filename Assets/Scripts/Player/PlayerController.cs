@@ -62,7 +62,8 @@ public class PlayerController : MonoBehaviour
 
         if (mineObject.TryGetComponent<IDamageable>(out IDamageable damageable))
         {
-            damageable.TakeDamage(1);
+            int damage = Mathf.RoundToInt(StatManager.Instance.GetStat(StatType.ClickDamage));
+            damageable.TakeDamage(damage);
         }
     }
 }
