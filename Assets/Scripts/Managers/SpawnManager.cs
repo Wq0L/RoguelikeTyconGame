@@ -5,9 +5,9 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GridManager gridManager;
     [SerializeField] private GameObject minePrefab;
-    [SerializeField] private float spawnDelay = 5f;
     [SerializeField] private int maxTryCount = 20;
     [SerializeField] private int poolSize = 20;
+
 
     private GridSystem gridSystem;
     private bool isInitialized;
@@ -20,6 +20,7 @@ public class SpawnManager : MonoBehaviour
     {
         gridSystem = gridManager.GetGridSystem();
         isInitialized = true;
+
 
         InitializePool();
 
@@ -94,7 +95,9 @@ public class SpawnManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(spawnDelay);
+            int spawnRate = Mathf.RoundToInt(StatManager.Instance.GetStat(StatType.MineSpawnInterval));
+
+            yield return new WaitForSeconds(spawnRate);
             TrySpawnRandomMine();
         }
     }
@@ -138,11 +141,11 @@ public class SpawnManager : MonoBehaviour
 
             gridObject.SetMineObject(mine);
 
-            Debug.Log("Mine spawnlandı: " + x + ", " + z);
+            //Debug.Log("Mine spawnlandı: " + x + ", " + z);
             return;
         }
 
-        Debug.Log("Boş hücre bulunamadı.");
+        //Debug.Log("Boş hücre bulunamadı.");
     }
 
     private void SpawnInitialMines(int count)

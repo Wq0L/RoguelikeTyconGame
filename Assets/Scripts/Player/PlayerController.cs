@@ -24,46 +24,58 @@ public class PlayerController : MonoBehaviour
     private void HandleMouseClick()
     {
         if (!Input.GetMouseButtonDown(0))
-        {
             return;
-        }
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (!Physics.Raycast(ray, out RaycastHit hit))
-        {
             return;
-        }
 
-        GridPosition gridPosition = gridSystem.GetGridPosition(hit.point);
-        GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+        GroundCell groundCell = hit.collider.GetComponentInParent<GroundCell>();
 
-        if (gridObject == null)
+        if (groundCell == null)
         {
             Debug.Log("Grid olmayan yere tıklandı.");
             return;
         }
 
-        if (!gridObject.HasGroundObject())
+        GridPosition gridPosition = groundCell.GetGridPosition();
+        GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+
+        if (gridObject == null)
         {
-            Debug.Log("Bu hücre boş.");
+            Debug.Log("GridObject bulunamadı.");
             return;
         }
 
-        Debug.Log("Bu hücre var: " + gridPosition.x + ", " + gridPosition.z);
+        Debug.Log("Tıklanan grid: " + gridPosition.x + ", " + gridPosition.z);
 
         if (!gridObject.HasMineObject())
         {
-            Debug.Log("Bu hücrede mine yok.");
+            Debug.Log("Bu gridde mine yok.");
             return;
         }
 
         GameObject mineObject = gridObject.GetMineObject();
 
-        if (mineObject.TryGetComponent<IDamageable>(out IDamageable damageable))
+        if (mineObject == null)
         {
-            int damage = Mathf.RoundToInt(StatManager.Instance.GetStat(StatType.ClickDamage));
-            damageable.TakeDamage(damage);
+            Debug.Log("Mine referansı boş.");
+            return;
         }
+
+        if (!mineObject.TryGetComponent<IDamageable>(out IDamageable damageable))
+        {
+            Debug.LogWarning("Mine üzerinde IDamageable yok.");
+            return;
+        }
+
+        int damage = Mathf.RoundToInt(
+            StatManager.Instance.GetStat(StatType.ClickDamage)
+        );
+
+        damageable.TakeDamage(damage);
+
+        Debug.Log("Mine hasar aldı: " + damage);
     }
 }

@@ -1,57 +1,50 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    [SerializeField] private GameObject groundPrefab;
     [SerializeField] private int width = 10;
     [SerializeField] private int height = 10;
+    [SerializeField] private float cellSize = 2f;
+
+    [Header("Scene Ground Cells")]
+    [SerializeField] private GroundCell[] groundCells;
+
     private GridSystem gridSystem;
-    private ObjectPool groundPool;
-    private Transform groundParent;
 
     private void Awake()
     {
-        gridSystem = new GridSystem(width, height, 2f);
-        InitializeGroundPool();
-        SpawnGrounds();
+        gridSystem = new GridSystem(width, height, cellSize);
+        RegisterSceneGrounds();
     }
 
-    private void InitializeGroundPool()
+    private void RegisterSceneGrounds()
     {
-        GameObject poolContainer = new GameObject("GroundPool");
-        groundPool = poolContainer.AddComponent<ObjectPool>();
-        groundPool.prefab = groundPrefab;
-        groundPool.poolSize = width * height;
-        groundPool.Initialize();
-        groundParent = poolContainer.transform;
-    }
-
-    void Update()
-    {
-       
-    }
-
-    private void SpawnGrounds()
-    {
-        for (int x = 0; x < width; x++)
+        foreach (GroundCell groundCell in groundCells)
         {
-            for (int z = 0; z < height; z++)
+            if (groundCell == null) continue;
+
+            GridPosition gridPosition =
+                gridSystem.GetGridPosition(groundCell.transform.position);
+
+            GridObject gridObject =
+                gridSystem.GetGridObject(gridPosition);
+
+            if (gridObject == null)
             {
-                GridPosition gridPosition = new GridPosition(x, z);
-
-                Vector3 worldPosition = gridSystem.GetWorldPosition(x, z);
-
-                GameObject ground = groundPool.GetObject(
-                    worldPosition,
-                    Quaternion.identity
-                );
-
-                GridObject gridObject = gridSystem.GetGridObject(gridPosition);
-
-                gridObject.SetGroundObject(ground);
+                Debug.LogWarning("Grid dışında GroundCell var: " + groundCell.name, groundCell);
+                continue;
             }
+
+            if (gridObject.HasGroundObject())
+            {
+                Debug.LogWarning("Bu grid pozisyonunda zaten Ground var: " + gridPosition, groundCell);
+                continue;
+            }
+
+            gridObject.SetGroundObject(groundCell.gameObject);
+            groundCell.SetGridPosition(gridPosition);
+
+            //Debug.Log("GroundCell grid'e bağlandı: " + gridPosition);
         }
     }
 
@@ -70,11 +63,8 @@ public class GridManager : MonoBehaviour
         return height;
     }
 
-    private void OnDestroy()
+    public float GetCellSize()
     {
-        if (groundParent != null)
-        {
-            Destroy(groundParent.gameObject);
-        }
+        return cellSize;
     }
 }

@@ -1,7 +1,8 @@
 using UnityEngine;
 
 public class MineBrain : MonoBehaviour
-{[SerializeField] private MineHealth mineHealth;
+{
+    [SerializeField] private MineHealth mineHealth;
 
     private GridObject gridObject;
 
@@ -20,11 +21,17 @@ public class MineBrain : MonoBehaviour
         this.gridObject = gridObject;
     }
 
+    public GridObject GetGridObject()
+    {
+        return gridObject;
+    }
+
     private void ClearGrid()
     {
         if (gridObject != null)
         {
             gridObject.ClearMineObject();
+            gridObject = null;
         }
     }
 }
