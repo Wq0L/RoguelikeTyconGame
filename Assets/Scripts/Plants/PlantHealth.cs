@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class MineHealth : MonoBehaviour, IDamageable
+public class PlantHealth : MonoBehaviour, IDamageable
 {
     public event Action OnDied;
 
@@ -37,6 +37,6 @@ public class MineHealth : MonoBehaviour, IDamageable
     {
         isDead = true;
         OnDied?.Invoke();
-        Debug.Log("Mine destroyed!");
+        Debug.Log("Plant destroyed!");
     }
 }

@@ -17,3 +17,5 @@ MonoBehaviour:
     value: 1
   - statType: 2
     value: 5
+  - statType: 8
+    value: 2

@@ -6,7 +6,7 @@ public class GridObject
     private GridPosition gridPosition;
 
     private GameObject spawnedGroundObject;
-    private GameObject spawnedMineObject;
+    private GameObject spawnedPlantObject;
     private GroundCell groundCellCache;
     private bool groundCellCacheDirty = true;
 
@@ -27,17 +27,17 @@ public class GridObject
         return spawnedGroundObject;
     }
 
-    public void SetMineObject(GameObject obj)
+    public void SetPlantObject(GameObject obj)
     {
-        spawnedMineObject = obj;
+        spawnedPlantObject = obj;
     }
-    public GameObject GetMineObject()
+    public GameObject GetPlantObject()
     {
-        return spawnedMineObject;
+        return spawnedPlantObject;
     }
-    public void ClearMineObject()
+    public void ClearPlantObject()
     {
-        spawnedMineObject = null;
+        spawnedPlantObject = null;
     }
 
     public bool HasGroundObject()
@@ -45,9 +45,9 @@ public class GridObject
         return spawnedGroundObject != null;
     }
 
-    public bool HasMineObject()
+    public bool HasPlantObject()
     {
-        return spawnedMineObject != null;
+        return spawnedPlantObject != null;
     }
 
     public GroundCell GetGroundCellCached()

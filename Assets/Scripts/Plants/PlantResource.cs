@@ -1,20 +1,20 @@
 using UnityEngine;
 
-public class MineResource : MonoBehaviour
+public class PlantResource : MonoBehaviour
 {
    
-    [SerializeField] private MineHealth mineHealth;
+    [SerializeField] private PlantHealth plantHealth;
     [SerializeField] private ResourceType resourceType;
     [SerializeField] private int rewardAmount = 1;
 
     private void OnEnable()
     {
-        mineHealth.OnDied += GiveReward;
+        plantHealth.OnDied += GiveReward;
     }
 
     private void OnDisable()
     {
-        mineHealth.OnDied -= GiveReward;
+        plantHealth.OnDied -= GiveReward;
     }
 
     private void GiveReward()

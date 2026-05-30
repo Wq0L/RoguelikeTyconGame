@@ -6,7 +6,7 @@ public class GroundCell : MonoBehaviour
 
     private GridPosition gridPosition;
 
-    public Transform GetMineSpawnPoint()
+    public Transform GetPlantSpawnPoint()
     {
         return mineSpawnPoint;
     }

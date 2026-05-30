@@ -50,13 +50,13 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log("Tıklanan grid: " + gridPosition.x + ", " + gridPosition.z);
 
-        if (!gridObject.HasMineObject())
+        if (!gridObject.HasPlantObject())
         {
             Debug.Log("Bu gridde mine yok.");
             return;
         }
 
-        GameObject mineObject = gridObject.GetMineObject();
+        GameObject mineObject = gridObject.GetPlantObject();
 
         if (mineObject == null)
         {

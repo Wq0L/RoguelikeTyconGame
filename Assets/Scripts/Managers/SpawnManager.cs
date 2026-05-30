@@ -1,158 +1,158 @@
-using System.Collections;
-using UnityEngine;
+// using System.Collections;
+// using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
-{
-    [SerializeField] private GridManager gridManager;
-    [SerializeField] private GameObject minePrefab;
-    [SerializeField] private int maxTryCount = 20;
-    [SerializeField] private int poolSize = 20;
-
-
-    private GridSystem gridSystem;
-    private bool isInitialized;
-    private bool hasSpawnedInitialMines;
-    private Coroutine spawnCoroutine;
-    private ObjectPool minePool;
-    private Transform mineParent;
-
-    private void Start()
-    {
-        gridSystem = gridManager.GetGridSystem();
-        isInitialized = true;
+// public class SpawnManager : MonoBehaviour
+// {
+//     [SerializeField] private GridManager gridManager;
+//     [SerializeField] private GameObject minePrefab;
+//     [SerializeField] private int maxTryCount = 20;
+//     [SerializeField] private int poolSize = 20;
 
 
-        InitializePool();
+//     private GridSystem gridSystem;
+//     private bool isInitialized;
+//     private bool hasSpawnedInitialMines;
+//     private Coroutine spawnCoroutine;
+//     private ObjectPool minePool;
+//     private Transform mineParent;
 
-        GameManager.Instance.OnGameStateChanged += HandleGameStateChanged;
+//     private void Start()
+//     {
+//         gridSystem = gridManager.GetGridSystem();
+//         isInitialized = true;
 
-        HandleGameStateChanged(GameManager.Instance.CurrentState);
-    }
 
-    private void InitializePool()
-    {
-        GameObject poolContainer = new GameObject("MinePool");
-        minePool = poolContainer.AddComponent<ObjectPool>();
-        minePool.prefab = minePrefab;
-        minePool.poolSize = poolSize;
-        minePool.Initialize();
-        mineParent = poolContainer.transform;
-    }
+//         InitializePool();
 
-    private void OnDestroy()
-    {
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.OnGameStateChanged -= HandleGameStateChanged;
-        }
+//         GameManager.Instance.OnGameStateChanged += HandleGameStateChanged;
 
-        if (mineParent != null)
-        {
-            Destroy(mineParent.gameObject);
-        }
-    }
+//         HandleGameStateChanged(GameManager.Instance.CurrentState);
+//     }
 
-    private void HandleGameStateChanged(GameStates state)
-    {
-        if (!isInitialized) return;
+//     private void InitializePool()
+//     {
+//         GameObject poolContainer = new GameObject("MinePool");
+//         minePool = poolContainer.AddComponent<ObjectPool>();
+//         minePool.prefab = minePrefab;
+//         minePool.poolSize = poolSize;
+//         minePool.Initialize();
+//         mineParent = poolContainer.transform;
+//     }
 
-        if (state == GameStates.Playing)
-        {
-            StartSpawning();
-        }
-        else
-        {
-            StopSpawning();
-        }
-    }
+//     private void OnDestroy()
+//     {
+//         if (GameManager.Instance != null)
+//         {
+//             GameManager.Instance.OnGameStateChanged -= HandleGameStateChanged;
+//         }
 
-    private void StartSpawning()
-    {
-        if (spawnCoroutine != null) return;
+//         if (mineParent != null)
+//         {
+//             Destroy(mineParent.gameObject);
+//         }
+//     }
 
-        if (!hasSpawnedInitialMines)
-        {
-            SpawnInitialMines(Random.Range(5, 11));
-            hasSpawnedInitialMines = true;
-        }
+//     private void HandleGameStateChanged(GameStates state)
+//     {
+//         if (!isInitialized) return;
 
-        spawnCoroutine = StartCoroutine(SpawnLoop());
-        Debug.Log("SpawnManager: Spawn başladı.");
-    }
+//         if (state == GameStates.Playing)
+//         {
+//             StartSpawning();
+//         }
+//         else
+//         {
+//             StopSpawning();
+//         }
+//     }
 
-    private void StopSpawning()
-    {
-        if (spawnCoroutine != null)
-        {
-            StopCoroutine(spawnCoroutine);
-            spawnCoroutine = null;
-        }
+//     private void StartSpawning()
+//     {
+//         if (spawnCoroutine != null) return;
 
-        Debug.Log("SpawnManager: Spawn durdu.");
-    }
+//         if (!hasSpawnedInitialMines)
+//         {
+//             SpawnInitialMines(Random.Range(5, 11));
+//             hasSpawnedInitialMines = true;
+//         }
 
-    private IEnumerator SpawnLoop()
-    {
-        while (true)
-        {
-            int spawnRate = Mathf.RoundToInt(StatManager.Instance.GetStat(StatType.MineSpawnInterval));
+//         spawnCoroutine = StartCoroutine(SpawnLoop());
+//         Debug.Log("SpawnManager: Spawn başladı.");
+//     }
 
-            yield return new WaitForSeconds(spawnRate);
-            TrySpawnRandomMine();
-        }
-    }
+//     private void StopSpawning()
+//     {
+//         if (spawnCoroutine != null)
+//         {
+//             StopCoroutine(spawnCoroutine);
+//             spawnCoroutine = null;
+//         }
 
-    private void TrySpawnRandomMine()
-    {
-        for (int i = 0; i < maxTryCount; i++)
-        {
-            int x = Random.Range(0, gridManager.GetWidth());
-            int z = Random.Range(0, gridManager.GetHeight());
+//         Debug.Log("SpawnManager: Spawn durdu.");
+//     }
 
-            GridPosition gridPosition = new GridPosition(x, z);
-            GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+//     private IEnumerator SpawnLoop()
+//     {
+//         while (true)
+//         {
+//             int spawnRate = Mathf.RoundToInt(StatManager.Instance.GetStat(StatType.MineSpawnInterval));
 
-            if (gridObject == null) continue;
-            if (gridObject.HasMineObject()) continue;
+//             yield return new WaitForSeconds(spawnRate);
+//             TrySpawnRandomMine();
+//         }
+//     }
 
-            GameObject groundObject = gridObject.GetGroundObject();
-            if (groundObject == null) continue;
+//     private void TrySpawnRandomMine()
+//     {
+//         for (int i = 0; i < maxTryCount; i++)
+//         {
+//             int x = Random.Range(0, gridManager.GetWidth());
+//             int z = Random.Range(0, gridManager.GetHeight());
 
-            GroundCell groundCell = gridObject.GetGroundCellCached();
-            if (groundCell == null) continue;
+//             GridPosition gridPosition = new GridPosition(x, z);
+//             GridObject gridObject = gridSystem.GetGridObject(gridPosition);
 
-            Transform spawnPoint = groundCell.GetMineSpawnPoint();
-            if (spawnPoint == null) continue;
+//             if (gridObject == null) continue;
+//             if (gridObject.HasPlantObject()) continue;
 
-            GameObject mine = minePool.GetObject(spawnPoint.position, spawnPoint.rotation);
+//             GameObject groundObject = gridObject.GetGroundObject();
+//             if (groundObject == null) continue;
+
+//             GroundCell groundCell = gridObject.GetGroundCellCached();
+//             if (groundCell == null) continue;
+
+//             Transform spawnPoint = groundCell.GetPlantSpawnPoint();
+//             if (spawnPoint == null) continue;
+
+//             GameObject mine = minePool.GetObject(spawnPoint.position, spawnPoint.rotation);
             
-            PooledObject pooledObject = mine.GetComponent<PooledObject>();
-            if (pooledObject == null)
-            {
-                pooledObject = mine.AddComponent<PooledObject>();
-            }
-            pooledObject.Initialize(minePool);
+//             PooledObject pooledObject = mine.GetComponent<PooledObject>();
+//             if (pooledObject == null)
+//             {
+//                 pooledObject = mine.AddComponent<PooledObject>();
+//             }
+//             pooledObject.Initialize(minePool);
 
-            MineBrain mineBrain = mine.GetComponent<MineBrain>();
-            if (mineBrain != null)
-            {
-                mineBrain.SetGridObject(gridObject);
-            }
+//             MineBrain mineBrain = mine.GetComponent<MineBrain>();
+//             if (mineBrain != null)
+//             {
+//                 mineBrain.SetGridObject(gridObject);
+//             }
 
-            gridObject.SetMineObject(mine);
+//             gridObject.SetPlantObject(mine);
 
-            //Debug.Log("Mine spawnlandı: " + x + ", " + z);
-            return;
-        }
+//             //Debug.Log("Mine spawnlandı: " + x + ", " + z);
+//             return;
+//         }
 
-        //Debug.Log("Boş hücre bulunamadı.");
-    }
+//         //Debug.Log("Boş hücre bulunamadı.");
+//     }
 
-    private void SpawnInitialMines(int count)
-    {
-        for (int i = 0; i < count; i++)
-        {
-            TrySpawnRandomMine();
-        }
-    }
-}
+//     private void SpawnInitialMines(int count)
+//     {
+//         for (int i = 0; i < count; i++)
+//         {
+//             TrySpawnRandomMine();
+//         }
+//     }
+// }
