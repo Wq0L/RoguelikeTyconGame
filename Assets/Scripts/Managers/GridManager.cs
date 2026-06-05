@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
+    public static GridManager Instance { get; private set; }
+
     [SerializeField] private int width = 10;
     [SerializeField] private int height = 10;
     [SerializeField] private float cellSize = 2f;
@@ -13,6 +15,9 @@ public class GridManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null) { Destroy(gameObject); return; }
+        Instance = this;
+        
         gridSystem = new GridSystem(width, height, cellSize);
         RegisterSceneGrounds();
     }
@@ -44,7 +49,7 @@ public class GridManager : MonoBehaviour
             gridObject.SetGroundObject(groundCell.gameObject);
             groundCell.SetGridPosition(gridPosition);
 
-            //Debug.Log("GroundCell grid'e bağlandı: " + gridPosition);
+            Debug.Log("GroundCell grid'e bağlandı: " + gridPosition);
         }
     }
 

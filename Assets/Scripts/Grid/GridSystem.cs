@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GridSystem
@@ -54,5 +55,28 @@ public class GridSystem
         }
 
         return gridObjectArray[gridPosition.x, gridPosition.z];
-    } 
+    }
+        public List<GridObject> GetGridObjectsInRadius(Vector3 worldCenter, float radius)
+    {
+        List<GridObject> result = new List<GridObject>();
+        float adjustedRadius = radius + (cellSize * 0.5f); // yarım hücre ekle
+
+        for (int x = 0; x < width; x++)
+        {
+            for (int z = 0; z < height; z++)
+            {
+                Vector3 cellWorldPos = GetWorldPosition(x, z);
+
+                float distance = Vector3.Distance(
+                    new Vector3(worldCenter.x, 0, worldCenter.z),
+                    new Vector3(cellWorldPos.x, 0, cellWorldPos.z)
+                );
+
+                if (distance <= adjustedRadius)
+                    result.Add(gridObjectArray[x, z]);
+            }
+        }
+
+        return result;
+    }
 }

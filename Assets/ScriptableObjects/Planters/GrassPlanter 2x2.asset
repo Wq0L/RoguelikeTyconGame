@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9bf7029ef243f0409d4c305b215917d, type: 3}
-  m_Name: GrassPlanter
+  m_Name: GrassPlanter 2x2
   m_EditorClassIdentifier: Assembly-CSharp::PlanterSO
   planterName: Grass Planter
-  prefab: {fileID: 1395836356370012693, guid: a5681a5bf752bb34f85c92028a4bd5a2, type: 3}
+  prefab: {fileID: 1395836356370012693, guid: 756b70d05b2ceb949b7e4a493aa6d70f, type: 3}
   spawnTable:
   - plant: {fileID: 11400000, guid: bc6f91211bbf37b4ea0b6c1e6ee9c8fc, type: 2}
     baseChance: 100
   - plant: {fileID: 11400000, guid: fe3446d825980f24ba2060c6cb32101b, type: 2}
     baseChance: 0
   baseSpawnInterval: 5
-  sizeX: 1
-  sizeZ: 1
+  sizeX: 2
+  sizeZ: 2
   cost: 0

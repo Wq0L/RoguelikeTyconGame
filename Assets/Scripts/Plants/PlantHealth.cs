@@ -38,5 +38,6 @@ public class PlantHealth : MonoBehaviour, IDamageable
         isDead = true;
         OnDied?.Invoke();
         Debug.Log("Plant destroyed!");
+        Destroy(gameObject);
     }
 }

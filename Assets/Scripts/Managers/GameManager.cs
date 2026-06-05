@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame() => SetState(GameStates.Playing);
     public void OpenShop() => SetState(GameStates.Shop);
+    public void StartPlacement() => SetState(GameStates.Placing);
     public void PauseGame() => SetState(GameStates.Paused);
     public void GameOver() => SetState(GameStates.GameOver);
     public void ReturnToMenu() => SetState(GameStates.MainMenu);
@@ -53,6 +54,9 @@ public class GameManager : MonoBehaviour
                 break;
             case GameStates.Shop:
                 EnterShop();
+                break;
+            case GameStates.Placing:
+                EnterPlacing();
                 break;
             case GameStates.Paused:
                 EnterPaused();
@@ -77,6 +81,11 @@ public class GameManager : MonoBehaviour
     }
 
     private void EnterShop()
+    {
+        Time.timeScale = 0f;
+    }
+
+    private void EnterPlacing()
     {
         Time.timeScale = 0f;
     }

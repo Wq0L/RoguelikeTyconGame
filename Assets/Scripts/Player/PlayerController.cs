@@ -1,81 +1,109 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GridManager gridManager;
+    [SerializeField] private LayerMask groundLayerMask;
+    [SerializeField] private LineRenderer radiusIndicator;
+    [SerializeField] private int circleSegments = 64;
 
     private GridSystem gridSystem;
+    private float attackTimer;
 
     private void Start()
     {
         gridSystem = gridManager.GetGridSystem();
+        SetupRadiusIndicator();
     }
 
     private void Update()
     {
         if (GameManager.Instance.CurrentState != GameStates.Playing)
         {
+            radiusIndicator.enabled = false;
             return;
         }
 
-        HandleMouseClick();
+        radiusIndicator.enabled = true;
+
+        Vector3 mouseWorldPos = GetMouseWorldPosition();
+        UpdateRadiusVisual(mouseWorldPos);
+        HandleAutoAttack(mouseWorldPos);
     }
 
-    private void HandleMouseClick()
+    private Vector3 GetMouseWorldPosition()
     {
-        if (!Input.GetMouseButtonDown(0))
-            return;
-
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (!Physics.Raycast(ray, out RaycastHit hit))
-            return;
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundLayerMask))
+            return hit.point;
 
-        GroundCell groundCell = hit.collider.GetComponentInParent<GroundCell>();
+        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        if (groundPlane.Raycast(ray, out float enter))
+            return ray.GetPoint(enter);
 
-        if (groundCell == null)
+        return Vector3.zero;
+    }
+
+    private void HandleAutoAttack(Vector3 mouseWorldPos)
+    {
+        float attackSpeed = StatManager.Instance.GetStat(StatType.AutoFarmerCooldown);
+        attackSpeed = Mathf.Max(attackSpeed, 0.1f);
+
+        attackTimer += Time.deltaTime;
+
+        if (attackTimer >= attackSpeed)
         {
-            Debug.Log("Grid olmayan yere tıklandı.");
-            return;
+            attackTimer = 0f;
+            AttackInRadius(mouseWorldPos);
         }
+    }
 
-        GridPosition gridPosition = groundCell.GetGridPosition();
-        GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+    private void AttackInRadius(Vector3 center)
+    {
+        float radius = StatManager.Instance.GetStat(StatType.AreaDamageRadius);
+        int damage = Mathf.RoundToInt(StatManager.Instance.GetStat(StatType.ClickDamage));
 
-        if (gridObject == null)
+        List<GridObject> targets = gridSystem.GetGridObjectsInRadius(center, radius);
+
+        foreach (GridObject gridObject in targets)
         {
-            Debug.Log("GridObject bulunamadı.");
-            return;
+            if (!gridObject.HasPlantObject()) continue;
+
+            GameObject plantObj = gridObject.GetPlantObject();
+            if (plantObj == null) continue;
+
+            if (plantObj.TryGetComponent<IDamageable>(out IDamageable damageable))
+            {
+                damageable.TakeDamage(damage);
+                Debug.Log($"Attacked {plantObj.name} for {damage} damage.");
+            }
         }
+    }
 
-        Debug.Log("Tıklanan grid: " + gridPosition.x + ", " + gridPosition.z);
+    private void SetupRadiusIndicator()
+    {
+        if (radiusIndicator == null) return;
 
-        if (!gridObject.HasPlantObject())
+        radiusIndicator.loop = true;
+        radiusIndicator.useWorldSpace = true;
+        radiusIndicator.positionCount = circleSegments;
+    }
+
+    private void UpdateRadiusVisual(Vector3 center)
+    {
+        if (radiusIndicator == null) return;
+
+        float radius = StatManager.Instance.GetStat(StatType.AreaDamageRadius);
+
+        for (int i = 0; i < circleSegments; i++)
         {
-            Debug.Log("Bu gridde mine yok.");
-            return;
+            float angle = (float)i / circleSegments * Mathf.PI * 2f;
+            float x = center.x + Mathf.Cos(angle) * radius;
+            float z = center.z + Mathf.Sin(angle) * radius;
+
+            radiusIndicator.SetPosition(i, new Vector3(x, center.y + 0.05f, z));
         }
-
-        GameObject mineObject = gridObject.GetPlantObject();
-
-        if (mineObject == null)
-        {
-            Debug.Log("Mine referansı boş.");
-            return;
-        }
-
-        if (!mineObject.TryGetComponent<IDamageable>(out IDamageable damageable))
-        {
-            Debug.LogWarning("Mine üzerinde IDamageable yok.");
-            return;
-        }
-
-        int damage = Mathf.RoundToInt(
-            StatManager.Instance.GetStat(StatType.ClickDamage)
-        );
-
-        damageable.TakeDamage(damage);
-
-        Debug.Log("Mine hasar aldı: " + damage);
     }
 }

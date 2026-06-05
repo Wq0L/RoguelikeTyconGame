@@ -20,4 +20,11 @@ public class PlanterSO : ScriptableObject
     [Header("Spawn")]
     public List<PlantSpawnEntry> spawnTable;
     public float baseSpawnInterval;
+
+    [Header("Boyut")]
+    public int sizeX = 1;
+    public int sizeZ = 1;
+    
+    [Header("Fiyat")]
+    public int cost;
 }
