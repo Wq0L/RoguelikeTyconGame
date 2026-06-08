@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9bf7029ef243f0409d4c305b215917d, type: 3}
   m_Name: GrassPlanter 2x2
   m_EditorClassIdentifier: Assembly-CSharp::PlanterSO
-  planterName: Grass Planter
+  planterName: Grass Planter 2x2
   prefab: {fileID: 1395836356370012693, guid: 756b70d05b2ceb949b7e4a493aa6d70f, type: 3}
   spawnTable:
   - plant: {fileID: 11400000, guid: bc6f91211bbf37b4ea0b6c1e6ee9c8fc, type: 2}

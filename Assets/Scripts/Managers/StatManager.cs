@@ -47,6 +47,8 @@ public class StatManager : MonoBehaviour
             statDictionary[modifier.statType] = 0f;
         }
 
+        float oldValue = statDictionary[modifier.statType];
+
         switch (modifier.operation)
         {
             case ModifierOperation.Add:
@@ -61,6 +63,10 @@ public class StatManager : MonoBehaviour
                 statDictionary[modifier.statType] = modifier.value;
                 break;
         }
+
+        float newValue = statDictionary[modifier.statType];
+
+        Debug.Log($"Stat güncellendi: {modifier.statType} | {oldValue} → {newValue}");
 
         OnStatChanged?.Invoke(modifier.statType, statDictionary[modifier.statType]);
     }

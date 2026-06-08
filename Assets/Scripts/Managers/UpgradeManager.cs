@@ -20,6 +20,8 @@ public class UpgradeManager : MonoBehaviour
         if (upgradeSO == null)
             return;
 
+        //Debug.Log($"Upgrade: {upgradeSO.UpgradeName} | Cost: {upgradeSO.Cost} | Mevcut Gold: {ResourceManager.Instance.GetResourceAmount(ResourceType.Gold)}");
+
         // Daha önce alınmış mı?
         if (purchasedUpgradeIds.Contains(upgradeSO.UpgradeId))
         {
@@ -45,6 +47,6 @@ public class UpgradeManager : MonoBehaviour
         // Satın alınanlara ekle
         purchasedUpgradeIds.Add(upgradeSO.UpgradeId);
 
-        Debug.Log("Upgrade satın alındı: " + upgradeSO.UpgradeName);
+        //Debug.Log("Upgrade satın alındı: " + upgradeSO.UpgradeName);
     }
 }

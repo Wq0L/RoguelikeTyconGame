@@ -22,6 +22,8 @@ public class ResourceManager : MonoBehaviour
             resources[type] = 0;
         }
 
+        resources[ResourceType.Gold] = 1000;
+
     }
 
 

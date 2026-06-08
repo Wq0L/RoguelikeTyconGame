@@ -11,6 +11,7 @@ public class PlacementManager : MonoBehaviour
     private GridSystem gridSystem;
     private PlanterSO selectedPlanter;
     private int refundAmount;
+    private GameObject ghostObject;
 
     private void Awake()
     {
@@ -28,33 +29,72 @@ public class PlacementManager : MonoBehaviour
         if (GameManager.Instance.CurrentState != GameStates.Placing)
             return;
 
+        MoveGhostToMouse();
         HandlePlacementClick();
         HandleCancel();
     }
 
     public void StartPlacement(PlanterSO planterData)
     {
-        Debug.Log("StartPlacement çağrıldı: " + (planterData == null ? "NULL" : planterData.planterName));
-
         selectedPlanter = planterData;
         refundAmount = planterData.cost / 2;
+
+        // Ghost spawn et
+        ghostObject = Instantiate(selectedPlanter.prefab);
+        GhostController ghost = ghostObject.GetComponent<GhostController>();
+        ghost?.SetGhostMode(true);
+
         GameManager.Instance.StartPlacement();
     }
+
+    private void MoveGhostToMouse()
+    {
+        if (ghostObject == null) return;
+
+        GridObject gridObject = GetMouseGridObject();
+        if (gridObject == null) return;
+
+        GroundCell groundCell = gridObject.GetGroundCellCached();
+        if (groundCell == null) return;
+
+        GridPosition origin = groundCell.GetGridPosition();
+
+        float offsetX = (selectedPlanter.sizeX - 1) * gridManager.GetCellSize() / 2f;
+        float offsetZ = (selectedPlanter.sizeZ - 1) * gridManager.GetCellSize() / 2f;
+
+        ghostObject.transform.position = groundCell.transform.position + 
+            new Vector3(offsetX, 0, offsetZ);
+
+        // Geçerli mi kontrol et, rengi güncelle
+        bool isValid = IsPlacementValid(origin);
+        GhostController ghost = ghostObject.GetComponent<GhostController>();
+        ghost?.SetColor(isValid);
+    }
+
+private bool IsPlacementValid(GridPosition origin)
+{
+    for (int x = 0; x < selectedPlanter.sizeX; x++)
+    {
+        for (int z = 0; z < selectedPlanter.sizeZ; z++)
+        {
+            GridPosition checkPos = new GridPosition(origin.x + x, origin.z + z);
+            GridObject gridObj = gridSystem.GetGridObject(checkPos);
+
+            if (gridObj == null || gridObj.HasPlanterObject())
+                return false;
+        }
+    }
+    return true;
+}
 
     private void HandlePlacementClick()
     {
         if (!Input.GetMouseButtonDown(0)) return;
-        Debug.Log("Tık algılandı");
 
         GridObject gridObject = GetMouseGridObject();
-        Debug.Log("GridObject: " + (gridObject == null ? "NULL" : "BULUNDU"));
         if (gridObject == null) return;
 
-        if (!gridObject.HasGroundObject())
-        {
-            Debug.Log("Ground yok.");
-            return;
-        }
+        if (!gridObject.HasGroundObject()) return;
 
         if (gridObject.HasPlanterObject())
         {
@@ -62,20 +102,17 @@ public class PlacementManager : MonoBehaviour
             return;
         }
 
-        Debug.Log("PlacePlanter çağrılıyor.");
         PlacePlanter(gridObject);
     }
 
     private void PlacePlanter(GridObject originGridObject)
     {
-        Debug.Log("selectedPlanter: " + (selectedPlanter == null ? "NULL" : selectedPlanter.planterName));
-
         GroundCell groundCell = originGridObject.GetGroundCellCached();
         if (groundCell == null) return;
 
         GridPosition origin = groundCell.GetGridPosition();
 
-        // Önce tüm tile'ların boş olduğunu kontrol et
+        // Boş alan kontrolü
         for (int x = 0; x < selectedPlanter.sizeX; x++)
         {
             for (int z = 0; z < selectedPlanter.sizeZ; z++)
@@ -91,19 +128,11 @@ public class PlacementManager : MonoBehaviour
             }
         }
 
-        // Planter'ı spawn et
-        float offsetX = (selectedPlanter.sizeX - 1) * gridManager.GetCellSize() / 2f;
-        float offsetZ = (selectedPlanter.sizeZ - 1) * gridManager.GetCellSize() / 2f;
+        // Ghost'u gerçek modele çevir
+        GhostController ghost = ghostObject.GetComponent<GhostController>();
+        ghost?.SetGhostMode(false);
 
-        Vector3 spawnPos = groundCell.transform.position + new Vector3(offsetX, 0, offsetZ);
-
-        GameObject planterObj = Instantiate(
-            selectedPlanter.prefab,
-            spawnPos,
-            Quaternion.identity
-        );
-
-        // Tüm tile'ları topla ve kaydet
+        // PlanterBrain'e gridleri ver
         List<GridObject> occupiedGrids = new List<GridObject>();
 
         for (int x = 0; x < selectedPlanter.sizeX; x++)
@@ -112,15 +141,15 @@ public class PlacementManager : MonoBehaviour
             {
                 GridPosition pos = new GridPosition(origin.x + x, origin.z + z);
                 GridObject gridObj = gridSystem.GetGridObject(pos);
-                gridObj.SetPlanterObject(planterObj);
+                gridObj.SetPlanterObject(ghostObject);
                 occupiedGrids.Add(gridObj);
             }
         }
 
-        // PlanterBrain'e tüm gridleri ver
-        PlanterBrain planterBrain = planterObj.GetComponent<PlanterBrain>();
+        PlanterBrain planterBrain = ghostObject.GetComponent<PlanterBrain>();
         planterBrain?.Initialize(occupiedGrids);
 
+        ghostObject = null;
         EndPlacement();
     }
 
@@ -132,6 +161,12 @@ public class PlacementManager : MonoBehaviour
 
     public void CancelPlacement()
     {
+        if (ghostObject != null)
+        {
+            Destroy(ghostObject);
+            ghostObject = null;
+        }
+
         ResourceManager.Instance.AddResource(ResourceType.Gold, refundAmount);
         EndPlacement();
     }

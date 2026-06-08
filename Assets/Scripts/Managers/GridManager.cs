@@ -49,7 +49,7 @@ public class GridManager : MonoBehaviour
             gridObject.SetGroundObject(groundCell.gameObject);
             groundCell.SetGridPosition(gridPosition);
 
-            Debug.Log("GroundCell grid'e bağlandı: " + gridPosition);
+            //Debug.Log("GroundCell grid'e bağlandı: " + gridPosition);
         }
     }
 
