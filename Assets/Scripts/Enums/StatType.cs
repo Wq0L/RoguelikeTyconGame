@@ -11,5 +11,6 @@ public enum StatType
     AreaDamageRadius,
     ChainDamage,
 
-    RareMineChance
+    RareMineChance,
+    GridUnlockSize
 }

@@ -7,6 +7,8 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private GameObject shopPanel2;
     [SerializeField] private GameObject shopPanel3;
     [SerializeField] private GameObject shopPanel4;
+    [SerializeField] private GameObject shopPanel5;
+    [SerializeField] private GameObject shopPanel6;
 
 
     private void Awake()
@@ -15,11 +17,13 @@ public class ShopUI : MonoBehaviour
         shopPanel2.SetActive(false);
         shopPanel3.SetActive(false);
         shopPanel4.SetActive(false);
+        shopPanel5.SetActive(false);
+        shopPanel6.SetActive(false);
     }
 
     void Update()
     {
-        if (GameManager.Instance.CurrentState == GameStates.Shop && !shopPanel.activeSelf && !shopPanel2.activeSelf && !shopPanel3.activeSelf && !shopPanel4.activeSelf)
+        if (GameManager.Instance.CurrentState == GameStates.Shop && !shopPanel.activeSelf && !shopPanel2.activeSelf && !shopPanel3.activeSelf && !shopPanel4.activeSelf && !shopPanel5.activeSelf && !shopPanel6.activeSelf)
         {
             ToggleShopPanel();
         }    
@@ -31,6 +35,8 @@ public class ShopUI : MonoBehaviour
         shopPanel2.SetActive(!shopPanel2.activeSelf);
         shopPanel3.SetActive(!shopPanel3.activeSelf);
         shopPanel4.SetActive(!shopPanel4.activeSelf);
+        shopPanel5.SetActive(!shopPanel5.activeSelf);
+        shopPanel6.SetActive(!shopPanel6.activeSelf);
     }
     
 }

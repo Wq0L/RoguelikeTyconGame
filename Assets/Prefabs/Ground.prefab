@@ -45,6 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b561200c43824649b9897693e09b46c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mine
+  groundRenderer: {fileID: 6204749161181034286}
+  lockedMaterial: {fileID: 2100000, guid: b3c681c61a718f341b93eaeeb9f225e8, type: 2}
+  unlockedMaterials:
+  - {fileID: 7553114150769584927, guid: bceae80c25d1ef64fa3f436304c13b04, type: 3}
+  - {fileID: 349961630999134070, guid: bceae80c25d1ef64fa3f436304c13b04, type: 3}
+  - {fileID: 1704275009819150420, guid: bceae80c25d1ef64fa3f436304c13b04, type: 3}
 --- !u!1 &5556120382466332411
 GameObject:
   m_ObjectHideFlags: 0
