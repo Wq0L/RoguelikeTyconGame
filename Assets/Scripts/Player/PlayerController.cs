@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.CurrentState != GameStates.Playing)
+        if (GameManager.Instance.CurrentState != GameStates.Round)
         {
             radiusIndicator.enabled = false;
             return;

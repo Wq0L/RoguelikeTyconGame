@@ -4,19 +4,21 @@ public class PlantSpawner : MonoBehaviour
 {
     private PlanterSO planterData;
     private GridObject gridObject;
+    private PlanterBrain planterBrain;
     private float timer;
     private GameObject spawnedPlant;
 
-    public void Initialize(PlanterSO data, GridObject gridObj)
+    public void Initialize(PlanterSO data, GridObject gridObj, PlanterBrain brain)
     {
         planterData = data;
         gridObject = gridObj;
+        planterBrain = brain;
         timer = Random.Range(0f, planterData.baseSpawnInterval);
     }
 
     private void Update()
     {
-        if (GameManager.Instance.CurrentState != GameStates.Playing)
+        if (GameManager.Instance.CurrentState != GameStates.Round)
             return;
 
         if (spawnedPlant != null)
@@ -24,11 +26,67 @@ public class PlantSpawner : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        if (timer >= planterData.baseSpawnInterval)
+        if (timer >= GetEffectiveSpawnInterval())
         {
             timer = 0f;
             TrySpawnPlant();
         }
+    }
+
+    private float GetEffectiveSpawnInterval()
+    {
+        float interval = StatManager.Instance.GetStat(StatType.MineSpawnInterval);
+
+        if (planterBrain != null)
+        {
+            foreach (StatModifier mod in planterBrain.ActiveModifiers)
+            {
+                if (mod.statType != StatType.MineSpawnInterval) continue;
+
+                switch (mod.operation)
+                {
+                    case ModifierOperation.Add:
+                        interval += mod.value;
+                        break;
+                    case ModifierOperation.Multiply:
+                        interval *= mod.value;
+                        break;
+                    case ModifierOperation.Set:
+                        interval = mod.value;
+                        break;
+                }
+            }
+        }
+
+        return Mathf.Max(interval, 0.1f);
+    }
+
+    private float GetEffectiveRareBonus()
+    {
+        float rareBonus = StatManager.Instance.GetStat(StatType.RareMineChance);
+
+        if (planterBrain != null)
+        {
+            foreach (StatModifier mod in planterBrain.ActiveModifiers)
+            {
+                if (mod.statType != StatType.RareMineChance) continue;
+
+                switch (mod.operation)
+                {
+                    case ModifierOperation.Add:
+                        rareBonus += mod.value;
+                        break;
+                    case ModifierOperation.Multiply:
+                        rareBonus *= mod.value;
+                        break;
+                    case ModifierOperation.Set:
+                        rareBonus = mod.value;
+                        break;
+                }
+            }
+        }
+
+        return rareBonus;
     }
 
     private void TrySpawnPlant()
@@ -43,11 +101,14 @@ public class PlantSpawner : MonoBehaviour
         );
 
         PlantBrain plantBrain = plantObj.GetComponent<PlantBrain>();
-        plantBrain?.Initialize(selectedPlant, gridObject); 
+        plantBrain?.Initialize(selectedPlant, gridObject);
 
         PlantHealth plantHealth = plantObj.GetComponent<PlantHealth>();
         if (plantHealth != null)
             plantHealth.OnDied += OnPlantDied;
+
+        PlantResource plantResource = plantObj.GetComponent<PlantResource>();
+        plantResource?.Initialize(selectedPlant, planterBrain);
 
         spawnedPlant = plantObj;
         gridObject?.SetPlantObject(plantObj);
@@ -61,7 +122,7 @@ public class PlantSpawner : MonoBehaviour
 
     private PlantSO RollPlant()
     {
-        float rareBonus = StatManager.Instance.GetStat(StatType.RareMineChance);
+        float rareBonus = GetEffectiveRareBonus();
 
         float totalWeight = 0f;
         foreach (PlantSpawnEntry entry in planterData.spawnTable)

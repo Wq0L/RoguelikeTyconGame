@@ -1,9 +1,9 @@
 public enum GameStates
 {
     MainMenu,
-    Playing,
+    RunSetup,
+    Round,
     Shop,
     Placing,
-    Paused,
-    GameOver
+    RunComplete
 }

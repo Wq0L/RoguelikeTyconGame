@@ -13,4 +13,5 @@ public class PlantSO : ScriptableObject
     [Header("Reward")]
     public ResourceType resourceType;
     public int rewardAmount;
+    public int xpAmount;
 }

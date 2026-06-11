@@ -11,8 +11,10 @@ public class GroundCell : MonoBehaviour
 
     private GridPosition gridPosition;
     private bool isLocked = true;
+    private TileModifierSO currentModifier;
 
     public bool IsLocked => isLocked;
+    public TileModifierSO CurrentModifier => currentModifier;
 
     private void Awake()
     {
@@ -38,15 +40,7 @@ public class GroundCell : MonoBehaviour
         }
 
         isLocked = false;
-
-        Material[] materials = groundRenderer.materials;
-
-        for (int i = 0; i < materials.Length; i++)
-        {
-            materials[i] = unlockedMaterials[i % unlockedMaterials.Length];
-        }
-
-        groundRenderer.materials = materials;
+        ApplyMaterials(unlockedMaterials);
     }
 
     public void Lock()
@@ -60,11 +54,33 @@ public class GroundCell : MonoBehaviour
         isLocked = true;
 
         Material[] materials = groundRenderer.materials;
+        for (int i = 0; i < materials.Length; i++)
+            materials[i] = lockedMaterial;
 
+        groundRenderer.materials = materials;
+    }
+
+    // Mutasyon uygula
+    public void ApplyModifier(TileModifierSO modifier)
+    {
+        currentModifier = modifier;
+
+        // Her slot için modifier'ın rengiyle boyanmış materyal
+        Material[] materials = groundRenderer.materials;
         for (int i = 0; i < materials.Length; i++)
         {
-            materials[i] = lockedMaterial;
+            materials[i] = new Material(unlockedMaterials[i % unlockedMaterials.Length]);
+            materials[i].color = modifier.tileColor;
         }
+
+        groundRenderer.materials = materials;
+    }
+
+    private void ApplyMaterials(Material[] newMaterials)
+    {
+        Material[] materials = groundRenderer.materials;
+        for (int i = 0; i < materials.Length; i++)
+            materials[i] = newMaterials[i % newMaterials.Length];
 
         groundRenderer.materials = materials;
     }

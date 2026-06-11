@@ -1,8 +1,12 @@
+using System;
 using UnityEngine;
 
 public class RoundManager : MonoBehaviour
 {
     public static RoundManager Instance { get; private set; }
+
+    public event Action OnRoundEnded;
+
 
     [SerializeField] private float roundDuration = 30f;
 
@@ -28,7 +32,7 @@ public class RoundManager : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.CurrentState != GameStates.Playing)
+        if (GameManager.Instance.CurrentState != GameStates.Round)
             return;
 
         if (!IsRoundActive)
@@ -62,6 +66,7 @@ public class RoundManager : MonoBehaviour
         IsRoundActive = false;
         RemainingTime = 0f;
 
+        OnRoundEnded?.Invoke();
         GameManager.Instance.OpenShop();
     }
 

@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-        SetState(GameStates.Playing);
+        SetState(GameStates.Round);
     }
 
     private void Update()
@@ -35,12 +35,12 @@ public class GameManager : MonoBehaviour
         Debug.Log($"GameManager: State changed to {CurrentState}");
     }
 
-    public void StartGame() => SetState(GameStates.Playing);
+    public void ReturnToMenu() => SetState(GameStates.MainMenu);
+    public void StartRunSetup() => SetState(GameStates.RunSetup);
+    public void StartGame() => SetState(GameStates.Round);
     public void OpenShop() => SetState(GameStates.Shop);
     public void StartPlacement() => SetState(GameStates.Placing);
-    public void PauseGame() => SetState(GameStates.Paused);
-    public void GameOver() => SetState(GameStates.GameOver);
-    public void ReturnToMenu() => SetState(GameStates.MainMenu);
+    public void CompleteRun() => SetState(GameStates.RunComplete);
 
     private void HandleStateEnter(GameStates state)
     {
@@ -49,23 +49,29 @@ public class GameManager : MonoBehaviour
             case GameStates.MainMenu:
                 EnterMainMenu();
                 break;
-            case GameStates.Playing:
-                EnterPlaying();
+
+            case GameStates.RunSetup:
+                EnterRunSetup();
                 break;
+
+            case GameStates.Round:
+                EnterRound();
+                break;
+
             case GameStates.Shop:
                 EnterShop();
                 break;
+
             case GameStates.Placing:
                 EnterPlacing();
                 break;
-            case GameStates.Paused:
-                EnterPaused();
+
+            case GameStates.RunComplete:
+                EnterRunComplete();
                 break;
-            case GameStates.GameOver:
-                EnterGameOver();
-                break;
+
             default:
-                EnterPlaying();
+                EnterRound();
                 break;
         }
     }
@@ -75,7 +81,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    private void EnterPlaying()
+    private void EnterRound()
     {
         Time.timeScale = 1f;
     }
@@ -90,12 +96,12 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    private void EnterPaused()
+    private void EnterRunSetup()
     {
         Time.timeScale = 0f;
     }
 
-    private void EnterGameOver()
+    private void EnterRunComplete()
     {
         Time.timeScale = 0f;
     }

@@ -7,6 +7,9 @@ public class PlanterBrain : MonoBehaviour
     [SerializeField] private List<Transform> spawnPoints;
 
     private List<PlantSpawner> spawners = new List<PlantSpawner>();
+    private List<StatModifier> activeModifiers = new List<StatModifier>();
+
+    public List<StatModifier> ActiveModifiers => activeModifiers;
 
     public void Initialize(List<GridObject> gridObjects)
     {
@@ -14,7 +17,6 @@ public class PlanterBrain : MonoBehaviour
         {
             if (i >= gridObjects.Count) break;
 
-            // En yakın gridObject'i bul
             GridObject closest = FindClosestGridObject(spawnPoints[i].position, gridObjects);
 
             GameObject spawnerObj = new GameObject("PlantSpawner_" + i);
@@ -22,10 +24,23 @@ public class PlanterBrain : MonoBehaviour
             spawnerObj.transform.SetParent(transform);
 
             PlantSpawner spawner = spawnerObj.AddComponent<PlantSpawner>();
-            spawner.Initialize(planterData, closest);
+            spawner.Initialize(planterData, closest, this);
 
             spawners.Add(spawner);
         }
+    }
+
+    public void ApplyBuff(TileModifierSO modifier)
+    {
+        StatModifier statMod = new StatModifier
+        {
+            statType = modifier.statType,
+            operation = modifier.operation,
+            value = modifier.value
+        };
+
+        activeModifiers.Add(statMod);
+        Debug.Log($"PlanterBrain buff aldı: {modifier.modifierName}");
     }
 
     private GridObject FindClosestGridObject(Vector3 worldPos, List<GridObject> gridObjects)
@@ -46,16 +61,9 @@ public class PlanterBrain : MonoBehaviour
             }
         }
 
-        if (closest != null)
-        {
-            GroundCell closestCell = closest.GetGroundCellCached();
-            //Debug.Log($"SpawnPoint {worldPos} → Grid {closestCell.GetGridPosition()}");
-        }
-
         return closest;
     }
 
-    // 1x1 planter için geriye dönük uyumluluk
     public void SetGridObject(GridObject gridObject)
     {
         Initialize(new List<GridObject> { gridObject });

@@ -71,17 +71,10 @@ public class PlacementManager : MonoBehaviour
     {
         switch (currentRotation)
         {
-            case 0:
-                return new Vector2Int(x, z);
-
-            case 90:
-                return new Vector2Int(z, -x);
-
-            case 180:
-                return new Vector2Int(-x, -z);
-
-            case 270:
-                return new Vector2Int(-z, x);
+            case 0: return new Vector2Int(x, z);
+            case 90: return new Vector2Int(z, -x);
+            case 180: return new Vector2Int(-x, -z);
+            case 270: return new Vector2Int(-z, x);
         }
 
         return new Vector2Int(x, z);
@@ -106,7 +99,6 @@ public class PlacementManager : MonoBehaviour
         }
 
         Vector2 center = ((Vector2)min + (Vector2)max) / 2f;
-
         return new Vector3(center.x * cellSize, 0, center.y * cellSize);
     }
 
@@ -167,7 +159,10 @@ public class PlacementManager : MonoBehaviour
 
         if (!gridObject.HasGroundObject()) return;
 
-        if (!IsPlacementValid(gridObject.GetGroundCellCached().GetGridPosition()))
+        GroundCell groundCell = gridObject.GetGroundCellCached();
+        if (groundCell == null) return;
+
+        if (!IsPlacementValid(groundCell.GetGridPosition()))
         {
             Debug.Log("Yeterli boş alan yok.");
             return;
@@ -217,7 +212,21 @@ public class PlacementManager : MonoBehaviour
         }
 
         PlanterBrain planterBrain = ghostObject.GetComponent<PlanterBrain>();
-        planterBrain?.Initialize(occupiedGrids);
+
+        if (planterBrain != null)
+        {
+            planterBrain.Initialize(occupiedGrids);
+
+            foreach (GridObject gridObj in occupiedGrids)
+            {
+                GroundCell cell = gridObj.GetGroundCellCached();
+
+                if (cell != null && cell.CurrentModifier != null)
+                {
+                    planterBrain.ApplyBuff(cell.CurrentModifier);
+                }
+            }
+        }
 
         ghostObject = null;
         EndPlacement();
