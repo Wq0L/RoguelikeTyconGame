@@ -71,6 +71,8 @@ public class GridUnlockManager : MonoBehaviour
         int centerX = gridWidth / 2;
         int centerZ = gridHeight / 2;
 
+        Debug.Log($"Grid: {gridWidth}x{gridHeight} | Merkez: {centerX},{centerZ} | Size: {size}");
+
         int half = size / 2;
 
         for (int x = centerX - half; x <= centerX + half; x++)

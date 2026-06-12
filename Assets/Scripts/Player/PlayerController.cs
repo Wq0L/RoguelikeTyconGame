@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 GetMouseWorldPosition()
     {
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundLayerMask))
