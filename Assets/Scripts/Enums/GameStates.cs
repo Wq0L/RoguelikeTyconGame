@@ -5,5 +5,6 @@ public enum GameStates
     Round,
     Shop,
     Placing,
+    Selling,
     RunComplete
 }

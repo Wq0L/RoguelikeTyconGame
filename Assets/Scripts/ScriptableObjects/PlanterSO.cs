@@ -26,5 +26,6 @@ public class PlanterSO : ScriptableObject
     public int sizeZ = 1;
     
     [Header("Fiyat")]
+    public ResourceType costType;
     public int cost;
 }

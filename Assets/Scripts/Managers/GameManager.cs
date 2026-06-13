@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     public void StartGame() => SetState(GameStates.Round);
     public void OpenShop() => SetState(GameStates.Shop);
     public void StartPlacement() => SetState(GameStates.Placing);
+    public void EnterSellMode() => SetState(GameStates.Selling);
     public void CompleteRun() => SetState(GameStates.RunComplete);
 
     private void HandleStateEnter(GameStates state)
@@ -64,6 +65,9 @@ public class GameManager : MonoBehaviour
 
             case GameStates.Placing:
                 EnterPlacing();
+                break;
+            case GameStates.Selling:
+                EnterSelling();
                 break;
 
             case GameStates.RunComplete:
@@ -92,6 +96,11 @@ public class GameManager : MonoBehaviour
     }
 
     private void EnterPlacing()
+    {
+        Time.timeScale = 0f;
+    }
+
+    private void EnterSelling()
     {
         Time.timeScale = 0f;
     }

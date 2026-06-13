@@ -15,6 +15,20 @@ public class GrassPlanterButtonUI : MonoBehaviour
 
     private void HandleClick()
     {
+        // Para yeterli mi kontrol et ve kes
+        bool success = ResourceManager.Instance.SpendResource(
+            planterSO.costType,
+            planterSO.cost
+        );
+
+        if (!success)
+        {
+            Debug.Log("Yeterli kaynak yok.");
+            return;
+        }
+
+        // Para kesildi, placement başlat
         PlacementManager.Instance.StartPlacement(planterSO);
     }
+
 }

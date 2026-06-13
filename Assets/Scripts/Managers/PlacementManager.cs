@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlacementManager : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class PlacementManager : MonoBehaviour
     private int refundAmount;
     private int currentRotation = 0;
     private GameObject ghostObject;
+    private ResourceType selectedCostResource;
+
+
+    private bool isSellMode = false;
 
     private void Awake()
     {
@@ -27,13 +32,18 @@ public class PlacementManager : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.CurrentState != GameStates.Placing)
-            return;
-
-        HandleRotation();
-        MoveGhostToMouse();
-        HandlePlacementClick();
-        HandleCancel();
+        if (GameManager.Instance.CurrentState == GameStates.Placing)
+        {
+            HandleRotation();
+            MoveGhostToMouse();
+            HandlePlacementClick();
+            HandleCancel();
+        }
+        if (isSellMode)
+        {
+            HandleSellClick();
+            HandleSellExit();
+        }
     }
 
     public void StartPlacement(PlanterSO planterData)
@@ -45,6 +55,7 @@ public class PlacementManager : MonoBehaviour
         }
 
         selectedPlanter = planterData;
+        selectedCostResource = planterData.costType;
         refundAmount = planterData.cost / 2;
         currentRotation = 0;
 
@@ -246,16 +257,53 @@ public class PlacementManager : MonoBehaviour
             ghostObject = null;
         }
 
-        ResourceManager.Instance.AddResource(ResourceType.Gold, refundAmount);
+        ResourceManager.Instance.AddResource(selectedCostResource, refundAmount);
         EndPlacement();
     }
 
     private void EndPlacement()
     {
         selectedPlanter = null;
+        selectedCostResource = default;
         refundAmount = 0;
         currentRotation = 0;
         GameManager.Instance.OpenShop();
+    }
+
+    public void EnterSellMode()
+    {
+        isSellMode = true;
+        Debug.Log("Sell modu açık.");
+    }
+
+    public void ExitSellMode()
+    {
+        isSellMode = false;
+        Debug.Log("Sell modu kapandı.");
+        GameManager.Instance.OpenShop();
+    }
+
+    private void HandleSellClick()
+    {
+        if (!Input.GetMouseButtonDown(0)) return;
+
+        if (EventSystem.current != null &&
+            EventSystem.current.IsPointerOverGameObject()) return;
+
+        GridObject gridObject = GetMouseGridObject();
+        if (gridObject == null) return;
+
+        if (!gridObject.HasPlanterObject()) return;
+
+        GameObject planterObj = gridObject.GetPlanterObject();
+        PlanterBrain planterBrain = planterObj?.GetComponent<PlanterBrain>();
+        planterBrain?.RemoveSelf();
+    }
+
+    private void HandleSellExit()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            ExitSellMode();
     }
 
     private GridObject GetMouseGridObject()

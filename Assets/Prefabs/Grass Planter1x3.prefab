@@ -110,12 +110,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8701a59927bf0e5469893d71587c112a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlanterBrain
-  planterData: {fileID: 11400000, guid: 4b9763086d7a4ec45b2916e3c63f69a9, type: 2}
+  planterData: {fileID: 11400000, guid: faca57c50975b7c429cf17b407d9f0a2, type: 2}
   spawnPoints:
   - {fileID: 8569732931028725351}
   - {fileID: 8075628335045800187}
   - {fileID: 8675073782904261184}
-  - {fileID: 0}
 --- !u!114 &6047225301930121196
 MonoBehaviour:
   m_ObjectHideFlags: 0

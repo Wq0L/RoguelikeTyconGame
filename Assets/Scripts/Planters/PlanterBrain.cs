@@ -8,11 +8,14 @@ public class PlanterBrain : MonoBehaviour
 
     private List<PlantSpawner> spawners = new List<PlantSpawner>();
     private List<StatModifier> activeModifiers = new List<StatModifier>();
+    private List<GridObject> occupiedGrids = new List<GridObject>();
 
     public List<StatModifier> ActiveModifiers => activeModifiers;
 
     public void Initialize(List<GridObject> gridObjects)
     {
+        occupiedGrids = new List<GridObject>(gridObjects);
+
         for (int i = 0; i < spawnPoints.Count; i++)
         {
             if (i >= gridObjects.Count) break;
@@ -41,6 +44,27 @@ public class PlanterBrain : MonoBehaviour
 
         activeModifiers.Add(statMod);
         Debug.Log($"PlanterBrain buff aldı: {modifier.modifierName}");
+    }
+
+    public void RemoveSelf()
+    {
+        
+        foreach (GridObject gridObj in occupiedGrids)
+        {
+            gridObj.ClearPlanterObject();
+        }
+
+        int refund = planterData.cost / 2;
+        Debug.Log($"Cost: {planterData.cost} | Refund: {refund}");
+
+        ResourceManager.Instance.AddResource(
+            planterData.costType,
+            refund
+        );
+
+        Debug.Log($"{planterData.planterName} kaldırıldı, {planterData.cost / 2} {planterData.costType} iade edildi.");
+
+        Destroy(gameObject);
     }
 
     private GridObject FindClosestGridObject(Vector3 worldPos, List<GridObject> gridObjects)

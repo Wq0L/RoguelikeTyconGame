@@ -22,4 +22,5 @@ MonoBehaviour:
   baseSpawnInterval: 5
   sizeX: 1
   sizeZ: 3
-  cost: 0
+  costType: 2
+  cost: 6
