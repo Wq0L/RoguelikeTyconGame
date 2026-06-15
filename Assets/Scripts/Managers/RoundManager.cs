@@ -67,12 +67,13 @@ public class RoundManager : MonoBehaviour
         RemainingTime = 0f;
 
         OnRoundEnded?.Invoke();
-        GameManager.Instance.OpenShop();
+        GameManager.Instance.ShowRoundEnd(); // ← değişti
     }
 
     public void StartNextRound()
     {
-        if (GameManager.Instance.CurrentState != GameStates.Shop)
+        if (GameManager.Instance.CurrentState != GameStates.Shop &&
+            GameManager.Instance.CurrentState != GameStates.RoundEnd)
             return;
 
         CurrentRound++;

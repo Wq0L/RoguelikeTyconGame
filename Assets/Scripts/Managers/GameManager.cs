@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-       Debug.Log($"Current Game State: {CurrentState}");
+        Debug.Log($"Current Game State: {CurrentState}");
     }
 
     public void SetState(GameStates newState)
@@ -38,10 +38,11 @@ public class GameManager : MonoBehaviour
     public void ReturnToMenu() => SetState(GameStates.MainMenu);
     public void StartRunSetup() => SetState(GameStates.RunSetup);
     public void StartGame() => SetState(GameStates.Round);
+    public void ShowRoundEnd() => SetState(GameStates.RoundEnd);   // ← yeni
     public void OpenShop() => SetState(GameStates.Shop);
     public void StartPlacement() => SetState(GameStates.Placing);
     public void EnterSellMode() => SetState(GameStates.Selling);
-    public void CompleteRun() => SetState(GameStates.RunComplete);
+    public void CompleteRun() => SetState(GameStates.RunComplete); // ← isim değişti
 
     private void HandleStateEnter(GameStates state)
     {
@@ -59,6 +60,10 @@ public class GameManager : MonoBehaviour
                 EnterRound();
                 break;
 
+            case GameStates.RoundEnd:
+                EnterRoundEnd();
+                break;
+
             case GameStates.Shop:
                 EnterShop();
                 break;
@@ -66,6 +71,7 @@ public class GameManager : MonoBehaviour
             case GameStates.Placing:
                 EnterPlacing();
                 break;
+
             case GameStates.Selling:
                 EnterSelling();
                 break;
@@ -80,38 +86,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void EnterMainMenu()
-    {
-        Time.timeScale = 0f;
-    }
-
-    private void EnterRound()
-    {
-        Time.timeScale = 1f;
-    }
-
-    private void EnterShop()
-    {
-        Time.timeScale = 0f;
-    }
-
-    private void EnterPlacing()
-    {
-        Time.timeScale = 0f;
-    }
-
-    private void EnterSelling()
-    {
-        Time.timeScale = 0f;
-    }
-
-    private void EnterRunSetup()
-    {
-        Time.timeScale = 0f;
-    }
-
-    private void EnterRunComplete()
-    {
-        Time.timeScale = 0f;
-    }
+    private void EnterMainMenu() => Time.timeScale = 0f;
+    private void EnterRound() => Time.timeScale = 1f;
+    private void EnterRoundEnd() => Time.timeScale = 0f;
+    private void EnterShop() => Time.timeScale = 0f;
+    private void EnterPlacing() => Time.timeScale = 0f;
+    private void EnterSelling() => Time.timeScale = 0f;
+    private void EnterRunSetup() => Time.timeScale = 0f;
+    private void EnterRunComplete() => Time.timeScale = 0f;
 }

@@ -42,7 +42,7 @@ public class ProgressionManager : MonoBehaviour
         CurrentXP += amount;
         OnXPChanged?.Invoke();
 
-        if (CurrentXP >= XPToNextLevel)
+        while (CurrentXP >= XPToNextLevel)
             LevelUp();
     }
 

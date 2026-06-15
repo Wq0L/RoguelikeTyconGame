@@ -239,6 +239,13 @@ public class PlacementManager : MonoBehaviour
             }
         }
 
+
+        Debug.Log($"Toplam modifier sayısı: {planterBrain.ActiveModifiers.Count}");
+        foreach (var mod in planterBrain.ActiveModifiers)
+        {
+            Debug.Log($"  → {mod.statType} | {mod.operation} | {mod.value}");
+        }
+
         ghostObject = null;
         EndPlacement();
     }

@@ -17,6 +17,5 @@ public class UpgradeButtonUI : MonoBehaviour
     private void HandleClick()
     {
         OnUpgradeClicked?.Invoke(upgradeSO);
-        RoundManager.Instance.StartNextRound();
     }
 }
