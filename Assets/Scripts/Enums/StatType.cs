@@ -1,16 +1,19 @@
 public enum StatType
 {
-    ClickDamage,
-    GoldGainMultiplier,
-    MineSpawnInterval,
-    MaxMineCount,
+    HarvestDamage,
+    AreaRadius,
+    AttackSpeed,
 
-    AutoFarmerCooldown,
-    AutoFarmerDamage,
+    SeedGainMultiplier,
+    CoreSeedGainMultiplier,
+    XPGainMultiplier,
+    HarvestScoreMultiplier,
 
-    AreaDamageRadius,
-    ChainDamage,
+    RareSpawnChance,
+    PlantSpawnRate,
 
-    RareMineChance,
-    GridUnlockSize
+    RoundDuration,
+    MutationLuck,
+    GridUnlockSize,
+    RefundBonus
 }

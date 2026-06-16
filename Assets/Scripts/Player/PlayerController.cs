@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleAutoAttack(Vector3 mouseWorldPos)
     {
-        float attackSpeed = StatManager.Instance.GetStat(StatType.AutoFarmerCooldown);
+        float attackSpeed = StatManager.Instance.GetStat(StatType.AttackSpeed);
         attackSpeed = Mathf.Max(attackSpeed, 0.1f);
 
         attackTimer += Time.deltaTime;
@@ -63,8 +63,8 @@ public class PlayerController : MonoBehaviour
 
     private void AttackInRadius(Vector3 center)
     {
-        float radius = StatManager.Instance.GetStat(StatType.AreaDamageRadius);
-        int damage = Mathf.RoundToInt(StatManager.Instance.GetStat(StatType.ClickDamage));
+        float radius = StatManager.Instance.GetStat(StatType.AreaRadius);
+        int damage = Mathf.RoundToInt(StatManager.Instance.GetStat(StatType.HarvestDamage));
 
         List<GridObject> targets = gridSystem.GetGridObjectsInRadius(center, radius);
 
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
     {
         if (radiusIndicator == null) return;
 
-        float radius = StatManager.Instance.GetStat(StatType.AreaDamageRadius);
+        float radius = StatManager.Instance.GetStat(StatType.AreaRadius);
 
         for (int i = 0; i < circleSegments; i++)
         {

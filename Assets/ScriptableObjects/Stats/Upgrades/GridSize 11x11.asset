@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
   upgradeId: 3
   upgradeName: Grid Size Unlock
-  cost: 2
+  cost:
+    resourceType: 2
+    amount: 5
   newUnlockSize: 5
   modifiers:
-  - statType: 9
+  - statType: 11
     operation: 2
     value: 11

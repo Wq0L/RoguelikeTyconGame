@@ -31,13 +31,13 @@ public class UpgradeManager : MonoBehaviour
 
         // Gold yeterli mi?
         bool success = ResourceManager.Instance.SpendResource(
-            ResourceType.Gold,
-            upgradeSO.Cost
+        upgradeSO.Cost.resourceType,
+        upgradeSO.Cost.amount
         );
 
         if (!success)
         {
-            Debug.Log("Yeterli gold yok.");
+            Debug.Log($"Yeterli {upgradeSO.Cost.resourceType} yok.");
             return;
         }
 

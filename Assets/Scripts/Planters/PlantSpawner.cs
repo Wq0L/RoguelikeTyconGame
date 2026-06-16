@@ -35,13 +35,13 @@ public class PlantSpawner : MonoBehaviour
 
     private float GetEffectiveSpawnInterval()
     {
-        float interval = StatManager.Instance.GetStat(StatType.MineSpawnInterval);
+        float interval = StatManager.Instance.GetStat(StatType.PlantSpawnRate);
 
         if (planterBrain != null)
         {
             foreach (StatModifier mod in planterBrain.ActiveModifiers)
             {
-                if (mod.statType != StatType.MineSpawnInterval) continue;
+                if (mod.statType != StatType.PlantSpawnRate) continue;
 
                 switch (mod.operation)
                 {
@@ -63,13 +63,13 @@ public class PlantSpawner : MonoBehaviour
 
     private float GetEffectiveRareBonus()
     {
-        float rareBonus = StatManager.Instance.GetStat(StatType.RareMineChance);
+        float rareBonus = StatManager.Instance.GetStat(StatType.RareSpawnChance);
 
         if (planterBrain != null)
         {
             foreach (StatModifier mod in planterBrain.ActiveModifiers)
             {
-                if (mod.statType != StatType.RareMineChance) continue;
+                if (mod.statType != StatType.RareSpawnChance) continue;
 
                 switch (mod.operation)
                 {

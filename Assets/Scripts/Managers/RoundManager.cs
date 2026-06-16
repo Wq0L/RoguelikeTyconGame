@@ -6,9 +6,12 @@ public class RoundManager : MonoBehaviour
     public static RoundManager Instance { get; private set; }
 
     public event Action OnRoundEnded;
+    public event Action<int> OnTimeChanged;
+    public event Action<int> OnRoundChanged;
 
 
     [SerializeField] private float roundDuration = 30f;
+    private int lastDisplayedSecond = -1;
 
     public int CurrentRound { get; private set; } = 1;
     public float RemainingTime { get; private set; }
@@ -46,6 +49,14 @@ public class RoundManager : MonoBehaviour
         RemainingTime -= Time.deltaTime;
         RemainingTime = Mathf.Max(RemainingTime, 0f);
 
+        int currentSecond = Mathf.CeilToInt(RemainingTime);
+
+        if (currentSecond != lastDisplayedSecond)
+        {
+            lastDisplayedSecond = currentSecond;
+            OnTimeChanged?.Invoke(currentSecond);
+        }
+
         if (RemainingTime <= 0f)
         {
             EndRound();
@@ -58,6 +69,7 @@ public class RoundManager : MonoBehaviour
         RemainingTime = roundDuration;
         IsRoundActive = true;
 
+        OnRoundChanged?.Invoke(CurrentRound);
         GameManager.Instance.StartGame();
     }
 
@@ -67,7 +79,7 @@ public class RoundManager : MonoBehaviour
         RemainingTime = 0f;
 
         OnRoundEnded?.Invoke();
-        GameManager.Instance.ShowRoundEnd(); // ← değişti
+        GameManager.Instance.ShowRoundEnd();
     }
 
     public void StartNextRound()
@@ -77,6 +89,12 @@ public class RoundManager : MonoBehaviour
             return;
 
         CurrentRound++;
+
+        if (CurrentRound > 150)
+        {
+            GameManager.Instance.CompleteRun();
+            return;
+        }
         StartRound();
     }
 
@@ -86,4 +104,5 @@ public class RoundManager : MonoBehaviour
         RemainingTime = roundDuration;
         IsRoundActive = false;
     }
+
 }

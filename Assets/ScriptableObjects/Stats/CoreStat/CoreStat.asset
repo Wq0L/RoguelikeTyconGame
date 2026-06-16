@@ -16,14 +16,26 @@ MonoBehaviour:
   - statType: 0
     value: 1
   - statType: 2
-    value: 5
-  - statType: 8
     value: 2
-  - statType: 6
+  - statType: 1
+    value: 1
+  - statType: 3
     value: 1
   - statType: 4
     value: 1
-  - statType: 9
+  - statType: 5
+    value: 1
+  - statType: 6
     value: 3
-  - statType: 1
+  - statType: 7
+    value: 3
+  - statType: 8
+    value: 5
+  - statType: 9
+    value: 10
+  - statType: 10
+    value: 1
+  - statType: 11
+    value: 3
+  - statType: 12
     value: 1

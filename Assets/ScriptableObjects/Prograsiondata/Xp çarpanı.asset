@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: "Xp \xE7arpan\u0131"
   m_EditorClassIdentifier: Assembly-CSharp::ProgressionSO
   baseXP: 100
-  xpMultiplier: 1
+  xpMultiplier: 1.5

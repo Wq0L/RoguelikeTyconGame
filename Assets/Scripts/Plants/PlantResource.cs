@@ -28,13 +28,13 @@ public class PlantResource : MonoBehaviour
         if (plantData == null) return;
 
         int reward = plantData.rewardAmount;
-        float multiplier = StatManager.Instance.GetStat(StatType.GoldGainMultiplier);
+        float multiplier = StatManager.Instance.GetStat(StatType.SeedGainMultiplier);
 
         if (planterBrain != null)
         {
             foreach (StatModifier mod in planterBrain.ActiveModifiers)
             {
-                if (mod.statType != StatType.GoldGainMultiplier) continue;
+                if (mod.statType != StatType.SeedGainMultiplier) continue;
 
                 switch (mod.operation)
                 {

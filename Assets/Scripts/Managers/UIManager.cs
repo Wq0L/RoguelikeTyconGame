@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    public GameObject roundEndUI;
-    public GameObject placementShopPanel;
-    public GameObject skillShopPanel;
+    [SerializeField] private GameObject roundEndUI;
+    [SerializeField] private GameObject placementShopPanel;
+    [SerializeField] private GameObject skillShopPanel;
+    [SerializeField] private GameObject roundUI;
+    [SerializeField] private GameObject xpUI;
 
     private GameObject currentPanel;
     private GameObject lastShopPanel;
@@ -46,6 +48,10 @@ public class UIManager : MonoBehaviour
 
     private void HandleStateChanged(GameStates state)
     {
+        bool isRoundActive = state == GameStates.Round;
+        roundUI.SetActive(isRoundActive);
+        xpUI.SetActive(isRoundActive);
+
         switch (state)
         {
             case GameStates.RoundEnd:
@@ -64,6 +70,10 @@ public class UIManager : MonoBehaviour
             case GameStates.Round:
                 CloseAll();
                 lastShopPanel = null;
+                break;
+
+            case GameStates.RunComplete:
+                // burda açılacak oyunun son bitiş ekranı
                 break;
         }
     }

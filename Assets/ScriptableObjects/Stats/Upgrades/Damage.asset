@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
   upgradeId: 1
   upgradeName: Damage
-  cost: 10
+  cost:
+    resourceType: 2
+    amount: 5
+  newUnlockSize: 0
   modifiers:
   - statType: 0
     operation: 0

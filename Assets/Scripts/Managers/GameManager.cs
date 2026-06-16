@@ -38,11 +38,11 @@ public class GameManager : MonoBehaviour
     public void ReturnToMenu() => SetState(GameStates.MainMenu);
     public void StartRunSetup() => SetState(GameStates.RunSetup);
     public void StartGame() => SetState(GameStates.Round);
-    public void ShowRoundEnd() => SetState(GameStates.RoundEnd);   // ← yeni
+    public void ShowRoundEnd() => SetState(GameStates.RoundEnd);   
     public void OpenShop() => SetState(GameStates.Shop);
     public void StartPlacement() => SetState(GameStates.Placing);
     public void EnterSellMode() => SetState(GameStates.Selling);
-    public void CompleteRun() => SetState(GameStates.RunComplete); // ← isim değişti
+    public void CompleteRun() => SetState(GameStates.RunComplete); 
 
     private void HandleStateEnter(GameStates state)
     {

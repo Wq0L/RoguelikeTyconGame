@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
   upgradeId: 2
   upgradeName: Spwan Rate
-  cost: 5
+  cost:
+    resourceType: 2
+    amount: 10
+  newUnlockSize: 0
   modifiers:
-  - statType: 2
+  - statType: 8
     operation: 2
     value: 1
