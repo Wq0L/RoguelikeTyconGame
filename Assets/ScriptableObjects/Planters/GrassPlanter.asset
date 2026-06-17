@@ -19,7 +19,17 @@ MonoBehaviour:
     baseChance: 100
   - plant: {fileID: 11400000, guid: fe3446d825980f24ba2060c6cb32101b, type: 2}
     baseChance: 0
-  baseSpawnInterval: 5
+  baseStats:
+  - statType: 8
+    value: 5
+  - statType: 7
+    value: 0.05
+  - statType: 3
+    value: 1
+  - statType: 5
+    value: 1
+  - statType: 6
+    value: 1
   sizeX: 1
   sizeZ: 1
   costType: 2

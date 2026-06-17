@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class GridUnlockManager : MonoBehaviour
@@ -6,8 +5,6 @@ public class GridUnlockManager : MonoBehaviour
     public static GridUnlockManager Instance { get; private set; }
 
     [SerializeField] private GridManager gridManager;
-    private int initialUnlockSize;
-    private float unlockSizeStat;
 
     private GridSystem gridSystem;
     private int currentUnlockSize;
@@ -16,7 +13,6 @@ public class GridUnlockManager : MonoBehaviour
     {
         if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
-
     }
 
     private void Start()
@@ -25,20 +21,14 @@ public class GridUnlockManager : MonoBehaviour
 
         StatManager.Instance.OnStatChanged += HandleStatChanged;
 
-        unlockSizeStat = StatManager.Instance.GetStat(StatType.GridUnlockSize);
-        initialUnlockSize = Mathf.RoundToInt(unlockSizeStat);
-
-        currentUnlockSize = initialUnlockSize;
-
+        currentUnlockSize = GetGridUnlockSize();
         UnlockCenter(currentUnlockSize);
     }
 
     private void OnDestroy()
     {
         if (StatManager.Instance != null)
-        {
             StatManager.Instance.OnStatChanged -= HandleStatChanged;
-        }
     }
 
     private void HandleStatChanged(StatType statType, float value)
@@ -46,16 +36,24 @@ public class GridUnlockManager : MonoBehaviour
         if (statType != StatType.GridUnlockSize)
             return;
 
-        unlockSizeStat = value;
-        initialUnlockSize = Mathf.RoundToInt(unlockSizeStat);
+        int newUnlockSize = Mathf.RoundToInt(value);
 
-        if (initialUnlockSize <= currentUnlockSize)
+        if (newUnlockSize <= currentUnlockSize)
             return;
 
-        UnlockNextTier(initialUnlockSize);
+        UnlockNextTier(newUnlockSize);
     }
 
-    // Merkezden dışa doğru unlock
+    private int GetGridUnlockSize()
+    {
+        float value = StatManager.Instance.GetFinalStat(
+            StatType.GridUnlockSize,
+            StatTarget.Grid
+        );
+
+        return Mathf.RoundToInt(value);
+    }
+
     public void UnlockNextTier(int newSize)
     {
         currentUnlockSize = newSize;
@@ -67,11 +65,8 @@ public class GridUnlockManager : MonoBehaviour
         int gridWidth = gridManager.GetWidth();
         int gridHeight = gridManager.GetHeight();
 
-        // Merkez hesapla
         int centerX = gridWidth / 2;
         int centerZ = gridHeight / 2;
-
-        Debug.Log($"Grid: {gridWidth}x{gridHeight} | Merkez: {centerX},{centerZ} | Size: {size}");
 
         int half = size / 2;
 

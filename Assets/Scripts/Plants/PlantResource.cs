@@ -27,33 +27,35 @@ public class PlantResource : MonoBehaviour
     {
         if (plantData == null) return;
 
-        int reward = plantData.rewardAmount;
-        float multiplier = StatManager.Instance.GetStat(StatType.SeedGainMultiplier);
+        float seedMultiplier = GetSeedMultiplier();
+        float xpMultiplier = GetXPMultiplier();
 
-        if (planterBrain != null)
-        {
-            foreach (StatModifier mod in planterBrain.ActiveModifiers)
-            {
-                if (mod.statType != StatType.SeedGainMultiplier) continue;
-
-                switch (mod.operation)
-                {
-                    case ModifierOperation.Add:
-                        multiplier += mod.value;
-                        break;
-                    case ModifierOperation.Multiply:
-                        multiplier *= mod.value;
-                        break;
-                    case ModifierOperation.Set:
-                        multiplier = mod.value;
-                        break;
-                }
-            }
-        }
-
-        reward = Mathf.RoundToInt(reward * multiplier);
+        int reward = Mathf.RoundToInt(plantData.rewardAmount * seedMultiplier);
+        int xpAmount = Mathf.RoundToInt(plantData.xpAmount * xpMultiplier);
 
         ResourceManager.Instance.AddResource(plantData.resourceType, reward);
-        ProgressionManager.Instance.AddXP(plantData.xpAmount);
+        ProgressionManager.Instance.AddXP(xpAmount);
+    }
+
+    private float GetSeedMultiplier()
+    {
+        if (planterBrain != null)
+            return planterBrain.GetFinalStat(StatType.SeedGainMultiplier);
+
+        return StatManager.Instance.GetFinalStat(
+            StatType.SeedGainMultiplier,
+            StatTarget.Planter
+        );
+    }
+
+    private float GetXPMultiplier()
+    {
+        if (planterBrain != null)
+            return planterBrain.GetFinalStat(StatType.XPGainMultiplier);
+
+        return StatManager.Instance.GetFinalStat(
+            StatType.XPGainMultiplier,
+            StatTarget.Planter
+        );
     }
 }

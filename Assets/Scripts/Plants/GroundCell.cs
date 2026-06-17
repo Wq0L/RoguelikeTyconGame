@@ -10,6 +10,7 @@ public class GroundCell : MonoBehaviour
     [SerializeField] private Material[] unlockedMaterials;
 
     private GridPosition gridPosition;
+    private GridObject gridObject;
     private bool isLocked = true;
     private TileModifierSO currentModifier;
 
@@ -29,6 +30,11 @@ public class GroundCell : MonoBehaviour
     public GridPosition GetGridPosition()
     {
         return gridPosition;
+    }
+
+    public void SetGridObject(GridObject obj)
+    {
+        gridObject = obj;
     }
 
     public void Unlock()
@@ -60,20 +66,20 @@ public class GroundCell : MonoBehaviour
         groundRenderer.materials = materials;
     }
 
-    // Mutasyon uygula
     public void ApplyModifier(TileModifierSO modifier)
     {
         currentModifier = modifier;
 
-        // Her slot için modifier'ın rengiyle boyanmış materyal
         Material[] materials = groundRenderer.materials;
         for (int i = 0; i < materials.Length; i++)
         {
             materials[i] = new Material(unlockedMaterials[i % unlockedMaterials.Length]);
             materials[i].color = modifier.tileColor;
         }
-
         groundRenderer.materials = materials;
+
+        // Planter varsa haber ver
+        gridObject?.GetPlanterBrain()?.ApplyBuff(modifier);
     }
 
     private void ApplyMaterials(Material[] newMaterials)

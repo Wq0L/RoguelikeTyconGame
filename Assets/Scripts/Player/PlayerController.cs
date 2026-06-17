@@ -34,13 +34,13 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 GetMouseWorldPosition()
     {
-
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundLayerMask))
             return hit.point;
 
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+
         if (groundPlane.Raycast(ray, out float enter))
             return ray.GetPoint(enter);
 
@@ -49,7 +49,11 @@ public class PlayerController : MonoBehaviour
 
     private void HandleAutoAttack(Vector3 mouseWorldPos)
     {
-        float attackSpeed = StatManager.Instance.GetStat(StatType.AttackSpeed);
+        float attackSpeed = StatManager.Instance.GetFinalStat(
+            StatType.AttackSpeed,
+            StatTarget.Player
+        );
+
         attackSpeed = Mathf.Max(attackSpeed, 0.1f);
 
         attackTimer += Time.deltaTime;
@@ -63,8 +67,17 @@ public class PlayerController : MonoBehaviour
 
     private void AttackInRadius(Vector3 center)
     {
-        float radius = StatManager.Instance.GetStat(StatType.AreaRadius);
-        int damage = Mathf.RoundToInt(StatManager.Instance.GetStat(StatType.HarvestDamage));
+        float radius = StatManager.Instance.GetFinalStat(
+            StatType.AreaRadius,
+            StatTarget.Player
+        );
+
+        int damage = Mathf.RoundToInt(
+            StatManager.Instance.GetFinalStat(
+                StatType.HarvestDamage,
+                StatTarget.Player
+            )
+        );
 
         List<GridObject> targets = gridSystem.GetGridObjectsInRadius(center, radius);
 
@@ -96,7 +109,10 @@ public class PlayerController : MonoBehaviour
     {
         if (radiusIndicator == null) return;
 
-        float radius = StatManager.Instance.GetStat(StatType.AreaRadius);
+        float radius = StatManager.Instance.GetFinalStat(
+            StatType.AreaRadius,
+            StatTarget.Player
+        );
 
         for (int i = 0; i < circleSegments; i++)
         {

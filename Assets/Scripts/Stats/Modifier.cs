@@ -11,7 +11,6 @@ public enum StatTarget
     All,
     Player,
     Planter,
-    Economy,
     Round,
     Grid,
     Mutation

@@ -8,74 +8,94 @@ public class StatManager : MonoBehaviour
 
     [SerializeField] private CoreStatsSO coreStatsSO;
 
+    private readonly List<StatModifier> globalModifiers = new();
+
+    public IReadOnlyList<StatModifier> GlobalModifiers => globalModifiers;
+
+    public event Action<StatModifier> OnGlobalModifierAdded;
+    public event Action OnGlobalModifiersCleared;
     public event Action<StatType, float> OnStatChanged;
 
-    private Dictionary<StatType, float> statDictionary = new();
+    private int globalVersion;
+    public int GlobalVersion => globalVersion;
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
-        LoadBaseStats();
     }
 
-    private void LoadBaseStats()
+    public float GetBaseStat(StatType statType)
     {
-        statDictionary.Clear();
+        if (coreStatsSO == null)
+        {
+            Debug.LogWarning("CoreStatsSO atanmadı.");
+            return StatDefaults.GetDefaultBase(statType);
+        }
+
+        return coreStatsSO.GetBaseStat(statType);
+    }
+
+    public float GetFinalStat(StatType statType, StatTarget target)
+    {
+        float baseValue = GetBaseStat(statType);
+
+        return StatCalculator.Calculate(
+            baseValue,
+            statType,
+            target,
+            globalModifiers,
+            null
+        );
+    }
+
+    public void AddGlobalModifier(StatModifier modifier)
+    {
+        globalModifiers.Add(modifier);
+
+        globalVersion++;
+
+        float newValue = GetFinalStat(modifier.statType, modifier.target);
+
+        Debug.Log(
+            $"Global modifier eklendi: {modifier.statType} | {modifier.target} | {modifier.operation} | {modifier.value} | Final: {newValue}"
+        );
+
+        OnGlobalModifierAdded?.Invoke(modifier);
+        OnStatChanged?.Invoke(modifier.statType, newValue);
+    }
+
+    public void AddGlobalModifiers(List<StatModifier> modifiers)
+    {
+        if (modifiers == null)
+            return;
+
+        for (int i = 0; i < modifiers.Count; i++)
+        {
+            AddGlobalModifier(modifiers[i]);
+        }
+    }
+
+    public void ClearGlobalModifiers()
+    {
+        globalModifiers.Clear();
+
+        globalVersion++;
+
+        OnGlobalModifiersCleared?.Invoke();
+
+        if (coreStatsSO == null)
+            return;
 
         foreach (StatEntry statEntry in coreStatsSO.stats)
         {
-            statDictionary[statEntry.statType] = statEntry.value;
-        }
-    }
-
-    public float GetStat(StatType statType)
-    {
-        if (!statDictionary.ContainsKey(statType))
-        {
-            Debug.LogWarning("Stat bulunamadı: " + statType);
-            return 0f;
-        }
-
-        return statDictionary[statType];
-    }
-
-    public void ApplyModifier(StatModifier modifier)
-    {
-        if (!statDictionary.ContainsKey(modifier.statType))
-        {
-            Debug.LogWarning("Stat yok, ekleniyor: " + modifier.statType);
-            statDictionary[modifier.statType] = 0f;
-        }
-
-        float oldValue = statDictionary[modifier.statType];
-
-        switch (modifier.operation)
-        {
-            case ModifierOperation.Add:
-                statDictionary[modifier.statType] += modifier.value;
-                break;
-
-            case ModifierOperation.Multiply:
-                statDictionary[modifier.statType] *= modifier.value;
-                break;
-                
-            case ModifierOperation.Set:
-                statDictionary[modifier.statType] = modifier.value;
-                break;
-        }
-
-        float newValue = statDictionary[modifier.statType];
-
-        Debug.Log($"Stat güncellendi: {modifier.statType} | {oldValue} → {newValue}");
-
-        OnStatChanged?.Invoke(modifier.statType, statDictionary[modifier.statType]);
-    }
-
-    public void ApplyModifiers(List<StatModifier> modifiers)
-    {
-        foreach (StatModifier modifier in modifiers)
-        {
-            ApplyModifier(modifier);
+            float value = GetFinalStat(statEntry.statType, StatTarget.All);
+            OnStatChanged?.Invoke(statEntry.statType, value);
         }
     }
 }

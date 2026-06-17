@@ -15,6 +15,8 @@ MonoBehaviour:
   modifierName: Grid resource
   modifierType: 0
   tileColor: {r: 0.11866942, g: 0.9528302, b: 0, a: 0}
-  statType: 3
-  operation: 0
-  value: 1
+  modifiers:
+  - statType: 3
+    target: 3
+    operation: 0
+    value: 5

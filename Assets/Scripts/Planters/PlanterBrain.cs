@@ -7,10 +7,15 @@ public class PlanterBrain : MonoBehaviour
     [SerializeField] private List<Transform> spawnPoints;
 
     private List<PlantSpawner> spawners = new List<PlantSpawner>();
-    private List<StatModifier> activeModifiers = new List<StatModifier>();
+    private List<StatModifier> localModifiers = new List<StatModifier>();
     private List<GridObject> occupiedGrids = new List<GridObject>();
 
-    public List<StatModifier> ActiveModifiers => activeModifiers;
+    // Cache
+    private Dictionary<StatType, float> statCache = new();
+    private int cachedVersion = -1;
+    private bool localDirty = true;
+
+    public List<StatModifier> LocalModifiers => localModifiers;
 
     public void Initialize(List<GridObject> gridObjects)
     {
@@ -33,36 +38,55 @@ public class PlanterBrain : MonoBehaviour
         }
     }
 
-    public void ApplyBuff(TileModifierSO modifier)
+    public void ApplyBuff(TileModifierSO tileModifier)
     {
-        StatModifier statMod = new StatModifier
-        {
-            statType = modifier.statType,
-            operation = modifier.operation,
-            value = modifier.value
-        };
+        if (tileModifier == null) return;
+        if (tileModifier.modifiers == null) return;
 
-        activeModifiers.Add(statMod);
-        Debug.Log($"PlanterBrain buff aldı: {modifier.modifierName}");
+        for (int i = 0; i < tileModifier.modifiers.Count; i++)
+            localModifiers.Add(tileModifier.modifiers[i]);
+
+        localDirty = true;
+
+        Debug.Log($"PlanterBrain buff aldı: {tileModifier.modifierName}");
+    }
+
+    public float GetFinalStat(StatType statType)
+    {
+        int currentVersion = StatManager.Instance.GlobalVersion;
+
+        if (currentVersion != cachedVersion || localDirty)
+        {
+            statCache.Clear();
+            cachedVersion = currentVersion;
+            localDirty = false;
+        }
+
+        if (statCache.TryGetValue(statType, out float cached))
+            return cached;
+
+        float result = StatCalculator.Calculate(
+            planterData.GetBaseStat(statType),
+            statType,
+            StatTarget.Planter,
+            StatManager.Instance.GlobalModifiers,
+            localModifiers
+        );
+
+        statCache[statType] = result;
+        return result;
     }
 
     public void RemoveSelf()
     {
-        
         foreach (GridObject gridObj in occupiedGrids)
-        {
             gridObj.ClearPlanterObject();
-        }
 
         int refund = planterData.cost / 2;
-        Debug.Log($"Cost: {planterData.cost} | Refund: {refund}");
 
-        ResourceManager.Instance.AddResource(
-            planterData.costType,
-            refund
-        );
+        ResourceManager.Instance.AddResource(planterData.costType, refund);
 
-        Debug.Log($"{planterData.planterName} kaldırıldı, {planterData.cost / 2} {planterData.costType} iade edildi.");
+        Debug.Log($"{planterData.planterName} kaldırıldı, {refund} {planterData.costType} iade edildi.");
 
         Destroy(gameObject);
     }

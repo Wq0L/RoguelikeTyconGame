@@ -8,6 +8,7 @@ public class GridObject
     private GameObject spawnedGroundObject;
     private GameObject spawnedPlantObject;
     private GameObject spawnedPlanterObject;
+    private PlanterBrain planterBrain;
     private GroundCell groundCellCache;
     private bool groundCellCacheDirty = true;
 
@@ -23,58 +24,32 @@ public class GridObject
         groundCellCacheDirty = true;
     }
 
-    public GameObject GetGroundObject()
-    {
-        return spawnedGroundObject;
-    }
+    public GameObject GetGroundObject() => spawnedGroundObject;
 
-    public void SetPlantObject(GameObject obj)
-    {
-        spawnedPlantObject = obj;
-    }
-    public GameObject GetPlantObject()
-    {
-        return spawnedPlantObject;
-    }
+    public void SetPlantObject(GameObject obj) => spawnedPlantObject = obj;
+    public GameObject GetPlantObject() => spawnedPlantObject;
 
-    public void SetPlanterObject(GameObject obj)
-    {
-        spawnedPlanterObject = obj;
-    }
+    public void SetPlanterObject(GameObject obj) => spawnedPlanterObject = obj;
+    public GameObject GetPlanterObject() => spawnedPlanterObject;
 
-    public GameObject GetPlanterObject()
-    {
-        return spawnedPlanterObject;
-    }
+    public void SetPlanterBrain(PlanterBrain brain) => planterBrain = brain;
+    public PlanterBrain GetPlanterBrain() => planterBrain;
 
     public void ClearPlanterObject()
     {
         spawnedPlanterObject = null;
-    }
-    public void ClearPlantObject()
-    {
-        spawnedPlantObject = null;
-    }
-    
-    public bool HasGroundObject()
-    {
-        return spawnedGroundObject != null;
+        planterBrain = null;
     }
 
-    public bool HasPlanterObject()
-    {
-        return spawnedPlanterObject != null;
-    }
+    public void ClearPlantObject() => spawnedPlantObject = null;
 
-    public bool HasPlantObject()
-    {
-        return spawnedPlantObject != null;
-    }
+    public bool HasGroundObject() => spawnedGroundObject != null;
+    public bool HasPlanterObject() => spawnedPlanterObject != null;
+    public bool HasPlantObject() => spawnedPlantObject != null;
 
     public GroundCell GetGroundCellCached()
     {
-        if (spawnedGroundObject == null)
-            return null;
+        if (spawnedGroundObject == null) return null;
 
         if (groundCellCacheDirty || groundCellCache == null)
         {
@@ -84,5 +59,4 @@ public class GridObject
 
         return groundCellCache;
     }
-
 }

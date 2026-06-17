@@ -16,7 +16,6 @@ public class PlacementManager : MonoBehaviour
     private GameObject ghostObject;
     private ResourceType selectedCostResource;
 
-
     private bool isSellMode = false;
 
     private void Awake()
@@ -39,6 +38,7 @@ public class PlacementManager : MonoBehaviour
             HandlePlacementClick();
             HandleCancel();
         }
+
         if (isSellMode)
         {
             HandleSellClick();
@@ -237,13 +237,13 @@ public class PlacementManager : MonoBehaviour
                     planterBrain.ApplyBuff(cell.CurrentModifier);
                 }
             }
-        }
 
+            Debug.Log($"Toplam local modifier sayısı: {planterBrain.LocalModifiers.Count}");
 
-        Debug.Log($"Toplam modifier sayısı: {planterBrain.ActiveModifiers.Count}");
-        foreach (var mod in planterBrain.ActiveModifiers)
-        {
-            Debug.Log($"  → {mod.statType} | {mod.operation} | {mod.value}");
+            foreach (StatModifier mod in planterBrain.LocalModifiers)
+            {
+                Debug.Log($"  → {mod.statType} | {mod.target} | {mod.operation} | {mod.value}");
+            }
         }
 
         ghostObject = null;

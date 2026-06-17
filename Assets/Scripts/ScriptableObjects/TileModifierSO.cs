@@ -1,12 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum TileModifierType
 {
-    Fertile,  // reward x2
-    Water,    // spawn hızı x2
-    Crystal,  // rare chance +50%
-    Energy,   // komşulara buff
-    Golden    // devasa global bonus
+    Fertile,
+    Water,
+    Crystal,
+    Energy,
+    Golden
 }
 
 [CreateAssetMenu(menuName = "Game/TileModifier")]
@@ -15,10 +16,12 @@ public class TileModifierSO : ScriptableObject
     [Header("Bilgi")]
     public string modifierName;
     public TileModifierType modifierType;
-    public Color tileColor;
+    public Color tileColor = Color.white;
 
-    [Header("Stat Etkisi")]
-    public StatType statType;
-    public ModifierOperation operation;
-    public float value;
+    [Header("Stat Etkileri")]
+    public List<StatModifier> modifiers = new();
+
+    // [Header("Özel Davranış")]
+    // // public bool affectsNeighbors;
+    // // public int neighborRange = 1;
 }
