@@ -232,9 +232,11 @@ public class PlacementManager : MonoBehaviour
             {
                 GroundCell cell = gridObj.GetGroundCellCached();
 
+                gridObj.SetPlanterBrain(planterBrain);//yeni
+
                 if (cell != null && cell.CurrentModifier != null)
                 {
-                    planterBrain.ApplyBuff(cell.CurrentModifier);
+                    planterBrain.ApplyBuff(cell.CurrentModifier, cell.RolledModifiers);
                 }
             }
 

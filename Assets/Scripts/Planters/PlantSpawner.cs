@@ -66,7 +66,10 @@ public class PlantSpawner : MonoBehaviour
 
         PlantHealth plantHealth = plantObj.GetComponent<PlantHealth>();
         if (plantHealth != null)
+        {
+            plantHealth.Initialize(selectedPlant.maxHealth);  
             plantHealth.OnDied += OnPlantDied;
+        }
 
         PlantResource plantResource = plantObj.GetComponent<PlantResource>();
         plantResource?.Initialize(selectedPlant, planterBrain);
@@ -77,6 +80,12 @@ public class PlantSpawner : MonoBehaviour
 
     private void OnPlantDied()
     {
+        PlantHealth health = spawnedPlant?.GetComponent<PlantHealth>();
+        bool wasExplosion = health != null && health.KilledByExplosion;
+
+        if (planterBrain != null && !wasExplosion)
+            planterBrain.TryExplode(gridObject);
+
         spawnedPlant = null;
         timer = 0f;
     }

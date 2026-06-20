@@ -10,13 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b816ce0b1548a84b9a4f597611903ab, type: 3}
-  m_Name: Grid Stats
+  m_Name: Duplicate-Common
   m_EditorClassIdentifier: Assembly-CSharp::TileModifierSO
-  modifierName: Grid resource
-  modifierType: 0
-  tileColor: {r: 0.11866942, g: 0.9528302, b: 0, a: 0}
-  modifiers:
-  - statType: 3
-    target: 3
+  modifierName: Duplicate-DuplicateChance
+  modifierType: 5
+  rarity: 0
+  tileColor: {r: 0.4370861, g: 0, b: 0.9529412, a: 0}
+  behavior: 2
+  modifierRanges:
+  - statType: 21
+    target: 2
     operation: 0
-    value: 5
+    minValue: 0.15
+    maxValue: 0.25

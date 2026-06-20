@@ -104,18 +104,7 @@ public static class StatCalculator
     {
         switch (statType)
         {
-            case StatType.RareSpawnChance:
-                return Mathf.Clamp(value, 0f, 95);
-
-            case StatType.PlantSpawnRate:
-                return Mathf.Max(0.1f, value);
-
-            case StatType.SeedGainMultiplier:
-            case StatType.CoreSeedGainMultiplier:
-            case StatType.XPGainMultiplier:
-            case StatType.HarvestScoreMultiplier:
-                return Mathf.Max(0f, value);
-
+            // === HASAT ===
             case StatType.HarvestDamage:
             case StatType.AreaRadius:
                 return Mathf.Max(0f, value);
@@ -123,14 +112,51 @@ public static class StatCalculator
             case StatType.AttackSpeed:
                 return Mathf.Max(0.05f, value);
 
-            case StatType.RoundDuration:
+            case StatType.CritChance:
+                return Mathf.Clamp(value, 0f, 1f);
+
+            case StatType.CritMultiplier:
                 return Mathf.Max(1f, value);
+
+            // === ÜRETİM ===
+            case StatType.PlantSpawnRate:
+                return Mathf.Max(0.1f, value);
+
+            case StatType.RareSpawnChance:
+                return Mathf.Clamp(value, 0f, 95f);
+
+            // === EKONOMİ ===
+            case StatType.GoldGainMultiplier:
+            case StatType.IronGainMultiplier:
+            case StatType.StoneGainMultiplier:
+            case StatType.XPGainMultiplier:
+            case StatType.HarvestScoreMultiplier:
+                return Mathf.Max(0f, value);
+
+            // === META ===
+            case StatType.MutationLuck:
+                return Mathf.Max(0f, value);
 
             case StatType.GridUnlockSize:
                 return Mathf.Max(1f, value);
 
-            case StatType.RefundBonus:
+            case StatType.RoundDuration:
+                return Mathf.Max(1f, value);
+
+            case StatType.StartingGoldBonus:
+            case StatType.StartingPlanterCount:
                 return Mathf.Max(0f, value);
+
+            // === KART AJANSI ===
+            case StatType.ExtraCardChoice:
+            case StatType.RerollCard:
+            case StatType.CardSkip:
+                return Mathf.Max(0f, value);
+
+            case StatType.ExplosionChance:
+                return Mathf.Clamp(value, 0f, 1f);
+            case StatType.DuplicateChance:
+                return Mathf.Clamp(value, 0f, 1f);
 
             default:
                 return value;

@@ -38,13 +38,12 @@ public class PlanterBrain : MonoBehaviour
         }
     }
 
-    public void ApplyBuff(TileModifierSO tileModifier)
+    public void ApplyBuff(TileModifierSO tileModifier, List<StatModifier> rolledModifiers)
     {
-        if (tileModifier == null) return;
-        if (tileModifier.modifiers == null) return;
+        if (tileModifier == null || rolledModifiers == null) return;
 
-        for (int i = 0; i < tileModifier.modifiers.Count; i++)
-            localModifiers.Add(tileModifier.modifiers[i]);
+        foreach (StatModifier modifier in rolledModifiers)
+            localModifiers.Add(modifier);
 
         localDirty = true;
 
@@ -110,6 +109,49 @@ public class PlanterBrain : MonoBehaviour
         }
 
         return closest;
+    }
+
+    public void TryExplode(GridObject sourceGrid)
+    {
+        float chance = GetFinalStat(StatType.ExplosionChance);
+        if (chance <= 0f) return;
+        if (Random.value > chance) return; // şans tutmadı
+
+        int damage = Mathf.RoundToInt(
+            StatManager.Instance.GetFinalStat(StatType.HarvestDamage, StatTarget.Player)
+        );
+
+        GridSystem gridSystem = GridManager.Instance.GetGridSystem();
+        HashSet<GridObject> hitTargets = new HashSet<GridObject>();
+
+        foreach (GridObject occupiedGrid in occupiedGrids)
+        {
+            GroundCell cell = occupiedGrid.GetGroundCellCached();
+            if (cell == null) continue;
+
+            GridPosition pos = cell.GetGridPosition();
+
+            Vector2Int[] directions = {
+                new Vector2Int(0, 1), new Vector2Int(0, -1),
+                new Vector2Int(1, 0), new Vector2Int(-1, 0)
+            };
+
+            foreach (Vector2Int dir in directions)
+            {
+                GridPosition neighborPos = new GridPosition(pos.x + dir.x, pos.z + dir.y);
+                GridObject neighbor = gridSystem.GetGridObject(neighborPos);
+
+                if (neighbor == null) continue;
+                if (occupiedGrids.Contains(neighbor)) continue;
+                if (!hitTargets.Add(neighbor)) continue;
+
+                GameObject plant = neighbor.GetPlantObject();
+                if (plant == null) continue;
+
+                IDamageable damageable = plant.GetComponent<IDamageable>();
+                damageable?.TakeDamage(damage, true);
+            }
+        }
     }
 
     public void SetGridObject(GridObject gridObject)

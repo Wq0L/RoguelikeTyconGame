@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b816ce0b1548a84b9a4f597611903ab, type: 3}
-  m_Name: Grid Stats2
+  m_Name: Water-Common
   m_EditorClassIdentifier: Assembly-CSharp::TileModifierSO
-  modifierName: Grid resource
-  modifierType: 0
-  tileColor: {r: 0.9433962, g: 0.90782756, b: 0, a: 0}
-  modifiers:
-  - statType: 3
+  modifierName: Water-XPGain
+  modifierType: 1
+  rarity: 0
+  tileColor: {r: 0, g: 0.9490196, b: 0.9529412, a: 0}
+  modifierRanges:
+  - statType: 10
     target: 2
-    operation: 0
-    value: 10
+    operation: 1
+    minValue: 0.15
+    maxValue: 0.25

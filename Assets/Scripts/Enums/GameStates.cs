@@ -4,6 +4,7 @@ public enum GameStates
     RunSetup,
     Round,
     RoundEnd,
+    CardSelection,
     Shop,
     Placing,
     Selling,

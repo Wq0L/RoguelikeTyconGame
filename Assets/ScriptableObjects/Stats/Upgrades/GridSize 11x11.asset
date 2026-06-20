@@ -19,7 +19,7 @@ MonoBehaviour:
     amount: 5
   newUnlockSize: 5
   modifiers:
-  - statType: 11
+  - statType: 13
     target: 5
     operation: 3
     value: 11

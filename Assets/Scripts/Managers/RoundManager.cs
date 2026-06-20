@@ -17,6 +17,8 @@ public class RoundManager : MonoBehaviour
     public float RemainingTime { get; private set; }
     public bool IsRoundActive { get; private set; }
 
+    private int pendingCardSelections = 0;
+
     private void Awake()
     {
         if (Instance != null)
@@ -31,6 +33,13 @@ public class RoundManager : MonoBehaviour
     private void Start()
     {
         StartRound();
+        ProgressionManager.Instance.OnLevelUp += HandleLevelUp; // Start'ta güvenli
+    }
+
+    private void OnDestroy()
+    {
+        if (ProgressionManager.Instance != null)
+            ProgressionManager.Instance.OnLevelUp -= HandleLevelUp;
     }
 
     private void Update()
@@ -77,9 +86,28 @@ public class RoundManager : MonoBehaviour
     {
         IsRoundActive = false;
         RemainingTime = 0f;
-
         OnRoundEnded?.Invoke();
+
+        if (pendingCardSelections > 0)
+            GameManager.Instance.StartCardSelection();
+        else
+            GameManager.Instance.ShowRoundEnd();
+    }
+    
+    private void HandleLevelUp(int newLevel)
+    {
+        pendingCardSelections++;
+    }
+
+    public bool OnCardSelectionComplete()
+    {
+        pendingCardSelections--;
+
+        if (pendingCardSelections > 0)
+            return true;  // daha seçim var, kartları yenile
+
         GameManager.Instance.ShowRoundEnd();
+        return false;  // bitti, RoundEnd'e geç
     }
 
     public void StartNextRound()

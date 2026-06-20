@@ -7,16 +7,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject skillShopPanel;
     [SerializeField] private GameObject roundUI;
     [SerializeField] private GameObject xpUI;
+    [SerializeField] private GameObject cardSelectionPanel;
 
     private GameObject currentPanel;
     private GameObject lastShopPanel;
+
 
     private void Start()
     {
         GameManager.Instance.OnGameStateChanged += HandleStateChanged;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         if (GameManager.Instance != null)
             GameManager.Instance.OnGameStateChanged -= HandleStateChanged;
@@ -71,6 +73,9 @@ public class UIManager : MonoBehaviour
                 CloseAll();
                 lastShopPanel = null;
                 break;
+            case GameStates.CardSelection:
+                ShowCardSelectionUI();
+                break;
 
             case GameStates.RunComplete:
                 // burda açılacak oyunun son bitiş ekranı
@@ -116,6 +121,16 @@ public class UIManager : MonoBehaviour
         currentPanel = panel;
     }
 
+    public void ShowCardSelectionUI()
+    {
+        CloseCurrentPanel();
+        cardSelectionPanel.SetActive(true);
+        currentPanel = cardSelectionPanel;
+
+        CardSelectionUI cardUI = cardSelectionPanel.GetComponent<CardSelectionUI>();
+        cardUI?.RefreshCards();  // her açılışta yeni random kartlar
+    }
+
     public void CloseCurrentPanel()
     {
         if (currentPanel != null)
@@ -130,6 +145,7 @@ public class UIManager : MonoBehaviour
         roundEndUI.SetActive(false);
         placementShopPanel.SetActive(false);
         skillShopPanel.SetActive(false);
+        cardSelectionPanel.SetActive(false); // yeni
         currentPanel = null;
     }
 }

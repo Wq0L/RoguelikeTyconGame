@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GroundCell : MonoBehaviour
@@ -13,9 +14,11 @@ public class GroundCell : MonoBehaviour
     private GridObject gridObject;
     private bool isLocked = true;
     private TileModifierSO currentModifier;
+    private List<StatModifier> rolledModifiers = new();
 
     public bool IsLocked => isLocked;
     public TileModifierSO CurrentModifier => currentModifier;
+    public List<StatModifier> RolledModifiers => rolledModifiers;
 
     private void Awake()
     {
@@ -69,6 +72,10 @@ public class GroundCell : MonoBehaviour
     public void ApplyModifier(TileModifierSO modifier)
     {
         currentModifier = modifier;
+        rolledModifiers = modifier.RollModifiers();
+
+        foreach (var mod in rolledModifiers)
+        Debug.Log($"[TILE] {mod.statType} = {mod.value} ({mod.operation})");
 
         Material[] materials = groundRenderer.materials;
         for (int i = 0; i < materials.Length; i++)
@@ -78,8 +85,7 @@ public class GroundCell : MonoBehaviour
         }
         groundRenderer.materials = materials;
 
-        // Planter varsa haber ver
-        gridObject?.GetPlanterBrain()?.ApplyBuff(modifier);
+        gridObject?.GetPlanterBrain()?.ApplyBuff(modifier, rolledModifiers);
     }
 
     private void ApplyMaterials(Material[] newMaterials)

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b816ce0b1548a84b9a4f597611903ab, type: 3}
+  m_Name: Duplicate-Rare
+  m_EditorClassIdentifier: Assembly-CSharp::TileModifierSO
+  modifierName: Duplicate-DuplicateChance
+  modifierType: 5
+  rarity: 1
+  tileColor: {r: 0.4370861, g: 0, b: 0.9529412, a: 0}
+  behavior: 2
+  modifierRanges:
+  - statType: 21
+    target: 2
+    operation: 0
+    minValue: 0.3
+    maxValue: 0.4

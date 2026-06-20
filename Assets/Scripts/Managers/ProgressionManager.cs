@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ProgressionManager : MonoBehaviour
 {
@@ -25,6 +25,7 @@ public class ProgressionManager : MonoBehaviour
         Instance = this;
     }
 
+    
     private void Start()
     {
         XPToNextLevel = progressionData.GetXPForLevel(CurrentLevel);
@@ -36,6 +37,7 @@ public class ProgressionManager : MonoBehaviour
         if (RoundManager.Instance != null)
             RoundManager.Instance.OnRoundEnded -= HandleRoundEnded;
     }
+
 
     public void AddXP(float amount)
     {
@@ -60,31 +62,31 @@ public class ProgressionManager : MonoBehaviour
 
     private void HandleRoundEnded()
     {
-        while (pendingMutationCount > 0)
-        {
-            bool success = TriggerMutation();
-
-            if (!success)
-                break;
-
-            pendingMutationCount--;
-        }
+        // Kart sistemi bu işi yapıyor artık, random mutation kaldırıldı
+        pendingMutationCount = 0;
     }
 
-    private bool TriggerMutation()
+    // UI'dan seçilen modifier buraya gelir
+    public bool ApplyRandomEligibleCell(TileModifierSO modifier)
     {
-        if (gridManager == null)
+        if (modifier == null) return false;
+
+        List<GroundCell> eligibleCells = GetEligibleCells();
+        if (eligibleCells.Count == 0)
         {
-            Debug.LogError("ProgressionManager: GridManager atanmadı.");
+            Debug.Log("Uygun tile yok.");
             return false;
         }
 
-        if (possibleModifiers == null || possibleModifiers.Count == 0)
-        {
-            Debug.LogWarning("ProgressionManager: Uygun modifier bulunamadı.");
-            return false;
-        }
+        GroundCell selectedCell = eligibleCells[UnityEngine.Random.Range(0, eligibleCells.Count)];
+        selectedCell.ApplyModifier(modifier);
 
+        Debug.Log($"Kart uygulandı: {modifier.modifierName} → {selectedCell.GetGridPosition()}");
+        return true;
+    }
+
+    private List<GroundCell> GetEligibleCells()
+    {
         List<GroundCell> eligibleCells = new List<GroundCell>();
         GridSystem gridSystem = gridManager.GetGridSystem();
 
@@ -100,40 +102,10 @@ public class ProgressionManager : MonoBehaviour
                 if (cell == null) continue;
 
                 if (!cell.IsLocked && cell.CurrentModifier == null)
-                {
                     eligibleCells.Add(cell);
-                }
             }
         }
 
-        if (eligibleCells.Count == 0)
-        {
-            Debug.Log("Mutasyon için uygun tile yok.");
-            return false;
-        }
-
-        GroundCell selectedCell = eligibleCells[UnityEngine.Random.Range(0, eligibleCells.Count)];
-        TileModifierSO selectedModifier = possibleModifiers[UnityEngine.Random.Range(0, possibleModifiers.Count)];
-
-        selectedCell.ApplyModifier(selectedModifier);
-
-        GridPosition cellPos = selectedCell.GetGridPosition();
-        GridObject cellGridObj = gridSystem.GetGridObject(cellPos);
-
-        if (cellGridObj != null && cellGridObj.HasPlanterObject())
-        {
-            GameObject planterObj = cellGridObj.GetPlanterObject();
-            PlanterBrain planterBrain = planterObj.GetComponent<PlanterBrain>();
-
-            if (planterBrain != null)
-            {
-                planterBrain.ApplyBuff(selectedModifier);
-            }
-        }
-
-        Debug.Log($"Mutasyon: {selectedModifier.modifierName} → {cellPos}");
-
-        return true;
+        return eligibleCells;
     }
-
 }

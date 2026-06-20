@@ -10,6 +10,9 @@ public class PlantSO : ScriptableObject
     [Header("Görsel")]
     public GameObject prefab;
 
+    [Header("Health")]
+    public int maxHealth = 10;
+
     [Header("Reward")]
     public ResourceType resourceType;
     public int rewardAmount;

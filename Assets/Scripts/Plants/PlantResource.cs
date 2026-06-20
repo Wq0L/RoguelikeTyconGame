@@ -27,25 +27,43 @@ public class PlantResource : MonoBehaviour
     {
         if (plantData == null) return;
 
-        float seedMultiplier = GetSeedMultiplier();
+        float resourceMultiplier = GetResourceMultiplier(plantData.resourceType);
         float xpMultiplier = GetXPMultiplier();
 
-        int reward = Mathf.RoundToInt(plantData.rewardAmount * seedMultiplier);
+        int reward = Mathf.RoundToInt(plantData.rewardAmount * resourceMultiplier);
         int xpAmount = Mathf.RoundToInt(plantData.xpAmount * xpMultiplier);
+
+            if (planterBrain != null)
+            {
+                float dupChance = planterBrain.GetFinalStat(StatType.DuplicateChance);
+                if (dupChance > 0f && Random.value <= dupChance)
+                {
+                    reward *= 2;
+                    xpAmount *= 2;
+                    Debug.Log("Duplicate! Ödül 2x");
+                }
+            }
 
         ResourceManager.Instance.AddResource(plantData.resourceType, reward);
         ProgressionManager.Instance.AddXP(xpAmount);
+
+        Debug.Log($"Hasat: {plantData.resourceType} x{reward} | XP x{xpAmount} | Multiplier: {resourceMultiplier}");
     }
 
-    private float GetSeedMultiplier()
+    private float GetResourceMultiplier(ResourceType type)
     {
-        if (planterBrain != null)
-            return planterBrain.GetFinalStat(StatType.SeedGainMultiplier);
+        StatType statType = type switch
+        {
+            ResourceType.Gold  => StatType.GoldGainMultiplier,
+            ResourceType.Iron  => StatType.IronGainMultiplier,
+            ResourceType.Stone => StatType.StoneGainMultiplier,
+            _                  => StatType.GoldGainMultiplier
+        };
 
-        return StatManager.Instance.GetFinalStat(
-            StatType.SeedGainMultiplier,
-            StatTarget.Planter
-        );
+        if (planterBrain != null)
+            return planterBrain.GetFinalStat(statType);
+
+        return StatManager.Instance.GetFinalStat(statType, StatTarget.Planter);
     }
 
     private float GetXPMultiplier()
@@ -53,9 +71,6 @@ public class PlantResource : MonoBehaviour
         if (planterBrain != null)
             return planterBrain.GetFinalStat(StatType.XPGainMultiplier);
 
-        return StatManager.Instance.GetFinalStat(
-            StatType.XPGainMultiplier,
-            StatTarget.Planter
-        );
+        return StatManager.Instance.GetFinalStat(StatType.XPGainMultiplier, StatTarget.Planter);
     }
 }

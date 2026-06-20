@@ -5,23 +5,22 @@ public class PlantHealth : MonoBehaviour, IDamageable
 {
     public event Action OnDied;
 
-    [SerializeField] private int maxHealth = 3;
-
+    private int maxHealth;
     private int currentHealth;
     private bool isDead;
+    private bool killedByExplosion;
 
-    private void Awake()
-    {
-        currentHealth = maxHealth;
-    }
+    public bool KilledByExplosion => killedByExplosion;
 
-    private void OnEnable()
+
+    public void Initialize(int health)
     {
+        maxHealth = health;
         currentHealth = maxHealth;
         isDead = false;
     }
 
-    public void TakeDamage(int damage)
+   public void TakeDamage(int damage, bool fromExplosion = false)
     {
         if (isDead) return;
 
@@ -29,6 +28,7 @@ public class PlantHealth : MonoBehaviour, IDamageable
 
         if (currentHealth <= 0)
         {
+            killedByExplosion = fromExplosion;
             Die();
         }
     }
@@ -37,7 +37,6 @@ public class PlantHealth : MonoBehaviour, IDamageable
     {
         isDead = true;
         OnDied?.Invoke();
-        Debug.Log("Plant destroyed!");
         Destroy(gameObject);
     }
 }

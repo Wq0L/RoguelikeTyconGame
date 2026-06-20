@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     public void StartRunSetup() => SetState(GameStates.RunSetup);
     public void StartGame() => SetState(GameStates.Round);
     public void ShowRoundEnd() => SetState(GameStates.RoundEnd);   
+    public void StartCardSelection() => SetState(GameStates.CardSelection);
     public void OpenShop() => SetState(GameStates.Shop);
     public void StartPlacement() => SetState(GameStates.Placing);
     public void EnterSellMode() => SetState(GameStates.Selling);
@@ -62,6 +63,10 @@ public class GameManager : MonoBehaviour
 
             case GameStates.RoundEnd:
                 EnterRoundEnd();
+                break;
+
+            case GameStates.CardSelection:
+                EnterCardSelection();
                 break;
 
             case GameStates.Shop:
@@ -89,6 +94,7 @@ public class GameManager : MonoBehaviour
     private void EnterMainMenu() => Time.timeScale = 0f;
     private void EnterRound() => Time.timeScale = 1f;
     private void EnterRoundEnd() => Time.timeScale = 0f;
+    private void EnterCardSelection() => Time.timeScale = 0f;
     private void EnterShop() => Time.timeScale = 0f;
     private void EnterPlacing() => Time.timeScale = 0f;
     private void EnterSelling() => Time.timeScale = 0f;
