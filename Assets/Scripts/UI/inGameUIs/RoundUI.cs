@@ -36,7 +36,7 @@ public class RoundUI : MonoBehaviour
 
     private void UpdateRoundText(int roundNumber)
     {
-        roundText.text = $"Round {roundNumber} / 150";
+        roundText.text = $"Round {roundNumber} / {RoundManager.Instance.MaxRounds}";
     }
 
     private void UpdateTimerText(int secondsLeft)

@@ -32,20 +32,25 @@ public class PlantResource : MonoBehaviour
 
         int reward = Mathf.RoundToInt(plantData.rewardAmount * resourceMultiplier);
         int xpAmount = Mathf.RoundToInt(plantData.xpAmount * xpMultiplier);
+        int scoreMultiplier = 1;
 
-            if (planterBrain != null)
+        if (planterBrain != null)
+        {
+            float dupChance = planterBrain.GetFinalStat(StatType.DuplicateChance);
+            if (dupChance > 0f && Random.value <= dupChance)
             {
-                float dupChance = planterBrain.GetFinalStat(StatType.DuplicateChance);
-                if (dupChance > 0f && Random.value <= dupChance)
-                {
-                    reward *= 2;
-                    xpAmount *= 2;
-                    Debug.Log("Duplicate! Ödül 2x");
-                }
+                reward *= 2;
+                xpAmount *= 2;
+                scoreMultiplier = 2;
+                Debug.Log("Duplicate! Ödül 2x");
             }
+        }
 
         ResourceManager.Instance.AddResource(plantData.resourceType, reward);
         ProgressionManager.Instance.AddXP(xpAmount);
+
+        for (int i = 0; i < scoreMultiplier; i++)
+            HarvestScoreManager.Instance.AddScore(plantData.rarity);
 
         Debug.Log($"Hasat: {plantData.resourceType} x{reward} | XP x{xpAmount} | Multiplier: {resourceMultiplier}");
     }

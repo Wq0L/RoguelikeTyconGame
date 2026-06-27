@@ -15,6 +15,7 @@ MonoBehaviour:
   plantName: Grass
   rarity: 0
   prefab: {fileID: 7060170877369255166, guid: de20239aa3fe6f046933800901d3488b, type: 3}
+  maxHealth: 10
   resourceType: 2
   rewardAmount: 1
-  xpAmount: 100
+  xpAmount: 5

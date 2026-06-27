@@ -39,7 +39,7 @@ public class PlanterSO : ScriptableObject
                 return statEntry.value;
         }
 
-        Debug.LogWarning($"{planterName} içinde stat bulunamadı: {statType}");
+        //Debug.LogWarning($"{planterName} içinde stat bulunamadı: {statType}");
         return StatDefaults.GetDefaultBase(statType);
     }
 }

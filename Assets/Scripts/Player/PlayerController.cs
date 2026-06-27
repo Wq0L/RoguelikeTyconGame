@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void AttackInRadius(Vector3 center)
+   private void AttackInRadius(Vector3 center)
     {
         float radius = StatManager.Instance.GetFinalStat(
             StatType.AreaRadius,
@@ -79,6 +79,23 @@ public class PlayerController : MonoBehaviour
             )
         );
 
+        // Crit hesabı
+        float critChance = StatManager.Instance.GetFinalStat(
+            StatType.CritChance,
+            StatTarget.Player
+        );
+
+        bool isCrit = Random.value <= critChance;
+
+        if (isCrit)
+        {
+            float critMultiplier = StatManager.Instance.GetFinalStat(
+                StatType.CritMultiplier,
+                StatTarget.Player
+            );
+            damage = Mathf.RoundToInt(damage * critMultiplier);
+        }
+
         List<GridObject> targets = gridSystem.GetGridObjectsInRadius(center, radius);
 
         foreach (GridObject gridObject in targets)
@@ -91,7 +108,7 @@ public class PlayerController : MonoBehaviour
             if (plantObj.TryGetComponent<IDamageable>(out IDamageable damageable))
             {
                 damageable.TakeDamage(damage);
-                Debug.Log($"Attacked {plantObj.name} for {damage} damage.");
+                Debug.Log($"Attacked {plantObj.name} for {damage} damage. {(isCrit ? "CRIT!" : "")}");
             }
         }
     }

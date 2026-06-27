@@ -11,6 +11,7 @@ public class RoundManager : MonoBehaviour
 
 
     [SerializeField] private float roundDuration = 30f;
+    [SerializeField] private int maxRounds = 150;
     private int lastDisplayedSecond = -1;
 
     public int CurrentRound { get; private set; } = 1;
@@ -18,6 +19,10 @@ public class RoundManager : MonoBehaviour
     public bool IsRoundActive { get; private set; }
 
     private int pendingCardSelections = 0;
+    private int skipUsesRemaining;
+
+    public int SkipUsesRemaining => skipUsesRemaining;
+    public int MaxRounds => maxRounds;
 
     private void Awake()
     {
@@ -78,6 +83,9 @@ public class RoundManager : MonoBehaviour
         RemainingTime = roundDuration;
         IsRoundActive = true;
 
+        skipUsesRemaining = 1 + Mathf.RoundToInt(
+        StatManager.Instance.GetFinalStat(StatType.CardSkip, StatTarget.All));
+
         OnRoundChanged?.Invoke(CurrentRound);
         GameManager.Instance.StartGame();
     }
@@ -87,6 +95,15 @@ public class RoundManager : MonoBehaviour
         IsRoundActive = false;
         RemainingTime = 0f;
         OnRoundEnded?.Invoke();
+
+        // Son round ise direkt bitir
+        if (CurrentRound >= maxRounds)
+        {
+            pendingCardSelections = 0; // kart seçimini atla
+            GameManager.Instance.CompleteRun();
+            return;
+        }
+
 
         if (pendingCardSelections > 0)
             GameManager.Instance.StartCardSelection();
@@ -110,6 +127,17 @@ public class RoundManager : MonoBehaviour
         return false;  // bitti, RoundEnd'e geç
     }
 
+    public bool TryUseSkip()
+    {
+        if(skipUsesRemaining <= 0)
+        {
+            return false;
+        }
+
+        skipUsesRemaining--;
+        return true;
+    }
+
     public void StartNextRound()
     {
         if (GameManager.Instance.CurrentState != GameStates.Shop &&
@@ -118,7 +146,7 @@ public class RoundManager : MonoBehaviour
 
         CurrentRound++;
 
-        if (CurrentRound > 150)
+        if (CurrentRound > maxRounds)
         {
             GameManager.Instance.CompleteRun();
             return;

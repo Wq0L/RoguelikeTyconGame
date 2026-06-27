@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject roundUI;
     [SerializeField] private GameObject xpUI;
     [SerializeField] private GameObject cardSelectionPanel;
+    [SerializeField] private GameObject runCompletePanel;
 
     private GameObject currentPanel;
     private GameObject lastShopPanel;
@@ -78,7 +79,7 @@ public class UIManager : MonoBehaviour
                 break;
 
             case GameStates.RunComplete:
-                // burda açılacak oyunun son bitiş ekranı
+                ShowRunCompleteUI();
                 break;
         }
     }
@@ -89,6 +90,12 @@ public class UIManager : MonoBehaviour
         roundEndUI.SetActive(true);
         currentPanel = roundEndUI;
         lastShopPanel = null;
+    }
+    public void ShowRunCompleteUI()
+    {
+        CloseAll();
+        runCompletePanel.SetActive(true);
+        currentPanel = runCompletePanel;
     }
 
     public void OpenPlacementShop()
