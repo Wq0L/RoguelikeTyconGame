@@ -55,48 +55,48 @@ public class PlayerController : MonoBehaviour
         );
 
         attackSpeed = Mathf.Max(attackSpeed, 0.1f);
-
         attackTimer += Time.deltaTime;
 
         if (attackTimer >= attackSpeed)
         {
             attackTimer = 0f;
-            AttackInRadius(mouseWorldPos);
+
+            float radius = StatManager.Instance.GetFinalStat(
+                StatType.AreaRadius,
+                StatTarget.Player
+            );
+
+            bool anyCrit = AttackInRadius(mouseWorldPos);
+
+            VFXManager.Instance.PlayAttackRing(mouseWorldPos, radius, anyCrit);
+            VFXManager.Instance.ShakeCamera(anyCrit ? 0.08f : 0.03f);
         }
     }
 
-   private void AttackInRadius(Vector3 center)
+    private bool AttackInRadius(Vector3 center)
     {
         float radius = StatManager.Instance.GetFinalStat(
             StatType.AreaRadius,
             StatTarget.Player
         );
 
-        int damage = Mathf.RoundToInt(
-            StatManager.Instance.GetFinalStat(
-                StatType.HarvestDamage,
-                StatTarget.Player
-            )
+        float baseDamage = StatManager.Instance.GetFinalStat(
+            StatType.HarvestDamage,
+            StatTarget.Player
         );
 
-        // Crit hesabı
         float critChance = StatManager.Instance.GetFinalStat(
             StatType.CritChance,
             StatTarget.Player
         );
 
-        bool isCrit = Random.value <= critChance;
-
-        if (isCrit)
-        {
-            float critMultiplier = StatManager.Instance.GetFinalStat(
-                StatType.CritMultiplier,
-                StatTarget.Player
-            );
-            damage = Mathf.RoundToInt(damage * critMultiplier);
-        }
+        float critMultiplier = StatManager.Instance.GetFinalStat(
+            StatType.CritMultiplier,
+            StatTarget.Player
+        );
 
         List<GridObject> targets = gridSystem.GetGridObjectsInRadius(center, radius);
+        bool anyCrit = false;
 
         foreach (GridObject gridObject in targets)
         {
@@ -107,10 +107,22 @@ public class PlayerController : MonoBehaviour
 
             if (plantObj.TryGetComponent<IDamageable>(out IDamageable damageable))
             {
+                float variance = Random.Range(0.85f, 1.15f);
+                int damage = Mathf.RoundToInt(baseDamage * variance);
+
+                bool isCrit = Random.value <= critChance;
+                if (isCrit)
+                {
+                    damage = Mathf.RoundToInt(damage * critMultiplier);
+                    anyCrit = true;
+                }
+
                 damageable.TakeDamage(damage);
-                Debug.Log($"Attacked {plantObj.name} for {damage} damage. {(isCrit ? "CRIT!" : "")}");
+                VFXManager.Instance.PlayHit(plantObj.transform.position, damage, isCrit);
             }
         }
+
+        return anyCrit;
     }
 
     private void SetupRadiusIndicator()

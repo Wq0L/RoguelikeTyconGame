@@ -17,4 +17,8 @@ public class PlantSO : ScriptableObject
     public ResourceType resourceType;
     public int rewardAmount;
     public int xpAmount;
+
+    [Header("VFX")]
+    public Color hitFlashColor = Color.white;
+    public Color deathParticleColor = Color.green; 
 }

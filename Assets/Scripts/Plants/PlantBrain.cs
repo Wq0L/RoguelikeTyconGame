@@ -7,6 +7,8 @@ public class PlantBrain : MonoBehaviour
 
     private PlantSO plantData;
     private GridObject gridObject;
+    public PlantSO PlantData => plantData;
+
 
 
     private void OnEnable()

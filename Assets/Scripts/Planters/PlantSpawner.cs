@@ -67,7 +67,7 @@ public class PlantSpawner : MonoBehaviour
         PlantHealth plantHealth = plantObj.GetComponent<PlantHealth>();
         if (plantHealth != null)
         {
-            plantHealth.Initialize(selectedPlant.maxHealth);  
+            plantHealth.Initialize(selectedPlant);  
             plantHealth.OnDied += OnPlantDied;
         }
 
