@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class GroundCell : MonoBehaviour
 {
+    private static readonly int ColorId = Shader.PropertyToID("_BaseColor");
+
     [Header("References")]
     [SerializeField] private Renderer groundRenderer;
 
@@ -15,6 +17,7 @@ public class GroundCell : MonoBehaviour
     private bool isLocked = true;
     private TileModifierSO currentModifier;
     private List<StatModifier> rolledModifiers = new();
+    private MaterialPropertyBlock mpb;
 
     public bool IsLocked => isLocked;
     public TileModifierSO CurrentModifier => currentModifier;
@@ -22,23 +25,13 @@ public class GroundCell : MonoBehaviour
 
     private void Awake()
     {
+        mpb = new MaterialPropertyBlock();
         Lock();
     }
 
-    public void SetGridPosition(GridPosition gridPosition)
-    {
-        this.gridPosition = gridPosition;
-    }
-
-    public GridPosition GetGridPosition()
-    {
-        return gridPosition;
-    }
-
-    public void SetGridObject(GridObject obj)
-    {
-        gridObject = obj;
-    }
+    public void SetGridPosition(GridPosition gridPosition) => this.gridPosition = gridPosition;
+    public GridPosition GetGridPosition() => gridPosition;
+    public void SetGridObject(GridObject obj) => gridObject = obj;
 
     public void Unlock()
     {
@@ -50,6 +43,7 @@ public class GroundCell : MonoBehaviour
 
         isLocked = false;
         ApplyMaterials(unlockedMaterials);
+
     }
 
     public void Lock()
@@ -62,11 +56,12 @@ public class GroundCell : MonoBehaviour
 
         isLocked = true;
 
-        Material[] materials = groundRenderer.materials;
+        Material[] materials = groundRenderer.sharedMaterials;
         for (int i = 0; i < materials.Length; i++)
             materials[i] = lockedMaterial;
 
-        groundRenderer.materials = materials;
+        groundRenderer.sharedMaterials = materials;
+
     }
 
     public void ApplyModifier(TileModifierSO modifier)
@@ -75,25 +70,25 @@ public class GroundCell : MonoBehaviour
         rolledModifiers = modifier.RollModifiers();
 
         foreach (var mod in rolledModifiers)
-        Debug.Log($"[TILE] {mod.statType} = {mod.value} ({mod.operation})");
-
-        Material[] materials = groundRenderer.materials;
-        for (int i = 0; i < materials.Length; i++)
         {
-            materials[i] = new Material(unlockedMaterials[i % unlockedMaterials.Length]);
-            materials[i].color = modifier.tileColor;
+            Debug.Log($"[TILE] {mod.statType} = {mod.value} ({mod.operation})");
         }
-        groundRenderer.materials = materials;
+
+        groundRenderer.sharedMaterials = unlockedMaterials;
+
+        mpb.Clear();
+        mpb.SetColor(ColorId, modifier.tileColor);
+        groundRenderer.SetPropertyBlock(mpb);
 
         gridObject?.GetPlanterBrain()?.ApplyBuff(modifier, rolledModifiers);
     }
 
     private void ApplyMaterials(Material[] newMaterials)
     {
-        Material[] materials = groundRenderer.materials;
+        Material[] materials = groundRenderer.sharedMaterials;
         for (int i = 0; i < materials.Length; i++)
             materials[i] = newMaterials[i % newMaterials.Length];
 
-        groundRenderer.materials = materials;
+        groundRenderer.sharedMaterials = materials;
     }
 }

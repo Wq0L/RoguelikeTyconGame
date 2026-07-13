@@ -15,6 +15,9 @@ public class VFXManager : MonoBehaviour
     [Header("Camera Shake")]
     [SerializeField] private float shakeDuration = 0.2f;
 
+    [Header("Optimization")]
+    private static readonly int ColorId = Shader.PropertyToID("_BaseColor");
+
     // [Header("Death Particle")]
     // [SerializeField] private ParticleSystem deathParticlePrefab;
     // [SerializeField] private int deathPoolSize = 15;
@@ -82,12 +85,22 @@ public class VFXManager : MonoBehaviour
 
     private IEnumerator FlashRoutine(Renderer renderer, Color flashColor)
     {
-        Color original = renderer.material.color;
-        renderer.material.color = flashColor;
+        if (renderer == null) yield break;
+
+        // Her coroutine kendi local MPB'sini kullanır — paylaşım yok
+        MaterialPropertyBlock localMpb = new MaterialPropertyBlock();
+
+        renderer.GetPropertyBlock(localMpb);
+        localMpb.SetColor(ColorId, flashColor);
+        renderer.SetPropertyBlock(localMpb);
+
         yield return new WaitForSeconds(flashDuration);
 
         if (renderer != null)
-            renderer.material.color = original;
+        {
+            localMpb.Clear();
+            renderer.SetPropertyBlock(localMpb);
+        }
     }
 
     private IEnumerator ShakeRoutine(float magnitude)

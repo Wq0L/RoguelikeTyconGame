@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
             bool anyCrit = AttackInRadius(mouseWorldPos);
 
             VFXManager.Instance.PlayAttackRing(mouseWorldPos, radius, anyCrit);
-            VFXManager.Instance.ShakeCamera(anyCrit ? 0.08f : 0.03f);
+            //VFXManager.Instance.ShakeCamera(anyCrit ? 0.08f : 0.03f);
         }
     }
 

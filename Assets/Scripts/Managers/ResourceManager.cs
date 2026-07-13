@@ -52,5 +52,9 @@ public class ResourceManager : MonoBehaviour
     {
         return resources[type];
     }
+    public bool CanAfford(ResourceType type, int amount)
+    {
+        return resources[type] >= amount;
+    }
 
 }

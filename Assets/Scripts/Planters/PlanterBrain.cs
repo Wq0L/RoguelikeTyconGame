@@ -79,14 +79,19 @@ public class PlanterBrain : MonoBehaviour
     public void RemoveSelf()
     {
         foreach (GridObject gridObj in occupiedGrids)
+        {
+            GameObject plant = gridObj.GetPlantObject();
+            if (plant != null)
+            {
+                gridObj.ClearPlantObject();
+                Destroy(plant);
+            }
+
             gridObj.ClearPlanterObject();
+        }
 
         int refund = planterData.cost / 2;
-
         ResourceManager.Instance.AddResource(planterData.costType, refund);
-
-        Debug.Log($"{planterData.planterName} kaldırıldı, {refund} {planterData.costType} iade edildi.");
-
         Destroy(gameObject);
     }
 
