@@ -11,7 +11,7 @@ public class SkillTreeManager : MonoBehaviour
     private Dictionary<SkillNodeSO, int> nodeLevels = new();
     private HashSet<Vector2Int> unlockedPositions = new();
 
-    public event Action<SkillNodeSO, int> OnNodeLevelChanged;
+    public event Action OnTreeChanged;
 
     private static readonly Vector2Int[] Directions =
     {
@@ -30,46 +30,42 @@ public class SkillTreeManager : MonoBehaviour
     {
         nodeLevels.Clear();
         unlockedPositions.Clear();
-        unlockedPositions.Add(Vector2Int.zero); // kök her zaman "açık" sayılır
+        unlockedPositions.Add(Vector2Int.zero); // kök her zaman açık
+
+        OnTreeChanged?.Invoke();
     }
 
     public int GetCurrentLevel(SkillNodeSO node)
+        => nodeLevels.TryGetValue(node, out int lvl) ? lvl : 0;
+
+    public bool IsMaxLevel(SkillNodeSO node)
+        => GetCurrentLevel(node) >= node.tiers.Count;
+
+    public bool IsNodeVisible(SkillNodeSO node)
     {
-        return nodeLevels.TryGetValue(node, out int lvl) ? lvl : 0;
+        if (GetCurrentLevel(node) > 0) return true;      // zaten açtım
+        return HasUnlockedNeighbor(node.gridPosition);   // ulaşılabilir mi
     }
 
     public bool CanUpgrade(SkillNodeSO node)
     {
         int currentLevel = GetCurrentLevel(node);
 
-        if (currentLevel >= node.tiers.Count) return false; // max seviye
-
-        if (currentLevel == 0 && !HasUnlockedNeighbor(node.gridPosition))
-            return false; // ilk seviye için komşuluk şart
+        if (currentLevel >= node.tiers.Count) return false;
+        if (currentLevel == 0 && !HasUnlockedNeighbor(node.gridPosition)) return false;
 
         SkillNodeTier tier = node.tiers[currentLevel];
         return ResourceManager.Instance.CanAfford(tier.costType, tier.cost);
     }
 
-    private bool HasUnlockedNeighbor(Vector2Int pos)
-    {
-        foreach (var dir in Directions)
-            if (unlockedPositions.Contains(pos + dir)) return true;
-
-        return false;
-    }
-
-   public bool TryUpgrade(SkillNodeSO node)
+    public bool TryUpgrade(SkillNodeSO node)
     {
         if (!CanUpgrade(node)) return false;
 
         int currentLevel = GetCurrentLevel(node);
 
         if (currentLevel > 0)
-        {
-            SkillNodeTier previousTier = node.tiers[currentLevel - 1];
-            StatManager.Instance.RemoveGlobalModifiers(previousTier.effects);
-        }
+            StatManager.Instance.RemoveGlobalModifiers(node.tiers[currentLevel - 1].effects);
 
         SkillNodeTier newTier = node.tiers[currentLevel];
         ResourceManager.Instance.SpendResource(newTier.costType, newTier.cost);
@@ -83,7 +79,15 @@ public class SkillTreeManager : MonoBehaviour
         if (node.unlockType != UnlockType.None && newLevel == node.tiers.Count)
             UnlockManager.Instance.Unlock(node.unlockType);
 
-        OnNodeLevelChanged?.Invoke(node, newLevel);
+        OnTreeChanged?.Invoke();
         return true;
+    }
+
+    private bool HasUnlockedNeighbor(Vector2Int pos)
+    {
+        foreach (var dir in Directions)
+            if (unlockedPositions.Contains(pos + dir)) return true;
+
+        return false;
     }
 }

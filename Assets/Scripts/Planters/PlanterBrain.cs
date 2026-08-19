@@ -78,16 +78,14 @@ public class PlanterBrain : MonoBehaviour
 
     public void RemoveSelf()
     {
+        Debug.Log($"[REMOVE] {planterData.planterName} siliniyor. occupiedGrids sayısı: {occupiedGrids.Count}");
+
         foreach (GridObject gridObj in occupiedGrids)
         {
-            GameObject plant = gridObj.GetPlantObject();
-            if (plant != null)
-            {
-                gridObj.ClearPlantObject();
-                Destroy(plant);
-            }
-
+            GridPosition pos = gridObj.GetGroundCellCached()?.GetGridPosition() ?? default;
+            Debug.Log($"[REMOVE] Temizleniyor: {pos}, HasPlanter önce: {gridObj.HasPlanterObject()}");
             gridObj.ClearPlanterObject();
+            Debug.Log($"[REMOVE] Temizlendi: {pos}, HasPlanter sonra: {gridObj.HasPlanterObject()}");
         }
 
         int refund = planterData.cost / 2;

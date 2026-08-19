@@ -37,8 +37,8 @@ public class RoundManager : MonoBehaviour
 
     private void Start()
     {
-        StartRound();
         ProgressionManager.Instance.OnLevelUp += HandleLevelUp; // Start'ta güvenli
+        BeginRun();
     }
 
     private void OnDestroy()
@@ -75,6 +75,17 @@ public class RoundManager : MonoBehaviour
         {
             EndRound();
         }
+    }
+
+    public void BeginRun()
+    {
+        CurrentRound = 1;
+        pendingCardSelections = 0;
+
+        SkillTreeManager.Instance.ResetTree();
+        UnlockManager.Instance.ResetUnlocks();
+
+        StartRound();
     }
 
     public void StartRound()

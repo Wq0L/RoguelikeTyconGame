@@ -53,6 +53,8 @@ public class PlacementManager : MonoBehaviour
             Debug.Log("Önce mevcut yerleştirmeyi iptal et.");
             return;
         }
+        
+        isSellMode = false;
 
         selectedPlanter = planterData;
         selectedCostResource = planterData.costType;
@@ -141,23 +143,33 @@ public class PlacementManager : MonoBehaviour
             for (int z = 0; z < selectedPlanter.sizeZ; z++)
             {
                 Vector2Int offset = GetRotatedOffset(x, z);
-
-                GridPosition checkPos = new GridPosition(
-                    origin.x + offset.x,
-                    origin.z + offset.y
-                );
-
+                GridPosition checkPos = new GridPosition(origin.x + offset.x, origin.z + offset.y);
                 GridObject gridObj = gridSystem.GetGridObject(checkPos);
 
-                if (gridObj == null || gridObj.HasPlanterObject())
+                if (gridObj == null)
+                {
+                    Debug.Log($"[VALID] {checkPos}: gridObj NULL");
                     return false;
+                }
+                if (gridObj.HasPlanterObject())
+                {
+                    Debug.Log($"[VALID] {checkPos}: PLANTER var (temizlenmemiş!)");
+                    return false;
+                }
 
                 GroundCell cell = gridObj.GetGroundCellCached();
-                if (cell == null || cell.IsLocked)
+                if (cell == null)
+                {
+                    Debug.Log($"[VALID] {checkPos}: cell NULL");
                     return false;
+                }
+                if (cell.IsLocked)
+                {
+                    Debug.Log($"[VALID] {checkPos}: cell KİLİTLİ");
+                    return false;
+                }
             }
         }
-
         return true;
     }
 
