@@ -18,6 +18,6 @@ MonoBehaviour:
   maxHealth: 10
   resourceType: 2
   rewardAmount: 1
-  xpAmount: 100
+  xpAmount: 20
   hitFlashColor: {r: 1, g: 1, b: 1, a: 1}
   deathParticleColor: {r: 0, g: 1, b: 0, a: 1}

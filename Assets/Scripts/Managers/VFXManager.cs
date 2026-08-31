@@ -12,6 +12,10 @@ public class VFXManager : MonoBehaviour
     [Header("Hit Flash")]
     [SerializeField] private float flashDuration = 0.1f;
 
+    [Header("Hit Particle")]
+    [SerializeField] private ParticleSystem hitParticlePrefab;
+    [SerializeField] private int hitPoolSize = 15;
+
     [Header("Camera Shake")]
     [SerializeField] private float shakeDuration = 0.2f;
 
@@ -28,6 +32,7 @@ public class VFXManager : MonoBehaviour
 
     // Pool'lar
     private VFXPool<FloatingText> textPool;
+    private VFXPool<ParticleSystem> hitPool;
     // private VFXPool<ParticleSystem> deathPool;
     // private VFXPool<ParticleSystem> explosionPool;
 
@@ -37,6 +42,9 @@ public class VFXManager : MonoBehaviour
         Instance = this;
 
         textPool = new VFXPool<FloatingText>(floatingTextPrefab, textPoolSize, transform);
+
+        if (hitParticlePrefab != null)
+            hitPool = new VFXPool<ParticleSystem>(hitParticlePrefab, hitPoolSize, transform);
 
         // if (deathParticlePrefab != null)
         //     deathPool = new VFXPool<ParticleSystem>(deathParticlePrefab, deathPoolSize, transform);
@@ -50,6 +58,11 @@ public class VFXManager : MonoBehaviour
     public void PlayHit(Vector3 position, int damage, bool isCrit)
     {
         SpawnDamageText(position, damage, isCrit);
+    }
+
+    public void PlayHitParticle(Vector3 position, Color color)
+    {
+        SpawnHitParticle(position, color);
     }
 
     public void PlayHitFlash(Renderer renderer, Color flashColor)
@@ -81,6 +94,21 @@ public class VFXManager : MonoBehaviour
         FloatingText text = textPool.Get();
         text.transform.position = position + Vector3.up;
         text.Show(damage, isCrit);
+    }
+
+    private void SpawnHitParticle(Vector3 position, Color color)
+    {
+        Debug.Log($"SpawnHitParticle çağrıldı | hitPool null mı: {hitPool == null}");
+        if (hitPool == null) return;
+
+        ParticleSystem p = hitPool.Get();
+        p.transform.position = position;
+
+        var main = p.main;
+        main.startColor = color;
+
+        p.Play();
+        StartCoroutine(ReturnParticleAfter(p, hitPool, main.duration));
     }
 
     private IEnumerator FlashRoutine(Renderer renderer, Color flashColor)
@@ -121,6 +149,13 @@ public class VFXManager : MonoBehaviour
         cam.localPosition = originalPos;
     }
 
+    private IEnumerator ReturnParticleAfter(
+        ParticleSystem p, VFXPool<ParticleSystem> pool, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        pool.Return(p);
+    }
+
     // private void SpawnDeathParticle(Vector3 position, Color color)
     // {
     //     if (deathPool == null) return;
@@ -139,13 +174,6 @@ public class VFXManager : MonoBehaviour
     //     p.transform.position = position;
     //     p.Play();
     //     StartCoroutine(ReturnParticleAfter(p, explosionPool, p.main.duration));
-    // }
-
-    // private IEnumerator ReturnParticleAfter(
-    //     ParticleSystem p, VFXPool<ParticleSystem> pool, float delay)
-    // {
-    //     yield return new WaitForSeconds(delay);
-    //     pool.Return(p);
     // }
 
     // ========== POOL GERİ DÖNÜŞ ==========

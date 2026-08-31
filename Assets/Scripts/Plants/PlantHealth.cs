@@ -37,6 +37,9 @@ public class PlantHealth : MonoBehaviour, IDamageable
         // Hit flash
         VFXManager.Instance.PlayHitFlash(plantRenderer, plantData.hitFlashColor);
 
+        // Hit particle
+        VFXManager.Instance.PlayHitParticle(transform.position, plantData.hitFlashColor);
+
         if (currentHealth <= 0)
         {
             killedByExplosion = fromExplosion;

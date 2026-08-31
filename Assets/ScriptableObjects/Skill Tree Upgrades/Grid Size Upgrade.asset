@@ -12,8 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0817a4d977add4bbd7d892df76868d, type: 3}
   m_Name: Grid Size Upgrade
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
-  nodeName: 
+  nodeName: Grid Size Upgrade
   icon: {fileID: 0}
-  gridPosition: {x: 0, y: 0}
-  tiers: []
+  gridPosition: {x: 2, y: 0}
+  tiers:
+  - costType: 2
+    cost: 20
+    effects:
+    - statType: 13
+      target: 4
+      operation: 3
+      value: 5
+  - costType: 2
+    cost: 900
+    effects:
+    - statType: 13
+      target: 4
+      operation: 3
+      value: 7
+  - costType: 2
+    cost: 900
+    effects:
+    - statType: 13
+      target: 4
+      operation: 3
+      value: 11
   unlockType: 0

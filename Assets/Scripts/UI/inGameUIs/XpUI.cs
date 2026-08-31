@@ -37,7 +37,11 @@ public class XpUI : MonoBehaviour
 
     private void UpdateXPBar()
     {
-        float ratio = ProgressionManager.Instance.CurrentXP / ProgressionManager.Instance.XPToNextLevel;
+        float next = ProgressionManager.Instance.XPToNextLevel;
+        float current = ProgressionManager.Instance.CurrentXP;
+
+        float ratio = (next > 0f) ? current / next : 0f;
+
         xpSlider.value = ratio;
     }
 

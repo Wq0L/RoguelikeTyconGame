@@ -23,12 +23,14 @@ public class ProgressionManager : MonoBehaviour
     {
         if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
+
+        XPToNextLevel = progressionData.GetXPForLevel(CurrentLevel);
     }
 
     
     private void Start()
     {
-        XPToNextLevel = progressionData.GetXPForLevel(CurrentLevel);
+        
         RoundManager.Instance.OnRoundEnded += HandleRoundEnded;
     }
 
