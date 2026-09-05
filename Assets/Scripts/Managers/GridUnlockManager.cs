@@ -1,8 +1,10 @@
 using UnityEngine;
+using System;
 
 public class GridUnlockManager : MonoBehaviour
 {
     public static GridUnlockManager Instance { get; private set; }
+    public event Action OnGridSizeChanged;
 
     [SerializeField] private GridManager gridManager;
 
@@ -57,6 +59,7 @@ public class GridUnlockManager : MonoBehaviour
     public void UnlockNextTier(int newSize)
     {
         currentUnlockSize = newSize;
+        OnGridSizeChanged?.Invoke();
         UnlockCenter(newSize);
     }
 

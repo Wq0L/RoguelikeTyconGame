@@ -15,7 +15,7 @@ MonoBehaviour:
   modifierName: Duplicate-DuplicateChance
   modifierType: 5
   rarity: 1
-  tileColor: {r: 0.4370861, g: 0, b: 0.9529412, a: 0}
+  tileColor: {r: 0.4370861, g: 0, b: 0.9529412, a: 1}
   behavior: 2
   modifierRanges:
   - statType: 21

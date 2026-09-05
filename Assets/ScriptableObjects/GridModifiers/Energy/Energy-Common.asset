@@ -15,7 +15,8 @@ MonoBehaviour:
   modifierName: Energy-HarvestScoreMultiplier
   modifierType: 3
   rarity: 0
-  tileColor: {r: 0.9529412, g: 0.7483939, b: 0, a: 0}
+  tileColor: {r: 0.9529412, g: 0.7483939, b: 0, a: 1}
+  behavior: 0
   modifierRanges:
   - statType: 0
     target: 2

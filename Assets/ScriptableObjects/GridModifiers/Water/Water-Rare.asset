@@ -15,7 +15,8 @@ MonoBehaviour:
   modifierName: Water-XPGain
   modifierType: 1
   rarity: 1
-  tileColor: {r: 0, g: 0.9473035, b: 0.9529412, a: 0}
+  tileColor: {r: 0, g: 0.9490196, b: 0.9529412, a: 1}
+  behavior: 0
   modifierRanges:
   - statType: 10
     target: 2

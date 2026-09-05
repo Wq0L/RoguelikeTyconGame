@@ -15,7 +15,7 @@ MonoBehaviour:
   modifierName: Explosive-ExplosionChance
   modifierType: 4
   rarity: 1
-  tileColor: {r: 0.7924528, g: 0.39367563, b: 0, a: 0}
+  tileColor: {r: 0.7924528, g: 0.39367563, b: 0, a: 1}
   behavior: 1
   modifierRanges:
   - statType: 20

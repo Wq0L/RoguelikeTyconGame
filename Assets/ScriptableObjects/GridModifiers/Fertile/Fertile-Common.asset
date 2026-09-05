@@ -15,7 +15,8 @@ MonoBehaviour:
   modifierName: Fertile-PlantSpawnRate
   modifierType: 0
   rarity: 0
-  tileColor: {r: 0.11866942, g: 0.9528302, b: 0, a: 0}
+  tileColor: {r: 0.11866942, g: 0.9528302, b: 0, a: 1}
+  behavior: 0
   modifierRanges:
   - statType: 5
     target: 2

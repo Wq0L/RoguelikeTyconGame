@@ -60,7 +60,10 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
 
     private void HandleClick()
     {
-        SkillTreeManager.Instance.TryUpgrade(node);
+        bool success = SkillTreeManager.Instance.TryUpgrade(node);
+
+        if (success)
+            TooltipManager.Instance.RefreshActive();
     }
 
     public void Refresh()
@@ -170,6 +173,64 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
 
     public void FillTooltip(GameObject instance)
     {
-        // ŞİMDİLİK BOŞ
+        TooltipContent content = instance.GetComponent<TooltipContent>();
+        if (content == null) return;
+
+        int currentLevel = SkillTreeManager.Instance.GetCurrentLevel(node);
+        bool isMax = SkillTreeManager.Instance.IsMaxLevel(node);
+
+        content.SetName(node.nodeName);
+        content.SetIcon(node.icon);
+
+        if (isMax)
+        {
+            content.SetLevel("MAX");
+            content.SetValues(BuildMaxValues());
+            content.SetCost("-");
+            return;
+        }
+
+        SkillNodeTier nextTier = node.tiers[currentLevel];
+
+        content.SetLevel($"{currentLevel} / {node.tiers.Count}");
+        content.SetValues(BuildUpgradeValues(nextTier));
+        content.SetCost($"{nextTier.cost} {nextTier.costType}");
+    }
+
+    private string BuildUpgradeValues(SkillNodeTier nextTier)
+    {
+        string result = "";
+
+        foreach (StatModifier effect in nextTier.effects)
+        {
+            float current = StatManager.Instance.GetFinalStat(effect.statType, effect.target);
+
+            float next = StatCalculator.Calculate(
+                StatManager.Instance.GetBaseStat(effect.statType),
+                effect.statType,
+                effect.target,
+                StatManager.Instance.GlobalModifiers,
+                nextTier.effects
+            );
+
+            result += $"{effect.statType}: <color=white>{current:0.#}</color> → <color=green>{next:0.#}</color>\n";
+        }
+
+        return result.TrimEnd();
+    }
+
+    private string BuildMaxValues()
+    {
+        string result = "";
+
+        SkillNodeTier lastTier = node.tiers[node.tiers.Count - 1];
+
+        foreach (StatModifier effect in lastTier.effects)
+        {
+            float current = StatManager.Instance.GetFinalStat(effect.statType, effect.target);
+            result += $"{effect.statType}: <color=green>{current:0.#}</color>\n";
+        }
+
+        return result.TrimEnd();
     }
 }

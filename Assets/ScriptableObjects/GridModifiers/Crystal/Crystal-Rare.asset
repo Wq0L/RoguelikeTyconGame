@@ -15,7 +15,8 @@ MonoBehaviour:
   modifierName: Crystal-RareSpawnChance
   modifierType: 2
   rarity: 1
-  tileColor: {r: 0.9529412, g: 0, b: 0.5126134, a: 0}
+  tileColor: {r: 0.9529412, g: 0, b: 0.5126134, a: 1}
+  behavior: 0
   modifierRanges:
   - statType: 6
     target: 2

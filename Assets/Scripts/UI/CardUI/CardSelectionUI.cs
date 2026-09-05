@@ -30,7 +30,6 @@ public class CardSelectionUI : MonoBehaviour
     private List<TileModifierSO> currentCards = new();
     
 
-    // UIManager her kart seçim ekranı açılışında bunu çağırır
     public void RefreshCards()
     {
         currentCards.Clear();
@@ -148,5 +147,12 @@ public class CardSelectionUI : MonoBehaviour
         bool hasMore = RoundManager.Instance.OnCardSelectionComplete();
         if (hasMore)
             RefreshCards();
+    }
+
+
+    private void OnDisable()
+    {
+        if (skipButton != null)
+            skipButton.gameObject.SetActive(false);
     }
 }

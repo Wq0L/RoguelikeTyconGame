@@ -11,6 +11,7 @@ public class TooltipManager : MonoBehaviour
 
     private GameObject activeTooltip;
     private GameObject activePrefabKey;
+    private ITooltipProvider activeProvider;   // ← EKLENDİ: aktif popup'ı kim açtı
 
     private void Awake()
     {
@@ -36,6 +37,7 @@ public class TooltipManager : MonoBehaviour
 
         activeTooltip = instance;
         activePrefabKey = prefab;
+        activeProvider = provider;   // ← EKLENDİ: sakla
     }
 
     public void Hide()
@@ -47,6 +49,13 @@ public class TooltipManager : MonoBehaviour
 
         activeTooltip = null;
         activePrefabKey = null;
+        activeProvider = null;   // ← EKLENDİ: temizle
+    }
+    public void RefreshActive()
+    {
+        if (activeTooltip == null || activeProvider == null) return;
+
+        activeProvider.FillTooltip(activeTooltip);
     }
 
     private GameObject GetFromPool(GameObject prefab)
