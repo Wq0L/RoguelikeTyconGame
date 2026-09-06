@@ -24,14 +24,14 @@ MonoBehaviour:
       operation: 3
       value: 5
   - costType: 2
-    cost: 900
+    cost: 50
     effects:
     - statType: 13
       target: 4
       operation: 3
       value: 7
   - costType: 2
-    cost: 900
+    cost: 200
     effects:
     - statType: 13
       target: 4

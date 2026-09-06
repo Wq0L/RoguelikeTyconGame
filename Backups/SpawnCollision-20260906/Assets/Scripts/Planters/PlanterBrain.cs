@@ -22,12 +22,8 @@ public class PlanterBrain : MonoBehaviour
     public void Initialize(List<GridObject> gridObjects)
     {
         if (spawners.Count > 0) return;
-        if (!TryResolveSpawnGrids(gridObjects, out List<GridObject> spawnGrids, out string error))
-        {
-            Debug.LogError(error, this);
-            return;
-        }
         occupiedGrids = new List<GridObject>(gridObjects);
+        List<GridObject> availableGrids = new List<GridObject>(gridObjects);
         if (spawnPoints == null || spawnPoints.Count == 0)
         {
             foreach (GridObject grid in gridObjects)
@@ -38,56 +34,14 @@ public class PlanterBrain : MonoBehaviour
             }
             return;
         }
-        for (int i = 0; i < spawnPoints.Count; i++)
+        foreach (Transform point in spawnPoints)
         {
-            CreateSpawner(spawnPoints[i].position, spawnGrids[i]);
+            if (point == null) continue;
+            GridObject closest = FindClosestGridObject(point.position, availableGrids);
+            if (closest == null) break;
+            availableGrids.Remove(closest);
+            CreateSpawner(point.position, closest);
         }
-    }
-
-    public bool ValidateSpawnPoints(List<GridObject> gridObjects, out string error)
-    {
-        return TryResolveSpawnGrids(gridObjects, out _, out error);
-    }
-
-    // Resolve every point before creating any spawners. Never redirect a duplicate
-    // to a different cell: its visual position would no longer match its grid.
-    private bool TryResolveSpawnGrids(List<GridObject> gridObjects,
-        out List<GridObject> spawnGrids, out string error)
-    {
-        spawnGrids = new List<GridObject>();
-        error = null;
-        if (spawnPoints == null || spawnPoints.Count == 0) return true;
-
-        Dictionary<GridObject, int> assignedPoints = new Dictionary<GridObject, int>();
-        for (int i = 0; i < spawnPoints.Count; i++)
-        {
-            Transform point = spawnPoints[i];
-            if (point == null)
-            {
-                error = $"[{name}] Yerleştirme durduruldu: Spawn Points listesinin {i + 1}. elemanı boş. " +
-                    "Noktayı bağla veya otomatik noktalar için listenin tamamını boşalt.";
-                return false;
-            }
-
-            GridObject closest = FindClosestGridObject(point.position, gridObjects);
-            if (closest == null)
-            {
-                error = $"[{name}] Yerleştirme durduruldu: '{point.name}' (nokta {i + 1}) için zemin hücresi bulunamadı.";
-                return false;
-            }
-            if (assignedPoints.TryGetValue(closest, out int previous))
-            {
-                GridPosition cell = closest.GetGroundCellCached().GetGridPosition();
-                error = $"[{name}] Yerleştirme durduruldu: '{spawnPoints[previous].name}' (nokta {previous + 1}) ve " +
-                    $"'{point.name}' (nokta {i + 1}) aynı ({cell.x}, {cell.z}) hücresine denk geliyor. " +
-                    "Başka hücreye aktarılmadı. Prefabta noktaları ayrı hücre merkezlerine taşı " +
-                    "veya Spawn Points listesini boşaltarak otomatik noktaları kullan.";
-                return false;
-            }
-            assignedPoints.Add(closest, i);
-            spawnGrids.Add(closest);
-        }
-        return true;
     }
 
     public void Initialize(PlanterSO data, List<GridObject> gridObjects)

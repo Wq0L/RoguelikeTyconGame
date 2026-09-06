@@ -3,7 +3,12 @@ guid: 3407fdc585b3bcf41818491b1a1bdb93
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CAN_02_GAME_ATLAS
+    second: {fileID: 2100000, guid: e40d91d8cb0832b44a1207d2f059956e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

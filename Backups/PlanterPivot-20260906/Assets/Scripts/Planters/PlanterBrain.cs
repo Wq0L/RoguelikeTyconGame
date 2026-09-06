@@ -4,9 +4,7 @@ using UnityEngine;
 public class PlanterBrain : MonoBehaviour
 {
     [SerializeField] private PlanterSO planterData;
-    [Tooltip("Bos birakilirsa her dolu hucrenin merkezinde bir bitki noktasi olusturulur.")]
-    [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
-    [SerializeField] private float automaticSpawnHeight = 0.25f;
+    [SerializeField] private List<Transform> spawnPoints;
 
     private List<PlantSpawner> spawners = new List<PlantSpawner>();
     private List<StatModifier> localModifiers = new List<StatModifier>();
@@ -21,89 +19,23 @@ public class PlanterBrain : MonoBehaviour
 
     public void Initialize(List<GridObject> gridObjects)
     {
-        if (spawners.Count > 0) return;
-        if (!TryResolveSpawnGrids(gridObjects, out List<GridObject> spawnGrids, out string error))
-        {
-            Debug.LogError(error, this);
-            return;
-        }
         occupiedGrids = new List<GridObject>(gridObjects);
-        if (spawnPoints == null || spawnPoints.Count == 0)
-        {
-            foreach (GridObject grid in gridObjects)
-            {
-                GroundCell cell = grid.GetGroundCellCached();
-                if (cell != null)
-                    CreateSpawner(cell.transform.position + Vector3.up * automaticSpawnHeight, grid);
-            }
-            return;
-        }
+
         for (int i = 0; i < spawnPoints.Count; i++)
         {
-            CreateSpawner(spawnPoints[i].position, spawnGrids[i]);
+            if (i >= gridObjects.Count) break;
+
+            GridObject closest = FindClosestGridObject(spawnPoints[i].position, gridObjects);
+
+            GameObject spawnerObj = new GameObject("PlantSpawner_" + i);
+            spawnerObj.transform.position = spawnPoints[i].position;
+            spawnerObj.transform.SetParent(transform);
+
+            PlantSpawner spawner = spawnerObj.AddComponent<PlantSpawner>();
+            spawner.Initialize(planterData, closest, this);
+
+            spawners.Add(spawner);
         }
-    }
-
-    public bool ValidateSpawnPoints(List<GridObject> gridObjects, out string error)
-    {
-        return TryResolveSpawnGrids(gridObjects, out _, out error);
-    }
-
-    // Resolve every point before creating any spawners. Never redirect a duplicate
-    // to a different cell: its visual position would no longer match its grid.
-    private bool TryResolveSpawnGrids(List<GridObject> gridObjects,
-        out List<GridObject> spawnGrids, out string error)
-    {
-        spawnGrids = new List<GridObject>();
-        error = null;
-        if (spawnPoints == null || spawnPoints.Count == 0) return true;
-
-        Dictionary<GridObject, int> assignedPoints = new Dictionary<GridObject, int>();
-        for (int i = 0; i < spawnPoints.Count; i++)
-        {
-            Transform point = spawnPoints[i];
-            if (point == null)
-            {
-                error = $"[{name}] Yerleştirme durduruldu: Spawn Points listesinin {i + 1}. elemanı boş. " +
-                    "Noktayı bağla veya otomatik noktalar için listenin tamamını boşalt.";
-                return false;
-            }
-
-            GridObject closest = FindClosestGridObject(point.position, gridObjects);
-            if (closest == null)
-            {
-                error = $"[{name}] Yerleştirme durduruldu: '{point.name}' (nokta {i + 1}) için zemin hücresi bulunamadı.";
-                return false;
-            }
-            if (assignedPoints.TryGetValue(closest, out int previous))
-            {
-                GridPosition cell = closest.GetGroundCellCached().GetGridPosition();
-                error = $"[{name}] Yerleştirme durduruldu: '{spawnPoints[previous].name}' (nokta {previous + 1}) ve " +
-                    $"'{point.name}' (nokta {i + 1}) aynı ({cell.x}, {cell.z}) hücresine denk geliyor. " +
-                    "Başka hücreye aktarılmadı. Prefabta noktaları ayrı hücre merkezlerine taşı " +
-                    "veya Spawn Points listesini boşaltarak otomatik noktaları kullan.";
-                return false;
-            }
-            assignedPoints.Add(closest, i);
-            spawnGrids.Add(closest);
-        }
-        return true;
-    }
-
-    public void Initialize(PlanterSO data, List<GridObject> gridObjects)
-    {
-        planterData = data;
-        Initialize(gridObjects);
-    }
-
-    private void CreateSpawner(Vector3 position, GridObject grid)
-    {
-        GameObject spawnerObj = new GameObject("PlantSpawner_" + spawners.Count);
-        spawnerObj.transform.position = position;
-        spawnerObj.transform.SetParent(transform);
-        PlantSpawner spawner = spawnerObj.AddComponent<PlantSpawner>();
-        spawner.Initialize(planterData, grid, this);
-        spawners.Add(spawner);
     }
 
     public void ApplyBuff(TileModifierSO tileModifier, List<StatModifier> rolledModifiers)
@@ -171,8 +103,7 @@ public class PlanterBrain : MonoBehaviour
             GroundCell cell = gridObj.GetGroundCellCached();
             if (cell == null) continue;
 
-            Vector3 delta = worldPos - cell.transform.position;
-            float dist = delta.x * delta.x + delta.z * delta.z;
+            float dist = Vector3.Distance(worldPos, cell.transform.position);
             if (dist < minDist)
             {
                 minDist = dist;

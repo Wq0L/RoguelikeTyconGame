@@ -217,14 +217,6 @@ public class PlacementManager : MonoBehaviour
             }
         }
 
-        PlanterBrain planterBrain = ghostObject.GetComponent<PlanterBrain>();
-        if (planterBrain != null && !planterBrain.ValidateSpawnPoints(occupiedGrids, out string error))
-        {
-            Debug.LogError(error, planterBrain);
-            ghostObject.GetComponent<GhostController>()?.SetColor(false);
-            return;
-        }
-
         GhostController ghost = ghostObject.GetComponent<GhostController>();
         ghost?.SetGhostMode(false);
 
@@ -232,6 +224,8 @@ public class PlacementManager : MonoBehaviour
         {
             gridObj.SetPlanterObject(ghostObject);
         }
+
+        PlanterBrain planterBrain = ghostObject.GetComponent<PlanterBrain>();
 
         if (planterBrain != null)
         {

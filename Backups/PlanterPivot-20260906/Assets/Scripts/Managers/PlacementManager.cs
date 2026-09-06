@@ -62,7 +62,6 @@ public class PlacementManager : MonoBehaviour
         currentRotation = 0;
 
         ghostObject = Instantiate(selectedPlanter.prefab);
-        ghostObject.transform.rotation = Quaternion.identity;
 
         GhostController ghost = ghostObject.GetComponent<GhostController>();
         ghost?.SetGhostMode(true);
@@ -98,11 +97,22 @@ public class PlacementManager : MonoBehaviour
     {
         float cellSize = gridManager.GetCellSize();
 
-        Vector3 center = new Vector3(
-            (selectedPlanter.sizeX - 1) * cellSize * 0.5f,
-            0f,
-            (selectedPlanter.sizeZ - 1) * cellSize * 0.5f);
-        return Quaternion.Euler(0, currentRotation, 0) * center;
+        Vector2Int min = Vector2Int.zero;
+        Vector2Int max = Vector2Int.zero;
+
+        for (int x = 0; x < selectedPlanter.sizeX; x++)
+        {
+            for (int z = 0; z < selectedPlanter.sizeZ; z++)
+            {
+                Vector2Int offset = GetRotatedOffset(x, z);
+
+                min = Vector2Int.Min(min, offset);
+                max = Vector2Int.Max(max, offset);
+            }
+        }
+
+        Vector2 center = ((Vector2)min + (Vector2)max) / 2f;
+        return new Vector3(center.x * cellSize, 0, center.y * cellSize);
     }
 
     private void MoveGhostToMouse()
@@ -166,7 +176,6 @@ public class PlacementManager : MonoBehaviour
     private void HandlePlacementClick()
     {
         if (!Input.GetMouseButtonDown(0)) return;
-        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
 
         GridObject gridObject = GetMouseGridObject();
         if (gridObject == null) return;
@@ -217,14 +226,6 @@ public class PlacementManager : MonoBehaviour
             }
         }
 
-        PlanterBrain planterBrain = ghostObject.GetComponent<PlanterBrain>();
-        if (planterBrain != null && !planterBrain.ValidateSpawnPoints(occupiedGrids, out string error))
-        {
-            Debug.LogError(error, planterBrain);
-            ghostObject.GetComponent<GhostController>()?.SetColor(false);
-            return;
-        }
-
         GhostController ghost = ghostObject.GetComponent<GhostController>();
         ghost?.SetGhostMode(false);
 
@@ -233,9 +234,11 @@ public class PlacementManager : MonoBehaviour
             gridObj.SetPlanterObject(ghostObject);
         }
 
+        PlanterBrain planterBrain = ghostObject.GetComponent<PlanterBrain>();
+
         if (planterBrain != null)
         {
-            planterBrain.Initialize(selectedPlanter, occupiedGrids);
+            planterBrain.Initialize(occupiedGrids);
 
             foreach (GridObject gridObj in occupiedGrids)
             {

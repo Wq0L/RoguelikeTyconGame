@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9bf7029ef243f0409d4c305b215917d, type: 3}
-  m_Name: GrassPlanter
+  m_Name: GrassPlanter 1x1
   m_EditorClassIdentifier: Assembly-CSharp::PlanterSO
   planterName: Grass Planter
   prefab: {fileID: 1395836356370012693, guid: a5681a5bf752bb34f85c92028a4bd5a2, type: 3}
