@@ -1,0 +1,50 @@
+{
+  "root": 7100000000,
+  "nodes": 36,
+  "cards": [
+    {
+      "data": "11b0f494aef81264b92f0d80d11b3269",
+      "rect": 7100000031,
+      "group": 7100000035,
+      "button": 7100000034,
+      "background": 7100000033,
+      "price": 7100000047
+    },
+    {
+      "data": "e8c274d8c5b8cc24e86d983456176548",
+      "rect": 7100000049,
+      "group": 7100000053,
+      "button": 7100000052,
+      "background": 7100000051,
+      "price": 7100000065
+    },
+    {
+      "data": "faca57c50975b7c429cf17b407d9f0a2",
+      "rect": 7100000067,
+      "group": 7100000071,
+      "button": 7100000070,
+      "background": 7100000069,
+      "price": 7100000083
+    },
+    {
+      "data": "4b9763086d7a4ec45b2916e3c63f69a9",
+      "rect": 7100000085,
+      "group": 7100000089,
+      "button": 7100000088,
+      "background": 7100000087,
+      "price": 7100000101
+    },
+    {
+      "data": "ea2f39adae010224b94dd4f6955fca6f",
+      "rect": 7100000103,
+      "group": 7100000107,
+      "button": 7100000106,
+      "background": 7100000105,
+      "price": 7100000119
+    }
+  ],
+  "files": [
+    "Assets/Scenes/GameScene.unity",
+    "Assets/Scripts/UI/PlanterShopPanelUI.cs"
+  ]
+}
