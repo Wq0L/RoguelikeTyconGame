@@ -1,0 +1,50 @@
+[
+  {
+    "statType": "HarvestDamage",
+    "enumValue": 0,
+    "target": "Player",
+    "spritePath": "Assets/Art/UI/PlayerStatIcons/Stat_HarvestDamage.png",
+    "guid": "3ed15f65eb26436f958d5360d2c49486",
+    "fileID": 21300000
+  },
+  {
+    "statType": "AreaRadius",
+    "enumValue": 1,
+    "target": "Player",
+    "spritePath": "Assets/Art/UI/PlayerStatIcons/Stat_AreaRadius.png",
+    "guid": "e86548dea58a4d66b21dc7fb1a717f64",
+    "fileID": 21300000
+  },
+  {
+    "statType": "AttackSpeed",
+    "enumValue": 2,
+    "target": "Player",
+    "spritePath": "Assets/Art/UI/PlayerStatIcons/Stat_AttackSpeed.png",
+    "guid": "6caf1b77f2cd4c49a8cc6748def2871f",
+    "fileID": 21300000
+  },
+  {
+    "statType": "CritChance",
+    "enumValue": 3,
+    "target": "Player",
+    "spritePath": "Assets/Art/UI/PlayerStatIcons/Stat_CritChance.png",
+    "guid": "56ea418d16d0449db3a4b6ff5d45bda1",
+    "fileID": 21300000
+  },
+  {
+    "statType": "CritMultiplier",
+    "enumValue": 4,
+    "target": "Player",
+    "spritePath": "Assets/Art/UI/PlayerStatIcons/Stat_CritMultiplier.png",
+    "guid": "9cc31fa7bf744027984c5282e6423032",
+    "fileID": 21300000
+  },
+  {
+    "statType": "HarvestScoreMultiplier",
+    "enumValue": 11,
+    "target": "Player",
+    "spritePath": "Assets/Art/UI/PlayerStatIcons/Stat_HarvestScoreMultiplier.png",
+    "guid": "dc8a74ff9627482ba32b75d72e5d0da6",
+    "fileID": 21300000
+  }
+]

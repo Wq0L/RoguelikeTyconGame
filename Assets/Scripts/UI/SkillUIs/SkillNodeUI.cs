@@ -38,16 +38,19 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
 
     private int previousLevel = 0;
 
+    // Also available before Awake, for nodes initially hidden by the tree.
+    public SkillNodeSO Node => node;
+
+    public Vector2 LayoutPosition => node == null ? Vector2.zero :
+        new Vector2(node.gridPosition.x * spacing, node.gridPosition.y * spacing);
+
     private void Awake()
     {
         DOTween.Init();
         button.onClick.AddListener(HandleClick);
 
         RectTransform rect = GetComponent<RectTransform>();
-        rect.anchoredPosition = new Vector2(
-            node.gridPosition.x * spacing,
-            node.gridPosition.y * spacing
-        );
+        rect.anchoredPosition = LayoutPosition;
 
         // Halka başta görünmez
         if (waveRingImage != null)
@@ -213,7 +216,7 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
                 nextTier.effects
             );
 
-            result += $"{effect.statType}: <color=white>{current:0.#}</color> → <color=green>{next:0.#}</color>\n";
+            result += $"{effect.statType}: <color=#283B50>{current:0.#}</color> → <color=#19745E>{next:0.#}</color>\n";
         }
 
         return result.TrimEnd();
@@ -228,7 +231,7 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         foreach (StatModifier effect in lastTier.effects)
         {
             float current = StatManager.Instance.GetFinalStat(effect.statType, effect.target);
-            result += $"{effect.statType}: <color=green>{current:0.#}</color>\n";
+            result += $"{effect.statType}: <color=#19745E>{current:0.#}</color>\n";
         }
 
         return result.TrimEnd();

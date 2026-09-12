@@ -1,0 +1,266 @@
+using System;
+using System.IO;
+using System.Linq;
+using TMPro;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
+
+// Explicit editor commands only; never changes the user's open scene.
+public static class SkillTreePopupPreview
+{
+    private const string PrefabPath = "Assets/Prefabs/UI/Skill Tree Pop Up.prefab";
+    private const string ArtPath = "Assets/Art/UI/ReusablePopup/";
+    private static readonly Color Ink = new Color32(40, 59, 80, 255);
+
+    [MenuItem("Tools/Skill Tree Popup/Apply Metal Layout %&m")]
+    public static void Apply()
+    {
+        if (EditorApplication.isPlaying) throw new InvalidOperationException("Exit Play Mode first.");
+        GameObject root = PrefabUtility.LoadPrefabContents(PrefabPath);
+        try
+        {
+            RectTransform rect = (RectTransform)root.transform;
+            rect.anchorMin = rect.anchorMax = new Vector2(.5f, .5f);
+            // TooltipManager positions this edge just left of the hovered node.
+            rect.pivot = new Vector2(1, .5f);
+            rect.anchoredPosition = Vector2.zero;
+            rect.sizeDelta = new Vector2(448, 320);
+            rect.localScale = Vector3.one;
+            SetPanel(root.GetComponent<Image>(), "Popup_Background.png");
+
+            Image frame = root.GetComponentsInChildren<Image>(true)
+                .First(i => i.gameObject.name == "Popup Frame" || i.gameObject.name == "Çerçeve");
+            frame.gameObject.name = "Popup Frame";
+            SetPanel(frame, "Popup_Frame.png");
+            Stretch(frame.rectTransform, Vector2.zero, Vector2.zero);
+            frame.transform.SetAsLastSibling();
+
+            Transform shadowTransform = root.transform.Find("Popup Shadow");
+            Image shadow = shadowTransform != null ? shadowTransform.GetComponent<Image>() :
+                new GameObject("Popup Shadow", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image)).GetComponent<Image>();
+            shadow.transform.SetParent(root.transform, false);
+            shadow.transform.SetAsFirstSibling();
+            SetPanel(shadow, "Popup_Shadow.png");
+            Stretch(shadow.rectTransform, Vector2.zero, Vector2.zero);
+
+            Image icon = root.transform.Find("iconImage").GetComponent<Image>();
+            icon.sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Art/UI/PlayerStatIcons/Stat_HarvestDamage.png");
+            icon.color = Color.white;
+            icon.preserveAspect = true;
+            icon.type = Image.Type.Simple;
+            Place(icon.rectTransform, new Vector2(0, 1), new Vector2(0, 1), new Vector2(32, -32), new Vector2(64, 64));
+
+            TMP_Text title = Text(root, "NameText", 26, 20, TextAlignmentOptions.MidlineLeft);
+            TopStretch(title.rectTransform, 112, 32, 28, 48);
+            title.text = "Damage Upgrade";
+            TMP_Text level = Text(root, "levelText", 18, 16, TextAlignmentOptions.MidlineLeft);
+            TopStretch(level.rectTransform, 112, 32, 80, 24);
+            level.color = new Color32(85, 105, 124, 255);
+            level.text = "0 / 2";
+
+            TMP_Text values = Text(root, "valueText", 20, 16, TextAlignmentOptions.TopLeft);
+            Stretch(values.rectTransform, new Vector2(32, 82), new Vector2(-32, -136));
+            values.text = "HarvestDamage: <color=#283B50>1</color> → <color=#19745E>2</color>";
+            TMP_Text cost = Text(root, "costText", 20, 18, TextAlignmentOptions.MidlineRight);
+            cost.rectTransform.anchorMin = new Vector2(0, 0);
+            cost.rectTransform.anchorMax = new Vector2(1, 0);
+            cost.rectTransform.pivot = new Vector2(.5f, 0);
+            cost.rectTransform.anchoredPosition = new Vector2(0, 28);
+            cost.rectTransform.sizeDelta = new Vector2(-64, 32);
+            cost.text = "50 Gold";
+            Rule(root, "Header Divider", true, 120);
+            Rule(root, "Cost Divider", false, 70);
+            foreach (Transform child in root.GetComponentsInChildren<Transform>(true)) child.gameObject.layer = 5;
+            foreach (Graphic graphic in root.GetComponentsInChildren<Graphic>(true)) graphic.raycastTarget = false;
+            if (root.GetComponent<TooltipContent>() == null) throw new InvalidOperationException("TooltipContent missing.");
+            PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
+        }
+        finally { PrefabUtility.UnloadPrefabContents(root); }
+        AssetDatabase.SaveAssets();
+        Render();
+    }
+
+    private static void SetPanel(Image image, string file)
+    {
+        image.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(ArtPath + file);
+        if (image.sprite == null || image.sprite.border == Vector4.zero) throw new InvalidOperationException("Missing sliced sprite: " + file);
+        image.type = Image.Type.Sliced;
+        image.color = Color.white;
+        image.preserveAspect = false;
+        image.fillCenter = true;
+        image.pixelsPerUnitMultiplier = .5f; // Two UI units per source pixel.
+        image.raycastTarget = false;
+    }
+
+    private static TMP_Text Text(GameObject root, string name, float size, float min, TextAlignmentOptions alignment)
+    {
+        TMP_Text text = root.transform.Find(name).GetComponent<TMP_Text>();
+        text.color = Ink;
+        text.fontSize = size;
+        text.enableAutoSizing = true;
+        text.fontSizeMin = min;
+        text.fontSizeMax = size;
+        text.alignment = alignment;
+        text.textWrappingMode = TextWrappingModes.Normal;
+        text.overflowMode = TextOverflowModes.Ellipsis;
+        text.margin = Vector4.zero;
+        text.richText = true;
+        text.overrideColorTags = false;
+        return text;
+    }
+
+    private static void Place(RectTransform rect, Vector2 anchor, Vector2 pivot, Vector2 position, Vector2 size)
+    {
+        rect.anchorMin = rect.anchorMax = anchor;
+        rect.pivot = pivot;
+        rect.anchoredPosition = position;
+        rect.sizeDelta = size;
+        rect.localScale = Vector3.one;
+    }
+
+    private static void Stretch(RectTransform rect, Vector2 min, Vector2 max)
+    {
+        rect.anchorMin = Vector2.zero;
+        rect.anchorMax = Vector2.one;
+        rect.pivot = new Vector2(.5f, .5f);
+        rect.offsetMin = min;
+        rect.offsetMax = max;
+        rect.localScale = Vector3.one;
+    }
+
+    private static void TopStretch(RectTransform rect, float left, float right, float top, float height)
+    {
+        rect.anchorMin = new Vector2(0, 1);
+        rect.anchorMax = Vector2.one;
+        rect.pivot = new Vector2(.5f, 1);
+        rect.anchoredPosition = new Vector2((left - right) / 2, -top);
+        rect.sizeDelta = new Vector2(-left - right, height);
+    }
+
+    private static void Rule(GameObject root, string name, bool top, float distance)
+    {
+        Transform existing = root.transform.Find(name);
+        Image image = existing != null ? existing.GetComponent<Image>() :
+            new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(Image)).GetComponent<Image>();
+        image.transform.SetParent(root.transform, false);
+        image.color = new Color32(165, 181, 195, 255);
+        RectTransform rect = image.rectTransform;
+        rect.anchorMin = new Vector2(0, top ? 1 : 0);
+        rect.anchorMax = new Vector2(1, top ? 1 : 0);
+        rect.pivot = new Vector2(.5f, .5f);
+        rect.anchoredPosition = new Vector2(0, top ? -distance : distance);
+        rect.sizeDelta = new Vector2(-64, 2);
+    }
+
+    [MenuItem("Tools/Skill Tree Popup/Render Preview %&r")]
+    public static void Render()
+    {
+        string output = Path.GetFullPath("ArtSource/ReusablePopup/Implementation");
+        Directory.CreateDirectory(output);
+        Scene scene = EditorSceneManager.NewPreviewScene();
+        RenderTexture target = null;
+        Texture2D pixels = null;
+        Camera camera = null;
+        try
+        {
+            var cameraObject = new GameObject("Popup Preview Camera", typeof(Camera));
+            SceneManager.MoveGameObjectToScene(cameraObject, scene);
+            camera = cameraObject.GetComponent<Camera>();
+            camera.scene = scene;
+            camera.overrideSceneCullingMask = EditorSceneManager.GetSceneCullingMask(scene);
+            camera.transform.position = new Vector3(0, 0, -10);
+            camera.orthographic = true;
+            camera.orthographicSize = 200;
+            camera.clearFlags = CameraClearFlags.SolidColor;
+            camera.backgroundColor = new Color32(24, 34, 48, 255);
+            camera.cullingMask = 1 << 5;
+            target = new RenderTexture(560, 400, 24);
+            camera.targetTexture = target;
+            var canvasObject = new GameObject("Popup Preview Canvas", typeof(RectTransform), typeof(Canvas));
+            SceneManager.MoveGameObjectToScene(canvasObject, scene);
+            Canvas canvas = canvasObject.GetComponent<Canvas>();
+            canvas.renderMode = RenderMode.WorldSpace;
+            canvas.worldCamera = camera;
+            ((RectTransform)canvas.transform).sizeDelta = new Vector2(560, 400);
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath), scene);
+            instance.transform.SetParent(canvas.transform, false);
+            foreach (Transform child in instance.GetComponentsInChildren<Transform>(true)) child.gameObject.layer = 5;
+            RectTransform rect = (RectTransform)instance.transform;
+            rect.pivot = new Vector2(.5f, .5f);
+            rect.anchoredPosition = Vector2.zero;
+            Canvas.ForceUpdateCanvases();
+            foreach (TMP_Text text in instance.GetComponentsInChildren<TMP_Text>()) text.ForceMeshUpdate();
+            Canvas.ForceUpdateCanvases();
+            // Draw Unity's generated UGUI/TMP meshes directly: preview scenes do
+            // not submit their CanvasRenderers to the normal camera pipeline.
+            RenderGraphics(instance, target);
+            RenderTexture previous = RenderTexture.active;
+            try
+            {
+                RenderTexture.active = target;
+                pixels = new Texture2D(target.width, target.height, TextureFormat.RGB24, false);
+                pixels.ReadPixels(new Rect(0, 0, target.width, target.height), 0, 0);
+                pixels.Apply();
+                if (pixels.GetPixel(280, 200).r < .3f) throw new InvalidOperationException("Preview did not render the popup.");
+                File.WriteAllBytes(Path.Combine(output, "SkillTreePopup_Unity.png"), pixels.EncodeToPNG());
+            }
+            finally { RenderTexture.active = previous; }
+            foreach (TMP_Text text in instance.GetComponentsInChildren<TMP_Text>())
+                if (text.isTextOverflowing) throw new InvalidOperationException("Text overflow: " + text.name);
+            if (instance.GetComponentsInChildren<Graphic>().Any(g => g.raycastTarget))
+                throw new InvalidOperationException("Tooltip blocks raycasts.");
+            var serialized = new SerializedObject(instance.GetComponent<TooltipContent>());
+            foreach (string field in new[] { "iconImage", "nameText", "levelText", "valueText", "costText" })
+                if (serialized.FindProperty(field).objectReferenceValue == null) throw new InvalidOperationException("Unbound: " + field);
+            File.WriteAllText(Path.Combine(output, "validation.txt"), "PASS: Unity prefab loaded; five content references intact; no text overflow; no raycast blockers; rendered at 448x320.\n");
+            Debug.Log("Skill Tree Pop Up: metal layout validated and preview saved to " + output);
+            Selection.activeObject = AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath);
+        }
+        finally
+        {
+            if (camera != null) camera.targetTexture = null;
+            if (pixels != null) UnityEngine.Object.DestroyImmediate(pixels);
+            if (target != null) { target.Release(); UnityEngine.Object.DestroyImmediate(target); }
+            EditorSceneManager.ClosePreviewScene(scene);
+        }
+    }
+
+    private static void RenderGraphics(GameObject instance, RenderTexture target)
+    {
+        var meshes = new System.Collections.Generic.List<Mesh>();
+        var materials = new System.Collections.Generic.List<Material>();
+        var commands = new CommandBuffer { name = "Skill Popup UI Preview" };
+        try
+        {
+            commands.SetRenderTarget(target);
+            commands.ClearRenderTarget(true, true, new Color32(24, 34, 48, 255));
+            commands.SetViewProjectionMatrices(Matrix4x4.identity,
+                GL.GetGPUProjectionMatrix(Matrix4x4.Ortho(-280, 280, -200, 200, -100, 100), true));
+            foreach (Graphic graphic in instance.GetComponentsInChildren<Graphic>())
+            {
+                if (!graphic.isActiveAndEnabled) continue;
+                graphic.Rebuild(CanvasUpdate.PreRender);
+                Mesh generated = graphic.canvasRenderer.GetMesh();
+                if (generated == null || generated.vertexCount == 0) continue;
+                var mesh = UnityEngine.Object.Instantiate(generated);
+                meshes.Add(mesh);
+                if (mesh.vertexCount == 0) continue;
+                var material = new Material(graphic.materialForRendering);
+                materials.Add(material);
+                material.mainTexture = graphic.mainTexture;
+                commands.DrawMesh(mesh, graphic.transform.localToWorldMatrix, material);
+            }
+            Graphics.ExecuteCommandBuffer(commands);
+        }
+        finally
+        {
+            commands.Release();
+            foreach (var mesh in meshes) UnityEngine.Object.DestroyImmediate(mesh);
+            foreach (var material in materials) UnityEngine.Object.DestroyImmediate(material);
+        }
+    }
+}

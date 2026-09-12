@@ -8,6 +8,8 @@ public class PlacementManager : MonoBehaviour
 
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private GridManager gridManager;
+    [SerializeField] private Texture2D sellCursor;
+    [SerializeField] private Vector2 sellCursorHotspot = new Vector2(2, 2);
 
     private GridSystem gridSystem;
     private PlanterSO selectedPlanter;
@@ -17,6 +19,37 @@ public class PlacementManager : MonoBehaviour
     private ResourceType selectedCostResource;
 
     private bool isSellMode = false;
+    private GameManager observedGameManager;
+    private int sellModeEntryFrame;
+
+    private void OnEnable() => BindGameState();
+
+    private void BindGameState()
+    {
+        if (observedGameManager != null || GameManager.Instance == null) return;
+        observedGameManager = GameManager.Instance;
+        observedGameManager.OnGameStateChanged += HandleGameStateChanged;
+        HandleGameStateChanged(observedGameManager.CurrentState);
+    }
+
+    private void HandleGameStateChanged(GameStates state)
+    {
+        bool selling = state == GameStates.Selling;
+        if (selling == isSellMode) return;
+        isSellMode = selling;
+        if (selling) sellModeEntryFrame = Time.frameCount;
+        Cursor.SetCursor(selling ? sellCursor : null,
+            selling ? sellCursorHotspot : Vector2.zero, CursorMode.Auto);
+    }
+
+    private void OnDisable()
+    {
+        if (observedGameManager != null)
+            observedGameManager.OnGameStateChanged -= HandleGameStateChanged;
+        observedGameManager = null;
+        if (isSellMode) Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        isSellMode = false;
+    }
 
     private void Awake()
     {
@@ -27,6 +60,7 @@ public class PlacementManager : MonoBehaviour
     private void Start()
     {
         gridSystem = gridManager.GetGridSystem();
+        BindGameState();
     }
 
     private void Update()
@@ -42,7 +76,6 @@ public class PlacementManager : MonoBehaviour
         if (isSellMode)
         {
             HandleSellClick();
-            HandleSellExit();
         }
     }
 
@@ -54,8 +87,6 @@ public class PlacementManager : MonoBehaviour
             return;
         }
         
-        isSellMode = false;
-
         selectedPlanter = planterData;
         selectedCostResource = planterData.costType;
         refundAmount = planterData.cost / 2;
@@ -290,19 +321,20 @@ public class PlacementManager : MonoBehaviour
 
     public void EnterSellMode()
     {
-        isSellMode = true;
-        Debug.Log("Sell modu açık.");
+        if (GameManager.Instance.CurrentState != GameStates.Shop) return;
+        GameManager.Instance.EnterSellMode();
     }
 
     public void ExitSellMode()
     {
-        isSellMode = false;
-        Debug.Log("Sell modu kapandı.");
+        if (GameManager.Instance.CurrentState != GameStates.Selling) return;
         GameManager.Instance.OpenShop();
     }
 
     private void HandleSellClick()
     {
+        // Closing the shop must not sell the planter under the entry click.
+        if (Time.frameCount == sellModeEntryFrame) return;
         if (!Input.GetMouseButtonDown(0)) return;
 
         if (EventSystem.current != null &&
@@ -316,12 +348,6 @@ public class PlacementManager : MonoBehaviour
         GameObject planterObj = gridObject.GetPlanterObject();
         PlanterBrain planterBrain = planterObj?.GetComponent<PlanterBrain>();
         planterBrain?.RemoveSelf();
-    }
-
-    private void HandleSellExit()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-            ExitSellMode();
     }
 
     private GridObject GetMouseGridObject()

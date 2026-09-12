@@ -13,7 +13,6 @@ public class GrassPlanterSellButtonUI : MonoBehaviour
 
     private void HandleClick()
     {
-        GameManager.Instance.EnterSellMode();
         PlacementManager.Instance.EnterSellMode();
     }
 }

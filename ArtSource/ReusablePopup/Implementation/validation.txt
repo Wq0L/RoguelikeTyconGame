@@ -1,0 +1,1 @@
+PASS: Unity compiled. Prefab loaded with five content references intact. No sample text overflow or raycast blockers. Layout and sprites visually checked in Unity Prefab Mode at 448x320. Delivery image is a crop of the real Unity Editor screenshot. In-game edge positioning was not tested.

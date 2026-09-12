@@ -83,6 +83,15 @@ public class SkillTreeManager : MonoBehaviour
         return true;
     }
 
+    public bool IsPositionUnlocked(Vector2Int position) => unlockedPositions.Contains(position);
+
+    public static bool AreNeighbors(Vector2Int a, Vector2Int b)
+    {
+        foreach (var direction in Directions)
+            if (a + direction == b) return true;
+        return false;
+    }
+
     private bool HasUnlockedNeighbor(Vector2Int pos)
     {
         foreach (var dir in Directions)

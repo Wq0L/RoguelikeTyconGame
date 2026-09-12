@@ -67,6 +67,7 @@ public class UIManager : MonoBehaviour
                 break;
 
             case GameStates.Placing:
+            case GameStates.Selling:
                 CloseCurrentPanel();
                 break;
 
