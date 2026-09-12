@@ -10,10 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2afef3d7b3e01f46998006f09e15e7c, type: 3}
-  m_Name: Wood
+  m_Name: Pumpkin
   m_EditorClassIdentifier: Assembly-CSharp::PlantSO
-  plantName: Wood
-  rarity: 2
-  prefab: {fileID: 7060170877369255166, guid: 53b3be45cd61a2b4d88dfb387a7be8d1, type: 3}
-  resourceType: 2
-  rewardAmount: 2
+  plantName: Pumpkin
+  rarity: 4
+  prefab: {fileID: 7060170877369255166, guid: cf3c9f8e898547479bf0a200f7e11847, type: 3}
+  maxHealth: 10
+  resourceType: 0
+  rewardAmount: 5
+  xpAmount: 20
+  hitFlashColor: {r: 1, g: 1, b: 1, a: 1}
+  deathParticleColor: {r: 0, g: 1, b: 0, a: 1}

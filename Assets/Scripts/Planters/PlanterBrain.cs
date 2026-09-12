@@ -17,7 +17,7 @@ public class PlanterBrain : MonoBehaviour
     private int cachedVersion = -1;
     private bool localDirty = true;
 
-    public List<StatModifier> LocalModifiers => localModifiers;
+    public List<StatModifier> LocalModifiers => localModifiers; 
 
     public void Initialize(List<GridObject> gridObjects)
     {

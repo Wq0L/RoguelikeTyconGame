@@ -203,6 +203,15 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
     private string BuildUpgradeValues(SkillNodeTier nextTier)
     {
         string result = "";
+        var previewModifiers = new List<StatModifier>(StatManager.Instance.GlobalModifiers);
+        int currentLevel = SkillTreeManager.Instance.GetCurrentLevel(node);
+
+        // Match TryUpgrade's replacement of the current tier without changing live stats.
+        if (currentLevel > 0)
+        {
+            foreach (StatModifier oldEffect in node.tiers[currentLevel - 1].effects)
+                previewModifiers.Remove(oldEffect);
+        }
 
         foreach (StatModifier effect in nextTier.effects)
         {
@@ -212,14 +221,14 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
                 StatManager.Instance.GetBaseStat(effect.statType),
                 effect.statType,
                 effect.target,
-                StatManager.Instance.GlobalModifiers,
+                previewModifiers,
                 nextTier.effects
             );
 
             result += $"{effect.statType}: <color=#283B50>{current:0.#}</color> → <color=#19745E>{next:0.#}</color>\n";
         }
 
-        return result.TrimEnd();
+        return (result + GetUnlockDescription(false)).TrimEnd();
     }
 
     private string BuildMaxValues()
@@ -234,6 +243,20 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
             result += $"{effect.statType}: <color=#19745E>{current:0.#}</color>\n";
         }
 
-        return result.TrimEnd();
+        return (result + GetUnlockDescription(true)).TrimEnd();
+    }
+
+    private string GetUnlockDescription(bool completed)
+    {
+        string card = node.unlockType switch
+        {
+            UnlockType.TileBehavior_Explosive => "Patlama",
+            UnlockType.TileBehavior_Duplicate => "Çoğaltma",
+            _ => null
+        };
+        if (card == null) return string.Empty;
+        return completed
+            ? $"{card} kartları seçim havuzuna eklendi."
+            : $"Son seviyede {card} kartlarını seçim havuzuna ekler.";
     }
 }

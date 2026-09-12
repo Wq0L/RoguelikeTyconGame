@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileModifierSO
   modifierName: Explosive-ExplosionChance
   modifierType: 4
+  requiredUnlock: 3
   rarity: 2
   tileColor: {r: 0.7924528, g: 0.39367563, b: 0, a: 1}
   behavior: 1

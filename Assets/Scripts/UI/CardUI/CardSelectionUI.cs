@@ -28,14 +28,33 @@ public class CardSelectionUI : MonoBehaviour
         { TileRarity.Legendary, 10 }
     };
     private List<TileModifierSO> currentCards = new();
+    private readonly List<TileModifierSO> availableModifiers = new();
     
 
     public void RefreshCards()
     {
         currentCards.Clear();
+        availableModifiers.Clear();
+        foreach (var modifier in allModifiers)
+            if (modifier != null && modifier.IsAvailableInCardPool &&
+                !availableModifiers.Contains(modifier)) availableModifiers.Add(modifier);
+
+        // Never fall back to locked cards or trap the player in an empty selection.
+        if (availableModifiers.Count == 0)
+        {
+            foreach (var slot in cardSlots)
+                if (slot != null) slot.gameObject.SetActive(false);
+            if (skipButton != null) skipButton.gameObject.SetActive(false);
+            Debug.LogWarning("Kart havuzunda açık kart yok. Kart seçimleri ödülsüz geçiliyor.", this);
+            if (GameManager.Instance.CurrentState == GameStates.CardSelection)
+                while (RoundManager.Instance.OnCardSelectionComplete()) { }
+            return;
+        }
 
         for (int i = 0; i < cardSlots.Count; i++)
         {
+            if (cardSlots[i] == null) continue;
+            cardSlots[i].gameObject.SetActive(true);
             TileModifierSO rolled = RollCard();
             currentCards.Add(rolled);
             cardSlots[i].Setup(rolled, OnCardSelected);
@@ -54,8 +73,8 @@ public class CardSelectionUI : MonoBehaviour
     {
         TileModifierType selectedType = RollType();
 
-        List<TileModifierSO> filtered = allModifiers.FindAll(m => m.modifierType == selectedType);
-        if (filtered.Count == 0) return allModifiers[Random.Range(0, allModifiers.Count)];
+        List<TileModifierSO> filtered = availableModifiers.FindAll(m => m.modifierType == selectedType);
+        if (filtered.Count == 0) return availableModifiers[Random.Range(0, availableModifiers.Count)];
 
         return RollRarity(filtered);
     }
@@ -63,13 +82,15 @@ public class CardSelectionUI : MonoBehaviour
     private TileModifierType RollType()
     {
         float total = 0f;
-        foreach (var w in typeWeights) total += w.Value;
+        foreach (var w in typeWeights)
+            if (availableModifiers.Exists(m => m.modifierType == w.Key)) total += w.Value;
 
         float roll = Random.Range(0f, total);
         float cumulative = 0f;
 
         foreach (var w in typeWeights)
         {
+            if (!availableModifiers.Exists(m => m.modifierType == w.Key)) continue;
             cumulative += w.Value;
             if (roll <= cumulative) return w.Key;
         }
@@ -110,9 +131,16 @@ public class CardSelectionUI : MonoBehaviour
 
     private void OnCardSelected(TileModifierSO modifier)
     {
+        if (modifier == null || !currentCards.Contains(modifier)) return;
         // Sadece CardSelection state'inde çalış
         if (GameManager.Instance.CurrentState != GameStates.CardSelection)
             return;
+
+        if (!modifier.IsAvailableInCardPool)
+        {
+            RefreshCards();
+            return;
+        }
 
         ProgressionManager.Instance.ApplyRandomEligibleCell(modifier);
 

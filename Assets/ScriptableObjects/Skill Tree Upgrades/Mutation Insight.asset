@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0817a4d977add4bbd7d892df76868d, type: 3}
+  m_Name: Mutation Insight
+  m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
+  nodeName: Mutation Insight
+  icon: {fileID: 0}
+  gridPosition: {x: 0, y: -3}
+  tiers:
+  - costType: 1
+    cost: 10
+    effects:
+    - statType: 12
+      target: 5
+      operation: 0
+      value: 0.1
+  - costType: 1
+    cost: 20
+    effects:
+    - statType: 12
+      target: 5
+      operation: 0
+      value: 0.2
+  - costType: 1
+    cost: 35
+    effects:
+    - statType: 12
+      target: 5
+      operation: 0
+      value: 0.4
+  unlockType: 0

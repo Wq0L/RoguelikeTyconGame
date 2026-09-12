@@ -16,8 +16,28 @@ MonoBehaviour:
   prefab: {fileID: 1395836356370012693, guid: 79ceb0f9879be454f999e991b734f505, type: 3}
   spawnTable:
   - plant: {fileID: 11400000, guid: bc6f91211bbf37b4ea0b6c1e6ee9c8fc, type: 2}
-    baseChance: 100
-  - plant: {fileID: 11400000, guid: fe3446d825980f24ba2060c6cb32101b, type: 2}
+    baseChance: 78
+  - plant: {fileID: 11400000, guid: 9822e4a4580f4feba71787b1ecdffd39, type: 2}
+    baseChance: 9
+  - plant: {fileID: 11400000, guid: 7f1751aa86d5455d95e4a43e1eea3010, type: 2}
+    baseChance: 9
+  - plant: {fileID: 11400000, guid: 4e939149bb8a4cba91dd674b3e5f4446, type: 2}
+    baseChance: 1.333333
+  - plant: {fileID: 11400000, guid: 53af688bc7214877ad29dbb987ff2b0c, type: 2}
+    baseChance: 1.333333
+  - plant: {fileID: 11400000, guid: 6beb208796574e8f838bde31df9f40c3, type: 2}
+    baseChance: 1.333334
+  - plant: {fileID: 11400000, guid: 648f9e6a7b4a438394cbc0a8db8bad06, type: 2}
+    baseChance: 0
+  - plant: {fileID: 11400000, guid: e8542123d2fe48b2bf75cd6e940443c7, type: 2}
+    baseChance: 0
+  - plant: {fileID: 11400000, guid: baa1a0d3b13d4495ae7907db1eb0dc67, type: 2}
+    baseChance: 0
+  - plant: {fileID: 11400000, guid: 72d850a206124a388752c4509edcdf42, type: 2}
+    baseChance: 0
+  - plant: {fileID: 11400000, guid: 32c3cbd4301a4ceb9d96187d6e30aa9a, type: 2}
+    baseChance: 0
+  - plant: {fileID: 11400000, guid: a3775ddc7acf46b881db8879847e86e7, type: 2}
     baseChance: 0
   baseStats:
   - statType: 6

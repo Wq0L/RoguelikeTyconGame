@@ -45,6 +45,13 @@ public class TileModifierSO : ScriptableObject
     public TileRarity rarity;
     public Color tileColor = Color.white;
 
+    [Header("Kart Havuzu Kilidi")]
+    [Tooltip("None: başlangıçtan itibaren havuzda. Diğerleri: skill tree bu kilidi açınca havuza girer.")]
+    public UnlockType requiredUnlock = UnlockType.None;
+
+    public bool IsAvailableInCardPool => requiredUnlock == UnlockType.None ||
+        (UnlockManager.Instance != null && UnlockManager.Instance.IsUnlocked(requiredUnlock));
+
     [Header("Davranış")]
     public TileBehavior behavior = TileBehavior.None;
 
