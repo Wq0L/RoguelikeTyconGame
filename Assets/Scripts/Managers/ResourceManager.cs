@@ -6,6 +6,7 @@ public class ResourceManager : MonoBehaviour
 {
     public static ResourceManager Instance { get; private set; }
     public event Action<ResourceType, int> OnResourceAmountChanged;
+    public event Action<ResourceType, int, Vector3> OnHarvestResourceAdded;
     private Dictionary<ResourceType, int> resources = new();
 
     private void Awake()
@@ -27,12 +28,15 @@ public class ResourceManager : MonoBehaviour
     }
 
 
-    public void AddResource(ResourceType type, int amount)
+    public void AddResource(ResourceType type, int amount, Vector3? harvestPosition = null)
     {
         if (amount <= 0) return;
 
         resources[type] += amount;
 
+        // Register visual deliveries before notifying counters of the new balance.
+        if (harvestPosition.HasValue)
+            OnHarvestResourceAdded?.Invoke(type, amount, harvestPosition.Value);
         OnResourceAmountChanged?.Invoke(type, resources[type]);
     }
 

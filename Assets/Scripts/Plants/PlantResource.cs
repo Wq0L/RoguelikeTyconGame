@@ -46,7 +46,7 @@ public class PlantResource : MonoBehaviour
             }
         }
 
-        ResourceManager.Instance.AddResource(plantData.resourceType, reward);
+        ResourceManager.Instance.AddResource(plantData.resourceType, reward, transform.position);
         ProgressionManager.Instance.AddXP(xpAmount);
 
         for (int i = 0; i < scoreMultiplier; i++)

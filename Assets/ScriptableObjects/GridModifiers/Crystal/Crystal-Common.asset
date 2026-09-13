@@ -20,6 +20,6 @@ MonoBehaviour:
   modifierRanges:
   - statType: 6
     target: 2
-    operation: 1
+    operation: 0
     minValue: 10
     maxValue: 15
