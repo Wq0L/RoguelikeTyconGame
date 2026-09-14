@@ -22,6 +22,7 @@ public class GroundCell : MonoBehaviour
     public bool IsLocked => isLocked;
     public TileModifierSO CurrentModifier => currentModifier;
     public List<StatModifier> RolledModifiers => rolledModifiers;
+    public PlanterBrain Planter => gridObject?.GetPlanterBrain();
 
     private void Awake()
     {
@@ -67,20 +68,22 @@ public class GroundCell : MonoBehaviour
     public void ApplyModifier(TileModifierSO modifier)
     {
         currentModifier = modifier;
-        rolledModifiers = modifier.RollModifiers();
+        rolledModifiers = modifier != null ? modifier.RollModifiers() : new List<StatModifier>();
 
         foreach (var mod in rolledModifiers)
         {
             Debug.Log($"[TILE] {mod.statType} = {mod.value} ({mod.operation})");
         }
 
-        groundRenderer.sharedMaterials = unlockedMaterials;
+        if (groundRenderer != null)
+        {
+            groundRenderer.sharedMaterials = unlockedMaterials;
+            mpb.Clear();
+            if (modifier != null) mpb.SetColor(ColorId, modifier.tileColor);
+            groundRenderer.SetPropertyBlock(mpb);
+        }
 
-        mpb.Clear();
-        mpb.SetColor(ColorId, modifier.tileColor);
-        groundRenderer.SetPropertyBlock(mpb);
-
-        gridObject?.GetPlanterBrain()?.ApplyBuff(modifier, rolledModifiers);
+        Planter?.RefreshTileBuffs();
     }
 
     private void ApplyMaterials(Material[] newMaterials)

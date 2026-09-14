@@ -8,7 +8,8 @@ public enum TileModifierType
     Crystal,
     Energy,
     Explosive,
-    Duplicate
+    Duplicate,
+    Damage
 }
 
 public enum TileRarity

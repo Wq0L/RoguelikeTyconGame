@@ -117,8 +117,9 @@ public class PlayerController : MonoBehaviour
                     anyCrit = true;
                 }
 
+                int displayedDamage = damageable is PlantHealth health ? health.GetIncomingDamage(damage) : damage;
                 damageable.TakeDamage(damage);
-                VFXManager.Instance.PlayHit(plantObj.transform.position, damage, isCrit);
+                VFXManager.Instance.PlayHit(plantObj.transform.position, displayedDamage, isCrit);
             }
         }
 

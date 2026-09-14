@@ -31,5 +31,6 @@ public enum StatType
     CardSkip,           // kartı atla, resource al
     // === DAVRANIŞ ===
     ExplosionChance,    // patlama tetikleme şansı (0-1)
-    DuplicateChance   // hasat ödülünü 2x sayma şansı (0-1)
+    DuplicateChance,   // hasat ödülünü 2x sayma şansı (0-1)
+    PlanterDamageMultiplier // Direct hits against this planter's plants; base 1. Append to preserve asset IDs.
 }

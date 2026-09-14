@@ -194,19 +194,120 @@ for y=0,H-1 do for x=0,W-1 do
   if not silhouette(x,y) or opening(x,y) then details:drawPixel(x,y,0) end
 end end
 local sprite=Sprite(W,H,ColorMode.RGB)
+-- Saturated anodized alloy: the entire rim communicates rarity at a glance.
+local rank=rarity=='Rare' and 1 or rarity=='Epic' and 2 or 3
+local palette=({
+  {{8,31,66},{22,110,194},{52,190,248},{188,244,255}},
+  {{36,14,65},{107,40,172},{189,86,242},{244,210,255}},
+  {{65,31,10},{177,99,20},{247,183,44},{255,243,181}}
+})[rank]
+local function tint(im)
+  for y=0,H-1 do for x=0,W-1 do
+    local p=im:getPixel(x,y)
+    if app.pixelColor.rgbaA(p)>0 then
+      local lum=(app.pixelColor.rgbaR(p)+app.pixelColor.rgbaG(p)+app.pixelColor.rgbaB(p))/3
+      local v=math.max(0,math.min(2.999,(lum-35)/215*3))
+      local k=math.floor(v)+1; local f=v-math.floor(v)
+      local a,b=palette[k],palette[k+1]
+      im:drawPixel(x,y,C(math.floor(a[1]+(b[1]-a[1])*f),math.floor(a[2]+(b[2]-a[2])*f),math.floor(a[3]+(b[3]-a[3])*f)))
+    end
+  end end
+end
+tint(plate); tint(details)
+local lightning=Image(W,H,ColorMode.RGB)
+local hot=C(palette[4][1],palette[4][2],palette[4][3])
+local energy=C(palette[3][1],palette[3][2],palette[3][3])
+local function dot(im,x,y,c,r)
+ for yy=y-r,y+r do for xx=x-r,x+r do
+  if xx>=0 and xx<W and yy>=0 and yy<H then im:drawPixel(xx,yy,c) end
+ end end
+end
+local function stroke(im,points,c,r)
+ for i=1,#points-1 do
+  local a,b=points[i],points[i+1]
+  local n=math.max(math.abs(b[1]-a[1]),math.abs(b[2]-a[2]))
+  for j=0,n do
+   dot(im,math.floor(a[1]+(b[1]-a[1])*j/n+0.5),math.floor(a[2]+(b[2]-a[2])*j/n+0.5),c,r)
+  end
+ end
+end
+-- Remove the shoulder as a jagged impact crater, rather than bisecting it.
+local debris=Image(W,H,ColorMode.RGB)
+local rim={{95,0},{95,13},{99,16},{97,20},{104,20},{102,25},
+ {109,24},{108,30},{114,29},{113,36},{120,33},{123,40},{127,38}}
+local function cutAt(x)
+ for i=1,#rim-1 do
+  local a,b=rim[i],rim[i+1]
+  if x>=a[1] and x<=b[1] and b[1]>a[1] then
+   return math.floor(a[2]+(b[2]-a[2])*(x-a[1])/(b[1]-a[1]))
+  end
+ end
+ return 0
+end
+for x=95,127 do
+ local cut=cutAt(x)
+ for y=0,cut do
+  plate:drawPixel(x,y,0); details:drawPixel(x,y,0)
+  shadow:drawPixel(x,y,0); background:drawPixel(x,y,0)
+ end
+ -- Fresh metal on the uneven surviving edge.
+ if cut+1<H and app.pixelColor.rgbaA(plate:getPixel(x,cut+1))>0 then
+  details:drawPixel(x,cut+1,hot)
+  if cut+2<H then details:drawPixel(x,cut+2,energy) end
+ end
+end
+-- Detached, rotated alloy chips with dark undersides and bright broken faces.
+local function shard(x,y,rows)
+ for yy,row in ipairs(rows) do for xx=1,#row do
+  local ch=row:sub(xx,xx)
+  local c=ch=='X' and C(palette[1][1],palette[1][2],palette[1][3])
+    or ch=='H' and hot or ch=='M' and energy
+  if c then dot(debris,x+xx-1,y+yy-1,c,0) end
+ end end
+end
+shard(97,2,{'  HHX',' HHHMX','HHMMMMX',' XMMMMMX','  XMMMMX','   XMMX','    XX'})
+shard(120,19,{'    HX','   HMMX','  HMMMX',' HMMMMX','HMMMMX','XMMMX',' XMX','  X'})
+shard(113,5,{'   HHX','  HHHMX',' HMMMMMX','HMMMMMMX',' XMMMMX','  XMMX','   XX'})
+if rank>=2 then
+ shard(106,0,{'HHX','HMMX',' XMMX','  XX'})
+ shard(123,5,{' HX','HMX',' XX'})
+end
+if rank==3 then
+ shard(116,0,{'HX','MX',' X'})
+ shard(124,28,{'HX','MMX',' X'})
+end
+-- Short outward trails emphasize debris flying up-left and up-right.
+stroke(debris,{{96,3},{94,0}},energy,0)
+stroke(debris,{{121,13},{124,10}},energy,0)
+local bolts={
+ {{114,1},{108,10},{112,13},{104,23}},
+ {{120,8},{115,16},{118,19},{109,29}},
+ {{125,22},{118,27},{121,31},{115,36}}
+}
+for i=1,rank do
+ stroke(lightning,bolts[i],C(palette[2][1],palette[2][2],palette[2][3],100),2)
+ stroke(lightning,bolts[i],energy,1)
+ stroke(lightning,bolts[i],hot,0)
+end
 local function layer(name,im,first)
   local ly=first and sprite.layers[1] or sprite:newLayer(); ly.name=name
   sprite:newCel(ly,1,im,Point(0,0))
 end
 layer('Shadow',shadow,true); layer('Interior - empty',background)
 layer('Titanium plate',plate); layer('Machining and fasteners',details)
+layer('Fractured shoulder - rarity lightning',lightning)
+layer('Flying alloy fragments',debris)
 sprite:saveAs(out..'/'..rarity..'_Plate.aseprite')
 local flat=Image(W,H,ColorMode.RGB); flat:drawSprite(sprite,1)
 flat:saveAs(out..'/'..rarity..'_Plate.png')
 local frame=Image(W,H,ColorMode.RGB); frame:drawImage(plate); frame:drawImage(details)
+frame:drawImage(lightning)
+frame:drawImage(debris)
 frame:saveAs(out..'/'..rarity..'_Frame.png')
 background:saveAs(out..'/'..rarity..'_Background.png')
 shadow:saveAs(out..'/'..rarity..'_Shadow.png')
+lightning:saveAs(out..'/'..rarity..'_Lightning.png')
+debris:saveAs(out..'/'..rarity..'_Debris.png')
 local big=Image(W*4,H*4,ColorMode.RGB)
 for y=0,H*4-1 do for x=0,W*4-1 do
   local p=flat:getPixel(math.floor(x/4),math.floor(y/4)); local a=app.pixelColor.rgbaA(p)/255

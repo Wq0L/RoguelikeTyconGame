@@ -270,14 +270,8 @@ public class PlacementManager : MonoBehaviour
 
             foreach (GridObject gridObj in occupiedGrids)
             {
-                GroundCell cell = gridObj.GetGroundCellCached();
-
                 gridObj.SetPlanterBrain(planterBrain);//yeni
 
-                if (cell != null && cell.CurrentModifier != null)
-                {
-                    planterBrain.ApplyBuff(cell.CurrentModifier, cell.RolledModifiers);
-                }
             }
 
             Debug.Log($"Toplam local modifier sayısı: {planterBrain.LocalModifiers.Count}");

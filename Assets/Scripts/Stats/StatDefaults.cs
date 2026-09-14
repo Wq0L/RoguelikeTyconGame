@@ -7,6 +7,8 @@ public static class StatDefaults
             // === HASAT ===
             case StatType.HarvestDamage:
                 return 1f;
+            case StatType.PlanterDamageMultiplier:
+                return 1f;
 
             case StatType.AreaRadius:
                 return 1f;

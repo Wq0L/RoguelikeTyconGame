@@ -11,6 +11,15 @@ public class PlanterBrain : MonoBehaviour
     private List<PlantSpawner> spawners = new List<PlantSpawner>();
     private List<StatModifier> localModifiers = new List<StatModifier>();
     private List<GridObject> occupiedGrids = new List<GridObject>();
+    [Header("Resonance")]
+    [Tooltip("Optional override. Empty uses Resources/ResonanceRules.")]
+    [SerializeField] private ResonanceRulesSO resonanceRules;
+    [SerializeField] private List<ActiveResonance> activeResonances = new();
+    private readonly List<StatModifier> resonanceModifiers = new();
+    private readonly Dictionary<TileModifierType, int> tileCounts = new();
+    private readonly HashSet<GridObject> uniqueGrids = new();
+    public IReadOnlyList<ActiveResonance> ActiveResonances => activeResonances;
+    public IReadOnlyList<GridObject> OccupiedGrids => occupiedGrids;
 
     // Cache
     private Dictionary<StatType, float> statCache = new();
@@ -28,6 +37,7 @@ public class PlanterBrain : MonoBehaviour
             return;
         }
         occupiedGrids = new List<GridObject>(gridObjects);
+        RefreshTileBuffs();
         if (spawnPoints == null || spawnPoints.Count == 0)
         {
             foreach (GridObject grid in gridObjects)
@@ -108,14 +118,29 @@ public class PlanterBrain : MonoBehaviour
 
     public void ApplyBuff(TileModifierSO tileModifier, List<StatModifier> rolledModifiers)
     {
-        if (tileModifier == null || rolledModifiers == null) return;
+        // Compatibility entry point: occupied cells are the source of truth, not an append-only list.
+        RefreshTileBuffs();
+    }
 
-        foreach (StatModifier modifier in rolledModifiers)
-            localModifiers.Add(modifier);
-
+    [ContextMenu("Refresh Tile Buffs and Resonance")]
+    public void RefreshTileBuffs()
+    {
+        localModifiers.Clear();
+        tileCounts.Clear();
+        uniqueGrids.Clear();
+        foreach (GridObject grid in occupiedGrids)
+        {
+            if (grid == null || !uniqueGrids.Add(grid)) continue;
+            GroundCell cell = grid.GetGroundCellCached();
+            if (cell == null || cell.CurrentModifier == null) continue;
+            localModifiers.AddRange(cell.RolledModifiers);
+            TileModifierType type = cell.CurrentModifier.modifierType;
+            tileCounts.TryGetValue(type, out int count);
+            tileCounts[type] = count + 1;
+        }
+        ResonanceManager.Evaluate(resonanceRules != null ? resonanceRules : ResonanceManager.DefaultRules,
+            tileCounts, resonanceModifiers, activeResonances);
         localDirty = true;
-
-        Debug.Log($"PlanterBrain buff aldı: {tileModifier.modifierName}");
     }
 
     public float GetFinalStat(StatType statType)
@@ -139,6 +164,9 @@ public class PlanterBrain : MonoBehaviour
             StatManager.Instance.GlobalModifiers,
             localModifiers
         );
+
+        // Resonance multiplies the completed ordinary stat, including all existing tile rolls.
+        result = StatCalculator.Calculate(result, statType, StatTarget.Planter, null, resonanceModifiers);
 
         statCache[statType] = result;
         return result;

@@ -49,6 +49,11 @@ public class TileCellUI : MonoBehaviour, ITooltipProvider
             result += $"{mod.statType}: {mod.value:0.#}\n";
         }
 
+        if (groundCell.Planter != null)
+        {
+            foreach (ActiveResonance resonance in groundCell.Planter.ActiveResonances)
+                result += $"\nRezonans: {resonance.resonanceName} ({resonance.tileCount}) x{resonance.multiplier:0.##}";
+        }
         return result.TrimEnd();
     }
 }

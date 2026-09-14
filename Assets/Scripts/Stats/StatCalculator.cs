@@ -127,6 +127,7 @@ public static class StatCalculator
 
             // === EKONOMİ ===
             case StatType.GoldGainMultiplier:
+            case StatType.PlanterDamageMultiplier:
             case StatType.IronGainMultiplier:
             case StatType.StoneGainMultiplier:
             case StatType.XPGainMultiplier:

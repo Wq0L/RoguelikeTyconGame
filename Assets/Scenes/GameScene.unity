@@ -8221,6 +8221,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardSelectionUI
   allModifiers:
+  - {fileID: 11400000, guid: 8568380950f04e9c8ead205ab86309c3, type: 2}
+  - {fileID: 11400000, guid: b8d1108e3ed04675be2236930d3305c1, type: 2}
+  - {fileID: 11400000, guid: d9ec384b2e534566aa875aa1c9065973, type: 2}
+  - {fileID: 11400000, guid: d5721e29feb94b40a4778ca864ab3a78, type: 2}
   - {fileID: 11400000, guid: d45324d51039e484fb289e35ea0c68f6, type: 2}
   - {fileID: 11400000, guid: a2b9d6f9461c8c945a3a2f95fb8c7ba2, type: 2}
   - {fileID: 11400000, guid: 583ed95e71bcb20438ba42e0d959643c, type: 2}

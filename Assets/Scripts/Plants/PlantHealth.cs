@@ -11,6 +11,7 @@ public class PlantHealth : MonoBehaviour, IDamageable
     private bool killedByExplosion;
     private PlantSO plantData;
     private Renderer plantRenderer;
+    private PlanterBrain planter;
 
     public bool KilledByExplosion => killedByExplosion;
 
@@ -19,8 +20,9 @@ public class PlantHealth : MonoBehaviour, IDamageable
         plantRenderer = GetComponentInChildren<Renderer>();
     }
 
-    public void Initialize(PlantSO data)
+    public void Initialize(PlantSO data, PlanterBrain owner = null)
     {
+        planter = owner;
         plantData = data;
         maxHealth = data.maxHealth;
         currentHealth = maxHealth;
@@ -31,6 +33,7 @@ public class PlantHealth : MonoBehaviour, IDamageable
     public void TakeDamage(int damage, bool fromExplosion = false)
     {
         if (isDead) return;
+        damage = GetIncomingDamage(damage, fromExplosion);
 
         currentHealth -= damage;
 
@@ -45,6 +48,14 @@ public class PlantHealth : MonoBehaviour, IDamageable
             killedByExplosion = fromExplosion;
             Die();
         }
+    }
+
+    public int GetIncomingDamage(int damage, bool fromExplosion = false)
+    {
+        // Only direct hits get the target planter's bonus. Explosions retain their existing semantics.
+        double multiplier = !fromExplosion && planter != null
+            ? planter.GetFinalStat(StatType.PlanterDamageMultiplier) : 1d;
+        return (int)System.Math.Min(int.MaxValue, System.Math.Max(0, System.Math.Round(damage * multiplier)));
     }
 
     private void Die()
