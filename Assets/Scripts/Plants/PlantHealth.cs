@@ -12,8 +12,13 @@ public class PlantHealth : MonoBehaviour, IDamageable
     private PlantSO plantData;
     private Renderer plantRenderer;
     private PlanterBrain planter;
+    public int MaxHealth => maxHealth;
+    public int CurrentHealth => currentHealth;
+    public int SpawnRound { get; private set; }
 
     public bool KilledByExplosion => killedByExplosion;
+    public bool IsDead => isDead;
+    public PlanterBrain Owner => planter;
 
     private void Awake()
     {
@@ -24,7 +29,8 @@ public class PlantHealth : MonoBehaviour, IDamageable
     {
         planter = owner;
         plantData = data;
-        maxHealth = data.maxHealth;
+        SpawnRound = RoundManager.Instance != null ? RoundManager.Instance.CurrentRound : 1;
+        maxHealth = PlantHealthCalculator.Calculate(data, SpawnRound);
         currentHealth = maxHealth;
         isDead = false;
         killedByExplosion = false;

@@ -20,6 +20,9 @@ public class RoundManager : MonoBehaviour
 
     private int pendingCardSelections = 0;
     private int skipUsesRemaining;
+    private bool awaitingFirstRound = true;
+
+    public bool IsPreparingFirstRound => awaitingFirstRound;
 
     public int SkipUsesRemaining => skipUsesRemaining;
     public int MaxRounds => maxRounds;
@@ -81,18 +84,25 @@ public class RoundManager : MonoBehaviour
     {
         CurrentRound = 1;
         pendingCardSelections = 0;
+        awaitingFirstRound = true;
+        IsRoundActive = false;
+        RemainingTime = roundDuration;
+        skipUsesRemaining = 0;
+        lastDisplayedSecond = -1;
 
         SkillTreeManager.Instance.ResetTree();
         UnlockManager.Instance.ResetUnlocks();
 
-        StartRound();
+        GameManager.Instance.StartRunSetup();
     }
 
     public void StartRound()
     {
+        awaitingFirstRound = false;
         CurrentRound = Mathf.Max(CurrentRound, 1);
         RemainingTime = roundDuration;
         IsRoundActive = true;
+        lastDisplayedSecond = -1;
 
         skipUsesRemaining = 1 + Mathf.RoundToInt(
         StatManager.Instance.GetFinalStat(StatType.CardSkip, StatTarget.All));
@@ -152,10 +162,11 @@ public class RoundManager : MonoBehaviour
     public void StartNextRound()
     {
         if (GameManager.Instance.CurrentState != GameStates.Shop &&
-            GameManager.Instance.CurrentState != GameStates.RoundEnd)
+            GameManager.Instance.CurrentState != GameStates.RoundEnd &&
+            GameManager.Instance.CurrentState != GameStates.RunSetup)
             return;
 
-        CurrentRound++;
+        if (!awaitingFirstRound) CurrentRound++;
 
         if (CurrentRound > maxRounds)
         {
@@ -167,6 +178,7 @@ public class RoundManager : MonoBehaviour
 
     public void ResetRounds()
     {
+        awaitingFirstRound = true;
         CurrentRound = 1;
         RemainingTime = roundDuration;
         IsRoundActive = false;

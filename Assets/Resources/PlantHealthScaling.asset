@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ada9f9a18e4ffbb9861c09de9e864e, type: 3}
+  m_Name: PlantHealthScaling
+  m_EditorClassIdentifier: Assembly-CSharp::PlantHealthScalingSO
+  referenceHealth: 10
+  anchors:
+  - round: 1
+    commonHealth: 5
+  - round: 10
+    commonHealth: 15
+  - round: 25
+    commonHealth: 35
+  - round: 45
+    commonHealth: 80
+  - round: 65
+    commonHealth: 180
+  - round: 80
+    commonHealth: 1500
+  - round: 95
+    commonHealth: 9000
+  - round: 110
+    commonHealth: 45000
+  - round: 120
+    commonHealth: 100000
+  - round: 130
+    commonHealth: 180000
+  rarityMultipliers:
+  - 1
+  - 1.2
+  - 1.6
+  - 2
+  - 3

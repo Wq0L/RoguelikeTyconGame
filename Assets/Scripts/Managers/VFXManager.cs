@@ -1,9 +1,60 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class VFXManager : MonoBehaviour
 {
     public static VFXManager Instance { get; private set; }
+    private readonly List<ResonanceBurst> resonancePool = new();
+    private Material resonanceMaterial;
+    private int resonanceRecycleIndex;
+    private readonly Dictionary<PlanterBrain, List<ActiveResonance>> pendingResonances = new();
+    public bool HasPendingResonances => pendingResonances.Count > 0;
+
+    public void RequestResonance(PlanterBrain planter, IReadOnlyList<ActiveResonance> previous)
+    {
+        if (planter == null || !planter.TryGetResonancePresentation(previous, out var bounds,
+            out var color, out var message)) return;
+        if (GameManager.Instance != null && GameManager.Instance.CurrentState == GameStates.CardSelection)
+        {
+            // Keep the first baseline; subsequent cards are presented as one final upgrade per planter.
+            if (!pendingResonances.ContainsKey(planter))
+                pendingResonances.Add(planter, new List<ActiveResonance>(previous));
+            return;
+        }
+        PlayResonance(bounds, color, message);
+    }
+
+    public bool PlayPendingResonances()
+    {
+        bool played = false;
+        foreach (var pending in pendingResonances)
+        {
+            if (pending.Key == null || !pending.Key.TryGetResonancePresentation(pending.Value,
+                out var bounds, out var color, out var message)) continue;
+            PlayResonance(bounds, color, message);
+            played = true;
+        }
+        pendingResonances.Clear();
+        return played;
+    }
+
+    public void ClearPendingResonances() => pendingResonances.Clear();
+
+    public void PlayResonance(Bounds footprint, Color color, string message)
+    {
+        if (resonanceMaterial == null) resonanceMaterial = Resources.Load<Material>("ResonanceBurst");
+        if (resonanceMaterial == null) return;
+        ResonanceBurst effect = resonancePool.Find(item => item != null && !item.IsPlaying);
+        if (effect == null && resonancePool.Count < 16)
+        {
+            var obj = new GameObject("Resonance Unlock"); obj.transform.SetParent(transform, false);
+            effect = obj.AddComponent<ResonanceBurst>(); effect.Configure(resonanceMaterial);
+            resonancePool.Add(effect);
+        }
+        if (effect == null) effect = resonancePool[resonanceRecycleIndex++ % resonancePool.Count];
+        effect.Play(footprint, color, message);
+    }
 
     [Header("Floating Text")]
     [SerializeField] private FloatingText floatingTextPrefab;

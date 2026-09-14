@@ -11,6 +11,7 @@ public class PlantSO : ScriptableObject
     public GameObject prefab;
 
     [Header("Health")]
+    [Tooltip("Round HP reference: 10 = normal curve, 20 = twice the curve. See Resources/PlantHealthScaling.")]
     public int maxHealth = 10;
 
     [Header("Reward")]

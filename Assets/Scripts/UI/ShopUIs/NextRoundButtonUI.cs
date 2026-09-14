@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class NextRoundButtonUI : MonoBehaviour
 {
@@ -14,5 +15,13 @@ public class NextRoundButtonUI : MonoBehaviour
     private void HandleClick()
     {
         uiManager.NextRound();
+    }
+
+    private void OnEnable()
+    {
+        TMP_Text label = button.GetComponentInChildren<TMP_Text>(true);
+        if (label != null)
+            label.text = RoundManager.Instance != null && RoundManager.Instance.IsPreparingFirstRound
+                ? "Start Round 1" : "Next Round";
     }
 }

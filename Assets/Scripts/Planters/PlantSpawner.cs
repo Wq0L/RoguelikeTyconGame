@@ -8,6 +8,23 @@ public class PlantSpawner : MonoBehaviour
     private float timer;
     private GameObject spawnedPlant;
 
+    public void RemoveSpawnedPlant()
+    {
+        enabled = false;
+        GameObject plant = spawnedPlant;
+        spawnedPlant = null;
+        if (plant == null) return;
+        PlantHealth health = plant.GetComponent<PlantHealth>();
+        if (health != null) health.OnDied -= OnPlantDied;
+        if (gridObject != null && gridObject.GetPlantObject() == plant)
+            gridObject.ClearPlantObject();
+        // Removal is not harvesting: no XP, resources or explosion events.
+        plant.SetActive(false);
+        Destroy(plant);
+    }
+
+    private void OnDestroy() => RemoveSpawnedPlant();
+
     public void Initialize(PlanterSO data, GridObject gridObj, PlanterBrain brain)
     {
         planterData = data;
@@ -81,13 +98,11 @@ public class PlantSpawner : MonoBehaviour
     private void OnPlantDied()
     {
         PlantHealth health = spawnedPlant?.GetComponent<PlantHealth>();
-        bool wasExplosion = health != null && health.KilledByExplosion;
-
-        if (planterBrain != null && !wasExplosion)
-            planterBrain.TryExplode(gridObject);
-
         spawnedPlant = null;
         timer = 0f;
+        if (health != null) health.OnDied -= OnPlantDied;
+        if (planterBrain != null)
+            planterBrain.TryExplode(gridObject, health);
     }
 
     private PlantSO RollPlant()

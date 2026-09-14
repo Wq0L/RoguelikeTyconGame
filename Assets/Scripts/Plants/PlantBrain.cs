@@ -43,9 +43,12 @@ public class PlantBrain : MonoBehaviour
     {
         if (gridObject != null)
         {
-            gridObject.ClearPlantObject();
+            if (gridObject.GetPlantObject() == gameObject)
+                gridObject.ClearPlantObject();
             gridObject = null;
         }
     }
+
+    private void OnDestroy() => ClearGrid();
 
 }

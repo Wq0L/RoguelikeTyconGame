@@ -69,7 +69,7 @@ public class ProgressionManager : MonoBehaviour
     }
 
     // UI'dan seçilen modifier buraya gelir
-    public bool ApplyRandomEligibleCell(TileModifierSO modifier)
+    public bool ApplyRandomEligibleCell(TileModifierSO modifier, IReadOnlyList<StatModifier> offeredModifiers = null)
     {
         if (modifier == null) return false;
 
@@ -81,7 +81,7 @@ public class ProgressionManager : MonoBehaviour
         }
 
         GroundCell selectedCell = eligibleCells[UnityEngine.Random.Range(0, eligibleCells.Count)];
-        selectedCell.ApplyModifier(modifier);
+        selectedCell.ApplyModifier(modifier, offeredModifiers);
 
         Debug.Log($"Kart uygulandı: {modifier.modifierName} → {selectedCell.GetGridPosition()}");
         return true;

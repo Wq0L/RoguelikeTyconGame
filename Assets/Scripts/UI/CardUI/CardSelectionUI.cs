@@ -28,7 +28,7 @@ public class CardSelectionUI : MonoBehaviour
         { TileRarity.Epic,      7 },
         { TileRarity.Legendary, 10 }
     };
-    private List<TileModifierSO> currentCards = new();
+    private List<TileCardOffer> currentCards = new();
     private readonly List<TileModifierSO> availableModifiers = new();
     
 
@@ -57,8 +57,9 @@ public class CardSelectionUI : MonoBehaviour
             if (cardSlots[i] == null) continue;
             cardSlots[i].gameObject.SetActive(true);
             TileModifierSO rolled = RollCard();
-            currentCards.Add(rolled);
-            cardSlots[i].Setup(rolled, OnCardSelected);
+            TileCardOffer offer = new TileCardOffer(rolled);
+            currentCards.Add(offer);
+            cardSlots[i].Setup(offer, OnCardSelected);
         }
 
         if(skipButton != null)
@@ -130,9 +131,10 @@ public class CardSelectionUI : MonoBehaviour
         return rarityFiltered[Random.Range(0, rarityFiltered.Count)];
     }
 
-    private void OnCardSelected(TileModifierSO modifier)
+    private void OnCardSelected(TileCardOffer offer)
     {
-        if (modifier == null || !currentCards.Contains(modifier)) return;
+        if (offer == null || !currentCards.Contains(offer)) return;
+        TileModifierSO modifier = offer.Tile;
         // Sadece CardSelection state'inde çalış
         if (GameManager.Instance.CurrentState != GameStates.CardSelection)
             return;
@@ -143,7 +145,8 @@ public class CardSelectionUI : MonoBehaviour
             return;
         }
 
-        ProgressionManager.Instance.ApplyRandomEligibleCell(modifier);
+        ProgressionManager.Instance.ApplyRandomEligibleCell(modifier, offer.Modifiers);
+        currentCards.Clear(); // The displayed offer cannot be consumed twice.
 
         bool hasMore = RoundManager.Instance.OnCardSelectionComplete();
 
@@ -158,7 +161,7 @@ public class CardSelectionUI : MonoBehaviour
         // 3 karttan en rare olanı bul
         TileRarity highest = TileRarity.Common;
         foreach (var card in currentCards)
-            if (card.rarity > highest) highest = card.rarity;
+            if (card.Tile.rarity > highest) highest = card.Tile.rarity;
 
         // Ödül = base × (1 + round × 0.1)
         int round = RoundManager.Instance.CurrentRound;

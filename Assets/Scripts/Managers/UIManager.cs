@@ -1,4 +1,7 @@
 using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,11 +15,29 @@ public class UIManager : MonoBehaviour
 
     private GameObject currentPanel;
     private GameObject lastShopPanel;
+    private Coroutine resonancePresentation;
+    private Button exitSellButton;
+    private Button exitSkillButton;
 
 
     private void Start()
     {
+        exitSellButton = CreateExitButton("Exit Sell Mode", "SATIŞTAN ÇIK");
+        exitSellButton.onClick.AddListener(() =>
+        {
+            if (GameManager.Instance.CurrentState == GameStates.Selling)
+                PlacementManager.Instance.ExitSellMode();
+        });
+        exitSkillButton = CreateExitButton("Exit Shop", "GERİ");
+        exitSkillButton.onClick.AddListener(() =>
+        {
+            if (GameManager.Instance.CurrentState == GameStates.Shop &&
+                (currentPanel == skillShopPanel || currentPanel == placementShopPanel))
+                GameManager.Instance.ShowRoundEnd();
+        });
         GameManager.Instance.OnGameStateChanged += HandleStateChanged;
+        // Scene loading can enter RunSetup before this component subscribes.
+        HandleStateChanged(GameManager.Instance.CurrentState);
     }
 
     private void OnDestroy()
@@ -51,12 +72,18 @@ public class UIManager : MonoBehaviour
 
     private void HandleStateChanged(GameStates state)
     {
+        exitSellButton.gameObject.SetActive(state == GameStates.Selling);
+        exitSkillButton.gameObject.SetActive(false);
+        CancelResonancePresentation();
+        if (state == GameStates.MainMenu || state == GameStates.RunSetup || state == GameStates.RunComplete)
+            VFXManager.Instance?.ClearPendingResonances();
         bool isRoundActive = state == GameStates.Round;
         roundUI.SetActive(isRoundActive);
         xpUI.SetActive(isRoundActive);
 
         switch (state)
         {
+            case GameStates.RunSetup:
             case GameStates.RoundEnd:
                 ShowRoundEndUI();
                 break;
@@ -87,11 +114,41 @@ public class UIManager : MonoBehaviour
 
     public void ShowRoundEndUI()
     {
+        CancelResonancePresentation();
         CloseCurrentPanel();
+        lastShopPanel = null;
+        if (VFXManager.Instance != null && VFXManager.Instance.HasPendingResonances)
+        {
+            CloseAll();
+            resonancePresentation = StartCoroutine(PresentResonancesThenRoundEnd());
+            return;
+        }
         roundEndUI.SetActive(true);
         currentPanel = roundEndUI;
-        lastShopPanel = null;
     }
+
+    private IEnumerator PresentResonancesThenRoundEnd()
+    {
+        // Allow the card panel to disappear before starting the world-space celebration.
+        yield return null;
+        if (VFXManager.Instance != null && VFXManager.Instance.PlayPendingResonances())
+            yield return new WaitForSecondsRealtime(ResonanceBurst.Duration + 0.15f);
+        resonancePresentation = null;
+        if (GameManager.Instance != null && GameManager.Instance.CurrentState == GameStates.RoundEnd)
+        {
+            roundEndUI.SetActive(true);
+            currentPanel = roundEndUI;
+        }
+    }
+
+    private void CancelResonancePresentation()
+    {
+        if (resonancePresentation == null) return;
+        StopCoroutine(resonancePresentation);
+        resonancePresentation = null;
+    }
+
+    private void OnDisable() => CancelResonancePresentation();
     public void ShowRunCompleteUI()
     {
         CloseAll();
@@ -127,6 +184,11 @@ public class UIManager : MonoBehaviour
 
         panel.SetActive(true);
         currentPanel = panel;
+        if (exitSkillButton != null)
+        {
+            exitSkillButton.gameObject.SetActive(panel == skillShopPanel || panel == placementShopPanel);
+            exitSkillButton.transform.SetAsLastSibling();
+        }
     }
 
     public void ShowCardSelectionUI()
@@ -141,6 +203,7 @@ public class UIManager : MonoBehaviour
 
     public void CloseCurrentPanel()
     {
+        if (exitSkillButton != null) exitSkillButton.gameObject.SetActive(false);
         if (currentPanel != null)
         {
             currentPanel.SetActive(false);
@@ -150,10 +213,59 @@ public class UIManager : MonoBehaviour
 
     public void CloseAll()
     {
+        if (exitSkillButton != null) exitSkillButton.gameObject.SetActive(false);
         roundEndUI.SetActive(false);
         placementShopPanel.SetActive(false);
         skillShopPanel.SetActive(false);
         cardSelectionPanel.SetActive(false); // yeni
         currentPanel = null;
+    }
+
+    private Button CreateExitButton(string objectName, string caption)
+    {
+        // Separate from the movable skill-tree content and the hidden shop panel.
+        var obj = new GameObject(objectName, typeof(RectTransform), typeof(Image), typeof(Button));
+        obj.layer = roundEndUI.layer;
+        obj.transform.SetParent(roundEndUI.transform.parent, false);
+        var rect = (RectTransform)obj.transform;
+        rect.anchorMin = rect.anchorMax = rect.pivot = Vector2.one;
+        rect.anchoredPosition = new Vector2(-24f, -24f);
+        rect.sizeDelta = new Vector2(240f, 64f);
+        Button button = obj.GetComponent<Button>();
+        Image background = obj.GetComponent<Image>();
+        Button reference = roundEndUI.GetComponentInChildren<Button>(true);
+        Image referenceImage = reference != null ? reference.targetGraphic as Image : null;
+        if (referenceImage != null)
+        {
+            background.sprite = referenceImage.sprite;
+            background.type = referenceImage.type;
+            background.color = referenceImage.color;
+            background.pixelsPerUnitMultiplier = referenceImage.pixelsPerUnitMultiplier;
+            button.transition = reference.transition == Selectable.Transition.Animation
+                ? Selectable.Transition.ColorTint : reference.transition;
+            button.colors = reference.colors;
+            button.spriteState = reference.spriteState;
+        }
+        else background.color = new Color(.15f, .2f, .25f, 1f);
+        button.targetGraphic = background;
+        button.navigation = new Navigation { mode = Navigation.Mode.None };
+        var labelObject = new GameObject("Label", typeof(RectTransform), typeof(TextMeshProUGUI));
+        labelObject.layer = obj.layer;
+        labelObject.transform.SetParent(obj.transform, false);
+        var label = labelObject.GetComponent<TextMeshProUGUI>();
+        label.rectTransform.anchorMin = Vector2.zero;
+        label.rectTransform.anchorMax = Vector2.one;
+        label.rectTransform.sizeDelta = new Vector2(-24f, -12f);
+        TMP_Text referenceLabel = reference != null ? reference.GetComponentInChildren<TMP_Text>(true) : null;
+        label.font = TMP_Settings.defaultFontAsset;
+        label.color = referenceLabel != null ? referenceLabel.color : Color.white;
+        label.text = caption;
+        label.alignment = TextAlignmentOptions.Center;
+        label.enableAutoSizing = true;
+        label.fontSizeMin = 16;
+        label.fontSizeMax = 24;
+        label.raycastTarget = false;
+        obj.SetActive(false);
+        return button;
     }
 }

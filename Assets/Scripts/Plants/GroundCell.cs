@@ -65,10 +65,11 @@ public class GroundCell : MonoBehaviour
 
     }
 
-    public void ApplyModifier(TileModifierSO modifier)
+    public void ApplyModifier(TileModifierSO modifier, IReadOnlyList<StatModifier> offeredModifiers = null)
     {
         currentModifier = modifier;
-        rolledModifiers = modifier != null ? modifier.RollModifiers() : new List<StatModifier>();
+        rolledModifiers = modifier == null ? new List<StatModifier>() :
+            offeredModifiers != null ? new List<StatModifier>(offeredModifiers) : modifier.RollModifiers();
 
         foreach (var mod in rolledModifiers)
         {

@@ -24,6 +24,14 @@ public static class ResonanceManager
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void ResetCache() => defaultRules = null;
 
+    public static bool IsNewTier(ActiveResonance current, IReadOnlyList<ActiveResonance> previous)
+    {
+        foreach (var old in previous)
+            if (old.tileType == current.tileType && old.statType == current.statType &&
+                old.requiredCount >= current.requiredCount) return false;
+        return true;
+    }
+
     public static void Evaluate(ResonanceRulesSO config,
         IReadOnlyDictionary<TileModifierType, int> counts,
         List<StatModifier> modifiers, List<ActiveResonance> active)

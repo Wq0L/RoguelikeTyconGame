@@ -18,6 +18,7 @@ public class PlanterBrain : MonoBehaviour
     private readonly List<StatModifier> resonanceModifiers = new();
     private readonly Dictionary<TileModifierType, int> tileCounts = new();
     private readonly HashSet<GridObject> uniqueGrids = new();
+    private readonly List<ActiveResonance> previousResonances = new();
     public IReadOnlyList<ActiveResonance> ActiveResonances => activeResonances;
     public IReadOnlyList<GridObject> OccupiedGrids => occupiedGrids;
 
@@ -25,6 +26,7 @@ public class PlanterBrain : MonoBehaviour
     private Dictionary<StatType, float> statCache = new();
     private int cachedVersion = -1;
     private bool localDirty = true;
+    private bool removed;
 
     public List<StatModifier> LocalModifiers => localModifiers; 
 
@@ -125,6 +127,8 @@ public class PlanterBrain : MonoBehaviour
     [ContextMenu("Refresh Tile Buffs and Resonance")]
     public void RefreshTileBuffs()
     {
+        previousResonances.Clear();
+        previousResonances.AddRange(activeResonances);
         localModifiers.Clear();
         tileCounts.Clear();
         uniqueGrids.Clear();
@@ -141,6 +145,39 @@ public class PlanterBrain : MonoBehaviour
         ResonanceManager.Evaluate(resonanceRules != null ? resonanceRules : ResonanceManager.DefaultRules,
             tileCounts, resonanceModifiers, activeResonances);
         localDirty = true;
+        PlayNewResonances();
+    }
+
+    private void PlayNewResonances()
+    {
+        if (!Application.isPlaying || VFXManager.Instance == null) return;
+        VFXManager.Instance.RequestResonance(this, previousResonances);
+    }
+
+    public bool TryGetResonancePresentation(IReadOnlyList<ActiveResonance> previous,
+        out Bounds bounds, out Color color, out string message)
+    {
+        bounds = default;
+        message = "";
+        color = new Color(.4f, .85f, 1f);
+        foreach (var resonance in activeResonances)
+        {
+            if (!ResonanceManager.IsNewTier(resonance, previous)) continue;
+            if (message.Length > 0) message += "\n";
+            message += resonance.resonanceName + " REZONANSI\n" + TileBuffText.Resonance(resonance);
+            if (resonance.tileType == TileModifierType.Damage) color = new Color(1f, .65f, .2f);
+            else if (resonance.tileType == TileModifierType.Fertile) color = new Color(.45f, 1f, .55f);
+        }
+        if (message.Length == 0) return false;
+        bool found = false;
+        foreach (var grid in occupiedGrids)
+        {
+            var cell = grid?.GetGroundCellCached();
+            if (cell == null) continue;
+            if (!found) { bounds = new Bounds(cell.transform.position, Vector3.zero); found = true; }
+            else bounds.Encapsulate(cell.transform.position);
+        }
+        return found;
     }
 
     public float GetFinalStat(StatType statType)
@@ -174,19 +211,39 @@ public class PlanterBrain : MonoBehaviour
 
     public void RemoveSelf()
     {
-        Debug.Log($"[REMOVE] {planterData.planterName} siliniyor. occupiedGrids sayısı: {occupiedGrids.Count}");
-
-        foreach (GridObject gridObj in occupiedGrids)
-        {
-            GridPosition pos = gridObj.GetGroundCellCached()?.GetGridPosition() ?? default;
-            Debug.Log($"[REMOVE] Temizleniyor: {pos}, HasPlanter önce: {gridObj.HasPlanterObject()}");
-            gridObj.ClearPlanterObject();
-            Debug.Log($"[REMOVE] Temizlendi: {pos}, HasPlanter sonra: {gridObj.HasPlanterObject()}");
-        }
-
-        int refund = planterData.cost / 2;
-        ResourceManager.Instance.AddResource(planterData.costType, refund);
+        if (removed) return;
+        CleanupPlacement();
+        if (planterData != null && ResourceManager.Instance != null)
+            ResourceManager.Instance.AddResource(planterData.costType, planterData.cost / 2);
+        gameObject.SetActive(false);
         Destroy(gameObject);
+    }
+
+    private void OnDestroy() => CleanupPlacement();
+
+    private void CleanupPlacement()
+    {
+        if (removed) return;
+        removed = true;
+        foreach (PlantSpawner spawner in spawners)
+            if (spawner != null) spawner.RemoveSpawnedPlant();
+        spawners.Clear();
+
+        foreach (GridObject grid in occupiedGrids)
+        {
+            if (grid == null) continue;
+            // A delayed destruction must not clear a replacement planter's ownership.
+            if (grid.GetPlanterBrain() == this || grid.GetPlanterObject() == gameObject)
+                grid.ClearPlanterObject();
+        }
+        occupiedGrids.Clear();
+        localModifiers.Clear();
+        resonanceModifiers.Clear();
+        activeResonances.Clear();
+        previousResonances.Clear();
+        tileCounts.Clear();
+        uniqueGrids.Clear();
+        statCache.Clear();
     }
 
     private GridObject FindClosestGridObject(Vector3 worldPos, List<GridObject> gridObjects)
@@ -211,8 +268,15 @@ public class PlanterBrain : MonoBehaviour
         return closest;
     }
 
-    public void TryExplode(GridObject sourceGrid)
+    public void TryExplode(GridObject sourceGrid, PlantHealth sourcePlant)
     {
+        // Check at the entry point, not only in the caller. PlantBrain may already
+        // have cleared the grid's plant reference during the same death event.
+        if (removed || sourcePlant == null || !sourcePlant.IsDead ||
+            sourcePlant.KilledByExplosion || sourcePlant.Owner != this ||
+            sourceGrid == null || !occupiedGrids.Contains(sourceGrid) ||
+            sourceGrid.GetPlanterBrain() != this)
+            return;
         float chance = GetFinalStat(StatType.ExplosionChance);
         if (chance <= 0f) return;
         if (Random.value > chance) return; // şans tutmadı

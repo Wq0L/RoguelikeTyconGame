@@ -42,17 +42,13 @@ public class TileCellUI : MonoBehaviour, ITooltipProvider
 
     private string BuildValues()
     {
-        string result = "";
-
-        foreach (StatModifier mod in groundCell.RolledModifiers)
-        {
-            result += $"{mod.statType}: {mod.value:0.#}\n";
-        }
+        string result = "Bu tile\n" + TileBuffText.Modifiers(groundCell.RolledModifiers);
 
         if (groundCell.Planter != null)
         {
+            if (groundCell.Planter.ActiveResonances.Count > 0) result += "\n\nSaksının rezonansları";
             foreach (ActiveResonance resonance in groundCell.Planter.ActiveResonances)
-                result += $"\nRezonans: {resonance.resonanceName} ({resonance.tileCount}) x{resonance.multiplier:0.##}";
+                result += $"\n{resonance.resonanceName} ({resonance.tileCount} tile): {TileBuffText.Resonance(resonance)}";
         }
         return result.TrimEnd();
     }
