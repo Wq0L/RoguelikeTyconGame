@@ -83,7 +83,8 @@ public static class ResonanceVerification
             float normalDamage = StatCalculator.Calculate(1f, StatType.PlanterDamageMultiplier,
                 StatTarget.Planter, StatManager.Instance.GlobalModifiers, owner.LocalModifiers) * 4f;
             Require(health.GetIncomingDamage(100) == (int)Math.Round(100 * normalDamage), "Actual target damage transfer");
-            Require(health.GetIncomingDamage(100, true) == 100, "Explosion multiplier not doubled");
+            Require(health.GetIncomingDamage(100, DamageType.Explosion) == 100, "Explosion multiplier not doubled");
+            Require(health.GetIncomingDamage(100, DamageType.Tornado) == 100, "Tornado ignores planter bonus");
             health.Initialize(plantData);
             Require(health.GetIncomingDamage(100) == 100, "Other/unowned plant remains independent");
             foreach (var grid in grids) grid.GetGroundCellCached().ApplyModifier(null);

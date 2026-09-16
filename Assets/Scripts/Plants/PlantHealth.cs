@@ -8,7 +8,7 @@ public class PlantHealth : MonoBehaviour, IDamageable
     private int maxHealth;
     private int currentHealth;
     private bool isDead;
-    private bool killedByExplosion;
+    private DamageType killedBy;
     private PlantSO plantData;
     private Renderer plantRenderer;
     private PlanterBrain planter;
@@ -16,7 +16,7 @@ public class PlantHealth : MonoBehaviour, IDamageable
     public int CurrentHealth => currentHealth;
     public int SpawnRound { get; private set; }
 
-    public bool KilledByExplosion => killedByExplosion;
+    public DamageType KilledBy => killedBy;
     public bool IsDead => isDead;
     public PlanterBrain Owner => planter;
 
@@ -33,13 +33,13 @@ public class PlantHealth : MonoBehaviour, IDamageable
         maxHealth = PlantHealthCalculator.Calculate(data, SpawnRound);
         currentHealth = maxHealth;
         isDead = false;
-        killedByExplosion = false;
+        killedBy = DamageType.Direct;
     }
 
-    public void TakeDamage(int damage, bool fromExplosion = false)
+    public void TakeDamage(int damage, DamageType type = DamageType.Direct)
     {
         if (isDead) return;
-        damage = GetIncomingDamage(damage, fromExplosion);
+        damage = GetIncomingDamage(damage, type);
 
         currentHealth -= damage;
 
@@ -51,15 +51,15 @@ public class PlantHealth : MonoBehaviour, IDamageable
 
         if (currentHealth <= 0)
         {
-            killedByExplosion = fromExplosion;
+            killedBy = type;
             Die();
         }
     }
 
-    public int GetIncomingDamage(int damage, bool fromExplosion = false)
+    public int GetIncomingDamage(int damage, DamageType type = DamageType.Direct)
     {
-        // Only direct hits get the target planter's bonus. Explosions retain their existing semantics.
-        double multiplier = !fromExplosion && planter != null
+        // Saksı bonusunu alıp almayacağı DamageTypeRules'tan gelir
+        double multiplier = type.UsesPlanterBonus() && planter != null
             ? planter.GetFinalStat(StatType.PlanterDamageMultiplier) : 1d;
         return (int)System.Math.Min(int.MaxValue, System.Math.Max(0, System.Math.Round(damage * multiplier)));
     }

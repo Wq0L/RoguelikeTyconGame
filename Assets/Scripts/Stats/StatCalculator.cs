@@ -158,6 +158,8 @@ public static class StatCalculator
                 return Mathf.Clamp(value, 0f, 1f);
             case StatType.DuplicateChance:
                 return Mathf.Clamp(value, 0f, 1f);
+            case StatType.TornadoChance:
+                return Mathf.Clamp(value, 0f, 1f);
 
             default:
                 return value;

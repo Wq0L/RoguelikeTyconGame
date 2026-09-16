@@ -23,6 +23,8 @@ public class RoundManager : MonoBehaviour
     private bool awaitingFirstRound = true;
 
     public bool IsPreparingFirstRound => awaitingFirstRound;
+    public float EffectiveRoundDuration => Mathf.Clamp(StatManager.Instance != null
+        ? StatManager.Instance.GetFinalStat(StatType.RoundDuration, StatTarget.All) : roundDuration, 30f, 90f);
 
     public int SkipUsesRemaining => skipUsesRemaining;
     public int MaxRounds => maxRounds;
@@ -86,7 +88,7 @@ public class RoundManager : MonoBehaviour
         pendingCardSelections = 0;
         awaitingFirstRound = true;
         IsRoundActive = false;
-        RemainingTime = roundDuration;
+        RemainingTime = EffectiveRoundDuration;
         skipUsesRemaining = 0;
         lastDisplayedSecond = -1;
 
@@ -100,7 +102,7 @@ public class RoundManager : MonoBehaviour
     {
         awaitingFirstRound = false;
         CurrentRound = Mathf.Max(CurrentRound, 1);
-        RemainingTime = roundDuration;
+        RemainingTime = EffectiveRoundDuration;
         IsRoundActive = true;
         lastDisplayedSecond = -1;
 
@@ -180,7 +182,7 @@ public class RoundManager : MonoBehaviour
     {
         awaitingFirstRound = true;
         CurrentRound = 1;
-        RemainingTime = roundDuration;
+        RemainingTime = EffectiveRoundDuration;
         IsRoundActive = false;
     }
 

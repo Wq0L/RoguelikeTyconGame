@@ -2,6 +2,6 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    void TakeDamage(int damage, bool fromExplosion = false);
+   void TakeDamage(int damage, DamageType type = DamageType.Direct);
     
 }

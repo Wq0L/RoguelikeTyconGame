@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0817a4d977add4bbd7d892df76868d, type: 3}
+  m_Name: "Geniş Tarama - 3"
+  m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
+  nodeName: "Geniş Tarama - 3"
+  icon: {fileID: 0}
+  gridPosition: {x: -13, y: -1}
+  explicitPrerequisites: 1
+  prerequisites:
+  - node: {fileID: 11400000, guid: c39ddf565475db4796bc83b1c3e8d342, type: 2}
+    level: 2
+  targetRounds: {x: 75, y: 100}
+  tiers:
+  - costType: 0
+    cost: 100
+    effects:
+    - statType: 1
+      target: 1
+      operation: 1
+      value: 0.03333333333333332
+  - costType: 0
+    cost: 200
+    effects:
+    - statType: 1
+      target: 1
+      operation: 1
+      value: 0.06666666666666664
+  unlockType: 0

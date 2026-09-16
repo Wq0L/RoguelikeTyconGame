@@ -102,7 +102,7 @@ public class PlantSpawner : MonoBehaviour
         timer = 0f;
         if (health != null) health.OnDied -= OnPlantDied;
         if (planterBrain != null)
-            planterBrain.TryExplode(gridObject, health);
+            planterBrain.TriggerHarvestBehaviors(gridObject, health);
     }
 
     private PlantSO RollPlant()

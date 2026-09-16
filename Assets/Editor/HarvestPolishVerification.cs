@@ -10,6 +10,50 @@ using Object = UnityEngine.Object;
 
 public static class HarvestPolishVerification
 {
+    [MenuItem("Tools/Skill Tree/Verify Final Tree")]
+    public static void VerifyFinalTree()
+    {
+        var paths = AssetDatabase.FindAssets("t:SkillNodeSO", new[] { "Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree" });
+        var nodes = Array.ConvertAll(paths, guid => AssetDatabase.LoadAssetAtPath<SkillNodeSO>(AssetDatabase.GUIDToAssetPath(guid)));
+        Require(nodes.Length == 131, "Final tree: 131 nodes");
+        var all = new HashSet<SkillNodeSO>(nodes);
+        var visited = new HashSet<SkillNodeSO>();
+        var effects = new List<StatModifier>();
+        int purchases = 0;
+        foreach (var node in nodes)
+        {
+            Require(node.explicitPrerequisites, "Explicit data: " + node.name);
+            foreach (var prerequisite in node.prerequisites)
+                Require(all.Contains(prerequisite.node) && prerequisite.level > 0 &&
+                    prerequisite.level <= prerequisite.node.tiers.Count, "Valid prerequisite: " + node.name);
+            foreach (var tier in node.tiers) Require(tier.cost > 0, "Positive price: " + node.name);
+            purchases += node.tiers.Count;
+            effects.AddRange(node.tiers[node.tiers.Count - 1].effects);
+        }
+        bool progress;
+        do
+        {
+            progress = false;
+            foreach (var node in nodes)
+            {
+                if (visited.Contains(node)) continue;
+                if (node.prerequisites.TrueForAll(p => visited.Contains(p.node)))
+                { visited.Add(node); progress = true; }
+            }
+        } while (progress);
+        Require(visited.Count == 131 && purchases == 283, "Reachable acyclic tree and 283 purchases");
+        float damage = StatCalculator.Calculate(1, StatType.HarvestDamage, StatTarget.Player, effects, null);
+        Require(Mathf.Abs(damage - 1296000) < 2, "Final damage 1296000");
+        Require(Mathf.Abs(damage * 1.75f * 4f - 9072000) < 16, "Three +25% Focus: 9072000");
+        Require(Mathf.Abs(StatCalculator.Calculate(30, StatType.RoundDuration, StatTarget.All, effects, null) - 90) < .001f, "Duration cap 90");
+        var early = Array.Find(nodes, n => n.name == "P1");
+        var late = Array.Find(nodes, n => n.name == "P7");
+        Require(early.tiers.Count == 2 && late.tiers.Count == 2, "Two grid nodes / two levels");
+        Require(early.tiers[0].effects[0].value == 5 && early.tiers[1].effects[0].value == 7 &&
+            late.tiers[0].effects[0].value == 9 && late.tiers[1].effects[0].value == 11, "Odd grid sequence");
+        Debug.Log("FINAL_SKILL_TREE_VERIFICATION_PASS");
+    }
+
     [MenuItem("Tools/Resonance/Verify HP Cards and Unlock")]
     public static void Run()
     {

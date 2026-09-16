@@ -15,6 +15,8 @@ public class GrassPlanterButtonUI : MonoBehaviour
 
     private void HandleClick()
     {
+        if (planterSO == null || !planterSO.IsUnlocked ||
+            GameManager.Instance.CurrentState != GameStates.Shop) return;
         // Para yeterli mi kontrol et ve kes
         bool success = ResourceManager.Instance.SpendResource(
             planterSO.costType,

@@ -7,7 +7,16 @@ public enum UnlockType
     Planter_2x2,
     Planter_2x3,
     TileBehavior_Explosive,
-    TileBehavior_Duplicate
+    TileBehavior_Duplicate,
+    TileBehavior_Tornado,
+    Planter_1x3
+}
+
+[System.Serializable]
+public class SkillPrerequisite
+{
+    public SkillNodeSO node;
+    [Min(1)] public int level = 1;
 }
 
 [System.Serializable]
@@ -24,6 +33,9 @@ public class SkillNodeSO : ScriptableObject
     [Header("Kimlik")]
     public string nodeName;
     public Sprite icon;
+    public bool explicitPrerequisites;
+    public List<SkillPrerequisite> prerequisites = new();
+    public Vector2Int targetRounds;
 
     [Header("Konum — 8 yönlü komşuluk buradan hesaplanır")]
     public Vector2Int gridPosition;

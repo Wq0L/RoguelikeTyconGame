@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0817a4d977add4bbd7d892df76868d, type: 3}
+  m_Name: "Akıcı Kesim - 4"
+  m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
+  nodeName: "Akıcı Kesim - 4"
+  icon: {fileID: 0}
+  gridPosition: {x: -11, y: -1}
+  explicitPrerequisites: 1
+  prerequisites:
+  - node: {fileID: 11400000, guid: 2ee0102c5a67980e53e1d8efb2cff974, type: 2}
+    level: 2
+  targetRounds: {x: 40, y: 70}
+  tiers:
+  - costType: 1
+    cost: 106
+    effects:
+    - statType: 2
+      target: 1
+      operation: 2
+      value: -0.04353440861380542
+  - costType: 1
+    cost: 108
+    effects:
+    - statType: 2
+      target: 1
+      operation: 2
+      value: -0.08517357249425717
+  unlockType: 0

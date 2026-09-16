@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0817a4d977add4bbd7d892df76868d, type: 3}
+  m_Name: "Verimli Üretim - 1"
+  m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
+  nodeName: "Verimli Üretim - 1"
+  icon: {fileID: 0}
+  gridPosition: {x: 3, y: -8}
+  explicitPrerequisites: 1
+  prerequisites:
+  - node: {fileID: 11400000, guid: 6d73e58316e88efc1e25ee97b0a6bee1, type: 2}
+    level: 3
+  targetRounds: {x: 45, y: 75}
+  tiers:
+  - costType: 1
+    cost: 40
+    effects:
+    - statType: 5
+      target: 2
+      operation: 2
+      value: -0.016952427508441503
+  - costType: 1
+    cost: 40
+    effects:
+    - statType: 5
+      target: 2
+      operation: 2
+      value: -0.03361747021845407
+  - costType: 1
+    cost: 40
+    effects:
+    - statType: 5
+      target: 2
+      operation: 2
+      value: -0.050000000000000044
+  unlockType: 0

@@ -30,6 +30,9 @@ public class PlanterSO : ScriptableObject
     [Header("Fiyat")]
     public ResourceType costType;
     public int cost;
+    public UnlockType requiredUnlock;
+    public bool IsUnlocked => requiredUnlock == UnlockType.None ||
+        (UnlockManager.Instance != null && UnlockManager.Instance.IsUnlocked(requiredUnlock));
 
     public float GetBaseStat(StatType statType)
     {

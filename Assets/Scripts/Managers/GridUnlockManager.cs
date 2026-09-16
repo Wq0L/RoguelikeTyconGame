@@ -38,7 +38,7 @@ public class GridUnlockManager : MonoBehaviour
         if (statType != StatType.GridUnlockSize)
             return;
 
-        int newUnlockSize = Mathf.RoundToInt(value);
+        int newUnlockSize = NormalizeSize(value);
 
         if (newUnlockSize <= currentUnlockSize)
             return;
@@ -53,14 +53,17 @@ public class GridUnlockManager : MonoBehaviour
             StatTarget.Grid
         );
 
-        return Mathf.RoundToInt(value);
+        return NormalizeSize(value);
     }
+
+    private static int NormalizeSize(float value) => Mathf.Clamp(Mathf.RoundToInt(value) / 2 * 2 + 1, 3, 11);
 
     public void UnlockNextTier(int newSize)
     {
+        newSize = NormalizeSize(newSize);
         currentUnlockSize = newSize;
-        OnGridSizeChanged?.Invoke();
         UnlockCenter(newSize);
+        OnGridSizeChanged?.Invoke();
     }
 
     private void UnlockCenter(int size)

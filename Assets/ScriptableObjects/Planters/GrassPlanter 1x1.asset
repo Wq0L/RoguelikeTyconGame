@@ -47,4 +47,6 @@ MonoBehaviour:
   sizeX: 1
   sizeZ: 1
   costType: 2
-  cost: 2
+  cost: 20
+
+  requiredUnlock: 0

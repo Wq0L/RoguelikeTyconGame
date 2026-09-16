@@ -225,7 +225,7 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
                 nextTier.effects
             );
 
-            result += $"{effect.statType}: <color=#283B50>{current:0.#}</color> → <color=#19745E>{next:0.#}</color>\n";
+            result += $"{StatLabel(effect.statType)}: <color=#283B50>{FormatStat(effect.statType, current)}</color> → <color=#19745E>{FormatStat(effect.statType, next)}</color>\n";
         }
 
         return (result + GetUnlockDescription(false)).TrimEnd();
@@ -240,14 +240,37 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         foreach (StatModifier effect in lastTier.effects)
         {
             float current = StatManager.Instance.GetFinalStat(effect.statType, effect.target);
-            result += $"{effect.statType}: <color=#19745E>{current:0.#}</color>\n";
+            result += $"{StatLabel(effect.statType)}: <color=#19745E>{FormatStat(effect.statType, current)}</color>\n";
         }
 
         return (result + GetUnlockDescription(true)).TrimEnd();
     }
 
+    private static string StatLabel(StatType stat) => stat switch
+    {
+        StatType.HarvestDamage => "Hasar", StatType.GridUnlockSize => "Grid",
+        StatType.RoundDuration => "Round süresi", StatType.AttackSpeed => "Atak aralığı",
+        StatType.CritMultiplier => "Kritik çarpanı", StatType.AreaRadius => "Vuruş yarıçapı",
+        _ => TileBuffText.Name(stat)
+    };
+
+    private static string FormatStat(StatType stat, float value) => stat switch
+    {
+        StatType.GridUnlockSize => $"{value:0}×{value:0}",
+        StatType.RoundDuration or StatType.AttackSpeed or StatType.PlantSpawnRate => $"{value:0.###} sn",
+        StatType.CritChance => $"%{value * 100f:0.##}",
+        StatType.CritMultiplier => $"×{value:0.###}",
+        _ => value.ToString("0.###")
+    };
+
     private string GetUnlockDescription(bool completed)
     {
+        string planter = node.unlockType switch
+        {
+            UnlockType.Planter_1x3 => "1×3", UnlockType.Planter_2x2 => "2×2",
+            UnlockType.Planter_2x3 => "2×3", _ => null
+        };
+        if (planter != null) return completed ? $"{planter} saksı mağazada açık." : $"{planter} saksıyı mağazada açar.";
         string card = node.unlockType switch
         {
             UnlockType.TileBehavior_Explosive => "Patlama",

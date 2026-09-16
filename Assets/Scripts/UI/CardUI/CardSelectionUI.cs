@@ -18,7 +18,8 @@ public class CardSelectionUI : MonoBehaviour
         { TileModifierType.Energy,    15f },
         { TileModifierType.Explosive, 12f },
         { TileModifierType.Duplicate,  8f },
-        { TileModifierType.Damage,    15f }
+        { TileModifierType.Damage,    15f },
+        { TileModifierType.Tornado,   10f }
     };
 
     private Dictionary<TileRarity, int> skipBaseRewards = new()

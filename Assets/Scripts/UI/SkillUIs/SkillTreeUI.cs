@@ -150,6 +150,17 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
         for (int i = 0; i < validNodes.Count; i++)
         {
+            var node = validNodes[i].Node;
+            if (node.explicitPrerequisites)
+            {
+                if (node.prerequisites.Count == 0) AddConnection(null, validNodes[i]);
+                foreach (var requirement in node.prerequisites)
+                {
+                    var parent = validNodes.Find(ui => ui.Node == requirement.node);
+                    if (parent != null) AddConnection(parent, validNodes[i]);
+                }
+                continue;
+            }
             for (int j = i + 1; j < validNodes.Count; j++)
                 if (SkillTreeManager.AreNeighbors(validNodes[i].Node.gridPosition,
                     validNodes[j].Node.gridPosition)) AddConnection(validNodes[i], validNodes[j]);
@@ -272,7 +283,7 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
             {
                 zoom = Mathf.Clamp(1f, minZoom, maxZoom);
                 content.localScale = Vector3.one * zoom;
-                content.anchoredPosition = -mapBounds.center * zoom;
+                content.anchoredPosition = Vector2.zero;
                 navigationReady = true;
             }
             ClampPosition();

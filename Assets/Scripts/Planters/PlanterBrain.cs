@@ -268,15 +268,17 @@ public class PlanterBrain : MonoBehaviour
         return closest;
     }
 
+    private bool IsValidHarvestSource(GridObject sourceGrid, PlantHealth sourcePlant)
+    {
+        return !removed && sourcePlant != null && sourcePlant.IsDead &&
+            sourcePlant.KilledBy.CanTriggerBehaviors() && sourcePlant.Owner == this &&
+            sourceGrid != null && occupiedGrids.Contains(sourceGrid) &&
+            sourceGrid.GetPlanterBrain() == this;
+    }
+
     public void TryExplode(GridObject sourceGrid, PlantHealth sourcePlant)
     {
-        // Check at the entry point, not only in the caller. PlantBrain may already
-        // have cleared the grid's plant reference during the same death event.
-        if (removed || sourcePlant == null || !sourcePlant.IsDead ||
-            sourcePlant.KilledByExplosion || sourcePlant.Owner != this ||
-            sourceGrid == null || !occupiedGrids.Contains(sourceGrid) ||
-            sourceGrid.GetPlanterBrain() != this)
-            return;
+        if (!IsValidHarvestSource(sourceGrid, sourcePlant)) return;
         float chance = GetFinalStat(StatType.ExplosionChance);
         if (chance <= 0f) return;
         if (Random.value > chance) return; // şans tutmadı
@@ -313,9 +315,32 @@ public class PlanterBrain : MonoBehaviour
                 if (plant == null) continue;
 
                 IDamageable damageable = plant.GetComponent<IDamageable>();
-                damageable?.TakeDamage(damage, true);
+                damageable?.TakeDamage(damage, DamageType.Explosion);
             }
         }
+    }
+
+    public void TriggerHarvestBehaviors(GridObject sourceGrid, PlantHealth sourcePlant)
+    {
+        TryExplode(sourceGrid, sourcePlant);
+        TryTornado(sourceGrid, sourcePlant);
+    }
+
+    public void TryTornado(GridObject sourceGrid, PlantHealth sourcePlant)
+    {
+        
+        if (!IsValidHarvestSource(sourceGrid, sourcePlant)) return;
+
+        float chance = GetFinalStat(StatType.TornadoChance);
+        if (chance <= 0f) return;
+        if (Random.value > chance) return; // şans tutmadı
+        if (TornadoManager.Instance == null) return;
+
+        int damage = Mathf.RoundToInt(
+            StatManager.Instance.GetFinalStat(StatType.HarvestDamage, StatTarget.Player)
+        );
+
+        TornadoManager.Instance.TrySpawn(sourceGrid, damage);
     }
 
     public void SetGridObject(GridObject gridObject)

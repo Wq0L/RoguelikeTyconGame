@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0817a4d977add4bbd7d892df76868d, type: 3}
+  m_Name: "Hızlı Eller - 3"
+  m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
+  nodeName: "Hızlı Eller - 3"
+  icon: {fileID: 0}
+  gridPosition: {x: -5, y: -1}
+  explicitPrerequisites: 1
+  prerequisites:
+  - node: {fileID: 11400000, guid: a13fef003d058a7374b4b565e89a2b0b, type: 2}
+    level: 2
+  targetRounds: {x: 2, y: 15}
+  tiers:
+  - costType: 2
+    cost: 14
+    effects:
+    - statType: 2
+      target: 1
+      operation: 2
+      value: -0.03850028646172776
+  - costType: 2
+    cost: 26
+    effects:
+    - statType: 2
+      target: 1
+      operation: 2
+      value: -0.08035860787295979
+  unlockType: 0

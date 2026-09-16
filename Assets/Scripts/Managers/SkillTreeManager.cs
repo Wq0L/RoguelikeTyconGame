@@ -7,6 +7,7 @@ public class SkillTreeManager : MonoBehaviour
     public static SkillTreeManager Instance { get; private set; }
 
     [SerializeField] private List<SkillNodeSO> allNodes;
+    public IReadOnlyList<SkillNodeSO> AllNodes => allNodes;
 
     private Dictionary<SkillNodeSO, int> nodeLevels = new();
     private HashSet<Vector2Int> unlockedPositions = new();
@@ -28,6 +29,9 @@ public class SkillTreeManager : MonoBehaviour
 
     public void ResetTree()
     {
+        if (StatManager.Instance != null)
+            foreach (var entry in nodeLevels)
+                StatManager.Instance.RemoveGlobalModifiers(entry.Key.tiers[entry.Value - 1].effects);
         nodeLevels.Clear();
         unlockedPositions.Clear();
         unlockedPositions.Add(Vector2Int.zero); // kök her zaman açık
@@ -44,7 +48,16 @@ public class SkillTreeManager : MonoBehaviour
     public bool IsNodeVisible(SkillNodeSO node)
     {
         if (GetCurrentLevel(node) > 0) return true;      // zaten açtım
-        return HasUnlockedNeighbor(node.gridPosition);   // ulaşılabilir mi
+        return MeetsPrerequisites(node);
+    }
+
+    public bool MeetsPrerequisites(SkillNodeSO node)
+    {
+        if (node == null) return false;
+        if (!node.explicitPrerequisites) return HasUnlockedNeighbor(node.gridPosition);
+        foreach (var requirement in node.prerequisites)
+            if (requirement.node == null || GetCurrentLevel(requirement.node) < requirement.level) return false;
+        return true;
     }
 
     public bool CanUpgrade(SkillNodeSO node)
@@ -52,7 +65,7 @@ public class SkillTreeManager : MonoBehaviour
         int currentLevel = GetCurrentLevel(node);
 
         if (currentLevel >= node.tiers.Count) return false;
-        if (currentLevel == 0 && !HasUnlockedNeighbor(node.gridPosition)) return false;
+        if (currentLevel == 0 && !MeetsPrerequisites(node)) return false;
 
         SkillNodeTier tier = node.tiers[currentLevel];
         return ResourceManager.Instance.CanAfford(tier.costType, tier.cost);
@@ -63,12 +76,12 @@ public class SkillTreeManager : MonoBehaviour
         if (!CanUpgrade(node)) return false;
 
         int currentLevel = GetCurrentLevel(node);
+        SkillNodeTier newTier = node.tiers[currentLevel];
+        if (!ResourceManager.Instance.SpendResource(newTier.costType, newTier.cost)) return false;
 
         if (currentLevel > 0)
             StatManager.Instance.RemoveGlobalModifiers(node.tiers[currentLevel - 1].effects);
 
-        SkillNodeTier newTier = node.tiers[currentLevel];
-        ResourceManager.Instance.SpendResource(newTier.costType, newTier.cost);
 
         int newLevel = currentLevel + 1;
         nodeLevels[node] = newLevel;

@@ -53,7 +53,7 @@ public static class StatDefaults
                 return 3f;
 
             case StatType.RoundDuration:
-                return 10f;
+                return 30f;
 
             case StatType.StartingGoldBonus:
                 return 0f;

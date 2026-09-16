@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0817a4d977add4bbd7d892df76868d, type: 3}
+  m_Name: "Demir Hasat - 3"
+  m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
+  nodeName: "Demir Hasat - 3"
+  icon: {fileID: 0}
+  gridPosition: {x: 1, y: -6}
+  explicitPrerequisites: 1
+  prerequisites:
+  - node: {fileID: 11400000, guid: 8721b8c3a72c6ccbc46dbef798ee354e, type: 2}
+    level: 2
+  targetRounds: {x: 15, y: 40}
+  tiers:
+  - costType: 1
+    cost: 28
+    effects:
+    - statType: 8
+      target: 2
+      operation: 1
+      value: 0.05
+  - costType: 1
+    cost: 53
+    effects:
+    - statType: 8
+      target: 2
+      operation: 1
+      value: 0.11666666666666664
+  unlockType: 0

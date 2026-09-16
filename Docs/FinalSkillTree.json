@@ -1,0 +1,6965 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "H1-A",
+      "name": "Keskin Başlangıç - 1",
+      "guid": "c81411c581f49e1991513add17619022",
+      "prerequisites": [],
+      "tiers": [
+        {
+          "cost": 3,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "cost": 3,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 2
+            }
+          ]
+        },
+        {
+          "cost": 4,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 3
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        0,
+        150
+      ],
+      "targetRounds": [
+        1,
+        8
+      ],
+      "grid": [
+        0,
+        1
+      ],
+      "assetName": "Keskin Başlangıç - 1"
+    },
+    {
+      "id": "H1-B",
+      "name": "Keskin Başlangıç - 2",
+      "guid": "ac993a06e368cad3fc114df46df252dd",
+      "prerequisites": [
+        {
+          "id": "H1-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 6,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "cost": 6,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 2
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        600
+      ],
+      "targetRounds": [
+        1,
+        8
+      ],
+      "grid": [
+        1,
+        4
+      ],
+      "assetName": "Keskin Başlangıç - 2"
+    },
+    {
+      "id": "H1-C",
+      "name": "Keskin Başlangıç - 3",
+      "guid": "28634c53c2fcca5f622db30eb796fe90",
+      "prerequisites": [
+        {
+          "id": "H1-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 8,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "cost": 13,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 2
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        450
+      ],
+      "targetRounds": [
+        1,
+        8
+      ],
+      "grid": [
+        1,
+        3
+      ],
+      "assetName": "Keskin Başlangıç - 3"
+    },
+    {
+      "id": "H1-D",
+      "name": "Keskin Başlangıç - 4",
+      "guid": "9588a144675130e158bc4e2b73e27837",
+      "prerequisites": [
+        {
+          "id": "H1-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 13,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "cost": 14,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 2
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -150,
+        450
+      ],
+      "targetRounds": [
+        1,
+        8
+      ],
+      "grid": [
+        -1,
+        3
+      ],
+      "assetName": "Keskin Başlangıç - 4"
+    },
+    {
+      "id": "H2-A",
+      "name": "Güçlü Kesim - 1",
+      "guid": "918e82e4f317c2f105bc23cde22ff224",
+      "prerequisites": [
+        {
+          "id": "H1-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 10,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 3
+            }
+          ]
+        },
+        {
+          "cost": 10,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 7
+            }
+          ]
+        },
+        {
+          "cost": 10,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 10
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -150,
+        900
+      ],
+      "targetRounds": [
+        30,
+        60
+      ],
+      "grid": [
+        -1,
+        6
+      ],
+      "assetName": "Güçlü Kesim - 1"
+    },
+    {
+      "id": "H2-B",
+      "name": "Güçlü Kesim - 2",
+      "guid": "4b3d8ec6ee6c94c01ffb9c942258c518",
+      "prerequisites": [
+        {
+          "id": "H2-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 20,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 3
+            }
+          ]
+        },
+        {
+          "cost": 20,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 7
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        900
+      ],
+      "targetRounds": [
+        30,
+        60
+      ],
+      "grid": [
+        1,
+        6
+      ],
+      "assetName": "Güçlü Kesim - 2"
+    },
+    {
+      "id": "H2-C",
+      "name": "Güçlü Kesim - 3",
+      "guid": "7ec1f936b13a251105fd17d6c066d812",
+      "prerequisites": [
+        {
+          "id": "H2-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 20,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 3
+            }
+          ]
+        },
+        {
+          "cost": 40,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 10
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        750
+      ],
+      "targetRounds": [
+        30,
+        60
+      ],
+      "grid": [
+        1,
+        5
+      ],
+      "assetName": "Güçlü Kesim - 3"
+    },
+    {
+      "id": "H2-D",
+      "name": "Güçlü Kesim - 4",
+      "guid": "e55312dd2093ed0f592c1a702778d36c",
+      "prerequisites": [
+        {
+          "id": "H2-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 40,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 6
+            }
+          ]
+        },
+        {
+          "cost": 40,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 13
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -150,
+        750
+      ],
+      "targetRounds": [
+        30,
+        60
+      ],
+      "grid": [
+        -1,
+        5
+      ],
+      "assetName": "Güçlü Kesim - 4"
+    },
+    {
+      "id": "H3-A",
+      "name": "Ağır Kesim - 1",
+      "guid": "506f3715bcb78d6dfaa4ca0d6f92e980",
+      "prerequisites": [
+        {
+          "id": "H2-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 40,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 17
+            }
+          ]
+        },
+        {
+          "cost": 40,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 33
+            }
+          ]
+        },
+        {
+          "cost": 40,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 50
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -150,
+        1350
+      ],
+      "targetRounds": [
+        61,
+        80
+      ],
+      "grid": [
+        -1,
+        9
+      ],
+      "assetName": "Ağır Kesim - 1"
+    },
+    {
+      "id": "H3-B",
+      "name": "Ağır Kesim - 2",
+      "guid": "81aa2cad645560fa5030a55d6a731fa0",
+      "prerequisites": [
+        {
+          "id": "H3-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 80,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 17
+            }
+          ]
+        },
+        {
+          "cost": 80,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 33
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        1350
+      ],
+      "targetRounds": [
+        61,
+        80
+      ],
+      "grid": [
+        1,
+        9
+      ],
+      "assetName": "Ağır Kesim - 2"
+    },
+    {
+      "id": "H3-C",
+      "name": "Ağır Kesim - 3",
+      "guid": "e8fabde6ddbd222c648d7be95cf90846",
+      "prerequisites": [
+        {
+          "id": "H3-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 80,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 17
+            }
+          ]
+        },
+        {
+          "cost": 160,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 34
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        1050
+      ],
+      "targetRounds": [
+        61,
+        80
+      ],
+      "grid": [
+        1,
+        7
+      ],
+      "assetName": "Ağır Kesim - 3"
+    },
+    {
+      "id": "H3-D",
+      "name": "Ağır Kesim - 4",
+      "guid": "c762f3602ba681d3086e613c868f815a",
+      "prerequisites": [
+        {
+          "id": "H3-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 160,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 16
+            }
+          ]
+        },
+        {
+          "cost": 160,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 33
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -150,
+        1050
+      ],
+      "targetRounds": [
+        61,
+        80
+      ],
+      "grid": [
+        -1,
+        7
+      ],
+      "assetName": "Ağır Kesim - 4"
+    },
+    {
+      "id": "H4-A",
+      "name": "Plazma Kesim - 1",
+      "guid": "e76cee78fb97a8c9bef453f7e539ba6b",
+      "prerequisites": [
+        {
+          "id": "H3-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 66,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 67
+            }
+          ]
+        },
+        {
+          "cost": 66,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 133
+            }
+          ]
+        },
+        {
+          "cost": 68,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 200
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -150,
+        1650
+      ],
+      "targetRounds": [
+        81,
+        105
+      ],
+      "grid": [
+        -1,
+        11
+      ],
+      "assetName": "Plazma Kesim - 1"
+    },
+    {
+      "id": "H4-B",
+      "name": "Plazma Kesim - 2",
+      "guid": "94c1efa3cfd46ad533ae78c6522498b4",
+      "prerequisites": [
+        {
+          "id": "H4-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 133,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 67
+            }
+          ]
+        },
+        {
+          "cost": 133,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 133
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        1650
+      ],
+      "targetRounds": [
+        81,
+        105
+      ],
+      "grid": [
+        1,
+        11
+      ],
+      "assetName": "Plazma Kesim - 2"
+    },
+    {
+      "id": "H4-C",
+      "name": "Plazma Kesim - 3",
+      "guid": "b38e8517620c0bc32917f7cec32ec67d",
+      "prerequisites": [
+        {
+          "id": "H4-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 134,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 67
+            }
+          ]
+        },
+        {
+          "cost": 266,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 134
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        1500
+      ],
+      "targetRounds": [
+        81,
+        105
+      ],
+      "grid": [
+        1,
+        10
+      ],
+      "assetName": "Plazma Kesim - 3"
+    },
+    {
+      "id": "H4-D",
+      "name": "Plazma Kesim - 4",
+      "guid": "faac77e4d9f75614b1156d4115d348a3",
+      "prerequisites": [
+        {
+          "id": "H4-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 266,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 66
+            }
+          ]
+        },
+        {
+          "cost": 268,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 133
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -150,
+        1500
+      ],
+      "targetRounds": [
+        81,
+        105
+      ],
+      "grid": [
+        -1,
+        10
+      ],
+      "assetName": "Plazma Kesim - 4"
+    },
+    {
+      "id": "H5-A",
+      "name": "Yıldız Kesim - 1",
+      "guid": "427a518510dd5ceb6820c5229b710e26",
+      "prerequisites": [
+        {
+          "id": "H4-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 400,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 233
+            }
+          ]
+        },
+        {
+          "cost": 400,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 467
+            }
+          ]
+        },
+        {
+          "cost": 400,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 700
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -150,
+        2100
+      ],
+      "targetRounds": [
+        106,
+        125
+      ],
+      "grid": [
+        -1,
+        14
+      ],
+      "assetName": "Yıldız Kesim - 1"
+    },
+    {
+      "id": "H5-B",
+      "name": "Yıldız Kesim - 2",
+      "guid": "1ee6040b98deb2f959b075facd3ba953",
+      "prerequisites": [
+        {
+          "id": "H5-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 800,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 233
+            }
+          ]
+        },
+        {
+          "cost": 800,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 467
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        2100
+      ],
+      "targetRounds": [
+        106,
+        125
+      ],
+      "grid": [
+        1,
+        14
+      ],
+      "assetName": "Yıldız Kesim - 2"
+    },
+    {
+      "id": "H5-C",
+      "name": "Yıldız Kesim - 3",
+      "guid": "7b9aa72a28fc08060322a981f91dfea4",
+      "prerequisites": [
+        {
+          "id": "H5-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 800,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 233
+            }
+          ]
+        },
+        {
+          "cost": 1600,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 500
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        1950
+      ],
+      "targetRounds": [
+        106,
+        125
+      ],
+      "grid": [
+        1,
+        13
+      ],
+      "assetName": "Yıldız Kesim - 3"
+    },
+    {
+      "id": "H5-D",
+      "name": "Yıldız Kesim - 4",
+      "guid": "533dac08ecfe0a8574cf3fe9466f3945",
+      "prerequisites": [
+        {
+          "id": "H5-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 1600,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 266
+            }
+          ]
+        },
+        {
+          "cost": 1600,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 0,
+              "value": 533
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -150,
+        1950
+      ],
+      "targetRounds": [
+        106,
+        125
+      ],
+      "grid": [
+        -1,
+        13
+      ],
+      "assetName": "Yıldız Kesim - 4"
+    },
+    {
+      "id": "H6-A",
+      "name": "Kesim Tekniği - 1",
+      "guid": "80f6d4cfcff27137fdbbf022a07e5a9b",
+      "prerequisites": [
+        {
+          "id": "H1-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 10,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.05
+            }
+          ]
+        },
+        {
+          "cost": 10,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.1
+            }
+          ]
+        },
+        {
+          "cost": 10,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.15
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -600,
+        750
+      ],
+      "targetRounds": [
+        8,
+        25
+      ],
+      "grid": [
+        -4,
+        5
+      ],
+      "assetName": "Kesim Tekniği - 1"
+    },
+    {
+      "id": "H6-B",
+      "name": "Kesim Tekniği - 2",
+      "guid": "9373ba35859bb5df423aa91fd90f7423",
+      "prerequisites": [
+        {
+          "id": "H6-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 20,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.05
+            }
+          ]
+        },
+        {
+          "cost": 20,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.1
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -450,
+        750
+      ],
+      "targetRounds": [
+        8,
+        25
+      ],
+      "grid": [
+        -3,
+        5
+      ],
+      "assetName": "Kesim Tekniği - 2"
+    },
+    {
+      "id": "H6-C",
+      "name": "Kesim Tekniği - 3",
+      "guid": "20a6b88ad8fa17ac5d83c9410fa7d367",
+      "prerequisites": [
+        {
+          "id": "H6-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 20,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.05
+            }
+          ]
+        },
+        {
+          "cost": 40,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.11666666666666664
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -450,
+        600
+      ],
+      "targetRounds": [
+        8,
+        25
+      ],
+      "grid": [
+        -3,
+        4
+      ],
+      "assetName": "Kesim Tekniği - 3"
+    },
+    {
+      "id": "H6-D",
+      "name": "Kesim Tekniği - 4",
+      "guid": "c681ba3ecdad59c8c1ed71fcb10ed911",
+      "prerequisites": [
+        {
+          "id": "H6-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 40,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.06666666666666671
+            }
+          ]
+        },
+        {
+          "cost": 40,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.13333333333333336
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -600,
+        600
+      ],
+      "targetRounds": [
+        8,
+        25
+      ],
+      "grid": [
+        -4,
+        4
+      ],
+      "assetName": "Kesim Tekniği - 4"
+    },
+    {
+      "id": "H7-A",
+      "name": "Kesim Ustalığı - 1",
+      "guid": "86674024572b9093e274e2d8f30d764d",
+      "prerequisites": [
+        {
+          "id": "H6-A",
+          "level": 3
+        },
+        {
+          "id": "H2-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 26,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.08333333333333334
+            }
+          ]
+        },
+        {
+          "cost": 26,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.16666666666666669
+            }
+          ]
+        },
+        {
+          "cost": 28,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.25
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -600,
+        1050
+      ],
+      "targetRounds": [
+        45,
+        75
+      ],
+      "grid": [
+        -4,
+        7
+      ],
+      "assetName": "Kesim Ustalığı - 1"
+    },
+    {
+      "id": "H7-B",
+      "name": "Kesim Ustalığı - 2",
+      "guid": "1940929562d13bc0f7293848ff4c34ef",
+      "prerequisites": [
+        {
+          "id": "H7-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 53,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.08333333333333336
+            }
+          ]
+        },
+        {
+          "cost": 53,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.1666666666666667
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -450,
+        1050
+      ],
+      "targetRounds": [
+        45,
+        75
+      ],
+      "grid": [
+        -3,
+        7
+      ],
+      "assetName": "Kesim Ustalığı - 2"
+    },
+    {
+      "id": "H7-C",
+      "name": "Kesim Ustalığı - 3",
+      "guid": "4e1805134358c888c9744505db93906e",
+      "prerequisites": [
+        {
+          "id": "H7-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 54,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.08333333333333329
+            }
+          ]
+        },
+        {
+          "cost": 106,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.25
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -450,
+        900
+      ],
+      "targetRounds": [
+        45,
+        75
+      ],
+      "grid": [
+        -3,
+        6
+      ],
+      "assetName": "Kesim Ustalığı - 3"
+    },
+    {
+      "id": "H7-D",
+      "name": "Kesim Ustalığı - 4",
+      "guid": "0b814d5f80bdc9743b4c403397e567fc",
+      "prerequisites": [
+        {
+          "id": "H7-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 106,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.1666666666666667
+            }
+          ]
+        },
+        {
+          "cost": 108,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.33333333333333326
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -600,
+        900
+      ],
+      "targetRounds": [
+        45,
+        75
+      ],
+      "grid": [
+        -4,
+        6
+      ],
+      "assetName": "Kesim Ustalığı - 4"
+    },
+    {
+      "id": "H8-A",
+      "name": "İleri Ustalık - 1",
+      "guid": "553c1b8bb0937cac11c8401fcffbf900",
+      "prerequisites": [
+        {
+          "id": "H7-A",
+          "level": 3
+        },
+        {
+          "id": "H3-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 50,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.16666666666666669
+            }
+          ]
+        },
+        {
+          "cost": 50,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.33333333333333337
+            }
+          ]
+        },
+        {
+          "cost": 50,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.5
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -600,
+        1500
+      ],
+      "targetRounds": [
+        86,
+        105
+      ],
+      "grid": [
+        -4,
+        10
+      ],
+      "assetName": "İleri Ustalık - 1"
+    },
+    {
+      "id": "H8-B",
+      "name": "İleri Ustalık - 2",
+      "guid": "cf3aa5d589007ade894f0e31d3c19288",
+      "prerequisites": [
+        {
+          "id": "H8-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 100,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.1666666666666667
+            }
+          ]
+        },
+        {
+          "cost": 100,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.3333333333333334
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -450,
+        1500
+      ],
+      "targetRounds": [
+        86,
+        105
+      ],
+      "grid": [
+        -3,
+        10
+      ],
+      "assetName": "İleri Ustalık - 2"
+    },
+    {
+      "id": "H8-C",
+      "name": "İleri Ustalık - 3",
+      "guid": "ae591ae8ae4e3a381f7fe382d81fc858",
+      "prerequisites": [
+        {
+          "id": "H8-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 100,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.16666666666666657
+            }
+          ]
+        },
+        {
+          "cost": 200,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.33333333333333326
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -450,
+        1350
+      ],
+      "targetRounds": [
+        86,
+        105
+      ],
+      "grid": [
+        -3,
+        9
+      ],
+      "assetName": "İleri Ustalık - 3"
+    },
+    {
+      "id": "H8-D",
+      "name": "İleri Ustalık - 4",
+      "guid": "c41cbc1b31eaebd238f2bbf86877792e",
+      "prerequisites": [
+        {
+          "id": "H8-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 200,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.1666666666666667
+            }
+          ]
+        },
+        {
+          "cost": 200,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.33333333333333326
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -600,
+        1350
+      ],
+      "targetRounds": [
+        86,
+        105
+      ],
+      "grid": [
+        -4,
+        9
+      ],
+      "assetName": "İleri Ustalık - 4"
+    },
+    {
+      "id": "H9-A",
+      "name": "Hasat Zirvesi - 1",
+      "guid": "08bfc9775cf2d9d3c1ce593741a9b297",
+      "prerequisites": [
+        {
+          "id": "H8-A",
+          "level": 3
+        },
+        {
+          "id": "H4-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 200,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.16666666666666669
+            }
+          ]
+        },
+        {
+          "cost": 200,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.33333333333333337
+            }
+          ]
+        },
+        {
+          "cost": 200,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.5
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -600,
+        1950
+      ],
+      "targetRounds": [
+        106,
+        125
+      ],
+      "grid": [
+        -4,
+        13
+      ],
+      "assetName": "Hasat Zirvesi - 1"
+    },
+    {
+      "id": "H9-B",
+      "name": "Hasat Zirvesi - 2",
+      "guid": "c14bcaf7f1c15c7f5ab7224da62ce5ab",
+      "prerequisites": [
+        {
+          "id": "H9-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 400,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.1666666666666667
+            }
+          ]
+        },
+        {
+          "cost": 400,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.3333333333333334
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -450,
+        1950
+      ],
+      "targetRounds": [
+        106,
+        125
+      ],
+      "grid": [
+        -3,
+        13
+      ],
+      "assetName": "Hasat Zirvesi - 2"
+    },
+    {
+      "id": "H9-C",
+      "name": "Hasat Zirvesi - 3",
+      "guid": "d49ab5630ba074bf972a496e8f1deaeb",
+      "prerequisites": [
+        {
+          "id": "H9-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 400,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.16666666666666657
+            }
+          ]
+        },
+        {
+          "cost": 800,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.5
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -450,
+        1800
+      ],
+      "targetRounds": [
+        106,
+        125
+      ],
+      "grid": [
+        -3,
+        12
+      ],
+      "assetName": "Hasat Zirvesi - 3"
+    },
+    {
+      "id": "H9-D",
+      "name": "Hasat Zirvesi - 4",
+      "guid": "370ebdb31508c8b66644ca9bf27c6119",
+      "prerequisites": [
+        {
+          "id": "H9-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 800,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.3333333333333334
+            }
+          ]
+        },
+        {
+          "cost": 800,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 1,
+              "value": 0.6666666666666665
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -600,
+        1800
+      ],
+      "targetRounds": [
+        106,
+        125
+      ],
+      "grid": [
+        -4,
+        12
+      ],
+      "assetName": "Hasat Zirvesi - 4"
+    },
+    {
+      "id": "H10",
+      "name": "Aşırı Güç I",
+      "guid": "c223b7871bfebf76bcf572ef9857359b",
+      "prerequisites": [
+        {
+          "id": "H4-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 1800,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 2,
+              "value": 7
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        450,
+        1650
+      ],
+      "targetRounds": [
+        105,
+        115
+      ],
+      "grid": [
+        3,
+        11
+      ],
+      "assetName": "Aşırı Güç I"
+    },
+    {
+      "id": "H11",
+      "name": "Aşırı Güç II",
+      "guid": "26d8f6565d10e57e537dcc71748d5e9f",
+      "prerequisites": [
+        {
+          "id": "H10",
+          "level": 1
+        },
+        {
+          "id": "H5-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 5000,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 0,
+              "target": 1,
+              "operation": 2,
+              "value": 8
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        450,
+        1950
+      ],
+      "targetRounds": [
+        120,
+        130
+      ],
+      "grid": [
+        3,
+        13
+      ],
+      "assetName": "Aşırı Güç II"
+    },
+    {
+      "id": "H12-A",
+      "name": "Kritik Odak - 1",
+      "guid": "cf9417de871f5cdf89d16ad0a111f7e9",
+      "prerequisites": [
+        {
+          "id": "H6-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 16,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 3,
+              "target": 1,
+              "operation": 0,
+              "value": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "cost": 16,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 3,
+              "target": 1,
+              "operation": 0,
+              "value": 0.03333333333333333
+            }
+          ]
+        },
+        {
+          "cost": 18,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 3,
+              "target": 1,
+              "operation": 0,
+              "value": 0.05
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1050,
+        900
+      ],
+      "targetRounds": [
+        15,
+        85
+      ],
+      "grid": [
+        -7,
+        6
+      ],
+      "assetName": "Kritik Odak - 1"
+    },
+    {
+      "id": "H12-B",
+      "name": "Kritik Odak - 2",
+      "guid": "e9cdb6f41e07d99257b17dca8781c08e",
+      "prerequisites": [
+        {
+          "id": "H12-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 26,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 3,
+              "target": 1,
+              "operation": 0,
+              "value": 0.01666666666666667
+            }
+          ]
+        },
+        {
+          "cost": 26,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 3,
+              "target": 1,
+              "operation": 0,
+              "value": 0.03333333333333334
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -900,
+        900
+      ],
+      "targetRounds": [
+        15,
+        85
+      ],
+      "grid": [
+        -6,
+        6
+      ],
+      "assetName": "Kritik Odak - 2"
+    },
+    {
+      "id": "H12-C",
+      "name": "Kritik Odak - 3",
+      "guid": "6bcc72155a1e4be0f7fc4b0da9c77bdb",
+      "prerequisites": [
+        {
+          "id": "H12-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 28,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 3,
+              "target": 1,
+              "operation": 0,
+              "value": 0.01666666666666666
+            }
+          ]
+        },
+        {
+          "cost": 66,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 3,
+              "target": 1,
+              "operation": 0,
+              "value": 0.03333333333333332
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -900,
+        600
+      ],
+      "targetRounds": [
+        15,
+        85
+      ],
+      "grid": [
+        -6,
+        4
+      ],
+      "assetName": "Kritik Odak - 3"
+    },
+    {
+      "id": "H12-D",
+      "name": "Kritik Odak - 4",
+      "guid": "8b5dd17b5a963898927d6942c973e18c",
+      "prerequisites": [
+        {
+          "id": "H12-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 66,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 3,
+              "target": 1,
+              "operation": 0,
+              "value": 0.016666666666666677
+            }
+          ]
+        },
+        {
+          "cost": 68,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 3,
+              "target": 1,
+              "operation": 0,
+              "value": 0.03333333333333334
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1050,
+        600
+      ],
+      "targetRounds": [
+        15,
+        85
+      ],
+      "grid": [
+        -7,
+        4
+      ],
+      "assetName": "Kritik Odak - 4"
+    },
+    {
+      "id": "H13-A",
+      "name": "Kritik Güç - 1",
+      "guid": "cce2fe8f3d186bc159623ec268ad3b31",
+      "prerequisites": [
+        {
+          "id": "H12-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 40,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 4,
+              "target": 1,
+              "operation": 0,
+              "value": 0.16666666666666666
+            }
+          ]
+        },
+        {
+          "cost": 40,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 4,
+              "target": 1,
+              "operation": 0,
+              "value": 0.3333333333333333
+            }
+          ]
+        },
+        {
+          "cost": 40,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 4,
+              "target": 1,
+              "operation": 0,
+              "value": 0.5
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1050,
+        1200
+      ],
+      "targetRounds": [
+        55,
+        110
+      ],
+      "grid": [
+        -7,
+        8
+      ],
+      "assetName": "Kritik Güç - 1"
+    },
+    {
+      "id": "H13-B",
+      "name": "Kritik Güç - 2",
+      "guid": "06108690fba6ab2d6f4f992ce77dc727",
+      "prerequisites": [
+        {
+          "id": "H13-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 100,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 4,
+              "target": 1,
+              "operation": 0,
+              "value": 0.16666666666666663
+            }
+          ]
+        },
+        {
+          "cost": 100,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 4,
+              "target": 1,
+              "operation": 0,
+              "value": 0.33333333333333326
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -900,
+        1200
+      ],
+      "targetRounds": [
+        55,
+        110
+      ],
+      "grid": [
+        -6,
+        8
+      ],
+      "assetName": "Kritik Güç - 2"
+    },
+    {
+      "id": "H13-C",
+      "name": "Kritik Güç - 3",
+      "guid": "81d4ffca63d8ce128cf9757e38bd5013",
+      "prerequisites": [
+        {
+          "id": "H13-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 100,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 4,
+              "target": 1,
+              "operation": 0,
+              "value": 0.16666666666666674
+            }
+          ]
+        },
+        {
+          "cost": 266,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 4,
+              "target": 1,
+              "operation": 0,
+              "value": 0.5
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -900,
+        1050
+      ],
+      "targetRounds": [
+        55,
+        110
+      ],
+      "grid": [
+        -6,
+        7
+      ],
+      "assetName": "Kritik Güç - 3"
+    },
+    {
+      "id": "H13-D",
+      "name": "Kritik Güç - 4",
+      "guid": "8817537e0c38fb7adbdad85d1d6035ee",
+      "prerequisites": [
+        {
+          "id": "H13-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 266,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 4,
+              "target": 1,
+              "operation": 0,
+              "value": 0.33333333333333326
+            }
+          ]
+        },
+        {
+          "cost": 268,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 4,
+              "target": 1,
+              "operation": 0,
+              "value": 0.6666666666666667
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1050,
+        1050
+      ],
+      "targetRounds": [
+        55,
+        110
+      ],
+      "grid": [
+        -7,
+        7
+      ],
+      "assetName": "Kritik Güç - 4"
+    },
+    {
+      "id": "Z1-A",
+      "name": "Biraz Daha Zaman - 1",
+      "guid": "2f4cccfaed123f9f2148bba07d88b060",
+      "prerequisites": [],
+      "tiers": [
+        {
+          "cost": 3,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 2
+            }
+          ]
+        },
+        {
+          "cost": 3,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 3
+            }
+          ]
+        },
+        {
+          "cost": 4,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 5
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -150,
+        0
+      ],
+      "targetRounds": [
+        1,
+        12
+      ],
+      "grid": [
+        -1,
+        0
+      ],
+      "assetName": "Biraz Daha Zaman - 1"
+    },
+    {
+      "id": "Z1-B",
+      "name": "Biraz Daha Zaman - 2",
+      "guid": "193b57cc0984df53d0463d101dcec46e",
+      "prerequisites": [
+        {
+          "id": "Z1-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 10,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 2
+            }
+          ]
+        },
+        {
+          "cost": 10,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 3
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -450,
+        150
+      ],
+      "targetRounds": [
+        1,
+        12
+      ],
+      "grid": [
+        -3,
+        1
+      ],
+      "assetName": "Biraz Daha Zaman - 2"
+    },
+    {
+      "id": "Z1-C",
+      "name": "Biraz Daha Zaman - 3",
+      "guid": "8b90a7b500e5950cca239ce9c546ff79",
+      "prerequisites": [
+        {
+          "id": "Z1-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 10,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 2
+            }
+          ]
+        },
+        {
+          "cost": 20,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 4
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -450,
+        -150
+      ],
+      "targetRounds": [
+        1,
+        12
+      ],
+      "grid": [
+        -3,
+        -1
+      ],
+      "assetName": "Biraz Daha Zaman - 3"
+    },
+    {
+      "id": "Z1-D",
+      "name": "Biraz Daha Zaman - 4",
+      "guid": "e89465d4bbe23e4faa0ec4edeb837489",
+      "prerequisites": [
+        {
+          "id": "Z1-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 20,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "cost": 20,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 3
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -600,
+        -150
+      ],
+      "targetRounds": [
+        1,
+        12
+      ],
+      "grid": [
+        -4,
+        -1
+      ],
+      "assetName": "Biraz Daha Zaman - 4"
+    },
+    {
+      "id": "Z2-A",
+      "name": "Hızlı Eller - 1",
+      "guid": "705323bbe1a5b01597cc2caf14344b7f",
+      "prerequisites": [
+        {
+          "id": "Z1-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 6,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.03451061539437028
+            }
+          ]
+        },
+        {
+          "cost": 6,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.06783024821384231
+            }
+          ]
+        },
+        {
+          "cost": 8,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.09999999999999998
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -900,
+        150
+      ],
+      "targetRounds": [
+        2,
+        15
+      ],
+      "grid": [
+        -6,
+        1
+      ],
+      "assetName": "Hızlı Eller - 1"
+    },
+    {
+      "id": "Z2-B",
+      "name": "Hızlı Eller - 2",
+      "guid": "a13fef003d058a7374b4b565e89a2b0b",
+      "prerequisites": [
+        {
+          "id": "Z2-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 13,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.03850028646172776
+            }
+          ]
+        },
+        {
+          "cost": 13,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.07551830086582034
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -750,
+        150
+      ],
+      "targetRounds": [
+        2,
+        15
+      ],
+      "grid": [
+        -5,
+        1
+      ],
+      "assetName": "Hızlı Eller - 2"
+    },
+    {
+      "id": "Z2-C",
+      "name": "Hızlı Eller - 3",
+      "guid": "8e28eafefbe7576c77455e4566594d79",
+      "prerequisites": [
+        {
+          "id": "Z2-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 14,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.03850028646172776
+            }
+          ]
+        },
+        {
+          "cost": 26,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.08035860787295979
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -750,
+        -150
+      ],
+      "targetRounds": [
+        2,
+        15
+      ],
+      "grid": [
+        -5,
+        -1
+      ],
+      "assetName": "Hızlı Eller - 3"
+    },
+    {
+      "id": "Z2-D",
+      "name": "Hızlı Eller - 4",
+      "guid": "de1649ada5ee12ee860698335c72808e",
+      "prerequisites": [
+        {
+          "id": "Z2-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 26,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.04353440861380542
+            }
+          ]
+        },
+        {
+          "cost": 28,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.08517357249425717
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -900,
+        -150
+      ],
+      "targetRounds": [
+        2,
+        15
+      ],
+      "grid": [
+        -6,
+        -1
+      ],
+      "assetName": "Hızlı Eller - 4"
+    },
+    {
+      "id": "Z3-A",
+      "name": "Geniş Süpürüş - 1",
+      "guid": "e304a4306ac7196dfac278284bd8047e",
+      "prerequisites": [
+        {
+          "id": "Z2-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 13,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 1,
+              "target": 1,
+              "operation": 1,
+              "value": 0.03333333333333333
+            }
+          ]
+        },
+        {
+          "cost": 13,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 1,
+              "target": 1,
+              "operation": 1,
+              "value": 0.06666666666666667
+            }
+          ]
+        },
+        {
+          "cost": 14,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 1,
+              "target": 1,
+              "operation": 1,
+              "value": 0.1
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1350,
+        150
+      ],
+      "targetRounds": [
+        10,
+        25
+      ],
+      "grid": [
+        -9,
+        1
+      ],
+      "assetName": "Geniş Süpürüş - 1"
+    },
+    {
+      "id": "Z3-B",
+      "name": "Geniş Süpürüş - 2",
+      "guid": "f0513a46a217aaf7ec302d77ea65bc88",
+      "prerequisites": [
+        {
+          "id": "Z3-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 26,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 1,
+              "target": 1,
+              "operation": 1,
+              "value": 0.03333333333333334
+            }
+          ]
+        },
+        {
+          "cost": 26,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 1,
+              "target": 1,
+              "operation": 1,
+              "value": 0.06666666666666668
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1050,
+        150
+      ],
+      "targetRounds": [
+        10,
+        25
+      ],
+      "grid": [
+        -7,
+        1
+      ],
+      "assetName": "Geniş Süpürüş - 2"
+    },
+    {
+      "id": "Z3-C",
+      "name": "Geniş Süpürüş - 3",
+      "guid": "56ecd07086d8b9b960c5780669efaafc",
+      "prerequisites": [
+        {
+          "id": "Z3-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 28,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 1,
+              "target": 1,
+              "operation": 1,
+              "value": 0.03333333333333332
+            }
+          ]
+        },
+        {
+          "cost": 53,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 1,
+              "target": 1,
+              "operation": 1,
+              "value": 0.06666666666666664
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1050,
+        -150
+      ],
+      "targetRounds": [
+        10,
+        25
+      ],
+      "grid": [
+        -7,
+        -1
+      ],
+      "assetName": "Geniş Süpürüş - 3"
+    },
+    {
+      "id": "Z3-D",
+      "name": "Geniş Süpürüş - 4",
+      "guid": "0a5a57024cc260b976b03dd59becbb95",
+      "prerequisites": [
+        {
+          "id": "Z3-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 53,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 1,
+              "target": 1,
+              "operation": 1,
+              "value": 0.033333333333333354
+            }
+          ]
+        },
+        {
+          "cost": 54,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 1,
+              "target": 1,
+              "operation": 1,
+              "value": 0.06666666666666668
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1350,
+        -150
+      ],
+      "targetRounds": [
+        10,
+        25
+      ],
+      "grid": [
+        -9,
+        -1
+      ],
+      "assetName": "Geniş Süpürüş - 4"
+    },
+    {
+      "id": "Z4-A",
+      "name": "Uzun Hasat - 1",
+      "guid": "69a5efab7205e3402d1beb28bbec6408",
+      "prerequisites": [
+        {
+          "id": "Z1-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 20,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 2
+            }
+          ]
+        },
+        {
+          "cost": 20,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 3
+            }
+          ]
+        },
+        {
+          "cost": 20,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 5
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1050,
+        -450
+      ],
+      "targetRounds": [
+        25,
+        60
+      ],
+      "grid": [
+        -7,
+        -3
+      ],
+      "assetName": "Uzun Hasat - 1"
+    },
+    {
+      "id": "Z4-B",
+      "name": "Uzun Hasat - 2",
+      "guid": "1ea11b10dd6222e9748372e10cfe5f45",
+      "prerequisites": [
+        {
+          "id": "Z4-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 40,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 2
+            }
+          ]
+        },
+        {
+          "cost": 40,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 3
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -750,
+        -450
+      ],
+      "targetRounds": [
+        25,
+        60
+      ],
+      "grid": [
+        -5,
+        -3
+      ],
+      "assetName": "Uzun Hasat - 2"
+    },
+    {
+      "id": "Z4-C",
+      "name": "Uzun Hasat - 3",
+      "guid": "7f5f4c57dfeb2cb74480204e8d2ea981",
+      "prerequisites": [
+        {
+          "id": "Z4-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 40,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 2
+            }
+          ]
+        },
+        {
+          "cost": 80,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 5
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -750,
+        -600
+      ],
+      "targetRounds": [
+        25,
+        60
+      ],
+      "grid": [
+        -5,
+        -4
+      ],
+      "assetName": "Uzun Hasat - 3"
+    },
+    {
+      "id": "Z4-D",
+      "name": "Uzun Hasat - 4",
+      "guid": "9be6cf3a0a19f4cb0df86f620ae90c69",
+      "prerequisites": [
+        {
+          "id": "Z4-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 80,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 4
+            }
+          ]
+        },
+        {
+          "cost": 80,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 7
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1050,
+        -600
+      ],
+      "targetRounds": [
+        25,
+        60
+      ],
+      "grid": [
+        -7,
+        -4
+      ],
+      "assetName": "Uzun Hasat - 4"
+    },
+    {
+      "id": "Z5-A",
+      "name": "Akıcı Kesim - 1",
+      "guid": "55a2682e4ee550406f1a4cdd4a4dd3ec",
+      "prerequisites": [
+        {
+          "id": "Z2-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 26,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.03451061539437028
+            }
+          ]
+        },
+        {
+          "cost": 26,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.06783024821384231
+            }
+          ]
+        },
+        {
+          "cost": 28,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.09999999999999998
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1650,
+        150
+      ],
+      "targetRounds": [
+        40,
+        70
+      ],
+      "grid": [
+        -11,
+        1
+      ],
+      "assetName": "Akıcı Kesim - 1"
+    },
+    {
+      "id": "Z5-B",
+      "name": "Akıcı Kesim - 2",
+      "guid": "890e9669ed4d863b413ee37f5e6d0959",
+      "prerequisites": [
+        {
+          "id": "Z5-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 53,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.03850028646172776
+            }
+          ]
+        },
+        {
+          "cost": 53,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.07551830086582034
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1500,
+        150
+      ],
+      "targetRounds": [
+        40,
+        70
+      ],
+      "grid": [
+        -10,
+        1
+      ],
+      "assetName": "Akıcı Kesim - 2"
+    },
+    {
+      "id": "Z5-C",
+      "name": "Akıcı Kesim - 3",
+      "guid": "2ee0102c5a67980e53e1d8efb2cff974",
+      "prerequisites": [
+        {
+          "id": "Z5-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 54,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.03850028646172776
+            }
+          ]
+        },
+        {
+          "cost": 106,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.08035860787295979
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1500,
+        -150
+      ],
+      "targetRounds": [
+        40,
+        70
+      ],
+      "grid": [
+        -10,
+        -1
+      ],
+      "assetName": "Akıcı Kesim - 3"
+    },
+    {
+      "id": "Z5-D",
+      "name": "Akıcı Kesim - 4",
+      "guid": "ce2d990483a08a1d1de14cdee9913109",
+      "prerequisites": [
+        {
+          "id": "Z5-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 106,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.04353440861380542
+            }
+          ]
+        },
+        {
+          "cost": 108,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.08517357249425717
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1650,
+        -150
+      ],
+      "targetRounds": [
+        40,
+        70
+      ],
+      "grid": [
+        -11,
+        -1
+      ],
+      "assetName": "Akıcı Kesim - 4"
+    },
+    {
+      "id": "Z6",
+      "name": "İlk Vazgeçiş",
+      "guid": "439dac0982bcea96009f10ed1c495416",
+      "prerequisites": [
+        {
+          "id": "Z3-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 100,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 19,
+              "target": 0,
+              "operation": 0,
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1200,
+        450
+      ],
+      "targetRounds": [
+        10,
+        20
+      ],
+      "grid": [
+        -8,
+        3
+      ],
+      "assetName": "İlk Vazgeçiş"
+    },
+    {
+      "id": "Z7",
+      "name": "İkinci Vazgeçiş",
+      "guid": "bad3fab9361b67eb847a3cbe6a2f8a3a",
+      "prerequisites": [
+        {
+          "id": "Z6",
+          "level": 1
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 160,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 19,
+              "target": 0,
+              "operation": 0,
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1650,
+        450
+      ],
+      "targetRounds": [
+        35,
+        55
+      ],
+      "grid": [
+        -11,
+        3
+      ],
+      "assetName": "İkinci Vazgeçiş"
+    },
+    {
+      "id": "Z8-A",
+      "name": "Son Vardiya - 1",
+      "guid": "dbe23106eec539c86bb1a00d339b4559",
+      "prerequisites": [
+        {
+          "id": "Z4-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 83,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 2
+            }
+          ]
+        },
+        {
+          "cost": 83,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 3
+            }
+          ]
+        },
+        {
+          "cost": 84,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 5
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1500,
+        -450
+      ],
+      "targetRounds": [
+        75,
+        110
+      ],
+      "grid": [
+        -10,
+        -3
+      ],
+      "assetName": "Son Vardiya - 1"
+    },
+    {
+      "id": "Z8-B",
+      "name": "Son Vardiya - 2",
+      "guid": "e1d853c37cdb2e662b31ba0b7684cb50",
+      "prerequisites": [
+        {
+          "id": "Z8-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 166,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 3
+            }
+          ]
+        },
+        {
+          "cost": 166,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 7
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1350,
+        -450
+      ],
+      "targetRounds": [
+        75,
+        110
+      ],
+      "grid": [
+        -9,
+        -3
+      ],
+      "assetName": "Son Vardiya - 2"
+    },
+    {
+      "id": "Z8-C",
+      "name": "Son Vardiya - 3",
+      "guid": "5d879c942d6cb524687946a5c6d1fdba",
+      "prerequisites": [
+        {
+          "id": "Z8-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 168,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 3
+            }
+          ]
+        },
+        {
+          "cost": 333,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 6
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1350,
+        -600
+      ],
+      "targetRounds": [
+        75,
+        110
+      ],
+      "grid": [
+        -9,
+        -4
+      ],
+      "assetName": "Son Vardiya - 3"
+    },
+    {
+      "id": "Z8-D",
+      "name": "Son Vardiya - 4",
+      "guid": "b5551628237f1a93c1da162d5cabfa18",
+      "prerequisites": [
+        {
+          "id": "Z8-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 333,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 4
+            }
+          ]
+        },
+        {
+          "cost": 334,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 14,
+              "target": 0,
+              "operation": 0,
+              "value": 7
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1500,
+        -600
+      ],
+      "targetRounds": [
+        75,
+        110
+      ],
+      "grid": [
+        -10,
+        -4
+      ],
+      "assetName": "Son Vardiya - 4"
+    },
+    {
+      "id": "Z9-A",
+      "name": "Geniş Tarama - 1",
+      "guid": "ad807a828679461c20a938641ad75915",
+      "prerequisites": [
+        {
+          "id": "Z3-A",
+          "level": 3
+        },
+        {
+          "id": "Z5-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 50,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 1,
+              "target": 1,
+              "operation": 1,
+              "value": 0.03333333333333333
+            }
+          ]
+        },
+        {
+          "cost": 50,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 1,
+              "target": 1,
+              "operation": 1,
+              "value": 0.06666666666666667
+            }
+          ]
+        },
+        {
+          "cost": 50,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 1,
+              "target": 1,
+              "operation": 1,
+              "value": 0.1
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -2100,
+        150
+      ],
+      "targetRounds": [
+        75,
+        100
+      ],
+      "grid": [
+        -14,
+        1
+      ],
+      "assetName": "Geniş Tarama - 1"
+    },
+    {
+      "id": "Z9-B",
+      "name": "Geniş Tarama - 2",
+      "guid": "c39ddf565475db4796bc83b1c3e8d342",
+      "prerequisites": [
+        {
+          "id": "Z9-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 100,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 1,
+              "target": 1,
+              "operation": 1,
+              "value": 0.03333333333333334
+            }
+          ]
+        },
+        {
+          "cost": 100,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 1,
+              "target": 1,
+              "operation": 1,
+              "value": 0.06666666666666668
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1950,
+        150
+      ],
+      "targetRounds": [
+        75,
+        100
+      ],
+      "grid": [
+        -13,
+        1
+      ],
+      "assetName": "Geniş Tarama - 2"
+    },
+    {
+      "id": "Z9-C",
+      "name": "Geniş Tarama - 3",
+      "guid": "f36240fcf471486b0ad1ca66716ff229",
+      "prerequisites": [
+        {
+          "id": "Z9-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 100,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 1,
+              "target": 1,
+              "operation": 1,
+              "value": 0.03333333333333332
+            }
+          ]
+        },
+        {
+          "cost": 200,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 1,
+              "target": 1,
+              "operation": 1,
+              "value": 0.06666666666666664
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1950,
+        -150
+      ],
+      "targetRounds": [
+        75,
+        100
+      ],
+      "grid": [
+        -13,
+        -1
+      ],
+      "assetName": "Geniş Tarama - 3"
+    },
+    {
+      "id": "Z9-D",
+      "name": "Geniş Tarama - 4",
+      "guid": "9e6b62413d68533290c5fcfc0c3eba7d",
+      "prerequisites": [
+        {
+          "id": "Z9-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 200,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 1,
+              "target": 1,
+              "operation": 1,
+              "value": 0.033333333333333354
+            }
+          ]
+        },
+        {
+          "cost": 200,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 1,
+              "target": 1,
+              "operation": 1,
+              "value": 0.06666666666666668
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -2100,
+        -150
+      ],
+      "targetRounds": [
+        75,
+        100
+      ],
+      "grid": [
+        -14,
+        -1
+      ],
+      "assetName": "Geniş Tarama - 4"
+    },
+    {
+      "id": "Z10-A",
+      "name": "Kart Sezgisi - 1",
+      "guid": "0ce0cafe4506f6377cfa3dc173e9bc57",
+      "prerequisites": [
+        {
+          "id": "Z7",
+          "level": 1
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 33,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 12,
+              "target": 5,
+              "operation": 0,
+              "value": 0.03333333333333333
+            }
+          ]
+        },
+        {
+          "cost": 33,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 12,
+              "target": 5,
+              "operation": 0,
+              "value": 0.06666666666666667
+            }
+          ]
+        },
+        {
+          "cost": 34,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 12,
+              "target": 5,
+              "operation": 0,
+              "value": 0.10000000000000002
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -2100,
+        600
+      ],
+      "targetRounds": [
+        50,
+        95
+      ],
+      "grid": [
+        -14,
+        4
+      ],
+      "assetName": "Kart Sezgisi - 1"
+    },
+    {
+      "id": "Z10-B",
+      "name": "Kart Sezgisi - 2",
+      "guid": "458cce6bba8b40ae67241fdf9d308bba",
+      "prerequisites": [
+        {
+          "id": "Z10-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 60,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 12,
+              "target": 5,
+              "operation": 0,
+              "value": 0.03333333333333331
+            }
+          ]
+        },
+        {
+          "cost": 60,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 12,
+              "target": 5,
+              "operation": 0,
+              "value": 0.06666666666666667
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1950,
+        600
+      ],
+      "targetRounds": [
+        50,
+        95
+      ],
+      "grid": [
+        -13,
+        4
+      ],
+      "assetName": "Kart Sezgisi - 2"
+    },
+    {
+      "id": "Z10-C",
+      "name": "Kart Sezgisi - 3",
+      "guid": "195e501b39c1c90a8df3653ef2bc9a13",
+      "prerequisites": [
+        {
+          "id": "Z10-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 60,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 12,
+              "target": 5,
+              "operation": 0,
+              "value": 0.033333333333333326
+            }
+          ]
+        },
+        {
+          "cost": 120,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 12,
+              "target": 5,
+              "operation": 0,
+              "value": 0.06666666666666665
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -1950,
+        450
+      ],
+      "targetRounds": [
+        50,
+        95
+      ],
+      "grid": [
+        -13,
+        3
+      ],
+      "assetName": "Kart Sezgisi - 3"
+    },
+    {
+      "id": "Z10-D",
+      "name": "Kart Sezgisi - 4",
+      "guid": "e00c2f6f81356e21de736f57ad84fc8f",
+      "prerequisites": [
+        {
+          "id": "Z10-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 120,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 12,
+              "target": 5,
+              "operation": 0,
+              "value": 0.033333333333333326
+            }
+          ]
+        },
+        {
+          "cost": 120,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 12,
+              "target": 5,
+              "operation": 0,
+              "value": 0.06666666666666665
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -2100,
+        450
+      ],
+      "targetRounds": [
+        50,
+        95
+      ],
+      "grid": [
+        -14,
+        3
+      ],
+      "assetName": "Kart Sezgisi - 4"
+    },
+    {
+      "id": "P1",
+      "name": "Grid Genişleme I",
+      "guid": "fbdd8846befc8adc2b0c929b0cfdf9c5",
+      "prerequisites": [],
+      "tiers": [
+        {
+          "cost": 140,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 13,
+              "target": 4,
+              "operation": 3,
+              "value": 5
+            }
+          ]
+        },
+        {
+          "cost": 280,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 13,
+              "target": 4,
+              "operation": 3,
+              "value": 7
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        0
+      ],
+      "targetRounds": [
+        8,
+        40
+      ],
+      "grid": [
+        1,
+        0
+      ],
+      "assetName": "Grid Genişleme I"
+    },
+    {
+      "id": "P2",
+      "name": "1×3 Saksı",
+      "guid": "971c1a63e1b77116d60ad45a988e2147",
+      "prerequisites": [
+        {
+          "id": "P1",
+          "level": 1
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 100,
+          "costType": 2,
+          "effects": []
+        }
+      ],
+      "unlockType": 5,
+      "layout": [
+        900,
+        300
+      ],
+      "targetRounds": [
+        8,
+        15
+      ],
+      "grid": [
+        6,
+        2
+      ],
+      "assetName": "1×3 Saksı"
+    },
+    {
+      "id": "P3",
+      "name": "Patlayıcı Kartlar",
+      "guid": "c128068e784a694c6523e59e20eee212",
+      "prerequisites": [
+        {
+          "id": "P2",
+          "level": 1
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 80,
+          "costType": 1,
+          "effects": []
+        }
+      ],
+      "unlockType": 3,
+      "layout": [
+        1200,
+        750
+      ],
+      "targetRounds": [
+        15,
+        25
+      ],
+      "grid": [
+        8,
+        5
+      ],
+      "assetName": "Patlayıcı Kartlar"
+    },
+    {
+      "id": "P5",
+      "name": "2×2 Saksı",
+      "guid": "642040688339bafedd83e53da071b262",
+      "prerequisites": [
+        {
+          "id": "P2",
+          "level": 1
+        },
+        {
+          "id": "P1",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 160,
+          "costType": 1,
+          "effects": []
+        }
+      ],
+      "unlockType": 1,
+      "layout": [
+        900,
+        -300
+      ],
+      "targetRounds": [
+        25,
+        40
+      ],
+      "grid": [
+        6,
+        -2
+      ],
+      "assetName": "2×2 Saksı"
+    },
+    {
+      "id": "P6",
+      "name": "Çifte Hasat Kartları",
+      "guid": "664bbf2893d99100a435e5aaf2773417",
+      "prerequisites": [
+        {
+          "id": "P5",
+          "level": 1
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 240,
+          "costType": 1,
+          "effects": []
+        }
+      ],
+      "unlockType": 4,
+      "layout": [
+        1350,
+        0
+      ],
+      "targetRounds": [
+        40,
+        55
+      ],
+      "grid": [
+        9,
+        0
+      ],
+      "assetName": "Çifte Hasat Kartları"
+    },
+    {
+      "id": "P7",
+      "name": "Grid Genişleme II",
+      "guid": "483b37fe83ba37164521ed30155e8885",
+      "prerequisites": [
+        {
+          "id": "P1",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 600,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 13,
+              "target": 4,
+              "operation": 3,
+              "value": 9
+            }
+          ]
+        },
+        {
+          "cost": 1950,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 13,
+              "target": 4,
+              "operation": 3,
+              "value": 11
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        1650,
+        300
+      ],
+      "targetRounds": [
+        60,
+        100
+      ],
+      "grid": [
+        11,
+        2
+      ],
+      "assetName": "Grid Genişleme II"
+    },
+    {
+      "id": "P8",
+      "name": "2×3 Saksı",
+      "guid": "f4fbbe9c9e14f7f44dcadf7499fb5d09",
+      "prerequisites": [
+        {
+          "id": "P5",
+          "level": 1
+        },
+        {
+          "id": "P7",
+          "level": 1
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 350,
+          "costType": 0,
+          "effects": []
+        }
+      ],
+      "unlockType": 2,
+      "layout": [
+        1350,
+        -450
+      ],
+      "targetRounds": [
+        60,
+        75
+      ],
+      "grid": [
+        9,
+        -3
+      ],
+      "assetName": "2×3 Saksı"
+    },
+    {
+      "id": "E1-A",
+      "name": "Altın Hasat I - 1",
+      "guid": "1c8e0545ebda74cadde1ab0ceb979551",
+      "prerequisites": [],
+      "tiers": [
+        {
+          "cost": 5,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 7,
+              "target": 2,
+              "operation": 1,
+              "value": 0.03333333333333333
+            }
+          ]
+        },
+        {
+          "cost": 5,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 7,
+              "target": 2,
+              "operation": 1,
+              "value": 0.06666666666666667
+            }
+          ]
+        },
+        {
+          "cost": 5,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 7,
+              "target": 2,
+              "operation": 1,
+              "value": 0.1
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        0,
+        -150
+      ],
+      "targetRounds": [
+        1,
+        12
+      ],
+      "grid": [
+        0,
+        -1
+      ],
+      "assetName": "Altın Hasat I - 1"
+    },
+    {
+      "id": "E1-B",
+      "name": "Altın Hasat I - 2",
+      "guid": "a591a1a87786bf81a3328727694752e0",
+      "prerequisites": [
+        {
+          "id": "E1-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 10,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 7,
+              "target": 2,
+              "operation": 1,
+              "value": 0.03333333333333334
+            }
+          ]
+        },
+        {
+          "cost": 10,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 7,
+              "target": 2,
+              "operation": 1,
+              "value": 0.06666666666666668
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        -450
+      ],
+      "targetRounds": [
+        1,
+        12
+      ],
+      "grid": [
+        1,
+        -3
+      ],
+      "assetName": "Altın Hasat I - 2"
+    },
+    {
+      "id": "E1-C",
+      "name": "Altın Hasat I - 3",
+      "guid": "077d03cd23d171133a2f451b5f47d045",
+      "prerequisites": [
+        {
+          "id": "E1-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 10,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 7,
+              "target": 2,
+              "operation": 1,
+              "value": 0.03333333333333332
+            }
+          ]
+        },
+        {
+          "cost": 20,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 7,
+              "target": 2,
+              "operation": 1,
+              "value": 0.06666666666666664
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        -600
+      ],
+      "targetRounds": [
+        1,
+        12
+      ],
+      "grid": [
+        1,
+        -4
+      ],
+      "assetName": "Altın Hasat I - 3"
+    },
+    {
+      "id": "E1-D",
+      "name": "Altın Hasat I - 4",
+      "guid": "cec91f77512a34a2dd5771cad3a71faf",
+      "prerequisites": [
+        {
+          "id": "E1-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 20,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 7,
+              "target": 2,
+              "operation": 1,
+              "value": 0.033333333333333354
+            }
+          ]
+        },
+        {
+          "cost": 20,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 7,
+              "target": 2,
+              "operation": 1,
+              "value": 0.06666666666666668
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -150,
+        -600
+      ],
+      "targetRounds": [
+        1,
+        12
+      ],
+      "grid": [
+        -1,
+        -4
+      ],
+      "assetName": "Altın Hasat I - 4"
+    },
+    {
+      "id": "E2-A",
+      "name": "Düzenli Üretim - 1",
+      "guid": "6d73e58316e88efc1e25ee97b0a6bee1",
+      "prerequisites": [
+        {
+          "id": "E1-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 10,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.016952427508441503
+            }
+          ]
+        },
+        {
+          "cost": 10,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.03361747021845407
+            }
+          ]
+        },
+        {
+          "cost": 10,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.050000000000000044
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        450,
+        -600
+      ],
+      "targetRounds": [
+        8,
+        20
+      ],
+      "grid": [
+        3,
+        -4
+      ],
+      "assetName": "Düzenli Üretim - 1"
+    },
+    {
+      "id": "E2-B",
+      "name": "Düzenli Üretim - 2",
+      "guid": "9dd73012be87bedeb8e8e527282fe4a2",
+      "prerequisites": [
+        {
+          "id": "E2-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 20,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.017860974765877335
+            }
+          ]
+        },
+        {
+          "cost": 20,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.03540293511216741
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        600,
+        -600
+      ],
+      "targetRounds": [
+        8,
+        20
+      ],
+      "grid": [
+        4,
+        -4
+      ],
+      "assetName": "Düzenli Üretim - 2"
+    },
+    {
+      "id": "E2-C",
+      "name": "Düzenli Üretim - 3",
+      "guid": "1d7610a94d93208e8ecddf26f7e37864",
+      "prerequisites": [
+        {
+          "id": "E2-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 20,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.017860974765877335
+            }
+          ]
+        },
+        {
+          "cost": 40,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.0363963416490265
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        600,
+        -900
+      ],
+      "targetRounds": [
+        8,
+        20
+      ],
+      "grid": [
+        4,
+        -6
+      ],
+      "assetName": "Düzenli Üretim - 3"
+    },
+    {
+      "id": "E2-D",
+      "name": "Düzenli Üretim - 4",
+      "guid": "5799a890235a8fc1af98628bc1d99851",
+      "prerequisites": [
+        {
+          "id": "E2-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 40,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.018872447186110586
+            }
+          ]
+        },
+        {
+          "cost": 40,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.0373887251094287
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        450,
+        -900
+      ],
+      "targetRounds": [
+        8,
+        20
+      ],
+      "grid": [
+        3,
+        -6
+      ],
+      "assetName": "Düzenli Üretim - 4"
+    },
+    {
+      "id": "E3-A",
+      "name": "Demir Hasat - 1",
+      "guid": "e155aac01642e6040217f3a41971f291",
+      "prerequisites": [
+        {
+          "id": "E1-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 13,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 8,
+              "target": 2,
+              "operation": 1,
+              "value": 0.05
+            }
+          ]
+        },
+        {
+          "cost": 13,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 8,
+              "target": 2,
+              "operation": 1,
+              "value": 0.1
+            }
+          ]
+        },
+        {
+          "cost": 14,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 8,
+              "target": 2,
+              "operation": 1,
+              "value": 0.15
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -150,
+        -750
+      ],
+      "targetRounds": [
+        15,
+        40
+      ],
+      "grid": [
+        -1,
+        -5
+      ],
+      "assetName": "Demir Hasat - 1"
+    },
+    {
+      "id": "E3-B",
+      "name": "Demir Hasat - 2",
+      "guid": "8721b8c3a72c6ccbc46dbef798ee354e",
+      "prerequisites": [
+        {
+          "id": "E3-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 26,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 8,
+              "target": 2,
+              "operation": 1,
+              "value": 0.05
+            }
+          ]
+        },
+        {
+          "cost": 26,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 8,
+              "target": 2,
+              "operation": 1,
+              "value": 0.1
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        -750
+      ],
+      "targetRounds": [
+        15,
+        40
+      ],
+      "grid": [
+        1,
+        -5
+      ],
+      "assetName": "Demir Hasat - 2"
+    },
+    {
+      "id": "E3-C",
+      "name": "Demir Hasat - 3",
+      "guid": "ebea5345790d15d5ce96dbb92a6e0b68",
+      "prerequisites": [
+        {
+          "id": "E3-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 28,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 8,
+              "target": 2,
+              "operation": 1,
+              "value": 0.05
+            }
+          ]
+        },
+        {
+          "cost": 53,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 8,
+              "target": 2,
+              "operation": 1,
+              "value": 0.11666666666666664
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        -900
+      ],
+      "targetRounds": [
+        15,
+        40
+      ],
+      "grid": [
+        1,
+        -6
+      ],
+      "assetName": "Demir Hasat - 3"
+    },
+    {
+      "id": "E3-D",
+      "name": "Demir Hasat - 4",
+      "guid": "dc9c6c048cd65d8726df6682f8c888ed",
+      "prerequisites": [
+        {
+          "id": "E3-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 53,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 8,
+              "target": 2,
+              "operation": 1,
+              "value": 0.06666666666666671
+            }
+          ]
+        },
+        {
+          "cost": 54,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 8,
+              "target": 2,
+              "operation": 1,
+              "value": 0.13333333333333336
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -150,
+        -900
+      ],
+      "targetRounds": [
+        15,
+        40
+      ],
+      "grid": [
+        -1,
+        -6
+      ],
+      "assetName": "Demir Hasat - 4"
+    },
+    {
+      "id": "E4-A",
+      "name": "Altın Hasat II - 1",
+      "guid": "90a23fdc9db0dac994b25a9b5b17dea6",
+      "prerequisites": [
+        {
+          "id": "E3-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 33,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 7,
+              "target": 2,
+              "operation": 1,
+              "value": 0.06666666666666667
+            }
+          ]
+        },
+        {
+          "cost": 33,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 7,
+              "target": 2,
+              "operation": 1,
+              "value": 0.13333333333333333
+            }
+          ]
+        },
+        {
+          "cost": 34,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 7,
+              "target": 2,
+              "operation": 1,
+              "value": 0.2
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -600,
+        -1200
+      ],
+      "targetRounds": [
+        35,
+        65
+      ],
+      "grid": [
+        -4,
+        -8
+      ],
+      "assetName": "Altın Hasat II - 1"
+    },
+    {
+      "id": "E4-B",
+      "name": "Altın Hasat II - 2",
+      "guid": "3b4f69245adecdf9f21998d1e6cf9a30",
+      "prerequisites": [
+        {
+          "id": "E4-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 66,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 7,
+              "target": 2,
+              "operation": 1,
+              "value": 0.06666666666666668
+            }
+          ]
+        },
+        {
+          "cost": 66,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 7,
+              "target": 2,
+              "operation": 1,
+              "value": 0.13333333333333336
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -300,
+        -1200
+      ],
+      "targetRounds": [
+        35,
+        65
+      ],
+      "grid": [
+        -2,
+        -8
+      ],
+      "assetName": "Altın Hasat II - 2"
+    },
+    {
+      "id": "E4-C",
+      "name": "Altın Hasat II - 3",
+      "guid": "5cf283d6eb8a0eb5fbb02c7af734bffc",
+      "prerequisites": [
+        {
+          "id": "E4-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 68,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 7,
+              "target": 2,
+              "operation": 1,
+              "value": 0.06666666666666664
+            }
+          ]
+        },
+        {
+          "cost": 133,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 7,
+              "target": 2,
+              "operation": 1,
+              "value": 0.16666666666666663
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -300,
+        -1350
+      ],
+      "targetRounds": [
+        35,
+        65
+      ],
+      "grid": [
+        -2,
+        -9
+      ],
+      "assetName": "Altın Hasat II - 3"
+    },
+    {
+      "id": "E4-D",
+      "name": "Altın Hasat II - 4",
+      "guid": "fed3d9bb87b84315f6009d827468458f",
+      "prerequisites": [
+        {
+          "id": "E4-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 133,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 7,
+              "target": 2,
+              "operation": 1,
+              "value": 0.1
+            }
+          ]
+        },
+        {
+          "cost": 134,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 7,
+              "target": 2,
+              "operation": 1,
+              "value": 0.2
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -600,
+        -1350
+      ],
+      "targetRounds": [
+        35,
+        65
+      ],
+      "grid": [
+        -4,
+        -9
+      ],
+      "assetName": "Altın Hasat II - 4"
+    },
+    {
+      "id": "E5-A",
+      "name": "Taş Hasat - 1",
+      "guid": "ed55221d13b89dcc87a279a56a2f1b21",
+      "prerequisites": [
+        {
+          "id": "E3-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 26,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 9,
+              "target": 2,
+              "operation": 1,
+              "value": 0.05
+            }
+          ]
+        },
+        {
+          "cost": 26,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 9,
+              "target": 2,
+              "operation": 1,
+              "value": 0.1
+            }
+          ]
+        },
+        {
+          "cost": 28,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 9,
+              "target": 2,
+              "operation": 1,
+              "value": 0.15
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -150,
+        -1200
+      ],
+      "targetRounds": [
+        50,
+        80
+      ],
+      "grid": [
+        -1,
+        -8
+      ],
+      "assetName": "Taş Hasat - 1"
+    },
+    {
+      "id": "E5-B",
+      "name": "Taş Hasat - 2",
+      "guid": "5f0544ee546fed55e6c1c0be48f0c84a",
+      "prerequisites": [
+        {
+          "id": "E5-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 53,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 9,
+              "target": 2,
+              "operation": 1,
+              "value": 0.05
+            }
+          ]
+        },
+        {
+          "cost": 53,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 9,
+              "target": 2,
+              "operation": 1,
+              "value": 0.1
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        -1200
+      ],
+      "targetRounds": [
+        50,
+        80
+      ],
+      "grid": [
+        1,
+        -8
+      ],
+      "assetName": "Taş Hasat - 2"
+    },
+    {
+      "id": "E5-C",
+      "name": "Taş Hasat - 3",
+      "guid": "0a66c29a8afdefc3ef9dbca69636277d",
+      "prerequisites": [
+        {
+          "id": "E5-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 54,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 9,
+              "target": 2,
+              "operation": 1,
+              "value": 0.05
+            }
+          ]
+        },
+        {
+          "cost": 106,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 9,
+              "target": 2,
+              "operation": 1,
+              "value": 0.11666666666666664
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        -1350
+      ],
+      "targetRounds": [
+        50,
+        80
+      ],
+      "grid": [
+        1,
+        -9
+      ],
+      "assetName": "Taş Hasat - 3"
+    },
+    {
+      "id": "E5-D",
+      "name": "Taş Hasat - 4",
+      "guid": "be5d3f70ef9f58bac5742f51478b543d",
+      "prerequisites": [
+        {
+          "id": "E5-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 106,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 9,
+              "target": 2,
+              "operation": 1,
+              "value": 0.06666666666666671
+            }
+          ]
+        },
+        {
+          "cost": 108,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 9,
+              "target": 2,
+              "operation": 1,
+              "value": 0.13333333333333336
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -150,
+        -1350
+      ],
+      "targetRounds": [
+        50,
+        80
+      ],
+      "grid": [
+        -1,
+        -9
+      ],
+      "assetName": "Taş Hasat - 4"
+    },
+    {
+      "id": "E6-A",
+      "name": "Hasat Deneyimi I - 1",
+      "guid": "1b4b9b28878709d984edfeb4fe3476b8",
+      "prerequisites": [
+        {
+          "id": "E2-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 16,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 10,
+              "target": 2,
+              "operation": 1,
+              "value": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "cost": 16,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 10,
+              "target": 2,
+              "operation": 1,
+              "value": 0.03333333333333333
+            }
+          ]
+        },
+        {
+          "cost": 18,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 10,
+              "target": 2,
+              "operation": 1,
+              "value": 0.05
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        900,
+        -900
+      ],
+      "targetRounds": [
+        15,
+        35
+      ],
+      "grid": [
+        6,
+        -6
+      ],
+      "assetName": "Hasat Deneyimi I - 1"
+    },
+    {
+      "id": "E6-B",
+      "name": "Hasat Deneyimi I - 2",
+      "guid": "ab2b4d7bc66a53d03cc86c3f688f6fc5",
+      "prerequisites": [
+        {
+          "id": "E6-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 33,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 10,
+              "target": 2,
+              "operation": 1,
+              "value": 0.01666666666666667
+            }
+          ]
+        },
+        {
+          "cost": 33,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 10,
+              "target": 2,
+              "operation": 1,
+              "value": 0.03333333333333334
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        1050,
+        -900
+      ],
+      "targetRounds": [
+        15,
+        35
+      ],
+      "grid": [
+        7,
+        -6
+      ],
+      "assetName": "Hasat Deneyimi I - 2"
+    },
+    {
+      "id": "E6-C",
+      "name": "Hasat Deneyimi I - 3",
+      "guid": "c843add3bb2af4ff6835538eb29a48ec",
+      "prerequisites": [
+        {
+          "id": "E6-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 34,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 10,
+              "target": 2,
+              "operation": 1,
+              "value": 0.01666666666666666
+            }
+          ]
+        },
+        {
+          "cost": 66,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 10,
+              "target": 2,
+              "operation": 1,
+              "value": 0.05
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        1050,
+        -1050
+      ],
+      "targetRounds": [
+        15,
+        35
+      ],
+      "grid": [
+        7,
+        -7
+      ],
+      "assetName": "Hasat Deneyimi I - 3"
+    },
+    {
+      "id": "E6-D",
+      "name": "Hasat Deneyimi I - 4",
+      "guid": "7d6a4a680004420da58d8db4cda07e20",
+      "prerequisites": [
+        {
+          "id": "E6-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 66,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 10,
+              "target": 2,
+              "operation": 1,
+              "value": 0.03333333333333334
+            }
+          ]
+        },
+        {
+          "cost": 68,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 10,
+              "target": 2,
+              "operation": 1,
+              "value": 0.06666666666666667
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        900,
+        -1050
+      ],
+      "targetRounds": [
+        15,
+        35
+      ],
+      "grid": [
+        6,
+        -7
+      ],
+      "assetName": "Hasat Deneyimi I - 4"
+    },
+    {
+      "id": "E7-A",
+      "name": "Verimli Üretim - 1",
+      "guid": "5b719351d2da89ed373a48ed9f9d69ba",
+      "prerequisites": [
+        {
+          "id": "E2-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 40,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.016952427508441503
+            }
+          ]
+        },
+        {
+          "cost": 40,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.03361747021845407
+            }
+          ]
+        },
+        {
+          "cost": 40,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.050000000000000044
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        450,
+        -1200
+      ],
+      "targetRounds": [
+        45,
+        75
+      ],
+      "grid": [
+        3,
+        -8
+      ],
+      "assetName": "Verimli Üretim - 1"
+    },
+    {
+      "id": "E7-B",
+      "name": "Verimli Üretim - 2",
+      "guid": "d5148b5a3878bf10b0b70d97fdbdc9d7",
+      "prerequisites": [
+        {
+          "id": "E7-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 80,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.017860974765877335
+            }
+          ]
+        },
+        {
+          "cost": 80,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.03540293511216741
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        600,
+        -1200
+      ],
+      "targetRounds": [
+        45,
+        75
+      ],
+      "grid": [
+        4,
+        -8
+      ],
+      "assetName": "Verimli Üretim - 2"
+    },
+    {
+      "id": "E7-C",
+      "name": "Verimli Üretim - 3",
+      "guid": "7ae54cdd1e8658af06c1bf0904c77e12",
+      "prerequisites": [
+        {
+          "id": "E7-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 80,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.017860974765877335
+            }
+          ]
+        },
+        {
+          "cost": 160,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.0363963416490265
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        600,
+        -1350
+      ],
+      "targetRounds": [
+        45,
+        75
+      ],
+      "grid": [
+        4,
+        -9
+      ],
+      "assetName": "Verimli Üretim - 3"
+    },
+    {
+      "id": "E7-D",
+      "name": "Verimli Üretim - 4",
+      "guid": "432e28c2288457c10243f366fee11f54",
+      "prerequisites": [
+        {
+          "id": "E7-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 160,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.018872447186110586
+            }
+          ]
+        },
+        {
+          "cost": 160,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.0373887251094287
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        450,
+        -1350
+      ],
+      "targetRounds": [
+        45,
+        75
+      ],
+      "grid": [
+        3,
+        -9
+      ],
+      "assetName": "Verimli Üretim - 4"
+    },
+    {
+      "id": "E8-A",
+      "name": "Zengin Cevher - 1",
+      "guid": "93ddbf9ba439d1d175ee8416cadc4920",
+      "prerequisites": [
+        {
+          "id": "E5-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 83,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 8,
+              "target": 2,
+              "operation": 1,
+              "value": 0.03333333333333333
+            },
+            {
+              "statType": 9,
+              "target": 2,
+              "operation": 1,
+              "value": 0.03333333333333333
+            }
+          ]
+        },
+        {
+          "cost": 83,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 8,
+              "target": 2,
+              "operation": 1,
+              "value": 0.06666666666666667
+            },
+            {
+              "statType": 9,
+              "target": 2,
+              "operation": 1,
+              "value": 0.06666666666666667
+            }
+          ]
+        },
+        {
+          "cost": 84,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 8,
+              "target": 2,
+              "operation": 1,
+              "value": 0.1
+            },
+            {
+              "statType": 9,
+              "target": 2,
+              "operation": 1,
+              "value": 0.1
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -150,
+        -1500
+      ],
+      "targetRounds": [
+        80,
+        110
+      ],
+      "grid": [
+        -1,
+        -10
+      ],
+      "assetName": "Zengin Cevher - 1"
+    },
+    {
+      "id": "E8-B",
+      "name": "Zengin Cevher - 2",
+      "guid": "240de3f3d23f6546d63a974f38c10425",
+      "prerequisites": [
+        {
+          "id": "E8-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 166,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 8,
+              "target": 2,
+              "operation": 1,
+              "value": 0.05
+            },
+            {
+              "statType": 9,
+              "target": 2,
+              "operation": 1,
+              "value": 0.05
+            }
+          ]
+        },
+        {
+          "cost": 166,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 8,
+              "target": 2,
+              "operation": 1,
+              "value": 0.1
+            },
+            {
+              "statType": 9,
+              "target": 2,
+              "operation": 1,
+              "value": 0.1
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        -1500
+      ],
+      "targetRounds": [
+        80,
+        110
+      ],
+      "grid": [
+        1,
+        -10
+      ],
+      "assetName": "Zengin Cevher - 2"
+    },
+    {
+      "id": "E8-C",
+      "name": "Zengin Cevher - 3",
+      "guid": "454d261f965217b3bbe11f54cb48ac0e",
+      "prerequisites": [
+        {
+          "id": "E8-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 168,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 8,
+              "target": 2,
+              "operation": 1,
+              "value": 0.05
+            },
+            {
+              "statType": 9,
+              "target": 2,
+              "operation": 1,
+              "value": 0.05
+            }
+          ]
+        },
+        {
+          "cost": 333,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 8,
+              "target": 2,
+              "operation": 1,
+              "value": 0.13333333333333336
+            },
+            {
+              "statType": 9,
+              "target": 2,
+              "operation": 1,
+              "value": 0.13333333333333336
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        -1800
+      ],
+      "targetRounds": [
+        80,
+        110
+      ],
+      "grid": [
+        1,
+        -12
+      ],
+      "assetName": "Zengin Cevher - 3"
+    },
+    {
+      "id": "E8-D",
+      "name": "Zengin Cevher - 4",
+      "guid": "1fb057d18be44a022ddf86f28e3c3036",
+      "prerequisites": [
+        {
+          "id": "E8-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 333,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 8,
+              "target": 2,
+              "operation": 1,
+              "value": 0.08333333333333336
+            },
+            {
+              "statType": 9,
+              "target": 2,
+              "operation": 1,
+              "value": 0.08333333333333336
+            }
+          ]
+        },
+        {
+          "cost": 334,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 8,
+              "target": 2,
+              "operation": 1,
+              "value": 0.16666666666666663
+            },
+            {
+              "statType": 9,
+              "target": 2,
+              "operation": 1,
+              "value": 0.16666666666666663
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -150,
+        -1800
+      ],
+      "targetRounds": [
+        80,
+        110
+      ],
+      "grid": [
+        -1,
+        -12
+      ],
+      "assetName": "Zengin Cevher - 4"
+    },
+    {
+      "id": "E9-A",
+      "name": "Nadir Filizler - 1",
+      "guid": "cb3dbdf3a12e8d9edea9e82240581847",
+      "prerequisites": [
+        {
+          "id": "E7-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 50,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 6,
+              "target": 2,
+              "operation": 0,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "cost": 50,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 6,
+              "target": 2,
+              "operation": 0,
+              "value": 2
+            }
+          ]
+        },
+        {
+          "cost": 50,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 6,
+              "target": 2,
+              "operation": 0,
+              "value": 3
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        450,
+        -1650
+      ],
+      "targetRounds": [
+        55,
+        95
+      ],
+      "grid": [
+        3,
+        -11
+      ],
+      "assetName": "Nadir Filizler - 1"
+    },
+    {
+      "id": "E9-B",
+      "name": "Nadir Filizler - 2",
+      "guid": "ce2c76882d3a63479f5fabdf8a6e0a03",
+      "prerequisites": [
+        {
+          "id": "E9-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 83,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 6,
+              "target": 2,
+              "operation": 0,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "cost": 83,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 6,
+              "target": 2,
+              "operation": 0,
+              "value": 2
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        600,
+        -1650
+      ],
+      "targetRounds": [
+        55,
+        95
+      ],
+      "grid": [
+        4,
+        -11
+      ],
+      "assetName": "Nadir Filizler - 2"
+    },
+    {
+      "id": "E9-C",
+      "name": "Nadir Filizler - 3",
+      "guid": "1a20bed1106e8be7a407321d740cc41e",
+      "prerequisites": [
+        {
+          "id": "E9-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 84,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 6,
+              "target": 2,
+              "operation": 0,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "cost": 166,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 6,
+              "target": 2,
+              "operation": 0,
+              "value": 2.333333333333333
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        600,
+        -1800
+      ],
+      "targetRounds": [
+        55,
+        95
+      ],
+      "grid": [
+        4,
+        -12
+      ],
+      "assetName": "Nadir Filizler - 3"
+    },
+    {
+      "id": "E9-D",
+      "name": "Nadir Filizler - 4",
+      "guid": "b9012a7255a103f327502b515fe14d21",
+      "prerequisites": [
+        {
+          "id": "E9-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 166,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 6,
+              "target": 2,
+              "operation": 0,
+              "value": 1.333333333333333
+            }
+          ]
+        },
+        {
+          "cost": 168,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 6,
+              "target": 2,
+              "operation": 0,
+              "value": 2.666666666666667
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        450,
+        -1800
+      ],
+      "targetRounds": [
+        55,
+        95
+      ],
+      "grid": [
+        3,
+        -12
+      ],
+      "assetName": "Nadir Filizler - 4"
+    },
+    {
+      "id": "E10-A",
+      "name": "Hasat Deneyimi II - 1",
+      "guid": "68858ae303ddbf89c00d52a049e26210",
+      "prerequisites": [
+        {
+          "id": "E6-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 66,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 10,
+              "target": 2,
+              "operation": 1,
+              "value": 0.03333333333333333
+            }
+          ]
+        },
+        {
+          "cost": 66,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 10,
+              "target": 2,
+              "operation": 1,
+              "value": 0.06666666666666667
+            }
+          ]
+        },
+        {
+          "cost": 68,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 10,
+              "target": 2,
+              "operation": 1,
+              "value": 0.1
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        900,
+        -1500
+      ],
+      "targetRounds": [
+        85,
+        115
+      ],
+      "grid": [
+        6,
+        -10
+      ],
+      "assetName": "Hasat Deneyimi II - 1"
+    },
+    {
+      "id": "E10-B",
+      "name": "Hasat Deneyimi II - 2",
+      "guid": "37a592fcc3924f11c60d497b5b7868a2",
+      "prerequisites": [
+        {
+          "id": "E10-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 133,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 10,
+              "target": 2,
+              "operation": 1,
+              "value": 0.03333333333333334
+            }
+          ]
+        },
+        {
+          "cost": 133,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 10,
+              "target": 2,
+              "operation": 1,
+              "value": 0.06666666666666668
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        1050,
+        -1500
+      ],
+      "targetRounds": [
+        85,
+        115
+      ],
+      "grid": [
+        7,
+        -10
+      ],
+      "assetName": "Hasat Deneyimi II - 2"
+    },
+    {
+      "id": "E10-C",
+      "name": "Hasat Deneyimi II - 3",
+      "guid": "7fa9e40730325844a881b06b7a767066",
+      "prerequisites": [
+        {
+          "id": "E10-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 134,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 10,
+              "target": 2,
+              "operation": 1,
+              "value": 0.03333333333333332
+            }
+          ]
+        },
+        {
+          "cost": 266,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 10,
+              "target": 2,
+              "operation": 1,
+              "value": 0.06666666666666664
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        1050,
+        -1650
+      ],
+      "targetRounds": [
+        85,
+        115
+      ],
+      "grid": [
+        7,
+        -11
+      ],
+      "assetName": "Hasat Deneyimi II - 3"
+    },
+    {
+      "id": "E10-D",
+      "name": "Hasat Deneyimi II - 4",
+      "guid": "a6944b7966494e4845c47b5e60a82eb0",
+      "prerequisites": [
+        {
+          "id": "E10-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 266,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 10,
+              "target": 2,
+              "operation": 1,
+              "value": 0.033333333333333354
+            }
+          ]
+        },
+        {
+          "cost": 268,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 10,
+              "target": 2,
+              "operation": 1,
+              "value": 0.06666666666666668
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        900,
+        -1650
+      ],
+      "targetRounds": [
+        85,
+        115
+      ],
+      "grid": [
+        6,
+        -11
+      ],
+      "assetName": "Hasat Deneyimi II - 4"
+    },
+    {
+      "id": "E11-A",
+      "name": "Hasat Rekoru - 1",
+      "guid": "1dd32852f7630279bddd60dd005c2cf6",
+      "prerequisites": [
+        {
+          "id": "E8-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 133,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 11,
+              "target": 2,
+              "operation": 1,
+              "value": 0.08333333333333334
+            }
+          ]
+        },
+        {
+          "cost": 133,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 11,
+              "target": 2,
+              "operation": 1,
+              "value": 0.16666666666666669
+            }
+          ]
+        },
+        {
+          "cost": 134,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 11,
+              "target": 2,
+              "operation": 1,
+              "value": 0.25
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -150,
+        -1950
+      ],
+      "targetRounds": [
+        100,
+        130
+      ],
+      "grid": [
+        -1,
+        -13
+      ],
+      "assetName": "Hasat Rekoru - 1"
+    },
+    {
+      "id": "E11-B",
+      "name": "Hasat Rekoru - 2",
+      "guid": "42447debd47f77ed834cc6cd1da59b8f",
+      "prerequisites": [
+        {
+          "id": "E11-A",
+          "level": 3
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 266,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 11,
+              "target": 2,
+              "operation": 1,
+              "value": 0.08333333333333336
+            }
+          ]
+        },
+        {
+          "cost": 266,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 11,
+              "target": 2,
+              "operation": 1,
+              "value": 0.1666666666666667
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        -1950
+      ],
+      "targetRounds": [
+        100,
+        130
+      ],
+      "grid": [
+        1,
+        -13
+      ],
+      "assetName": "Hasat Rekoru - 2"
+    },
+    {
+      "id": "E11-C",
+      "name": "Hasat Rekoru - 3",
+      "guid": "60e42cbab9525a2b300b8ae17d50e454",
+      "prerequisites": [
+        {
+          "id": "E11-B",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 268,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 11,
+              "target": 2,
+              "operation": 1,
+              "value": 0.08333333333333329
+            }
+          ]
+        },
+        {
+          "cost": 533,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 11,
+              "target": 2,
+              "operation": 1,
+              "value": 0.25
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        150,
+        -2100
+      ],
+      "targetRounds": [
+        100,
+        130
+      ],
+      "grid": [
+        1,
+        -14
+      ],
+      "assetName": "Hasat Rekoru - 3"
+    },
+    {
+      "id": "E11-D",
+      "name": "Hasat Rekoru - 4",
+      "guid": "a2fa85499675ddf5199c4f3692653ee3",
+      "prerequisites": [
+        {
+          "id": "E11-C",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 533,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 11,
+              "target": 2,
+              "operation": 1,
+              "value": 0.1666666666666667
+            }
+          ]
+        },
+        {
+          "cost": 534,
+          "costType": 0,
+          "effects": [
+            {
+              "statType": 11,
+              "target": 2,
+              "operation": 1,
+              "value": 0.33333333333333326
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "layout": [
+        -150,
+        -2100
+      ],
+      "targetRounds": [
+        100,
+        130
+      ],
+      "grid": [
+        -1,
+        -14
+      ],
+      "assetName": "Hasat Rekoru - 4"
+    }
+  ]
+}

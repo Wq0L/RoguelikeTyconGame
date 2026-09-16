@@ -81,6 +81,7 @@ public class PlacementManager : MonoBehaviour
 
     public void StartPlacement(PlanterSO planterData)
     {
+        if (planterData == null || !planterData.IsUnlocked) return;
         if (GameManager.Instance.CurrentState == GameStates.Placing)
         {
             Debug.Log("Önce mevcut yerleştirmeyi iptal et.");

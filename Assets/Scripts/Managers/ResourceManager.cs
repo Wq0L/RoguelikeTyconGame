@@ -23,7 +23,9 @@ public class ResourceManager : MonoBehaviour
             resources[type] = 0;
         }
 
-        resources[ResourceType.Gold] = 1000;
+        resources[ResourceType.Gold] = 80000;
+        resources[ResourceType.Iron] = 80000;
+        resources[ResourceType.Stone] = 80000;
 
     }
 

@@ -189,8 +189,8 @@ public class PlanterShopPanelUI : MonoBehaviour
         foreach (Card card in cards)
         {
             bool configured = card.data != null && card.data.prefab != null;
-            card.button.interactable = configured;
-            card.price.text = configured ? $"{card.data.cost} {card.data.costType}" : "Not configured";
+            card.button.interactable = configured && card.data.IsUnlocked;
+            card.price.text = configured ? card.data.IsUnlocked ? $"{card.data.cost} {card.data.costType}" : "SKILL TREE: KİLİTLİ" : "Not configured";
         }
         if (selectedIndex < 0) { buyButton.interactable = false; return; }
         PlanterSO data = cards[selectedIndex].data;
@@ -210,7 +210,7 @@ public class PlanterShopPanelUI : MonoBehaviour
         bool valid = data.prefab != null && data.sizeX > 0 && data.sizeZ > 0 && data.cost >= 0
             && data.prefab.GetComponent<PlanterBrain>() != null;
         bool affordable = resources != null && balance >= data.cost;
-        buyButton.interactable = valid && affordable && !animating;
+        buyButton.interactable = valid && data.IsUnlocked && affordable && !animating;
         buyLabel.text = $"BUY  /  {data.cost} {data.costType}";
         status.text = !valid ? "Planter setup is incomplete."
             : affordable ? $"Available: {balance} {data.costType}"
