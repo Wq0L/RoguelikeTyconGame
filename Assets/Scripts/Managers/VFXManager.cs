@@ -85,9 +85,16 @@ public class VFXManager : MonoBehaviour
     // [SerializeField] private ParticleSystem deathParticlePrefab;
     // [SerializeField] private int deathPoolSize = 15;
 
-    // [Header("Explosion Particle")]
-    // [SerializeField] private ParticleSystem explosionParticlePrefab;
-    // [SerializeField] private int explosionPoolSize = 10;
+    [Header("Explosion VFX")]
+    [SerializeField] private Transform explosionVfxPrefab;
+    [SerializeField, Min(1)] private int explosionPoolSize = 16;
+    [SerializeField, Min(0.01f)] private float explosionMainScale = 1f;
+    [SerializeField, Min(0.01f)] private float explosionSecondaryScale = 0.5f;
+    [SerializeField, Range(0.01f, 1f)] private float explosionStartScaleRatio = 0.5f;
+    [SerializeField, Min(0.01f)] private float explosionGrowDuration = 0.12f;
+    [SerializeField, Min(0.01f)] private float explosionEmissionDuration = 0.2f;
+    private VFXPool<Transform> explosionPool;
+    private readonly Dictionary<Transform, ParticleSystem[]> explosionSystems = new();
 
     // Pool'lar
     private VFXPool<FloatingText> textPool;
@@ -118,8 +125,8 @@ public class VFXManager : MonoBehaviour
         // if (deathParticlePrefab != null)
         //     deathPool = new VFXPool<ParticleSystem>(deathParticlePrefab, deathPoolSize, transform);
 
-        // if (explosionParticlePrefab != null)
-        //     explosionPool = new VFXPool<ParticleSystem>(explosionParticlePrefab, explosionPoolSize, transform);
+        if (explosionVfxPrefab != null)
+            explosionPool = new VFXPool<Transform>(explosionVfxPrefab, explosionPoolSize, transform);
     }
 
     // ========== DIŞ ARAYÜZ (facade) ==========
@@ -158,6 +165,63 @@ public class VFXManager : MonoBehaviour
     // }
 
     // ========== İÇ İŞLER ==========
+
+    public void PlayExplosion(Vector3 position, bool isSource = true)
+    {
+        if (explosionPool == null) return;
+        Transform effect = explosionPool.Get();
+        if (!explosionSystems.TryGetValue(effect, out var systems))
+        {
+            systems = effect.GetComponentsInChildren<ParticleSystem>(true);
+            explosionSystems.Add(effect, systems);
+        }
+        float targetScale = isSource ? explosionMainScale : explosionSecondaryScale;
+        effect.SetPositionAndRotation(position, Quaternion.identity);
+        effect.localScale = Vector3.one * (targetScale * explosionStartScaleRatio);
+        foreach (var particle in systems)
+        {
+            particle.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
+            var main = particle.main;
+            main.stopAction = ParticleSystemStopAction.None;
+            main.scalingMode = ParticleSystemScalingMode.Hierarchy;
+            main.simulationSpace = ParticleSystemSimulationSpace.Local;
+            main.prewarm = false;
+            particle.Play(false);
+        }
+        StartCoroutine(ExplosionRoutine(effect, systems, targetScale));
+    }
+
+    private IEnumerator ExplosionRoutine(Transform effect, ParticleSystem[] systems, float targetScale)
+    {
+        float elapsed = 0f;
+        float duration = Mathf.Max(explosionGrowDuration, explosionEmissionDuration);
+        bool stopped = false;
+        while (elapsed < duration)
+        {
+            yield return null;
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / Mathf.Max(0.01f, explosionGrowDuration));
+            float eased = 1f - (1f - t) * (1f - t);
+            effect.localScale = Vector3.one * Mathf.Lerp(targetScale * explosionStartScaleRatio, targetScale, eased);
+            if (!stopped && elapsed >= explosionEmissionDuration)
+            {
+                foreach (var particle in systems)
+                    particle.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+                stopped = true;
+            }
+        }
+        bool alive;
+        do
+        {
+            alive = false;
+            foreach (var particle in systems) alive |= particle.IsAlive(false);
+            if (alive) yield return null;
+        } while (alive);
+        foreach (var particle in systems)
+            particle.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
+        effect.localScale = Vector3.one;
+        explosionPool.Return(effect);
+    }
 
     private void SpawnDamageText(Vector3 position, int damage, bool isCrit)
     {

@@ -283,6 +283,8 @@ public class PlanterBrain : MonoBehaviour
         if (chance <= 0f) return;
         if (Random.value > chance) return; // şans tutmadı
 
+        VFXManager.Instance?.PlayExplosion(sourcePlant.transform.position, true);
+
         int damage = Mathf.RoundToInt(
             StatManager.Instance.GetFinalStat(StatType.HarvestDamage, StatTarget.Player)
         );
@@ -315,7 +317,9 @@ public class PlanterBrain : MonoBehaviour
                 if (plant == null) continue;
 
                 IDamageable damageable = plant.GetComponent<IDamageable>();
-                damageable?.TakeDamage(damage, DamageType.Explosion);
+                if (damageable == null || (damageable is PlantHealth health && health.IsDead)) continue;
+                VFXManager.Instance?.PlayExplosion(plant.transform.position, false);
+                damageable.TakeDamage(damage, DamageType.Explosion);
             }
         }
     }

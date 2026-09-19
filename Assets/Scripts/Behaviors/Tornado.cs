@@ -20,6 +20,27 @@ public class Tornado : MonoBehaviour
     [Header("Görsel (opsiyonel)")]
     [SerializeField] private Transform visual;             // dönecek child (model/particle)
     [SerializeField] private float spinDuration = 0.4f;    // bir tam tur süresi
+    [SerializeField] private Transform loopVfxPrefab;
+    [SerializeField, Min(0.01f)] private float vfxScale = 0.3f;
+    private ParticleSystem[] particles;
+
+    private void Awake()
+    {
+        if (loopVfxPrefab != null)
+        {
+            Transform effect = Instantiate(loopVfxPrefab, transform);
+            effect.localPosition = Vector3.zero;
+            effect.localRotation = Quaternion.identity;
+            effect.localScale = Vector3.one * vfxScale;
+        }
+        particles = GetComponentsInChildren<ParticleSystem>(true);
+        foreach (var particle in particles)
+        {
+            var main = particle.main;
+            main.stopAction = ParticleSystemStopAction.None;
+            main.scalingMode = ParticleSystemScalingMode.Hierarchy;
+        }
+    }
 
     private static readonly Vector2Int[] Directions =
     {
@@ -44,6 +65,12 @@ public class Tornado : MonoBehaviour
         previousCell = null;
         owner = manager;
         damage = Mathf.Max(1, Mathf.RoundToInt(baseDamage * damageMultiplier));
+        transform.position = startCell.transform.position + Vector3.up * heightOffset;
+        foreach (var particle in particles)
+        {
+            particle.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
+            particle.Play(false);
+        }
 
         // Her adımda new'lemesin diye bir kere oluşturuyoruz (GC dostu)
         moveWait = new WaitForSeconds(stepDuration);
@@ -78,7 +105,7 @@ public class Tornado : MonoBehaviour
             yield return pauseWait;
         }
 
-        Destroy(gameObject);
+        owner.Release(this);
     }
 
     private GroundCell PickNextCell()
@@ -123,10 +150,18 @@ public class Tornado : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
+        StopAllCoroutines();
         transform.DOKill();
         if (visual != null) visual.DOKill();
+        if (particles != null)
+            foreach (var particle in particles)
+                particle.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
+    }
+
+    private void OnDestroy()
+    {
         if (owner != null) owner.Unregister(this);
     }
 }

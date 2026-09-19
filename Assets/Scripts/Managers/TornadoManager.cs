@@ -12,11 +12,14 @@ public class TornadoManager : MonoBehaviour
     [SerializeField] private int maxActiveTornadoes = 3;
 
     private readonly List<Tornado> activeTornadoes = new();
+    private VFXPool<Tornado> tornadoPool;
 
     private void Awake()
     {
         if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
+        if (tornadoPrefab != null)
+            tornadoPool = new VFXPool<Tornado>(tornadoPrefab, Mathf.Max(1, maxActiveTornadoes), transform);
     }
 
     private void Start()
@@ -36,13 +39,14 @@ public class TornadoManager : MonoBehaviour
 
     public bool TrySpawn(GridObject startGrid, int baseDamage)
     {
-        if (tornadoPrefab == null || startGrid == null) return false;
+        if (tornadoPool == null || startGrid == null) return false;
         if (activeTornadoes.Count >= maxActiveTornadoes) return false;
 
         GroundCell startCell = startGrid.GetGroundCellCached();
         if (startCell == null) return false;
 
-        Tornado tornado = Instantiate(tornadoPrefab, startCell.transform.position, Quaternion.identity, transform);
+        Tornado tornado = tornadoPool.Get();
+        tornado.transform.SetPositionAndRotation(startCell.transform.position, Quaternion.identity);
         activeTornadoes.Add(tornado);
         tornado.Launch(startCell, baseDamage, this);
         return true;
@@ -54,13 +58,16 @@ public class TornadoManager : MonoBehaviour
         activeTornadoes.Remove(tornado);
     }
 
+    public void Release(Tornado tornado)
+    {
+        if (tornado != null && activeTornadoes.Remove(tornado))
+            tornadoPool.Return(tornado);
+    }
+
     private void ClearAll()
     {
-        // Destroy frame sonunda çalışır → döngü sırasında liste değişmez
-        foreach (Tornado tornado in activeTornadoes)
-        {
-            if (tornado != null) Destroy(tornado.gameObject);
-        }
+        for (int i = activeTornadoes.Count - 1; i >= 0; i--)
+            Release(activeTornadoes[i]);
         activeTornadoes.Clear();
     }
 }
