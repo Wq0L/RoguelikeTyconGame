@@ -80,6 +80,8 @@ public class VFXManager : MonoBehaviour
 
     [Header("Optimization")]
     private static readonly int ColorId = Shader.PropertyToID("_BaseColor");
+    private static readonly int ToonFlashId = Shader.PropertyToID("_ToonFlash");
+    private static readonly int ToonFlashColorId = Shader.PropertyToID("_ToonFlashColor");
 
     // [Header("Death Particle")]
     // [SerializeField] private ParticleSystem deathParticlePrefab;
@@ -280,6 +282,10 @@ public class VFXManager : MonoBehaviour
 
         renderer.GetPropertyBlock(localMpb);
         localMpb.SetColor(ColorId, flashColor);
+        // Toon atlas materials need a separate flash overlay: a white tint alone
+        // leaves their texture colors unchanged. Other shaders ignore these IDs.
+        localMpb.SetFloat(ToonFlashId, 1f);
+        localMpb.SetColor(ToonFlashColorId, flashColor);
         renderer.SetPropertyBlock(localMpb);
 
         yield return new WaitForSeconds(flashDuration);

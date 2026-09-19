@@ -1,0 +1,78 @@
+[
+  {
+    "path": "Assets/Prefabs/Grass Planter 1x1.prefab",
+    "sha256": "5c5411293fa33f17a50028a406d58929d6e687a94ec4c733f296def166199feb"
+  },
+  {
+    "path": "Assets/Prefabs/Grass Planter 1x2.prefab",
+    "sha256": "18e9a1de07f6cc8389b767d6551bfea57157b5df29453dbbe0d14d526c290908"
+  },
+  {
+    "path": "Assets/Prefabs/Grass Planter 1x3.prefab",
+    "sha256": "fb1aae4aa0724d0fa6e7d1eddc280b1a3f803c83c8fa0ad3dc8a28d15b67a7e7"
+  },
+  {
+    "path": "Assets/Prefabs/Grass Planter 2x2.prefab",
+    "sha256": "57c09ebbf842a356a2c989be9fc07e8d221936a26c44e2aa29e121b9404594ca"
+  },
+  {
+    "path": "Assets/Prefabs/Grass Planter 2x3.prefab",
+    "sha256": "a65a79d2ee6c05e3388adb9a7c399deb5f69cd9c9c041226edd61e04cf1a89b1"
+  },
+  {
+    "path": "Assets/Prefabs/Ground.prefab",
+    "sha256": "a0f3ffee91ccecee6a512935856f5337e092502ce9e411f141a2b307701371ad"
+  },
+  {
+    "path": "Assets/Prefabs/Plants/Grass.prefab",
+    "sha256": "645524e53aa99ec8141c69a62e59e2b72e72d4c03febc574afc380a2f458d5b8"
+  },
+  {
+    "path": "Assets/Prefabs/Plants/Plant_Beetroot.prefab",
+    "sha256": "41ddc32f15c224a8a65c465f654a07dfeb8f18e219b5f2ce5f9b46f7d38e6d35"
+  },
+  {
+    "path": "Assets/Prefabs/Plants/Plant_Carrot.prefab",
+    "sha256": "8d2e26990b8a082d1567617ce5e65078ebdabc2ead1dccc742b62e163ec0fdcb"
+  },
+  {
+    "path": "Assets/Prefabs/Plants/Plant_Corn.prefab",
+    "sha256": "fd0b5e93d3f5563edce391089222a380dfe4f88145e4f750fefa78ec30c945eb"
+  },
+  {
+    "path": "Assets/Prefabs/Plants/Plant_Grape.prefab",
+    "sha256": "81322c8f7001873650d737b9a5895164e44bf115c489743a9c3a72576d77676c"
+  },
+  {
+    "path": "Assets/Prefabs/Plants/Plant_Lettuce.prefab",
+    "sha256": "e4c728c143508de1cb1f2ab0a3f262976b9de27fc44f7a6bf7f766c1bf4c0050"
+  },
+  {
+    "path": "Assets/Prefabs/Plants/Plant_Pepper.prefab",
+    "sha256": "9f43fd3740eeaebe6db10affa17d56f83a628098450237d913be11d7e6728c95"
+  },
+  {
+    "path": "Assets/Prefabs/Plants/Plant_Pineapple.prefab",
+    "sha256": "c6a56074be6a75979e1923af22dac81710be15df1b44e8bb3ff8cd7edd78596a"
+  },
+  {
+    "path": "Assets/Prefabs/Plants/Plant_Potato.prefab",
+    "sha256": "9d2e121250f388bbe72bd3f8b54489f9a85ae8f48bef2006dbdadb43064aad37"
+  },
+  {
+    "path": "Assets/Prefabs/Plants/Plant_Pumpkin.prefab",
+    "sha256": "3ff9fbebaef1cfa78c573fd489cbbd22a4b20daa75234c18e3f2b8a6209f7905"
+  },
+  {
+    "path": "Assets/Prefabs/Plants/Plant_Strawberry.prefab",
+    "sha256": "aff82a3bea9ce209e77d86b33212cd45de8556dcbeb1bb37f1aa9f99d8255c77"
+  },
+  {
+    "path": "Assets/Prefabs/Plants/Plant_Tomato.prefab",
+    "sha256": "3671bff0fe0f3e9a450c94213d818b986e60da74ac8ddab193708c0d878ecf20"
+  },
+  {
+    "path": "Assets/Scenes/GameScene.unity",
+    "sha256": "fa05affb941ce028727f83871051ef46a5dadb64ef4cb5baccee4cefbe91c143"
+  }
+]
