@@ -47,7 +47,7 @@
       "unlockType": 0,
       "layout": [
         0,
-        150
+        300
       ],
       "targetRounds": [
         1,
@@ -55,7 +55,7 @@
       ],
       "grid": [
         0,
-        1
+        2
       ],
       "assetName": "Keskin Başlangıç - 1"
     },
@@ -98,7 +98,7 @@
       "unlockType": 0,
       "layout": [
         150,
-        600
+        300
       ],
       "targetRounds": [
         1,
@@ -106,7 +106,7 @@
       ],
       "grid": [
         1,
-        4
+        2
       ],
       "assetName": "Keskin Başlangıç - 2"
     },
@@ -148,16 +148,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        150,
-        450
+        300,
+        300
       ],
       "targetRounds": [
         1,
         8
       ],
       "grid": [
-        1,
-        3
+        2,
+        2
       ],
       "assetName": "Keskin Başlangıç - 3"
     },
@@ -199,16 +199,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -150,
-        450
+        450,
+        300
       ],
       "targetRounds": [
         1,
         8
       ],
       "grid": [
-        -1,
-        3
+        3,
+        2
       ],
       "assetName": "Keskin Başlangıç - 4"
     },
@@ -262,16 +262,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -150,
-        900
+        0,
+        1050
       ],
       "targetRounds": [
         30,
         60
       ],
       "grid": [
-        -1,
-        6
+        0,
+        7
       ],
       "assetName": "Güçlü Kesim - 1"
     },
@@ -314,7 +314,7 @@
       "unlockType": 0,
       "layout": [
         150,
-        900
+        1050
       ],
       "targetRounds": [
         30,
@@ -322,7 +322,7 @@
       ],
       "grid": [
         1,
-        6
+        7
       ],
       "assetName": "Güçlü Kesim - 2"
     },
@@ -364,16 +364,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        150,
-        750
+        300,
+        1050
       ],
       "targetRounds": [
         30,
         60
       ],
       "grid": [
-        1,
-        5
+        2,
+        7
       ],
       "assetName": "Güçlü Kesim - 3"
     },
@@ -415,16 +415,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -150,
-        750
+        450,
+        1050
       ],
       "targetRounds": [
         30,
         60
       ],
       "grid": [
-        -1,
-        5
+        3,
+        7
       ],
       "assetName": "Güçlü Kesim - 4"
     },
@@ -478,16 +478,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -150,
-        1350
+        0,
+        1800
       ],
       "targetRounds": [
         61,
         80
       ],
       "grid": [
-        -1,
-        9
+        0,
+        12
       ],
       "assetName": "Ağır Kesim - 1"
     },
@@ -530,7 +530,7 @@
       "unlockType": 0,
       "layout": [
         150,
-        1350
+        1800
       ],
       "targetRounds": [
         61,
@@ -538,7 +538,7 @@
       ],
       "grid": [
         1,
-        9
+        12
       ],
       "assetName": "Ağır Kesim - 2"
     },
@@ -580,16 +580,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        150,
-        1050
+        300,
+        1800
       ],
       "targetRounds": [
         61,
         80
       ],
       "grid": [
-        1,
-        7
+        2,
+        12
       ],
       "assetName": "Ağır Kesim - 3"
     },
@@ -631,16 +631,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -150,
-        1050
+        450,
+        1800
       ],
       "targetRounds": [
         61,
         80
       ],
       "grid": [
-        -1,
-        7
+        3,
+        12
       ],
       "assetName": "Ağır Kesim - 4"
     },
@@ -694,16 +694,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -150,
-        1650
+        0,
+        2550
       ],
       "targetRounds": [
         81,
         105
       ],
       "grid": [
-        -1,
-        11
+        0,
+        17
       ],
       "assetName": "Plazma Kesim - 1"
     },
@@ -746,7 +746,7 @@
       "unlockType": 0,
       "layout": [
         150,
-        1650
+        2550
       ],
       "targetRounds": [
         81,
@@ -754,7 +754,7 @@
       ],
       "grid": [
         1,
-        11
+        17
       ],
       "assetName": "Plazma Kesim - 2"
     },
@@ -796,16 +796,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        150,
-        1500
+        300,
+        2550
       ],
       "targetRounds": [
         81,
         105
       ],
       "grid": [
-        1,
-        10
+        2,
+        17
       ],
       "assetName": "Plazma Kesim - 3"
     },
@@ -847,16 +847,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -150,
-        1500
+        450,
+        2550
       ],
       "targetRounds": [
         81,
         105
       ],
       "grid": [
-        -1,
-        10
+        3,
+        17
       ],
       "assetName": "Plazma Kesim - 4"
     },
@@ -910,16 +910,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -150,
-        2100
+        0,
+        3300
       ],
       "targetRounds": [
         106,
         125
       ],
       "grid": [
-        -1,
-        14
+        0,
+        22
       ],
       "assetName": "Yıldız Kesim - 1"
     },
@@ -962,7 +962,7 @@
       "unlockType": 0,
       "layout": [
         150,
-        2100
+        3300
       ],
       "targetRounds": [
         106,
@@ -970,7 +970,7 @@
       ],
       "grid": [
         1,
-        14
+        22
       ],
       "assetName": "Yıldız Kesim - 2"
     },
@@ -1012,16 +1012,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        150,
-        1950
+        300,
+        3300
       ],
       "targetRounds": [
         106,
         125
       ],
       "grid": [
-        1,
-        13
+        2,
+        22
       ],
       "assetName": "Yıldız Kesim - 3"
     },
@@ -1063,16 +1063,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -150,
-        1950
+        450,
+        3300
       ],
       "targetRounds": [
         106,
         125
       ],
       "grid": [
-        -1,
-        13
+        3,
+        22
       ],
       "assetName": "Yıldız Kesim - 4"
     },
@@ -1126,16 +1126,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -600,
-        750
+        -750,
+        1050
       ],
       "targetRounds": [
         8,
         25
       ],
       "grid": [
-        -4,
-        5
+        -5,
+        7
       ],
       "assetName": "Kesim Tekniği - 1"
     },
@@ -1177,16 +1177,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -450,
-        750
+        -900,
+        1050
       ],
       "targetRounds": [
         8,
         25
       ],
       "grid": [
-        -3,
-        5
+        -6,
+        7
       ],
       "assetName": "Kesim Tekniği - 2"
     },
@@ -1228,16 +1228,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -450,
-        600
+        -1050,
+        1050
       ],
       "targetRounds": [
         8,
         25
       ],
       "grid": [
-        -3,
-        4
+        -7,
+        7
       ],
       "assetName": "Kesim Tekniği - 3"
     },
@@ -1279,16 +1279,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -600,
-        600
+        -1200,
+        1050
       ],
       "targetRounds": [
         8,
         25
       ],
       "grid": [
-        -4,
-        4
+        -8,
+        7
       ],
       "assetName": "Kesim Tekniği - 4"
     },
@@ -1346,16 +1346,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -600,
-        1050
+        -750,
+        1800
       ],
       "targetRounds": [
         45,
         75
       ],
       "grid": [
-        -4,
-        7
+        -5,
+        12
       ],
       "assetName": "Kesim Ustalığı - 1"
     },
@@ -1397,16 +1397,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -450,
-        1050
+        -900,
+        1800
       ],
       "targetRounds": [
         45,
         75
       ],
       "grid": [
-        -3,
-        7
+        -6,
+        12
       ],
       "assetName": "Kesim Ustalığı - 2"
     },
@@ -1448,16 +1448,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -450,
-        900
+        -1050,
+        1800
       ],
       "targetRounds": [
         45,
         75
       ],
       "grid": [
-        -3,
-        6
+        -7,
+        12
       ],
       "assetName": "Kesim Ustalığı - 3"
     },
@@ -1499,16 +1499,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -600,
-        900
+        -1200,
+        1800
       ],
       "targetRounds": [
         45,
         75
       ],
       "grid": [
-        -4,
-        6
+        -8,
+        12
       ],
       "assetName": "Kesim Ustalığı - 4"
     },
@@ -1566,16 +1566,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -600,
-        1500
+        -750,
+        2550
       ],
       "targetRounds": [
         86,
         105
       ],
       "grid": [
-        -4,
-        10
+        -5,
+        17
       ],
       "assetName": "İleri Ustalık - 1"
     },
@@ -1617,16 +1617,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -450,
-        1500
+        -900,
+        2550
       ],
       "targetRounds": [
         86,
         105
       ],
       "grid": [
-        -3,
-        10
+        -6,
+        17
       ],
       "assetName": "İleri Ustalık - 2"
     },
@@ -1668,16 +1668,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -450,
-        1350
+        -1050,
+        2550
       ],
       "targetRounds": [
         86,
         105
       ],
       "grid": [
-        -3,
-        9
+        -7,
+        17
       ],
       "assetName": "İleri Ustalık - 3"
     },
@@ -1719,16 +1719,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -600,
-        1350
+        -1200,
+        2550
       ],
       "targetRounds": [
         86,
         105
       ],
       "grid": [
-        -4,
-        9
+        -8,
+        17
       ],
       "assetName": "İleri Ustalık - 4"
     },
@@ -1786,16 +1786,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -600,
-        1950
+        -750,
+        3300
       ],
       "targetRounds": [
         106,
         125
       ],
       "grid": [
-        -4,
-        13
+        -5,
+        22
       ],
       "assetName": "Hasat Zirvesi - 1"
     },
@@ -1837,16 +1837,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -450,
-        1950
+        -900,
+        3300
       ],
       "targetRounds": [
         106,
         125
       ],
       "grid": [
-        -3,
-        13
+        -6,
+        22
       ],
       "assetName": "Hasat Zirvesi - 2"
     },
@@ -1888,16 +1888,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -450,
-        1800
+        -1050,
+        3300
       ],
       "targetRounds": [
         106,
         125
       ],
       "grid": [
-        -3,
-        12
+        -7,
+        22
       ],
       "assetName": "Hasat Zirvesi - 3"
     },
@@ -1939,16 +1939,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -600,
-        1800
+        -1200,
+        3300
       ],
       "targetRounds": [
         106,
         125
       ],
       "grid": [
-        -4,
-        12
+        -8,
+        22
       ],
       "assetName": "Hasat Zirvesi - 4"
     },
@@ -1978,16 +1978,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        450,
-        1650
+        750,
+        3300
       ],
       "targetRounds": [
         105,
         115
       ],
       "grid": [
-        3,
-        11
+        5,
+        22
       ],
       "assetName": "Aşırı Güç I"
     },
@@ -2021,16 +2021,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        450,
-        1950
+        750,
+        4050
       ],
       "targetRounds": [
         120,
         130
       ],
       "grid": [
-        3,
-        13
+        5,
+        27
       ],
       "assetName": "Aşırı Güç II"
     },
@@ -2084,16 +2084,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1050,
-        900
+        -1500,
+        1800
       ],
       "targetRounds": [
         15,
         85
       ],
       "grid": [
-        -7,
-        6
+        -10,
+        12
       ],
       "assetName": "Kritik Odak - 1"
     },
@@ -2135,16 +2135,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -900,
-        900
+        -1650,
+        1800
       ],
       "targetRounds": [
         15,
         85
       ],
       "grid": [
-        -6,
-        6
+        -11,
+        12
       ],
       "assetName": "Kritik Odak - 2"
     },
@@ -2186,16 +2186,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -900,
-        600
+        -1800,
+        1800
       ],
       "targetRounds": [
         15,
         85
       ],
       "grid": [
-        -6,
-        4
+        -12,
+        12
       ],
       "assetName": "Kritik Odak - 3"
     },
@@ -2237,16 +2237,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1050,
-        600
+        -1950,
+        1800
       ],
       "targetRounds": [
         15,
         85
       ],
       "grid": [
-        -7,
-        4
+        -13,
+        12
       ],
       "assetName": "Kritik Odak - 4"
     },
@@ -2300,16 +2300,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1050,
-        1200
+        -1500,
+        2550
       ],
       "targetRounds": [
         55,
         110
       ],
       "grid": [
-        -7,
-        8
+        -10,
+        17
       ],
       "assetName": "Kritik Güç - 1"
     },
@@ -2351,16 +2351,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -900,
-        1200
+        -1650,
+        2550
       ],
       "targetRounds": [
         55,
         110
       ],
       "grid": [
-        -6,
-        8
+        -11,
+        17
       ],
       "assetName": "Kritik Güç - 2"
     },
@@ -2402,16 +2402,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -900,
-        1050
+        -1800,
+        2550
       ],
       "targetRounds": [
         55,
         110
       ],
       "grid": [
-        -6,
-        7
+        -12,
+        17
       ],
       "assetName": "Kritik Güç - 3"
     },
@@ -2453,16 +2453,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1050,
-        1050
+        -1950,
+        2550
       ],
       "targetRounds": [
         55,
         110
       ],
       "grid": [
-        -7,
-        7
+        -13,
+        17
       ],
       "assetName": "Kritik Güç - 4"
     },
@@ -2511,7 +2511,7 @@
       ],
       "unlockType": 0,
       "layout": [
-        -150,
+        -300,
         0
       ],
       "targetRounds": [
@@ -2519,7 +2519,7 @@
         12
       ],
       "grid": [
-        -1,
+        -2,
         0
       ],
       "assetName": "Biraz Daha Zaman - 1"
@@ -2562,7 +2562,7 @@
       ],
       "unlockType": 0,
       "layout": [
-        -450,
+        -300,
         150
       ],
       "targetRounds": [
@@ -2570,7 +2570,7 @@
         12
       ],
       "grid": [
-        -3,
+        -2,
         1
       ],
       "assetName": "Biraz Daha Zaman - 2"
@@ -2613,16 +2613,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -450,
-        -150
+        -300,
+        300
       ],
       "targetRounds": [
         1,
         12
       ],
       "grid": [
-        -3,
-        -1
+        -2,
+        2
       ],
       "assetName": "Biraz Daha Zaman - 3"
     },
@@ -2664,16 +2664,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -600,
-        -150
+        -300,
+        450
       ],
       "targetRounds": [
         1,
         12
       ],
       "grid": [
-        -4,
-        -1
+        -2,
+        3
       ],
       "assetName": "Biraz Daha Zaman - 4"
     },
@@ -2727,16 +2727,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -900,
-        150
+        -1500,
+        0
       ],
       "targetRounds": [
         2,
         15
       ],
       "grid": [
-        -6,
-        1
+        -10,
+        0
       ],
       "assetName": "Hızlı Eller - 1"
     },
@@ -2778,7 +2778,7 @@
       ],
       "unlockType": 0,
       "layout": [
-        -750,
+        -1500,
         150
       ],
       "targetRounds": [
@@ -2786,7 +2786,7 @@
         15
       ],
       "grid": [
-        -5,
+        -10,
         1
       ],
       "assetName": "Hızlı Eller - 2"
@@ -2829,16 +2829,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -750,
-        -150
+        -1500,
+        300
       ],
       "targetRounds": [
         2,
         15
       ],
       "grid": [
-        -5,
-        -1
+        -10,
+        2
       ],
       "assetName": "Hızlı Eller - 3"
     },
@@ -2880,16 +2880,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -900,
-        -150
+        -1500,
+        450
       ],
       "targetRounds": [
         2,
         15
       ],
       "grid": [
-        -6,
-        -1
+        -10,
+        3
       ],
       "assetName": "Hızlı Eller - 4"
     },
@@ -2943,16 +2943,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1350,
-        150
+        -2250,
+        0
       ],
       "targetRounds": [
         10,
         25
       ],
       "grid": [
-        -9,
-        1
+        -15,
+        0
       ],
       "assetName": "Geniş Süpürüş - 1"
     },
@@ -2994,7 +2994,7 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1050,
+        -2250,
         150
       ],
       "targetRounds": [
@@ -3002,7 +3002,7 @@
         25
       ],
       "grid": [
-        -7,
+        -15,
         1
       ],
       "assetName": "Geniş Süpürüş - 2"
@@ -3045,16 +3045,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1050,
-        -150
+        -2250,
+        300
       ],
       "targetRounds": [
         10,
         25
       ],
       "grid": [
-        -7,
-        -1
+        -15,
+        2
       ],
       "assetName": "Geniş Süpürüş - 3"
     },
@@ -3096,16 +3096,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1350,
-        -150
+        -2250,
+        450
       ],
       "targetRounds": [
         10,
         25
       ],
       "grid": [
-        -9,
-        -1
+        -15,
+        3
       ],
       "assetName": "Geniş Süpürüş - 4"
     },
@@ -3159,16 +3159,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1050,
-        -450
+        -1500,
+        750
       ],
       "targetRounds": [
         25,
         60
       ],
       "grid": [
-        -7,
-        -3
+        -10,
+        5
       ],
       "assetName": "Uzun Hasat - 1"
     },
@@ -3210,16 +3210,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -750,
-        -450
+        -1500,
+        900
       ],
       "targetRounds": [
         25,
         60
       ],
       "grid": [
-        -5,
-        -3
+        -10,
+        6
       ],
       "assetName": "Uzun Hasat - 2"
     },
@@ -3261,16 +3261,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -750,
-        -600
+        -1500,
+        1050
       ],
       "targetRounds": [
         25,
         60
       ],
       "grid": [
-        -5,
-        -4
+        -10,
+        7
       ],
       "assetName": "Uzun Hasat - 3"
     },
@@ -3312,16 +3312,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1050,
-        -600
+        -1500,
+        1200
       ],
       "targetRounds": [
         25,
         60
       ],
       "grid": [
-        -7,
-        -4
+        -10,
+        8
       ],
       "assetName": "Uzun Hasat - 4"
     },
@@ -3375,16 +3375,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1650,
-        150
+        -2250,
+        -750
       ],
       "targetRounds": [
         40,
         70
       ],
       "grid": [
-        -11,
-        1
+        -15,
+        -5
       ],
       "assetName": "Akıcı Kesim - 1"
     },
@@ -3426,16 +3426,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1500,
-        150
+        -2250,
+        -900
       ],
       "targetRounds": [
         40,
         70
       ],
       "grid": [
-        -10,
-        1
+        -15,
+        -6
       ],
       "assetName": "Akıcı Kesim - 2"
     },
@@ -3477,16 +3477,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1500,
-        -150
+        -2250,
+        -1050
       ],
       "targetRounds": [
         40,
         70
       ],
       "grid": [
-        -10,
-        -1
+        -15,
+        -7
       ],
       "assetName": "Akıcı Kesim - 3"
     },
@@ -3528,16 +3528,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1650,
-        -150
+        -2250,
+        -1200
       ],
       "targetRounds": [
         40,
         70
       ],
       "grid": [
-        -11,
-        -1
+        -15,
+        -8
       ],
       "assetName": "Akıcı Kesim - 4"
     },
@@ -3567,16 +3567,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1200,
-        450
+        -3000,
+        0
       ],
       "targetRounds": [
         10,
         20
       ],
       "grid": [
-        -8,
-        3
+        -20,
+        0
       ],
       "assetName": "İlk Vazgeçiş"
     },
@@ -3606,16 +3606,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1650,
-        450
+        -3750,
+        0
       ],
       "targetRounds": [
         35,
         55
       ],
       "grid": [
-        -11,
-        3
+        -25,
+        0
       ],
       "assetName": "İkinci Vazgeçiş"
     },
@@ -3669,16 +3669,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1500,
-        -450
+        -2250,
+        750
       ],
       "targetRounds": [
         75,
         110
       ],
       "grid": [
-        -10,
-        -3
+        -15,
+        5
       ],
       "assetName": "Son Vardiya - 1"
     },
@@ -3720,16 +3720,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1350,
-        -450
+        -2250,
+        900
       ],
       "targetRounds": [
         75,
         110
       ],
       "grid": [
-        -9,
-        -3
+        -15,
+        6
       ],
       "assetName": "Son Vardiya - 2"
     },
@@ -3771,16 +3771,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1350,
-        -600
+        -2250,
+        1050
       ],
       "targetRounds": [
         75,
         110
       ],
       "grid": [
-        -9,
-        -4
+        -15,
+        7
       ],
       "assetName": "Son Vardiya - 3"
     },
@@ -3822,16 +3822,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1500,
-        -600
+        -2250,
+        1200
       ],
       "targetRounds": [
         75,
         110
       ],
       "grid": [
-        -10,
-        -4
+        -15,
+        8
       ],
       "assetName": "Son Vardiya - 4"
     },
@@ -3889,16 +3889,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -2100,
-        150
+        -3000,
+        -750
       ],
       "targetRounds": [
         75,
         100
       ],
       "grid": [
-        -14,
-        1
+        -20,
+        -5
       ],
       "assetName": "Geniş Tarama - 1"
     },
@@ -3940,16 +3940,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1950,
-        150
+        -3000,
+        -900
       ],
       "targetRounds": [
         75,
         100
       ],
       "grid": [
-        -13,
-        1
+        -20,
+        -6
       ],
       "assetName": "Geniş Tarama - 2"
     },
@@ -3991,16 +3991,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1950,
-        -150
+        -3000,
+        -1050
       ],
       "targetRounds": [
         75,
         100
       ],
       "grid": [
-        -13,
-        -1
+        -20,
+        -7
       ],
       "assetName": "Geniş Tarama - 3"
     },
@@ -4042,16 +4042,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -2100,
-        -150
+        -3000,
+        -1200
       ],
       "targetRounds": [
         75,
         100
       ],
       "grid": [
-        -14,
-        -1
+        -20,
+        -8
       ],
       "assetName": "Geniş Tarama - 4"
     },
@@ -4105,16 +4105,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -2100,
-        600
+        -4500,
+        0
       ],
       "targetRounds": [
         50,
         95
       ],
       "grid": [
-        -14,
-        4
+        -30,
+        0
       ],
       "assetName": "Kart Sezgisi - 1"
     },
@@ -4156,16 +4156,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1950,
-        600
+        -4500,
+        150
       ],
       "targetRounds": [
         50,
         95
       ],
       "grid": [
-        -13,
-        4
+        -30,
+        1
       ],
       "assetName": "Kart Sezgisi - 2"
     },
@@ -4207,16 +4207,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -1950,
-        450
+        -4500,
+        300
       ],
       "targetRounds": [
         50,
         95
       ],
       "grid": [
-        -13,
-        3
+        -30,
+        2
       ],
       "assetName": "Kart Sezgisi - 3"
     },
@@ -4258,7 +4258,7 @@
       ],
       "unlockType": 0,
       "layout": [
-        -2100,
+        -4500,
         450
       ],
       "targetRounds": [
@@ -4266,7 +4266,7 @@
         95
       ],
       "grid": [
-        -14,
+        -30,
         3
       ],
       "assetName": "Kart Sezgisi - 4"
@@ -4304,7 +4304,7 @@
       ],
       "unlockType": 0,
       "layout": [
-        150,
+        300,
         0
       ],
       "targetRounds": [
@@ -4312,7 +4312,7 @@
         40
       ],
       "grid": [
-        1,
+        2,
         0
       ],
       "assetName": "Grid Genişleme I"
@@ -4336,16 +4336,16 @@
       ],
       "unlockType": 5,
       "layout": [
-        900,
-        300
+        750,
+        0
       ],
       "targetRounds": [
         8,
         15
       ],
       "grid": [
-        6,
-        2
+        5,
+        0
       ],
       "assetName": "1×3 Saksı"
     },
@@ -4368,16 +4368,16 @@
       ],
       "unlockType": 3,
       "layout": [
-        1200,
-        750
+        1050,
+        300
       ],
       "targetRounds": [
         15,
         25
       ],
       "grid": [
-        8,
-        5
+        7,
+        2
       ],
       "assetName": "Patlayıcı Kartlar"
     },
@@ -4404,7 +4404,7 @@
       ],
       "unlockType": 1,
       "layout": [
-        900,
+        1350,
         -300
       ],
       "targetRounds": [
@@ -4412,7 +4412,7 @@
         40
       ],
       "grid": [
-        6,
+        9,
         -2
       ],
       "assetName": "2×2 Saksı"
@@ -4436,7 +4436,7 @@
       ],
       "unlockType": 4,
       "layout": [
-        1350,
+        1800,
         0
       ],
       "targetRounds": [
@@ -4444,7 +4444,7 @@
         55
       ],
       "grid": [
-        9,
+        12,
         0
       ],
       "assetName": "Çifte Hasat Kartları"
@@ -4487,16 +4487,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        1650,
-        300
+        1050,
+        -750
       ],
       "targetRounds": [
         60,
         100
       ],
       "grid": [
-        11,
-        2
+        7,
+        -5
       ],
       "assetName": "Grid Genişleme II"
     },
@@ -4523,16 +4523,16 @@
       ],
       "unlockType": 2,
       "layout": [
-        1350,
-        -450
+        1800,
+        -750
       ],
       "targetRounds": [
         60,
         75
       ],
       "grid": [
-        9,
-        -3
+        12,
+        -5
       ],
       "assetName": "2×3 Saksı"
     },
@@ -4582,7 +4582,7 @@
       "unlockType": 0,
       "layout": [
         0,
-        -150
+        -300
       ],
       "targetRounds": [
         1,
@@ -4590,7 +4590,7 @@
       ],
       "grid": [
         0,
-        -1
+        -2
       ],
       "assetName": "Altın Hasat I - 1"
     },
@@ -4633,7 +4633,7 @@
       "unlockType": 0,
       "layout": [
         150,
-        -450
+        -300
       ],
       "targetRounds": [
         1,
@@ -4641,7 +4641,7 @@
       ],
       "grid": [
         1,
-        -3
+        -2
       ],
       "assetName": "Altın Hasat I - 2"
     },
@@ -4683,16 +4683,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        150,
-        -600
+        300,
+        -300
       ],
       "targetRounds": [
         1,
         12
       ],
       "grid": [
-        1,
-        -4
+        2,
+        -2
       ],
       "assetName": "Altın Hasat I - 3"
     },
@@ -4734,16 +4734,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -150,
-        -600
+        450,
+        -300
       ],
       "targetRounds": [
         1,
         12
       ],
       "grid": [
-        -1,
-        -4
+        3,
+        -2
       ],
       "assetName": "Altın Hasat I - 4"
     },
@@ -4797,16 +4797,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        450,
-        -600
+        -750,
+        -1050
       ],
       "targetRounds": [
         8,
         20
       ],
       "grid": [
-        3,
-        -4
+        -5,
+        -7
       ],
       "assetName": "Düzenli Üretim - 1"
     },
@@ -4848,16 +4848,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        600,
-        -600
+        -900,
+        -1050
       ],
       "targetRounds": [
         8,
         20
       ],
       "grid": [
-        4,
-        -4
+        -6,
+        -7
       ],
       "assetName": "Düzenli Üretim - 2"
     },
@@ -4899,16 +4899,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        600,
-        -900
+        -1050,
+        -1050
       ],
       "targetRounds": [
         8,
         20
       ],
       "grid": [
-        4,
-        -6
+        -7,
+        -7
       ],
       "assetName": "Düzenli Üretim - 3"
     },
@@ -4950,16 +4950,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        450,
-        -900
+        -1200,
+        -1050
       ],
       "targetRounds": [
         8,
         20
       ],
       "grid": [
-        3,
-        -6
+        -8,
+        -7
       ],
       "assetName": "Düzenli Üretim - 4"
     },
@@ -5013,16 +5013,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -150,
-        -750
+        0,
+        -1050
       ],
       "targetRounds": [
         15,
         40
       ],
       "grid": [
-        -1,
-        -5
+        0,
+        -7
       ],
       "assetName": "Demir Hasat - 1"
     },
@@ -5065,7 +5065,7 @@
       "unlockType": 0,
       "layout": [
         150,
-        -750
+        -1050
       ],
       "targetRounds": [
         15,
@@ -5073,7 +5073,7 @@
       ],
       "grid": [
         1,
-        -5
+        -7
       ],
       "assetName": "Demir Hasat - 2"
     },
@@ -5115,16 +5115,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        150,
-        -900
+        300,
+        -1050
       ],
       "targetRounds": [
         15,
         40
       ],
       "grid": [
-        1,
-        -6
+        2,
+        -7
       ],
       "assetName": "Demir Hasat - 3"
     },
@@ -5166,16 +5166,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -150,
-        -900
+        450,
+        -1050
       ],
       "targetRounds": [
         15,
         40
       ],
       "grid": [
-        -1,
-        -6
+        3,
+        -7
       ],
       "assetName": "Demir Hasat - 4"
     },
@@ -5229,16 +5229,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -600,
-        -1200
+        750,
+        -1800
       ],
       "targetRounds": [
         35,
         65
       ],
       "grid": [
-        -4,
-        -8
+        5,
+        -12
       ],
       "assetName": "Altın Hasat II - 1"
     },
@@ -5280,16 +5280,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -300,
-        -1200
+        900,
+        -1800
       ],
       "targetRounds": [
         35,
         65
       ],
       "grid": [
-        -2,
-        -8
+        6,
+        -12
       ],
       "assetName": "Altın Hasat II - 2"
     },
@@ -5331,16 +5331,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -300,
-        -1350
+        1050,
+        -1800
       ],
       "targetRounds": [
         35,
         65
       ],
       "grid": [
-        -2,
-        -9
+        7,
+        -12
       ],
       "assetName": "Altın Hasat II - 3"
     },
@@ -5382,16 +5382,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -600,
-        -1350
+        1200,
+        -1800
       ],
       "targetRounds": [
         35,
         65
       ],
       "grid": [
-        -4,
-        -9
+        8,
+        -12
       ],
       "assetName": "Altın Hasat II - 4"
     },
@@ -5445,16 +5445,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -150,
-        -1200
+        0,
+        -1800
       ],
       "targetRounds": [
         50,
         80
       ],
       "grid": [
-        -1,
-        -8
+        0,
+        -12
       ],
       "assetName": "Taş Hasat - 1"
     },
@@ -5497,7 +5497,7 @@
       "unlockType": 0,
       "layout": [
         150,
-        -1200
+        -1800
       ],
       "targetRounds": [
         50,
@@ -5505,7 +5505,7 @@
       ],
       "grid": [
         1,
-        -8
+        -12
       ],
       "assetName": "Taş Hasat - 2"
     },
@@ -5547,16 +5547,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        150,
-        -1350
+        300,
+        -1800
       ],
       "targetRounds": [
         50,
         80
       ],
       "grid": [
-        1,
-        -9
+        2,
+        -12
       ],
       "assetName": "Taş Hasat - 3"
     },
@@ -5598,16 +5598,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -150,
-        -1350
+        450,
+        -1800
       ],
       "targetRounds": [
         50,
         80
       ],
       "grid": [
-        -1,
-        -9
+        3,
+        -12
       ],
       "assetName": "Taş Hasat - 4"
     },
@@ -5661,16 +5661,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        900,
-        -900
+        -1500,
+        -1800
       ],
       "targetRounds": [
         15,
         35
       ],
       "grid": [
-        6,
-        -6
+        -10,
+        -12
       ],
       "assetName": "Hasat Deneyimi I - 1"
     },
@@ -5712,16 +5712,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        1050,
-        -900
+        -1650,
+        -1800
       ],
       "targetRounds": [
         15,
         35
       ],
       "grid": [
-        7,
-        -6
+        -11,
+        -12
       ],
       "assetName": "Hasat Deneyimi I - 2"
     },
@@ -5763,16 +5763,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        1050,
-        -1050
+        -1800,
+        -1800
       ],
       "targetRounds": [
         15,
         35
       ],
       "grid": [
-        7,
-        -7
+        -12,
+        -12
       ],
       "assetName": "Hasat Deneyimi I - 3"
     },
@@ -5814,16 +5814,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        900,
-        -1050
+        -1950,
+        -1800
       ],
       "targetRounds": [
         15,
         35
       ],
       "grid": [
-        6,
-        -7
+        -13,
+        -12
       ],
       "assetName": "Hasat Deneyimi I - 4"
     },
@@ -5877,16 +5877,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        450,
-        -1200
+        -750,
+        -1800
       ],
       "targetRounds": [
         45,
         75
       ],
       "grid": [
-        3,
-        -8
+        -5,
+        -12
       ],
       "assetName": "Verimli Üretim - 1"
     },
@@ -5928,16 +5928,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        600,
-        -1200
+        -900,
+        -1800
       ],
       "targetRounds": [
         45,
         75
       ],
       "grid": [
-        4,
-        -8
+        -6,
+        -12
       ],
       "assetName": "Verimli Üretim - 2"
     },
@@ -5979,16 +5979,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        600,
-        -1350
+        -1050,
+        -1800
       ],
       "targetRounds": [
         45,
         75
       ],
       "grid": [
-        4,
-        -9
+        -7,
+        -12
       ],
       "assetName": "Verimli Üretim - 3"
     },
@@ -6030,16 +6030,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        450,
-        -1350
+        -1200,
+        -1800
       ],
       "targetRounds": [
         45,
         75
       ],
       "grid": [
-        3,
-        -9
+        -8,
+        -12
       ],
       "assetName": "Verimli Üretim - 4"
     },
@@ -6111,16 +6111,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -150,
-        -1500
+        0,
+        -2550
       ],
       "targetRounds": [
         80,
         110
       ],
       "grid": [
-        -1,
-        -10
+        0,
+        -17
       ],
       "assetName": "Zengin Cevher - 1"
     },
@@ -6175,7 +6175,7 @@
       "unlockType": 0,
       "layout": [
         150,
-        -1500
+        -2550
       ],
       "targetRounds": [
         80,
@@ -6183,7 +6183,7 @@
       ],
       "grid": [
         1,
-        -10
+        -17
       ],
       "assetName": "Zengin Cevher - 2"
     },
@@ -6237,16 +6237,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        150,
-        -1800
+        300,
+        -2550
       ],
       "targetRounds": [
         80,
         110
       ],
       "grid": [
-        1,
-        -12
+        2,
+        -17
       ],
       "assetName": "Zengin Cevher - 3"
     },
@@ -6300,16 +6300,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -150,
-        -1800
+        450,
+        -2550
       ],
       "targetRounds": [
         80,
         110
       ],
       "grid": [
-        -1,
-        -12
+        3,
+        -17
       ],
       "assetName": "Zengin Cevher - 4"
     },
@@ -6363,16 +6363,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        450,
-        -1650
+        -750,
+        -2550
       ],
       "targetRounds": [
         55,
         95
       ],
       "grid": [
-        3,
-        -11
+        -5,
+        -17
       ],
       "assetName": "Nadir Filizler - 1"
     },
@@ -6414,16 +6414,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        600,
-        -1650
+        -900,
+        -2550
       ],
       "targetRounds": [
         55,
         95
       ],
       "grid": [
-        4,
-        -11
+        -6,
+        -17
       ],
       "assetName": "Nadir Filizler - 2"
     },
@@ -6465,16 +6465,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        600,
-        -1800
+        -1050,
+        -2550
       ],
       "targetRounds": [
         55,
         95
       ],
       "grid": [
-        4,
-        -12
+        -7,
+        -17
       ],
       "assetName": "Nadir Filizler - 3"
     },
@@ -6516,16 +6516,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        450,
-        -1800
+        -1200,
+        -2550
       ],
       "targetRounds": [
         55,
         95
       ],
       "grid": [
-        3,
-        -12
+        -8,
+        -17
       ],
       "assetName": "Nadir Filizler - 4"
     },
@@ -6579,16 +6579,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        900,
-        -1500
+        -1500,
+        -2550
       ],
       "targetRounds": [
         85,
         115
       ],
       "grid": [
-        6,
-        -10
+        -10,
+        -17
       ],
       "assetName": "Hasat Deneyimi II - 1"
     },
@@ -6630,16 +6630,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        1050,
-        -1500
+        -1650,
+        -2550
       ],
       "targetRounds": [
         85,
         115
       ],
       "grid": [
-        7,
-        -10
+        -11,
+        -17
       ],
       "assetName": "Hasat Deneyimi II - 2"
     },
@@ -6681,16 +6681,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        1050,
-        -1650
+        -1800,
+        -2550
       ],
       "targetRounds": [
         85,
         115
       ],
       "grid": [
-        7,
-        -11
+        -12,
+        -17
       ],
       "assetName": "Hasat Deneyimi II - 3"
     },
@@ -6732,16 +6732,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        900,
-        -1650
+        -1950,
+        -2550
       ],
       "targetRounds": [
         85,
         115
       ],
       "grid": [
-        6,
-        -11
+        -13,
+        -17
       ],
       "assetName": "Hasat Deneyimi II - 4"
     },
@@ -6795,16 +6795,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -150,
-        -1950
+        0,
+        -3300
       ],
       "targetRounds": [
         100,
         130
       ],
       "grid": [
-        -1,
-        -13
+        0,
+        -22
       ],
       "assetName": "Hasat Rekoru - 1"
     },
@@ -6847,7 +6847,7 @@
       "unlockType": 0,
       "layout": [
         150,
-        -1950
+        -3300
       ],
       "targetRounds": [
         100,
@@ -6855,7 +6855,7 @@
       ],
       "grid": [
         1,
-        -13
+        -22
       ],
       "assetName": "Hasat Rekoru - 2"
     },
@@ -6897,16 +6897,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        150,
-        -2100
+        300,
+        -3300
       ],
       "targetRounds": [
         100,
         130
       ],
       "grid": [
-        1,
-        -14
+        2,
+        -22
       ],
       "assetName": "Hasat Rekoru - 3"
     },
@@ -6948,16 +6948,16 @@
       ],
       "unlockType": 0,
       "layout": [
-        -150,
-        -2100
+        450,
+        -3300
       ],
       "targetRounds": [
         100,
         130
       ],
       "grid": [
-        -1,
-        -14
+        3,
+        -22
       ],
       "assetName": "Hasat Rekoru - 4"
     }

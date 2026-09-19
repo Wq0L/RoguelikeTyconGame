@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Uzun Hasat - 4"
   icon: {fileID: 0}
-  gridPosition: {x: -7, y: -4}
+  gridPosition: {x: -10, y: 8}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: 7f5f4c57dfeb2cb74480204e8d2ea981, type: 2}

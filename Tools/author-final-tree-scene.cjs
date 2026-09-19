@@ -16,14 +16,9 @@ const removed=new Set(oldInstances.map(id));
 for(const b of blocks){const match=b.match(/m_PrefabInstance: \{fileID: (\d+)\}/);if(match&&removed.has(match[1]))removed.add(id(b));}
 const remaining=blocks.filter(b=>!removed.has(id(b)));
 const occupied=new Set(['0,0']);
-const starts={'H1-A':[0,1],'Z1-A':[-1,0],P1:[1,0],'E1-A':[0,-1]};
-for(const n of nodes)if(starts[n.id]){n.grid=starts[n.id];occupied.add(n.grid.join(','));}
-for(const n of nodes){if(starts[n.id])continue;let [x,y]=n.grid||n.layout.map(v=>Math.round(v/150));let chosen=null;
- for(let r=0;!chosen;r++)for(let dx=-r;dx<=r&&!chosen;dx++)for(let dy=-r;dy<=r;dy++){
-  if(r&&Math.abs(dx)!==r&&Math.abs(dy)!==r)continue;
-  if(!occupied.has([x+dx,y+dy].join(','))){chosen=[x+dx,y+dy];break;}
- }
- n.grid=chosen;occupied.add(chosen.join(','));
+for(const n of nodes){
+ if(!n.grid||!n.grid.every(Number.isInteger)||occupied.has(n.grid.join(',')))throw Error('Invalid or duplicate authored grid: '+n.id);
+ occupied.add(n.grid.join(','));
 }
 let additions='',refs=[],children=[];
 const existing=new Set(remaining.map(id));

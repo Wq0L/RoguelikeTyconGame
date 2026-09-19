@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Kritik Güç - 1"
   icon: {fileID: 0}
-  gridPosition: {x: -7, y: 8}
+  gridPosition: {x: -10, y: 17}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: cf9417de871f5cdf89d16ad0a111f7e9, type: 2}

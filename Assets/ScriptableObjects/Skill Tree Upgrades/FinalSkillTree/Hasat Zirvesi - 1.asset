@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Hasat Zirvesi - 1"
   icon: {fileID: 0}
-  gridPosition: {x: -4, y: 13}
+  gridPosition: {x: -5, y: 22}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: 553c1b8bb0937cac11c8401fcffbf900, type: 2}

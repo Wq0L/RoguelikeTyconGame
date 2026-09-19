@@ -125,7 +125,9 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
             rect.SetParent(content, false);
             rect.anchorMin = rect.anchorMax = Vector2.one * 0.5f;
             rect.sizeDelta = size;
-            rect.anchoredPosition = nodeUI.LayoutPosition;
+            rect.localScale = Vector3.one;
+            rect.localRotation = Quaternion.identity;
+            nodeUI.ApplyGridLayout();
         }
         CreateConnections();
     }

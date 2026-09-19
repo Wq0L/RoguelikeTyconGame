@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Kesim Tekniği - 4"
   icon: {fileID: 0}
-  gridPosition: {x: -4, y: 4}
+  gridPosition: {x: -8, y: 7}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: 20a6b88ad8fa17ac5d83c9410fa7d367, type: 2}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Kritik Odak - 2"
   icon: {fileID: 0}
-  gridPosition: {x: -6, y: 6}
+  gridPosition: {x: -11, y: 12}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: cf9417de871f5cdf89d16ad0a111f7e9, type: 2}

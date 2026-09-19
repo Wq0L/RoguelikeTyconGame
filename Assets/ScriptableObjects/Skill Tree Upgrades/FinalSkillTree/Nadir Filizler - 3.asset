@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Nadir Filizler - 3"
   icon: {fileID: 0}
-  gridPosition: {x: 4, y: -12}
+  gridPosition: {x: -7, y: -17}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: ce2c76882d3a63479f5fabdf8a6e0a03, type: 2}

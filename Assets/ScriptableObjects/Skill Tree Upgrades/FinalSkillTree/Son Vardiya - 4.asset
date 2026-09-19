@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Son Vardiya - 4"
   icon: {fileID: 0}
-  gridPosition: {x: -10, y: -4}
+  gridPosition: {x: -15, y: 8}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: 5d879c942d6cb524687946a5c6d1fdba, type: 2}

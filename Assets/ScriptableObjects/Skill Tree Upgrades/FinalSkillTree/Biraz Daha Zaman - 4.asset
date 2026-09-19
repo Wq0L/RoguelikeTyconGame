@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Biraz Daha Zaman - 4"
   icon: {fileID: 0}
-  gridPosition: {x: -4, y: -1}
+  gridPosition: {x: -2, y: 3}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: 8b90a7b500e5950cca239ce9c546ff79, type: 2}

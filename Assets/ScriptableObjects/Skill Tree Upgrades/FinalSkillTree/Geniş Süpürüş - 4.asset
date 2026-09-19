@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Geniş Süpürüş - 4"
   icon: {fileID: 0}
-  gridPosition: {x: -9, y: -1}
+  gridPosition: {x: -15, y: 3}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: 56ecd07086d8b9b960c5780669efaafc, type: 2}

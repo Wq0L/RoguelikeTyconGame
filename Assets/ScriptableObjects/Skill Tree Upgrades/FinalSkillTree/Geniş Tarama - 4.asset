@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Geniş Tarama - 4"
   icon: {fileID: 0}
-  gridPosition: {x: -14, y: -1}
+  gridPosition: {x: -20, y: -8}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: f36240fcf471486b0ad1ca66716ff229, type: 2}

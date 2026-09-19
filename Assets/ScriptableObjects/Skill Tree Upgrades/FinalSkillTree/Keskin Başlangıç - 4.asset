@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Keskin Başlangıç - 4"
   icon: {fileID: 0}
-  gridPosition: {x: -1, y: 3}
+  gridPosition: {x: 3, y: 2}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: 28634c53c2fcca5f622db30eb796fe90, type: 2}

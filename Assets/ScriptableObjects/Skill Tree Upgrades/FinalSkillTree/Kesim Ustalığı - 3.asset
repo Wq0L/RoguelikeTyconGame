@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Kesim Ustalığı - 3"
   icon: {fileID: 0}
-  gridPosition: {x: -3, y: 6}
+  gridPosition: {x: -7, y: 12}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: 1940929562d13bc0f7293848ff4c34ef, type: 2}

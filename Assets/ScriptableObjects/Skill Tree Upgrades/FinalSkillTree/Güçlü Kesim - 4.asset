@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Güçlü Kesim - 4"
   icon: {fileID: 0}
-  gridPosition: {x: -1, y: 5}
+  gridPosition: {x: 3, y: 7}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: 7ec1f936b13a251105fd17d6c066d812, type: 2}

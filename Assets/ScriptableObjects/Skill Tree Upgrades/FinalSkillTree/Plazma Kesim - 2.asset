@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Plazma Kesim - 2"
   icon: {fileID: 0}
-  gridPosition: {x: 1, y: 11}
+  gridPosition: {x: 1, y: 17}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: e76cee78fb97a8c9bef453f7e539ba6b, type: 2}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Patlayıcı Kartlar"
   icon: {fileID: 0}
-  gridPosition: {x: 8, y: 5}
+  gridPosition: {x: 7, y: 2}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: 971c1a63e1b77116d60ad45a988e2147, type: 2}

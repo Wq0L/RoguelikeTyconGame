@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Hasat Deneyimi II - 1"
   icon: {fileID: 0}
-  gridPosition: {x: 6, y: -10}
+  gridPosition: {x: -10, y: -17}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: 1b4b9b28878709d984edfeb4fe3476b8, type: 2}

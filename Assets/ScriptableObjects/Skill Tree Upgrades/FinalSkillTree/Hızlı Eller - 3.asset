@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Hızlı Eller - 3"
   icon: {fileID: 0}
-  gridPosition: {x: -5, y: -1}
+  gridPosition: {x: -10, y: 2}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: a13fef003d058a7374b4b565e89a2b0b, type: 2}

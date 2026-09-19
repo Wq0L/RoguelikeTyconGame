@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Hasat Rekoru - 4"
   icon: {fileID: 0}
-  gridPosition: {x: -1, y: -14}
+  gridPosition: {x: 3, y: -22}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: 60e42cbab9525a2b300b8ae17d50e454, type: 2}

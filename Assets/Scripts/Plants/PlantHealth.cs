@@ -37,6 +37,9 @@ public class PlantHealth : MonoBehaviour, IDamageable
     }
 
     public void TakeDamage(int damage, DamageType type = DamageType.Direct)
+        => TakeDamage(damage, type, false);
+
+    public void TakeDamage(int damage, DamageType type, bool isCrit)
     {
         if (isDead) return;
         damage = GetIncomingDamage(damage, type);
@@ -47,7 +50,7 @@ public class PlantHealth : MonoBehaviour, IDamageable
         VFXManager.Instance.PlayHitFlash(plantRenderer, plantData.hitFlashColor);
 
         // Hit particle
-        VFXManager.Instance.PlayHitParticle(transform.position, plantData.hitFlashColor);
+        VFXManager.Instance.PlayHitParticle(transform.position, plantData.hitFlashColor, isCrit);
 
         if (currentHealth <= 0)
         {

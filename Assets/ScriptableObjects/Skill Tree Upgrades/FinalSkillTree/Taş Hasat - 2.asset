@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Taş Hasat - 2"
   icon: {fileID: 0}
-  gridPosition: {x: 1, y: -8}
+  gridPosition: {x: 1, y: -12}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: ed55221d13b89dcc87a279a56a2f1b21, type: 2}

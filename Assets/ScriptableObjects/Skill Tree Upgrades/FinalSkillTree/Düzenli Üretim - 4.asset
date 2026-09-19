@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Düzenli Üretim - 4"
   icon: {fileID: 0}
-  gridPosition: {x: 3, y: -6}
+  gridPosition: {x: -8, y: -7}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: 1d7610a94d93208e8ecddf26f7e37864, type: 2}

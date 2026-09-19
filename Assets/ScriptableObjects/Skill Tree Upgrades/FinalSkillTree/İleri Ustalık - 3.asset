@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "İleri Ustalık - 3"
   icon: {fileID: 0}
-  gridPosition: {x: -3, y: 9}
+  gridPosition: {x: -7, y: 17}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: cf3aa5d589007ade894f0e31d3c19288, type: 2}

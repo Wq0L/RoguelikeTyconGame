@@ -46,8 +46,11 @@ public static class HarvestPolishVerification
         Require(Mathf.Abs(damage - 1296000) < 2, "Final damage 1296000");
         Require(Mathf.Abs(damage * 1.75f * 4f - 9072000) < 16, "Three +25% Focus: 9072000");
         Require(Mathf.Abs(StatCalculator.Calculate(30, StatType.RoundDuration, StatTarget.All, effects, null) - 90) < .001f, "Duration cap 90");
-        var early = Array.Find(nodes, n => n.name == "P1");
-        var late = Array.Find(nodes, n => n.name == "P7");
+        var early = Array.Find(nodes, n => n.tiers.Count > 0 && n.tiers[0].effects.Exists(
+            e => e.statType == StatType.GridUnlockSize && e.value == 5));
+        var late = Array.Find(nodes, n => n.tiers.Count > 0 && n.tiers[0].effects.Exists(
+            e => e.statType == StatType.GridUnlockSize && e.value == 9));
+        Require(early != null && late != null, "Both grid expansion assets exist");
         Require(early.tiers.Count == 2 && late.tiers.Count == 2, "Two grid nodes / two levels");
         Require(early.tiers[0].effects[0].value == 5 && early.tiers[1].effects[0].value == 7 &&
             late.tiers[0].effects[0].value == 9 && late.tiers[1].effects[0].value == 11, "Odd grid sequence");

@@ -67,6 +67,14 @@ public class VFXManager : MonoBehaviour
     [SerializeField] private ParticleSystem hitParticlePrefab;
     [SerializeField] private int hitPoolSize = 15;
 
+    [Header("Hit Feedback")]
+    [SerializeField, Min(1)] private int hitParticleCount = 15;
+    [SerializeField] private AudioClip hitSound;
+    private readonly AudioSource[] hitVoices = new AudioSource[8];
+    private int nextHitVoice;
+    private int lastSoundFrame = -1;
+    private bool criticalSoundPlayed;
+
     [Header("Camera Shake")]
     [SerializeField] private float shakeDuration = 0.2f;
 
@@ -93,6 +101,16 @@ public class VFXManager : MonoBehaviour
         Instance = this;
 
         textPool = new VFXPool<FloatingText>(floatingTextPrefab, textPoolSize, transform);
+        for (int i = 0; i < hitVoices.Length; i++)
+        {
+            var voice = new GameObject("Pooled Hit Voice " + i);
+            voice.transform.SetParent(transform, false);
+            var source = voice.AddComponent<AudioSource>();
+            source.playOnAwake = false;
+            source.spatialBlend = 0f;
+            source.clip = hitSound;
+            hitVoices[i] = source;
+        }
 
         if (hitParticlePrefab != null)
             hitPool = new VFXPool<ParticleSystem>(hitParticlePrefab, hitPoolSize, transform);
@@ -109,11 +127,12 @@ public class VFXManager : MonoBehaviour
     public void PlayHit(Vector3 position, int damage, bool isCrit)
     {
         SpawnDamageText(position, damage, isCrit);
+        PlayHitSound(isCrit);
     }
 
-    public void PlayHitParticle(Vector3 position, Color color)
+    public void PlayHitParticle(Vector3 position, Color color, bool isCrit = false)
     {
-        SpawnHitParticle(position, color);
+        SpawnHitParticle(position, isCrit ? new Color(1f, 0.65f, 0.12f) : color, isCrit);
     }
 
     public void PlayHitFlash(Renderer renderer, Color flashColor)
@@ -147,19 +166,45 @@ public class VFXManager : MonoBehaviour
         text.Show(damage, isCrit);
     }
 
-    private void SpawnHitParticle(Vector3 position, Color color)
+    private void SpawnHitParticle(Vector3 position, Color color, bool isCrit)
     {
-        Debug.Log($"SpawnHitParticle çağrıldı | hitPool null mı: {hitPool == null}");
         if (hitPool == null) return;
 
         ParticleSystem p = hitPool.Get();
+        p.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         p.transform.position = position;
 
         var main = p.main;
         main.startColor = color;
-
+        main.maxParticles = Mathf.Max(main.maxParticles, hitParticleCount * 3);
+        var emission = p.emission;
+        emission.enabled = false; // Emit exactly one burst; no duplicate prefab burst.
         p.Play();
-        StartCoroutine(ReturnParticleAfter(p, hitPool, main.duration));
+        p.Emit(hitParticleCount * (isCrit ? 3 : 1));
+        StartCoroutine(ReturnHitParticleWhenFinished(p));
+    }
+
+    private IEnumerator ReturnHitParticleWhenFinished(ParticleSystem particle)
+    {
+        while (particle != null && particle.IsAlive(true)) yield return null;
+        if (particle != null) hitPool.Return(particle);
+    }
+
+    private void PlayHitSound(bool isCrit)
+    {
+        if (hitSound == null) return;
+        if (lastSoundFrame != Time.frameCount)
+        {
+            lastSoundFrame = Time.frameCount;
+            criticalSoundPlayed = false;
+        }
+        else if (!isCrit || criticalSoundPlayed) return;
+        criticalSoundPlayed |= isCrit;
+        var voice = hitVoices[nextHitVoice++ % hitVoices.Length];
+        voice.Stop();
+        voice.pitch = isCrit ? Random.Range(0.72f, 0.8f) : Random.Range(1.2f, 1.35f);
+        voice.volume = isCrit ? 0.55f : 0.22f;
+        voice.Play();
     }
 
     private IEnumerator FlashRoutine(Renderer renderer, Color flashColor)
@@ -231,7 +276,7 @@ public class VFXManager : MonoBehaviour
 
     public void ReturnText(FloatingText text)
     {
-        textPool.Return(text);
+        if (text != null && text.gameObject.activeSelf) textPool.Return(text);
     }
 
     //player Attack

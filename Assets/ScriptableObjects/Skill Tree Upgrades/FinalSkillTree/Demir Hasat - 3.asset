@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Demir Hasat - 3"
   icon: {fileID: 0}
-  gridPosition: {x: 1, y: -6}
+  gridPosition: {x: 2, y: -7}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: 8721b8c3a72c6ccbc46dbef798ee354e, type: 2}

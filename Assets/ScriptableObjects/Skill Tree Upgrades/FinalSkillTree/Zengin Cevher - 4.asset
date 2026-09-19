@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Zengin Cevher - 4"
   icon: {fileID: 0}
-  gridPosition: {x: -1, y: -12}
+  gridPosition: {x: 3, y: -17}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: 454d261f965217b3bbe11f54cb48ac0e, type: 2}

@@ -49,8 +49,7 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         DOTween.Init();
         button.onClick.AddListener(HandleClick);
 
-        RectTransform rect = GetComponent<RectTransform>();
-        rect.anchoredPosition = LayoutPosition;
+        ApplyGridLayout();
 
         // Halka başta görünmez
         if (waveRingImage != null)
@@ -58,6 +57,43 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
             Color c = waveRingImage.color;
             c.a = 0f;
             waveRingImage.color = c;
+        }
+    }
+
+    public void ApplyGridLayout()
+    {
+        var rect = (RectTransform)transform;
+        rect.anchorMin = rect.anchorMax = rect.pivot = Vector2.one * 0.5f;
+        rect.anchoredPosition3D = new Vector3(LayoutPosition.x, LayoutPosition.y, 0f);
+    }
+
+    private void OnEnable()
+    {
+        ApplyGridLayout();
+    }
+
+    private void OnValidate()
+    {
+        if (node != null && transform is RectTransform) ApplyGridLayout();
+    }
+
+    private void ResetNodeAnimation()
+    {
+        transform.DOKill();
+        transform.localScale = Vector3.one;
+        transform.localRotation = Quaternion.identity;
+    }
+
+    private void OnDisable()
+    {
+        ResetNodeAnimation();
+        if (waveRing != null) waveRing.DOKill();
+        if (waveRingImage != null)
+        {
+            waveRingImage.DOKill();
+            var color = waveRingImage.color;
+            color.a = 0f;
+            waveRingImage.color = color;
         }
     }
 
@@ -144,6 +180,7 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
 
     private void PlayPunch()
     {
+        ResetNodeAnimation();
         // Node büyüyüp eski haline gelir
         transform.DOPunchScale(Vector3.one * 0.2f, 0.3f, 1, 0.5f)
             .SetUpdate(true);
@@ -151,6 +188,7 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
 
     private void PlayShake()
     {
+        ResetNodeAnimation();
         // Node sağa-sola hafif titrer
         transform.DOShakeRotation(0.3f, new Vector3(0, 0, 15f), 10, 90, true)
             .SetUpdate(true);

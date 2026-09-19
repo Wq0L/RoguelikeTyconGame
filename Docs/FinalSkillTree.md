@@ -33,6 +33,10 @@ HP eğrisi değiştirilmedi: R130 Legendary 540.000 HP. Tam hasar kolu rezonanss
 
 ## Kontrol ve yeniden üretim
 
+Yerleşim dört sabit kola ayrılır: hasar +Y, zaman/hız -X, saksı/grid +X, ekonomi -Y. Aynı becerinin 1–4 node'ları birer grid aralıklı düz sıralardır. Ana gruplar arasında beş grid aralığı bulunur; başlangıç ve saksı kolu ayrı elle belirlenen koordinatlara sahiptir. `Tools/layout-final-tree.cjs` bu açık koordinat tablosunu manifestte yazar. Yuvarlama veya en yakın boş hücreye kaydırma yapılmaz; çakışan koordinat hata verir. Bağlantıların başka node'lara temas etmediği de kontrol edilir. `Docs/SkillTree-XY.png` bu koordinatların şemasıdır, Unity ekran görüntüsü değildir.
+
+Yerleşimi yeniden kurma sırası: `node Tools/layout-final-tree.cjs`, ardından `node Tools/author-final-tree-scene.cjs`, ardından `node Tools/verify-final-tree-scene.cjs`. İlk iki komut manifest/sahne yerleşimini değiştirir; kullanıcı Inspector düzenini otomatik ezmek için çalıştırılmaz. UI, merkez anchor/pivot ve Z=0 kullanır. Panel kapanırken root animasyonları durdurulup ölçek/dönüş sıfırlanır; yeniden açılırken aynı SO koordinatı uygulanır.
+
 `Tools/Skill Tree/Verify Final Tree` Unity menüsü node sayısı, önkoşullar, kademe sayısı, fiyat geçerliliği, son hasar, süre ve grid değerlerini kontrol eder.
 
 `node Tools/build-final-skill-tree.cjs` manifestten aynı GUID'lerle asset'leri yeniden üretir. Kaynak: `Docs/FinalSkillTree.json`. Inspector'da yapılan denge değişikliklerini yeniden üretmeden önce manifestte de güncelle; aksi halde üretim bu değişikliklerin üzerine yazar.

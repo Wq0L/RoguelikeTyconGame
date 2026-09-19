@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "Kart Sezgisi - 2"
   icon: {fileID: 0}
-  gridPosition: {x: -13, y: 4}
+  gridPosition: {x: -30, y: 1}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: 0ce0cafe4506f6377cfa3dc173e9bc57, type: 2}

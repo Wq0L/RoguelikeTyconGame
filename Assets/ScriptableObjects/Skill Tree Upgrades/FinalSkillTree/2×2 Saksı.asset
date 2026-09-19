@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
   nodeName: "2×2 Saksı"
   icon: {fileID: 0}
-  gridPosition: {x: 6, y: -2}
+  gridPosition: {x: 9, y: -2}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: 971c1a63e1b77116d60ad45a988e2147, type: 2}
