@@ -3,13 +3,13 @@ using UnityEngine;
 
 public enum UnlockType
 {
-    None,
-    Planter_2x2,
-    Planter_2x3,
-    TileBehavior_Explosive,
-    TileBehavior_Duplicate,
-    TileBehavior_Tornado,
-    Planter_1x3
+    None = 0,
+    Planter_2x2 = 1,
+    Planter_2x3 = 2,
+    TileBehavior_Explosive = 3,
+    TileBehavior_Duplicate = 4,
+    TileBehavior_Tornado = 5,
+    Planter_1x3 = 6
 }
 
 [System.Serializable]

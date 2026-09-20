@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d537951020d63ee4090b5646603582e4, type: 3}
+  m_Name: ComicUITheme
+  m_EditorClassIdentifier: Assembly-CSharp::ComicUITheme
+  buttonSprite: {fileID: 21300000, guid: 3fc932eef7f615743b8079010b330b27, type: 2}
+  cardSprite: {fileID: 21300000, guid: 669d778480eced54c990974452f30ba3, type: 2}
+  coinSprite: {fileID: 21300000, guid: 056a722a1c7c279439c65c3ece069266, type: 2}
+  sproutSprite: {fileID: 21300000, guid: 71e32c53c227a3e46a0c01f040e1ac97, type: 2}
+  ironSprite: {fileID: 21300000, guid: 3875f0063da327247a2b72496f25980d, type: 2}
+  stoneSprite: {fileID: 21300000, guid: cf90a97de51742f41a2a3b2cb5efee9a, type: 2}
+  headingFont: {fileID: 11400000, guid: 404b2d578f83a5b4d88295a467c66f15, type: 2}
+  bodyFont: {fileID: 11400000, guid: cda3c69f5f38ca7438e47be88545601d, type: 2}
+  outlinedText: {fileID: 2100000, guid: 4b0eda120a7d2b04f852831033f52f50, type: 2}
+  green:
+  - {fileID: 2100000, guid: 370e17d7149194e44b9e0c63342abc73, type: 2}
+  - {fileID: 2100000, guid: aa948e2089d0c5148b1f2dab73e406b4, type: 2}
+  - {fileID: 2100000, guid: 5ac54fbf50dc6ba4b9f4365b4ef8dbf5, type: 2}
+  - {fileID: 2100000, guid: fbbf8236a090cba40917c8f8b21c5398, type: 2}
+  red:
+  - {fileID: 2100000, guid: 3a74987b4fec288469507cc5afc6375f, type: 2}
+  - {fileID: 2100000, guid: 1bcce6acfe3828d4eabc88df5bc0dbf5, type: 2}
+  - {fileID: 2100000, guid: 4da7f5228a2f53c4faa805a8103981cd, type: 2}
+  - {fileID: 2100000, guid: b38c00080b2df0044805e237b54a1c00, type: 2}
+  blue:
+  - {fileID: 2100000, guid: ab582744c8e1c554182c37527bf91abd, type: 2}
+  - {fileID: 2100000, guid: f913e5bb68d6e4d42a4376d3303cc6a3, type: 2}
+  - {fileID: 2100000, guid: 8ac9041d39d604c439b3b2183fa6db39, type: 2}
+  - {fileID: 2100000, guid: 4f2066234c04a3e4e9183bc77a3e6dc4, type: 2}
+  gold:
+  - {fileID: 2100000, guid: 68fb404c6ba07e24d89af4ab5ecac448, type: 2}
+  - {fileID: 2100000, guid: 35d1eb9dddd843a4298226bf9000b9ae, type: 2}
+  - {fileID: 2100000, guid: e0d652533c950274bba2c68f88f4b644, type: 2}
+  - {fileID: 2100000, guid: c0340b93c227eb34185ef683caedfd92, type: 2}

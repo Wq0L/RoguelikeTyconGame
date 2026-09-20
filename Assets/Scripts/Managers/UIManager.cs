@@ -265,6 +265,7 @@ public class UIManager : MonoBehaviour
         label.fontSizeMin = 16;
         label.fontSizeMax = 24;
         label.raycastTarget = false;
+        Resources.Load<ComicUITheme>("ComicUITheme")?.StyleButton(button);
         obj.SetActive(false);
         return button;
     }

@@ -9,6 +9,7 @@ public class UnlockManager : MonoBehaviour
     private HashSet<UnlockType> unlockedTypes = new();
 
     public event Action<UnlockType> OnUnlocked;
+    public event Action OnChanged;
 
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class UnlockManager : MonoBehaviour
     public void ResetUnlocks()
     {
         unlockedTypes.Clear();
+        OnChanged?.Invoke();
     }
 
     public void Unlock(UnlockType type)
@@ -28,6 +30,7 @@ public class UnlockManager : MonoBehaviour
 
         unlockedTypes.Add(type);
         OnUnlocked?.Invoke(type);
+        OnChanged?.Invoke();
 
         Debug.Log($"[UNLOCK] {type} açıldı!");
     }

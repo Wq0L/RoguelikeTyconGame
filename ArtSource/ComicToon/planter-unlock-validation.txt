@@ -1,0 +1,1 @@
+PASS: five real catalogue cards; 1x1 and 1x2 initially open; three real skill-gated planters locked; prerequisite bypass rejected; actual SkillTreeManager.TryUpgrade paths unlock 1x3, 2x2 and 2x3; UI updates immediately; Gold/Iron/Stone sprites follow cost type; new run resets locks; paused animation, affordability, purchase charge, placement cancel refund, sell action preserved.

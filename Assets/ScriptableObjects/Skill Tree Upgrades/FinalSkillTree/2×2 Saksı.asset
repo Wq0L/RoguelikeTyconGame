@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae0817a4d977add4bbd7d892df76868d, type: 3}
-  m_Name: "2×2 Saksı"
+  m_Name: "2\xD72 Saks\u0131"
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
-  nodeName: "2×2 Saksı"
+  nodeName: "2\xD72 Saks\u0131"
   icon: {fileID: 0}
-  gridPosition: {x: 9, y: -2}
   explicitPrerequisites: 1
   prerequisites:
   - node: {fileID: 11400000, guid: 971c1a63e1b77116d60ad45a988e2147, type: 2}
@@ -22,6 +21,7 @@ MonoBehaviour:
   - node: {fileID: 11400000, guid: fbdd8846befc8adc2b0c929b0cfdf9c5, type: 2}
     level: 2
   targetRounds: {x: 25, y: 40}
+  gridPosition: {x: 9, y: -2}
   tiers:
   - costType: 1
     cost: 160

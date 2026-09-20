@@ -19,6 +19,8 @@ public class PlanterShopPanelUI : MonoBehaviour
         public Button button;
         public Image background;
         public TMP_Text price;
+        public Image preview;
+        public GameObject lockedOverlay;
     }
 
     [SerializeField] private List<Card> cards = new List<Card>();
@@ -35,7 +37,15 @@ public class PlanterShopPanelUI : MonoBehaviour
     [SerializeField] private Button buyButton;
     [SerializeField] private Button backButton;
     [SerializeField] private float transitionDuration = 0.4f;
-    [SerializeField] private float selectedX = -570f;
+    [SerializeField] private float selectedX = -570f; // Legacy scene data.
+    [SerializeField] private Image detailPreview;
+    [SerializeField] private TMP_Text detailTitle;
+    [SerializeField] private TMP_Text plotsLabel;
+    [SerializeField] private TMP_Text sizeLabel;
+    [SerializeField] private TMP_Text timeLabel;
+    [SerializeField] private Image buyResourceIcon;
+    [SerializeField] private ComicUITheme theme;
+    private Vector2 detailsHome;
 
     private Vector2[] homePositions;
     private int selectedIndex = -1;
@@ -43,9 +53,11 @@ public class PlanterShopPanelUI : MonoBehaviour
     private bool animating;
     private ResourceManager resources;
     private StatManager statManager;
+    private UnlockManager unlocks;
 
     private void Awake()
     {
+        detailsHome = ((RectTransform)details.transform).anchoredPosition;
         homePositions = new Vector2[cards.Count];
         for (int i = 0; i < cards.Count; i++)
         {
@@ -69,15 +81,19 @@ public class PlanterShopPanelUI : MonoBehaviour
     {
         resources = ResourceManager.Instance;
         statManager = StatManager.Instance;
+        unlocks = UnlockManager.Instance;
+        if (unlocks != null) unlocks.OnChanged += Refresh;
         if (resources != null) resources.OnResourceAmountChanged += OnResourceChanged;
         if (statManager != null) statManager.OnStatChanged += OnStatChanged;
         ResetView();
+        if (cards.Count > 0) SelectCard(0);
     }
 
     private void OnDisable()
     {
         if (resources != null) resources.OnResourceAmountChanged -= OnResourceChanged;
         if (statManager != null) statManager.OnStatChanged -= OnStatChanged;
+        if (unlocks != null) unlocks.OnChanged -= Refresh;
         StopTransition();
         // Always reopen on the catalogue, including after buying/cancelling placement.
         ResetView();
@@ -97,14 +113,17 @@ public class PlanterShopPanelUI : MonoBehaviour
     {
         if (homePositions == null) return;
         selectedIndex = -1;
-        details.alpha = 0f;
+        details.alpha = 1f;
+        ((RectTransform)details.transform).anchoredPosition = detailsHome;
         details.interactable = details.blocksRaycasts = false;
         backButton.gameObject.SetActive(false);
-        heading.text = "PLANTER LAB";
-        summary.text = "Choose a planter to inspect its production and price.";
+        heading.text = "PLANTERS";
+        if (detailTitle != null) detailTitle.text = "CHOOSE A PLANTER";
+        summary.text = "PICK IT. PLANT IT. GROW BIG.";
         for (int i = 0; i < cards.Count; i++)
         {
             cards[i].rect.anchoredPosition = homePositions[i];
+            cards[i].rect.localScale = Vector3.one;
             cards[i].group.alpha = 1f;
             cards[i].group.interactable = cards[i].group.blocksRaycasts = true;
             cards[i].background.sprite = normalCard;
@@ -114,11 +133,11 @@ public class PlanterShopPanelUI : MonoBehaviour
 
     public void SelectCard(int index)
     {
-        if (animating || selectedIndex >= 0 || index < 0 || index >= cards.Count) return;
+        if (animating || index < 0 || index >= cards.Count || cards[index].data == null || !cards[index].data.IsUnlocked) return;
         selectedIndex = index;
         cards[index].background.sprite = selectedCard;
-        heading.text = "PLANTER DETAILS";
-        summary.text = "Inspect the planter, then buy and place it on the grid.";
+        heading.text = "PLANTERS";
+        summary.text = "PICK IT. PLANT IT. GROW BIG.";
         backButton.gameObject.SetActive(true);
         Refresh();
         transition = StartCoroutine(Animate(true));
@@ -136,43 +155,26 @@ public class PlanterShopPanelUI : MonoBehaviour
         buyButton.interactable = false;
         backButton.interactable = false;
         details.blocksRaycasts = details.interactable = false;
-        var starts = new Vector2[cards.Count];
-        var alphas = new float[cards.Count];
-        for (int i = 0; i < cards.Count; i++)
-        {
-            starts[i] = cards[i].rect.anchoredPosition;
-            alphas[i] = cards[i].group.alpha;
-            cards[i].group.interactable = cards[i].group.blocksRaycasts = false;
-        }
-        float initialDetails = details.alpha;
+        RectTransform detailRect = (RectTransform)details.transform;
         float duration = Mathf.Max(0.05f, transitionDuration);
-        for (float elapsed = 0f; elapsed < duration; elapsed += Time.unscaledDeltaTime)
+        for (float elapsed = 0; elapsed < duration; elapsed += Time.unscaledDeltaTime)
         {
             float t = Mathf.Clamp01(elapsed / duration);
-            float ease = 1f - Mathf.Pow(1f - t, 3f);
+            float ease = 1 - Mathf.Pow(1 - t, 3);
+            detailRect.anchoredPosition = detailsHome + Vector2.right * (1 - ease) * 40;
+            details.alpha = opening ? ease : 1 - ease;
             for (int i = 0; i < cards.Count; i++)
-            {
-                Vector2 target = opening
-                    ? new Vector2(i == selectedIndex ? selectedX : homePositions[i].x + 1600f, homePositions[i].y)
-                    : homePositions[i];
-                cards[i].rect.anchoredPosition = Vector2.LerpUnclamped(starts[i], target, ease);
-                cards[i].group.alpha = Mathf.Lerp(alphas[i], opening && i != selectedIndex ? 0f : 1f, ease);
-            }
-            details.alpha = Mathf.Lerp(initialDetails, opening ? 1f : 0f, opening ? Mathf.SmoothStep(0f, 1f, Mathf.Clamp01((t - 0.25f) / 0.75f)) : ease);
+                cards[i].rect.localScale = Vector3.one * (1 + (opening && i == selectedIndex ? 0.025f * ease : 0));
             yield return null;
         }
+        detailRect.anchoredPosition = detailsHome;
         animating = false;
         transition = null;
         backButton.interactable = true;
         if (!opening) ResetView();
         else
         {
-            for (int i = 0; i < cards.Count; i++)
-            {
-                cards[i].rect.anchoredPosition = new Vector2(i == selectedIndex ? selectedX : homePositions[i].x + 1600f, homePositions[i].y);
-                cards[i].group.alpha = i == selectedIndex ? 1f : 0f;
-            }
-            details.alpha = 1f;
+            details.alpha = 1;
             details.blocksRaycasts = details.interactable = true;
             Refresh();
         }
@@ -190,12 +192,37 @@ public class PlanterShopPanelUI : MonoBehaviour
         {
             bool configured = card.data != null && card.data.prefab != null;
             card.button.interactable = configured && card.data.IsUnlocked;
-            card.price.text = configured ? card.data.IsUnlocked ? $"{card.data.cost} {card.data.costType}" : "SKILL TREE: KİLİTLİ" : "Not configured";
+            card.price.text = configured ? card.data.IsUnlocked ? $"{card.data.cost} {card.data.costType}" : "SKILL TREE" : "UNAVAILABLE";
+            if (card.lockedOverlay != null) card.lockedOverlay.SetActive(!card.button.interactable);
+            if (card.preview != null) card.preview.color = card.button.interactable ? Color.white : new Color(.45f,.47f,.46f);
+            card.background.color = card.button.interactable ? Color.white : new Color(.6f,.62f,.61f);
         }
-        if (selectedIndex < 0) { buyButton.interactable = false; return; }
+        if (selectedIndex < 0)
+        {
+            buyButton.interactable = false;
+            if (detailPreview != null) detailPreview.enabled = false;
+            if (plotsLabel != null) plotsLabel.text = "-";
+            if (sizeLabel != null) sizeLabel.text = "-";
+            if (timeLabel != null) timeLabel.text = "-";
+            description.text = "Choose an unlocked planter from the catalogue.";
+            status.text = "";
+            buyLabel.text = "BUY";
+            if (buyResourceIcon != null) buyResourceIcon.enabled = false;
+            return;
+        }
         PlanterSO data = cards[selectedIndex].data;
         if (data == null) return;
         int cells = data.sizeX * data.sizeZ;
+        if (detailTitle != null) detailTitle.text = $"{data.sizeX}x{data.sizeZ} PLANTER";
+        if (detailPreview != null && cards[selectedIndex].preview != null)
+        {
+            detailPreview.enabled = true;
+            detailPreview.sprite = cards[selectedIndex].preview.sprite;
+        }
+        if (plotsLabel != null) plotsLabel.text = cells.ToString();
+        if (sizeLabel != null) sizeLabel.text = $"{data.sizeX}x{data.sizeZ}";
+        if (timeLabel != null) timeLabel.text = $"{EffectiveStat(data, StatType.PlantSpawnRate):0.#}s";
+
         stats.text = $"<b>{data.planterName}</b>\n\nFOOTPRINT     {data.sizeX} x {data.sizeZ} / {cells} cells\nSPAWN INTERVAL     {EffectiveStat(data, StatType.PlantSpawnRate):0.##} s\nRARE BONUS     +{EffectiveStat(data, StatType.RareSpawnChance):0.##}%";
         StringBuilder plants = new StringBuilder();
         if (data.spawnTable != null)
@@ -205,17 +232,23 @@ public class PlanterShopPanelUI : MonoBehaviour
                     if (plants.Length > 0) plants.Append(", ");
                     plants.Append(entry.plant.plantName);
                 }
-        description.text = $"<b>PRODUCTION</b>\n{(plants.Length > 0 ? plants.ToString() : "No plants configured")}\n\nNeeds {cells} empty, unlocked grid cells.\nR rotates the planter during placement.\n\nValues include global upgrades. Tile bonuses apply after placement.";
+        description.text = $"{cells} growing plots for {(plants.Length > 0 ? plants.ToString() : "your next crop")}.\nNeeds {cells} empty, unlocked cells. R rotates during placement.";
         int balance = resources != null ? resources.GetResourceAmount(data.costType) : 0;
         bool valid = data.prefab != null && data.sizeX > 0 && data.sizeZ > 0 && data.cost >= 0
             && data.prefab.GetComponent<PlanterBrain>() != null;
         bool affordable = resources != null && balance >= data.cost;
         buyButton.interactable = valid && data.IsUnlocked && affordable && !animating;
-        buyLabel.text = $"BUY  /  {data.cost} {data.costType}";
+        buyLabel.text = $"BUY  /  {data.cost}";
+        if (buyResourceIcon != null && theme != null)
+        {
+            buyResourceIcon.sprite = theme.ResourceIcon(data.costType);
+            buyResourceIcon.enabled = buyResourceIcon.sprite != null;
+        }
         status.text = !valid ? "Planter setup is incomplete."
+            : !data.IsUnlocked ? "Unlock this planter in the skill tree."
             : affordable ? $"Available: {balance} {data.costType}"
             : $"Need {data.cost - balance} more {data.costType}  /  Available: {balance}";
-        status.color = valid && affordable ? new Color(0.45f, 0.9f, 0.83f) : new Color(1f, 0.63f, 0.47f);
+        status.color = valid && affordable ? new Color(0.05f, 0.33f, 0.25f) : new Color(0.7f, 0.12f, 0.08f);
     }
 
     private void Buy()

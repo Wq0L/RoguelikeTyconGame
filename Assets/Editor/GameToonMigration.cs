@@ -82,9 +82,12 @@ public static class GameToonMigration
 
     static void ConfigureLockedMaterial(Material material)
     {
-        // The old locked shader supplied black internally, not through its tint.
-        // Preserve that visual state when creating or revisiting a toon material.
-        material.SetColor("_Color", Color.black);
+        // Muted blue charcoal keeps locked tiles readable without resembling open tiles.
+        material.SetColor("_Color", new Color(0.22f, 0.29f, 0.38f, 1));
+        material.SetFloat("_Steps", 3);
+        material.SetFloat("_MinLight", 0.45f);
+        material.SetFloat("_MaxLight", 0.85f);
+        material.SetFloat("_Offset", 0.15f);
         material.SetFloat("_AmbientCol", 0);
         material.SetFloat("_ColBright", 0);
         material.SetFloat("_ShnIntense", 0);
@@ -226,7 +229,7 @@ public static class GameToonMigration
         }
     }
 
-    static void Capture(Camera camera, string filename = "gamescene-toon.png")
+    public static void Capture(Camera camera, string filename = "gamescene-toon.png")
     {
         var target = new RenderTexture(2560, 1440, 24, RenderTextureFormat.ARGB32);
         var old = RenderTexture.active;

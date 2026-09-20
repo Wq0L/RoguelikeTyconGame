@@ -36,6 +36,9 @@ public static class GameToonPlayVerification
 
     static void Tick()
     {
+        Application.runInBackground = true;
+        EditorApplication.isPaused = false;
+        EditorApplication.QueuePlayerLoopUpdate();
         if (!EditorApplication.isPlaying || EditorApplication.isCompiling) return;
         if (++frames < 30) return;
         try
@@ -56,7 +59,7 @@ public static class GameToonPlayVerification
                 cell.ApplyModifier(null);
                 cell.Lock();
                 Require(cell.IsLocked && renderer.sharedMaterials.All(m => m.shader.name.StartsWith("Simple Toon/")), "Locked ground must use toon materials.");
-                Require(renderer.sharedMaterials.All(m => m.GetColor("_Color") == Color.black && m.GetFloat("_ShnIntense") == 0), "Locked ground must be black without shine.");
+                Require(renderer.sharedMaterials.All(m => m.GetColor("_Color").b > m.GetColor("_Color").r && m.GetColor("_Color").maxColorComponent < 0.5f && m.GetFloat("_MinLight") >= 0.4f && m.GetFloat("_ShnIntense") == 0), "Locked ground must retain readable dark blue toon shading without shine.");
                 Object.Destroy(modifier);
 
                 var pot = Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Grass Planter 1x1.prefab"));
@@ -81,7 +84,9 @@ public static class GameToonPlayVerification
             var restored = new MaterialPropertyBlock(); flashed.GetPropertyBlock(restored);
             Require(restored.GetFloat("_ToonFlash") == 0, "Hit flash must clear after its duration.");
             Directory.CreateDirectory("Logs/GameToon");
-            File.WriteAllText("Logs/GameToon/play-validation.txt", "PASS: Play Mode initialization, black locked ground and colored unlocked ground, tile modifier color/reset, valid placement ghost/restoration, white hit flash activation and timed reset.");
+            File.WriteAllText("Logs/GameToon/play-validation.txt", "PASS: Play Mode initialization, readable dark blue locked ground and colored unlocked ground, tile modifier color/reset, valid placement ghost/restoration, white hit flash activation and timed reset.");
+            foreach (var canvas in Object.FindObjectsByType<Canvas>(FindObjectsSortMode.None)) canvas.enabled = false;
+            GameToonMigration.Capture(Camera.main, "locked-grid-toon.png");
             Debug.Log("GAME_TOON_PLAY_VALIDATION_PASS");
             Finish(0);
         }
