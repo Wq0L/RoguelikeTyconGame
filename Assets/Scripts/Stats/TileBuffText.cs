@@ -23,7 +23,9 @@ public static class TileBuffText
     public static string Signed(float value) => (value >= 0f ? "+" : "−") +
         System.Math.Abs(value).ToString("0.##", CultureInfo.InvariantCulture);
 
-    public static string Modifier(StatModifier mod)
+    public static string Modifier(StatModifier mod) => Name(mod.statType) + " " + Amount(mod);
+
+    public static string Amount(StatModifier mod)
     {
         bool percent = mod.operation == ModifierOperation.AddPercent || mod.operation == ModifierOperation.MorePercent;
         bool chance = mod.statType == StatType.ExplosionChance || mod.statType == StatType.DuplicateChance || mod.statType == StatType.CritChance;
@@ -32,7 +34,7 @@ public static class TileBuffText
         if (!percent && mod.statType == StatType.RareSpawnChance) amount += "% puan";
         if (mod.operation == ModifierOperation.Flat && chance) amount += " puan";
         if (mod.operation == ModifierOperation.Set) amount = mod.value.ToString("0.##", CultureInfo.InvariantCulture) + (chance ? " (oran)" : "");
-        return Name(mod.statType) + " " + amount;
+        return amount;
     }
 
     public static string Modifiers(IReadOnlyList<StatModifier> modifiers)

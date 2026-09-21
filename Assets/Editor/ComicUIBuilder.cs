@@ -16,6 +16,43 @@ public static class ComicUIBuilder
     const string Root = "Assets/Art/UI/ComicToon/";
     static ComicUITheme theme;
     static Color Ink = new Color(.055f,.075f,.08f);
+    public static void UpdateRoundBatch()
+    {
+        try{
+            theme=AssetDatabase.LoadAssetAtPath<ComicUITheme>("Assets/Resources/ComicUITheme.asset");
+            var sprite=Sprite("Grid Tile",65);
+            var prefab=PrefabUtility.LoadPrefabContents("Assets/Prefabs/UI/GridUI.prefab");
+            var cellImage=prefab.GetComponent<Image>();cellImage.sprite=sprite;cellImage.type=Image.Type.Simple;cellImage.pixelsPerUnitMultiplier=5;
+            var hover=prefab.GetComponent<ComicHoverMotion>()??prefab.AddComponent<ComicHoverMotion>();hover.hoverScale=1.075f;
+            PrefabUtility.SaveAsPrefabAsset(prefab,"Assets/Prefabs/UI/GridUI.prefab");PrefabUtility.UnloadPrefabContents(prefab);
+            var scene=EditorSceneManager.OpenScene("Assets/Scenes/GameScene.unity");
+            var map=Object.FindFirstObjectByType<RoundMapUI>(FindObjectsInactive.Include);
+            var mapRect=(RectTransform)map.transform;mapRect.anchorMin=mapRect.anchorMax=mapRect.pivot=new Vector2(.5f,.5f);mapRect.anchoredPosition=new Vector2(0,55);mapRect.sizeDelta=new Vector2(1000,800);
+            var so=new SerializedObject(map);var grid=(RectTransform)so.FindProperty("gridContainer").objectReferenceValue;
+            grid.anchorMin=grid.anchorMax=grid.pivot=new Vector2(.5f,.5f);grid.anchoredPosition=new Vector2(24,0);grid.localScale=Vector3.one;
+            var fitter=grid.GetComponent<ContentSizeFitter>();if(fitter)Object.DestroyImmediate(fitter);
+            grid.GetComponent<GridLayoutGroup>().padding=new RectOffset();
+            Set(so,"cellSprite",sprite);Set(so,"theme",theme);
+            so.FindProperty("emptyColor").colorValue=Color.white;so.FindProperty("lockedColor").colorValue=new Color(.16f,.19f,.21f,1);so.FindProperty("availableSize").vector2Value=new Vector2(840,680);
+            foreach(string name in new[]{"Column Headers","Row Headers"}){var previous=map.transform.Find(name);if(previous)Object.DestroyImmediate(previous.gameObject);}
+            Set(so,"columnHeaders",Rect("Column Headers",map.transform,Vector2.zero,Vector2.zero));Set(so,"rowHeaders",Rect("Row Headers",map.transform,Vector2.zero,Vector2.zero));so.ApplyModifiedPropertiesWithoutUndo();
+            foreach(var b in Object.FindObjectsByType<Button>(FindObjectsInactive.Include,FindObjectsSortMode.None)){
+                bool next=b.name=="Next Round Button",shop=b.name=="Placment Shop Button",skill=b.name=="Skill Shop Button";if(!next&&!shop&&!skill)continue;
+                theme.StyleButton(b,next?"blue":skill?"gold":"green");
+                var r=(RectTransform)b.transform;r.anchorMin=r.anchorMax=r.pivot=new Vector2(.5f,.5f);r.anchoredPosition=new Vector2(next?0:shop?-475:475,next?-419:-430);r.sizeDelta=new Vector2(next?420:365,next?120:98);
+                var label=b.GetComponentInChildren<TMP_Text>(true);label.text=next?"START ROUND":shop?"PLANTER SHOP":"SKILL SHOP";label.fontSizeMin=25;label.fontSizeMax=next?44:32;label.enableAutoSizing=true;
+                label.rectTransform.anchorMin=Vector2.zero;label.rectTransform.anchorMax=Vector2.one;label.rectTransform.offsetMin=new Vector2(next?20:82,12);label.rectTransform.offsetMax=new Vector2(-16,-10);
+                var motion=b.GetComponent<ComicHoverMotion>()??b.gameObject.AddComponent<ComicHoverMotion>();motion.hoverScale=next?1.055f:1.045f;motion.tilt=next?0:shop?-.7f:.7f;
+                if(next){
+                    var states=Palette("Round Cyan",.53f);var visual=b.GetComponent<ComicButtonVisual>();visual.normal=states[0];visual.hover=states[1];visual.pressed=states[2];visual.disabled=states[3];((Image)b.targetGraphic).material=states[0];
+                }else{
+                    var old=b.transform.Find("Action Icon");if(old)Object.DestroyImmediate(old.gameObject);
+                    var icon=Rect("Action Icon",b.transform,new Vector2(-135,3),new Vector2(62,62)).gameObject.AddComponent<ComicActionIcon>();icon.shape=shop?ComicActionIcon.Shape.Cart:ComicActionIcon.Shape.Star;icon.raycastTarget=false;
+                }
+            }
+            EditorSceneManager.SaveScene(scene);AssetDatabase.SaveAssets();Debug.Log("ROUND_COMIC_BUILD_PASS");EditorApplication.Exit(0);
+        }catch(Exception e){Debug.LogException(e);EditorApplication.Exit(1);}
+    }
     public static void UpdateShopBatch()
     {
         try {

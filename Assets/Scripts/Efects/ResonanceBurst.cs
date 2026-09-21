@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-// Reusable, unscaled effect: card selection and placement intentionally pause game time.
+// Reusable effect whose readable lifetime is spent only in the visible round.
 public class ResonanceBurst : MonoBehaviour
 {
     private LineRenderer ring;
@@ -11,10 +11,14 @@ public class ResonanceBurst : MonoBehaviour
     private Vector3 halfSize;
     private Color tint;
     private float elapsed;
-    public const float Duration = 1.1f;
+    public const float Duration = 3f;
+    private bool presentationPaused;
+    private Vector3 textTravel;
+    private float textTilt;
+    private static bool scatterRight;
     public bool IsPlaying => gameObject.activeSelf;
 
-    public void Configure(Material material)
+    public void Configure(Material material, FloatingText damageStyle = null)
     {
         ring = gameObject.AddComponent<LineRenderer>();
         ring.sharedMaterial = material;
@@ -55,9 +59,12 @@ public class ResonanceBurst : MonoBehaviour
         renderer.reflectionProbeUsage = ReflectionProbeUsage.Off;
         var text = new GameObject("Resonance label"); text.transform.SetParent(transform, false);
         label = text.AddComponent<TextMeshPro>();
-        label.fontSize = 3f;
+        var theme = Resources.Load<ComicUITheme>("ComicUITheme");
+        if (theme != null) { label.font = theme.headingFont; label.fontSharedMaterial = theme.outlinedText; }
+        label.fontSize = 3.6f;
+        if (damageStyle != null) damageStyle.CopyStyleTo(label);
         label.alignment = TextAlignmentOptions.Center;
-        label.rectTransform.sizeDelta = new Vector2(7f, 2f);
+        label.rectTransform.sizeDelta = new Vector2(9f, 4f);
         label.GetComponent<Renderer>().shadowCastingMode = ShadowCastingMode.Off;
         gameObject.SetActive(false);
     }
@@ -68,9 +75,18 @@ public class ResonanceBurst : MonoBehaviour
         halfSize = new Vector3(Mathf.Max(.5f, footprint.extents.x + .45f), 0f,
             Mathf.Max(.5f, footprint.extents.z + .45f));
         tint = color;
+        scatterRight = !scatterRight;
+        var camera = Camera.main;
+        textTilt = Random.Range(-8f, 8f);
+        textTravel = (camera != null ? camera.transform.right : Vector3.right) * (scatterRight ? .45f : -.45f)
+            + (camera != null ? camera.transform.up : Vector3.up) * 1.35f;
         label.text = message;
         label.color = Color.white;
         elapsed = 0f;
+        presentationPaused = false;
+        ring.enabled = true;
+        label.GetComponent<Renderer>().enabled = true;
+        sparks.GetComponent<Renderer>().enabled = true;
         gameObject.SetActive(true);
         sparks.Clear(true);
         sparks.Play();
@@ -90,8 +106,18 @@ public class ResonanceBurst : MonoBehaviour
 
     private void Update()
     {
+        bool pause = GameManager.Instance != null && GameManager.Instance.CurrentState != GameStates.Round;
+        if (pause != presentationPaused)
+        {
+            presentationPaused = pause;
+            ring.enabled = !pause;
+            label.GetComponent<Renderer>().enabled = !pause;
+            sparks.GetComponent<Renderer>().enabled = !pause;
+            if (pause) sparks.Pause(true); else sparks.Play(true);
+        }
+        if (pause) return;
         elapsed += Time.unscaledDeltaTime;
-        if (elapsed >= Duration) { sparks.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear); gameObject.SetActive(false); return; }
+        if (elapsed >= Duration) { Stop(); return; }
         Draw(elapsed / Duration);
     }
 
@@ -104,12 +130,21 @@ public class ResonanceBurst : MonoBehaviour
             ring.SetPosition(i, new Vector3(Mathf.Cos(angle) * halfSize.x * expansion, 0,
                 Mathf.Sin(angle) * halfSize.z * expansion));
         }
-        ring.startWidth = ring.endWidth = Mathf.Lerp(.11f, .015f, t);
+        ring.startWidth = ring.endWidth = Mathf.Lerp(.16f, .025f, t);
         Color color = tint; color.a = (1f - t) * .9f;
         ring.startColor = ring.endColor = color;
-        label.transform.localPosition = Vector3.up * (1.2f + t * .55f);
-        label.transform.localScale = Vector3.one * Mathf.Lerp(.85f, 1f, Mathf.Clamp01(t * 6f));
-        label.alpha = 1f - Mathf.InverseLerp(.6f, 1f, t);
-        if (Camera.main != null) label.transform.rotation = Camera.main.transform.rotation;
+        label.transform.position = transform.position + Vector3.up * 1.65f + textTravel * (1f - Mathf.Pow(1f - t, 3f));
+        float enter = 1f - Mathf.Pow(1f - Mathf.Clamp01(elapsed / .055f), 3f);
+        float punch = Mathf.Clamp01((elapsed - .055f) / .22f);
+        float pop = enter * (1f + .3f * Mathf.Sin(punch * Mathf.PI));
+        label.transform.localScale = Vector3.one * pop;
+        label.alpha = 1f - Mathf.InverseLerp(.8f, 1f, t);
+        if (Camera.main != null) label.transform.rotation = Camera.main.transform.rotation * Quaternion.Euler(0, 0, textTilt);
+    }
+
+    public void Stop()
+    {
+        if (sparks != null) sparks.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        gameObject.SetActive(false);
     }
 }

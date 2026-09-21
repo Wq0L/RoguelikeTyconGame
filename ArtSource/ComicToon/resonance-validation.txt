@@ -1,0 +1,12 @@
+RESONANCE_CHECK: Preparation retains accumulated resonance without playing
+RESONANCE_CHECK: Queue cannot be consumed outside Round
+RESONANCE_CHECK: Interrupted transition preserves queue
+RESONANCE_CHECK: Round presents one final upgrade per planter
+RESONANCE_CHECK: Final tier and highlighted heading displayed
+RESONANCE_CHECK: Damage text font/material shared and fully readable
+RESONANCE_CHECK: Overlay hides effect without consuming readable time
+RESONANCE_CHECK: Text still visible after two seconds of gameplay
+RESONANCE_CHECK: Effect expires after readable duration
+RESONANCE_CHECK: Removed planter is skipped safely
+RESONANCE_CHECK: New run clears active and pending celebrations
+RESONANCE_PRESENTATION_PASS

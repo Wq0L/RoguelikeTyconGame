@@ -22,6 +22,6 @@ public class NextRoundButtonUI : MonoBehaviour
         TMP_Text label = button.GetComponentInChildren<TMP_Text>(true);
         if (label != null)
             label.text = RoundManager.Instance != null && RoundManager.Instance.IsPreparingFirstRound
-                ? "Start Round 1" : "Next Round";
+                ? "START ROUND" : "NEXT ROUND";
     }
 }

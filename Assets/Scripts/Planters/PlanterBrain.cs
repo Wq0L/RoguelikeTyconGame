@@ -164,11 +164,12 @@ public class PlanterBrain : MonoBehaviour
         {
             if (!ResonanceManager.IsNewTier(resonance, previous)) continue;
             if (message.Length > 0) message += "\n";
-            message += resonance.resonanceName + " REZONANSI\n" + TileBuffText.Resonance(resonance);
+            message += resonance.resonanceName + "\n<color=#B9FFCB>" + TileBuffText.Resonance(resonance) + "</color>";
             if (resonance.tileType == TileModifierType.Damage) color = new Color(1f, .65f, .2f);
             else if (resonance.tileType == TileModifierType.Fertile) color = new Color(.45f, 1f, .55f);
         }
         if (message.Length == 0) return false;
+        message = "<size=125%><color=#FFE36A>REZONANS!</color></size>\n" + message;
         bool found = false;
         foreach (var grid in occupiedGrids)
         {

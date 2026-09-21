@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8704179089759206967}
   - component: {fileID: 105609604704998868}
   - component: {fileID: 2751184634307149522}
+  - component: {fileID: 1260283619811923928}
   m_Layer: 5
   m_Name: GridUI
   m_TagString: Untagged
@@ -67,8 +68,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: c420213df3ee39d4cacd5ddf57e4a1ee, type: 2}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -76,7 +77,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 5
 --- !u!114 &105609604704998868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,3 +103,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba814fc814e669d40a1047fe87a8aeb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TooltipTrigger
+--- !u!114 &1260283619811923928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2887079171518363785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaae367b009bee8408aad62a9d1f3590, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ComicHoverMotion
+  hoverScale: 1.075
+  tilt: 0
+  duration: 0.13

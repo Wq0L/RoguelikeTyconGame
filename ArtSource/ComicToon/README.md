@@ -27,3 +27,9 @@ Atlas character set includes basic Latin and Turkish letters. Barlow is the fall
 Before-change scene/script backups: `Backups/ComicToon-20260920`.
 
 Planter shop follow-up: removed the decorative sixth card. Only the five real planters remain. Explicit unlock IDs connect 1x3/2x2/2x3 to their actual skill nodes; normalized Unity asset serialization preserves those gates. The BUY button uses Gold, Iron or Stone sprites. Iron and Stone previews were rendered from the project's KayKit resource models. Actual prerequisite purchases and reset behavior are covered by ComicUIVerification; see planter-unlock-validation.txt.
+
+## Round map comic update
+Grid Tile.png generated with built-in imagegen. Original source: exec-71fb3dbc-4a71-446c-a237-7ae0eaa440a9.png (preserved in generated_images).
+Prompt: Single transparent square comic UI tile, neutral white/light gray surface, thick black rounded frame, inset gray bevel, glossy top-left highlight and subtle lower-corner halftone; no text or icons. Designed for arbitrary tinting in Unity.
+Uses one shared sprite/texture with UI vertex color for locked charcoal, open white and the existing modifier colors. Simple sprite scaling preserves corners at small tile sizes. Grid objects and coordinate labels are pooled between rounds. Actual map dimensions and reversed Z mapping remain unchanged. TooltipTrigger/TileCellUI retain their existing behavior. ComicHoverMotion uses unscaled time and only runs a coroutine during transitions. Cart/star icons are small vector meshes.
+ComicUIBuilder.UpdateRoundBatch applies the round screen; RoundMapComicVerification.RunBatch validates it in Play Mode. Backups: Backups/RoundMapComic-20260920.

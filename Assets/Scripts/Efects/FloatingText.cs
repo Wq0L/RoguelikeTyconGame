@@ -17,6 +17,15 @@ public class FloatingText : MonoBehaviour
     private bool leased;
     private static bool scatterRight;
 
+    public void CopyStyleTo(TextMeshPro target)
+    {
+        target.font = textMesh.font;
+        target.fontSharedMaterial = textMesh.fontSharedMaterial;
+        target.fontSize = normalFontSize;
+        target.fontStyle = FontStyles.Bold;
+        target.color = normalColor;
+    }
+
     private void Awake()
     {
         // One sequence per pooled object: Restart reuses the tweeners.

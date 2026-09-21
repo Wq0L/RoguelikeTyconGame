@@ -101,6 +101,7 @@ public class UIManager : MonoBehaviour
             case GameStates.Round:
                 CloseAll();
                 lastShopPanel = null;
+                resonancePresentation = StartCoroutine(PresentPendingResonancesOnRound());
                 break;
             case GameStates.CardSelection:
                 ShowCardSelectionUI();
@@ -117,28 +118,17 @@ public class UIManager : MonoBehaviour
         CancelResonancePresentation();
         CloseCurrentPanel();
         lastShopPanel = null;
-        if (VFXManager.Instance != null && VFXManager.Instance.HasPendingResonances)
-        {
-            CloseAll();
-            resonancePresentation = StartCoroutine(PresentResonancesThenRoundEnd());
-            return;
-        }
         roundEndUI.SetActive(true);
         currentPanel = roundEndUI;
     }
 
-    private IEnumerator PresentResonancesThenRoundEnd()
+    private IEnumerator PresentPendingResonancesOnRound()
     {
-        // Allow the card panel to disappear before starting the world-space celebration.
-        yield return null;
-        if (VFXManager.Instance != null && VFXManager.Instance.PlayPendingResonances())
-            yield return new WaitForSecondsRealtime(ResonanceBurst.Duration + 0.15f);
+        // Wait for the preparation panels to close, then present in the actual round.
+        yield return new WaitForSecondsRealtime(.25f);
+        if (GameManager.Instance != null && GameManager.Instance.CurrentState == GameStates.Round)
+            VFXManager.Instance?.PlayPendingResonances();
         resonancePresentation = null;
-        if (GameManager.Instance != null && GameManager.Instance.CurrentState == GameStates.RoundEnd)
-        {
-            roundEndUI.SetActive(true);
-            currentPanel = roundEndUI;
-        }
     }
 
     private void CancelResonancePresentation()

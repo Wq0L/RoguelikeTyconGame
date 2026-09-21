@@ -1,0 +1,8 @@
+PASS - Unity 6000.3.14f1 isolated project, GameScene Play Mode:
+121 cells (11x11), A-K / 1-11 headers, original reversed-Z coordinate mapping.
+Locked/open colors, existing modifier tint, pooled cells on refresh/reopen.
+Existing real tooltip opens and closes on a modifier cell.
+Hover animation works at timeScale=0 and returns to resting scale.
+Planter Shop / Skill Shop open their correct existing panels; Start Round resumes gameplay.
+Screenshots: round-map.png and round-map-colored.png.
+Unity Editor SearchDatabase emitted an editor index exception during startup; no gameplay test failed.

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f730ed93b07a43af16b067da3cf12, type: 3}
   m_Name: "Xp \xE7arpan\u0131"
   m_EditorClassIdentifier: Assembly-CSharp::ProgressionSO
-  baseXP: 100
+  baseXP: 5
   xpMultiplier: 1.2

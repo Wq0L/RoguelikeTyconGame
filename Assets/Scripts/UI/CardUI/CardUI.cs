@@ -16,6 +16,10 @@ public class CardUI : MonoBehaviour
     [SerializeField] private Sprite rarePlate;
     [SerializeField] private Sprite epicPlate;
     [SerializeField] private Sprite legendaryPlate;
+    [SerializeField] private Material[] rarityMaterials;
+    [SerializeField] private TextMeshProUGUI effectNameText;
+    [SerializeField] private ComicCardSparkles sparkles;
+    [SerializeField] private ComicTilePreview tilePreview;
 
     private TileCardOffer currentOffer;
     private Action<TileCardOffer> onSelected;
@@ -24,11 +28,16 @@ public class CardUI : MonoBehaviour
     {
         currentOffer = offer;
         TileModifierSO mod = offer.Tile;
+        if(tilePreview)tilePreview.color=new Color(mod.tileColor.r,mod.tileColor.g,mod.tileColor.b,1);
         onSelected = callback;
         nameText.text = mod.modifierName;
-        rarityText.text = mod.rarity.ToString(); // yeni
+        rarityText.text = mod.rarity.ToString().ToUpperInvariant();
         EnsureBuffText();
-        buffText.text = TileBuffText.Modifiers(offer.Modifiers);
+        buffText.text = offer.Modifiers.Count == 1 ? TileBuffText.Amount(offer.Modifiers[0]) : TileBuffText.Modifiers(offer.Modifiers);
+        if(effectNameText) effectNameText.text=offer.Modifiers.Count>0?TileBuffText.Name(offer.Modifiers[0].statType):"Özel etki";
+        int rarity=(int)mod.rarity;
+        if(rarityMaterials!=null && rarity<rarityMaterials.Length)cardImage.material=rarityMaterials[rarity];
+        if(sparkles)sparkles.SetRarity(mod.rarity);
         cardImage.sprite = mod.rarity switch
         {
             TileRarity.Rare => rarePlate,

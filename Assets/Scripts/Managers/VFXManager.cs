@@ -15,7 +15,7 @@ public class VFXManager : MonoBehaviour
     {
         if (planter == null || !planter.TryGetResonancePresentation(previous, out var bounds,
             out var color, out var message)) return;
-        if (GameManager.Instance != null && GameManager.Instance.CurrentState == GameStates.CardSelection)
+        if (GameManager.Instance != null && GameManager.Instance.CurrentState != GameStates.Round)
         {
             // Keep the first baseline; subsequent cards are presented as one final upgrade per planter.
             if (!pendingResonances.ContainsKey(planter))
@@ -27,6 +27,7 @@ public class VFXManager : MonoBehaviour
 
     public bool PlayPendingResonances()
     {
+        if (GameManager.Instance != null && GameManager.Instance.CurrentState != GameStates.Round) return false;
         bool played = false;
         foreach (var pending in pendingResonances)
         {
@@ -39,7 +40,11 @@ public class VFXManager : MonoBehaviour
         return played;
     }
 
-    public void ClearPendingResonances() => pendingResonances.Clear();
+    public void ClearPendingResonances()
+    {
+        pendingResonances.Clear();
+        foreach (var effect in resonancePool) if (effect != null) effect.Stop();
+    }
 
     public void PlayResonance(Bounds footprint, Color color, string message)
     {
@@ -49,7 +54,7 @@ public class VFXManager : MonoBehaviour
         if (effect == null && resonancePool.Count < 16)
         {
             var obj = new GameObject("Resonance Unlock"); obj.transform.SetParent(transform, false);
-            effect = obj.AddComponent<ResonanceBurst>(); effect.Configure(resonanceMaterial);
+            effect = obj.AddComponent<ResonanceBurst>(); effect.Configure(resonanceMaterial, floatingTextPrefab);
             resonancePool.Add(effect);
         }
         if (effect == null) effect = resonancePool[resonanceRecycleIndex++ % resonancePool.Count];
