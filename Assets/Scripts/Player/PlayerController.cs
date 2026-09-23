@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private LineRenderer radiusIndicator;
     [SerializeField] private int circleSegments = 64;
+    [SerializeField] private HarvestCursorVisual cursorVisualPrefab;
+    [SerializeField] private Material radiusOverlayMaterial;
+    private HarvestCursorVisual cursorVisual;
 
     private GridSystem gridSystem;
     private float attackTimer;
@@ -15,17 +18,20 @@ public class PlayerController : MonoBehaviour
     {
         gridSystem = gridManager.GetGridSystem();
         SetupRadiusIndicator();
+        if (cursorVisualPrefab != null) cursorVisual = Instantiate(cursorVisualPrefab, transform);
     }
 
     private void Update()
     {
         if (GameManager.Instance.CurrentState != GameStates.Round)
         {
-            radiusIndicator.enabled = false;
+            if (radiusIndicator != null) radiusIndicator.enabled = false;
+            if (cursorVisual != null) cursorVisual.gameObject.SetActive(false);
             return;
         }
 
-        radiusIndicator.enabled = true;
+        if (radiusIndicator != null) radiusIndicator.enabled = true;
+        if (cursorVisual != null) cursorVisual.gameObject.SetActive(true);
 
         Vector3 mouseWorldPos = GetMouseWorldPosition();
         UpdateRadiusVisual(mouseWorldPos);
@@ -136,6 +142,8 @@ public class PlayerController : MonoBehaviour
         radiusIndicator.loop = true;
         radiusIndicator.useWorldSpace = true;
         radiusIndicator.positionCount = circleSegments;
+        if (radiusOverlayMaterial != null) radiusIndicator.sharedMaterial = radiusOverlayMaterial;
+        radiusIndicator.sortingOrder = 100;
     }
 
     private void UpdateRadiusVisual(Vector3 center)
@@ -146,6 +154,8 @@ public class PlayerController : MonoBehaviour
             StatType.AreaRadius,
             StatTarget.Player
         );
+
+        if (cursorVisual != null) cursorVisual.Show(center, radius);
 
         for (int i = 0; i < circleSegments; i++)
         {

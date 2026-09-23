@@ -329,6 +329,16 @@ public class PlanterBrain : MonoBehaviour
     {
         TryExplode(sourceGrid, sourcePlant);
         TryTornado(sourceGrid, sourcePlant);
+        if (IsValidHarvestSource(sourceGrid, sourcePlant) && HarvestBehaviorManager.Instance != null)
+        {
+            int damage = Mathf.RoundToInt(StatManager.Instance.GetFinalStat(StatType.HarvestDamage, StatTarget.Player));
+            float boomerang = GetFinalStat(StatType.BoomerangChance);
+            if (boomerang > 0f && Random.value < boomerang)
+                HarvestBehaviorManager.Instance.TryBoomerang(this, sourceGrid, damage);
+            float electric = GetFinalStat(StatType.ElectricChance);
+            if (electric > 0f && Random.value < electric)
+                HarvestBehaviorManager.Instance.TryElectric(this, damage);
+        }
     }
 
     public void TryTornado(GridObject sourceGrid, PlantHealth sourcePlant)

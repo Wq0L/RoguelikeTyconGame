@@ -9,7 +9,9 @@ public enum UnlockType
     TileBehavior_Explosive = 3,
     TileBehavior_Duplicate = 4,
     TileBehavior_Tornado = 5,
-    Planter_1x3 = 6
+    Planter_1x3 = 6,
+    TileBehavior_Boomerang = 7,
+    TileBehavior_Electric = 8
 }
 
 [System.Serializable]

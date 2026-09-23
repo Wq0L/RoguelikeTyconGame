@@ -81,7 +81,7 @@ public class VFXManager : MonoBehaviour
     private bool criticalSoundPlayed;
 
     [Header("Camera Shake")]
-    [SerializeField] private float shakeDuration = 0.2f;
+    [SerializeField] private float shakeDuration = 0.01f;
 
     [Header("Optimization")]
     private static readonly int ColorId = Shader.PropertyToID("_BaseColor");
@@ -358,7 +358,7 @@ public class VFXManager : MonoBehaviour
     public void PlayAttackRing(Vector3 center, float maxRadius, bool hasCrit = false)
     {
         StartCoroutine(AttackRingRoutine(center, maxRadius, hasCrit));
-        ShakeCamera(hasCrit ? 0.15f : 0.05f); // crit varsa daha güçlü shake
+        ShakeCamera(hasCrit ? 0.05f : 0.02f); // crit varsa daha güçlü shake
     }
 
     private IEnumerator AttackRingRoutine(Vector3 center, float maxRadius, bool hasCrit)

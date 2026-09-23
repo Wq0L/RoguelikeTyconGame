@@ -25,19 +25,19 @@ MonoBehaviour:
     - statType: 0
       target: 1
       operation: 0
-      value: 6.666666666666666
+      value: 1
   - costType: 2
-    cost: 19
+    cost: 5
     effects:
     - statType: 0
       target: 1
       operation: 0
-      value: 13.333333333333332
+      value: 3
   - costType: 2
-    cost: 24
+    cost: 8
     effects:
     - statType: 0
       target: 1
       operation: 0
-      value: 19.999999999999996
+      value: 8
   unlockType: 0

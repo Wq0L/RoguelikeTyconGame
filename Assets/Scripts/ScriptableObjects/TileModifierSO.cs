@@ -10,7 +10,9 @@ public enum TileModifierType
     Explosive,
     Duplicate,
     Damage, 
-    Tornado
+    Tornado,
+    Boomerang,
+    Electric
 }
 
 public enum TileRarity
@@ -26,7 +28,9 @@ public enum TileBehavior
     None,
     Explosive,
     Duplicate,
-    Tornado
+    Tornado,
+    Boomerang,
+    Electric
 }
 
 [System.Serializable]

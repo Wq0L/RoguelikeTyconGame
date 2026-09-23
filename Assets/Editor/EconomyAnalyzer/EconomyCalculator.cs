@@ -12,7 +12,7 @@ namespace ClickerGame.EconomyAnalysis
         public int Round, SpawnerCount, EffectiveTargets;
         public float Duration, SpawnInterval, AttackInterval, Damage, CritChance, CritMultiplier;
         public float Radius, RareBonus, GoldMultiplier, IronMultiplier, StoneMultiplier, XpMultiplier;
-        public float DuplicateChance, PlanterDamageMultiplier, ExplosionChance, TornadoChance;
+        public float DuplicateChance, PlanterDamageMultiplier, ExplosionChance, TornadoChance, BoomerangChance, ElectricChance;
         public double GoldWeight = 1, IronWeight = 7, StoneWeight = 14;
     }
 
@@ -122,6 +122,7 @@ namespace ClickerGame.EconomyAnalysis
                 StoneMultiplier = Planter(StatType.StoneGainMultiplier), XpMultiplier = Planter(StatType.XPGainMultiplier),
                 DuplicateChance = Planter(StatType.DuplicateChance), PlanterDamageMultiplier = Planter(StatType.PlanterDamageMultiplier),
                 ExplosionChance = Planter(StatType.ExplosionChance), TornadoChance = Planter(StatType.TornadoChance),
+                BoomerangChance = Planter(StatType.BoomerangChance), ElectricChance = Planter(StatType.ElectricChance),
                 GoldWeight = profile.goldWeight, IronWeight = profile.ironWeight, StoneWeight = profile.stoneWeight
             };
             Validate(input);

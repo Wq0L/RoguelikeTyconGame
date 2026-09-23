@@ -3,7 +3,9 @@ public enum DamageType
 {
     Direct,     
     Explosion,
-    Tornado
+    Tornado,
+    Boomerang,
+    Electric
 }
 
 // Hasar tipine göre davranış kuralları TEK yerde.

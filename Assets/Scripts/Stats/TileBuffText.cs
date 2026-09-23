@@ -15,6 +15,9 @@ public static class TileBuffText
         StatType.IronGainMultiplier => "Iron kazancı",
         StatType.StoneGainMultiplier => "Stone kazancı",
         StatType.ExplosionChance => "Patlama şansı",
+        StatType.TornadoChance => "Tornado şansı",
+        StatType.BoomerangChance => "Bumerang orak şansı",
+        StatType.ElectricChance => "Çapraz elektrik şansı",
         StatType.DuplicateChance => "Çift ödül şansı",
         StatType.CritChance => "Kritik şansı",
         _ => stat.ToString()
@@ -28,7 +31,8 @@ public static class TileBuffText
     public static string Amount(StatModifier mod)
     {
         bool percent = mod.operation == ModifierOperation.AddPercent || mod.operation == ModifierOperation.MorePercent;
-        bool chance = mod.statType == StatType.ExplosionChance || mod.statType == StatType.DuplicateChance || mod.statType == StatType.CritChance;
+        bool chance = mod.statType == StatType.ExplosionChance || mod.statType == StatType.DuplicateChance || mod.statType == StatType.CritChance ||
+            mod.statType == StatType.TornadoChance || mod.statType == StatType.BoomerangChance || mod.statType == StatType.ElectricChance;
         string amount = percent || chance ? Signed(mod.value * 100f) + "%" : Signed(mod.value);
         // Crystal is already expressed in percentage points; never multiply its flat value by 100.
         if (!percent && mod.statType == StatType.RareSpawnChance) amount += "% puan";

@@ -20,24 +20,24 @@ MonoBehaviour:
   targetRounds: {x: 1, y: 20}
   tiers:
   - costType: 2
-    cost: 20
+    cost: 14
     effects:
     - statType: 7
       target: 2
       operation: 1
-      value: 0.055555555555555566
+      value: 0.05555555555555555
   - costType: 2
-    cost: 27
+    cost: 18
     effects:
     - statType: 7
       target: 2
       operation: 1
-      value: 0.11111111111111113
+      value: 0.1111111111111111
   - costType: 2
-    cost: 34
+    cost: 22
     effects:
     - statType: 7
       target: 2
       operation: 1
-      value: 0.16666666666666669
+      value: 0.16666666666666666
   unlockType: 0

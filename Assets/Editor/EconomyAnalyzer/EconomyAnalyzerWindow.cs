@@ -135,8 +135,8 @@ namespace ClickerGame.EconomyAnalysis
             EditorGUILayout.LabelField($"{input.Planter.planterName} — {input.SpawnerCount} lanes — {laneSource}", EditorStyles.boldLabel);
             Row("Üretim / saldırı aralığı", F(input.SpawnInterval) + " s", F(input.AttackInterval) + " s");
             Row("Round / EffectiveTargets", F(input.Duration) + " s", input.EffectiveTargets.ToString());
-            if (input.ExplosionChance > 0 || input.TornadoChance > 0)
-                EditorGUILayout.HelpBox("Bu build patlama/tornado içeriyor. Aşağıdaki simülasyon direct-hit + Duplicate kapsamındadır; tam build sonucu değildir.", MessageType.Warning);
+            if (input.ExplosionChance > 0 || input.TornadoChance > 0 || input.BoomerangChance > 0 || input.ElectricChance > 0)
+                EditorGUILayout.HelpBox("Bu build patlama/tornado/orak/elektrik içeriyor. Aşağıdaki simülasyon direct-hit + Duplicate kapsamındadır; tam build sonucu değildir.", MessageType.Warning);
             Row("Instant-Harvest Production Ceiling", F(snap.ProductionCeiling));
             Row("Analytical Combat Capacity", F(snap.CombatCapacity));
             Row("Combat / Spawn", F(snap.CombatToSpawnRatio), snap.Bottleneck);

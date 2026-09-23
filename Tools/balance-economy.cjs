@@ -9,39 +9,37 @@ const groups = Object.groupBy(nodes, n => n.id.split('-')[0]);
 const names = read('Assets/Scripts/Enums/StatType.cs').replace(/\/\/[^\n]*/g, '').split('{')[1].split('}')[0].split(',').map(x => x.trim()).filter(Boolean);
 const S = Object.fromEntries(names.map((n,i) => [n,i]));
 const group = id => groups[id];
-// Explicit route budgets, not per-tier prices. Later tiers carry a larger share.
+// Currency and pacing metadata only. Actual budgets live in EconomyPricePlan.json.
 const routes = {
- H1:[50,2,1,15], H2:[500,2,25,60], H3:[2000,2,65,78], H4:[10000,2,78,93], H5:[22000,1,90,105],
- H6:[150,2,10,30], H7:[600,1,35,65], H8:[16000,2,75,95], H9:[155000,2,90,110],
- H10:[180,0,90,100], H11:[900,0,100,110], H12:[400,2,20,65], H13:[3000,1,65,100],
- Z1:[70,2,1,15], Z2:[100,2,3,25], Z3:[180,2,10,30], Z4:[600,1,30,65], Z5:[1000,2,40,70], Z11:[9000,2,65,100],
- Z6:[60,2,10,25], Z7:[200,1,30,65], Z8:[1800,0,75,100], Z9:[1200,0,70,100], Z10:[2500,2,40,100],
- E1:[70,2,1,20], E2:[200,2,8,30], E3:[280,2,15,45], E4:[1600,2,30,65], E5:[650,1,30,65],
- E6:[220,2,15,40], E7:[650,1,45,75], E12:[5850,1,65,100], E8:[1500,0,70,100], E9:[1200,1,50,95], E10:[6000,2,80,105], E11:[4000,1,95,110]
+ H1:[2,1,15], H2:[2,25,60], H3:[2,65,78], H4:[2,78,93], H5:[1,90,105],
+ H6:[2,10,30], H7:[1,35,65], H8:[2,75,95], H9:[2,90,110],
+ H10:[0,90,100], H11:[0,100,110], H12:[2,20,65], H13:[1,65,100],
+ Z1:[2,1,15], Z2:[2,3,25], Z3:[2,10,30], Z4:[1,30,65], Z5:[2,40,70], Z11:[2,65,100],
+ Z6:[2,10,25], Z7:[1,30,65], Z8:[0,75,100], Z9:[0,70,100], Z10:[2,40,100],
+ E1:[2,1,20], E2:[2,8,30], E3:[2,15,45], E4:[2,30,65], E5:[1,30,65],
+ E6:[2,15,40], E7:[1,45,75], E12:[1,65,100], E8:[0,70,100], E9:[1,50,95], E10:[2,80,105], E11:[1,95,110]
 };
-const lateScale = Number(process.env.ECONOMY_LATE_SCALE || 2.7);
-const earlyScale = Number(process.env.ECONOMY_EARLY_SCALE || 6);
-const middleScale = Number(process.env.ECONOMY_MIDDLE_SCALE || 4);
-if (![earlyScale,middleScale,lateScale].every(v=>Number.isFinite(v)&&v>0))throw Error('Economy scales must be finite and positive.');
-for (const [id,[budget,currency,start,end]] of Object.entries(routes)) {
+const pricePlan=JSON.parse(read('Docs/EconomyPricePlan.json'));
+for (const [id,[currency,start,end]] of Object.entries(routes)) {
  const entries=group(id).flatMap(n=>n.tiers.map((t,i)=>({n,t,i})));
- const scale=start>=65?lateScale:start>=25?middleScale:earlyScale;
+ const plannedBudget=pricePlan.routeBudgets[id];
+ if(!Number.isInteger(plannedBudget)||plannedBudget<=0)throw Error('Invalid route budget '+id);
  const weights=entries.map((_,i)=>1+i*.32), total=weights.reduce((a,b)=>a+b,0);
- entries.forEach((e,i)=>{e.t.cost=Math.max(1,Math.round(budget*scale*weights[i]/total));e.t.costType=currency;});
+ entries.forEach((e,i)=>{e.t.cost=Math.max(1,Math.round(plannedBudget*weights[i]/total));e.t.costType=currency;});
  for (const n of group(id)) n.targetRounds=[start,end];
+ if(id==='E12'||id==='Z11'){
+  // Preserve the original three node budgets, splitting each 25/35/remainder.
+  const weights=[1,1.32,1.64],sum=3.96;
+  group(id).forEach((n,i)=>{
+   const total=Math.round(plannedBudget*weights[i]/sum);
+   if(n.tiers.length===3){const a=Math.floor(total*.25),b=Math.floor(total*.35);[a,b,total-a-b].forEach((v,j)=>n.tiers[j].cost=v);}
+  });
+ }
 }
-// Existing speed routes retain their original effects. Three appended nodes per
-// branch supply the endgame acceleration; never rebuff the old nodes here.
-function additiveRoute(id,total) {
- const current=group(id).reduce((s,n)=>s+n.tiers.at(-1).effects[0].value,0);
- for(const n of group(id))for(const t of n.tiers)for(const e of t.effects)e.value*=total/current;
-}
-additiveRoute('E1',.5); additiveRoute('E4',2.5); // Gold x4
-additiveRoute('E3',1); additiveRoute('E5',1); additiveRoute('E8',3); // Iron/Stone x5
-additiveRoute('E6',.5); additiveRoute('E10',1.5); // XP x1 -> x1.5 -> x3
-additiveRoute('H1',60); additiveRoute('H2',150); additiveRoute('H3',1000); additiveRoute('H4',4000);
+// Pricing never rewrites stat effects or the existing tier replacement rules.
+group('H1')[0].tiers[1].cost=5; group('H1')[0].tiers[2].cost=8;
 group('H1')[0].tiers[0].cost=3; // Always affordable alongside the 20G + 40G opening planters.
-const fixed={P1:[[80,2],[40,1]],P2:[[40,2]],P3:[[20,1]],P4:[[40,1]],P5:[[100,2]],P6:[[35,1]],P7:[[120,0],[450,0]],P8:[[180,2]]};
+const fixed={P1:[[80,2],[40,1]],P2:[[40,2]],P3:[[20,1]],P4:[[40,1]],P5:[[100,2]],P6:[[35,1]],P7:[[120,0],[450,0]],P8:[[180,2]],P9:[[60,1]],P10:[[80,1]]};
 for(const [id,tiers] of Object.entries(fixed)) tiers.forEach(([cost,costType],i)=>Object.assign(group(id)[0].tiers[i],{cost,costType}));
 group('P5')[0].prerequisites=[{id:'P2',level:1},{id:'P1',level:1}];
 group('P8')[0].prerequisites=[{id:'P5',level:1},{id:'P1',level:2}];
@@ -52,8 +50,8 @@ function scalar(text,key){return Number(text.match(new RegExp('^  '+key+': ([^\\
 for(const f of fs.readdirSync(path.join(root,plantFolder)).filter(f=>f.endsWith('.asset'))){
  const text=read(plantFolder+'/'+f),guid=read(plantFolder+'/'+f+'.meta').match(/guid: (\w+)/)[1];
  plants[guid]={name:f.slice(0,-6),rarity:scalar(text,'rarity'),resource:scalar(text,'resourceType'),reward:scalar(text,'rewardAmount'),xp:scalar(text,'xpAmount'),hp:scalar(text,'maxHealth')};
- const plant=plants[guid];if(plant.resource===1)plant.reward=plant.rarity===4?15:3;
- if(plant.resource===0)plant.reward=plant.rarity===4?8:2;
+ const plant=plants[guid];
+ if(pricePlan.rewardOverrides[plant.name]!=null)plant.reward=pricePlan.rewardOverrides[plant.name];
 }
 const planterFiles=['GrassPlanter 1x1','GrassPlanter 1x2','GrassPlanter 1x3','GrassPlanter 2x2','GrassPlanter 2x3'];
 const planterCosts=[[20,2],[40,2],[70,2],[25,1],[20,0]];
@@ -75,10 +73,13 @@ function stats(levels){const flat=core.map(()=>0),add=core.map(()=>0),more=core.
  out[S.AttackSpeed]=Math.max(.1,out[S.AttackSpeed]);out[S.PlantSpawnRate]=Math.max(.5,out[S.PlantSpawnRate]);
  out[S.CritChance]=Math.min(1,out[S.CritChance]);out[S.RoundDuration]=Math.min(90,Math.max(30,out[S.RoundDuration]));return out;}
 
-function simulate(seed,style='balanced'){
+function simulate(seed,style='balanced', poor=false, weak=false){
  const random=rng(seed),levels={},wallet=[0,0,80],lanes=[],holdings=[],history=[],purchases=[],unlockRounds={};
  let attackTimer=0,cursor=0,finished=null,activeRound=0,cumulativeXp=0;
  const incomeTotal=[0,0,0];
+ function price(n,level,round){
+  return n.tiers[level].cost;
+ }
  function size(){return Math.max(3,(levels.P7||0)>0?7+levels.P7*2:3+(levels.P1||0)*2);}
  function buyPlanter(index){const p=planters[index];if(wallet[p.currency]<p.cost)return false;
    // Greedy actual rectangular packing into the currently unlocked square.
@@ -95,11 +96,13 @@ function simulate(seed,style='balanced'){
   const st=stats(levels),before=[...wallet],fps=30,frames=Math.round(st[S.RoundDuration]*fps);let kills=0,xpIncome=0;
   const intervalFrames=st[S.PlantSpawnRate]*fps,attackFrames=st[S.AttackSpeed]*fps;
   const tables=planters.map(p=>{let total=0;const entries=p.table.map(e=>{total+=e.weight*(1+st[S.RareSpawnChance]*.01*[0,1,1.5,2,3][e.plant.rarity]);return{plant:e.plant,end:total,hp:health(e.plant,round)};});return {total,entries};});
-  const coverage=Math.min(12,Math.max(4,Math.floor(Math.PI*st[S.AreaRadius]**2))); // explicit average mouse coverage assumption
+  const coverage=poor ? Math.min(4,Math.max(1,Math.floor(Math.PI*st[S.AreaRadius]**2*.4))) : weak ? Math.min(6,Math.max(2,Math.floor(Math.PI*st[S.AreaRadius]**2*.7))) : Math.min(12,Math.max(4,Math.floor(Math.PI*st[S.AreaRadius]**2)));
   for(let frame=0;frame<frames;frame++){
    for(const lane of lanes){if(lane.plant)continue;lane.timer+=1/fps;if(lane.timer*fps+1e-7<intervalFrames)continue;lane.timer=0;
     const table=tables[lane.index],roll=random()*table.total;const entry=table.entries.find(e=>roll<e.end);if(entry){lane.plant=entry.plant;lane.hp=entry.hp;}}
    attackTimer+=1/fps;if(attackTimer*fps+1e-7<attackFrames)continue;attackTimer=0;
+   if(poor && random()<.3)continue;
+   if(weak && random()<.15)continue;
    let count=0,start=cursor;for(let offset=0;offset<lanes.length&&count<coverage;offset++){const ix=(start+offset)%lanes.length,lane=lanes[ix];if(!lane.plant)continue;count++;cursor=(ix+1)%lanes.length;
     let damage=roundEven(st[S.HarvestDamage]*(.85+.3*random()));if(random()<st[S.CritChance])damage=roundEven(damage*st[S.CritMultiplier]);lane.hp-=damage;if(lane.hp>0)continue;
     const type=lane.plant.resource,reward=roundEven(lane.plant.reward*st[[S.StoneGainMultiplier,S.IronGainMultiplier,S.GoldGainMultiplier][type]]);
@@ -108,16 +111,16 @@ function simulate(seed,style='balanced'){
   }
   const income=wallet.map((v,i)=>v-before[i]);
   // Infrastructure desired dates are BUYER assumptions, never gameplay gates.
-  const infrastructure=[['P1',1,4],['P2',1,5],['P5',1,10],['P1',2,13],['P8',1,16],['P3',1,18],['P6',1,22],['P4',1,24],['P7',1,45],['P7',2,70]];
+  const infrastructure=[['P1',1,4],['P2',1,5],['P5',1,10],['P1',2,13],['P8',1,16],['P3',1,18],['P6',1,22],['P4',1,24],['P9',1,28],['P10',1,32],['P7',1,45],['P7',2,70]];
   const eligible=n=>(levels[n.id]||0)<n.tiers.length&&((levels[n.id]||0)>0||n.prerequisites.every(p=>(levels[p.id]||0)>=p.level));
-  function buy(n){const lvl=levels[n.id]||0,t=n.tiers[lvl];if(wallet[t.costType]<t.cost)return false;wallet[t.costType]-=t.cost;levels[n.id]=lvl+1;purchases.push({round,id:n.id,level:lvl+1,cost:t.cost,currency:t.costType});if(n.unlockType)unlockRounds[n.id]??=round;return true;}
+  function buy(n){const lvl=levels[n.id]||0,t=n.tiers[lvl],cost=price(n,lvl,round);if(wallet[t.costType]<cost)return false;wallet[t.costType]-=cost;levels[n.id]=lvl+1;purchases.push({round,id:n.id,level:lvl+1,cost,currency:t.costType});if(n.unlockType)unlockRounds[n.id]??=round;return true;}
   for(const [id,lvl,when]of infrastructure){const n=group(id)[0];if(round>=when&&(levels[id]||0)<lvl&&eligible(n))buy(n);}
   for(const [index,id,when]of [[2,'P2',6],[3,'P5',11],[4,'P8',17]])if(round>=when&&levels[id]&&!holdings.some(h=>h.index===index))buyPlanter(index);
   // A modest farm: expand gradually to 48 cells, not an ideal fully packed 121-cell grid.
-  const wanted=round<10?6:round<20?15:round<45?21:round<70?30:48;
+  const wanted=poor ? (round<20?6:round<45?12:round<70?18:24) : weak ? (round<10?6:round<20?12:round<45?18:round<70?24:30) : (round<10?6:round<20?15:round<45?21:round<70?30:48);
   if(lanes.length<wanted){const idx=levels.P8?4:levels.P5?3:levels.P2?2:0;buyPlanter(idx);}
   // Reserve near-term unlocks instead of accidentally spending their currency on an optional skill.
-  const reserve=[0,0,0];for(const[id,lvl,when]of infrastructure){if(when>round+2||when<round-5||(levels[id]||0)>=lvl)continue;const n=group(id)[0],t=n.tiers[levels[id]||0];reserve[t.costType]+=t.cost;}
+  const reserve=[0,0,0];for(const[id,lvl,when]of infrastructure){if(when>round+2||when<round-5||(levels[id]||0)>=lvl)continue;const n=group(id)[0],t=n.tiers[levels[id]||0];reserve[t.costType]+=price(n,levels[id]||0,round);}
   const bias={};for(const n of nodes)bias[n.id]=random();
   for(let guard=0;guard<300;guard++){
    const candidates=nodes.filter(n=>!n.id.startsWith('P')&&eligible(n));
@@ -130,7 +133,7 @@ function simulate(seed,style='balanced'){
    candidates.sort((a,b)=>priority(a)-priority(b));
    const saving=new Set();let chosen=null;
    for(const n of candidates){const t=n.tiers[levels[n.id]||0];if(saving.has(t.costType))continue;
-    if(wallet[t.costType]-Math.min(reserve[t.costType],wallet[t.costType]*.35)>=t.cost){chosen=n;break;}saving.add(t.costType);}
+    if(wallet[t.costType]-Math.min(reserve[t.costType],wallet[t.costType]*.35)>=price(n,levels[n.id]||0,round)){chosen=n;break;}saving.add(t.costType);}
    if(!chosen)break;buy(chosen);
   }
   if(!finished&&nodes.every(n=>levels[n.id]===n.tiers.length))finished=round;
@@ -140,28 +143,46 @@ function simulate(seed,style='balanced'){
  return{seed,style,finished,unlocks:unlockRounds,planters:holdings.map(h=>({index:h.index,round:h.round})),incomeTotal,history,purchases,missing:nodes.filter(n=>levels[n.id]!==n.tiers.length).map(n=>n.id)};
 }
 const simulations=[];
-for(const style of ['balanced','economy','combat'])for(const seed of [113,727,1999,7,41,333,2026,8119,40009,65521])simulations.push(simulate(seed,style));
+const poor = process.argv.includes('--poor');
+const weak = process.argv.includes('--weak');
+const validation=process.argv.includes('--validation');
+const seeds=validation ? [17,89,509,1234,4391,9991,17041,52021,91283,125003] : [113,727,1999,7,41,333,2026,8119,40009,65521];
+for(const style of ['balanced','economy','combat'])for(const seed of seeds)simulations.push(simulate(seed,style,poor,weak));
 const totals=[0,0,0];nodes.forEach(n=>n.tiers.forEach(t=>totals[t.costType]+=t.cost));
 const maxStats=stats(Object.fromEntries(nodes.map(n=>[n.id,n.tiers.length])));
 const completed=simulations.filter(s=>s.finished).map(s=>s.finished).sort((a,b)=>a-b);
 const summary={trials:simulations.length,completed:completed.length,min:completed[0],mean:completed.reduce((s,v)=>s+v,0)/completed.length,max:completed.at(-1),allPlanterUnlockMax:Math.max(...simulations.map(s=>s.unlocks.P8||999)),lastFirstPlanter:Math.max(...simulations.map(s=>Math.max(...[0,1,2,3,4].map(i=>s.planters.find(p=>p.index===i)?.round??999))))};
+const opened=simulations.map(s=>new Set(s.purchases.map(p=>p.id)).size).sort((a,b)=>a-b);
+summary.openedNodes={min:opened[0],p50:(opened[14]+opened[15])/2,max:opened.at(-1)};
 const report={model:'30 FPS seeded lifecycle + wallet/purchases; no tiles, resonance, duplicate, skip rewards, or round income multipliers; 4–12 assumed effective targets; 48-cell farm goal; scripted buyer infrastructure dates are not game locks; buyers invest in starting damage and react when common HP exceeds damage',summary,totals,maxStats:Object.fromEntries(names.map((name,i)=>[name,maxStats[i]])),simulations};
-fs.mkdirSync(path.join(root,'Logs'),{recursive:true});fs.writeFileSync(path.join(root,'Logs/EconomyBalanceSimulation.json'),JSON.stringify(report,null,2));
+report.planVersion=pricePlan.version;
+report.planFingerprint=require('crypto').createHash('sha256').update(JSON.stringify({nodes:nodes.map(n=>({id:n.id,tiers:n.tiers,prerequisites:n.prerequisites})),rewards:Object.values(plants).map(p=>[p.name,p.reward])})).digest('hex');
+report.poorProfile=poor ? {effectiveTargets:'1–4',missedAttacks:.3,farmCellGoal:24} : null;
+report.weakProfile=weak ? {effectiveTargets:'2–6',missedAttacks:.15,farmCellGoal:30} : null;
+const reportName=poor?'EconomyPoorBuildSimulation':weak?'EconomyWeakBuildSimulation':'EconomyBalanceSimulation';
+fs.mkdirSync(path.join(root,'Logs'),{recursive:true});fs.writeFileSync(path.join(root,'Logs',reportName+(validation?'Validation':'')+'.json'),JSON.stringify(report,null,2));
 console.log(JSON.stringify({totals,summary,results:simulations.map(s=>({style:s.style,seed:s.seed,finished:s.finished,P8:s.unlocks.P8,missing:s.missing.length}))}));
 if(process.argv.includes('--apply')){
- if(summary.completed!==summary.trials||summary.allPlanterUnlockMax>20)throw Error('Candidate failed completion/unlock checks; refusing to apply.');
- const lookup=Object.fromEntries(nodes.map(n=>[n.id,n]));
+ if(poor||weak)throw Error('Apply must use the reference profile.');
+ const median=a=>{a.sort((a,b)=>a-b);return (a[Math.floor((a.length-1)/2)]+a[Math.ceil((a.length-1)/2)])/2;};
+ for(const run of [report,JSON.parse(read('Logs/EconomyBalanceSimulationValidation.json'))]){
+  if(run.planFingerprint!==report.planFingerprint||run.summary.completed<run.summary.trials*.8||run.summary.allPlanterUnlockMax>20)
+   throw Error('Matching held-out reference tests must preserve R20 unlocks and 80% completion by R130.');
+  const pace=(a,b)=>median(run.simulations.map(s=>s.purchases.filter(p=>p.round>=a&&p.round<=b).length/(b-a+1)));
+  if(!(pace(1,20)>pace(21,65)&&pace(66,100)>pace(21,65)))throw Error('Missing early growth / middle slowdown / late acceleration.');
+ }
+ if(totals[2]>200000||totals[1]>125000||totals[0]>25000)throw Error('Price envelope exceeded; refusing million-scale cost inflation.');
+ for(const file of ['EconomyPoorBuildSimulation','EconomyWeakBuildSimulation'])
+  if(JSON.parse(read('Logs/'+file+'.json')).planFingerprint!==report.planFingerprint)throw Error('Refresh stress tests for this exact plan.');
  for(const n of nodes){const p='Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/'+(n.assetName||n.id)+'.asset';let text=read(p);
-  const pre=n.prerequisites.length?'  prerequisites:\n'+n.prerequisites.map(p=>`  - node: {fileID: 11400000, guid: ${lookup[p.id].guid}, type: 2}\n    level: ${p.level}\n`).join(''):'  prerequisites: []\n';
-  text=text.replace(/  prerequisites:[\s\S]*?(?=  (?:targetRounds|gridPosition|tiers):)/,pre);
-  text=text.replace(/  targetRounds: [^\r\n]+/,`  targetRounds: {x: ${n.targetRounds[0]}, y: ${n.targetRounds[1]}}`);
-  let tiers='  tiers:\n';for(const t of n.tiers){tiers+=`  - costType: ${t.costType}\n    cost: ${t.cost}\n`;tiers+=t.effects.length?'    effects:\n':'    effects: []\n';for(const e of t.effects)tiers+=`    - statType: ${e.statType}\n      target: ${e.target}\n      operation: ${e.operation}\n      value: ${e.value}\n`;}
-  text=text.replace(/  tiers:[\s\S]*?(?=  unlockType:)/,tiers);fs.writeFileSync(path.join(root,p),text);
+  let index=0;
+  text=text.replace(/(  - costType: )\d+(\r?\n    cost: )\d+/g,(_,a,b)=>{const t=n.tiers[index++];return a+t.costType+b+t.cost;});
+  if(index!==n.tiers.length)throw Error('Unexpected price serialization '+n.id);
+  fs.writeFileSync(path.join(root,p),text);
  }
  manifest.nodes=nodes;fs.writeFileSync(path.join(root,'Docs/FinalSkillTree.json'),JSON.stringify(manifest,null,2)+'\n');
- planters.forEach((p,i)=>{const name='Assets/ScriptableObjects/Planters/'+planterFiles[i]+'.asset';let text=read(name).replace(/^  costType: .*$/m,'  costType: '+p.currency).replace(/^  cost: .*$/m,'  cost: '+p.cost);fs.writeFileSync(path.join(root,name),text);});
- for(const plant of Object.values(plants)){const file=plantFolder+'/'+plant.name+'.asset';fs.writeFileSync(path.join(root,file),read(file).replace(/^  rewardAmount: .*$/m,'  rewardAmount: '+plant.reward));}
- console.log('Applied explicit costs, stat effects, unlock prerequisites and target metadata. GUIDs, positions, icons and scene are preserved.');
+ for(const [name,reward] of Object.entries(pricePlan.rewardOverrides)){const file=plantFolder+'/'+name+'.asset';fs.writeFileSync(path.join(root,file),read(file).replace(/^  rewardAmount: .*$/m,'  rewardAmount: '+reward));}
+ console.log('Applied skill prices and explicit plant rewards only. Stat effects, prerequisites, speed tiers, HP, XP, prefabs and scene remain unchanged.');
 }
 if(process.argv.includes('--verify-assets')){
  for(const n of nodes){const raw=read('Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/'+(n.assetName||n.id)+'.asset');
@@ -176,4 +197,6 @@ if(process.argv.includes('--verify-assets')){
   if(actual.length!==n.prerequisites.length||actual.some((m,i)=>m[1]!==nodes.find(x=>x.id===n.prerequisites[i].id).guid||+m[2]!==n.prerequisites[i].level))throw Error('Prerequisite mismatch '+n.id);
  }
  console.log(`PASS: all ${nodes.length} applied skill assets match candidate/manifest prices, effects and prerequisites.`);
+ for(const [name,reward] of Object.entries(pricePlan.rewardOverrides))if(scalar(read(plantFolder+'/'+name+'.asset'),'rewardAmount')!==reward)throw Error('Reward mismatch '+name);
+ console.log('PASS: plant rewards match the price plan.');
 }

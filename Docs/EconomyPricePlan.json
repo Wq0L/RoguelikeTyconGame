@@ -1,0 +1,14 @@
+{
+  "version": "2026-09-24-paced-growth",
+  "description": "Fixed prices: fast first 20 rounds, slower middle, late power ramp. Budgets are whole-route totals before integer rounding; no hidden global price multiplier.",
+  "routeBudgets": {
+    "H1": 200, "H2": 4500, "H3": 3000, "H4": 15000, "H5": 33000,
+    "H6": 600, "H7": 5400, "H8": 24000, "H9": 18000,
+    "H10": 1500, "H11": 7500, "H12": 1600, "H13": 4500,
+    "Z1": 280, "Z2": 400, "Z3": 720, "Z4": 5400, "Z5": 9000, "Z11": 30000,
+    "Z6": 240, "Z7": 1800, "Z8": 2700, "Z9": 1800, "Z10": 22500,
+    "E1": 280, "E2": 800, "E3": 1120, "E4": 14400, "E5": 5850,
+    "E6": 880, "E7": 5850, "E12": 24000, "E8": 2250, "E9": 10800, "E10": 9000, "E11": 6000
+  },
+  "rewardOverrides": { "Carrot": 4, "Lettuce": 4, "Strawberry": 4 }
+}

@@ -22,14 +22,14 @@ MonoBehaviour:
   targetRounds: {x: 10, y: 30}
   tiers:
   - costType: 2
-    cost: 137
+    cost: 91
     effects:
     - statType: 1
       target: 1
       operation: 1
       value: 0.03333333333333332
   - costType: 2
-    cost: 154
+    cost: 102
     effects:
     - statType: 1
       target: 1

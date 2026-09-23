@@ -17,7 +17,7 @@ MonoBehaviour:
   prefab: {fileID: 7060170877369255166, guid: 6b1b6ee779344a66b440f70c47b74680, type: 3}
   maxHealth: 10
   resourceType: 1
-  rewardAmount: 3
+  rewardAmount: 4
   xpAmount: 20
   hitFlashColor: {r: 1, g: 1, b: 1, a: 1}
   deathParticleColor: {r: 0, g: 1, b: 0, a: 1}

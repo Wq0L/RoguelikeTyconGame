@@ -5,6 +5,8 @@ Shader "Simple Toon/SToon Outline"
         [HideInInspector] _ToonFlash ("Hit Flash", Float) = 0
         [HideInInspector] _ToonFlashColor ("Hit Flash Color", Color) = (1,1,1,1)
         _BaseColor ("Gameplay Tint", Color) = (1,1,1,1)
+        [Enum(UnityEngine.Rendering.CompareFunction)] _ToonZTest ("Depth test", Float) = 4
+        [Toggle] _ToonZWrite ("Depth write", Float) = 1
         _OtlWorldWidth ("World Outline Width (0 = original)", Range(0,0.1)) = 0
         [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull", Float) = 2
         _MainTex ("Texture", 2D) = "white" {}
@@ -47,7 +49,7 @@ Shader "Simple Toon/SToon Outline"
         Pass {
             Name "ToonForward"
             Tags { "LightMode"="UniversalForwardOnly" }
-            ZWrite On
+            ZWrite [_ToonZWrite] ZTest [_ToonZTest]
             HLSLPROGRAM
             #pragma target 3.5
             #pragma vertex ToonVertex
@@ -104,7 +106,7 @@ Shader "Simple Toon/SToon Outline"
         Pass {
             Name "ToonOutline"
             Tags { "LightMode"="SimpleToonOutline" }
-            Cull Front ZWrite Off ZTest LEqual
+            Cull Front ZWrite Off ZTest [_ToonZTest]
             HLSLPROGRAM
             #pragma target 3.5
             #pragma vertex OutlineVertex

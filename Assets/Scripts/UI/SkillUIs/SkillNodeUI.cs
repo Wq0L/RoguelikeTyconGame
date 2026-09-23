@@ -314,6 +314,8 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
             UnlockType.TileBehavior_Explosive => "Patlama",
             UnlockType.TileBehavior_Duplicate => "Çoğaltma",
             UnlockType.TileBehavior_Tornado => "Tornado",
+            UnlockType.TileBehavior_Boomerang => "Bumerang Orak",
+            UnlockType.TileBehavior_Electric => "Çapraz Elektrik",
             _ => null
         };
         if (card == null) return string.Empty;

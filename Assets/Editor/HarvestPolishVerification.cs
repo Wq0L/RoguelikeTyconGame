@@ -15,7 +15,7 @@ public static class HarvestPolishVerification
     {
         var paths = AssetDatabase.FindAssets("t:SkillNodeSO", new[] { "Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree" });
         var nodes = Array.ConvertAll(paths, guid => AssetDatabase.LoadAssetAtPath<SkillNodeSO>(AssetDatabase.GUIDToAssetPath(guid)));
-        Require(nodes.Length == 138, "Final tree: 138 nodes");
+        Require(nodes.Length == 140, "Final tree: 140 nodes");
         var all = new HashSet<SkillNodeSO>(nodes);
         var visited = new HashSet<SkillNodeSO>();
         var effects = new List<StatModifier>();
@@ -41,7 +41,15 @@ public static class HarvestPolishVerification
                 { visited.Add(node); progress = true; }
             }
         } while (progress);
-        Require(visited.Count == 138 && purchases == 290, "Reachable acyclic tree and 290 purchases");
+        Require(visited.Count == 140 && purchases == 304, "Reachable acyclic tree and 304 purchases");
+        foreach (var node in nodes)
+        {
+            if (!node.name.StartsWith("Seri Üretim -") && !node.name.StartsWith("Yıldırım Kesim -")) continue;
+            Require(node.tiers.Count == 3, "Three speed tiers: " + node.name);
+            float finalFactor = 1 + node.tiers[2].effects[0].value;
+            for (int i = 0; i < 3; i++)
+                Require(Mathf.Abs(1 + node.tiers[i].effects[0].value - Mathf.Pow(finalFactor, (i + 1) / 3f)) < .0001f, "Gradual replacement tier: " + node.name);
+        }
         float damage = StatCalculator.Calculate(1, StatType.HarvestDamage, StatTarget.Player, effects, null);
         Require(Mathf.Abs(damage - 3201552) < 2, "Final damage 3201552 (2026-09 economy)");
         Require(Mathf.Abs(damage * 1.75f * 4f - 22410864) < 16, "Three +25% Focus: 22410864");

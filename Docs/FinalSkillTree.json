@@ -15,31 +15,31 @@
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 6.666666666666666
+              "value": 1
             }
           ]
         },
         {
-          "cost": 19,
+          "cost": 5,
           "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 13.333333333333332
+              "value": 3
             }
           ]
         },
         {
-          "cost": 24,
+          "cost": 8,
           "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 19.999999999999996
+              "value": 8
             }
           ]
         }
@@ -71,26 +71,26 @@
       ],
       "tiers": [
         {
-          "cost": 29,
+          "cost": 19,
           "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 6.666666666666666
+              "value": 5
             }
           ]
         },
         {
-          "cost": 33,
+          "cost": 22,
           "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 13.333333333333332
+              "value": 12
             }
           ]
         }
@@ -122,26 +122,26 @@
       ],
       "tiers": [
         {
-          "cost": 38,
+          "cost": 25,
           "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 6.666666666666666
+              "value": 8
             }
           ]
         },
         {
-          "cost": 43,
+          "cost": 28,
           "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 13.333333333333332
+              "value": 16
             }
           ]
         }
@@ -173,26 +173,26 @@
       ],
       "tiers": [
         {
-          "cost": 47,
+          "cost": 32,
           "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 6.666666666666666
+              "value": 12
             }
           ]
         },
         {
-          "cost": 52,
+          "cost": 35,
           "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 13.333333333333332
+              "value": 24
             }
           ]
         }
@@ -224,7 +224,7 @@
       ],
       "tiers": [
         {
-          "cost": 97,
+          "cost": 219,
           "costType": 2,
           "effects": [
             {
@@ -236,7 +236,7 @@
           ]
         },
         {
-          "cost": 129,
+          "cost": 289,
           "costType": 2,
           "effects": [
             {
@@ -248,7 +248,7 @@
           ]
         },
         {
-          "cost": 160,
+          "cost": 360,
           "costType": 2,
           "effects": [
             {
@@ -287,7 +287,7 @@
       ],
       "tiers": [
         {
-          "cost": 191,
+          "cost": 430,
           "costType": 2,
           "effects": [
             {
@@ -299,7 +299,7 @@
           ]
         },
         {
-          "cost": 222,
+          "cost": 500,
           "costType": 2,
           "effects": [
             {
@@ -338,7 +338,7 @@
       ],
       "tiers": [
         {
-          "cost": 253,
+          "cost": 570,
           "costType": 2,
           "effects": [
             {
@@ -350,7 +350,7 @@
           ]
         },
         {
-          "cost": 285,
+          "cost": 640,
           "costType": 2,
           "effects": [
             {
@@ -389,7 +389,7 @@
       ],
       "tiers": [
         {
-          "cost": 316,
+          "cost": 711,
           "costType": 2,
           "effects": [
             {
@@ -401,7 +401,7 @@
           ]
         },
         {
-          "cost": 347,
+          "cost": 781,
           "costType": 2,
           "effects": [
             {
@@ -440,7 +440,7 @@
       ],
       "tiers": [
         {
-          "cost": 263,
+          "cost": 146,
           "costType": 2,
           "effects": [
             {
@@ -452,7 +452,7 @@
           ]
         },
         {
-          "cost": 347,
+          "cost": 193,
           "costType": 2,
           "effects": [
             {
@@ -464,7 +464,7 @@
           ]
         },
         {
-          "cost": 432,
+          "cost": 240,
           "costType": 2,
           "effects": [
             {
@@ -503,7 +503,7 @@
       ],
       "tiers": [
         {
-          "cost": 516,
+          "cost": 287,
           "costType": 2,
           "effects": [
             {
@@ -515,7 +515,7 @@
           ]
         },
         {
-          "cost": 600,
+          "cost": 333,
           "costType": 2,
           "effects": [
             {
@@ -554,7 +554,7 @@
       ],
       "tiers": [
         {
-          "cost": 684,
+          "cost": 380,
           "costType": 2,
           "effects": [
             {
@@ -566,7 +566,7 @@
           ]
         },
         {
-          "cost": 768,
+          "cost": 427,
           "costType": 2,
           "effects": [
             {
@@ -605,7 +605,7 @@
       ],
       "tiers": [
         {
-          "cost": 853,
+          "cost": 474,
           "costType": 2,
           "effects": [
             {
@@ -617,7 +617,7 @@
           ]
         },
         {
-          "cost": 937,
+          "cost": 520,
           "costType": 2,
           "effects": [
             {
@@ -656,7 +656,7 @@
       ],
       "tiers": [
         {
-          "cost": 1316,
+          "cost": 731,
           "costType": 2,
           "effects": [
             {
@@ -668,7 +668,7 @@
           ]
         },
         {
-          "cost": 1737,
+          "cost": 965,
           "costType": 2,
           "effects": [
             {
@@ -680,7 +680,7 @@
           ]
         },
         {
-          "cost": 2158,
+          "cost": 1199,
           "costType": 2,
           "effects": [
             {
@@ -719,7 +719,7 @@
       ],
       "tiers": [
         {
-          "cost": 2579,
+          "cost": 1433,
           "costType": 2,
           "effects": [
             {
@@ -731,7 +731,7 @@
           ]
         },
         {
-          "cost": 3000,
+          "cost": 1667,
           "costType": 2,
           "effects": [
             {
@@ -770,7 +770,7 @@
       ],
       "tiers": [
         {
-          "cost": 3421,
+          "cost": 1901,
           "costType": 2,
           "effects": [
             {
@@ -782,7 +782,7 @@
           ]
         },
         {
-          "cost": 3842,
+          "cost": 2135,
           "costType": 2,
           "effects": [
             {
@@ -821,7 +821,7 @@
       ],
       "tiers": [
         {
-          "cost": 4263,
+          "cost": 2368,
           "costType": 2,
           "effects": [
             {
@@ -833,7 +833,7 @@
           ]
         },
         {
-          "cost": 4684,
+          "cost": 2602,
           "costType": 2,
           "effects": [
             {
@@ -872,7 +872,7 @@
       ],
       "tiers": [
         {
-          "cost": 2895,
+          "cost": 1608,
           "costType": 1,
           "effects": [
             {
@@ -884,7 +884,7 @@
           ]
         },
         {
-          "cost": 3821,
+          "cost": 2123,
           "costType": 1,
           "effects": [
             {
@@ -896,7 +896,7 @@
           ]
         },
         {
-          "cost": 4747,
+          "cost": 2637,
           "costType": 1,
           "effects": [
             {
@@ -935,7 +935,7 @@
       ],
       "tiers": [
         {
-          "cost": 5674,
+          "cost": 3152,
           "costType": 1,
           "effects": [
             {
@@ -947,7 +947,7 @@
           ]
         },
         {
-          "cost": 6600,
+          "cost": 3667,
           "costType": 1,
           "effects": [
             {
@@ -986,7 +986,7 @@
       ],
       "tiers": [
         {
-          "cost": 7526,
+          "cost": 4181,
           "costType": 1,
           "effects": [
             {
@@ -998,7 +998,7 @@
           ]
         },
         {
-          "cost": 8453,
+          "cost": 4696,
           "costType": 1,
           "effects": [
             {
@@ -1037,7 +1037,7 @@
       ],
       "tiers": [
         {
-          "cost": 9379,
+          "cost": 5211,
           "costType": 1,
           "effects": [
             {
@@ -1049,7 +1049,7 @@
           ]
         },
         {
-          "cost": 10305,
+          "cost": 5725,
           "costType": 1,
           "effects": [
             {
@@ -1088,7 +1088,7 @@
       ],
       "tiers": [
         {
-          "cost": 44,
+          "cost": 29,
           "costType": 2,
           "effects": [
             {
@@ -1100,7 +1100,7 @@
           ]
         },
         {
-          "cost": 58,
+          "cost": 39,
           "costType": 2,
           "effects": [
             {
@@ -1112,7 +1112,7 @@
           ]
         },
         {
-          "cost": 72,
+          "cost": 48,
           "costType": 2,
           "effects": [
             {
@@ -1151,7 +1151,7 @@
       ],
       "tiers": [
         {
-          "cost": 86,
+          "cost": 57,
           "costType": 2,
           "effects": [
             {
@@ -1163,7 +1163,7 @@
           ]
         },
         {
-          "cost": 100,
+          "cost": 67,
           "costType": 2,
           "effects": [
             {
@@ -1202,7 +1202,7 @@
       ],
       "tiers": [
         {
-          "cost": 114,
+          "cost": 76,
           "costType": 2,
           "effects": [
             {
@@ -1214,7 +1214,7 @@
           ]
         },
         {
-          "cost": 128,
+          "cost": 85,
           "costType": 2,
           "effects": [
             {
@@ -1253,7 +1253,7 @@
       ],
       "tiers": [
         {
-          "cost": 142,
+          "cost": 95,
           "costType": 2,
           "effects": [
             {
@@ -1265,7 +1265,7 @@
           ]
         },
         {
-          "cost": 156,
+          "cost": 104,
           "costType": 2,
           "effects": [
             {
@@ -1308,7 +1308,7 @@
       ],
       "tiers": [
         {
-          "cost": 117,
+          "cost": 263,
           "costType": 1,
           "effects": [
             {
@@ -1320,7 +1320,7 @@
           ]
         },
         {
-          "cost": 154,
+          "cost": 347,
           "costType": 1,
           "effects": [
             {
@@ -1332,7 +1332,7 @@
           ]
         },
         {
-          "cost": 192,
+          "cost": 432,
           "costType": 1,
           "effects": [
             {
@@ -1371,7 +1371,7 @@
       ],
       "tiers": [
         {
-          "cost": 229,
+          "cost": 516,
           "costType": 1,
           "effects": [
             {
@@ -1383,7 +1383,7 @@
           ]
         },
         {
-          "cost": 267,
+          "cost": 600,
           "costType": 1,
           "effects": [
             {
@@ -1422,7 +1422,7 @@
       ],
       "tiers": [
         {
-          "cost": 304,
+          "cost": 684,
           "costType": 1,
           "effects": [
             {
@@ -1434,7 +1434,7 @@
           ]
         },
         {
-          "cost": 342,
+          "cost": 768,
           "costType": 1,
           "effects": [
             {
@@ -1473,7 +1473,7 @@
       ],
       "tiers": [
         {
-          "cost": 379,
+          "cost": 853,
           "costType": 1,
           "effects": [
             {
@@ -1485,7 +1485,7 @@
           ]
         },
         {
-          "cost": 416,
+          "cost": 937,
           "costType": 1,
           "effects": [
             {
@@ -1528,7 +1528,7 @@
       ],
       "tiers": [
         {
-          "cost": 2105,
+          "cost": 1170,
           "costType": 2,
           "effects": [
             {
@@ -1540,7 +1540,7 @@
           ]
         },
         {
-          "cost": 2779,
+          "cost": 1544,
           "costType": 2,
           "effects": [
             {
@@ -1552,7 +1552,7 @@
           ]
         },
         {
-          "cost": 3453,
+          "cost": 1918,
           "costType": 2,
           "effects": [
             {
@@ -1591,7 +1591,7 @@
       ],
       "tiers": [
         {
-          "cost": 4126,
+          "cost": 2292,
           "costType": 2,
           "effects": [
             {
@@ -1603,7 +1603,7 @@
           ]
         },
         {
-          "cost": 4800,
+          "cost": 2667,
           "costType": 2,
           "effects": [
             {
@@ -1642,7 +1642,7 @@
       ],
       "tiers": [
         {
-          "cost": 5474,
+          "cost": 3041,
           "costType": 2,
           "effects": [
             {
@@ -1654,7 +1654,7 @@
           ]
         },
         {
-          "cost": 6147,
+          "cost": 3415,
           "costType": 2,
           "effects": [
             {
@@ -1693,7 +1693,7 @@
       ],
       "tiers": [
         {
-          "cost": 6821,
+          "cost": 3789,
           "costType": 2,
           "effects": [
             {
@@ -1705,7 +1705,7 @@
           ]
         },
         {
-          "cost": 7495,
+          "cost": 4164,
           "costType": 2,
           "effects": [
             {
@@ -1748,7 +1748,7 @@
       ],
       "tiers": [
         {
-          "cost": 20395,
+          "cost": 877,
           "costType": 2,
           "effects": [
             {
@@ -1760,7 +1760,7 @@
           ]
         },
         {
-          "cost": 26921,
+          "cost": 1158,
           "costType": 2,
           "effects": [
             {
@@ -1772,7 +1772,7 @@
           ]
         },
         {
-          "cost": 33447,
+          "cost": 1439,
           "costType": 2,
           "effects": [
             {
@@ -1811,7 +1811,7 @@
       ],
       "tiers": [
         {
-          "cost": 39974,
+          "cost": 1719,
           "costType": 2,
           "effects": [
             {
@@ -1823,7 +1823,7 @@
           ]
         },
         {
-          "cost": 46500,
+          "cost": 2000,
           "costType": 2,
           "effects": [
             {
@@ -1862,7 +1862,7 @@
       ],
       "tiers": [
         {
-          "cost": 53026,
+          "cost": 2281,
           "costType": 2,
           "effects": [
             {
@@ -1874,7 +1874,7 @@
           ]
         },
         {
-          "cost": 59553,
+          "cost": 2561,
           "costType": 2,
           "effects": [
             {
@@ -1913,7 +1913,7 @@
       ],
       "tiers": [
         {
-          "cost": 66079,
+          "cost": 2842,
           "costType": 2,
           "effects": [
             {
@@ -1925,7 +1925,7 @@
           ]
         },
         {
-          "cost": 72605,
+          "cost": 3123,
           "costType": 2,
           "effects": [
             {
@@ -1964,7 +1964,7 @@
       ],
       "tiers": [
         {
-          "cost": 486,
+          "cost": 1500,
           "costType": 0,
           "effects": [
             {
@@ -2007,7 +2007,7 @@
       ],
       "tiers": [
         {
-          "cost": 2430,
+          "cost": 7500,
           "costType": 0,
           "effects": [
             {
@@ -2046,7 +2046,7 @@
       ],
       "tiers": [
         {
-          "cost": 117,
+          "cost": 78,
           "costType": 2,
           "effects": [
             {
@@ -2058,7 +2058,7 @@
           ]
         },
         {
-          "cost": 154,
+          "cost": 103,
           "costType": 2,
           "effects": [
             {
@@ -2070,7 +2070,7 @@
           ]
         },
         {
-          "cost": 192,
+          "cost": 128,
           "costType": 2,
           "effects": [
             {
@@ -2109,7 +2109,7 @@
       ],
       "tiers": [
         {
-          "cost": 229,
+          "cost": 153,
           "costType": 2,
           "effects": [
             {
@@ -2121,7 +2121,7 @@
           ]
         },
         {
-          "cost": 267,
+          "cost": 178,
           "costType": 2,
           "effects": [
             {
@@ -2160,7 +2160,7 @@
       ],
       "tiers": [
         {
-          "cost": 304,
+          "cost": 203,
           "costType": 2,
           "effects": [
             {
@@ -2172,7 +2172,7 @@
           ]
         },
         {
-          "cost": 342,
+          "cost": 228,
           "costType": 2,
           "effects": [
             {
@@ -2211,7 +2211,7 @@
       ],
       "tiers": [
         {
-          "cost": 379,
+          "cost": 253,
           "costType": 2,
           "effects": [
             {
@@ -2223,7 +2223,7 @@
           ]
         },
         {
-          "cost": 416,
+          "cost": 278,
           "costType": 2,
           "effects": [
             {
@@ -2262,7 +2262,7 @@
       ],
       "tiers": [
         {
-          "cost": 395,
+          "cost": 219,
           "costType": 1,
           "effects": [
             {
@@ -2274,7 +2274,7 @@
           ]
         },
         {
-          "cost": 521,
+          "cost": 289,
           "costType": 1,
           "effects": [
             {
@@ -2286,7 +2286,7 @@
           ]
         },
         {
-          "cost": 647,
+          "cost": 360,
           "costType": 1,
           "effects": [
             {
@@ -2325,7 +2325,7 @@
       ],
       "tiers": [
         {
-          "cost": 774,
+          "cost": 430,
           "costType": 1,
           "effects": [
             {
@@ -2337,7 +2337,7 @@
           ]
         },
         {
-          "cost": 900,
+          "cost": 500,
           "costType": 1,
           "effects": [
             {
@@ -2376,7 +2376,7 @@
       ],
       "tiers": [
         {
-          "cost": 1026,
+          "cost": 570,
           "costType": 1,
           "effects": [
             {
@@ -2388,7 +2388,7 @@
           ]
         },
         {
-          "cost": 1153,
+          "cost": 640,
           "costType": 1,
           "effects": [
             {
@@ -2427,7 +2427,7 @@
       ],
       "tiers": [
         {
-          "cost": 1279,
+          "cost": 711,
           "costType": 1,
           "effects": [
             {
@@ -2439,7 +2439,7 @@
           ]
         },
         {
-          "cost": 1405,
+          "cost": 781,
           "costType": 1,
           "effects": [
             {
@@ -2473,7 +2473,7 @@
       "prerequisites": [],
       "tiers": [
         {
-          "cost": 20,
+          "cost": 14,
           "costType": 2,
           "effects": [
             {
@@ -2485,7 +2485,7 @@
           ]
         },
         {
-          "cost": 27,
+          "cost": 18,
           "costType": 2,
           "effects": [
             {
@@ -2497,7 +2497,7 @@
           ]
         },
         {
-          "cost": 34,
+          "cost": 22,
           "costType": 2,
           "effects": [
             {
@@ -2536,7 +2536,7 @@
       ],
       "tiers": [
         {
-          "cost": 40,
+          "cost": 27,
           "costType": 2,
           "effects": [
             {
@@ -2548,7 +2548,7 @@
           ]
         },
         {
-          "cost": 47,
+          "cost": 31,
           "costType": 2,
           "effects": [
             {
@@ -2587,7 +2587,7 @@
       ],
       "tiers": [
         {
-          "cost": 53,
+          "cost": 35,
           "costType": 2,
           "effects": [
             {
@@ -2599,7 +2599,7 @@
           ]
         },
         {
-          "cost": 60,
+          "cost": 40,
           "costType": 2,
           "effects": [
             {
@@ -2638,7 +2638,7 @@
       ],
       "tiers": [
         {
-          "cost": 66,
+          "cost": 44,
           "costType": 2,
           "effects": [
             {
@@ -2650,7 +2650,7 @@
           ]
         },
         {
-          "cost": 73,
+          "cost": 49,
           "costType": 2,
           "effects": [
             {
@@ -2689,7 +2689,7 @@
       ],
       "tiers": [
         {
-          "cost": 29,
+          "cost": 19,
           "costType": 2,
           "effects": [
             {
@@ -2701,7 +2701,7 @@
           ]
         },
         {
-          "cost": 39,
+          "cost": 26,
           "costType": 2,
           "effects": [
             {
@@ -2713,7 +2713,7 @@
           ]
         },
         {
-          "cost": 48,
+          "cost": 32,
           "costType": 2,
           "effects": [
             {
@@ -2752,7 +2752,7 @@
       ],
       "tiers": [
         {
-          "cost": 57,
+          "cost": 38,
           "costType": 2,
           "effects": [
             {
@@ -2764,7 +2764,7 @@
           ]
         },
         {
-          "cost": 67,
+          "cost": 44,
           "costType": 2,
           "effects": [
             {
@@ -2803,7 +2803,7 @@
       ],
       "tiers": [
         {
-          "cost": 76,
+          "cost": 51,
           "costType": 2,
           "effects": [
             {
@@ -2815,7 +2815,7 @@
           ]
         },
         {
-          "cost": 85,
+          "cost": 57,
           "costType": 2,
           "effects": [
             {
@@ -2854,7 +2854,7 @@
       ],
       "tiers": [
         {
-          "cost": 95,
+          "cost": 63,
           "costType": 2,
           "effects": [
             {
@@ -2866,7 +2866,7 @@
           ]
         },
         {
-          "cost": 104,
+          "cost": 69,
           "costType": 2,
           "effects": [
             {
@@ -2905,7 +2905,7 @@
       ],
       "tiers": [
         {
-          "cost": 53,
+          "cost": 35,
           "costType": 2,
           "effects": [
             {
@@ -2917,7 +2917,7 @@
           ]
         },
         {
-          "cost": 69,
+          "cost": 46,
           "costType": 2,
           "effects": [
             {
@@ -2929,7 +2929,7 @@
           ]
         },
         {
-          "cost": 86,
+          "cost": 58,
           "costType": 2,
           "effects": [
             {
@@ -2968,7 +2968,7 @@
       ],
       "tiers": [
         {
-          "cost": 103,
+          "cost": 69,
           "costType": 2,
           "effects": [
             {
@@ -2980,7 +2980,7 @@
           ]
         },
         {
-          "cost": 120,
+          "cost": 80,
           "costType": 2,
           "effects": [
             {
@@ -3019,7 +3019,7 @@
       ],
       "tiers": [
         {
-          "cost": 137,
+          "cost": 91,
           "costType": 2,
           "effects": [
             {
@@ -3031,7 +3031,7 @@
           ]
         },
         {
-          "cost": 154,
+          "cost": 102,
           "costType": 2,
           "effects": [
             {
@@ -3070,7 +3070,7 @@
       ],
       "tiers": [
         {
-          "cost": 171,
+          "cost": 114,
           "costType": 2,
           "effects": [
             {
@@ -3082,7 +3082,7 @@
           ]
         },
         {
-          "cost": 187,
+          "cost": 125,
           "costType": 2,
           "effects": [
             {
@@ -3121,7 +3121,7 @@
       ],
       "tiers": [
         {
-          "cost": 117,
+          "cost": 263,
           "costType": 1,
           "effects": [
             {
@@ -3133,7 +3133,7 @@
           ]
         },
         {
-          "cost": 154,
+          "cost": 347,
           "costType": 1,
           "effects": [
             {
@@ -3145,7 +3145,7 @@
           ]
         },
         {
-          "cost": 192,
+          "cost": 432,
           "costType": 1,
           "effects": [
             {
@@ -3184,7 +3184,7 @@
       ],
       "tiers": [
         {
-          "cost": 229,
+          "cost": 516,
           "costType": 1,
           "effects": [
             {
@@ -3196,7 +3196,7 @@
           ]
         },
         {
-          "cost": 267,
+          "cost": 600,
           "costType": 1,
           "effects": [
             {
@@ -3235,7 +3235,7 @@
       ],
       "tiers": [
         {
-          "cost": 304,
+          "cost": 684,
           "costType": 1,
           "effects": [
             {
@@ -3247,7 +3247,7 @@
           ]
         },
         {
-          "cost": 342,
+          "cost": 768,
           "costType": 1,
           "effects": [
             {
@@ -3286,7 +3286,7 @@
       ],
       "tiers": [
         {
-          "cost": 379,
+          "cost": 853,
           "costType": 1,
           "effects": [
             {
@@ -3298,7 +3298,7 @@
           ]
         },
         {
-          "cost": 416,
+          "cost": 937,
           "costType": 1,
           "effects": [
             {
@@ -3337,7 +3337,7 @@
       ],
       "tiers": [
         {
-          "cost": 195,
+          "cost": 439,
           "costType": 2,
           "effects": [
             {
@@ -3349,7 +3349,7 @@
           ]
         },
         {
-          "cost": 257,
+          "cost": 579,
           "costType": 2,
           "effects": [
             {
@@ -3361,7 +3361,7 @@
           ]
         },
         {
-          "cost": 320,
+          "cost": 719,
           "costType": 2,
           "effects": [
             {
@@ -3400,7 +3400,7 @@
       ],
       "tiers": [
         {
-          "cost": 382,
+          "cost": 860,
           "costType": 2,
           "effects": [
             {
@@ -3412,7 +3412,7 @@
           ]
         },
         {
-          "cost": 444,
+          "cost": 1000,
           "costType": 2,
           "effects": [
             {
@@ -3451,7 +3451,7 @@
       ],
       "tiers": [
         {
-          "cost": 507,
+          "cost": 1140,
           "costType": 2,
           "effects": [
             {
@@ -3463,7 +3463,7 @@
           ]
         },
         {
-          "cost": 569,
+          "cost": 1281,
           "costType": 2,
           "effects": [
             {
@@ -3502,7 +3502,7 @@
       ],
       "tiers": [
         {
-          "cost": 632,
+          "cost": 1421,
           "costType": 2,
           "effects": [
             {
@@ -3514,7 +3514,7 @@
           ]
         },
         {
-          "cost": 694,
+          "cost": 1561,
           "costType": 2,
           "effects": [
             {
@@ -3553,7 +3553,7 @@
       ],
       "tiers": [
         {
-          "cost": 360,
+          "cost": 240,
           "costType": 2,
           "effects": [
             {
@@ -3592,7 +3592,7 @@
       ],
       "tiers": [
         {
-          "cost": 800,
+          "cost": 1800,
           "costType": 1,
           "effects": [
             {
@@ -3631,7 +3631,7 @@
       ],
       "tiers": [
         {
-          "cost": 237,
+          "cost": 132,
           "costType": 0,
           "effects": [
             {
@@ -3643,7 +3643,7 @@
           ]
         },
         {
-          "cost": 313,
+          "cost": 174,
           "costType": 0,
           "effects": [
             {
@@ -3655,7 +3655,7 @@
           ]
         },
         {
-          "cost": 388,
+          "cost": 216,
           "costType": 0,
           "effects": [
             {
@@ -3694,7 +3694,7 @@
       ],
       "tiers": [
         {
-          "cost": 464,
+          "cost": 258,
           "costType": 0,
           "effects": [
             {
@@ -3706,7 +3706,7 @@
           ]
         },
         {
-          "cost": 540,
+          "cost": 300,
           "costType": 0,
           "effects": [
             {
@@ -3745,7 +3745,7 @@
       ],
       "tiers": [
         {
-          "cost": 616,
+          "cost": 342,
           "costType": 0,
           "effects": [
             {
@@ -3757,7 +3757,7 @@
           ]
         },
         {
-          "cost": 692,
+          "cost": 384,
           "costType": 0,
           "effects": [
             {
@@ -3796,7 +3796,7 @@
       ],
       "tiers": [
         {
-          "cost": 767,
+          "cost": 426,
           "costType": 0,
           "effects": [
             {
@@ -3808,7 +3808,7 @@
           ]
         },
         {
-          "cost": 843,
+          "cost": 468,
           "costType": 0,
           "effects": [
             {
@@ -3851,7 +3851,7 @@
       ],
       "tiers": [
         {
-          "cost": 158,
+          "cost": 88,
           "costType": 0,
           "effects": [
             {
@@ -3863,7 +3863,7 @@
           ]
         },
         {
-          "cost": 208,
+          "cost": 116,
           "costType": 0,
           "effects": [
             {
@@ -3875,7 +3875,7 @@
           ]
         },
         {
-          "cost": 259,
+          "cost": 144,
           "costType": 0,
           "effects": [
             {
@@ -3914,7 +3914,7 @@
       ],
       "tiers": [
         {
-          "cost": 309,
+          "cost": 172,
           "costType": 0,
           "effects": [
             {
@@ -3926,7 +3926,7 @@
           ]
         },
         {
-          "cost": 360,
+          "cost": 200,
           "costType": 0,
           "effects": [
             {
@@ -3965,7 +3965,7 @@
       ],
       "tiers": [
         {
-          "cost": 411,
+          "cost": 228,
           "costType": 0,
           "effects": [
             {
@@ -3977,7 +3977,7 @@
           ]
         },
         {
-          "cost": 461,
+          "cost": 256,
           "costType": 0,
           "effects": [
             {
@@ -4016,7 +4016,7 @@
       ],
       "tiers": [
         {
-          "cost": 512,
+          "cost": 284,
           "costType": 0,
           "effects": [
             {
@@ -4028,7 +4028,7 @@
           ]
         },
         {
-          "cost": 562,
+          "cost": 312,
           "costType": 0,
           "effects": [
             {
@@ -4067,7 +4067,7 @@
       ],
       "tiers": [
         {
-          "cost": 487,
+          "cost": 1096,
           "costType": 2,
           "effects": [
             {
@@ -4079,7 +4079,7 @@
           ]
         },
         {
-          "cost": 643,
+          "cost": 1447,
           "costType": 2,
           "effects": [
             {
@@ -4091,7 +4091,7 @@
           ]
         },
         {
-          "cost": 799,
+          "cost": 1798,
           "costType": 2,
           "effects": [
             {
@@ -4130,7 +4130,7 @@
       ],
       "tiers": [
         {
-          "cost": 955,
+          "cost": 2149,
           "costType": 2,
           "effects": [
             {
@@ -4142,7 +4142,7 @@
           ]
         },
         {
-          "cost": 1111,
+          "cost": 2500,
           "costType": 2,
           "effects": [
             {
@@ -4181,7 +4181,7 @@
       ],
       "tiers": [
         {
-          "cost": 1267,
+          "cost": 2851,
           "costType": 2,
           "effects": [
             {
@@ -4193,7 +4193,7 @@
           ]
         },
         {
-          "cost": 1423,
+          "cost": 3202,
           "costType": 2,
           "effects": [
             {
@@ -4232,7 +4232,7 @@
       ],
       "tiers": [
         {
-          "cost": 1579,
+          "cost": 3553,
           "costType": 2,
           "effects": [
             {
@@ -4244,7 +4244,7 @@
           ]
         },
         {
-          "cost": 1735,
+          "cost": 3904,
           "costType": 2,
           "effects": [
             {
@@ -4543,38 +4543,38 @@
       "prerequisites": [],
       "tiers": [
         {
-          "cost": 20,
+          "cost": 14,
           "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.055555555555555566
+              "value": 0.05555555555555555
             }
           ]
         },
         {
-          "cost": 27,
+          "cost": 18,
           "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.11111111111111113
+              "value": 0.1111111111111111
             }
           ]
         },
         {
-          "cost": 34,
+          "cost": 22,
           "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.16666666666666669
+              "value": 0.16666666666666666
             }
           ]
         }
@@ -4606,26 +4606,26 @@
       ],
       "tiers": [
         {
-          "cost": 40,
+          "cost": 27,
           "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.05555555555555557
+              "value": 0.05555555555555556
             }
           ]
         },
         {
-          "cost": 47,
+          "cost": 31,
           "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.11111111111111115
+              "value": 0.11111111111111112
             }
           ]
         }
@@ -4657,26 +4657,26 @@
       ],
       "tiers": [
         {
-          "cost": 53,
+          "cost": 35,
           "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.05555555555555554
+              "value": 0.055555555555555525
             }
           ]
         },
         {
-          "cost": 60,
+          "cost": 40,
           "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.11111111111111108
+              "value": 0.11111111111111105
             }
           ]
         }
@@ -4708,26 +4708,26 @@
       ],
       "tiers": [
         {
-          "cost": 66,
+          "cost": 44,
           "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.0555555555555556
+              "value": 0.05555555555555559
             }
           ]
         },
         {
-          "cost": 73,
+          "cost": 49,
           "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.11111111111111115
+              "value": 0.11111111111111112
             }
           ]
         }
@@ -4759,7 +4759,7 @@
       ],
       "tiers": [
         {
-          "cost": 58,
+          "cost": 39,
           "costType": 2,
           "effects": [
             {
@@ -4771,7 +4771,7 @@
           ]
         },
         {
-          "cost": 77,
+          "cost": 51,
           "costType": 2,
           "effects": [
             {
@@ -4783,7 +4783,7 @@
           ]
         },
         {
-          "cost": 96,
+          "cost": 64,
           "costType": 2,
           "effects": [
             {
@@ -4822,7 +4822,7 @@
       ],
       "tiers": [
         {
-          "cost": 115,
+          "cost": 76,
           "costType": 2,
           "effects": [
             {
@@ -4834,7 +4834,7 @@
           ]
         },
         {
-          "cost": 133,
+          "cost": 89,
           "costType": 2,
           "effects": [
             {
@@ -4873,7 +4873,7 @@
       ],
       "tiers": [
         {
-          "cost": 152,
+          "cost": 101,
           "costType": 2,
           "effects": [
             {
@@ -4885,7 +4885,7 @@
           ]
         },
         {
-          "cost": 171,
+          "cost": 114,
           "costType": 2,
           "effects": [
             {
@@ -4924,7 +4924,7 @@
       ],
       "tiers": [
         {
-          "cost": 189,
+          "cost": 126,
           "costType": 2,
           "effects": [
             {
@@ -4936,7 +4936,7 @@
           ]
         },
         {
-          "cost": 208,
+          "cost": 139,
           "costType": 2,
           "effects": [
             {
@@ -4975,7 +4975,7 @@
       ],
       "tiers": [
         {
-          "cost": 82,
+          "cost": 55,
           "costType": 2,
           "effects": [
             {
@@ -4987,7 +4987,7 @@
           ]
         },
         {
-          "cost": 108,
+          "cost": 72,
           "costType": 2,
           "effects": [
             {
@@ -4999,7 +4999,7 @@
           ]
         },
         {
-          "cost": 134,
+          "cost": 90,
           "costType": 2,
           "effects": [
             {
@@ -5038,7 +5038,7 @@
       ],
       "tiers": [
         {
-          "cost": 160,
+          "cost": 107,
           "costType": 2,
           "effects": [
             {
@@ -5050,7 +5050,7 @@
           ]
         },
         {
-          "cost": 187,
+          "cost": 124,
           "costType": 2,
           "effects": [
             {
@@ -5089,7 +5089,7 @@
       ],
       "tiers": [
         {
-          "cost": 213,
+          "cost": 142,
           "costType": 2,
           "effects": [
             {
@@ -5101,7 +5101,7 @@
           ]
         },
         {
-          "cost": 239,
+          "cost": 159,
           "costType": 2,
           "effects": [
             {
@@ -5140,7 +5140,7 @@
       ],
       "tiers": [
         {
-          "cost": 265,
+          "cost": 177,
           "costType": 2,
           "effects": [
             {
@@ -5152,7 +5152,7 @@
           ]
         },
         {
-          "cost": 291,
+          "cost": 194,
           "costType": 2,
           "effects": [
             {
@@ -5191,7 +5191,7 @@
       ],
       "tiers": [
         {
-          "cost": 312,
+          "cost": 702,
           "costType": 2,
           "effects": [
             {
@@ -5203,7 +5203,7 @@
           ]
         },
         {
-          "cost": 412,
+          "cost": 926,
           "costType": 2,
           "effects": [
             {
@@ -5215,7 +5215,7 @@
           ]
         },
         {
-          "cost": 512,
+          "cost": 1151,
           "costType": 2,
           "effects": [
             {
@@ -5254,7 +5254,7 @@
       ],
       "tiers": [
         {
-          "cost": 611,
+          "cost": 1375,
           "costType": 2,
           "effects": [
             {
@@ -5266,7 +5266,7 @@
           ]
         },
         {
-          "cost": 711,
+          "cost": 1600,
           "costType": 2,
           "effects": [
             {
@@ -5305,7 +5305,7 @@
       ],
       "tiers": [
         {
-          "cost": 811,
+          "cost": 1825,
           "costType": 2,
           "effects": [
             {
@@ -5317,7 +5317,7 @@
           ]
         },
         {
-          "cost": 911,
+          "cost": 2049,
           "costType": 2,
           "effects": [
             {
@@ -5356,7 +5356,7 @@
       ],
       "tiers": [
         {
-          "cost": 1011,
+          "cost": 2274,
           "costType": 2,
           "effects": [
             {
@@ -5368,7 +5368,7 @@
           ]
         },
         {
-          "cost": 1110,
+          "cost": 2498,
           "costType": 2,
           "effects": [
             {
@@ -5407,7 +5407,7 @@
       ],
       "tiers": [
         {
-          "cost": 127,
+          "cost": 285,
           "costType": 1,
           "effects": [
             {
@@ -5419,7 +5419,7 @@
           ]
         },
         {
-          "cost": 167,
+          "cost": 376,
           "costType": 1,
           "effects": [
             {
@@ -5431,7 +5431,7 @@
           ]
         },
         {
-          "cost": 208,
+          "cost": 468,
           "costType": 1,
           "effects": [
             {
@@ -5470,7 +5470,7 @@
       ],
       "tiers": [
         {
-          "cost": 248,
+          "cost": 559,
           "costType": 1,
           "effects": [
             {
@@ -5482,7 +5482,7 @@
           ]
         },
         {
-          "cost": 289,
+          "cost": 650,
           "costType": 1,
           "effects": [
             {
@@ -5521,7 +5521,7 @@
       ],
       "tiers": [
         {
-          "cost": 329,
+          "cost": 741,
           "costType": 1,
           "effects": [
             {
@@ -5533,7 +5533,7 @@
           ]
         },
         {
-          "cost": 370,
+          "cost": 832,
           "costType": 1,
           "effects": [
             {
@@ -5572,7 +5572,7 @@
       ],
       "tiers": [
         {
-          "cost": 411,
+          "cost": 924,
           "costType": 1,
           "effects": [
             {
@@ -5584,7 +5584,7 @@
           ]
         },
         {
-          "cost": 451,
+          "cost": 1015,
           "costType": 1,
           "effects": [
             {
@@ -5623,7 +5623,7 @@
       ],
       "tiers": [
         {
-          "cost": 64,
+          "cost": 43,
           "costType": 2,
           "effects": [
             {
@@ -5635,7 +5635,7 @@
           ]
         },
         {
-          "cost": 85,
+          "cost": 57,
           "costType": 2,
           "effects": [
             {
@@ -5647,7 +5647,7 @@
           ]
         },
         {
-          "cost": 105,
+          "cost": 70,
           "costType": 2,
           "effects": [
             {
@@ -5686,7 +5686,7 @@
       ],
       "tiers": [
         {
-          "cost": 126,
+          "cost": 84,
           "costType": 2,
           "effects": [
             {
@@ -5698,7 +5698,7 @@
           ]
         },
         {
-          "cost": 147,
+          "cost": 98,
           "costType": 2,
           "effects": [
             {
@@ -5737,7 +5737,7 @@
       ],
       "tiers": [
         {
-          "cost": 167,
+          "cost": 112,
           "costType": 2,
           "effects": [
             {
@@ -5749,7 +5749,7 @@
           ]
         },
         {
-          "cost": 188,
+          "cost": 125,
           "costType": 2,
           "effects": [
             {
@@ -5788,7 +5788,7 @@
       ],
       "tiers": [
         {
-          "cost": 208,
+          "cost": 139,
           "costType": 2,
           "effects": [
             {
@@ -5800,7 +5800,7 @@
           ]
         },
         {
-          "cost": 229,
+          "cost": 153,
           "costType": 2,
           "effects": [
             {
@@ -5839,7 +5839,7 @@
       ],
       "tiers": [
         {
-          "cost": 127,
+          "cost": 285,
           "costType": 1,
           "effects": [
             {
@@ -5851,7 +5851,7 @@
           ]
         },
         {
-          "cost": 167,
+          "cost": 376,
           "costType": 1,
           "effects": [
             {
@@ -5863,7 +5863,7 @@
           ]
         },
         {
-          "cost": 208,
+          "cost": 468,
           "costType": 1,
           "effects": [
             {
@@ -5902,7 +5902,7 @@
       ],
       "tiers": [
         {
-          "cost": 248,
+          "cost": 559,
           "costType": 1,
           "effects": [
             {
@@ -5914,7 +5914,7 @@
           ]
         },
         {
-          "cost": 289,
+          "cost": 650,
           "costType": 1,
           "effects": [
             {
@@ -5953,7 +5953,7 @@
       ],
       "tiers": [
         {
-          "cost": 329,
+          "cost": 741,
           "costType": 1,
           "effects": [
             {
@@ -5965,7 +5965,7 @@
           ]
         },
         {
-          "cost": 370,
+          "cost": 832,
           "costType": 1,
           "effects": [
             {
@@ -6004,7 +6004,7 @@
       ],
       "tiers": [
         {
-          "cost": 411,
+          "cost": 924,
           "costType": 1,
           "effects": [
             {
@@ -6016,7 +6016,7 @@
           ]
         },
         {
-          "cost": 451,
+          "cost": 1015,
           "costType": 1,
           "effects": [
             {
@@ -6055,7 +6055,7 @@
       ],
       "tiers": [
         {
-          "cost": 197,
+          "cost": 110,
           "costType": 0,
           "effects": [
             {
@@ -6073,7 +6073,7 @@
           ]
         },
         {
-          "cost": 261,
+          "cost": 145,
           "costType": 0,
           "effects": [
             {
@@ -6091,7 +6091,7 @@
           ]
         },
         {
-          "cost": 324,
+          "cost": 180,
           "costType": 0,
           "effects": [
             {
@@ -6136,7 +6136,7 @@
       ],
       "tiers": [
         {
-          "cost": 387,
+          "cost": 215,
           "costType": 0,
           "effects": [
             {
@@ -6154,7 +6154,7 @@
           ]
         },
         {
-          "cost": 450,
+          "cost": 250,
           "costType": 0,
           "effects": [
             {
@@ -6199,7 +6199,7 @@
       ],
       "tiers": [
         {
-          "cost": 513,
+          "cost": 285,
           "costType": 0,
           "effects": [
             {
@@ -6217,7 +6217,7 @@
           ]
         },
         {
-          "cost": 576,
+          "cost": 320,
           "costType": 0,
           "effects": [
             {
@@ -6262,7 +6262,7 @@
       ],
       "tiers": [
         {
-          "cost": 639,
+          "cost": 355,
           "costType": 0,
           "effects": [
             {
@@ -6280,7 +6280,7 @@
           ]
         },
         {
-          "cost": 703,
+          "cost": 390,
           "costType": 0,
           "effects": [
             {
@@ -6325,7 +6325,7 @@
       ],
       "tiers": [
         {
-          "cost": 234,
+          "cost": 526,
           "costType": 1,
           "effects": [
             {
@@ -6337,7 +6337,7 @@
           ]
         },
         {
-          "cost": 309,
+          "cost": 695,
           "costType": 1,
           "effects": [
             {
@@ -6349,7 +6349,7 @@
           ]
         },
         {
-          "cost": 384,
+          "cost": 863,
           "costType": 1,
           "effects": [
             {
@@ -6388,7 +6388,7 @@
       ],
       "tiers": [
         {
-          "cost": 458,
+          "cost": 1032,
           "costType": 1,
           "effects": [
             {
@@ -6400,7 +6400,7 @@
           ]
         },
         {
-          "cost": 533,
+          "cost": 1200,
           "costType": 1,
           "effects": [
             {
@@ -6439,7 +6439,7 @@
       ],
       "tiers": [
         {
-          "cost": 608,
+          "cost": 1368,
           "costType": 1,
           "effects": [
             {
@@ -6451,7 +6451,7 @@
           ]
         },
         {
-          "cost": 683,
+          "cost": 1537,
           "costType": 1,
           "effects": [
             {
@@ -6490,7 +6490,7 @@
       ],
       "tiers": [
         {
-          "cost": 758,
+          "cost": 1705,
           "costType": 1,
           "effects": [
             {
@@ -6502,7 +6502,7 @@
           ]
         },
         {
-          "cost": 833,
+          "cost": 1874,
           "costType": 1,
           "effects": [
             {
@@ -6541,38 +6541,38 @@
       ],
       "tiers": [
         {
-          "cost": 789,
+          "cost": 439,
           "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.16666666666666663
+              "value": 0.16666666666666666
             }
           ]
         },
         {
-          "cost": 1042,
+          "cost": 579,
           "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.33333333333333326
+              "value": 0.3333333333333333
             }
           ]
         },
         {
-          "cost": 1295,
+          "cost": 719,
           "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.49999999999999994
+              "value": 0.5
             }
           ]
         }
@@ -6604,26 +6604,26 @@
       ],
       "tiers": [
         {
-          "cost": 1547,
+          "cost": 860,
           "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.16666666666666666
+              "value": 0.16666666666666669
             }
           ]
         },
         {
-          "cost": 1800,
+          "cost": 1000,
           "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.3333333333333333
+              "value": 0.33333333333333337
             }
           ]
         }
@@ -6655,26 +6655,26 @@
       ],
       "tiers": [
         {
-          "cost": 2053,
+          "cost": 1140,
           "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.16666666666666657
+              "value": 0.1666666666666666
             }
           ]
         },
         {
-          "cost": 2305,
+          "cost": 1281,
           "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.33333333333333315
+              "value": 0.3333333333333332
             }
           ]
         }
@@ -6706,26 +6706,26 @@
       ],
       "tiers": [
         {
-          "cost": 2558,
+          "cost": 1421,
           "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.16666666666666674
+              "value": 0.16666666666666677
             }
           ]
         },
         {
-          "cost": 2811,
+          "cost": 1561,
           "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.3333333333333333
+              "value": 0.33333333333333337
             }
           ]
         }
@@ -6757,7 +6757,7 @@
       ],
       "tiers": [
         {
-          "cost": 526,
+          "cost": 292,
           "costType": 1,
           "effects": [
             {
@@ -6769,7 +6769,7 @@
           ]
         },
         {
-          "cost": 695,
+          "cost": 386,
           "costType": 1,
           "effects": [
             {
@@ -6781,7 +6781,7 @@
           ]
         },
         {
-          "cost": 863,
+          "cost": 480,
           "costType": 1,
           "effects": [
             {
@@ -6820,7 +6820,7 @@
       ],
       "tiers": [
         {
-          "cost": 1032,
+          "cost": 573,
           "costType": 1,
           "effects": [
             {
@@ -6832,7 +6832,7 @@
           ]
         },
         {
-          "cost": 1200,
+          "cost": 667,
           "costType": 1,
           "effects": [
             {
@@ -6871,7 +6871,7 @@
       ],
       "tiers": [
         {
-          "cost": 1368,
+          "cost": 760,
           "costType": 1,
           "effects": [
             {
@@ -6883,7 +6883,7 @@
           ]
         },
         {
-          "cost": 1537,
+          "cost": 854,
           "costType": 1,
           "effects": [
             {
@@ -6922,7 +6922,7 @@
       ],
       "tiers": [
         {
-          "cost": 1705,
+          "cost": 947,
           "costType": 1,
           "effects": [
             {
@@ -6934,7 +6934,7 @@
           ]
         },
         {
-          "cost": 1874,
+          "cost": 1041,
           "costType": 1,
           "effects": [
             {
@@ -7006,7 +7006,31 @@
       ],
       "tiers": [
         {
-          "cost": 3989,
+          "cost": 1515,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.1788785827166014
+            }
+          ]
+        },
+        {
+          "cost": 2121,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.32575961807850284
+            }
+          ]
+        },
+        {
+          "cost": 2425,
           "costType": 1,
           "effects": [
             {
@@ -7040,12 +7064,36 @@
       "prerequisites": [
         {
           "id": "E12-A",
-          "level": 1
+          "level": 3
         }
       ],
       "tiers": [
         {
-          "cost": 5265,
+          "cost": 2000,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.2062994740159002
+            }
+          ]
+        },
+        {
+          "cost": 2800,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.3700394750525634
+            }
+          ]
+        },
+        {
+          "cost": 3200,
           "costType": 1,
           "effects": [
             {
@@ -7079,12 +7127,36 @@
       "prerequisites": [
         {
           "id": "E12-B",
-          "level": 1
+          "level": 3
         }
       ],
       "tiers": [
         {
-          "cost": 6541,
+          "cost": 2484,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.2062994740159002
+            }
+          ]
+        },
+        {
+          "cost": 3478,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.3700394750525634
+            }
+          ]
+        },
+        {
+          "cost": 3977,
           "costType": 1,
           "effects": [
             {
@@ -7123,7 +7195,31 @@
       ],
       "tiers": [
         {
-          "cost": 6136,
+          "cost": 1894,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.18356010644634324
+            }
+          ]
+        },
+        {
+          "cost": 2651,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.3334259002140936
+            }
+          ]
+        },
+        {
+          "cost": 3031,
           "costType": 2,
           "effects": [
             {
@@ -7157,12 +7253,36 @@
       "prerequisites": [
         {
           "id": "Z11-A",
-          "level": 1
+          "level": 3
         }
       ],
       "tiers": [
         {
-          "cost": 8100,
+          "cost": 2500,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.2062994740159002
+            }
+          ]
+        },
+        {
+          "cost": 3500,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.3700394750525634
+            }
+          ]
+        },
+        {
+          "cost": 4000,
           "costType": 2,
           "effects": [
             {
@@ -7196,12 +7316,36 @@
       "prerequisites": [
         {
           "id": "Z11-B",
-          "level": 1
+          "level": 3
         }
       ],
       "tiers": [
         {
-          "cost": 10064,
+          "cost": 3106,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.2062994740159002
+            }
+          ]
+        },
+        {
+          "cost": 4348,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.3700394750525634
+            }
+          ]
+        },
+        {
+          "cost": 4970,
           "costType": 2,
           "effects": [
             {
@@ -7225,6 +7369,70 @@
       "targetRounds": [
         65,
         100
+      ]
+    },
+    {
+      "id": "P9",
+      "name": "Bumerang Orak Kartları",
+      "assetName": "Bumerang Orak Kartları",
+      "grid": [
+        13,
+        4
+      ],
+      "layout": [
+        1950,
+        600
+      ],
+      "guid": "141cc32e8ec4b7c89a801a1200d0d3df",
+      "prerequisites": [
+        {
+          "id": "P4",
+          "level": 1
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 60,
+          "costType": 1,
+          "effects": []
+        }
+      ],
+      "unlockType": 7,
+      "targetRounds": [
+        25,
+        40
+      ]
+    },
+    {
+      "id": "P10",
+      "name": "Çapraz Elektrik Kartları",
+      "assetName": "Çapraz Elektrik Kartları",
+      "grid": [
+        7,
+        5
+      ],
+      "layout": [
+        1050,
+        750
+      ],
+      "guid": "a5870ec6f2e60b3ae4bff760ca658f28",
+      "prerequisites": [
+        {
+          "id": "P3",
+          "level": 1
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 80,
+          "costType": 1,
+          "effects": []
+        }
+      ],
+      "unlockType": 8,
+      "targetRounds": [
+        25,
+        40
       ]
     }
   ]
