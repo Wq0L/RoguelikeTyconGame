@@ -19,11 +19,11 @@ MonoBehaviour:
   - node: {fileID: 11400000, guid: 971c1a63e1b77116d60ad45a988e2147, type: 2}
     level: 1
   - node: {fileID: 11400000, guid: fbdd8846befc8adc2b0c929b0cfdf9c5, type: 2}
-    level: 2
-  targetRounds: {x: 25, y: 40}
+    level: 1
+  targetRounds: {x: 10, y: 13}
   gridPosition: {x: 9, y: -2}
   tiers:
-  - costType: 1
-    cost: 160
+  - costType: 2
+    cost: 100
     effects: []
   unlockType: 1

@@ -16,7 +16,7 @@ MonoBehaviour:
   modifierType: 7
   rarity: 3
   tileColor: {r: 0.36068103, g: 0.4528302, b: 0.040583827, a: 1}
-  requiredUnlock: 0
+  requiredUnlock: 5
   behavior: 3
   modifierRanges:
   - statType: 23

@@ -1,5 +1,7 @@
 # Saksı rezonansı — çalışan prototip
 
+> Eylül 2026 ekonomi güncellemesi: aşağıdaki tarihsel prototip notlarındaki 0,1 saniyelik üretim tabanı artık 0,5 saniyedir. Bu taban rezonans sonrasında da uygulanır. Güncel hasar, fiyat ve hız değerleri için `EconomyBalance.md` ve `FinalSkillTree.md` esas alınır.
+
 ## Tasarım kararları (2026-09-13)
 
 - Kullanıcı tile konumlarını seçmiyor; buff rastgele hücreye geliyor. Rezonans aynı saksının kapladığı hücrelerdeki tile türü sayısına bakar, komşuluk veya desen istemez.

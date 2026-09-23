@@ -313,6 +313,7 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         {
             UnlockType.TileBehavior_Explosive => "Patlama",
             UnlockType.TileBehavior_Duplicate => "Çoğaltma",
+            UnlockType.TileBehavior_Tornado => "Tornado",
             _ => null
         };
         if (card == null) return string.Empty;

@@ -19,17 +19,17 @@ MonoBehaviour:
   prerequisites:
   - node: {fileID: 11400000, guid: e304a4306ac7196dfac278284bd8047e, type: 2}
     level: 3
-  targetRounds: {x: 10, y: 25}
+  targetRounds: {x: 10, y: 30}
   tiers:
   - costType: 2
-    cost: 26
+    cost: 103
     effects:
     - statType: 1
       target: 1
       operation: 1
       value: 0.03333333333333334
   - costType: 2
-    cost: 26
+    cost: 120
     effects:
     - statType: 1
       target: 1

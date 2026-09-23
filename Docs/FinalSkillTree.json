@@ -15,31 +15,31 @@
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 1
+              "value": 6.666666666666666
             }
           ]
         },
         {
-          "cost": 3,
+          "cost": 19,
           "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 2
+              "value": 13.333333333333332
             }
           ]
         },
         {
-          "cost": 4,
+          "cost": 24,
           "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 3
+              "value": 19.999999999999996
             }
           ]
         }
@@ -51,7 +51,7 @@
       ],
       "targetRounds": [
         1,
-        8
+        15
       ],
       "grid": [
         0,
@@ -71,26 +71,26 @@
       ],
       "tiers": [
         {
-          "cost": 6,
+          "cost": 29,
           "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 1
+              "value": 6.666666666666666
             }
           ]
         },
         {
-          "cost": 6,
+          "cost": 33,
           "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 2
+              "value": 13.333333333333332
             }
           ]
         }
@@ -102,7 +102,7 @@
       ],
       "targetRounds": [
         1,
-        8
+        15
       ],
       "grid": [
         1,
@@ -122,26 +122,26 @@
       ],
       "tiers": [
         {
-          "cost": 8,
+          "cost": 38,
           "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 1
+              "value": 6.666666666666666
             }
           ]
         },
         {
-          "cost": 13,
+          "cost": 43,
           "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 2
+              "value": 13.333333333333332
             }
           ]
         }
@@ -153,7 +153,7 @@
       ],
       "targetRounds": [
         1,
-        8
+        15
       ],
       "grid": [
         2,
@@ -173,26 +173,26 @@
       ],
       "tiers": [
         {
-          "cost": 13,
+          "cost": 47,
           "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 1
+              "value": 6.666666666666666
             }
           ]
         },
         {
-          "cost": 14,
+          "cost": 52,
           "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 2
+              "value": 13.333333333333332
             }
           ]
         }
@@ -204,7 +204,7 @@
       ],
       "targetRounds": [
         1,
-        8
+        15
       ],
       "grid": [
         3,
@@ -224,38 +224,38 @@
       ],
       "tiers": [
         {
-          "cost": 10,
-          "costType": 1,
+          "cost": 97,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 3
+              "value": 11.25
             }
           ]
         },
         {
-          "cost": 10,
-          "costType": 1,
+          "cost": 129,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 7
+              "value": 26.25
             }
           ]
         },
         {
-          "cost": 10,
-          "costType": 1,
+          "cost": 160,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 10
+              "value": 37.5
             }
           ]
         }
@@ -266,7 +266,7 @@
         1050
       ],
       "targetRounds": [
-        30,
+        25,
         60
       ],
       "grid": [
@@ -287,26 +287,26 @@
       ],
       "tiers": [
         {
-          "cost": 20,
-          "costType": 1,
+          "cost": 191,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 3
+              "value": 11.25
             }
           ]
         },
         {
-          "cost": 20,
-          "costType": 1,
+          "cost": 222,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 7
+              "value": 26.25
             }
           ]
         }
@@ -317,7 +317,7 @@
         1050
       ],
       "targetRounds": [
-        30,
+        25,
         60
       ],
       "grid": [
@@ -338,26 +338,26 @@
       ],
       "tiers": [
         {
-          "cost": 20,
-          "costType": 1,
+          "cost": 253,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 3
+              "value": 11.25
             }
           ]
         },
         {
-          "cost": 40,
-          "costType": 1,
+          "cost": 285,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 10
+              "value": 37.5
             }
           ]
         }
@@ -368,7 +368,7 @@
         1050
       ],
       "targetRounds": [
-        30,
+        25,
         60
       ],
       "grid": [
@@ -389,26 +389,26 @@
       ],
       "tiers": [
         {
-          "cost": 40,
-          "costType": 1,
+          "cost": 316,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 6
+              "value": 22.5
             }
           ]
         },
         {
-          "cost": 40,
-          "costType": 1,
+          "cost": 347,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 13
+              "value": 48.75
             }
           ]
         }
@@ -419,7 +419,7 @@
         1050
       ],
       "targetRounds": [
-        30,
+        25,
         60
       ],
       "grid": [
@@ -440,38 +440,38 @@
       ],
       "tiers": [
         {
-          "cost": 40,
-          "costType": 1,
+          "cost": 263,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 17
+              "value": 113.33333333333334
             }
           ]
         },
         {
-          "cost": 40,
-          "costType": 1,
+          "cost": 347,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 33
+              "value": 220
             }
           ]
         },
         {
-          "cost": 40,
-          "costType": 1,
+          "cost": 432,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 50
+              "value": 333.33333333333337
             }
           ]
         }
@@ -482,8 +482,8 @@
         1800
       ],
       "targetRounds": [
-        61,
-        80
+        65,
+        78
       ],
       "grid": [
         0,
@@ -503,26 +503,26 @@
       ],
       "tiers": [
         {
-          "cost": 80,
-          "costType": 1,
+          "cost": 516,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 17
+              "value": 113.33333333333334
             }
           ]
         },
         {
-          "cost": 80,
-          "costType": 1,
+          "cost": 600,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 33
+              "value": 220
             }
           ]
         }
@@ -533,8 +533,8 @@
         1800
       ],
       "targetRounds": [
-        61,
-        80
+        65,
+        78
       ],
       "grid": [
         1,
@@ -554,26 +554,26 @@
       ],
       "tiers": [
         {
-          "cost": 80,
-          "costType": 1,
+          "cost": 684,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 17
+              "value": 113.33333333333334
             }
           ]
         },
         {
-          "cost": 160,
-          "costType": 1,
+          "cost": 768,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 34
+              "value": 226.66666666666669
             }
           ]
         }
@@ -584,8 +584,8 @@
         1800
       ],
       "targetRounds": [
-        61,
-        80
+        65,
+        78
       ],
       "grid": [
         2,
@@ -605,26 +605,26 @@
       ],
       "tiers": [
         {
-          "cost": 160,
-          "costType": 1,
+          "cost": 853,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 16
+              "value": 106.66666666666667
             }
           ]
         },
         {
-          "cost": 160,
-          "costType": 1,
+          "cost": 937,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 33
+              "value": 220
             }
           ]
         }
@@ -635,8 +635,8 @@
         1800
       ],
       "targetRounds": [
-        61,
-        80
+        65,
+        78
       ],
       "grid": [
         3,
@@ -656,38 +656,38 @@
       ],
       "tiers": [
         {
-          "cost": 66,
-          "costType": 0,
+          "cost": 1316,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 67
+              "value": 446.6666666666667
             }
           ]
         },
         {
-          "cost": 66,
-          "costType": 0,
+          "cost": 1737,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 133
+              "value": 886.6666666666667
             }
           ]
         },
         {
-          "cost": 68,
-          "costType": 0,
+          "cost": 2158,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 200
+              "value": 1333.3333333333335
             }
           ]
         }
@@ -698,8 +698,8 @@
         2550
       ],
       "targetRounds": [
-        81,
-        105
+        78,
+        93
       ],
       "grid": [
         0,
@@ -719,26 +719,26 @@
       ],
       "tiers": [
         {
-          "cost": 133,
-          "costType": 0,
+          "cost": 2579,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 67
+              "value": 446.6666666666667
             }
           ]
         },
         {
-          "cost": 133,
-          "costType": 0,
+          "cost": 3000,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 133
+              "value": 886.6666666666667
             }
           ]
         }
@@ -749,8 +749,8 @@
         2550
       ],
       "targetRounds": [
-        81,
-        105
+        78,
+        93
       ],
       "grid": [
         1,
@@ -770,26 +770,26 @@
       ],
       "tiers": [
         {
-          "cost": 134,
-          "costType": 0,
+          "cost": 3421,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 67
+              "value": 446.6666666666667
             }
           ]
         },
         {
-          "cost": 266,
-          "costType": 0,
+          "cost": 3842,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 134
+              "value": 893.3333333333334
             }
           ]
         }
@@ -800,8 +800,8 @@
         2550
       ],
       "targetRounds": [
-        81,
-        105
+        78,
+        93
       ],
       "grid": [
         2,
@@ -821,26 +821,26 @@
       ],
       "tiers": [
         {
-          "cost": 266,
-          "costType": 0,
+          "cost": 4263,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 66
+              "value": 440
             }
           ]
         },
         {
-          "cost": 268,
-          "costType": 0,
+          "cost": 4684,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
               "target": 1,
               "operation": 0,
-              "value": 133
+              "value": 886.6666666666667
             }
           ]
         }
@@ -851,8 +851,8 @@
         2550
       ],
       "targetRounds": [
-        81,
-        105
+        78,
+        93
       ],
       "grid": [
         3,
@@ -872,8 +872,8 @@
       ],
       "tiers": [
         {
-          "cost": 400,
-          "costType": 0,
+          "cost": 2895,
+          "costType": 1,
           "effects": [
             {
               "statType": 0,
@@ -884,8 +884,8 @@
           ]
         },
         {
-          "cost": 400,
-          "costType": 0,
+          "cost": 3821,
+          "costType": 1,
           "effects": [
             {
               "statType": 0,
@@ -896,8 +896,8 @@
           ]
         },
         {
-          "cost": 400,
-          "costType": 0,
+          "cost": 4747,
+          "costType": 1,
           "effects": [
             {
               "statType": 0,
@@ -914,8 +914,8 @@
         3300
       ],
       "targetRounds": [
-        106,
-        125
+        90,
+        105
       ],
       "grid": [
         0,
@@ -935,8 +935,8 @@
       ],
       "tiers": [
         {
-          "cost": 800,
-          "costType": 0,
+          "cost": 5674,
+          "costType": 1,
           "effects": [
             {
               "statType": 0,
@@ -947,8 +947,8 @@
           ]
         },
         {
-          "cost": 800,
-          "costType": 0,
+          "cost": 6600,
+          "costType": 1,
           "effects": [
             {
               "statType": 0,
@@ -965,8 +965,8 @@
         3300
       ],
       "targetRounds": [
-        106,
-        125
+        90,
+        105
       ],
       "grid": [
         1,
@@ -986,8 +986,8 @@
       ],
       "tiers": [
         {
-          "cost": 800,
-          "costType": 0,
+          "cost": 7526,
+          "costType": 1,
           "effects": [
             {
               "statType": 0,
@@ -998,8 +998,8 @@
           ]
         },
         {
-          "cost": 1600,
-          "costType": 0,
+          "cost": 8453,
+          "costType": 1,
           "effects": [
             {
               "statType": 0,
@@ -1016,8 +1016,8 @@
         3300
       ],
       "targetRounds": [
-        106,
-        125
+        90,
+        105
       ],
       "grid": [
         2,
@@ -1037,8 +1037,8 @@
       ],
       "tiers": [
         {
-          "cost": 1600,
-          "costType": 0,
+          "cost": 9379,
+          "costType": 1,
           "effects": [
             {
               "statType": 0,
@@ -1049,8 +1049,8 @@
           ]
         },
         {
-          "cost": 1600,
-          "costType": 0,
+          "cost": 10305,
+          "costType": 1,
           "effects": [
             {
               "statType": 0,
@@ -1067,8 +1067,8 @@
         3300
       ],
       "targetRounds": [
-        106,
-        125
+        90,
+        105
       ],
       "grid": [
         3,
@@ -1088,7 +1088,7 @@
       ],
       "tiers": [
         {
-          "cost": 10,
+          "cost": 44,
           "costType": 2,
           "effects": [
             {
@@ -1100,7 +1100,7 @@
           ]
         },
         {
-          "cost": 10,
+          "cost": 58,
           "costType": 2,
           "effects": [
             {
@@ -1112,7 +1112,7 @@
           ]
         },
         {
-          "cost": 10,
+          "cost": 72,
           "costType": 2,
           "effects": [
             {
@@ -1130,8 +1130,8 @@
         1050
       ],
       "targetRounds": [
-        8,
-        25
+        10,
+        30
       ],
       "grid": [
         -5,
@@ -1151,7 +1151,7 @@
       ],
       "tiers": [
         {
-          "cost": 20,
+          "cost": 86,
           "costType": 2,
           "effects": [
             {
@@ -1163,7 +1163,7 @@
           ]
         },
         {
-          "cost": 20,
+          "cost": 100,
           "costType": 2,
           "effects": [
             {
@@ -1181,8 +1181,8 @@
         1050
       ],
       "targetRounds": [
-        8,
-        25
+        10,
+        30
       ],
       "grid": [
         -6,
@@ -1202,7 +1202,7 @@
       ],
       "tiers": [
         {
-          "cost": 20,
+          "cost": 114,
           "costType": 2,
           "effects": [
             {
@@ -1214,7 +1214,7 @@
           ]
         },
         {
-          "cost": 40,
+          "cost": 128,
           "costType": 2,
           "effects": [
             {
@@ -1232,8 +1232,8 @@
         1050
       ],
       "targetRounds": [
-        8,
-        25
+        10,
+        30
       ],
       "grid": [
         -7,
@@ -1253,7 +1253,7 @@
       ],
       "tiers": [
         {
-          "cost": 40,
+          "cost": 142,
           "costType": 2,
           "effects": [
             {
@@ -1265,7 +1265,7 @@
           ]
         },
         {
-          "cost": 40,
+          "cost": 156,
           "costType": 2,
           "effects": [
             {
@@ -1283,8 +1283,8 @@
         1050
       ],
       "targetRounds": [
-        8,
-        25
+        10,
+        30
       ],
       "grid": [
         -8,
@@ -1308,7 +1308,7 @@
       ],
       "tiers": [
         {
-          "cost": 26,
+          "cost": 117,
           "costType": 1,
           "effects": [
             {
@@ -1320,7 +1320,7 @@
           ]
         },
         {
-          "cost": 26,
+          "cost": 154,
           "costType": 1,
           "effects": [
             {
@@ -1332,7 +1332,7 @@
           ]
         },
         {
-          "cost": 28,
+          "cost": 192,
           "costType": 1,
           "effects": [
             {
@@ -1350,8 +1350,8 @@
         1800
       ],
       "targetRounds": [
-        45,
-        75
+        35,
+        65
       ],
       "grid": [
         -5,
@@ -1371,7 +1371,7 @@
       ],
       "tiers": [
         {
-          "cost": 53,
+          "cost": 229,
           "costType": 1,
           "effects": [
             {
@@ -1383,7 +1383,7 @@
           ]
         },
         {
-          "cost": 53,
+          "cost": 267,
           "costType": 1,
           "effects": [
             {
@@ -1401,8 +1401,8 @@
         1800
       ],
       "targetRounds": [
-        45,
-        75
+        35,
+        65
       ],
       "grid": [
         -6,
@@ -1422,7 +1422,7 @@
       ],
       "tiers": [
         {
-          "cost": 54,
+          "cost": 304,
           "costType": 1,
           "effects": [
             {
@@ -1434,7 +1434,7 @@
           ]
         },
         {
-          "cost": 106,
+          "cost": 342,
           "costType": 1,
           "effects": [
             {
@@ -1452,8 +1452,8 @@
         1800
       ],
       "targetRounds": [
-        45,
-        75
+        35,
+        65
       ],
       "grid": [
         -7,
@@ -1473,7 +1473,7 @@
       ],
       "tiers": [
         {
-          "cost": 106,
+          "cost": 379,
           "costType": 1,
           "effects": [
             {
@@ -1485,7 +1485,7 @@
           ]
         },
         {
-          "cost": 108,
+          "cost": 416,
           "costType": 1,
           "effects": [
             {
@@ -1503,8 +1503,8 @@
         1800
       ],
       "targetRounds": [
-        45,
-        75
+        35,
+        65
       ],
       "grid": [
         -8,
@@ -1528,8 +1528,8 @@
       ],
       "tiers": [
         {
-          "cost": 50,
-          "costType": 0,
+          "cost": 2105,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
@@ -1540,8 +1540,8 @@
           ]
         },
         {
-          "cost": 50,
-          "costType": 0,
+          "cost": 2779,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
@@ -1552,8 +1552,8 @@
           ]
         },
         {
-          "cost": 50,
-          "costType": 0,
+          "cost": 3453,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
@@ -1570,8 +1570,8 @@
         2550
       ],
       "targetRounds": [
-        86,
-        105
+        75,
+        95
       ],
       "grid": [
         -5,
@@ -1591,8 +1591,8 @@
       ],
       "tiers": [
         {
-          "cost": 100,
-          "costType": 0,
+          "cost": 4126,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
@@ -1603,8 +1603,8 @@
           ]
         },
         {
-          "cost": 100,
-          "costType": 0,
+          "cost": 4800,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
@@ -1621,8 +1621,8 @@
         2550
       ],
       "targetRounds": [
-        86,
-        105
+        75,
+        95
       ],
       "grid": [
         -6,
@@ -1642,8 +1642,8 @@
       ],
       "tiers": [
         {
-          "cost": 100,
-          "costType": 0,
+          "cost": 5474,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
@@ -1654,8 +1654,8 @@
           ]
         },
         {
-          "cost": 200,
-          "costType": 0,
+          "cost": 6147,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
@@ -1672,8 +1672,8 @@
         2550
       ],
       "targetRounds": [
-        86,
-        105
+        75,
+        95
       ],
       "grid": [
         -7,
@@ -1693,8 +1693,8 @@
       ],
       "tiers": [
         {
-          "cost": 200,
-          "costType": 0,
+          "cost": 6821,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
@@ -1705,8 +1705,8 @@
           ]
         },
         {
-          "cost": 200,
-          "costType": 0,
+          "cost": 7495,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
@@ -1723,8 +1723,8 @@
         2550
       ],
       "targetRounds": [
-        86,
-        105
+        75,
+        95
       ],
       "grid": [
         -8,
@@ -1748,8 +1748,8 @@
       ],
       "tiers": [
         {
-          "cost": 200,
-          "costType": 0,
+          "cost": 20395,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
@@ -1760,8 +1760,8 @@
           ]
         },
         {
-          "cost": 200,
-          "costType": 0,
+          "cost": 26921,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
@@ -1772,8 +1772,8 @@
           ]
         },
         {
-          "cost": 200,
-          "costType": 0,
+          "cost": 33447,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
@@ -1790,8 +1790,8 @@
         3300
       ],
       "targetRounds": [
-        106,
-        125
+        90,
+        110
       ],
       "grid": [
         -5,
@@ -1811,8 +1811,8 @@
       ],
       "tiers": [
         {
-          "cost": 400,
-          "costType": 0,
+          "cost": 39974,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
@@ -1823,8 +1823,8 @@
           ]
         },
         {
-          "cost": 400,
-          "costType": 0,
+          "cost": 46500,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
@@ -1841,8 +1841,8 @@
         3300
       ],
       "targetRounds": [
-        106,
-        125
+        90,
+        110
       ],
       "grid": [
         -6,
@@ -1862,8 +1862,8 @@
       ],
       "tiers": [
         {
-          "cost": 400,
-          "costType": 0,
+          "cost": 53026,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
@@ -1874,8 +1874,8 @@
           ]
         },
         {
-          "cost": 800,
-          "costType": 0,
+          "cost": 59553,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
@@ -1892,8 +1892,8 @@
         3300
       ],
       "targetRounds": [
-        106,
-        125
+        90,
+        110
       ],
       "grid": [
         -7,
@@ -1913,8 +1913,8 @@
       ],
       "tiers": [
         {
-          "cost": 800,
-          "costType": 0,
+          "cost": 66079,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
@@ -1925,8 +1925,8 @@
           ]
         },
         {
-          "cost": 800,
-          "costType": 0,
+          "cost": 72605,
+          "costType": 2,
           "effects": [
             {
               "statType": 0,
@@ -1943,8 +1943,8 @@
         3300
       ],
       "targetRounds": [
-        106,
-        125
+        90,
+        110
       ],
       "grid": [
         -8,
@@ -1964,7 +1964,7 @@
       ],
       "tiers": [
         {
-          "cost": 1800,
+          "cost": 486,
           "costType": 0,
           "effects": [
             {
@@ -1982,8 +1982,8 @@
         3300
       ],
       "targetRounds": [
-        105,
-        115
+        90,
+        100
       ],
       "grid": [
         5,
@@ -2007,7 +2007,7 @@
       ],
       "tiers": [
         {
-          "cost": 5000,
+          "cost": 2430,
           "costType": 0,
           "effects": [
             {
@@ -2025,8 +2025,8 @@
         4050
       ],
       "targetRounds": [
-        120,
-        130
+        100,
+        110
       ],
       "grid": [
         5,
@@ -2046,7 +2046,7 @@
       ],
       "tiers": [
         {
-          "cost": 16,
+          "cost": 117,
           "costType": 2,
           "effects": [
             {
@@ -2058,7 +2058,7 @@
           ]
         },
         {
-          "cost": 16,
+          "cost": 154,
           "costType": 2,
           "effects": [
             {
@@ -2070,7 +2070,7 @@
           ]
         },
         {
-          "cost": 18,
+          "cost": 192,
           "costType": 2,
           "effects": [
             {
@@ -2088,8 +2088,8 @@
         1800
       ],
       "targetRounds": [
-        15,
-        85
+        20,
+        65
       ],
       "grid": [
         -10,
@@ -2109,8 +2109,8 @@
       ],
       "tiers": [
         {
-          "cost": 26,
-          "costType": 1,
+          "cost": 229,
+          "costType": 2,
           "effects": [
             {
               "statType": 3,
@@ -2121,8 +2121,8 @@
           ]
         },
         {
-          "cost": 26,
-          "costType": 1,
+          "cost": 267,
+          "costType": 2,
           "effects": [
             {
               "statType": 3,
@@ -2139,8 +2139,8 @@
         1800
       ],
       "targetRounds": [
-        15,
-        85
+        20,
+        65
       ],
       "grid": [
         -11,
@@ -2160,8 +2160,8 @@
       ],
       "tiers": [
         {
-          "cost": 28,
-          "costType": 1,
+          "cost": 304,
+          "costType": 2,
           "effects": [
             {
               "statType": 3,
@@ -2172,8 +2172,8 @@
           ]
         },
         {
-          "cost": 66,
-          "costType": 0,
+          "cost": 342,
+          "costType": 2,
           "effects": [
             {
               "statType": 3,
@@ -2190,8 +2190,8 @@
         1800
       ],
       "targetRounds": [
-        15,
-        85
+        20,
+        65
       ],
       "grid": [
         -12,
@@ -2211,8 +2211,8 @@
       ],
       "tiers": [
         {
-          "cost": 66,
-          "costType": 0,
+          "cost": 379,
+          "costType": 2,
           "effects": [
             {
               "statType": 3,
@@ -2223,8 +2223,8 @@
           ]
         },
         {
-          "cost": 68,
-          "costType": 0,
+          "cost": 416,
+          "costType": 2,
           "effects": [
             {
               "statType": 3,
@@ -2241,8 +2241,8 @@
         1800
       ],
       "targetRounds": [
-        15,
-        85
+        20,
+        65
       ],
       "grid": [
         -13,
@@ -2262,7 +2262,7 @@
       ],
       "tiers": [
         {
-          "cost": 40,
+          "cost": 395,
           "costType": 1,
           "effects": [
             {
@@ -2274,7 +2274,7 @@
           ]
         },
         {
-          "cost": 40,
+          "cost": 521,
           "costType": 1,
           "effects": [
             {
@@ -2286,7 +2286,7 @@
           ]
         },
         {
-          "cost": 40,
+          "cost": 647,
           "costType": 1,
           "effects": [
             {
@@ -2304,8 +2304,8 @@
         2550
       ],
       "targetRounds": [
-        55,
-        110
+        65,
+        100
       ],
       "grid": [
         -10,
@@ -2325,8 +2325,8 @@
       ],
       "tiers": [
         {
-          "cost": 100,
-          "costType": 0,
+          "cost": 774,
+          "costType": 1,
           "effects": [
             {
               "statType": 4,
@@ -2337,8 +2337,8 @@
           ]
         },
         {
-          "cost": 100,
-          "costType": 0,
+          "cost": 900,
+          "costType": 1,
           "effects": [
             {
               "statType": 4,
@@ -2355,8 +2355,8 @@
         2550
       ],
       "targetRounds": [
-        55,
-        110
+        65,
+        100
       ],
       "grid": [
         -11,
@@ -2376,8 +2376,8 @@
       ],
       "tiers": [
         {
-          "cost": 100,
-          "costType": 0,
+          "cost": 1026,
+          "costType": 1,
           "effects": [
             {
               "statType": 4,
@@ -2388,8 +2388,8 @@
           ]
         },
         {
-          "cost": 266,
-          "costType": 0,
+          "cost": 1153,
+          "costType": 1,
           "effects": [
             {
               "statType": 4,
@@ -2406,8 +2406,8 @@
         2550
       ],
       "targetRounds": [
-        55,
-        110
+        65,
+        100
       ],
       "grid": [
         -12,
@@ -2427,8 +2427,8 @@
       ],
       "tiers": [
         {
-          "cost": 266,
-          "costType": 0,
+          "cost": 1279,
+          "costType": 1,
           "effects": [
             {
               "statType": 4,
@@ -2439,8 +2439,8 @@
           ]
         },
         {
-          "cost": 268,
-          "costType": 0,
+          "cost": 1405,
+          "costType": 1,
           "effects": [
             {
               "statType": 4,
@@ -2457,8 +2457,8 @@
         2550
       ],
       "targetRounds": [
-        55,
-        110
+        65,
+        100
       ],
       "grid": [
         -13,
@@ -2473,7 +2473,7 @@
       "prerequisites": [],
       "tiers": [
         {
-          "cost": 3,
+          "cost": 20,
           "costType": 2,
           "effects": [
             {
@@ -2485,7 +2485,7 @@
           ]
         },
         {
-          "cost": 3,
+          "cost": 27,
           "costType": 2,
           "effects": [
             {
@@ -2497,7 +2497,7 @@
           ]
         },
         {
-          "cost": 4,
+          "cost": 34,
           "costType": 2,
           "effects": [
             {
@@ -2516,7 +2516,7 @@
       ],
       "targetRounds": [
         1,
-        12
+        15
       ],
       "grid": [
         -2,
@@ -2536,7 +2536,7 @@
       ],
       "tiers": [
         {
-          "cost": 10,
+          "cost": 40,
           "costType": 2,
           "effects": [
             {
@@ -2548,7 +2548,7 @@
           ]
         },
         {
-          "cost": 10,
+          "cost": 47,
           "costType": 2,
           "effects": [
             {
@@ -2567,7 +2567,7 @@
       ],
       "targetRounds": [
         1,
-        12
+        15
       ],
       "grid": [
         -2,
@@ -2587,7 +2587,7 @@
       ],
       "tiers": [
         {
-          "cost": 10,
+          "cost": 53,
           "costType": 2,
           "effects": [
             {
@@ -2599,7 +2599,7 @@
           ]
         },
         {
-          "cost": 20,
+          "cost": 60,
           "costType": 2,
           "effects": [
             {
@@ -2618,7 +2618,7 @@
       ],
       "targetRounds": [
         1,
-        12
+        15
       ],
       "grid": [
         -2,
@@ -2638,7 +2638,7 @@
       ],
       "tiers": [
         {
-          "cost": 20,
+          "cost": 66,
           "costType": 2,
           "effects": [
             {
@@ -2650,7 +2650,7 @@
           ]
         },
         {
-          "cost": 20,
+          "cost": 73,
           "costType": 2,
           "effects": [
             {
@@ -2669,7 +2669,7 @@
       ],
       "targetRounds": [
         1,
-        12
+        15
       ],
       "grid": [
         -2,
@@ -2689,7 +2689,7 @@
       ],
       "tiers": [
         {
-          "cost": 6,
+          "cost": 29,
           "costType": 2,
           "effects": [
             {
@@ -2701,7 +2701,7 @@
           ]
         },
         {
-          "cost": 6,
+          "cost": 39,
           "costType": 2,
           "effects": [
             {
@@ -2713,7 +2713,7 @@
           ]
         },
         {
-          "cost": 8,
+          "cost": 48,
           "costType": 2,
           "effects": [
             {
@@ -2731,8 +2731,8 @@
         0
       ],
       "targetRounds": [
-        2,
-        15
+        3,
+        25
       ],
       "grid": [
         -10,
@@ -2752,7 +2752,7 @@
       ],
       "tiers": [
         {
-          "cost": 13,
+          "cost": 57,
           "costType": 2,
           "effects": [
             {
@@ -2764,7 +2764,7 @@
           ]
         },
         {
-          "cost": 13,
+          "cost": 67,
           "costType": 2,
           "effects": [
             {
@@ -2782,8 +2782,8 @@
         150
       ],
       "targetRounds": [
-        2,
-        15
+        3,
+        25
       ],
       "grid": [
         -10,
@@ -2803,7 +2803,7 @@
       ],
       "tiers": [
         {
-          "cost": 14,
+          "cost": 76,
           "costType": 2,
           "effects": [
             {
@@ -2815,7 +2815,7 @@
           ]
         },
         {
-          "cost": 26,
+          "cost": 85,
           "costType": 2,
           "effects": [
             {
@@ -2833,8 +2833,8 @@
         300
       ],
       "targetRounds": [
-        2,
-        15
+        3,
+        25
       ],
       "grid": [
         -10,
@@ -2854,7 +2854,7 @@
       ],
       "tiers": [
         {
-          "cost": 26,
+          "cost": 95,
           "costType": 2,
           "effects": [
             {
@@ -2866,7 +2866,7 @@
           ]
         },
         {
-          "cost": 28,
+          "cost": 104,
           "costType": 2,
           "effects": [
             {
@@ -2884,8 +2884,8 @@
         450
       ],
       "targetRounds": [
-        2,
-        15
+        3,
+        25
       ],
       "grid": [
         -10,
@@ -2905,7 +2905,7 @@
       ],
       "tiers": [
         {
-          "cost": 13,
+          "cost": 53,
           "costType": 2,
           "effects": [
             {
@@ -2917,7 +2917,7 @@
           ]
         },
         {
-          "cost": 13,
+          "cost": 69,
           "costType": 2,
           "effects": [
             {
@@ -2929,7 +2929,7 @@
           ]
         },
         {
-          "cost": 14,
+          "cost": 86,
           "costType": 2,
           "effects": [
             {
@@ -2948,7 +2948,7 @@
       ],
       "targetRounds": [
         10,
-        25
+        30
       ],
       "grid": [
         -15,
@@ -2968,7 +2968,7 @@
       ],
       "tiers": [
         {
-          "cost": 26,
+          "cost": 103,
           "costType": 2,
           "effects": [
             {
@@ -2980,7 +2980,7 @@
           ]
         },
         {
-          "cost": 26,
+          "cost": 120,
           "costType": 2,
           "effects": [
             {
@@ -2999,7 +2999,7 @@
       ],
       "targetRounds": [
         10,
-        25
+        30
       ],
       "grid": [
         -15,
@@ -3019,7 +3019,7 @@
       ],
       "tiers": [
         {
-          "cost": 28,
+          "cost": 137,
           "costType": 2,
           "effects": [
             {
@@ -3031,7 +3031,7 @@
           ]
         },
         {
-          "cost": 53,
+          "cost": 154,
           "costType": 2,
           "effects": [
             {
@@ -3050,7 +3050,7 @@
       ],
       "targetRounds": [
         10,
-        25
+        30
       ],
       "grid": [
         -15,
@@ -3070,7 +3070,7 @@
       ],
       "tiers": [
         {
-          "cost": 53,
+          "cost": 171,
           "costType": 2,
           "effects": [
             {
@@ -3082,7 +3082,7 @@
           ]
         },
         {
-          "cost": 54,
+          "cost": 187,
           "costType": 2,
           "effects": [
             {
@@ -3101,7 +3101,7 @@
       ],
       "targetRounds": [
         10,
-        25
+        30
       ],
       "grid": [
         -15,
@@ -3121,7 +3121,7 @@
       ],
       "tiers": [
         {
-          "cost": 20,
+          "cost": 117,
           "costType": 1,
           "effects": [
             {
@@ -3133,7 +3133,7 @@
           ]
         },
         {
-          "cost": 20,
+          "cost": 154,
           "costType": 1,
           "effects": [
             {
@@ -3145,7 +3145,7 @@
           ]
         },
         {
-          "cost": 20,
+          "cost": 192,
           "costType": 1,
           "effects": [
             {
@@ -3163,8 +3163,8 @@
         750
       ],
       "targetRounds": [
-        25,
-        60
+        30,
+        65
       ],
       "grid": [
         -10,
@@ -3184,7 +3184,7 @@
       ],
       "tiers": [
         {
-          "cost": 40,
+          "cost": 229,
           "costType": 1,
           "effects": [
             {
@@ -3196,7 +3196,7 @@
           ]
         },
         {
-          "cost": 40,
+          "cost": 267,
           "costType": 1,
           "effects": [
             {
@@ -3214,8 +3214,8 @@
         900
       ],
       "targetRounds": [
-        25,
-        60
+        30,
+        65
       ],
       "grid": [
         -10,
@@ -3235,7 +3235,7 @@
       ],
       "tiers": [
         {
-          "cost": 40,
+          "cost": 304,
           "costType": 1,
           "effects": [
             {
@@ -3247,7 +3247,7 @@
           ]
         },
         {
-          "cost": 80,
+          "cost": 342,
           "costType": 1,
           "effects": [
             {
@@ -3265,8 +3265,8 @@
         1050
       ],
       "targetRounds": [
-        25,
-        60
+        30,
+        65
       ],
       "grid": [
         -10,
@@ -3286,7 +3286,7 @@
       ],
       "tiers": [
         {
-          "cost": 80,
+          "cost": 379,
           "costType": 1,
           "effects": [
             {
@@ -3298,7 +3298,7 @@
           ]
         },
         {
-          "cost": 80,
+          "cost": 416,
           "costType": 1,
           "effects": [
             {
@@ -3316,8 +3316,8 @@
         1200
       ],
       "targetRounds": [
-        25,
-        60
+        30,
+        65
       ],
       "grid": [
         -10,
@@ -3337,8 +3337,8 @@
       ],
       "tiers": [
         {
-          "cost": 26,
-          "costType": 1,
+          "cost": 195,
+          "costType": 2,
           "effects": [
             {
               "statType": 2,
@@ -3349,8 +3349,8 @@
           ]
         },
         {
-          "cost": 26,
-          "costType": 1,
+          "cost": 257,
+          "costType": 2,
           "effects": [
             {
               "statType": 2,
@@ -3361,8 +3361,8 @@
           ]
         },
         {
-          "cost": 28,
-          "costType": 1,
+          "cost": 320,
+          "costType": 2,
           "effects": [
             {
               "statType": 2,
@@ -3400,8 +3400,8 @@
       ],
       "tiers": [
         {
-          "cost": 53,
-          "costType": 1,
+          "cost": 382,
+          "costType": 2,
           "effects": [
             {
               "statType": 2,
@@ -3412,8 +3412,8 @@
           ]
         },
         {
-          "cost": 53,
-          "costType": 1,
+          "cost": 444,
+          "costType": 2,
           "effects": [
             {
               "statType": 2,
@@ -3451,8 +3451,8 @@
       ],
       "tiers": [
         {
-          "cost": 54,
-          "costType": 1,
+          "cost": 507,
+          "costType": 2,
           "effects": [
             {
               "statType": 2,
@@ -3463,8 +3463,8 @@
           ]
         },
         {
-          "cost": 106,
-          "costType": 1,
+          "cost": 569,
+          "costType": 2,
           "effects": [
             {
               "statType": 2,
@@ -3502,8 +3502,8 @@
       ],
       "tiers": [
         {
-          "cost": 106,
-          "costType": 1,
+          "cost": 632,
+          "costType": 2,
           "effects": [
             {
               "statType": 2,
@@ -3514,8 +3514,8 @@
           ]
         },
         {
-          "cost": 108,
-          "costType": 1,
+          "cost": 694,
+          "costType": 2,
           "effects": [
             {
               "statType": 2,
@@ -3553,7 +3553,7 @@
       ],
       "tiers": [
         {
-          "cost": 100,
+          "cost": 360,
           "costType": 2,
           "effects": [
             {
@@ -3572,7 +3572,7 @@
       ],
       "targetRounds": [
         10,
-        20
+        25
       ],
       "grid": [
         -20,
@@ -3592,7 +3592,7 @@
       ],
       "tiers": [
         {
-          "cost": 160,
+          "cost": 800,
           "costType": 1,
           "effects": [
             {
@@ -3610,8 +3610,8 @@
         0
       ],
       "targetRounds": [
-        35,
-        55
+        30,
+        65
       ],
       "grid": [
         -25,
@@ -3631,7 +3631,7 @@
       ],
       "tiers": [
         {
-          "cost": 83,
+          "cost": 237,
           "costType": 0,
           "effects": [
             {
@@ -3643,7 +3643,7 @@
           ]
         },
         {
-          "cost": 83,
+          "cost": 313,
           "costType": 0,
           "effects": [
             {
@@ -3655,7 +3655,7 @@
           ]
         },
         {
-          "cost": 84,
+          "cost": 388,
           "costType": 0,
           "effects": [
             {
@@ -3674,7 +3674,7 @@
       ],
       "targetRounds": [
         75,
-        110
+        100
       ],
       "grid": [
         -15,
@@ -3694,7 +3694,7 @@
       ],
       "tiers": [
         {
-          "cost": 166,
+          "cost": 464,
           "costType": 0,
           "effects": [
             {
@@ -3706,7 +3706,7 @@
           ]
         },
         {
-          "cost": 166,
+          "cost": 540,
           "costType": 0,
           "effects": [
             {
@@ -3725,7 +3725,7 @@
       ],
       "targetRounds": [
         75,
-        110
+        100
       ],
       "grid": [
         -15,
@@ -3745,7 +3745,7 @@
       ],
       "tiers": [
         {
-          "cost": 168,
+          "cost": 616,
           "costType": 0,
           "effects": [
             {
@@ -3757,7 +3757,7 @@
           ]
         },
         {
-          "cost": 333,
+          "cost": 692,
           "costType": 0,
           "effects": [
             {
@@ -3776,7 +3776,7 @@
       ],
       "targetRounds": [
         75,
-        110
+        100
       ],
       "grid": [
         -15,
@@ -3796,7 +3796,7 @@
       ],
       "tiers": [
         {
-          "cost": 333,
+          "cost": 767,
           "costType": 0,
           "effects": [
             {
@@ -3808,7 +3808,7 @@
           ]
         },
         {
-          "cost": 334,
+          "cost": 843,
           "costType": 0,
           "effects": [
             {
@@ -3827,7 +3827,7 @@
       ],
       "targetRounds": [
         75,
-        110
+        100
       ],
       "grid": [
         -15,
@@ -3851,7 +3851,7 @@
       ],
       "tiers": [
         {
-          "cost": 50,
+          "cost": 158,
           "costType": 0,
           "effects": [
             {
@@ -3863,7 +3863,7 @@
           ]
         },
         {
-          "cost": 50,
+          "cost": 208,
           "costType": 0,
           "effects": [
             {
@@ -3875,7 +3875,7 @@
           ]
         },
         {
-          "cost": 50,
+          "cost": 259,
           "costType": 0,
           "effects": [
             {
@@ -3893,7 +3893,7 @@
         -750
       ],
       "targetRounds": [
-        75,
+        70,
         100
       ],
       "grid": [
@@ -3914,7 +3914,7 @@
       ],
       "tiers": [
         {
-          "cost": 100,
+          "cost": 309,
           "costType": 0,
           "effects": [
             {
@@ -3926,7 +3926,7 @@
           ]
         },
         {
-          "cost": 100,
+          "cost": 360,
           "costType": 0,
           "effects": [
             {
@@ -3944,7 +3944,7 @@
         -900
       ],
       "targetRounds": [
-        75,
+        70,
         100
       ],
       "grid": [
@@ -3965,7 +3965,7 @@
       ],
       "tiers": [
         {
-          "cost": 100,
+          "cost": 411,
           "costType": 0,
           "effects": [
             {
@@ -3977,7 +3977,7 @@
           ]
         },
         {
-          "cost": 200,
+          "cost": 461,
           "costType": 0,
           "effects": [
             {
@@ -3995,7 +3995,7 @@
         -1050
       ],
       "targetRounds": [
-        75,
+        70,
         100
       ],
       "grid": [
@@ -4016,7 +4016,7 @@
       ],
       "tiers": [
         {
-          "cost": 200,
+          "cost": 512,
           "costType": 0,
           "effects": [
             {
@@ -4028,7 +4028,7 @@
           ]
         },
         {
-          "cost": 200,
+          "cost": 562,
           "costType": 0,
           "effects": [
             {
@@ -4046,7 +4046,7 @@
         -1200
       ],
       "targetRounds": [
-        75,
+        70,
         100
       ],
       "grid": [
@@ -4067,8 +4067,8 @@
       ],
       "tiers": [
         {
-          "cost": 33,
-          "costType": 1,
+          "cost": 487,
+          "costType": 2,
           "effects": [
             {
               "statType": 12,
@@ -4079,8 +4079,8 @@
           ]
         },
         {
-          "cost": 33,
-          "costType": 1,
+          "cost": 643,
+          "costType": 2,
           "effects": [
             {
               "statType": 12,
@@ -4091,8 +4091,8 @@
           ]
         },
         {
-          "cost": 34,
-          "costType": 1,
+          "cost": 799,
+          "costType": 2,
           "effects": [
             {
               "statType": 12,
@@ -4109,8 +4109,8 @@
         0
       ],
       "targetRounds": [
-        50,
-        95
+        40,
+        100
       ],
       "grid": [
         -30,
@@ -4130,8 +4130,8 @@
       ],
       "tiers": [
         {
-          "cost": 60,
-          "costType": 0,
+          "cost": 955,
+          "costType": 2,
           "effects": [
             {
               "statType": 12,
@@ -4142,8 +4142,8 @@
           ]
         },
         {
-          "cost": 60,
-          "costType": 0,
+          "cost": 1111,
+          "costType": 2,
           "effects": [
             {
               "statType": 12,
@@ -4160,8 +4160,8 @@
         150
       ],
       "targetRounds": [
-        50,
-        95
+        40,
+        100
       ],
       "grid": [
         -30,
@@ -4181,8 +4181,8 @@
       ],
       "tiers": [
         {
-          "cost": 60,
-          "costType": 0,
+          "cost": 1267,
+          "costType": 2,
           "effects": [
             {
               "statType": 12,
@@ -4193,8 +4193,8 @@
           ]
         },
         {
-          "cost": 120,
-          "costType": 0,
+          "cost": 1423,
+          "costType": 2,
           "effects": [
             {
               "statType": 12,
@@ -4211,8 +4211,8 @@
         300
       ],
       "targetRounds": [
-        50,
-        95
+        40,
+        100
       ],
       "grid": [
         -30,
@@ -4232,8 +4232,8 @@
       ],
       "tiers": [
         {
-          "cost": 120,
-          "costType": 0,
+          "cost": 1579,
+          "costType": 2,
           "effects": [
             {
               "statType": 12,
@@ -4244,8 +4244,8 @@
           ]
         },
         {
-          "cost": 120,
-          "costType": 0,
+          "cost": 1735,
+          "costType": 2,
           "effects": [
             {
               "statType": 12,
@@ -4262,8 +4262,8 @@
         450
       ],
       "targetRounds": [
-        50,
-        95
+        40,
+        100
       ],
       "grid": [
         -30,
@@ -4278,7 +4278,7 @@
       "prerequisites": [],
       "tiers": [
         {
-          "cost": 140,
+          "cost": 80,
           "costType": 2,
           "effects": [
             {
@@ -4290,7 +4290,7 @@
           ]
         },
         {
-          "cost": 280,
+          "cost": 40,
           "costType": 1,
           "effects": [
             {
@@ -4308,8 +4308,8 @@
         0
       ],
       "targetRounds": [
-        8,
-        40
+        4,
+        18
       ],
       "grid": [
         2,
@@ -4329,7 +4329,7 @@
       ],
       "tiers": [
         {
-          "cost": 100,
+          "cost": 40,
           "costType": 2,
           "effects": []
         }
@@ -4340,8 +4340,8 @@
         0
       ],
       "targetRounds": [
-        8,
-        15
+        5,
+        7
       ],
       "grid": [
         5,
@@ -4361,7 +4361,7 @@
       ],
       "tiers": [
         {
-          "cost": 80,
+          "cost": 20,
           "costType": 1,
           "effects": []
         }
@@ -4372,8 +4372,8 @@
         300
       ],
       "targetRounds": [
-        15,
-        25
+        10,
+        20
       ],
       "grid": [
         7,
@@ -4392,13 +4392,13 @@
         },
         {
           "id": "P1",
-          "level": 2
+          "level": 1
         }
       ],
       "tiers": [
         {
-          "cost": 160,
-          "costType": 1,
+          "cost": 100,
+          "costType": 2,
           "effects": []
         }
       ],
@@ -4408,8 +4408,8 @@
         -300
       ],
       "targetRounds": [
-        25,
-        40
+        10,
+        13
       ],
       "grid": [
         9,
@@ -4429,7 +4429,7 @@
       ],
       "tiers": [
         {
-          "cost": 240,
+          "cost": 35,
           "costType": 1,
           "effects": []
         }
@@ -4440,8 +4440,8 @@
         0
       ],
       "targetRounds": [
-        40,
-        55
+        15,
+        25
       ],
       "grid": [
         12,
@@ -4461,7 +4461,7 @@
       ],
       "tiers": [
         {
-          "cost": 600,
+          "cost": 120,
           "costType": 0,
           "effects": [
             {
@@ -4473,7 +4473,7 @@
           ]
         },
         {
-          "cost": 1950,
+          "cost": 450,
           "costType": 0,
           "effects": [
             {
@@ -4491,8 +4491,8 @@
         -750
       ],
       "targetRounds": [
-        60,
-        100
+        45,
+        85
       ],
       "grid": [
         7,
@@ -4510,14 +4510,14 @@
           "level": 1
         },
         {
-          "id": "P7",
-          "level": 1
+          "id": "P1",
+          "level": 2
         }
       ],
       "tiers": [
         {
-          "cost": 350,
-          "costType": 0,
+          "cost": 180,
+          "costType": 2,
           "effects": []
         }
       ],
@@ -4527,8 +4527,8 @@
         -750
       ],
       "targetRounds": [
-        60,
-        75
+        16,
+        20
       ],
       "grid": [
         12,
@@ -4543,38 +4543,38 @@
       "prerequisites": [],
       "tiers": [
         {
-          "cost": 5,
+          "cost": 20,
           "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.03333333333333333
+              "value": 0.055555555555555566
             }
           ]
         },
         {
-          "cost": 5,
+          "cost": 27,
           "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.06666666666666667
+              "value": 0.11111111111111113
             }
           ]
         },
         {
-          "cost": 5,
+          "cost": 34,
           "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.1
+              "value": 0.16666666666666669
             }
           ]
         }
@@ -4586,7 +4586,7 @@
       ],
       "targetRounds": [
         1,
-        12
+        20
       ],
       "grid": [
         0,
@@ -4606,26 +4606,26 @@
       ],
       "tiers": [
         {
-          "cost": 10,
+          "cost": 40,
           "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.03333333333333334
+              "value": 0.05555555555555557
             }
           ]
         },
         {
-          "cost": 10,
+          "cost": 47,
           "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.06666666666666668
+              "value": 0.11111111111111115
             }
           ]
         }
@@ -4637,7 +4637,7 @@
       ],
       "targetRounds": [
         1,
-        12
+        20
       ],
       "grid": [
         1,
@@ -4657,26 +4657,26 @@
       ],
       "tiers": [
         {
-          "cost": 10,
+          "cost": 53,
           "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.03333333333333332
+              "value": 0.05555555555555554
             }
           ]
         },
         {
-          "cost": 20,
+          "cost": 60,
           "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.06666666666666664
+              "value": 0.11111111111111108
             }
           ]
         }
@@ -4688,7 +4688,7 @@
       ],
       "targetRounds": [
         1,
-        12
+        20
       ],
       "grid": [
         2,
@@ -4708,26 +4708,26 @@
       ],
       "tiers": [
         {
-          "cost": 20,
+          "cost": 66,
           "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.033333333333333354
+              "value": 0.0555555555555556
             }
           ]
         },
         {
-          "cost": 20,
+          "cost": 73,
           "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.06666666666666668
+              "value": 0.11111111111111115
             }
           ]
         }
@@ -4739,7 +4739,7 @@
       ],
       "targetRounds": [
         1,
-        12
+        20
       ],
       "grid": [
         3,
@@ -4759,7 +4759,7 @@
       ],
       "tiers": [
         {
-          "cost": 10,
+          "cost": 58,
           "costType": 2,
           "effects": [
             {
@@ -4771,7 +4771,7 @@
           ]
         },
         {
-          "cost": 10,
+          "cost": 77,
           "costType": 2,
           "effects": [
             {
@@ -4783,7 +4783,7 @@
           ]
         },
         {
-          "cost": 10,
+          "cost": 96,
           "costType": 2,
           "effects": [
             {
@@ -4802,7 +4802,7 @@
       ],
       "targetRounds": [
         8,
-        20
+        30
       ],
       "grid": [
         -5,
@@ -4822,7 +4822,7 @@
       ],
       "tiers": [
         {
-          "cost": 20,
+          "cost": 115,
           "costType": 2,
           "effects": [
             {
@@ -4834,7 +4834,7 @@
           ]
         },
         {
-          "cost": 20,
+          "cost": 133,
           "costType": 2,
           "effects": [
             {
@@ -4853,7 +4853,7 @@
       ],
       "targetRounds": [
         8,
-        20
+        30
       ],
       "grid": [
         -6,
@@ -4873,7 +4873,7 @@
       ],
       "tiers": [
         {
-          "cost": 20,
+          "cost": 152,
           "costType": 2,
           "effects": [
             {
@@ -4885,7 +4885,7 @@
           ]
         },
         {
-          "cost": 40,
+          "cost": 171,
           "costType": 2,
           "effects": [
             {
@@ -4904,7 +4904,7 @@
       ],
       "targetRounds": [
         8,
-        20
+        30
       ],
       "grid": [
         -7,
@@ -4924,7 +4924,7 @@
       ],
       "tiers": [
         {
-          "cost": 40,
+          "cost": 189,
           "costType": 2,
           "effects": [
             {
@@ -4936,7 +4936,7 @@
           ]
         },
         {
-          "cost": 40,
+          "cost": 208,
           "costType": 2,
           "effects": [
             {
@@ -4955,7 +4955,7 @@
       ],
       "targetRounds": [
         8,
-        20
+        30
       ],
       "grid": [
         -8,
@@ -4975,20 +4975,8 @@
       ],
       "tiers": [
         {
-          "cost": 13,
-          "costType": 1,
-          "effects": [
-            {
-              "statType": 8,
-              "target": 2,
-              "operation": 1,
-              "value": 0.05
-            }
-          ]
-        },
-        {
-          "cost": 13,
-          "costType": 1,
+          "cost": 82,
+          "costType": 2,
           "effects": [
             {
               "statType": 8,
@@ -4999,14 +4987,26 @@
           ]
         },
         {
-          "cost": 14,
-          "costType": 1,
+          "cost": 108,
+          "costType": 2,
           "effects": [
             {
               "statType": 8,
               "target": 2,
               "operation": 1,
-              "value": 0.15
+              "value": 0.2
+            }
+          ]
+        },
+        {
+          "cost": 134,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 8,
+              "target": 2,
+              "operation": 1,
+              "value": 0.3
             }
           ]
         }
@@ -5018,7 +5018,7 @@
       ],
       "targetRounds": [
         15,
-        40
+        45
       ],
       "grid": [
         0,
@@ -5038,26 +5038,26 @@
       ],
       "tiers": [
         {
-          "cost": 26,
-          "costType": 1,
-          "effects": [
-            {
-              "statType": 8,
-              "target": 2,
-              "operation": 1,
-              "value": 0.05
-            }
-          ]
-        },
-        {
-          "cost": 26,
-          "costType": 1,
+          "cost": 160,
+          "costType": 2,
           "effects": [
             {
               "statType": 8,
               "target": 2,
               "operation": 1,
               "value": 0.1
+            }
+          ]
+        },
+        {
+          "cost": 187,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 8,
+              "target": 2,
+              "operation": 1,
+              "value": 0.2
             }
           ]
         }
@@ -5069,7 +5069,7 @@
       ],
       "targetRounds": [
         15,
-        40
+        45
       ],
       "grid": [
         1,
@@ -5089,26 +5089,26 @@
       ],
       "tiers": [
         {
-          "cost": 28,
-          "costType": 1,
+          "cost": 213,
+          "costType": 2,
           "effects": [
             {
               "statType": 8,
               "target": 2,
               "operation": 1,
-              "value": 0.05
+              "value": 0.1
             }
           ]
         },
         {
-          "cost": 53,
-          "costType": 1,
+          "cost": 239,
+          "costType": 2,
           "effects": [
             {
               "statType": 8,
               "target": 2,
               "operation": 1,
-              "value": 0.11666666666666664
+              "value": 0.23333333333333328
             }
           ]
         }
@@ -5120,7 +5120,7 @@
       ],
       "targetRounds": [
         15,
-        40
+        45
       ],
       "grid": [
         2,
@@ -5140,26 +5140,26 @@
       ],
       "tiers": [
         {
-          "cost": 53,
-          "costType": 1,
+          "cost": 265,
+          "costType": 2,
           "effects": [
             {
               "statType": 8,
               "target": 2,
               "operation": 1,
-              "value": 0.06666666666666671
+              "value": 0.13333333333333341
             }
           ]
         },
         {
-          "cost": 54,
-          "costType": 1,
+          "cost": 291,
+          "costType": 2,
           "effects": [
             {
               "statType": 8,
               "target": 2,
               "operation": 1,
-              "value": 0.13333333333333336
+              "value": 0.2666666666666667
             }
           ]
         }
@@ -5171,7 +5171,7 @@
       ],
       "targetRounds": [
         15,
-        40
+        45
       ],
       "grid": [
         3,
@@ -5191,38 +5191,38 @@
       ],
       "tiers": [
         {
-          "cost": 33,
-          "costType": 1,
+          "cost": 312,
+          "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.06666666666666667
+              "value": 0.2380952380952381
             }
           ]
         },
         {
-          "cost": 33,
-          "costType": 1,
+          "cost": 412,
+          "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.13333333333333333
+              "value": 0.4761904761904762
             }
           ]
         },
         {
-          "cost": 34,
-          "costType": 1,
+          "cost": 512,
+          "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.2
+              "value": 0.7142857142857144
             }
           ]
         }
@@ -5233,7 +5233,7 @@
         -1800
       ],
       "targetRounds": [
-        35,
+        30,
         65
       ],
       "grid": [
@@ -5254,26 +5254,26 @@
       ],
       "tiers": [
         {
-          "cost": 66,
-          "costType": 1,
+          "cost": 611,
+          "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.06666666666666668
+              "value": 0.23809523809523817
             }
           ]
         },
         {
-          "cost": 66,
-          "costType": 1,
+          "cost": 711,
+          "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.13333333333333336
+              "value": 0.47619047619047633
             }
           ]
         }
@@ -5284,7 +5284,7 @@
         -1800
       ],
       "targetRounds": [
-        35,
+        30,
         65
       ],
       "grid": [
@@ -5305,26 +5305,26 @@
       ],
       "tiers": [
         {
-          "cost": 68,
-          "costType": 1,
+          "cost": 811,
+          "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.06666666666666664
+              "value": 0.238095238095238
             }
           ]
         },
         {
-          "cost": 133,
-          "costType": 1,
+          "cost": 911,
+          "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.16666666666666663
+              "value": 0.5952380952380951
             }
           ]
         }
@@ -5335,7 +5335,7 @@
         -1800
       ],
       "targetRounds": [
-        35,
+        30,
         65
       ],
       "grid": [
@@ -5356,26 +5356,26 @@
       ],
       "tiers": [
         {
-          "cost": 133,
-          "costType": 1,
+          "cost": 1011,
+          "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.1
+              "value": 0.3571428571428572
             }
           ]
         },
         {
-          "cost": 134,
-          "costType": 1,
+          "cost": 1110,
+          "costType": 2,
           "effects": [
             {
               "statType": 7,
               "target": 2,
               "operation": 1,
-              "value": 0.2
+              "value": 0.7142857142857144
             }
           ]
         }
@@ -5386,7 +5386,7 @@
         -1800
       ],
       "targetRounds": [
-        35,
+        30,
         65
       ],
       "grid": [
@@ -5407,20 +5407,8 @@
       ],
       "tiers": [
         {
-          "cost": 26,
-          "costType": 0,
-          "effects": [
-            {
-              "statType": 9,
-              "target": 2,
-              "operation": 1,
-              "value": 0.05
-            }
-          ]
-        },
-        {
-          "cost": 26,
-          "costType": 0,
+          "cost": 127,
+          "costType": 1,
           "effects": [
             {
               "statType": 9,
@@ -5431,14 +5419,26 @@
           ]
         },
         {
-          "cost": 28,
-          "costType": 0,
+          "cost": 167,
+          "costType": 1,
           "effects": [
             {
               "statType": 9,
               "target": 2,
               "operation": 1,
-              "value": 0.15
+              "value": 0.2
+            }
+          ]
+        },
+        {
+          "cost": 208,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 9,
+              "target": 2,
+              "operation": 1,
+              "value": 0.3
             }
           ]
         }
@@ -5449,8 +5449,8 @@
         -1800
       ],
       "targetRounds": [
-        50,
-        80
+        30,
+        65
       ],
       "grid": [
         0,
@@ -5470,26 +5470,26 @@
       ],
       "tiers": [
         {
-          "cost": 53,
-          "costType": 0,
-          "effects": [
-            {
-              "statType": 9,
-              "target": 2,
-              "operation": 1,
-              "value": 0.05
-            }
-          ]
-        },
-        {
-          "cost": 53,
-          "costType": 0,
+          "cost": 248,
+          "costType": 1,
           "effects": [
             {
               "statType": 9,
               "target": 2,
               "operation": 1,
               "value": 0.1
+            }
+          ]
+        },
+        {
+          "cost": 289,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 9,
+              "target": 2,
+              "operation": 1,
+              "value": 0.2
             }
           ]
         }
@@ -5500,8 +5500,8 @@
         -1800
       ],
       "targetRounds": [
-        50,
-        80
+        30,
+        65
       ],
       "grid": [
         1,
@@ -5521,26 +5521,26 @@
       ],
       "tiers": [
         {
-          "cost": 54,
-          "costType": 0,
+          "cost": 329,
+          "costType": 1,
           "effects": [
             {
               "statType": 9,
               "target": 2,
               "operation": 1,
-              "value": 0.05
+              "value": 0.1
             }
           ]
         },
         {
-          "cost": 106,
-          "costType": 0,
+          "cost": 370,
+          "costType": 1,
           "effects": [
             {
               "statType": 9,
               "target": 2,
               "operation": 1,
-              "value": 0.11666666666666664
+              "value": 0.23333333333333328
             }
           ]
         }
@@ -5551,8 +5551,8 @@
         -1800
       ],
       "targetRounds": [
-        50,
-        80
+        30,
+        65
       ],
       "grid": [
         2,
@@ -5572,26 +5572,26 @@
       ],
       "tiers": [
         {
-          "cost": 106,
-          "costType": 0,
+          "cost": 411,
+          "costType": 1,
           "effects": [
             {
               "statType": 9,
               "target": 2,
               "operation": 1,
-              "value": 0.06666666666666671
+              "value": 0.13333333333333341
             }
           ]
         },
         {
-          "cost": 108,
-          "costType": 0,
+          "cost": 451,
+          "costType": 1,
           "effects": [
             {
               "statType": 9,
               "target": 2,
               "operation": 1,
-              "value": 0.13333333333333336
+              "value": 0.2666666666666667
             }
           ]
         }
@@ -5602,8 +5602,8 @@
         -1800
       ],
       "targetRounds": [
-        50,
-        80
+        30,
+        65
       ],
       "grid": [
         3,
@@ -5623,38 +5623,38 @@
       ],
       "tiers": [
         {
-          "cost": 16,
+          "cost": 64,
           "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.016666666666666666
+              "value": 0.041666666666666664
             }
           ]
         },
         {
-          "cost": 16,
+          "cost": 85,
           "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.03333333333333333
+              "value": 0.08333333333333333
             }
           ]
         },
         {
-          "cost": 18,
+          "cost": 105,
           "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.05
+              "value": 0.125
             }
           ]
         }
@@ -5666,7 +5666,7 @@
       ],
       "targetRounds": [
         15,
-        35
+        40
       ],
       "grid": [
         -10,
@@ -5686,26 +5686,26 @@
       ],
       "tiers": [
         {
-          "cost": 33,
+          "cost": 126,
           "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.01666666666666667
+              "value": 0.04166666666666667
             }
           ]
         },
         {
-          "cost": 33,
+          "cost": 147,
           "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.03333333333333334
+              "value": 0.08333333333333334
             }
           ]
         }
@@ -5717,7 +5717,7 @@
       ],
       "targetRounds": [
         15,
-        35
+        40
       ],
       "grid": [
         -11,
@@ -5737,26 +5737,26 @@
       ],
       "tiers": [
         {
-          "cost": 34,
+          "cost": 167,
           "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.01666666666666666
+              "value": 0.04166666666666665
             }
           ]
         },
         {
-          "cost": 66,
+          "cost": 188,
           "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.05
+              "value": 0.125
             }
           ]
         }
@@ -5768,7 +5768,7 @@
       ],
       "targetRounds": [
         15,
-        35
+        40
       ],
       "grid": [
         -12,
@@ -5788,26 +5788,26 @@
       ],
       "tiers": [
         {
-          "cost": 66,
+          "cost": 208,
           "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.03333333333333334
+              "value": 0.08333333333333334
             }
           ]
         },
         {
-          "cost": 68,
+          "cost": 229,
           "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.06666666666666667
+              "value": 0.16666666666666666
             }
           ]
         }
@@ -5819,7 +5819,7 @@
       ],
       "targetRounds": [
         15,
-        35
+        40
       ],
       "grid": [
         -13,
@@ -5839,7 +5839,7 @@
       ],
       "tiers": [
         {
-          "cost": 40,
+          "cost": 127,
           "costType": 1,
           "effects": [
             {
@@ -5851,7 +5851,7 @@
           ]
         },
         {
-          "cost": 40,
+          "cost": 167,
           "costType": 1,
           "effects": [
             {
@@ -5863,7 +5863,7 @@
           ]
         },
         {
-          "cost": 40,
+          "cost": 208,
           "costType": 1,
           "effects": [
             {
@@ -5902,7 +5902,7 @@
       ],
       "tiers": [
         {
-          "cost": 80,
+          "cost": 248,
           "costType": 1,
           "effects": [
             {
@@ -5914,7 +5914,7 @@
           ]
         },
         {
-          "cost": 80,
+          "cost": 289,
           "costType": 1,
           "effects": [
             {
@@ -5953,7 +5953,7 @@
       ],
       "tiers": [
         {
-          "cost": 80,
+          "cost": 329,
           "costType": 1,
           "effects": [
             {
@@ -5965,7 +5965,7 @@
           ]
         },
         {
-          "cost": 160,
+          "cost": 370,
           "costType": 1,
           "effects": [
             {
@@ -6004,7 +6004,7 @@
       ],
       "tiers": [
         {
-          "cost": 160,
+          "cost": 411,
           "costType": 1,
           "effects": [
             {
@@ -6016,7 +6016,7 @@
           ]
         },
         {
-          "cost": 160,
+          "cost": 451,
           "costType": 1,
           "effects": [
             {
@@ -6055,56 +6055,56 @@
       ],
       "tiers": [
         {
-          "cost": 83,
+          "cost": 197,
           "costType": 0,
           "effects": [
             {
               "statType": 8,
               "target": 2,
               "operation": 1,
-              "value": 0.03333333333333333
+              "value": 0.2
             },
             {
               "statType": 9,
               "target": 2,
               "operation": 1,
-              "value": 0.03333333333333333
+              "value": 0.2
             }
           ]
         },
         {
-          "cost": 83,
+          "cost": 261,
           "costType": 0,
           "effects": [
             {
               "statType": 8,
               "target": 2,
               "operation": 1,
-              "value": 0.06666666666666667
+              "value": 0.4
             },
             {
               "statType": 9,
               "target": 2,
               "operation": 1,
-              "value": 0.06666666666666667
+              "value": 0.4
             }
           ]
         },
         {
-          "cost": 84,
+          "cost": 324,
           "costType": 0,
           "effects": [
             {
               "statType": 8,
               "target": 2,
               "operation": 1,
-              "value": 0.1
+              "value": 0.6000000000000001
             },
             {
               "statType": 9,
               "target": 2,
               "operation": 1,
-              "value": 0.1
+              "value": 0.6000000000000001
             }
           ]
         }
@@ -6115,8 +6115,8 @@
         -2550
       ],
       "targetRounds": [
-        80,
-        110
+        70,
+        100
       ],
       "grid": [
         0,
@@ -6136,38 +6136,38 @@
       ],
       "tiers": [
         {
-          "cost": 166,
+          "cost": 387,
           "costType": 0,
           "effects": [
             {
               "statType": 8,
               "target": 2,
               "operation": 1,
-              "value": 0.05
+              "value": 0.30000000000000004
             },
             {
               "statType": 9,
               "target": 2,
               "operation": 1,
-              "value": 0.05
+              "value": 0.30000000000000004
             }
           ]
         },
         {
-          "cost": 166,
+          "cost": 450,
           "costType": 0,
           "effects": [
             {
               "statType": 8,
               "target": 2,
               "operation": 1,
-              "value": 0.1
+              "value": 0.6000000000000001
             },
             {
               "statType": 9,
               "target": 2,
               "operation": 1,
-              "value": 0.1
+              "value": 0.6000000000000001
             }
           ]
         }
@@ -6178,8 +6178,8 @@
         -2550
       ],
       "targetRounds": [
-        80,
-        110
+        70,
+        100
       ],
       "grid": [
         1,
@@ -6199,38 +6199,38 @@
       ],
       "tiers": [
         {
-          "cost": 168,
+          "cost": 513,
           "costType": 0,
           "effects": [
             {
               "statType": 8,
               "target": 2,
               "operation": 1,
-              "value": 0.05
+              "value": 0.30000000000000004
             },
             {
               "statType": 9,
               "target": 2,
               "operation": 1,
-              "value": 0.05
+              "value": 0.30000000000000004
             }
           ]
         },
         {
-          "cost": 333,
+          "cost": 576,
           "costType": 0,
           "effects": [
             {
               "statType": 8,
               "target": 2,
               "operation": 1,
-              "value": 0.13333333333333336
+              "value": 0.8000000000000002
             },
             {
               "statType": 9,
               "target": 2,
               "operation": 1,
-              "value": 0.13333333333333336
+              "value": 0.8000000000000002
             }
           ]
         }
@@ -6241,8 +6241,8 @@
         -2550
       ],
       "targetRounds": [
-        80,
-        110
+        70,
+        100
       ],
       "grid": [
         2,
@@ -6262,38 +6262,38 @@
       ],
       "tiers": [
         {
-          "cost": 333,
+          "cost": 639,
           "costType": 0,
           "effects": [
             {
               "statType": 8,
               "target": 2,
               "operation": 1,
-              "value": 0.08333333333333336
+              "value": 0.5000000000000001
             },
             {
               "statType": 9,
               "target": 2,
               "operation": 1,
-              "value": 0.08333333333333336
+              "value": 0.5000000000000001
             }
           ]
         },
         {
-          "cost": 334,
+          "cost": 703,
           "costType": 0,
           "effects": [
             {
               "statType": 8,
               "target": 2,
               "operation": 1,
-              "value": 0.16666666666666663
+              "value": 0.9999999999999998
             },
             {
               "statType": 9,
               "target": 2,
               "operation": 1,
-              "value": 0.16666666666666663
+              "value": 0.9999999999999998
             }
           ]
         }
@@ -6304,8 +6304,8 @@
         -2550
       ],
       "targetRounds": [
-        80,
-        110
+        70,
+        100
       ],
       "grid": [
         3,
@@ -6325,7 +6325,7 @@
       ],
       "tiers": [
         {
-          "cost": 50,
+          "cost": 234,
           "costType": 1,
           "effects": [
             {
@@ -6337,7 +6337,7 @@
           ]
         },
         {
-          "cost": 50,
+          "cost": 309,
           "costType": 1,
           "effects": [
             {
@@ -6349,7 +6349,7 @@
           ]
         },
         {
-          "cost": 50,
+          "cost": 384,
           "costType": 1,
           "effects": [
             {
@@ -6367,7 +6367,7 @@
         -2550
       ],
       "targetRounds": [
-        55,
+        50,
         95
       ],
       "grid": [
@@ -6388,8 +6388,8 @@
       ],
       "tiers": [
         {
-          "cost": 83,
-          "costType": 0,
+          "cost": 458,
+          "costType": 1,
           "effects": [
             {
               "statType": 6,
@@ -6400,8 +6400,8 @@
           ]
         },
         {
-          "cost": 83,
-          "costType": 0,
+          "cost": 533,
+          "costType": 1,
           "effects": [
             {
               "statType": 6,
@@ -6418,7 +6418,7 @@
         -2550
       ],
       "targetRounds": [
-        55,
+        50,
         95
       ],
       "grid": [
@@ -6439,8 +6439,8 @@
       ],
       "tiers": [
         {
-          "cost": 84,
-          "costType": 0,
+          "cost": 608,
+          "costType": 1,
           "effects": [
             {
               "statType": 6,
@@ -6451,8 +6451,8 @@
           ]
         },
         {
-          "cost": 166,
-          "costType": 0,
+          "cost": 683,
+          "costType": 1,
           "effects": [
             {
               "statType": 6,
@@ -6469,7 +6469,7 @@
         -2550
       ],
       "targetRounds": [
-        55,
+        50,
         95
       ],
       "grid": [
@@ -6490,8 +6490,8 @@
       ],
       "tiers": [
         {
-          "cost": 166,
-          "costType": 0,
+          "cost": 758,
+          "costType": 1,
           "effects": [
             {
               "statType": 6,
@@ -6502,8 +6502,8 @@
           ]
         },
         {
-          "cost": 168,
-          "costType": 0,
+          "cost": 833,
+          "costType": 1,
           "effects": [
             {
               "statType": 6,
@@ -6520,7 +6520,7 @@
         -2550
       ],
       "targetRounds": [
-        55,
+        50,
         95
       ],
       "grid": [
@@ -6541,38 +6541,38 @@
       ],
       "tiers": [
         {
-          "cost": 66,
-          "costType": 0,
+          "cost": 789,
+          "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.03333333333333333
+              "value": 0.16666666666666663
             }
           ]
         },
         {
-          "cost": 66,
-          "costType": 0,
+          "cost": 1042,
+          "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.06666666666666667
+              "value": 0.33333333333333326
             }
           ]
         },
         {
-          "cost": 68,
-          "costType": 0,
+          "cost": 1295,
+          "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.1
+              "value": 0.49999999999999994
             }
           ]
         }
@@ -6583,8 +6583,8 @@
         -2550
       ],
       "targetRounds": [
-        85,
-        115
+        80,
+        105
       ],
       "grid": [
         -10,
@@ -6604,26 +6604,26 @@
       ],
       "tiers": [
         {
-          "cost": 133,
-          "costType": 0,
+          "cost": 1547,
+          "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.03333333333333334
+              "value": 0.16666666666666666
             }
           ]
         },
         {
-          "cost": 133,
-          "costType": 0,
+          "cost": 1800,
+          "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.06666666666666668
+              "value": 0.3333333333333333
             }
           ]
         }
@@ -6634,8 +6634,8 @@
         -2550
       ],
       "targetRounds": [
-        85,
-        115
+        80,
+        105
       ],
       "grid": [
         -11,
@@ -6655,26 +6655,26 @@
       ],
       "tiers": [
         {
-          "cost": 134,
-          "costType": 0,
+          "cost": 2053,
+          "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.03333333333333332
+              "value": 0.16666666666666657
             }
           ]
         },
         {
-          "cost": 266,
-          "costType": 0,
+          "cost": 2305,
+          "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.06666666666666664
+              "value": 0.33333333333333315
             }
           ]
         }
@@ -6685,8 +6685,8 @@
         -2550
       ],
       "targetRounds": [
-        85,
-        115
+        80,
+        105
       ],
       "grid": [
         -12,
@@ -6706,26 +6706,26 @@
       ],
       "tiers": [
         {
-          "cost": 266,
-          "costType": 0,
+          "cost": 2558,
+          "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.033333333333333354
+              "value": 0.16666666666666674
             }
           ]
         },
         {
-          "cost": 268,
-          "costType": 0,
+          "cost": 2811,
+          "costType": 2,
           "effects": [
             {
               "statType": 10,
               "target": 2,
               "operation": 1,
-              "value": 0.06666666666666668
+              "value": 0.3333333333333333
             }
           ]
         }
@@ -6736,8 +6736,8 @@
         -2550
       ],
       "targetRounds": [
-        85,
-        115
+        80,
+        105
       ],
       "grid": [
         -13,
@@ -6757,8 +6757,8 @@
       ],
       "tiers": [
         {
-          "cost": 133,
-          "costType": 0,
+          "cost": 526,
+          "costType": 1,
           "effects": [
             {
               "statType": 11,
@@ -6769,8 +6769,8 @@
           ]
         },
         {
-          "cost": 133,
-          "costType": 0,
+          "cost": 695,
+          "costType": 1,
           "effects": [
             {
               "statType": 11,
@@ -6781,8 +6781,8 @@
           ]
         },
         {
-          "cost": 134,
-          "costType": 0,
+          "cost": 863,
+          "costType": 1,
           "effects": [
             {
               "statType": 11,
@@ -6799,8 +6799,8 @@
         -3300
       ],
       "targetRounds": [
-        100,
-        130
+        95,
+        110
       ],
       "grid": [
         0,
@@ -6820,8 +6820,8 @@
       ],
       "tiers": [
         {
-          "cost": 266,
-          "costType": 0,
+          "cost": 1032,
+          "costType": 1,
           "effects": [
             {
               "statType": 11,
@@ -6832,8 +6832,8 @@
           ]
         },
         {
-          "cost": 266,
-          "costType": 0,
+          "cost": 1200,
+          "costType": 1,
           "effects": [
             {
               "statType": 11,
@@ -6850,8 +6850,8 @@
         -3300
       ],
       "targetRounds": [
-        100,
-        130
+        95,
+        110
       ],
       "grid": [
         1,
@@ -6871,8 +6871,8 @@
       ],
       "tiers": [
         {
-          "cost": 268,
-          "costType": 0,
+          "cost": 1368,
+          "costType": 1,
           "effects": [
             {
               "statType": 11,
@@ -6883,8 +6883,8 @@
           ]
         },
         {
-          "cost": 533,
-          "costType": 0,
+          "cost": 1537,
+          "costType": 1,
           "effects": [
             {
               "statType": 11,
@@ -6901,8 +6901,8 @@
         -3300
       ],
       "targetRounds": [
-        100,
-        130
+        95,
+        110
       ],
       "grid": [
         2,
@@ -6922,8 +6922,8 @@
       ],
       "tiers": [
         {
-          "cost": 533,
-          "costType": 0,
+          "cost": 1705,
+          "costType": 1,
           "effects": [
             {
               "statType": 11,
@@ -6934,8 +6934,8 @@
           ]
         },
         {
-          "cost": 534,
-          "costType": 0,
+          "cost": 1874,
+          "costType": 1,
           "effects": [
             {
               "statType": 11,
@@ -6952,14 +6952,280 @@
         -3300
       ],
       "targetRounds": [
-        100,
-        130
+        95,
+        110
       ],
       "grid": [
         3,
         -22
       ],
       "assetName": "Hasat Rekoru - 4"
+    },
+    {
+      "id": "P4",
+      "name": "Tornado Kartları",
+      "assetName": "Tornado Kartları",
+      "guid": "992032e1e8f8fc03b3c993b66774c60d",
+      "prerequisites": [
+        {
+          "id": "P3",
+          "level": 1
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 40,
+          "costType": 1,
+          "effects": []
+        }
+      ],
+      "unlockType": 5,
+      "grid": [
+        10,
+        3
+      ],
+      "layout": [
+        1500,
+        450
+      ],
+      "targetRounds": [
+        20,
+        30
+      ]
+    },
+    {
+      "id": "E12-A",
+      "name": "Seri Üretim - 1",
+      "assetName": "Seri Üretim - 1",
+      "guid": "ebb35df7ebe3ede21171ab35d5292e98",
+      "prerequisites": [
+        {
+          "id": "E7-D",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 3989,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.44636678200692037
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "grid": [
+        -9,
+        -9
+      ],
+      "layout": [
+        -1350,
+        -1350
+      ],
+      "targetRounds": [
+        65,
+        100
+      ]
+    },
+    {
+      "id": "E12-B",
+      "name": "Seri Üretim - 2",
+      "assetName": "Seri Üretim - 2",
+      "guid": "b17fbe768b7362b1f434a017f3df63c3",
+      "prerequisites": [
+        {
+          "id": "E12-A",
+          "level": 1
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 5265,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.5
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "grid": [
+        -10,
+        -9
+      ],
+      "layout": [
+        -1500,
+        -1350
+      ],
+      "targetRounds": [
+        65,
+        100
+      ]
+    },
+    {
+      "id": "E12-C",
+      "name": "Seri Üretim - 3",
+      "assetName": "Seri Üretim - 3",
+      "guid": "2464d470cab3574cff874982e3eac172",
+      "prerequisites": [
+        {
+          "id": "E12-B",
+          "level": 1
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 6541,
+          "costType": 1,
+          "effects": [
+            {
+              "statType": 5,
+              "target": 2,
+              "operation": 2,
+              "value": -0.5
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "grid": [
+        -11,
+        -9
+      ],
+      "layout": [
+        -1650,
+        -1350
+      ],
+      "targetRounds": [
+        65,
+        100
+      ]
+    },
+    {
+      "id": "Z11-A",
+      "name": "Yıldırım Kesim - 1",
+      "assetName": "Yıldırım Kesim - 1",
+      "guid": "dc46e1a7dc2eec5b16010c98cf503972",
+      "prerequisites": [
+        {
+          "id": "Z5-D",
+          "level": 2
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 6136,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.45578231292517
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "grid": [
+        -15,
+        -10
+      ],
+      "layout": [
+        -2250,
+        -1500
+      ],
+      "targetRounds": [
+        65,
+        100
+      ]
+    },
+    {
+      "id": "Z11-B",
+      "name": "Yıldırım Kesim - 2",
+      "assetName": "Yıldırım Kesim - 2",
+      "guid": "0e7b1b8a5e3d29f8b137be14640d1d92",
+      "prerequisites": [
+        {
+          "id": "Z11-A",
+          "level": 1
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 8100,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.5
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "grid": [
+        -15,
+        -11
+      ],
+      "layout": [
+        -2250,
+        -1650
+      ],
+      "targetRounds": [
+        65,
+        100
+      ]
+    },
+    {
+      "id": "Z11-C",
+      "name": "Yıldırım Kesim - 3",
+      "assetName": "Yıldırım Kesim - 3",
+      "guid": "25b1720e87b611c282b6c0e3a58e06ae",
+      "prerequisites": [
+        {
+          "id": "Z11-B",
+          "level": 1
+        }
+      ],
+      "tiers": [
+        {
+          "cost": 10064,
+          "costType": 2,
+          "effects": [
+            {
+              "statType": 2,
+              "target": 1,
+              "operation": 2,
+              "value": -0.5
+            }
+          ]
+        }
+      ],
+      "unlockType": 0,
+      "grid": [
+        -15,
+        -12
+      ],
+      "layout": [
+        -2250,
+        -1800
+      ],
+      "targetRounds": [
+        65,
+        100
+      ]
     }
   ]
 }

@@ -9,9 +9,9 @@ const blocks=s.match(/^--- !u![0-9]+ &[0-9]+[^\r\n]*\r?\n[\s\S]*?(?=^--- !u!|$(?
 const ui=blocks.find(b=>b.includes('Assembly-CSharp::SkillTreeUI'));
 const manager=blocks.find(b=>b.includes('Assembly-CSharp::SkillTreeManager'));
 const nodes=JSON.parse(fs.readFileSync(path.join(root,'Docs/FinalSkillTree.json'),'utf8')).nodes;
-if((ui.match(/  - \{fileID:/g)||[]).length!==131)throw Error('UI list');
-if((manager.match(/guid:/g)||[]).length!==132)throw Error('Manager list');
-if(new Set(nodes.map(n=>n.grid.join(','))).size!==131)throw Error('Grid overlap');
+if((ui.match(/  - \{fileID:/g)||[]).length!==nodes.length)throw Error('UI list');
+if((manager.match(/guid:/g)||[]).length!==nodes.length+1)throw Error('Manager list');
+if(new Set(nodes.map(n=>n.grid.join(','))).size!==nodes.length)throw Error('Grid overlap');
 for(let i=0;i<nodes.length;i++){
  const n=nodes[i],block=blocks.find(b=>b.startsWith('--- !u!1001 &'+(8100000000+i*10)+'\n')||b.startsWith('--- !u!1001 &'+(8100000000+i*10)+'\r'));
  if(!block||!block.includes(n.guid))throw Error('SO binding: '+n.id);
@@ -24,4 +24,4 @@ for(let i=0;i<nodes.length;i++){
  if(!asset.includes(`gridPosition: {x: ${n.grid[0]}, y: ${n.grid[1]}}`))throw Error('Asset coordinates');
  if(asset.includes('customLayout'))throw Error('Custom layout remained');
 }
-console.log('PASS: 131 authored prefab instances, manager/UI lists, SO bindings, unique XY cells and anchored positions. No dangling scene references.');
+console.log(`PASS: ${nodes.length} authored prefab instances, manager/UI lists, SO bindings, unique XY cells and anchored positions. No dangling scene references.`);

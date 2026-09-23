@@ -15,7 +15,7 @@ public static class HarvestPolishVerification
     {
         var paths = AssetDatabase.FindAssets("t:SkillNodeSO", new[] { "Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree" });
         var nodes = Array.ConvertAll(paths, guid => AssetDatabase.LoadAssetAtPath<SkillNodeSO>(AssetDatabase.GUIDToAssetPath(guid)));
-        Require(nodes.Length == 131, "Final tree: 131 nodes");
+        Require(nodes.Length == 138, "Final tree: 138 nodes");
         var all = new HashSet<SkillNodeSO>(nodes);
         var visited = new HashSet<SkillNodeSO>();
         var effects = new List<StatModifier>();
@@ -41,10 +41,10 @@ public static class HarvestPolishVerification
                 { visited.Add(node); progress = true; }
             }
         } while (progress);
-        Require(visited.Count == 131 && purchases == 283, "Reachable acyclic tree and 283 purchases");
+        Require(visited.Count == 138 && purchases == 290, "Reachable acyclic tree and 290 purchases");
         float damage = StatCalculator.Calculate(1, StatType.HarvestDamage, StatTarget.Player, effects, null);
-        Require(Mathf.Abs(damage - 1296000) < 2, "Final damage 1296000");
-        Require(Mathf.Abs(damage * 1.75f * 4f - 9072000) < 16, "Three +25% Focus: 9072000");
+        Require(Mathf.Abs(damage - 3201552) < 2, "Final damage 3201552 (2026-09 economy)");
+        Require(Mathf.Abs(damage * 1.75f * 4f - 22410864) < 16, "Three +25% Focus: 22410864");
         Require(Mathf.Abs(StatCalculator.Calculate(30, StatType.RoundDuration, StatTarget.All, effects, null) - 90) < .001f, "Duration cap 90");
         var early = Array.Find(nodes, n => n.tiers.Count > 0 && n.tiers[0].effects.Exists(
             e => e.statType == StatType.GridUnlockSize && e.value == 5));

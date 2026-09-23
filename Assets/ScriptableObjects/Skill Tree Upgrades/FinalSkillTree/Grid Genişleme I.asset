@@ -17,17 +17,17 @@ MonoBehaviour:
   gridPosition: {x: 2, y: 0}
   explicitPrerequisites: 1
   prerequisites: []
-  targetRounds: {x: 8, y: 40}
+  targetRounds: {x: 4, y: 18}
   tiers:
   - costType: 2
-    cost: 140
+    cost: 80
     effects:
     - statType: 13
       target: 4
       operation: 3
       value: 5
   - costType: 1
-    cost: 280
+    cost: 40
     effects:
     - statType: 13
       target: 4

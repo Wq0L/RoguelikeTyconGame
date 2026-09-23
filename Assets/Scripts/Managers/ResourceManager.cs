@@ -9,6 +9,13 @@ public class ResourceManager : MonoBehaviour
     public event Action<ResourceType, int, Vector3> OnHarvestResourceAdded;
     private Dictionary<ResourceType, int> resources = new();
 
+    [Header("Run economy")]
+    [SerializeField, Min(0)] private int startingGold = 80;
+    [Header("Editor testing only")]
+    [Tooltip("Editor Play Mode only: start with the test balance in all three currencies.")]
+    [SerializeField] private bool useDebugStartingResources;
+    [SerializeField, Min(0)] private int debugStartingResources = 80000;
+
     private void Awake()
     {
         if (Instance != null)
@@ -23,9 +30,10 @@ public class ResourceManager : MonoBehaviour
             resources[type] = 0;
         }
 
-        resources[ResourceType.Gold] = 80000;
-        resources[ResourceType.Iron] = 80000;
-        resources[ResourceType.Stone] = 80000;
+        bool debugBudget = Application.isEditor && useDebugStartingResources;
+        resources[ResourceType.Gold] = debugBudget ? debugStartingResources : startingGold;
+        resources[ResourceType.Iron] = debugBudget ? debugStartingResources : 0;
+        resources[ResourceType.Stone] = debugBudget ? debugStartingResources : 0;
 
     }
 

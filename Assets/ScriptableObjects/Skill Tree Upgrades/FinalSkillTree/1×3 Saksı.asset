@@ -18,10 +18,10 @@ MonoBehaviour:
   prerequisites:
   - node: {fileID: 11400000, guid: fbdd8846befc8adc2b0c929b0cfdf9c5, type: 2}
     level: 1
-  targetRounds: {x: 8, y: 15}
+  targetRounds: {x: 5, y: 7}
   gridPosition: {x: 5, y: 0}
   tiers:
   - costType: 2
-    cost: 100
+    cost: 40
     effects: []
   unlockType: 6

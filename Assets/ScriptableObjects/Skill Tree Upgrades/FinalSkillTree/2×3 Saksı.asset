@@ -18,12 +18,12 @@ MonoBehaviour:
   prerequisites:
   - node: {fileID: 11400000, guid: 642040688339bafedd83e53da071b262, type: 2}
     level: 1
-  - node: {fileID: 11400000, guid: 483b37fe83ba37164521ed30155e8885, type: 2}
-    level: 1
-  targetRounds: {x: 60, y: 75}
+  - node: {fileID: 11400000, guid: fbdd8846befc8adc2b0c929b0cfdf9c5, type: 2}
+    level: 2
+  targetRounds: {x: 16, y: 20}
   gridPosition: {x: 12, y: -5}
   tiers:
-  - costType: 0
-    cost: 350
+  - costType: 2
+    cost: 180
     effects: []
   unlockType: 2

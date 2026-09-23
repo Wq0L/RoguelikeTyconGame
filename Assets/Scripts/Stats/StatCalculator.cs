@@ -3,6 +3,8 @@ using UnityEngine;
 
 public static class StatCalculator
 {
+    // PlantSpawnRate is a duration: smaller is faster. This floor also applies after resonance.
+    public const float MinimumSpawnInterval = 0.5f;
     public static float Calculate(
         float baseValue,
         StatType statType,
@@ -120,7 +122,7 @@ public static class StatCalculator
 
             // === ÜRETİM ===
             case StatType.PlantSpawnRate:
-                return Mathf.Max(0.1f, value);
+                return Mathf.Max(MinimumSpawnInterval, value);
 
             case StatType.RareSpawnChance:
                 return Mathf.Clamp(value, 0f, 95f);
