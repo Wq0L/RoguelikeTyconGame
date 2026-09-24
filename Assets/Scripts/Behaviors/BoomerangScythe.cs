@@ -7,7 +7,7 @@ public sealed class BoomerangScythe : MonoBehaviour
     [SerializeField] TrailRenderer trail;
     [SerializeField, Min(.1f)] float travelSpeed = 12f;
     [SerializeField, Min(0)] float damageMultiplier = .65f;
-    readonly HashSet<PlantHealth> hitThisLeg = new();
+    readonly HashSet<(PlantHealth health, uint life)> hitThisLeg = new();
     HarvestBehaviorManager owner;
     PlanterBrain source;
     Vector3 from, to;
@@ -22,6 +22,7 @@ public sealed class BoomerangScythe : MonoBehaviour
         float distance = Vector3.Distance(from, to);
         duration = Mathf.Clamp(distance / travelSpeed, .4f, 1.6f);
         damage = Mathf.Max(1, Mathf.RoundToInt(baseDamage * damageMultiplier));
+        if (planter != null) damage = planter.GetBehaviorDamage(damage, DamageType.Boomerang);
         hitThisLeg.Clear(); transform.position = from; transform.rotation = Quaternion.identity;
         if (visual != null) visual.localRotation = Quaternion.identity;
         if (trail != null) { trail.Clear(); trail.emitting = true; }
@@ -58,7 +59,7 @@ public sealed class BoomerangScythe : MonoBehaviour
             var cell = entry?.GetGroundCellCached(); var plant = entry?.GetPlantObject();
             if (cell == null || cell.IsLocked || plant == null ||
                 HarvestBehaviorGeometry.SegmentDistanceSquared(cell.transform.position, a, b) > radius * radius) continue;
-            if (!plant.TryGetComponent<PlantHealth>(out var health) || health.IsDead || !hitThisLeg.Add(health)) continue;
+            if (!plant.TryGetComponent<PlantHealth>(out var health) || health.IsDead || !hitThisLeg.Add((health, health.LifetimeVersion))) continue;
             Vector3 point = plant.transform.position;
             health.TakeDamage(damage, DamageType.Boomerang);
             VFXManager.Instance?.PlayHit(point, damage, false);

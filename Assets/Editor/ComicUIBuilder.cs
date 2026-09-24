@@ -113,7 +113,10 @@ public static class ComicUIBuilder
         theme.buttonSprite=Sprite("Button",100); theme.cardSprite=Sprite("Card",70);
         theme.coinSprite=Sprite("Coin",0); theme.sproutSprite=Sprite("Sprout",0);
         theme.bodyFont=Font("Barlow-SemiBold"); theme.headingFont=Font("LilitaOne-Regular");
-        theme.headingFont.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>{theme.bodyFont};
+        var turkishComic = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(Root+"Fonts/HarvestComicTR SDF.asset");
+        theme.headingFont.fallbackFontAssetTable = turkishComic != null
+            ? new System.Collections.Generic.List<TMP_FontAsset>{turkishComic,theme.bodyFont}
+            : new System.Collections.Generic.List<TMP_FontAsset>{theme.bodyFont};
         EditorUtility.SetDirty(theme.headingFont);
         theme.outlinedText=AssetDatabase.LoadAssetAtPath<Material>(Root+"Heading Outline.mat");
         if (!theme.outlinedText) { theme.outlinedText=new Material(theme.headingFont.material); AssetDatabase.CreateAsset(theme.outlinedText,Root+"Heading Outline.mat"); }

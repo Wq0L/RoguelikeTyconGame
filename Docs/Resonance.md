@@ -1,5 +1,7 @@
 # Saksı rezonansı — çalışan prototip
 
+> Bu dosya tarihsel prototip notudur. Güncel 10 tarif, birleştirme, ödül ve ghost kuralları için [SimpleResonance.md](SimpleResonance.md) esas alınır. Aşağıdaki ×8 hasar, ×10 saf Water XP ve saf Fertile eşikleri artık güncel değildir.
+
 > Eylül 2026 ekonomi güncellemesi: aşağıdaki tarihsel prototip notlarındaki 0,1 saniyelik üretim tabanı artık 0,5 saniyedir. Bu taban rezonans sonrasında da uygulanır. Güncel hasar, fiyat ve hız değerleri için `EconomyBalance.md` ve `FinalSkillTree.md` esas alınır.
 
 ## Tasarım kararları (2026-09-13)

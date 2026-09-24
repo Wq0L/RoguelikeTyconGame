@@ -1,0 +1,17 @@
+Main menu background v2 — built-in image_gen generation and corrective edit.
+
+Asset: Assets/Art/UI/ComicToon/MainMenu/MainMenu_Garden_Comic_v2.png.
+
+Integrated into MenuScene: MainMenuPanel/BackGround and OptionsPanel/BackGround. Imported as a single full-rect UI sprite, bilinear filtered, without mipmaps. Both backgrounds use AspectRatioFitter EnvelopeParent with the image's 1672:941 ratio; their panel ancestors stretch to the Canvas. This fills the viewport without distorting the artwork, cropping edges on other aspect ratios. Background raycasts are disabled. Existing buttons and their bindings are retained.
+
+Generation prompt:
+
+Create a finished 16:9 widescreen main menu background for a playful COMIC / TOON plant-harvesting grid game. Art direction: bold graphic screen-printed cartoon, thick dark aubergine ink contours, slightly imperfect hand-inked silhouettes, flat opaque color fills, ONE hard-edged shadow per object, sparse large Ben-Day dots confined to shadow patches. Exaggerated chunky geometry, deliberately economical drawing. This must look like a confident graphic cartoon art director's design, NOT a polished generic AI fantasy painting.
+
+COMPOSITION: a close, simplified three-quarter view of a tiny modular garden board. Just a few BIG square terracotta planters arranged like grid blocks along the lower edge and side corners. Large readable shapes: left foreground a stout orange planter with three enormous rounded green leaves and one plump orange crop; right foreground two stacked box-shaped planters, one with a single chunky purple crystal sprout and one with a yellow sprout with a tiny jagged electric accent. A toy-like sci-fi harvesting scythe leans on the RIGHT edge, very simple oversized silver crescent with cyan inset, dark handle, cartoon proportions. Everything visually belongs to a small grid-based harvesting game. Asymmetrical, carefully balanced framing. The CENTRAL 45 percent and upper center are calm warm cream negative space reserved for future title and menu, integrated with a simple pale mint shape behind the garden, no drawn UI panel. A few bold offset halftone shapes and two tiny graphic sparkle marks are enough. Background is almost abstract flat cream/mint, NOT a landscape.
+
+Palette limited to cream, dark plum, leaf green, mint, burnt orange, honey yellow, violet and tiny cyan accents. Strong silhouette design. Flat 2D game key art, editorial comic cartoon, no soft rendering. Corners can crop safely. No text, no lettering, no logos, no buttons, no watermarks. NO mountains, NO waterfalls, NO castles, NO arches, NO panoramic valley, NO sunset, NO atmospheric fog, NO realistic foliage, NO tiny flowers, NO intricate machine parts, NO glossy 3D, NO painterly texture, NO gradients, NO decorative clutter. Prioritize bold simplicity and intentional shape language over detail.
+
+Corrective edit prompt:
+
+Edit this game menu background. Preserve the exact composition, plants, big planters, scythe, thick plum outlines and comic halftone style. Fix the entire broken black void in the upper center and all its ragged neon green/gray/red fringes: replace that whole defective region with a completely solid opaque warm cream color #FFF1D2. Its boundary with the mint backdrop must be a clean simple smooth graphic curve, no noisy edges. There must be NO black void, NO transparency anywhere, NO green neon artifacts. Make the cream center a quiet blank area for future menu UI. Keep other artwork intact. Finished fully opaque rectangular 16:9 background, no text or buttons.

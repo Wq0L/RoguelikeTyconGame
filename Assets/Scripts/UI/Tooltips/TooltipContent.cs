@@ -4,45 +4,23 @@ using TMPro;
 
 public class TooltipContent : MonoBehaviour
 {
-    [SerializeField] private Image iconImage;      // şimdilik boş, ileride node.icon
-    [SerializeField] private TMP_Text nameText;
-    [SerializeField] private TMP_Text levelText;
-    [SerializeField] private TMP_Text valueText;  
-    [SerializeField] private TMP_Text costText;
-
-    public void SetIcon(Sprite icon)
+    [SerializeField] private Image iconImage;
+    [SerializeField] private TMP_Text nameText, levelText, valueText, costText;
+    string title, level, values;
+    Sprite icon;
+    string skillIcon;
+    public void SetIcon(Sprite value) { icon = value; skillIcon = null; }
+    public void SetSkillIcon(string value) => skillIcon = value;
+    public void SetName(string value) => title = value;
+    public void SetLevel(string value) => level = value;
+    public void SetValues(string value) => values = value;
+    public void SetCost(string value)
     {
-        if (iconImage == null) return;
-
-        if (icon != null)
-        {
-            iconImage.sprite = icon;
-            iconImage.enabled = true;
-        }
-        else
-        {
-            iconImage.enabled = false;  // ikon yoksa gizle
-        }
-    }
-
-    public void SetName(string nodeName)
-    {
-        nameText.text = nodeName;
-    }
-
-    public void SetLevel(string levelStr)
-    {
-        levelText.text = levelStr;
-    }
-
-    // Tüm effect satırlarını tek metinde ver (FillTooltip hazırlayıp yollar)
-    public void SetValues(string valuesText)
-    {
-        valueText.text = valuesText;
-    }
-
-    public void SetCost(string costStr)
-    {
-        costText.text = costStr;
+        var view = ComicPopupView.Attach(gameObject); view.IsHoverTooltip = true;
+        view.Begin(title, level == "MAX" ? "TAMAMLANDI  ·  MAX" : "KADEME  " + level, icon, skillIcon: skillIcon);
+        view.Add(level == "MAX" ? "<b>MEVCUT ETKİ</b>" : "<b>SONRAKİ KADEME</b>");
+        view.Add(values.TrimEnd());
+        if (level != "MAX") { view.Add("<b>YÜKSELTME MALİYETİ</b>"); view.Add(value); }
+        view.End();
     }
 }

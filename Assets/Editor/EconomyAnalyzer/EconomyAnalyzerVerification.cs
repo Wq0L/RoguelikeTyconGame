@@ -165,14 +165,14 @@ namespace ClickerGame.EconomyAnalysis
                 var tileOff = EconomyCalculator.Resolve(live, row, 129, 6, false);
                 var tileOn = EconomyCalculator.Resolve(live, row, 129, 6, true);
                 Equal(tileOff.XpMultiplier, 3.6, "tile rolls retained when resonance off");
-                Equal(tileOn.XpMultiplier, 36, "only resonance contribution enabled");
+                Equal(tileOn.XpMultiplier, 7.2, "only resonance contribution enabled");
                 Equal(EconomyCalculator.Resolve(live, row, 129, 6, true, new HashSet<TileModifierType> { TileModifierType.Damage }).XpMultiplier,
                     tileOff.XpMultiplier, "family isolation keeps ordinary tile bonuses");
                 Equal(tileOff.SpawnInterval, tileOn.SpawnInterval, "XP A/B keeps unrelated stats unchanged");
                 var abOff = EconomySimulation.RunTrial(new[] { EconomyCalculator.Analyze(tileOff) }, xp, 60, 42, 0);
                 var abOn = EconomySimulation.RunTrial(new[] { EconomyCalculator.Analyze(tileOn) }, xp, 60, 42, 0);
                 Equal(abOff[0].Income.Gold, abOn[0].Income.Gold, "paired streams preserve harvest outcomes in XP-only A/B");
-                Equal(abOn[0].Income.Xp, abOff[0].Income.Xp * 10, "XP-only simulation A/B");
+                Equal(abOn[0].Income.Xp, abOff[0].Income.Xp * 2, "XP-only simulation A/B");
                 row.tiles.Clear();
 
                 var health = Make<PlantHealthScalingSO>(); health.referenceHealth = 5;

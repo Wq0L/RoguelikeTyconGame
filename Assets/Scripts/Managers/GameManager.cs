@@ -20,10 +20,7 @@ public class GameManager : MonoBehaviour
         SetState(GameStates.MainMenu);
     }
 
-    private void Update()
-    {
-        Debug.Log($"Current Game State: {CurrentState}");
-    }
+    // Diagnostic only: Debug.Log($"Current Game State: {CurrentState}");
 
     public void SetState(GameStates newState)
     {
@@ -33,7 +30,7 @@ public class GameManager : MonoBehaviour
         HandleStateEnter(newState);
         OnGameStateChanged?.Invoke(CurrentState);
 
-        Debug.Log($"GameManager: State changed to {CurrentState}");
+        // Debug.Log($"GameManager: State changed to {CurrentState}");
     }
 
     public void ReturnToMenu() => SetState(GameStates.MainMenu);

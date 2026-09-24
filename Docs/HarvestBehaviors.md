@@ -1,5 +1,7 @@
 # Bumerang Orak ve Çapraz Elektrik
 
+> Güncel ek: [SimpleResonance.md](SimpleResonance.md) ile kaynak saksının davranış hasarı rezonansı ve elektriğin öldürücü vuruşuna özel XP desteği eklendi. Aşağıdaki temel hasarlar bu ek çarpandan önceki değerlerdir. Hareket/geometri ve pool sınırları korunur.
+
 İki yeni tile ailesi mevcut kart seçimi, rastgele hücre uygulaması, stat hesaplama ve skill kilidi akışına bağlandı. Eski enum değerleri korunup yenileri sona eklendi. Bu değişiklik karma rezonans tariflerini uygulamaz.
 
 ## Kartlar ve kilitler

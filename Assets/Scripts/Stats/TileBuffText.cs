@@ -9,6 +9,7 @@ public static class TileBuffText
         StatType.PlanterDamageMultiplier => "Hasar",
         StatType.HarvestDamage => "Saksı hasar statı",
         StatType.XPGainMultiplier => "XP kazancı",
+        StatType.HarvestScoreMultiplier => "Harvest Score",
         StatType.PlantSpawnRate => "Üretim süresi",
         StatType.RareSpawnChance => "Nadirlik bonusu",
         StatType.GoldGainMultiplier => "Gold kazancı",
@@ -52,6 +53,31 @@ public static class TileBuffText
         return text.ToString();
     }
 
-    public static string Resonance(ActiveResonance resonance) =>
-        Name(resonance.statType) + " " + Signed((resonance.multiplier - 1f) * 100f) + "%";
+    public static string Resonance(ActiveResonance resonance)
+    {
+        if (resonance.effects == null || resonance.effects.Count == 0)
+            return Name(resonance.statType) + " " + Signed((resonance.multiplier - 1f) * 100f) + "%";
+        var lines = new List<string>();
+        foreach (var effect in resonance.effects)
+        {
+            string multiplier = "×" + (1f + effect.value).ToString("0.##", CultureInfo.InvariantCulture);
+            switch (effect.kind)
+            {
+                case ResonanceEffectKind.Resources: lines.Add("Gold / Iron / Stone " + multiplier); break;
+                case ResonanceEffectKind.RareScore: lines.Add("Rare+ Harvest Score " + multiplier); break;
+                case ResonanceEffectKind.ElectricXP: lines.Add("Elektrik öldürmesi XP " + multiplier); break;
+                case ResonanceEffectKind.BehaviorDamage:
+                    var names = new List<string>();
+                    if ((resonance.behaviorMask & (1 << (int)DamageType.Explosion)) != 0) names.Add("Patlama");
+                    if ((resonance.behaviorMask & (1 << (int)DamageType.Tornado)) != 0) names.Add("Tornado");
+                    if ((resonance.behaviorMask & (1 << (int)DamageType.Boomerang)) != 0) names.Add("Orak");
+                    if ((resonance.behaviorMask & (1 << (int)DamageType.Electric)) != 0) names.Add("Elektrik");
+                    lines.Add(string.Join(" / ", names) + " hasarı " + multiplier); break;
+                default:
+                    lines.Add(effect.statType == StatType.RareSpawnChance ? "Nadirlik +" + effect.value.ToString("0.##", CultureInfo.InvariantCulture) + " puan" :
+                        Name(effect.statType) + " " + (effect.statType == StatType.PlantSpawnRate ? Signed(effect.value * 100f) + "%" : multiplier)); break;
+            }
+        }
+        return string.Join(" · ", lines);
+    }
 }

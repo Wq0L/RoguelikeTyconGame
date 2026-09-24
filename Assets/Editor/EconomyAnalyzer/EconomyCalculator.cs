@@ -13,12 +13,13 @@ namespace ClickerGame.EconomyAnalysis
         public float Duration, SpawnInterval, AttackInterval, Damage, CritChance, CritMultiplier;
         public float Radius, RareBonus, GoldMultiplier, IronMultiplier, StoneMultiplier, XpMultiplier;
         public float DuplicateChance, PlanterDamageMultiplier, ExplosionChance, TornadoChance, BoomerangChance, ElectricChance;
+        public float ScoreMultiplier = 1, RareScoreMultiplier = 1;
         public double GoldWeight = 1, IronWeight = 7, StoneWeight = 14;
     }
 
     public sealed class EconomyAmounts
     {
-        public double Gold, Iron, Stone, Xp, Harvests;
+        public double Gold, Iron, Stone, Xp, Score, Harvests;
         public double Currency(ResourceType type) => type == ResourceType.Gold ? Gold : type == ResourceType.Iron ? Iron : Stone;
         public void AddCurrency(ResourceType type, double amount)
         {
@@ -28,7 +29,7 @@ namespace ClickerGame.EconomyAnalysis
         }
         public double Weighted(EconomyInput input) => Gold * input.GoldWeight + Iron * input.IronWeight + Stone * input.StoneWeight;
         public EconomyAmounts Scale(double factor) => new() { Gold = Gold * factor, Iron = Iron * factor,
-            Stone = Stone * factor, Xp = Xp * factor, Harvests = Harvests * factor };
+            Stone = Stone * factor, Xp = Xp * factor, Score = Score * factor, Harvests = Harvests * factor };
     }
 
     public sealed class PlantProbability
@@ -94,13 +95,15 @@ namespace ClickerGame.EconomyAnalysis
                 counts[tile.tile.modifierType] = count + 1;
             }
             var resonanceModifiers = new List<StatModifier>();
+            var active = new List<ActiveResonance>();
             if (resonance)
             {
-                var active = new List<ActiveResonance>();
                 ResonanceManager.Evaluate(profile.resonanceRules, counts, resonanceModifiers, active);
                 if (resonanceFamilies != null)
-                    for (int i = active.Count - 1; i >= 0; i--)
-                        if (!resonanceFamilies.Contains(active[i].tileType)) resonanceModifiers.RemoveAt(i);
+                {
+                    active.RemoveAll(item => !resonanceFamilies.Contains(item.tileType));
+                    ResonanceManager.BuildModifiers(active, resonanceModifiers);
+                }
             }
             float Player(StatType stat) => StatCalculator.Calculate(profile.coreStats.GetBaseStat(stat), stat, StatTarget.Player, global, null);
             float Planter(StatType stat)
@@ -111,6 +114,9 @@ namespace ClickerGame.EconomyAnalysis
             // RoundManager requests StatTarget.All, not Round.
             float duration = StatCalculator.Calculate(profile.coreStats.GetBaseStat(StatType.RoundDuration),
                 StatType.RoundDuration, StatTarget.All, global, null);
+            float ordinaryScore = Player(StatType.HarvestScoreMultiplier) * StatCalculator.Calculate(
+                profile.planter.GetBaseStat(StatType.HarvestScoreMultiplier), StatType.HarvestScoreMultiplier,
+                StatTarget.Planter, global, local, false);
             var input = new EconomyInput
             {
                 Planter = profile.planter, Health = profile.healthScaling, Round = round, SpawnerCount = spawners,
@@ -125,6 +131,8 @@ namespace ClickerGame.EconomyAnalysis
                 BoomerangChance = Planter(StatType.BoomerangChance), ElectricChance = Planter(StatType.ElectricChance),
                 GoldWeight = profile.goldWeight, IronWeight = profile.ironWeight, StoneWeight = profile.stoneWeight
             };
+            input.ScoreMultiplier = ordinaryScore * ResonanceManager.Multiplier(active, StatType.HarvestScoreMultiplier);
+            input.RareScoreMultiplier = ordinaryScore * ResonanceManager.Multiplier(active, StatType.HarvestScoreMultiplier, PlantRarity.Rare);
             Validate(input);
             return input;
         }
@@ -163,6 +171,8 @@ namespace ClickerGame.EconomyAnalysis
             return Mathf.RoundToInt(plant.rewardAmount * multiplier);
         }
         public static int Xp(PlantSO plant, EconomyInput input) => Mathf.RoundToInt(plant.xpAmount * input.XpMultiplier);
+        public static int Score(PlantSO plant, EconomyInput input) => HarvestScoreManager.CalculateAward(plant.rarity, 1,
+            plant.rarity >= PlantRarity.Rare ? input.RareScoreMultiplier : input.ScoreMultiplier);
 
         public static EconomySnapshot Analyze(EconomyInput input)
         {
@@ -186,7 +196,8 @@ namespace ClickerGame.EconomyAnalysis
                     RoundedReward = Reward(entry.plant, input), RoundedXp = Xp(entry.plant, input) };
                 plants.Add(plant);
                 ev.AddCurrency(plant.Plant.resourceType, probability * Math.Max(0, plant.RoundedReward) * (1 + input.DuplicateChance));
-                ev.Xp += probability * plant.RoundedXp * (1 + input.DuplicateChance);
+                ev.Xp += probability * plant.RoundedXp;
+                ev.Score += probability * Score(plant.Plant, input);
                 if (probability > 0) hits += probability * (damage > 0 ? Math.Max(1, plant.Hp / damage) : double.PositiveInfinity);
             }
             double ceiling = total > 0 ? input.SpawnerCount * input.Duration / (double)input.SpawnInterval : 0;

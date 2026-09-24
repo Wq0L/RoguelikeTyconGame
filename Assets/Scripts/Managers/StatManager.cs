@@ -63,9 +63,9 @@ public class StatManager : MonoBehaviour
 
         float newValue = GetFinalStat(modifier.statType, modifier.target);
 
-        Debug.Log(
-            $"Global modifier eklendi: {modifier.statType} | {modifier.target} | {modifier.operation} | {modifier.value} | Final: {newValue}"
-        );
+        // Debug.Log(
+            // $"Global modifier eklendi: {modifier.statType} | {modifier.target} | {modifier.operation} | {modifier.value} | Final: {newValue}"
+        // );
 
         OnGlobalModifierAdded?.Invoke(modifier);
         OnStatChanged?.Invoke(modifier.statType, newValue);
@@ -96,9 +96,9 @@ public class StatManager : MonoBehaviour
 
         float newValue = GetFinalStat(modifier.statType, modifier.target);
 
-        Debug.Log(
-            $"Global modifier çıkarıldı: {modifier.statType} | {modifier.target} | {modifier.operation} | {modifier.value} | Final: {newValue}"
-        );
+        // Debug.Log(
+            // $"Global modifier çıkarıldı: {modifier.statType} | {modifier.target} | {modifier.operation} | {modifier.value} | Final: {newValue}"
+        // );
 
         OnGlobalModifierRemoved?.Invoke(modifier);
         OnStatChanged?.Invoke(modifier.statType, newValue);

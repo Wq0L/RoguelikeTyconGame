@@ -30,6 +30,8 @@ public class PlantBrain : MonoBehaviour
     private void OnDisable()
     {
         plantHealth.OnDied -= ClearGrid;
+        ClearGrid();
+        plantData = null;
     }
 
     // PlanterBrain tarafından çağrılır

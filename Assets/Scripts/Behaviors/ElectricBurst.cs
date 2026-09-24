@@ -29,6 +29,8 @@ public sealed class ElectricBurst : MonoBehaviour
         IReadOnlyList<GridPosition> targets, IReadOnlyList<GridPosition> origins, int damage)
     {
         owner = manager; source = planter; age = 0; count = 0;
+        damage = planter != null ? planter.GetBehaviorDamage(damage, DamageType.Electric) : damage;
+        float xp = planter != null ? ResonanceManager.ElectricXP(planter.ActiveResonances) : 1f;
         for (int i = 0; i < targets.Count && count < 8; i++)
         {
             var entry = grid.GetGridObject(targets[i]); var cell = entry?.GetGroundCellCached();
@@ -41,7 +43,7 @@ public sealed class ElectricBurst : MonoBehaviour
             if (plant != null && plant.TryGetComponent<PlantHealth>(out var health) && !health.IsDead)
             {
                 Vector3 point = plant.transform.position;
-                health.TakeDamage(damage, DamageType.Electric);
+                health.TakeDamage(damage, DamageType.Electric, false, xp);
                 VFXManager.Instance?.PlayHit(point, damage, false);
             }
         }

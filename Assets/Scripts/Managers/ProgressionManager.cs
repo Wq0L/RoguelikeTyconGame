@@ -59,7 +59,7 @@ public class ProgressionManager : MonoBehaviour
         pendingMutationCount++;
         OnLevelUp?.Invoke(CurrentLevel);
 
-        Debug.Log("Level Up! Seviye: " + CurrentLevel);
+        // Debug.Log("Level Up! Seviye: " + CurrentLevel);
     }
 
     private void HandleRoundEnded()
@@ -76,14 +76,14 @@ public class ProgressionManager : MonoBehaviour
         List<GroundCell> eligibleCells = GetEligibleCells();
         if (eligibleCells.Count == 0)
         {
-            Debug.Log("Uygun tile yok.");
+            // Debug.Log("Uygun tile yok.");
             return false;
         }
 
         GroundCell selectedCell = eligibleCells[UnityEngine.Random.Range(0, eligibleCells.Count)];
         selectedCell.ApplyModifier(modifier, offeredModifiers);
 
-        Debug.Log($"Kart uygulandı: {modifier.modifierName} → {selectedCell.GetGridPosition()}");
+        // Debug.Log($"Kart uygulandı: {modifier.modifierName} → {selectedCell.GetGridPosition()}");
         return true;
     }
 

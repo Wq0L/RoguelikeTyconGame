@@ -14,28 +14,243 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ResonanceRulesSO
   rules:
   - resonanceName: Odak
+    id: focus
     tileType: 6
     statType: 22
+    requiresSecondary: 0
+    secondaryType: 0
+    secondaryCount: 1
+    requiresAnyBehavior: 0
     tiers:
     - requiredCount: 2
-      multiplier: 2
+      multiplier: 1.5
+      effects:
+      - kind: 0
+        statType: 22
+        operation: 2
+        value: 0.5
     - requiredCount: 3
-      multiplier: 4
+      multiplier: 2
+      effects:
+      - kind: 0
+        statType: 22
+        operation: 2
+        value: 1
     - requiredCount: 4
-      multiplier: 8
-  - resonanceName: XP
+      multiplier: 3
+      effects:
+      - kind: 0
+        statType: 22
+        operation: 2
+        value: 2
+  - resonanceName: Şöhret
+    id: fame
+    tileType: 3
+    statType: 11
+    requiresSecondary: 0
+    secondaryType: 0
+    secondaryCount: 1
+    requiresAnyBehavior: 0
+    tiers:
+    - requiredCount: 2
+      multiplier: 1.5
+      effects:
+      - kind: 0
+        statType: 11
+        operation: 2
+        value: 0.5
+    - requiredCount: 3
+      multiplier: 2
+      effects:
+      - kind: 0
+        statType: 11
+        operation: 2
+        value: 1
+    - requiredCount: 4
+      multiplier: 3
+      effects:
+      - kind: 0
+        statType: 11
+        operation: 2
+        value: 2
+  - resonanceName: Bolluk
+    id: bounty
+    tileType: 5
+    statType: 7
+    requiresSecondary: 0
+    secondaryType: 0
+    secondaryCount: 1
+    requiresAnyBehavior: 0
+    tiers:
+    - requiredCount: 2
+      multiplier: 1.25
+      effects:
+      - kind: 1
+        statType: 0
+        operation: 2
+        value: 0.25
+    - requiredCount: 3
+      multiplier: 1.5
+      effects:
+      - kind: 1
+        statType: 0
+        operation: 2
+        value: 0.5
+    - requiredCount: 4
+      multiplier: 2
+      effects:
+      - kind: 1
+        statType: 0
+        operation: 2
+        value: 1
+  - resonanceName: Bilgelik
+    id: wisdom
     tileType: 1
     statType: 10
+    requiresSecondary: 0
+    secondaryType: 0
+    secondaryCount: 1
+    requiresAnyBehavior: 0
+    tiers:
+    - requiredCount: 2
+      multiplier: 1.5
+      effects:
+      - kind: 0
+        statType: 10
+        operation: 2
+        value: 0.5
+    - requiredCount: 3
+      multiplier: 2
+      effects:
+      - kind: 0
+        statType: 10
+        operation: 2
+        value: 1
+    - requiredCount: 4
+      multiplier: 3
+      effects:
+      - kind: 0
+        statType: 10
+        operation: 2
+        value: 2
+  - resonanceName: Kristal Bahçe
+    id: crystal-garden
+    tileType: 2
+    statType: 6
+    requiresSecondary: 0
+    secondaryType: 0
+    secondaryCount: 1
+    requiresAnyBehavior: 0
+    tiers:
+    - requiredCount: 2
+      multiplier: 1
+      effects:
+      - kind: 0
+        statType: 6
+        operation: 0
+        value: 10
+    - requiredCount: 3
+      multiplier: 1
+      effects:
+      - kind: 0
+        statType: 6
+        operation: 0
+        value: 20
+    - requiredCount: 4
+      multiplier: 1
+      effects:
+      - kind: 0
+        statType: 6
+        operation: 0
+        value: 35
+  - resonanceName: Güçlendirilmiş Hasat
+    id: empowered-harvest
+    tileType: 6
+    statType: 22
+    requiresSecondary: 0
+    secondaryType: 0
+    secondaryCount: 1
+    requiresAnyBehavior: 1
+    tiers:
+    - requiredCount: 1
+      multiplier: 1.5
+      effects:
+      - kind: 2
+        statType: 0
+        operation: 2
+        value: 0.5
+    - requiredCount: 2
+      multiplier: 2
+      effects:
+      - kind: 2
+        statType: 0
+        operation: 2
+        value: 1
+  - resonanceName: Değerli Hasat
+    id: precious-harvest
+    tileType: 3
+    statType: 11
+    requiresSecondary: 1
+    secondaryType: 2
+    secondaryCount: 1
+    requiresAnyBehavior: 0
+    tiers:
+    - requiredCount: 2
+      multiplier: 3
+      effects:
+      - kind: 3
+        statType: 0
+        operation: 2
+        value: 2
+  - resonanceName: Verimli Toprak
+    id: fertile-soil
+    tileType: 5
+    statType: 7
+    requiresSecondary: 1
+    secondaryType: 0
+    secondaryCount: 1
+    requiresAnyBehavior: 0
     tiers:
     - requiredCount: 2
       multiplier: 2
-    - requiredCount: 3
-      multiplier: 10
-  - resonanceName: Uretim
-    tileType: 0
-    statType: 5
+      effects:
+      - kind: 1
+        statType: 0
+        operation: 2
+        value: 1
+  - resonanceName: Elektrik Bilgisi
+    id: electric-wisdom
+    tileType: 1
+    statType: 10
+    requiresSecondary: 1
+    secondaryType: 9
+    secondaryCount: 1
+    requiresAnyBehavior: 0
     tiers:
     - requiredCount: 2
-      multiplier: 0.75
-    - requiredCount: 3
-      multiplier: 0.5
+      multiplier: 10
+      effects:
+      - kind: 4
+        statType: 0
+        operation: 2
+        value: 9
+  - resonanceName: Nadir Fidanlık
+    id: rare-nursery
+    tileType: 2
+    statType: 6
+    requiresSecondary: 1
+    secondaryType: 0
+    secondaryCount: 1
+    requiresAnyBehavior: 0
+    tiers:
+    - requiredCount: 2
+      multiplier: 1
+      effects:
+      - kind: 0
+        statType: 6
+        operation: 0
+        value: 25
+      - kind: 0
+        statType: 5
+        operation: 2
+        value: -0.15

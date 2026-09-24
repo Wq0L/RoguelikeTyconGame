@@ -37,7 +37,6 @@ public class PlanterShopPanelUI : MonoBehaviour
     [SerializeField] private Button buyButton;
     [SerializeField] private Button backButton;
     [SerializeField] private float transitionDuration = 0.4f;
-    [SerializeField] private float selectedX = -570f; // Legacy scene data.
     [SerializeField] private Image detailPreview;
     [SerializeField] private TMP_Text detailTitle;
     [SerializeField] private TMP_Text plotsLabel;

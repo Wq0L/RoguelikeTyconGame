@@ -25,7 +25,7 @@ public class GrassPlanterButtonUI : MonoBehaviour
 
         if (!success)
         {
-            Debug.Log("Yeterli kaynak yok.");
+            // Debug.Log("Yeterli kaynak yok.");
             return;
         }
 

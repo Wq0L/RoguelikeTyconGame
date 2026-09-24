@@ -18,7 +18,7 @@ MonoBehaviour:
   tileColor: {r: 0.9529412, g: 0.7483939, b: 0, a: 1}
   behavior: 0
   modifierRanges:
-  - statType: 0
+  - statType: 11
     target: 2
     operation: 1
     minValue: 0.65

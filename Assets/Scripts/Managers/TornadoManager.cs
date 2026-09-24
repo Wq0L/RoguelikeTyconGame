@@ -44,11 +44,13 @@ public class TornadoManager : MonoBehaviour
 
         GroundCell startCell = startGrid.GetGroundCellCached();
         if (startCell == null) return false;
+        var source = startGrid.GetPlanterBrain();
+        float resonance = source != null ? ResonanceManager.BehaviorMultiplier(source.ActiveResonances, DamageType.Tornado) : 1f;
 
         Tornado tornado = tornadoPool.Get();
         tornado.transform.SetPositionAndRotation(startCell.transform.position, Quaternion.identity);
         activeTornadoes.Add(tornado);
-        tornado.Launch(startCell, baseDamage, this);
+        tornado.Launch(startCell, baseDamage, this, resonance);
         return true;
     }
 

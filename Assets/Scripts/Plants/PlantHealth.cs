@@ -15,10 +15,12 @@ public class PlantHealth : MonoBehaviour, IDamageable
     public int MaxHealth => maxHealth;
     public int CurrentHealth => currentHealth;
     public int SpawnRound { get; private set; }
+    public uint LifetimeVersion { get; private set; }
 
     public DamageType KilledBy => killedBy;
     public bool IsDead => isDead;
     public PlanterBrain Owner => planter;
+    public float KillingElectricXPMultiplier { get; private set; } = 1f;
 
     private void Awake()
     {
@@ -27,6 +29,7 @@ public class PlantHealth : MonoBehaviour, IDamageable
 
     public void Initialize(PlantSO data, PlanterBrain owner = null)
     {
+        LifetimeVersion++;
         planter = owner;
         plantData = data;
         SpawnRound = RoundManager.Instance != null ? RoundManager.Instance.CurrentRound : 1;
@@ -34,12 +37,13 @@ public class PlantHealth : MonoBehaviour, IDamageable
         currentHealth = maxHealth;
         isDead = false;
         killedBy = DamageType.Direct;
+        KillingElectricXPMultiplier = 1f;
     }
 
     public void TakeDamage(int damage, DamageType type = DamageType.Direct)
         => TakeDamage(damage, type, false);
 
-    public void TakeDamage(int damage, DamageType type, bool isCrit)
+    public void TakeDamage(int damage, DamageType type, bool isCrit, float sourceElectricXP = 1f)
     {
         if (isDead) return;
         damage = GetIncomingDamage(damage, type);
@@ -47,14 +51,15 @@ public class PlantHealth : MonoBehaviour, IDamageable
         currentHealth -= damage;
 
         // Hit flash
-        VFXManager.Instance.PlayHitFlash(plantRenderer, plantData.hitFlashColor);
+        VFXManager.Instance?.PlayHitFlash(plantRenderer, plantData.hitFlashColor);
 
         // Hit particle
-        VFXManager.Instance.PlayHitParticle(transform.position, plantData.hitFlashColor, isCrit);
+        VFXManager.Instance?.PlayHitParticle(transform.position, plantData.hitFlashColor, isCrit);
 
         if (currentHealth <= 0)
         {
             killedBy = type;
+            KillingElectricXPMultiplier = type == DamageType.Electric ? Mathf.Max(1f, sourceElectricXP) : 1f;
             Die();
         }
     }
@@ -70,7 +75,15 @@ public class PlantHealth : MonoBehaviour, IDamageable
     private void Die()
     {
         isDead = true;
-        OnDied?.Invoke();
-        Destroy(gameObject);
+        try { OnDied?.Invoke(); }
+        finally { PlantPool.Release(gameObject); }
+    }
+
+    private void OnDisable()
+    {
+        VFXManager.Instance?.CancelHitFlash(plantRenderer);
+        isDead = true;
+        planter = null;
+        plantData = null;
     }
 }

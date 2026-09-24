@@ -1,0 +1,13 @@
+Harvest Comic TR is a modified companion font derived from Lilita One.
+Original copyright: Copyright (c) 2011 Juan Montoreano (juan@remolacha.biz).
+Original reserved font name: Lilita.
+
+This derivative is distributed under the SIL Open Font License 1.1; see HarvestComicTR-OFL.txt.
+The family and PostScript names are changed to Harvest Comic TR / HarvestComicTR-Regular.
+The original LilitaOne-Regular.ttf is retained unchanged.
+
+Modifications: added Gbreve, gbreve, Idotaccent, Scedilla and scedilla.
+Existing G/g/I/S/s outlines, advance widths, lowercase i dot and cedilla are reused;
+a rounded breve is added. The companion TMP font uses matching 90pt sampling,
+12px padding, scale 1 and a pre-baked static SDF atlas.
+Reproduction source: Tools/build-turkish-comic-font.py (requires fonttools).

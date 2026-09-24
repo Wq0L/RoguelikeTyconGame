@@ -37,19 +37,7 @@ public class TileCellUI : MonoBehaviour, ITooltipProvider
 
         content.SetName(modifier.modifierName);
         content.SetRarity(modifier.rarity.ToString());
-        content.SetValues(BuildValues());
+        content.SetCell(groundCell);
     }
 
-    private string BuildValues()
-    {
-        string result = "Bu tile\n" + TileBuffText.Modifiers(groundCell.RolledModifiers);
-
-        if (groundCell.Planter != null)
-        {
-            if (groundCell.Planter.ActiveResonances.Count > 0) result += "\n\nSaksının rezonansları";
-            foreach (ActiveResonance resonance in groundCell.Planter.ActiveResonances)
-                result += $"\n{resonance.resonanceName} ({resonance.tileCount} tile): {TileBuffText.Resonance(resonance)}";
-        }
-        return result.TrimEnd();
-    }
 }

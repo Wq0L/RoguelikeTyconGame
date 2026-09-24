@@ -9,6 +9,18 @@ public class ComicUITheme : ScriptableObject
     public TMP_FontAsset headingFont, bodyFont;
     public Material outlinedText;
     public Material[] green, red, blue, gold;
+    public void StylePopupText(TMP_Text text)
+    {
+        if (headingFont != null)
+        {
+            text.font = headingFont;
+            text.fontSharedMaterial = headingFont.material;
+        }
+        // Cream popup paper needs solid dark glyphs, unlike white outlined button labels.
+        text.color = new Color32(54,39,54,255);
+        text.fontStyle = FontStyles.Normal;
+        text.extraPadding = true;
+    }
     public void StyleButton(Button button, string palette = "green")
     {
         var image = button.targetGraphic as Image;

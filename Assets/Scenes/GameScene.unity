@@ -11709,12 +11709,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941399136}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1967322490}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &943499682
 GameObject:
@@ -23032,6 +23032,7 @@ Transform:
   - {fileID: 39481034}
   - {fileID: 1624728364}
   - {fileID: 1788624027}
+  - {fileID: 941399138}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1974672514 stripped
@@ -25584,7 +25585,6 @@ MonoBehaviour:
   buyButton: {fileID: 1123381896}
   backButton: {fileID: 923306267}
   transitionDuration: 0.4
-  selectedX: -570
   detailPreview: {fileID: 1488716116}
   detailTitle: {fileID: 623326743}
   plotsLabel: {fileID: 2000315220}
@@ -44613,4 +44613,3 @@ SceneRoots:
   - {fileID: 252746129}
   - {fileID: 1967322490}
   - {fileID: 140872664}
-  - {fileID: 941399138}

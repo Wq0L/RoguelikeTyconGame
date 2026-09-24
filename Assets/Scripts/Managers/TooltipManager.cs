@@ -17,6 +17,7 @@ public class TooltipManager : MonoBehaviour
     private void LateUpdate()
     {
         if (activeTooltip == null || activeProvider == null) return;
+        activeTooltip.GetComponent<ComicPopupView>()?.Fit();
         var rect = activeTooltip.transform as RectTransform;
         if (rect == null) return;
         var parent = rect.parent as RectTransform;

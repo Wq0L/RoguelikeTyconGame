@@ -20,7 +20,7 @@ public class PlantSpawner : MonoBehaviour
             gridObject.ClearPlantObject();
         // Removal is not harvesting: no XP, resources or explosion events.
         plant.SetActive(false);
-        Destroy(plant);
+        PlantPool.Release(plant);
     }
 
     private void OnDestroy() => RemoveSpawnedPlant();
@@ -30,6 +30,7 @@ public class PlantSpawner : MonoBehaviour
         planterData = data;
         gridObject = gridObj;
         planterBrain = brain;
+        enabled = true;
 
         timer = Random.Range(0f, GetEffectiveSpawnInterval());
     }
@@ -72,7 +73,7 @@ public class PlantSpawner : MonoBehaviour
         PlantSO selectedPlant = RollPlant();
         if (selectedPlant == null) return;
 
-        GameObject plantObj = Instantiate(
+        GameObject plantObj = PlantPool.ForScene(gameObject.scene).Rent(
             selectedPlant.prefab,
             transform.position,
             transform.rotation
@@ -85,11 +86,14 @@ public class PlantSpawner : MonoBehaviour
         if (plantHealth != null)
         {
             plantHealth.Initialize(selectedPlant, planterBrain);
-            plantHealth.OnDied += OnPlantDied;
         }
 
         PlantResource plantResource = plantObj.GetComponent<PlantResource>();
         plantResource?.Initialize(selectedPlant, planterBrain);
+
+        plantObj.SetActive(true);
+        // Reward and grid callbacks subscribe in OnEnable, as before pooling.
+        if (plantHealth != null) plantHealth.OnDied += OnPlantDied;
 
         spawnedPlant = plantObj;
         gridObject?.SetPlantObject(plantObj);

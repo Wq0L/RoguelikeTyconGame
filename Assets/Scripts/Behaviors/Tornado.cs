@@ -58,13 +58,14 @@ public class Tornado : MonoBehaviour
     private WaitForSeconds pauseWait;
 
     // TornadoManager spawn eder etmez çağırır
-    public void Launch(GroundCell startCell, int baseDamage, TornadoManager manager)
+    public void Launch(GroundCell startCell, int baseDamage, TornadoManager manager, float resonanceMultiplier = 1f)
     {
         gridSystem = GridManager.Instance.GetGridSystem();
         currentCell = startCell;
         previousCell = null;
         owner = manager;
         damage = Mathf.Max(1, Mathf.RoundToInt(baseDamage * damageMultiplier));
+        damage = (int)System.Math.Min(int.MaxValue, System.Math.Round(damage * (double)resonanceMultiplier));
         transform.position = startCell.transform.position + Vector3.up * heightOffset;
         foreach (var particle in particles)
         {

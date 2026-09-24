@@ -25,7 +25,7 @@ public static class ResonanceVerification
             var counts = new Dictionary<TileModifierType, int>();
             var modifiers = new List<StatModifier>();
             var active = new List<ActiveResonance>();
-            foreach (var sample in new[] { (0, 1f), (1, 1f), (2, 2f), (3, 10f), (4, 10f), (6, 10f), (1, 1f) })
+            foreach (var sample in new[] { (0, 1f), (1, 1f), (2, 1.5f), (3, 2f), (4, 3f), (6, 3f), (1, 1f) })
             {
                 counts[TileModifierType.Water] = sample.Item1;
                 ResonanceManager.Evaluate(config, counts, modifiers, active);
@@ -36,9 +36,9 @@ public static class ResonanceVerification
             counts[TileModifierType.Damage] = 3;
             counts[TileModifierType.Fertile] = 3;
             ResonanceManager.Evaluate(config, counts, modifiers, active);
-            Require(active.Count == 3, "Different families coexist");
-            Equal(StatCalculator.Calculate(1f, StatType.PlanterDamageMultiplier, StatTarget.Planter, null, modifiers), 4f, "Damage family");
-            Equal(StatCalculator.Calculate(5f, StatType.PlantSpawnRate, StatTarget.Planter, null, modifiers), 2.5f, "Interval direction");
+            Require(active.Count == 2, "Different families coexist; Fertile alone is not a recipe");
+            Equal(StatCalculator.Calculate(1f, StatType.PlanterDamageMultiplier, StatTarget.Planter, null, modifiers), 2f, "Damage family");
+            Equal(StatCalculator.Calculate(5f, StatType.PlantSpawnRate, StatTarget.Planter, null, modifiers), 5f, "No implicit Fertile resonance");
             Equal(StatCalculator.Calculate(1f, StatType.XPGainMultiplier, StatTarget.Player, null, modifiers), 1f, "No player leakage");
 
             if (StatManager.Instance == null)
@@ -66,7 +66,7 @@ public static class ResonanceVerification
             // Include any existing global XP modifier in the expected ordinary stat.
             float ordinary = StatCalculator.Calculate(1f, StatType.XPGainMultiplier, StatTarget.Planter,
                 StatManager.Instance.GlobalModifiers, owner.LocalModifiers);
-            Equal(owner.GetFinalStat(StatType.XPGainMultiplier), ordinary * 10f, "Real planter XP pipeline");
+            Equal(owner.GetFinalStat(StatType.XPGainMultiplier), ordinary * 2f, "Real planter XP pipeline");
             owner.RefreshTileBuffs(); owner.RefreshTileBuffs();
             Require(owner.LocalModifiers.Count == 3, "Refresh does not accumulate modifiers");
             grids[2].GetGroundCellCached().ApplyModifier(damage);
@@ -75,13 +75,13 @@ public static class ResonanceVerification
             Require(owner.LocalModifiers.Count == 3, "Replacement removes old rolled modifier");
             ordinary = StatCalculator.Calculate(1f, StatType.XPGainMultiplier, StatTarget.Planter,
                 StatManager.Instance.GlobalModifiers, owner.LocalModifiers);
-            Equal(owner.GetFinalStat(StatType.XPGainMultiplier), ordinary * 2f, "XP downgrade invalidates cache");
+            Equal(owner.GetFinalStat(StatType.XPGainMultiplier), ordinary * 1.5f, "XP downgrade invalidates cache");
             foreach (var grid in grids) grid.GetGroundCellCached().ApplyModifier(damage);
             var plantData = ScriptableObject.CreateInstance<PlantSO>(); temporary.Add(plantData);
             var plantGO = new GameObject("ResonanceVerification_Plant"); temporary.Add(plantGO);
             var health = plantGO.AddComponent<PlantHealth>(); health.Initialize(plantData, owner);
             float normalDamage = StatCalculator.Calculate(1f, StatType.PlanterDamageMultiplier,
-                StatTarget.Planter, StatManager.Instance.GlobalModifiers, owner.LocalModifiers) * 4f;
+                StatTarget.Planter, StatManager.Instance.GlobalModifiers, owner.LocalModifiers) * 2f;
             Require(health.GetIncomingDamage(100) == (int)Math.Round(100 * normalDamage), "Actual target damage transfer");
             Require(health.GetIncomingDamage(100, DamageType.Explosion) == 100, "Explosion multiplier not doubled");
             Require(health.GetIncomingDamage(100, DamageType.Tornado) == 100, "Tornado ignores planter bonus");

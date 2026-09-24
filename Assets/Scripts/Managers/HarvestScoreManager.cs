@@ -13,7 +13,7 @@ public class HarvestScoreManager : MonoBehaviour
         Instance = this;
     }
 
-    public void AddScore(PlantRarity rarity)
+    public void AddScore(PlantRarity rarity, PlanterBrain planter = null)
     {
         int scoreToAdd = GetScoreForRarity(rarity);
         
@@ -22,13 +22,16 @@ public class HarvestScoreManager : MonoBehaviour
             StatTarget.Player
         );
         
-        int final = Mathf.RoundToInt(scoreToAdd * multiplier);
-        totalScore += final;
+        int final = CalculateAward(rarity, multiplier, planter != null ? planter.GetHarvestScore(rarity) : 1f);
+        totalScore = (int)System.Math.Min(int.MaxValue, (long)totalScore + final);
 
-        Debug.Log($"Score +{final} ({rarity}) | Toplam: {totalScore}");
+        // Debug.Log($"Score +{final} ({rarity}) | Toplam: {totalScore}");
     }
 
-    private int GetScoreForRarity(PlantRarity rarity)
+    public static int CalculateAward(PlantRarity rarity, float playerMultiplier, float planterMultiplier) =>
+        (int)System.Math.Min(int.MaxValue, System.Math.Max(0, System.Math.Round(GetScoreForRarity(rarity) * (double)playerMultiplier * planterMultiplier)));
+
+    private static int GetScoreForRarity(PlantRarity rarity)
     {
         switch (rarity)
         {
@@ -50,7 +53,7 @@ public class HarvestScoreManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Debug.Log($"Current Score: {totalScore}");
+            // Debug.Log($"Current Score: {totalScore}");
         }
     }
 }

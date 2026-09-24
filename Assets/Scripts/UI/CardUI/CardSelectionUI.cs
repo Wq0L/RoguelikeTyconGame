@@ -176,7 +176,7 @@ public class CardSelectionUI : MonoBehaviour
         ResourceType chosen = resources[Random.Range(0, resources.Length)];
 
         ResourceManager.Instance.AddResource(chosen, reward);
-        Debug.Log($"Skip! {highest} → {chosen} x{reward}");
+        // Debug.Log($"Skip! {highest} → {chosen} x{reward}");
 
         // Level takas — seçimi tüket
         bool hasMore = RoundManager.Instance.OnCardSelectionComplete();

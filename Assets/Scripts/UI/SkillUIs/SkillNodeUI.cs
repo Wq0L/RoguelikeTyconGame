@@ -37,6 +37,9 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
     [SerializeField] private float spacing = 150f;
 
     private int previousLevel = 0;
+    private ResonanceBadgeGraphic skillBadge;
+    private ComicPopupPlate comicFace;
+    private int comicLayer;
 
     // Also available before Awake, for nodes initially hidden by the tree.
     public SkillNodeSO Node => node;
@@ -70,6 +73,52 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
     private void OnEnable()
     {
         ApplyGridLayout();
+        RefreshIcon();
+    }
+
+    private void RefreshIcon()
+    {
+        if (node == null || iconImage == null) return;
+        if (comicFace == null)
+        {
+            AddPlate("Comic shadow", new Color32(32,22,39,255), new Vector2(3,-4), 0);
+            AddPlate("Comic outline", new Color32(54,39,54,255), Vector2.zero, 0);
+            comicFace = AddPlate("Comic face", new Color32(255,238,197,255), Vector2.zero, 4);
+            dotFilledColor = new Color32(255,207,87,255);
+            dotEmptyColor = new Color32(103,91,112,255);
+            // Keep the existing Image as the button's hit target, not as visible artwork.
+            button.transition = Selectable.Transition.None;
+            frameImage.color = Color.clear;
+            iconImage.rectTransform.localScale = Vector3.one;
+            iconImage.rectTransform.anchorMin = Vector2.zero;
+            iconImage.rectTransform.anchorMax = Vector2.one;
+            iconImage.rectTransform.offsetMin = new Vector2(4,4);
+            iconImage.rectTransform.offsetMax = new Vector2(-4,-4);
+        }
+        // This legacy white overlay covered every icon, even purchased nodes.
+        if (lockOverlay != null) lockOverlay.SetActive(false);
+        if (skillBadge == null)
+        {
+            var go = new GameObject("Comic skill icon", typeof(RectTransform), typeof(ResonanceBadgeGraphic));
+            var rect = (RectTransform)go.transform; rect.SetParent(iconImage.transform, false);
+            rect.anchorMin = Vector2.zero; rect.anchorMax = Vector2.one; rect.offsetMin = rect.offsetMax = Vector2.zero;
+            go.layer = iconImage.gameObject.layer;
+            skillBadge = go.GetComponent<ResonanceBadgeGraphic>(); skillBadge.raycastTarget = false;
+        }
+        iconImage.enabled = false;
+        skillBadge.SetRecipe(SkillIconCatalog.For(node));
+    }
+
+    private ComicPopupPlate AddPlate(string title, Color color, Vector2 offset, float inset)
+    {
+        var go = new GameObject(title, typeof(RectTransform), typeof(ComicPopupPlate));
+        go.layer = gameObject.layer;
+        var rect = (RectTransform)go.transform; rect.SetParent(transform,false);
+        rect.anchorMin = Vector2.zero; rect.anchorMax = Vector2.one;
+        rect.offsetMin = offset + Vector2.one * inset; rect.offsetMax = offset - Vector2.one * inset;
+        rect.SetSiblingIndex(comicLayer++);
+        var plate = go.GetComponent<ComicPopupPlate>(); plate.color = color; plate.raycastTarget = false;
+        return plate;
     }
 
     private void OnValidate()
@@ -111,14 +160,13 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         gameObject.SetActive(visible);
         if (!visible) return;
 
-        if (iconImage != null && node.icon != null)
-            iconImage.sprite = node.icon;
+        RefreshIcon();
 
         int level = SkillTreeManager.Instance.GetCurrentLevel(node);
         bool isMax = SkillTreeManager.Instance.IsMaxLevel(node);
         bool canUpgrade = SkillTreeManager.Instance.CanUpgrade(node);
 
-        frameImage.color = GetFrameColor(level, isMax, canUpgrade);
+        comicFace.color = isMax ? new Color32(125,223,162,255) : canUpgrade ? new Color32(255,213,119,255) : new Color32(207,198,188,255);
         button.interactable = canUpgrade;
 
         UpdateTierDots(level);
@@ -174,7 +222,7 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
             tierDots[i].gameObject.SetActive(used);
             if (!used) continue;
 
-            tierDots[i].color = (i < level) ? dotFilledColor : dotEmptyColor;
+            tierDots[i].color = i < level ? dotFilledColor : dotEmptyColor;
         }
     }
 
@@ -222,6 +270,7 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
 
         content.SetName(node.nodeName);
         content.SetIcon(node.icon);
+        content.SetSkillIcon(SkillIconCatalog.For(node));
 
         if (isMax)
         {

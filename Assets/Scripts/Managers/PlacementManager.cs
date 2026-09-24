@@ -16,6 +16,8 @@ public class PlacementManager : MonoBehaviour
     private int refundAmount;
     private int currentRotation = 0;
     private GameObject ghostObject;
+    private ResonancePreviewUI resonancePreview;
+    private readonly List<GridObject> previewFootprint = new();
     private ResourceType selectedCostResource;
 
     private bool isSellMode = false;
@@ -44,6 +46,7 @@ public class PlacementManager : MonoBehaviour
 
     private void OnDisable()
     {
+        if (resonancePreview != null) resonancePreview.Hide();
         if (observedGameManager != null)
             observedGameManager.OnGameStateChanged -= HandleGameStateChanged;
         observedGameManager = null;
@@ -84,7 +87,7 @@ public class PlacementManager : MonoBehaviour
         if (planterData == null || !planterData.IsUnlocked) return;
         if (GameManager.Instance.CurrentState == GameStates.Placing)
         {
-            Debug.Log("Önce mevcut yerleştirmeyi iptal et.");
+            // Debug.Log("Önce mevcut yerleştirmeyi iptal et.");
             return;
         }
         
@@ -98,6 +101,7 @@ public class PlacementManager : MonoBehaviour
 
         GhostController ghost = ghostObject.GetComponent<GhostController>();
         ghost?.SetGhostMode(true);
+        resonancePreview = ghostObject.AddComponent<ResonancePreviewUI>();
 
         GameManager.Instance.StartPlacement();
     }
@@ -142,10 +146,10 @@ public class PlacementManager : MonoBehaviour
         if (ghostObject == null) return;
 
         GridObject gridObject = GetMouseGridObject();
-        if (gridObject == null) return;
+        if (gridObject == null) { resonancePreview?.Hide(); return; }
 
         GroundCell groundCell = gridObject.GetGroundCellCached();
-        if (groundCell == null) return;
+        if (groundCell == null) { resonancePreview?.Hide(); return; }
 
         GridPosition origin = groundCell.GetGridPosition();
 
@@ -156,6 +160,17 @@ public class PlacementManager : MonoBehaviour
 
         GhostController ghost = ghostObject.GetComponent<GhostController>();
         ghost?.SetColor(isValid);
+        previewFootprint.Clear();
+        if (isValid)
+            for (int x = 0; x < selectedPlanter.sizeX; x++)
+                for (int z = 0; z < selectedPlanter.sizeZ; z++)
+                {
+                    var offset = GetRotatedOffset(x, z);
+                    previewFootprint.Add(gridSystem.GetGridObject(new GridPosition(origin.x + offset.x, origin.z + offset.y)));
+                }
+        var brain = ghostObject.GetComponent<PlanterBrain>();
+        bool overUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
+        resonancePreview?.Show(previewFootprint, brain != null ? brain.Rules : ResonanceManager.DefaultRules, isValid && !overUI);
     }
 
     private bool IsPlacementValid(GridPosition origin)
@@ -170,24 +185,24 @@ public class PlacementManager : MonoBehaviour
 
                 if (gridObj == null)
                 {
-                    Debug.Log($"[VALID] {checkPos}: gridObj NULL");
+                    // Debug.Log($"[VALID] {checkPos}: gridObj NULL");
                     return false;
                 }
                 if (gridObj.HasPlanterObject())
                 {
-                    Debug.Log($"[VALID] {checkPos}: PLANTER var (temizlenmemiş!)");
+                    // Debug.Log($"[VALID] {checkPos}: PLANTER var (temizlenmemiş!)");
                     return false;
                 }
 
                 GroundCell cell = gridObj.GetGroundCellCached();
                 if (cell == null)
                 {
-                    Debug.Log($"[VALID] {checkPos}: cell NULL");
+                    // Debug.Log($"[VALID] {checkPos}: cell NULL");
                     return false;
                 }
                 if (cell.IsLocked)
                 {
-                    Debug.Log($"[VALID] {checkPos}: cell KİLİTLİ");
+                    // Debug.Log($"[VALID] {checkPos}: cell KİLİTLİ");
                     return false;
                 }
             }
@@ -210,7 +225,7 @@ public class PlacementManager : MonoBehaviour
 
         if (!IsPlacementValid(groundCell.GetGridPosition()))
         {
-            Debug.Log("Yeterli boş alan yok.");
+            // Debug.Log("Yeterli boş alan yok.");
             return;
         }
 
@@ -241,7 +256,7 @@ public class PlacementManager : MonoBehaviour
 
                 if (gridObj == null || gridObj.HasPlanterObject())
                 {
-                    Debug.Log("Yeterli boş alan yok.");
+                    // Debug.Log("Yeterli boş alan yok.");
                     return;
                 }
 
@@ -259,6 +274,7 @@ public class PlacementManager : MonoBehaviour
 
         GhostController ghost = ghostObject.GetComponent<GhostController>();
         ghost?.SetGhostMode(false);
+        if (resonancePreview != null) { resonancePreview.Hide(); Destroy(resonancePreview); resonancePreview = null; }
 
         foreach (GridObject gridObj in occupiedGrids)
         {
@@ -275,12 +291,10 @@ public class PlacementManager : MonoBehaviour
 
             }
 
-            Debug.Log($"Toplam local modifier sayısı: {planterBrain.LocalModifiers.Count}");
+            // Debug.Log($"Toplam local modifier sayısı: {planterBrain.LocalModifiers.Count}");
 
-            foreach (StatModifier mod in planterBrain.LocalModifiers)
-            {
-                Debug.Log($"  → {mod.statType} | {mod.target} | {mod.operation} | {mod.value}");
-            }
+            // foreach (StatModifier mod in planterBrain.LocalModifiers)
+            //     Debug.Log($"  → {mod.statType} | {mod.target} | {mod.operation} | {mod.value}");
         }
 
         ghostObject = null;
@@ -307,6 +321,8 @@ public class PlacementManager : MonoBehaviour
 
     private void EndPlacement()
     {
+        if (resonancePreview != null) resonancePreview.Hide();
+        resonancePreview = null;
         selectedPlanter = null;
         selectedCostResource = default;
         refundAmount = 0;

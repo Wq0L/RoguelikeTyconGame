@@ -32,7 +32,7 @@ public class UnlockManager : MonoBehaviour
         OnUnlocked?.Invoke(type);
         OnChanged?.Invoke();
 
-        Debug.Log($"[UNLOCK] {type} açıldı!");
+        // Debug.Log($"[UNLOCK] {type} açıldı!");
     }
 
     public bool IsUnlocked(UnlockType type)

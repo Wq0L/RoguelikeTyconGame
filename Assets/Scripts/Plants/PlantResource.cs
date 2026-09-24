@@ -15,6 +15,8 @@ public class PlantResource : MonoBehaviour
     private void OnDisable()
     {
         plantHealth.OnDied -= GiveReward;
+        plantData = null;
+        planterBrain = null;
     }
 
     public void Initialize(PlantSO data, PlanterBrain brain)
@@ -32,7 +34,6 @@ public class PlantResource : MonoBehaviour
 
         int reward = Mathf.RoundToInt(plantData.rewardAmount * resourceMultiplier);
         int xpAmount = Mathf.RoundToInt(plantData.xpAmount * xpMultiplier);
-        int scoreMultiplier = 1;
 
         if (planterBrain != null)
         {
@@ -40,19 +41,16 @@ public class PlantResource : MonoBehaviour
             if (dupChance > 0f && Random.value <= dupChance)
             {
                 reward *= 2;
-                xpAmount *= 2;
-                scoreMultiplier = 2;
-                Debug.Log("Duplicate! Ödül 2x");
+                // Debug.Log("Duplicate! Ödül 2x");
             }
         }
 
         ResourceManager.Instance.AddResource(plantData.resourceType, reward, transform.position);
         ProgressionManager.Instance.AddXP(xpAmount);
 
-        for (int i = 0; i < scoreMultiplier; i++)
-            HarvestScoreManager.Instance.AddScore(plantData.rarity);
+        HarvestScoreManager.Instance.AddScore(plantData.rarity, planterBrain);
 
-        Debug.Log($"Hasat: {plantData.resourceType} x{reward} | XP x{xpAmount} | Multiplier: {resourceMultiplier}");
+        // Debug.Log($"Hasat: {plantData.resourceType} x{reward} | XP x{xpAmount} | Multiplier: {resourceMultiplier}");
     }
 
     private float GetResourceMultiplier(ResourceType type)
@@ -74,8 +72,8 @@ public class PlantResource : MonoBehaviour
     private float GetXPMultiplier()
     {
         if (planterBrain != null)
-            return planterBrain.GetFinalStat(StatType.XPGainMultiplier);
+            return planterBrain.GetHarvestXP(plantHealth.KillingElectricXPMultiplier);
 
-        return StatManager.Instance.GetFinalStat(StatType.XPGainMultiplier, StatTarget.Planter);
+        return StatManager.Instance.GetFinalStat(StatType.XPGainMultiplier, StatTarget.Planter) * plantHealth.KillingElectricXPMultiplier;
     }
 }

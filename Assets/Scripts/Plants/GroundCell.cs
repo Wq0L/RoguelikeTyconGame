@@ -71,10 +71,8 @@ public class GroundCell : MonoBehaviour
         rolledModifiers = modifier == null ? new List<StatModifier>() :
             offeredModifiers != null ? new List<StatModifier>(offeredModifiers) : modifier.RollModifiers();
 
-        foreach (var mod in rolledModifiers)
-        {
-            Debug.Log($"[TILE] {mod.statType} = {mod.value} ({mod.operation})");
-        }
+        // foreach (var mod in rolledModifiers)
+        //     Debug.Log($"[TILE] {mod.statType} = {mod.value} ({mod.operation})");
 
         if (groundRenderer != null)
         {

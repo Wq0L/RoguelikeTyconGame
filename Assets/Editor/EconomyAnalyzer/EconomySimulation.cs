@@ -53,6 +53,7 @@ namespace ClickerGame.EconomyAnalysis
             Iron = Distribution(index, r => r.Income.Iron).Average,
             Stone = Distribution(index, r => r.Income.Stone).Average,
             Xp = Distribution(index, r => r.Income.Xp).Average,
+            Score = Distribution(index, r => r.Income.Score).Average,
             Harvests = Distribution(index, r => r.Income.Harvests).Average
         };
     }
@@ -180,11 +181,12 @@ namespace ClickerGame.EconomyAnalysis
                         int xp = EconomyCalculator.Xp(lane.Plant, input);
                         if (input.DuplicateChance > 0 && lane.RewardRandom.Next() <= input.DuplicateChance)
                         {
-                            reward = unchecked(reward * 2); xp = unchecked(xp * 2);
+                            reward = unchecked(reward * 2);
                         }
                         // ResourceManager ignores nonpositive resource deliveries. XP has no such guard.
                         result.Income.AddCurrency(lane.Plant.resourceType, Math.Max(0, reward));
                         result.Income.Xp += xp;
+                        result.Income.Score += EconomyCalculator.Score(lane.Plant, input);
                         result.Income.Harvests++; // Duplicate doubles rewards, not physical plant deaths.
                         lane.Plant = null;
                         lane.Timer = 0;

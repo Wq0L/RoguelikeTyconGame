@@ -106,6 +106,24 @@ public class VFXManager : MonoBehaviour
     // Pool'lar
     private VFXPool<FloatingText> textPool;
     private VFXPool<ParticleSystem> hitPool;
+    private sealed class Flash
+    {
+        public Renderer renderer;
+        public readonly MaterialPropertyBlock original = new();
+        public readonly MaterialPropertyBlock tinted = new();
+        public float remaining;
+    }
+    private readonly List<Flash> flashes = new();
+    private readonly Stack<Flash> spareFlashes = new();
+    private sealed class AttackRing
+    {
+        public LineRenderer line;
+        public float age, radius;
+        public Color color;
+    }
+    private readonly AttackRing[] rings = new AttackRing[4];
+    private Material ringMaterial;
+    private int nextRing;
     // private VFXPool<ParticleSystem> deathPool;
     // private VFXPool<ParticleSystem> explosionPool;
 
@@ -114,7 +132,9 @@ public class VFXManager : MonoBehaviour
         if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
 
-        textPool = new VFXPool<FloatingText>(floatingTextPrefab, textPoolSize, transform);
+        if (floatingTextPrefab != null)
+            textPool = new VFXPool<FloatingText>(floatingTextPrefab, textPoolSize, transform);
+        InitializeAttackRings();
         for (int i = 0; i < hitVoices.Length; i++)
         {
             var voice = new GameObject("Pooled Hit Voice " + i);
@@ -151,8 +171,41 @@ public class VFXManager : MonoBehaviour
 
     public void PlayHitFlash(Renderer renderer, Color flashColor)
     {
-        if (renderer != null)
-            StartCoroutine(FlashRoutine(renderer, flashColor));
+        if (renderer == null) return;
+        Flash flash = null;
+        for (int i = 0; i < flashes.Count; i++)
+            if (flashes[i].renderer == renderer) { flash = flashes[i]; break; }
+        if (flash == null)
+        {
+            flash = spareFlashes.Count > 0 ? spareFlashes.Pop() : new Flash();
+            flash.renderer = renderer;
+            renderer.GetPropertyBlock(flash.original);
+            renderer.GetPropertyBlock(flash.tinted);
+            flashes.Add(flash);
+        }
+        flash.remaining = flashDuration;
+        flash.tinted.SetColor(ColorId, flashColor);
+        flash.tinted.SetFloat(ToonFlashId, 1f);
+        flash.tinted.SetColor(ToonFlashColorId, flashColor);
+        renderer.SetPropertyBlock(flash.tinted);
+    }
+
+    public void CancelHitFlash(Renderer renderer)
+    {
+        for (int i = flashes.Count - 1; i >= 0; i--)
+            if (flashes[i].renderer == renderer) ReleaseFlash(i);
+    }
+
+    private void ReleaseFlash(int index)
+    {
+        var flash = flashes[index];
+        if (flash.renderer != null)
+            flash.renderer.SetPropertyBlock(flash.original.isEmpty ? null : flash.original);
+        flash.renderer = null;
+        flash.original.Clear(); flash.tinted.Clear();
+        flashes[index] = flashes[flashes.Count - 1];
+        flashes.RemoveAt(flashes.Count - 1);
+        spareFlashes.Push(flash);
     }
 
     public void ShakeCamera(float magnitude = 0.3f)
@@ -232,6 +285,7 @@ public class VFXManager : MonoBehaviour
 
     private void SpawnDamageText(Vector3 position, int damage, bool isCrit)
     {
+        if (textPool == null) return;
         FloatingText text = textPool.Get();
         text.transform.position = position + Vector3.up;
         text.Show(damage, isCrit);
@@ -278,32 +332,9 @@ public class VFXManager : MonoBehaviour
         voice.Play();
     }
 
-    private IEnumerator FlashRoutine(Renderer renderer, Color flashColor)
-    {
-        if (renderer == null) yield break;
-
-        // Her coroutine kendi local MPB'sini kullanır — paylaşım yok
-        MaterialPropertyBlock localMpb = new MaterialPropertyBlock();
-
-        renderer.GetPropertyBlock(localMpb);
-        localMpb.SetColor(ColorId, flashColor);
-        // Toon atlas materials need a separate flash overlay: a white tint alone
-        // leaves their texture colors unchanged. Other shaders ignore these IDs.
-        localMpb.SetFloat(ToonFlashId, 1f);
-        localMpb.SetColor(ToonFlashColorId, flashColor);
-        renderer.SetPropertyBlock(localMpb);
-
-        yield return new WaitForSeconds(flashDuration);
-
-        if (renderer != null)
-        {
-            localMpb.Clear();
-            renderer.SetPropertyBlock(localMpb);
-        }
-    }
-
     private IEnumerator ShakeRoutine(float magnitude)
     {
+        if (Camera.main == null) yield break;
         Transform cam = Camera.main.transform;
         Vector3 originalPos = cam.localPosition;
         float elapsed = 0f;
@@ -357,48 +388,75 @@ public class VFXManager : MonoBehaviour
     //player Attack
     public void PlayAttackRing(Vector3 center, float maxRadius, bool hasCrit = false)
     {
-        StartCoroutine(AttackRingRoutine(center, maxRadius, hasCrit));
+        var ring = rings[nextRing];
+        nextRing = (nextRing + 1) % rings.Length;
+        if (ring == null) return;
+        ring.age = 0f; ring.radius = maxRadius;
+        ring.color = hasCrit ? new Color(1f, 0.3f, 0f) : Color.yellow;
+        ring.line.transform.position = center + Vector3.up * .1f;
+        ring.line.transform.localScale = new Vector3(.3f, 1f, .3f);
+        ring.line.startWidth = ring.line.endWidth = hasCrit ? .15f : .1f;
+        ring.line.startColor = ring.color;
+        ring.line.endColor = new Color(ring.color.r, ring.color.g, ring.color.b, 0f);
+        ring.line.gameObject.SetActive(true);
         ShakeCamera(hasCrit ? 0.05f : 0.02f); // crit varsa daha güçlü shake
     }
 
-    private IEnumerator AttackRingRoutine(Vector3 center, float maxRadius, bool hasCrit)
+    private void InitializeAttackRings()
     {
-        Color ringColor = hasCrit ? new Color(1f, 0.3f, 0f) : Color.yellow;
-
-        GameObject ringObj = new GameObject("AttackRing");
-        LineRenderer ring = ringObj.AddComponent<LineRenderer>();
-
-        ring.loop = true;
-        ring.useWorldSpace = true;
-        ring.positionCount = 32;
-        ring.startWidth = hasCrit ? 0.15f : 0.1f;
-        ring.endWidth = hasCrit ? 0.15f : 0.1f;
-        ring.material = new Material(Shader.Find("Universal Render Pipeline/Unlit"));
-
-        float duration = 0.15f;
-        float elapsed = 0f;
-
-        while (elapsed < duration)
+        var shader = Shader.Find("Universal Render Pipeline/Unlit");
+        if (shader == null) return;
+        ringMaterial = new Material(shader) { name = "Shared Attack Ring (runtime)" };
+        var circle = new Vector3[32];
+        for (int i = 0; i < circle.Length; i++)
         {
-            float t = elapsed / duration;
-            float currentRadius = Mathf.Lerp(0.3f, maxRadius, t);
-
-            for (int i = 0; i < 32; i++)
-            {
-                float angle = (float)i / 32 * Mathf.PI * 2f;
-                float x = center.x + Mathf.Cos(angle) * currentRadius;
-                float z = center.z + Mathf.Sin(angle) * currentRadius;
-                ring.SetPosition(i, new Vector3(x, center.y + 0.1f, z));
-            }
-
-            float alpha = 1f - t;
-            ring.startColor = new Color(ringColor.r, ringColor.g, ringColor.b, alpha);
-            ring.endColor = new Color(ringColor.r, ringColor.g, ringColor.b, 0f);
-
-            elapsed += Time.deltaTime;
-            yield return null;
+            float angle = i * Mathf.PI * 2f / circle.Length;
+            circle[i] = new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
         }
+        for (int i = 0; i < rings.Length; i++)
+        {
+            var obj = new GameObject("Pooled AttackRing " + i);
+            obj.transform.SetParent(transform, false);
+            var line = obj.AddComponent<LineRenderer>();
+            line.sharedMaterial = ringMaterial;
+            line.loop = true; line.useWorldSpace = false;
+            line.positionCount = circle.Length; line.SetPositions(circle);
+            line.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            line.receiveShadows = false;
+            rings[i] = new AttackRing { line = line };
+            obj.SetActive(false);
+        }
+    }
 
-        Destroy(ringObj);
+    private void Update()
+    {
+        for (int i = flashes.Count - 1; i >= 0; i--)
+        {
+            var flash = flashes[i];
+            flash.remaining -= Time.deltaTime;
+            if (flash.renderer == null || flash.remaining <= 0f) ReleaseFlash(i);
+        }
+        foreach (var ring in rings)
+        {
+            if (ring == null || !ring.line.gameObject.activeSelf) continue;
+            ring.age += Time.deltaTime;
+            if (ring.age >= .15f) { ring.line.gameObject.SetActive(false); continue; }
+            float t = ring.age / .15f;
+            float radius = Mathf.Lerp(.3f, ring.radius, t);
+            ring.line.transform.localScale = new Vector3(radius, 1f, radius);
+            ring.line.startColor = new Color(ring.color.r, ring.color.g, ring.color.b, 1f - t);
+        }
+    }
+
+    private void OnDisable()
+    {
+        for (int i = flashes.Count - 1; i >= 0; i--) ReleaseFlash(i);
+        foreach (var ring in rings) if (ring?.line != null) ring.line.gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        if (ringMaterial != null) Destroy(ringMaterial);
+        if (Instance == this) Instance = null;
     }
 }

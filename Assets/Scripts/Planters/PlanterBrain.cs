@@ -20,6 +20,7 @@ public class PlanterBrain : MonoBehaviour
     private readonly HashSet<GridObject> uniqueGrids = new();
     private readonly List<ActiveResonance> previousResonances = new();
     public IReadOnlyList<ActiveResonance> ActiveResonances => activeResonances;
+    public ResonanceRulesSO Rules => resonanceRules != null ? resonanceRules : ResonanceManager.DefaultRules;
     public IReadOnlyList<GridObject> OccupiedGrids => occupiedGrids;
 
     // Cache
@@ -142,7 +143,7 @@ public class PlanterBrain : MonoBehaviour
             tileCounts.TryGetValue(type, out int count);
             tileCounts[type] = count + 1;
         }
-        ResonanceManager.Evaluate(resonanceRules != null ? resonanceRules : ResonanceManager.DefaultRules,
+        ResonanceManager.Evaluate(Rules,
             tileCounts, resonanceModifiers, activeResonances);
         localDirty = true;
         PlayNewResonances();
@@ -160,9 +161,12 @@ public class PlanterBrain : MonoBehaviour
         bounds = default;
         message = "";
         color = new Color(.4f, .85f, 1f);
+        bool hasNew = false;
+        foreach (var resonance in activeResonances)
+            hasNew |= ResonanceManager.IsNewTier(resonance, previous);
+        if (!hasNew) return false;
         foreach (var resonance in activeResonances)
         {
-            if (!ResonanceManager.IsNewTier(resonance, previous)) continue;
             if (message.Length > 0) message += "\n";
             message += resonance.resonanceName + "\n<color=#B9FFCB>" + TileBuffText.Resonance(resonance) + "</color>";
             if (resonance.tileType == TileModifierType.Damage) color = new Color(1f, .65f, .2f);
@@ -195,20 +199,37 @@ public class PlanterBrain : MonoBehaviour
         if (statCache.TryGetValue(statType, out float cached))
             return cached;
 
-        float result = StatCalculator.Calculate(
-            planterData.GetBaseStat(statType),
-            statType,
-            StatTarget.Planter,
-            StatManager.Instance.GlobalModifiers,
-            localModifiers
-        );
+        float result = GetOrdinaryStat(statType);
 
-        // Resonance multiplies the completed ordinary stat, including all existing tile rolls.
+        // Only strongest unconditional resonance per stat is in this list.
         result = StatCalculator.Calculate(result, statType, StatTarget.Planter, null, resonanceModifiers);
 
         statCache[statType] = result;
         return result;
     }
+
+    public float GetOrdinaryStat(StatType statType)
+    {
+        return StatCalculator.Calculate(
+            planterData.GetBaseStat(statType),
+            statType,
+            StatTarget.Planter,
+            StatManager.Instance != null ? StatManager.Instance.GlobalModifiers : null,
+            localModifiers
+        );
+
+    }
+
+    public float GetHarvestXP(float sourceElectricMultiplier = 1f) => GetOrdinaryStat(StatType.XPGainMultiplier) *
+        Mathf.Max(sourceElectricMultiplier, ResonanceManager.Multiplier(activeResonances, StatType.XPGainMultiplier));
+
+    public float GetHarvestScore(PlantRarity rarity) => StatCalculator.Calculate(
+        planterData.GetBaseStat(StatType.HarvestScoreMultiplier), StatType.HarvestScoreMultiplier, StatTarget.Planter,
+        StatManager.Instance != null ? StatManager.Instance.GlobalModifiers : null, localModifiers, false) *
+        ResonanceManager.Multiplier(activeResonances, StatType.HarvestScoreMultiplier, rarity);
+
+    public int GetBehaviorDamage(int baseDamage, DamageType type) => (int)System.Math.Min(int.MaxValue,
+        System.Math.Max(0, System.Math.Round(baseDamage * (double)ResonanceManager.BehaviorMultiplier(activeResonances, type))));
 
     public void RemoveSelf()
     {
@@ -291,6 +312,7 @@ public class PlanterBrain : MonoBehaviour
         );
 
         GridSystem gridSystem = GridManager.Instance.GetGridSystem();
+        damage = GetBehaviorDamage(damage, DamageType.Explosion);
         HashSet<GridObject> hitTargets = new HashSet<GridObject>();
 
         foreach (GridObject occupiedGrid in occupiedGrids)

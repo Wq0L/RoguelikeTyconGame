@@ -147,6 +147,7 @@ namespace ClickerGame.EconomyAnalysis
             Metric("Iron / round", snap.Estimate.Iron, simulation, index, r => r.Income.Iron);
             Metric("Stone / round", snap.Estimate.Stone, simulation, index, r => r.Income.Stone);
             Metric("XP / round", snap.Estimate.Xp, simulation, index, r => r.Income.Xp);
+            Metric("Harvest Score / round", snap.Estimate.Score, simulation, index, r => r.Income.Score);
             Metric("Harvest count / round", snap.EstimatedHarvests, simulation, index, r => r.Income.Harvests);
             var income = completed > 0 ? simulation.Average(index) : snap.Estimate;
             Row("Gelir / saniye (G / I / S / XP)", F(income.Gold / input.Duration), F(income.Iron / input.Duration), F(income.Stone / input.Duration), F(income.Xp / input.Duration));

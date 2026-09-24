@@ -10,7 +10,8 @@ public static class StatCalculator
         StatType statType,
         StatTarget contextTarget,
         IReadOnlyList<StatModifier> globalModifiers,
-        IReadOnlyList<StatModifier> localModifiers
+        IReadOnlyList<StatModifier> localModifiers,
+        bool includeGlobalAll = true
     )
     {
         float flatBonus = 0f;
@@ -28,7 +29,8 @@ public static class StatCalculator
             ref addPercentBonus,
             ref moreMultiplier,
             ref hasSetValue,
-            ref setValue
+            ref setValue,
+            includeGlobalAll
         );
 
         ApplyModifiers(
@@ -59,7 +61,8 @@ public static class StatCalculator
         ref float addPercentBonus,
         ref float moreMultiplier,
         ref bool hasSetValue,
-        ref float setValue
+        ref float setValue,
+        bool includeAll = true
     )
     {
         if (modifiers == null)
@@ -68,6 +71,7 @@ public static class StatCalculator
         for (int i = 0; i < modifiers.Count; i++)
         {
             StatModifier modifier = modifiers[i];
+            if (!includeAll && modifier.target == StatTarget.All) continue;
 
             if (modifier.statType != statType)
                 continue;

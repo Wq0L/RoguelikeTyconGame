@@ -77,10 +77,15 @@ public class ResonanceBurst : MonoBehaviour
         tint = color;
         scatterRight = !scatterRight;
         var camera = Camera.main;
-        textTilt = Random.Range(-8f, 8f);
+        textTilt = scatterRight ? 4f : -4f;
         textTravel = (camera != null ? camera.transform.right : Vector3.right) * (scatterRight ? .45f : -.45f)
             + (camera != null ? camera.transform.up : Vector3.up) * 1.35f;
         label.text = message;
+        int lines = message.Split('\n').Length;
+        label.enableAutoSizing = true;
+        label.fontSizeMin = 1.4f;
+        label.fontSizeMax = 3.6f;
+        label.rectTransform.sizeDelta = new Vector2(11f, Mathf.Max(4f, lines * .45f));
         label.color = Color.white;
         elapsed = 0f;
         presentationPaused = false;
