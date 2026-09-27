@@ -8,6 +8,27 @@ public class SkillTreeManager : MonoBehaviour
 
     [SerializeField] private List<SkillNodeSO> allNodes;
     public IReadOnlyList<SkillNodeSO> AllNodes => allNodes;
+#if UNITY_EDITOR
+    [Header("Editor Debug")]
+    [Tooltip("Inspector'daki ücretsiz tüm ağacı tamamlama butonunu açar. Build'e dahil edilmez.")]
+    [SerializeField] private bool enableDebugUnlockAll;
+    public bool DebugUnlockAllEnabled => enableDebugUnlockAll;
+
+    public int DebugMaxAllSkills()
+    {
+        if (!Application.isPlaying || !enableDebugUnlockAll || allNodes == null ||
+            StatManager.Instance == null || UnlockManager.Instance == null) return 0;
+        int changed = 0;
+        foreach (var node in allNodes)
+        {
+            if (node == null || node.tiers == null || node.tiers.Count == 0 || IsMaxLevel(node)) continue;
+            ApplyLevel(node, node.tiers.Count);
+            changed++;
+        }
+        if (changed > 0) OnTreeChanged?.Invoke();
+        return changed;
+    }
+#endif
 
     private Dictionary<SkillNodeSO, int> nodeLevels = new();
     private HashSet<Vector2Int> unlockedPositions = new();
@@ -79,21 +100,22 @@ public class SkillTreeManager : MonoBehaviour
         SkillNodeTier newTier = node.tiers[currentLevel];
         if (!ResourceManager.Instance.SpendResource(newTier.costType, newTier.cost)) return false;
 
-        if (currentLevel > 0)
-            StatManager.Instance.RemoveGlobalModifiers(node.tiers[currentLevel - 1].effects);
-
-
-        int newLevel = currentLevel + 1;
-        nodeLevels[node] = newLevel;
-        unlockedPositions.Add(node.gridPosition);
-
-        StatManager.Instance.AddGlobalModifiers(newTier.effects);
-
-        if (node.unlockType != UnlockType.None && newLevel == node.tiers.Count)
-            UnlockManager.Instance.Unlock(node.unlockType);
-
+        ApplyLevel(node, currentLevel + 1);
         OnTreeChanged?.Invoke();
         return true;
+    }
+
+    // Both normal purchases and the editor helper replace the previous tier.
+    private void ApplyLevel(SkillNodeSO node, int newLevel)
+    {
+        int currentLevel = GetCurrentLevel(node);
+        if (currentLevel > 0)
+            StatManager.Instance.RemoveGlobalModifiers(node.tiers[currentLevel - 1].effects);
+        nodeLevels[node] = newLevel;
+        unlockedPositions.Add(node.gridPosition);
+        StatManager.Instance.AddGlobalModifiers(node.tiers[newLevel - 1].effects);
+        if (node.unlockType != UnlockType.None && newLevel == node.tiers.Count)
+            UnlockManager.Instance.Unlock(node.unlockType);
     }
 
     public bool IsPositionUnlocked(Vector2Int position) => unlockedPositions.Contains(position);

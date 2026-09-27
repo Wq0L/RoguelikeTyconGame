@@ -21,6 +21,18 @@ public sealed class PlantPool : MonoBehaviour
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     static void ResetStatics() => scenes.Clear();
 
+    // Read existing registry only; diagnostics must not enumerate native scene objects.
+    public static void ReadTotals(out int created, out int active, out int inactive, out int returning)
+    {
+        created = active = inactive = returning = 0;
+        foreach (var pool in scenes.Values)
+        {
+            if (pool == null) continue;
+            created += pool.CreatedCount; active += pool.ActiveCount;
+            inactive += pool.InactiveCount; returning += pool.PendingCount;
+        }
+    }
+
     public static PlantPool ForScene(Scene scene)
     {
         if (scenes.TryGetValue(scene.handle, out var pool) && pool != null) return pool;

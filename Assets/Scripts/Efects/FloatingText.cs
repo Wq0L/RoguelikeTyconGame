@@ -15,6 +15,7 @@ public class FloatingText : MonoBehaviour
     private Vector3 origin, travel;
     private float progress, alpha, tilt;
     private bool leased;
+    private readonly char[] damageCharacters = new char[11];
     private static bool scatterRight;
 
     public void CopyStyleTo(TextMeshPro target)
@@ -43,13 +44,29 @@ public class FloatingText : MonoBehaviour
         animationSequence.OnComplete(ReturnToPool);
     }
 
+    // Preserve the existing random sequence when a visual-only cap drops a label.
+    public static void SkipVisual(bool isCrit)
+    {
+        Random.Range(-15f, 15f);
+        scatterRight = !scatterRight;
+        Random.Range(-0.15f, 0.15f);
+        Random.Range(0.35f, 1.05f);
+        Random.Range(0.9f, 1.8f);
+    }
+
     public void Show(int damage, bool isCrit)
     {
         Vector3 spawnPosition = transform.position;
         animationSequence.Rewind();
         cam = Camera.main != null ? Camera.main.transform : null;
         leased = true;
-        textMesh.text = damage.ToString();
+        long remaining = damage;
+        bool negative = remaining < 0;
+        if (negative) remaining = -remaining;
+        int first = damageCharacters.Length;
+        do { damageCharacters[--first] = (char)('0' + remaining % 10); remaining /= 10; } while (remaining > 0);
+        if (negative) damageCharacters[--first] = '-';
+        textMesh.SetCharArray(damageCharacters, first, damageCharacters.Length - first);
         textMesh.fontSize = isCrit ? criticalFontSize : normalFontSize;
         textMesh.color = isCrit ? criticalColor : normalColor;
         textMesh.fontStyle = FontStyles.Bold;

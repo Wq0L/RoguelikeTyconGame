@@ -50,6 +50,9 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
             HandleEscape();
+        // Opt-in performance capture; nothing exists until the first press.
+        if (Input.GetKeyDown(KeyCode.F9))
+            PerformanceTrendCapture.ToggleFromHotkey();
     }
 
     private void HandleEscape()

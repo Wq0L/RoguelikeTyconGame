@@ -94,12 +94,16 @@ public class GoldUI : MonoBehaviour
         RenderAmount(newAmount);
     }
 
+    private long lastRenderedAmount = long.MinValue;
+
     private void RenderAmount(int balance)
     {
         if (amountText == null) return;
         string tint = resourceType == ResourceType.Gold ? "FFD36A" :
             resourceType == ResourceType.Iron ? "B9DDED" : "C8C3BD";
         long displayed = System.Math.Max(0L, (long)balance - pendingAmount);
+        if (displayed == lastRenderedAmount) return;
+        lastRenderedAmount = displayed;
         amountText.text = $"<size=60%><color=#{tint}>{resourceType}</color></size>\n{displayed:N0}";
     }
 

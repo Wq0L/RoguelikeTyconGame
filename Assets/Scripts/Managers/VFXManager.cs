@@ -106,6 +106,13 @@ public class VFXManager : MonoBehaviour
     // Pool'lar
     private VFXPool<FloatingText> textPool;
     private VFXPool<ParticleSystem> hitPool;
+    // Pool bookkeeping, not a hierarchy/material census. Leased includes pending returns.
+    public int TextCreated => textPool?.CreatedCount ?? 0;
+    public int TextLeased => textPool?.LeasedCount ?? 0;
+    public int HitCreated => hitPool?.CreatedCount ?? 0;
+    public int HitLeased => hitPool?.LeasedCount ?? 0;
+    public int ExplosionCreated => explosionPool?.CreatedCount ?? 0;
+    public int ExplosionLeased => explosionPool?.LeasedCount ?? 0;
     private sealed class Flash
     {
         public Renderer renderer;
@@ -133,7 +140,7 @@ public class VFXManager : MonoBehaviour
         Instance = this;
 
         if (floatingTextPrefab != null)
-            textPool = new VFXPool<FloatingText>(floatingTextPrefab, textPoolSize, transform);
+            textPool = new VFXPool<FloatingText>(floatingTextPrefab, textPoolSize, transform, 121);
         InitializeAttackRings();
         for (int i = 0; i < hitVoices.Length; i++)
         {
@@ -147,13 +154,13 @@ public class VFXManager : MonoBehaviour
         }
 
         if (hitParticlePrefab != null)
-            hitPool = new VFXPool<ParticleSystem>(hitParticlePrefab, hitPoolSize, transform);
+            hitPool = new VFXPool<ParticleSystem>(hitParticlePrefab, hitPoolSize, transform, 121);
 
         // if (deathParticlePrefab != null)
         //     deathPool = new VFXPool<ParticleSystem>(deathParticlePrefab, deathPoolSize, transform);
 
         if (explosionVfxPrefab != null)
-            explosionPool = new VFXPool<Transform>(explosionVfxPrefab, explosionPoolSize, transform);
+            explosionPool = new VFXPool<Transform>(explosionVfxPrefab, explosionPoolSize, transform, 121);
     }
 
     // ========== DIŞ ARAYÜZ (facade) ==========
@@ -230,6 +237,7 @@ public class VFXManager : MonoBehaviour
     {
         if (explosionPool == null) return;
         Transform effect = explosionPool.Get();
+        if (effect == null) return;
         if (!explosionSystems.TryGetValue(effect, out var systems))
         {
             systems = effect.GetComponentsInChildren<ParticleSystem>(true);
@@ -248,45 +256,56 @@ public class VFXManager : MonoBehaviour
             main.prewarm = false;
             particle.Play(false);
         }
-        StartCoroutine(ExplosionRoutine(effect, systems, targetScale));
+        explosionPlayback.Add(new ExplosionPlayback { effect = effect, systems = systems, targetScale = targetScale, startedFrame = Time.frameCount });
     }
 
-    private IEnumerator ExplosionRoutine(Transform effect, ParticleSystem[] systems, float targetScale)
+    private struct ExplosionPlayback
     {
-        float elapsed = 0f;
-        float duration = Mathf.Max(explosionGrowDuration, explosionEmissionDuration);
-        bool stopped = false;
-        while (elapsed < duration)
+        public Transform effect;
+        public ParticleSystem[] systems;
+        public float elapsed, targetScale;
+        public bool stopped;
+        public int startedFrame;
+    }
+    private readonly List<ExplosionPlayback> explosionPlayback = new(121);
+    private readonly List<ParticleSystem> hitPlayback = new(121);
+    private void UpdateParticlePlayback()
+    {
+        for (int i = hitPlayback.Count - 1; i >= 0; i--)
         {
-            yield return null;
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / Mathf.Max(0.01f, explosionGrowDuration));
-            float eased = 1f - (1f - t) * (1f - t);
-            effect.localScale = Vector3.one * Mathf.Lerp(targetScale * explosionStartScaleRatio, targetScale, eased);
-            if (!stopped && elapsed >= explosionEmissionDuration)
-            {
-                foreach (var particle in systems)
-                    particle.Stop(false, ParticleSystemStopBehavior.StopEmitting);
-                stopped = true;
-            }
+            var particle = hitPlayback[i];
+            if (particle != null && particle.IsAlive(true)) continue;
+            if (particle != null) hitPool.Return(particle);
+            hitPlayback.RemoveAt(i);
         }
-        bool alive;
-        do
+        for (int i = explosionPlayback.Count - 1; i >= 0; i--)
         {
-            alive = false;
-            foreach (var particle in systems) alive |= particle.IsAlive(false);
-            if (alive) yield return null;
-        } while (alive);
-        foreach (var particle in systems)
-            particle.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
-        effect.localScale = Vector3.one;
-        explosionPool.Return(effect);
+            var entry = explosionPlayback[i];
+            if (entry.startedFrame == Time.frameCount) continue;
+            entry.elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(entry.elapsed / Mathf.Max(0.01f, explosionGrowDuration));
+            float eased = 1f - (1f - t) * (1f - t);
+            entry.effect.localScale = Vector3.one * Mathf.Lerp(entry.targetScale * explosionStartScaleRatio, entry.targetScale, eased);
+            if (!entry.stopped && entry.elapsed >= explosionEmissionDuration)
+            {
+                foreach (var particle in entry.systems) particle.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+                entry.stopped = true;
+            }
+            bool alive = entry.elapsed < Mathf.Max(explosionGrowDuration, explosionEmissionDuration);
+            foreach (var particle in entry.systems) alive |= particle.IsAlive(false);
+            if (alive) { explosionPlayback[i] = entry; continue; }
+            foreach (var particle in entry.systems) particle.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
+            entry.effect.localScale = Vector3.one;
+            explosionPool.Return(entry.effect);
+            explosionPlayback.RemoveAt(i);
+        }
     }
 
     private void SpawnDamageText(Vector3 position, int damage, bool isCrit)
     {
         if (textPool == null) return;
         FloatingText text = textPool.Get();
+        if (text == null) { FloatingText.SkipVisual(isCrit); return; }
         text.transform.position = position + Vector3.up;
         text.Show(damage, isCrit);
     }
@@ -296,6 +315,7 @@ public class VFXManager : MonoBehaviour
         if (hitPool == null) return;
 
         ParticleSystem p = hitPool.Get();
+        if (p == null) return;
         p.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         p.transform.position = position;
 
@@ -306,13 +326,7 @@ public class VFXManager : MonoBehaviour
         emission.enabled = false; // Emit exactly one burst; no duplicate prefab burst.
         p.Play();
         p.Emit(hitParticleCount * (isCrit ? 3 : 1));
-        StartCoroutine(ReturnHitParticleWhenFinished(p));
-    }
-
-    private IEnumerator ReturnHitParticleWhenFinished(ParticleSystem particle)
-    {
-        while (particle != null && particle.IsAlive(true)) yield return null;
-        if (particle != null) hitPool.Return(particle);
+        hitPlayback.Add(p);
     }
 
     private void PlayHitSound(bool isCrit)
@@ -399,7 +413,8 @@ public class VFXManager : MonoBehaviour
         ring.line.startColor = ring.color;
         ring.line.endColor = new Color(ring.color.r, ring.color.g, ring.color.b, 0f);
         ring.line.gameObject.SetActive(true);
-        ShakeCamera(hasCrit ? 0.05f : 0.02f); // crit varsa daha güçlü shake
+        // Kamera sarsıntısı kapatıldı: üst üste binen shake'ler kamerayı kaydırıyordu.
+        // ShakeCamera(hasCrit ? 0.05f : 0.02f); // crit varsa daha güçlü shake
     }
 
     private void InitializeAttackRings()
@@ -430,6 +445,7 @@ public class VFXManager : MonoBehaviour
 
     private void Update()
     {
+        UpdateParticlePlayback();
         for (int i = flashes.Count - 1; i >= 0; i--)
         {
             var flash = flashes[i];
@@ -450,6 +466,22 @@ public class VFXManager : MonoBehaviour
 
     private void OnDisable()
     {
+        foreach (var particle in hitPlayback)
+        {
+            if (particle == null) continue;
+            particle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            hitPool.Return(particle);
+        }
+        hitPlayback.Clear();
+        foreach (var entry in explosionPlayback)
+        {
+            if (entry.effect == null) continue;
+            foreach (var particle in entry.systems)
+                if (particle != null) particle.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
+            entry.effect.localScale = Vector3.one;
+            explosionPool.Return(entry.effect);
+        }
+        explosionPlayback.Clear();
         for (int i = flashes.Count - 1; i >= 0; i--) ReleaseFlash(i);
         foreach (var ring in rings) if (ring?.line != null) ring.line.gameObject.SetActive(false);
     }

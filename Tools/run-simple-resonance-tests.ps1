@@ -8,6 +8,7 @@ foreach($taskDir in @('Scripts','Plugins','LeanTween','ScriptableObjects','Art/U
  if($LASTEXITCODE -gt 7){throw "Copy failed: $taskDir"}
 }
 Copy-Item -LiteralPath "$taskRepo/Assets/Editor/SimpleResonanceVerification.cs" -Destination "$taskRoot/Assets/Editor/"
+Copy-Item -LiteralPath "$taskRepo/Assets/Editor/PerformanceTrendCapture.cs" -Destination "$taskRoot/Assets/Editor/"
 if ($Performance) {
  Copy-Item -LiteralPath "$taskRepo/Assets/Editor/PerformanceStressVerification.cs" -Destination "$taskRoot/Assets/Editor/"
  & 'C:/Users/User/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe' "$taskRepo/Tools/copy-performance-fixture.py"
@@ -21,7 +22,10 @@ foreach($taskFile in @('EconomyCalculator.cs','EconomySimulation.cs','EconomyBal
 foreach($taskFile in @('ResonanceRules.asset','ResonanceRules.asset.meta','PlantHealthScaling.asset','PlantHealthScaling.asset.meta','ComicUITheme.asset','ComicUITheme.asset.meta')) {
  Copy-Item -LiteralPath "$taskRepo/Assets/Resources/$taskFile" -Destination "$taskRoot/Assets/Resources/"
 }
-Copy-Item -LiteralPath "$taskRepo/ProjectSettings/ProjectVersion.txt" -Destination "$taskRoot/ProjectSettings/"
+if (!(Test-Path "$taskRoot/ProjectSettings/ProjectVersion.txt") -or
+    (Get-Content "$taskRepo/ProjectSettings/ProjectVersion.txt" -Raw) -ne (Get-Content "$taskRoot/ProjectSettings/ProjectVersion.txt" -Raw)) {
+ Copy-Item -LiteralPath "$taskRepo/ProjectSettings/ProjectVersion.txt" -Destination "$taskRoot/ProjectSettings/" -Force
+}
 $taskManifest=Get-Content "$taskRepo/Packages/manifest.json" -Raw | ConvertFrom-Json
 $taskDeps=[ordered]@{}
 foreach($taskDep in $taskManifest.dependencies.PSObject.Properties) {
@@ -36,10 +40,13 @@ if(-not $taskProcess.WaitForExit(600000)) {
  $taskProcess.Kill()
  throw "Isolated Unity verification timed out. Inspect Logs/$taskSuite.log."
 }
-foreach($taskFile in @('SimpleResonanceVerification.txt','PerformanceStressVerification.txt','ResonanceBadges.png','ComicPopups.png')) {
- if(Test-Path "$taskRoot/Logs/$taskFile"){Copy-Item -LiteralPath "$taskRoot/Logs/$taskFile" -Destination "$taskRepo/Logs/$taskFile"}
+$taskResultFolder=Join-Path "$taskRepo/Logs" ($taskSuite+'-'+(Get-Date -Format 'yyyyMMdd-HHmmss-fff'))
+New-Item -ItemType Directory -Path $taskResultFolder | Out-Null
+foreach($taskFile in @(($taskSuite+'.txt'),'ResonanceBadges.png','ComicPopups.png')) {
+ if(Test-Path "$taskRoot/Logs/$taskFile"){Copy-Item -LiteralPath "$taskRoot/Logs/$taskFile" -Destination (Join-Path $taskResultFolder $taskFile)}
 }
 if($taskProcess.ExitCode -ne 0){throw "Unity verification failed with exit code $($taskProcess.ExitCode)."}
-Get-Content "$taskRepo/Logs/$taskSuite.txt" -TotalCount 1
+Get-Content (Join-Path $taskResultFolder ($taskSuite+'.txt')) -TotalCount 1
+Write-Output "Results: $taskResultFolder"
 
 

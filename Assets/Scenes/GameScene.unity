@@ -3093,9 +3093,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef74a3554a295a4a8d83248bfa86173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResourceManager
-  startingGold: 80
-  useDebugStartingResources: 1
-  debugStartingResources: 80000
+  startingGold: 200000
+  useDebugStartingResources: 0
+  debugStartingResources: 200000
 --- !u!1 &286989308
 GameObject:
   m_ObjectHideFlags: 0
@@ -15685,6 +15685,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 25b1720e87b611c282b6c0e3a58e06ae, type: 2}
   - {fileID: 11400000, guid: 141cc32e8ec4b7c89a801a1200d0d3df, type: 2}
   - {fileID: 11400000, guid: a5870ec6f2e60b3ae4bff760ca658f28, type: 2}
+  enableDebugUnlockAll: 0
 --- !u!1 &1287115204
 GameObject:
   m_ObjectHideFlags: 0

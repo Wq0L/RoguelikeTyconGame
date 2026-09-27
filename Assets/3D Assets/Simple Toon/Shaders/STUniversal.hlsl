@@ -6,11 +6,28 @@
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Packing.hlsl"
 TEXTURE2D(_MainTex); SAMPLER(sampler_MainTex);
 CBUFFER_START(UnityPerMaterial)
-float4 _MainTex_ST, _Color, _BaseColor, _ShnColor, _OtlColor, _ToonFlashColor;
+float4 _MainTex_ST, _Color, _ShnColor, _OtlColor;
+#if !defined(UNITY_INSTANCING_ENABLED)
+float4 _BaseColor, _ToonFlashColor;
+float _ToonFlash;
+#endif
 float _ColIntense, _ColBright, _AmbientCol, _Segmented, _Steps;
 float _StpSmooth, _Offset, _Clipped, _MinLight, _MaxLight, _Lumin;
-float _ShnOverlap, _ShnIntense, _ShnRange, _ShnSmooth, _OtlWidth, _OtlWorldWidth, _Cull, _ToonFlash;
+float _ShnOverlap, _ShnIntense, _ShnRange, _ShnSmooth, _OtlWidth, _OtlWorldWidth, _Cull;
 CBUFFER_END
+
+// Per-renderer tile tint / hit flash can vary within one instanced draw.
+// Non-instanced variants retain UnityPerMaterial for the SRP Batcher.
+#if defined(UNITY_INSTANCING_ENABLED)
+UNITY_INSTANCING_BUFFER_START(ToonPerInstance)
+    UNITY_DEFINE_INSTANCED_PROP(float4, _BaseColor)
+    UNITY_DEFINE_INSTANCED_PROP(float4, _ToonFlashColor)
+    UNITY_DEFINE_INSTANCED_PROP(float, _ToonFlash)
+UNITY_INSTANCING_BUFFER_END(ToonPerInstance)
+#define _BaseColor UNITY_ACCESS_INSTANCED_PROP(ToonPerInstance, _BaseColor)
+#define _ToonFlashColor UNITY_ACCESS_INSTANCED_PROP(ToonPerInstance, _ToonFlashColor)
+#define _ToonFlash UNITY_ACCESS_INSTANCED_PROP(ToonPerInstance, _ToonFlash)
+#endif
 
 struct Attributes {
     float4 positionOS : POSITION;
