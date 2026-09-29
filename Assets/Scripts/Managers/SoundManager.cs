@@ -43,7 +43,8 @@ public class SoundManager : MonoBehaviour
     {
         GameObject soundGameObject = new GameObject("Sound");
         AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
-        audioSource.PlayOneShot(GetAudioClip(sound));
+        float volume = sound == Sound.BackgroundMusic ? GameSettings.MusicVolume : GameSettings.EffectsVolume;
+        audioSource.PlayOneShot(GetAudioClip(sound), volume);
     }
 
     private static bool CanPlaySound(Sound sound)

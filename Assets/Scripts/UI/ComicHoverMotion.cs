@@ -12,7 +12,11 @@ public class ComicHoverMotion : MonoBehaviour, IPointerEnterHandler, IPointerExi
     Button button;
     bool over,selected,down;
     Coroutine hoverTween;
+    public Vector3 RestScale=>restScale;
+    public Quaternion RestRotation=>restRotation;
     void Awake(){restScale=transform.localScale;restRotation=transform.localRotation;button=GetComponent<Button>();}
+    // UIPop gibi dış animasyonlar bitince hover durumunu yeniden uygular.
+    public void Refresh()=>Animate();
     void OnDisable(){if(hoverTween!=null)StopCoroutine(hoverTween);hoverTween=null;over=selected=down=false;transform.localScale=restScale;transform.localRotation=restRotation;}
     void Animate(){
         if(!isActiveAndEnabled)return;

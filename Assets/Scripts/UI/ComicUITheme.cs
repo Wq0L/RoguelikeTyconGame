@@ -21,6 +21,35 @@ public class ComicUITheme : ScriptableObject
         text.fontStyle = FontStyles.Normal;
         text.extraPadding = true;
     }
+    // Kodla kurulan paneller için: tema sprite'ı, palet materyalleri, konturlu yazı ve hover hareketi.
+    // 64px'ten alçak butonlarda StyleButton'ın yazı boşlukları etiketi gizler.
+    public Button CreateButton(Transform parent, string name, string caption, string palette, Vector2 size)
+    {
+        var go = new GameObject(name, typeof(RectTransform), typeof(Image), typeof(Button));
+        go.layer = parent.gameObject.layer;
+        var rect = (RectTransform)go.transform;
+        rect.SetParent(parent, false);
+        rect.sizeDelta = size;
+        var button = go.GetComponent<Button>();
+        button.targetGraphic = go.GetComponent<Image>();
+        button.navigation = new Navigation { mode = Navigation.Mode.None };
+        var label = new GameObject("Label", typeof(RectTransform), typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
+        label.gameObject.layer = go.layer;
+        label.rectTransform.SetParent(rect, false);
+        label.rectTransform.anchorMin = Vector2.zero;
+        label.rectTransform.anchorMax = Vector2.one;
+        label.rectTransform.offsetMin = new Vector2(16, 10);
+        label.rectTransform.offsetMax = new Vector2(-16, -8);
+        label.text = caption;
+        label.alignment = TextAlignmentOptions.Center;
+        label.enableAutoSizing = true;
+        label.fontSizeMin = 18;
+        label.fontSizeMax = 34;
+        label.raycastTarget = false;
+        StyleButton(button, palette);
+        go.AddComponent<ComicHoverMotion>().hoverScale = 1.05f;
+        return button;
+    }
     public void StyleButton(Button button, string palette = "green")
     {
         var image = button.targetGraphic as Image;

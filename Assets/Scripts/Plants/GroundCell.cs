@@ -19,6 +19,7 @@ public class GroundCell : MonoBehaviour
     private List<StatModifier> rolledModifiers = new();
     private MaterialPropertyBlock mpb;
 
+    public Renderer GroundRenderer => groundRenderer;
     public bool IsLocked => isLocked;
     public TileModifierSO CurrentModifier => currentModifier;
     public List<StatModifier> RolledModifiers => rolledModifiers;

@@ -12,11 +12,19 @@ public class RoundManager : MonoBehaviour
 
     [SerializeField] private float roundDuration = 30f;
     [SerializeField] private int maxRounds = 150;
+
+    [Header("Round End Feel")]
+    [Tooltip("Sürenin son kaç oyun-saniyesinde zaman yavaşlar. Oyun-zamanı değişmez; ekonomi etkilenmez.")]
+    [SerializeField, Min(0f)] private float endSlowdownWindow = 0.3f;
+    [Tooltip("Yavaşlamanın indiği hız. Süre bitince GameManager buradan yumuşakça 0'a indirir.")]
+    [SerializeField, Range(0.05f, 1f)] private float endSlowdownFloor = 0.45f;
     private int lastDisplayedSecond = -1;
 
     public int CurrentRound { get; private set; } = 1;
     public float RemainingTime { get; private set; }
     public bool IsRoundActive { get; private set; }
+    // 0: normal, 1: sürenin bittiği an. Kamera odaklanması bunu okur.
+    public float EndSlowdownProgress { get; private set; }
 
     private int pendingCardSelections = 0;
     private int skipUsesRemaining;
@@ -67,6 +75,7 @@ public class RoundManager : MonoBehaviour
     {
         RemainingTime -= Time.deltaTime;
         RemainingTime = Mathf.Max(RemainingTime, 0f);
+        ApplyEndSlowdown();
 
         int currentSecond = Mathf.CeilToInt(RemainingTime);
 
@@ -80,6 +89,24 @@ public class RoundManager : MonoBehaviour
         {
             EndRound();
         }
+    }
+
+    // Round aynı oyun-süresinde biter; sadece son an gerçek zamanda biraz uzar.
+    // Süre bitince GameManager timeScale'i buradan yumuşakça 0'a indirir, yeni round'da 1'e çeker.
+    private void ApplyEndSlowdown()
+    {
+        if (endSlowdownWindow <= 0f || !GameSettings.RoundEndSlowMotion)
+        {
+            EndSlowdownProgress = 0f;
+            return;
+        }
+
+        float t = 1f - Mathf.Clamp01(RemainingTime / endSlowdownWindow);
+        EndSlowdownProgress = t;
+        if (t <= 0f) return;
+
+        float eased = t * t * (3f - 2f * t);
+        Time.timeScale = Mathf.Lerp(1f, endSlowdownFloor, eased);
     }
 
     public void BeginRun()
@@ -104,6 +131,7 @@ public class RoundManager : MonoBehaviour
         CurrentRound = Mathf.Max(CurrentRound, 1);
         RemainingTime = EffectiveRoundDuration;
         IsRoundActive = true;
+        EndSlowdownProgress = 0f;
         lastDisplayedSecond = -1;
 
         skipUsesRemaining = 1 + Mathf.RoundToInt(

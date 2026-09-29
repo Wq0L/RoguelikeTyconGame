@@ -12,12 +12,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject xpUI;
     [SerializeField] private GameObject cardSelectionPanel;
     [SerializeField] private GameObject runCompletePanel;
+    [Tooltip("Altın/Demir/Taş sayaçlarının kökü. Skill ağacı açıkken panelin üstüne taşınır. Boşsa GoldUI'ların ebeveyni kullanılır.")]
+    [SerializeField] private RectTransform resourcesUI;
 
     private GameObject currentPanel;
     private GameObject lastShopPanel;
     private Coroutine resonancePresentation;
     private Button exitSellButton;
     private Button exitSkillButton;
+    private RoundPreviewUI roundPreview;
+    private Transform resourcesHome;
+    private int resourcesHomeIndex;
 
 
     private void Start()
@@ -35,6 +40,22 @@ public class UIManager : MonoBehaviour
                 (currentPanel == skillShopPanel || currentPanel == placementShopPanel))
                 GameManager.Instance.ShowRoundEnd();
         });
+        // Açılış animasyonları. Kart ve skill paneli kendi içeriğini kendisi canlandırır.
+        UIPanelTransition.Attach(roundEndUI, true);
+        UIPanelTransition.Attach(placementShopPanel, true);
+        UIPanelTransition.Attach(skillShopPanel, false);
+        UIPanelTransition.Attach(cardSelectionPanel, false);
+        UIPanelTransition.Attach(runCompletePanel, true);
+        RoundSummaryUI.Attach(roundEndUI);
+        RoundNewTilesUI.Attach(roundEndUI);
+        roundPreview = RoundPreviewUI.Attach(roundEndUI, this);
+        if (roundPreview != null) UIPanelTransition.Attach(roundPreview.gameObject, true);
+        SkillTreeSpaceBackground.Attach(skillShopPanel);
+        if (resourcesUI == null)
+        {
+            GoldUI counter = FindFirstObjectByType<GoldUI>(FindObjectsInactive.Include);
+            if (counter != null) resourcesUI = counter.transform.parent as RectTransform;
+        }
         GameManager.Instance.OnGameStateChanged += HandleStateChanged;
         // Scene loading can enter RunSetup before this component subscribes.
         HandleStateChanged(GameManager.Instance.CurrentState);
@@ -50,6 +71,8 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
             HandleEscape();
+        if (Input.GetKeyDown(KeyCode.Tab))
+            ToggleRoundPreview();
         // Opt-in performance capture; nothing exists until the first press.
         if (Input.GetKeyDown(KeyCode.F9))
             PerformanceTrendCapture.ToggleFromHotkey();
@@ -70,12 +93,18 @@ public class UIManager : MonoBehaviour
             case GameStates.Selling:
                 PlacementManager.Instance.ExitSellMode();
                 break;
+
+            case GameStates.RoundEnd:
+            case GameStates.RunSetup:
+                CloseRoundPreview();
+                break;
         }
     }
 
     private void HandleStateChanged(GameStates state)
     {
         exitSellButton.gameObject.SetActive(state == GameStates.Selling);
+        if (state == GameStates.Selling) UIPop.For(exitSellButton).Play(0.08f);
         exitSkillButton.gameObject.SetActive(false);
         CancelResonancePresentation();
         if (state == GameStates.MainMenu || state == GameStates.RunSetup || state == GameStates.RunComplete)
@@ -163,6 +192,27 @@ public class UIManager : MonoBehaviour
         OpenPanel(skillShopPanel);
     }
 
+    // Round sonu önizlemesi bir panel gibi açılır; oyun durumu RoundEnd'de kalır.
+    public void OpenRoundPreview()
+    {
+        GameStates state = GameManager.Instance.CurrentState;
+        if (roundPreview == null || (state != GameStates.RoundEnd && state != GameStates.RunSetup)) return;
+        if (currentPanel != roundEndUI) return;
+        OpenPanel(roundPreview.gameObject);
+    }
+
+    public void CloseRoundPreview()
+    {
+        if (roundPreview == null || currentPanel != roundPreview.gameObject) return;
+        ShowRoundEndUI();
+    }
+
+    private void ToggleRoundPreview()
+    {
+        if (roundPreview != null && currentPanel == roundPreview.gameObject) CloseRoundPreview();
+        else OpenRoundPreview();
+    }
+
     public void NextRound()
     {
         CloseAll();
@@ -177,10 +227,13 @@ public class UIManager : MonoBehaviour
 
         panel.SetActive(true);
         currentPanel = panel;
+        if (panel == skillShopPanel) PinResources(panel.transform);
         if (exitSkillButton != null)
         {
-            exitSkillButton.gameObject.SetActive(panel == skillShopPanel || panel == placementShopPanel);
+            bool showExit = panel == skillShopPanel || panel == placementShopPanel;
+            exitSkillButton.gameObject.SetActive(showExit);
             exitSkillButton.transform.SetAsLastSibling();
+            if (showExit) UIPop.For(exitSkillButton).Play(0.15f);
         }
     }
 
@@ -197,6 +250,7 @@ public class UIManager : MonoBehaviour
     public void CloseCurrentPanel()
     {
         if (exitSkillButton != null) exitSkillButton.gameObject.SetActive(false);
+        UnpinResources();
         if (currentPanel != null)
         {
             currentPanel.SetActive(false);
@@ -207,11 +261,33 @@ public class UIManager : MonoBehaviour
     public void CloseAll()
     {
         if (exitSkillButton != null) exitSkillButton.gameObject.SetActive(false);
+        UnpinResources();
         roundEndUI.SetActive(false);
+        if (roundPreview != null) roundPreview.gameObject.SetActive(false);
         placementShopPanel.SetActive(false);
         skillShopPanel.SetActive(false);
         cardSelectionPanel.SetActive(false); // yeni
         currentPanel = null;
+    }
+
+    // Skill ağacı tam ekran ve sayaçları örtüyor: açıkken sayaçlar panelin en üstüne taşınır, kapanınca yerine döner.
+    // Panel kapanmadan önce geri alınır; sayaçlar hiç devre dışı kalmaz, abonelikleri bozulmaz.
+    private void PinResources(Transform panel)
+    {
+        if (resourcesUI == null || resourcesUI.parent == panel) return;
+        UnpinResources();
+        resourcesHome = resourcesUI.parent;
+        resourcesHomeIndex = resourcesUI.GetSiblingIndex();
+        resourcesUI.SetParent(panel, false);
+        resourcesUI.SetAsLastSibling();
+    }
+
+    private void UnpinResources()
+    {
+        if (resourcesUI == null || resourcesHome == null) return;
+        resourcesUI.SetParent(resourcesHome, false);
+        resourcesUI.SetSiblingIndex(resourcesHomeIndex);
+        resourcesHome = null;
     }
 
     private Button CreateExitButton(string objectName, string caption)

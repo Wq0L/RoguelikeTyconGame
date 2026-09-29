@@ -22,5 +22,5 @@ MonoBehaviour:
   - statType: 23
     target: 2
     operation: 0
-    minValue: 1
-    maxValue: 1
+    minValue: 0.6
+    maxValue: 0.84

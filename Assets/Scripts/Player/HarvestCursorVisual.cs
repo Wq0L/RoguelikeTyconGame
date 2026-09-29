@@ -10,6 +10,12 @@ public sealed class HarvestCursorVisual : MonoBehaviour
     Vector3 grip;
     Quaternion flatRotation = Quaternion.identity;
     float modelLength = 1.8f;
+    // Saldırı anı: dönüş hızlanır, tırpan büyür, rüzgar izleri parlar. Crit'te turuncuya döner.
+    float pulse;
+    bool pulseCrit;
+    TrailRenderer trail;
+    static readonly Color WindStart = new Color(.3f, 1f, .9f, .6f), WindEnd = new Color(.6f, 1f, 1f, .05f);
+    static readonly Color CritStart = new Color(1f, .62f, .2f, .9f), HitStart = new Color(.85f, 1f, 1f, .85f);
     void Awake()
     {
         if (scythe != null)
@@ -51,20 +57,38 @@ public sealed class HarvestCursorVisual : MonoBehaviour
             var line = go.AddComponent<LineRenderer>(); wind[j] = line;
             line.sharedMaterial = overlayMaterial; line.positionCount = 18; line.useWorldSpace = false;
             line.startWidth = .055f; line.endWidth = .005f;
-            line.startColor = new Color(.3f, 1f, .9f, .6f); line.endColor = new Color(.6f, 1f, 1f, .05f);
+            line.startColor = WindStart; line.endColor = WindEnd;
         }
+        // İmleç hareket izi: hızlı savururken arkasında kısa bir kuyruk bırakır.
+        var trailObject = new GameObject("Cursor trail"); trailObject.transform.SetParent(transform, false);
+        trail = trailObject.AddComponent<TrailRenderer>();
+        trail.sharedMaterial = overlayMaterial; trail.time = .14f; trail.minVertexDistance = .05f;
+        trail.widthMultiplier = .22f; trail.widthCurve = AnimationCurve.Linear(0f, 1f, 1f, 0f); trail.numCapVertices = 2;
+        trail.startColor = new Color(.35f, 1f, .9f, .45f); trail.endColor = new Color(.6f, 1f, 1f, 0f);
+        trail.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; trail.receiveShadows = false;
     }
+    // Round dışında kapalı kalır; tekrar açılınca eski konumdan çizgi çekmesin.
+    void OnEnable() { if (trail != null) trail.Clear(); }
+    public void Pulse(bool crit) { pulse = 1f; pulseCrit = crit; }
     public void Show(Vector3 center, float radius)
     {
         transform.position = center + Vector3.up * .12f;
-        angle -= Time.deltaTime * 540f;
+        pulse = Mathf.Max(0f, pulse - Time.deltaTime / .18f);
+        float kick = pulse * pulse;
+        angle -= Time.deltaTime * 540f * (1f + 2.2f * kick);
         if (scythe != null)
         {
             // Resolve the imported mesh plane and grip once; keep that grip at the cursor.
-            float size = Mathf.Max(.6f, radius / modelLength);
+            float size = Mathf.Max(.6f, radius / modelLength) * (1f + .18f * kick);
             scythe.localScale = Vector3.one * size;
             scythe.localRotation = Quaternion.Euler(0, -angle, 0) * flatRotation;
             scythe.localPosition = -(scythe.localRotation * (grip * size));
+        }
+        Color start = Color.Lerp(WindStart, pulseCrit ? CritStart : HitStart, kick);
+        for (int j = 0; j < wind.Length; j++)
+        {
+            wind[j].startColor = start;
+            wind[j].startWidth = .055f * (1f + 1.6f * kick);
         }
         for (int j = 0; j < wind.Length; j++) for (int i = 0; i < 18; i++)
         {

@@ -234,9 +234,13 @@ public class PlanterBrain : MonoBehaviour
     public void RemoveSelf()
     {
         if (removed) return;
+        Vector3 refundOrigin = PlanterFeel.CenterOf(gameObject);
         CleanupPlacement();
+        // Pozisyonlu ekleme: iade altınları saksıdan kaynak sayacına uçar (GoldUI).
         if (planterData != null && ResourceManager.Instance != null)
-            ResourceManager.Instance.AddResource(planterData.costType, planterData.cost / 2);
+            ResourceManager.Instance.AddResource(planterData.costType, planterData.cost / 2, refundOrigin);
+        // Mantık yukarıda bitti; saksı küçülerek kaybolur, animasyon sonunda yok edilir.
+        if (PlanterFeel.PlaySell(gameObject)) return;
         gameObject.SetActive(false);
         Destroy(gameObject);
     }

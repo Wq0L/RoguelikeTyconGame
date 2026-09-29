@@ -11,6 +11,9 @@ public class FloatingText : MonoBehaviour
     [SerializeField] private Color normalColor = new Color(1f, 0.96f, 0.8f);
     [SerializeField] private Color criticalColor = new Color(1f, 0.65f, 0.12f);
     private Sequence animationSequence;
+    // Birleştirme vuruşu tween'siz: DOTween recycling kapalı, her birleşmede yeni tween çöp üretirdi.
+    private const float MergePunchDuration = 0.18f;
+    private float mergePunchStart = -1f;
     private Transform cam;
     private Vector3 origin, travel;
     private float progress, alpha, tilt;
@@ -54,21 +57,21 @@ public class FloatingText : MonoBehaviour
         Random.Range(0.9f, 1.8f);
     }
 
-    public void Show(int damage, bool isCrit)
+    // Her Show'da artar: havuzdan tekrar kiralanan yazı eski birleştirme kaydıyla karışmasın.
+    public int LeaseId { get; private set; }
+    public bool IsLeased => leased;
+
+    // sizeScale: 1 = normal. Ortalamaya göre büyük vuruşlar max'a kadar büyür, küçükler daha hızlı kaybolur.
+    public void Show(int damage, bool isCrit, float sizeScale = 1f)
     {
         Vector3 spawnPosition = transform.position;
         animationSequence.Rewind();
+        mergePunchStart = -1f;
         cam = Camera.main != null ? Camera.main.transform : null;
         leased = true;
-        long remaining = damage;
-        bool negative = remaining < 0;
-        if (negative) remaining = -remaining;
-        int first = damageCharacters.Length;
-        do { damageCharacters[--first] = (char)('0' + remaining % 10); remaining /= 10; } while (remaining > 0);
-        if (negative) damageCharacters[--first] = '-';
-        textMesh.SetCharArray(damageCharacters, first, damageCharacters.Length - first);
-        textMesh.fontSize = isCrit ? criticalFontSize : normalFontSize;
-        textMesh.color = isCrit ? criticalColor : normalColor;
+        LeaseId++;
+        WriteNumber(damage);
+        ApplyStyle(isCrit, sizeScale);
         textMesh.fontStyle = FontStyles.Bold;
         SetAlpha(1f);
         transform.localScale = Vector3.zero;
@@ -84,6 +87,49 @@ public class FloatingText : MonoBehaviour
         animationSequence.Restart();
     }
 
+    // Aynı hedefe kısa sürede gelen vuruşlar tek sayıda toplanır: sayı ve boyut büyür, küçük bir vuruş yapar.
+    // Random kullanmaz; RNG dizisini çağıran taraf SkipVisual ile korur.
+    public void Merge(int total, bool isCrit, float sizeScale)
+    {
+        if (!leased) return;
+        WriteNumber(total);
+        float currentAlpha = alpha;
+        ApplyStyle(isCrit, sizeScale);
+        SetAlpha(currentAlpha);
+        mergePunchStart = Time.time;
+    }
+
+    private void UpdateMergePunch()
+    {
+        if (mergePunchStart < 0f) return;
+        float t = (Time.time - mergePunchStart) / MergePunchDuration;
+        if (t >= 1f)
+        {
+            mergePunchStart = -1f;
+            textMesh.transform.localScale = Vector3.one;
+            return;
+        }
+        textMesh.transform.localScale = Vector3.one * (1f + 0.25f * Mathf.Sin(t * Mathf.PI));
+    }
+
+    private void WriteNumber(int value)
+    {
+        long remaining = value;
+        bool negative = remaining < 0;
+        if (negative) remaining = -remaining;
+        int first = damageCharacters.Length;
+        do { damageCharacters[--first] = (char)('0' + remaining % 10); remaining /= 10; } while (remaining > 0);
+        if (negative) damageCharacters[--first] = '-';
+        textMesh.SetCharArray(damageCharacters, first, damageCharacters.Length - first);
+    }
+
+    private void ApplyStyle(bool isCrit, float sizeScale)
+    {
+        textMesh.fontSize = (isCrit ? criticalFontSize : normalFontSize) * sizeScale;
+        textMesh.color = isCrit ? criticalColor : normalColor;
+        animationSequence.timeScale = Mathf.Clamp(2f - sizeScale, 0.8f, 1.3f);
+    }
+
     private void SetProgress(float value)
     {
         progress = value;
@@ -96,7 +142,11 @@ public class FloatingText : MonoBehaviour
         textMesh.alpha = value;
     }
 
-    private void LateUpdate() => FaceCamera();
+    private void LateUpdate()
+    {
+        FaceCamera();
+        UpdateMergePunch();
+    }
     private void FaceCamera()
     {
         transform.rotation = (cam != null ? cam.rotation : Quaternion.identity)
@@ -114,6 +164,11 @@ public class FloatingText : MonoBehaviour
     {
         leased = false;
         animationSequence?.Pause();
+        if (mergePunchStart >= 0f) textMesh.transform.localScale = Vector3.one;
+        mergePunchStart = -1f;
     }
-    private void OnDestroy() => animationSequence?.Kill();
+    private void OnDestroy()
+    {
+        animationSequence?.Kill();
+    }
 }

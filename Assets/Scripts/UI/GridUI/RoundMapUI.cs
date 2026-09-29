@@ -32,6 +32,8 @@ public class RoundMapUI : MonoBehaviour
         // Reuse cells between rounds, including their original tooltip components.
         while(cells.Count<width*height)cells.Add(Instantiate(cellPrefab,gridContainer));
         var grid=GridManager.Instance.GetGridSystem();
+        var progression=ProgressionManager.Instance;
+        int fresh=0;
         for(int i=0;i<cells.Count;i++){
             var cell=cells[i];cell.SetActive(i<width*height);if(i>=width*height)continue;
             int x=i%width,z=height-1-i/width;
@@ -40,7 +42,11 @@ public class RoundMapUI : MonoBehaviour
             var image=cell.GetComponent<Image>();
             if(cellSprite){image.sprite=cellSprite;image.type=Image.Type.Simple;image.pixelsPerUnitMultiplier=5;}
             image.color=ground==null||ground.IsLocked?lockedColor:ground.CurrentModifier!=null?ground.CurrentModifier.tileColor:emptyColor;
-            cell.GetComponent<TileCellUI>()?.Setup(ground);
+            var tile=cell.GetComponent<TileCellUI>();if(tile==null)continue;
+            tile.Setup(ground);
+            // Bu round'un kartları: panel açılış animasyonundan sonra sırayla parlar.
+            bool isFresh=progression!=null&&progression.WasAppliedThisRound(ground);
+            tile.SetFresh(isFresh,isFresh?.3f+fresh++*.12f:0);
         }
         if(columnHeaders&&rowHeaders&&theme&&cellSprite){
             FillHeaders(columns,columnHeaders,width,true,size,step,boardSize,rect.anchoredPosition);
@@ -63,5 +69,7 @@ public class RoundMapUI : MonoBehaviour
             r.anchoredPosition=origin+(horizontal?new Vector2(-board.x/2+size.x/2+i*step.x,board.y/2+29):new Vector2(-board.x/2-29,board.y/2-size.y/2-i*step.y));
         }
     }
-    static string ColumnName(int index){string name="";for(int n=index+1;n>0;n=(n-1)/26)name=(char)('A'+(n-1)%26)+name;return name;}
+    public static string ColumnName(int index){string name="";for(int n=index+1;n>0;n=(n-1)/26)name=(char)('A'+(n-1)%26)+name;return name;}
+    // Haritadaki başlıklarla aynı ad: A = x0, "1" = en üst satır (z en büyük). Örn. "B3".
+    public static string CellName(GridPosition position){int height=GridManager.Instance!=null?GridManager.Instance.GetHeight():position.z+1;return ColumnName(position.x)+(height-position.z);}
 }

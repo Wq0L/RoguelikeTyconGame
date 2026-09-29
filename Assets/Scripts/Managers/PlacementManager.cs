@@ -297,6 +297,7 @@ public class PlacementManager : MonoBehaviour
             //     Debug.Log($"  → {mod.statType} | {mod.target} | {mod.operation} | {mod.value}");
         }
 
+        PlanterFeel.PlayLanding(ghostObject, occupiedGrids);
         ghostObject = null;
         EndPlacement();
     }

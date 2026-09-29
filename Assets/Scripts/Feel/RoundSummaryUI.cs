@@ -1,0 +1,301 @@
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+// Round sonu özet kartı (RoundEnd panelinin sol tarafı). Round bittikten sonra ilk açılışta
+// satırlar sırayla gelir ve sayılar tık sesleriyle sayılır; shop'tan dönüşte sonuç direkt görünür.
+// Veriyi GameFeelDirector toplar. Unscaled time kullanır (RoundEnd'de timeScale 0).
+public sealed class RoundSummaryUI : MonoBehaviour
+{
+    private const float HeaderHeight = 70f;
+    private const float RowHeight = 48f;
+    private const float Width = 360f;
+    private const float FirstRowDelay = 0.3f;
+    private const float RowInterval = 0.34f;
+    private const float CountDuration = 0.28f;
+
+    private static readonly Color Ink = new Color32(54, 39, 54, 255);
+
+    private sealed class Row
+    {
+        public RectTransform root;
+        public CanvasGroup group;
+        public Image icon;
+        public TextMeshProUGUI label, value;
+        public int target, shown;
+        public bool plus;
+        public readonly char[] buffer = new char[16];
+        public float start;
+        public bool landed;
+    }
+
+    private RectTransform card;
+    private TextMeshProUGUI title;
+    private readonly List<Row> rows = new();
+    private int activeRows;
+    private int shownVersion = -1;
+    private float elapsed;
+    private bool animating;
+    private float nextTick;
+    private ComicUITheme theme;
+
+    public static RoundSummaryUI Attach(GameObject roundEndPanel)
+    {
+        if (roundEndPanel == null) return null;
+        var existing = roundEndPanel.GetComponentInChildren<RoundSummaryUI>(true);
+        if (existing != null) return existing;
+        var container = new GameObject("Round Summary", typeof(RectTransform));
+        var rect = (RectTransform)container.transform;
+        rect.SetParent(roundEndPanel.transform, false);
+        FeelOverlay.Stretch(rect);
+        return container.AddComponent<RoundSummaryUI>();
+    }
+
+    private void Awake()
+    {
+        theme = FeelOverlay.Theme;
+        BuildCard();
+    }
+
+    private void OnEnable()
+    {
+        GameFeelDirector director = GameFeelDirector.Instance;
+        RoundSummaryData data = director != null ? director.LastRound : null;
+        card.gameObject.SetActive(data != null);
+        animating = false;
+        if (data == null) return;
+
+        Fill(data);
+        bool fresh = director.SummaryVersion != shownVersion;
+        shownVersion = director.SummaryVersion;
+        if (fresh) BeginAnimation();
+        else ShowFinal();
+    }
+
+    private void Fill(RoundSummaryData data)
+    {
+        title.text = $"ROUND {data.Round} ÖZETİ";
+        activeRows = 0;
+        SetRow("Hasat", data.Harvests, false, theme != null ? theme.sproutSprite : null, new Color32(70, 130, 60, 255), true);
+        SetRow("Altın", data.Gold, true, theme != null ? theme.coinSprite : null, new Color32(196, 128, 20, 255), false);
+        SetRow("Demir", data.Iron, true, theme != null ? theme.ironSprite : null, new Color32(80, 104, 140, 255), false);
+        SetRow("Taş", data.Stone, true, theme != null ? theme.stoneSprite : null, new Color32(112, 96, 88, 255), false);
+        SetRow("Level", data.Levels, true, null, new Color32(214, 110, 40, 255), false);
+        SetRow("Skor", data.Score, true, null, new Color32(128, 64, 170, 255), true);
+        for (int i = activeRows; i < rows.Count; i++) rows[i].root.gameObject.SetActive(false);
+        card.sizeDelta = new Vector2(Width, HeaderHeight + 12f + activeRows * RowHeight + 16f);
+    }
+
+    private void SetRow(string label, int value, bool plus, Sprite icon, Color color, bool always)
+    {
+        if (!always && value <= 0) return;
+        if (activeRows == rows.Count) rows.Add(CreateRow(rows.Count));
+        Row row = rows[activeRows];
+        row.root.gameObject.SetActive(true);
+        row.root.anchoredPosition = new Vector2(20f, -(HeaderHeight + 12f + RowHeight * 0.5f) - activeRows * RowHeight);
+        row.label.text = label;
+        row.value.color = color;
+        row.icon.sprite = icon;
+        row.icon.enabled = icon != null;
+        row.label.rectTransform.anchoredPosition = new Vector2(icon != null ? 46f : 4f, 0f);
+        row.target = Mathf.Max(0, value);
+        row.plus = plus;
+        row.start = FirstRowDelay + activeRows * RowInterval;
+        activeRows++;
+    }
+
+    private void BeginAnimation()
+    {
+        elapsed = 0f;
+        nextTick = 0f;
+        animating = true;
+        card.localScale = Vector3.one * 0.85f;
+        for (int i = 0; i < activeRows; i++)
+        {
+            Row row = rows[i];
+            row.shown = 0;
+            row.landed = false;
+            row.group.alpha = 0f;
+            row.root.localScale = Vector3.one * 0.6f;
+            SetValue(row, 0);
+        }
+    }
+
+    private void ShowFinal()
+    {
+        card.localScale = Vector3.one;
+        for (int i = 0; i < activeRows; i++)
+        {
+            Row row = rows[i];
+            row.group.alpha = 1f;
+            row.root.localScale = Vector3.one;
+            row.value.rectTransform.localScale = Vector3.one;
+            SetValue(row, row.target);
+        }
+    }
+
+    private void Update()
+    {
+        if (!animating) return;
+        elapsed += Time.unscaledDeltaTime;
+        card.localScale = Vector3.one * Mathf.LerpUnclamped(0.85f, 1f, OutBack(Mathf.Clamp01(elapsed / 0.25f)));
+
+        bool allDone = true;
+        bool counting = false;
+        for (int i = 0; i < activeRows; i++)
+        {
+            Row row = rows[i];
+            float local = elapsed - row.start;
+            if (local < 0f) { allDone = false; continue; }
+
+            float appear = Mathf.Clamp01(local / 0.2f);
+            row.group.alpha = appear;
+            row.root.localScale = Vector3.one * Mathf.LerpUnclamped(0.6f, 1f, OutBack(appear));
+
+            float count = Mathf.Clamp01((local - 0.08f) / CountDuration);
+            int value = Mathf.RoundToInt(row.target * count * count * (3f - 2f * count));
+            if (value != row.shown) { SetValue(row, value); counting = true; }
+
+            if (!row.landed && count >= 1f)
+            {
+                row.landed = true;
+                bool last = i == activeRows - 1;
+                FeelAudio.Play(last ? FeelSound.Thump : FeelSound.Tick, last ? 0.55f : 0.5f, last ? 1f : 1.9f + i * 0.08f);
+            }
+            float punch = row.landed ? Mathf.Clamp01((local - 0.08f - CountDuration) / 0.2f) : 0f;
+            row.value.rectTransform.localScale = Vector3.one * (1f + 0.35f * Mathf.Sin(punch * Mathf.PI) * (1f - punch));
+            if (!row.landed || punch < 1f) allDone = false;
+        }
+
+        // Sayarken hızlı tıkırtı; her satırda perde biraz yükselir.
+        if (counting && elapsed >= nextTick)
+        {
+            nextTick = elapsed + 0.05f;
+            FeelAudio.Play(FeelSound.Tick, 0.22f, 1.2f + Mathf.Min(0.8f, elapsed * 0.3f));
+        }
+
+        if (allDone) animating = false;
+    }
+
+    // Sayarken her karede string oluşturulmaz: sayı satırın char dizisine yazılır (FloatingText gibi).
+    private static void SetValue(Row row, int value)
+    {
+        row.shown = value;
+        int start = FormatNumber(row.buffer, row.plus, value);
+        row.value.SetCharArray(row.buffer, start, row.buffer.Length - start);
+    }
+
+    // "+12.345": dizinin sonundan geriye doğru yazar, başlangıç indeksini döner.
+    // Kültür verisine bağlı değil; IL2CPP build'lerinde de aynı.
+    private static int FormatNumber(char[] buffer, bool plus, int value)
+    {
+        value = Mathf.Max(0, value);
+        int position = buffer.Length;
+        int digits = 0;
+        do
+        {
+            if (digits > 0 && digits % 3 == 0) buffer[--position] = '.';
+            buffer[--position] = (char)('0' + value % 10);
+            value /= 10;
+            digits++;
+        } while (value > 0);
+        if (plus) buffer[--position] = '+';
+        return position;
+    }
+
+    private static float OutBack(float k)
+    {
+        const float c1 = 1.7f, c3 = c1 + 1f;
+        float x = k - 1f;
+        return 1f + c3 * x * x * x + c1 * x * x;
+    }
+
+    private void BuildCard()
+    {
+        var cardObject = new GameObject("Card", typeof(RectTransform));
+        card = (RectTransform)cardObject.transform;
+        card.SetParent(transform, false);
+        card.anchorMin = card.anchorMax = new Vector2(0f, 0.5f);
+        card.pivot = new Vector2(0f, 0.5f);
+        card.anchoredPosition = new Vector2(48f, 40f);
+        card.sizeDelta = new Vector2(Width, 300f);
+
+        // Tooltip'lerle aynı çizgi roman kağıdı görünümü.
+        Plate("Ink shadow", new Color32(40, 29, 43, 220), Vector2.zero, Vector2.one, new Vector2(6f, -7f), new Vector2(6f, -7f));
+        Plate("Ink outline", Ink, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        Plate("Cream paper", new Color32(255, 242, 210, 255), Vector2.zero, Vector2.one, new Vector2(4f, 4f), new Vector2(-4f, -4f));
+        Plate("Amber header", new Color32(247, 192, 93, 255), new Vector2(0f, 1f), Vector2.one, new Vector2(7f, -HeaderHeight), new Vector2(-7f, -7f));
+
+        title = CreateText(card, "Title", 30f, TextAlignmentOptions.Center);
+        var titleRect = title.rectTransform;
+        titleRect.anchorMin = new Vector2(0f, 1f);
+        titleRect.anchorMax = Vector2.one;
+        titleRect.pivot = new Vector2(0.5f, 1f);
+        titleRect.offsetMin = new Vector2(12f, -HeaderHeight + 4f);
+        titleRect.offsetMax = new Vector2(-12f, -8f);
+    }
+
+    private void Plate(string name, Color color, Vector2 anchorMin, Vector2 anchorMax, Vector2 offsetMin, Vector2 offsetMax)
+    {
+        var plateObject = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer));
+        var rect = (RectTransform)plateObject.transform;
+        rect.SetParent(card, false);
+        rect.anchorMin = anchorMin;
+        rect.anchorMax = anchorMax;
+        rect.offsetMin = offsetMin;
+        rect.offsetMax = offsetMax;
+        var plate = plateObject.AddComponent<ComicPopupPlate>();
+        plate.color = color;
+        plate.raycastTarget = false;
+    }
+
+    private Row CreateRow(int index)
+    {
+        var rowObject = new GameObject("Row " + index, typeof(RectTransform), typeof(CanvasGroup));
+        var root = (RectTransform)rowObject.transform;
+        root.SetParent(card, false);
+        root.anchorMin = root.anchorMax = new Vector2(0f, 1f);
+        root.pivot = new Vector2(0f, 0.5f);
+        root.sizeDelta = new Vector2(Width - 40f, RowHeight - 6f);
+
+        var iconObject = new GameObject("Icon", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+        var iconRect = (RectTransform)iconObject.transform;
+        iconRect.SetParent(root, false);
+        iconRect.anchorMin = iconRect.anchorMax = new Vector2(0f, 0.5f);
+        iconRect.pivot = new Vector2(0f, 0.5f);
+        iconRect.anchoredPosition = Vector2.zero;
+        iconRect.sizeDelta = new Vector2(36f, 36f);
+        var icon = iconObject.GetComponent<Image>();
+        icon.preserveAspect = true;
+        icon.raycastTarget = false;
+
+        TextMeshProUGUI label = CreateText(root, "Label", 25f, TextAlignmentOptions.MidlineLeft);
+        label.rectTransform.anchorMin = label.rectTransform.anchorMax = new Vector2(0f, 0.5f);
+        label.rectTransform.pivot = new Vector2(0f, 0.5f);
+        label.rectTransform.sizeDelta = new Vector2(170f, RowHeight);
+
+        TextMeshProUGUI value = CreateText(root, "Value", 29f, TextAlignmentOptions.MidlineRight);
+        value.rectTransform.anchorMin = value.rectTransform.anchorMax = new Vector2(1f, 0.5f);
+        value.rectTransform.pivot = new Vector2(1f, 0.5f);
+        value.rectTransform.anchoredPosition = Vector2.zero;
+        value.rectTransform.sizeDelta = new Vector2(150f, RowHeight);
+
+        return new Row { root = root, group = rowObject.GetComponent<CanvasGroup>(), icon = icon, label = label, value = value };
+    }
+
+    private TextMeshProUGUI CreateText(RectTransform parent, string name, float size, TextAlignmentOptions alignment)
+    {
+        var textObject = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(TextMeshProUGUI));
+        var rect = (RectTransform)textObject.transform;
+        rect.SetParent(parent, false);
+        var text = textObject.GetComponent<TextMeshProUGUI>();
+        if (theme != null) theme.StylePopupText(text);
+        else text.color = Ink;
+        text.fontSize = size;
+        text.alignment = alignment;
+        text.textWrappingMode = TextWrappingModes.NoWrap;
+        text.raycastTarget = false;
+        return text;
+    }
+}

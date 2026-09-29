@@ -72,6 +72,24 @@ public class CardSelectionUI : MonoBehaviour
             skipButton.onClick.RemoveAllListeners();
             skipButton.onClick.AddListener(OnSkipPressed);
         }
+
+        DealCards();
+    }
+
+    // Kartlar sırayla, hafif dönerek masaya "dağıtılır". Pop'un ilk yarısında tıklama kapalı:
+    // arka arkaya seçimlerde yeni gelen karta yanlışlıkla basılmaz.
+    private void DealCards()
+    {
+        int dealt = 0;
+        for (int i = 0; i < cardSlots.Count; i++)
+        {
+            if (cardSlots[i] == null || !cardSlots[i].gameObject.activeInHierarchy) continue;
+            float angle = dealt % 2 == 0 ? -8f : 8f;
+            UIPop.For(cardSlots[i]).Play(0.06f + dealt * 0.08f, 0.34f, angle, lockInput: true);
+            dealt++;
+        }
+        if (skipButton != null && skipButton.gameObject.activeInHierarchy)
+            UIPop.For(skipButton).Play(0.1f + dealt * 0.08f);
     }
 
     private TileModifierSO RollCard()

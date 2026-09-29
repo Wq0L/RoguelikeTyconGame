@@ -59,11 +59,172 @@ public class VFXManager : MonoBehaviour
         }
         if (effect == null) effect = resonancePool[resonanceRecycleIndex++ % resonancePool.Count];
         effect.Play(footprint, color, message);
+        ShakeCamera(resonanceShake, 0.6f);
+        CameraFeel.PunchZoom(-0.03f);
+    }
+
+    [Header("Rarity Harvest")]
+    [Tooltip("Common, Uncommon, Rare, Epic, Legendary sırasıyla hasat patlamasının rengi.")]
+    [SerializeField] private Color[] rarityBurstColors =
+    {
+        new Color(0.92f, 0.92f, 0.86f),
+        new Color(0.42f, 0.9f, 0.36f),
+        new Color(0.3f, 0.62f, 1f),
+        new Color(0.72f, 0.42f, 1f),
+        new Color(1f, 0.74f, 0.2f)
+    };
+    [Tooltip("Aynı sırayla parçacık sayısı: nadir bitki daha gösterişli patlar.")]
+    [SerializeField] private int[] rarityBurstCounts = { 5, 8, 12, 20, 30 };
+    [Tooltip("Epic ve Legendary'de ek iri parçalar.")]
+    [SerializeField, Min(0f)] private float rarityChunkSize = 0.34f;
+    [Tooltip("Parıltı sesi (Epic+) en fazla bu sıklıkta çalar; parçacık her hasatta çıkar.")]
+    [SerializeField, Min(0f)] private float raritySoundCooldown = 0.35f;
+    private float nextRaritySoundTime;
+    private ParticleSystem burstEmitter, unscaledBurstEmitter;
+    private Material particleMaterial;
+    private readonly HashSet<ParticleSystem> coloredHitParticles = new();
+
+    // Kesilen bitkinin rarity'sine göre renkli parçacık patlaması. Hit partikülüyle aynı stil,
+    // ama tek bir özel emitter: hit havuzunu tüketmez, geç oyunda da parçacık kaybolmaz.
+    // ParticleSystem kendi rastgeleliğini kullanır; UnityEngine.Random dizisine dokunmaz.
+    public void PlayRarityHarvest(PlantRarity rarity, Vector3 position)
+    {
+        ParticleSystem emitter = GetBurstEmitter(false);
+        if (emitter != null && rarityBurstColors.Length > 0 && rarityBurstCounts.Length > 0)
+        {
+            int index = (int)rarity;
+            var emit = new ParticleSystem.EmitParams
+            {
+                position = position + Vector3.up * 0.3f,
+                applyShapeToPosition = true,
+                startColor = rarityBurstColors[Mathf.Min(index, rarityBurstColors.Length - 1)]
+            };
+            emitter.Emit(emit, rarityBurstCounts[Mathf.Min(index, rarityBurstCounts.Length - 1)]);
+            if (rarity >= PlantRarity.Epic)
+            {
+                emit.startSize = rarityChunkSize;
+                emitter.Emit(emit, rarity == PlantRarity.Legendary ? 6 : 3);
+            }
+        }
+
+        if (rarity < PlantRarity.Epic || Time.unscaledTime < nextRaritySoundTime) return;
+        nextRaritySoundTime = Time.unscaledTime + raritySoundCooldown;
+        FeelAudio.Play(FeelSound.Shimmer, rarity == PlantRarity.Legendary ? 0.3f : 0.2f,
+            rarity == PlantRarity.Legendary ? 1f : 1.25f);
+    }
+
+    [Header("Juice Bursts")]
+    [SerializeField] private Color soilColor = new Color(0.55f, 0.4f, 0.28f);
+    [SerializeField] private Color sellBurstColor = new Color(1f, 0.82f, 0.32f);
+
+    // Bitki topraktan çıkarken toprak ve rarity renginde minik parçalar.
+    public void PlaySprout(Vector3 position, PlantRarity rarity)
+    {
+        Color plantColor = RarityColor(rarity);
+        ParticleSystem emitter = GetBurstEmitter(false);
+        if (emitter == null) return;
+        EmitRing(emitter, position + Vector3.up * 0.1f, soilColor, 5, 0.15f, 1.3f, 1.6f, 0.11f, 0.4f, 0f);
+        EmitRing(emitter, position + Vector3.up * 0.15f, plantColor, 3, 0.1f, 0.9f, 2.2f, 0.09f, 0.4f, 0.5f);
+    }
+
+    // Saksı yere oturunca etrafına toz halkası. Placing'de timeScale 0: gerçek zamanlı emitter.
+    public void PlayLandingDust(Vector3 center, float radius)
+    {
+        ParticleSystem emitter = GetBurstEmitter(true);
+        if (emitter == null) return;
+        EmitRing(emitter, center + Vector3.up * 0.15f, soilColor, 16, radius, 3.2f, 1.1f, 0.16f, 0.45f, 0f);
+        EmitRing(emitter, center + Vector3.up * 0.2f, new Color(0.9f, 0.85f, 0.75f), 8, radius * 0.8f, 2.2f, 1.8f, 0.1f, 0.4f, 0.3f);
+    }
+
+    // Satılan saksı altın kıvılcımıyla "puf" diye kaybolur.
+    public void PlaySellPoof(Vector3 center, float radius)
+    {
+        ParticleSystem emitter = GetBurstEmitter(true);
+        if (emitter == null) return;
+        EmitRing(emitter, center + Vector3.up * 0.4f, sellBurstColor, 14, radius * 0.5f, 2.6f, 2.6f, 0.14f, 0.5f, 0f);
+        EmitRing(emitter, center + Vector3.up * 0.3f, soilColor, 8, radius * 0.6f, 2f, 1.2f, 0.12f, 0.4f, 0.4f);
+    }
+
+    // Deterministik halka: açılar sabit aralıklı (UnityEngine.Random kullanılmaz, RNG dizisi korunur).
+    private static void EmitRing(ParticleSystem emitter, Vector3 center, Color color, int count, float radius,
+        float speed, float up, float size, float lifetime, float phase)
+    {
+        var emit = new ParticleSystem.EmitParams
+        {
+            startColor = color,
+            startSize = size,
+            startLifetime = lifetime
+        };
+        for (int i = 0; i < count; i++)
+        {
+            float angle = (i + phase) / count * Mathf.PI * 2f;
+            var direction = new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
+            float jitter = 0.8f + 0.4f * Mathf.Repeat(i * 0.618f + phase, 1f);
+            emit.position = center + direction * radius;
+            emit.velocity = direction * speed * jitter + Vector3.up * up * (1.6f - jitter * 0.5f);
+            emitter.Emit(emit, 1);
+        }
+    }
+
+    // Hit prefab'ıyla aynı görünümde, havuzdan bağımsız ve hep canlı emitter.
+    // unscaled: duraklatılmış ekranlarda (Placing/Selling) da oynar.
+    private ParticleSystem GetBurstEmitter(bool unscaled)
+    {
+        ParticleSystem existing = unscaled ? unscaledBurstEmitter : burstEmitter;
+        if (existing != null || hitParticlePrefab == null) return existing;
+        ParticleSystem emitter = Instantiate(hitParticlePrefab, transform);
+        emitter.name = unscaled ? "Juice Burst (unscaled)" : "Juice Burst";
+        emitter.transform.localPosition = Vector3.zero;
+        emitter.transform.localRotation = Quaternion.identity;
+        emitter.transform.localScale = Vector3.one;
+        var main = emitter.main;
+        main.loop = true; // hep canlı: Emit anında çizilir, havuz yönetimi gerekmez
+        main.playOnAwake = false;
+        main.maxParticles = 600;
+        main.simulationSpace = ParticleSystemSimulationSpace.World;
+        main.stopAction = ParticleSystemStopAction.None;
+        main.useUnscaledTime = unscaled;
+        var emission = emitter.emission;
+        emission.enabled = false;
+        Material material = GetParticleMaterial();
+        if (material != null) emitter.GetComponent<ParticleSystemRenderer>().sharedMaterial = material;
+        emitter.Play();
+        if (unscaled) unscaledBurstEmitter = emitter; else burstEmitter = emitter;
+        return emitter;
+    }
+
+    // Hit prefab'ının URP/Lit malzemesi parçacık rengini yok sayar (hepsi camgöbeği çıkıyordu).
+    // Vertex color shader'ı ile kodun verdiği renk (bitki rengi, crit turuncusu, rarity) görünür.
+    private Material GetParticleMaterial()
+    {
+        if (particleMaterial != null) return particleMaterial;
+        var shader = Resources.Load<Shader>("ParticleVertexColor");
+        if (shader == null || !shader.isSupported) return null;
+        particleMaterial = new Material(shader) { name = "Juice Particles (runtime)" };
+        return particleMaterial;
     }
 
     [Header("Floating Text")]
     [SerializeField] private FloatingText floatingTextPrefab;
     [SerializeField] private int textPoolSize = 20;
+    [Tooltip("Ortalamanın üstündeki normal vuruşlar bu boyuta kadar büyür. Crit'ler kendi boyutunu aşmaz.")]
+    [SerializeField, Range(1f, 2f)] private float textScaleMax = 1.3f;
+    [SerializeField, Range(0.5f, 1f)] private float textScaleMin = 0.8f;
+    [Tooltip("Aynı hedefe bu süre içinde gelen vuruşlar tek sayıda toplanır.")]
+    [SerializeField, Min(0f)] private float textMergeWindow = 0.15f;
+    [SerializeField, Min(0f)] private float textMergeMaxAge = 0.4f;
+
+    private struct RecentText
+    {
+        public FloatingText text;
+        public int leaseId;
+        public Vector3 source;
+        public float spawnTime, lastHitTime;
+        public long total;
+        public bool crit;
+    }
+    private readonly List<RecentText> recentTexts = new(24);
+    private float textLogAverage = float.NaN;
 
     [Header("Hit Flash")]
     [SerializeField] private float flashDuration = 0.1f;
@@ -80,8 +241,10 @@ public class VFXManager : MonoBehaviour
     private int lastSoundFrame = -1;
     private bool criticalSoundPlayed;
 
-    [Header("Camera Shake")]
-    [SerializeField] private float shakeDuration = 0.01f;
+    [Header("Camera Shake (trauma 0-1, CameraFeel)")]
+    [SerializeField, Range(0f, 1f)] private float critShake = 0.22f;
+    [SerializeField, Range(0f, 1f)] private float explosionShake = 0.3f;
+    [SerializeField, Range(0f, 1f)] private float resonanceShake = 0.4f;
 
     [Header("Optimization")]
     private static readonly int ColorId = Shader.PropertyToID("_BaseColor");
@@ -171,9 +334,17 @@ public class VFXManager : MonoBehaviour
         PlayHitSound(isCrit);
     }
 
-    public void PlayHitParticle(Vector3 position, Color color, bool isCrit = false)
+    // Vuruş parçacığı bitkinin rarity renginde (aura ve hasat patlamasıyla aynı palet).
+    // Crit rengi değiştirmez, sadece 3 kat parça çıkarır: renk her zaman rarity'yi anlatır.
+    public void PlayHitParticle(Vector3 position, PlantRarity rarity, bool isCrit = false)
     {
-        SpawnHitParticle(position, isCrit ? new Color(1f, 0.65f, 0.12f) : color, isCrit);
+        SpawnHitParticle(position, RarityColor(rarity), isCrit);
+    }
+
+    public Color RarityColor(PlantRarity rarity)
+    {
+        if (rarityBurstColors == null || rarityBurstColors.Length == 0) return Color.white;
+        return rarityBurstColors[Mathf.Clamp((int)rarity, 0, rarityBurstColors.Length - 1)];
     }
 
     public void PlayHitFlash(Renderer renderer, Color flashColor)
@@ -215,10 +386,8 @@ public class VFXManager : MonoBehaviour
         spareFlashes.Push(flash);
     }
 
-    public void ShakeCamera(float magnitude = 0.3f)
-    {
-        StartCoroutine(ShakeRoutine(magnitude));
-    }
+    // trauma: 0-1 arası. cap, sık tetiklenen küçük olayların sarsıntıyı biriktirmesini engeller.
+    public void ShakeCamera(float trauma = 0.3f, float cap = 1f) => CameraFeel.Shake(trauma, cap);
 
     // public void PlayDeath(Vector3 position, Color color)
     // {
@@ -257,6 +426,8 @@ public class VFXManager : MonoBehaviour
             particle.Play(false);
         }
         explosionPlayback.Add(new ExplosionPlayback { effect = effect, systems = systems, targetScale = targetScale, startedFrame = Time.frameCount });
+        // Zincirleme patlamalarda sadece kaynak sarsar; cap birikmeyi sınırlar.
+        if (isSource) ShakeCamera(explosionShake, 0.42f);
     }
 
     private struct ExplosionPlayback
@@ -304,10 +475,60 @@ public class VFXManager : MonoBehaviour
     private void SpawnDamageText(Vector3 position, int damage, bool isCrit)
     {
         if (textPool == null) return;
+        // Kapalıyken de aynı Random çağrıları yapılır: oyunun RNG dizisi ayardan etkilenmez.
+        if (!GameSettings.DamageNumbers) { FloatingText.SkipVisual(isCrit); return; }
+        if (TryMergeText(position, damage, isCrit)) return;
         FloatingText text = textPool.Get();
         if (text == null) { FloatingText.SkipVisual(isCrit); return; }
         text.transform.position = position + Vector3.up;
-        text.Show(damage, isCrit);
+        text.Show(damage, isCrit, TextScaleFor(damage, isCrit));
+        TrackTextDamage(damage);
+        recentTexts.Add(new RecentText
+        {
+            text = text, leaseId = text.LeaseId, source = position,
+            spawnTime = Time.time, lastHitTime = Time.time, total = damage, crit = isCrit
+        });
+    }
+
+    // Aynı hedefe art arda gelen vuruşları tek, büyüyen sayıda toplar. Görsel yeni yazı açmasa da
+    // SkipVisual ile aynı Random çağrıları yapılır: oyunun RNG dizisi değişmez.
+    private bool TryMergeText(Vector3 position, int damage, bool isCrit)
+    {
+        float now = Time.time;
+        for (int i = recentTexts.Count - 1; i >= 0; i--)
+        {
+            RecentText recent = recentTexts[i];
+            bool stale = recent.text == null || !recent.text.IsLeased || recent.text.LeaseId != recent.leaseId
+                || now - recent.lastHitTime > textMergeWindow || now - recent.spawnTime > textMergeMaxAge;
+            if (stale) { recentTexts.RemoveAt(i); continue; }
+            if ((recent.source - position).sqrMagnitude > 0.01f) continue;
+
+            FloatingText.SkipVisual(isCrit);
+            recent.total = System.Math.Min(int.MaxValue, recent.total + damage);
+            recent.crit |= isCrit;
+            recent.lastHitTime = now;
+            recentTexts[i] = recent;
+            recent.text.Merge((int)recent.total, recent.crit, TextScaleFor((int)recent.total, recent.crit));
+            TrackTextDamage(damage);
+            return true;
+        }
+        return false;
+    }
+
+    // Boyut, son vuruşların (log) ortalamasına göre: ortalama = 1, büyük vuruşlar max'a kadar.
+    // Oyun ilerledikçe hasar büyüse de ölçek kendini ayarlar. Crit yazısı zaten büyük; kendi boyutunu aşmaz.
+    private float TextScaleFor(int damage, bool isCrit)
+    {
+        float log = Mathf.Log(Mathf.Max(1, damage));
+        if (float.IsNaN(textLogAverage)) textLogAverage = log;
+        float scale = Mathf.Clamp(1f + (log - textLogAverage) * 0.5f, textScaleMin, textScaleMax);
+        return isCrit ? Mathf.Min(scale, 1f) : scale;
+    }
+
+    private void TrackTextDamage(int damage)
+    {
+        float log = Mathf.Log(Mathf.Max(1, damage));
+        textLogAverage = float.IsNaN(textLogAverage) ? log : Mathf.Lerp(textLogAverage, log, 0.04f);
     }
 
     private void SpawnHitParticle(Vector3 position, Color color, bool isCrit)
@@ -316,6 +537,11 @@ public class VFXManager : MonoBehaviour
 
         ParticleSystem p = hitPool.Get();
         if (p == null) return;
+        if (coloredHitParticles.Add(p))
+        {
+            Material material = GetParticleMaterial();
+            if (material != null) p.GetComponent<ParticleSystemRenderer>().sharedMaterial = material;
+        }
         p.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         p.transform.position = position;
 
@@ -342,27 +568,8 @@ public class VFXManager : MonoBehaviour
         var voice = hitVoices[nextHitVoice++ % hitVoices.Length];
         voice.Stop();
         voice.pitch = isCrit ? Random.Range(0.72f, 0.8f) : Random.Range(1.2f, 1.35f);
-        voice.volume = isCrit ? 0.55f : 0.22f;
+        voice.volume = (isCrit ? 0.55f : 0.22f) * GameSettings.EffectsVolume;
         voice.Play();
-    }
-
-    private IEnumerator ShakeRoutine(float magnitude)
-    {
-        if (Camera.main == null) yield break;
-        Transform cam = Camera.main.transform;
-        Vector3 originalPos = cam.localPosition;
-        float elapsed = 0f;
-
-        while (elapsed < shakeDuration)
-        {
-            float x = Random.Range(-1f, 1f) * magnitude;
-            float y = Random.Range(-1f, 1f) * magnitude;
-            cam.localPosition = originalPos + new Vector3(x, y, 0);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        cam.localPosition = originalPos;
     }
 
     private IEnumerator ReturnParticleAfter(
@@ -413,8 +620,9 @@ public class VFXManager : MonoBehaviour
         ring.line.startColor = ring.color;
         ring.line.endColor = new Color(ring.color.r, ring.color.g, ring.color.b, 0f);
         ring.line.gameObject.SetActive(true);
-        // Kamera sarsıntısı kapatıldı: üst üste binen shake'ler kamerayı kaydırıyordu.
-        // ShakeCamera(hasCrit ? 0.05f : 0.02f); // crit varsa daha güçlü shake
+        // CameraFeel ofset tabanlı: üst üste binen shake'ler kamerayı artık kaydırmaz.
+        // Crit her saldırıda gelebilir; düşük cap sürekli sarsıntıyı önler.
+        if (hasCrit) ShakeCamera(critShake, 0.3f);
     }
 
     private void InitializeAttackRings()
@@ -489,6 +697,7 @@ public class VFXManager : MonoBehaviour
     private void OnDestroy()
     {
         if (ringMaterial != null) Destroy(ringMaterial);
+        if (particleMaterial != null) Destroy(particleMaterial);
         if (Instance == this) Instance = null;
     }
 }

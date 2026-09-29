@@ -49,6 +49,7 @@ public class PlantResource : MonoBehaviour
         ProgressionManager.Instance.AddXP(xpAmount);
 
         HarvestScoreManager.Instance.AddScore(plantData.rarity, planterBrain);
+        VFXManager.Instance?.PlayRarityHarvest(plantData.rarity, transform.position);
 
         // Debug.Log($"Hasat: {plantData.resourceType} x{reward} | XP x{xpAmount} | Multiplier: {resourceMultiplier}");
     }

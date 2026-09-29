@@ -92,6 +92,11 @@ public class PlantSpawner : MonoBehaviour
         plantResource?.Initialize(selectedPlant, planterBrain);
 
         plantObj.SetActive(true);
+        // Aktivasyondan sonra: PlantHealth model renderer'ını bulmuş olur, aura onunla karışmaz.
+        // Aura bitki dinlenme ölçeğindeyken kurulur; ardından topraktan esneyerek fırlama.
+        PlantRarityAura.Apply(plantObj.transform, selectedPlant.rarity);
+        PlantJuice.Attach(plantObj).PlaySpawn();
+        VFXManager.Instance?.PlaySprout(plantObj.transform.position, selectedPlant.rarity);
         // Reward and grid callbacks subscribe in OnEnable, as before pooling.
         if (plantHealth != null) plantHealth.OnDied += OnPlantDied;
 

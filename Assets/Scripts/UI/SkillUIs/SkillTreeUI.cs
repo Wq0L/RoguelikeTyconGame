@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -24,6 +25,12 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
     [SerializeField] private Color availableConnectionColor = Color.white;
     [SerializeField] private Color openedConnectionColor = new Color(1f, 1f, 1f, 0.55f);
 
+    [Header("Open Ripple")]
+    [SerializeField, Min(0.01f)] private float rippleDuration = 0.3f;
+    [Tooltip("Merkezden en uzak node'un gecikmesi (sn).")]
+    [SerializeField, Min(0f)] private float rippleSpread = 0.35f;
+    [SerializeField, Min(1f)] private float rippleRange = 1400f;
+
     private sealed class Connection
     {
         public SkillNodeUI a, b;
@@ -46,6 +53,10 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private SkillTreeManager treeManager;
     private ResourceManager resources;
 
+    // Arka plan paralaksı için (SkillTreeSpaceBackground).
+    public Vector2 PanPosition => content != null ? content.anchoredPosition : Vector2.zero;
+    public float Zoom => zoom;
+
     private void Awake()
     {
         CreateNavigation();
@@ -55,6 +66,22 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
     {
         dragging = false;
         TrySubscribe();
+        PlayOpenRipple();
+    }
+
+    // Panel açılınca node'lar merkezden dışa doğru dalga halinde belirir.
+    // SkillNodeUI.OnDisable tween'leri öldürüp ölçeği sıfırladığı için yarıda kapanması güvenli.
+    private void PlayOpenRipple()
+    {
+        foreach (SkillNodeUI nodeUI in nodeUIs)
+        {
+            if (nodeUI == null || !nodeUI.gameObject.activeInHierarchy) continue;
+            Transform node = nodeUI.transform;
+            float delay = Mathf.Clamp01(nodeUI.LayoutPosition.magnitude / rippleRange) * rippleSpread;
+            node.DOKill();
+            node.localScale = Vector3.one * 0.3f;
+            node.DOScale(1f, rippleDuration).SetDelay(delay).SetEase(Ease.OutBack, 1.8f).SetUpdate(true);
+        }
     }
 
     private void Start() => TrySubscribe();

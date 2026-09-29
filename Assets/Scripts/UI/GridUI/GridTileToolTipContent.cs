@@ -15,8 +15,20 @@ public class GridTileToolTipContent : MonoBehaviour
     public void SetCell(GroundCell cell)
     {
         var view = ComicPopupView.Attach(gameObject); view.IsHoverTooltip = true;
-        view.Begin(cell.CurrentModifier.modifierName, cell.CurrentModifier.rarity.ToString());
-        view.Add("<b>BU TILE</b>"); view.Add(TileBuffText.Modifiers(cell.RolledModifiers));
+        Fill(view, cell);
+    }
+
+    // Haritadaki tooltip ve round önizlemesi aynı içeriği gösterir: tile'ın buff'ları + üstündeki saksının rezonansları.
+    public static void Fill(ComicPopupView view, GroundCell cell, string coordinate = null)
+    {
+        var modifier = cell.CurrentModifier;
+        bool fresh = ProgressionManager.Instance != null && ProgressionManager.Instance.WasAppliedThisRound(cell);
+        string caption = modifier != null ? modifier.rarity.ToString() : "";
+        if (!string.IsNullOrEmpty(coordinate)) caption = caption.Length > 0 ? coordinate + " · " + caption : coordinate;
+        if (fresh) caption += " · YENİ";
+        view.Begin(modifier != null ? modifier.modifierName : "Boş tile", caption);
+        if (fresh) view.Add("<b>Bu round'un kartı buraya geldi.</b>");
+        if (modifier != null) { view.Add("<b>BU TILE</b>"); view.Add(TileBuffText.Modifiers(cell.RolledModifiers)); }
         if (cell.Planter != null && cell.Planter.ActiveResonances.Count > 0)
         {
             view.Add("<b>SAKSININ REZONANSLARI</b>");

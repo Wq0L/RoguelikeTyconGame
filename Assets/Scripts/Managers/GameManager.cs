@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -6,6 +7,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public GameStates CurrentState { get; private set; }
     public event Action<GameStates> OnGameStateChanged;
+
+    [Tooltip("Round bitince dünya bir anda donmaz; bu sürede (gerçek zaman) yavaşlayarak durur.")]
+    [SerializeField, Min(0f)] private float roundEndStopDuration = 0.9f;
+    private Coroutine timeStop;
 
     private void Awake()
     {
@@ -26,8 +31,11 @@ public class GameManager : MonoBehaviour
     {
         if (CurrentState == newState) return;
 
+        GameStates previous = CurrentState;
+        float previousTimeScale = Time.timeScale;
         CurrentState = newState;
         HandleStateEnter(newState);
+        SoftenRoundEnd(previous, newState, previousTimeScale);
         OnGameStateChanged?.Invoke(CurrentState);
 
         // Debug.Log($"GameManager: State changed to {CurrentState}");
@@ -87,6 +95,31 @@ public class GameManager : MonoBehaviour
                 EnterRound();
                 break;
         }
+    }
+
+    // Round'dan duraklatılan bir ekrana geçerken zaman anında 0 olmaz: parçacıklar, yazılar ve bitkiler
+    // yavaşlayarak durur. Round bittiği için hasar kaynağı yok (oyuncu pasif, davranışlar temizlendi);
+    // ekonomi etkilenmez. Başka bir state'e geçilirse yarıda kesilir.
+    private void SoftenRoundEnd(GameStates previous, GameStates state, float fromScale)
+    {
+        if (timeStop != null) { StopCoroutine(timeStop); timeStop = null; }
+        bool roundEnded = previous == GameStates.Round &&
+            (state == GameStates.RoundEnd || state == GameStates.CardSelection || state == GameStates.RunComplete);
+        if (!roundEnded || roundEndStopDuration <= 0f || fromScale <= 0f) return;
+        Time.timeScale = fromScale;
+        timeStop = StartCoroutine(EaseTimeToStop(fromScale));
+    }
+
+    private IEnumerator EaseTimeToStop(float fromScale)
+    {
+        for (float t = 0f; t < roundEndStopDuration; t += Time.unscaledDeltaTime)
+        {
+            float remaining = 1f - t / roundEndStopDuration;
+            Time.timeScale = fromScale * remaining * remaining;
+            yield return null;
+        }
+        Time.timeScale = 0f;
+        timeStop = null;
     }
 
     private void EnterMainMenu() => Time.timeScale = 0f;

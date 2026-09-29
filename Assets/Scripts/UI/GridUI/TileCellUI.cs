@@ -5,10 +5,23 @@ public class TileCellUI : MonoBehaviour, ITooltipProvider
     [SerializeField] private GameObject tooltipPrefab;
 
     private GroundCell groundCell;
+    private FreshTileRing freshRing;
 
     public void Setup(GroundCell cell)
     {
         groundCell = cell;
+    }
+
+    // Bu round'un kart seçimi bu tile'a düştüyse parlar. Hücre round'lar arasında tekrar kullanılır.
+    public void SetFresh(bool fresh, float delay)
+    {
+        if (!fresh)
+        {
+            if (freshRing != null) freshRing.gameObject.SetActive(false);
+            return;
+        }
+        if (freshRing == null) freshRing = FreshTileRing.Create(transform);
+        freshRing.Show(delay);
     }
 
     public bool ShouldShowTooltip()

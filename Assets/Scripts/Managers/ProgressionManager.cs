@@ -13,6 +13,12 @@ public class ProgressionManager : MonoBehaviour
     public event Action<int> OnLevelUp;
     public event Action OnXPChanged;
 
+    // Son round'un kart seçimlerinin düştüğü tile'lar. Harita, önizleme ve dünyadaki çerçeveler
+    // "bu round'un kartı nereye gitti" diye buradan okur. Yeni round başlayınca temizlenir.
+    private readonly List<GroundCell> roundAppliedCells = new List<GroundCell>();
+    public IReadOnlyList<GroundCell> RoundAppliedCells => roundAppliedCells;
+    public bool WasAppliedThisRound(GroundCell cell) => cell != null && roundAppliedCells.Contains(cell);
+
     public int CurrentLevel { get; private set; } = 1;
     public float CurrentXP { get; private set; } = 0f;
     public float XPToNextLevel { get; private set; }
@@ -32,13 +38,19 @@ public class ProgressionManager : MonoBehaviour
     {
         
         RoundManager.Instance.OnRoundEnded += HandleRoundEnded;
+        RoundManager.Instance.OnRoundChanged += HandleRoundStarted;
     }
 
     private void OnDestroy()
     {
         if (RoundManager.Instance != null)
+        {
             RoundManager.Instance.OnRoundEnded -= HandleRoundEnded;
+            RoundManager.Instance.OnRoundChanged -= HandleRoundStarted;
+        }
     }
+
+    private void HandleRoundStarted(int round) => roundAppliedCells.Clear();
 
 
     public void AddXP(float amount)
@@ -82,6 +94,7 @@ public class ProgressionManager : MonoBehaviour
 
         GroundCell selectedCell = eligibleCells[UnityEngine.Random.Range(0, eligibleCells.Count)];
         selectedCell.ApplyModifier(modifier, offeredModifiers);
+        roundAppliedCells.Add(selectedCell);
 
         // Debug.Log($"Kart uygulandı: {modifier.modifierName} → {selectedCell.GetGridPosition()}");
         return true;

@@ -4,6 +4,8 @@ using UnityEngine;
 public class PlantHealth : MonoBehaviour, IDamageable
 {
     public event Action OnDied;
+    // Görsel tepkiler için (PlantJuice squash). Parametre: crit mi.
+    public event Action<bool> OnDamaged;
 
     private int maxHealth;
     private int currentHealth;
@@ -54,7 +56,8 @@ public class PlantHealth : MonoBehaviour, IDamageable
         VFXManager.Instance?.PlayHitFlash(plantRenderer, plantData.hitFlashColor);
 
         // Hit particle
-        VFXManager.Instance?.PlayHitParticle(transform.position, plantData.hitFlashColor, isCrit);
+        VFXManager.Instance?.PlayHitParticle(transform.position, plantData.rarity, isCrit);
+        OnDamaged?.Invoke(isCrit);
 
         if (currentHealth <= 0)
         {
