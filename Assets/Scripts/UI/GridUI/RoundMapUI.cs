@@ -46,7 +46,7 @@ public class RoundMapUI : MonoBehaviour
             tile.Setup(ground);
             // Bu round'un kartları: panel açılış animasyonundan sonra sırayla parlar.
             bool isFresh=progression!=null&&progression.WasAppliedThisRound(ground);
-            tile.SetFresh(isFresh,isFresh?.3f+fresh++*.12f:0);
+            tile.SetFresh(isFresh,isFresh?.3f+fresh++*.12f:0,FreshTileRing.LabelFor(ground));
         }
         if(columnHeaders&&rowHeaders&&theme&&cellSprite){
             FillHeaders(columns,columnHeaders,width,true,size,step,boardSize,rect.anchoredPosition);

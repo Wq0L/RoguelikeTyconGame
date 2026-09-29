@@ -344,6 +344,9 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
     private static string FormatStat(StatType stat, float value) => stat switch
     {
         StatType.GridUnlockSize => $"{value:0}×{value:0}",
+        // 60 sn'nin üstü round'u uzatmaz, saldırı ve üretim hızına dönüşür.
+        StatType.RoundDuration when value > RoundManager.RoundSecondsCap =>
+            $"{RoundManager.RoundSecondsCap:0} sn · +%{(Mathf.Min(value, 90f) / RoundManager.RoundSecondsCap - 1f) * 100f:0} hız",
         StatType.RoundDuration or StatType.AttackSpeed or StatType.PlantSpawnRate => $"{value:0.###} sn",
         StatType.CritChance => $"%{value * 100f:0.##}",
         StatType.CritMultiplier => $"×{value:0.###}",

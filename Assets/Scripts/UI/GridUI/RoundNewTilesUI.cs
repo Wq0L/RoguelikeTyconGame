@@ -63,7 +63,7 @@ public sealed class RoundNewTilesUI : MonoBehaviour
         animating = false;
         if (count == 0) return;
 
-        title.text = count == 1 ? "YENİ TILE" : $"YENİ TILE'LAR ({count})";
+        title.text = count == 1 ? "BU ROUND'UN KARTI" : $"BU ROUND'UN KARTLARI ({count})";
         activeRows = 0;
         int shown = count > MaxRows ? MaxRows - 1 : count;
         for (int i = 0; i < shown; i++) SetRow(cells[i]);
@@ -84,8 +84,11 @@ public sealed class RoundNewTilesUI : MonoBehaviour
         row.swatch.color = modifier != null ? modifier.tileColor : Color.white;
         row.coordinate.text = cell != null ? RoundMapUI.CellName(cell.GetGridPosition()) : "?";
         row.label.rectTransform.offsetMin = new Vector2(66f, 0f);
+        // Seviye atlayan tile: "+SV · Sv 2"; yeni tile: nadirlik.
+        bool upgraded = ProgressionManager.Instance != null && ProgressionManager.Instance.WasUpgradedThisRound(cell);
+        string detail = modifier == null ? "" : upgraded ? $"+SV · Sv {cell.Level}" : modifier.rarity.ToString().ToUpperInvariant() + (cell.Level > 0 ? $" · Sv {cell.Level}" : "");
         row.label.text = modifier == null ? "?" :
-            $"{modifier.modifierName}\n<size=72%><color=#{ColorUtility.ToHtmlStringRGB(RarityColor(modifier.rarity))}>{modifier.rarity.ToString().ToUpperInvariant()}</color></size>";
+            $"{modifier.modifierName}\n<size=72%><color=#{ColorUtility.ToHtmlStringRGB(RarityColor(modifier.rarity))}>{detail}</color></size>";
     }
 
     private void SetMoreRow(int remaining)
@@ -160,6 +163,9 @@ public sealed class RoundNewTilesUI : MonoBehaviour
         Plate(card, "Yellow header", FreshTileRing.GlowColor, new Vector2(0f, 1f), Vector2.one, new Vector2(7f, -HeaderHeight), new Vector2(-7f, -7f));
 
         title = CreateText(card, "Title", 28f, TextAlignmentOptions.Center);
+        title.enableAutoSizing = true;
+        title.fontSizeMin = 18f;
+        title.fontSizeMax = 28f;
         title.rectTransform.anchorMin = new Vector2(0f, 1f);
         title.rectTransform.anchorMax = Vector2.one;
         title.rectTransform.pivot = new Vector2(0.5f, 1f);

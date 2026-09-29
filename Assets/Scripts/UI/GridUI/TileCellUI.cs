@@ -13,7 +13,7 @@ public class TileCellUI : MonoBehaviour, ITooltipProvider
     }
 
     // Bu round'un kart seçimi bu tile'a düştüyse parlar. Hücre round'lar arasında tekrar kullanılır.
-    public void SetFresh(bool fresh, float delay)
+    public void SetFresh(bool fresh, float delay, string label = "YENİ")
     {
         if (!fresh)
         {
@@ -21,7 +21,7 @@ public class TileCellUI : MonoBehaviour, ITooltipProvider
             return;
         }
         if (freshRing == null) freshRing = FreshTileRing.Create(transform);
-        freshRing.Show(delay);
+        freshRing.Show(delay, label);
     }
 
     public bool ShouldShowTooltip()

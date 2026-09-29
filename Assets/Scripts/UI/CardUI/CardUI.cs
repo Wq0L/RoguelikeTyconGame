@@ -28,24 +28,48 @@ public class CardUI : MonoBehaviour
     {
         currentOffer = offer;
         TileModifierSO mod = offer.Tile;
-        if(tilePreview)tilePreview.color=new Color(mod.tileColor.r,mod.tileColor.g,mod.tileColor.b,1);
+        TileRarity rarityType = offer.Rarity;
+        Color tint = mod != null ? mod.tileColor : new Color(1f, .82f, .32f);
+        if(tilePreview)tilePreview.color=new Color(tint.r,tint.g,tint.b,1);
         onSelected = callback;
-        nameText.text = mod.modifierName;
-        rarityText.text = mod.rarity.ToString().ToUpperInvariant();
         EnsureBuffText();
-        buffText.text = offer.Modifiers.Count == 1 ? TileBuffText.Amount(offer.Modifiers[0]) : TileBuffText.Modifiers(offer.Modifiers);
-        if(effectNameText) effectNameText.text=offer.Modifiers.Count>0?TileBuffText.Name(offer.Modifiers[0].statType):"Özel etki";
-        int rarity=(int)mod.rarity;
+        string rarityName = rarityType.ToString().ToUpperInvariant();
+        if (offer.IsUpgrade)
+        {
+            // Grid dolu: kart, üç rastgele adaydan birini seviye atlatır.
+            GroundCell cell = offer.UpgradeTarget;
+            nameText.text = mod.modifierName;
+            rarityText.text = $"+{offer.LevelGain} SEVİYE · {rarityName}";
+            buffText.text = $"Sv {cell.Level} → Sv {cell.Level + offer.LevelGain}\n" +
+                (offer.Modifiers.Count == 1 ? TileBuffText.Amount(offer.Modifiers[0]) : TileBuffText.Modifiers(offer.Modifiers));
+            if(effectNameText) effectNameText.text=$"{RoundMapUI.CellName(cell.GetGridPosition())} · " + (offer.Modifiers.Count>0?TileBuffText.Name(offer.Modifiers[0].statType):"Özel etki");
+        }
+        else if (offer.IsBaseStat)
+        {
+            // Yükseltilecek tile kalmadı: kalıcı temel güç.
+            nameText.text = "Temel güç";
+            rarityText.text = rarityName;
+            buffText.text = TileBuffText.Modifiers(offer.Modifiers);
+            if(effectNameText) effectNameText.text=offer.BaseStatName;
+        }
+        else
+        {
+            nameText.text = mod.modifierName;
+            rarityText.text = rarityName;
+            buffText.text = offer.Modifiers.Count == 1 ? TileBuffText.Amount(offer.Modifiers[0]) : TileBuffText.Modifiers(offer.Modifiers);
+            if(effectNameText) effectNameText.text=offer.Modifiers.Count>0?TileBuffText.Name(offer.Modifiers[0].statType):"Özel etki";
+        }
+        int rarity=(int)rarityType;
         if(rarityMaterials!=null && rarity<rarityMaterials.Length)cardImage.material=rarityMaterials[rarity];
-        if(sparkles)sparkles.SetRarity(mod.rarity);
-        cardImage.sprite = mod.rarity switch
+        if(sparkles)sparkles.SetRarity(rarityType);
+        cardImage.sprite = rarityType switch
         {
             TileRarity.Rare => rarePlate,
             TileRarity.Epic => epicPlate,
             TileRarity.Legendary => legendaryPlate,
             _ => commonPlate
         };
-        rarityText.color = mod.rarity switch
+        rarityText.color = rarityType switch
         {
             TileRarity.Rare => new Color32(112, 225, 240, 255),
             TileRarity.Epic => new Color32(208, 167, 255, 255),

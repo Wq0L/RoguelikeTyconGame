@@ -16,8 +16,11 @@ public class ProgressionManager : MonoBehaviour
     // Son round'un kart seçimlerinin düştüğü tile'lar. Harita, önizleme ve dünyadaki çerçeveler
     // "bu round'un kartı nereye gitti" diye buradan okur. Yeni round başlayınca temizlenir.
     private readonly List<GroundCell> roundAppliedCells = new List<GroundCell>();
+    private readonly HashSet<GroundCell> roundUpgradedCells = new HashSet<GroundCell>();
     public IReadOnlyList<GroundCell> RoundAppliedCells => roundAppliedCells;
     public bool WasAppliedThisRound(GroundCell cell) => cell != null && roundAppliedCells.Contains(cell);
+    // Yeni yerleşen değil, seviye atlayan tile (etiket "+SV").
+    public bool WasUpgradedThisRound(GroundCell cell) => cell != null && roundUpgradedCells.Contains(cell);
 
     public int CurrentLevel { get; private set; } = 1;
     public float CurrentXP { get; private set; } = 0f;
@@ -50,7 +53,53 @@ public class ProgressionManager : MonoBehaviour
         }
     }
 
-    private void HandleRoundStarted(int round) => roundAppliedCells.Clear();
+    private void HandleRoundStarted(int round)
+    {
+        roundAppliedCells.Clear();
+        roundUpgradedCells.Clear();
+    }
+
+    // Kart ekranı buna göre açılır: açık ve boş hücre yoksa kartlar yeni tile yerine yükseltme verir.
+    public bool HasEligibleCell() => GetEligibleCells().Count > 0;
+
+    // Yükseltme adayları: önce saksıların altındaki tile'lar (boş toprağı yükseltmek işe yaramaz), sonra diğerleri.
+    // Yer yine şans: oyuncu adayları seçmez, sadece gelen üç aday arasından seçer.
+    public List<GroundCell> GetUpgradeCandidates(int count)
+    {
+        var underPlanters = new List<GroundCell>();
+        var others = new List<GroundCell>();
+        GridSystem gridSystem = gridManager.GetGridSystem();
+        for (int x = 0; x < gridManager.GetWidth(); x++)
+        for (int z = 0; z < gridManager.GetHeight(); z++)
+        {
+            GroundCell cell = gridSystem.GetGridObject(new GridPosition(x, z))?.GetGroundCellCached();
+            if (cell == null || !cell.CanUpgrade) continue;
+            (cell.Planter != null ? underPlanters : others).Add(cell);
+        }
+        Shuffle(underPlanters);
+        Shuffle(others);
+        underPlanters.AddRange(others);
+        if (underPlanters.Count > count) underPlanters.RemoveRange(count, underPlanters.Count - count);
+        return underPlanters;
+    }
+
+    private static void Shuffle(List<GroundCell> cells)
+    {
+        for (int i = cells.Count - 1; i > 0; i--)
+        {
+            int j = UnityEngine.Random.Range(0, i + 1);
+            (cells[i], cells[j]) = (cells[j], cells[i]);
+        }
+    }
+
+    // Kartın nadirliği kaç seviye verdiğini belirler (Common/Rare 1, Epic 2, Legendary 3).
+    public bool ApplyUpgrade(GroundCell cell, TileRarity rarity)
+    {
+        if (cell == null || cell.AddLevels(GroundCell.LevelsFor(rarity)) <= 0) return false;
+        if (!roundAppliedCells.Contains(cell)) roundAppliedCells.Add(cell);
+        roundUpgradedCells.Add(cell);
+        return true;
+    }
 
 
     public void AddXP(float amount)

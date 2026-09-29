@@ -66,9 +66,42 @@ public class GroundCell : MonoBehaviour
 
     }
 
+    // Tile seviyesi: grid dolunca kartlar tile'ları yükseltir. Her seviye tile'ın zar değerine +%25 (Sv 3 = +%75).
+    public const int MaxLevel = 3;
+    public const float LevelBonus = .25f;
+    private int level;
+    public int Level => level;
+    public bool CanUpgrade => !isLocked && currentModifier != null && level < MaxLevel;
+    public static int LevelsFor(TileRarity rarity) => rarity == TileRarity.Legendary ? 3 : rarity == TileRarity.Epic ? 2 : 1;
+
+    // Yükseltme sonrası değerler; kart önizlemesi için, tile'a dokunmaz.
+    public List<StatModifier> PreviewLevels(int add) => PreviewLevelsFrom(level, Mathf.Min(MaxLevel, level + Mathf.Max(0, add)));
+
+    // Kazanılan seviye sayısını döner (max'ta 0).
+    public int AddLevels(int add)
+    {
+        if (!CanUpgrade || add <= 0) return 0;
+        int before = level;
+        level = Mathf.Min(MaxLevel, level + add);
+        rolledModifiers = PreviewLevelsFrom(before, level);
+        Planter?.RefreshTileBuffs();
+        return level - before;
+    }
+
+    private List<StatModifier> PreviewLevelsFrom(int from, int to)
+    {
+        float factor = LevelFactor(from, to);
+        var result = new List<StatModifier>(rolledModifiers);
+        for (int i = 0; i < result.Count; i++) { var mod = result[i]; mod.value *= factor; result[i] = mod; }
+        return result;
+    }
+
+    private static float LevelFactor(int from, int to) => (1f + LevelBonus * to) / (1f + LevelBonus * from);
+
     public void ApplyModifier(TileModifierSO modifier, IReadOnlyList<StatModifier> offeredModifiers = null)
     {
         currentModifier = modifier;
+        level = 0;
         rolledModifiers = modifier == null ? new List<StatModifier>() :
             offeredModifiers != null ? new List<StatModifier>(offeredModifiers) : modifier.RollModifiers();
 

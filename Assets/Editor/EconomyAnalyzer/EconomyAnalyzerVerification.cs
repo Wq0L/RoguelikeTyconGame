@@ -95,8 +95,9 @@ namespace ClickerGame.EconomyAnalysis
                 var off = EconomyEditorData.History(live, false);
                 var on = EconomyEditorData.History(live, true);
                 Equal(off[128].Input.Damage, 3201552, "actual max damage (float accumulation)", 2);
-                Equal(off[128].Input.SpawnInterval, .5, "actual max spawn interval");
-                Equal(off[128].Input.AttackInterval, .2, "actual max attack interval");
+                Equal(off[128].Input.SpawnInterval, .5 / 1.5, "actual max spawn interval");
+                // 60 sn sınırı: 90 sn süre 1,5 kat saldırı hızına dönüşür (RoundManager.TempoMultiplier).
+                Equal(off[128].Input.AttackInterval, .2 / 1.5, "actual max attack interval");
                 Equal(off[128].Input.GoldMultiplier, 4, "actual max gold multiplier");
                 Equal(off[128].Input.IronMultiplier, 5, "actual max iron multiplier");
                 Equal(off[128].Input.StoneMultiplier, 5, "actual max stone multiplier");
@@ -156,7 +157,7 @@ namespace ClickerGame.EconomyAnalysis
                 Require(p8.tiers[0].costType == ResourceType.Gold && p8.tiers[0].cost == 180, "early 2x3 unlock price");
                 Require(live.planter.costType == ResourceType.Stone && live.planter.cost == 20, "first 2x3 purchase cost");
                 row.extraGlobalModifiers.Add(new StatModifier { statType = StatType.AttackSpeed, target = StatTarget.Player, operation = ModifierOperation.Set, value = .01f });
-                Equal(EconomyCalculator.Resolve(live, row, 1, 6, false).AttackInterval, .1, "PlayerController clamp wins");
+                Equal(EconomyCalculator.Resolve(live, row, 1, 6, false).AttackInterval, .1 / 1.5, "PlayerController clamp wins, then 90 s tempo");
                 row.extraGlobalModifiers.Clear();
 
                 var water = Make<TileModifierSO>(); water.modifierType = TileModifierType.Water;

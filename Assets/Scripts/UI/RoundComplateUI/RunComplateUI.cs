@@ -8,7 +8,11 @@ public class RunCompleteUI : MonoBehaviour
 
     private void OnEnable()
     {
-        scoreText.text = $"Harvest Score: {HarvestScoreManager.Instance.TotalScore}";
+        // Tarla tükendiyse run'ın neden bittiği skorun üstünde yazar.
+        RoundManager rounds = RoundManager.Instance;
+        string reason = rounds != null && rounds.EndedByExhaustion
+            ? $"<size=70%>Tarla tükendi · Round {rounds.CurrentRound}</size>\n" : "";
+        scoreText.text = $"{reason}Harvest Score: {HarvestScoreManager.Instance.TotalScore}";
     }
 
         public void OnRestartPressed()

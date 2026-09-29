@@ -54,10 +54,13 @@ public class PlantSpawner : MonoBehaviour
 
     private float GetEffectiveSpawnInterval()
     {
-        if (planterBrain != null)
-            return planterBrain.GetFinalStat(StatType.PlantSpawnRate);
-
-        return planterData.GetBaseStat(StatType.PlantSpawnRate);
+        float interval = planterBrain != null
+            ? planterBrain.GetFinalStat(StatType.PlantSpawnRate)
+            : planterData.GetBaseStat(StatType.PlantSpawnRate);
+        // 60 sn'yi aşan round süresi üretim hızına dönüşür (RoundManager.TempoMultiplier). Taban önce uygulanır:
+        // round başına üretim, round'un 90 sn sürdüğü haliyle aynı kalır.
+        float tempo = RoundManager.Instance != null ? RoundManager.Instance.TempoMultiplier : 1f;
+        return Mathf.Max(StatCalculator.MinimumSpawnInterval, interval) / tempo;
     }
 
     private float GetEffectiveRareBonus()

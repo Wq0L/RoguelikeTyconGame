@@ -55,12 +55,22 @@ public class CardSelectionUI : MonoBehaviour
             return;
         }
 
+        // Grid'de açık boş hücre yoksa kartlar yeni tile yerine mevcut tile'ları yükseltir;
+        // yükseltilecek tile da kalmadıysa Temel güç verir. Nadirlik aynı şansla atılır.
+        ProgressionManager progression = ProgressionManager.Instance;
+        bool gridFull = progression != null && !progression.HasEligibleCell();
+        List<GroundCell> upgrades = gridFull ? progression.GetUpgradeCandidates(cardSlots.Count) : null;
+        SetBanner(!gridFull ? null : upgrades.Count > 0
+            ? "GRİD DOLU · kart, seçtiğin tile'ı seviye atlatır"
+            : "TÜM TILE'LAR MAX · kart kalıcı Temel güç verir");
+        int upgradeIndex = 0;
         for (int i = 0; i < cardSlots.Count; i++)
         {
             if (cardSlots[i] == null) continue;
             cardSlots[i].gameObject.SetActive(true);
-            TileModifierSO rolled = RollCard();
-            TileCardOffer offer = new TileCardOffer(rolled);
+            TileCardOffer offer = !gridFull ? new TileCardOffer(RollCard())
+                : upgradeIndex < upgrades.Count ? TileCardOffer.Upgrade(upgrades[upgradeIndex++], RollRarityTier())
+                : RollBaseStat();
             currentCards.Add(offer);
             cardSlots[i].Setup(offer, OnCardSelected);
         }
@@ -123,6 +133,15 @@ public class CardSelectionUI : MonoBehaviour
 
     private TileModifierSO RollRarity(List<TileModifierSO> filtered)
     {
+        TileRarity selectedRarity = RollRarityTier();
+        List<TileModifierSO> rarityFiltered = filtered.FindAll(m => m.rarity == selectedRarity);
+        if (rarityFiltered.Count == 0) rarityFiltered = filtered;
+
+        return rarityFiltered[Random.Range(0, rarityFiltered.Count)];
+    }
+
+    private TileRarity RollRarityTier()
+    {
         float luck = StatManager.Instance.GetFinalStat(StatType.MutationLuck, StatTarget.Mutation);
 
         Dictionary<TileRarity, float> rarityWeights = new()
@@ -145,11 +164,85 @@ public class CardSelectionUI : MonoBehaviour
             cumulative += w.Value;
             if (roll <= cumulative) { selectedRarity = w.Key; break; }
         }
+        return selectedRarity;
+    }
 
-        List<TileModifierSO> rarityFiltered = filtered.FindAll(m => m.rarity == selectedRarity);
-        if (rarityFiltered.Count == 0) rarityFiltered = filtered;
+    // Yükseltilecek tile kalmadığında: kalıcı, küçük global güç. Nadirlik miktarı büyütür.
+    private static readonly (string name, StatType[] stats, StatTarget target, float sign)[] BaseStats =
+    {
+        ("Hasat hasarı", new[] { StatType.HarvestDamage }, StatTarget.Player, 1f),
+        ("Atak aralığı", new[] { StatType.AttackSpeed }, StatTarget.Player, -1f),
+        ("Üretim süresi", new[] { StatType.PlantSpawnRate }, StatTarget.Planter, -1f),
+        ("Tüm kaynaklar", new[] { StatType.GoldGainMultiplier, StatType.IronGainMultiplier, StatType.StoneGainMultiplier }, StatTarget.Planter, 1f),
+        ("XP kazancı", new[] { StatType.XPGainMultiplier }, StatTarget.Planter, 1f),
+    };
 
-        return rarityFiltered[Random.Range(0, rarityFiltered.Count)];
+    private TileCardOffer RollBaseStat()
+    {
+        TileRarity rarity = RollRarityTier();
+        float amount = rarity switch { TileRarity.Legendary => .05f, TileRarity.Epic => .04f, TileRarity.Rare => .03f, _ => .02f };
+        var pick = BaseStats[Random.Range(0, BaseStats.Length)];
+        var modifiers = new List<StatModifier>();
+        foreach (StatType stat in pick.stats)
+            modifiers.Add(new StatModifier { statType = stat, target = pick.target, operation = ModifierOperation.MorePercent, value = amount * pick.sign });
+        return TileCardOffer.BaseStat(pick.name, rarity, modifiers);
+    }
+
+    private TextMeshProUGUI banner;
+
+    // Kart ekranının üstünde, grid dolduğunda kartların ne yaptığını söyleyen şerit. Kart dizilimine girmez.
+    private void SetBanner(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+        {
+            if (banner != null) banner.transform.parent.gameObject.SetActive(false);
+            return;
+        }
+        if (banner == null)
+        {
+            var plate = new GameObject("Grid Full Banner", typeof(RectTransform), typeof(LayoutElement));
+            plate.layer = gameObject.layer;
+            plate.GetComponent<LayoutElement>().ignoreLayout = true;
+            var rect = (RectTransform)plate.transform;
+            rect.SetParent(transform, false);
+            rect.anchorMin = rect.anchorMax = new Vector2(.5f, 1f);
+            rect.pivot = new Vector2(.5f, 1f);
+            rect.anchoredPosition = new Vector2(0f, -118f);
+            rect.sizeDelta = new Vector2(760f, 64f);
+            AddPlate(rect, "Ink", new Color32(54, 39, 54, 255), 0f);
+            AddPlate(rect, "Face", FreshTileRing.GlowColor, 3f);
+            var label = new GameObject("Label", typeof(RectTransform), typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
+            label.gameObject.layer = gameObject.layer;
+            label.rectTransform.SetParent(rect, false);
+            label.rectTransform.anchorMin = Vector2.zero;
+            label.rectTransform.anchorMax = Vector2.one;
+            label.rectTransform.offsetMin = new Vector2(16f, 4f);
+            label.rectTransform.offsetMax = new Vector2(-16f, -4f);
+            FeelOverlay.Theme?.StylePopupText(label);
+            label.alignment = TextAlignmentOptions.Center;
+            label.enableAutoSizing = true;
+            label.fontSizeMin = 16f;
+            label.fontSizeMax = 30f;
+            label.raycastTarget = false;
+            banner = label;
+        }
+        banner.text = text;
+        banner.transform.parent.gameObject.SetActive(true);
+        banner.transform.parent.SetAsLastSibling();
+    }
+
+    private static void AddPlate(RectTransform parent, string name, Color color, float inset)
+    {
+        var rect = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer)).GetComponent<RectTransform>();
+        rect.gameObject.layer = parent.gameObject.layer;
+        rect.SetParent(parent, false);
+        rect.anchorMin = Vector2.zero;
+        rect.anchorMax = Vector2.one;
+        rect.offsetMin = Vector2.one * inset;
+        rect.offsetMax = -Vector2.one * inset;
+        var plate = rect.gameObject.AddComponent<ComicPopupPlate>();
+        plate.color = color;
+        plate.raycastTarget = false;
     }
 
     private void OnCardSelected(TileCardOffer offer)
@@ -160,13 +253,19 @@ public class CardSelectionUI : MonoBehaviour
         if (GameManager.Instance.CurrentState != GameStates.CardSelection)
             return;
 
-        if (!modifier.IsAvailableInCardPool)
+        if (offer.IsUpgrade)
+            ProgressionManager.Instance.ApplyUpgrade(offer.UpgradeTarget, offer.Rarity);
+        else if (offer.IsBaseStat)
+            foreach (StatModifier mod in offer.Modifiers) StatManager.Instance.AddGlobalModifier(mod);
+        else
         {
-            RefreshCards();
-            return;
+            if (!modifier.IsAvailableInCardPool)
+            {
+                RefreshCards();
+                return;
+            }
+            ProgressionManager.Instance.ApplyRandomEligibleCell(modifier, offer.Modifiers);
         }
-
-        ProgressionManager.Instance.ApplyRandomEligibleCell(modifier, offer.Modifiers);
         currentCards.Clear(); // The displayed offer cannot be consumed twice.
 
         bool hasMore = RoundManager.Instance.OnCardSelectionComplete();
@@ -182,7 +281,7 @@ public class CardSelectionUI : MonoBehaviour
         // 3 karttan en rare olanı bul
         TileRarity highest = TileRarity.Common;
         foreach (var card in currentCards)
-            if (card.Tile.rarity > highest) highest = card.Tile.rarity;
+            if (card.Rarity > highest) highest = card.Rarity;
 
         // Ödül = base × (1 + round × 0.1)
         int round = RoundManager.Instance.CurrentRound;

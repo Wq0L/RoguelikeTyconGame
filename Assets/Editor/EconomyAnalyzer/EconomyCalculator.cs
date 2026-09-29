@@ -114,14 +114,19 @@ namespace ClickerGame.EconomyAnalysis
             // RoundManager requests StatTarget.All, not Round.
             float duration = StatCalculator.Calculate(profile.coreStats.GetBaseStat(StatType.RoundDuration),
                 StatType.RoundDuration, StatTarget.All, global, null);
+            float rawDuration = Mathf.Clamp(row.durationOverride > 0 ? row.durationOverride : duration, 30, 90);
+            float tempo = Mathf.Max(1f, rawDuration / RoundManager.RoundSecondsCap);
             float ordinaryScore = Player(StatType.HarvestScoreMultiplier) * StatCalculator.Calculate(
                 profile.planter.GetBaseStat(StatType.HarvestScoreMultiplier), StatType.HarvestScoreMultiplier,
                 StatTarget.Planter, global, local, false);
             var input = new EconomyInput
             {
                 Planter = profile.planter, Health = profile.healthScaling, Round = round, SpawnerCount = spawners,
-                EffectiveTargets = row.effectiveTargets, Duration = Mathf.Clamp(row.durationOverride > 0 ? row.durationOverride : duration, 30, 90),
-                SpawnInterval = Planter(StatType.PlantSpawnRate), AttackInterval = Mathf.Max(.1f, Player(StatType.AttackSpeed)),
+                // RoundManager: round en fazla 60 sn; fazlası saldırı ve üretim hızına dönüşür. Tabanlar (0,1 / 0,5) önce
+                // uygulanır, round başına üretim ve vuruş 90 sn'lik haliyle aynı kalır.
+                EffectiveTargets = row.effectiveTargets, Duration = Mathf.Min(rawDuration, RoundManager.RoundSecondsCap),
+                SpawnInterval = Mathf.Max(StatCalculator.MinimumSpawnInterval, Planter(StatType.PlantSpawnRate)) / tempo,
+                AttackInterval = Mathf.Max(.1f, Player(StatType.AttackSpeed)) / tempo,
                 Damage = Player(StatType.HarvestDamage), CritChance = Player(StatType.CritChance), CritMultiplier = Player(StatType.CritMultiplier),
                 Radius = Player(StatType.AreaRadius), RareBonus = Planter(StatType.RareSpawnChance),
                 GoldMultiplier = Planter(StatType.GoldGainMultiplier), IronMultiplier = Planter(StatType.IronGainMultiplier),
@@ -146,7 +151,7 @@ namespace ClickerGame.EconomyAnalysis
                 input.IronMultiplier, input.StoneMultiplier, input.XpMultiplier, input.DuplicateChance,
                 input.GoldWeight, input.IronWeight, input.StoneWeight })
                 if (double.IsNaN(value) || double.IsInfinity(value) || value < 0) throw new ArgumentException("Invalid non-finite or negative input.");
-            if (input.Duration <= 0 || input.SpawnInterval < StatCalculator.MinimumSpawnInterval || input.AttackInterval < .1f || input.Round < 1)
+            if (input.Duration <= 0 || input.SpawnInterval < StatCalculator.MinimumSpawnInterval / RoundManager.MaxTempo - 1e-5f || input.AttackInterval < .1f / RoundManager.MaxTempo - 1e-5f || input.Round < 1)
                 throw new ArgumentException("Invalid duration/round or intervals below gameplay minimum.");
         }
 

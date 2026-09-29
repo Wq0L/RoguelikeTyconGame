@@ -32,6 +32,7 @@ public sealed class RoundSummaryUI : MonoBehaviour
 
     private RectTransform card;
     private TextMeshProUGUI title;
+    private TextMeshProUGUI warning;
     private readonly List<Row> rows = new();
     private int activeRows;
     private int shownVersion = -1;
@@ -84,7 +85,13 @@ public sealed class RoundSummaryUI : MonoBehaviour
         SetRow("Level", data.Levels, true, null, new Color32(214, 110, 40, 255), false);
         SetRow("Skor", data.Score, true, null, new Color32(128, 64, 170, 255), true);
         for (int i = activeRows; i < rows.Count; i++) rows[i].root.gameObject.SetActive(false);
-        card.sizeDelta = new Vector2(Width, HeaderHeight + 12f + activeRows * RowHeight + 16f);
+        // Tarla Tükendi uyarısı: run bitmeden önce oyuncu durumu görür ve düzeltebilir.
+        RoundManager rounds = RoundManager.Instance;
+        bool warn = rounds != null && rounds.ExhaustStreak > 0 && !rounds.EndedByExhaustion;
+        warning.gameObject.SetActive(warn);
+        if (warn)
+            warning.text = $"Tarla zayıflıyor {rounds.ExhaustStreak}/{rounds.ExhaustRounds}\n<size=72%>Gelir, en iyi round'a göre %{Mathf.RoundToInt(rounds.LastRoundIncomeRatio * 100f)} · hasarını güçlendir</size>";
+        card.sizeDelta = new Vector2(Width, HeaderHeight + 12f + activeRows * RowHeight + 16f + (warn ? 62f : 0f));
     }
 
     private void SetRow(string label, int value, bool plus, Sprite icon, Color color, bool always)
@@ -234,6 +241,17 @@ public sealed class RoundSummaryUI : MonoBehaviour
         titleRect.pivot = new Vector2(0.5f, 1f);
         titleRect.offsetMin = new Vector2(12f, -HeaderHeight + 4f);
         titleRect.offsetMax = new Vector2(-12f, -8f);
+
+        warning = CreateText(card, "Exhaust Warning", 22f, TextAlignmentOptions.Center);
+        warning.color = new Color32(180, 35, 24, 255);
+        warning.textWrappingMode = TextWrappingModes.Normal;
+        var warningRect = warning.rectTransform;
+        warningRect.anchorMin = Vector2.zero;
+        warningRect.anchorMax = new Vector2(1f, 0f);
+        warningRect.pivot = new Vector2(.5f, 0f);
+        warningRect.offsetMin = new Vector2(16f, 12f);
+        warningRect.offsetMax = new Vector2(-16f, 66f);
+        warning.gameObject.SetActive(false);
     }
 
     private void Plate(string name, Color color, Vector2 anchorMin, Vector2 anchorMax, Vector2 offsetMin, Vector2 offsetMax)

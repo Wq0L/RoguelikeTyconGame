@@ -14,7 +14,12 @@ public sealed class FreshTileRing : MaskableGraphic
     private const float PopDuration = 0.35f;
 
     private CanvasGroup group;
+    private TextMeshProUGUI label;
     private float delay, age;
+
+    // Bu round'un kartı: yeni yerleşen tile "YENİ", seviye atlayan tile "+SV".
+    public static string LabelFor(GroundCell cell) =>
+        ProgressionManager.Instance != null && ProgressionManager.Instance.WasUpgradedThisRound(cell) ? "+SV" : "YENİ";
 
     public static FreshTileRing Create(Transform cell)
     {
@@ -38,9 +43,10 @@ public sealed class FreshTileRing : MaskableGraphic
         return ring;
     }
 
-    public void Show(float startDelay)
+    public void Show(float startDelay, string text = "YENİ")
     {
         gameObject.SetActive(true);
+        if (label != null) label.text = text;
         delay = startDelay;
         age = 0f;
         Apply(-1f);
@@ -139,7 +145,7 @@ public sealed class FreshTileRing : MaskableGraphic
         Plate(sticker, "Outline", Ink, Vector2.zero, 0f);
         Plate(sticker, "Face", GlowColor, Vector2.zero, 3f);
 
-        var label = new GameObject("Label", typeof(RectTransform), typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
+        label = new GameObject("Label", typeof(RectTransform), typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
         label.gameObject.layer = gameObject.layer;
         label.rectTransform.SetParent(sticker, false);
         label.rectTransform.anchorMin = Vector2.zero;

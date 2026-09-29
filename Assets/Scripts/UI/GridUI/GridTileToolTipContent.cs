@@ -25,9 +25,11 @@ public class GridTileToolTipContent : MonoBehaviour
         bool fresh = ProgressionManager.Instance != null && ProgressionManager.Instance.WasAppliedThisRound(cell);
         string caption = modifier != null ? modifier.rarity.ToString() : "";
         if (!string.IsNullOrEmpty(coordinate)) caption = caption.Length > 0 ? coordinate + " · " + caption : coordinate;
-        if (fresh) caption += " · YENİ";
+        if (modifier != null && cell.Level > 0) caption += $" · Sv {cell.Level}/{GroundCell.MaxLevel}";
+        bool upgraded = ProgressionManager.Instance != null && ProgressionManager.Instance.WasUpgradedThisRound(cell);
+        if (fresh) caption += upgraded ? " · +SV" : " · YENİ";
         view.Begin(modifier != null ? modifier.modifierName : "Boş tile", caption);
-        if (fresh) view.Add("<b>Bu round'un kartı buraya geldi.</b>");
+        if (fresh) view.Add(upgraded ? "<b>Bu round'un kartı bu tile'ı yükseltti.</b>" : "<b>Bu round'un kartı buraya geldi.</b>");
         if (modifier != null) { view.Add("<b>BU TILE</b>"); view.Add(TileBuffText.Modifiers(cell.RolledModifiers)); }
         if (cell.Planter != null && cell.Planter.ActiveResonances.Count > 0)
         {

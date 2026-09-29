@@ -294,7 +294,7 @@ public sealed class RoundPreviewUI : MonoBehaviour
                 if (cell == null) continue;
                 if (activeTags == tags.Count) tags.Add(CreateTag(tags.Count));
                 TileTag tag = tags[activeTags++];
-                tag.label.text = "YENİ · " + RoundMapUI.CellName(cell.GetGridPosition());
+                tag.label.text = FreshTileRing.LabelFor(cell) + " · " + RoundMapUI.CellName(cell.GetGridPosition());
                 Renderer ground = cell.GroundRenderer;
                 tag.anchor = ground != null
                     ? new Vector3(ground.bounds.center.x, ground.bounds.max.y, ground.bounds.center.z)

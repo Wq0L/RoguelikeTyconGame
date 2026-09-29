@@ -27,7 +27,7 @@ namespace ClickerGame.EconomyAnalysis
     {
         [Min(1)] public int fromRound = 1;
         public EconomyBuild build;
-        [Tooltip("0: use the selected build's RoundDuration, clamped to 30–90 seconds.")]
+        [Tooltip("0: use the selected build's RoundDuration, clamped to 30–90 seconds. Above 60 s the round stays 60 s and the rest becomes attack/spawn tempo.")]
         public float durationOverride;
         [Min(1)] public int effectiveTargets = 4;
         public List<SkillPurchase> purchases = new();

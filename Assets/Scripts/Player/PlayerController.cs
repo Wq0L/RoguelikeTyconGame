@@ -60,7 +60,10 @@ public class PlayerController : MonoBehaviour
             StatTarget.Player
         );
 
-        attackSpeed = Mathf.Max(attackSpeed, 0.1f);
+        // 60 sn'yi aşan round süresi hıza dönüşür (RoundManager.TempoMultiplier). Taban önce uygulanır:
+        // 60 sn'lik hızlı round, 90 sn'lik normal round'la aynı sayıda vuruş yapar.
+        float tempo = RoundManager.Instance != null ? RoundManager.Instance.TempoMultiplier : 1f;
+        attackSpeed = Mathf.Max(attackSpeed, 0.1f) / tempo;
         attackTimer += Time.deltaTime;
 
         if (attackTimer >= attackSpeed)
