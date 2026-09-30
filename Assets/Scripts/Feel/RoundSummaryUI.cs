@@ -82,16 +82,55 @@ public sealed class RoundSummaryUI : MonoBehaviour
         SetRow("Altın", data.Gold, true, theme != null ? theme.coinSprite : null, new Color32(196, 128, 20, 255), false);
         SetRow("Demir", data.Iron, true, theme != null ? theme.ironSprite : null, new Color32(80, 104, 140, 255), false);
         SetRow("Taş", data.Stone, true, theme != null ? theme.stoneSprite : null, new Color32(112, 96, 88, 255), false);
+        // Round'da kazanılan XP: level eğrisini gerçek oyuna göre ayarlamak için de okunur.
+        SetRow("XP", data.Xp, true, null, new Color32(36, 128, 150, 255), false);
         SetRow("Level", data.Levels, true, null, new Color32(214, 110, 40, 255), false);
         SetRow("Skor", data.Score, true, null, new Color32(128, 64, 170, 255), true);
         for (int i = activeRows; i < rows.Count; i++) rows[i].root.gameObject.SetActive(false);
-        // Tarla Tükendi uyarısı: run bitmeden önce oyuncu durumu görür ve düzeltebilir.
-        RoundManager rounds = RoundManager.Instance;
-        bool warn = rounds != null && rounds.ExhaustStreak > 0 && !rounds.EndedByExhaustion;
-        warning.gameObject.SetActive(warn);
-        if (warn)
-            warning.text = $"Tarla zayıflıyor {rounds.ExhaustStreak}/{rounds.ExhaustRounds}\n<size=72%>Gelir, en iyi round'a göre %{Mathf.RoundToInt(rounds.LastRoundIncomeRatio * 100f)} · hasarını güçlendir</size>";
-        card.sizeDelta = new Vector2(Width, HeaderHeight + 12f + activeRows * RowHeight + 16f + (warn ? 62f : 0f));
+        // Hasat Kotası: segmentin durumu her round özetinde; segment sonunda sonuç ve sıradaki kota.
+        string notice = QuotaNotice(RoundManager.Instance, data.Round, out QuotaTone tone);
+        warning.gameObject.SetActive(notice != null);
+        if (notice != null)
+        {
+            warning.text = notice;
+            warning.color = ToneColor(tone);
+        }
+        card.sizeDelta = new Vector2(Width, HeaderHeight + 12f + activeRows * RowHeight + 16f + (notice != null ? 74f : 0f));
+    }
+
+    public enum QuotaTone { Info, Done, Danger }
+
+    public static Color ToneColor(QuotaTone tone) => tone == QuotaTone.Done ? new Color32(46, 125, 50, 255)
+        : tone == QuotaTone.Danger ? new Color32(180, 35, 24, 255) : new Color32(154, 91, 18, 255);
+
+    // Sayılara ek getirilmez: "5.000'i / 12.000'i" gibi ekler sayıya göre değişir.
+    public static string QuotaNotice(RoundManager rounds, int finishedRound, out QuotaTone tone)
+    {
+        tone = QuotaTone.Info;
+        if (rounds == null || !rounds.QuotaEnabled || rounds.EndedByQuota) return null;
+        int segmentRounds = rounds.QuotaSegmentRounds;
+        if (rounds.LastQuotaRound == finishedRound)
+        {
+            tone = QuotaTone.Done;
+            int next = HarvestQuota.SegmentOf(finishedRound, segmentRounds) + 1;
+            return $"KOTA TAMAM · {HarvestQuota.Format(rounds.LastQuotaScore)} / {HarvestQuota.Format(rounds.LastQuotaTarget)}\n" +
+                   $"<size=72%>Sıradaki kota: {HarvestQuota.Format(rounds.QuotaTargetFor(next))} · {segmentRounds} round</size>";
+        }
+        int segment = HarvestQuota.SegmentOf(finishedRound, segmentRounds);
+        int end = HarvestQuota.SegmentEnd(segment, segmentRounds), left = end - finishedRound;
+        long target = rounds.QuotaTargetFor(segment), progress = rounds.QuotaProgress;
+        string score = $"{HarvestQuota.Format(progress)} / {HarvestQuota.Format(target)}";
+        if (progress >= target)
+        {
+            tone = QuotaTone.Done;
+            return $"Kota tamam · {score}\n<size=72%>Segment {end}. round sonunda kapanır</size>";
+        }
+        if (left <= 1)
+        {
+            tone = QuotaTone.Danger;
+            return $"SON ROUND · kotaya {HarvestQuota.Format(target - progress)} kaldı\n<size=72%>Kota {score} · tutmazsa run biter</size>";
+        }
+        return $"Kota {score} · {left} round kaldı\n<size=72%>Tutmazsa run {end}. round sonunda biter</size>";
     }
 
     private void SetRow(string label, int value, bool plus, Sprite icon, Color color, bool always)
@@ -242,15 +281,18 @@ public sealed class RoundSummaryUI : MonoBehaviour
         titleRect.offsetMin = new Vector2(12f, -HeaderHeight + 4f);
         titleRect.offsetMax = new Vector2(-12f, -8f);
 
-        warning = CreateText(card, "Exhaust Warning", 22f, TextAlignmentOptions.Center);
+        warning = CreateText(card, "Quota Notice", 22f, TextAlignmentOptions.Center);
         warning.color = new Color32(180, 35, 24, 255);
         warning.textWrappingMode = TextWrappingModes.Normal;
+        warning.enableAutoSizing = true;
+        warning.fontSizeMin = 14f;
+        warning.fontSizeMax = 22f;
         var warningRect = warning.rectTransform;
         warningRect.anchorMin = Vector2.zero;
         warningRect.anchorMax = new Vector2(1f, 0f);
         warningRect.pivot = new Vector2(.5f, 0f);
         warningRect.offsetMin = new Vector2(16f, 12f);
-        warningRect.offsetMax = new Vector2(-16f, 66f);
+        warningRect.offsetMax = new Vector2(-16f, 78f);
         warning.gameObject.SetActive(false);
     }
 

@@ -17,6 +17,8 @@ public sealed class RoundNewTilesUI : MonoBehaviour
     private const float RowInterval = 0.12f;
 
     private static readonly Color Ink = new Color32(54, 39, 54, 255);
+    // Yükselen satırda ok ve ayraçlar; renk eski (kırmızı) ve yeni (yeşil) değerde kalır.
+    private static readonly Color MutedInk = new Color32(112, 100, 96, 255);
 
     private sealed class Row
     {
@@ -84,11 +86,21 @@ public sealed class RoundNewTilesUI : MonoBehaviour
         row.swatch.color = modifier != null ? modifier.tileColor : Color.white;
         row.coordinate.text = cell != null ? RoundMapUI.CellName(cell.GetGridPosition()) : "?";
         row.label.rectTransform.offsetMin = new Vector2(66f, 0f);
-        // Seviye atlayan tile: "+SV · Sv 2"; yeni tile: nadirlik.
-        bool upgraded = ProgressionManager.Instance != null && ProgressionManager.Instance.WasUpgradedThisRound(cell);
-        string detail = modifier == null ? "" : upgraded ? $"+SV · Sv {cell.Level}" : modifier.rarity.ToString().ToUpperInvariant() + (cell.Level > 0 ? $" · Sv {cell.Level}" : "");
+        // Seviye atlayan tile: "Sv 0 → 1 · +13% → +16.25%"; yeni tile: nadirlik ve seviye.
+        ProgressionManager.TileUpgrade upgrade = null;
+        bool upgraded = ProgressionManager.Instance != null && ProgressionManager.Instance.TryGetRoundUpgrade(cell, out upgrade);
+        string detail = modifier == null ? "" : upgraded ? UpgradeDetail(upgrade, cell) : modifier.rarity.ToString().ToUpperInvariant() + $" · Sv {cell.Level}";
         row.label.text = modifier == null ? "?" :
-            $"{modifier.modifierName}\n<size=72%><color=#{ColorUtility.ToHtmlStringRGB(RarityColor(modifier.rarity))}>{detail}</color></size>";
+            $"{modifier.modifierName}\n<size=72%><color=#{ColorUtility.ToHtmlStringRGB(upgraded ? MutedInk : RarityColor(modifier.rarity))}>{ComicPopupView.WithArrowGlyph(detail)}</color></size>";
+    }
+
+    // Tek etkili tile'da değer de sığar; çok etkililerde tam liste tooltip'te.
+    private static string UpgradeDetail(ProgressionManager.TileUpgrade upgrade, GroundCell cell)
+    {
+        var colors = TileBuffText.OnPaper;
+        string levels = TileBuffText.LevelChange(upgrade.FromLevel, upgrade.ToLevel, colors, shortForm: true);
+        var now = cell.RolledModifiers;
+        return upgrade.Before.Count == 1 && now.Count == 1 ? levels + " · " + TileBuffText.AmountChange(upgrade.Before[0], now[0], colors) : levels;
     }
 
     private void SetMoreRow(int remaining)

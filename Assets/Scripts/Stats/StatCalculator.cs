@@ -5,7 +5,26 @@ public static class StatCalculator
 {
     // PlantSpawnRate is a duration: smaller is faster. This floor also applies after resonance.
     public const float MinimumSpawnInterval = 0.5f;
+
+    // Tabanın altına inemeyen üretim hızı boşa gitmez, nadir bitki şansına dönüşür (60 sn → tempo kuralı gibi).
+    // Logaritmik: her tile'ın tabanı aşan payı ayrı ayrı sayılır. Tabandaki saksıda Legendary Fertile (−%47,5) ≈ +45,
+    // Crystal-Legendary (+60) hep daha güçlü kalır.
+    public const float OverflowRarityPerLog = 70f;
+
+    public static float SpawnOverflowRarity(float rawInterval) => rawInterval >= MinimumSpawnInterval ? 0f :
+        OverflowRarityPerLog * Mathf.Log(MinimumSpawnInterval / Mathf.Max(1e-4f, rawInterval));
+
     public static float Calculate(
+        float baseValue,
+        StatType statType,
+        StatTarget contextTarget,
+        IReadOnlyList<StatModifier> globalModifiers,
+        IReadOnlyList<StatModifier> localModifiers,
+        bool includeGlobalAll = true
+    ) => ClampStat(statType, CalculateRaw(baseValue, statType, contextTarget, globalModifiers, localModifiers, includeGlobalAll));
+
+    // Aynı kurallar, sınır uygulanmadan (tabanı aşan üretim hızını ölçmek için).
+    public static float CalculateRaw(
         float baseValue,
         StatType statType,
         StatTarget contextTarget,
@@ -50,7 +69,7 @@ public static class StatCalculator
         finalValue *= 1f + addPercentBonus;
         finalValue *= moreMultiplier;
 
-        return ClampStat(statType, finalValue);
+        return finalValue;
     }
 
     private static void ApplyModifiers(
@@ -106,7 +125,7 @@ public static class StatCalculator
         return modifierTarget == StatTarget.All || modifierTarget == contextTarget;
     }
 
-    private static float ClampStat(StatType statType, float value)
+    public static float ClampStat(StatType statType, float value)
     {
         switch (statType)
         {

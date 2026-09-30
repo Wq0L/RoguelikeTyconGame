@@ -111,6 +111,10 @@ namespace ClickerGame.EconomyAnalysis
                 float ordinary = StatCalculator.Calculate(profile.planter.GetBaseStat(stat), stat, StatTarget.Planter, global, local);
                 return StatCalculator.Calculate(ordinary, stat, StatTarget.Planter, null, resonanceModifiers);
             }
+            // PlanterBrain: tabanın altına inemeyen üretim hızı nadirliğe dönüşür.
+            float rawSpawn = StatCalculator.CalculateRaw(StatCalculator.CalculateRaw(profile.planter.GetBaseStat(StatType.PlantSpawnRate),
+                StatType.PlantSpawnRate, StatTarget.Planter, global, local), StatType.PlantSpawnRate, StatTarget.Planter, null, resonanceModifiers);
+            float rareBonus = StatCalculator.ClampStat(StatType.RareSpawnChance, Planter(StatType.RareSpawnChance) + StatCalculator.SpawnOverflowRarity(rawSpawn));
             // RoundManager requests StatTarget.All, not Round.
             float duration = StatCalculator.Calculate(profile.coreStats.GetBaseStat(StatType.RoundDuration),
                 StatType.RoundDuration, StatTarget.All, global, null);
@@ -128,7 +132,7 @@ namespace ClickerGame.EconomyAnalysis
                 SpawnInterval = Mathf.Max(StatCalculator.MinimumSpawnInterval, Planter(StatType.PlantSpawnRate)) / tempo,
                 AttackInterval = Mathf.Max(.1f, Player(StatType.AttackSpeed)) / tempo,
                 Damage = Player(StatType.HarvestDamage), CritChance = Player(StatType.CritChance), CritMultiplier = Player(StatType.CritMultiplier),
-                Radius = Player(StatType.AreaRadius), RareBonus = Planter(StatType.RareSpawnChance),
+                Radius = Player(StatType.AreaRadius), RareBonus = rareBonus,
                 GoldMultiplier = Planter(StatType.GoldGainMultiplier), IronMultiplier = Planter(StatType.IronGainMultiplier),
                 StoneMultiplier = Planter(StatType.StoneGainMultiplier), XpMultiplier = Planter(StatType.XPGainMultiplier),
                 DuplicateChance = Planter(StatType.DuplicateChance), PlanterDamageMultiplier = Planter(StatType.PlanterDamageMultiplier),

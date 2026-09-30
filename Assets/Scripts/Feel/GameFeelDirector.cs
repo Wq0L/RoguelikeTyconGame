@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 // Biten round'un özeti. RoundSummaryUI okur.
 public sealed class RoundSummaryData
@@ -8,6 +9,7 @@ public sealed class RoundSummaryData
     public int Harvests;
     public int Gold, Iron, Stone;
     public int Score;
+    public int Xp;
     public int Levels;
 }
 
@@ -20,6 +22,9 @@ public class GameFeelDirector : MonoBehaviour
     [Header("Round Intro")]
     [SerializeField] private bool showRoundIntro = true;
     [SerializeField] private Color roundColor = new Color(1f, 0.95f, 0.82f);
+    [Tooltip("Kota duyurusu ve son round uyarısında round intro rengi (kırmızı değil).")]
+    [FormerlySerializedAs("exhaustColor")]
+    [SerializeField] private Color quotaColor = new Color(1f, 0.72f, 0.3f);
     [SerializeField] private float roundStampY = 120f;
 
     [Header("Level Up")]
@@ -47,6 +52,7 @@ public class GameFeelDirector : MonoBehaviour
 
     private RoundSummaryData current;
     private int scoreAtStart, levelAtStart;
+    private double xpAtStart;
     public RoundSummaryData LastRound { get; private set; }
     public int SummaryVersion { get; private set; }
 
@@ -108,11 +114,23 @@ public class GameFeelDirector : MonoBehaviour
     {
         RoundManager rounds = RoundManager.Instance;
         if (rounds == null) return;
+        string quota = QuotaIntro(rounds);
         bool last = rounds.CurrentRound >= rounds.MaxRounds;
-        string subtitle = last ? "SON ROUND!" : $"{Mathf.RoundToInt(rounds.RemainingTime)} SANİYE";
-        ScreenStamp.Show("round", $"ROUND {rounds.CurrentRound}", subtitle, roundColor, roundStampY, 0.55f);
+        string subtitle = last ? "SON ROUND!" : quota ?? $"{Mathf.RoundToInt(rounds.RemainingTime)} SANİYE";
+        ScreenStamp.Show("round", $"ROUND {rounds.CurrentRound}", subtitle, quota != null && !last ? quotaColor : roundColor, roundStampY, 0.55f);
         FeelAudio.Play(FeelSound.Whoosh, 0.55f);
         pendingThumpTime = Time.unscaledTime + 0.2f;
+    }
+
+    // Hasat Kotası: segmentin ilk round'unda yeni kota duyurulur; son round'unda kota tutmadıysa kalan miktar uyarılır.
+    public static string QuotaIntro(RoundManager rounds)
+    {
+        if (rounds == null || !rounds.QuotaEnabled) return null;
+        int round = rounds.CurrentRound, segmentRounds = rounds.QuotaSegmentRounds;
+        if ((round - 1) % segmentRounds == 0)
+            return $"KOTA {HarvestQuota.Format(rounds.QuotaTarget)} · {segmentRounds} ROUND";
+        long missing = rounds.QuotaTarget - rounds.QuotaProgress;
+        return rounds.IsQuotaSegmentEnd(round) && missing > 0 ? $"SON ROUND · KOTAYA {HarvestQuota.Format(missing)} KALDI" : null;
     }
 
     private void HandleLevelUp(int level)
@@ -183,12 +201,14 @@ public class GameFeelDirector : MonoBehaviour
         current = new RoundSummaryData { Round = RoundManager.Instance != null ? RoundManager.Instance.CurrentRound : 0 };
         scoreAtStart = HarvestScoreManager.Instance != null ? HarvestScoreManager.Instance.TotalScore : 0;
         levelAtStart = progression != null ? progression.CurrentLevel : 0;
+        xpAtStart = progression != null ? progression.TotalXPEarned : 0;
     }
 
     private void FinishRoundStats()
     {
         current.Score = (HarvestScoreManager.Instance != null ? HarvestScoreManager.Instance.TotalScore : 0) - scoreAtStart;
         current.Levels = (progression != null ? progression.CurrentLevel : 0) - levelAtStart;
+        current.Xp = progression != null ? (int)System.Math.Min(int.MaxValue, progression.TotalXPEarned - xpAtStart) : 0;
         LastRound = current;
         current = null;
         SummaryVersion++;

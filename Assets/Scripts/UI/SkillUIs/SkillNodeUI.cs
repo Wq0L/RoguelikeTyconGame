@@ -347,9 +347,14 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         // 60 sn'nin üstü round'u uzatmaz, saldırı ve üretim hızına dönüşür.
         StatType.RoundDuration when value > RoundManager.RoundSecondsCap =>
             $"{RoundManager.RoundSecondsCap:0} sn · +%{(Mathf.Min(value, 90f) / RoundManager.RoundSecondsCap - 1f) * 100f:0} hız",
+        // Taban: bundan sonraki üretim hızı saksılarda nadir bitki şansına dönüşür.
+        StatType.PlantSpawnRate when value <= StatCalculator.MinimumSpawnInterval + 1e-3f => $"{value:0.###} sn (taban · fazlası nadirliğe)",
         StatType.RoundDuration or StatType.AttackSpeed or StatType.PlantSpawnRate => $"{value:0.###} sn",
         StatType.CritChance => $"%{value * 100f:0.##}",
         StatType.CritMultiplier => $"×{value:0.###}",
+        // Şans değeri yerine kartta ne göreceği: tek kartta Epic+ ve Legendary olasılığı.
+        StatType.MutationLuck =>
+            $"Epic+ %{CardSelectionUI.RarityWeight(value, TileRarity.Epic) + CardSelectionUI.RarityWeight(value, TileRarity.Legendary):0} · Leg %{CardSelectionUI.RarityWeight(value, TileRarity.Legendary):0}",
         _ => value.ToString("0.###")
     };
 

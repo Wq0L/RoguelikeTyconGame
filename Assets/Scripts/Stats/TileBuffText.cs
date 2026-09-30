@@ -21,6 +21,7 @@ public static class TileBuffText
         StatType.ElectricChance => "Çapraz elektrik şansı",
         StatType.DuplicateChance => "Çift ödül şansı",
         StatType.CritChance => "Kritik şansı",
+        StatType.MutationLuck => "Kart nadirliği",
         _ => stat.ToString()
     };
 
@@ -40,6 +41,62 @@ public static class TileBuffText
         if (mod.operation == ModifierOperation.Flat && chance) amount += " puan";
         if (mod.operation == ModifierOperation.Set) amount = mod.value.ToString("0.##", CultureInfo.InvariantCulture) + (chance ? " (oran)" : "");
         return amount;
+    }
+
+    // Eski değer kırmızı, yeni değer yeşil. Kağıt (tooltip, liste) koyu tonlar ister; kartın
+    // koyu çerçeveli yazısı açık tonlar. default: renksiz.
+    public readonly struct ChangeColors
+    {
+        private readonly string oldHex, newHex;
+        public ChangeColors(string oldHex, string newHex) { this.oldHex = oldHex; this.newHex = newHex; }
+        public string Old(string text) => oldHex == null ? text : $"<color=#{oldHex}>{text}</color>";
+        public string New(string text) => newHex == null ? text : $"<color=#{newHex}>{text}</color>";
+    }
+
+    public static readonly ChangeColors OnPaper = new ChangeColors("B8322A", "23752F");
+    public static readonly ChangeColors OnCard = new ChangeColors("FF8577", "7CF08E");
+
+    // Bu modifier'ların üretim süresi çarpanı (Fertile −%47,5 → 0,525). Üretime dokunmayan tile: 1.
+    public static float SpawnFactor(IReadOnlyList<StatModifier> modifiers)
+    {
+        float factor = 1f;
+        if (modifiers != null) foreach (var mod in modifiers)
+            if (mod.statType == StatType.PlantSpawnRate && mod.operation == ModifierOperation.MorePercent) factor *= 1f + mod.value;
+        return factor;
+    }
+
+    // Saksı zaten üretim tabanındayken bu tile'ın hızının dönüştüğü nadirlik.
+    public static float SpawnRarityAtFloor(IReadOnlyList<StatModifier> modifiers) =>
+        StatCalculator.SpawnOverflowRarity(StatCalculator.MinimumSpawnInterval * SpawnFactor(modifiers));
+
+    public static string Points(float value) => "+" + value.ToString("0.#", CultureInfo.InvariantCulture);
+
+    // "Sv 0 → Sv 1"; kısa hali "Sv 0 → 1".
+    public static string LevelChange(int from, int to, ChangeColors colors = default, bool shortForm = false) =>
+        "Sv " + colors.Old(from.ToString()) + " → " + colors.New((shortForm ? "" : "Sv ") + to);
+
+    // Seviye atlayan tile: eski ve yeni değer, "+13% → +16.25% puan". Ortak birim sonda bir kez yazılır.
+    public static string AmountChange(StatModifier before, StatModifier after, ChangeColors colors = default)
+    {
+        string from = Amount(before), to = Amount(after);
+        foreach (string unit in SharedUnits)
+            if (from.EndsWith(unit) && to.EndsWith(unit)) { from = from.Substring(0, from.Length - unit.Length); break; }
+        return colors.Old(from) + " → " + colors.New(to);
+    }
+
+    private static readonly string[] SharedUnits = { " puan", " (oran)" };
+
+    public static string ModifierChanges(IReadOnlyList<StatModifier> before, IReadOnlyList<StatModifier> after, ChangeColors colors = default)
+    {
+        var text = new StringBuilder();
+        if (after != null) for (int i = 0; i < after.Count; i++)
+        {
+            if (text.Length > 0) text.AppendLine();
+            text.Append(before != null && i < before.Count
+                ? Name(after[i].statType) + " " + AmountChange(before[i], after[i], colors)
+                : Modifier(after[i]));
+        }
+        return text.ToString();
     }
 
     public static string Modifiers(IReadOnlyList<StatModifier> modifiers)

@@ -23,6 +23,8 @@ public sealed class ComicPopupView : MonoBehaviour
     public int RowCount => used;
     public float ContentHeight => contentHeight;
     public bool IsHoverTooltip { get; set; }
+    // Çizgi roman fontunda ok yok; oku yedek fonttan çizer.
+    public static string WithArrowGlyph(string text) => text.Replace("→", "<font=\"LiberationSans SDF\">→</font>");
     public static ComicPopupView Attach(GameObject host)
     {
         var existing = host.GetComponent<ComicPopupView>();
@@ -89,7 +91,7 @@ public sealed class ComicPopupView : MonoBehaviour
             var icon = Rect("Badge " + used, content).gameObject.AddComponent<ResonanceBadgeGraphic>();
             icon.raycastTarget = false; icons.Add(icon);
         }
-        lines[used].gameObject.SetActive(true); lines[used].text = (text ?? "").Normalize(System.Text.NormalizationForm.FormC).Replace("→", "<font=\"LiberationSans SDF\">→</font>");
+        lines[used].gameObject.SetActive(true); lines[used].text = WithArrowGlyph((text ?? "").Normalize(System.Text.NormalizationForm.FormC));
         icons[used].gameObject.SetActive(!string.IsNullOrEmpty(recipe));
         if (!string.IsNullOrEmpty(recipe)) icons[used].SetRecipe(recipe);
         used++;

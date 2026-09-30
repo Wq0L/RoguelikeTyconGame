@@ -16,15 +16,31 @@ public class ProgressionManager : MonoBehaviour
     // Son round'un kart seçimlerinin düştüğü tile'lar. Harita, önizleme ve dünyadaki çerçeveler
     // "bu round'un kartı nereye gitti" diye buradan okur. Yeni round başlayınca temizlenir.
     private readonly List<GroundCell> roundAppliedCells = new List<GroundCell>();
-    private readonly HashSet<GroundCell> roundUpgradedCells = new HashSet<GroundCell>();
+    private readonly Dictionary<GroundCell, TileUpgrade> roundUpgrades = new Dictionary<GroundCell, TileUpgrade>();
     public IReadOnlyList<GroundCell> RoundAppliedCells => roundAppliedCells;
     public bool WasAppliedThisRound(GroundCell cell) => cell != null && roundAppliedCells.Contains(cell);
     // Yeni yerleşen değil, seviye atlayan tile (etiket "+SV").
-    public bool WasUpgradedThisRound(GroundCell cell) => cell != null && roundUpgradedCells.Contains(cell);
+    public bool WasUpgradedThisRound(GroundCell cell) => cell != null && roundUpgrades.ContainsKey(cell);
+
+    // Yükseltmeden önceki hal: tooltip ve round listesi "Sv 0 → Sv 1 · +13% → +16.25%" yazar.
+    public sealed class TileUpgrade
+    {
+        public int FromLevel;
+        public int ToLevel;
+        public List<StatModifier> Before;
+    }
+
+    public bool TryGetRoundUpgrade(GroundCell cell, out TileUpgrade upgrade)
+    {
+        upgrade = null;
+        return cell != null && roundUpgrades.TryGetValue(cell, out upgrade);
+    }
 
     public int CurrentLevel { get; private set; } = 1;
     public float CurrentXP { get; private set; } = 0f;
     public float XPToNextLevel { get; private set; }
+    // Run boyunca kazanılan toplam XP; round özeti round başı farkı gösterir.
+    public double TotalXPEarned { get; private set; }
 
     private int pendingMutationCount = 0;
 
@@ -56,7 +72,23 @@ public class ProgressionManager : MonoBehaviour
     private void HandleRoundStarted(int round)
     {
         roundAppliedCells.Clear();
-        roundUpgradedCells.Clear();
+        roundUpgrades.Clear();
+    }
+
+    // Bütün saksılar üretim tabanındaysa yeni Fertile kartı hız yerine nadirlik verir; kart bunu yazar.
+    public bool AllPlantersAtSpawnFloor()
+    {
+        GridSystem gridSystem = gridManager.GetGridSystem();
+        bool any = false;
+        for (int x = 0; x < gridManager.GetWidth(); x++)
+        for (int z = 0; z < gridManager.GetHeight(); z++)
+        {
+            PlanterBrain brain = gridSystem.GetGridObject(new GridPosition(x, z))?.GetPlanterBrain();
+            if (brain == null) continue;
+            any = true;
+            if (brain.GetRawSpawnInterval() > StatCalculator.MinimumSpawnInterval + 1e-3f) return false;
+        }
+        return any;
     }
 
     // Kart ekranı buna göre açılır: açık ve boş hücre yoksa kartlar yeni tile yerine yükseltme verir.
@@ -95,9 +127,14 @@ public class ProgressionManager : MonoBehaviour
     // Kartın nadirliği kaç seviye verdiğini belirler (Common/Rare 1, Epic 2, Legendary 3).
     public bool ApplyUpgrade(GroundCell cell, TileRarity rarity)
     {
-        if (cell == null || cell.AddLevels(GroundCell.LevelsFor(rarity)) <= 0) return false;
+        if (cell == null) return false;
+        int fromLevel = cell.Level;
+        var before = new List<StatModifier>(cell.RolledModifiers);
+        if (cell.AddLevels(GroundCell.LevelsFor(rarity)) <= 0) return false;
         if (!roundAppliedCells.Contains(cell)) roundAppliedCells.Add(cell);
-        roundUpgradedCells.Add(cell);
+        // Aynı round ikinci kez yükselirse ilk hali kalır: "Sv 0 → Sv 2".
+        if (roundUpgrades.TryGetValue(cell, out TileUpgrade upgrade)) upgrade.ToLevel = cell.Level;
+        else roundUpgrades.Add(cell, new TileUpgrade { FromLevel = fromLevel, ToLevel = cell.Level, Before = before });
         return true;
     }
 
@@ -105,6 +142,7 @@ public class ProgressionManager : MonoBehaviour
     public void AddXP(float amount)
     {
         CurrentXP += amount;
+        TotalXPEarned += amount;
         OnXPChanged?.Invoke();
 
         while (CurrentXP >= XPToNextLevel)

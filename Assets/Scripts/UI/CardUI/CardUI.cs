@@ -40,9 +40,19 @@ public class CardUI : MonoBehaviour
             GroundCell cell = offer.UpgradeTarget;
             nameText.text = mod.modifierName;
             rarityText.text = $"+{offer.LevelGain} SEVİYE · {rarityName}";
-            buffText.text = $"Sv {cell.Level} → Sv {cell.Level + offer.LevelGain}\n" +
-                (offer.Modifiers.Count == 1 ? TileBuffText.Amount(offer.Modifiers[0]) : TileBuffText.Modifiers(offer.Modifiers));
-            if(effectNameText) effectNameText.text=$"{RoundMapUI.CellName(cell.GetGridPosition())} · " + (offer.Modifiers.Count>0?TileBuffText.Name(offer.Modifiers[0].statType):"Özel etki");
+            // Eski değer → yeni değer: oyuncu seviyenin neyi ne kadar artırdığını görür.
+            var now = cell.RolledModifiers;
+            var colors = TileBuffText.OnCard;
+            string cellName = RoundMapUI.CellName(cell.GetGridPosition());
+            // Saksı bu tile olmadan da üretim tabanındaysa tile'ın bütün hızı nadirliğe dönüşür: kart onu yazar.
+            float factor = TileBuffText.SpawnFactor(now);
+            bool floor = factor < 1f && cell.Planter != null &&
+                cell.Planter.GetRawSpawnInterval() / factor <= StatCalculator.MinimumSpawnInterval + 1e-3f;
+            string change = floor
+                ? colors.Old(TileBuffText.Points(TileBuffText.SpawnRarityAtFloor(now))) + " → " + colors.New(TileBuffText.Points(TileBuffText.SpawnRarityAtFloor(offer.Modifiers)) + " nadirlik")
+                : offer.Modifiers.Count == 1 && now.Count == 1 ? TileBuffText.AmountChange(now[0], offer.Modifiers[0], colors) : TileBuffText.ModifierChanges(now, offer.Modifiers, colors);
+            buffText.text = TileBuffText.LevelChange(cell.Level, cell.Level + offer.LevelGain, colors) + "\n" + change;
+            if(effectNameText) effectNameText.text=$"{cellName} · " + (floor ? "Üretim tabanda → Nadirlik" : offer.Modifiers.Count>0?TileBuffText.Name(offer.Modifiers[0].statType):"Özel etki");
         }
         else if (offer.IsBaseStat)
         {
@@ -56,8 +66,18 @@ public class CardUI : MonoBehaviour
         {
             nameText.text = mod.modifierName;
             rarityText.text = rarityName;
-            buffText.text = offer.Modifiers.Count == 1 ? TileBuffText.Amount(offer.Modifiers[0]) : TileBuffText.Modifiers(offer.Modifiers);
-            if(effectNameText) effectNameText.text=offer.Modifiers.Count>0?TileBuffText.Name(offer.Modifiers[0].statType):"Özel etki";
+            // Bütün saksılar üretim tabanındaysa Fertile kartı hız yerine nadirlik verir.
+            float floorRarity = TileBuffText.SpawnRarityAtFloor(offer.Modifiers);
+            if (floorRarity > 0f && ProgressionManager.Instance != null && ProgressionManager.Instance.AllPlantersAtSpawnFloor())
+            {
+                buffText.text = TileBuffText.Points(floorRarity) + " nadirlik";
+                if(effectNameText) effectNameText.text="Üretim tabanda → Nadirlik";
+            }
+            else
+            {
+                buffText.text = offer.Modifiers.Count == 1 ? TileBuffText.Amount(offer.Modifiers[0]) : TileBuffText.Modifiers(offer.Modifiers);
+                if(effectNameText) effectNameText.text=offer.Modifiers.Count>0?TileBuffText.Name(offer.Modifiers[0].statType):"Özel etki";
+            }
         }
         int rarity=(int)rarityType;
         if(rarityMaterials!=null && rarity<rarityMaterials.Length)cardImage.material=rarityMaterials[rarity];

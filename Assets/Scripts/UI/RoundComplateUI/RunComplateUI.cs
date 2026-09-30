@@ -8,10 +8,10 @@ public class RunCompleteUI : MonoBehaviour
 
     private void OnEnable()
     {
-        // Tarla tükendiyse run'ın neden bittiği skorun üstünde yazar.
+        // Kota tutmadıysa run'ın neden bittiği skorun üstünde yazar.
         RoundManager rounds = RoundManager.Instance;
-        string reason = rounds != null && rounds.EndedByExhaustion
-            ? $"<size=70%>Tarla tükendi · Round {rounds.CurrentRound}</size>\n" : "";
+        string reason = rounds != null && rounds.EndedByQuota
+            ? $"<size=70%>Kota tutmadı · Round {rounds.LastQuotaRound} · {HarvestQuota.Format(rounds.LastQuotaScore)} / {HarvestQuota.Format(rounds.LastQuotaTarget)}</size>\n" : "";
         scoreText.text = $"{reason}Harvest Score: {HarvestScoreManager.Instance.TotalScore}";
     }
 

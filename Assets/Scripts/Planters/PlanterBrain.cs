@@ -203,10 +203,23 @@ public class PlanterBrain : MonoBehaviour
 
         // Only strongest unconditional resonance per stat is in this list.
         result = StatCalculator.Calculate(result, statType, StatTarget.Planter, null, resonanceModifiers);
+        // Üretim tabanda: fazla hız nadir bitki şansına eklenir.
+        if (statType == StatType.RareSpawnChance)
+            result = StatCalculator.ClampStat(statType, result + GetSpawnOverflowRarity());
 
         statCache[statType] = result;
         return result;
     }
+
+    // Taban uygulanmadan üretim süresi (skill + tile + rezonans). Tabanın altındaki payı nadirliğe dönüşür.
+    public float GetRawSpawnInterval()
+    {
+        float ordinary = StatCalculator.CalculateRaw(planterData.GetBaseStat(StatType.PlantSpawnRate), StatType.PlantSpawnRate,
+            StatTarget.Planter, StatManager.Instance != null ? StatManager.Instance.GlobalModifiers : null, localModifiers);
+        return StatCalculator.CalculateRaw(ordinary, StatType.PlantSpawnRate, StatTarget.Planter, null, resonanceModifiers);
+    }
+
+    public float GetSpawnOverflowRarity() => StatCalculator.SpawnOverflowRarity(GetRawSpawnInterval());
 
     public float GetOrdinaryStat(StatType statType)
     {

@@ -10651,8 +10651,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HarvestBehaviorManager
   boomerangPrefab: {fileID: 6972153893092745997, guid: 40623c9cd8babec40b745a57a2d47dce, type: 3}
   electricPrefab: {fileID: 65170047385663080, guid: f0bda5b3c7a6af34d9a7a32ae4f74be2, type: 3}
-  maxBoomerangs: 6
-  maxElectricBursts: 8
+  maxBoomerangs: 12
+  maxElectricBursts: 12
 --- !u!4 &941399138
 Transform:
   m_ObjectHideFlags: 0
@@ -17609,6 +17609,9 @@ MonoBehaviour:
   maxRounds: 130
   endSlowdownWindow: 0.3
   endSlowdownFloor: 0.45
+  exhaustThreshold: 0.3
+  exhaustRounds: 3
+  exhaustFromRound: 20
 --- !u!1001 &1576945877
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20388,7 +20391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TornadoManager
   tornadoPrefab: {fileID: 6898653200578040963, guid: eaaf5351f7743ac4da87cd09a94c68ba, type: 3}
-  maxActiveTornadoes: 8
+  maxActiveTornadoes: 10
 --- !u!1001 &1793328670
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22127,6 +22130,7 @@ MonoBehaviour:
   xpUI: {fileID: 1771124225}
   cardSelectionPanel: {fileID: 919290214}
   runCompletePanel: {fileID: 2086464847}
+  resourcesUI: {fileID: 0}
 --- !u!1001 &2049721751
 PrefabInstance:
   m_ObjectHideFlags: 0

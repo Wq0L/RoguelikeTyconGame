@@ -23,6 +23,7 @@ public class RoundUI : MonoBehaviour
             timerRestScale = timerText.transform.localScale;
             hasTimerRestColor = true;
         }
+        QuotaHUD.Attach((RectTransform)transform);
         StartCoroutine(SubscribeWhenReady());
     }
 

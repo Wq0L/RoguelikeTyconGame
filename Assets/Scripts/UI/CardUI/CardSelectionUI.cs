@@ -37,6 +37,7 @@ public class CardSelectionUI : MonoBehaviour
 
     public void RefreshCards()
     {
+        CardSelectionVignette.Attach((RectTransform)transform);
         currentCards.Clear();
         availableModifiers.Clear();
         foreach (var modifier in allModifiers)
@@ -140,31 +141,43 @@ public class CardSelectionUI : MonoBehaviour
         return rarityFiltered[Random.Range(0, rarityFiltered.Count)];
     }
 
+    // Kart nadirliği kademeleri (Common, Rare, Epic, Legendary; her satır toplam 100).
+    // Kart Sezgisi'nin her kademesi (+0.0333 şans) bir satır ilerletir; ağaç tamken (9 kademe)
+    // kartlar çoğunlukla Epic ve Legendary, Common ve Rare nadir. Ara şans değerleri iki satır arasında yumuşar.
+    public const float LuckPerTier = 0.1f / 3f;
+    private static readonly float[,] RarityTiers =
+    {
+        { 60, 25, 12,  3 },
+        { 49, 28, 18,  5 },
+        { 38, 30, 23,  9 },
+        { 30, 29, 29, 12 },
+        { 22, 27, 34, 17 },
+        { 15, 23, 39, 23 },
+        { 10, 18, 42, 30 },
+        {  7, 14, 43, 36 },
+        {  4, 10, 43, 43 },
+        {  3,  7, 42, 48 },
+    };
+
+    // Bu nadirliğin tek kartta çıkma yüzdesi (skill tooltip'i de buradan okur).
+    public static float RarityWeight(float luck, TileRarity rarity)
+    {
+        int last = RarityTiers.GetLength(0) - 1;
+        float tier = Mathf.Clamp(luck / LuckPerTier, 0f, last);
+        int low = Mathf.Min(Mathf.FloorToInt(tier), last), high = Mathf.Min(low + 1, last);
+        return Mathf.Lerp(RarityTiers[low, (int)rarity], RarityTiers[high, (int)rarity], tier - low);
+    }
+
     private TileRarity RollRarityTier()
     {
         float luck = StatManager.Instance.GetFinalStat(StatType.MutationLuck, StatTarget.Mutation);
-
-        Dictionary<TileRarity, float> rarityWeights = new()
+        float roll = Random.Range(0f, 100f), cumulative = 0f;
+        for (int i = 0; i <= (int)TileRarity.Legendary; i++)
         {
-            { TileRarity.Common,    Mathf.Max(10f, 60f - luck * 30f) },
-            { TileRarity.Rare,      25f + luck * 10f },
-            { TileRarity.Epic,      12f + luck * 12f },
-            { TileRarity.Legendary,  3f + luck * 8f  }
-        };
-
-        float total = 0f;
-        foreach (var w in rarityWeights) total += w.Value;
-
-        float roll = Random.Range(0f, total);
-        float cumulative = 0f;
-
-        TileRarity selectedRarity = TileRarity.Common;
-        foreach (var w in rarityWeights)
-        {
-            cumulative += w.Value;
-            if (roll <= cumulative) { selectedRarity = w.Key; break; }
+            cumulative += RarityWeight(luck, (TileRarity)i);
+            if (roll <= cumulative) return (TileRarity)i;
         }
-        return selectedRarity;
+        return TileRarity.Legendary;
     }
 
     // Yükseltilecek tile kalmadığında: kalıcı, küçük global güç. Nadirlik miktarı büyütür.

@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileModifierSO
   modifierName: Explosive-ExplosionChance
   modifierType: 4
-  requiredUnlock: 3
   rarity: 1
   tileColor: {r: 0.7924528, g: 0.39367563, b: 0, a: 1}
+  requiredUnlock: 3
   behavior: 1
   modifierRanges:
   - statType: 20
     target: 2
     operation: 0
     minValue: 0.3
-    maxValue: 0.4
+    maxValue: 0.44
