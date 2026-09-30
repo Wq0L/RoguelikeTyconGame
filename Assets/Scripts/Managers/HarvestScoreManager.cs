@@ -4,8 +4,9 @@ public class HarvestScoreManager : MonoBehaviour
 {
     public static HarvestScoreManager Instance { get; private set; }
 
-    private int totalScore;
-    public int TotalScore => totalScore;
+    // long: segment kotası ve sıralama için; int tavanında (2,1 milyar) ilerleme durmaz.
+    private long totalScore;
+    public long TotalScore => totalScore;
 
     private void Awake()
     {
@@ -23,7 +24,7 @@ public class HarvestScoreManager : MonoBehaviour
         );
         
         int final = CalculateAward(rarity, multiplier, planter != null ? planter.GetHarvestScore(rarity) : 1f);
-        totalScore = (int)System.Math.Min(int.MaxValue, (long)totalScore + final);
+        totalScore = totalScore > long.MaxValue - final ? long.MaxValue : totalScore + final;
 
         // Debug.Log($"Score +{final} ({rarity}) | Toplam: {totalScore}");
     }

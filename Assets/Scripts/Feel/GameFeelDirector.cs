@@ -51,7 +51,8 @@ public class GameFeelDirector : MonoBehaviour
     private GameStates lastState;
 
     private RoundSummaryData current;
-    private int scoreAtStart, levelAtStart;
+    private long scoreAtStart;
+    private int levelAtStart;
     private double xpAtStart;
     public RoundSummaryData LastRound { get; private set; }
     public int SummaryVersion { get; private set; }
@@ -114,10 +115,19 @@ public class GameFeelDirector : MonoBehaviour
     {
         RoundManager rounds = RoundManager.Instance;
         if (rounds == null) return;
+        // Öncelik: olay başladı/bitti > kota (yeni segment, son round uyarısı) > yaklaşan olay > süre.
+        // Run'ın son round'unda kota uyarısı "SON ROUND!" yerine geçer.
+        SegmentEventDirector events = SegmentEventDirector.Instance;
         string quota = QuotaIntro(rounds);
+        string eventIntro = SegmentEventText.Intro(events, rounds);
         bool last = rounds.CurrentRound >= rounds.MaxRounds;
-        string subtitle = last ? "SON ROUND!" : quota ?? $"{Mathf.RoundToInt(rounds.RemainingTime)} SANİYE";
-        ScreenStamp.Show("round", $"ROUND {rounds.CurrentRound}", subtitle, quota != null && !last ? quotaColor : roundColor, roundStampY, 0.55f);
+        string subtitle; Color color;
+        if (eventIntro != null) { subtitle = eventIntro; color = SegmentEventText.IntroColor; }
+        else if (quota != null) { subtitle = quota; color = quotaColor; }
+        else if (last) { subtitle = "SON ROUND!"; color = roundColor; }
+        else if (SegmentEventText.HeadsUp(events, rounds) is string headsUp) { subtitle = headsUp; color = SegmentEventText.IntroColor; }
+        else { subtitle = $"{Mathf.RoundToInt(rounds.RemainingTime)} SANİYE"; color = roundColor; }
+        ScreenStamp.Show("round", $"ROUND {rounds.CurrentRound}", subtitle, color, roundStampY, 0.55f);
         FeelAudio.Play(FeelSound.Whoosh, 0.55f);
         pendingThumpTime = Time.unscaledTime + 0.2f;
     }
@@ -206,7 +216,8 @@ public class GameFeelDirector : MonoBehaviour
 
     private void FinishRoundStats()
     {
-        current.Score = (HarvestScoreManager.Instance != null ? HarvestScoreManager.Instance.TotalScore : 0) - scoreAtStart;
+        long score = (HarvestScoreManager.Instance != null ? HarvestScoreManager.Instance.TotalScore : 0) - scoreAtStart;
+        current.Score = (int)System.Math.Min(int.MaxValue, System.Math.Max(0L, score));
         current.Levels = (progression != null ? progression.CurrentLevel : 0) - levelAtStart;
         current.Xp = progression != null ? (int)System.Math.Min(int.MaxValue, progression.TotalXPEarned - xpAtStart) : 0;
         LastRound = current;

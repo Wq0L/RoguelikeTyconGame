@@ -66,9 +66,11 @@ public sealed class HarvestBehaviorManager : MonoBehaviour
         effect.Launch(this, source, cell.transform.position, destination, damage);
         return true;
     }
+    // Elektrik vuruşu anlıktır: hasar görselden bağımsız uygulanır. Efekt havuzu doluysa (maxElectricBursts)
+    // yalnız çizim atlanır, hedefler yine vurulur.
     public bool TryElectric(PlanterBrain source, int damage)
     {
-        if (!isActiveAndEnabled || electricPool == null || electricity.Count >= maxElectricBursts || source == null ||
+        if (!isActiveAndEnabled || source == null ||
             RoundManager.Instance == null || !RoundManager.Instance.IsRoundActive || GridManager.Instance == null) return false;
         footprint.Clear();
         foreach (var occupied in source.OccupiedGrids)
@@ -78,10 +80,13 @@ public sealed class HarvestBehaviorManager : MonoBehaviour
         }
         HarvestBehaviorGeometry.ElectricCells(footprint, targets, origins);
         if (targets.Count == 0) return false;
-        var effect = electricPool.Get(); electricity.Add(effect);
-        effect.Launch(this, source, GridManager.Instance.GetGridSystem(), targets, origins, damage);
+        ElectricBurst effect = electricPool != null && electricity.Count < maxElectricBursts ? electricPool.Get() : null;
+        if (effect != null) electricity.Add(effect);
+        else SkippedElectricVisuals++;
+        ElectricBurst.Strike(this, effect, source, GridManager.Instance.GetGridSystem(), targets, origins, damage);
         return true;
     }
+    public int SkippedElectricVisuals { get; private set; }
     public void Release(BoomerangScythe effect) { if (boomerangs.Remove(effect)) boomerangPool.Return(effect); }
     public void Release(ElectricBurst effect) { if (electricity.Remove(effect)) electricPool.Return(effect); }
 }

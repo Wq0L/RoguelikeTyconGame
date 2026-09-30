@@ -22,7 +22,7 @@ To reproduce the R129 question, use one history row starting at R1 with MaxSkill
 - HP uses PlantHealthScalingSO.Calculate at spawn; a living plant carries its current HP across rounds.
 - Resource and XP multiplication use float operations and Mathf.RoundToInt **per plant before duplication**. Duplicate doubles the rounded integer reward/XP, not the physical death count. Nonpositive resource deliveries are ignored as in ResourceManager.
 - Attack interval includes PlayerController's 0.1 second floor. Damage variance, crit rounding, and incoming planter multiplier rounding follow gameplay order.
-- Each lane has an initial random timer. While occupied it cannot produce or advance its production timer. Death clears the lane and resets the timer. Attack and spawn timers discard overshoot, like Update. Living plants, spawn timers and attack timer persist between rounds; shops do not advance time.
+- Each lane has an initial random timer. While occupied it cannot produce or advance its production timer. Death clears the lane and resets the timer. Spawn timers discard overshoot, like PlantSpawner.Update. The attack timer keeps it (PlayerController.AdvanceAttackTimer: at most one attack per frame, carry capped at one interval). Living plants, spawn timers and attack timer persist between rounds; shops do not advance time.
 
 ## Explicit approximations and scope
 

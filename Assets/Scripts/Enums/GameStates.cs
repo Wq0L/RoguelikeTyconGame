@@ -8,5 +8,7 @@ public enum GameStates
     Shop,
     Placing,
     Selling,
-    RunComplete
+    RunComplete,
+    // Round sonu seçimi (boss sonrası uzmanlaşma). Sona eklendi: önceki değerlerin sırası korunur.
+    RoundChoice
 }

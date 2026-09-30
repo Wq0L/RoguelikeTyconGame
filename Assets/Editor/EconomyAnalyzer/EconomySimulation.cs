@@ -147,7 +147,8 @@ namespace ClickerGame.EconomyAnalysis
                 int frames = (int)Math.Ceiling(input.Duration * fps - 1e-5);
                 for (int frame = 0; frame < frames; frame++)
                 {
-                    // Explicit assumed frame order: all spawners, then player. No timer catch-up.
+                    // Explicit assumed frame order: all spawners, then player. Spawn timers discard overshoot;
+                    // the attack timer keeps it like PlayerController (one attack per frame at most).
                     foreach (var lane in lanes)
                     {
                         if (lane.Plant != null) continue;
@@ -159,9 +160,7 @@ namespace ClickerGame.EconomyAnalysis
                         lane.Plant = plant.Plant;
                         lane.Hp = plant.Hp; // Survives round changes without HP rescaling.
                     }
-                    attackTimer += dt;
-                    if (attackTimer < input.AttackInterval) continue;
-                    attackTimer = 0;
+                    if (!PlayerController.AdvanceAttackTimer(ref attackTimer, dt, input.AttackInterval)) continue;
                     int hitCount = 0, start = nextTarget;
                     // Coverage assumption, not a gameplay target cap: rotate through occupied lanes.
                     for (int offset = 0; offset < laneCount && hitCount < input.EffectiveTargets; offset++)

@@ -155,7 +155,7 @@ public class CameraFeel : MonoBehaviour
 
         zoomTarget = 0f;
         bool roundJustEnded = previous == GameStates.Round &&
-            (state == GameStates.RoundEnd || state == GameStates.CardSelection || state == GameStates.RunComplete);
+            (state == GameStates.RoundEnd || state == GameStates.CardSelection || state == GameStates.RunComplete || state == GameStates.RoundChoice);
         if (!roundJustEnded) return;
 
         // Zaman durduğu an: odaklanmış zoom bırakılır, küçük bir sarsıntı ve flaş.

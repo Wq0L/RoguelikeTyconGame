@@ -8,6 +8,8 @@ public class PlantSpawner : MonoBehaviour
     private float timer;
     private GameObject spawnedPlant;
 
+    public GridObject GridObject => gridObject;
+
     public void RemoveSpawnedPlant()
     {
         enabled = false;
@@ -60,7 +62,10 @@ public class PlantSpawner : MonoBehaviour
         // 60 sn'yi aşan round süresi üretim hızına dönüşür (RoundManager.TempoMultiplier). Taban önce uygulanır:
         // round başına üretim, round'un 90 sn sürdüğü haliyle aynı kalır.
         float tempo = RoundManager.Instance != null ? RoundManager.Instance.TempoMultiplier : 1f;
-        return Mathf.Max(StatCalculator.MinimumSpawnInterval, interval) / tempo;
+        // Segment olayı (Don Cephesi) bu üretim noktasının nihai süresini uzatır: taban ve tempodan sonra uygulanır,
+        // böylece tabandaki saksı da gerçekten yavaşlar ve taban taşması → nadirlik hesabına dokunulmaz.
+        float eventMultiplier = gridObject != null ? SegmentEventDirector.SpawnIntervalMultiplier(gridObject.GetGridPosition()) : 1f;
+        return Mathf.Max(StatCalculator.MinimumSpawnInterval, interval) / tempo * eventMultiplier;
     }
 
     private float GetEffectiveRareBonus()

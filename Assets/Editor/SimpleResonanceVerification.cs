@@ -134,7 +134,7 @@ public static class SimpleResonanceVerification
         stats.RemoveGlobalModifier(globalScore);
 
         var plant=Data<PlantSO>(); plant.maxHealth=10;plant.rewardAmount=5;plant.xpAmount=2;plant.resourceType=ResourceType.Gold;plant.rarity=PlantRarity.Rare;
-        float xpBefore=progression.CurrentXP; int goldBefore=resources.GetResourceAmount(ResourceType.Gold);int scoreBefore=score.TotalScore;
+        float xpBefore=progression.CurrentXP; int goldBefore=resources.GetResourceAmount(ResourceType.Gold);long scoreBefore=score.TotalScore;
         var victim=Victim(plant,xpOwner);
         victim.TakeDamage(1,DamageType.Electric,false,10);
         Require(!victim.IsDead,"Nonlethal electric hit");

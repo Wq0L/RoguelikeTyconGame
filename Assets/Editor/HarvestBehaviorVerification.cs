@@ -23,6 +23,8 @@ public static class HarvestBehaviorVerification
     static int poolSize;
     static readonly List<string> notes = new();
     static HarvestBehaviorVerification() { EditorApplication.update += Tick; }
+    // Havuz sınırı sahnede ayarlanır (GameScene: HarvestBehaviorManager); test sabit sayı yerine onu okur.
+    static int Cap(HarvestBehaviorManager m,string field)=>(int)typeof(HarvestBehaviorManager).GetField(field,System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Instance).GetValue(m);
     static void Require(bool condition, string message)
     {
         if (!condition) throw new Exception("Harvest behavior verification: " + message);
@@ -131,10 +133,10 @@ public static class HarvestBehaviorVerification
                 foreach(var g in source.OccupiedGrids)Require(g.GetPlantObject().GetComponent<PlantHealth>().CurrentHealth==100,"electric excludes source planter");
                 foreach(var p in targets)Require(GridManager.Instance.GetGridSystem().GetGridObject(p).GetPlantObject().GetComponent<PlantHealth>().CurrentHealth==93,"electric hits diagonal target once");
                 for(int i=0;i<20;i++)manager.TryElectric(source,0);
-                Require(manager.ActiveElectricBursts==8,"electric pool cap");manager.ClearAll();
+                Require(manager.ActiveElectricBursts==Cap(manager,"maxElectricBursts"),"electric pool cap (scene value)");manager.ClearAll();
                 beforeFlight.Clear();foreach(var p in plants)if(p!=null)beforeFlight[p]=p.CurrentHealth;
                 for(int i=0;i<20;i++)manager.TryBoomerang(source,sourceGrid,10);
-                Require(manager.ActiveBoomerangs==6,"boomerang pool cap");
+                Require(manager.ActiveBoomerangs==Cap(manager,"maxBoomerangs"),"boomerang pool cap (scene value)");
                 poolSize=manager.GetComponentsInChildren<BoomerangScythe>(true).Length;
                 manager.ClearAll();manager.TryBoomerang(source,sourceGrid,10);
                 moving=manager.GetComponentsInChildren<BoomerangScythe>().Single();

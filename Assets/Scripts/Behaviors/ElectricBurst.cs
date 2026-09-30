@@ -25,20 +25,28 @@ public sealed class ElectricBurst : MonoBehaviour
             line.enabled = false;
         }
     }
+    static readonly Vector3[] scratchStart = new Vector3[8], scratchEnd = new Vector3[8];
+
     public void Launch(HarvestBehaviorManager manager, PlanterBrain planter, GridSystem grid,
+        IReadOnlyList<GridPosition> targets, IReadOnlyList<GridPosition> origins, int damage) =>
+        Strike(manager, this, planter, grid, targets, origins, damage);
+
+    // Hedefleri vurur; visual verilirse aynı hedeflere şimşeği çizer. visual null: havuz dolu, sadece hasar.
+    public static void Strike(HarvestBehaviorManager manager, ElectricBurst visual, PlanterBrain planter, GridSystem grid,
         IReadOnlyList<GridPosition> targets, IReadOnlyList<GridPosition> origins, int damage)
     {
-        owner = manager; source = planter; age = 0; count = 0;
+        Vector3[] from = visual != null ? visual.start : scratchStart, to = visual != null ? visual.end : scratchEnd;
         damage = planter != null ? planter.GetBehaviorDamage(damage, DamageType.Electric) : damage;
         float xp = planter != null ? ResonanceManager.ElectricXP(planter.ActiveResonances) : 1f;
+        int count = 0;
         for (int i = 0; i < targets.Count && count < 8; i++)
         {
             var entry = grid.GetGridObject(targets[i]); var cell = entry?.GetGroundCellCached();
             var origin = grid.GetGridObject(origins[i])?.GetGroundCellCached();
             if (cell == null || cell.IsLocked || origin == null || entry.GetPlanterBrain() == planter) continue;
-            start[count] = origin.transform.position + Vector3.up * .8f;
-            end[count] = cell.transform.position + Vector3.up * .8f;
-            bolts[count * 2].enabled = bolts[count * 2 + 1].enabled = true; count++;
+            from[count] = origin.transform.position + Vector3.up * .8f;
+            to[count] = cell.transform.position + Vector3.up * .8f;
+            count++;
             var plant = entry.GetPlantObject();
             if (plant != null && plant.TryGetComponent<PlantHealth>(out var health) && !health.IsDead)
             {
@@ -47,6 +55,13 @@ public sealed class ElectricBurst : MonoBehaviour
                 VFXManager.Instance?.PlayHit(point, damage, false);
             }
         }
+        if (visual != null) visual.Show(manager, planter, count);
+    }
+
+    void Show(HarvestBehaviorManager manager, PlanterBrain planter, int boltCount)
+    {
+        owner = manager; source = planter; age = 0; count = boltCount;
+        for (int b = 0; b < count; b++) bolts[b * 2].enabled = bolts[b * 2 + 1].enabled = true;
         Draw();
     }
     void Update()

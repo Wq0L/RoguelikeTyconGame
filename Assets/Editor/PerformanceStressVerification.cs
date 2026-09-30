@@ -123,7 +123,7 @@ public static class PerformanceStressVerification
         {
             int createdBefore = pool.CreatedCount;
             data.prefab = prefab;
-            int gold = resources.GetResourceAmount(ResourceType.Gold), scoreBefore = score.TotalScore;
+            int gold = resources.GetResourceAmount(ResourceType.Gold); long scoreBefore = score.TotalScore;
             float xp = progression.CurrentXP;
             for (int cycle = 0; cycle < 12; cycle++)
             {
@@ -177,7 +177,7 @@ public static class PerformanceStressVerification
         while (Time.timeAsDouble < until) yield return null;
         Check(grid.HasPlantObject(), "Spawn resumes after remaining interval");
         int removalGold = resources.GetResourceAmount(ResourceType.Gold);
-        float removalXP = progression.CurrentXP; int removalScore = score.TotalScore;
+        float removalXP = progression.CurrentXP; long removalScore = score.TotalScore;
         spawner.RemoveSpawnedPlant(); spawner.RemoveSpawnedPlant();
         yield return null;
         Check(!grid.HasPlantObject() && resources.GetResourceAmount(ResourceType.Gold) == removalGold &&
@@ -250,7 +250,7 @@ public static class PerformanceStressVerification
         }
         Check(resources.GetResourceAmount(ResourceType.Gold) - baselineGold == Width * BaselineWaves * 5 &&
             progression.CurrentXP - baselineXP == Width * BaselineWaves * 2, "Instantiate/Destroy baseline exact rewards");
-        int goldStart = resources.GetResourceAmount(ResourceType.Gold), scoreStart = score.TotalScore;
+        int goldStart = resources.GetResourceAmount(ResourceType.Gold); long scoreStart = score.TotalScore;
         float xpStart = progression.CurrentXP;
         int stableCreated = 0, stableMaterials = 0;
         for (int wave = 0; wave < PooledWaves; wave++)

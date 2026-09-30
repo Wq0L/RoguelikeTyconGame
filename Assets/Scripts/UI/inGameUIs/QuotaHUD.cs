@@ -3,22 +3,28 @@ using TMPro;
 using UnityEngine;
 
 // Round HUD'unda Hasat Kotası: bu segmentte kazanılan skor / kota, ilerleme çubuğu ve kalan round.
+// Segment olayı (boss) varsa kart buz rengine döner ve alt satırda kural ya da yaklaşan olay yazar.
 // RoundUI kurar; sahneye kayıt gerekmez. Skoru saniyede 10 kez okur, değişmediyse yazıyı yeniden kurmaz.
 public sealed class QuotaHUD : MonoBehaviour
 {
     private const float Width = 440f;
     private const float Height = 76f;
+    private const float EventLineHeight = 28f;
     private const float BarInset = 16f;
 
     private static readonly Color Ink = new Color32(54, 39, 54, 255);
     private static readonly Color Amber = new Color32(247, 192, 93, 255);
     private static readonly Color Green = new Color32(98, 176, 74, 255);
     private static readonly Color Hot = new Color32(232, 120, 60, 255);
+    private static readonly Color Paper = new Color32(255, 242, 210, 255);
+    private static readonly Color FrostPaper = new Color32(224, 240, 252, 255);
 
     private RectTransform card, fill;
     private CanvasGroup group;
-    private ComicPopupPlate fillPlate;
-    private TextMeshProUGUI label, value;
+    private ComicPopupPlate fillPlate, paper;
+    private TextMeshProUGUI label, value, eventLine, specLine;
+    private string shownEvent, shownSpec;
+    private bool shownBoss;
     private long shownProgress = -1, shownTarget = -1;
     private int shownLeft = -1, shownState = -1;
     private bool wasDone;
@@ -49,13 +55,28 @@ public sealed class QuotaHUD : MonoBehaviour
         group.interactable = false;
         Plate(card, "Ink shadow", new Color32(40, 29, 43, 200), new Vector2(5f, -6f), new Vector2(5f, -6f));
         Plate(card, "Ink outline", Ink, Vector2.zero, Vector2.zero);
-        Plate(card, "Cream paper", new Color32(255, 242, 210, 255), new Vector2(4f, 4f), new Vector2(-4f, -4f));
+        paper = Plate(card, "Cream paper", Paper, new Vector2(4f, 4f), new Vector2(-4f, -4f));
 
-        label = CreateText("Label", 23f, TextAlignmentOptions.MidlineLeft, new Vector2(16f, -8f), new Vector2(170f, 34f), new Vector2(0f, 1f));
-        value = CreateText("Value", 26f, TextAlignmentOptions.MidlineRight, new Vector2(-16f, -8f), new Vector2(170f, 34f), new Vector2(1f, 1f));
+        label = CreateText("Label", 23f, TextAlignmentOptions.MidlineLeft, new Vector2(16f, -8f), new Vector2(250f, 34f), new Vector2(0f, 1f));
+        label.enableAutoSizing = true;
+        label.fontSizeMin = 16f;
+        label.fontSizeMax = 23f;
+        value = CreateText("Value", 26f, TextAlignmentOptions.MidlineRight, new Vector2(-16f, -8f), new Vector2(160f, 34f), new Vector2(1f, 1f));
         value.enableAutoSizing = true;
         value.fontSizeMin = 16f;
         value.fontSizeMax = 26f;
+        eventLine = CreateText("Event", 19f, TextAlignmentOptions.MidlineLeft, new Vector2(16f, -40f), new Vector2(Width - 32f, 26f), new Vector2(0f, 1f));
+        eventLine.color = SegmentEventText.Ink;
+        eventLine.enableAutoSizing = true;
+        eventLine.fontSizeMin = 13f;
+        eventLine.fontSizeMax = 19f;
+        eventLine.gameObject.SetActive(false);
+        specLine = CreateText("Specialization", 17f, TextAlignmentOptions.MidlineLeft, new Vector2(16f, -40f), new Vector2(Width - 32f, 24f), new Vector2(0f, 1f));
+        specLine.color = new Color32(96, 60, 120, 255);
+        specLine.enableAutoSizing = true;
+        specLine.fontSizeMin = 12f;
+        specLine.fontSizeMax = 17f;
+        specLine.gameObject.SetActive(false);
 
         var track = new GameObject("Bar", typeof(RectTransform)).GetComponent<RectTransform>();
         track.SetParent(card, false);
@@ -111,12 +132,28 @@ public sealed class QuotaHUD : MonoBehaviour
         int left = closed ? 0 : rounds.QuotaSegmentEnd - rounds.CurrentRound + (before ? 1 : 0);
         bool done = progress >= target;
         int state = done ? 2 : left <= 1 ? 1 : 0;
+        SegmentEventDirector events = SegmentEventDirector.Instance;
+        bool boss = events != null && events.Active != null;
+        string eventText = SegmentEventText.HudLine(events);
+        string specText = SpecializationManager.Instance != null ? SpecializationPanelUI.Describe(SpecializationManager.Instance.Chosen) : null;
 
-        if (progress == shownProgress && target == shownTarget && left == shownLeft && state == shownState) return;
+        if (progress == shownProgress && target == shownTarget && left == shownLeft && state == shownState &&
+            boss == shownBoss && eventText == shownEvent && specText == shownSpec) return;
         bool reached = done && !wasDone && shownState >= 0 && rounds.IsRoundActive;
         shownProgress = progress; shownTarget = target; shownLeft = left; shownState = state; wasDone = done;
+        shownBoss = boss; shownEvent = eventText; shownSpec = specText;
 
-        label.text = done ? "KOTA TAMAM" : left <= 1 ? "KOTA · SON ROUND" : $"KOTA · {left} ROUND";
+        string name = boss ? "BOSS KOTASI" : "KOTA";
+        label.text = done ? $"{name} TAMAM" : left <= 1 ? $"{name} · SON ROUND" : $"{name} · {left} ROUND";
+        paper.color = boss ? FrostPaper : Paper;
+        eventLine.gameObject.SetActive(eventText != null);
+        eventLine.text = eventText ?? "";
+        // Seçilen uzmanlaşma run boyunca görünür (olay satırının altında).
+        specLine.gameObject.SetActive(specText != null);
+        specLine.text = specText != null ? "Uzmanlaşma: " + specText : "";
+        specLine.rectTransform.anchoredPosition = new Vector2(16f, eventText != null ? -40f - EventLineHeight : -40f);
+        float extra = (eventText != null ? EventLineHeight : 0f) + (specText != null ? 24f : 0f);
+        card.sizeDelta = new Vector2(Width, Height + extra);
         value.text = $"{HarvestQuota.Format(progress)} / {HarvestQuota.Format(target)}";
         float ratio = target > 0 ? Mathf.Clamp01((float)((double)progress / target)) : 1f;
         fill.anchorMax = new Vector2(ratio, 1f);
@@ -132,7 +169,7 @@ public sealed class QuotaHUD : MonoBehaviour
         }
     }
 
-    private static void Plate(RectTransform parent, string name, Color color, Vector2 offsetMin, Vector2 offsetMax)
+    private static ComicPopupPlate Plate(RectTransform parent, string name, Color color, Vector2 offsetMin, Vector2 offsetMax)
     {
         var plateObject = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer));
         var rect = (RectTransform)plateObject.transform;
@@ -144,6 +181,7 @@ public sealed class QuotaHUD : MonoBehaviour
         var plate = plateObject.AddComponent<ComicPopupPlate>();
         plate.color = color;
         plate.raycastTarget = false;
+        return plate;
     }
 
     private TextMeshProUGUI CreateText(string name, float size, TextAlignmentOptions alignment, Vector2 position, Vector2 box, Vector2 anchor)

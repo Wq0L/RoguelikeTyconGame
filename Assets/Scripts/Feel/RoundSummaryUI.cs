@@ -32,7 +32,9 @@ public sealed class RoundSummaryUI : MonoBehaviour
 
     private RectTransform card;
     private TextMeshProUGUI title;
-    private TextMeshProUGUI warning;
+    private TextMeshProUGUI warning, eventNotice, specNotice;
+    private RoundSummaryData filled;
+    private int shownEventVersion = -1;
     private readonly List<Row> rows = new();
     private int activeRows;
     private int shownVersion = -1;
@@ -59,15 +61,15 @@ public sealed class RoundSummaryUI : MonoBehaviour
         BuildCard();
     }
 
+    // Round verisi yoksa (ilk round'dan önceki hazırlık) kart yalnız kota ve yaklaşan olay bildirimleriyle açılır.
     private void OnEnable()
     {
         GameFeelDirector director = GameFeelDirector.Instance;
         RoundSummaryData data = director != null ? director.LastRound : null;
-        card.gameObject.SetActive(data != null);
         animating = false;
-        if (data == null) return;
-
         Fill(data);
+        if (data == null) { ShowFinal(); return; }
+
         bool fresh = director.SummaryVersion != shownVersion;
         shownVersion = director.SummaryVersion;
         if (fresh) BeginAnimation();
@@ -76,8 +78,16 @@ public sealed class RoundSummaryUI : MonoBehaviour
 
     private void Fill(RoundSummaryData data)
     {
-        title.text = $"ROUND {data.Round} ÖZETİ";
+        filled = data;
         activeRows = 0;
+        if (data == null)
+        {
+            title.text = "HAZIRLIK";
+            for (int i = 0; i < rows.Count; i++) rows[i].root.gameObject.SetActive(false);
+            RefreshNotices();
+            return;
+        }
+        title.text = $"ROUND {data.Round} ÖZETİ";
         SetRow("Hasat", data.Harvests, false, theme != null ? theme.sproutSprite : null, new Color32(70, 130, 60, 255), true);
         SetRow("Altın", data.Gold, true, theme != null ? theme.coinSprite : null, new Color32(196, 128, 20, 255), false);
         SetRow("Demir", data.Iron, true, theme != null ? theme.ironSprite : null, new Color32(80, 104, 140, 255), false);
@@ -87,15 +97,39 @@ public sealed class RoundSummaryUI : MonoBehaviour
         SetRow("Level", data.Levels, true, null, new Color32(214, 110, 40, 255), false);
         SetRow("Skor", data.Score, true, null, new Color32(128, 64, 170, 255), true);
         for (int i = activeRows; i < rows.Count; i++) rows[i].root.gameObject.SetActive(false);
-        // Hasat Kotası: segmentin durumu her round özetinde; segment sonunda sonuç ve sıradaki kota.
-        string notice = QuotaNotice(RoundManager.Instance, data.Round, out QuotaTone tone);
+        RefreshNotices();
+    }
+
+    // Kota (segmentin durumu, segment sonunda sonuç ve sıradaki kota) ve segment olayı (yaklaşan, aktif, bitti).
+    // Olay bölgesi hazırlık sırasında seçildiği için olay sürümü değişince yeniden yazılır.
+    private void RefreshNotices()
+    {
+        SegmentEventDirector events = SegmentEventDirector.Instance;
+        SpecializationManager specialization = SpecializationManager.Instance;
+        shownEventVersion = (events != null ? events.Version : 0) * 1000 + (specialization != null ? specialization.Version : 0);
+        int finished = filled != null ? filled.Round : 0;
+        string notice = QuotaNotice(RoundManager.Instance, finished, out QuotaTone tone);
+        string eventText = SegmentEventText.Notice(events, finished);
         warning.gameObject.SetActive(notice != null);
         if (notice != null)
         {
             warning.text = notice;
             warning.color = ToneColor(tone);
         }
-        card.sizeDelta = new Vector2(Width, HeaderHeight + 12f + activeRows * RowHeight + 16f + (notice != null ? 74f : 0f));
+        // Seçilen uzmanlaşma en altta tek satır; sonradan da görülebilsin.
+        string spec = SpecializationManager.Instance != null ? SpecializationPanelUI.Describe(SpecializationManager.Instance.Chosen) : null;
+        float specSpace = spec != null ? 34f : 0f;
+        specNotice.gameObject.SetActive(spec != null);
+        if (spec != null) specNotice.text = "Uzmanlaşma: " + spec;
+        eventNotice.gameObject.SetActive(eventText != null);
+        if (eventText != null) eventNotice.text = eventText;
+        eventNotice.rectTransform.offsetMin = new Vector2(16f, 12f + specSpace);
+        eventNotice.rectTransform.offsetMax = new Vector2(-16f, 76f + specSpace);
+        float eventSpace = eventText != null ? 70f : 0f;
+        warning.rectTransform.offsetMin = new Vector2(16f, 12f + eventSpace + specSpace);
+        warning.rectTransform.offsetMax = new Vector2(-16f, 78f + eventSpace + specSpace);
+        card.gameObject.SetActive(filled != null || notice != null || eventText != null);
+        card.sizeDelta = new Vector2(Width, HeaderHeight + 12f + activeRows * RowHeight + 16f + (notice != null ? 74f : 0f) + eventSpace + specSpace);
     }
 
     public enum QuotaTone { Info, Done, Danger }
@@ -104,33 +138,41 @@ public sealed class RoundSummaryUI : MonoBehaviour
         : tone == QuotaTone.Danger ? new Color32(180, 35, 24, 255) : new Color32(154, 91, 18, 255);
 
     // Sayılara ek getirilmez: "5.000'i / 12.000'i" gibi ekler sayıya göre değişir.
+    // finishedRound 0: ilk round'dan önceki hazırlık. Olaylı (boss) segmentin kotası "boss kotası" diye yazılır.
     public static string QuotaNotice(RoundManager rounds, int finishedRound, out QuotaTone tone)
     {
         tone = QuotaTone.Info;
         if (rounds == null || !rounds.QuotaEnabled || rounds.EndedByQuota) return null;
         int segmentRounds = rounds.QuotaSegmentRounds;
+        SegmentEventDirector events = SegmentEventDirector.Instance;
+        string Name(int s, string plain, string boss) => SegmentEventText.IsEventSegment(events, s) ? boss : plain;
+        if (finishedRound <= 0)
+            return $"{Name(1, "İlk kota", "İlk boss kotası")}: {HarvestQuota.Format(rounds.QuotaTargetFor(1))} · {segmentRounds} round\n" +
+                   $"<size=72%>Kota her {segmentRounds} round'da kontrol edilir; tutmazsa run biter</size>";
         if (rounds.LastQuotaRound == finishedRound)
         {
             tone = QuotaTone.Done;
-            int next = HarvestQuota.SegmentOf(finishedRound, segmentRounds) + 1;
-            return $"KOTA TAMAM · {HarvestQuota.Format(rounds.LastQuotaScore)} / {HarvestQuota.Format(rounds.LastQuotaTarget)}\n" +
-                   $"<size=72%>Sıradaki kota: {HarvestQuota.Format(rounds.QuotaTargetFor(next))} · {segmentRounds} round</size>";
+            int closed = HarvestQuota.SegmentOf(finishedRound, segmentRounds), next = closed + 1;
+            string passed = $"{Name(closed, "KOTA", "BOSS KOTASI")} TAMAM · {HarvestQuota.Format(rounds.LastQuotaScore)} / {HarvestQuota.Format(rounds.LastQuotaTarget)}";
+            if (finishedRound >= rounds.MaxRounds) return passed;
+            return passed + $"\n<size=72%>{Name(next, "Sıradaki kota", "Sıradaki boss kotası")}: {HarvestQuota.Format(rounds.QuotaTargetFor(next))} · {segmentRounds} round</size>";
         }
         int segment = HarvestQuota.SegmentOf(finishedRound, segmentRounds);
         int end = HarvestQuota.SegmentEnd(segment, segmentRounds), left = end - finishedRound;
         long target = rounds.QuotaTargetFor(segment), progress = rounds.QuotaProgress;
         string score = $"{HarvestQuota.Format(progress)} / {HarvestQuota.Format(target)}";
+        string kota = Name(segment, "Kota", "Boss kotası");
         if (progress >= target)
         {
             tone = QuotaTone.Done;
-            return $"Kota tamam · {score}\n<size=72%>Segment {end}. round sonunda kapanır</size>";
+            return $"{kota} tamam · {score}\n<size=72%>Segment {end}. round sonunda kapanır</size>";
         }
         if (left <= 1)
         {
             tone = QuotaTone.Danger;
-            return $"SON ROUND · kotaya {HarvestQuota.Format(target - progress)} kaldı\n<size=72%>Kota {score} · tutmazsa run biter</size>";
+            return $"SON ROUND · kotaya {HarvestQuota.Format(target - progress)} kaldı\n<size=72%>{kota} {score} · tutmazsa run biter</size>";
         }
-        return $"Kota {score} · {left} round kaldı\n<size=72%>Tutmazsa run {end}. round sonunda biter</size>";
+        return $"{kota} {score} · {left} round kaldı\n<size=72%>Tutmazsa run {end}. round sonunda biter</size>";
     }
 
     private void SetRow(string label, int value, bool plus, Sprite icon, Color color, bool always)
@@ -183,6 +225,10 @@ public sealed class RoundSummaryUI : MonoBehaviour
 
     private void Update()
     {
+        SegmentEventDirector events = SegmentEventDirector.Instance;
+        SpecializationManager specialization = SpecializationManager.Instance;
+        int version = (events != null ? events.Version : 0) * 1000 + (specialization != null ? specialization.Version : 0);
+        if (!animating && version != shownEventVersion) RefreshNotices();
         if (!animating) return;
         elapsed += Time.unscaledDeltaTime;
         card.localScale = Vector3.one * Mathf.LerpUnclamped(0.85f, 1f, OutBack(Mathf.Clamp01(elapsed / 0.25f)));
@@ -294,6 +340,33 @@ public sealed class RoundSummaryUI : MonoBehaviour
         warningRect.offsetMin = new Vector2(16f, 12f);
         warningRect.offsetMax = new Vector2(-16f, 78f);
         warning.gameObject.SetActive(false);
+
+        eventNotice = CreateText(card, "Event Notice", 22f, TextAlignmentOptions.Center);
+        eventNotice.color = SegmentEventText.Ink;
+        eventNotice.textWrappingMode = TextWrappingModes.Normal;
+        eventNotice.enableAutoSizing = true;
+        eventNotice.fontSizeMin = 14f;
+        eventNotice.fontSizeMax = 22f;
+        var eventRect = eventNotice.rectTransform;
+        eventRect.anchorMin = Vector2.zero;
+        eventRect.anchorMax = new Vector2(1f, 0f);
+        eventRect.pivot = new Vector2(.5f, 0f);
+        eventRect.offsetMin = new Vector2(16f, 12f);
+        eventRect.offsetMax = new Vector2(-16f, 76f);
+        eventNotice.gameObject.SetActive(false);
+
+        specNotice = CreateText(card, "Specialization Notice", 18f, TextAlignmentOptions.Center);
+        specNotice.color = new Color32(96, 60, 120, 255);
+        specNotice.enableAutoSizing = true;
+        specNotice.fontSizeMin = 12f;
+        specNotice.fontSizeMax = 18f;
+        var specRect = specNotice.rectTransform;
+        specRect.anchorMin = Vector2.zero;
+        specRect.anchorMax = new Vector2(1f, 0f);
+        specRect.pivot = new Vector2(.5f, 0f);
+        specRect.offsetMin = new Vector2(16f, 12f);
+        specRect.offsetMax = new Vector2(-16f, 42f);
+        specNotice.gameObject.SetActive(false);
     }
 
     private void Plate(string name, Color color, Vector2 anchorMin, Vector2 anchorMax, Vector2 offsetMin, Vector2 offsetMax)

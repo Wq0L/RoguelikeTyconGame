@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     private Button exitSellButton;
     private Button exitSkillButton;
     private RoundPreviewUI roundPreview;
+    private SpecializationPanelUI specializationPanel;
     private Transform resourcesHome;
     private int resourcesHomeIndex;
 
@@ -47,6 +48,8 @@ public class UIManager : MonoBehaviour
         UIPanelTransition.Attach(cardSelectionPanel, false);
         UIPanelTransition.Attach(runCompletePanel, true);
         RoundSummaryUI.Attach(roundEndUI);
+        FrostZoneMarkers.Ensure();
+        specializationPanel = SpecializationPanelUI.Attach(roundEndUI.transform.parent);
         RoundNewTilesUI.Attach(roundEndUI);
         roundPreview = RoundPreviewUI.Attach(roundEndUI, this);
         if (roundPreview != null) UIPanelTransition.Attach(roundPreview.gameObject, true);
@@ -110,6 +113,11 @@ public class UIManager : MonoBehaviour
         if (state == GameStates.MainMenu || state == GameStates.RunSetup || state == GameStates.RunComplete)
             VFXManager.Instance?.ClearPendingResonances();
         bool isRoundActive = state == GameStates.Round;
+        if (specializationPanel != null)
+        {
+            specializationPanel.gameObject.SetActive(state == GameStates.RoundChoice);
+            if (state == GameStates.RoundChoice) specializationPanel.transform.SetAsLastSibling();
+        }
         roundUI.SetActive(isRoundActive);
         xpUI.SetActive(isRoundActive);
 
@@ -137,6 +145,11 @@ public class UIManager : MonoBehaviour
                 break;
             case GameStates.CardSelection:
                 ShowCardSelectionUI();
+                break;
+
+            case GameStates.RoundChoice:
+                CloseCurrentPanel();
+                roundEndUI.SetActive(false);
                 break;
 
             case GameStates.RunComplete:
@@ -267,6 +280,7 @@ public class UIManager : MonoBehaviour
         placementShopPanel.SetActive(false);
         skillShopPanel.SetActive(false);
         cardSelectionPanel.SetActive(false); // yeni
+        if (specializationPanel != null) specializationPanel.gameObject.SetActive(false);
         currentPanel = null;
     }
 

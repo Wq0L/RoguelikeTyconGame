@@ -2,6 +2,8 @@
 
 Tarih: 30 Eylül 2026. Durum: değerlendirme ve prototip taslağı; uygulama onayı veya tamamlanmış denge değildir.
 
+> Uygulama durumu (30 Eylül): Paket A (10 round, 1–5 normal, 6–10 Don Cephesi) uygulandı; ayrıntı, ayarlar ve test sonuçları `Bolum1-KisaRunDonCephesi.md`. Ücretsiz taşıma, ödüller, çiftçi/tırpan ve diğer olaylar uygulanmadı.
+
 ## 1. Başlangıç noktası ve amaç
 
 Kullanıcının belirttiği ve mevcut kodda görülen temel: beş round'luk segmentte kazanılan Harvest Score kotası var; en iyi gelirin %30'una dayanan Tarla Tükendi kuralı kaldırıldı. Bu taslak onu geri getirmez.

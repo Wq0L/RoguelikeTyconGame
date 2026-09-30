@@ -1,16 +1,20 @@
 using System;
 using UnityEngine;
 
+public enum RunOutcome { None, Victory, QuotaFailed }
+
 public class RoundManager : MonoBehaviour
 {
     public static RoundManager Instance { get; private set; }
 
+    public event Action OnRunStarted;
     public event Action OnRoundEnded;
     public event Action<int> OnTimeChanged;
     public event Action<int> OnRoundChanged;
 
 
     [SerializeField] private float roundDuration = 30f;
+    [Tooltip("Run profili seçili değilse kullanılır (Tools > Run Profili).")]
     [SerializeField] private int maxRounds = 150;
 
     [Header("Round End Feel")]
@@ -20,7 +24,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField, Range(0.05f, 1f)] private float endSlowdownFloor = 0.45f;
     private int lastDisplayedSecond = -1;
 
-    [Header("Hasat Kotası")]
+    [Header("Hasat Kotası (run profili seçili değilse)")]
     [Tooltip("Kaç round'da bir kota kontrol edilir. 0: kota kapalı.")]
     [SerializeField, Min(0)] private int quotaSegmentRounds = HarvestQuota.DefaultSegmentRounds;
     [Tooltip("İlk segmentin kotası (o segmentte kazanılan Harvest Score).")]
@@ -52,14 +56,14 @@ public class RoundManager : MonoBehaviour
 
     // Hasat Kotası: segment = QuotaSegmentRounds round. İlerleme, segmentin ilk round'undan beri kazanılan Harvest Score.
     // Segment sonunda değerlendirilir; sonuç bir sonraki segment başlayana kadar Last* alanlarında kalır.
-    public bool QuotaEnabled => quotaSegmentRounds > 0;
-    public int QuotaSegmentRounds => Mathf.Max(1, quotaSegmentRounds);
+    public bool QuotaEnabled => (Profile != null ? Profile.segmentRounds : quotaSegmentRounds) > 0;
+    public int QuotaSegmentRounds => Mathf.Max(1, Profile != null ? Profile.segmentRounds : quotaSegmentRounds);
     public int QuotaSegment => HarvestQuota.SegmentOf(CurrentRound, QuotaSegmentRounds);
     public int QuotaSegmentEnd => HarvestQuota.SegmentEnd(QuotaSegment, QuotaSegmentRounds);
     public long QuotaTarget => QuotaTargetFor(QuotaSegment);
     public long QuotaProgress => System.Math.Max(0L, CurrentScore - segmentStartScore);
     public bool IsQuotaSegmentEnd(int round) => QuotaEnabled && round % QuotaSegmentRounds == 0;
-    public long QuotaTargetFor(int segment) => HarvestQuota.Target(segment, quotaStart, quotaGrowth);
+    public long QuotaTargetFor(int segment) => Profile != null ? Profile.TargetFor(segment) : HarvestQuota.Target(segment, quotaStart, quotaGrowth);
     public bool EndedByQuota { get; private set; }
     public int LastQuotaRound { get; private set; }
     public long LastQuotaScore { get; private set; }
@@ -68,7 +72,15 @@ public class RoundManager : MonoBehaviour
     private static long CurrentScore => HarvestScoreManager.Instance != null ? HarvestScoreManager.Instance.TotalScore : 0;
 
     public int SkipUsesRemaining => skipUsesRemaining;
-    public int MaxRounds => maxRounds;
+    // Round sonu seçimleri (IRoundChoice): kartlardan sonra, round özetinden önce. Türlerini bilmeden sırayı yönetir.
+    private readonly System.Collections.Generic.List<IRoundChoice> roundChoices = new();
+    public bool IsRoundChoicePending { get { foreach (IRoundChoice c in roundChoices) if (c.IsPending) return true; return false; } }
+    public void RegisterRoundChoice(IRoundChoice choice) { if (choice != null && !roundChoices.Contains(choice)) roundChoices.Add(choice); }
+    public void UnregisterRoundChoice(IRoundChoice choice) => roundChoices.Remove(choice);
+    // Run uzunluğu, kota segmentleri, olaylar ve başlangıç ekonomisi tek yerden: aktif run profili. Yoksa sahnedeki alanlar.
+    public RunProfileSO Profile { get; private set; }
+    public int MaxRounds => Profile != null ? Profile.runLength : maxRounds;
+    public RunOutcome Outcome { get; private set; }
 
     private void Awake()
     {
@@ -79,6 +91,10 @@ public class RoundManager : MonoBehaviour
         }
 
         Instance = this;
+        Profile = RunProfileSelectionSO.Active;
+        // Boss kuralları RoundManager'da değil, olay yürütücüsünde; RoundManager sadece round olaylarını yayınlar.
+        if (!TryGetComponent(out SegmentEventDirector _)) gameObject.AddComponent<SegmentEventDirector>();
+        if (!TryGetComponent(out SpecializationManager _)) gameObject.AddComponent<SpecializationManager>();
     }
 
     private void Start()
@@ -163,12 +179,16 @@ public class RoundManager : MonoBehaviour
         lastDisplayedSecond = -1;
         segmentStartScore = CurrentScore;
         EndedByQuota = false;
+        Outcome = RunOutcome.None;
         LastQuotaRound = 0;
         LastQuotaScore = LastQuotaTarget = 0;
 
         SkillTreeManager.Instance.ResetTree();
         UnlockManager.Instance.ResetUnlocks();
 
+        if (Application.isEditor && Profile != null)
+            Debug.Log($"Run profili: {Profile.displayName} · {MaxRounds} round{(Profile.debugBudget ? " · DEBUG BÜTÇE" : "")}", Profile);
+        OnRunStarted?.Invoke();
         GameManager.Instance.StartRunSetup();
     }
 
@@ -200,14 +220,16 @@ public class RoundManager : MonoBehaviour
         if (EndedByQuota)
         {
             pendingCardSelections = 0;
+            Outcome = RunOutcome.QuotaFailed;
             GameManager.Instance.CompleteRun();
             return;
         }
 
-        // Son round ise direkt bitir
-        if (CurrentRound >= maxRounds)
+        // Son round ise direkt bitir: kota geçildi (ya da kapalı), run kazanıldı
+        if (CurrentRound >= MaxRounds)
         {
             pendingCardSelections = 0; // kart seçimini atla
+            Outcome = RunOutcome.Victory;
             GameManager.Instance.CompleteRun();
             return;
         }
@@ -216,7 +238,21 @@ public class RoundManager : MonoBehaviour
         if (pendingCardSelections > 0)
             GameManager.Instance.StartCardSelection();
         else
-            GameManager.Instance.ShowRoundEnd();
+            ShowRoundEndOrChoice();
+    }
+
+    // Sıra: kota değerlendirmesi → bekleyen kart seçimleri → round sonu seçimi (varsa) → round özeti / hazırlık.
+    private void ShowRoundEndOrChoice()
+    {
+        if (IsRoundChoicePending) GameManager.Instance.StartRoundChoice();
+        else GameManager.Instance.ShowRoundEnd();
+    }
+
+    // Seçim tamamlanınca (IRoundChoice sahibi çağırır) round özetine geçilir.
+    public void ContinueAfterRoundChoice()
+    {
+        if (GameManager.Instance.CurrentState != GameStates.RoundChoice || IsRoundChoicePending) return;
+        GameManager.Instance.ShowRoundEnd();
     }
     
     private void HandleLevelUp(int newLevel)
@@ -231,8 +267,8 @@ public class RoundManager : MonoBehaviour
         if (pendingCardSelections > 0)
             return true;  // daha seçim var, kartları yenile
 
-        GameManager.Instance.ShowRoundEnd();
-        return false;  // bitti, RoundEnd'e geç
+        ShowRoundEndOrChoice();
+        return false;  // bitti, round sonu seçimine ya da RoundEnd'e geç
     }
 
     public bool TryUseSkip()
@@ -252,11 +288,14 @@ public class RoundManager : MonoBehaviour
             GameManager.Instance.CurrentState != GameStates.RoundEnd &&
             GameManager.Instance.CurrentState != GameStates.RunSetup)
             return;
+        // Round sonu seçimi tamamlanmadan sonraki round başlamaz.
+        if (IsRoundChoicePending) return;
 
         if (!awaitingFirstRound) CurrentRound++;
 
-        if (CurrentRound > maxRounds)
+        if (CurrentRound > MaxRounds)
         {
+            Outcome = RunOutcome.Victory;
             GameManager.Instance.CompleteRun();
             return;
         }

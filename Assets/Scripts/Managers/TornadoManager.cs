@@ -45,7 +45,8 @@ public class TornadoManager : MonoBehaviour
         GroundCell startCell = startGrid.GetGroundCellCached();
         if (startCell == null) return false;
         var source = startGrid.GetPlanterBrain();
-        float resonance = source != null ? ResonanceManager.BehaviorMultiplier(source.ActiveResonances, DamageType.Tornado) : 1f;
+        // Rezonans × uzmanlaşma davranış katsayısı (PlanterBrain.BehaviorDamageMultiplier ile aynı kural).
+        float resonance = source != null ? source.BehaviorDamageMultiplier(DamageType.Tornado) : SpecializationManager.BehaviorMultiplier;
 
         Tornado tornado = tornadoPool.Get();
         tornado.transform.SetPositionAndRotation(startCell.transform.position, Quaternion.identity);

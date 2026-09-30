@@ -34,6 +34,7 @@ public class GridObject
 
     public void SetPlanterBrain(PlanterBrain brain) => planterBrain = brain;
     public PlanterBrain GetPlanterBrain() => planterBrain;
+    public GridPosition GetGridPosition() => gridPosition;
 
     public void ClearPlanterObject()
     {

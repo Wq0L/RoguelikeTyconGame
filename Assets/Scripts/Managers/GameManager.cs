@@ -49,7 +49,8 @@ public class GameManager : MonoBehaviour
     public void OpenShop() => SetState(GameStates.Shop);
     public void StartPlacement() => SetState(GameStates.Placing);
     public void EnterSellMode() => SetState(GameStates.Selling);
-    public void CompleteRun() => SetState(GameStates.RunComplete); 
+    public void CompleteRun() => SetState(GameStates.RunComplete);
+    public void StartRoundChoice() => SetState(GameStates.RoundChoice);
 
     private void HandleStateEnter(GameStates state)
     {
@@ -91,6 +92,10 @@ public class GameManager : MonoBehaviour
                 EnterRunComplete();
                 break;
 
+            case GameStates.RoundChoice:
+                EnterRoundChoice();
+                break;
+
             default:
                 EnterRound();
                 break;
@@ -104,7 +109,7 @@ public class GameManager : MonoBehaviour
     {
         if (timeStop != null) { StopCoroutine(timeStop); timeStop = null; }
         bool roundEnded = previous == GameStates.Round &&
-            (state == GameStates.RoundEnd || state == GameStates.CardSelection || state == GameStates.RunComplete);
+            (state == GameStates.RoundEnd || state == GameStates.CardSelection || state == GameStates.RunComplete || state == GameStates.RoundChoice);
         if (!roundEnded || roundEndStopDuration <= 0f || fromScale <= 0f) return;
         Time.timeScale = fromScale;
         timeStop = StartCoroutine(EaseTimeToStop(fromScale));
@@ -131,4 +136,5 @@ public class GameManager : MonoBehaviour
     private void EnterSelling() => Time.timeScale = 0f;
     private void EnterRunSetup() => Time.timeScale = 0f;
     private void EnterRunComplete() => Time.timeScale = 0f;
+    private void EnterRoundChoice() => Time.timeScale = 0f;
 }

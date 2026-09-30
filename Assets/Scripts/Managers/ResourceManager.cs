@@ -11,8 +11,8 @@ public class ResourceManager : MonoBehaviour
 
     [Header("Run economy")]
     [SerializeField, Min(0)] private int startingGold = 80;
-    [Header("Editor testing only")]
-    [Tooltip("Editor Play Mode only: start with the test balance in all three currencies.")]
+    [Header("Editor testing only (run profili seçili değilse)")]
+    [Tooltip("Editor Play Mode only: start with the test balance in all three currencies. Run profili seçiliyse yok sayılır; yüksek bütçe için debug profilini seçin.")]
     [SerializeField] private bool useDebugStartingResources;
     [SerializeField, Min(0)] private int debugStartingResources = 80000;
 
@@ -28,6 +28,18 @@ public class ResourceManager : MonoBehaviour
         foreach (ResourceType type in Enum.GetValues(typeof(ResourceType)))
         {
             resources[type] = 0;
+        }
+
+        // Run profili seçiliyse başlangıç ekonomisi yalnız profilden gelir (sahnedeki debug ayarı yok sayılır).
+        // Debug bütçe profili sadece editörde uygulanır; build'de normal başlangıç kullanılır.
+        RunProfileSO profile = RunProfileSelectionSO.Active;
+        if (profile != null)
+        {
+            bool normal = profile.debugBudget && !Application.isEditor;
+            resources[ResourceType.Gold] = normal ? startingGold : profile.startingGold;
+            resources[ResourceType.Iron] = normal ? 0 : profile.startingIron;
+            resources[ResourceType.Stone] = normal ? 0 : profile.startingStone;
+            return;
         }
 
         bool debugBudget = Application.isEditor && useDebugStartingResources;

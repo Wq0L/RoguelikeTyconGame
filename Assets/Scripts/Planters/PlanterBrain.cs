@@ -241,8 +241,13 @@ public class PlanterBrain : MonoBehaviour
         StatManager.Instance != null ? StatManager.Instance.GlobalModifiers : null, localModifiers, false) *
         ResonanceManager.Multiplier(activeResonances, StatType.HarvestScoreMultiplier, rarity);
 
+    // Davranışın kendi hesaplanan hasarına bir kez: rezonans (Güçlendirilmiş Hasat) × uzmanlaşma davranış katsayısı.
+    // Patlama, bumerang ve elektrik GetBehaviorDamage'dan, kasırga TornadoManager'dan buraya gelir.
+    public float BehaviorDamageMultiplier(DamageType type) =>
+        ResonanceManager.BehaviorMultiplier(activeResonances, type) * SpecializationManager.BehaviorMultiplier;
+
     public int GetBehaviorDamage(int baseDamage, DamageType type) => (int)System.Math.Min(int.MaxValue,
-        System.Math.Max(0, System.Math.Round(baseDamage * (double)ResonanceManager.BehaviorMultiplier(activeResonances, type))));
+        System.Math.Max(0, System.Math.Round(baseDamage * (double)BehaviorDamageMultiplier(type))));
 
     public void RemoveSelf()
     {
@@ -323,6 +328,7 @@ public class PlanterBrain : MonoBehaviour
         if (Random.value > chance) return; // şans tutmadı
 
         VFXManager.Instance?.PlayExplosion(sourcePlant.transform.position, true);
+        HarvestBehaviorStats.Record(DamageType.Explosion, true);
 
         int damage = Mathf.RoundToInt(
             StatManager.Instance.GetFinalStat(StatType.HarvestDamage, StatTarget.Player)
@@ -373,10 +379,10 @@ public class PlanterBrain : MonoBehaviour
             int damage = Mathf.RoundToInt(StatManager.Instance.GetFinalStat(StatType.HarvestDamage, StatTarget.Player));
             float boomerang = GetFinalStat(StatType.BoomerangChance);
             if (boomerang > 0f && Random.value < boomerang)
-                HarvestBehaviorManager.Instance.TryBoomerang(this, sourceGrid, damage);
+                HarvestBehaviorStats.Record(DamageType.Boomerang, HarvestBehaviorManager.Instance.TryBoomerang(this, sourceGrid, damage));
             float electric = GetFinalStat(StatType.ElectricChance);
             if (electric > 0f && Random.value < electric)
-                HarvestBehaviorManager.Instance.TryElectric(this, damage);
+                HarvestBehaviorStats.Record(DamageType.Electric, HarvestBehaviorManager.Instance.TryElectric(this, damage));
         }
     }
 
@@ -394,7 +400,7 @@ public class PlanterBrain : MonoBehaviour
             StatManager.Instance.GetFinalStat(StatType.HarvestDamage, StatTarget.Player)
         );
 
-        TornadoManager.Instance.TrySpawn(sourceGrid, damage);
+        HarvestBehaviorStats.Record(DamageType.Tornado, TornadoManager.Instance.TrySpawn(sourceGrid, damage));
     }
 
     public void SetGridObject(GridObject gridObject)

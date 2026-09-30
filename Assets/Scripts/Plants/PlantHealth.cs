@@ -4,6 +4,8 @@ using UnityEngine;
 public class PlantHealth : MonoBehaviour, IDamageable
 {
     public event Action OnDied;
+    // Ölçüm için: her hasatta (KilledBy doğrudan mı davranış mı). Oynanış buna bağlı değildir.
+    public static event Action<PlantHealth> AnyHarvested;
     // Görsel tepkiler için (PlantJuice squash). Parametre: crit mi.
     public event Action<bool> OnDamaged;
 
@@ -78,6 +80,7 @@ public class PlantHealth : MonoBehaviour, IDamageable
     private void Die()
     {
         isDead = true;
+        AnyHarvested?.Invoke(this);
         try { OnDied?.Invoke(); }
         finally { PlantPool.Release(gameObject); }
     }

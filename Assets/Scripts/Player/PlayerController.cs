@@ -53,6 +53,16 @@ public class PlayerController : MonoBehaviour
         return Vector3.zero;
     }
 
+    // Aralığı aşan süre sonraki vuruşa aktarılır: kare hızı vuruş sayısını düşürmez.
+    // Bir karede en fazla bir vuruş; taşan birikim en fazla bir aralık (uzun karede telafi döngüsü yok).
+    public static bool AdvanceAttackTimer(ref float timer, float deltaTime, float interval)
+    {
+        timer += deltaTime;
+        if (timer < interval) return false;
+        timer = Mathf.Min(timer - interval, interval);
+        return true;
+    }
+
     private void HandleAutoAttack(Vector3 mouseWorldPos)
     {
         float attackSpeed = StatManager.Instance.GetFinalStat(
@@ -64,11 +74,9 @@ public class PlayerController : MonoBehaviour
         // 60 sn'lik hızlı round, 90 sn'lik normal round'la aynı sayıda vuruş yapar.
         float tempo = RoundManager.Instance != null ? RoundManager.Instance.TempoMultiplier : 1f;
         attackSpeed = Mathf.Max(attackSpeed, 0.1f) / tempo;
-        attackTimer += Time.deltaTime;
 
-        if (attackTimer >= attackSpeed)
+        if (AdvanceAttackTimer(ref attackTimer, Time.deltaTime, attackSpeed))
         {
-            attackTimer = 0f;
 
             float radius = StatManager.Instance.GetFinalStat(
                 StatType.AreaRadius,
@@ -117,7 +125,9 @@ public class PlayerController : MonoBehaviour
             if (plantObj.TryGetComponent<IDamageable>(out IDamageable damageable))
             {
                 float variance = Random.Range(0.85f, 1.15f);
-                int damage = Mathf.RoundToInt(baseDamage * variance);
+                // Uzmanlaşma doğrudan katsayısı yalnız burada: sapmayla birlikte tek yuvarlama; kritik ve saksı bonusu
+                // (Odak) sonra mevcut kurallarıyla uygulanır. Davranışların tabanı HarvestDamage stat'ıdır, bu değil.
+                int damage = Mathf.Max(1, Mathf.RoundToInt(baseDamage * variance * SpecializationManager.DirectMultiplier));
 
                 bool isCrit = Random.value <= critChance;
                 if (isCrit)

@@ -16,7 +16,10 @@ public class RoundMapUI : MonoBehaviour
     readonly List<GameObject> cells = new List<GameObject>();
     readonly List<TMP_Text> columns = new List<TMP_Text>(), rows = new List<TMP_Text>();
 
+    int eventVersion=-1;
     private void OnEnable(){BuildGrid();}
+    // Olay bölgesi panel açıkken seçilebilir (hazırlıkta ilk kare): sürüm değişince hücreler yeniden işaretlenir.
+    private void Update(){var events=SegmentEventDirector.Instance;if(cells.Count>0&&(events!=null?events.Version:-1)!=eventVersion)BuildGrid();}
     private void Start(){if(cells.Count==0)BuildGrid();}
     public void BuildGrid()
     {
@@ -33,6 +36,8 @@ public class RoundMapUI : MonoBehaviour
         while(cells.Count<width*height)cells.Add(Instantiate(cellPrefab,gridContainer));
         var grid=GridManager.Instance.GetGridSystem();
         var progression=ProgressionManager.Instance;
+        var events=SegmentEventDirector.Instance;eventVersion=events!=null?events.Version:-1;
+        var zone=events!=null?(events.Active??events.Upcoming):null;if(zone!=null&&!zone.IsPrepared)zone=null;
         int fresh=0;
         for(int i=0;i<cells.Count;i++){
             var cell=cells[i];cell.SetActive(i<width*height);if(i>=width*height)continue;
@@ -47,6 +52,8 @@ public class RoundMapUI : MonoBehaviour
             // Bu round'un kartları: panel açılış animasyonundan sonra sırayla parlar.
             bool isFresh=progression!=null&&progression.WasAppliedThisRound(ground);
             tile.SetFresh(isFresh,isFresh?.3f+fresh++*.12f:0,FreshTileRing.LabelFor(ground));
+            // Segment olayı bölgesi (Don Cephesi): önizleme ve aktif hâl, dünyadaki şeritle aynı hücreler.
+            tile.SetEventZone(zone!=null&&ground!=null&&!ground.IsLocked&&zone.Covers(new GridPosition(x,z)),zone!=null&&zone.IsActive,zone!=null?zone.Data.color:Color.clear);
         }
         if(columnHeaders&&rowHeaders&&theme&&cellSprite){
             FillHeaders(columns,columnHeaders,width,true,size,step,boardSize,rect.anchoredPosition);
