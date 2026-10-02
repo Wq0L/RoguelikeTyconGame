@@ -1,0 +1,16 @@
+DONE (ölçüm; işlev testi değil)
+run 1 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 100 | önce hız | durduruldu (ölçüm sınırı) @R30 | skor 13253 | level 41 | ağaç 92/221 | ödül keskin_bicak×3 genis_savurus×1 hizli_bilek×2
+run 2 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 101 | önce hız | durduruldu (ölçüm sınırı) @R30 | skor 12257 | level 41 | ağaç 92/221 | ödül hizli_bilek×3 genis_savurus×1 nadir_tohum×1 canavar_kesimi×1
+run 3 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 102 | önce hız | durduruldu (ölçüm sınırı) @R30 | skor 7658 | level 34 | ağaç 83/221 | ödül bereketli_toprak×1 hizli_bilek×3 keskin_bicak×1 nadir_tohum×1
+run 4 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 100 | önce XP | durduruldu (ölçüm sınırı) @R30 | skor 8468 | level 37 | ağaç 92/221 | ödül keskin_bicak×3 genis_savurus×1 hizli_bilek×2
+run 5 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 101 | önce XP | durduruldu (ölçüm sınırı) @R30 | skor 6546 | level 35 | ağaç 80/221 | ödül hizli_bilek×3 bereketli_toprak×1 firtina_bilegi×1 canavar_kesimi×1
+run 6 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 102 | önce XP | durduruldu (ölçüm sınırı) @R30 | skor 8506 | level 32 | ağaç 77/221 | ödül bereketli_toprak×1 hizli_bilek×3 nadir_tohum×2
+run 7 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 100 | önce ekonomi | durduruldu (ölçüm sınırı) @R30 | skor 19343 | level 40 | ağaç 95/221 | ödül keskin_bicak×3 genis_savurus×1 nadir_tohum×1 hizli_bilek×1
+run 8 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 101 | önce ekonomi | durduruldu (ölçüm sınırı) @R30 | skor 21300 | level 36 | ağaç 89/221 | ödül hizli_bilek×3 genis_savurus×1 bereketli_toprak×1 canavar_kesimi×1
+run 9 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 102 | önce ekonomi | durduruldu (ölçüm sınırı) @R30 | skor 9783 | level 39 | ağaç 93/221 | ödül bereketli_toprak×1 hizli_bilek×3 keskin_bicak×1 nadir_tohum×1
+run 10 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 100 | önce hasar | durduruldu (ölçüm sınırı) @R30 | skor 9420 | level 39 | ağaç 102/221 | ödül keskin_bicak×3 genis_savurus×1 hizli_bilek×2
+run 11 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 101 | önce hasar | durduruldu (ölçüm sınırı) @R30 | skor 11771 | level 39 | ağaç 93/221 | ödül hizli_bilek×3 genis_savurus×1 nadir_tohum×1 canavar_kesimi×1
+run 12 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 102 | önce hasar | durduruldu (ölçüm sınırı) @R30 | skor 6313 | level 37 | ağaç 88/221 | ödül bereketli_toprak×1 hizli_bilek×3 nadir_tohum×2
+run 13 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 100 | önce üretim | durduruldu (ölçüm sınırı) @R30 | skor 10920 | level 36 | ağaç 90/221 | ödül keskin_bicak×3 genis_savurus×1 hizli_bilek×2
+run 14 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 101 | önce üretim | durduruldu (ölçüm sınırı) @R30 | skor 4225 | level 31 | ağaç 78/221 | ödül hizli_bilek×3 nadir_tohum×1 bereketli_toprak×1 canavar_kesimi×1
+run 15 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 102 | önce üretim | durduruldu (ölçüm sınırı) @R30 | skor 7433 | level 35 | ağaç 79/221 | ödül bereketli_toprak×1 hizli_bilek×3 nadir_tohum×2

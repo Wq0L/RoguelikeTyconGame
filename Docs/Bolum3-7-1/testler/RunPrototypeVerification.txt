@@ -1,0 +1,86 @@
+PASS: 69 checks
+ok: Scene starts in RunSetup
+ok: Prototype profile: 10 rounds, 5-round segments
+ok: Segment targets from the profile table: 40 / 200
+ok: Normal starting economy from the profile (scene debug budget ignored): 80 / 0 / 0
+ok: Event director on RoundManager with one Don Cephesi event
+ok: Don Cephesi: rounds 6–10, announced from round 1
+ok: Zone chosen during setup, not active yet
+ok: Band covers 3 of the 9 open cells (G sütununda)
+ok: World preview shows exactly the open band cells (hatched)
+ok: Round map marks the same band cells: Cell_x6_z4,Cell_x6_z5,Cell_x6_z6
+ok: Setup card title HAZIRLIK
+ok: Setup shows the first quota: İlk kota: 40 · 5 round/Kota her 5 round'da kontrol edilir; tutmazsa run biter
+ok: Setup announces the event: Yaklaşan: DON CEPHESİ · Round 6–10/Mavi şerit: G sütununda üretim ×1,5 yavaş · 5 round hazırlık
+ok: 9 production points planted (one 2×2 + five 1×1): 9
+ok: The 2×2 planter straddles the band: 2 points in, 2 out
+ok: Preview does not slow anything
+saved Logs/ProtoSetup.png
+ok: Round 1: quota 40 announced, no event active
+ok: Level-up opens card selection
+ok: Card picked → round end
+ok: Shop opens
+ok: Rounds 2–4 flow without judging the quota
+ok: Round 5 running
+ok: Exactly 40 / 40 passes (equality is success)
+ok: Event still upcoming after round 5
+ok: Round 5 summary: KOTA TAMAM · 40 / 40/Sıradaki boss kotası: 200 · 5 round
+ok: Last preparation is flagged: SON HAZIRLIK · DON CEPHESİ sonraki round/Round 6–10 · mavi şerit: G sütununda üretim ×1,5 yavaş
+ok: Round 6: Don Cephesi active, segment progress reset, boss quota 200
+ok: Run total score kept across the segment reset
+ok: Applied zone == previewed zone
+ok: Boss start intro: DON CEPHESİ BAŞLADI · KOTA 200
+ok: Only band production points ×1.5 (3 of 9); the 2×2 is not slowed as a whole
+ok: At the production floor the band still slows: 0.75 vs 0.5
+ok: Frost does not touch rarity (no floor-overflow bonus)
+   rarity at floor with overflow: 95 (same inside and outside the band)
+ok: HUD: BOSS KOTASI · 5 ROUND | DON CEPHESİ: G sütununda üretim ×1,5 yavaş
+ok: World band switches to active (same cells)
+saved Logs/ProtoBossActive.png
+ok: Round 6 ended by its timer
+ok: Harvests during the boss round count toward the boss quota: 150
+   E5 dışarı: Don açık 5 · kapalı 5
+   E6 dışarı: Don açık 5 · kapalı 5
+   E7 dışarı: Don açık 5 · kapalı 5
+   F7 dışarı: Don açık 5 · kapalı 5
+   F6 dışarı: Don açık 5 · kapalı 5
+   F5 dışarı: Don açık 5 · kapalı 5
+   G6 şerit: Don açık 3 · kapalı 5
+   G5 şerit: Don açık 3 · kapalı 5
+   G7 şerit: Don açık 3 · kapalı 5
+   şerit toplam: açık 9 / kapalı 15 · dışarı toplam: açık 30 / kapalı 30
+ok: Outside the band production is unchanged: 30 vs 30
+ok: Band production ≈ 1/1.5 with the event on: 9 vs 15
+ok: Round 7 end screen open
+ok: Round 7 summary: DON CEPHESİ AKTİF · 3 round kaldı/Mavi şerit: G sütununda üretim ×1,5 yavaş
+ok: Round map marks the active band
+saved Logs/ProtoBossRoundEnd.png
+ok: Round 9 summary: event active, 1 round left
+ok: 260 / 200 at round 10 → victory
+ok: Run end clears the event: no multiplier left
+ok: Every production interval back to its pre-event value
+ok: World band hidden after the run
+ok: Victory screen: PROTOTİP TAMAMLANDI/10 round · son kota 260 / 200/Başlangıç: Bahçıvan · Standart/Harvest Score: 300
+saved Logs/ProtoVictory.png
+ok: Restart reloads a fresh run in RunSetup
+ok: Fresh score 0 and 80 Gold
+ok: New run: event announced again, nothing active
+ok: Same seed → same band
+ok: No production points carried over
+ok: Found a 1×1 planter with a living diagonal target
+ok: First electric strike takes the only visual
+ok: Pool full: visual skipped, strike still happens
+ok: Both strikes dealt damage: 5 → 3
+ok: Attack timer keeps overshoot: 450 hits in 60 s at 60 FPS; a 1 s frame gives one hit and carries at most one interval (0.133)
+ok: Segment start above int.MaxValue
+ok: Score past 2.1 billion keeps counting (long)
+ok: AddScore beyond int range
+ok: 55 / 40 passes segment 1 (above)
+ok: Second run: boss starts again at round 6
+ok: 150 / 200 at round 10 → run lost
+ok: Defeat clears the event
+ok: Defeat screen: KOTA TUTMADI/Round 10 · segment skoru 150 / 200 (gereken kota)/Başlangıç: Bahçıvan · Standart/Harvest Score: 205
+saved Logs/ProtoDefeat.png
+ok: Main menu button loads MenuScene in MainMenu state
+ok: No event state survives the scene change
+ok: Single GameManager after returning to the menu

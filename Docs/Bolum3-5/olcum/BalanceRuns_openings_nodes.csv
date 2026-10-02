@@ -1,0 +1,140 @@
+run,policy,farmer,scythe,seed,label,round,node,level,cost,currency
+7,Dengeli,bahcivan,standart,100,önce hasar,1,Keskin Başlangıç - 1,1,5,Gold
+7,Dengeli,bahcivan,standart,100,önce hasar,1,Keskin Başlangıç - 1,2,7,Gold
+7,Dengeli,bahcivan,standart,100,önce hasar,1,Keskin Başlangıç - 1,3,8,Gold
+7,Dengeli,bahcivan,standart,100,önce hasar,1,Altın Hasat I - 1,1,7,Gold
+7,Dengeli,bahcivan,standart,100,önce hasar,2,Keskin Başlangıç - 2,1,10,Gold
+7,Dengeli,bahcivan,standart,100,önce hasar,2,Keskin Başlangıç - 2,2,11,Gold
+7,Dengeli,bahcivan,standart,100,önce hasar,2,Hızlı Eller - 1,1,7,Gold
+7,Dengeli,bahcivan,standart,100,önce hasar,2,Düzenli Üretim - 1,1,6,Gold
+7,Dengeli,bahcivan,standart,100,önce hasar,3,Hasat Deneyimi I - 1,1,6,Gold
+8,Dengeli,bahcivan,standart,101,önce hasar,1,Keskin Başlangıç - 1,1,5,Gold
+8,Dengeli,bahcivan,standart,101,önce hasar,1,Keskin Başlangıç - 1,2,7,Gold
+8,Dengeli,bahcivan,standart,101,önce hasar,1,Keskin Başlangıç - 1,3,8,Gold
+8,Dengeli,bahcivan,standart,101,önce hasar,1,Altın Hasat I - 1,1,7,Gold
+8,Dengeli,bahcivan,standart,101,önce hasar,2,Keskin Başlangıç - 2,1,10,Gold
+8,Dengeli,bahcivan,standart,101,önce hasar,2,Keskin Başlangıç - 2,2,11,Gold
+8,Dengeli,bahcivan,standart,101,önce hasar,2,Hızlı Eller - 1,1,7,Gold
+8,Dengeli,bahcivan,standart,101,önce hasar,2,Düzenli Üretim - 1,1,6,Gold
+8,Dengeli,bahcivan,standart,101,önce hasar,4,Hasat Deneyimi I - 1,1,6,Gold
+9,Dengeli,bahcivan,standart,102,önce hasar,1,Keskin Başlangıç - 1,1,5,Gold
+9,Dengeli,bahcivan,standart,102,önce hasar,1,Keskin Başlangıç - 1,2,7,Gold
+9,Dengeli,bahcivan,standart,102,önce hasar,1,Keskin Başlangıç - 1,3,8,Gold
+9,Dengeli,bahcivan,standart,102,önce hasar,1,Keskin Başlangıç - 2,1,10,Gold
+9,Dengeli,bahcivan,standart,102,önce hasar,2,Keskin Başlangıç - 2,2,11,Gold
+9,Dengeli,bahcivan,standart,102,önce hasar,3,Altın Hasat I - 1,1,7,Gold
+9,Dengeli,bahcivan,standart,102,önce hasar,3,Hızlı Eller - 1,1,7,Gold
+9,Dengeli,bahcivan,standart,102,önce hasar,4,Düzenli Üretim - 1,1,6,Gold
+9,Dengeli,bahcivan,standart,102,önce hasar,4,Hasat Deneyimi I - 1,1,6,Gold
+10,Dengeli,bahcivan,standart,100,önce hız,1,Hızlı Eller - 1,1,7,Gold
+10,Dengeli,bahcivan,standart,100,önce hız,1,Hızlı Eller - 1,2,9,Gold
+10,Dengeli,bahcivan,standart,100,önce hız,1,Hızlı Eller - 1,3,11,Gold
+10,Dengeli,bahcivan,standart,100,önce hız,2,Hızlı Eller - 2,1,12,Gold
+10,Dengeli,bahcivan,standart,100,önce hız,2,Hızlı Eller - 2,2,14,Gold
+10,Dengeli,bahcivan,standart,100,önce hız,2,Altın Hasat I - 1,1,7,Gold
+10,Dengeli,bahcivan,standart,100,önce hız,3,Keskin Başlangıç - 1,1,5,Gold
+11,Dengeli,bahcivan,standart,101,önce hız,1,Hızlı Eller - 1,1,7,Gold
+11,Dengeli,bahcivan,standart,101,önce hız,1,Hızlı Eller - 1,2,9,Gold
+11,Dengeli,bahcivan,standart,101,önce hız,1,Hızlı Eller - 1,3,11,Gold
+11,Dengeli,bahcivan,standart,101,önce hız,2,Hızlı Eller - 2,1,12,Gold
+11,Dengeli,bahcivan,standart,101,önce hız,2,Hızlı Eller - 2,2,14,Gold
+11,Dengeli,bahcivan,standart,101,önce hız,3,Altın Hasat I - 1,1,7,Gold
+11,Dengeli,bahcivan,standart,101,önce hız,3,Keskin Başlangıç - 1,1,5,Gold
+12,Dengeli,bahcivan,standart,102,önce hız,1,Hızlı Eller - 1,1,7,Gold
+12,Dengeli,bahcivan,standart,102,önce hız,1,Hızlı Eller - 1,2,9,Gold
+12,Dengeli,bahcivan,standart,102,önce hız,1,Hızlı Eller - 1,3,11,Gold
+12,Dengeli,bahcivan,standart,102,önce hız,2,Hızlı Eller - 2,1,12,Gold
+12,Dengeli,bahcivan,standart,102,önce hız,2,Hızlı Eller - 2,2,14,Gold
+12,Dengeli,bahcivan,standart,102,önce hız,2,Altın Hasat I - 1,1,7,Gold
+12,Dengeli,bahcivan,standart,102,önce hız,2,Keskin Başlangıç - 1,1,5,Gold
+12,Dengeli,bahcivan,standart,102,önce hız,4,Keskin Başlangıç - 1,2,7,Gold
+12,Dengeli,bahcivan,standart,102,önce hız,4,Düzenli Üretim - 1,1,6,Gold
+12,Dengeli,bahcivan,standart,102,önce hız,4,Hasat Deneyimi I - 1,1,6,Gold
+13,Dengeli,bahcivan,standart,100,önce ekonomi,1,Altın Hasat I - 1,1,7,Gold
+13,Dengeli,bahcivan,standart,100,önce ekonomi,1,Altın Hasat I - 1,2,9,Gold
+13,Dengeli,bahcivan,standart,100,önce ekonomi,1,Altın Hasat I - 1,3,11,Gold
+13,Dengeli,bahcivan,standart,100,önce ekonomi,2,Altın Hasat I - 2,1,13,Gold
+13,Dengeli,bahcivan,standart,100,önce ekonomi,2,Altın Hasat I - 2,2,16,Gold
+14,Dengeli,bahcivan,standart,101,önce ekonomi,1,Altın Hasat I - 1,1,7,Gold
+14,Dengeli,bahcivan,standart,101,önce ekonomi,1,Altın Hasat I - 1,2,9,Gold
+14,Dengeli,bahcivan,standart,101,önce ekonomi,1,Altın Hasat I - 1,3,11,Gold
+14,Dengeli,bahcivan,standart,101,önce ekonomi,2,Altın Hasat I - 2,1,13,Gold
+14,Dengeli,bahcivan,standart,101,önce ekonomi,2,Altın Hasat I - 2,2,16,Gold
+14,Dengeli,bahcivan,standart,101,önce ekonomi,4,Hızlı Eller - 1,1,7,Gold
+14,Dengeli,bahcivan,standart,101,önce ekonomi,4,Keskin Başlangıç - 1,1,5,Gold
+14,Dengeli,bahcivan,standart,101,önce ekonomi,4,Keskin Başlangıç - 1,2,7,Gold
+14,Dengeli,bahcivan,standart,101,önce ekonomi,4,Düzenli Üretim - 1,1,6,Gold
+14,Dengeli,bahcivan,standart,101,önce ekonomi,4,Hasat Deneyimi I - 1,1,6,Gold
+15,Dengeli,bahcivan,standart,102,önce ekonomi,1,Altın Hasat I - 1,1,7,Gold
+15,Dengeli,bahcivan,standart,102,önce ekonomi,1,Altın Hasat I - 1,2,9,Gold
+15,Dengeli,bahcivan,standart,102,önce ekonomi,1,Altın Hasat I - 1,3,11,Gold
+15,Dengeli,bahcivan,standart,102,önce ekonomi,2,Altın Hasat I - 2,1,13,Gold
+15,Dengeli,bahcivan,standart,102,önce ekonomi,2,Altın Hasat I - 2,2,16,Gold
+15,Dengeli,bahcivan,standart,102,önce ekonomi,3,Hızlı Eller - 1,1,7,Gold
+16,Dengeli,bahcivan,standart,100,önce üretim,1,Düzenli Üretim - 1,1,6,Gold
+16,Dengeli,bahcivan,standart,100,önce üretim,1,Düzenli Üretim - 1,2,8,Gold
+16,Dengeli,bahcivan,standart,100,önce üretim,1,Düzenli Üretim - 1,3,10,Gold
+16,Dengeli,bahcivan,standart,100,önce üretim,2,Grid Genişleme I,1,30,Gold
+16,Dengeli,bahcivan,standart,100,önce üretim,3,Altın Hasat I - 1,1,7,Gold
+16,Dengeli,bahcivan,standart,100,önce üretim,4,Hızlı Eller - 1,1,7,Gold
+16,Dengeli,bahcivan,standart,100,önce üretim,4,Keskin Başlangıç - 1,1,5,Gold
+16,Dengeli,bahcivan,standart,100,önce üretim,4,Keskin Başlangıç - 1,2,7,Gold
+16,Dengeli,bahcivan,standart,100,önce üretim,4,Altın Hasat I - 1,2,9,Gold
+17,Dengeli,bahcivan,standart,101,önce üretim,1,Düzenli Üretim - 1,1,6,Gold
+17,Dengeli,bahcivan,standart,101,önce üretim,1,Düzenli Üretim - 1,2,8,Gold
+17,Dengeli,bahcivan,standart,101,önce üretim,1,Düzenli Üretim - 1,3,10,Gold
+17,Dengeli,bahcivan,standart,101,önce üretim,2,Grid Genişleme I,1,30,Gold
+17,Dengeli,bahcivan,standart,101,önce üretim,3,Altın Hasat I - 1,1,7,Gold
+17,Dengeli,bahcivan,standart,101,önce üretim,4,Hızlı Eller - 1,1,7,Gold
+17,Dengeli,bahcivan,standart,101,önce üretim,4,Keskin Başlangıç - 1,1,5,Gold
+17,Dengeli,bahcivan,standart,101,önce üretim,4,Keskin Başlangıç - 1,2,7,Gold
+18,Dengeli,bahcivan,standart,102,önce üretim,1,Düzenli Üretim - 1,1,6,Gold
+18,Dengeli,bahcivan,standart,102,önce üretim,1,Düzenli Üretim - 1,2,8,Gold
+18,Dengeli,bahcivan,standart,102,önce üretim,1,Düzenli Üretim - 1,3,10,Gold
+18,Dengeli,bahcivan,standart,102,önce üretim,1,Altın Hasat I - 1,1,7,Gold
+18,Dengeli,bahcivan,standart,102,önce üretim,2,Hızlı Eller - 1,1,7,Gold
+18,Dengeli,bahcivan,standart,102,önce üretim,3,Grid Genişleme I,1,30,Gold
+18,Dengeli,bahcivan,standart,102,önce üretim,4,Keskin Başlangıç - 1,1,5,Gold
+18,Dengeli,bahcivan,standart,102,önce üretim,4,Keskin Başlangıç - 1,2,7,Gold
+19,Yeni,bahcivan,standart,100,yeni oyuncu,0,Keskin Başlangıç - 1,1,5,Gold
+19,Yeni,bahcivan,standart,100,yeni oyuncu,0,Düzenli Üretim - 1,1,6,Gold
+19,Yeni,bahcivan,standart,100,yeni oyuncu,0,Hızlı Eller - 1,1,7,Gold
+19,Yeni,bahcivan,standart,100,yeni oyuncu,1,Hasat Deneyimi I - 1,1,6,Gold
+19,Yeni,bahcivan,standart,100,yeni oyuncu,1,Altın Hasat I - 1,1,7,Gold
+19,Yeni,bahcivan,standart,100,yeni oyuncu,2,Keskin Başlangıç - 1,2,7,Gold
+19,Yeni,bahcivan,standart,100,yeni oyuncu,2,Hızlı Eller - 1,2,9,Gold
+19,Yeni,bahcivan,standart,100,yeni oyuncu,4,Düzenli Üretim - 1,2,8,Gold
+19,Yeni,bahcivan,standart,100,yeni oyuncu,4,Hızlı Eller - 1,3,11,Gold
+19,Yeni,bahcivan,standart,100,yeni oyuncu,4,Keskin Başlangıç - 1,3,8,Gold
+20,Yeni,bahcivan,standart,101,yeni oyuncu,0,Keskin Başlangıç - 1,1,5,Gold
+20,Yeni,bahcivan,standart,101,yeni oyuncu,0,Keskin Başlangıç - 1,2,7,Gold
+20,Yeni,bahcivan,standart,101,yeni oyuncu,0,Düzenli Üretim - 1,1,6,Gold
+20,Yeni,bahcivan,standart,101,yeni oyuncu,1,Hasat Deneyimi I - 1,1,6,Gold
+20,Yeni,bahcivan,standart,101,yeni oyuncu,1,Hasat Deneyimi I - 1,2,8,Gold
+20,Yeni,bahcivan,standart,101,yeni oyuncu,2,Hızlı Eller - 1,1,7,Gold
+20,Yeni,bahcivan,standart,101,yeni oyuncu,2,Altın Hasat I - 1,1,7,Gold
+20,Yeni,bahcivan,standart,101,yeni oyuncu,2,Hızlı Eller - 1,2,9,Gold
+20,Yeni,bahcivan,standart,101,yeni oyuncu,3,Keskin Başlangıç - 1,3,8,Gold
+20,Yeni,bahcivan,standart,101,yeni oyuncu,3,Düzenli Üretim - 1,2,8,Gold
+21,Yeni,bahcivan,standart,102,yeni oyuncu,2,Hızlı Eller - 1,1,7,Gold
+21,Yeni,bahcivan,standart,102,yeni oyuncu,2,Düzenli Üretim - 1,1,6,Gold
+21,Yeni,bahcivan,standart,102,yeni oyuncu,2,Keskin Başlangıç - 1,1,5,Gold
+21,Yeni,bahcivan,standart,102,yeni oyuncu,3,Altın Hasat I - 1,1,7,Gold
+21,Yeni,bahcivan,standart,102,yeni oyuncu,3,Hasat Deneyimi I - 1,1,6,Gold
+21,Yeni,bahcivan,standart,102,yeni oyuncu,3,Düzenli Üretim - 1,2,8,Gold
+21,Yeni,bahcivan,standart,102,yeni oyuncu,4,Keskin Başlangıç - 1,2,7,Gold
+21,Yeni,bahcivan,standart,102,yeni oyuncu,4,Hasat Deneyimi I - 1,2,8,Gold
+22,Yeni,bahcivan,dar_kesim,100,yeni oyuncu · Dar Kesim,1,Hızlı Eller - 1,1,7,Gold
+22,Yeni,bahcivan,dar_kesim,100,yeni oyuncu · Dar Kesim,1,Keskin Başlangıç - 1,1,5,Gold
+23,Yeni,bahcivan,dar_kesim,101,yeni oyuncu · Dar Kesim,2,Keskin Başlangıç - 1,1,5,Gold
+23,Yeni,bahcivan,dar_kesim,101,yeni oyuncu · Dar Kesim,2,Keskin Başlangıç - 1,2,7,Gold
+23,Yeni,bahcivan,dar_kesim,101,yeni oyuncu · Dar Kesim,3,Altın Hasat I - 1,1,7,Gold
+23,Yeni,bahcivan,dar_kesim,101,yeni oyuncu · Dar Kesim,3,Düzenli Üretim - 1,1,6,Gold
+24,Yeni,bahcivan,dar_kesim,102,yeni oyuncu · Dar Kesim,1,Keskin Başlangıç - 1,1,5,Gold
+24,Yeni,bahcivan,dar_kesim,102,yeni oyuncu · Dar Kesim,1,Keskin Başlangıç - 1,2,7,Gold
+24,Yeni,bahcivan,dar_kesim,102,yeni oyuncu · Dar Kesim,1,Düzenli Üretim - 1,1,6,Gold
+24,Yeni,bahcivan,dar_kesim,102,yeni oyuncu · Dar Kesim,2,Hasat Deneyimi I - 1,1,6,Gold
+24,Yeni,bahcivan,dar_kesim,102,yeni oyuncu · Dar Kesim,2,Hasat Deneyimi I - 1,2,8,Gold
+24,Yeni,bahcivan,dar_kesim,102,yeni oyuncu · Dar Kesim,3,Altın Hasat I - 1,1,7,Gold
+24,Yeni,bahcivan,dar_kesim,102,yeni oyuncu · Dar Kesim,3,Hızlı Eller - 1,1,7,Gold
+24,Yeni,bahcivan,dar_kesim,102,yeni oyuncu · Dar Kesim,4,Düzenli Üretim - 1,2,8,Gold

@@ -11,6 +11,11 @@ using Object = UnityEngine.Object;
 public static class HarvestBehaviorVerification
 {
     const string Key = "HarvestBehaviorTest";
+    // Paket ortak veriyle yazıldı: denge seti olmayan profil (ortak ağaç, ortak bitki canı, davranış kilitleri kapalı başlar).
+    // Projede hangi profil seçili olursa olsun bununla çalışır. Seçim dosyasına yazılmaz: oturum geçersiz kılması kullanılır
+    // ve test bitince (başarısız da olsa) kaldırılır.
+    const string RequiredProfile = "Assets/ScriptableObjects/RunProfiles/UzunRun130.asset";
+    const string SelectionPath = "Assets/Resources/RunProfileSelection.asset";
     static int stage;
     static double next;
     static PlanterBrain source;
@@ -22,7 +27,39 @@ public static class HarvestBehaviorVerification
     static BoomerangScythe moving;
     static int poolSize;
     static readonly List<string> notes = new();
-    static HarvestBehaviorVerification() { EditorApplication.update += Tick; }
+    static HarvestBehaviorVerification()
+    {
+        EditorApplication.update += Tick;
+        // Play'e girerken domain yeniden yüklenir; profil sahne uyanmadan önce yeniden kurulur.
+        if (SessionState.GetString(Key, "") == "running") UseTestProfile();
+    }
+    static RunProfileSO TestProfile => AssetDatabase.LoadAssetAtPath<RunProfileSO>(RequiredProfile);
+    static void UseTestProfile()
+    {
+        var profile = TestProfile;
+        if (profile == null) { Debug.LogError("Harvest behavior verification: test profile missing: " + RequiredProfile); return; }
+        RunProfileSelectionSO.OverrideForSession(profile);
+    }
+    static string FileHash(string path)
+    {
+        using var sha = System.Security.Cryptography.SHA256.Create();
+        return BitConverter.ToString(sha.ComputeHash(File.ReadAllBytes(path)));
+    }
+    static string SelectedName()
+    {
+        var selection = AssetDatabase.LoadAssetAtPath<RunProfileSelectionSO>(SelectionPath);
+        return selection != null && selection.active != null ? selection.active.name : "none";
+    }
+    // Test durumu her çıkış yolunda kaldırılır; seçim dosyasının değişmediği de burada denetlenir (null: sorun yok).
+    static string CleanupProfile()
+    {
+        RunProfileSelectionSO.ClearSessionOverride();
+        var selection = AssetDatabase.LoadAssetAtPath<RunProfileSelectionSO>(SelectionPath);
+        string before = SessionState.GetString(Key + "Selection", "");
+        if (selection != null && EditorUtility.IsDirty(selection)) return "selection asset was modified in memory";
+        if (before.Length > 0 && before != FileHash(SelectionPath)) return "selection file changed on disk";
+        return null;
+    }
     // Havuz sınırı sahnede ayarlanır (GameScene: HarvestBehaviorManager); test sabit sayı yerine onu okur.
     static int Cap(HarvestBehaviorManager m,string field)=>(int)typeof(HarvestBehaviorManager).GetField(field,System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Instance).GetValue(m);
     static void Require(bool condition, string message)
@@ -35,6 +72,8 @@ public static class HarvestBehaviorVerification
         try
         {
             SessionState.SetInt(Key + "Checks", 0);
+            SessionState.SetString(Key + "Selection", FileHash(SelectionPath));
+            UseTestProfile();
             HarvestBehaviorAuthoring.Author();
             StaticChecks();
             // Production enters via MenuScene, whose persistent GameManager survives
@@ -44,7 +83,7 @@ public static class HarvestBehaviorVerification
             SessionState.SetString(Key, "running"); SessionState.SetFloat(Key + "Start", (float)EditorApplication.timeSinceStartup);
             EditorApplication.EnterPlaymode();
         }
-        catch (Exception ex) { Debug.LogException(ex); if (Application.isBatchMode) EditorApplication.Exit(1); }
+        catch (Exception ex) { CleanupProfile(); SessionState.SetString(Key, ""); Debug.LogException(ex); if (Application.isBatchMode) EditorApplication.Exit(1); }
     }
     [MenuItem("Tools/Harvest Behaviors/Verify In Play Mode")]
     public static void RunInteractive()
@@ -97,6 +136,7 @@ public static class HarvestBehaviorVerification
         {
             if(EditorApplication.isPlayingOrWillChangePlaymode)return;
             SessionState.SetString(Key,"");
+            RunProfileSelectionSO.ClearSessionOverride();
             if (Application.isBatchMode) EditorApplication.Exit(state=="done"?0:1);
             else
             {
@@ -110,10 +150,19 @@ public static class HarvestBehaviorVerification
         {
             if(EditorApplication.timeSinceStartup-SessionState.GetFloat(Key+"Start",0)>120)throw new Exception("Play-mode verification timed out");
             if(EditorApplication.timeSinceStartup<next)return;
-            if(stage==0){stage++;next=EditorApplication.timeSinceStartup+1;return;}
+            if(stage==0)
+            {
+                // Editörde elle çalıştırılırsa oyuncunun kayıt dosyasına yazılmasın (batch'te kayıt zaten yalnız bellekte).
+                if(!Application.isBatchMode)MetaSave.UseMemoryOnly();
+                stage++;next=EditorApplication.timeSinceStartup+1;return;
+            }
             var manager=HarvestBehaviorManager.Instance;
             if(stage==1)
             {
+                var profile=TestProfile;
+                Require(profile!=null && RunProfileSelectionSO.HasSessionOverride && RoundManager.Instance.Profile==profile && RunBalanceSO.Active==null,
+                    "runs its own profile "+(profile!=null?profile.name:"?")+" (shared data); project selection: "+SelectedName());
+                Require(MetaSave.Data!=null && MetaSave.LastLoad==MetaSave.LoadResult.MemoryOnly,"save kept in memory only");
                 Setup();
                 Require(manager!=null,"runtime behavior manager initialized");
                 var pool=Object.FindFirstObjectByType<CardSelectionUI>(FindObjectsInactive.Include);
@@ -228,7 +277,13 @@ public static class HarvestBehaviorVerification
     }
     static void Finish(bool passed,string error)
     {
-        Directory.CreateDirectory("Logs");File.WriteAllText("Logs/HarvestBehaviorVerification.txt",(passed?"PASS":"FAIL")+": "+SessionState.GetInt(Key+"Checks",0)+" checks\n"+string.Join("\n",notes)+"\n"+error);
+        // Temizlik sonuçtan bağımsız çalışır ve sonucu dosyaya yazılır; temiz değilse geçen test de başarısız sayılır.
+        string leak=CleanupProfile();
+        bool clean=leak==null && !RunProfileSelectionSO.HasSessionOverride;
+        string cleanup="cleanup after "+(passed?"pass":"failure")+": profile override "+(RunProfileSelectionSO.HasSessionOverride?"STILL SET":"removed")+"; selection file "+(leak??"unchanged");
+        if(passed && clean){SessionState.SetInt(Key+"Checks",SessionState.GetInt(Key+"Checks",0)+1);notes.Add("profile override removed; selection file unchanged");}
+        else if(passed){passed=false;error="Harvest behavior verification: "+(leak??"profile override still set");}
+        Directory.CreateDirectory("Logs");File.WriteAllText("Logs/HarvestBehaviorVerification.txt",(passed?"PASS":"FAIL")+": "+SessionState.GetInt(Key+"Checks",0)+" checks\n"+string.Join("\n",notes)+"\n"+error+"\n"+cleanup);
         SessionState.SetString(Key,passed?"done":"failed");EditorApplication.ExitPlaymode();
     }
 }

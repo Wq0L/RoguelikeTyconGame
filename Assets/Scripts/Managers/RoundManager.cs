@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public enum RunOutcome { None, Victory, QuotaFailed }
+public enum RunOutcome { None, Victory, QuotaFailed, BossFailed }
 
 public class RoundManager : MonoBehaviour
 {
@@ -44,11 +44,20 @@ public class RoundManager : MonoBehaviour
     public float EndSlowdownProgress { get; private set; }
 
     private int pendingCardSelections = 0;
+    // Level kartları (Bölüm 3.6): her level profilin verdiği kadar ayrı seçim hakkı getirir (varsayılan 1).
+    public int ChoicesPerLevel => Profile != null ? Mathf.Max(1, Profile.choicesPerLevel) : 1;
+    public int PendingCardSelections => pendingCardSelections;
+    // Run sayaçları (HUD ve ölçüm): kazanılan level ve verilen seçim hakkı.
+    public int LevelsGained { get; private set; }
+    public int CardChoicesGranted { get; private set; }
     private int skipUsesRemaining;
     private bool awaitingFirstRound = true;
 
     public bool IsPreparingFirstRound => awaitingFirstRound;
-    public float RawRoundDuration => Mathf.Clamp(StatManager.Instance != null
+    // Deney (Bölüm 2.2): profil süreyi sabitlerse süre stat'ı okunmaz; 60 sn üstü verilemez, yani süreden tempo doğmaz.
+    public bool FixedRoundDuration => Profile != null && Profile.fixedRoundDuration > 0f;
+    public float RawRoundDuration => FixedRoundDuration ? Mathf.Clamp(Profile.fixedRoundDuration, 30f, RoundSecondsCap) :
+        Mathf.Clamp(StatManager.Instance != null
         ? StatManager.Instance.GetFinalStat(StatType.RoundDuration, StatTarget.All) : roundDuration, 30f, 90f);
     public float EffectiveRoundDuration => Mathf.Min(RawRoundDuration, RoundSecondsCap);
     // 1: normal. 90 sn'lik süre 60 sn'ye sığınca 1,5: saldırı ve bitki üretimi 1,5 kat hızlı.
@@ -70,6 +79,20 @@ public class RoundManager : MonoBehaviour
     public long LastQuotaTarget { get; private set; }
     private long segmentStartScore;
     private static long CurrentScore => HarvestScoreManager.Instance != null ? HarvestScoreManager.Instance.TotalScore : 0;
+
+    // Boss hasadı (Bölüm 3.4): boss round'unda, yalnız o round'da kazanılan Harvest Score. Segment kotasından ayrı ikinci koşuldur;
+    // hedef profil tablosundan gelir (oyuncunun gücüne göre ölçeklenmez). Hedef tutunca round erken bitmez.
+    public bool IsBossRound(int round) => Profile != null && IsQuotaSegmentEnd(round) && Profile.HasBoss(HarvestQuota.SegmentOf(round, QuotaSegmentRounds));
+    public long BossTargetFor(int segment) => Profile != null ? Profile.BossTargetFor(segment) : 0;
+    public long BossTarget => BossTargetFor(QuotaSegment);
+    public long BossProgress => IsBossRound(CurrentRound) ? System.Math.Max(0L, CurrentScore - roundStartScore) : 0L;
+    public bool EndedByBoss { get; private set; }
+    public int LastBossRound { get; private set; }
+    public long LastBossScore { get; private set; }
+    public long LastBossTarget { get; private set; }
+    // Run bu round'da bir koşul tutmadığı için bitti (kota, boss hasadı ya da ikisi).
+    public bool RunFailed => EndedByQuota || EndedByBoss;
+    private long roundStartScore;
 
     public int SkipUsesRemaining => skipUsesRemaining;
     // Round sonu seçimleri (IRoundChoice): kartlardan sonra, round özetinden önce. Türlerini bilmeden sırayı yönetir.
@@ -95,6 +118,13 @@ public class RoundManager : MonoBehaviour
         // Boss kuralları RoundManager'da değil, olay yürütücüsünde; RoundManager sadece round olaylarını yayınlar.
         if (!TryGetComponent(out SegmentEventDirector _)) gameObject.AddComponent<SegmentEventDirector>();
         if (!TryGetComponent(out SpecializationManager _)) gameObject.AddComponent<SpecializationManager>();
+        // Run başı seçim (çiftçi + tırpan) ve kalıcı görev sayacı; ikisi de OnRunStarted'da kurulur.
+        if (!TryGetComponent(out StartLoadoutManager _)) gameObject.AddComponent<StartLoadoutManager>();
+        if (!TryGetComponent(out QuestTracker _)) gameObject.AddComponent<QuestTracker>();
+        // Boss ödülleri (run buff'ları): profilde ödül havuzu yoksa hiçbir şey yapmaz.
+        if (!TryGetComponent(out BossRewardManager _)) gameObject.AddComponent<BossRewardManager>();
+        // Kırılma ödüllerinin gecikmiş ikinci darbeleri: ödül alınmadıysa hiçbir şey yapmaz.
+        if (!TryGetComponent(out BehaviorEchoes _)) gameObject.AddComponent<BehaviorEchoes>();
     }
 
     private void Start()
@@ -117,6 +147,17 @@ public class RoundManager : MonoBehaviour
         LastQuotaTarget = QuotaTarget;
         LastQuotaScore = QuotaProgress;
         EndedByQuota = LastQuotaScore < LastQuotaTarget;
+        EvaluateBoss();
+    }
+
+    // Boss round'unun sonunda: o round'da kazanılan skor boss hedefinin altındaysa run biter (segment kotası dolmuş olsa da).
+    private void EvaluateBoss()
+    {
+        if (!IsBossRound(CurrentRound)) return;
+        LastBossRound = CurrentRound;
+        LastBossTarget = BossTarget;
+        LastBossScore = BossProgress;
+        EndedByBoss = LastBossTarget > 0 && LastBossScore < LastBossTarget;
     }
 
     private void Update()
@@ -170,8 +211,11 @@ public class RoundManager : MonoBehaviour
 
     public void BeginRun()
     {
+        RunPower.Reset();
         CurrentRound = 1;
         pendingCardSelections = 0;
+        LevelsGained = 0;
+        CardChoicesGranted = 0;
         awaitingFirstRound = true;
         IsRoundActive = false;
         RemainingTime = EffectiveRoundDuration;
@@ -182,9 +226,17 @@ public class RoundManager : MonoBehaviour
         Outcome = RunOutcome.None;
         LastQuotaRound = 0;
         LastQuotaScore = LastQuotaTarget = 0;
+        EndedByBoss = false;
+        LastBossRound = 0;
+        LastBossScore = LastBossTarget = 0;
+        roundStartScore = CurrentScore;
 
         SkillTreeManager.Instance.ResetTree();
         UnlockManager.Instance.ResetUnlocks();
+        // Denge seti bazı kilitleri başlangıçtan açık verebilir (Bölüm 3.6: patlama ve elektrik kartları).
+        RunBalanceSO balance = Profile != null ? Profile.balance : null;
+        if (balance != null && balance.startingUnlocks != null)
+            foreach (UnlockType unlock in balance.startingUnlocks) UnlockManager.Instance.Unlock(unlock);
 
         if (Application.isEditor && Profile != null)
             Debug.Log($"Run profili: {Profile.displayName} · {MaxRounds} round{(Profile.debugBudget ? " · DEBUG BÜTÇE" : "")}", Profile);
@@ -199,6 +251,7 @@ public class RoundManager : MonoBehaviour
         RemainingTime = EffectiveRoundDuration;
         IsRoundActive = true;
         if ((CurrentRound - 1) % QuotaSegmentRounds == 0) segmentStartScore = CurrentScore;
+        roundStartScore = CurrentScore;
         EndSlowdownProgress = 0f;
         lastDisplayedSecond = -1;
 
@@ -216,11 +269,11 @@ public class RoundManager : MonoBehaviour
         EvaluateQuota();
         OnRoundEnded?.Invoke();
 
-        // Kota tutmadı: run burada biter, bekleyen kart seçimleri atlanır
-        if (EndedByQuota)
+        // Kota ya da boss hasadı tutmadı: run burada biter, bekleyen kart seçimleri atlanır
+        if (RunFailed)
         {
             pendingCardSelections = 0;
-            Outcome = RunOutcome.QuotaFailed;
+            Outcome = EndedByQuota ? RunOutcome.QuotaFailed : RunOutcome.BossFailed;
             GameManager.Instance.CompleteRun();
             return;
         }
@@ -257,7 +310,10 @@ public class RoundManager : MonoBehaviour
     
     private void HandleLevelUp(int newLevel)
     {
-        pendingCardSelections++;
+        int choices = ChoicesPerLevel;
+        LevelsGained++;
+        CardChoicesGranted += choices;
+        pendingCardSelections += choices;
     }
 
     public bool OnCardSelectionComplete()

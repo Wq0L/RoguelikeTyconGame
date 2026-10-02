@@ -19,8 +19,8 @@ public class GrassPlanterButtonUI : MonoBehaviour
             GameManager.Instance.CurrentState != GameStates.Shop) return;
         // Para yeterli mi kontrol et ve kes
         bool success = ResourceManager.Instance.SpendResource(
-            planterSO.costType,
-            planterSO.cost
+            planterSO.PriceType,
+            planterSO.Price
         );
 
         if (!success)

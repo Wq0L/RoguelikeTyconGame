@@ -122,7 +122,11 @@ public sealed class RoundSummaryUI : MonoBehaviour
         specNotice.gameObject.SetActive(spec != null);
         if (spec != null) specNotice.text = "Uzmanlaşma: " + spec;
         eventNotice.gameObject.SetActive(eventText != null);
-        if (eventText != null) eventNotice.text = eventText;
+        if (eventText != null)
+        {
+            eventNotice.text = eventText;
+            eventNotice.color = BossTheme.Ink(SegmentEventText.NoticeSubject(events, finished));
+        }
         eventNotice.rectTransform.offsetMin = new Vector2(16f, 12f + specSpace);
         eventNotice.rectTransform.offsetMax = new Vector2(-16f, 76f + specSpace);
         float eventSpace = eventText != null ? 70f : 0f;
@@ -342,7 +346,7 @@ public sealed class RoundSummaryUI : MonoBehaviour
         warning.gameObject.SetActive(false);
 
         eventNotice = CreateText(card, "Event Notice", 22f, TextAlignmentOptions.Center);
-        eventNotice.color = SegmentEventText.Ink;
+        eventNotice.color = BossTheme.Ink(null);
         eventNotice.textWrappingMode = TextWrappingModes.Normal;
         eventNotice.enableAutoSizing = true;
         eventNotice.fontSizeMin = 14f;

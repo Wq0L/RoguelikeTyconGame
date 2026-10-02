@@ -59,7 +59,18 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     private void Awake()
     {
+        ApplyTreeSet();
         CreateNavigation();
+    }
+
+    // Run profilinin ağaç seti (Bölüm 3.5): her arayüz yuvası setteki karşılığını gösterir, karşılığı olmayan yuva kapanır.
+    // Set yoksa (eski profiller) yuvalar sahnedeki düğümleriyle kalır. Bağlantı çizgileri bundan sonra kurulur.
+    private void ApplyTreeSet()
+    {
+        RunBalanceSO balance = RunBalanceSO.Active;
+        if (balance == null || balance.skillTree == null) return;
+        foreach (SkillNodeUI nodeUI in nodeUIs)
+            if (nodeUI != null) nodeUI.Bind(balance.skillTree.NodeFor(nodeUI.Node));
     }
 
     private void OnEnable()
@@ -240,9 +251,8 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
             bool virtualOrigin = link.a == null;
             bool visible = showConnections && link.b != null && link.b.gameObject.activeSelf &&
                 (virtualOrigin ? !hasVisibleOrigin : link.a.gameObject.activeSelf);
-            Vector2Int aGrid = virtualOrigin ? Vector2Int.zero : link.a.Node.gridPosition;
-            bool aOpen = treeManager.IsPositionUnlocked(aGrid);
-            bool bOpen = treeManager.IsPositionUnlocked(link.b.Node.gridPosition);
+            bool aOpen = virtualOrigin ? treeManager.IsPositionUnlocked(Vector2Int.zero) : IsOpenEnd(link.a.Node);
+            bool bOpen = IsOpenEnd(link.b.Node);
             visible &= aOpen || bOpen;
             link.root.gameObject.SetActive(visible);
             if (!visible) continue;
@@ -278,6 +288,11 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
         originMarker.gameObject.SetActive(showOrigin);
         originMarker.color = availableConnectionColor;
     }
+
+    // Çizginin açık ucu: satın alınmış düğüm ya da profilin başlangıçtan açık verdiği (satılmayan) düğüm. Ok açık uçtan
+    // henüz alınmamış uca bakar; iki uç da açıksa düz çizgi kalır.
+    private bool IsOpenEnd(SkillNodeSO node) =>
+        treeManager.IsPositionUnlocked(node.gridPosition) || treeManager.IsOpenFromStart(node);
 
     private static float NodeEdgeDistance(SkillNodeUI ui, Vector2 direction)
     {

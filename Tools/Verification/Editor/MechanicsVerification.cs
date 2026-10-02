@@ -19,6 +19,13 @@ public static class MechanicsVerification
     static RenderTexture target; static Camera cam; static UIManager ui; static GameObject roundEndUI, cardPanel;
     static CardSelectionUI cards;
     static GroundCell upgradedCell; static int levelBefore; static float valueBefore;
+    // Kart vignette'inin tasarım değerleri (CardSelectionVignette): renkli köşe vignette'i, tam açıkken 0,65 opak; kart seçimi
+    // altın sarısı, boss ödülü mor. Panel her açıldığında şeffaftan başlar, panel kapanınca kapanır.
+    const float VignetteAlpha = .65f;
+    static readonly Color32 VignetteGold = new Color32(235, 177, 52, 255), VignettePurple = new Color32(153, 87, 224, 255);
+    static CardSelectionVignette Vignette => cardPanel.GetComponentInChildren<CardSelectionVignette>(true);
+    static Color VignetteColor => Vignette.GetComponent<UnityEngine.UI.RawImage>().color;
+    static bool SameTint(Color c, Color32 t) => Mathf.Abs(c.r - t.r / 255f) < .01f && Mathf.Abs(c.g - t.g / 255f) < .01f && Mathf.Abs(c.b - t.b / 255f) < .01f;
 
     static MechanicsVerification() { EditorApplication.update += Tick; }
 
@@ -115,6 +122,7 @@ public static class MechanicsVerification
         ProgressionManager.Instance.AddXP(605 + 609 + 601 + 1); // 3 level
         Call(RoundManager.Instance, "EndRound");
         Require(GameManager.Instance.CurrentState == GameStates.CardSelection, "Level-ups open card selection");
+        Require(Vignette != null && Vignette.gameObject.activeInHierarchy && VignetteColor.a <= .01f, "Card vignette opens with the panel and starts transparent (fade-in): alpha " + VignetteColor.a);
         return 1.5;
     }
 
@@ -134,9 +142,17 @@ public static class MechanicsVerification
             Require(rich.Contains("<color=#FF8577>") && rich.Contains("<color=#7CF08E>"), "Card colors old red, new green");
             if (now.Count == 1) Require(buff.Contains(TileBuffText.AmountChange(now[0], offer.Modifiers[0])) && buff.Contains(TileBuffText.Amount(now[0]).Replace(" puan", "")), "Card shows old → new value: " + buff.Replace((char)10, (char)47));
         }
-        var vignette = cardPanel.GetComponentInChildren<CardSelectionVignette>(true);
-        Require(vignette != null && vignette.gameObject.activeInHierarchy && vignette.transform.GetSiblingIndex() == 0 && vignette.GetComponent<UnityEngine.UI.RawImage>().color.a > .8f && !vignette.GetComponent<UnityEngine.UI.RawImage>().raycastTarget,
-            "Card selection vignette behind the cards, faded in, not blocking clicks: alpha " + vignette?.GetComponent<UnityEngine.UI.RawImage>().color.a);
+        var vignette = Vignette;
+        Require(vignette != null && vignette.gameObject.activeInHierarchy && vignette.transform.GetSiblingIndex() == 0 && !vignette.GetComponent<UnityEngine.UI.RawImage>().raycastTarget,
+            "Card selection vignette behind the cards, not blocking clicks");
+        float designAlpha = (float)typeof(CardSelectionVignette).GetField("MaxAlpha", BindingFlags.NonPublic | BindingFlags.Static).GetRawConstantValue();
+        Require(Mathf.Abs(designAlpha - VignetteAlpha) < 1e-4f && Mathf.Abs(VignetteColor.a - VignetteAlpha) < .005f,
+            $"Vignette faded in to its design opacity {VignetteAlpha}: alpha {VignetteColor.a:0.###} (design constant {designAlpha})");
+        Require(SameTint(VignetteColor, VignetteGold), "Card selection vignette is gold: #" + ColorUtility.ToHtmlStringRGB(VignetteColor));
+        var bossHost = new GameObject("Boss vignette (verification)", typeof(RectTransform));
+        Color bossColor = CardSelectionVignette.Attach((RectTransform)bossHost.transform, CardSelectionVignette.Palette.Boss).GetComponent<UnityEngine.UI.RawImage>().color;
+        Object.DestroyImmediate(bossHost);
+        Require(SameTint(bossColor, VignettePurple) && bossColor.a <= .01f && !SameTint(bossColor, VignetteGold), "Boss reward vignette is purple and also starts transparent: #" + ColorUtility.ToHtmlStringRGB(bossColor));
         Save("UpgradeCards");
         var pick = offers[0]; upgradedCell = pick.UpgradeTarget; levelBefore = upgradedCell.Level; valueBefore = upgradedCell.RolledModifiers[0].value;
         Call(cards, "OnCardSelected", pick);
@@ -154,7 +170,7 @@ public static class MechanicsVerification
         Require(GameManager.Instance.CurrentState == GameStates.RoundEnd, "Round end after the last pick");
         var richRows = roundEndUI.GetComponentInChildren<RoundNewTilesUI>(true).GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).ToList();
         var rows = richRows.Select(Strip).ToList();
-        Require(!cardPanel.GetComponentInChildren<CardSelectionVignette>(true).gameObject.activeInHierarchy, "Vignette only while choosing cards: gone on the round end screen");
+        Require(!Vignette.gameObject.activeInHierarchy, "Vignette only while choosing cards: gone on the round end screen");
         Require(GameFeelDirector.Instance.LastRound.Xp == 605 + 609 + 601 + 1, "Round summary counts XP earned: " + GameFeelDirector.Instance.LastRound.Xp);
         var summary = Object.FindFirstObjectByType<RoundSummaryUI>(FindObjectsInactive.Include);
         Require(summary != null && summary.GetComponentsInChildren<TextMeshProUGUI>().Any(t => t.text == "XP"), "Round summary shows an XP row");
@@ -179,6 +195,8 @@ public static class MechanicsVerification
         RoundManager.Instance.StartNextRound();
         ProgressionManager.Instance.AddXP(ProgressionManager.Instance.XPToNextLevel + 1);
         Call(RoundManager.Instance, "EndRound");
+        Require(GameManager.Instance.CurrentState == GameStates.CardSelection && Vignette.gameObject.activeInHierarchy && VignetteColor.a <= .01f && SameTint(VignetteColor, VignetteGold),
+            "Reopened card selection: the vignette restarts its fade from transparent (no leftover opacity): alpha " + VignetteColor.a);
         var offers = Offers();
         Require(offers.Count == 3 && offers.All(o => o.IsBaseStat), "All tiles max: cards give Temel güç");
         int before = StatManager.Instance.GlobalModifiers.Count;

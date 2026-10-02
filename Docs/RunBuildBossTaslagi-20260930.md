@@ -1,5 +1,7 @@
 # Run, fırsat maliyeti, boss, çiftçi ve tırpan taslağı
 
+> Güncel yön: [50 round tasarım kararları](Run50-GuncelTasarimKararlari-20260930.md). Aşağıdaki eski süre/güç önerileri bu kararlara göre yeniden değerlendirilecek.
+
 Tarih: 30 Eylül 2026. Durum: değerlendirme ve prototip taslağı; uygulama onayı veya tamamlanmış denge değildir.
 
 > Uygulama durumu (30 Eylül): Paket A (10 round, 1–5 normal, 6–10 Don Cephesi) uygulandı; ayrıntı, ayarlar ve test sonuçları `Bolum1-KisaRunDonCephesi.md`. Ücretsiz taşıma, ödüller, çiftçi/tırpan ve diğer olaylar uygulanmadı.

@@ -11,11 +11,15 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-// Batch (izole kopya): Bölüm 2 — boss sonrası bedelli uzmanlaşma, GameScene'de.
+// Batch (izole kopya): Bölüm 2 / 2.1 — boss sonrası bedelli uzmanlaşma, GameScene'de.
 // A) Akış: kota kaybında ödül yok; kartlar → seçim → özet; tek açılış; seçim bitmeden round 11 yok; çift tıklama;
 //    dört davranış ve doğrudan hasar katsayıları gerçek kod yolundan; Koru hiçbir şeyi değiştirmez; yeni run temiz;
 //    10 round ve uzun run profillerinde seçim ekranı yok.
-// B) Ölçüm: iki tarla düzeni × üç seçenek, aynı seed ve round, bot oyuncu (en çok bitkiyi kapsayan hücreye vurur).
+// B) 2.1 kaynak bedeli: yalnız hasat ödülüne, duplicate dahil bir kez, kesirli kalan kaynak başına; doğrudan ve davranış
+//    öldürmelerinde aynı; başlangıç parası, satış iadesi, kart atlama ödülü ve düz kaynak eklemesi etkilenmez; XP ve skor aynı;
+//    kalanlar yeni run'da ve ClearAll'da sıfır.
+// C) Ölçüm: üç tarla düzeni × üç stat/can eşiği × dört seçenek (Davranış Ustası'nın bedelsiz kopyası kontrol) × aynı seed kümesi,
+//    bot oyuncu (en çok bitkiyi kapsayan hücreye vurur), sabit kare süresi (Time.captureDeltaTime) ile.
 [InitializeOnLoad]
 public static class SpecializationVerification
 {
@@ -64,6 +68,7 @@ public static class SpecializationVerification
     static void Finish(Exception ex)
     {
         SessionState.SetBool(Key, false);
+        Time.captureDeltaTime = 0f;
         Directory.CreateDirectory("Logs");
         File.WriteAllLines("Logs/SpecializationVerification.txt", new[] { ex == null ? "PASS: " + notes.Count(n => n.StartsWith("ok")) + " checks" : "FAIL: " + ex }.Concat(notes));
         UnityEngine.Rendering.GraphicsSettings.defaultRenderPipeline = null; QualitySettings.renderPipeline = null;
@@ -84,6 +89,13 @@ public static class SpecializationVerification
     static List<PlantSpawner> Spawners() => Object.FindObjectsByType<PlantSpawner>(FindObjectsSortMode.None).Where(s => s.GridObject != null).ToList();
     static int Center => GridManager.Instance.GetWidth() / 2;
     static GridSystem Grid => GridManager.Instance.GetGridSystem();
+    static GridObject Cell(int dx, int dz) => Grid.GetGridObject(new GridPosition(Center + dx, Center + dz));
+    static PlantSO PlantData(string n) => AssetDatabase.LoadAssetAtPath<PlantSO>($"Assets/ScriptableObjects/Plants/{n}.asset");
+    static int Res(ResourceType t) => ResourceManager.Instance.GetResourceAmount(t);
+    static int ResTotal => Res(ResourceType.Gold) + Res(ResourceType.Iron) + Res(ResourceType.Stone);
+    static double Xp => ProgressionManager.Instance.TotalXPEarned;
+    static long Score => HarvestScoreManager.Instance.TotalScore;
+    static StatModifier Mod(StatType s, StatTarget t, float v) => new StatModifier { statType = s, target = t, operation = ModifierOperation.Set, value = v };
 
     static void Listen()
     {
@@ -179,11 +191,12 @@ public static class SpecializationVerification
             case 1: return SuccessToChoice();
             case 2: return Choose();
             case 3: return Coefficients();
-            case 4: return FinishRun();
-            case 5: Save("SpecVictory"); Object.FindFirstObjectByType<RunCompleteUI>(FindObjectsInactive.Include).OnRestartPressed(); return 3;
-            case 6: return AfterRestart();
-            case 7: return ProtoCheck();
-            case 8: return LongRunCheck();
+            case 4: return HarvestResources();
+            case 5: return FinishRun();
+            case 6: return BeforeRestart();
+            case 7: return AfterRestart();
+            case 8: return ProtoCheck();
+            case 9: return LongRunCheck();
             default: return MeasureStep();
         }
     }
@@ -196,13 +209,20 @@ public static class SpecializationVerification
             "Specialization profile: 20 rounds, choice after segment 2, 3 options");
         Require(RM.QuotaTargetFor(1) == 40 && RM.QuotaTargetFor(2) == 200 && RM.QuotaTargetFor(3) == 350 && RM.QuotaTargetFor(4) == 600, "Quota table 40 / 200 / 350 / 600");
         Require(ResourceManager.Instance.GetResourceAmount(ResourceType.Gold) == 80 && ResourceManager.Instance.GetResourceAmount(ResourceType.Iron) == 0, "Normal economy (80 Gold)");
-        Require(SM.Chosen == null && !SM.IsPending && SpecializationManager.DirectMultiplier == 1f && SpecializationManager.BehaviorMultiplier == 1f, "No specialization at start");
+        Require(SM.Chosen == null && !SM.IsPending && SpecializationManager.DirectMultiplier == 1f && SpecializationManager.BehaviorMultiplier == 1f && SpecializationManager.HarvestResourceMultiplier == 1f,
+            "No specialization at start");
+        Require(usta.directDamageMultiplier == 1.25f && usta.behaviorDamageMultiplier == .85f && usta.harvestResourceMultiplier == 1f &&
+                davranis.directDamageMultiplier == 1f && davranis.behaviorDamageMultiplier == 1.25f && davranis.harvestResourceMultiplier == .9f && koru.ChangesNothing,
+            "Assets: Usta 1,25/0,85/1 · Davranış 1/1,25/kaynak 0,90 · Koru 1/1/1");
         for (int r = 1; r <= 9; r++) { PlayRound(); Flush(); }
         PlayRound(0.9);
         Require(RM.EndedByQuota && State == GameStates.RunComplete && !SM.IsPending && SM.Chosen == null && choiceScreens == 0, "Failed boss quota: run lost, no specialization screen");
         Object.FindFirstObjectByType<RunCompleteUI>(FindObjectsInactive.Include).OnRestartPressed();
         return 3;
     }
+
+    static List<string> PanelTexts(SpecializationPanelUI panel) =>
+        panel.GetComponentsInChildren<TextMeshProUGUI>(true).Where(t => t.gameObject.activeInHierarchy).Select(t => Strip(t.text)).ToList();
 
     // Run 2: round 10 kotası geçilir, iki kart bekler → kartlar → seçim ekranı.
     static double SuccessToChoice()
@@ -212,10 +232,9 @@ public static class SpecializationVerification
         PrepareCapture();
         choiceScreens = cardScreens = 0;
         for (int x = -1; x <= 1; x++) for (int z = -1; z <= 1; z++)
-            Place1x1(Grid.GetGridObject(new GridPosition(Center + x, Center + z)), x == 0 && z == 0 ? Tile("Explosive", "Legendary") : null, 1f);
+            Place1x1(Cell(x, z), x == 0 && z == 0 ? Tile("Explosive", "Legendary") : null, 1f);
         Object.FindFirstObjectByType<PlayerController>().enabled = false;
         for (int r = 1; r <= 9; r++) { PlayRound(); Flush(); }
-        int cardsBefore = cardScreens;
         RM.StartNextRound();
         Require(RM.CurrentRound == 10, "Round 10 running");
         ProgressionManager.Instance.AddXP(ProgressionManager.Instance.XPToNextLevel + 1);
@@ -234,11 +253,17 @@ public static class SpecializationVerification
         Require(State == GameStates.RoundChoice && RM.CurrentRound == 10, "Round 11 cannot start before choosing");
         var panel = Object.FindFirstObjectByType<SpecializationPanelUI>(FindObjectsInactive.Include);
         Require(panel != null && panel.gameObject.activeInHierarchy, "Specialization panel open");
-        var texts = panel.GetComponentsInChildren<TextMeshProUGUI>(true).Where(t => t.gameObject.activeInHierarchy).Select(t => Strip(t.text)).ToList();
+        var texts = PanelTexts(panel);
         Require(texts.Any(t => t == "USTA BİÇİCİ") && texts.Any(t => t == "DAVRANIŞ USTASI") && texts.Any(t => t == "MEVCUT DÜZENİ KORU"), "Three options shown");
-        Require(texts.Contains("Doğrudan hasar ×1,25") && texts.Any(t => t.StartsWith("Davranış hasarı ×0,85")) && texts.Any(t => t.StartsWith("Davranış hasarı ×1,25")) && texts.Contains("Doğrudan hasar ×0,85"),
-            "Gains and costs visible before choosing");
-        Require(texts.Contains("Bonus yok, ceza yok"), "Keep-current option is explicit");
+        Require(texts.Contains("Doğrudan hasar ×1,25") && texts.Any(t => t.StartsWith("Davranış hasarı ×0,85")) && texts.Any(t => t.StartsWith("Davranış hasarı ×1,25")) &&
+                texts.Any(t => t.StartsWith("Hasat kaynağı ×0,90/hasattan gelen Gold · Iron · Stone")) && !texts.Any(t => t.StartsWith("Doğrudan hasar ×0,")),
+            "Gains and costs visible before choosing (Davranış Ustası: cost is harvest resources, no direct penalty)");
+        Require(texts.Contains("Bonus yok, ceza yok") && texts.Contains("Hasar ve hasat geliri olduğu gibi kalır"), "Keep-current option is explicit");
+        // Metin asset değerinden üretilir: değer değişince kart yazısı da değişir.
+        davranis.harvestResourceMultiplier = .8f; panel.gameObject.SetActive(false); panel.gameObject.SetActive(true);
+        bool follows = PanelTexts(panel).Any(t => t.StartsWith("Hasat kaynağı ×0,80"));
+        davranis.harvestResourceMultiplier = .9f; panel.gameObject.SetActive(false); panel.gameObject.SetActive(true);
+        Require(follows && PanelTexts(panel).Any(t => t.StartsWith("Hasat kaynağı ×0,90")), "Card cost text follows the asset value (×0,80 → ×0,90)");
         return .6;
     }
 
@@ -256,13 +281,16 @@ public static class SpecializationVerification
         panel.gameObject.SetActive(true);
         Require(panel.GetComponentsInChildren<Button>(true).All(b => !b.interactable) && !SM.Choose(koru), "Re-opened panel cannot choose again");
         panel.gameObject.SetActive(false);
-        Require(StatManager.Instance.GlobalModifiers.Count == globalsBefore && SpecializationManager.DirectMultiplier == 1.25f && SpecializationManager.BehaviorMultiplier == .85f,
-            "Choice adds no stat modifiers; only the two coefficients (×1,25 / ×0,85)");
+        Require(StatManager.Instance.GlobalModifiers.Count == globalsBefore && SpecializationManager.DirectMultiplier == 1.25f && SpecializationManager.BehaviorMultiplier == .85f &&
+                SpecializationManager.HarvestResourceMultiplier == 1f,
+            "Choice adds no stat modifiers; only the coefficients (×1,25 / ×0,85, resources ×1)");
         Require(choiceScreens == 1, "Specialization screen opened exactly once");
         var summary = Object.FindFirstObjectByType<RoundSummaryUI>(FindObjectsInactive.Include);
         Call(summary, "Fill", GameFeelDirector.Instance.LastRound);
         var spec = summary.GetComponentsInChildren<TextMeshProUGUI>(true).FirstOrDefault(t => t.name == "Specialization Notice");
         Require(spec != null && spec.gameObject.activeInHierarchy && Strip(spec.text) == "Uzmanlaşma: USTA BİÇİCİ · doğrudan ×1,25 · davranış ×0,85", "Summary shows the choice: " + Strip(spec?.text));
+        Require(SpecializationPanelUI.Describe(davranis) == "DAVRANIŞ USTASI · davranış ×1,25 · hasat kaynağı ×0,90" && SpecializationPanelUI.Describe(koru) == "MEVCUT DÜZENİ KORU · değişiklik yok",
+            "Short description lists only changed values: " + SpecializationPanelUI.Describe(davranis));
         return 1;
     }
 
@@ -278,17 +306,16 @@ public static class SpecializationVerification
         Save("SpecHUD");
 
         var stats = StatManager.Instance;
-        var noCrit = new StatModifier { statType = StatType.CritChance, target = StatTarget.Player, operation = ModifierOperation.Set, value = 0f };
-        var oneCell = new StatModifier { statType = StatType.AreaRadius, target = StatTarget.Player, operation = ModifierOperation.Set, value = .1f };
-        var dmg10 = new StatModifier { statType = StatType.HarvestDamage, target = StatTarget.Player, operation = ModifierOperation.Set, value = 10f };
+        var noCrit = Mod(StatType.CritChance, StatTarget.Player, 0f);
+        var oneCell = Mod(StatType.AreaRadius, StatTarget.Player, .1f);
+        var dmg10 = Mod(StatType.HarvestDamage, StatTarget.Player, 10f);
         stats.AddGlobalModifier(noCrit); stats.AddGlobalModifier(oneCell); stats.AddGlobalModifier(dmg10);
         var player = Object.FindFirstObjectByType<PlayerController>();
-        var center = Grid.GetGridObject(new GridPosition(Center, Center));
-        var corner = Grid.GetGridObject(new GridPosition(Center - 1, Center - 1));
-        var east = Grid.GetGridObject(new GridPosition(Center + 1, Center));
-        var cornerBrain = corner.GetPlanterBrain(); var centerBrain = center.GetPlanterBrain();
+        var center = Cell(0, 0); var corner = Cell(-1, -1); var east = Cell(1, 0);
+        var cornerBrain = corner.GetPlanterBrain();
         var tornadoes = TornadoManager.Instance; var behaviors = HarvestBehaviorManager.Instance;
         var results = new Dictionary<string, int[]>();
+        var explosionTriggers = new Dictionary<string, int>();
         foreach (var (name, option) in new[] { ("yok", (SpecializationSO)null), ("Koru", koru), ("Usta", usta), ("Davranış", davranis) })
         {
             SetP(SM, "Chosen", option);
@@ -317,11 +344,13 @@ public static class SpecializationVerification
             behaviors.ClearAll();
             // Patlama: merkezdeki Explosive (şans 1) saksısının bitkisi doğrudan kesilince doğu komşusu vurulur.
             RespawnAll();
-            var big = new StatModifier { statType = StatType.HarvestDamage, target = StatTarget.Player, operation = ModifierOperation.Set, value = 100f };
+            var big = Mod(StatType.HarvestDamage, StatTarget.Player, 100f);
             stats.RemoveGlobalModifier(dmg10); stats.AddGlobalModifier(big);
             var neighbor = east.GetPlantObject().GetComponent<PlantHealth>(); int nHp = neighbor.CurrentHealth;
+            HarvestBehaviorStats.Reset();
             Call(player, "AttackInRadius", center.GetGroundCellCached().transform.position);
             int explosionDmg = nHp - neighbor.CurrentHealth;
+            explosionTriggers[name] = HarvestBehaviorStats.Triggered(DamageType.Explosion);
             stats.RemoveGlobalModifier(big); stats.AddGlobalModifier(dmg10);
             Call(tornadoes, "ClearAll"); behaviors.ClearAll();
 
@@ -333,15 +362,136 @@ public static class SpecializationVerification
             results[name] = new[] { direct, tornadoDmg, boomerangDmg, electricDmg, explosionDmg };
         }
         Require(results["Koru"].SequenceEqual(results["yok"]), "Keep-current changes no damage value");
-        Require(results["Davranış"][4] == 125 && results["Usta"][4] == 85, "Direct penalty does not leak into behavior base (explosion 125 with Davranış Ustası)");
+        Require(results["Davranış"][0] == results["yok"][0] && results["Davranış"][0] == results["Koru"][0], "Davranış Ustası: direct damage unchanged (×1,00)");
+        Require(results["Davranış"][4] == 125 && results["Usta"][4] == 85, "Behavior coefficient applied once, on the shared base (explosion 125 Davranış / 85 Usta)");
+        Require(explosionTriggers.Values.All(n => n == 1), "Direct kill triggers the explosion the same way for every option");
         stats.RemoveGlobalModifier(noCrit); stats.RemoveGlobalModifier(oneCell); stats.RemoveGlobalModifier(dmg10);
         SetP(SM, "Chosen", usta);
         return .3;
     }
 
+    // ---------------- 2.1: hasat kaynağı bedeli ----------------
+    static PlantResource Reward(GridObject cell, PlantSO data)
+    {
+        var r = cell.GetPlantObject().GetComponentInChildren<PlantResource>(true);
+        r.Initialize(data, cell.GetPlanterBrain());
+        return r;
+    }
+
+    // Aynı ödül dizisini seçilen uzmanlaşmayla gerçek ödül kodundan (PlantResource.GiveReward) geçirir.
+    static (int gold, int iron, int stone, double xp, long score) RewardSequence(SpecializationSO option, int calls, params (PlantResource r, int weight)[] mix)
+    {
+        SetP(SM, "Chosen", option); SM.HarvestResources.Clear();
+        int g = Res(ResourceType.Gold), i = Res(ResourceType.Iron), s = Res(ResourceType.Stone); double xp = Xp; long score = Score;
+        for (int c = 0; c < calls; c++)
+            foreach (var (r, weight) in mix) for (int k = 0; k < weight; k++) Call(r, "GiveReward");
+        return (Res(ResourceType.Gold) - g, Res(ResourceType.Iron) - i, Res(ResourceType.Stone) - s, Xp - xp, Score - score);
+    }
+
+    static long Due(long raw, float multiplier) => (raw * (long)Math.Round(multiplier * 10000.0) + 5000) / 10000;
+
+    static double HarvestResources()
+    {
+        var stats = StatManager.Instance;
+        var grass = PlantData("Grass"); var carrot = PlantData("Carrot"); var potato = PlantData("Potato");
+        Require(grass.resourceType == ResourceType.Gold && grass.rewardAmount == 2 && carrot.resourceType == ResourceType.Iron && carrot.rewardAmount == 4 &&
+                potato.resourceType == ResourceType.Stone && potato.rewardAmount == 2, "Small harvest rewards: Grass 2 Gold, Carrot 4 Iron, Potato 2 Stone");
+        RespawnAll();
+        var gold = Reward(Cell(-1, -1), grass); var iron = Reward(Cell(-1, 1), carrot); var stone = Reward(Cell(1, -1), potato);
+
+        // (1) Kesirli kalan: ceza öncesi 100'er birim → 90'ar; her ödül küçük olsa da oran korunur.
+        var k = RewardSequence(koru, 25, (gold, 2), (iron, 1), (stone, 2));
+        var dv = RewardSequence(davranis, 25, (gold, 2), (iron, 1), (stone, 2));
+        Require(k.gold == 100 && k.iron == 100 && k.stone == 100, $"Koru: 100 Gold / 100 Iron / 100 Stone from 50+25+50 harvests ({k.gold}/{k.iron}/{k.stone})");
+        Require(dv.gold == 90 && dv.iron == 90 && dv.stone == 90, $"Davranış Ustası: the same harvests pay 90 / 90 / 90 ({dv.gold}/{dv.iron}/{dv.stone})");
+        Note($"karşılaştırma: ödül başına en yakına yuvarlama 2×0,9→2, 4×0,9→4 olurdu (100/100/100, ceza yok); aşağı yuvarlama 2→1, 4→3 olurdu (50/75/50)");
+        Require(dv.xp == k.xp && dv.score == k.score && k.xp > 0 && k.score > 0, $"XP and score not penalized (XP {dv.xp:0} = {k.xp:0}, score {dv.score} = {k.score})");
+        Require(SM.HarvestResources.Raw(ResourceType.Gold) == 100 && SM.HarvestResources.Paid(ResourceType.Gold) == 90 && SM.HarvestResources.Raw(ResourceType.Iron) == 100,
+            "Carry kept per resource (raw 100 → paid 90 each)");
+        // Her adımda ödenen toplam hedefin yarım biriminden fazla sapmaz.
+        SetP(SM, "Chosen", davranis); SM.HarvestResources.Clear();
+        int g0 = Res(ResourceType.Gold), worst = 0; var paidSteps = new List<int>();
+        for (int c = 1; c <= 50; c++)
+        {
+            int before = Res(ResourceType.Gold); Call(gold, "GiveReward"); paidSteps.Add(Res(ResourceType.Gold) - before);
+            double err = Math.Abs((Res(ResourceType.Gold) - g0) - c * 2 * .9); worst = Math.Max(worst, (int)Math.Ceiling(err * 10));
+        }
+        Require(worst <= 5 && paidSteps.All(p => p == 1 || p == 2), $"Running total stays within 0,5 of raw × 0,90 at every harvest (steps: {string.Join("", paidSteps.Take(10))}…)");
+
+        // (2) Duplicate dahil, bir kez: çift ödül 4 Gold; 25 hasat → ham 100 → 90 (iki kez uygulansa 81).
+        var dup = Mod(StatType.DuplicateChance, StatTarget.Planter, 1f);
+        stats.AddGlobalModifier(dup);
+        var kd = RewardSequence(koru, 25, (gold, 1));
+        var dd = RewardSequence(davranis, 25, (gold, 1));
+        stats.RemoveGlobalModifier(dup);
+        Require(kd.gold == 100 && dd.gold == 90, $"Duplicate included, applied once after it: Koru {kd.gold} → Davranış {dd.gold}");
+
+        // (3) Doğrudan ve davranış öldürmesi: aynı kalan dizisi, aynı XP ve skor.
+        var noCrit = Mod(StatType.CritChance, StatTarget.Player, 0f); var oneCell = Mod(StatType.AreaRadius, StatTarget.Player, .1f); var big = Mod(StatType.HarvestDamage, StatTarget.Player, 100f);
+        stats.AddGlobalModifier(noCrit); stats.AddGlobalModifier(oneCell); stats.AddGlobalModifier(big);
+        var player = Object.FindFirstObjectByType<PlayerController>();
+        var cornerBrain = Cell(-1, -1).GetPlanterBrain();
+        (int[] steps, int kills, double xp, long score, int direct, int behavior) Kills(SpecializationSO option)
+        {
+            SetP(SM, "Chosen", option); SM.HarvestResources.Clear();
+            var steps = new List<int>(); int direct = 0, behavior = 0; double xp0 = Xp; long s0 = Score;
+            void Count(PlantHealth h) { if (h.KilledBy == DamageType.Direct) direct++; else behavior++; }
+            PlantHealth.AnyHarvested += Count;
+            for (int n = 0; n < 10; n++)
+            {
+                RespawnAll();
+                for (int x = -1; x <= 1; x++) for (int z = -1; z <= 1; z++) Reward(Cell(x, z), grass);
+                int before = Res(ResourceType.Gold);
+                Call(player, "AttackInRadius", Cell(-1, -1).GetGroundCellCached().transform.position); // doğrudan: köşe (davranış tile'ı yok)
+                steps.Add(Res(ResourceType.Gold) - before); before = Res(ResourceType.Gold);
+                HarvestBehaviorManager.Instance.TryElectric(cornerBrain, 100);                          // davranış: çaprazdaki iki bitki
+                steps.Add(Res(ResourceType.Gold) - before);
+                HarvestBehaviorManager.Instance.ClearAll();
+            }
+            PlantHealth.AnyHarvested -= Count;
+            return (steps.ToArray(), direct + behavior, Xp - xp0, Score - s0, direct, behavior);
+        }
+        var kk = Kills(koru); var kdv = Kills(davranis);
+        stats.RemoveGlobalModifier(noCrit); stats.RemoveGlobalModifier(oneCell); stats.RemoveGlobalModifier(big);
+        Require(kk.direct == 10 && kk.behavior == 20 && kdv.direct == 10 && kdv.behavior == 20, $"10 direct + 20 electric kills per option ({kdv.direct}+{kdv.behavior})");
+        // Beklenen: tek bir kalan dizisi, öldürme yolundan bağımsız (ham toplam 2, 6, 8, 12 … → round(×0,9)).
+        var expected = new List<int>(); long raw = 0, paid = 0;
+        for (int n = 0; n < 10; n++) foreach (int kills in new[] { 1, 2 }) { raw += 2 * kills; long due = Due(raw, .9f); expected.Add((int)(due - paid)); paid = due; }
+        Require(kk.steps.Sum() == 60 && kdv.steps.Sum() == 54 && kdv.steps.SequenceEqual(expected),
+            $"Direct and behavior kills share one carry: 60 → 54 Gold (steps {string.Join(",", kdv.steps.Take(8))}…)");
+        Require(kdv.xp == kk.xp && kdv.score == kk.score, $"Kill XP and score unchanged (XP {kdv.xp:0}, score {kdv.score})");
+
+        // (4) Hasat dışı kaynak eklemeleri etkilenmez (bekleyen kalan varken).
+        SetP(SM, "Chosen", davranis);
+        Call(gold, "GiveReward");
+        Require(SM.HarvestResources.Raw(ResourceType.Gold) > 0, "Carry pending before the non-harvest checks");
+        int before2 = Res(ResourceType.Gold);
+        ResourceManager.Instance.AddResource(ResourceType.Gold, 7);
+        Require(Res(ResourceType.Gold) - before2 == 7, "Plain AddResource keeps its amount (+7)");
+        var sold = Cell(1, 0).GetPlanterBrain(); var soldData = AssetDatabase.LoadAssetAtPath<PlanterSO>("Assets/ScriptableObjects/Planters/GrassPlanter 1x1.asset");
+        before2 = Res(soldData.costType);
+        sold.RemoveSelf();
+        Require(Res(soldData.costType) - before2 == soldData.cost / 2, $"Sale refund untouched: +{soldData.cost / 2} {soldData.costType}");
+
+        // Kart atlama: round 11 sonunda level kartı → Atla ödülü tam.
+        ProgressionManager.Instance.AddXP(ProgressionManager.Instance.XPToNextLevel + 1);
+        Call(RM, "EndRound");
+        Require(State == GameStates.CardSelection, "Round 11 ends with a card selection");
+        var cards = Object.FindFirstObjectByType<CardSelectionUI>(FindObjectsInactive.Include);
+        var offers = F<List<TileCardOffer>>(cards, "currentCards");
+        var highest = offers.Max(o => o.Rarity);
+        int skipReward = Mathf.RoundToInt(F<Dictionary<TileRarity, int>>(cards, "skipBaseRewards")[highest] * (1f + RM.CurrentRound * .1f));
+        int total = ResTotal;
+        Call(cards, "OnSkipPressed");
+        Require(ResTotal - total == skipReward, $"Card skip reward untouched: +{skipReward} ({highest})");
+        Flush();
+        Require(State == GameStates.RoundEnd && SpecializationManager.HarvestResourceMultiplier == .9f, "Round 11 closed; Davranış Ustası still active");
+        SetP(SM, "Chosen", usta); // akışın geri kalanı Usta ile (zafer ekranı); Davranış kalanları yeni run'a kadar durur
+        return .3;
+    }
+
     static double FinishRun()
     {
-        Call(RM, "EndRound"); Flush();
         for (int r = 12; r <= 20; r++)
         {
             PlayRound(); Flush();
@@ -354,10 +504,25 @@ public static class SpecializationVerification
         return 1.5;
     }
 
+    static double BeforeRestart()
+    {
+        Save("SpecVictory");
+        Require(SM.HarvestResources.Raw(ResourceType.Gold) > 0, "Old run still holds a resource carry before restart");
+        Object.FindFirstObjectByType<RunCompleteUI>(FindObjectsInactive.Include).OnRestartPressed();
+        return 3;
+    }
+
     static double AfterRestart()
     {
         Require(SceneManager.GetActiveScene().name == "GameScene" && State == GameStates.RunSetup && SM != null && SM.Chosen == null && !SM.IsPending, "New run: specialization cleared");
-        Require(SpecializationManager.DirectMultiplier == 1f && SpecializationManager.BehaviorMultiplier == 1f, "New run: coefficients back to 1");
+        Require(SpecializationManager.DirectMultiplier == 1f && SpecializationManager.BehaviorMultiplier == 1f && SpecializationManager.HarvestResourceMultiplier == 1f, "New run: coefficients back to 1");
+        Require(Enum.GetValues(typeof(ResourceType)).Cast<ResourceType>().All(t => SM.HarvestResources.Raw(t) == 0 && SM.HarvestResources.Paid(t) == 0), "New run: resource carry is zero");
+        Require(Res(ResourceType.Gold) == 80 && Res(ResourceType.Iron) == 0 && Res(ResourceType.Stone) == 0, "New run: starting budget untouched (80 Gold)");
+        SetP(SM, "Chosen", davranis);
+        SM.HarvestResources.Apply(ResourceType.Gold, 2, SpecializationManager.HarvestResourceMultiplier);
+        bool had = SM.HarvestResources.Raw(ResourceType.Gold) == 2;
+        SM.ClearAll(); // OnRunStarted / ana menü / yok edilme yolu
+        Require(had && SM.Chosen == null && SM.HarvestResources.Raw(ResourceType.Gold) == 0 && SM.HarvestResources.Paid(ResourceType.Gold) == 0, "ClearAll also clears the carry");
         AssetDatabase.LoadAssetAtPath<RunProfileSelectionSO>(SelectionPath).active = AssetDatabase.LoadAssetAtPath<RunProfileSO>(Profiles + "Prototip10.asset");
         SceneManager.LoadScene("GameScene");
         return 3;
@@ -386,29 +551,37 @@ public static class SpecializationVerification
     }
 
     // ---------------- ölçüm ----------------
-    // Varsayılan orta oyun: hasat hasarı 6, saldırı 0,8 sn, alan 1,6, kritik taban (%30 × 2). Round 12 bitki canı. 5×5 alan, 25 adet 1×1 saksı.
+    // Saldırı 0,8 sn, alan 1,6, kritik taban (%30 × 2). 5×5 alan, 25 adet 1×1 saksı. Stat/can eşikleri:
+    //  hasar 6 · R12 (Bölüm 2 ölçümü), hasar 10 · R14, hasar 14 · R12 (davranış ×1,25 patlaması Common'ı tek vuruşta keser),
+    //  hasar 30 · R14 (simülatörün deneyimli oyuncusuna yakın: doğrudan vuruş çoğu bitkiyi tek seferde keser).
     static readonly string[] Layouts = { "Doğrudan ağırlıklı", "Davranışlı", "Davranış yoğun" };
-    static SpecializationSO candidate; // yalnız ölçüm: Davranış Ustası için aday değerler (asset değil)
-    static int layout;
-    static readonly List<(string layout, string option, Metrics m)> results = new();
+    static readonly (string name, float damage, int round)[] StatSets = { ("hasar 6 · R12 canı", 6f, 12), ("hasar 10 · R14 canı", 10f, 14), ("hasar 14 · R12 canı", 14f, 12), ("hasar 30 · R14 canı", 30f, 14) };
+    const int Seeds = 4;
+    const float FrameTime = 1f / 30f;
+    static SpecializationSO control; // yalnız ölçüm: Davranış Ustası'nın kaynak bedelsiz kopyası (asset değil)
+    static int config; // düzen × stat seti
+    static readonly List<(int config, string option, int seed, Metrics m)> results = new();
     static Bot bot;
+    static int Layout => config / StatSets.Length;
+    static (string name, float damage, int round) StatSet => StatSets[config % StatSets.Length];
+    static string ConfigName(int c) => $"{Layouts[c / StatSets.Length]} · {StatSets[c % StatSets.Length].name}";
 
     static void SetupLayout()
     {
         LoadSpecs();
-        Require(RM.Profile.name == "Uzmanlasma20", $"Measurement run ({Layouts[layout]})");
+        Require(RM.Profile.name == "Uzmanlasma20", $"Measurement run ({ConfigName(config)})");
         GridUnlockManager.Instance.UnlockNextTier(5);
         var stats = StatManager.Instance;
-        stats.AddGlobalModifier(new StatModifier { statType = StatType.HarvestDamage, target = StatTarget.Player, operation = ModifierOperation.Set, value = 6f });
-        stats.AddGlobalModifier(new StatModifier { statType = StatType.AttackSpeed, target = StatTarget.Player, operation = ModifierOperation.Set, value = .8f });
-        stats.AddGlobalModifier(new StatModifier { statType = StatType.AreaRadius, target = StatTarget.Player, operation = ModifierOperation.Set, value = 1.6f });
+        stats.AddGlobalModifier(Mod(StatType.HarvestDamage, StatTarget.Player, StatSet.damage));
+        stats.AddGlobalModifier(Mod(StatType.AttackSpeed, StatTarget.Player, .8f));
+        stats.AddGlobalModifier(Mod(StatType.AreaRadius, StatTarget.Player, 1.6f));
         var spots = new[] { (-1, -1), (1, 1), (-2, 0), (2, 0), (0, -2), (0, 2), (-1, 1), (1, -1) };
         var behaviorTiles = new[] { ("Explosive", -1f), ("Explosive", -1f), ("Electric", -1f), ("Electric", -1f), ("Boomerang", -1f), ("Boomerang", -1f), ("Tornado", .6f), ("Tornado", .6f) };
         var cycle = new[] { ("Explosive", -1f), ("Electric", -1f), ("Boomerang", -1f), ("Tornado", .6f) };
         int ring = 0;
         FillOpen((dx, dz) =>
         {
-            if (layout == 2)
+            if (Layout == 2)
             {
                 // Dış halka (16 hücre) davranış, iç 3×3 düz.
                 if (Math.Max(Math.Abs(dx), Math.Abs(dz)) < 2) return (null, -1f);
@@ -417,110 +590,149 @@ public static class SpecializationVerification
             }
             int k = Array.IndexOf(spots, (dx, dz));
             if (k < 0) return (null, -1f);
-            if (layout == 0) return k < 6 ? (Tile("Damage", "Rare"), -1f) : (null, -1f);
+            if (Layout == 0) return k < 6 ? (Tile("Damage", "Rare"), -1f) : (null, -1f);
             return (Tile(behaviorTiles[k].Item1, "Legendary"), behaviorTiles[k].Item2);
         });
         Require(Spawners().Count == 25, "25 production points");
         Object.FindFirstObjectByType<PlayerController>().enabled = false;
         bot = new GameObject("Harvest bot (verification)").AddComponent<Bot>();
-        SetP(RM, "CurrentRound", 11); SetF(RM, "awaitingFirstRound", false);
-        Note($"düzen {Layouts[layout]}: " + (layout == 0 ? "6 Odak (Damage-Rare) tile, davranış yok"
-            : layout == 1 ? "Legendary davranış: 2 patlama, 2 elektrik, 2 bumerang (şans üst sınır), 2 kasırga (%60)"
-            : "Legendary davranış dış halkada 16 hücre (4'er patlama/elektrik/bumerang/kasırga), iç 3×3 düz"));
+        SetF(RM, "awaitingFirstRound", false);
+        if (config % StatSets.Length == 0)
+            Note($"düzen {Layouts[Layout]}: " + (Layout == 0 ? "6 Odak (Damage-Rare) tile, davranış yok"
+                : Layout == 1 ? "Legendary davranış: 2 patlama, 2 elektrik, 2 bumerang (şans üst sınır), 2 kasırga (%60)"
+                : "Legendary davranış dış halkada 16 hücre (4'er patlama/elektrik/bumerang/kasırga), iç 3×3 düz"));
     }
 
-    const int Repeats = 3;
-    static int phase, index; // çift: düzen kurulumu (yeniden yükleme sonrası), tek: o düzenin ölçümü
+    static int phase, index; static bool roundRunning; // çift phase: yapılandırma kurulumu (yeniden yükleme sonrası), tek: ölçümü
 
     static SpecializationSO[] Order()
     {
-        if (candidate == null)
+        if (control == null)
         {
-            candidate = ScriptableObject.CreateInstance<SpecializationSO>();
-            candidate.displayName = "ADAY DAVRANIŞ ×1,5 / DOĞRUDAN ×0,95";
-            candidate.directDamageMultiplier = .95f; candidate.behaviorDamageMultiplier = 1.5f;
+            control = ScriptableObject.CreateInstance<SpecializationSO>();
+            control.displayName = "KONTROL: DAVRANIŞ ×1,25 BEDELSİZ";
+            control.behaviorDamageMultiplier = davranis.behaviorDamageMultiplier;
         }
-        return new[] { usta, davranis, koru, candidate };
+        return new[] { usta, davranis, koru, control };
     }
+
+    static int Configs => Layouts.Length * StatSets.Length;
 
     static double MeasureStep()
     {
-        if (phase % 2 == 0) { layout = phase / 2; SetupLayout(); phase++; index = 0; return .3; }
-        if (index > 0) Collect();
-        var order = Order();
-        if (index == Repeats * order.Length)
+        if (phase % 2 == 0) { config = phase / 2; SetupLayout(); phase++; index = 0; return .3; }
+        if (roundRunning)
         {
-            Report(layout);
-            if (layout < Layouts.Length - 1) { phase++; SceneManager.LoadScene("GameScene"); return 3; }
+            if (State == GameStates.Round) return .25;
+            Collect(); roundRunning = false;
+        }
+        var order = Order();
+        if (index == Seeds * order.Length)
+        {
+            Report(config);
+            if (config < Configs - 1) { phase++; Time.captureDeltaTime = 0f; SceneManager.LoadScene("GameScene"); return 3; }
             Summary();
             return -1;
         }
-        BeginRound(order[index / Repeats], index % Repeats);
-        index++;
-        return 9.5;
+        BeginRound(order[index / Seeds], index % Seeds);
+        index++; roundRunning = true;
+        return .5;
     }
 
-    static Metrics current; static string currentOption;
+    static Metrics current; static SpecializationSO currentOption; static int currentSeed;
 
     sealed class Metrics
     {
         public int[] kills = new int[5], triggered = new int[5], skipped = new int[5];
-        public int electricVisualSkips, attacks, rounds;
+        public int electricVisualSkips, attacks;
         public long score; public double xp; public int gold, iron, stone;
+        public int Kills => kills.Sum();
+        public int BehaviorKills => kills[1] + kills[2] + kills[3] + kills[4];
+        public int Triggers => triggered[1] + triggered[2] + triggered[3] + triggered[4];
+        public int Skips => skipped[1] + skipped[2] + skipped[3] + skipped[4];
+        public int Resources => gold + iron + stone;
     }
 
     static long score0; static double xp0; static int gold0, iron0, stone0, visual0;
 
-    static void BeginRound(SpecializationSO option, int repeat)
+    static void BeginRound(SpecializationSO option, int seed)
     {
         if (State == GameStates.CardSelection) while (RM.OnCardSelectionComplete()) { }
         foreach (var s in Spawners()) { s.RemoveSpawnedPlant(); s.enabled = true; SetF(s, "timer", 0f); }
         HarvestBehaviorManager.Instance.ClearAll(); Call(TornadoManager.Instance, "ClearAll");
         HarvestBehaviorStats.Reset(); bot.ResetCounts();
-        SetP(SM, "Chosen", option);
-        currentOption = option.displayName;
-        current = results.Where(r => r.layout == Layouts[layout] && r.option == currentOption).Select(r => r.m).FirstOrDefault();
-        if (current == null) { current = new Metrics(); results.Add((Layouts[layout], currentOption, current)); }
-        score0 = HarvestScoreManager.Instance.TotalScore; xp0 = ProgressionManager.Instance.TotalXPEarned; visual0 = HarvestBehaviorManager.Instance.SkippedElectricVisuals;
-        var r = ResourceManager.Instance; gold0 = r.GetResourceAmount(ResourceType.Gold); iron0 = r.GetResourceAmount(ResourceType.Iron); stone0 = r.GetResourceAmount(ResourceType.Stone);
-        UnityEngine.Random.InitState(900 + repeat);
-        SetP(RM, "CurrentRound", 11);
+        SetP(SM, "Chosen", option); SM.HarvestResources.Clear();
+        currentOption = option; currentSeed = seed; current = new Metrics();
+        score0 = Score; xp0 = Xp; visual0 = HarvestBehaviorManager.Instance.SkippedElectricVisuals;
+        gold0 = Res(ResourceType.Gold); iron0 = Res(ResourceType.Iron); stone0 = Res(ResourceType.Stone);
+        UnityEngine.Random.InitState(900 + seed);
+        SetP(RM, "CurrentRound", StatSet.round - 1);
         RM.StartNextRound();
-        if (RM.CurrentRound != 12 || State != GameStates.Round) throw new Exception("measurement round did not start: " + State + " " + RM.CurrentRound);
-        Time.timeScale = 4f;
+        if (RM.CurrentRound != StatSet.round || State != GameStates.Round) throw new Exception("measurement round did not start: " + State + " " + RM.CurrentRound);
+        // Sabit kare süresi: sonuç makinenin kare hızına bağlı olmasın (aynı seed → aynı oyun zamanı adımları).
+        Time.timeScale = 1f; Time.captureDeltaTime = FrameTime;
     }
 
     static void Collect()
     {
-        if (State == GameStates.Round) throw new Exception("measurement round still running");
-        for (int t = 0; t < 5; t++) { current.kills[t] += bot.Kills[t]; current.triggered[t] += HarvestBehaviorStats.Triggered((DamageType)t); current.skipped[t] += HarvestBehaviorStats.Skipped((DamageType)t); }
-        current.electricVisualSkips += HarvestBehaviorManager.Instance.SkippedElectricVisuals - visual0;
-        current.attacks += bot.Attacks; current.rounds++;
-        current.score += HarvestScoreManager.Instance.TotalScore - score0; current.xp += ProgressionManager.Instance.TotalXPEarned - xp0;
-        var r = ResourceManager.Instance;
-        current.gold += r.GetResourceAmount(ResourceType.Gold) - gold0; current.iron += r.GetResourceAmount(ResourceType.Iron) - iron0; current.stone += r.GetResourceAmount(ResourceType.Stone) - stone0;
+        for (int t = 0; t < 5; t++) { current.kills[t] = bot.Kills[t]; current.triggered[t] = HarvestBehaviorStats.Triggered((DamageType)t); current.skipped[t] = HarvestBehaviorStats.Skipped((DamageType)t); }
+        current.electricVisualSkips = HarvestBehaviorManager.Instance.SkippedElectricVisuals - visual0;
+        current.attacks = bot.Attacks;
+        current.score = Score - score0; current.xp = Xp - xp0;
+        current.gold = Res(ResourceType.Gold) - gold0; current.iron = Res(ResourceType.Iron) - iron0; current.stone = Res(ResourceType.Stone) - stone0;
+        results.Add((config, currentOption.displayName, currentSeed, current));
         if (State == GameStates.CardSelection) while (RM.OnCardSelectionComplete()) { }
     }
 
-    static void Report(int l)
+    static string Stat(IEnumerable<double> values, string format = "0")
     {
-        Note($"--- {Layouts[l]} ({Repeats} round × 30 sn, round 12 canı, aynı seed'ler; ADAY yalnız ölçüm) ---");
-        Note("seçenek | doğrudan öldürme | davranış öldürme (patlama/kasırga/bumerang/elektrik) | skor | altın/demir/taş | XP | tetik (atlanan) P/K/B/E | elektrik görseli atlanan | vuruş");
-        foreach (var (lay, option, m) in results.Where(r => r.layout == Layouts[l]))
+        var v = values.ToList();
+        return $"{v.Average().ToString(format)} [{v.Min().ToString(format)}–{v.Max().ToString(format)}]";
+    }
+
+    static void Report(int c)
+    {
+        var rows = results.Where(r => r.config == c).ToList();
+        Note($"--- {ConfigName(c)} ({Seeds} seed × 30 sn round, kare 1/30 sn; ortalama [en az–en çok]) ---");
+        Note("seçenek | toplam hasat | doğrudan | davranış (P/K/B/E ort.) | skor | XP | Gold/Iron/Stone ort. | kaynak toplamı | tetik P/K/B/E ort. (atlanan) | vuruş");
+        var koruRows = rows.Where(r => r.option == koru.displayName).ToList();
+        foreach (var option in Order())
         {
-            int behaviorKills = m.kills[1] + m.kills[2] + m.kills[3] + m.kills[4];
-            Note($"{option} | {m.kills[0]} | {behaviorKills} ({m.kills[1]}/{m.kills[2]}/{m.kills[3]}/{m.kills[4]}) | {m.score} | {m.gold}/{m.iron}/{m.stone} | {m.xp:0} | " +
-                 $"{m.triggered[1]}({m.skipped[1]})/{m.triggered[2]}({m.skipped[2]})/{m.triggered[3]}({m.skipped[3]})/{m.triggered[4]}({m.skipped[4]}) | {m.electricVisualSkips} | {m.attacks}");
+            var m = rows.Where(r => r.option == option.displayName).Select(r => r.m).ToList();
+            double A(Func<Metrics, double> f) => m.Average(f);
+            Note($"{option.displayName} | {Stat(m.Select(x => (double)x.Kills))} | {Stat(m.Select(x => (double)x.kills[0]))} | {Stat(m.Select(x => (double)x.BehaviorKills))} ({A(x => x.kills[1]):0.#}/{A(x => x.kills[2]):0.#}/{A(x => x.kills[3]):0.#}/{A(x => x.kills[4]):0.#}) | " +
+                 $"{Stat(m.Select(x => (double)x.score))} | {Stat(m.Select(x => x.xp))} | {A(x => x.gold):0}/{A(x => x.iron):0}/{A(x => x.stone):0} | {Stat(m.Select(x => (double)x.Resources))} | " +
+                 $"{A(x => x.triggered[1]):0.#}/{A(x => x.triggered[2]):0.#}/{A(x => x.triggered[3]):0.#}/{A(x => x.triggered[4]):0.#} ({m.Sum(x => x.Skips)}) | {A(x => x.attacks):0}");
         }
+        // Koru'ya göre, aynı seed çiftleri üzerinden.
+        foreach (var option in new[] { usta, davranis, control })
+        {
+            var pairs = rows.Where(r => r.option == option.displayName).Join(koruRows, a => a.seed, b => b.seed, (a, b) => (a: a.m, b: b.m)).ToList();
+            string Rel(Func<Metrics, double> f) { double a = pairs.Sum(p => f(p.a)), b = pairs.Sum(p => f(p.b)); return b > 0 ? $"{(a / b - 1) * 100:+0;-0;0}%" : "-"; }
+            int wins = pairs.Count(p => p.a.score > p.b.score), losses = pairs.Count(p => p.a.score < p.b.score);
+            Note($"  {option.displayName} / Koru: hasat {Rel(x => x.Kills)} · skor {Rel(x => x.score)} (seed bazında {wins} üstün / {losses} geride) · XP {Rel(x => x.xp)} · kaynak {Rel(x => x.Resources)} · tetik {Rel(x => x.Triggers)}");
+        }
+        // Kaynak bedeli tetikleri azaltıyor mu: Davranış Ustası ile bedelsiz kopyası aynı seed'de.
+        var twin = rows.Where(r => r.option == davranis.displayName).Join(rows.Where(r => r.option == control.displayName), a => a.seed, b => b.seed, (a, b) => (a: a.m, b: b.m)).ToList();
+        int same = twin.Count(p => p.a.Kills == p.b.Kills && p.a.Triggers == p.b.Triggers && p.a.score == p.b.score && p.a.xp == p.b.xp);
+        double ratio = twin.Sum(p => (double)p.a.Resources) / Math.Max(1, twin.Sum(p => (double)p.b.Resources));
+        Note($"  Davranış Ustası / bedelsiz kopya: birebir aynı hasat+tetik+skor+XP {same}/{twin.Count} seed · tetik {twin.Sum(p => p.a.Triggers)} / {twin.Sum(p => p.b.Triggers)} · hasat {twin.Sum(p => p.a.Kills)} / {twin.Sum(p => p.b.Kills)} · kaynak oranı {ratio:0.000}");
     }
 
     static void Summary()
     {
-        Require(results.Count == Layouts.Length * 4 && results.All(r => r.m.rounds == Repeats), $"Measured {Layouts.Length} layouts × 4 options × {Repeats} rounds");
-        var koruDirect = results.First(r => r.layout == Layouts[0] && r.option == koru.displayName).m;
-        Require(koruDirect.attacks > 0 && koruDirect.kills[0] > 0, "Bot harvested in the direct layout");
-        var koruBehavior = results.First(r => r.layout == Layouts[1] && r.option == koru.displayName).m;
-        Require(koruBehavior.kills[1] + koruBehavior.kills[2] + koruBehavior.kills[3] + koruBehavior.kills[4] > 0, "Behaviors killed plants in the behavior layout");
+        Require(results.Count == Configs * 4 * Seeds, $"Measured {Layouts.Length} layouts × {StatSets.Length} stat sets × 4 options × {Seeds} seeds");
+        Require(results.Where(r => r.config / StatSets.Length == 0).All(r => r.m.attacks > 0 && r.m.kills[0] > 0), "Bot harvested in every direct-layout round");
+        Require(results.Where(r => r.config / StatSets.Length > 0 && r.option == koru.displayName).Sum(r => r.m.BehaviorKills) > 0, "Behaviors killed plants in the behavior layouts");
+        var twin = results.Where(r => r.option == davranis.displayName).Join(results.Where(r => r.option == control.displayName), a => (a.config, a.seed), b => (b.config, b.seed), (a, b) => (a: a.m, b: b.m)).ToList();
+        int same = twin.Count(p => p.a.Kills == p.b.Kills && p.a.Triggers == p.b.Triggers);
+        long trigA = twin.Sum(p => (long)p.a.Triggers), trigB = twin.Sum(p => (long)p.b.Triggers);
+        double ratio = twin.Sum(p => (double)p.a.Resources) / Math.Max(1, twin.Sum(p => (double)p.b.Resources));
+        Note($"Davranış Ustası / bedelsiz kopya, tüm yapılandırmalar: aynı hasat+tetik {same}/{twin.Count} · tetik {trigA} / {trigB} · kaynak oranı {ratio:0.000}");
+        if (same == twin.Count)
+            Require(Math.Abs(ratio - .9) < .01, $"Resource cost does not change triggers or harvests (identical on every seed); resources ×{ratio:0.000}");
+        else
+            Note("UYARI: ölçüm seed başına birebir tekrar etmedi; tetik karşılaştırması istatistiksel okunmalı");
     }
 
     // Oyuncu yerine: saldırı zamanı gelince en çok canlı bitkiyi kapsayan açık hücreye vurur; kart ekranlarını bastırır (düzen değişmesin).

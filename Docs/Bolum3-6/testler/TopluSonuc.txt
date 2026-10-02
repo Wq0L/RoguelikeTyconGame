@@ -1,0 +1,21 @@
+﻿start 01:40:05
+KirilmaV1Verification.RunBatch | PASS: 153 checks | 01:40:05-01:41:14 | exit 0 Â· log C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\KirilmaV1Verification_RunBatch.log
+DengeV1Verification.RunBatch | PASS: 86 checks | 01:41:14-01:41:37 | exit 0 Â· log C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\DengeV1Verification_RunBatch.log
+BossRewardVerification.RunBatch | PASS: 127 checks | 01:41:37-01:42:20 | exit 0 Â· log C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\BossRewardVerification_RunBatch.log
+RunPrototypeVerification.RunBatch | PASS: 69 checks | 01:42:20-01:43:06 | exit 0 Â· log C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\RunPrototypeVerification_RunBatch.log
+ContactRefactorVerification.RunBatch | PASS: 175 checks | 01:43:06-01:43:16 | exit 0 Â· log C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\ContactRefactorVerification_RunBatch.log
+BossWeatherVerification.RunBatch | PASS: 22 checks | 01:43:16-01:43:25 | exit 0 Â· log C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\BossWeatherVerification_RunBatch.log
+StartLoadoutVerification.RunBatch | PASS: 88 checks | 01:43:25-01:44:07 | exit 0 Â· log C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\StartLoadoutVerification_RunBatch.log
+SpecializationVerification.RunBatch | PASS: 100 checks | 01:44:07-01:46:54 | exit 0 Â· log C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\SpecializationVerification_RunBatch.log
+ElectricRevertVerification.RunBatch | PASS: 40 checks | 01:46:54-01:47:28 | exit 0 Â· log C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\ElectricRevertVerification_RunBatch.log
+Run50ReferenceVerification.RunBatch | PASS: 70 checks | 01:47:28-01:49:37 | exit 0 Â· log C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\Run50ReferenceVerification_RunBatch.log
+MechanicsVerification.RunBatch | FAIL: System.Exception: Card selection vignette behind the cards, faded in, not blocking clicks: alpha 0.65 | 01:49:37-01:49:53 | ERROR: Verification failed with exit 1. See C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\MechanicsVerification_RunBatch.log
+RoundPreviewVerification.RunBatch | PASS: 47 checks | 01:49:53-01:50:20 | exit 0 Â· log C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\RoundPreviewVerification_RunBatch.log
+HarvestBehaviorVerification.RunBatch | FAIL: 85 checks | 01:50:20-01:50:35 | ERROR: Verification failed with exit 1. See C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\HarvestBehaviorVerification_RunBatch.log
+SimpleResonanceVerification.RunBatch | FAIL: System.Exception: Nonlethal electricity does not taint direct kill XP: 8 | 01:50:35-01:50:46 | ERROR: Verification failed with exit 1. See C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\SimpleResonanceVerification_RunBatch.log
+RoundMapComicVerification.RunBatch | (exit code only) | 01:50:46-01:51:00 | exit 0 Â· log C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\RoundMapComicVerification_RunBatch.log
+ComicCardVerification.RunBatch | (exit code only) | 01:51:00-01:51:14 | exit 0 Â· log C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\ComicCardVerification_RunBatch.log
+OptionsMenuVerification.RunBatch | PASS 22 rows | 01:51:14-01:51:30 | exit 0 Â· log C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\OptionsMenuVerification_RunBatch.log
+LegacySelectionRunner.RunHarvestBehavior | PASS: 111 checks | 01:51:30-01:51:49 | exit 0 Â· log C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\LegacySelectionRunner_RunHarvestBehavior.log
+LegacySelectionRunner.RunSimpleResonance | PASS: 291 checks | 01:51:49-01:52:02 | exit 0 Â· log C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\LegacySelectionRunner_RunSimpleResonance.log
+end 01:52:02

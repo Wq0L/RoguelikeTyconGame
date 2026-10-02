@@ -274,6 +274,7 @@ public class VFXManager : MonoBehaviour
     public int TextLeased => textPool?.LeasedCount ?? 0;
     public int HitCreated => hitPool?.CreatedCount ?? 0;
     public int HitLeased => hitPool?.LeasedCount ?? 0;
+    public int ExplosionVisualsSkipped { get; private set; }
     public int ExplosionCreated => explosionPool?.CreatedCount ?? 0;
     public int ExplosionLeased => explosionPool?.LeasedCount ?? 0;
     private sealed class Flash
@@ -406,7 +407,7 @@ public class VFXManager : MonoBehaviour
     {
         if (explosionPool == null) return;
         Transform effect = explosionPool.Get();
-        if (effect == null) return;
+        if (effect == null) { ExplosionVisualsSkipped++; return; }   // havuz sınırı: yalnız görsel atlanır, hasar ayrı uygulanır
         if (!explosionSystems.TryGetValue(effect, out var systems))
         {
             systems = effect.GetComponentsInChildren<ParticleSystem>(true);

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpecializationSO
   displayName: "DAVRANI\u015E USTASI"
   note: "Patlama, kas\u0131rga, bumerang ve elektri\u011Fe yaslan."
-  directDamageMultiplier: 0.85
+  directDamageMultiplier: 1
   behaviorDamageMultiplier: 1.25
+  harvestResourceMultiplier: 0.9
   color: {r: 0.45, g: 0.8, b: 1, a: 1}

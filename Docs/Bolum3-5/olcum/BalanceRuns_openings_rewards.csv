@@ -1,0 +1,22 @@
+run,policy,farmer,scythe,seed,label,round,offered,chosen
+4,Dengeli,bahcivan,standart,100,yalnız saksı,5,keskin_bicak genis_savurus bilgi_filizi,keskin_bicak
+5,Dengeli,bahcivan,standart,101,yalnız saksı,5,bereketli_toprak agir_darbe hizli_bilek,hizli_bilek
+6,Dengeli,bahcivan,standart,102,yalnız saksı,5,bilgi_filizi genis_savurus kritik_goz,genis_savurus
+7,Dengeli,bahcivan,standart,100,önce hasar,5,keskin_bicak bereketli_toprak bilgi_filizi,keskin_bicak
+8,Dengeli,bahcivan,standart,101,önce hasar,5,bereketli_toprak agir_darbe hizli_bilek,hizli_bilek
+9,Dengeli,bahcivan,standart,102,önce hasar,5,bilgi_filizi bereketli_toprak agir_darbe,bereketli_toprak
+10,Dengeli,bahcivan,standart,100,önce hız,5,keskin_bicak bereketli_toprak bilgi_filizi,keskin_bicak
+11,Dengeli,bahcivan,standart,101,önce hız,5,bereketli_toprak agir_darbe hizli_bilek,hizli_bilek
+12,Dengeli,bahcivan,standart,102,önce hız,5,bilgi_filizi bereketli_toprak agir_darbe,bereketli_toprak
+13,Dengeli,bahcivan,standart,100,önce ekonomi,5,keskin_bicak bereketli_toprak bilgi_filizi,keskin_bicak
+14,Dengeli,bahcivan,standart,101,önce ekonomi,5,bereketli_toprak agir_darbe hizli_bilek,hizli_bilek
+15,Dengeli,bahcivan,standart,102,önce ekonomi,5,bilgi_filizi genis_savurus kritik_goz,genis_savurus
+16,Dengeli,bahcivan,standart,100,önce üretim,5,keskin_bicak bereketli_toprak bilgi_filizi,keskin_bicak
+17,Dengeli,bahcivan,standart,101,önce üretim,5,bereketli_toprak agir_darbe hizli_bilek,hizli_bilek
+18,Dengeli,bahcivan,standart,102,önce üretim,5,bilgi_filizi bereketli_toprak agir_darbe,bereketli_toprak
+19,Yeni,bahcivan,standart,100,yeni oyuncu,5,keskin_bicak bereketli_toprak bilgi_filizi,bereketli_toprak
+20,Yeni,bahcivan,standart,101,yeni oyuncu,5,bereketli_toprak agir_darbe hizli_bilek,bereketli_toprak
+21,Yeni,bahcivan,standart,102,yeni oyuncu,5,bilgi_filizi genis_savurus kritik_goz,genis_savurus
+22,Yeni,bahcivan,dar_kesim,100,yeni oyuncu · Dar Kesim,5,keskin_bicak genis_savurus bilgi_filizi,genis_savurus
+23,Yeni,bahcivan,dar_kesim,101,yeni oyuncu · Dar Kesim,5,bereketli_toprak agir_darbe hizli_bilek,agir_darbe
+24,Yeni,bahcivan,dar_kesim,102,yeni oyuncu · Dar Kesim,5,bilgi_filizi genis_savurus kritik_goz,genis_savurus

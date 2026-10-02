@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d024a02157794a408ec9280332f18793, type: 3}
+  m_Name: YikimGucu_V1
+  m_EditorClassIdentifier: Assembly-CSharp::BossRewardSO
+  id: yikim_gucu
+  displayName: "Y\u0131k\u0131m G\xFCc\xFC"
+  effectLabel: "Davran\u0131\u015F hasar\u0131"
+  inverseLabel: ""
+  note: "Patlama \xB7 kas\u0131rga \xB7 bumerang \xB7 elektrik. Kendi vuru\u015Fun de\u011Fi\u015Fmez."
+  modifiersPerStack: []
+  directDamageMultiplier: 1
+  rareDirectMultiplier: 1
+  rareDirectFrom: 2
+  behaviorDamageMultiplier: 1.3
+  maxStacks: 3
+  weight: 1
+  condition: 2
+  conditionThreshold: 0.7
+  minRound: 0
+  maxRound: 0

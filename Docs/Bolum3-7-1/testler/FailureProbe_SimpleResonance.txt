@@ -1,0 +1,5 @@
+FAIL: System.Exception: Runs its own profile UzunRun130 (shared data); project selection: Run50_KirilmaV1
+  at SimpleResonanceVerification.Require (System.Boolean condition, System.String message) [0x00015] in C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Assets\Editor\SimpleResonanceVerification.cs:94 
+  at SimpleResonanceVerification.Run () [0x00017] in C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Assets\Editor\SimpleResonanceVerification.cs:103 
+  at SimpleResonanceVerification.Tick () [0x0002d] in C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Assets\Editor\SimpleResonanceVerification.cs:72 
+cleanup after failure: profile override removed; selection file unchanged; test objects left 0

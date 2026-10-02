@@ -7,6 +7,10 @@ param(
     [Parameter(Mandatory = $true)][string]$Method,
     [switch]$Full,
     [int]$TimeoutSec = 1200,
+    # Bilgisayar bu sırada kullanılabilsin: batch Unity düşük öncelikle ve yalnız son $MaxCores mantıksal çekirdekte çalışır
+    # (alt süreçleri de bunu devralır). 0: çekirdek sınırı yok. Sonuçlar değişmez, yalnız süre uzar.
+    [int]$MaxCores = 4,
+    [switch]$NormalPriority,
     [string]$UnityPath = 'C:\Program Files\Unity\Hub\Editor\6000.3.14f1\Editor\Unity.exe'
 )
 $ErrorActionPreference = 'Stop'
@@ -25,7 +29,19 @@ Copy-Item -Path (Join-Path $repo 'Tools\Verification\Editor\*.cs') -Destination 
 
 New-Item -ItemType Directory -Force -Path (Join-Path $root 'Logs') | Out-Null
 $log = Join-Path $root ('Logs\' + ($Method -replace '\.', '_') + '.log')
+if (Test-Path -LiteralPath $log) {
+    Move-Item -LiteralPath $log -Destination ($log + '.previous-' + [DateTime]::UtcNow.ToString('yyyyMMddHHmmssfff'))
+}
 $unityArgs = @('-batchmode', '-projectPath', ('"' + $root + '"'), '-executeMethod', $Method, '-logFile', ('"' + $log + '"'))
 $process = Start-Process -FilePath $UnityPath -ArgumentList $unityArgs -WindowStyle Hidden -PassThru
+try {
+    if (-not $NormalPriority) { $process.PriorityClass = 'BelowNormal' }
+    $cores = [Environment]::ProcessorCount
+    if ($MaxCores -gt 0 -and $MaxCores -lt $cores) {
+        $process.ProcessorAffinity = [IntPtr]((([long]1 -shl $MaxCores) - 1) -shl ($cores - $MaxCores))
+    }
+} catch { Write-Warning "Could not limit the batch Unity process: $($_.Exception.Message)" }
 if (-not $process.WaitForExit($TimeoutSec * 1000)) { $process.Kill(); throw "Timed out. See $log" }
 "exit $($process.ExitCode) · log $log"
+if (!(Test-Path -LiteralPath $log)) { throw "Unity did not create a fresh log (exit $($process.ExitCode))." }
+if ($process.ExitCode -ne 0) { throw "Verification failed with exit $($process.ExitCode). See $log" }

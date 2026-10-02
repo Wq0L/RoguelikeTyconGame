@@ -44,11 +44,18 @@ public class ProgressionManager : MonoBehaviour
 
     private int pendingMutationCount = 0;
 
+    // İlk davranış kartının alındığı round (0: henüz alınmadı). Profilin erken davranış teklifi (RunBalanceSO.firstBehaviorOffer)
+    // buna bakar: kart alınana kadar tekliflerde bir slot o türlerden gelir. Run başına tutulur (sahneyle birlikte sıfırlanır).
+    public int FirstBehaviorCardRound { get; private set; }
+
     private void Awake()
     {
         if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
 
+        // Run profilinin denge seti kendi XP tablosunu getirebilir (Bölüm 3.5); yoksa sahnedeki veri.
+        RunBalanceSO balance = RunBalanceSO.Active;
+        if (balance != null && balance.progression != null) progressionData = balance.progression;
         XPToNextLevel = progressionData.GetXPForLevel(CurrentLevel);
     }
 
@@ -182,6 +189,8 @@ public class ProgressionManager : MonoBehaviour
         GroundCell selectedCell = eligibleCells[UnityEngine.Random.Range(0, eligibleCells.Count)];
         selectedCell.ApplyModifier(modifier, offeredModifiers);
         roundAppliedCells.Add(selectedCell);
+        if (FirstBehaviorCardRound == 0 && RunBalanceSO.IsFirstBehaviorType(modifier.modifierType))
+            FirstBehaviorCardRound = Mathf.Max(1, RoundManager.Instance != null ? RoundManager.Instance.CurrentRound : 1);
 
         // Debug.Log($"Kart uygulandı: {modifier.modifierName} → {selectedCell.GetGridPosition()}");
         return true;

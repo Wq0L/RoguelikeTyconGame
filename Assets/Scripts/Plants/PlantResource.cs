@@ -33,7 +33,8 @@ public class PlantResource : MonoBehaviour
         float xpMultiplier = GetXPMultiplier();
 
         int reward = Mathf.RoundToInt(plantData.rewardAmount * resourceMultiplier);
-        int xpAmount = Mathf.RoundToInt(plantData.xpAmount * xpMultiplier);
+        // Denge seti nadirliğe göre XP çarpanı verebilir (Bölüm 3.5); yoksa ×1.
+        int xpAmount = Mathf.RoundToInt(plantData.xpAmount * xpMultiplier * RunBalanceSO.ActiveXpMultiplier(plantData.rarity));
 
         if (planterBrain != null)
         {
@@ -44,6 +45,9 @@ public class PlantResource : MonoBehaviour
                 // Debug.Log("Duplicate! Ödül 2x");
             }
         }
+
+        // Uzmanlaşma hasat kaynağı çarpanı: duplicate dahil ödüle bir kez, kesirli kalan kaynak başına taşınır. XP ve skor etkilenmez.
+        reward = SpecializationManager.ScaleHarvestResource(plantData.resourceType, reward);
 
         ResourceManager.Instance.AddResource(plantData.resourceType, reward, transform.position);
         ProgressionManager.Instance.AddXP(xpAmount);

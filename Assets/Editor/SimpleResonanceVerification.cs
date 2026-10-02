@@ -13,17 +13,53 @@ using ClickerGame.EconomyAnalysis;
 public static class SimpleResonanceVerification
 {
     const string Key = "SimpleResonanceVerification";
+    // Paket ortak veriyle yazıldı (denge seti yok: sade nadirlik XP'si, ortak bitki canı). Projede hangi profil seçili olursa
+    // olsun bununla çalışır; seçim dosyasına yazılmaz (oturum geçersiz kılması) ve test bitince, başarısız da olsa, kaldırılır.
+    const string RequiredProfile = "Assets/ScriptableObjects/RunProfiles/UzunRun130.asset";
+    const string SelectionPath = "Assets/Resources/RunProfileSelection.asset";
     static readonly List<Object> temporary = new();
     static readonly List<string> notes = new();
     static double captureAt = -1;
     static Camera captureCamera;
     static RenderTexture captureTexture;
     static GameObject gallery;
-    static SimpleResonanceVerification() { EditorApplication.update += Tick; }
+    static SimpleResonanceVerification()
+    {
+        EditorApplication.update += Tick;
+        // Play'e girerken domain yeniden yüklenir; profil ilk yönetici kurulmadan önce yeniden kurulur.
+        if (SessionState.GetBool(Key, false)) UseTestProfile();
+    }
+    static RunProfileSO TestProfile => AssetDatabase.LoadAssetAtPath<RunProfileSO>(RequiredProfile);
+    static void UseTestProfile()
+    {
+        var profile = TestProfile;
+        if (profile == null) { Debug.LogError("Simple resonance verification: test profile missing: " + RequiredProfile); return; }
+        RunProfileSelectionSO.OverrideForSession(profile);
+    }
+    static string FileHash(string path)
+    {
+        using var sha = System.Security.Cryptography.SHA256.Create();
+        return BitConverter.ToString(sha.ComputeHash(File.ReadAllBytes(path)));
+    }
+    // Her çıkış yolunda: profil geçersiz kılması ve test nesneleri kaldırılır; seçim dosyası değiştiyse mesaj döner.
+    static string Cleanup()
+    {
+        SessionState.SetBool(Key, false);
+        RunProfileSelectionSO.ClearSessionOverride();
+        foreach (var item in temporary.AsEnumerable().Reverse()) if (item != null) Object.DestroyImmediate(item);
+        temporary.Clear();
+        var selection = AssetDatabase.LoadAssetAtPath<RunProfileSelectionSO>(SelectionPath);
+        string before = SessionState.GetString(Key + "Selection", "");
+        if (selection != null && EditorUtility.IsDirty(selection)) return "selection asset was modified in memory";
+        if (before.Length > 0 && before != FileHash(SelectionPath)) return "selection file changed on disk";
+        return null;
+    }
     public static void RunBatch()
     {
         if (!Application.isBatchMode) throw new Exception("Use the isolated test project for batch verification.");
         SessionState.SetBool(Key, true);
+        SessionState.SetString(Key + "Selection", FileHash(SelectionPath));
+        UseTestProfile();
         EditorApplication.isPaused = false;
         EditorSceneManager.NewScene(NewSceneSetup.EmptyScene);
         EditorApplication.EnterPlaymode();
@@ -36,15 +72,18 @@ public static class SimpleResonanceVerification
             if (captureAt < 0) { Run(); captureAt = EditorApplication.timeSinceStartup + 1; return; }
             if (EditorApplication.timeSinceStartup < captureAt) { EditorApplication.QueuePlayerLoopUpdate(); return; }
             Capture();
-            SessionState.SetBool(Key, false);
+            string leak = Cleanup();
+            Require(leak == null, "Profile override removed; selection file unchanged" + (leak != null ? ": " + leak : ""));
             Directory.CreateDirectory("Logs");
             File.WriteAllLines("Logs/SimpleResonanceVerification.txt", new[] { "PASS: " + notes.Count + " checks" }.Concat(notes));
             EditorApplication.Exit(0);
         }
         catch (Exception ex)
         {
-            SessionState.SetBool(Key, false);
-            Directory.CreateDirectory("Logs"); File.WriteAllText("Logs/SimpleResonanceVerification.txt", "FAIL: " + ex);
+            // Temizlik başarısız bitişte de çalışır; sonucu dosyaya yazılır.
+            string leak = Cleanup();
+            string cleanup = "cleanup after failure: profile override " + (RunProfileSelectionSO.HasSessionOverride ? "STILL SET" : "removed") + "; selection file " + (leak ?? "unchanged") + "; test objects left " + temporary.Count;
+            Directory.CreateDirectory("Logs"); File.WriteAllText("Logs/SimpleResonanceVerification.txt", "FAIL: " + ex + "\n" + cleanup);
             Debug.LogException(ex); EditorApplication.Exit(1);
         }
     }
@@ -59,6 +98,10 @@ public static class SimpleResonanceVerification
     static void Set(object target, string field, object value) => target.GetType().GetField(field, BindingFlags.NonPublic | BindingFlags.Instance).SetValue(target, value);
     static void Run()
     {
+        var profile = TestProfile;
+        var selection = AssetDatabase.LoadAssetAtPath<RunProfileSelectionSO>(SelectionPath);
+        Require(profile != null && RunProfileSelectionSO.HasSessionOverride && RunProfileSelectionSO.Active == profile && RunBalanceSO.Active == null,
+            "Runs its own profile " + (profile != null ? profile.name : "?") + " (shared data); project selection: " + (selection != null && selection.active != null ? selection.active.name : "none"));
         var rules = Resources.Load<ResonanceRulesSO>("ResonanceRules");
         Require(rules != null && rules.rules.Count == 10, "10 authored rules");
         Require(rules.rules.Select(r => r.id).Distinct().Count() == 10, "Stable unique recipe identities");
@@ -284,8 +327,6 @@ public static class SimpleResonanceVerification
         int colors=png.GetPixels().Distinct().Count();
         Require(colors>5,"Rendered badge gallery has colored geometry: " + colors + " colors");
         VerifyPopups();
-        foreach(var item in temporary.AsEnumerable().Reverse()) if(item!=null) Object.DestroyImmediate(item);
-        temporary.Clear();
     }
 
     static void VerifyPopups()

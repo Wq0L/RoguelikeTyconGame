@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e3744e3bb14830a6551f25388165bc, type: 3}
+  m_Name: BossPool_Run50
+  m_EditorClassIdentifier: Assembly-CSharp::BossPoolSO
+  entries:
+  - boss: {fileID: 11400000, guid: c833fec3b9064cc0836e5f04303d05f6, type: 2}
+    weight: 1
+  - boss: {fileID: 11400000, guid: 73725da3bc104e5d9c3452fe19fbc46c, type: 2}
+    weight: 1
+  - boss: {fileID: 11400000, guid: 748379c4ee6442e8bc4de06a7f40c3f2, type: 2}
+    weight: 1

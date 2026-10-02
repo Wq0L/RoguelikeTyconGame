@@ -1,13 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Kart seçimi açıkken ekranın köşelerinden içeri kararan vignette: göz ortadaki kartlara gider.
+// Kart seçimi açıkken renkli köşe vignette'i: grid altın sarısı, boss ödülü mor.
 // Post-processing kapalı olduğu için UI'da, kart panelinin en arkasında çizilir; panelle açılır, panelle kapanır.
 // Unscaled time kullanır (kart seçiminde oyun durur).
 public sealed class CardSelectionVignette : MonoBehaviour
 {
     private const float FadeDuration = 0.3f;
-    private const float MaxAlpha = 0.85f;
+    private const float MaxAlpha = 0.65f;
+    public enum Palette { Grid, Boss }
+    private Color tint = new Color32(235, 177, 52, 255);
     // Kararma merkezden bu mesafede başlar, köşede (1.41) tamamlanır. 1 = ekran kenarının ortası.
     private const float InnerRadius = 0.45f;
     private const float OuterRadius = 1.35f;
@@ -16,10 +18,10 @@ public sealed class CardSelectionVignette : MonoBehaviour
     private RawImage image;
     private float elapsed;
 
-    public static CardSelectionVignette Attach(RectTransform panel)
+    public static CardSelectionVignette Attach(RectTransform panel, Palette palette = Palette.Grid)
     {
         var existing = panel.GetComponentInChildren<CardSelectionVignette>(true);
-        if (existing != null) return existing;
+        if (existing != null) { existing.SetPalette(palette); return existing; }
         var go = new GameObject("Card Vignette", typeof(RectTransform), typeof(CanvasRenderer), typeof(RawImage), typeof(LayoutElement));
         go.layer = panel.gameObject.layer;
         go.GetComponent<LayoutElement>().ignoreLayout = true;
@@ -33,7 +35,24 @@ public sealed class CardSelectionVignette : MonoBehaviour
         raw.texture = Texture;
         raw.color = new Color(1f, 1f, 1f, 0f);
         raw.raycastTarget = false;
-        return go.AddComponent<CardSelectionVignette>();
+        var vignette = go.AddComponent<CardSelectionVignette>();
+        vignette.SetPalette(palette);
+        return vignette;
+    }
+
+    private void SetPalette(Palette palette)
+    {
+        tint = palette == Palette.Boss ? new Color32(153, 87, 224, 255) : new Color32(235, 177, 52, 255);
+        if (image == null) image = GetComponent<RawImage>();
+        ApplyFade();
+    }
+
+    private void ApplyFade()
+    {
+        float t = Mathf.Clamp01(elapsed / FadeDuration);
+        Color color = tint;
+        color.a = MaxAlpha * (1f - (1f - t) * (1f - t));
+        image.color = color;
     }
 
     private void Awake() => image = GetComponent<RawImage>();
@@ -41,18 +60,17 @@ public sealed class CardSelectionVignette : MonoBehaviour
     private void OnEnable()
     {
         elapsed = 0f;
-        if (image != null) image.color = new Color(1f, 1f, 1f, 0f);
+        if (image != null) ApplyFade();
     }
 
     private void Update()
     {
         if (elapsed >= FadeDuration) return;
         elapsed += Time.unscaledDeltaTime;
-        float t = Mathf.Clamp01(elapsed / FadeDuration);
-        image.color = new Color(1f, 1f, 1f, MaxAlpha * (1f - (1f - t) * (1f - t)));
+        ApplyFade();
     }
 
-    // Ekrana gerilen tek doku: ortası şeffaf, köşelere doğru koyu mürekkep.
+    // Ortası şeffaf beyaz maske; renk RawImage üzerinden verilir, doku ortaktır.
     private static Texture2D Texture
     {
         get
@@ -67,7 +85,7 @@ public sealed class CardSelectionVignette : MonoBehaviour
                 hideFlags = HideFlags.DontSave
             };
             var pixels = new Color32[size * size];
-            var ink = new Color32(14, 10, 24, 0);
+            var ink = new Color32(255, 255, 255, 0);
             for (int y = 0; y < size; y++)
             for (int x = 0; x < size; x++)
             {

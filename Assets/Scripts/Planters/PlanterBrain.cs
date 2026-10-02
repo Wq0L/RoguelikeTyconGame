@@ -241,10 +241,10 @@ public class PlanterBrain : MonoBehaviour
         StatManager.Instance != null ? StatManager.Instance.GlobalModifiers : null, localModifiers, false) *
         ResonanceManager.Multiplier(activeResonances, StatType.HarvestScoreMultiplier, rarity);
 
-    // Davranışın kendi hesaplanan hasarına bir kez: rezonans (Güçlendirilmiş Hasat) × uzmanlaşma davranış katsayısı.
+    // Davranışın kendi hesaplanan hasarına bir kez: rezonans (Güçlendirilmiş Hasat) × uzmanlaşma × boss ödülü (Yıkım Gücü).
     // Patlama, bumerang ve elektrik GetBehaviorDamage'dan, kasırga TornadoManager'dan buraya gelir.
     public float BehaviorDamageMultiplier(DamageType type) =>
-        ResonanceManager.BehaviorMultiplier(activeResonances, type) * SpecializationManager.BehaviorMultiplier;
+        RunPower.Behavior(ResonanceManager.BehaviorMultiplier(activeResonances, type));
 
     public int GetBehaviorDamage(int baseDamage, DamageType type) => (int)System.Math.Min(int.MaxValue,
         System.Math.Max(0, System.Math.Round(baseDamage * (double)BehaviorDamageMultiplier(type))));
@@ -256,7 +256,7 @@ public class PlanterBrain : MonoBehaviour
         CleanupPlacement();
         // Pozisyonlu ekleme: iade altınları saksıdan kaynak sayacına uçar (GoldUI).
         if (planterData != null && ResourceManager.Instance != null)
-            ResourceManager.Instance.AddResource(planterData.costType, planterData.cost / 2, refundOrigin);
+            ResourceManager.Instance.AddResource(planterData.PriceType, planterData.Price / 2, refundOrigin);
         // Mantık yukarıda bitti; saksı küçülerek kaybolur, animasyon sonunda yok edilir.
         if (PlanterFeel.PlaySell(gameObject)) return;
         gameObject.SetActive(false);
@@ -368,6 +368,10 @@ public class PlanterBrain : MonoBehaviour
                 damageable.TakeDamage(damage, DamageType.Explosion);
             }
         }
+        // Artçı Patlama (kırılma ödülü): şansı tutan bu normal patlamadan sonra, aynı merkezde gecikmeli ikinci patlama.
+        // "damage" burada ilk patlamanın hesaplanmış hasarıdır; artçı onun bir oranını kullanır, katsayılar yeniden uygulanmaz.
+        if (RunPower.TryGetEcho(DamageType.Explosion, out BehaviorEcho echo) && BehaviorEchoes.Instance != null)
+            BehaviorEchoes.Instance.ScheduleExplosion(this, occupiedGrids, sourcePlant.transform.position, damage, echo);
     }
 
     public void TriggerHarvestBehaviors(GridObject sourceGrid, PlantHealth sourcePlant)
@@ -380,9 +384,16 @@ public class PlanterBrain : MonoBehaviour
             float boomerang = GetFinalStat(StatType.BoomerangChance);
             if (boomerang > 0f && Random.value < boomerang)
                 HarvestBehaviorStats.Record(DamageType.Boomerang, HarvestBehaviorManager.Instance.TryBoomerang(this, sourceGrid, damage));
+            // Elektrik eski hasat tetiğini kullanır; yük deneyi oynanış hissi nedeniyle kaldırıldı.
             float electric = GetFinalStat(StatType.ElectricChance);
             if (electric > 0f && Random.value < electric)
-                HarvestBehaviorStats.Record(DamageType.Electric, HarvestBehaviorManager.Instance.TryElectric(this, damage));
+            {
+                bool struck = HarvestBehaviorManager.Instance.TryElectric(this, damage);
+                HarvestBehaviorStats.Record(DamageType.Electric, struck);
+                // Çifte Akım (kırılma ödülü): başarılı normal dalgadan sonra aynı saksıdan gecikmeli ikinci dalga; yeni şans atılmaz.
+                if (struck && RunPower.TryGetEcho(DamageType.Electric, out BehaviorEcho echo) && BehaviorEchoes.Instance != null)
+                    BehaviorEchoes.Instance.ScheduleElectric(this, GetBehaviorDamage(damage, DamageType.Electric), echo);
+            }
         }
     }
 

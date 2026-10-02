@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22ba803266d7493f9bf3c75c62345094, type: 3}
+  m_Name: Bahcivan
+  m_EditorClassIdentifier: Assembly-CSharp::FarmerSO
+  id: bahcivan
+  displayName: "Bah\xE7\u0131van"
+  playstyle: "Referans \xE7ift\xE7i: oyunun kendi dengesi."
+  unlockQuest: {fileID: 0}
+  sortOrder: 0
+  modifiers: []
+  directDamageMultiplier: 1
+  harvestResourceMultiplier: 1
+  harvestScoreMultiplier: 1

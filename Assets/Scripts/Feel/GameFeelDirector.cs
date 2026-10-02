@@ -122,10 +122,11 @@ public class GameFeelDirector : MonoBehaviour
         string eventIntro = SegmentEventText.Intro(events, rounds);
         bool last = rounds.CurrentRound >= rounds.MaxRounds;
         string subtitle; Color color;
-        if (eventIntro != null) { subtitle = eventIntro; color = SegmentEventText.IntroColor; }
+        Color bossColor = BossTheme.Bright(SegmentEventText.IntroSubject(events, rounds));
+        if (eventIntro != null) { subtitle = eventIntro; color = bossColor; }
         else if (quota != null) { subtitle = quota; color = quotaColor; }
         else if (last) { subtitle = "SON ROUND!"; color = roundColor; }
-        else if (SegmentEventText.HeadsUp(events, rounds) is string headsUp) { subtitle = headsUp; color = SegmentEventText.IntroColor; }
+        else if (SegmentEventText.HeadsUp(events, rounds) is string headsUp) { subtitle = headsUp; color = bossColor; }
         else { subtitle = $"{Mathf.RoundToInt(rounds.RemainingTime)} SANİYE"; color = roundColor; }
         ScreenStamp.Show("round", $"ROUND {rounds.CurrentRound}", subtitle, color, roundStampY, 0.55f);
         FeelAudio.Play(FeelSound.Whoosh, 0.55f);

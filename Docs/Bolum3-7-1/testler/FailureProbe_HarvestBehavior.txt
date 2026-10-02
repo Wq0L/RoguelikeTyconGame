@@ -1,0 +1,6 @@
+FAIL: 73 checks
+
+System.Exception: Harvest behavior verification: runs its own profile UzunRun130 (shared data); project selection: Run50_KirilmaV1
+  at HarvestBehaviorVerification.Require (System.Boolean condition, System.String message) [0x00036] in C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Assets\Editor\HarvestBehaviorVerification.cs:69 
+  at HarvestBehaviorVerification.Tick () [0x0012a] in C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Assets\Editor\HarvestBehaviorVerification.cs:163 
+cleanup after failure: profile override removed; selection file unchanged

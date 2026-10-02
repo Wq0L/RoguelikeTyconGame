@@ -31,12 +31,19 @@ public sealed class ElectricBurst : MonoBehaviour
         IReadOnlyList<GridPosition> targets, IReadOnlyList<GridPosition> origins, int damage) =>
         Strike(manager, this, planter, grid, targets, origins, damage);
 
-    // Hedefleri vurur; visual verilirse aynı hedeflere şimşeği çizer. visual null: havuz dolu, sadece hasar.
     public static void Strike(HarvestBehaviorManager manager, ElectricBurst visual, PlanterBrain planter, GridSystem grid,
-        IReadOnlyList<GridPosition> targets, IReadOnlyList<GridPosition> origins, int damage)
+        IReadOnlyList<GridPosition> targets, IReadOnlyList<GridPosition> origins, int damage) =>
+        Strike(manager, visual, planter, grid, targets, origins, damage, false, out _, out _);
+
+    // Hedefleri vurur; visual verilirse aynı hedeflere şimşeği çizer. visual null: havuz dolu, sadece hasar.
+    // precomputed: damage zaten hesaplanmış son hasardır (Çifte Akım'ın ikinci dalgası); davranış katsayıları yeniden uygulanmaz.
+    // Aynı dalgada bir hedefe bir kez vurulur (hedef listesi tekrarsızdır). struck / killed: vurulan ve ölen canlı bitki sayısı.
+    public static void Strike(HarvestBehaviorManager manager, ElectricBurst visual, PlanterBrain planter, GridSystem grid,
+        IReadOnlyList<GridPosition> targets, IReadOnlyList<GridPosition> origins, int damage, bool precomputed, out int struck, out int killed)
     {
+        struck = killed = 0;
         Vector3[] from = visual != null ? visual.start : scratchStart, to = visual != null ? visual.end : scratchEnd;
-        damage = planter != null ? planter.GetBehaviorDamage(damage, DamageType.Electric) : damage;
+        if (!precomputed) damage = planter != null ? planter.GetBehaviorDamage(damage, DamageType.Electric) : damage;
         float xp = planter != null ? ResonanceManager.ElectricXP(planter.ActiveResonances) : 1f;
         int count = 0;
         for (int i = 0; i < targets.Count && count < 8; i++)
@@ -51,7 +58,9 @@ public sealed class ElectricBurst : MonoBehaviour
             if (plant != null && plant.TryGetComponent<PlantHealth>(out var health) && !health.IsDead)
             {
                 Vector3 point = plant.transform.position;
+                struck++;
                 health.TakeDamage(damage, DamageType.Electric, false, xp);
+                if (health.IsDead) killed++;
                 VFXManager.Instance?.PlayHit(point, damage, false);
             }
         }

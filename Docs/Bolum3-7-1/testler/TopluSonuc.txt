@@ -1,0 +1,37 @@
+Bolum 3.7.1 - izole kopyada (Library/VerificationProject) gercekten calistirilan testler, 2026-10-02
+Sutunlar: etiket | cagrilan metot | baslangicta secili profil (bos: gercek projedeki secim = Run50_KirilmaV1) | sonuc dosyasinin ilk satiri | saat
+
+== Secili profille (Run50_KirilmaV1) dogrudan
+HarvestBehavior_plain | HarvestBehaviorVerification.RunBatch | start profile:  | PASS: 114 checks | 13:44:29-13:45:17
+SimpleResonance_plain | SimpleResonanceVerification.RunBatch | start profile:  | PASS: 293 checks | 13:45:17-13:45:32
+Mechanics_plain | MechanicsVerification.RunBatch | start profile:  | PASS: 88 checks | 13:45:32-13:45:58
+Kirilma_plain | KirilmaV1Verification.RunBatch | start profile:  | PASS: 189 checks | 13:45:58-13:46:34
+
+== Bilerek basarisiz bitirilen deneme (gecici dosya, silindi): temizlik basarisiz bitiste de calisiyor
+FailureProbe_HarvestBehavior | Tmp371FailureProbe.HarvestBehavior | start profile:  | FAIL: 73 checks | 13:47:42-13:48:00 | (cikis kodu 1, beklenen)
+FailureProbe_SimpleResonance | Tmp371FailureProbe.SimpleResonance | start profile:  | FAIL: System.Exception: Runs its own profile UzunRun130 (shared data); project selection: Run50_KirilmaV1 | 13:48:00-13:48:13 | (cikis kodu 1, beklenen)
+
+== Baslangic kosullari (StartConditionRunner) ve etkilenen diger paketler
+HarvestBehavior_from_Run50_DengeV1 | StartConditionRunner.Run | start profile: Run50_DengeV1 | PASS: 114 checks | 13:48:38-13:49:01
+SimpleResonance_from_Run50_DengeV1 | StartConditionRunner.Run | start profile: Run50_DengeV1 | PASS: 293 checks | 13:49:01-13:49:16
+Mechanics_from_Run50_DengeV1 | StartConditionRunner.Run | start profile: Run50_DengeV1 | PASS: 88 checks | 13:49:16-13:49:42
+Kirilma_from_Run50_DengeV1 | StartConditionRunner.Run | start profile: Run50_DengeV1 | PASS: 189 checks | 13:49:42-13:50:19
+HarvestBehavior_from_Run50_KirilmaV1 | StartConditionRunner.Run | start profile: Run50_KirilmaV1 | PASS: 114 checks | 13:50:19-13:50:39
+SimpleResonance_from_Run50_KirilmaV1 | StartConditionRunner.Run | start profile: Run50_KirilmaV1 | PASS: 293 checks | 13:50:39-13:50:54
+Mechanics_from_Run50_KirilmaV1 | StartConditionRunner.Run | start profile: Run50_KirilmaV1 | PASS: 88 checks | 13:50:54-13:51:19
+Kirilma_from_Run50_KirilmaV1 | StartConditionRunner.Run | start profile: Run50_KirilmaV1 | PASS: 189 checks | 13:51:19-13:51:56
+HarvestBehavior_from_Prototip10_DebugButce | StartConditionRunner.Run | start profile: Prototip10_DebugButce | PASS: 114 checks | 13:51:56-13:52:17
+SimpleResonance_from_Prototip10_DebugButce | StartConditionRunner.Run | start profile: Prototip10_DebugButce | PASS: 293 checks | 13:52:17-13:52:32
+HarvestBehavior_from_none | StartConditionRunner.Run | start profile: none | PASS: 114 checks | 13:52:32-13:52:52
+SimpleResonance_from_none | StartConditionRunner.Run | start profile: none | PASS: 293 checks | 13:52:52-13:53:07
+DengeV1Verification | DengeV1Verification.RunBatch | start profile:  | PASS: 86 checks | 13:53:07-13:53:32
+BossWeatherVerification | BossWeatherVerification.RunBatch | start profile:  | PASS: 22 checks | 13:53:32-13:53:44
+BossRewardVerification | BossRewardVerification.RunBatch | start profile:  | PASS: 127 checks | 13:53:44-13:54:28
+RunPrototypeVerification | RunPrototypeVerification.RunBatch | start profile:  | PASS: 69 checks | 13:54:28-13:55:18
+StartLoadoutVerification | StartLoadoutVerification.RunBatch | start profile:  | PASS: 88 checks | 13:55:18-13:56:01
+SpecializationVerification | SpecializationVerification.RunBatch | start profile:  | PASS: 100 checks | 13:56:01-13:58:49
+Run50ReferenceVerification | Run50ReferenceVerification.RunBatch | start profile:  | PASS: 70 checks | 13:58:49-14:01:05
+RoundPreviewVerification | RoundPreviewVerification.RunBatch | start profile:  | PASS: 47 checks | 14:01:05-14:01:35
+ContactRefactorVerification | ContactRefactorVerification.RunBatch | start profile:  | PASS: 175 checks | 14:01:35-14:01:47
+ElectricRevertVerification | ElectricRevertVerification.RunBatch | start profile:  | PASS: 40 checks | 14:01:47-14:02:23
+OptionsMenuVerification | OptionsMenuVerification.RunBatch | start profile:  | PASS 22 rows | 14:02:23-14:02:41

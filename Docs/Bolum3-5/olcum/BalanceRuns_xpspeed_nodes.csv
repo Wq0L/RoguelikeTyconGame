@@ -1,0 +1,1324 @@
+run,policy,farmer,scythe,seed,label,round,node,level,cost,currency
+1,Dengeli,bahcivan,standart,100,önce hız,1,Hızlı Eller - 1,1,7,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,1,Hızlı Eller - 1,2,9,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,1,Hızlı Eller - 1,3,11,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,2,Hızlı Eller - 2,1,12,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,2,Hızlı Eller - 2,2,14,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,2,Altın Hasat I - 1,1,7,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,3,Hızlı Eller - 3,1,16,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,3,Keskin Başlangıç - 1,1,5,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,3,Keskin Başlangıç - 1,2,7,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,4,Hızlı Eller - 3,2,18,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,4,Düzenli Üretim - 1,1,6,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,4,Hasat Deneyimi I - 1,1,6,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,5,Hızlı Eller - 4,1,20,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,6,Hızlı Eller - 4,2,22,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,9,Grid Genişleme I,1,30,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,9,Altın Hasat I - 1,2,9,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,9,Keskin Başlangıç - 1,3,8,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,9,Altın Hasat I - 1,3,11,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,11,Grid Genişleme I,2,30,Iron
+1,Dengeli,bahcivan,standart,100,önce hız,12,1×3 Saksı,1,30,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,12,Keskin Başlangıç - 2,1,10,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,12,Hasat Deneyimi I - 1,2,8,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,12,Patlayıcı Kartlar,1,15,Iron
+1,Dengeli,bahcivan,standart,100,önce hız,13,Düzenli Üretim - 1,2,8,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,13,Altın Hasat I - 2,1,13,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,13,Keskin Başlangıç - 2,2,11,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,13,Hasat Deneyimi I - 1,3,10,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,13,Altın Hasat I - 2,2,16,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,14,Keskin Başlangıç - 3,1,13,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,14,Düzenli Üretim - 1,3,10,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,14,Keskin Başlangıç - 3,2,14,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,14,Altın Hasat I - 3,1,18,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,14,Hasat Deneyimi I - 2,1,12,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,15,2×2 Saksı,1,80,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,15,Tornado Kartları,1,30,Iron
+1,Dengeli,bahcivan,standart,100,önce hız,16,Geniş Süpürüş - 1,1,21,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,16,Kesim Tekniği - 1,1,25,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,16,Düzenli Üretim - 2,1,12,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,16,Keskin Başlangıç - 4,1,16,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,16,Altın Hasat I - 3,2,20,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,17,Hasat Deneyimi I - 2,2,14,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,17,Geniş Süpürüş - 1,2,28,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,17,Kesim Tekniği - 1,2,35,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,17,Demir Hasat - 1,1,25,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,18,Keskin Başlangıç - 4,2,17,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,18,Çifte Hasat Kartları,1,25,Iron
+1,Dengeli,bahcivan,standart,100,önce hız,18,Düzenli Üretim - 2,2,13,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,18,Altın Hasat I - 4,1,22,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,18,Hasat Deneyimi I - 3,1,16,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,18,Geniş Süpürüş - 1,3,35,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,19,İlk Vazgeçiş,1,150,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,19,Kesim Tekniği - 1,3,40,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,20,Altın Hasat I - 4,2,24,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,20,Demir Hasat - 1,2,35,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,20,Düzenli Üretim - 3,1,15,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,20,Hasat Deneyimi I - 3,2,18,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,20,Geniş Süpürüş - 2,1,40,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,21,Çapraz Elektrik Kartları,1,50,Iron
+1,Dengeli,bahcivan,standart,100,önce hız,21,Kesim Tekniği - 2,1,50,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,21,2×3 Saksı,1,200,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,21,Düzenli Üretim - 3,2,17,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,22,Bumerang Orak Kartları,1,40,Iron
+1,Dengeli,bahcivan,standart,100,önce hız,22,Hasat Deneyimi I - 4,1,20,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,22,Demir Hasat - 1,3,40,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,22,Hasat Deneyimi I - 4,2,21,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,22,Düzenli Üretim - 4,1,19,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,22,Düzenli Üretim - 4,2,21,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,23,Akıcı Kesim - 1,1,160,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,23,Geniş Süpürüş - 2,2,45,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,23,Taş Hasat - 1,1,35,Iron
+1,Dengeli,bahcivan,standart,100,önce hız,23,Taş Hasat - 1,2,45,Iron
+1,Dengeli,bahcivan,standart,100,önce hız,24,Güçlü Kesim - 1,1,120,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,24,Hasat Rekoru - 1,1,180,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,25,Kesim Tekniği - 2,2,55,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,25,Demir Hasat - 2,1,50,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,25,Geniş Süpürüş - 3,1,55,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,25,Kesim Tekniği - 3,1,65,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,26,Akıcı Kesim - 1,2,210,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,26,Güçlü Kesim - 1,2,160,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,26,Verimli Üretim - 1,1,200,Iron
+1,Dengeli,bahcivan,standart,100,önce hız,26,Taş Hasat - 1,3,55,Iron
+1,Dengeli,bahcivan,standart,100,önce hız,27,Kritik Odak - 1,1,150,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,27,Hasat Rekoru - 1,2,240,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,28,Geniş Süpürüş - 3,2,60,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,28,Kesim Tekniği - 3,2,70,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,28,Demir Hasat - 2,2,55,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,28,Nadir Filizler - 1,1,230,Iron
+1,Dengeli,bahcivan,standart,100,önce hız,28,Geniş Süpürüş - 4,1,65,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,28,Demir Hasat - 3,1,65,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,29,Akıcı Kesim - 1,3,260,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,29,Güçlü Kesim - 1,3,195,Gold
+1,Dengeli,bahcivan,standart,100,önce hız,29,Taş Hasat - 2,1,65,Iron
+2,Dengeli,bahcivan,standart,101,önce hız,1,Hızlı Eller - 1,1,7,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,1,Hızlı Eller - 1,2,9,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,1,Hızlı Eller - 1,3,11,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,2,Hızlı Eller - 2,1,12,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,2,Hızlı Eller - 2,2,14,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,3,Hızlı Eller - 3,1,16,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,3,Hızlı Eller - 3,2,18,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,4,Hızlı Eller - 4,1,20,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,5,Hızlı Eller - 4,2,22,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,6,Altın Hasat I - 1,1,7,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,8,Keskin Başlangıç - 1,1,5,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,8,Grid Genişleme I,1,30,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,8,Keskin Başlangıç - 1,2,7,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,8,Altın Hasat I - 1,2,9,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,8,Düzenli Üretim - 1,1,6,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,9,Hasat Deneyimi I - 1,1,6,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,10,Keskin Başlangıç - 1,3,8,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,10,Altın Hasat I - 1,3,11,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,11,1×3 Saksı,1,30,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,11,Keskin Başlangıç - 2,1,10,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,11,Hasat Deneyimi I - 1,2,8,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,11,Patlayıcı Kartlar,1,15,Iron
+2,Dengeli,bahcivan,standart,101,önce hız,11,Tornado Kartları,1,30,Iron
+2,Dengeli,bahcivan,standart,101,önce hız,12,Düzenli Üretim - 1,2,8,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,12,Altın Hasat I - 2,1,13,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,12,Keskin Başlangıç - 2,2,11,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,12,Hasat Deneyimi I - 1,3,10,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,13,Altın Hasat I - 2,2,16,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,13,Keskin Başlangıç - 3,1,13,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,13,Düzenli Üretim - 1,3,10,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,14,Keskin Başlangıç - 3,2,14,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,14,Altın Hasat I - 3,1,18,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,14,Hasat Deneyimi I - 2,1,12,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,14,Düzenli Üretim - 2,1,12,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,14,Keskin Başlangıç - 4,1,16,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,14,Hasat Deneyimi I - 2,2,14,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,15,Altın Hasat I - 3,2,20,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,15,Keskin Başlangıç - 4,2,17,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,15,Düzenli Üretim - 2,2,13,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,15,Hasat Deneyimi I - 3,1,16,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,16,2×2 Saksı,1,80,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,16,Geniş Süpürüş - 1,1,21,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,16,Kesim Tekniği - 1,1,25,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,16,Geniş Süpürüş - 1,2,28,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,16,Çifte Hasat Kartları,1,25,Iron
+2,Dengeli,bahcivan,standart,101,önce hız,17,Kesim Tekniği - 1,2,35,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,17,Demir Hasat - 1,1,25,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,17,Altın Hasat I - 4,1,22,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,17,Geniş Süpürüş - 1,3,35,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,17,Altın Hasat I - 4,2,24,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,17,Demir Hasat - 1,2,35,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,17,Düzenli Üretim - 3,1,15,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,17,Hasat Deneyimi I - 3,2,18,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,18,İlk Vazgeçiş,1,150,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,18,Kesim Tekniği - 1,3,40,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,18,Geniş Süpürüş - 2,1,40,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,18,Kesim Tekniği - 2,1,50,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,19,Düzenli Üretim - 3,2,17,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,19,Hasat Deneyimi I - 4,1,20,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,19,Demir Hasat - 1,3,40,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,19,Hasat Deneyimi I - 4,2,21,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,19,Düzenli Üretim - 4,1,19,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,19,Düzenli Üretim - 4,2,21,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,20,Akıcı Kesim - 1,1,160,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,20,Geniş Süpürüş - 2,2,45,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,20,Güçlü Kesim - 1,1,120,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,21,Çapraz Elektrik Kartları,1,50,Iron
+2,Dengeli,bahcivan,standart,101,önce hız,21,Bumerang Orak Kartları,1,40,Iron
+2,Dengeli,bahcivan,standart,101,önce hız,21,Hasat Rekoru - 1,1,180,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,22,Grid Genişleme I,2,30,Iron
+2,Dengeli,bahcivan,standart,101,önce hız,22,2×3 Saksı,1,200,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,23,Kesim Tekniği - 2,2,55,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,23,Demir Hasat - 2,1,50,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,23,Geniş Süpürüş - 3,1,55,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,23,Taş Hasat - 1,1,35,Iron
+2,Dengeli,bahcivan,standart,101,önce hız,24,Kesim Tekniği - 3,1,65,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,24,Taş Hasat - 1,2,45,Iron
+2,Dengeli,bahcivan,standart,101,önce hız,25,Verimli Üretim - 1,1,200,Iron
+2,Dengeli,bahcivan,standart,101,önce hız,26,Akıcı Kesim - 1,2,210,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,26,Taş Hasat - 1,3,55,Iron
+2,Dengeli,bahcivan,standart,101,önce hız,27,Güçlü Kesim - 1,2,160,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,27,Kritik Odak - 1,1,150,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,27,Geniş Süpürüş - 3,2,60,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,27,Demir Hasat - 2,2,55,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,27,Nadir Filizler - 1,1,230,Iron
+2,Dengeli,bahcivan,standart,101,önce hız,27,Grid Genişleme II,1,100,Stone
+2,Dengeli,bahcivan,standart,101,önce hız,27,Zengin Cevher - 1,1,50,Stone
+2,Dengeli,bahcivan,standart,101,önce hız,28,Hasat Rekoru - 1,2,240,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,28,Kesim Tekniği - 3,2,70,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,28,Geniş Süpürüş - 4,1,65,Gold
+2,Dengeli,bahcivan,standart,101,önce hız,28,Taş Hasat - 2,1,65,Iron
+2,Dengeli,bahcivan,standart,101,önce hız,29,Akıcı Kesim - 1,3,260,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,1,Hızlı Eller - 1,1,7,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,1,Hızlı Eller - 1,2,9,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,1,Hızlı Eller - 1,3,11,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,2,Hızlı Eller - 2,1,12,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,2,Hızlı Eller - 2,2,14,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,2,Altın Hasat I - 1,1,7,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,2,Keskin Başlangıç - 1,1,5,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,3,Hızlı Eller - 3,1,16,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,3,Keskin Başlangıç - 1,2,7,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,4,Hızlı Eller - 3,2,18,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,4,Düzenli Üretim - 1,1,6,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,5,Hızlı Eller - 4,1,20,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,5,Hasat Deneyimi I - 1,1,6,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,6,Hızlı Eller - 4,2,22,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,8,Grid Genişleme I,1,30,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,8,Altın Hasat I - 1,2,9,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,9,Keskin Başlangıç - 1,3,8,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,9,Altın Hasat I - 1,3,11,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,10,1×3 Saksı,1,30,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,10,Keskin Başlangıç - 2,1,10,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,10,Patlayıcı Kartlar,1,15,Iron
+3,Dengeli,bahcivan,standart,102,önce hız,10,Tornado Kartları,1,30,Iron
+3,Dengeli,bahcivan,standart,102,önce hız,11,Hasat Deneyimi I - 1,2,8,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,11,Düzenli Üretim - 1,2,8,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,11,Altın Hasat I - 2,1,13,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,11,Keskin Başlangıç - 2,2,11,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,12,Hasat Deneyimi I - 1,3,10,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,12,Altın Hasat I - 2,2,16,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,12,Keskin Başlangıç - 3,1,13,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,13,Düzenli Üretim - 1,3,10,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,13,Keskin Başlangıç - 3,2,14,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,13,Altın Hasat I - 3,1,18,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,13,Hasat Deneyimi I - 2,1,12,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,13,Düzenli Üretim - 2,1,12,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,14,2×2 Saksı,1,80,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,14,Geniş Süpürüş - 1,1,21,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,14,Çifte Hasat Kartları,1,25,Iron
+3,Dengeli,bahcivan,standart,102,önce hız,15,Kesim Tekniği - 1,1,25,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,15,Keskin Başlangıç - 4,1,16,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,15,Altın Hasat I - 3,2,20,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,15,Hasat Deneyimi I - 2,2,14,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,16,Geniş Süpürüş - 1,2,28,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,16,Kesim Tekniği - 1,2,35,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,16,Demir Hasat - 1,1,25,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,16,Keskin Başlangıç - 4,2,17,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,16,Düzenli Üretim - 2,2,13,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,17,Altın Hasat I - 4,1,22,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,17,Hasat Deneyimi I - 3,1,16,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,17,Geniş Süpürüş - 1,3,35,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,17,Altın Hasat I - 4,2,24,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,18,İlk Vazgeçiş,1,150,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,18,Kesim Tekniği - 1,3,40,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,19,Demir Hasat - 1,2,35,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,19,Düzenli Üretim - 3,1,15,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,19,Hasat Deneyimi I - 3,2,18,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,19,Geniş Süpürüş - 2,1,40,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,19,Kesim Tekniği - 2,1,50,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,20,Düzenli Üretim - 3,2,17,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,20,Hasat Deneyimi I - 4,1,20,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,20,Demir Hasat - 1,3,40,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,20,Hasat Deneyimi I - 4,2,21,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,20,Düzenli Üretim - 4,1,19,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,20,Düzenli Üretim - 4,2,21,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,21,Çapraz Elektrik Kartları,1,50,Iron
+3,Dengeli,bahcivan,standart,102,önce hız,21,Bumerang Orak Kartları,1,40,Iron
+3,Dengeli,bahcivan,standart,102,önce hız,21,Akıcı Kesim - 1,1,160,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,21,Geniş Süpürüş - 2,2,45,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,22,Grid Genişleme I,2,30,Iron
+3,Dengeli,bahcivan,standart,102,önce hız,22,Demir Hasat - 2,1,50,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,23,2×3 Saksı,1,200,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,23,Taş Hasat - 1,1,35,Iron
+3,Dengeli,bahcivan,standart,102,önce hız,24,Güçlü Kesim - 1,1,120,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,25,Hasat Rekoru - 1,1,180,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,25,Kesim Tekniği - 2,2,55,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,25,Taş Hasat - 1,2,45,Iron
+3,Dengeli,bahcivan,standart,102,önce hız,26,Geniş Süpürüş - 3,1,55,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,26,Kesim Tekniği - 3,1,65,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,27,Akıcı Kesim - 1,2,210,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,28,Güçlü Kesim - 1,2,160,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,28,Taş Hasat - 1,3,55,Iron
+3,Dengeli,bahcivan,standart,102,önce hız,29,Kritik Odak - 1,1,150,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,29,Geniş Süpürüş - 3,2,60,Gold
+3,Dengeli,bahcivan,standart,102,önce hız,29,Demir Hasat - 2,2,55,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,1,Düzenli Üretim - 1,1,6,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,1,Hasat Deneyimi I - 1,1,6,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,1,Hasat Deneyimi I - 1,2,8,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,1,Altın Hasat I - 1,1,7,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,2,Hasat Deneyimi I - 1,3,10,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,2,Hasat Deneyimi I - 2,1,12,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,2,Hızlı Eller - 1,1,7,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,3,Hasat Deneyimi I - 2,2,14,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,3,Hasat Deneyimi I - 3,1,16,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,3,Keskin Başlangıç - 1,1,5,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,4,Hasat Deneyimi I - 3,2,18,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,4,Keskin Başlangıç - 1,2,7,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,5,Hasat Deneyimi I - 4,1,20,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,6,Hasat Deneyimi I - 4,2,21,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,8,Grid Genişleme I,1,30,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,9,Altın Hasat I - 1,2,9,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,9,Hızlı Eller - 1,2,9,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,9,Keskin Başlangıç - 1,3,8,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,11,Altın Hasat I - 1,3,11,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,11,Hızlı Eller - 1,3,11,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,11,Grid Genişleme I,2,30,Iron
+4,Dengeli,bahcivan,standart,100,önce XP,12,1×3 Saksı,1,30,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,12,Keskin Başlangıç - 2,1,10,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,12,Düzenli Üretim - 1,2,8,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,13,Altın Hasat I - 2,1,13,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,13,Hızlı Eller - 2,1,12,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,13,Keskin Başlangıç - 2,2,11,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,13,Patlayıcı Kartlar,1,15,Iron
+4,Dengeli,bahcivan,standart,100,önce XP,13,Altın Hasat I - 2,2,16,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,14,Hızlı Eller - 2,2,14,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,14,Keskin Başlangıç - 3,1,13,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,14,Düzenli Üretim - 1,3,10,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,14,Keskin Başlangıç - 3,2,14,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,14,Altın Hasat I - 3,1,18,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,15,Hızlı Eller - 3,1,16,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,15,Düzenli Üretim - 2,1,12,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,15,Keskin Başlangıç - 4,1,16,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,15,Altın Hasat I - 3,2,20,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,15,Hızlı Eller - 3,2,18,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,16,Keskin Başlangıç - 4,2,17,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,16,Tornado Kartları,1,30,Iron
+4,Dengeli,bahcivan,standart,100,önce XP,16,Düzenli Üretim - 2,2,13,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,16,Hızlı Eller - 4,1,20,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,16,Düzenli Üretim - 3,1,15,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,17,2×2 Saksı,1,80,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,18,Geniş Süpürüş - 1,1,21,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,18,Kesim Tekniği - 1,1,25,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,18,Geniş Süpürüş - 1,2,28,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,18,Kesim Tekniği - 1,2,35,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,18,Çifte Hasat Kartları,1,25,Iron
+4,Dengeli,bahcivan,standart,100,önce XP,19,Demir Hasat - 1,1,25,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,19,Altın Hasat I - 4,1,22,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,19,Geniş Süpürüş - 1,3,35,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,19,Altın Hasat I - 4,2,24,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,19,Hızlı Eller - 4,2,22,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,19,Demir Hasat - 1,2,35,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,19,Düzenli Üretim - 3,2,17,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,20,İlk Vazgeçiş,1,150,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,21,Kesim Tekniği - 1,3,40,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,21,Geniş Süpürüş - 2,1,40,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,21,Kesim Tekniği - 2,1,50,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,22,2×3 Saksı,1,200,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,22,Demir Hasat - 1,3,40,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,22,Düzenli Üretim - 4,1,19,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,22,Düzenli Üretim - 4,2,21,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,23,Çapraz Elektrik Kartları,1,50,Iron
+4,Dengeli,bahcivan,standart,100,önce XP,23,Akıcı Kesim - 1,1,160,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,23,Geniş Süpürüş - 2,2,45,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,24,Güçlü Kesim - 1,1,120,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,24,Hasat Rekoru - 1,1,180,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,24,Kesim Tekniği - 2,2,55,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,24,Demir Hasat - 2,1,50,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,25,Bumerang Orak Kartları,1,40,Iron
+4,Dengeli,bahcivan,standart,100,önce XP,25,Geniş Süpürüş - 3,1,55,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,25,Kesim Tekniği - 3,1,65,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,25,Taş Hasat - 1,1,35,Iron
+4,Dengeli,bahcivan,standart,100,önce XP,25,Taş Hasat - 1,2,45,Iron
+4,Dengeli,bahcivan,standart,100,önce XP,26,Akıcı Kesim - 1,2,210,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,26,Güçlü Kesim - 1,2,160,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,26,Kritik Odak - 1,1,150,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,27,Hasat Rekoru - 1,2,240,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,27,Geniş Süpürüş - 3,2,60,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,27,Kesim Tekniği - 3,2,70,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,27,Verimli Üretim - 1,1,200,Iron
+4,Dengeli,bahcivan,standart,100,önce XP,27,Taş Hasat - 1,3,55,Iron
+4,Dengeli,bahcivan,standart,100,önce XP,28,Demir Hasat - 2,2,55,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,28,Akıcı Kesim - 1,3,260,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,28,Nadir Filizler - 1,1,230,Iron
+4,Dengeli,bahcivan,standart,100,önce XP,29,Güçlü Kesim - 1,3,195,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,29,Altın Hasat II - 1,1,180,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,29,Geniş Tarama - 1,1,160,Gold
+4,Dengeli,bahcivan,standart,100,önce XP,29,Taş Hasat - 2,1,65,Iron
+5,Dengeli,bahcivan,standart,101,önce XP,1,Düzenli Üretim - 1,1,6,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,1,Hasat Deneyimi I - 1,1,6,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,1,Hasat Deneyimi I - 1,2,8,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,1,Altın Hasat I - 1,1,7,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,2,Hasat Deneyimi I - 1,3,10,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,2,Hasat Deneyimi I - 2,1,12,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,2,Hızlı Eller - 1,1,7,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,3,Hasat Deneyimi I - 2,2,14,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,3,Hasat Deneyimi I - 3,1,16,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,4,Hasat Deneyimi I - 3,2,18,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,4,Keskin Başlangıç - 1,1,5,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,4,Keskin Başlangıç - 1,2,7,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,6,Hasat Deneyimi I - 4,1,20,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,7,Hasat Deneyimi I - 4,2,21,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,8,Grid Genişleme I,1,30,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,9,Altın Hasat I - 1,2,9,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,9,Hızlı Eller - 1,2,9,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,10,Keskin Başlangıç - 1,3,8,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,10,Altın Hasat I - 1,3,11,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,11,Hızlı Eller - 1,3,11,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,11,1×3 Saksı,1,30,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,11,Patlayıcı Kartlar,1,15,Iron
+5,Dengeli,bahcivan,standart,101,önce XP,12,Keskin Başlangıç - 2,1,10,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,12,Düzenli Üretim - 1,2,8,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,12,Altın Hasat I - 2,1,13,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,12,Hızlı Eller - 2,1,12,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,13,Keskin Başlangıç - 2,2,11,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,13,Altın Hasat I - 2,2,16,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,13,Hızlı Eller - 2,2,14,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,13,Tornado Kartları,1,30,Iron
+5,Dengeli,bahcivan,standart,101,önce XP,14,Keskin Başlangıç - 3,1,13,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,14,Düzenli Üretim - 1,3,10,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,14,Keskin Başlangıç - 3,2,14,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,15,Altın Hasat I - 3,1,18,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,15,Hızlı Eller - 3,1,16,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,15,Düzenli Üretim - 2,1,12,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,16,2×2 Saksı,1,80,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,16,Çifte Hasat Kartları,1,25,Iron
+5,Dengeli,bahcivan,standart,101,önce XP,17,Geniş Süpürüş - 1,1,21,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,17,Kesim Tekniği - 1,1,25,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,17,Keskin Başlangıç - 4,1,16,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,17,Altın Hasat I - 3,2,20,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,18,Hızlı Eller - 3,2,18,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,18,Geniş Süpürüş - 1,2,28,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,18,Kesim Tekniği - 1,2,35,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,19,Demir Hasat - 1,1,25,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,19,Keskin Başlangıç - 4,2,17,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,19,Düzenli Üretim - 2,2,13,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,19,Altın Hasat I - 4,1,22,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,19,Hızlı Eller - 4,1,20,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,20,Geniş Süpürüş - 1,3,35,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,20,Altın Hasat I - 4,2,24,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,20,Hızlı Eller - 4,2,22,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,20,Düzenli Üretim - 3,1,15,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,20,Düzenli Üretim - 3,2,17,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,21,Demir Hasat - 1,2,35,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,21,Düzenli Üretim - 4,1,19,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,21,Düzenli Üretim - 4,2,21,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,22,İlk Vazgeçiş,1,150,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,22,Kesim Tekniği - 1,3,40,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,23,Geniş Süpürüş - 2,1,40,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,23,Kesim Tekniği - 2,1,50,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,23,Demir Hasat - 1,3,40,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,24,Akıcı Kesim - 1,1,160,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,24,Geniş Süpürüş - 2,2,45,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,25,Çapraz Elektrik Kartları,1,50,Iron
+5,Dengeli,bahcivan,standart,101,önce XP,25,Bumerang Orak Kartları,1,40,Iron
+5,Dengeli,bahcivan,standart,101,önce XP,25,Güçlü Kesim - 1,1,120,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,26,Grid Genişleme I,2,30,Iron
+5,Dengeli,bahcivan,standart,101,önce XP,26,2×3 Saksı,1,200,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,27,Hasat Rekoru - 1,1,180,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,27,Kesim Tekniği - 2,2,55,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,27,Demir Hasat - 2,1,50,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,27,Geniş Süpürüş - 3,1,55,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,27,Kesim Tekniği - 3,1,65,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,27,Taş Hasat - 1,1,35,Iron
+5,Dengeli,bahcivan,standart,101,önce XP,28,Akıcı Kesim - 1,2,210,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,28,Taş Hasat - 1,2,45,Iron
+5,Dengeli,bahcivan,standart,101,önce XP,29,Güçlü Kesim - 1,2,160,Gold
+5,Dengeli,bahcivan,standart,101,önce XP,29,Kritik Odak - 1,1,150,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,1,Düzenli Üretim - 1,1,6,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,1,Hasat Deneyimi I - 1,1,6,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,1,Hasat Deneyimi I - 1,2,8,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,1,Hasat Deneyimi I - 1,3,10,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,2,Hasat Deneyimi I - 2,1,12,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,2,Hasat Deneyimi I - 2,2,14,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,3,Hasat Deneyimi I - 3,1,16,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,3,Altın Hasat I - 1,1,7,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,3,Hızlı Eller - 1,1,7,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,4,Hasat Deneyimi I - 3,2,18,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,4,Keskin Başlangıç - 1,1,5,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,4,Keskin Başlangıç - 1,2,7,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,5,Hasat Deneyimi I - 4,1,20,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,6,Hasat Deneyimi I - 4,2,21,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,7,Grid Genişleme I,1,30,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,7,Altın Hasat I - 1,2,9,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,8,Hızlı Eller - 1,2,9,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,9,Keskin Başlangıç - 1,3,8,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,9,Altın Hasat I - 1,3,11,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,10,Hızlı Eller - 1,3,11,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,11,1×3 Saksı,1,30,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,11,Keskin Başlangıç - 2,1,10,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,11,Patlayıcı Kartlar,1,15,Iron
+6,Dengeli,bahcivan,standart,102,önce XP,11,Tornado Kartları,1,30,Iron
+6,Dengeli,bahcivan,standart,102,önce XP,12,Düzenli Üretim - 1,2,8,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,12,Altın Hasat I - 2,1,13,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,12,Hızlı Eller - 2,1,12,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,13,Keskin Başlangıç - 2,2,11,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,13,Altın Hasat I - 2,2,16,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,14,Hızlı Eller - 2,2,14,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,14,Keskin Başlangıç - 3,1,13,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,14,Düzenli Üretim - 1,3,10,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,14,Keskin Başlangıç - 3,2,14,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,15,Altın Hasat I - 3,1,18,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,15,Hızlı Eller - 3,1,16,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,15,Düzenli Üretim - 2,1,12,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,15,Keskin Başlangıç - 4,1,16,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,15,Düzenli Üretim - 2,2,13,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,16,2×2 Saksı,1,80,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,16,Çifte Hasat Kartları,1,25,Iron
+6,Dengeli,bahcivan,standart,102,önce XP,17,Geniş Süpürüş - 1,1,21,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,17,Kesim Tekniği - 1,1,25,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,17,Altın Hasat I - 3,2,20,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,17,Hızlı Eller - 3,2,18,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,18,Geniş Süpürüş - 1,2,28,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,18,Kesim Tekniği - 1,2,35,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,18,Demir Hasat - 1,1,25,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,19,Keskin Başlangıç - 4,2,17,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,19,Altın Hasat I - 4,1,22,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,19,Hızlı Eller - 4,1,20,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,19,Geniş Süpürüş - 1,3,35,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,19,Düzenli Üretim - 3,1,15,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,20,Altın Hasat I - 4,2,24,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,20,Hızlı Eller - 4,2,22,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,20,Düzenli Üretim - 3,2,17,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,21,Demir Hasat - 1,2,35,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,21,Düzenli Üretim - 4,1,19,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,21,Düzenli Üretim - 4,2,21,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,22,İlk Vazgeçiş,1,150,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,22,Kesim Tekniği - 1,3,40,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,22,Çapraz Elektrik Kartları,1,50,Iron
+6,Dengeli,bahcivan,standart,102,önce XP,22,Geniş Süpürüş - 2,1,40,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,23,Kesim Tekniği - 2,1,50,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,23,Demir Hasat - 1,3,40,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,24,Akıcı Kesim - 1,1,160,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,24,Geniş Süpürüş - 2,2,45,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,24,Güçlü Kesim - 1,1,120,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,25,Bumerang Orak Kartları,1,40,Iron
+6,Dengeli,bahcivan,standart,102,önce XP,25,Hasat Rekoru - 1,1,180,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,26,Grid Genişleme I,2,30,Iron
+6,Dengeli,bahcivan,standart,102,önce XP,26,Demir Hasat - 2,1,50,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,26,Taş Hasat - 1,1,35,Iron
+6,Dengeli,bahcivan,standart,102,önce XP,27,2×3 Saksı,1,200,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,27,Kesim Tekniği - 2,2,55,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,28,Geniş Süpürüş - 3,1,55,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,28,Kesim Tekniği - 3,1,65,Gold
+6,Dengeli,bahcivan,standart,102,önce XP,28,Taş Hasat - 1,2,45,Iron
+7,Dengeli,bahcivan,standart,100,önce ekonomi,1,Altın Hasat I - 1,1,7,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,1,Altın Hasat I - 1,2,9,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,1,Altın Hasat I - 1,3,11,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,2,Altın Hasat I - 2,1,13,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,2,Altın Hasat I - 2,2,16,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,3,Altın Hasat I - 3,1,18,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,3,Altın Hasat I - 3,2,20,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,4,Altın Hasat I - 4,1,22,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,5,Altın Hasat I - 4,2,24,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,5,Hızlı Eller - 1,1,7,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,5,Keskin Başlangıç - 1,1,5,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,5,Keskin Başlangıç - 1,2,7,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,6,Düzenli Üretim - 1,1,6,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,6,Hasat Deneyimi I - 1,1,6,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,7,Grid Genişleme I,1,30,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,7,Hızlı Eller - 1,2,9,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,7,Keskin Başlangıç - 1,3,8,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,7,Hızlı Eller - 1,3,11,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,9,1×3 Saksı,1,30,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,9,Keskin Başlangıç - 2,1,10,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,9,Hasat Deneyimi I - 1,2,8,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,9,Düzenli Üretim - 1,2,8,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,9,Hızlı Eller - 2,1,12,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,9,Patlayıcı Kartlar,1,15,Iron
+7,Dengeli,bahcivan,standart,100,önce ekonomi,11,Keskin Başlangıç - 2,2,11,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,11,Hasat Deneyimi I - 1,3,10,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,11,Hızlı Eller - 2,2,14,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,11,Keskin Başlangıç - 3,1,13,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,11,Düzenli Üretim - 1,3,10,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,11,Keskin Başlangıç - 3,2,14,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,11,Tornado Kartları,1,30,Iron
+7,Dengeli,bahcivan,standart,100,önce ekonomi,12,Hasat Deneyimi I - 2,1,12,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,12,Hızlı Eller - 3,1,16,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,12,Düzenli Üretim - 2,1,12,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,12,Keskin Başlangıç - 4,1,16,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,12,Hızlı Eller - 3,2,18,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,12,Hasat Deneyimi I - 2,2,14,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,12,Düzenli Üretim - 2,2,13,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,13,2×2 Saksı,1,80,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,13,Geniş Süpürüş - 1,1,21,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,13,Kesim Tekniği - 1,1,25,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,13,Çifte Hasat Kartları,1,25,Iron
+7,Dengeli,bahcivan,standart,100,önce ekonomi,14,Geniş Süpürüş - 1,2,28,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,14,Kesim Tekniği - 1,2,35,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,14,Demir Hasat - 1,1,25,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,14,Keskin Başlangıç - 4,2,17,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,14,Hızlı Eller - 4,1,20,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,14,Hasat Deneyimi I - 3,1,16,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,14,Geniş Süpürüş - 1,3,35,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,14,Hızlı Eller - 4,2,22,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,14,Demir Hasat - 1,2,35,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,15,İlk Vazgeçiş,1,150,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,15,Kesim Tekniği - 1,3,40,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,15,Düzenli Üretim - 3,1,15,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,16,Çapraz Elektrik Kartları,1,50,Iron
+7,Dengeli,bahcivan,standart,100,önce ekonomi,16,Hasat Deneyimi I - 3,2,18,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,16,Geniş Süpürüş - 2,1,40,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,16,Kesim Tekniği - 2,1,50,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,16,Bumerang Orak Kartları,1,40,Iron
+7,Dengeli,bahcivan,standart,100,önce ekonomi,16,Düzenli Üretim - 3,2,17,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,16,Hasat Deneyimi I - 4,1,20,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,16,Demir Hasat - 1,3,40,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,16,Hasat Deneyimi I - 4,2,21,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,17,Akıcı Kesim - 1,1,160,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,17,Grid Genişleme I,2,30,Iron
+7,Dengeli,bahcivan,standart,100,önce ekonomi,18,Geniş Süpürüş - 2,2,45,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,18,Düzenli Üretim - 4,1,19,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,18,Demir Hasat - 2,1,50,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,18,Düzenli Üretim - 4,2,21,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,19,2×3 Saksı,1,200,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,20,Güçlü Kesim - 1,1,120,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,20,Taş Hasat - 1,1,35,Iron
+7,Dengeli,bahcivan,standart,100,önce ekonomi,21,Hasat Rekoru - 1,1,180,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,21,Kesim Tekniği - 2,2,55,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,21,Geniş Süpürüş - 3,1,55,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,21,Taş Hasat - 1,2,45,Iron
+7,Dengeli,bahcivan,standart,100,önce ekonomi,22,Kesim Tekniği - 3,1,65,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,23,Akıcı Kesim - 1,2,210,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,23,Verimli Üretim - 1,1,200,Iron
+7,Dengeli,bahcivan,standart,100,önce ekonomi,24,Güçlü Kesim - 1,2,160,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,24,Taş Hasat - 1,3,55,Iron
+7,Dengeli,bahcivan,standart,100,önce ekonomi,25,Kritik Odak - 1,1,150,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,25,Hasat Rekoru - 1,2,240,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,26,Geniş Süpürüş - 3,2,60,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,26,Kesim Tekniği - 3,2,70,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,26,Demir Hasat - 2,2,55,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,26,Geniş Süpürüş - 4,1,65,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,26,Demir Hasat - 3,1,65,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,27,Akıcı Kesim - 1,3,260,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,27,Nadir Filizler - 1,1,230,Iron
+7,Dengeli,bahcivan,standart,100,önce ekonomi,27,Taş Hasat - 2,1,65,Iron
+7,Dengeli,bahcivan,standart,100,önce ekonomi,28,Güçlü Kesim - 1,3,195,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,28,Grid Genişleme II,1,100,Stone
+7,Dengeli,bahcivan,standart,100,önce ekonomi,29,Altın Hasat II - 1,1,180,Gold
+7,Dengeli,bahcivan,standart,100,önce ekonomi,29,Geniş Tarama - 1,1,160,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,1,Altın Hasat I - 1,1,7,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,1,Altın Hasat I - 1,2,9,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,1,Altın Hasat I - 1,3,11,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,2,Altın Hasat I - 2,1,13,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,2,Altın Hasat I - 2,2,16,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,3,Altın Hasat I - 3,1,18,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,3,Altın Hasat I - 3,2,20,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,3,Hızlı Eller - 1,1,7,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,4,Altın Hasat I - 4,1,22,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,5,Altın Hasat I - 4,2,24,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,5,Keskin Başlangıç - 1,1,5,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,6,Keskin Başlangıç - 1,2,7,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,6,Düzenli Üretim - 1,1,6,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,7,Grid Genişleme I,1,30,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,7,Hızlı Eller - 1,2,9,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,7,Hasat Deneyimi I - 1,1,6,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,8,Keskin Başlangıç - 1,3,8,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,8,Hızlı Eller - 1,3,11,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,8,1×3 Saksı,1,30,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,8,Keskin Başlangıç - 2,1,10,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,9,Hasat Deneyimi I - 1,2,8,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,9,Düzenli Üretim - 1,2,8,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,9,Hızlı Eller - 2,1,12,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,9,Keskin Başlangıç - 2,2,11,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,9,Patlayıcı Kartlar,1,15,Iron
+8,Dengeli,bahcivan,standart,101,önce ekonomi,9,Hasat Deneyimi I - 1,3,10,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,10,Hızlı Eller - 2,2,14,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,10,Keskin Başlangıç - 3,1,13,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,10,Düzenli Üretim - 1,3,10,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,10,Keskin Başlangıç - 3,2,14,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,11,Hasat Deneyimi I - 2,1,12,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,11,Hızlı Eller - 3,1,16,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,11,Düzenli Üretim - 2,1,12,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,11,Keskin Başlangıç - 4,1,16,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,11,Hasat Deneyimi I - 2,2,14,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,12,Hızlı Eller - 3,2,18,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,12,Keskin Başlangıç - 4,2,17,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,12,Düzenli Üretim - 2,2,13,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,12,Hızlı Eller - 4,1,20,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,13,2×2 Saksı,1,80,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,13,Tornado Kartları,1,30,Iron
+8,Dengeli,bahcivan,standart,101,önce ekonomi,14,Geniş Süpürüş - 1,1,21,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,14,Kesim Tekniği - 1,1,25,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,14,Geniş Süpürüş - 1,2,28,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,15,Kesim Tekniği - 1,2,35,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,15,Demir Hasat - 1,1,25,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,15,Çifte Hasat Kartları,1,25,Iron
+8,Dengeli,bahcivan,standart,101,önce ekonomi,15,Hasat Deneyimi I - 3,1,16,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,15,Geniş Süpürüş - 1,3,35,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,15,Hızlı Eller - 4,2,22,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,16,İlk Vazgeçiş,1,150,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,17,Kesim Tekniği - 1,3,40,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,17,Demir Hasat - 1,2,35,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,17,Düzenli Üretim - 3,1,15,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,17,Hasat Deneyimi I - 3,2,18,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,17,Geniş Süpürüş - 2,1,40,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,17,Kesim Tekniği - 2,1,50,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,18,Çapraz Elektrik Kartları,1,50,Iron
+8,Dengeli,bahcivan,standart,101,önce ekonomi,18,Düzenli Üretim - 3,2,17,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,18,Hasat Deneyimi I - 4,1,20,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,18,Demir Hasat - 1,3,40,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,18,Hasat Deneyimi I - 4,2,21,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,18,Düzenli Üretim - 4,1,19,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,18,Düzenli Üretim - 4,2,21,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,19,Bumerang Orak Kartları,1,40,Iron
+8,Dengeli,bahcivan,standart,101,önce ekonomi,19,Akıcı Kesim - 1,1,160,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,19,Geniş Süpürüş - 2,2,45,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,20,Grid Genişleme I,2,30,Iron
+8,Dengeli,bahcivan,standart,101,önce ekonomi,20,Demir Hasat - 2,1,50,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,21,2×3 Saksı,1,200,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,21,Taş Hasat - 1,1,35,Iron
+8,Dengeli,bahcivan,standart,101,önce ekonomi,22,Güçlü Kesim - 1,1,120,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,23,Hasat Rekoru - 1,1,180,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,23,Kesim Tekniği - 2,2,55,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,23,Geniş Süpürüş - 3,1,55,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,23,Taş Hasat - 1,2,45,Iron
+8,Dengeli,bahcivan,standart,101,önce ekonomi,24,Kesim Tekniği - 3,1,65,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,24,Akıcı Kesim - 1,2,210,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,25,Güçlü Kesim - 1,2,160,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,26,Kritik Odak - 1,1,150,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,26,Geniş Süpürüş - 3,2,60,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,27,Hasat Rekoru - 1,2,240,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,27,Kesim Tekniği - 3,2,70,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,27,Demir Hasat - 2,2,55,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,27,Verimli Üretim - 1,1,200,Iron
+8,Dengeli,bahcivan,standart,101,önce ekonomi,28,Akıcı Kesim - 1,3,260,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,28,Taş Hasat - 1,3,55,Iron
+8,Dengeli,bahcivan,standart,101,önce ekonomi,29,Güçlü Kesim - 1,3,195,Gold
+8,Dengeli,bahcivan,standart,101,önce ekonomi,29,Nadir Filizler - 1,1,230,Iron
+9,Dengeli,bahcivan,standart,102,önce ekonomi,1,Altın Hasat I - 1,1,7,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,1,Altın Hasat I - 1,2,9,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,1,Altın Hasat I - 1,3,11,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,2,Altın Hasat I - 2,1,13,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,2,Altın Hasat I - 2,2,16,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,3,Altın Hasat I - 3,1,18,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,3,Altın Hasat I - 3,2,20,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,3,Hızlı Eller - 1,1,7,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,4,Altın Hasat I - 4,1,22,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,4,Altın Hasat I - 4,2,24,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,4,Keskin Başlangıç - 1,1,5,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,5,Keskin Başlangıç - 1,2,7,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,6,Düzenli Üretim - 1,1,6,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,6,Hasat Deneyimi I - 1,1,6,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,7,Grid Genişleme I,1,30,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,7,Hızlı Eller - 1,2,9,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,7,Keskin Başlangıç - 1,3,8,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,7,Hızlı Eller - 1,3,11,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,8,1×3 Saksı,1,30,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,8,Keskin Başlangıç - 2,1,10,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,8,Patlayıcı Kartlar,1,15,Iron
+9,Dengeli,bahcivan,standart,102,önce ekonomi,9,Hasat Deneyimi I - 1,2,8,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,9,Düzenli Üretim - 1,2,8,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,9,Hızlı Eller - 2,1,12,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,9,Keskin Başlangıç - 2,2,11,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,9,Hasat Deneyimi I - 1,3,10,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,11,Hızlı Eller - 2,2,14,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,11,Keskin Başlangıç - 3,1,13,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,11,Düzenli Üretim - 1,3,10,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,11,Keskin Başlangıç - 3,2,14,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,11,Hasat Deneyimi I - 2,1,12,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,12,Hızlı Eller - 3,1,16,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,12,Düzenli Üretim - 2,1,12,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,12,Keskin Başlangıç - 4,1,16,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,12,Hızlı Eller - 3,2,18,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,12,Hasat Deneyimi I - 2,2,14,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,12,Tornado Kartları,1,30,Iron
+9,Dengeli,bahcivan,standart,102,önce ekonomi,13,2×2 Saksı,1,80,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,14,Geniş Süpürüş - 1,1,21,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,14,Kesim Tekniği - 1,1,25,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,14,Geniş Süpürüş - 1,2,28,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,14,Kesim Tekniği - 1,2,35,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,15,Demir Hasat - 1,1,25,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,15,Keskin Başlangıç - 4,2,17,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,15,Düzenli Üretim - 2,2,13,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,15,Hızlı Eller - 4,1,20,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,15,Hasat Deneyimi I - 3,1,16,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,16,Çifte Hasat Kartları,1,25,Iron
+9,Dengeli,bahcivan,standart,102,önce ekonomi,16,Geniş Süpürüş - 1,3,35,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,16,Hızlı Eller - 4,2,22,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,16,Demir Hasat - 1,2,35,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,16,Düzenli Üretim - 3,1,15,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,16,Hasat Deneyimi I - 3,2,18,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,16,Düzenli Üretim - 3,2,17,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,16,Hasat Deneyimi I - 4,1,20,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,17,Hasat Deneyimi I - 4,2,21,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,17,Düzenli Üretim - 4,1,19,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,17,Düzenli Üretim - 4,2,21,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,18,İlk Vazgeçiş,1,150,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,18,Kesim Tekniği - 1,3,40,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,18,Geniş Süpürüş - 2,1,40,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,19,Çapraz Elektrik Kartları,1,50,Iron
+9,Dengeli,bahcivan,standart,102,önce ekonomi,19,Kesim Tekniği - 2,1,50,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,19,Demir Hasat - 1,3,40,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,20,Bumerang Orak Kartları,1,40,Iron
+9,Dengeli,bahcivan,standart,102,önce ekonomi,20,Akıcı Kesim - 1,1,160,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,20,Geniş Süpürüş - 2,2,45,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,21,Grid Genişleme I,2,30,Iron
+9,Dengeli,bahcivan,standart,102,önce ekonomi,21,2×3 Saksı,1,200,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,21,Taş Hasat - 1,1,35,Iron
+9,Dengeli,bahcivan,standart,102,önce ekonomi,22,Güçlü Kesim - 1,1,120,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,22,Taş Hasat - 1,2,45,Iron
+9,Dengeli,bahcivan,standart,102,önce ekonomi,23,Hasat Rekoru - 1,1,180,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,23,Kesim Tekniği - 2,2,55,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,23,Demir Hasat - 2,1,50,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,24,Geniş Süpürüş - 3,1,55,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,24,Kesim Tekniği - 3,1,65,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,25,Akıcı Kesim - 1,2,210,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,26,Güçlü Kesim - 1,2,160,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,26,Kritik Odak - 1,1,150,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,26,Verimli Üretim - 1,1,200,Iron
+9,Dengeli,bahcivan,standart,102,önce ekonomi,27,Hasat Rekoru - 1,2,240,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,27,Geniş Süpürüş - 3,2,60,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,27,Taş Hasat - 1,3,55,Iron
+9,Dengeli,bahcivan,standart,102,önce ekonomi,28,Kesim Tekniği - 3,2,70,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,28,Demir Hasat - 2,2,55,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,28,Nadir Filizler - 1,1,230,Iron
+9,Dengeli,bahcivan,standart,102,önce ekonomi,28,Geniş Süpürüş - 4,1,65,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,28,Demir Hasat - 3,1,65,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,28,Zengin Cevher - 1,1,50,Stone
+9,Dengeli,bahcivan,standart,102,önce ekonomi,29,Akıcı Kesim - 1,3,260,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,29,Güçlü Kesim - 1,3,195,Gold
+9,Dengeli,bahcivan,standart,102,önce ekonomi,29,Taş Hasat - 2,1,65,Iron
+10,Dengeli,bahcivan,standart,100,önce hasar,1,Keskin Başlangıç - 1,1,5,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,1,Keskin Başlangıç - 1,2,7,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,1,Keskin Başlangıç - 1,3,8,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,1,Altın Hasat I - 1,1,7,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,2,Keskin Başlangıç - 2,1,10,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,2,Keskin Başlangıç - 2,2,11,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,2,Keskin Başlangıç - 3,1,13,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,3,Keskin Başlangıç - 3,2,14,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,3,Keskin Başlangıç - 4,1,16,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,4,Keskin Başlangıç - 4,2,17,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,6,Hızlı Eller - 1,1,7,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,6,Düzenli Üretim - 1,1,6,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,7,Grid Genişleme I,1,30,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,7,Altın Hasat I - 1,2,9,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,7,Hızlı Eller - 1,2,9,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,7,Hasat Deneyimi I - 1,1,6,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,7,Altın Hasat I - 1,3,11,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,9,Hızlı Eller - 1,3,11,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,11,1×3 Saksı,1,30,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,11,Hasat Deneyimi I - 1,2,8,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,11,Düzenli Üretim - 1,2,8,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,11,Altın Hasat I - 2,1,13,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,11,Hızlı Eller - 2,1,12,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,11,Patlayıcı Kartlar,1,15,Iron
+10,Dengeli,bahcivan,standart,100,önce hasar,11,Tornado Kartları,1,30,Iron
+10,Dengeli,bahcivan,standart,100,önce hasar,12,Hasat Deneyimi I - 1,3,10,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,12,Altın Hasat I - 2,2,16,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,12,Hızlı Eller - 2,2,14,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,12,Düzenli Üretim - 1,3,10,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,12,Altın Hasat I - 3,1,18,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,12,Hasat Deneyimi I - 2,1,12,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,12,Hızlı Eller - 3,1,16,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,12,Düzenli Üretim - 2,1,12,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,13,2×2 Saksı,1,80,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,13,Geniş Süpürüş - 1,1,21,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,13,Kesim Tekniği - 1,1,25,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,13,Altın Hasat I - 3,2,20,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,13,Hızlı Eller - 3,2,18,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,13,Çifte Hasat Kartları,1,25,Iron
+10,Dengeli,bahcivan,standart,100,önce hasar,14,Hasat Deneyimi I - 2,2,14,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,14,Geniş Süpürüş - 1,2,28,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,14,Kesim Tekniği - 1,2,35,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,14,Demir Hasat - 1,1,25,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,14,Düzenli Üretim - 2,2,13,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,14,Altın Hasat I - 4,1,22,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,14,Hızlı Eller - 4,1,20,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,14,Hasat Deneyimi I - 3,1,16,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,14,Geniş Süpürüş - 1,3,35,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,15,İlk Vazgeçiş,1,150,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,16,Kesim Tekniği - 1,3,40,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,16,Altın Hasat I - 4,2,24,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,16,Hızlı Eller - 4,2,22,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,16,Demir Hasat - 1,2,35,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,16,Düzenli Üretim - 3,1,15,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,16,Hasat Deneyimi I - 3,2,18,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,16,Geniş Süpürüş - 2,1,40,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,16,Kesim Tekniği - 2,1,50,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,16,Düzenli Üretim - 3,2,17,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,16,Hasat Deneyimi I - 4,1,20,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,16,Demir Hasat - 1,3,40,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,16,Hasat Deneyimi I - 4,2,21,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,17,Akıcı Kesim - 1,1,160,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,17,Geniş Süpürüş - 2,2,45,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,17,Düzenli Üretim - 4,1,19,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,17,Düzenli Üretim - 4,2,21,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,18,Çapraz Elektrik Kartları,1,50,Iron
+10,Dengeli,bahcivan,standart,100,önce hasar,18,Güçlü Kesim - 1,1,120,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,18,Hasat Rekoru - 1,1,180,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,19,Bumerang Orak Kartları,1,40,Iron
+10,Dengeli,bahcivan,standart,100,önce hasar,19,Grid Genişleme I,2,30,Iron
+10,Dengeli,bahcivan,standart,100,önce hasar,19,2×3 Saksı,1,200,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,19,Kesim Tekniği - 2,2,55,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,20,Demir Hasat - 2,1,50,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,20,Geniş Süpürüş - 3,1,55,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,21,Kesim Tekniği - 3,1,65,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,21,Taş Hasat - 1,1,35,Iron
+10,Dengeli,bahcivan,standart,100,önce hasar,22,Akıcı Kesim - 1,2,210,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,22,Taş Hasat - 1,2,45,Iron
+10,Dengeli,bahcivan,standart,100,önce hasar,23,Güçlü Kesim - 1,2,160,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,23,Kritik Odak - 1,1,150,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,23,Geniş Süpürüş - 3,2,60,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,23,Demir Hasat - 2,2,55,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,24,Hasat Rekoru - 1,2,240,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,24,Kesim Tekniği - 3,2,70,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,24,Verimli Üretim - 1,1,200,Iron
+10,Dengeli,bahcivan,standart,100,önce hasar,25,Akıcı Kesim - 1,3,260,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,25,Güçlü Kesim - 1,3,195,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,25,Taş Hasat - 1,3,55,Iron
+10,Dengeli,bahcivan,standart,100,önce hasar,26,Altın Hasat II - 1,1,180,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,26,Geniş Tarama - 1,1,160,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,26,Kritik Odak - 1,2,195,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,27,Nadir Filizler - 1,1,230,Iron
+10,Dengeli,bahcivan,standart,100,önce hasar,27,Geniş Süpürüş - 4,1,65,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,27,Kesim Tekniği - 4,1,80,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,27,Demir Hasat - 3,1,65,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,27,Hasat Rekoru - 1,3,290,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,28,Akıcı Kesim - 2,1,310,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,28,Taş Hasat - 2,1,65,Iron
+10,Dengeli,bahcivan,standart,100,önce hasar,29,Güçlü Kesim - 2,1,230,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,29,Altın Hasat II - 1,2,240,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,29,Geniş Süpürüş - 4,2,70,Gold
+10,Dengeli,bahcivan,standart,100,önce hasar,29,Grid Genişleme II,1,100,Stone
+11,Dengeli,bahcivan,standart,101,önce hasar,1,Keskin Başlangıç - 1,1,5,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,1,Keskin Başlangıç - 1,2,7,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,1,Keskin Başlangıç - 1,3,8,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,1,Altın Hasat I - 1,1,7,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,2,Keskin Başlangıç - 2,1,10,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,2,Keskin Başlangıç - 2,2,11,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,2,Keskin Başlangıç - 3,1,13,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,3,Keskin Başlangıç - 3,2,14,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,3,Keskin Başlangıç - 4,1,16,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,3,Hızlı Eller - 1,1,7,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,4,Keskin Başlangıç - 4,2,17,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,6,Düzenli Üretim - 1,1,6,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,7,Grid Genişleme I,1,30,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,7,Altın Hasat I - 1,2,9,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,8,Hızlı Eller - 1,2,9,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,9,Hasat Deneyimi I - 1,1,6,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,10,Altın Hasat I - 1,3,11,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,10,Hızlı Eller - 1,3,11,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,10,1×3 Saksı,1,30,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,10,Patlayıcı Kartlar,1,15,Iron
+11,Dengeli,bahcivan,standart,101,önce hasar,10,Tornado Kartları,1,30,Iron
+11,Dengeli,bahcivan,standart,101,önce hasar,11,Hasat Deneyimi I - 1,2,8,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,11,Düzenli Üretim - 1,2,8,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,11,Altın Hasat I - 2,1,13,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,11,Hızlı Eller - 2,1,12,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,11,Hasat Deneyimi I - 1,3,10,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,11,Altın Hasat I - 2,2,16,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,12,Hızlı Eller - 2,2,14,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,12,Düzenli Üretim - 1,3,10,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,12,Altın Hasat I - 3,1,18,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,12,Hasat Deneyimi I - 2,1,12,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,13,Hızlı Eller - 3,1,16,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,13,Düzenli Üretim - 2,1,12,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,13,Altın Hasat I - 3,2,20,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,13,Hızlı Eller - 3,2,18,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,13,Hasat Deneyimi I - 2,2,14,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,13,Düzenli Üretim - 2,2,13,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,14,2×2 Saksı,1,80,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,14,Geniş Süpürüş - 1,1,21,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,14,Kesim Tekniği - 1,1,25,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,14,Geniş Süpürüş - 1,2,28,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,14,Çifte Hasat Kartları,1,25,Iron
+11,Dengeli,bahcivan,standart,101,önce hasar,15,Kesim Tekniği - 1,2,35,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,15,Demir Hasat - 1,1,25,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,15,Altın Hasat I - 4,1,22,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,15,Hızlı Eller - 4,1,20,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,15,Hasat Deneyimi I - 3,1,16,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,15,Geniş Süpürüş - 1,3,35,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,15,Altın Hasat I - 4,2,24,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,15,Hızlı Eller - 4,2,22,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,15,Düzenli Üretim - 3,1,15,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,16,İlk Vazgeçiş,1,150,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,16,Kesim Tekniği - 1,3,40,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,16,Çapraz Elektrik Kartları,1,50,Iron
+11,Dengeli,bahcivan,standart,101,önce hasar,16,Demir Hasat - 1,2,35,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,17,Hasat Deneyimi I - 3,2,18,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,17,Geniş Süpürüş - 2,1,40,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,17,Kesim Tekniği - 2,1,50,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,17,Bumerang Orak Kartları,1,40,Iron
+11,Dengeli,bahcivan,standart,101,önce hasar,17,Düzenli Üretim - 3,2,17,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,17,Hasat Deneyimi I - 4,1,20,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,17,Demir Hasat - 1,3,40,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,18,Akıcı Kesim - 1,1,160,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,18,Geniş Süpürüş - 2,2,45,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,18,Grid Genişleme I,2,30,Iron
+11,Dengeli,bahcivan,standart,101,önce hasar,18,Hasat Deneyimi I - 4,2,21,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,18,Düzenli Üretim - 4,1,19,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,18,Taş Hasat - 1,1,35,Iron
+11,Dengeli,bahcivan,standart,101,önce hasar,19,Demir Hasat - 2,1,50,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,19,Düzenli Üretim - 4,2,21,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,20,Taş Hasat - 1,2,45,Iron
+11,Dengeli,bahcivan,standart,101,önce hasar,21,2×3 Saksı,1,200,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,21,Güçlü Kesim - 1,1,120,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,22,Hasat Rekoru - 1,1,180,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,22,Kesim Tekniği - 2,2,55,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,22,Geniş Süpürüş - 3,1,55,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,23,Kesim Tekniği - 3,1,65,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,23,Verimli Üretim - 1,1,200,Iron
+11,Dengeli,bahcivan,standart,101,önce hasar,24,Akıcı Kesim - 1,2,210,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,24,Taş Hasat - 1,3,55,Iron
+11,Dengeli,bahcivan,standart,101,önce hasar,25,Güçlü Kesim - 1,2,160,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,26,Kritik Odak - 1,1,150,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,26,Geniş Süpürüş - 3,2,60,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,26,Demir Hasat - 2,2,55,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,26,Nadir Filizler - 1,1,230,Iron
+11,Dengeli,bahcivan,standart,101,önce hasar,27,Hasat Rekoru - 1,2,240,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,27,Kesim Tekniği - 3,2,70,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,27,Grid Genişleme II,1,100,Stone
+11,Dengeli,bahcivan,standart,101,önce hasar,27,Taş Hasat - 2,1,65,Iron
+11,Dengeli,bahcivan,standart,101,önce hasar,28,Geniş Süpürüş - 4,1,65,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,28,Demir Hasat - 3,1,65,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,29,Akıcı Kesim - 1,3,260,Gold
+11,Dengeli,bahcivan,standart,101,önce hasar,29,Nadir Filizler - 1,2,300,Iron
+12,Dengeli,bahcivan,standart,102,önce hasar,1,Keskin Başlangıç - 1,1,5,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,1,Keskin Başlangıç - 1,2,7,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,1,Keskin Başlangıç - 1,3,8,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,1,Keskin Başlangıç - 2,1,10,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,2,Keskin Başlangıç - 2,2,11,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,2,Keskin Başlangıç - 3,1,13,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,2,Altın Hasat I - 1,1,7,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,3,Keskin Başlangıç - 3,2,14,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,3,Keskin Başlangıç - 4,1,16,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,3,Hızlı Eller - 1,1,7,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,4,Keskin Başlangıç - 4,2,17,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,4,Düzenli Üretim - 1,1,6,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,4,Hasat Deneyimi I - 1,1,6,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,7,Grid Genişleme I,1,30,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,7,Altın Hasat I - 1,2,9,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,7,Hızlı Eller - 1,2,9,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,7,Altın Hasat I - 1,3,11,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,8,Hızlı Eller - 1,3,11,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,8,1×3 Saksı,1,30,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,8,Patlayıcı Kartlar,1,15,Iron
+12,Dengeli,bahcivan,standart,102,önce hasar,9,Hasat Deneyimi I - 1,2,8,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,9,Düzenli Üretim - 1,2,8,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,9,Altın Hasat I - 2,1,13,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,9,Hızlı Eller - 2,1,12,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,9,Hasat Deneyimi I - 1,3,10,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,11,Altın Hasat I - 2,2,16,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,11,Hızlı Eller - 2,2,14,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,11,Düzenli Üretim - 1,3,10,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,11,Altın Hasat I - 3,1,18,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,12,Hasat Deneyimi I - 2,1,12,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,12,Hızlı Eller - 3,1,16,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,12,Düzenli Üretim - 2,1,12,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,12,Altın Hasat I - 3,2,20,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,12,Tornado Kartları,1,30,Iron
+12,Dengeli,bahcivan,standart,102,önce hasar,13,2×2 Saksı,1,80,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,14,Geniş Süpürüş - 1,1,21,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,14,Kesim Tekniği - 1,1,25,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,14,Hızlı Eller - 3,2,18,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,14,Hasat Deneyimi I - 2,2,14,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,14,Geniş Süpürüş - 1,2,28,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,15,Kesim Tekniği - 1,2,35,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,15,Demir Hasat - 1,1,25,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,15,Düzenli Üretim - 2,2,13,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,15,Altın Hasat I - 4,1,22,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,15,Hızlı Eller - 4,1,20,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,16,Çifte Hasat Kartları,1,25,Iron
+12,Dengeli,bahcivan,standart,102,önce hasar,16,Hasat Deneyimi I - 3,1,16,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,16,Geniş Süpürüş - 1,3,35,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,16,Altın Hasat I - 4,2,24,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,16,Hızlı Eller - 4,2,22,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,16,Demir Hasat - 1,2,35,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,16,Düzenli Üretim - 3,1,15,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,16,Hasat Deneyimi I - 3,2,18,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,17,İlk Vazgeçiş,1,150,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,18,Kesim Tekniği - 1,3,40,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,18,Geniş Süpürüş - 2,1,40,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,18,Kesim Tekniği - 2,1,50,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,18,Düzenli Üretim - 3,2,17,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,18,Hasat Deneyimi I - 4,1,20,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,18,Demir Hasat - 1,3,40,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,19,Akıcı Kesim - 1,1,160,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,20,Çapraz Elektrik Kartları,1,50,Iron
+12,Dengeli,bahcivan,standart,102,önce hasar,20,Geniş Süpürüş - 2,2,45,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,20,Güçlü Kesim - 1,1,120,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,20,Hasat Deneyimi I - 4,2,21,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,20,Düzenli Üretim - 4,1,19,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,20,Düzenli Üretim - 4,2,21,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,21,Hasat Rekoru - 1,1,180,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,22,Bumerang Orak Kartları,1,40,Iron
+12,Dengeli,bahcivan,standart,102,önce hasar,22,Grid Genişleme I,2,30,Iron
+12,Dengeli,bahcivan,standart,102,önce hasar,22,2×3 Saksı,1,200,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,23,Kesim Tekniği - 2,2,55,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,23,Demir Hasat - 2,1,50,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,23,Geniş Süpürüş - 3,1,55,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,23,Taş Hasat - 1,1,35,Iron
+12,Dengeli,bahcivan,standart,102,önce hasar,24,Kesim Tekniği - 3,1,65,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,25,Akıcı Kesim - 1,2,210,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,26,Güçlü Kesim - 1,2,160,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,26,Kritik Odak - 1,1,150,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,26,Taş Hasat - 1,2,45,Iron
+12,Dengeli,bahcivan,standart,102,önce hasar,27,Hasat Rekoru - 1,2,240,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,27,Taş Hasat - 1,3,55,Iron
+12,Dengeli,bahcivan,standart,102,önce hasar,28,Geniş Süpürüş - 3,2,60,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,28,Kesim Tekniği - 3,2,70,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,28,Demir Hasat - 2,2,55,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,28,Geniş Süpürüş - 4,1,65,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,29,Akıcı Kesim - 1,3,260,Gold
+12,Dengeli,bahcivan,standart,102,önce hasar,29,Verimli Üretim - 1,1,200,Iron
+13,Dengeli,bahcivan,standart,100,önce üretim,1,Düzenli Üretim - 1,1,6,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,1,Düzenli Üretim - 1,2,8,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,1,Düzenli Üretim - 1,3,10,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,2,Düzenli Üretim - 2,1,12,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,2,Düzenli Üretim - 2,2,13,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,2,Altın Hasat I - 1,1,7,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,3,Düzenli Üretim - 3,1,15,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,3,Hızlı Eller - 1,1,7,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,3,Keskin Başlangıç - 1,1,5,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,4,Düzenli Üretim - 3,2,17,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,4,Keskin Başlangıç - 1,2,7,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,4,Hasat Deneyimi I - 1,1,6,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,5,Düzenli Üretim - 4,1,19,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,6,Düzenli Üretim - 4,2,21,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,8,Grid Genişleme I,1,30,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,9,Altın Hasat I - 1,2,9,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,9,Hızlı Eller - 1,2,9,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,9,Keskin Başlangıç - 1,3,8,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,10,Altın Hasat I - 1,3,11,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,11,Hızlı Eller - 1,3,11,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,11,1×3 Saksı,1,30,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,11,Keskin Başlangıç - 2,1,10,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,11,Patlayıcı Kartlar,1,15,Iron
+13,Dengeli,bahcivan,standart,100,önce üretim,12,Hasat Deneyimi I - 1,2,8,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,12,Altın Hasat I - 2,1,13,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,12,Hızlı Eller - 2,1,12,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,13,Keskin Başlangıç - 2,2,11,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,13,Hasat Deneyimi I - 1,3,10,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,13,Altın Hasat I - 2,2,16,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,13,Tornado Kartları,1,30,Iron
+13,Dengeli,bahcivan,standart,100,önce üretim,14,Hızlı Eller - 2,2,14,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,14,Keskin Başlangıç - 3,1,13,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,14,Keskin Başlangıç - 3,2,14,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,14,Altın Hasat I - 3,1,18,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,14,Hasat Deneyimi I - 2,1,12,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,14,Hızlı Eller - 3,1,16,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,15,2×2 Saksı,1,80,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,15,Çifte Hasat Kartları,1,25,Iron
+13,Dengeli,bahcivan,standart,100,önce üretim,16,Geniş Süpürüş - 1,1,21,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,16,Kesim Tekniği - 1,1,25,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,16,Keskin Başlangıç - 4,1,16,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,17,Altın Hasat I - 3,2,20,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,17,Hızlı Eller - 3,2,18,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,17,Hasat Deneyimi I - 2,2,14,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,17,Geniş Süpürüş - 1,2,28,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,17,Kesim Tekniği - 1,2,35,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,17,Demir Hasat - 1,1,25,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,17,Keskin Başlangıç - 4,2,17,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,18,Altın Hasat I - 4,1,22,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,18,Hızlı Eller - 4,1,20,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,18,Hasat Deneyimi I - 3,1,16,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,18,Geniş Süpürüş - 1,3,35,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,18,Altın Hasat I - 4,2,24,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,18,Hızlı Eller - 4,2,22,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,18,Demir Hasat - 1,2,35,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,18,Hasat Deneyimi I - 3,2,18,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,18,Hasat Deneyimi I - 4,1,20,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,19,İlk Vazgeçiş,1,150,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,19,Kesim Tekniği - 1,3,40,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,19,Geniş Süpürüş - 2,1,40,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,20,Kesim Tekniği - 2,1,50,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,20,Demir Hasat - 1,3,40,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,20,Hasat Deneyimi I - 4,2,21,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,21,Akıcı Kesim - 1,1,160,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,21,Geniş Süpürüş - 2,2,45,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,21,Güçlü Kesim - 1,1,120,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,22,Çapraz Elektrik Kartları,1,50,Iron
+13,Dengeli,bahcivan,standart,100,önce üretim,22,Bumerang Orak Kartları,1,40,Iron
+13,Dengeli,bahcivan,standart,100,önce üretim,22,Hasat Rekoru - 1,1,180,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,22,Kesim Tekniği - 2,2,55,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,22,Demir Hasat - 2,1,50,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,23,Grid Genişleme I,2,30,Iron
+13,Dengeli,bahcivan,standart,100,önce üretim,23,2×3 Saksı,1,200,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,23,Geniş Süpürüş - 3,1,55,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,23,Kesim Tekniği - 3,1,65,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,23,Taş Hasat - 1,1,35,Iron
+13,Dengeli,bahcivan,standart,100,önce üretim,24,Taş Hasat - 1,2,45,Iron
+13,Dengeli,bahcivan,standart,100,önce üretim,26,Akıcı Kesim - 1,2,210,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,26,Güçlü Kesim - 1,2,160,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,27,Kritik Odak - 1,1,150,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,27,Geniş Süpürüş - 3,2,60,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,27,Demir Hasat - 2,2,55,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,27,Verimli Üretim - 1,1,200,Iron
+13,Dengeli,bahcivan,standart,100,önce üretim,27,Taş Hasat - 1,3,55,Iron
+13,Dengeli,bahcivan,standart,100,önce üretim,28,Hasat Rekoru - 1,2,240,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,28,Kesim Tekniği - 3,2,70,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,28,Geniş Süpürüş - 4,1,65,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,29,Akıcı Kesim - 1,3,260,Gold
+13,Dengeli,bahcivan,standart,100,önce üretim,29,Nadir Filizler - 1,1,230,Iron
+13,Dengeli,bahcivan,standart,100,önce üretim,29,Taş Hasat - 2,1,65,Iron
+14,Dengeli,bahcivan,standart,101,önce üretim,1,Düzenli Üretim - 1,1,6,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,1,Düzenli Üretim - 1,2,8,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,1,Düzenli Üretim - 1,3,10,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,2,Düzenli Üretim - 2,1,12,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,2,Düzenli Üretim - 2,2,13,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,2,Altın Hasat I - 1,1,7,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,3,Düzenli Üretim - 3,1,15,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,3,Hızlı Eller - 1,1,7,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,3,Keskin Başlangıç - 1,1,5,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,4,Düzenli Üretim - 3,2,17,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,4,Keskin Başlangıç - 1,2,7,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,5,Düzenli Üretim - 4,1,19,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,5,Hasat Deneyimi I - 1,1,6,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,6,Düzenli Üretim - 4,2,21,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,9,Grid Genişleme I,1,30,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,9,Altın Hasat I - 1,2,9,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,10,Hızlı Eller - 1,2,9,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,10,Keskin Başlangıç - 1,3,8,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,10,Altın Hasat I - 1,3,11,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,11,Hızlı Eller - 1,3,11,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,11,1×3 Saksı,1,30,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,11,Patlayıcı Kartlar,1,15,Iron
+14,Dengeli,bahcivan,standart,101,önce üretim,12,Keskin Başlangıç - 2,1,10,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,12,Hasat Deneyimi I - 1,2,8,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,12,Altın Hasat I - 2,1,13,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,12,Hızlı Eller - 2,1,12,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,13,Keskin Başlangıç - 2,2,11,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,13,Hasat Deneyimi I - 1,3,10,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,13,Altın Hasat I - 2,2,16,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,13,Hızlı Eller - 2,2,14,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,13,Tornado Kartları,1,30,Iron
+14,Dengeli,bahcivan,standart,101,önce üretim,14,Keskin Başlangıç - 3,1,13,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,14,Keskin Başlangıç - 3,2,14,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,14,Altın Hasat I - 3,1,18,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,14,Hasat Deneyimi I - 2,1,12,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,15,Hızlı Eller - 3,1,16,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,15,Keskin Başlangıç - 4,1,16,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,15,Hızlı Eller - 3,2,18,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,16,2×2 Saksı,1,80,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,16,Geniş Süpürüş - 1,1,21,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,16,Çifte Hasat Kartları,1,25,Iron
+14,Dengeli,bahcivan,standart,101,önce üretim,17,Kesim Tekniği - 1,1,25,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,17,Altın Hasat I - 3,2,20,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,17,Hasat Deneyimi I - 2,2,14,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,18,Geniş Süpürüş - 1,2,28,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,18,Kesim Tekniği - 1,2,35,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,18,Demir Hasat - 1,1,25,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,18,Keskin Başlangıç - 4,2,17,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,18,Altın Hasat I - 4,1,22,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,19,Hızlı Eller - 4,1,20,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,19,Hasat Deneyimi I - 3,1,16,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,19,Geniş Süpürüş - 1,3,35,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,19,Altın Hasat I - 4,2,24,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,19,Hızlı Eller - 4,2,22,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,19,Demir Hasat - 1,2,35,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,19,Hasat Deneyimi I - 3,2,18,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,19,Hasat Deneyimi I - 4,1,20,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,20,Çapraz Elektrik Kartları,1,50,Iron
+14,Dengeli,bahcivan,standart,101,önce üretim,20,Hasat Deneyimi I - 4,2,21,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,21,İlk Vazgeçiş,1,150,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,21,Kesim Tekniği - 1,3,40,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,21,Geniş Süpürüş - 2,1,40,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,22,Kesim Tekniği - 2,1,50,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,22,Demir Hasat - 1,3,40,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,23,Bumerang Orak Kartları,1,40,Iron
+14,Dengeli,bahcivan,standart,101,önce üretim,23,Akıcı Kesim - 1,1,160,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,23,Geniş Süpürüş - 2,2,45,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,24,Grid Genişleme I,2,30,Iron
+14,Dengeli,bahcivan,standart,101,önce üretim,24,2×3 Saksı,1,200,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,25,Güçlü Kesim - 1,1,120,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,25,Taş Hasat - 1,1,35,Iron
+14,Dengeli,bahcivan,standart,101,önce üretim,27,Hasat Rekoru - 1,1,180,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,27,Kesim Tekniği - 2,2,55,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,27,Demir Hasat - 2,1,50,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,27,Taş Hasat - 1,2,45,Iron
+14,Dengeli,bahcivan,standart,101,önce üretim,28,Geniş Süpürüş - 3,1,55,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,28,Kesim Tekniği - 3,1,65,Gold
+14,Dengeli,bahcivan,standart,101,önce üretim,29,Akıcı Kesim - 1,2,210,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,1,Düzenli Üretim - 1,1,6,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,1,Düzenli Üretim - 1,2,8,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,1,Düzenli Üretim - 1,3,10,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,1,Altın Hasat I - 1,1,7,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,2,Düzenli Üretim - 2,1,12,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,2,Düzenli Üretim - 2,2,13,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,3,Düzenli Üretim - 3,1,15,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,3,Düzenli Üretim - 3,2,17,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,4,Düzenli Üretim - 4,1,19,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,4,Hızlı Eller - 1,1,7,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,5,Düzenli Üretim - 4,2,21,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,5,Keskin Başlangıç - 1,1,5,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,5,Keskin Başlangıç - 1,2,7,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,7,Hasat Deneyimi I - 1,1,6,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,8,Grid Genişleme I,1,30,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,8,Altın Hasat I - 1,2,9,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,8,Hızlı Eller - 1,2,9,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,9,Keskin Başlangıç - 1,3,8,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,9,Altın Hasat I - 1,3,11,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,9,Hızlı Eller - 1,3,11,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,11,1×3 Saksı,1,30,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,11,Keskin Başlangıç - 2,1,10,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,11,Hasat Deneyimi I - 1,2,8,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,11,Patlayıcı Kartlar,1,15,Iron
+15,Dengeli,bahcivan,standart,102,önce üretim,12,Altın Hasat I - 2,1,13,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,12,Hızlı Eller - 2,1,12,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,12,Keskin Başlangıç - 2,2,11,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,12,Hasat Deneyimi I - 1,3,10,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,12,Altın Hasat I - 2,2,16,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,12,Tornado Kartları,1,30,Iron
+15,Dengeli,bahcivan,standart,102,önce üretim,13,Hızlı Eller - 2,2,14,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,13,Keskin Başlangıç - 3,1,13,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,13,Keskin Başlangıç - 3,2,14,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,13,Altın Hasat I - 3,1,18,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,14,Hasat Deneyimi I - 2,1,12,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,14,Hızlı Eller - 3,1,16,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,14,Keskin Başlangıç - 4,1,16,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,14,Altın Hasat I - 3,2,20,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,14,Hızlı Eller - 3,2,18,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,15,2×2 Saksı,1,80,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,16,Geniş Süpürüş - 1,1,21,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,16,Kesim Tekniği - 1,1,25,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,16,Hasat Deneyimi I - 2,2,14,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,16,Geniş Süpürüş - 1,2,28,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,16,Kesim Tekniği - 1,2,35,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,16,Çifte Hasat Kartları,1,25,Iron
+15,Dengeli,bahcivan,standart,102,önce üretim,17,Demir Hasat - 1,1,25,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,17,Keskin Başlangıç - 4,2,17,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,17,Altın Hasat I - 4,1,22,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,17,Hızlı Eller - 4,1,20,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,17,Hasat Deneyimi I - 3,1,16,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,18,Geniş Süpürüş - 1,3,35,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,18,Altın Hasat I - 4,2,24,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,18,Hızlı Eller - 4,2,22,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,18,Demir Hasat - 1,2,35,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,18,Hasat Deneyimi I - 3,2,18,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,18,Hasat Deneyimi I - 4,1,20,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,19,İlk Vazgeçiş,1,150,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,20,Kesim Tekniği - 1,3,40,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,20,Geniş Süpürüş - 2,1,40,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,21,Çapraz Elektrik Kartları,1,50,Iron
+15,Dengeli,bahcivan,standart,102,önce üretim,21,Kesim Tekniği - 2,1,50,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,21,Demir Hasat - 1,3,40,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,21,Hasat Deneyimi I - 4,2,21,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,22,Akıcı Kesim - 1,1,160,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,22,Geniş Süpürüş - 2,2,45,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,22,Güçlü Kesim - 1,1,120,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,23,Bumerang Orak Kartları,1,40,Iron
+15,Dengeli,bahcivan,standart,102,önce üretim,23,Grid Genişleme I,2,30,Iron
+15,Dengeli,bahcivan,standart,102,önce üretim,23,Demir Hasat - 2,1,50,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,24,Taş Hasat - 1,1,35,Iron
+15,Dengeli,bahcivan,standart,102,önce üretim,25,2×3 Saksı,1,200,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,25,Taş Hasat - 1,2,45,Iron
+15,Dengeli,bahcivan,standart,102,önce üretim,26,Hasat Rekoru - 1,1,180,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,26,Kesim Tekniği - 2,2,55,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,27,Geniş Süpürüş - 3,1,55,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,27,Kesim Tekniği - 3,1,65,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,28,Akıcı Kesim - 1,2,210,Gold
+15,Dengeli,bahcivan,standart,102,önce üretim,29,Güçlü Kesim - 1,2,160,Gold

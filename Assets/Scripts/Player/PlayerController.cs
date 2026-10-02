@@ -13,6 +13,14 @@ public class PlayerController : MonoBehaviour
 
     private GridSystem gridSystem;
     private float attackTimer;
+    private readonly List<GridObject> attackTargets = new();
+    // Son saldırının gerçek temas yarıçapı (Hasat Ritmi güçlendirmesi dahil); vuruş halkası bunu çizer.
+    public float LastAttackRadius { get; private set; }
+    // Hazır Hasat Ritmi hakkının imleç vurgusu.
+    private static readonly Color ChargedRing = new Color(1f, 0.84f, 0.25f, 1f);
+    private Color ringStart = Color.white, ringEnd = Color.white;
+    private bool ringCharged;
+    public bool ShowsChargedCursor => ringCharged;
 
     private void Start()
     {
@@ -78,14 +86,10 @@ public class PlayerController : MonoBehaviour
         if (AdvanceAttackTimer(ref attackTimer, Time.deltaTime, attackSpeed))
         {
 
-            float radius = StatManager.Instance.GetFinalStat(
-                StatType.AreaRadius,
-                StatTarget.Player
-            );
-
             bool anyCrit = AttackInRadius(mouseWorldPos);
 
-            VFXManager.Instance.PlayAttackRing(mouseWorldPos, radius, anyCrit);
+            // Ring and targeting share the radius this attack really used; touched cell surfaces are included.
+            VFXManager.Instance.PlayAttackRing(mouseWorldPos, gridSystem.HarvestReach(LastAttackRadius), anyCrit);
             if (cursorVisual != null) cursorVisual.Pulse(anyCrit);
         }
     }
@@ -112,10 +116,18 @@ public class PlayerController : MonoBehaviour
             StatTarget.Player
         );
 
-        List<GridObject> targets = gridSystem.GetGridObjectsInRadius(center, radius);
+        // Saldırı bağlamı (Hasat Ritmi): hazır hak varsa yalnız BU saldırının hasarı ve yarıçapı büyür. Genel AreaRadius stat'ı
+        // değişmez, davranışlar bu bağlamı görmez. Ödül alınmadıysa bağlam nötrdür (×1, ×1).
+        DirectAttack attack = RunPower.Rhythm.Next();
+        radius *= attack.RadiusMultiplier;
+        LastAttackRadius = radius;
+        int directHarvests = 0;
+        bool touchedLivingPlant = false;
+
+        gridSystem.GetGridObjectsInRadius(center, radius, attackTargets);
         bool anyCrit = false;
 
-        foreach (GridObject gridObject in targets)
+        foreach (GridObject gridObject in attackTargets)
         {
             if (!gridObject.HasPlantObject()) continue;
 
@@ -125,9 +137,12 @@ public class PlayerController : MonoBehaviour
             if (plantObj.TryGetComponent<IDamageable>(out IDamageable damageable))
             {
                 float variance = Random.Range(0.85f, 1.15f);
-                // Uzmanlaşma doğrudan katsayısı yalnız burada: sapmayla birlikte tek yuvarlama; kritik ve saksı bonusu
-                // (Odak) sonra mevcut kurallarıyla uygulanır. Davranışların tabanı HarvestDamage stat'ıdır, bu değil.
-                int damage = Mathf.Max(1, Mathf.RoundToInt(baseDamage * variance * SpecializationManager.DirectMultiplier));
+                // Doğrudan vuruş katsayıları yalnız burada, bir kez: uzmanlaşma × başlangıç (tırpan) × boss ödülü (Keskin Bıçak),
+                // sapmayla birlikte tek yuvarlama; kritik ve saksı bonusu (Odak) sonra mevcut kurallarıyla uygulanır.
+                // Davranışların tabanı HarvestDamage stat'ıdır, bu değil.
+                // Nadirliğe bağlı boss ödülü (Altın Hedef) da aynı çarpımda, hedef başına bir kez.
+                PlantRarity? rarity = damageable is PlantHealth target && target.Data != null ? target.Data.rarity : (PlantRarity?)null;
+                int damage = Mathf.Max(1, Mathf.RoundToInt(RunPower.DirectDamage(baseDamage, variance, rarity, attack.DamageMultiplier)));
 
                 bool isCrit = Random.value <= critChance;
                 if (isCrit)
@@ -138,13 +153,19 @@ public class PlayerController : MonoBehaviour
 
                 int displayedDamage = damageable is PlantHealth health ? health.GetIncomingDamage(damage) : damage;
                 if (damageable is PlantHealth hitPlant)
+                {
+                    touchedLivingPlant = true;
                     hitPlant.TakeDamage(damage, DamageType.Direct, isCrit);
+                    // Bu vuruşla ölen bitki doğrudan hasattır (ölümün tetiklediği davranış hasatları başka bitkilerdir).
+                    if (hitPlant.IsDead) directHarvests++;
+                }
                 else
                     damageable.TakeDamage(damage);
                 VFXManager.Instance.PlayHit(plantObj.transform.position, displayedDamage, isCrit);
             }
         }
 
+        RunPower.Rhythm.Complete(attack, directHarvests, touchedLivingPlant);
         return anyCrit;
     }
 
@@ -157,16 +178,28 @@ public class PlayerController : MonoBehaviour
         radiusIndicator.positionCount = circleSegments;
         if (radiusOverlayMaterial != null) radiusIndicator.sharedMaterial = radiusOverlayMaterial;
         radiusIndicator.sortingOrder = 100;
+        ringStart = radiusIndicator.startColor;
+        ringEnd = radiusIndicator.endColor;
     }
 
     private void UpdateRadiusVisual(Vector3 center)
     {
         if (radiusIndicator == null) return;
 
-        float radius = StatManager.Instance.GetFinalStat(
+        // A cell need not have its centre inside this circle: touching its surface is enough.
+        // Hazır Hasat Ritmi hakkı varsa halka, sıradaki saldırının gerçek (büyümüş) temas alanını gösterir ve altın rengine döner.
+        DirectAttack next = RunPower.Rhythm.Next();
+        float radius = gridSystem.HarvestReach(StatManager.Instance.GetFinalStat(
             StatType.AreaRadius,
             StatTarget.Player
-        );
+        ) * next.RadiusMultiplier);
+        if (next.Empowered != ringCharged)
+        {
+            ringCharged = next.Empowered;
+            radiusIndicator.startColor = ringCharged ? ChargedRing : ringStart;
+            radiusIndicator.endColor = ringCharged ? ChargedRing : ringEnd;
+            if (cursorVisual != null) cursorVisual.SetCharged(ringCharged);
+        }
 
         if (cursorVisual != null) cursorVisual.Show(center, radius);
 

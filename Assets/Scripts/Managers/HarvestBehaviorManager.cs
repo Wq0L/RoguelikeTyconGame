@@ -86,6 +86,27 @@ public sealed class HarvestBehaviorManager : MonoBehaviour
         ElectricBurst.Strike(this, effect, source, GridManager.Instance.GetGridSystem(), targets, origins, damage);
         return true;
     }
+    // Çifte Akım'ın ikinci dalgası: aynı saksıdan, aynı çapraz geometriyle, HESAPLANMIŞ hasarla (katsayılar yeniden uygulanmaz).
+    // Hedefler dalga anında değerlendirilir. Görsel havuzu doluysa yalnız çizim atlanır, hasar uygulanır. Hedef hücre yoksa false.
+    public bool TryElectricEcho(PlanterBrain source, int finalDamage, out int struck, out int killed)
+    {
+        struck = killed = 0;
+        if (!isActiveAndEnabled || source == null ||
+            RoundManager.Instance == null || !RoundManager.Instance.IsRoundActive || GridManager.Instance == null) return false;
+        footprint.Clear();
+        foreach (var occupied in source.OccupiedGrids)
+        {
+            var cell = occupied?.GetGroundCellCached();
+            if (cell != null) footprint.Add(cell.GetGridPosition());
+        }
+        HarvestBehaviorGeometry.ElectricCells(footprint, targets, origins);
+        if (targets.Count == 0) return false;
+        ElectricBurst effect = electricPool != null && electricity.Count < maxElectricBursts ? electricPool.Get() : null;
+        if (effect != null) electricity.Add(effect);
+        else SkippedElectricVisuals++;
+        ElectricBurst.Strike(this, effect, source, GridManager.Instance.GetGridSystem(), targets, origins, finalDamage, true, out struck, out killed);
+        return true;
+    }
     public int SkippedElectricVisuals { get; private set; }
     public void Release(BoomerangScythe effect) { if (boomerangs.Remove(effect)) boomerangPool.Return(effect); }
     public void Release(ElectricBurst effect) { if (electricity.Remove(effect)) electricPool.Return(effect); }

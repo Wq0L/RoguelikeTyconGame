@@ -25,6 +25,9 @@ public static class RunSimulator
         public bool ReplaceSmall = true;      // 2x3 açılınca küçük saksıları satıp (yarı iade) 2x3'e geçer
         public float Hesitation;              // alınabilir bir kademeyi o round almama olasılığı (yeni oyuncu okur, bekler)
         public float MenuBase = 30, MenuCard = 15, MenuTier = 8;
+        public bool PreferBehavior;           // kart seçerken davranış tipini (patlama, kasırga, bumerang, elektrik) nadirlikten önce tutar
+        public TileModifierType? PreferType;  // kart seçerken bu tipi nadirlikten önce tutar (PreferBehavior'dan önce gelir)
+        public string[] PriorityNodes;        // alınabilir olunca her şeyden önce alınan node'lar (sırayla)
     }
 
     public sealed class Rules
@@ -55,6 +58,25 @@ public static class RunSimulator
         public int[] FrostSegments;           // birden çok Don segmenti (aynı şerit; oyunda her olay kendi şeridini seçer)
         // Uzmanlaşma (SpecializationManager): SpecFromRound'dan itibaren doğrudan / davranış hasarı katsayıları.
         public int SpecFromRound; public float DirectMult = 1f, BehaviorMult = 1f;
+        public float ResourceMult = 1f;       // hasat kaynağı çarpanı (yalnız hasat; kart atlama ödülü, satış iadesi, başlangıç parası hariç)
+        public double BehaviorScale = 1;      // duyarlılık: davranış ek hasatının modeldeki payı × bu değer (1 = model)
+        // Bölüm 2.2: >0 ise round süresi sabit (30–60 sn, tempo yok); yalnız süre veren node'lar alınmaz ve önkoşulda karşılanmış sayılır.
+        public float FixedDuration;
+        public int[] SnapshotRounds;          // bu round'ların başındaki durum RunResult.Snapshots'a yazılır (sahne ölçümü için)
+        // Bölüm 3.2, YALNIZ ÖLÇÜM: kota tutmasa da run sürer ("kota nedeniyle elenme kapalı"). İlk başarısızlık QuotaFailedAt'e yazılır.
+        // Oyunda karşılığı yok; kazanma oranı olarak okunmaz.
+        public bool QuotaContinue;
+    }
+
+    // Bölüm 2.2: round başındaki simülatör durumu (skill etkileri, saksılar, tile'lar). Simülatör durumudur, insan oyunu verisi değil.
+    public sealed class Snapshot
+    {
+        public int Round, Seed;
+        public List<StatModifier> Global = new();
+        public List<(PlanterSO so, List<Vector2Int> cells)> Planters = new();
+        public List<(Vector2Int cell, TileModifierSO so, List<StatModifier> mods)> Tiles = new();
+        public Dictionary<SkillNodeSO, int> Levels = new();
+        public double Gold, Iron, Stone;
     }
 
     sealed class TileState { public TileModifierSO So; public List<StatModifier> Mods; public int Stars; }
@@ -63,17 +85,22 @@ public static class RunSimulator
     public sealed class RoundLog
     {
         public int Round, Level, Cards, Dead, Skips, Upgrades, Tiles, Unlocked, Planters, Resonances, TierCount, Screens, Overflow, MaxedTiles;
-        public double Gold, Iron, Stone, Xp, Score, Harvest, Ceiling, Duration, HpCommon, Minutes, Tree, HarvestRatio, BehaviorHarvest, Income;
+        public double Gold, Iron, Stone, Xp, Score, Harvest, Ceiling, Duration, HpCommon, Minutes, Tree, HarvestRatio, BehaviorHarvest, Income, Damage, Interval, Tempo;
+        // Bölüm 3.2: savaş kapasitesi (doğrudan hasat), imleçteki hedef, üretime göre ağırlıklı ortalama vuruş ve tek vuruş olasılığı (model).
+        public double Combat, Targets, AvgHits, OneShot, Radius, CritChance, CritMult;
     }
 
     public sealed class RunResult
     {
         public readonly List<RoundLog> Rounds = new();
         public readonly Dictionary<string, int> NodeDone = new();
+        public readonly Dictionary<string, int> NodeFirst = new(); // Bölüm 3.1: düğümün ilk kademesinin alındığı round
         public int EndedAt;
+        public int QuotaFailedAt;                           // ilk tutmayan kota round'u (0: hiç); QuotaContinue kapalıyken EndedAt ile aynı
         public readonly List<double> QuotaMargins = new(); // segment skoru / kota
         public readonly List<double> SegmentScores = new();
         public readonly Dictionary<string, int> Blocked = new() { ["Gold"] = 0, ["Iron"] = 0, ["Stone"] = 0 };
+        public readonly List<Snapshot> Snapshots = new();
     }
 
     static CoreStatsSO core; static PlantHealthScalingSO health; static ProgressionSO progression; static ResonanceRulesSO resonance;
@@ -113,17 +140,19 @@ public static class RunSimulator
     {
         int key = Mathf.RoundToInt(radius * 100);
         if (reachCache.TryGetValue(key, out var v)) return v;
-        double adj = key / 100.0 + 1; const int steps = 16; double sum = 0; int best = 0;
+        float sampledRadius = key / 100f; const int steps = 16; double sum = 0; int best = 0;
         for (int a = 0; a < steps; a++) for (int c = 0; c < steps; c++)
         {
             double ox = (a + .5) / steps * 2 - 1, oz = (c + .5) / steps * 2 - 1; int n = 0;
-            for (int i = -6; i <= 6; i++) for (int j = -6; j <= 6; j++) if (Math.Sqrt((i * 2 - ox) * (i * 2 - ox) + (j * 2 - oz) * (j * 2 - oz)) <= adj + 1e-9) n++;
+            for (int i = -6; i <= 6; i++) for (int j = -6; j <= 6; j++)
+                if (HarvestArea.TouchesCell(new Vector3((float)ox, 0, (float)oz), new Vector3(i * 2, 0, j * 2), sampledRadius, 2f)) n++;
             sum += n; best = Math.Max(best, n);
         }
         return reachCache[key] = (sum / (steps * steps), best);
     }
 
     static double Weighted(ResourceType type, int cost) => cost * (type == ResourceType.Gold ? 1 : type == ResourceType.Iron ? 7 : 14);
+    static bool IsBehavior(TileModifierSO t) => t.modifierType is TileModifierType.Explosive or TileModifierType.Tornado or TileModifierType.Boomerang or TileModifierType.Electric;
 
     // ---------------- tek run ----------------
     public static RunResult Run(Policy policy, Rules rules, int seed)
@@ -220,6 +249,7 @@ public static class RunSimulator
         }
 
         bool PlanterUnlocked(PlanterSO p) => p.requiredUnlock == UnlockType.None || unlocks.Contains(p.requiredUnlock);
+        bool Disabled(SkillNodeSO n) => rules.FixedDuration > 0 && SkillTreeManager.IsDurationOnly(n);
 
         void Shop()
         {
@@ -273,17 +303,21 @@ public static class RunSimulator
                 SkillNodeSO pick = null; double pickKey = double.MaxValue;
                 foreach (var n in nodes)
                 {
+                    if (Disabled(n)) continue;
                     int lv = levels[n]; if (lv >= n.tiers.Count) continue;
-                    if (lv == 0 && n.prerequisites.Any(r => r.node == null || levels[r.node] < r.level)) continue;
+                    if (lv == 0 && n.prerequisites.Any(r => r.node == null || (!Disabled(r.node) && levels[r.node] < r.level))) continue;
                     var tier = n.tiers[lv];
                     if (bank[tier.costType] < tier.cost) { result.Blocked[tier.costType.ToString()]++; continue; }
                     if (policy.Hesitation > 0 && rng.NextDouble() < policy.Hesitation) continue;
                     double key = policy.SkillByTarget ? (n.targetRounds.x + n.targetRounds.y) * 1e6 + Weighted(tier.costType, tier.cost) : Weighted(tier.costType, tier.cost);
+                    int priority = policy.PriorityNodes != null ? Array.IndexOf(policy.PriorityNodes, n.name) : -1;
+                    if (priority >= 0) key = -1e9 + priority;
                     if (key < pickKey) { pickKey = key; pick = n; }
                 }
                 if (pick == null) break;
                 var t2 = pick.tiers[levels[pick]];
                 bank[t2.costType] -= t2.cost; levels[pick]++; tierCount++;
+                if (levels[pick] == 1) result.NodeFirst[pick.name] = result.Rounds.Count + 1;
                 if (levels[pick] == pick.tiers.Count) { result.NodeDone[pick.name] = result.Rounds.Count + 1; if (pick.unlockType != UnlockType.None) unlocks.Add(pick.unlockType); }
                 RebuildGlobal();
             }
@@ -333,12 +367,21 @@ public static class RunSimulator
 
         for (int round = 1; round <= rules.MaxRounds; round++)
         {
+            if (rules.SnapshotRounds != null && Array.IndexOf(rules.SnapshotRounds, round) >= 0)
+            {
+                var snap = new Snapshot { Round = round, Seed = seed, Global = new List<StatModifier>(global), Levels = new Dictionary<SkillNodeSO, int>(levels),
+                    Gold = bank[ResourceType.Gold], Iron = bank[ResourceType.Iron], Stone = bank[ResourceType.Stone] };
+                foreach (var p in planters) snap.Planters.Add((p.So, new List<Vector2Int>(p.Cells)));
+                for (int x = 0; x < Size; x++) for (int z = 0; z < Size; z++)
+                    if (tiles[x, z] != null) snap.Tiles.Add((new Vector2Int(x, z), tiles[x, z].So, new List<StatModifier>(tiles[x, z].Mods)));
+                result.Snapshots.Add(snap);
+            }
             var log = new RoundLog { Round = round };
             int currentSegment = rules.QuotaSegment > 0 ? (round - 1) / rules.QuotaSegment + 1 : 0;
             bool frostActive = rules.QuotaSegment > 0 && (currentSegment == rules.FrostSegment || (rules.FrostSegments != null && Array.IndexOf(rules.FrostSegments, currentSegment) >= 0));
             bool spec = rules.SpecFromRound > 0 && round >= rules.SpecFromRound;
-            float directMult = spec ? rules.DirectMult : 1f, behaviorMult = spec ? rules.BehaviorMult : 1f;
-            float duration = Mathf.Clamp(All(StatType.RoundDuration, StatTarget.All), 30, 90);
+            float directMult = spec ? rules.DirectMult : 1f, behaviorMult = spec ? rules.BehaviorMult : 1f, resourceMult = spec ? rules.ResourceMult : 1f;
+            float duration = rules.FixedDuration > 0 ? Mathf.Clamp(rules.FixedDuration, 30, 60) : Mathf.Clamp(All(StatType.RoundDuration, StatTarget.All), 30, 90);
             float speedUp = 1f;
             if (rules.DurationCap > 0 && duration > rules.DurationCap) { speedUp = duration / rules.DurationCap; duration = rules.DurationCap; }
             float attack = Mathf.Max(.1f, Player(StatType.AttackSpeed)) / speedUp, dmg = Player(StatType.HarvestDamage);
@@ -350,7 +393,7 @@ public static class RunSimulator
             int plantedCells = planters.Sum(p => p.Cells.Count);
             double targets = Math.Min(avgCells + policy.Accuracy * (bestCells - avgCells), plantedCells);
 
-            double sumCeil = 0, sumHitsCeil = 0; var per = new List<(double ceil, double hits, double g, double i, double s, double x, double sc, double extra)>();
+            double sumCeil = 0, sumHitsCeil = 0, sumCeilOneShot = 0; var per = new List<(double ceil, double hits, double g, double i, double s, double x, double sc, double extra)>();
             int unlockedCells = 0; for (int x = 0; x < Size; x++) for (int z = 0; z < Size; z++) if (Unlocked(x, z)) unlockedCells++;
             double density = unlockedCells > 0 ? plantedCells / (double)unlockedCells : 0;
             double avgKill(double dmgB) { double k = 0, w = 0; foreach (var e in planterSOs[0].spawnTable) { if (e.baseChance <= 0) continue; k += e.baseChance * Math.Min(1, dmgB / Math.Max(1, Hp(e.plant, round))); w += e.baseChance; } return w > 0 ? k / w : 0; }
@@ -376,7 +419,7 @@ public static class RunSimulator
                 float playerScore = Player(StatType.HarvestScoreMultiplier);
                 float planterScore = StatCalculator.Calculate(p.So.GetBaseStat(StatType.HarvestScoreMultiplier), StatType.HarvestScoreMultiplier, StatTarget.Planter, global, local, false);
                 double wsum = p.So.spawnTable.Sum(e => EconomyCalculator.AdjustedWeight(e, rare));
-                double eg = 0, ei = 0, es = 0, ex = 0, esc = 0, hits = 0;
+                double eg = 0, ei = 0, es = 0, ex = 0, esc = 0, hits = 0, oneShot = 0;
                 foreach (var e in p.So.spawnTable)
                 {
                     double pr = wsum > 0 ? EconomyCalculator.AdjustedWeight(e, rare) / wsum : 0; if (pr <= 0) continue;
@@ -387,6 +430,7 @@ public static class RunSimulator
                     ex += pr * Mathf.RoundToInt((float)(plant.xpAmount * xm * hpXp));
                     esc += pr * HarvestScoreManager.CalculateAward(plant.rarity, playerScore, planterScore * ResonanceManager.Multiplier(active, StatType.HarvestScoreMultiplier, plant.rarity));
                     hits += pr * Math.Max(1, Hp(plant, round) / Math.Max(1e-6, expDmg * directMult * pdm));
+                    oneShot += pr * OneShotChance(dmg * directMult * pdm, cc, cm, Hp(plant, round));
                 }
                 double ceil = p.Spawners * duration / (Math.Max(StatCalculator.MinimumSpawnInterval, spawn) / speedUp);
                 if (frostActive)
@@ -405,17 +449,19 @@ public static class RunSimulator
                     var corner = p.Cells[0]; foreach (var c in p.Cells) if (c.x * dx + c.y * dz > corner.x * dx + corner.y * dz) corner = c;
                     for (int st = 1; st <= 2; st++) { var q = new Vector2Int(corner.x + dx * st, corner.y + dz * st); if (!foot.Contains(q) && q.x >= 0 && q.y >= 0 && q.x < Size && q.y < Size && owner[q.x, q.y] != null) nEl++; }
                 }
-                double extra = alive * (
+                double extra = alive * rules.BehaviorScale * (
                     ch(StatType.ExplosionChance) * nExp * avgKill(dmgRaw * ResonanceManager.BehaviorMultiplier(active, DamageType.Explosion)) +
                     ch(StatType.TornadoChance) * 8 * density * avgKill(Math.Max(1, Math.Round(dmgRaw * .5)) * ResonanceManager.BehaviorMultiplier(active, DamageType.Tornado)) +
                     ch(StatType.BoomerangChance) * 2.5 * density * avgKill(2 * Math.Max(1, Math.Round(dmgRaw * .65)) * ResonanceManager.BehaviorMultiplier(active, DamageType.Boomerang)) +
                     ch(StatType.ElectricChance) * nEl * avgKill(dmgRaw * ResonanceManager.BehaviorMultiplier(active, DamageType.Electric)));
-                per.Add((ceil, hits, eg, ei, es, ex, esc, extra)); sumCeil += ceil; sumHitsCeil += ceil * hits;
+                per.Add((ceil, hits, eg, ei, es, ex, esc, extra)); sumCeil += ceil; sumHitsCeil += ceil * hits; sumCeilOneShot += ceil * oneShot;
             }
             double harvests = 0;
+            log.Targets = targets; log.Radius = radius; log.CritChance = cc; log.CritMult = cm;
             if (sumCeil > 0)
             {
                 double avgHits = sumHitsCeil / sumCeil, combat = duration / attack * targets / avgHits;
+                log.AvgHits = avgHits; log.Combat = combat; log.OneShot = sumCeilOneShot / sumCeil;
                 harvests = Math.Min(sumCeil, combat);
                 double direct = harvests, bonus = 0;
                 foreach (var q in per) bonus += direct * q.ceil / sumCeil * q.extra;
@@ -424,12 +470,13 @@ public static class RunSimulator
                 foreach (var q in per)
                 {
                     double h = harvests * q.ceil / sumCeil;
-                    bank[ResourceType.Gold] += h * q.g; bank[ResourceType.Iron] += h * q.i; bank[ResourceType.Stone] += h * q.s;
-                    log.Gold += h * q.g; log.Iron += h * q.i; log.Stone += h * q.s; log.Xp += h * q.x; log.Score += h * q.sc;
+                    double hr = h * resourceMult; // uzmanlaşma kaynak bedeli yalnız hasat gelirine
+                    bank[ResourceType.Gold] += hr * q.g; bank[ResourceType.Iron] += hr * q.i; bank[ResourceType.Stone] += hr * q.s;
+                    log.Gold += hr * q.g; log.Iron += hr * q.i; log.Stone += hr * q.s; log.Xp += h * q.x; log.Score += h * q.sc;
                 }
             }
             log.Harvest = harvests; log.Ceiling = sumCeil; log.HarvestRatio = sumCeil > 0 ? harvests / sumCeil : 0;
-            log.Duration = duration; log.Resonances = resonances;
+            log.Duration = duration; log.Resonances = resonances; log.Damage = dmg; log.Interval = attack; log.Tempo = speedUp;
             log.HpCommon = Hp(planterSOs[0].spawnTable[0].plant, round);
 
             // Level ve kartlar (round içinde kazanılan XP; seçimler round sonunda)
@@ -446,6 +493,18 @@ public static class RunSimulator
                 var offer = new[] { RollCard(luck), RollCard(luck), RollCard(luck) };
                 int bestR = offer.Max(o => (int)o.rarity);
                 var bestCards = offer.Where(o => (int)o.rarity == bestR).ToList();
+                if (policy.PreferType.HasValue && offer.Any(o => o.modifierType == policy.PreferType.Value))
+                {
+                    var typed = offer.Where(o => o.modifierType == policy.PreferType.Value).ToList();
+                    bestR = typed.Max(o => (int)o.rarity);
+                    bestCards = typed.Where(o => (int)o.rarity == bestR).ToList();
+                }
+                else if (policy.PreferBehavior && offer.Any(IsBehavior))
+                {
+                    var behaviorCards = offer.Where(IsBehavior).ToList();
+                    bestR = behaviorCards.Max(o => (int)o.rarity);
+                    bestCards = behaviorCards.Where(o => (int)o.rarity == bestR).ToList();
+                }
                 TileModifierSO chosen = bestCards[rng.Next(bestCards.Count)];
                 if (policy.ResonanceAware && bestCards.Count > 1)
                 {
@@ -513,7 +572,11 @@ public static class RunSimulator
                     ? rules.QuotaTargets[segment - 1] : HarvestQuota.Target(segment, rules.QuotaStart, rules.QuotaGrowth);
                 result.SegmentScores.Add(segScore);
                 result.QuotaMargins.Add(segScore / quota);
-                if (segScore < quota) { result.EndedAt = round; break; }
+                if (segScore < quota)
+                {
+                    if (result.QuotaFailedAt == 0) result.QuotaFailedAt = round;
+                    if (!rules.QuotaContinue) { result.EndedAt = round; break; }
+                }
             }
 
             double income = log.Gold + log.Iron * 7 + log.Stone * 14; log.Income = income;
@@ -663,6 +726,423 @@ public static class RunSimulator
         Directory.CreateDirectory("Logs");
         File.WriteAllText("Logs/RunSimSpecialization.txt", text.ToString());
         EditorApplication.Exit(0);
+    }
+
+    // Bölüm 2.1 (2026-09-30): ilerlemeli segment testi. Aynı seed ve aynı politika ile round 11–20: kazanılan kaynak her round sonunda
+    // aynı alışveriş kuralıyla (saksı, skill kademesi) güce dönüşür; seçenekler yalnız round 11'den itibaren ayrılır.
+    // 10. round'a (ilk boss) ulaşma seçenekten bağımsızdır ve ayrı raporlanır; sonraki oranlar yalnız ulaşan run'lar üzerinden.
+    // Simülatör davranışları yaklaşık modeller (yalnız doğrudan hasatta tetik, zincir yok, "canlı bitki" olasılığı); sonuç yön gösterir.
+    public static void RunSpecializationProgressBatch()
+    {
+        var text = new StringBuilder();
+        try
+        {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            Rules R((string name, float d, float b, float res) o, double behaviorScale) => new Rules
+            {
+                Name = o.name, MaxRounds = 20, UpgradeWhenFull = true, DurationCap = 60, QuotaSegment = 5, QuotaTargets = new long[] { 40, 200, 350, 600 },
+                FrostSegments = new[] { 2, 4 }, SpecFromRound = 11, DirectMult = o.d, BehaviorMult = o.b, ResourceMult = o.res, BehaviorScale = behaviorScale
+            };
+            var options = new[]
+            {
+                ("Usta Biçici", 1.25f, .85f, 1f), ("Davranış Ustası 2.1 (kaynak ×0,90)", 1f, 1.25f, .9f), ("Mevcut Düzeni Koru", 1f, 1f, 1f),
+                ("kontrol: Davranış bedelsiz", 1f, 1.25f, 1f), ("eski Davranış Ustası 2.0 (doğrudan ×0,85)", .85f, 1.25f, 1f),
+            };
+            var lean = new Policy { Name = "Deneyimli · davranış kartı öncelikli", Accuracy = .75f, PreferBehavior = true };
+            var sets = Policies.Select(p => (p, 1.0)).Concat(new[] { (lean, 1.0), (lean, 3.0) }).ToList();
+            const int seeds = 100;
+            string Q(IEnumerable<double> v, string f = "0") { var l = v.Where(x => !double.IsNaN(x)).ToList(); return l.Count == 0 ? "-" : $"ort {l.Average().ToString(f)} · P10/P50/P90 {P(l, .1).ToString(f)}/{P(l, .5).ToString(f)}/{P(l, .9).ToString(f)}"; }
+            bool Reached(RunResult r) => r.EndedAt == 0 || r.EndedAt > 10;
+            double Sum(RunResult r, int from, int to, Func<RoundLog, double> f) => r.Rounds.Where(l => l.Round >= from && l.Round <= to).Sum(f);
+            foreach (var (policy, scale) in sets)
+            {
+                var runs = options.Select(o => Enumerable.Range(0, seeds).Select(s => Run(policy, R(o, scale), 5000 + s)).ToList()).ToList();
+                int koruIndex = 2;
+                var koru = runs[koruIndex];
+                var reachedSeeds = Enumerable.Range(0, seeds).Where(s => Reached(koru[s])).ToList();
+                bool sameBefore = runs.All(rs => Enumerable.Range(0, seeds).All(s => Reached(rs[s]) == Reached(koru[s]) &&
+                    Math.Abs(rs[s].Rounds[Math.Min(9, rs[s].Rounds.Count - 1)].Score - koru[s].Rounds[Math.Min(9, koru[s].Rounds.Count - 1)].Score) < 1e-9));
+                text.AppendLine($"-- {policy.Name}{(scale != 1 ? $" · DUYARLILIK: davranış payı ×{scale:0} (kanıt değil)" : "")} ({seeds} seed, aynı seed kümesi) --");
+                text.AppendLine($"   10. round'u (ilk boss) geçen: {reachedSeeds.Count}/{seeds} — uzmanlaşma öncesi, seçenekten bağımsız (r1–10 bütün seçeneklerde aynı: {(sameBefore ? "evet" : "HAYIR")})");
+                text.AppendLine($"   r11–15 davranış hasat payı (Koru): {Q(reachedSeeds.Select(s => { var r = koru[s]; double h = Sum(r, 11, 15, l => l.Harvest); return h > 0 ? Sum(r, 11, 15, l => l.BehaviorHarvest) / h * 100 : 0; }), "0.0")}%");
+                // Hasar ile bitki canı: hasar canın çok üstündeyse hasar katsayıları (doğrudan ya da davranış) sonucu değiştirmez.
+                foreach (int rr in new[] { 5, 10, 11, 15, 20 })
+                {
+                    var alive = koru.Where(r => r.Rounds.Count >= rr).Select(r => r.Rounds[rr - 1]).ToList();
+                    if (alive.Count == 0) continue;
+                    text.AppendLine($"   r{rr} (Koru, {alive.Count} run): hasat hasarı P10/P50/P90 {P(alive.Select(l => (double)l.Damage), .1):0}/{P(alive.Select(l => (double)l.Damage), .5):0}/{P(alive.Select(l => (double)l.Damage), .9):0} · Common canı {alive[0].HpCommon:0}");
+                }
+                for (int o = 0; o < options.Length; o++)
+                {
+                    var rs = reachedSeeds.Select(s => runs[o][s]).ToList();
+                    int pass15 = rs.Count(r => r.QuotaMargins.Count >= 3 && r.QuotaMargins[2] >= 1), wins = rs.Count(r => r.EndedAt == 0);
+                    text.AppendLine($"   {options[o].Item1}: boss'a ulaşanlardan 15'i geçen {pass15}/{rs.Count} · zafer {wins}/{rs.Count}");
+                    text.AppendLine($"      3. segment skoru (kota 350) {Q(rs.Select(r => r.SegmentScores[2]))} · 4. segment (kota 600, ulaşanlar) {Q(rs.Where(r => r.SegmentScores.Count >= 4).Select(r => r.SegmentScores[3]))}");
+                    text.AppendLine($"      hasat geliri r11–15 Gold/Iron/Stone ort {rs.Average(r => Sum(r, 11, 15, l => l.Gold)):0}/{rs.Average(r => Sum(r, 11, 15, l => l.Iron)):0}/{rs.Average(r => Sum(r, 11, 15, l => l.Stone)):0}" +
+                                    $" · r11–15 alınan skill kademesi {Q(rs.Select(r => (double)(r.Rounds[14].TierCount - r.Rounds[9].TierCount)), "0.0")} · r15 hasat hasarı {Q(rs.Select(r => r.Rounds[14].Damage), "0.0")}");
+                    if (o == koruIndex) continue;
+                    var paired = reachedSeeds.Select(s => (a: runs[o][s], b: koru[s])).ToList();
+                    var ratio3 = paired.Select(p => p.a.SegmentScores[2] / Math.Max(1e-9, p.b.SegmentScores[2])).ToList();
+                    int better = paired.Count(p => p.a.SegmentScores[2] > p.b.SegmentScores[2] + 1e-9), worse = paired.Count(p => p.a.SegmentScores[2] < p.b.SegmentScores[2] - 1e-9);
+                    var tierDiff = paired.Select(p => (double)((p.a.Rounds[14].TierCount - p.a.Rounds[9].TierCount) - (p.b.Rounds[14].TierCount - p.b.Rounds[9].TierCount))).ToList();
+                    var both4 = paired.Where(p => p.a.SegmentScores.Count >= 4 && p.b.SegmentScores.Count >= 4).Select(p => p.a.SegmentScores[3] / Math.Max(1e-9, p.b.SegmentScores[3])).ToList();
+                    text.AppendLine($"      Koru'ya göre aynı seed: 3. segment skor oranı {Q(ratio3, "0.000")} (üstün {better} / geride {worse} / eşit {paired.Count - better - worse})" +
+                                    $" · 4. segment oranı {Q(both4, "0.000")} · r11–15 skill kademesi farkı {Q(tierDiff, "0.0")}");
+                }
+            }
+            text.AppendLine($"süre: {watch.Elapsed.TotalSeconds:0.0} sn");
+        }
+        catch (Exception ex) { text.AppendLine("FAIL: " + ex); }
+        Directory.CreateDirectory("Logs");
+        File.WriteAllText("Logs/RunSimSpecializationProgress.txt", text.ToString());
+        EditorApplication.Exit(0);
+    }
+
+    // ---------------- Bölüm 2.2 ----------------
+    // Elektrik öncelikli deneyimli oyuncu: elektrik kilidine giden yolu önce alır, kartta elektriği nadirlikten önce tutar.
+    public static Policy ElectricLean => new Policy
+    {
+        Name = "Deneyimli · elektrik öncelikli", Accuracy = .75f, PreferType = TileModifierType.Electric,
+        PriorityNodes = new[] { "Grid Genişleme I", "1×3 Saksı", "Patlayıcı Kartlar", "Çapraz Elektrik Kartları" }
+    };
+
+    // Deney 2.2 profilinin simülatör karşılığı (20 round, kota 40/200/350/600, Don 2. ve 4. segment). fixed > 0: süre kontrol koşulu.
+    public static Rules ExperimentRules(float fixedDuration = 0, int[] snapshots = null) => new Rules
+    {
+        Name = fixedDuration > 0 ? $"Süre B (sabit {fixedDuration:0} sn)" : "Süre A (yükseltmeler + tempo)", MaxRounds = 20, UpgradeWhenFull = true, DurationCap = 60,
+        QuotaSegment = 5, QuotaTargets = new long[] { 40, 200, 350, 600 }, FrostSegments = new[] { 2, 4 }, FixedDuration = fixedDuration, SnapshotRounds = snapshots
+    };
+
+    // Güç zaman çizelgesi (130 round kuralı, R50'ye kadar) + node erişim round'ları + süre A/B ilerlemeli karşılaştırma.
+    public static void RunSpeedPowerBatch()
+    {
+        var text = new StringBuilder();
+        try
+        {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            Load();
+            string Q(IEnumerable<double> v, string f = "0") { var l = v.Where(x => !double.IsNaN(x)).ToList(); return l.Count == 0 ? "-" : $"{P(l, .1).ToString(f)}/{P(l, .5).ToString(f)}/{P(l, .9).ToString(f)}"; }
+            var policies = Policies.Concat(new[] { ElectricLean }).ToList();
+            const int seeds = 40;
+            // 1) Zaman çizelgesi: mevcut kural (130 round, Tarla/kota yok), R50'ye kadar.
+            var longRules = new Rules { Name = "Mevcut kural", MaxRounds = 50, UpgradeWhenFull = true, DurationCap = 60 };
+            var common = planterSOs[0].spawnTable[0].plant; var legendary = planterSOs[0].spawnTable.Select(e => e.plant).OrderByDescending(p => p.rarity).First();
+            text.AppendLine("=== 1) Güç zaman çizelgesi (mevcut kural, 40 seed, P10/P50/P90) ===");
+            text.AppendLine($"can (Common / Legendary): " + string.Join(" · ", new[] { 5, 10, 15, 20, 25, 30, 40, 50 }.Select(r => $"r{r} {health.Calculate(common, r)}/{health.Calculate(legendary, r)}")));
+            var byPolicy = new Dictionary<string, List<RunResult>>();
+            foreach (var policy in policies)
+            {
+                var runs = Enumerable.Range(0, seeds).Select(s => Run(policy, longRules, 7000 + s)).ToList();
+                byPolicy[policy.Name] = runs;
+                text.AppendLine($"-- {policy.Name} --");
+                foreach (int r in new[] { 5, 10, 15, 20, 25, 30, 40, 50 })
+                {
+                    var at = runs.Where(x => x.Rounds.Count >= r).Select(x => x.Rounds[r - 1]).ToList();
+                    int hpC = health.Calculate(common, r), hpL = health.Calculate(legendary, r);
+                    text.AppendLine($"   r{r}: hasar {Q(at.Select(l => l.Damage))} · saldırı aralığı sn {Q(at.Select(l => l.Interval), "0.00")} · süre {Q(at.Select(l => l.Duration))} · tempo {Q(at.Select(l => l.Tempo), "0.00")}" +
+                                    $" · hasar×0,85 ≥ Common canı {at.Count(l => l.Damage * .85 >= hpC)}/{at.Count} · ≥ Legendary {at.Count(l => l.Damage * .85 >= hpL)}/{at.Count} · hasat/sn {Q(at.Select(l => l.Harvest / Math.Max(1, l.Duration)), "0.0")}");
+                }
+            }
+            // 2) Node erişimi: aile başına ilk kademe ve tamamlanma round'u (P50; alınmadıysa '-').
+            text.AppendLine("=== 2) Node erişim round'ları (mevcut kural, P50: tamamlanma; 50 round içinde) ===");
+            string[] families = { "Biraz Daha Zaman", "Hızlı Eller", "Akıcı Kesim", "Yıldırım Kesim", "Uzun Hasat", "Son Vardiya", "Keskin Başlangıç", "Kesim Tekniği", "Güçlü Kesim",
+                                  "Kesim Ustalığı", "Ağır Kesim", "Aşırı Güç", "Düzenli Üretim", "Verimli Üretim", "Seri Üretim", "Altın Hasat I", "Demir Hasat", "Hasat Rekoru",
+                                  "Patlayıcı Kartlar", "Tornado Kartları", "Bumerang Orak Kartları", "Çapraz Elektrik Kartları", "Grid Genişleme", "Geniş Süpürüş", "Kritik Odak" };
+            foreach (var fam in families)
+            {
+                var members = nodes.Where(n => n.name.StartsWith(fam)).OrderBy(n => n.name, StringComparer.Ordinal).ToList();
+                if (members.Count == 0) continue;
+                var cells = policies.Select(pol =>
+                {
+                    var runs = byPolicy[pol.Name];
+                    string Done(SkillNodeSO n) { var v = runs.Select(r => r.NodeDone.TryGetValue(n.name, out int d) ? (double)d : 999).ToList(); double m = P(v, .5); return m >= 999 ? "-" : m.ToString("0"); }
+                    return $"{pol.Name.Split(' ')[0]}{(pol == ElectricLeanRef(policies) ? "·E" : "")}: " + string.Join(" ", members.Select(Done));
+                });
+                text.AppendLine($"   {fam} ({members.Count} node): " + string.Join(" | ", cells));
+            }
+            // 3) Süre A / B (Deney 2.2 kuralı, 20 round): aynı seed, aynı politika. B30 ve B45, A'nın süre yolunu iki yandan sarar.
+            text.AppendLine("=== 3) Süre A (yükseltme + tempo) / B30 / B45 (profil sabit, süre node'u yok) — Deney 2.2 kuralı, 100 seed; farklar toplam hasat süresinden de gelir ===");
+            foreach (var policy in policies)
+            {
+                var conds = new[] { ("A", 0f), ("B30", 30f), ("B45", 45f) }
+                    .Select(c => (name: c.Item1, runs: Enumerable.Range(0, 100).Select(s => Run(policy, ExperimentRules(c.Item2), 8000 + s)).ToList())).ToList();
+                double Seconds(RunResult r, int from, int to) => r.Rounds.Where(l => l.Round >= from && l.Round <= to).Sum(l => l.Duration * l.Tempo);
+                int Reach(List<RunResult> rs, int round) => rs.Count(r => r.EndedAt == 0 || r.EndedAt > round);
+                string Each(Func<List<RunResult>, string> f) => string.Join(" / ", conds.Select(c => $"{c.name} {f(c.runs)}"));
+                text.AppendLine($"-- {policy.Name} --");
+                text.AppendLine($"   r10'u geçen {Each(rs => Reach(rs, 10).ToString())} · r15'i geçen {Each(rs => Reach(rs, 15).ToString())} · zafer {Each(rs => rs.Count(r => r.EndedAt == 0).ToString())}");
+                text.AppendLine($"   etkili hasat saniyesi (süre × tempo) r1–10 {Each(rs => Q(rs.Select(r => Seconds(r, 1, 10))))} · r11–20 (ulaşanlar) {Each(rs => Q(rs.Where(r => r.Rounds.Count >= 20).Select(r => Seconds(r, 11, 20))))}");
+                text.AppendLine($"   1. segment skoru {Each(rs => Q(rs.Select(r => r.SegmentScores[0])))} · 2. segment {Each(rs => Q(rs.Where(r => r.SegmentScores.Count >= 2).Select(r => r.SegmentScores[1])))}");
+                text.AppendLine($"   r1–10 hasat geliri G/I/S ort {Each(rs => $"{rs.Average(r => r.Rounds.Take(10).Sum(l => l.Gold)):0}/{rs.Average(r => r.Rounds.Take(10).Sum(l => l.Iron)):0}/{rs.Average(r => r.Rounds.Take(10).Sum(l => l.Stone)):0}")} · r10 skill kademesi {Each(rs => Q(rs.Where(r => r.Rounds.Count >= 10).Select(r => (double)r.Rounds[9].TierCount)))}");
+                text.AppendLine($"   saniye başına skor r6–10 {Each(rs => Q(rs.Where(r => r.Rounds.Count >= 10).Select(r => r.Rounds.Skip(5).Take(5).Sum(l => l.Score) / Seconds(r, 6, 10)), "0.00"))} · r16–20 {Each(rs => Q(rs.Where(r => r.Rounds.Count >= 20).Select(r => r.Rounds.Skip(15).Take(5).Sum(l => l.Score) / Seconds(r, 16, 20)), "0.00"))}");
+            }
+            text.AppendLine($"süre: {watch.Elapsed.TotalSeconds:0.0} sn");
+        }
+        catch (Exception ex) { text.AppendLine("FAIL: " + ex); }
+        Directory.CreateDirectory("Logs");
+        File.WriteAllText("Logs/RunSimSpeedPower.txt", text.ToString());
+        EditorApplication.Exit(0);
+    }
+
+    static Policy ElectricLeanRef(List<Policy> policies) => policies[policies.Count - 1];
+
+    // Bölüm 3.1 (2026-09-30): düğüm başına erişim (mevcut kural, 50 round, kota yok). Simülatör ölçümüdür, insan verisi değil.
+    // Satır: düğüm; politika başına ilk kademe P50, tamamlanma P50 ve R50'ye kadar tamamlayan run oranı. CSV: Logs/RunSimNodeAccess.csv
+    public static void RunNodeAccessBatch()
+    {
+        var csv = new StringBuilder("node,policy,firstTierP50,completeP50,completedBy50,seeds\n");
+        try
+        {
+            Load();
+            var rules = new Rules { Name = "Mevcut kural 50", MaxRounds = 50, UpgradeWhenFull = true, DurationCap = 60 };
+            const int seeds = 40;
+            foreach (var policy in Policies)
+            {
+                var first = nodes.ToDictionary(n => n, n => new List<double>());
+                var runs = new List<RunResult>();
+                for (int s = 0; s < seeds; s++)
+                {
+                    var r = Run(policy, rules, 7000 + s);
+                    runs.Add(r);
+                    // ilk kademe: round logundaki kademe sayısı artışlarından çıkarılamaz; tamamlanma NodeDone'dan gelir.
+                }
+                foreach (var n in nodes)
+                {
+                    string Median(Func<RunResult, Dictionary<string, int>> map)
+                    {
+                        var v = runs.Select(r => map(r).TryGetValue(n.name, out int d) ? (double)d : 999).ToList();
+                        return v.Count(x => x < 999) * 2 >= v.Count ? P(v, .5).ToString("0") : "-";
+                    }
+                    double share = runs.Count(r => r.NodeDone.ContainsKey(n.name)) / (double)runs.Count;
+                    csv.AppendLine(string.Join(",", "\"" + n.name + "\"", policy.Name, Median(r => r.NodeFirst), Median(r => r.NodeDone), share.ToString("0.00", CultureInfo.InvariantCulture), seeds));
+                }
+            }
+        }
+        catch (Exception ex) { csv.AppendLine("FAIL," + ex.Message.Replace(',', ';')); }
+        Directory.CreateDirectory("Logs");
+        File.WriteAllText("Logs/RunSimNodeAccess.csv", csv.ToString());
+        EditorApplication.Exit(0);
+    }
+
+    // ---------------- Bölüm 3.2: Run50 referans ölçümü ----------------
+    public const string Reference50Path = "Assets/ScriptableObjects/RunProfiles/Run50_Referans.asset";
+    public static readonly int[] Checkpoints = { 10, 20, 30, 40, 50 };
+    const int Reference50SeedBase = 11000;
+
+    // Tek vuruş olasılığı (model): PlayerController'daki sapma U(0,85–1,15), kritik (şans, çarpan) ve saksı çarpanı; yuvarlama yarım puanla yaklaşık.
+    static double OneShotChance(double damage, double critChance, double critMult, int hp)
+    {
+        if (damage <= 0) return 0;
+        double Chance(double d) => Math.Clamp((1.15 - (hp - .5) / d) / .3, 0, 1);
+        return (1 - critChance) * Chance(damage) + critChance * Chance(damage * Math.Max(1, critMult));
+    }
+
+    // Run50_Referans profilinin simülatör karşılığı. Uzunluk, segment ve kota asset'ten okunur. Simülatörün modellemediği alanlar
+    // (olay, uzmanlaşma, farklı başlangıç, sabit süre) doluysa durur: profil davranışı örtük kalmasın.
+    // quotaContinue = true yalnız ölçüm içindir (koşul B): kota tutmasa da run sürer; oyunda karşılığı yoktur.
+    public static Rules Reference50Rules(bool quotaContinue, int[] snapshots = null)
+    {
+        var p = AssetDatabase.LoadAssetAtPath<RunProfileSO>(Reference50Path);
+        if (p == null) throw new Exception("Run50_Referans.asset bulunamadı: " + Reference50Path);
+        if (p.events.Count > 0 || p.specializationAfterSegment > 0 || p.startingGold != 80 || p.startingIron != 0 || p.startingStone != 0 || p.debugBudget || p.fixedRoundDuration > 0)
+            throw new Exception("Run50_Referans simülatörün modellediği ayarlarda değil (olay, uzmanlaşma, başlangıç ekonomisi ya da sabit süre)");
+        return new Rules
+        {
+            Name = quotaContinue ? "B · kota nedeniyle elenme kapalı (yalnız ölçüm)" : "A · gerçek kural (kota tutmazsa run biter)",
+            MaxRounds = p.runLength, UpgradeWhenFull = true, DurationCap = RoundManager.RoundSecondsCap, QuotaSegment = p.segmentRounds,
+            QuotaStart = p.quotaStart, QuotaGrowth = p.quotaGrowth, QuotaTargets = p.segmentTargets.ToArray(), QuotaContinue = quotaContinue, SnapshotRounds = snapshots
+        };
+    }
+
+    // Sahne ölçümü için temsilî run (koşul B, batch ile aynı seed kümesi): kontrol round'larında skor ve hasarı medyana en yakın run.
+    // Snapshots = R10/20/30/40/50 başındaki durum; Rounds = simülatörün aynı round'lar için hesapladığı değerler (karşılaştırma için).
+    public static RunResult Reference50Representative(Policy policy, int seeds)
+    {
+        Load();
+        var runs = Enumerable.Range(0, seeds).Select(s => Run(policy, Reference50Rules(true, Checkpoints), Reference50SeedBase + s)).ToList();
+        var medScore = Checkpoints.ToDictionary(r => r, r => P(runs.Select(x => x.Rounds[r - 1].Score), .5));
+        var medDamage = Checkpoints.ToDictionary(r => r, r => P(runs.Select(x => x.Rounds[r - 1].Damage), .5));
+        double Gap(double v, double m) => Math.Abs(Math.Log(Math.Max(1e-6, v) / Math.Max(1e-6, m)));
+        double Distance(RunResult x) => Checkpoints.Sum(r => Gap(x.Rounds[r - 1].Score, medScore[r]) + Gap(x.Rounds[r - 1].Damage, medDamage[r]));
+        return runs.OrderBy(Distance).First();
+    }
+
+    // Uç durum kontrolü için: bütün düğümlerin son kademe etkileri (tam ağaç). Normal R50 build'i değildir.
+    public static List<StatModifier> FullTreeEffects()
+    {
+        Load();
+        return nodes.Where(n => n.tiers.Count > 0).SelectMany(n => n.tiers[^1].effects).ToList();
+    }
+
+    // Ölçülen round'lar: R10/20/30/40/50. A = gerçek kural (kota tutmazsa run biter), B = yalnız ölçüm (elenme kapalı).
+    // Aynı seed'lerde A, B'nin ilk kota başarısızlığına kadar olan kısmıyla aynıdır (kontrol edilir). Simülatör ölçümüdür, insan verisi değil.
+    public static void RunReference50Batch()
+    {
+        var text = new StringBuilder();
+        var csv = new StringBuilder("condition,policy,round,alive,damage,interval,duration,tempo,level,cardsTotal,tiles,unlocked,harvest,ceiling,combat,harvestRatio,oneShot,avgHits,score,income,minutes,behaviorShare\n");
+        try
+        {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            Load();
+            const int seeds = 100;
+            var profile = AssetDatabase.LoadAssetAtPath<RunProfileSO>(Reference50Path);
+            var longRun = AssetDatabase.LoadAssetAtPath<RunProfileSO>("Assets/ScriptableObjects/RunProfiles/UzunRun130.asset");
+            var rulesA = Reference50Rules(false); var rulesB = Reference50Rules(true);
+            int segments = profile.runLength / profile.segmentRounds;
+            string Q(IEnumerable<double> v, string f = "0") { var l = v.Where(x => !double.IsNaN(x)).ToList(); return l.Count == 0 ? "-" : $"{P(l, .1).ToString(f)}/{P(l, .5).ToString(f)}/{P(l, .9).ToString(f)}"; }
+            string Pct(int n, int of) => of == 0 ? "-" : $"%{100.0 * n / of:0}";
+            var plants = planterSOs[0].spawnTable.Select(e => e.plant).Where(p => p != null).GroupBy(p => p.rarity).Select(g => g.First()).OrderBy(p => p.rarity).ToList();
+            string[] keyNodes =
+            {
+                "Biraz Daha Zaman - 1", "Keskin Başlangıç - 1", "Hızlı Eller - 1", "Grid Genişleme I", "2×2 Saksı", "2×3 Saksı", "Patlayıcı Kartlar", "Tornado Kartları",
+                "Bumerang Orak Kartları", "Çapraz Elektrik Kartları", "Kesim Tekniği - 1", "Geniş Süpürüş - 1", "Düzenli Üretim - 1", "Güçlü Kesim - 1", "Kritik Odak - 1",
+                "Uzun Hasat - 1", "Grid Genişleme II", "Ağır Kesim - 1", "Akıcı Kesim - 1", "Kesim Ustalığı - 1", "Verimli Üretim - 1", "Son Vardiya - 1",
+                "Hasat Rekoru - 1", "Plazma Kesim - 1", "Aşırı Güç I"
+            };
+            var missing = keyNodes.Where(k => nodes.All(n => n.name != k)).ToList();
+            if (missing.Count > 0) throw new Exception("düğüm bulunamadı: " + string.Join(", ", missing));
+
+            text.AppendLine("=== Run50_Referans · simülatör (insan verisi değil) ===");
+            text.AppendLine($"profil (asset): {profile.runLength} round · {profile.segmentRounds} round'luk {segments} segment · kota {profile.quotaStart} × {profile.quotaGrowth}^(segment−1), HarvestQuota.Nice · tablo {(profile.segmentTargets.Count == 0 ? "boş (eğri)" : string.Join("/", profile.segmentTargets))}" +
+                            $" · olay {profile.events.Count} · uzmanlaşma segmenti {profile.specializationAfterSegment} · başlangıç {profile.startingGold}G/{profile.startingIron}I/{profile.startingStone}S · debug bütçe {profile.debugBudget} · sabit süre {profile.fixedRoundDuration}");
+            text.AppendLine("kotalar (Run50_Referans / UzunRun130): " + string.Join(" ", Enumerable.Range(1, segments).Select(s => $"r{s * profile.segmentRounds} {profile.TargetFor(s)}/{longRun.TargetFor(s)}")) +
+                            $" · aynı: {(Enumerable.Range(1, segments).All(s => profile.TargetFor(s) == longRun.TargetFor(s)) ? "evet" : "HAYIR")}");
+            text.AppendLine($"kural: kart grid doluyken tile yükseltir (UpgradeWhenFull), süre 60 sn üstü tempo (DurationCap 60), Tarla Tükendi yok, {seeds} seed ({Reference50SeedBase}+), politika başına aynı seed kümesi.");
+            text.AppendLine("can (PlantHealthScaling, nadirlik başına): " + string.Join(" · ", Checkpoints.Select(r => $"R{r} " + string.Join("/", plants.Select(p => health.Calculate(p, r))))) + $" ({string.Join("/", plants.Select(p => p.rarity))})");
+
+            foreach (var policy in Policies)
+            {
+                var runsA = Enumerable.Range(0, seeds).Select(s => Run(policy, rulesA, Reference50SeedBase + s)).ToList();
+                var runsB = Enumerable.Range(0, seeds).Select(s => Run(policy, rulesB, Reference50SeedBase + s)).ToList();
+                bool same = Enumerable.Range(0, seeds).All(s => runsA[s].Rounds.Count <= runsB[s].Rounds.Count && runsA[s].QuotaFailedAt == runsB[s].QuotaFailedAt &&
+                    Enumerable.Range(0, runsA[s].Rounds.Count).All(i => runsA[s].Rounds[i].Score == runsB[s].Rounds[i].Score && runsA[s].Rounds[i].Level == runsB[s].Rounds[i].Level));
+                text.AppendLine();
+                text.AppendLine($"################ {policy.Name} (isabet {policy.Accuracy}) · {seeds} seed ################");
+                text.AppendLine($"A ile B aynı seed'de ilk kota başarısızlığına kadar aynı: {(same ? "evet" : "HAYIR")}");
+
+                // ---- A: gerçek kural ----
+                var failed = runsA.Where(r => r.EndedAt > 0).ToList();
+                text.AppendLine($"--- A · gerçek kural: R50'yi tamamlayan {runsA.Count(r => r.EndedAt == 0)}/{seeds} · kotaya takılan {failed.Count}/{seeds} ---");
+                text.AppendLine("   kontrol round'una ulaşan: " + string.Join(" · ", Checkpoints.Select(r => $"R{r} {runsA.Count(x => x.Rounds.Count >= r)}/{seeds}")));
+                if (failed.Count > 0)
+                {
+                    text.AppendLine("   takılma round'ları: " + string.Join(", ", failed.GroupBy(r => r.EndedAt).OrderBy(g => g.Key).Select(g => $"R{g.Key}×{g.Count()}")));
+                    text.AppendLine($"   takıldığı an (erişilen içerik): level {Q(failed.Select(r => (double)r.Rounds[^1].Level))} · ağaç% {Q(failed.Select(r => r.Rounds[^1].Tree * 100))} · saksı {Q(failed.Select(r => (double)r.Rounds[^1].Planters))}" +
+                                    $" · tile {Q(failed.Select(r => (double)r.Rounds[^1].Tiles))}/{Q(failed.Select(r => (double)r.Rounds[^1].Unlocked))} · hasar {Q(failed.Select(r => r.Rounds[^1].Damage))} · segment skoru/kota {Q(failed.Select(r => r.QuotaMargins[^1]), "0.00")}");
+                    var unlockNames = new[] { "2×2 Saksı", "2×3 Saksı", "Patlayıcı Kartlar", "Tornado Kartları", "Bumerang Orak Kartları", "Çapraz Elektrik Kartları", "Hızlı Eller - 1", "Grid Genişleme II" };
+                    text.AppendLine("   takılanlarda açık olan: " + string.Join(" · ", unlockNames.Select(n => $"{n} {Pct(failed.Count(r => r.NodeFirst.TryGetValue(n, out int v) && v <= r.EndedAt), failed.Count)}")));
+                }
+                text.AppendLine("   segment skoru / kota (o segmente ulaşan run'lar; P10/P50/P90 · en düşük · ulaşan):");
+                for (int s = 1; s <= segments; s++)
+                {
+                    var m = runsA.Where(r => r.QuotaMargins.Count >= s).Select(r => r.QuotaMargins[s - 1]).ToList();
+                    text.AppendLine($"      seg {s} (R{(s - 1) * profile.segmentRounds + 1}–{s * profile.segmentRounds}, kota {profile.TargetFor(s)}): {Q(m, "0.0")} · en düşük {(m.Count > 0 ? m.Min().ToString("0.00") : "-")} · {m.Count}/{seeds}");
+                }
+
+                // ---- B: elenme kapalı (yalnız ölçüm) ----
+                text.AppendLine($"--- B · kota nedeniyle elenme kapalı (yalnız ölçüm; kazanma oranı değildir): {seeds}/{seeds} run R50'ye kadar ölçüldü; kotası en az bir kez tutmayan {runsB.Count(r => r.QuotaFailedAt > 0)} ---");
+                text.AppendLine("   P10/P50/P90, her satır bütün run'lar (n=" + seeds + ")");
+                foreach (int r in Checkpoints)
+                {
+                    var at = runsB.Select(x => x.Rounds[r - 1]).ToList();
+                    text.AppendLine($"   R{r}:");
+                    text.AppendLine($"      hasar {Q(at.Select(l => l.Damage))} · kritik %{Q(at.Select(l => l.CritChance * 100))} ×{Q(at.Select(l => l.CritMult), "0.0")} · saldırı aralığı (tempo sonrası) {Q(at.Select(l => l.Interval), "0.00")} sn · yarıçap {Q(at.Select(l => l.Radius), "0.00")} · imleçteki hedef {Q(at.Select(l => l.Targets), "0.0")}");
+                    text.AppendLine($"      süre {Q(at.Select(l => l.Duration))} sn · tempo {Q(at.Select(l => l.Tempo), "0.00")} · toplam oturum {Q(runsB.Select(x => x.Rounds[r - 1].Minutes))} dk");
+                    foreach (var p in plants)
+                    {
+                        int hp = health.Calculate(p, r);
+                        var hits = at.Select(l => Math.Ceiling(hp / Math.Max(1e-6, l.Damage))).ToList();
+                        text.AppendLine($"      {p.rarity,-9} can {hp,6} · vuruş (ort. hasar, kritiksiz) {Q(hits)} · kesin tek vuruş (hasar×0,85 ≥ can) {Pct(at.Count(l => l.Damage * .85 >= hp), at.Count)}" +
+                                        $" · tek vuruş olasılığı (model, sapma+kritik) {Q(at.Select(l => OneShotChance(l.Damage, l.CritChance, l.CritMult, hp) * 100))}% · tek hedef hasat süresi ≈ vuruş × aralık {Q(at.Select(l => Math.Ceiling(hp / Math.Max(1e-6, l.Damage)) * l.Interval), "0.0")} sn");
+                    }
+                    text.AppendLine($"      üretime göre ağırlıklı: tek vuruş (model) %{Q(at.Select(l => l.OneShot * 100))} · ortalama vuruş (kritikli) {Q(at.Select(l => l.AvgHits), "0.00")}");
+                    text.AppendLine($"      level {Q(at.Select(l => (double)l.Level))} · alınan kart (toplam) {Q(runsB.Select(x => (double)x.Rounds.Take(r).Sum(l => l.Cards)))} · tile {Q(at.Select(l => (double)l.Tiles))}/{Q(at.Select(l => (double)l.Unlocked))} açık hücre" +
+                                    $" · yükseltme (toplam) {Q(runsB.Select(x => (double)x.Rounds.Take(r).Sum(l => l.Upgrades)))} · max tile {Q(at.Select(l => (double)l.MaxedTiles))} · işlevsiz kart (oyunda Temel güç) {Q(runsB.Select(x => (double)x.Rounds.Take(r).Sum(l => l.Dead)))}" +
+                                    $" · atlanan {Q(runsB.Select(x => (double)x.Rounds.Take(r).Sum(l => l.Skips)))} · saksı {Q(at.Select(l => (double)l.Planters))} · rezonans {Q(at.Select(l => (double)l.Resonances))} · ağaç% {Q(at.Select(l => l.Tree * 100))}");
+                    text.AppendLine($"      round geliri G/I/S {Q(at.Select(l => l.Gold))}/{Q(at.Select(l => l.Iron))}/{Q(at.Select(l => l.Stone))} · ağırlıklı (G + 7I + 14S) {Q(at.Select(l => l.Income))} · round skoru {Q(at.Select(l => l.Score))}");
+                    int seg = r / profile.segmentRounds; long quota = profile.TargetFor(seg);
+                    var segScores = runsB.Select(x => x.SegmentScores[seg - 1]).ToList();
+                    text.AppendLine($"      segment {seg} skoru {Q(segScores)} · kota {quota} · skor/kota {Q(segScores.Select(v => v / quota), "0.0")} · kotanın altında {segScores.Count(v => v < quota)}/{seeds}");
+                    text.AppendLine($"      darboğaz: hasat/üretim tavanı %{Q(at.Select(l => l.HarvestRatio * 100))} · doğrudan savaş kapasitesi/üretim tavanı {Q(at.Select(l => l.Ceiling > 0 ? l.Combat / l.Ceiling : 0), "0.00")}" +
+                                    $" · savaş sınırlı (kapasite < tavan) {at.Count(l => l.Combat < l.Ceiling)}/{seeds} · hasat/round {Q(at.Select(l => l.Harvest))} · tavan/round {Q(at.Select(l => l.Ceiling))}");
+                    text.AppendLine($"      davranış ek hasat payı (MODEL, güvenilir değil) %{Q(at.Select(l => l.Harvest > 0 ? l.BehaviorHarvest / l.Harvest * 100 : 0))}");
+                }
+                text.AppendLine("   düğüm erişimi (ilk kademe o round'da aktif olan run oranı, B):");
+                foreach (var n in keyNodes)
+                    text.AppendLine($"      {n,-26} " + string.Join(" · ", Checkpoints.Select(r => $"R{r} {Pct(runsB.Count(x => x.NodeFirst.TryGetValue(n, out int v) && v <= r), seeds)}")));
+
+                foreach (var (cond, runs) in new[] { ("A", runsA), ("B", runsB) })
+                    for (int round = 1; round <= profile.runLength; round++)
+                    {
+                        var alive = runs.Where(x => x.Rounds.Count >= round).Select(x => x.Rounds[round - 1]).ToList();
+                        if (alive.Count == 0) break;
+                        string M(Func<RoundLog, double> f) => P(alive.Select(f), .5).ToString("0.###", CultureInfo.InvariantCulture);
+                        string cards = P(runs.Where(x => x.Rounds.Count >= round).Select(x => (double)x.Rounds.Take(round).Sum(l => l.Cards)), .5).ToString("0", CultureInfo.InvariantCulture);
+                        csv.AppendLine(string.Join(",", cond, policy.Name, round, alive.Count, M(l => l.Damage), M(l => l.Interval), M(l => l.Duration), M(l => l.Tempo), M(l => l.Level), cards, M(l => l.Tiles), M(l => l.Unlocked),
+                            M(l => l.Harvest), M(l => l.Ceiling), M(l => l.Combat), M(l => l.HarvestRatio), M(l => l.OneShot), M(l => l.AvgHits), M(l => l.Score), M(l => l.Income), M(l => l.Minutes), M(l => l.Harvest > 0 ? l.BehaviorHarvest / l.Harvest : 0)));
+                    }
+            }
+            text.AppendLine();
+            text.AppendLine($"süre: {watch.Elapsed.TotalSeconds:0.0} sn");
+        }
+        catch (Exception ex) { text.AppendLine("FAIL: " + ex); }
+        Directory.CreateDirectory("Logs");
+        File.WriteAllText("Logs/RunSimReference50.txt", text.ToString());
+        File.WriteAllText("Logs/RunSimReference50.csv", csv.ToString());
+        EditorApplication.Exit(0);
+    }
+
+    // Bölüm 3.4: boss round'larındaki (R5 … R45) round skoru dağılımı. Boss hasadı hedeflerinin ilk değerleri buradan gerekçelendirilir.
+    // Koşul B (elenme kapalı), boss kuralı ve ödül yok: referans oyunun o round'da tek başına ürettiği skor. Simülatör ölçümüdür.
+    public static void RunBossRoundScoreBatch()
+    {
+        var text = new StringBuilder();
+        try
+        {
+            Load();
+            const int seeds = 100;
+            var rules = Reference50Rules(true);
+            string Q(IEnumerable<double> v) { var l = v.ToList(); return $"{P(l, .1):0}/{P(l, .5):0}/{P(l, .9):0}"; }
+            text.AppendLine($"=== Boss round'larında round skoru (Run50_Referans kuralı, koşul B, {seeds} seed, P10/P50/P90; boss kuralı yok) ===");
+            // Boss hedefleri profil tablosundan okunur (ilk test değerleri); geçme oranı boss kuralı ve boss ödülü OLMADAN hesaplanır.
+            var bossProfile = AssetDatabase.LoadAssetAtPath<RunProfileSO>("Assets/ScriptableObjects/RunProfiles/Run50_BossPrototip.asset");
+            var targets = bossProfile != null ? bossProfile.bossTargets : new List<long>();
+            foreach (var policy in Policies)
+            {
+                var runs = Enumerable.Range(0, seeds).Select(s => Run(policy, rules, Reference50SeedBase + s)).ToList();
+                text.AppendLine($"-- {policy.Name} --");
+                int alive = seeds;
+                for (int r = 5; r <= 45; r += 5)
+                {
+                    string pass = "";
+                    if (r / 5 - 1 < targets.Count)
+                    {
+                        long target = targets[r / 5 - 1];
+                        int ok = runs.Count(x => x.Rounds[r - 1].Score >= target);
+                        // Art arda: o boss'a kadar bütün hedefleri geçen seed sayısı (boss'ta kalan run biter).
+                        alive = runs.Count(x => Enumerable.Range(1, r / 5).All(k => x.Rounds[k * 5 - 1].Score >= targets[k - 1]));
+                        pass = $" · hedef {target}: geçen {ok}/{seeds}, buraya kadar hepsini geçen {alive}/{seeds} · P50/hedef ×{P(runs.Select(x => x.Rounds[r - 1].Score).ToList(), .5) / target:0.0}";
+                    }
+                    text.AppendLine($"   R{r}: round skoru {Q(runs.Select(x => x.Rounds[r - 1].Score))} · en düşük {runs.Min(x => x.Rounds[r - 1].Score):0} · segment skoru {Q(runs.Select(x => x.SegmentScores[r / 5 - 1]))}{pass}");
+                }
+            }
+        }
+        catch (Exception ex) { text.AppendLine("FAIL: " + ex); }
+        Directory.CreateDirectory("Logs");
+        File.WriteAllText("Logs/RunSimBossRoundScore.txt", text.ToString());
+        EditorApplication.Exit(0);
+    }
+
+    // Sahne ölçümü için temsilî durum: politikanın seed'leri arasında r15 skoru medyana en yakın run'ın round başı durumları.
+    public static List<Snapshot> RepresentativeStates(Policy policy, int[] rounds, int seeds, out int seed)
+    {
+        Load();
+        var runs = Enumerable.Range(0, seeds).Select(s => Run(policy, ExperimentRules(0, rounds), 9000 + s)).Where(r => r.Snapshots.Count == rounds.Length).ToList();
+        double Score15(RunResult r) => r.Rounds.Count >= 15 ? r.Rounds[14].Score : 0;
+        double median = P(runs.Select(Score15), .5);
+        var pick = runs.OrderBy(r => Math.Abs(Score15(r) - median)).First();
+        seed = pick.Snapshots[0].Seed;
+        return pick.Snapshots;
     }
 
     // Bölüm 1 prototipi (2026-09-30): 10 round, kota tablosu 40 / 200, 2. segment Don Cephesi; aynı seed'lerle olay açık/kapalı.

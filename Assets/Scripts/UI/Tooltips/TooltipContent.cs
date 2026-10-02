@@ -23,4 +23,13 @@ public class TooltipContent : MonoBehaviour
         if (level != "MAX") { view.Add("<b>YÜKSELTME MALİYETİ</b>"); view.Add(value); }
         view.End();
     }
+    // Profilin run başında verdiği erişim: satın alma değildir, bu yüzden kademe ve maliyet bölümü yazılmaz.
+    public void ShowStartingAccess(string caption, string description)
+    {
+        var view = ComicPopupView.Attach(gameObject); view.IsHoverTooltip = true;
+        view.Begin(title, caption, icon, skillIcon: skillIcon);
+        view.Add("<b>ERİŞİM</b>");
+        view.Add(description.TrimEnd());
+        view.End();
+    }
 }

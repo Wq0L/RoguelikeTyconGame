@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0817a4d977add4bbd7d892df76868d, type: 3}
+  m_Name: Nadir Filizler - 1
+  m_EditorClassIdentifier: Assembly-CSharp::SkillNodeSO
+  nodeName: Nadir Filizler - 1
+  icon: {fileID: 0}
+  gridPosition: {x: -5, y: -17}
+  explicitPrerequisites: 1
+  prerequisites:
+  - node: {fileID: 11400000, guid: bf37324667e3967d5064fb1d1d161a49, type: 2}
+    level: 1
+  targetRounds: {x: 20, y: 42}
+  tiers:
+  - costType: 1
+    cost: 230
+    effects:
+    - statType: 6
+      target: 2
+      operation: 0
+      value: 1.333333
+  - costType: 1
+    cost: 300
+    effects:
+    - statType: 6
+      target: 2
+      operation: 0
+      value: 2.666667
+  - costType: 1
+    cost: 360
+    effects:
+    - statType: 6
+      target: 2
+      operation: 0
+      value: 4
+  unlockType: 0

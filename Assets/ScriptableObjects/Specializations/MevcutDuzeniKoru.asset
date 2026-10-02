@@ -16,4 +16,5 @@ MonoBehaviour:
   note: "Bonus da bedel de yok."
   directDamageMultiplier: 1
   behaviorDamageMultiplier: 1
+  harvestResourceMultiplier: 1
   color: {r: 0.8, g: 0.78, b: 0.72, a: 1}

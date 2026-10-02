@@ -1,0 +1,16 @@
+FAIL: 85 checks
+runtime behavior manager initialized
+new cards locked in actual scene
+purchase unlock node
+purchase unlock node
+purchase unlock node
+purchase unlock node
+purchase unlock node
+skill purchase unlocks all rarities
+new cards locked in actual scene
+purchase unlock node
+skill purchase unlocks all rarities
+electric burst spawns
+System.Exception: Harvest behavior verification: electric excludes source planter
+  at HarvestBehaviorVerification.Require (System.Boolean condition, System.String message) [0x00036] in C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Assets\Editor\HarvestBehaviorVerification.cs:32 
+  at HarvestBehaviorVerification.Tick () [0x002fd] in C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Assets\Editor\HarvestBehaviorVerification.cs:133 

@@ -16,4 +16,5 @@ MonoBehaviour:
   note: "T\u0131rpanla kesmeye yaslan."
   directDamageMultiplier: 1.25
   behaviorDamageMultiplier: 0.85
+  harvestResourceMultiplier: 1
   color: {r: 0.97, g: 0.75, b: 0.36, a: 1}

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
@@ -36,10 +37,18 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
     [Header("Konum")]
     [SerializeField] private float spacing = 150f;
 
+    // Profilin run başında verdiği erişim satın almadan ayrı gösterilir: düğümün altında bu yazı, satılacak bir şeyi
+    // yoksa ayrıca kendi yüz rengi (yeşil "tamamlandı" değil) ve kademe noktası olmadan.
+    public const string StartingAccessLabel = "BAŞLANGIÇTAN AÇIK";
+    public static readonly Color32 StartingAccessColor = new Color32(134, 199, 232, 255);
+
     private int previousLevel = 0;
     private ResonanceBadgeGraphic skillBadge;
     private ComicPopupPlate comicFace;
     private int comicLayer;
+    private RectTransform startLabel;
+
+    public bool ShowsStartingAccess => startLabel != null && startLabel.gameObject.activeSelf;
 
     // Also available before Awake, for nodes initially hidden by the tree.
     public SkillNodeSO Node => node;
@@ -61,6 +70,16 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
             c.a = 0f;
             waveRingImage.color = c;
         }
+    }
+
+    // Run profilinin ağaç seti bu yuvada başka bir düğüm gösterebilir (SkillTreeUI bağlar). null: yuva bu run'da kapalı.
+    public void Bind(SkillNodeSO boundNode)
+    {
+        node = boundNode;
+        previousLevel = 0;
+        if (node == null) { gameObject.SetActive(false); return; }
+        ApplyGridLayout();
+        if (skillBadge != null) skillBadge.SetRecipe(SkillIconCatalog.For(node));
     }
 
     public void ApplyGridLayout()
@@ -156,6 +175,7 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
 
     public void Refresh()
     {
+        if (node == null) { gameObject.SetActive(false); return; } // ağaç setinde kapalı yuva
         bool visible = SkillTreeManager.Instance.IsNodeVisible(node);
         gameObject.SetActive(visible);
         if (!visible) return;
@@ -166,10 +186,16 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         bool isMax = SkillTreeManager.Instance.IsMaxLevel(node);
         bool canUpgrade = SkillTreeManager.Instance.CanUpgrade(node);
 
-        comicFace.color = isMax ? new Color32(125,223,162,255) : canUpgrade ? new Color32(255,213,119,255) : new Color32(207,198,188,255);
+        // Üç ayrı durum: başlangıç erişimi (profil verdi), satın alma seviyesi (noktalar), tamamlanma (yeşil).
+        // Satılacak bir şeyi kalmayan başlangıç düğümü satın alınmış gibi çizilmez; stat kademeleri olan düğüm normal satılır.
+        bool startingAccess = SkillTreeManager.HasStartingAccess(node);
+        bool grantedOnly = SkillTreeManager.IsGrantedByProfile(node);
+        bool disabled = !grantedOnly && SkillTreeManager.Instance.IsDisabledByProfile(node);
+        comicFace.color = grantedOnly ? StartingAccessColor : disabled ? new Color32(150,145,150,255) : isMax ? new Color32(125,223,162,255) : canUpgrade ? new Color32(255,213,119,255) : new Color32(207,198,188,255);
         button.interactable = canUpgrade;
 
-        UpdateTierDots(level);
+        UpdateTierDots(level, !grantedOnly);
+        RefreshStartLabel(startingAccess, !grantedOnly);
 
 
         if (previousLevel == 0 && level == 1)
@@ -212,13 +238,57 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         return canUpgrade ? availableColor : cantColor;
     }
 
-    private void UpdateTierDots(int level)
+    // Yazı düğümün altındadır; kademe noktaları görünüyorsa onların altına iner.
+    private void RefreshStartLabel(bool show, bool belowDots)
+    {
+        if (!show)
+        {
+            if (startLabel != null) startLabel.gameObject.SetActive(false);
+            return;
+        }
+        if (startLabel == null)
+        {
+            var plate = new GameObject("Starting access label", typeof(RectTransform), typeof(ComicPopupPlate));
+            plate.layer = gameObject.layer;
+            startLabel = (RectTransform)plate.transform;
+            startLabel.SetParent(transform, false);
+            startLabel.anchorMin = startLabel.anchorMax = new Vector2(0.5f, 0f);
+            startLabel.pivot = new Vector2(0.5f, 1f);
+            startLabel.sizeDelta = new Vector2(148f, 26f);
+            var paper = plate.GetComponent<ComicPopupPlate>();
+            paper.color = new Color32(255, 242, 210, 255);
+            paper.raycastTarget = false;
+
+            var textObject = new GameObject("Text", typeof(RectTransform));
+            textObject.layer = gameObject.layer;
+            textObject.SetActive(false);
+            var rect = (RectTransform)textObject.transform;
+            rect.SetParent(startLabel, false);
+            rect.anchorMin = Vector2.zero; rect.anchorMax = Vector2.one;
+            rect.offsetMin = new Vector2(5f, 1f); rect.offsetMax = new Vector2(-5f, -1f);
+            var text = textObject.AddComponent<TextMeshProUGUI>();
+            var theme = Resources.Load<ComicUITheme>("ComicUITheme");
+            if (theme != null) theme.StylePopupText(text);
+            text.text = StartingAccessLabel;
+            text.alignment = TextAlignmentOptions.Center;
+            text.textWrappingMode = TextWrappingModes.NoWrap;
+            // Boyut etkinleştirmeden önce verilir: verilmezse TMP ilk açılışta kendi varsayılanlarını (boyut, sarma, tıklama) yükler.
+            text.fontSize = 16f;
+            text.enableAutoSizing = true; text.fontSizeMin = 9f; text.fontSizeMax = 16f;
+            text.raycastTarget = false;
+            textObject.SetActive(true);
+        }
+        startLabel.anchoredPosition = new Vector2(0f, belowDots ? -24f : -7f);
+        startLabel.gameObject.SetActive(true);
+    }
+
+    private void UpdateTierDots(int level, bool show)
     {
         int tierCount = node.tiers.Count;
 
         for (int i = 0; i < tierDots.Count; i++)
         {
-            bool used = i < tierCount;
+            bool used = show && i < tierCount;
             tierDots[i].gameObject.SetActive(used);
             if (!used) continue;
 
@@ -271,6 +341,21 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         content.SetName(node.nodeName);
         content.SetIcon(node.icon);
         content.SetSkillIcon(SkillIconCatalog.For(node));
+
+        if (SkillTreeManager.IsGrantedByProfile(node))
+        {
+            content.ShowStartingAccess(StartingAccessLabel,
+                GetUnlockDescription(true) + "\nBu düğüm satın alınmadı; bu profilde ücret ödenmez.");
+            return;
+        }
+
+        if (SkillTreeManager.Instance.IsDisabledByProfile(node))
+        {
+            content.SetLevel("—");
+            content.SetValues($"Bu deneyde round süresi sabit ({RoundManager.Instance.RawRoundDuration:0} sn).\nBu node etkisiz ve satın alınamaz.");
+            content.SetCost("-");
+            return;
+        }
 
         if (isMax)
         {
@@ -365,7 +450,10 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
             UnlockType.Planter_1x3 => "1×3", UnlockType.Planter_2x2 => "2×2",
             UnlockType.Planter_2x3 => "2×3", _ => null
         };
-        if (planter != null) return completed ? $"{planter} saksı mağazada açık." : $"{planter} saksıyı mağazada açar.";
+        // Kilidi profil run başında verdiyse düğüm onu "açmaz": kademeler yalnız kendi statlarını satar.
+        bool fromStart = SkillTreeManager.HasStartingAccess(node);
+        if (planter != null)
+            return fromStart ? $"{planter} saksı başlangıçtan açık (mağazada)." : completed ? $"{planter} saksı mağazada açık." : $"{planter} saksıyı mağazada açar.";
         string card = node.unlockType switch
         {
             UnlockType.TileBehavior_Explosive => "Patlama",
@@ -376,6 +464,7 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
             _ => null
         };
         if (card == null) return string.Empty;
+        if (fromStart) return $"{card} kartları başlangıçtan açık: run başından beri seçim havuzunda.";
         return completed
             ? $"{card} kartları seçim havuzuna eklendi."
             : $"Son seviyede {card} kartlarını seçim havuzuna ekler.";

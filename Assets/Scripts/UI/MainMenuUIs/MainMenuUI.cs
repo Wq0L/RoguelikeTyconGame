@@ -18,6 +18,9 @@ public class MainMenuUI : MonoBehaviour
 
     [SerializeField] private string gameSceneName = "GameScene";
 
+    // Oyna → başlangıç seçimi (çiftçi + tırpan) → run. Panel koddan kurulur; katalog yoksa eski akış (doğrudan run).
+    private StartSelectionPanelUI startPanel;
+
     private void OnEnable()
     {
         playButton.onClick.AddListener(OnPlayClicked);
@@ -39,12 +42,43 @@ public class MainMenuUI : MonoBehaviour
         // Başlangıçta ana menü açık, options kapalı
         mainMenuPanel.SetActive(true);
         optionsPanel.SetActive(false);
+        startPanel = StartSelectionPanelUI.Attach(mainMenuPanel.transform.parent);
+        if (startPanel != null)
+        {
+            startPanel.StartRequested += StartRun;
+            startPanel.BackRequested += OnStartBack;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (startPanel == null) return;
+        startPanel.StartRequested -= StartRun;
+        startPanel.BackRequested -= OnStartBack;
     }
 
     private void OnPlayClicked()
     {
+        if (startPanel != null && startPanel.HasCatalog)
+        {
+            mainMenuPanel.SetActive(false);
+            optionsPanel.SetActive(false);
+            startPanel.Open();
+            return;
+        }
+        StartRun();
+    }
+
+    private void StartRun()
+    {
         GameManager.Instance.StartRunSetup();
         SceneManager.LoadScene(gameSceneName);
+    }
+
+    private void OnStartBack()
+    {
+        startPanel.Close();
+        mainMenuPanel.SetActive(true);
     }
 
     private void OnOptionsClicked()

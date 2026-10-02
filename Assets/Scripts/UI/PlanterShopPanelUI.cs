@@ -191,7 +191,7 @@ public class PlanterShopPanelUI : MonoBehaviour
         {
             bool configured = card.data != null && card.data.prefab != null;
             card.button.interactable = configured && card.data.IsUnlocked;
-            card.price.text = configured ? card.data.IsUnlocked ? $"{card.data.cost} {card.data.costType}" : "SKILL TREE" : "UNAVAILABLE";
+            card.price.text = configured ? card.data.IsUnlocked ? $"{card.data.Price} {card.data.PriceType}" : "SKILL TREE" : "UNAVAILABLE";
             if (card.lockedOverlay != null) card.lockedOverlay.SetActive(!card.button.interactable);
             if (card.preview != null) card.preview.color = card.button.interactable ? Color.white : new Color(.45f,.47f,.46f);
             card.background.color = card.button.interactable ? Color.white : new Color(.6f,.62f,.61f);
@@ -232,21 +232,21 @@ public class PlanterShopPanelUI : MonoBehaviour
                     plants.Append(entry.plant.plantName);
                 }
         description.text = $"{cells} growing plots for {(plants.Length > 0 ? plants.ToString() : "your next crop")}.\nNeeds {cells} empty, unlocked cells. R rotates during placement.";
-        int balance = resources != null ? resources.GetResourceAmount(data.costType) : 0;
-        bool valid = data.prefab != null && data.sizeX > 0 && data.sizeZ > 0 && data.cost >= 0
+        int balance = resources != null ? resources.GetResourceAmount(data.PriceType) : 0;
+        bool valid = data.prefab != null && data.sizeX > 0 && data.sizeZ > 0 && data.Price >= 0
             && data.prefab.GetComponent<PlanterBrain>() != null;
-        bool affordable = resources != null && balance >= data.cost;
+        bool affordable = resources != null && balance >= data.Price;
         buyButton.interactable = valid && data.IsUnlocked && affordable && !animating;
-        buyLabel.text = $"BUY  /  {data.cost}";
+        buyLabel.text = $"BUY  /  {data.Price}";
         if (buyResourceIcon != null && theme != null)
         {
-            buyResourceIcon.sprite = theme.ResourceIcon(data.costType);
+            buyResourceIcon.sprite = theme.ResourceIcon(data.PriceType);
             buyResourceIcon.enabled = buyResourceIcon.sprite != null;
         }
         status.text = !valid ? "Planter setup is incomplete."
             : !data.IsUnlocked ? "Unlock this planter in the skill tree."
-            : affordable ? $"Available: {balance} {data.costType}"
-            : $"Need {data.cost - balance} more {data.costType}  /  Available: {balance}";
+            : affordable ? $"Available: {balance} {data.PriceType}"
+            : $"Need {data.Price - balance} more {data.PriceType}  /  Available: {balance}";
         status.color = valid && affordable ? new Color(0.05f, 0.33f, 0.25f) : new Color(0.7f, 0.12f, 0.08f);
     }
 
@@ -260,7 +260,7 @@ public class PlanterShopPanelUI : MonoBehaviour
         // Resource events can refresh this view synchronously. Keep this operation guarded.
         animating = true;
         buyButton.interactable = false;
-        if (data.cost > 0 && !resources.SpendResource(data.costType, data.cost))
+        if (data.Price > 0 && !resources.SpendResource(data.PriceType, data.Price))
         {
             animating = false;
             Refresh();

@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ada9f9a18e4ffbb9861c09de9e864e, type: 3}
+  m_Name: PlantHealth_DengeV1
+  m_EditorClassIdentifier: Assembly-CSharp::PlantHealthScalingSO
+  referenceHealth: 10
+  anchors:
+  - round: 1
+    commonHealth: 20
+  - round: 5
+    commonHealth: 25
+  - round: 10
+    commonHealth: 31
+  - round: 15
+    commonHealth: 39
+  - round: 20
+    commonHealth: 49
+  - round: 25
+    commonHealth: 62
+  - round: 30
+    commonHealth: 79
+  - round: 35
+    commonHealth: 102
+  - round: 40
+    commonHealth: 132
+  - round: 45
+    commonHealth: 170
+  - round: 50
+    commonHealth: 215
+  rarityMultipliers:
+  - 1
+  - 1.5
+  - 2
+  - 2.5
+  - 3

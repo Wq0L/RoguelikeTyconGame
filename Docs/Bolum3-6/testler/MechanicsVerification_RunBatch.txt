@@ -1,0 +1,32 @@
+FAIL: System.Exception: Card selection vignette behind the cards, faded in, not blocking clicks: alpha 0.65
+  at MechanicsVerification.Require (System.Boolean c, System.String m) [0x0001f] in C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Assets\Editor\MechanicsVerification.cs:61 
+  at MechanicsVerification.OpenUpgradeCards () [0x00298] in C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Assets\Editor\MechanicsVerification.cs:138 
+  at MechanicsVerification.Run (System.Int32 i) [0x00036] in C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Assets\Editor\MechanicsVerification.cs:75 
+  at MechanicsVerification.Tick () [0x00054] in C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Assets\Editor\MechanicsVerification.cs:46 
+ok: Scene starts in RunSetup
+ok: Card placed Damage-Rare
+ok: Card placed Damage-Common
+ok: Card placed Fertile-Epic
+ok: Card placed Water-Rare
+ok: Card placed Energy-Common
+ok: Card placed Crystal-Rare
+ok: Card placed Damage-Epic
+ok: Card placed Water-Common
+ok: Card placed Fertile-Rare
+ok: 3x3 open area is full
+ok: Upgrade candidates come from tiles under planters first
+ok: Level-ups open card selection
+ok: Grid full: all three cards are upgrades
+ok: Grid full banner shown: GRİD DOLU · kart, seçtiğin tile'ı seviye atlatır
+ok: Level gain follows rarity Common → +1
+ok: Level gain follows rarity Common → +1
+ok: Level gain follows rarity Common → +1
+ok: Card shows level change: Sv 0 → Sv 1/+5.81% → +7.26%
+ok: Card colors old red, new green
+ok: Card shows old → new value: Sv 0 → Sv 1/+5.81% → +7.26%
+ok: Card shows level change: Sv 0 → Sv 1/+14.88% → +18.59%
+ok: Card colors old red, new green
+ok: Card shows old → new value: Sv 0 → Sv 1/+14.88% → +18.59%
+ok: Card shows level change: Sv 0 → Sv 1/+16.69% → +20.86%
+ok: Card colors old red, new green
+ok: Card shows old → new value: Sv 0 → Sv 1/+16.69% → +20.86%

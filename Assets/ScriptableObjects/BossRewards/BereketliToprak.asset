@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d024a02157794a408ec9280332f18793, type: 3}
+  m_Name: BereketliToprak
+  m_EditorClassIdentifier: Assembly-CSharp::BossRewardSO
+  id: bereketli_toprak
+  displayName: "Bereketli Toprak"
+  effectLabel: "\xDCretim aral\u0131\u011F\u0131"
+  inverseLabel: "\xFCretim s\u0131kl\u0131\u011F\u0131"
+  note: "B\xFCt\xFCn saks\u0131lar. Taban 0,50 sn; fazlas\u0131 nadirlik bonusuna d\xF6ner."
+  modifiersPerStack:
+  - statType: 5
+    target: 2
+    operation: 2
+    value: -0.1
+  directDamageMultiplier: 1
+  maxStacks: 3
+  weight: 1
+  condition: 0

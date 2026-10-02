@@ -1,32 +1,57 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Segment olayı bölgesinin (Don Cephesi şeridi) dünyadaki gösterimi: yaklaşırken taralı, aktifken dolu buz rengi.
-// Olayın sakladığı bölgeyi okur (önizleme ile uygulama aynı hücreler); sadece açık hücrelere çizer, oynanışa dokunmaz.
-// UIManager kurar. Unscaled time kullanır.
+// Boss bölgesinin (Don Cephesi, Sert Kabuk şeridi) dünyadaki gösterimi: bölgenin ÇEVRE ÇİZGİSİ.
+// Yaklaşırken kesikli, aktifken düz çizgi; renk boss kimliğinden gelir (BossTheme: Don buz mavisi, Sert Kabuk amber).
+// Bölgenin içi boyanmaz: tile'ın kendi dolgu rengi (kart türü) aynen okunur, saksı ve bitkinin üstüne boss dolgusu gelmez.
+// Çizgi zemindedir; saksının arkasında kalan kısmı ikinci, soluk bir kopya gösterir (tarla saksıyla doluyken de sınır okunur).
+// Olayın sakladığı bölgeyi okur (önizleme ile uygulama aynı hücreler); yalnız açık hücreleri sayar, oynanışa dokunmaz.
+// Ekran hava efekti (BossWeatherOverlay) bundan ayrıdır. UIManager kurar. Unscaled time kullanır.
 public sealed class FrostZoneMarkers : MonoBehaviour
 {
     private static readonly int ActiveId = Shader.PropertyToID("_Active");
     private static readonly int PulseId = Shader.PropertyToID("_Pulse");
     private static readonly int ColorId = Shader.PropertyToID("_Color");
+    private static readonly int AlphaId = Shader.PropertyToID("_Alpha");
+    private static readonly int ZTestId = Shader.PropertyToID("_ZTest");
 
-    private readonly List<Transform> markers = new();
+    // Çizgi kalınlığı ve bölge sınırından içeri pay (dünya birimi; hücre 2 birim).
+    public const float LineWidth = 0.22f;
+    public const float LineInset = 0.03f;
+    // Bir nesnenin (saksı, bitki) arkasında kalan çizginin opaklığı.
+    public const float OccludedAlpha = 0.5f;
+    private const float Lift = 0.02f;
+
+    private static readonly Vector2Int[] Sides = { new Vector2Int(1, 0), new Vector2Int(-1, 0), new Vector2Int(0, 1), new Vector2Int(0, -1) };
+
     private readonly List<GridPosition> shownCells = new();
-    private int activeCount, shownVersion = -1;
+    private readonly HashSet<long> shownSet = new();
+    private readonly List<Vector3> vertices = new();
+    private readonly List<Vector2> uvs = new();
+    private readonly List<int> triangles = new();
+    private int shownVersion = -1, edgeCount;
     private bool shownActive;
-    private Material material;
-    private Mesh quad;
+    private Material material, occludedMaterial;
+    private Mesh mesh;
+    private MeshRenderer outline, occluded;
     private bool unavailable;
     private GridUnlockManager unlocks;
     private int gridVersion;
 
     public IReadOnlyList<GridPosition> ShownCells => shownCells;
-    public bool ShowsActive => shownActive && activeCount > 0;
+    public bool ShowsActive => shownActive && shownCells.Count > 0;
+    // Çizilen çevre kenarı sayısı (bölge ile bölge dışı / kilitli hücre arasındaki hücre kenarları).
+    public int EdgeCount => edgeCount;
+    // Gösterimde kullanılan renk (boss kimliğinden).
+    public Color ShownColor { get; private set; }
+    public Renderer OutlineRenderer => outline;
+    // Saksı / bitki arkasında kalan kısmı soluk çizen kopya.
+    public Renderer OccludedRenderer => occluded;
 
     public static FrostZoneMarkers Ensure()
     {
         var existing = FindAnyObjectByType<FrostZoneMarkers>();
-        return existing != null ? existing : new GameObject("Frost Zone Markers").AddComponent<FrostZoneMarkers>();
+        return existing != null ? existing : new GameObject("Boss Zone Outline").AddComponent<FrostZoneMarkers>();
     }
 
     private void LateUpdate()
@@ -43,50 +68,106 @@ public sealed class FrostZoneMarkers : MonoBehaviour
         int version = (events != null ? events.Version : -1) * 1000 + gridVersion;
         if (shown == null || !shown.IsPrepared) { Hide(); return; }
         if (version != shownVersion || shownActive != shown.IsActive) Sync(shown, version);
-        if (activeCount > 0) material.SetFloat(PulseId, 0.5f - 0.5f * Mathf.Cos(Time.unscaledTime * 3f));
+        if (shownCells.Count > 0 && material != null)
+        {
+            float pulse = 0.5f - 0.5f * Mathf.Cos(Time.unscaledTime * 3f);
+            material.SetFloat(PulseId, pulse);
+            occludedMaterial.SetFloat(PulseId, pulse);
+        }
     }
 
-    // Grid büyüyünce şeridin yeni açılan hücreleri de çizilsin.
+    // Grid büyüyünce şeridin yeni açılan hücreleri de bölgeye girer: çevre yeniden çizilir.
     private void HandleGridSizeChanged() => gridVersion++;
+
+    private static long Key(int x, int z) => ((long)x << 32) ^ (uint)z;
 
     private void Sync(SegmentEventRuntime shown, int version)
     {
         shownVersion = version;
         shownActive = shown.IsActive;
         shownCells.Clear();
+        shownSet.Clear();
+        edgeCount = 0;
         if (!EnsureResources()) { Hide(); return; }
-        material.SetColor(ColorId, shown.Data.color);
+        ShownColor = BossTheme.Accent(shown.Data);
+        material.SetColor(ColorId, ShownColor);
         material.SetFloat(ActiveId, shown.IsActive ? 1f : 0f);
+        occludedMaterial.SetColor(ColorId, ShownColor);
+        occludedMaterial.SetFloat(ActiveId, shown.IsActive ? 1f : 0f);
 
         GridManager grid = GridManager.Instance;
         GridSystem system = grid != null ? grid.GetGridSystem() : null;
-        int count = 0;
+        vertices.Clear(); uvs.Clear(); triangles.Clear();
         if (system != null)
         {
-            float size = grid.GetCellSize() * 0.98f;
             foreach (GridPosition cell in shown.ZoneCells)
             {
                 GroundCell ground = system.GetGridObject(cell)?.GetGroundCellCached();
                 if (ground == null || ground.IsLocked) continue;
-                if (count == markers.Count) markers.Add(CreateMarker(count));
-                Transform marker = markers[count++];
+                shownCells.Add(cell);
+                shownSet.Add(Key(cell.x, cell.z));
+            }
+            float half = grid.GetCellSize() * 0.5f;
+            foreach (GridPosition cell in shownCells)
+            {
+                GroundCell ground = system.GetGridObject(cell).GetGroundCellCached();
                 Renderer groundRenderer = ground.GroundRenderer;
                 Bounds bounds = groundRenderer != null ? groundRenderer.bounds : new Bounds(ground.transform.position, Vector3.zero);
-                marker.position = new Vector3(bounds.center.x, bounds.max.y + 0.012f, bounds.center.z);
-                marker.localScale = Vector3.one * size;
-                marker.gameObject.SetActive(true);
-                shownCells.Add(cell);
+                Vector3 center = new Vector3(ground.transform.position.x, bounds.max.y + Lift, ground.transform.position.z);
+                foreach (Vector2Int side in Sides)
+                {
+                    // Komşu da gösterilen bölgedeyse bu kenar bölgenin içindedir: çizilmez.
+                    if (shownSet.Contains(Key(cell.x + side.x, cell.z + side.y))) continue;
+                    AddEdge(center, side, half);
+                    edgeCount++;
+                }
             }
         }
-        for (int i = count; i < activeCount; i++) markers[i].gameObject.SetActive(false);
-        activeCount = count;
+        mesh.Clear();
+        if (vertices.Count > 0)
+        {
+            mesh.SetVertices(vertices);
+            mesh.SetUVs(0, uvs);
+            mesh.SetTriangles(triangles, 0);
+            mesh.RecalculateBounds();
+        }
+        outline.enabled = occluded.enabled = vertices.Count > 0;
+    }
+
+    // Hücrenin "side" yönündeki kenarı boyunca, hücrenin içinde kalan bir şerit. UV.x: şerit boyunca dünya koordinatı.
+    private void AddEdge(Vector3 center, Vector2Int side, float half)
+    {
+        float outer = half - LineInset, inner = outer - LineWidth;
+        int start = vertices.Count;
+        if (side.x != 0)
+        {
+            float xo = center.x + side.x * outer, xi = center.x + side.x * inner;
+            float z0 = center.z - half, z1 = center.z + half;
+            vertices.Add(new Vector3(xo, center.y, z0)); uvs.Add(new Vector2(z0, 0f));
+            vertices.Add(new Vector3(xo, center.y, z1)); uvs.Add(new Vector2(z1, 0f));
+            vertices.Add(new Vector3(xi, center.y, z0)); uvs.Add(new Vector2(z0, 1f));
+            vertices.Add(new Vector3(xi, center.y, z1)); uvs.Add(new Vector2(z1, 1f));
+        }
+        else
+        {
+            float zo = center.z + side.y * outer, zi = center.z + side.y * inner;
+            float x0 = center.x - half, x1 = center.x + half;
+            vertices.Add(new Vector3(x0, center.y, zo)); uvs.Add(new Vector2(x0, 0f));
+            vertices.Add(new Vector3(x1, center.y, zo)); uvs.Add(new Vector2(x1, 0f));
+            vertices.Add(new Vector3(x0, center.y, zi)); uvs.Add(new Vector2(x0, 1f));
+            vertices.Add(new Vector3(x1, center.y, zi)); uvs.Add(new Vector2(x1, 1f));
+        }
+        triangles.Add(start); triangles.Add(start + 2); triangles.Add(start + 1);
+        triangles.Add(start + 2); triangles.Add(start + 3); triangles.Add(start + 1);
     }
 
     private void Hide()
     {
-        for (int i = 0; i < activeCount; i++) markers[i].gameObject.SetActive(false);
-        activeCount = 0;
+        if (outline != null) outline.enabled = false;
+        if (occluded != null) occluded.enabled = false;
         shownCells.Clear();
+        shownSet.Clear();
+        edgeCount = 0;
         shownVersion = -1;
     }
 
@@ -98,41 +179,40 @@ public sealed class FrostZoneMarkers : MonoBehaviour
         if (shader == null || !shader.isSupported)
         {
             unavailable = true;
-            Debug.LogWarning("FrostZoneMarker shader bulunamadı veya desteklenmiyor; olay bölgesi dünyada gösterilmeyecek.", this);
+            Debug.LogWarning("FrostZoneMarker shader bulunamadı veya desteklenmiyor; boss bölgesi dünyada gösterilmeyecek.", this);
             return false;
         }
-        material = new Material(shader) { name = "Frost Zone Marker (runtime)" };
-        quad = new Mesh { name = "Frost Zone Quad" };
-        quad.vertices = new[]
-        {
-            new Vector3(-0.5f, -0.5f, 0f), new Vector3(0.5f, -0.5f, 0f),
-            new Vector3(-0.5f, 0.5f, 0f), new Vector3(0.5f, 0.5f, 0f)
-        };
-        quad.uv = new[] { new Vector2(0f, 0f), new Vector2(1f, 0f), new Vector2(0f, 1f), new Vector2(1f, 1f) };
-        quad.triangles = new[] { 0, 2, 1, 2, 3, 1 };
-        quad.RecalculateBounds();
+        material = new Material(shader) { name = "Boss Zone Outline (runtime)" };
+        occludedMaterial = new Material(shader) { name = "Boss Zone Outline behind objects (runtime)" };
+        occludedMaterial.SetFloat(ZTestId, (float)UnityEngine.Rendering.CompareFunction.Greater);
+        occludedMaterial.SetFloat(AlphaId, OccludedAlpha);
+        mesh = new Mesh { name = "Boss Zone Outline" };
+        mesh.MarkDynamic();
+        outline = CreateRenderer("Outline", material);
+        occluded = CreateRenderer("Outline (behind objects)", occludedMaterial);
         return true;
     }
 
-    private Transform CreateMarker(int index)
+    private MeshRenderer CreateRenderer(string title, Material sharedMaterial)
     {
-        var go = new GameObject("Frost Zone " + index, typeof(MeshFilter), typeof(MeshRenderer));
+        var go = new GameObject(title, typeof(MeshFilter), typeof(MeshRenderer));
         go.transform.SetParent(transform, false);
-        go.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
-        go.GetComponent<MeshFilter>().sharedMesh = quad;
-        var meshRenderer = go.GetComponent<MeshRenderer>();
-        meshRenderer.sharedMaterial = material;
-        meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-        meshRenderer.receiveShadows = false;
-        meshRenderer.lightProbeUsage = UnityEngine.Rendering.LightProbeUsage.Off;
-        meshRenderer.reflectionProbeUsage = UnityEngine.Rendering.ReflectionProbeUsage.Off;
-        return go.transform;
+        go.GetComponent<MeshFilter>().sharedMesh = mesh;
+        var line = go.GetComponent<MeshRenderer>();
+        line.sharedMaterial = sharedMaterial;
+        line.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        line.receiveShadows = false;
+        line.lightProbeUsage = UnityEngine.Rendering.LightProbeUsage.Off;
+        line.reflectionProbeUsage = UnityEngine.Rendering.ReflectionProbeUsage.Off;
+        line.enabled = false;
+        return line;
     }
 
     private void OnDestroy()
     {
         if (unlocks != null) unlocks.OnGridSizeChanged -= HandleGridSizeChanged;
         if (material != null) Destroy(material);
-        if (quad != null) Destroy(quad);
+        if (occludedMaterial != null) Destroy(occludedMaterial);
+        if (mesh != null) Destroy(mesh);
     }
 }

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1fb01bd40784555864df22e02507c96, type: 3}
+  m_Name: BossRewardPool_KirilmaV1
+  m_EditorClassIdentifier: Assembly-CSharp::BossRewardPoolSO
+  rewards:
+  - {fileID: 11400000, guid: ce0705324b704aa195fa9a9c7fe4be0c, type: 2}
+  - {fileID: 11400000, guid: 14cbb54441bdc940e2f42a6077328db7, type: 2}
+  - {fileID: 11400000, guid: f55d28e28eff42f5810a31fb29cc0bb3, type: 2}
+  - {fileID: 11400000, guid: 9bb1f557618cd7571415c10e3c076924, type: 2}
+  - {fileID: 11400000, guid: 472ebd0593dbfeb56be8ac3cded4035b, type: 2}
+  - {fileID: 11400000, guid: b2c5322ca59314105f136e8edf350b7c, type: 2}
+  - {fileID: 11400000, guid: 0dda2be416133e99eb394a5a1e37648e, type: 2}
+  - {fileID: 11400000, guid: 111fcb03923c1a571b530e60ac83b646, type: 2}
+  - {fileID: 11400000, guid: bb5cd019f2d9cc9d4dcd249817d25501, type: 2}
+  - {fileID: 11400000, guid: f5e9547920dcd9f436fcb4452b417f3c, type: 2}
+  - {fileID: 11400000, guid: f8949a43e0821b05e2d3c70e7f7a9d0e, type: 2}
+  - {fileID: 11400000, guid: 9af180b34d8ad1cd940d0d48764204c5, type: 2}
+  - {fileID: 11400000, guid: 2484de13d76494769e5ab627df86f3db, type: 2}
+  breakthroughs:
+  - {fileID: 11400000, guid: e44285c32901bf5f6d223742465facb8, type: 2}
+  - {fileID: 11400000, guid: ca4d6406ab3600d45306499e6c166525, type: 2}
+  - {fileID: 11400000, guid: d5991997832de08c9bf6999755b8bf41, type: 2}
+  choices: 3

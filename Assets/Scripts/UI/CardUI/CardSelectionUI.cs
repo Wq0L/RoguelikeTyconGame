@@ -33,6 +33,9 @@ public class CardSelectionUI : MonoBehaviour
     };
     private List<TileCardOffer> currentCards = new();
     private readonly List<TileModifierSO> availableModifiers = new();
+    private readonly List<TileModifierSO> behaviorPool = new();
+    // Son teklifte erken davranış slotu olarak dağıtılan kart (yoksa null). Test ve ölçüm için.
+    public TileCardOffer GuaranteedBehaviorOffer { get; private set; }
     
 
     public void RefreshCards()
@@ -65,13 +68,17 @@ public class CardSelectionUI : MonoBehaviour
             ? "GRİD DOLU · kart, seçtiğin tile'ı seviye atlatır"
             : "TÜM TILE'LAR MAX · kart kalıcı Temel güç verir");
         int upgradeIndex = 0;
+        // Erken davranış teklifi (Bölüm 3.6): bir slot davranış adaylarından gelir; hangi slot olduğu ve kartın kendisi rastgeledir.
+        int behaviorSlot = gridFull ? -1 : FirstBehaviorSlot();
+        GuaranteedBehaviorOffer = null;
         for (int i = 0; i < cardSlots.Count; i++)
         {
             if (cardSlots[i] == null) continue;
             cardSlots[i].gameObject.SetActive(true);
-            TileCardOffer offer = !gridFull ? new TileCardOffer(RollCard())
+            TileCardOffer offer = !gridFull ? new TileCardOffer(i == behaviorSlot ? RollRarity(behaviorPool) : RollCard())
                 : upgradeIndex < upgrades.Count ? TileCardOffer.Upgrade(upgrades[upgradeIndex++], RollRarityTier())
                 : RollBaseStat();
+            if (i == behaviorSlot) GuaranteedBehaviorOffer = offer;
             currentCards.Add(offer);
             cardSlots[i].Setup(offer, OnCardSelected);
         }
@@ -101,6 +108,28 @@ public class CardSelectionUI : MonoBehaviour
         }
         if (skipButton != null && skipButton.gameObject.activeInHierarchy)
             UIPop.For(skipButton).Play(0.1f + dealt * 0.08f);
+    }
+
+    // Erken davranış slotunun dizini; koşullar sağlanmıyorsa -1 (normal dağılım). Koşullar: profil bu teklifi tanımlıyor, o türlerden
+    // kart henüz alınmamış, tarlada kartı kullanabilecek en az bir saksı var ve havuzda o türlerden açık kart var.
+    private int FirstBehaviorSlot()
+    {
+        behaviorPool.Clear();
+        ProgressionManager progression = ProgressionManager.Instance;
+        if (progression == null || progression.FirstBehaviorCardRound != 0 || PlantSpawner.Active.Count == 0) return -1;
+        foreach (TileModifierSO modifier in availableModifiers)
+            if (RunBalanceSO.IsFirstBehaviorType(modifier.modifierType)) behaviorPool.Add(modifier);
+        if (behaviorPool.Count == 0) return -1;
+        int slots = 0;
+        foreach (CardUI slot in cardSlots) if (slot != null) slots++;
+        if (slots == 0) return -1;
+        int pick = Random.Range(0, slots);
+        for (int i = 0; i < cardSlots.Count; i++)
+        {
+            if (cardSlots[i] == null) continue;
+            if (pick-- == 0) return i;
+        }
+        return -1;
     }
 
     private TileModifierSO RollCard()
@@ -289,6 +318,8 @@ public class CardSelectionUI : MonoBehaviour
 
     private void OnSkipPressed()
     {
+        // Atlama yalnız ekrandaki teklifi tüketir: seçim bittikten sonraki ikinci basış yeni hak harcamaz ve durum değiştirmez.
+        if (GameManager.Instance.CurrentState != GameStates.CardSelection || currentCards.Count == 0) return;
         if (!RoundManager.Instance.TryUseSkip()) return;
 
         // 3 karttan en rare olanı bul
@@ -309,6 +340,7 @@ public class CardSelectionUI : MonoBehaviour
         // Debug.Log($"Skip! {highest} → {chosen} x{reward}");
 
         // Level takas — seçimi tüket
+        currentCards.Clear(); // The skipped offer cannot be consumed twice.
         bool hasMore = RoundManager.Instance.OnCardSelectionComplete();
         if (hasMore)
             RefreshCards();

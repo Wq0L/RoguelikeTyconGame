@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class PlantSpawner : MonoBehaviour
 {
+    private static readonly System.Collections.Generic.HashSet<PlantSpawner> active = new();
+    public static System.Collections.Generic.IReadOnlyCollection<PlantSpawner> Active => active;
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetRegistry() => active.Clear();
+    private void OnEnable() => active.Add(this);
+    private void OnDisable() => active.Remove(this);
     private PlanterSO planterData;
     private GridObject gridObject;
     private PlanterBrain planterBrain;
@@ -93,7 +99,9 @@ public class PlantSpawner : MonoBehaviour
         PlantHealth plantHealth = plantObj.GetComponent<PlantHealth>();
         if (plantHealth != null)
         {
-            plantHealth.Initialize(selectedPlant, planterBrain);
+            // Segment olayı (Sert Kabuk): aktifken bu hücrede doğan bitki daha canlı doğar.
+            float healthMultiplier = gridObject != null ? SegmentEventDirector.SpawnHealthMultiplier(gridObject.GetGridPosition()) : 1f;
+            plantHealth.Initialize(selectedPlant, planterBrain, healthMultiplier);
         }
 
         PlantResource plantResource = plantObj.GetComponent<PlantResource>();

@@ -6,15 +6,18 @@ public class CoreStatsSO : ScriptableObject
 {
     public List<StatEntry> stats = new();
 
-    public float GetBaseStat(StatType statType)
+    // Bu setin sahip olduğu statlar. Saksıya ait statların (davranış şansları, Odak çarpanı) tabanı burada değil, saksı verisindedir.
+    public bool TryGetBaseStat(StatType statType, out float value)
     {
         for (int i = 0; i < stats.Count; i++)
-        {
-            if (stats[i].statType == statType)
-            {
-                return stats[i].value;
-            }
-        }
+            if (stats[i].statType == statType) { value = stats[i].value; return true; }
+        value = 0f;
+        return false;
+    }
+
+    public float GetBaseStat(StatType statType)
+    {
+        if (TryGetBaseStat(statType, out float value)) return value;
 
         Debug.LogWarning($"CoreStatsSO içinde base stat bulunamadı: {statType}. Default değer döndürüldü.");
 

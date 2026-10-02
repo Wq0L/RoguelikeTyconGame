@@ -92,8 +92,8 @@ public class PlacementManager : MonoBehaviour
         }
         
         selectedPlanter = planterData;
-        selectedCostResource = planterData.costType;
-        refundAmount = planterData.cost / 2;
+        selectedCostResource = planterData.PriceType;
+        refundAmount = planterData.Price / 2;
         currentRotation = 0;
 
         ghostObject = Instantiate(selectedPlanter.prefab);
@@ -146,15 +146,17 @@ public class PlacementManager : MonoBehaviour
         if (ghostObject == null) return;
 
         GridObject gridObject = GetMouseGridObject();
-        if (gridObject == null) { resonancePreview?.Hide(); return; }
+        bool overUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
+        if (gridObject == null || overUI) { ghostObject.SetActive(false); resonancePreview?.Hide(); return; }
 
         GroundCell groundCell = gridObject.GetGroundCellCached();
-        if (groundCell == null) { resonancePreview?.Hide(); return; }
+        if (groundCell == null) { ghostObject.SetActive(false); resonancePreview?.Hide(); return; }
 
         GridPosition origin = groundCell.GetGridPosition();
 
         ghostObject.transform.position =
             groundCell.transform.position + GetGhostCenterOffset();
+        ghostObject.SetActive(true);
 
         bool isValid = IsPlacementValid(origin);
 
@@ -169,7 +171,6 @@ public class PlacementManager : MonoBehaviour
                     previewFootprint.Add(gridSystem.GetGridObject(new GridPosition(origin.x + offset.x, origin.z + offset.y)));
                 }
         var brain = ghostObject.GetComponent<PlanterBrain>();
-        bool overUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
         resonancePreview?.Show(previewFootprint, brain != null ? brain.Rules : ResonanceManager.DefaultRules, isValid && !overUI);
     }
 

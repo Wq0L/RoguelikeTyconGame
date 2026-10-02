@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d024a02157794a408ec9280332f18793, type: 3}
+  m_Name: HasatRitmi_K1
+  m_EditorClassIdentifier: Assembly-CSharp::BossRewardSO
+  id: hasat_ritmi
+  displayName: Hasat Ritmi
+  effectLabel: "Ritim:"
+  inverseLabel: ""
+  note: "Yaln\u0131z kendi vuru\u015Funla yapt\u0131\u011F\u0131n hasatlar say\u0131l\u0131r. Hak haz\u0131r olunca s\u0131radaki vuru\u015Fun g\xFC\xE7lenir (imle\xE7 halkas\u0131 b\xFCy\xFCr). Ek sald\u0131r\u0131 \xFCretmez; davran\u0131\u015Flara ge\xE7mez."
+  modifiersPerStack: []
+  directDamageMultiplier: 1
+  rareDirectMultiplier: 1
+  rareDirectFrom: 2
+  behaviorDamageMultiplier: 1
+  echo: 0
+  echoDelay: 0.2
+  echoDamage: 0.7
+  echoRadius: 1.25
+  rhythmHarvests: 5
+  rhythmDamage: 1.75
+  rhythmRadius: 1.6
+  maxStacks: 1
+  weight: 1
+  condition: 0
+  conditionStat: 0
+  conditionThreshold: 0.7
+  minRound: 10
+  maxRound: 0

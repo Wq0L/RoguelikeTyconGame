@@ -1,0 +1,15 @@
+DONE (ölçüm; işlev testi değil)
+run 1 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 100 | ödül yok | BOSS @R30 | skor 2324 | level 29 | ağaç 72/221 | ödül 
+run 2 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 101 | ödül yok | BOSS @R30 | skor 2443 | level 28 | ağaç 69/221 | ödül 
+run 3 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 100 | hasar yolu | KAZANDI @R50 | skor 77544 | level 54 | ağaç 147/221 | ödül keskin_bicak×3 agir_darbe×2 canavar_kesimi×1 kritik_goz×3
+run 4 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 101 | hasar yolu | KAZANDI @R50 | skor 95452 | level 68 | ağaç 178/221 | ödül agir_darbe×1 hizli_bilek×3 kritik_goz×2 canavar_kesimi×1 genis_savurus×2
+run 5 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 100 | hız yolu | KAZANDI @R50 | skor 98449 | level 67 | ağaç 182/221 | ödül keskin_bicak×3 genis_savurus×2 hizli_bilek×2 bereketli_toprak×1 nadir_tohum×1
+run 6 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 101 | hız yolu | KAZANDI @R50 | skor 92112 | level 65 | ağaç 178/221 | ödül hizli_bilek×3 genis_savurus×2 nadir_tohum×3 canavar_kesimi×1
+run 7 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 100 | alan yolu | KAZANDI @R50 | skor 98449 | level 67 | ağaç 182/221 | ödül keskin_bicak×3 genis_savurus×2 hizli_bilek×2 bereketli_toprak×1 nadir_tohum×1
+run 8 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 101 | alan yolu | KAZANDI @R50 | skor 140547 | level 72 | ağaç 192/221 | ödül hizli_bilek×2 genis_savurus×2 nadir_tohum×3 canavar_kesimi×1 bereketli_toprak×1
+run 9 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 100 | üretim-nadirlik yolu | KAZANDI @R50 | skor 32133 | level 48 | ağaç 127/221 | ödül bereketli_toprak×1 genis_savurus×1 nadir_tohum×3 keskin_bicak×3 canavar_kesimi×1
+run 10 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 101 | üretim-nadirlik yolu | KAZANDI @R50 | skor 32987 | level 52 | ağaç 135/221 | ödül bereketli_toprak×2 nadir_tohum×3 hizli_bilek×2 canavar_kesimi×1 firtina_bilegi×1
+run 11 | Run50_DengeV1 | Davranış-rezonans | bahcivan+standart | seed 100 | davranış yolu | KAZANDI @R50 | skor 84061 | level 61 | ağaç 170/221 | ödül bereketli_toprak×1 genis_savurus×2 yikim_gucu×3 kivilcim×1 keskin_bicak×2
+run 12 | Run50_DengeV1 | Davranış-rezonans | bahcivan+standart | seed 101 | davranış yolu | KAZANDI @R50 | skor 88350 | level 66 | ağaç 176/221 | ödül hizli_bilek×2 yikim_gucu×3 kivilcim×3 canavar_kesimi×1
+run 13 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 100 | XP yolu | KAZANDI @R50 | skor 54343 | level 65 | ağaç 147/221 | ödül bilgi_filizi×2 hizli_bilek×1 keskin_bicak×3 genis_savurus×1 canavar_kesimi×1 nadir_tohum×1
+run 14 | Run50_DengeV1 | Dengeli | bahcivan+standart | seed 101 | XP yolu | KAZANDI @R50 | skor 49516 | level 62 | ağaç 154/221 | ödül hizli_bilek×3 bilgi_filizi×2 nadir_tohum×2 firtina_bilegi×1 genis_savurus×1

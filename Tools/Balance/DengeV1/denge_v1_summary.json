@@ -1,0 +1,916 @@
+{
+ "nodes": 104,
+ "tiers": 221,
+ "total_cost": {
+  "G": 68495,
+  "I": 21260,
+  "S": 5885
+ },
+ "families": [
+  {
+   "family": "Keskin Başlangıç",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "101G",
+   "window": [
+    1,
+    10
+   ],
+   "effects": [
+    [
+     "HarvestDamage",
+     6
+    ]
+   ],
+   "prereq": []
+  },
+  {
+   "family": "Kesim Tekniği",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "505G",
+   "window": [
+    8,
+    22
+   ],
+   "effects": [
+    [
+     "HarvestDamage",
+     0.6
+    ]
+   ],
+   "prereq": [
+    [
+     "Keskin Başlangıç - 1",
+     3
+    ]
+   ]
+  },
+  {
+   "family": "Güçlü Kesim",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "2405G",
+   "window": [
+    15,
+    32
+   ],
+   "effects": [
+    [
+     "HarvestDamage",
+     20
+    ]
+   ],
+   "prereq": [
+    [
+     "Keskin Başlangıç - 1",
+     3
+    ]
+   ]
+  },
+  {
+   "family": "Kesim Ustalığı",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "11070I",
+   "window": [
+    25,
+    45
+   ],
+   "effects": [
+    [
+     "HarvestDamage",
+     0.8
+    ]
+   ],
+   "prereq": [
+    [
+     "Kesim Tekniği - 1",
+     3
+    ],
+    [
+     "Güçlü Kesim - 1",
+     3
+    ]
+   ]
+  },
+  {
+   "family": "Ağır Kesim",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "24000G",
+   "window": [
+    30,
+    48
+   ],
+   "effects": [
+    [
+     "HarvestDamage",
+     30
+    ]
+   ],
+   "prereq": [
+    [
+     "Güçlü Kesim - 1",
+     3
+    ]
+   ]
+  },
+  {
+   "family": "Kritik Odak",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "2995G",
+   "window": [
+    18,
+    35
+   ],
+   "effects": [
+    [
+     "CritChance",
+     0.15
+    ]
+   ],
+   "prereq": [
+    [
+     "Kesim Tekniği - 1",
+     3
+    ]
+   ]
+  },
+  {
+   "family": "Kritik Güç",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "2995S",
+   "window": [
+    32,
+    48
+   ],
+   "effects": [
+    [
+     "CritMultiplier",
+     1.0
+    ]
+   ],
+   "prereq": [
+    [
+     "Kritik Odak - 1",
+     3
+    ]
+   ]
+  },
+  {
+   "family": "Hızlı Eller",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "129G",
+   "window": [
+    1,
+    12
+   ],
+   "effects": [
+    [
+     "AttackSpeed",
+     0.72
+    ]
+   ],
+   "prereq": []
+  },
+  {
+   "family": "Akıcı Kesim",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "3200G",
+   "window": [
+    15,
+    32
+   ],
+   "effects": [
+    [
+     "AttackSpeed",
+     0.75
+    ]
+   ],
+   "prereq": [
+    [
+     "Hızlı Eller - 1",
+     3
+    ]
+   ]
+  },
+  {
+   "family": "Geniş Süpürüş",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "419G",
+   "window": [
+    8,
+    22
+   ],
+   "effects": [
+    [
+     "AreaRadius",
+     0.35
+    ]
+   ],
+   "prereq": [
+    [
+     "Hızlı Eller - 1",
+     3
+    ]
+   ]
+  },
+  {
+   "family": "Geniş Tarama",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "3200G",
+   "window": [
+    20,
+    36
+   ],
+   "effects": [
+    [
+     "AreaRadius",
+     0.5
+    ]
+   ],
+   "prereq": [
+    [
+     "Geniş Süpürüş - 1",
+     3
+    ]
+   ]
+  },
+  {
+   "family": "Düzenli Üretim",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "121G",
+   "window": [
+    3,
+    18
+   ],
+   "effects": [
+    [
+     "PlantSpawnRate",
+     0.8
+    ]
+   ],
+   "prereq": []
+  },
+  {
+   "family": "Verimli Üretim",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "4000I",
+   "window": [
+    22,
+    40
+   ],
+   "effects": [
+    [
+     "PlantSpawnRate",
+     0.8
+    ]
+   ],
+   "prereq": [
+    [
+     "Düzenli Üretim - 1",
+     3
+    ]
+   ]
+  },
+  {
+   "family": "Nadir Filizler",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "4500I",
+   "window": [
+    20,
+    42
+   ],
+   "effects": [
+    [
+     "RareSpawnChance",
+     12
+    ]
+   ],
+   "prereq": [
+    [
+     "Verimli Üretim - 1",
+     1
+    ]
+   ]
+  },
+  {
+   "family": "Altın Hasat I",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "140G",
+   "window": [
+    1,
+    12
+   ],
+   "effects": [
+    [
+     "GoldGainMultiplier",
+     0.5
+    ]
+   ],
+   "prereq": []
+  },
+  {
+   "family": "Demir Hasat",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "505G",
+   "window": [
+    10,
+    28
+   ],
+   "effects": [
+    [
+     "IronGainMultiplier",
+     1.0
+    ]
+   ],
+   "prereq": [
+    [
+     "Altın Hasat I - 1",
+     3
+    ]
+   ]
+  },
+  {
+   "family": "Taş Hasat",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "700I",
+   "window": [
+    18,
+    35
+   ],
+   "effects": [
+    [
+     "StoneGainMultiplier",
+     1.0
+    ]
+   ],
+   "prereq": [
+    [
+     "Demir Hasat - 1",
+     3
+    ]
+   ]
+  },
+  {
+   "family": "Altın Hasat II",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "3600G",
+   "window": [
+    20,
+    36
+   ],
+   "effects": [
+    [
+     "GoldGainMultiplier",
+     1.0
+    ]
+   ],
+   "prereq": [
+    [
+     "Demir Hasat - 1",
+     3
+    ]
+   ]
+  },
+  {
+   "family": "Zengin Cevher",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "990S",
+   "window": [
+    28,
+    45
+   ],
+   "effects": [
+    [
+     "IronGainMultiplier",
+     1.0
+    ],
+    [
+     "StoneGainMultiplier",
+     1.0
+    ]
+   ],
+   "prereq": [
+    [
+     "Taş Hasat - 1",
+     3
+    ]
+   ]
+  },
+  {
+   "family": "Hasat Rekoru",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "3600G",
+   "window": [
+    15,
+    40
+   ],
+   "effects": [
+    [
+     "HarvestScoreMultiplier",
+     1.0
+    ]
+   ],
+   "prereq": [
+    [
+     "Altın Hasat I - 1",
+     3
+    ]
+   ]
+  },
+  {
+   "family": "Hasat Deneyimi I",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "125G",
+   "window": [
+    3,
+    16
+   ],
+   "effects": [
+    [
+     "XPGainMultiplier",
+     0.6
+    ]
+   ],
+   "prereq": [
+    [
+     "Düzenli Üretim - 1",
+     1
+    ]
+   ]
+  },
+  {
+   "family": "Hasat Deneyimi II",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "8930G",
+   "window": [
+    25,
+    42
+   ],
+   "effects": [
+    [
+     "XPGainMultiplier",
+     0.6
+    ]
+   ],
+   "prereq": [
+    [
+     "Hasat Deneyimi I - 1",
+     3
+    ]
+   ]
+  },
+  {
+   "family": "Kart Sezgisi",
+   "nodes": 4,
+   "tiers": 9,
+   "cost": "14030G",
+   "window": [
+    25,
+    45
+   ],
+   "effects": [
+    [
+     "MutationLuck",
+     0.2
+    ]
+   ],
+   "prereq": [
+    [
+     "İlk Vazgeçiş",
+     1
+    ]
+   ]
+  },
+  {
+   "family": "Grid Genişleme I",
+   "nodes": 1,
+   "tiers": 2,
+   "cost": "30G + 30I",
+   "window": [
+    2,
+    15
+   ],
+   "effects": [
+    [
+     "GridUnlockSize",
+     5
+    ],
+    [
+     "GridUnlockSize",
+     7
+    ]
+   ],
+   "prereq": []
+  },
+  {
+   "family": "Grid Genişleme II",
+   "nodes": 1,
+   "tiers": 2,
+   "cost": "100S + 1800S",
+   "window": [
+    22,
+    45
+   ],
+   "effects": [
+    [
+     "GridUnlockSize",
+     9
+    ],
+    [
+     "GridUnlockSize",
+     11
+    ]
+   ],
+   "prereq": [
+    [
+     "Grid Genişleme I",
+     2
+    ]
+   ]
+  },
+  {
+   "family": "1×3 Saksı",
+   "nodes": 1,
+   "tiers": 1,
+   "cost": "30G",
+   "window": [
+    4,
+    8
+   ],
+   "effects": [],
+   "prereq": [
+    [
+     "Grid Genişleme I",
+     1
+    ]
+   ]
+  },
+  {
+   "family": "2×2 Saksı",
+   "nodes": 1,
+   "tiers": 1,
+   "cost": "80G",
+   "window": [
+    8,
+    14
+   ],
+   "effects": [],
+   "prereq": [
+    [
+     "1×3 Saksı",
+     1
+    ],
+    [
+     "Grid Genişleme I",
+     1
+    ]
+   ]
+  },
+  {
+   "family": "2×3 Saksı",
+   "nodes": 1,
+   "tiers": 1,
+   "cost": "200G",
+   "window": [
+    14,
+    22
+   ],
+   "effects": [],
+   "prereq": [
+    [
+     "2×2 Saksı",
+     1
+    ],
+    [
+     "Grid Genişleme I",
+     2
+    ]
+   ]
+  },
+  {
+   "family": "Patlayıcı Kartlar",
+   "nodes": 1,
+   "tiers": 1,
+   "cost": "15I",
+   "window": [
+    6,
+    15
+   ],
+   "effects": [],
+   "prereq": [
+    [
+     "1×3 Saksı",
+     1
+    ]
+   ]
+  },
+  {
+   "family": "Çifte Hasat Kartları",
+   "nodes": 1,
+   "tiers": 1,
+   "cost": "25I",
+   "window": [
+    10,
+    20
+   ],
+   "effects": [],
+   "prereq": [
+    [
+     "2×2 Saksı",
+     1
+    ]
+   ]
+  },
+  {
+   "family": "Tornado Kartları",
+   "nodes": 1,
+   "tiers": 1,
+   "cost": "30I",
+   "window": [
+    10,
+    22
+   ],
+   "effects": [],
+   "prereq": [
+    [
+     "Patlayıcı Kartlar",
+     1
+    ]
+   ]
+  },
+  {
+   "family": "Bumerang Orak Kartları",
+   "nodes": 1,
+   "tiers": 1,
+   "cost": "40I",
+   "window": [
+    14,
+    28
+   ],
+   "effects": [],
+   "prereq": [
+    [
+     "Tornado Kartları",
+     1
+    ]
+   ]
+  },
+  {
+   "family": "Çapraz Elektrik Kartları",
+   "nodes": 1,
+   "tiers": 1,
+   "cost": "50I",
+   "window": [
+    12,
+    28
+   ],
+   "effects": [],
+   "prereq": [
+    [
+     "Patlayıcı Kartlar",
+     1
+    ]
+   ]
+  },
+  {
+   "family": "İlk Vazgeçiş",
+   "nodes": 1,
+   "tiers": 1,
+   "cost": "150G",
+   "window": [
+    10,
+    25
+   ],
+   "effects": [
+    [
+     "CardSkip",
+     1
+    ]
+   ],
+   "prereq": [
+    [
+     "Geniş Süpürüş - 1",
+     3
+    ]
+   ]
+  },
+  {
+   "family": "İkinci Vazgeçiş",
+   "nodes": 1,
+   "tiers": 1,
+   "cost": "800I",
+   "window": [
+    22,
+    40
+   ],
+   "effects": [
+    [
+     "CardSkip",
+     1
+    ]
+   ],
+   "prereq": [
+    [
+     "İlk Vazgeçiş",
+     1
+    ]
+   ]
+  }
+ ],
+ "xp": [
+  390,
+  410,
+  420,
+  440,
+  470,
+  490,
+  520,
+  560,
+  600,
+  640,
+  700,
+  750,
+  810,
+  880,
+  950,
+  1000,
+  1100,
+  1200,
+  1300,
+  1400,
+  1500,
+  1700,
+  1800,
+  1900,
+  2100,
+  2200,
+  2400,
+  2600,
+  2800,
+  3000,
+  3200,
+  3400,
+  3600,
+  3900,
+  4100,
+  4400,
+  4700,
+  5000,
+  5300,
+  5600,
+  5900,
+  6300,
+  6600,
+  7000,
+  7400,
+  7800,
+  8200,
+  8600,
+  9000,
+  9500,
+  10000,
+  10000,
+  11000,
+  12000,
+  12000,
+  13000,
+  13000,
+  14000,
+  14000,
+  15000,
+  16000,
+  16000,
+  17000,
+  18000,
+  18000,
+  19000,
+  20000,
+  21000,
+  22000,
+  22000,
+  23000,
+  24000,
+  25000,
+  26000,
+  27000,
+  28000,
+  29000,
+  30000,
+  31000,
+  32000,
+  33000,
+  34000,
+  35000,
+  36000,
+  38000,
+  39000,
+  40000,
+  41000,
+  42000,
+  44000
+ ],
+ "hp": [
+  [
+   1,
+   20
+  ],
+  [
+   5,
+   25
+  ],
+  [
+   10,
+   31
+  ],
+  [
+   15,
+   39
+  ],
+  [
+   20,
+   49
+  ],
+  [
+   25,
+   62
+  ],
+  [
+   30,
+   79
+  ],
+  [
+   35,
+   102
+  ],
+  [
+   40,
+   132
+  ],
+  [
+   45,
+   170
+  ],
+  [
+   50,
+   215
+  ]
+ ],
+ "removed": [
+  "Aşırı Güç I",
+  "Aşırı Güç II",
+  "Biraz Daha Zaman - 1",
+  "Biraz Daha Zaman - 2",
+  "Biraz Daha Zaman - 3",
+  "Biraz Daha Zaman - 4",
+  "Hasat Zirvesi - 1",
+  "Hasat Zirvesi - 2",
+  "Hasat Zirvesi - 3",
+  "Hasat Zirvesi - 4",
+  "Plazma Kesim - 1",
+  "Plazma Kesim - 2",
+  "Plazma Kesim - 3",
+  "Plazma Kesim - 4",
+  "Seri Üretim - 1",
+  "Seri Üretim - 2",
+  "Seri Üretim - 3",
+  "Son Vardiya - 1",
+  "Son Vardiya - 2",
+  "Son Vardiya - 3",
+  "Son Vardiya - 4",
+  "Uzun Hasat - 1",
+  "Uzun Hasat - 2",
+  "Uzun Hasat - 3",
+  "Uzun Hasat - 4",
+  "Yıldırım Kesim - 1",
+  "Yıldırım Kesim - 2",
+  "Yıldırım Kesim - 3",
+  "Yıldız Kesim - 1",
+  "Yıldız Kesim - 2",
+  "Yıldız Kesim - 3",
+  "Yıldız Kesim - 4",
+  "İleri Ustalık - 1",
+  "İleri Ustalık - 2",
+  "İleri Ustalık - 3",
+  "İleri Ustalık - 4"
+ ]
+}

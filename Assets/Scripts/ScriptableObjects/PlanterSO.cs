@@ -31,11 +31,16 @@ public class PlanterSO : ScriptableObject
     public ResourceType costType;
     public int cost;
     public UnlockType requiredUnlock;
+    // Bu run'daki fiyat: run profilinin denge seti değiştirebilir (RunBalanceSO.planterPrices); yoksa yukarıdaki asset değeri.
+    public ResourceType PriceType { get { RunBalanceSO.PriceOf(this, out ResourceType type, out _); return type; } }
+    public int Price { get { RunBalanceSO.PriceOf(this, out _, out int price); return price; } }
     public bool IsUnlocked => requiredUnlock == UnlockType.None ||
         (UnlockManager.Instance != null && UnlockManager.Instance.IsUnlocked(requiredUnlock));
 
     public float GetBaseStat(StatType statType)
     {
+        // Run profilinin denge seti saksı tabanını değiştirebilir (Bölüm 3.5: üretim aralığı); yoksa asset değeri.
+        if (RunBalanceSO.TryPlanterBaseStat(statType, out float balanced)) return balanced;
         foreach (StatEntry statEntry in baseStats)
         {
             if (statEntry.statType == statType)

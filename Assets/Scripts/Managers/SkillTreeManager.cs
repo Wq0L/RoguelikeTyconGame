@@ -46,6 +46,10 @@ public class SkillTreeManager : MonoBehaviour
     {
         if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
+        // Run profilinin denge seti kendi ağacını getirebilir (Bölüm 3.5); yoksa sahnedeki ortak liste.
+        // Arayüz yuvaları aynı sete göre SkillTreeUI'da bağlanır.
+        RunBalanceSO balance = RunBalanceSO.Active;
+        if (balance != null && balance.skillTree != null) allNodes = balance.skillTree.Nodes();
     }
 
     public void ResetTree()
@@ -77,12 +81,56 @@ public class SkillTreeManager : MonoBehaviour
         if (node == null) return false;
         if (!node.explicitPrerequisites) return HasUnlockedNeighbor(node.gridPosition);
         foreach (var requirement in node.prerequisites)
-            if (requirement.node == null || GetCurrentLevel(requirement.node) < requirement.level) return false;
+        {
+            if (requirement.node == null) return false;
+            // Kilidi profilin başlangıçta verdiği düğüm satılmaz; onun yerine kendi ön koşulları aranır. Böylece arkasındaki
+            // düğümlerin (ör. Tornado Kartları) erişim sırası değişmez, yalnız aradaki ücretli kilit adımı kalkar.
+            if (IsGrantedByProfile(requirement.node))
+            {
+                if (!MeetsPrerequisites(requirement.node)) return false;
+                continue;
+            }
+            if (!IsDisabledByProfile(requirement.node) && GetCurrentLevel(requirement.node) < requirement.level) return false;
+        }
+        return true;
+    }
+
+    // Deney (Bölüm 2.2): run profili round süresini sabitlediyse yalnız süre veren node'lar bu run'da etkisizdir. Satın alınamaz
+    // ve önkoşul olarak karşılanmış sayılır (arkasındaki hız ve süre dışı yollar kilitlenmesin). Node asset'leri değişmez.
+    // Bölüm 3.6: denge seti bir kilidi başlangıçtan açık veriyorsa, yalnız o kilidi açan düğüm de aynı kurala girer.
+    public bool IsDisabledByProfile(SkillNodeSO node) =>
+        node != null && ((RoundManager.Instance != null && RoundManager.Instance.FixedRoundDuration && IsDurationOnly(node)) || IsGrantedByProfile(node));
+
+    // Düğümün açtığı kilidi profil run başında açık veriyor: erişim satın almayla gelmedi. Düğümün seviyesi artmaz, kayıt oluşmaz.
+    // Stat veren kademeleri varsa onlar yine normal satılır; arayüz erişimi ayrıca "Başlangıçtan açık" diye gösterir.
+    public static bool HasStartingAccess(SkillNodeSO node) =>
+        node != null && node.unlockType != UnlockType.None && RunBalanceSO.IsStartingUnlock(node.unlockType);
+
+    // Kilidi profil başlangıçta açık verdiği için satılmayan düğüm (stat etkisi olmayan, yalnız kilit açan düğüm).
+    public static bool IsGrantedByProfile(SkillNodeSO node)
+    {
+        if (!HasStartingAccess(node) || node.tiers == null) return false;
+        foreach (var tier in node.tiers)
+            if (tier.effects != null && tier.effects.Count > 0) return false;
+        return true;
+    }
+
+    // Ağaç arayüzü: satılmayan başlangıç düğümü, yerine ulaşıldığında (kendi ön koşulları sağlanınca) bağlantı çizgileri için
+    // açık uç sayılır. Satın alma seviyesi yine 0'dır.
+    public bool IsOpenFromStart(SkillNodeSO node) => IsGrantedByProfile(node) && MeetsPrerequisites(node);
+
+    public static bool IsDurationOnly(SkillNodeSO node)
+    {
+        if (node == null || node.unlockType != UnlockType.None || node.tiers == null || node.tiers.Count == 0) return false;
+        foreach (var tier in node.tiers)
+            foreach (var effect in tier.effects)
+                if (effect.statType != StatType.RoundDuration) return false;
         return true;
     }
 
     public bool CanUpgrade(SkillNodeSO node)
     {
+        if (IsDisabledByProfile(node)) return false;
         int currentLevel = GetCurrentLevel(node);
 
         if (currentLevel >= node.tiers.Count) return false;

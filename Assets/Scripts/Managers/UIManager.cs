@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     private Button exitSkillButton;
     private RoundPreviewUI roundPreview;
     private SpecializationPanelUI specializationPanel;
+    private BossRewardPanelUI bossRewardPanel;
     private Transform resourcesHome;
     private int resourcesHomeIndex;
 
@@ -49,7 +50,9 @@ public class UIManager : MonoBehaviour
         UIPanelTransition.Attach(runCompletePanel, true);
         RoundSummaryUI.Attach(roundEndUI);
         FrostZoneMarkers.Ensure();
+        BossWeatherOverlay.Ensure();
         specializationPanel = SpecializationPanelUI.Attach(roundEndUI.transform.parent);
+        bossRewardPanel = BossRewardPanelUI.Attach(roundEndUI.transform.parent);
         RoundNewTilesUI.Attach(roundEndUI);
         roundPreview = RoundPreviewUI.Attach(roundEndUI, this);
         if (roundPreview != null) UIPanelTransition.Attach(roundPreview.gameObject, true);
@@ -79,6 +82,25 @@ public class UIManager : MonoBehaviour
         // Opt-in performance capture; nothing exists until the first press.
         if (Input.GetKeyDown(KeyCode.F9))
             PerformanceTrendCapture.ToggleFromHotkey();
+        // Aynı round sonunda birden çok seçim bekleyebilir (uzmanlaşma, boss ödülü): biri bitince sıradaki panel açılır.
+        if (GameManager.Instance.CurrentState == GameStates.RoundChoice) ShowRoundChoicePanel(GameStates.RoundChoice);
+    }
+
+    // Round sonu seçim panelleri: bekleyen seçime göre yalnız biri açık (önce uzmanlaşma, sonra boss ödülü).
+    private void ShowRoundChoicePanel(GameStates state)
+    {
+        bool choice = state == GameStates.RoundChoice;
+        bool reward = choice && BossRewardManager.Instance != null && BossRewardManager.Instance.IsPending;
+        bool specialization = choice && (!reward || (SpecializationManager.Instance != null && SpecializationManager.Instance.IsPending));
+        SetChoicePanel(specializationPanel != null ? specializationPanel.gameObject : null, specialization);
+        SetChoicePanel(bossRewardPanel != null ? bossRewardPanel.gameObject : null, reward && !specialization);
+    }
+
+    private static void SetChoicePanel(GameObject panel, bool show)
+    {
+        if (panel == null || panel.activeSelf == show) return;
+        panel.SetActive(show);
+        if (show) panel.transform.SetAsLastSibling();
     }
 
     private void HandleEscape()
@@ -113,11 +135,7 @@ public class UIManager : MonoBehaviour
         if (state == GameStates.MainMenu || state == GameStates.RunSetup || state == GameStates.RunComplete)
             VFXManager.Instance?.ClearPendingResonances();
         bool isRoundActive = state == GameStates.Round;
-        if (specializationPanel != null)
-        {
-            specializationPanel.gameObject.SetActive(state == GameStates.RoundChoice);
-            if (state == GameStates.RoundChoice) specializationPanel.transform.SetAsLastSibling();
-        }
+        ShowRoundChoicePanel(state);
         roundUI.SetActive(isRoundActive);
         xpUI.SetActive(isRoundActive);
 
@@ -281,6 +299,7 @@ public class UIManager : MonoBehaviour
         skillShopPanel.SetActive(false);
         cardSelectionPanel.SetActive(false); // yeni
         if (specializationPanel != null) specializationPanel.gameObject.SetActive(false);
+        if (bossRewardPanel != null) bossRewardPanel.gameObject.SetActive(false);
         currentPanel = null;
     }
 

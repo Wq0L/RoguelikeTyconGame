@@ -16,6 +16,11 @@ public sealed class HarvestCursorVisual : MonoBehaviour
     TrailRenderer trail;
     static readonly Color WindStart = new Color(.3f, 1f, .9f, .6f), WindEnd = new Color(.6f, 1f, 1f, .05f);
     static readonly Color CritStart = new Color(1f, .62f, .2f, .9f), HitStart = new Color(.85f, 1f, 1f, .85f);
+    // Hazır Hasat Ritmi hakkı: rüzgar izleri altın rengine döner (küçük vurgu; ek saldırı üretmez).
+    static readonly Color ChargedStart = new Color(1f, .86f, .28f, .9f);
+    bool charged;
+    public bool Charged => charged;
+    public void SetCharged(bool value) => charged = value;
     void Awake()
     {
         if (scythe != null)
@@ -84,7 +89,7 @@ public sealed class HarvestCursorVisual : MonoBehaviour
             scythe.localRotation = Quaternion.Euler(0, -angle, 0) * flatRotation;
             scythe.localPosition = -(scythe.localRotation * (grip * size));
         }
-        Color start = Color.Lerp(WindStart, pulseCrit ? CritStart : HitStart, kick);
+        Color start = Color.Lerp(charged ? ChargedStart : WindStart, pulseCrit ? CritStart : HitStart, kick);
         for (int j = 0; j < wind.Length; j++)
         {
             wind[j].startColor = start;

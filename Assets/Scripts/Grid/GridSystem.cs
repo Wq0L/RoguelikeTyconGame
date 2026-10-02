@@ -56,27 +56,36 @@ public class GridSystem
 
         return gridObjectArray[gridPosition.x, gridPosition.z];
     }
-        public List<GridObject> GetGridObjectsInRadius(Vector3 worldCenter, float radius)
+    // Visible circle radius. Targeting intersects this circle with each cell's square surface.
+    public float HarvestReach(float radius) => Mathf.Max(0f, radius);
+
+    public List<GridObject> GetGridObjectsInRadius(Vector3 worldCenter, float radius)
     {
         List<GridObject> result = new List<GridObject>();
-        float adjustedRadius = radius + (cellSize * 0.5f); // yarım hücre ekle
+        GetGridObjectsInRadius(worldCenter, radius, result);
+        return result;
+    }
 
-        for (int x = 0; x < width; x++)
+    // Caller-owned buffer: normal attacks allocate no target list. A circle touching a cell hits that cell only.
+    public void GetGridObjectsInRadius(Vector3 worldCenter, float radius, List<GridObject> result)
+    {
+        result.Clear();
+        float reach = HarvestReach(radius) + cellSize * .5f;
+        int minX = Mathf.Max(0, Mathf.CeilToInt((worldCenter.x - reach) / cellSize));
+        int maxX = Mathf.Min(width - 1, Mathf.FloorToInt((worldCenter.x + reach) / cellSize));
+        int minZ = Mathf.Max(0, Mathf.CeilToInt((worldCenter.z - reach) / cellSize));
+        int maxZ = Mathf.Min(height - 1, Mathf.FloorToInt((worldCenter.z + reach) / cellSize));
+
+        for (int x = minX; x <= maxX; x++)
         {
-            for (int z = 0; z < height; z++)
+            for (int z = minZ; z <= maxZ; z++)
             {
                 Vector3 cellWorldPos = GetWorldPosition(x, z);
 
-                float distance = Vector3.Distance(
-                    new Vector3(worldCenter.x, 0, worldCenter.z),
-                    new Vector3(cellWorldPos.x, 0, cellWorldPos.z)
-                );
-
-                if (distance <= adjustedRadius)
+                if (HarvestArea.TouchesCell(worldCenter, cellWorldPos, radius, cellSize))
                     result.Add(gridObjectArray[x, z]);
             }
         }
 
-        return result;
     }
 }

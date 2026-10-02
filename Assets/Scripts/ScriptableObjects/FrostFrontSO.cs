@@ -11,5 +11,5 @@ public class FrostFrontSO : SegmentEventSO
     [Tooltip("0: her run farklı kenar. Başka bir sayı: aynı tarlada hep aynı seçim (test ve karşılaştırma için).")]
     public int seed;
 
-    public override SegmentEventRuntime CreateRuntime(int segment, int segmentRounds) => new FrostFrontEvent(this, segment, segmentRounds);
+    public override SegmentEventRuntime CreateRuntime(SegmentEventTiming timing) => new FrostFrontEvent(this, timing);
 }

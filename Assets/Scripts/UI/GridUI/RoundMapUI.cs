@@ -52,8 +52,8 @@ public class RoundMapUI : MonoBehaviour
             // Bu round'un kartları: panel açılış animasyonundan sonra sırayla parlar.
             bool isFresh=progression!=null&&progression.WasAppliedThisRound(ground);
             tile.SetFresh(isFresh,isFresh?.3f+fresh++*.12f:0,FreshTileRing.LabelFor(ground));
-            // Segment olayı bölgesi (Don Cephesi): önizleme ve aktif hâl, dünyadaki şeritle aynı hücreler.
-            tile.SetEventZone(zone!=null&&ground!=null&&!ground.IsLocked&&zone.Covers(new GridPosition(x,z)),zone!=null&&zone.IsActive,zone!=null?zone.Data.color:Color.clear);
+            // Boss bölgesi: dünyadaki çevre çizgisiyle aynı hücreler; çerçeve (kesikli → düz), tile rengi örtülmez.
+            tile.SetEventZone(zone!=null&&ground!=null&&!ground.IsLocked&&zone.Covers(new GridPosition(x,z)),zone!=null&&zone.IsActive,zone!=null?BossTheme.Accent(zone.Data):Color.clear);
         }
         if(columnHeaders&&rowHeaders&&theme&&cellSprite){
             FillHeaders(columns,columnHeaders,width,true,size,step,boardSize,rect.anchoredPosition);

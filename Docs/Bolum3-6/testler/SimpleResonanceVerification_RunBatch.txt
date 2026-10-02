@@ -1,0 +1,5 @@
+FAIL: System.Exception: Nonlethal electricity does not taint direct kill XP: 8
+  at SimpleResonanceVerification.Require (System.Boolean condition, System.String message) [0x00015] in C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Assets\Editor\SimpleResonanceVerification.cs:55 
+  at SimpleResonanceVerification.Equal (System.Double actual, System.Double expected, System.String message) [0x00000] in C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Assets\Editor\SimpleResonanceVerification.cs:56 
+  at SimpleResonanceVerification.Run () [0x008a6] in C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Assets\Editor\SimpleResonanceVerification.cs:142 
+  at SimpleResonanceVerification.Tick () [0x0002d] in C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Assets\Editor\SimpleResonanceVerification.cs:36 

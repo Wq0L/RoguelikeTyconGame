@@ -23,7 +23,8 @@ public class HarvestScoreManager : MonoBehaviour
             StatTarget.Player
         );
         
-        int final = CalculateAward(rarity, multiplier, planter != null ? planter.GetHarvestScore(rarity) : 1f);
+        // Başlangıç seçiminin skor çarpanı (Tüccar ×0,9) en sonda, kesirli kalan taşınarak: Common'ın 1 puanı da bedeli öder.
+        int final = StartLoadoutManager.ScaleScore(CalculateAward(rarity, multiplier, planter != null ? planter.GetHarvestScore(rarity) : 1f));
         totalScore = totalScore > long.MaxValue - final ? long.MaxValue : totalScore + final;
 
         // Debug.Log($"Score +{final} ({rarity}) | Toplam: {totalScore}");

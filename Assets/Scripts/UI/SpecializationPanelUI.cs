@@ -27,15 +27,19 @@ public sealed class SpecializationPanelUI : MonoBehaviour
     private TextMeshProUGUI subtitle;
     private bool requested;
 
-    // Seçilen uzmanlaşmanın kısa özeti (HUD, round özeti, run sonu). Seçim yoksa null.
+    // Seçilen uzmanlaşmanın kısa özeti (HUD, round özeti, run sonu): yalnız 1'den farklı katsayılar. Seçim yoksa null.
     public static string Describe(SpecializationSO chosen)
     {
         if (chosen == null) return null;
         if (chosen.ChangesNothing) return $"{chosen.displayName} · değişiklik yok";
-        return $"{chosen.displayName} · doğrudan ×{Number(chosen.directDamageMultiplier)} · davranış ×{Number(chosen.behaviorDamageMultiplier)}";
+        string text = chosen.displayName;
+        if (!Mathf.Approximately(chosen.directDamageMultiplier, 1f)) text += $" · doğrudan ×{Number(chosen.directDamageMultiplier)}";
+        if (!Mathf.Approximately(chosen.behaviorDamageMultiplier, 1f)) text += $" · davranış ×{Number(chosen.behaviorDamageMultiplier)}";
+        if (!Mathf.Approximately(chosen.harvestResourceMultiplier, 1f)) text += $" · hasat kaynağı ×{Number(chosen.harvestResourceMultiplier)}";
+        return text;
     }
 
-    private static string Number(float value) => value.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture).Replace('.', ',');
+    private static string Number(float value) => value.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture).Replace('.', ',');
 
     public static SpecializationPanelUI Attach(Transform canvasRoot)
     {
@@ -88,14 +92,14 @@ public sealed class SpecializationPanelUI : MonoBehaviour
             bool neutral = options[i].ChangesNothing;
             card.plus.text = neutral ? "Bonus yok, ceza yok" : Lines(options[i], true);
             card.plus.color = neutral ? Neutral : Plus;
-            card.minus.text = neutral ? "Hasar değerleri olduğu gibi kalır" : Lines(options[i], false);
+            card.minus.text = neutral ? "Hasar ve hasat geliri olduğu gibi kalır" : Lines(options[i], false);
             card.minus.color = neutral ? Neutral : Minus;
             card.button.interactable = manager != null && manager.IsPending;
         }
         for (int i = count; i < cards.Count; i++) cards[i].root.gameObject.SetActive(false);
     }
 
-    // Kazanç (katsayı > 1) ya da bedel (< 1) satırları doğrudan katsayılardan: ayar değişince yazı da değişir.
+    // Kazanç (katsayı > 1) ya da bedel (< 1) satırları doğrudan asset katsayılarından: ayar değişince yazı da değişir.
     private static string Lines(SpecializationSO option, bool gains)
     {
         string text = "";
@@ -103,6 +107,8 @@ public sealed class SpecializationPanelUI : MonoBehaviour
             text += $"Doğrudan hasar ×{Number(option.directDamageMultiplier)}";
         if (gains ? option.behaviorDamageMultiplier > 1f : option.behaviorDamageMultiplier < 1f)
             text += (text.Length > 0 ? "\n" : "") + $"Davranış hasarı ×{Number(option.behaviorDamageMultiplier)}\n<size=72%>patlama · kasırga · bumerang · elektrik</size>";
+        if (gains ? option.harvestResourceMultiplier > 1f : option.harvestResourceMultiplier < 1f)
+            text += (text.Length > 0 ? "\n" : "") + $"Hasat kaynağı ×{Number(option.harvestResourceMultiplier)}\n<size=72%>hasattan gelen Gold · Iron · Stone</size>";
         return text;
     }
 
