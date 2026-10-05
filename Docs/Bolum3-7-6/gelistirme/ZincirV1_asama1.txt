@@ -1,0 +1,25 @@
+PASS: 24 checks
+ok: Zincir Hasat data: chain on, 2 extra generations, chance ×0,75 / ×0,50, damage ×0,75 / ×0,50, root budget 32, 8 jobs per frame; strong stage (first offered at the R23 boss), weight 1, max 1, offered only with a behavior planter, no cost, no damage or speed bonus
+ok: Pool: Kırılma Erişimi V1's pool with Zincir Hasat added to the strong stage; every other reward is the same asset (Artçı 2,00, Çifte Akım 4, Hasat Ritmi, cost rewards); stages and offer rules unchanged
+ok: Profile: everything except the reward pool is Kırılma Erişimi V1's (calendar, targets, balance set, start budget, round length, choices)
+ok: Older pools (6) contain no chain reward; the chain reward exists once
+ok: No reward: the old rule — A's direct harvest fires A's explosion, B dies to it and nothing more happens (no root is opened, no chain roll, no queue)
+ok: Generations: A's direct harvest (one root) → A's explosion (generation 0, 100) kills B → B explodes as generation 1 (75 = 100 × 0,75) and kills C → C explodes as generation 2 (50 = 100 × 0,50, not 0,75 × 0,50) and kills D → D starts nothing (generation limit)
+ok: Explosion → electric → explosion: A's explosion kills E → E's electric fires as generation 1 (75 per bolt = normal electric × 0,75) and kills X on a diagonal → X explodes as generation 2 → Y, killed by it, starts nothing
+ok: A → B → A: A's explosion (normal trigger, marked visited) kills B → B's electric kills another plant of A → A's same explosion is refused in this root (repeat), no second explosion
+ok: The same behavior on different planters: B1 and B2 (both explosion) each fire once in the same root
+ok: Different behaviors of the same planter: B (2×2, explosion + electric tiles) is tried once per behavior — both fire
+ok: A failed roll uses up the try: two of B's plants die in one root; the first death rolls (chance 0 → fails), the second is refused as a repeat — no second roll
+ok: A multi-cell planter is one identity: two of B's plants die in one root, B's explosion is tried and fires once
+ok: Two separate attacks are two roots (8, 9): B fires in each; the first root's visit does not leak into the second; both roots are released afterwards
+ok: Generation 1 chance (real reward data): B's real explosion chance 0.8 × 0,75 = 0.6 (rolled success)
+ok: Generation 2 chance: C's real chance 0.8 × 0,50 = 0.4 — the generation's own factor, not multiplied with generation 1's
+ok: Coefficients once: Davranışa Adanış ×1,50 and Davranış Ustası ×1,25 → normal explosion 188 (100 × 1,25 × 1,50); generation 1 = 188 × 0,75 = 141 (the coefficients are not applied again, the direct-damage cost does not leak)
+ok: Artçı is outside the chain: the aftershock kills X, X starts nothing (excluded); B's chained explosion fires but schedules no new aftershock (only A's normal explosion did)
+ok: Çifte Akım's second wave is outside the chain: it kills Y, Y starts nothing; B's chained electric fires but schedules no second wave (only A's normal electric did)
+ok: Queue: ten generation-1 triggers born in one frame run from the next frame on, 8 per frame (frames: 8 + 2); none is lost; nothing runs inside the death event
+ok: Root budget (test value 3): three triggers succeed and run; the other seven are counted as budget-refused and are not even rolled (no RNG is spent once the budget is full)
+ok: Source sold while its job waits: the job is refused (invalid source) and dropped; the root is released
+ok: Pooled plant: the plant reborn in B's cell carries no root or generation from its previous life
+ok: One death, one reward: 67 harvests in this test, each plant life harvested once, and exactly one XP grant per harvest (67) — chained deaths do not pay twice
+ok: No error or exception logged during the test

@@ -1,0 +1,1541 @@
+part,condition,reserve,stageGroup,round,metric,reward,value
+A,Doğrudan vuruş,1,erken,,offers,,1200
+A,Doğrudan vuruş,1,erken,,cards,,3600
+A,Doğrudan vuruş,1,erken,,withCurrent,,1200
+A,Doğrudan vuruş,1,erken,,short,,0
+A,Doğrudan vuruş,1,erken,,empty,,0
+A,Doğrudan vuruş,0,erken,,offers,,1200
+A,Doğrudan vuruş,0,erken,,cards,,3600
+A,Doğrudan vuruş,0,erken,,withCurrent,,1200
+A,Doğrudan vuruş,0,erken,,short,,0
+A,Doğrudan vuruş,0,erken,,empty,,0
+A,Doğrudan vuruş,1,orta,,offers,,1200
+A,Doğrudan vuruş,1,orta,,cards,,3600
+A,Doğrudan vuruş,1,orta,,withCurrent,,1200
+A,Doğrudan vuruş,1,orta,,short,,0
+A,Doğrudan vuruş,1,orta,,empty,,0
+A,Doğrudan vuruş,0,orta,,offers,,1200
+A,Doğrudan vuruş,0,orta,,cards,,3600
+A,Doğrudan vuruş,0,orta,,withCurrent,,1131
+A,Doğrudan vuruş,0,orta,,short,,0
+A,Doğrudan vuruş,0,orta,,empty,,0
+A,Doğrudan vuruş,1,guclu,,offers,,3600
+A,Doğrudan vuruş,1,guclu,,cards,,10800
+A,Doğrudan vuruş,1,guclu,,withCurrent,,3600
+A,Doğrudan vuruş,1,guclu,,short,,0
+A,Doğrudan vuruş,1,guclu,,empty,,0
+A,Doğrudan vuruş,0,guclu,,offers,,3600
+A,Doğrudan vuruş,0,guclu,,cards,,10800
+A,Doğrudan vuruş,0,guclu,,withCurrent,,3390
+A,Doğrudan vuruş,0,guclu,,short,,0
+A,Doğrudan vuruş,0,guclu,,empty,,0
+A,Doğrudan vuruş,1,erken,,frequency,keskin_bicak,879
+A,Doğrudan vuruş,0,erken,,frequency,keskin_bicak,879
+A,Doğrudan vuruş,1,orta,,frequency,keskin_bicak,319
+A,Doğrudan vuruş,0,orta,,frequency,keskin_bicak,419
+A,Doğrudan vuruş,1,guclu,,frequency,keskin_bicak,396
+A,Doğrudan vuruş,0,guclu,,frequency,keskin_bicak,530
+A,Doğrudan vuruş,1,erken,,frequency,hizli_bilek,889
+A,Doğrudan vuruş,0,erken,,frequency,hizli_bilek,889
+A,Doğrudan vuruş,1,orta,,frequency,hizli_bilek,354
+A,Doğrudan vuruş,0,orta,,frequency,hizli_bilek,412
+A,Doğrudan vuruş,1,guclu,,frequency,hizli_bilek,444
+A,Doğrudan vuruş,0,guclu,,frequency,hizli_bilek,577
+A,Doğrudan vuruş,1,erken,,frequency,bereketli_toprak,0
+A,Doğrudan vuruş,0,erken,,frequency,bereketli_toprak,0
+A,Doğrudan vuruş,1,orta,,frequency,bereketli_toprak,0
+A,Doğrudan vuruş,0,orta,,frequency,bereketli_toprak,0
+A,Doğrudan vuruş,1,guclu,,frequency,bereketli_toprak,0
+A,Doğrudan vuruş,0,guclu,,frequency,bereketli_toprak,0
+A,Doğrudan vuruş,1,erken,,frequency,nadir_tohum,907
+A,Doğrudan vuruş,0,erken,,frequency,nadir_tohum,907
+A,Doğrudan vuruş,1,orta,,frequency,nadir_tohum,327
+A,Doğrudan vuruş,0,orta,,frequency,nadir_tohum,441
+A,Doğrudan vuruş,1,guclu,,frequency,nadir_tohum,386
+A,Doğrudan vuruş,0,guclu,,frequency,nadir_tohum,526
+A,Doğrudan vuruş,1,erken,,frequency,bilgi_filizi,925
+A,Doğrudan vuruş,0,erken,,frequency,bilgi_filizi,925
+A,Doğrudan vuruş,1,orta,,frequency,bilgi_filizi,349
+A,Doğrudan vuruş,0,orta,,frequency,bilgi_filizi,423
+A,Doğrudan vuruş,1,guclu,,frequency,bilgi_filizi,442
+A,Doğrudan vuruş,0,guclu,,frequency,bilgi_filizi,578
+A,Doğrudan vuruş,1,erken,,frequency,kivilcim,0
+A,Doğrudan vuruş,0,erken,,frequency,kivilcim,0
+A,Doğrudan vuruş,1,orta,,frequency,kivilcim,0
+A,Doğrudan vuruş,0,orta,,frequency,kivilcim,0
+A,Doğrudan vuruş,1,guclu,,frequency,kivilcim,0
+A,Doğrudan vuruş,0,guclu,,frequency,kivilcim,0
+A,Doğrudan vuruş,1,erken,,frequency,agir_darbe,0
+A,Doğrudan vuruş,0,erken,,frequency,agir_darbe,0
+A,Doğrudan vuruş,1,orta,,frequency,agir_darbe,744
+A,Doğrudan vuruş,0,orta,,frequency,agir_darbe,636
+A,Doğrudan vuruş,1,guclu,,frequency,agir_darbe,692
+A,Doğrudan vuruş,0,guclu,,frequency,agir_darbe,872
+A,Doğrudan vuruş,1,erken,,frequency,kritik_goz,0
+A,Doğrudan vuruş,0,erken,,frequency,kritik_goz,0
+A,Doğrudan vuruş,1,orta,,frequency,kritik_goz,741
+A,Doğrudan vuruş,0,orta,,frequency,kritik_goz,612
+A,Doğrudan vuruş,1,guclu,,frequency,kritik_goz,700
+A,Doğrudan vuruş,0,guclu,,frequency,kritik_goz,969
+A,Doğrudan vuruş,1,erken,,frequency,altin_hedef,0
+A,Doğrudan vuruş,0,erken,,frequency,altin_hedef,0
+A,Doğrudan vuruş,1,orta,,frequency,altin_hedef,766
+A,Doğrudan vuruş,0,orta,,frequency,altin_hedef,657
+A,Doğrudan vuruş,1,guclu,,frequency,altin_hedef,686
+A,Doğrudan vuruş,0,guclu,,frequency,altin_hedef,953
+A,Doğrudan vuruş,1,erken,,frequency,yikim_gucu,0
+A,Doğrudan vuruş,0,erken,,frequency,yikim_gucu,0
+A,Doğrudan vuruş,1,orta,,frequency,yikim_gucu,0
+A,Doğrudan vuruş,0,orta,,frequency,yikim_gucu,0
+A,Doğrudan vuruş,1,guclu,,frequency,yikim_gucu,0
+A,Doğrudan vuruş,0,guclu,,frequency,yikim_gucu,0
+A,Doğrudan vuruş,1,erken,,frequency,genis_savurus,0
+A,Doğrudan vuruş,0,erken,,frequency,genis_savurus,0
+A,Doğrudan vuruş,1,orta,,frequency,genis_savurus,0
+A,Doğrudan vuruş,0,orta,,frequency,genis_savurus,0
+A,Doğrudan vuruş,1,guclu,,frequency,genis_savurus,1764
+A,Doğrudan vuruş,0,guclu,,frequency,genis_savurus,1444
+A,Doğrudan vuruş,1,erken,,frequency,canavar_kesimi,0
+A,Doğrudan vuruş,0,erken,,frequency,canavar_kesimi,0
+A,Doğrudan vuruş,1,orta,,frequency,canavar_kesimi,0
+A,Doğrudan vuruş,0,orta,,frequency,canavar_kesimi,0
+A,Doğrudan vuruş,1,guclu,,frequency,canavar_kesimi,1752
+A,Doğrudan vuruş,0,guclu,,frequency,canavar_kesimi,1443
+A,Doğrudan vuruş,1,erken,,frequency,firtina_bilegi,0
+A,Doğrudan vuruş,0,erken,,frequency,firtina_bilegi,0
+A,Doğrudan vuruş,1,orta,,frequency,firtina_bilegi,0
+A,Doğrudan vuruş,0,orta,,frequency,firtina_bilegi,0
+A,Doğrudan vuruş,1,guclu,,frequency,firtina_bilegi,1766
+A,Doğrudan vuruş,0,guclu,,frequency,firtina_bilegi,1439
+A,Doğrudan vuruş,1,erken,,frequency,artci_patlama,0
+A,Doğrudan vuruş,0,erken,,frequency,artci_patlama,0
+A,Doğrudan vuruş,1,orta,,frequency,artci_patlama,0
+A,Doğrudan vuruş,0,orta,,frequency,artci_patlama,0
+A,Doğrudan vuruş,1,guclu,,frequency,artci_patlama,0
+A,Doğrudan vuruş,0,guclu,,frequency,artci_patlama,0
+A,Doğrudan vuruş,1,erken,,frequency,cifte_akim,0
+A,Doğrudan vuruş,0,erken,,frequency,cifte_akim,0
+A,Doğrudan vuruş,1,orta,,frequency,cifte_akim,0
+A,Doğrudan vuruş,0,orta,,frequency,cifte_akim,0
+A,Doğrudan vuruş,1,guclu,,frequency,cifte_akim,0
+A,Doğrudan vuruş,0,guclu,,frequency,cifte_akim,0
+A,Doğrudan vuruş,1,erken,,frequency,hasat_ritmi,0
+A,Doğrudan vuruş,0,erken,,frequency,hasat_ritmi,0
+A,Doğrudan vuruş,1,orta,,frequency,hasat_ritmi,0
+A,Doğrudan vuruş,0,orta,,frequency,hasat_ritmi,0
+A,Doğrudan vuruş,1,guclu,,frequency,hasat_ritmi,1772
+A,Doğrudan vuruş,0,guclu,,frequency,hasat_ritmi,1469
+B,Doğrudan vuruş,1,erken,3,offers,,200
+B,Doğrudan vuruş,1,erken,3,cards,,600
+B,Doğrudan vuruş,1,erken,3,withCurrent,,200
+B,Doğrudan vuruş,1,erken,3,short,,0
+B,Doğrudan vuruş,1,erken,3,empty,,0
+B,Doğrudan vuruş,0,erken,3,offers,,200
+B,Doğrudan vuruş,0,erken,3,cards,,600
+B,Doğrudan vuruş,0,erken,3,withCurrent,,200
+B,Doğrudan vuruş,0,erken,3,short,,0
+B,Doğrudan vuruş,0,erken,3,empty,,0
+B,Doğrudan vuruş,1,erken,6,offers,,200
+B,Doğrudan vuruş,1,erken,6,cards,,600
+B,Doğrudan vuruş,1,erken,6,withCurrent,,200
+B,Doğrudan vuruş,1,erken,6,short,,0
+B,Doğrudan vuruş,1,erken,6,empty,,0
+B,Doğrudan vuruş,0,erken,6,offers,,200
+B,Doğrudan vuruş,0,erken,6,cards,,600
+B,Doğrudan vuruş,0,erken,6,withCurrent,,200
+B,Doğrudan vuruş,0,erken,6,short,,0
+B,Doğrudan vuruş,0,erken,6,empty,,0
+B,Doğrudan vuruş,1,erken,10,offers,,200
+B,Doğrudan vuruş,1,erken,10,cards,,600
+B,Doğrudan vuruş,1,erken,10,withCurrent,,200
+B,Doğrudan vuruş,1,erken,10,short,,0
+B,Doğrudan vuruş,1,erken,10,empty,,0
+B,Doğrudan vuruş,0,erken,10,offers,,200
+B,Doğrudan vuruş,0,erken,10,cards,,600
+B,Doğrudan vuruş,0,erken,10,withCurrent,,200
+B,Doğrudan vuruş,0,erken,10,short,,0
+B,Doğrudan vuruş,0,erken,10,empty,,0
+B,Doğrudan vuruş,1,orta,13,offers,,200
+B,Doğrudan vuruş,1,orta,13,cards,,600
+B,Doğrudan vuruş,1,orta,13,withCurrent,,200
+B,Doğrudan vuruş,1,orta,13,short,,0
+B,Doğrudan vuruş,1,orta,13,empty,,0
+B,Doğrudan vuruş,0,orta,13,offers,,200
+B,Doğrudan vuruş,0,orta,13,cards,,600
+B,Doğrudan vuruş,0,orta,13,withCurrent,,190
+B,Doğrudan vuruş,0,orta,13,short,,0
+B,Doğrudan vuruş,0,orta,13,empty,,0
+B,Doğrudan vuruş,1,orta,16,offers,,200
+B,Doğrudan vuruş,1,orta,16,cards,,600
+B,Doğrudan vuruş,1,orta,16,withCurrent,,200
+B,Doğrudan vuruş,1,orta,16,short,,0
+B,Doğrudan vuruş,1,orta,16,empty,,0
+B,Doğrudan vuruş,0,orta,16,offers,,200
+B,Doğrudan vuruş,0,orta,16,cards,,600
+B,Doğrudan vuruş,0,orta,16,withCurrent,,188
+B,Doğrudan vuruş,0,orta,16,short,,0
+B,Doğrudan vuruş,0,orta,16,empty,,0
+B,Doğrudan vuruş,1,orta,20,offers,,200
+B,Doğrudan vuruş,1,orta,20,cards,,600
+B,Doğrudan vuruş,1,orta,20,withCurrent,,200
+B,Doğrudan vuruş,1,orta,20,short,,0
+B,Doğrudan vuruş,1,orta,20,empty,,0
+B,Doğrudan vuruş,0,orta,20,offers,,200
+B,Doğrudan vuruş,0,orta,20,cards,,600
+B,Doğrudan vuruş,0,orta,20,withCurrent,,195
+B,Doğrudan vuruş,0,orta,20,short,,0
+B,Doğrudan vuruş,0,orta,20,empty,,0
+B,Doğrudan vuruş,1,guclu,23,offers,,200
+B,Doğrudan vuruş,1,guclu,23,cards,,600
+B,Doğrudan vuruş,1,guclu,23,withCurrent,,200
+B,Doğrudan vuruş,1,guclu,23,short,,0
+B,Doğrudan vuruş,1,guclu,23,empty,,0
+B,Doğrudan vuruş,0,guclu,23,offers,,200
+B,Doğrudan vuruş,0,guclu,23,cards,,600
+B,Doğrudan vuruş,0,guclu,23,withCurrent,,187
+B,Doğrudan vuruş,0,guclu,23,short,,0
+B,Doğrudan vuruş,0,guclu,23,empty,,0
+B,Doğrudan vuruş,1,guclu,26,offers,,200
+B,Doğrudan vuruş,1,guclu,26,cards,,600
+B,Doğrudan vuruş,1,guclu,26,withCurrent,,200
+B,Doğrudan vuruş,1,guclu,26,short,,0
+B,Doğrudan vuruş,1,guclu,26,empty,,0
+B,Doğrudan vuruş,0,guclu,26,offers,,200
+B,Doğrudan vuruş,0,guclu,26,cards,,600
+B,Doğrudan vuruş,0,guclu,26,withCurrent,,186
+B,Doğrudan vuruş,0,guclu,26,short,,0
+B,Doğrudan vuruş,0,guclu,26,empty,,0
+B,Doğrudan vuruş,1,guclu,30,offers,,200
+B,Doğrudan vuruş,1,guclu,30,cards,,600
+B,Doğrudan vuruş,1,guclu,30,withCurrent,,200
+B,Doğrudan vuruş,1,guclu,30,short,,0
+B,Doğrudan vuruş,1,guclu,30,empty,,0
+B,Doğrudan vuruş,0,guclu,30,offers,,200
+B,Doğrudan vuruş,0,guclu,30,cards,,600
+B,Doğrudan vuruş,0,guclu,30,withCurrent,,184
+B,Doğrudan vuruş,0,guclu,30,short,,0
+B,Doğrudan vuruş,0,guclu,30,empty,,0
+B,Doğrudan vuruş,1,guclu,33,offers,,200
+B,Doğrudan vuruş,1,guclu,33,cards,,600
+B,Doğrudan vuruş,1,guclu,33,withCurrent,,200
+B,Doğrudan vuruş,1,guclu,33,short,,0
+B,Doğrudan vuruş,1,guclu,33,empty,,0
+B,Doğrudan vuruş,0,guclu,33,offers,,200
+B,Doğrudan vuruş,0,guclu,33,cards,,600
+B,Doğrudan vuruş,0,guclu,33,withCurrent,,178
+B,Doğrudan vuruş,0,guclu,33,short,,0
+B,Doğrudan vuruş,0,guclu,33,empty,,0
+B,Doğrudan vuruş,1,guclu,36,offers,,200
+B,Doğrudan vuruş,1,guclu,36,cards,,600
+B,Doğrudan vuruş,1,guclu,36,withCurrent,,200
+B,Doğrudan vuruş,1,guclu,36,short,,0
+B,Doğrudan vuruş,1,guclu,36,empty,,0
+B,Doğrudan vuruş,0,guclu,36,offers,,200
+B,Doğrudan vuruş,0,guclu,36,cards,,600
+B,Doğrudan vuruş,0,guclu,36,withCurrent,,176
+B,Doğrudan vuruş,0,guclu,36,short,,0
+B,Doğrudan vuruş,0,guclu,36,empty,,0
+B,Doğrudan vuruş,1,guclu,40,offers,,200
+B,Doğrudan vuruş,1,guclu,40,cards,,600
+B,Doğrudan vuruş,1,guclu,40,withCurrent,,198
+B,Doğrudan vuruş,1,guclu,40,short,,0
+B,Doğrudan vuruş,1,guclu,40,empty,,0
+B,Doğrudan vuruş,0,guclu,40,offers,,200
+B,Doğrudan vuruş,0,guclu,40,cards,,600
+B,Doğrudan vuruş,0,guclu,40,withCurrent,,176
+B,Doğrudan vuruş,0,guclu,40,short,,0
+B,Doğrudan vuruş,0,guclu,40,empty,,0
+B,Doğrudan vuruş,1,guclu,43,offers,,200
+B,Doğrudan vuruş,1,guclu,43,cards,,600
+B,Doğrudan vuruş,1,guclu,43,withCurrent,,181
+B,Doğrudan vuruş,1,guclu,43,short,,0
+B,Doğrudan vuruş,1,guclu,43,empty,,0
+B,Doğrudan vuruş,0,guclu,43,offers,,200
+B,Doğrudan vuruş,0,guclu,43,cards,,600
+B,Doğrudan vuruş,0,guclu,43,withCurrent,,158
+B,Doğrudan vuruş,0,guclu,43,short,,0
+B,Doğrudan vuruş,0,guclu,43,empty,,0
+B,Doğrudan vuruş,1,guclu,46,offers,,200
+B,Doğrudan vuruş,1,guclu,46,cards,,600
+B,Doğrudan vuruş,1,guclu,46,withCurrent,,164
+B,Doğrudan vuruş,1,guclu,46,short,,0
+B,Doğrudan vuruş,1,guclu,46,empty,,0
+B,Doğrudan vuruş,0,guclu,46,offers,,200
+B,Doğrudan vuruş,0,guclu,46,cards,,600
+B,Doğrudan vuruş,0,guclu,46,withCurrent,,155
+B,Doğrudan vuruş,0,guclu,46,short,,0
+B,Doğrudan vuruş,0,guclu,46,empty,,0
+B,Doğrudan vuruş,1,guclu,50,offers,,200
+B,Doğrudan vuruş,1,guclu,50,cards,,600
+B,Doğrudan vuruş,1,guclu,50,withCurrent,,127
+B,Doğrudan vuruş,1,guclu,50,short,,0
+B,Doğrudan vuruş,1,guclu,50,empty,,0
+B,Doğrudan vuruş,0,guclu,50,offers,,200
+B,Doğrudan vuruş,0,guclu,50,cards,,600
+B,Doğrudan vuruş,0,guclu,50,withCurrent,,132
+B,Doğrudan vuruş,0,guclu,50,short,,0
+B,Doğrudan vuruş,0,guclu,50,empty,,0
+B,Doğrudan vuruş,1,,,taken,keskin_bicak,320
+B,Doğrudan vuruş,0,,,taken,keskin_bicak,368
+B,Doğrudan vuruş,1,,,taken,hizli_bilek,323
+B,Doğrudan vuruş,0,,,taken,hizli_bilek,349
+B,Doğrudan vuruş,1,,,taken,bereketli_toprak,0
+B,Doğrudan vuruş,0,,,taken,bereketli_toprak,0
+B,Doğrudan vuruş,1,,,taken,nadir_tohum,331
+B,Doğrudan vuruş,0,,,taken,nadir_tohum,339
+B,Doğrudan vuruş,1,,,taken,bilgi_filizi,266
+B,Doğrudan vuruş,0,,,taken,bilgi_filizi,279
+B,Doğrudan vuruş,1,,,taken,kivilcim,0
+B,Doğrudan vuruş,0,,,taken,kivilcim,0
+B,Doğrudan vuruş,1,,,taken,agir_darbe,276
+B,Doğrudan vuruş,0,,,taken,agir_darbe,282
+B,Doğrudan vuruş,1,,,taken,kritik_goz,338
+B,Doğrudan vuruş,0,,,taken,kritik_goz,317
+B,Doğrudan vuruş,1,,,taken,altin_hedef,272
+B,Doğrudan vuruş,0,,,taken,altin_hedef,281
+B,Doğrudan vuruş,1,,,taken,yikim_gucu,0
+B,Doğrudan vuruş,0,,,taken,yikim_gucu,0
+B,Doğrudan vuruş,1,,,taken,genis_savurus,338
+B,Doğrudan vuruş,0,,,taken,genis_savurus,271
+B,Doğrudan vuruş,1,,,taken,canavar_kesimi,185
+B,Doğrudan vuruş,0,,,taken,canavar_kesimi,166
+B,Doğrudan vuruş,1,,,taken,firtina_bilegi,174
+B,Doğrudan vuruş,0,,,taken,firtina_bilegi,175
+B,Doğrudan vuruş,1,,,taken,artci_patlama,0
+B,Doğrudan vuruş,0,,,taken,artci_patlama,0
+B,Doğrudan vuruş,1,,,taken,cifte_akim,0
+B,Doğrudan vuruş,0,,,taken,cifte_akim,0
+B,Doğrudan vuruş,1,,,taken,hasat_ritmi,177
+B,Doğrudan vuruş,0,,,taken,hasat_ritmi,173
+A,Patlamalı,1,erken,,offers,,1200
+A,Patlamalı,1,erken,,cards,,3600
+A,Patlamalı,1,erken,,withCurrent,,1200
+A,Patlamalı,1,erken,,short,,0
+A,Patlamalı,1,erken,,empty,,0
+A,Patlamalı,0,erken,,offers,,1200
+A,Patlamalı,0,erken,,cards,,3600
+A,Patlamalı,0,erken,,withCurrent,,1200
+A,Patlamalı,0,erken,,short,,0
+A,Patlamalı,0,erken,,empty,,0
+A,Patlamalı,1,orta,,offers,,1200
+A,Patlamalı,1,orta,,cards,,3600
+A,Patlamalı,1,orta,,withCurrent,,1200
+A,Patlamalı,1,orta,,short,,0
+A,Patlamalı,1,orta,,empty,,0
+A,Patlamalı,0,orta,,offers,,1200
+A,Patlamalı,0,orta,,cards,,3600
+A,Patlamalı,0,orta,,withCurrent,,1178
+A,Patlamalı,0,orta,,short,,0
+A,Patlamalı,0,orta,,empty,,0
+A,Patlamalı,1,guclu,,offers,,3600
+A,Patlamalı,1,guclu,,cards,,10800
+A,Patlamalı,1,guclu,,withCurrent,,3600
+A,Patlamalı,1,guclu,,short,,0
+A,Patlamalı,1,guclu,,empty,,0
+A,Patlamalı,0,guclu,,offers,,3600
+A,Patlamalı,0,guclu,,cards,,10800
+A,Patlamalı,0,guclu,,withCurrent,,3341
+A,Patlamalı,0,guclu,,short,,0
+A,Patlamalı,0,guclu,,empty,,0
+A,Patlamalı,1,erken,,frequency,keskin_bicak,879
+A,Patlamalı,0,erken,,frequency,keskin_bicak,879
+A,Patlamalı,1,orta,,frequency,keskin_bicak,218
+A,Patlamalı,0,orta,,frequency,keskin_bicak,301
+A,Patlamalı,1,guclu,,frequency,keskin_bicak,299
+A,Patlamalı,0,guclu,,frequency,keskin_bicak,410
+A,Patlamalı,1,erken,,frequency,hizli_bilek,889
+A,Patlamalı,0,erken,,frequency,hizli_bilek,889
+A,Patlamalı,1,orta,,frequency,hizli_bilek,237
+A,Patlamalı,0,orta,,frequency,hizli_bilek,313
+A,Patlamalı,1,guclu,,frequency,hizli_bilek,297
+A,Patlamalı,0,guclu,,frequency,hizli_bilek,394
+A,Patlamalı,1,erken,,frequency,bereketli_toprak,0
+A,Patlamalı,0,erken,,frequency,bereketli_toprak,0
+A,Patlamalı,1,orta,,frequency,bereketli_toprak,0
+A,Patlamalı,0,orta,,frequency,bereketli_toprak,0
+A,Patlamalı,1,guclu,,frequency,bereketli_toprak,0
+A,Patlamalı,0,guclu,,frequency,bereketli_toprak,0
+A,Patlamalı,1,erken,,frequency,nadir_tohum,907
+A,Patlamalı,0,erken,,frequency,nadir_tohum,907
+A,Patlamalı,1,orta,,frequency,nadir_tohum,234
+A,Patlamalı,0,orta,,frequency,nadir_tohum,284
+A,Patlamalı,1,guclu,,frequency,nadir_tohum,330
+A,Patlamalı,0,guclu,,frequency,nadir_tohum,434
+A,Patlamalı,1,erken,,frequency,bilgi_filizi,925
+A,Patlamalı,0,erken,,frequency,bilgi_filizi,925
+A,Patlamalı,1,orta,,frequency,bilgi_filizi,228
+A,Patlamalı,0,orta,,frequency,bilgi_filizi,319
+A,Patlamalı,1,guclu,,frequency,bilgi_filizi,266
+A,Patlamalı,0,guclu,,frequency,bilgi_filizi,393
+A,Patlamalı,1,erken,,frequency,kivilcim,0
+A,Patlamalı,0,erken,,frequency,kivilcim,0
+A,Patlamalı,1,orta,,frequency,kivilcim,528
+A,Patlamalı,0,orta,,frequency,kivilcim,487
+A,Patlamalı,1,guclu,,frequency,kivilcim,544
+A,Patlamalı,0,guclu,,frequency,kivilcim,699
+A,Patlamalı,1,erken,,frequency,agir_darbe,0
+A,Patlamalı,0,erken,,frequency,agir_darbe,0
+A,Patlamalı,1,orta,,frequency,agir_darbe,541
+A,Patlamalı,0,orta,,frequency,agir_darbe,460
+A,Patlamalı,1,guclu,,frequency,agir_darbe,502
+A,Patlamalı,0,guclu,,frequency,agir_darbe,675
+A,Patlamalı,1,erken,,frequency,kritik_goz,0
+A,Patlamalı,0,erken,,frequency,kritik_goz,0
+A,Patlamalı,1,orta,,frequency,kritik_goz,558
+A,Patlamalı,0,orta,,frequency,kritik_goz,482
+A,Patlamalı,1,guclu,,frequency,kritik_goz,521
+A,Patlamalı,0,guclu,,frequency,kritik_goz,727
+A,Patlamalı,1,erken,,frequency,altin_hedef,0
+A,Patlamalı,0,erken,,frequency,altin_hedef,0
+A,Patlamalı,1,orta,,frequency,altin_hedef,509
+A,Patlamalı,0,orta,,frequency,altin_hedef,466
+A,Patlamalı,1,guclu,,frequency,altin_hedef,506
+A,Patlamalı,0,guclu,,frequency,altin_hedef,729
+A,Patlamalı,1,erken,,frequency,yikim_gucu,0
+A,Patlamalı,0,erken,,frequency,yikim_gucu,0
+A,Patlamalı,1,orta,,frequency,yikim_gucu,547
+A,Patlamalı,0,orta,,frequency,yikim_gucu,488
+A,Patlamalı,1,guclu,,frequency,yikim_gucu,505
+A,Patlamalı,0,guclu,,frequency,yikim_gucu,709
+A,Patlamalı,1,erken,,frequency,genis_savurus,0
+A,Patlamalı,0,erken,,frequency,genis_savurus,0
+A,Patlamalı,1,orta,,frequency,genis_savurus,0
+A,Patlamalı,0,orta,,frequency,genis_savurus,0
+A,Patlamalı,1,guclu,,frequency,genis_savurus,1424
+A,Patlamalı,0,guclu,,frequency,genis_savurus,1135
+A,Patlamalı,1,erken,,frequency,canavar_kesimi,0
+A,Patlamalı,0,erken,,frequency,canavar_kesimi,0
+A,Patlamalı,1,orta,,frequency,canavar_kesimi,0
+A,Patlamalı,0,orta,,frequency,canavar_kesimi,0
+A,Patlamalı,1,guclu,,frequency,canavar_kesimi,1396
+A,Patlamalı,0,guclu,,frequency,canavar_kesimi,1132
+A,Patlamalı,1,erken,,frequency,firtina_bilegi,0
+A,Patlamalı,0,erken,,frequency,firtina_bilegi,0
+A,Patlamalı,1,orta,,frequency,firtina_bilegi,0
+A,Patlamalı,0,orta,,frequency,firtina_bilegi,0
+A,Patlamalı,1,guclu,,frequency,firtina_bilegi,1392
+A,Patlamalı,0,guclu,,frequency,firtina_bilegi,1104
+A,Patlamalı,1,erken,,frequency,artci_patlama,0
+A,Patlamalı,0,erken,,frequency,artci_patlama,0
+A,Patlamalı,1,orta,,frequency,artci_patlama,0
+A,Patlamalı,0,orta,,frequency,artci_patlama,0
+A,Patlamalı,1,guclu,,frequency,artci_patlama,1418
+A,Patlamalı,0,guclu,,frequency,artci_patlama,1139
+A,Patlamalı,1,erken,,frequency,cifte_akim,0
+A,Patlamalı,0,erken,,frequency,cifte_akim,0
+A,Patlamalı,1,orta,,frequency,cifte_akim,0
+A,Patlamalı,0,orta,,frequency,cifte_akim,0
+A,Patlamalı,1,guclu,,frequency,cifte_akim,0
+A,Patlamalı,0,guclu,,frequency,cifte_akim,0
+A,Patlamalı,1,erken,,frequency,hasat_ritmi,0
+A,Patlamalı,0,erken,,frequency,hasat_ritmi,0
+A,Patlamalı,1,orta,,frequency,hasat_ritmi,0
+A,Patlamalı,0,orta,,frequency,hasat_ritmi,0
+A,Patlamalı,1,guclu,,frequency,hasat_ritmi,1400
+A,Patlamalı,0,guclu,,frequency,hasat_ritmi,1120
+B,Patlamalı,1,erken,3,offers,,200
+B,Patlamalı,1,erken,3,cards,,600
+B,Patlamalı,1,erken,3,withCurrent,,200
+B,Patlamalı,1,erken,3,short,,0
+B,Patlamalı,1,erken,3,empty,,0
+B,Patlamalı,0,erken,3,offers,,200
+B,Patlamalı,0,erken,3,cards,,600
+B,Patlamalı,0,erken,3,withCurrent,,200
+B,Patlamalı,0,erken,3,short,,0
+B,Patlamalı,0,erken,3,empty,,0
+B,Patlamalı,1,erken,6,offers,,200
+B,Patlamalı,1,erken,6,cards,,600
+B,Patlamalı,1,erken,6,withCurrent,,200
+B,Patlamalı,1,erken,6,short,,0
+B,Patlamalı,1,erken,6,empty,,0
+B,Patlamalı,0,erken,6,offers,,200
+B,Patlamalı,0,erken,6,cards,,600
+B,Patlamalı,0,erken,6,withCurrent,,200
+B,Patlamalı,0,erken,6,short,,0
+B,Patlamalı,0,erken,6,empty,,0
+B,Patlamalı,1,erken,10,offers,,200
+B,Patlamalı,1,erken,10,cards,,600
+B,Patlamalı,1,erken,10,withCurrent,,200
+B,Patlamalı,1,erken,10,short,,0
+B,Patlamalı,1,erken,10,empty,,0
+B,Patlamalı,0,erken,10,offers,,200
+B,Patlamalı,0,erken,10,cards,,600
+B,Patlamalı,0,erken,10,withCurrent,,200
+B,Patlamalı,0,erken,10,short,,0
+B,Patlamalı,0,erken,10,empty,,0
+B,Patlamalı,1,orta,13,offers,,200
+B,Patlamalı,1,orta,13,cards,,600
+B,Patlamalı,1,orta,13,withCurrent,,200
+B,Patlamalı,1,orta,13,short,,0
+B,Patlamalı,1,orta,13,empty,,0
+B,Patlamalı,0,orta,13,offers,,200
+B,Patlamalı,0,orta,13,cards,,600
+B,Patlamalı,0,orta,13,withCurrent,,195
+B,Patlamalı,0,orta,13,short,,0
+B,Patlamalı,0,orta,13,empty,,0
+B,Patlamalı,1,orta,16,offers,,200
+B,Patlamalı,1,orta,16,cards,,600
+B,Patlamalı,1,orta,16,withCurrent,,200
+B,Patlamalı,1,orta,16,short,,0
+B,Patlamalı,1,orta,16,empty,,0
+B,Patlamalı,0,orta,16,offers,,200
+B,Patlamalı,0,orta,16,cards,,600
+B,Patlamalı,0,orta,16,withCurrent,,196
+B,Patlamalı,0,orta,16,short,,0
+B,Patlamalı,0,orta,16,empty,,0
+B,Patlamalı,1,orta,20,offers,,200
+B,Patlamalı,1,orta,20,cards,,600
+B,Patlamalı,1,orta,20,withCurrent,,200
+B,Patlamalı,1,orta,20,short,,0
+B,Patlamalı,1,orta,20,empty,,0
+B,Patlamalı,0,orta,20,offers,,200
+B,Patlamalı,0,orta,20,cards,,600
+B,Patlamalı,0,orta,20,withCurrent,,199
+B,Patlamalı,0,orta,20,short,,0
+B,Patlamalı,0,orta,20,empty,,0
+B,Patlamalı,1,guclu,23,offers,,200
+B,Patlamalı,1,guclu,23,cards,,600
+B,Patlamalı,1,guclu,23,withCurrent,,200
+B,Patlamalı,1,guclu,23,short,,0
+B,Patlamalı,1,guclu,23,empty,,0
+B,Patlamalı,0,guclu,23,offers,,200
+B,Patlamalı,0,guclu,23,cards,,600
+B,Patlamalı,0,guclu,23,withCurrent,,182
+B,Patlamalı,0,guclu,23,short,,0
+B,Patlamalı,0,guclu,23,empty,,0
+B,Patlamalı,1,guclu,26,offers,,200
+B,Patlamalı,1,guclu,26,cards,,600
+B,Patlamalı,1,guclu,26,withCurrent,,200
+B,Patlamalı,1,guclu,26,short,,0
+B,Patlamalı,1,guclu,26,empty,,0
+B,Patlamalı,0,guclu,26,offers,,200
+B,Patlamalı,0,guclu,26,cards,,600
+B,Patlamalı,0,guclu,26,withCurrent,,185
+B,Patlamalı,0,guclu,26,short,,0
+B,Patlamalı,0,guclu,26,empty,,0
+B,Patlamalı,1,guclu,30,offers,,200
+B,Patlamalı,1,guclu,30,cards,,600
+B,Patlamalı,1,guclu,30,withCurrent,,200
+B,Patlamalı,1,guclu,30,short,,0
+B,Patlamalı,1,guclu,30,empty,,0
+B,Patlamalı,0,guclu,30,offers,,200
+B,Patlamalı,0,guclu,30,cards,,600
+B,Patlamalı,0,guclu,30,withCurrent,,181
+B,Patlamalı,0,guclu,30,short,,0
+B,Patlamalı,0,guclu,30,empty,,0
+B,Patlamalı,1,guclu,33,offers,,200
+B,Patlamalı,1,guclu,33,cards,,600
+B,Patlamalı,1,guclu,33,withCurrent,,200
+B,Patlamalı,1,guclu,33,short,,0
+B,Patlamalı,1,guclu,33,empty,,0
+B,Patlamalı,0,guclu,33,offers,,200
+B,Patlamalı,0,guclu,33,cards,,600
+B,Patlamalı,0,guclu,33,withCurrent,,176
+B,Patlamalı,0,guclu,33,short,,0
+B,Patlamalı,0,guclu,33,empty,,0
+B,Patlamalı,1,guclu,36,offers,,200
+B,Patlamalı,1,guclu,36,cards,,600
+B,Patlamalı,1,guclu,36,withCurrent,,200
+B,Patlamalı,1,guclu,36,short,,0
+B,Patlamalı,1,guclu,36,empty,,0
+B,Patlamalı,0,guclu,36,offers,,200
+B,Patlamalı,0,guclu,36,cards,,600
+B,Patlamalı,0,guclu,36,withCurrent,,176
+B,Patlamalı,0,guclu,36,short,,0
+B,Patlamalı,0,guclu,36,empty,,0
+B,Patlamalı,1,guclu,40,offers,,200
+B,Patlamalı,1,guclu,40,cards,,600
+B,Patlamalı,1,guclu,40,withCurrent,,200
+B,Patlamalı,1,guclu,40,short,,0
+B,Patlamalı,1,guclu,40,empty,,0
+B,Patlamalı,0,guclu,40,offers,,200
+B,Patlamalı,0,guclu,40,cards,,600
+B,Patlamalı,0,guclu,40,withCurrent,,171
+B,Patlamalı,0,guclu,40,short,,0
+B,Patlamalı,0,guclu,40,empty,,0
+B,Patlamalı,1,guclu,43,offers,,200
+B,Patlamalı,1,guclu,43,cards,,600
+B,Patlamalı,1,guclu,43,withCurrent,,197
+B,Patlamalı,1,guclu,43,short,,0
+B,Patlamalı,1,guclu,43,empty,,0
+B,Patlamalı,0,guclu,43,offers,,200
+B,Patlamalı,0,guclu,43,cards,,600
+B,Patlamalı,0,guclu,43,withCurrent,,162
+B,Patlamalı,0,guclu,43,short,,0
+B,Patlamalı,0,guclu,43,empty,,0
+B,Patlamalı,1,guclu,46,offers,,200
+B,Patlamalı,1,guclu,46,cards,,600
+B,Patlamalı,1,guclu,46,withCurrent,,187
+B,Patlamalı,1,guclu,46,short,,0
+B,Patlamalı,1,guclu,46,empty,,0
+B,Patlamalı,0,guclu,46,offers,,200
+B,Patlamalı,0,guclu,46,cards,,600
+B,Patlamalı,0,guclu,46,withCurrent,,166
+B,Patlamalı,0,guclu,46,short,,0
+B,Patlamalı,0,guclu,46,empty,,0
+B,Patlamalı,1,guclu,50,offers,,200
+B,Patlamalı,1,guclu,50,cards,,600
+B,Patlamalı,1,guclu,50,withCurrent,,167
+B,Patlamalı,1,guclu,50,short,,0
+B,Patlamalı,1,guclu,50,empty,,0
+B,Patlamalı,0,guclu,50,offers,,200
+B,Patlamalı,0,guclu,50,cards,,600
+B,Patlamalı,0,guclu,50,withCurrent,,150
+B,Patlamalı,0,guclu,50,short,,0
+B,Patlamalı,0,guclu,50,empty,,0
+B,Patlamalı,1,,,taken,keskin_bicak,245
+B,Patlamalı,0,,,taken,keskin_bicak,300
+B,Patlamalı,1,,,taken,hizli_bilek,263
+B,Patlamalı,0,,,taken,hizli_bilek,292
+B,Patlamalı,1,,,taken,bereketli_toprak,0
+B,Patlamalı,0,,,taken,bereketli_toprak,0
+B,Patlamalı,1,,,taken,nadir_tohum,295
+B,Patlamalı,0,,,taken,nadir_tohum,293
+B,Patlamalı,1,,,taken,bilgi_filizi,222
+B,Patlamalı,0,,,taken,bilgi_filizi,243
+B,Patlamalı,1,,,taken,kivilcim,197
+B,Patlamalı,0,,,taken,kivilcim,218
+B,Patlamalı,1,,,taken,agir_darbe,203
+B,Patlamalı,0,,,taken,agir_darbe,200
+B,Patlamalı,1,,,taken,kritik_goz,224
+B,Patlamalı,0,,,taken,kritik_goz,227
+B,Patlamalı,1,,,taken,altin_hedef,179
+B,Patlamalı,0,,,taken,altin_hedef,214
+B,Patlamalı,1,,,taken,yikim_gucu,223
+B,Patlamalı,0,,,taken,yikim_gucu,215
+B,Patlamalı,1,,,taken,genis_savurus,289
+B,Patlamalı,0,,,taken,genis_savurus,211
+B,Patlamalı,1,,,taken,canavar_kesimi,161
+B,Patlamalı,0,,,taken,canavar_kesimi,148
+B,Patlamalı,1,,,taken,firtina_bilegi,167
+B,Patlamalı,0,,,taken,firtina_bilegi,152
+B,Patlamalı,1,,,taken,artci_patlama,163
+B,Patlamalı,0,,,taken,artci_patlama,143
+B,Patlamalı,1,,,taken,cifte_akim,0
+B,Patlamalı,0,,,taken,cifte_akim,0
+B,Patlamalı,1,,,taken,hasat_ritmi,169
+B,Patlamalı,0,,,taken,hasat_ritmi,144
+A,Elektrikli,1,erken,,offers,,1200
+A,Elektrikli,1,erken,,cards,,3600
+A,Elektrikli,1,erken,,withCurrent,,1200
+A,Elektrikli,1,erken,,short,,0
+A,Elektrikli,1,erken,,empty,,0
+A,Elektrikli,0,erken,,offers,,1200
+A,Elektrikli,0,erken,,cards,,3600
+A,Elektrikli,0,erken,,withCurrent,,1200
+A,Elektrikli,0,erken,,short,,0
+A,Elektrikli,0,erken,,empty,,0
+A,Elektrikli,1,orta,,offers,,1200
+A,Elektrikli,1,orta,,cards,,3600
+A,Elektrikli,1,orta,,withCurrent,,1200
+A,Elektrikli,1,orta,,short,,0
+A,Elektrikli,1,orta,,empty,,0
+A,Elektrikli,0,orta,,offers,,1200
+A,Elektrikli,0,orta,,cards,,3600
+A,Elektrikli,0,orta,,withCurrent,,1178
+A,Elektrikli,0,orta,,short,,0
+A,Elektrikli,0,orta,,empty,,0
+A,Elektrikli,1,guclu,,offers,,3600
+A,Elektrikli,1,guclu,,cards,,10800
+A,Elektrikli,1,guclu,,withCurrent,,3600
+A,Elektrikli,1,guclu,,short,,0
+A,Elektrikli,1,guclu,,empty,,0
+A,Elektrikli,0,guclu,,offers,,3600
+A,Elektrikli,0,guclu,,cards,,10800
+A,Elektrikli,0,guclu,,withCurrent,,3341
+A,Elektrikli,0,guclu,,short,,0
+A,Elektrikli,0,guclu,,empty,,0
+A,Elektrikli,1,erken,,frequency,keskin_bicak,879
+A,Elektrikli,0,erken,,frequency,keskin_bicak,879
+A,Elektrikli,1,orta,,frequency,keskin_bicak,218
+A,Elektrikli,0,orta,,frequency,keskin_bicak,301
+A,Elektrikli,1,guclu,,frequency,keskin_bicak,299
+A,Elektrikli,0,guclu,,frequency,keskin_bicak,410
+A,Elektrikli,1,erken,,frequency,hizli_bilek,889
+A,Elektrikli,0,erken,,frequency,hizli_bilek,889
+A,Elektrikli,1,orta,,frequency,hizli_bilek,237
+A,Elektrikli,0,orta,,frequency,hizli_bilek,313
+A,Elektrikli,1,guclu,,frequency,hizli_bilek,297
+A,Elektrikli,0,guclu,,frequency,hizli_bilek,394
+A,Elektrikli,1,erken,,frequency,bereketli_toprak,0
+A,Elektrikli,0,erken,,frequency,bereketli_toprak,0
+A,Elektrikli,1,orta,,frequency,bereketli_toprak,0
+A,Elektrikli,0,orta,,frequency,bereketli_toprak,0
+A,Elektrikli,1,guclu,,frequency,bereketli_toprak,0
+A,Elektrikli,0,guclu,,frequency,bereketli_toprak,0
+A,Elektrikli,1,erken,,frequency,nadir_tohum,907
+A,Elektrikli,0,erken,,frequency,nadir_tohum,907
+A,Elektrikli,1,orta,,frequency,nadir_tohum,234
+A,Elektrikli,0,orta,,frequency,nadir_tohum,284
+A,Elektrikli,1,guclu,,frequency,nadir_tohum,330
+A,Elektrikli,0,guclu,,frequency,nadir_tohum,434
+A,Elektrikli,1,erken,,frequency,bilgi_filizi,925
+A,Elektrikli,0,erken,,frequency,bilgi_filizi,925
+A,Elektrikli,1,orta,,frequency,bilgi_filizi,228
+A,Elektrikli,0,orta,,frequency,bilgi_filizi,319
+A,Elektrikli,1,guclu,,frequency,bilgi_filizi,266
+A,Elektrikli,0,guclu,,frequency,bilgi_filizi,393
+A,Elektrikli,1,erken,,frequency,kivilcim,0
+A,Elektrikli,0,erken,,frequency,kivilcim,0
+A,Elektrikli,1,orta,,frequency,kivilcim,528
+A,Elektrikli,0,orta,,frequency,kivilcim,487
+A,Elektrikli,1,guclu,,frequency,kivilcim,544
+A,Elektrikli,0,guclu,,frequency,kivilcim,699
+A,Elektrikli,1,erken,,frequency,agir_darbe,0
+A,Elektrikli,0,erken,,frequency,agir_darbe,0
+A,Elektrikli,1,orta,,frequency,agir_darbe,541
+A,Elektrikli,0,orta,,frequency,agir_darbe,460
+A,Elektrikli,1,guclu,,frequency,agir_darbe,502
+A,Elektrikli,0,guclu,,frequency,agir_darbe,675
+A,Elektrikli,1,erken,,frequency,kritik_goz,0
+A,Elektrikli,0,erken,,frequency,kritik_goz,0
+A,Elektrikli,1,orta,,frequency,kritik_goz,558
+A,Elektrikli,0,orta,,frequency,kritik_goz,482
+A,Elektrikli,1,guclu,,frequency,kritik_goz,521
+A,Elektrikli,0,guclu,,frequency,kritik_goz,727
+A,Elektrikli,1,erken,,frequency,altin_hedef,0
+A,Elektrikli,0,erken,,frequency,altin_hedef,0
+A,Elektrikli,1,orta,,frequency,altin_hedef,509
+A,Elektrikli,0,orta,,frequency,altin_hedef,466
+A,Elektrikli,1,guclu,,frequency,altin_hedef,506
+A,Elektrikli,0,guclu,,frequency,altin_hedef,729
+A,Elektrikli,1,erken,,frequency,yikim_gucu,0
+A,Elektrikli,0,erken,,frequency,yikim_gucu,0
+A,Elektrikli,1,orta,,frequency,yikim_gucu,547
+A,Elektrikli,0,orta,,frequency,yikim_gucu,488
+A,Elektrikli,1,guclu,,frequency,yikim_gucu,505
+A,Elektrikli,0,guclu,,frequency,yikim_gucu,709
+A,Elektrikli,1,erken,,frequency,genis_savurus,0
+A,Elektrikli,0,erken,,frequency,genis_savurus,0
+A,Elektrikli,1,orta,,frequency,genis_savurus,0
+A,Elektrikli,0,orta,,frequency,genis_savurus,0
+A,Elektrikli,1,guclu,,frequency,genis_savurus,1424
+A,Elektrikli,0,guclu,,frequency,genis_savurus,1135
+A,Elektrikli,1,erken,,frequency,canavar_kesimi,0
+A,Elektrikli,0,erken,,frequency,canavar_kesimi,0
+A,Elektrikli,1,orta,,frequency,canavar_kesimi,0
+A,Elektrikli,0,orta,,frequency,canavar_kesimi,0
+A,Elektrikli,1,guclu,,frequency,canavar_kesimi,1396
+A,Elektrikli,0,guclu,,frequency,canavar_kesimi,1132
+A,Elektrikli,1,erken,,frequency,firtina_bilegi,0
+A,Elektrikli,0,erken,,frequency,firtina_bilegi,0
+A,Elektrikli,1,orta,,frequency,firtina_bilegi,0
+A,Elektrikli,0,orta,,frequency,firtina_bilegi,0
+A,Elektrikli,1,guclu,,frequency,firtina_bilegi,1392
+A,Elektrikli,0,guclu,,frequency,firtina_bilegi,1104
+A,Elektrikli,1,erken,,frequency,artci_patlama,0
+A,Elektrikli,0,erken,,frequency,artci_patlama,0
+A,Elektrikli,1,orta,,frequency,artci_patlama,0
+A,Elektrikli,0,orta,,frequency,artci_patlama,0
+A,Elektrikli,1,guclu,,frequency,artci_patlama,0
+A,Elektrikli,0,guclu,,frequency,artci_patlama,0
+A,Elektrikli,1,erken,,frequency,cifte_akim,0
+A,Elektrikli,0,erken,,frequency,cifte_akim,0
+A,Elektrikli,1,orta,,frequency,cifte_akim,0
+A,Elektrikli,0,orta,,frequency,cifte_akim,0
+A,Elektrikli,1,guclu,,frequency,cifte_akim,1418
+A,Elektrikli,0,guclu,,frequency,cifte_akim,1139
+A,Elektrikli,1,erken,,frequency,hasat_ritmi,0
+A,Elektrikli,0,erken,,frequency,hasat_ritmi,0
+A,Elektrikli,1,orta,,frequency,hasat_ritmi,0
+A,Elektrikli,0,orta,,frequency,hasat_ritmi,0
+A,Elektrikli,1,guclu,,frequency,hasat_ritmi,1400
+A,Elektrikli,0,guclu,,frequency,hasat_ritmi,1120
+B,Elektrikli,1,erken,3,offers,,200
+B,Elektrikli,1,erken,3,cards,,600
+B,Elektrikli,1,erken,3,withCurrent,,200
+B,Elektrikli,1,erken,3,short,,0
+B,Elektrikli,1,erken,3,empty,,0
+B,Elektrikli,0,erken,3,offers,,200
+B,Elektrikli,0,erken,3,cards,,600
+B,Elektrikli,0,erken,3,withCurrent,,200
+B,Elektrikli,0,erken,3,short,,0
+B,Elektrikli,0,erken,3,empty,,0
+B,Elektrikli,1,erken,6,offers,,200
+B,Elektrikli,1,erken,6,cards,,600
+B,Elektrikli,1,erken,6,withCurrent,,200
+B,Elektrikli,1,erken,6,short,,0
+B,Elektrikli,1,erken,6,empty,,0
+B,Elektrikli,0,erken,6,offers,,200
+B,Elektrikli,0,erken,6,cards,,600
+B,Elektrikli,0,erken,6,withCurrent,,200
+B,Elektrikli,0,erken,6,short,,0
+B,Elektrikli,0,erken,6,empty,,0
+B,Elektrikli,1,erken,10,offers,,200
+B,Elektrikli,1,erken,10,cards,,600
+B,Elektrikli,1,erken,10,withCurrent,,200
+B,Elektrikli,1,erken,10,short,,0
+B,Elektrikli,1,erken,10,empty,,0
+B,Elektrikli,0,erken,10,offers,,200
+B,Elektrikli,0,erken,10,cards,,600
+B,Elektrikli,0,erken,10,withCurrent,,200
+B,Elektrikli,0,erken,10,short,,0
+B,Elektrikli,0,erken,10,empty,,0
+B,Elektrikli,1,orta,13,offers,,200
+B,Elektrikli,1,orta,13,cards,,600
+B,Elektrikli,1,orta,13,withCurrent,,200
+B,Elektrikli,1,orta,13,short,,0
+B,Elektrikli,1,orta,13,empty,,0
+B,Elektrikli,0,orta,13,offers,,200
+B,Elektrikli,0,orta,13,cards,,600
+B,Elektrikli,0,orta,13,withCurrent,,195
+B,Elektrikli,0,orta,13,short,,0
+B,Elektrikli,0,orta,13,empty,,0
+B,Elektrikli,1,orta,16,offers,,200
+B,Elektrikli,1,orta,16,cards,,600
+B,Elektrikli,1,orta,16,withCurrent,,200
+B,Elektrikli,1,orta,16,short,,0
+B,Elektrikli,1,orta,16,empty,,0
+B,Elektrikli,0,orta,16,offers,,200
+B,Elektrikli,0,orta,16,cards,,600
+B,Elektrikli,0,orta,16,withCurrent,,196
+B,Elektrikli,0,orta,16,short,,0
+B,Elektrikli,0,orta,16,empty,,0
+B,Elektrikli,1,orta,20,offers,,200
+B,Elektrikli,1,orta,20,cards,,600
+B,Elektrikli,1,orta,20,withCurrent,,200
+B,Elektrikli,1,orta,20,short,,0
+B,Elektrikli,1,orta,20,empty,,0
+B,Elektrikli,0,orta,20,offers,,200
+B,Elektrikli,0,orta,20,cards,,600
+B,Elektrikli,0,orta,20,withCurrent,,199
+B,Elektrikli,0,orta,20,short,,0
+B,Elektrikli,0,orta,20,empty,,0
+B,Elektrikli,1,guclu,23,offers,,200
+B,Elektrikli,1,guclu,23,cards,,600
+B,Elektrikli,1,guclu,23,withCurrent,,200
+B,Elektrikli,1,guclu,23,short,,0
+B,Elektrikli,1,guclu,23,empty,,0
+B,Elektrikli,0,guclu,23,offers,,200
+B,Elektrikli,0,guclu,23,cards,,600
+B,Elektrikli,0,guclu,23,withCurrent,,182
+B,Elektrikli,0,guclu,23,short,,0
+B,Elektrikli,0,guclu,23,empty,,0
+B,Elektrikli,1,guclu,26,offers,,200
+B,Elektrikli,1,guclu,26,cards,,600
+B,Elektrikli,1,guclu,26,withCurrent,,200
+B,Elektrikli,1,guclu,26,short,,0
+B,Elektrikli,1,guclu,26,empty,,0
+B,Elektrikli,0,guclu,26,offers,,200
+B,Elektrikli,0,guclu,26,cards,,600
+B,Elektrikli,0,guclu,26,withCurrent,,185
+B,Elektrikli,0,guclu,26,short,,0
+B,Elektrikli,0,guclu,26,empty,,0
+B,Elektrikli,1,guclu,30,offers,,200
+B,Elektrikli,1,guclu,30,cards,,600
+B,Elektrikli,1,guclu,30,withCurrent,,200
+B,Elektrikli,1,guclu,30,short,,0
+B,Elektrikli,1,guclu,30,empty,,0
+B,Elektrikli,0,guclu,30,offers,,200
+B,Elektrikli,0,guclu,30,cards,,600
+B,Elektrikli,0,guclu,30,withCurrent,,181
+B,Elektrikli,0,guclu,30,short,,0
+B,Elektrikli,0,guclu,30,empty,,0
+B,Elektrikli,1,guclu,33,offers,,200
+B,Elektrikli,1,guclu,33,cards,,600
+B,Elektrikli,1,guclu,33,withCurrent,,200
+B,Elektrikli,1,guclu,33,short,,0
+B,Elektrikli,1,guclu,33,empty,,0
+B,Elektrikli,0,guclu,33,offers,,200
+B,Elektrikli,0,guclu,33,cards,,600
+B,Elektrikli,0,guclu,33,withCurrent,,176
+B,Elektrikli,0,guclu,33,short,,0
+B,Elektrikli,0,guclu,33,empty,,0
+B,Elektrikli,1,guclu,36,offers,,200
+B,Elektrikli,1,guclu,36,cards,,600
+B,Elektrikli,1,guclu,36,withCurrent,,200
+B,Elektrikli,1,guclu,36,short,,0
+B,Elektrikli,1,guclu,36,empty,,0
+B,Elektrikli,0,guclu,36,offers,,200
+B,Elektrikli,0,guclu,36,cards,,600
+B,Elektrikli,0,guclu,36,withCurrent,,176
+B,Elektrikli,0,guclu,36,short,,0
+B,Elektrikli,0,guclu,36,empty,,0
+B,Elektrikli,1,guclu,40,offers,,200
+B,Elektrikli,1,guclu,40,cards,,600
+B,Elektrikli,1,guclu,40,withCurrent,,200
+B,Elektrikli,1,guclu,40,short,,0
+B,Elektrikli,1,guclu,40,empty,,0
+B,Elektrikli,0,guclu,40,offers,,200
+B,Elektrikli,0,guclu,40,cards,,600
+B,Elektrikli,0,guclu,40,withCurrent,,171
+B,Elektrikli,0,guclu,40,short,,0
+B,Elektrikli,0,guclu,40,empty,,0
+B,Elektrikli,1,guclu,43,offers,,200
+B,Elektrikli,1,guclu,43,cards,,600
+B,Elektrikli,1,guclu,43,withCurrent,,197
+B,Elektrikli,1,guclu,43,short,,0
+B,Elektrikli,1,guclu,43,empty,,0
+B,Elektrikli,0,guclu,43,offers,,200
+B,Elektrikli,0,guclu,43,cards,,600
+B,Elektrikli,0,guclu,43,withCurrent,,162
+B,Elektrikli,0,guclu,43,short,,0
+B,Elektrikli,0,guclu,43,empty,,0
+B,Elektrikli,1,guclu,46,offers,,200
+B,Elektrikli,1,guclu,46,cards,,600
+B,Elektrikli,1,guclu,46,withCurrent,,187
+B,Elektrikli,1,guclu,46,short,,0
+B,Elektrikli,1,guclu,46,empty,,0
+B,Elektrikli,0,guclu,46,offers,,200
+B,Elektrikli,0,guclu,46,cards,,600
+B,Elektrikli,0,guclu,46,withCurrent,,166
+B,Elektrikli,0,guclu,46,short,,0
+B,Elektrikli,0,guclu,46,empty,,0
+B,Elektrikli,1,guclu,50,offers,,200
+B,Elektrikli,1,guclu,50,cards,,600
+B,Elektrikli,1,guclu,50,withCurrent,,167
+B,Elektrikli,1,guclu,50,short,,0
+B,Elektrikli,1,guclu,50,empty,,0
+B,Elektrikli,0,guclu,50,offers,,200
+B,Elektrikli,0,guclu,50,cards,,600
+B,Elektrikli,0,guclu,50,withCurrent,,150
+B,Elektrikli,0,guclu,50,short,,0
+B,Elektrikli,0,guclu,50,empty,,0
+B,Elektrikli,1,,,taken,keskin_bicak,245
+B,Elektrikli,0,,,taken,keskin_bicak,300
+B,Elektrikli,1,,,taken,hizli_bilek,263
+B,Elektrikli,0,,,taken,hizli_bilek,292
+B,Elektrikli,1,,,taken,bereketli_toprak,0
+B,Elektrikli,0,,,taken,bereketli_toprak,0
+B,Elektrikli,1,,,taken,nadir_tohum,295
+B,Elektrikli,0,,,taken,nadir_tohum,293
+B,Elektrikli,1,,,taken,bilgi_filizi,222
+B,Elektrikli,0,,,taken,bilgi_filizi,243
+B,Elektrikli,1,,,taken,kivilcim,197
+B,Elektrikli,0,,,taken,kivilcim,218
+B,Elektrikli,1,,,taken,agir_darbe,203
+B,Elektrikli,0,,,taken,agir_darbe,200
+B,Elektrikli,1,,,taken,kritik_goz,224
+B,Elektrikli,0,,,taken,kritik_goz,227
+B,Elektrikli,1,,,taken,altin_hedef,179
+B,Elektrikli,0,,,taken,altin_hedef,214
+B,Elektrikli,1,,,taken,yikim_gucu,223
+B,Elektrikli,0,,,taken,yikim_gucu,215
+B,Elektrikli,1,,,taken,genis_savurus,289
+B,Elektrikli,0,,,taken,genis_savurus,211
+B,Elektrikli,1,,,taken,canavar_kesimi,161
+B,Elektrikli,0,,,taken,canavar_kesimi,148
+B,Elektrikli,1,,,taken,firtina_bilegi,167
+B,Elektrikli,0,,,taken,firtina_bilegi,152
+B,Elektrikli,1,,,taken,artci_patlama,0
+B,Elektrikli,0,,,taken,artci_patlama,0
+B,Elektrikli,1,,,taken,cifte_akim,163
+B,Elektrikli,0,,,taken,cifte_akim,143
+B,Elektrikli,1,,,taken,hasat_ritmi,169
+B,Elektrikli,0,,,taken,hasat_ritmi,144
+A,Çok davranışlı,1,erken,,offers,,1200
+A,Çok davranışlı,1,erken,,cards,,3600
+A,Çok davranışlı,1,erken,,withCurrent,,1200
+A,Çok davranışlı,1,erken,,short,,0
+A,Çok davranışlı,1,erken,,empty,,0
+A,Çok davranışlı,0,erken,,offers,,1200
+A,Çok davranışlı,0,erken,,cards,,3600
+A,Çok davranışlı,0,erken,,withCurrent,,1200
+A,Çok davranışlı,0,erken,,short,,0
+A,Çok davranışlı,0,erken,,empty,,0
+A,Çok davranışlı,1,orta,,offers,,1200
+A,Çok davranışlı,1,orta,,cards,,3600
+A,Çok davranışlı,1,orta,,withCurrent,,1200
+A,Çok davranışlı,1,orta,,short,,0
+A,Çok davranışlı,1,orta,,empty,,0
+A,Çok davranışlı,0,orta,,offers,,1200
+A,Çok davranışlı,0,orta,,cards,,3600
+A,Çok davranışlı,0,orta,,withCurrent,,1178
+A,Çok davranışlı,0,orta,,short,,0
+A,Çok davranışlı,0,orta,,empty,,0
+A,Çok davranışlı,1,guclu,,offers,,3600
+A,Çok davranışlı,1,guclu,,cards,,10800
+A,Çok davranışlı,1,guclu,,withCurrent,,3600
+A,Çok davranışlı,1,guclu,,short,,0
+A,Çok davranışlı,1,guclu,,empty,,0
+A,Çok davranışlı,0,guclu,,offers,,3600
+A,Çok davranışlı,0,guclu,,cards,,10800
+A,Çok davranışlı,0,guclu,,withCurrent,,3407
+A,Çok davranışlı,0,guclu,,short,,0
+A,Çok davranışlı,0,guclu,,empty,,0
+A,Çok davranışlı,1,erken,,frequency,keskin_bicak,879
+A,Çok davranışlı,0,erken,,frequency,keskin_bicak,879
+A,Çok davranışlı,1,orta,,frequency,keskin_bicak,218
+A,Çok davranışlı,0,orta,,frequency,keskin_bicak,301
+A,Çok davranışlı,1,guclu,,frequency,keskin_bicak,270
+A,Çok davranışlı,0,guclu,,frequency,keskin_bicak,373
+A,Çok davranışlı,1,erken,,frequency,hizli_bilek,889
+A,Çok davranışlı,0,erken,,frequency,hizli_bilek,889
+A,Çok davranışlı,1,orta,,frequency,hizli_bilek,237
+A,Çok davranışlı,0,orta,,frequency,hizli_bilek,313
+A,Çok davranışlı,1,guclu,,frequency,hizli_bilek,255
+A,Çok davranışlı,0,guclu,,frequency,hizli_bilek,349
+A,Çok davranışlı,1,erken,,frequency,bereketli_toprak,0
+A,Çok davranışlı,0,erken,,frequency,bereketli_toprak,0
+A,Çok davranışlı,1,orta,,frequency,bereketli_toprak,0
+A,Çok davranışlı,0,orta,,frequency,bereketli_toprak,0
+A,Çok davranışlı,1,guclu,,frequency,bereketli_toprak,0
+A,Çok davranışlı,0,guclu,,frequency,bereketli_toprak,0
+A,Çok davranışlı,1,erken,,frequency,nadir_tohum,907
+A,Çok davranışlı,0,erken,,frequency,nadir_tohum,907
+A,Çok davranışlı,1,orta,,frequency,nadir_tohum,234
+A,Çok davranışlı,0,orta,,frequency,nadir_tohum,284
+A,Çok davranışlı,1,guclu,,frequency,nadir_tohum,292
+A,Çok davranışlı,0,guclu,,frequency,nadir_tohum,390
+A,Çok davranışlı,1,erken,,frequency,bilgi_filizi,925
+A,Çok davranışlı,0,erken,,frequency,bilgi_filizi,925
+A,Çok davranışlı,1,orta,,frequency,bilgi_filizi,228
+A,Çok davranışlı,0,orta,,frequency,bilgi_filizi,319
+A,Çok davranışlı,1,guclu,,frequency,bilgi_filizi,276
+A,Çok davranışlı,0,guclu,,frequency,bilgi_filizi,378
+A,Çok davranışlı,1,erken,,frequency,kivilcim,0
+A,Çok davranışlı,0,erken,,frequency,kivilcim,0
+A,Çok davranışlı,1,orta,,frequency,kivilcim,528
+A,Çok davranışlı,0,orta,,frequency,kivilcim,487
+A,Çok davranışlı,1,guclu,,frequency,kivilcim,436
+A,Çok davranışlı,0,guclu,,frequency,kivilcim,608
+A,Çok davranışlı,1,erken,,frequency,agir_darbe,0
+A,Çok davranışlı,0,erken,,frequency,agir_darbe,0
+A,Çok davranışlı,1,orta,,frequency,agir_darbe,541
+A,Çok davranışlı,0,orta,,frequency,agir_darbe,460
+A,Çok davranışlı,1,guclu,,frequency,agir_darbe,469
+A,Çok davranışlı,0,guclu,,frequency,agir_darbe,620
+A,Çok davranışlı,1,erken,,frequency,kritik_goz,0
+A,Çok davranışlı,0,erken,,frequency,kritik_goz,0
+A,Çok davranışlı,1,orta,,frequency,kritik_goz,558
+A,Çok davranışlı,0,orta,,frequency,kritik_goz,482
+A,Çok davranışlı,1,guclu,,frequency,kritik_goz,460
+A,Çok davranışlı,0,guclu,,frequency,kritik_goz,618
+A,Çok davranışlı,1,erken,,frequency,altin_hedef,0
+A,Çok davranışlı,0,erken,,frequency,altin_hedef,0
+A,Çok davranışlı,1,orta,,frequency,altin_hedef,509
+A,Çok davranışlı,0,orta,,frequency,altin_hedef,466
+A,Çok davranışlı,1,guclu,,frequency,altin_hedef,449
+A,Çok davranışlı,0,guclu,,frequency,altin_hedef,670
+A,Çok davranışlı,1,erken,,frequency,yikim_gucu,0
+A,Çok davranışlı,0,erken,,frequency,yikim_gucu,0
+A,Çok davranışlı,1,orta,,frequency,yikim_gucu,547
+A,Çok davranışlı,0,orta,,frequency,yikim_gucu,488
+A,Çok davranışlı,1,guclu,,frequency,yikim_gucu,457
+A,Çok davranışlı,0,guclu,,frequency,yikim_gucu,656
+A,Çok davranışlı,1,erken,,frequency,genis_savurus,0
+A,Çok davranışlı,0,erken,,frequency,genis_savurus,0
+A,Çok davranışlı,1,orta,,frequency,genis_savurus,0
+A,Çok davranışlı,0,orta,,frequency,genis_savurus,0
+A,Çok davranışlı,1,guclu,,frequency,genis_savurus,1213
+A,Çok davranışlı,0,guclu,,frequency,genis_savurus,1024
+A,Çok davranışlı,1,erken,,frequency,canavar_kesimi,0
+A,Çok davranışlı,0,erken,,frequency,canavar_kesimi,0
+A,Çok davranışlı,1,orta,,frequency,canavar_kesimi,0
+A,Çok davranışlı,0,orta,,frequency,canavar_kesimi,0
+A,Çok davranışlı,1,guclu,,frequency,canavar_kesimi,1260
+A,Çok davranışlı,0,guclu,,frequency,canavar_kesimi,1008
+A,Çok davranışlı,1,erken,,frequency,firtina_bilegi,0
+A,Çok davranışlı,0,erken,,frequency,firtina_bilegi,0
+A,Çok davranışlı,1,orta,,frequency,firtina_bilegi,0
+A,Çok davranışlı,0,orta,,frequency,firtina_bilegi,0
+A,Çok davranışlı,1,guclu,,frequency,firtina_bilegi,1261
+A,Çok davranışlı,0,guclu,,frequency,firtina_bilegi,1045
+A,Çok davranışlı,1,erken,,frequency,artci_patlama,0
+A,Çok davranışlı,0,erken,,frequency,artci_patlama,0
+A,Çok davranışlı,1,orta,,frequency,artci_patlama,0
+A,Çok davranışlı,0,orta,,frequency,artci_patlama,0
+A,Çok davranışlı,1,guclu,,frequency,artci_patlama,1207
+A,Çok davranışlı,0,guclu,,frequency,artci_patlama,1016
+A,Çok davranışlı,1,erken,,frequency,cifte_akim,0
+A,Çok davranışlı,0,erken,,frequency,cifte_akim,0
+A,Çok davranışlı,1,orta,,frequency,cifte_akim,0
+A,Çok davranışlı,0,orta,,frequency,cifte_akim,0
+A,Çok davranışlı,1,guclu,,frequency,cifte_akim,1264
+A,Çok davranışlı,0,guclu,,frequency,cifte_akim,1036
+A,Çok davranışlı,1,erken,,frequency,hasat_ritmi,0
+A,Çok davranışlı,0,erken,,frequency,hasat_ritmi,0
+A,Çok davranışlı,1,orta,,frequency,hasat_ritmi,0
+A,Çok davranışlı,0,orta,,frequency,hasat_ritmi,0
+A,Çok davranışlı,1,guclu,,frequency,hasat_ritmi,1231
+A,Çok davranışlı,0,guclu,,frequency,hasat_ritmi,1009
+B,Çok davranışlı,1,erken,3,offers,,200
+B,Çok davranışlı,1,erken,3,cards,,600
+B,Çok davranışlı,1,erken,3,withCurrent,,200
+B,Çok davranışlı,1,erken,3,short,,0
+B,Çok davranışlı,1,erken,3,empty,,0
+B,Çok davranışlı,0,erken,3,offers,,200
+B,Çok davranışlı,0,erken,3,cards,,600
+B,Çok davranışlı,0,erken,3,withCurrent,,200
+B,Çok davranışlı,0,erken,3,short,,0
+B,Çok davranışlı,0,erken,3,empty,,0
+B,Çok davranışlı,1,erken,6,offers,,200
+B,Çok davranışlı,1,erken,6,cards,,600
+B,Çok davranışlı,1,erken,6,withCurrent,,200
+B,Çok davranışlı,1,erken,6,short,,0
+B,Çok davranışlı,1,erken,6,empty,,0
+B,Çok davranışlı,0,erken,6,offers,,200
+B,Çok davranışlı,0,erken,6,cards,,600
+B,Çok davranışlı,0,erken,6,withCurrent,,200
+B,Çok davranışlı,0,erken,6,short,,0
+B,Çok davranışlı,0,erken,6,empty,,0
+B,Çok davranışlı,1,erken,10,offers,,200
+B,Çok davranışlı,1,erken,10,cards,,600
+B,Çok davranışlı,1,erken,10,withCurrent,,200
+B,Çok davranışlı,1,erken,10,short,,0
+B,Çok davranışlı,1,erken,10,empty,,0
+B,Çok davranışlı,0,erken,10,offers,,200
+B,Çok davranışlı,0,erken,10,cards,,600
+B,Çok davranışlı,0,erken,10,withCurrent,,200
+B,Çok davranışlı,0,erken,10,short,,0
+B,Çok davranışlı,0,erken,10,empty,,0
+B,Çok davranışlı,1,orta,13,offers,,200
+B,Çok davranışlı,1,orta,13,cards,,600
+B,Çok davranışlı,1,orta,13,withCurrent,,200
+B,Çok davranışlı,1,orta,13,short,,0
+B,Çok davranışlı,1,orta,13,empty,,0
+B,Çok davranışlı,0,orta,13,offers,,200
+B,Çok davranışlı,0,orta,13,cards,,600
+B,Çok davranışlı,0,orta,13,withCurrent,,195
+B,Çok davranışlı,0,orta,13,short,,0
+B,Çok davranışlı,0,orta,13,empty,,0
+B,Çok davranışlı,1,orta,16,offers,,200
+B,Çok davranışlı,1,orta,16,cards,,600
+B,Çok davranışlı,1,orta,16,withCurrent,,200
+B,Çok davranışlı,1,orta,16,short,,0
+B,Çok davranışlı,1,orta,16,empty,,0
+B,Çok davranışlı,0,orta,16,offers,,200
+B,Çok davranışlı,0,orta,16,cards,,600
+B,Çok davranışlı,0,orta,16,withCurrent,,196
+B,Çok davranışlı,0,orta,16,short,,0
+B,Çok davranışlı,0,orta,16,empty,,0
+B,Çok davranışlı,1,orta,20,offers,,200
+B,Çok davranışlı,1,orta,20,cards,,600
+B,Çok davranışlı,1,orta,20,withCurrent,,200
+B,Çok davranışlı,1,orta,20,short,,0
+B,Çok davranışlı,1,orta,20,empty,,0
+B,Çok davranışlı,0,orta,20,offers,,200
+B,Çok davranışlı,0,orta,20,cards,,600
+B,Çok davranışlı,0,orta,20,withCurrent,,199
+B,Çok davranışlı,0,orta,20,short,,0
+B,Çok davranışlı,0,orta,20,empty,,0
+B,Çok davranışlı,1,guclu,23,offers,,200
+B,Çok davranışlı,1,guclu,23,cards,,600
+B,Çok davranışlı,1,guclu,23,withCurrent,,200
+B,Çok davranışlı,1,guclu,23,short,,0
+B,Çok davranışlı,1,guclu,23,empty,,0
+B,Çok davranışlı,0,guclu,23,offers,,200
+B,Çok davranışlı,0,guclu,23,cards,,600
+B,Çok davranışlı,0,guclu,23,withCurrent,,187
+B,Çok davranışlı,0,guclu,23,short,,0
+B,Çok davranışlı,0,guclu,23,empty,,0
+B,Çok davranışlı,1,guclu,26,offers,,200
+B,Çok davranışlı,1,guclu,26,cards,,600
+B,Çok davranışlı,1,guclu,26,withCurrent,,200
+B,Çok davranışlı,1,guclu,26,short,,0
+B,Çok davranışlı,1,guclu,26,empty,,0
+B,Çok davranışlı,0,guclu,26,offers,,200
+B,Çok davranışlı,0,guclu,26,cards,,600
+B,Çok davranışlı,0,guclu,26,withCurrent,,187
+B,Çok davranışlı,0,guclu,26,short,,0
+B,Çok davranışlı,0,guclu,26,empty,,0
+B,Çok davranışlı,1,guclu,30,offers,,200
+B,Çok davranışlı,1,guclu,30,cards,,600
+B,Çok davranışlı,1,guclu,30,withCurrent,,200
+B,Çok davranışlı,1,guclu,30,short,,0
+B,Çok davranışlı,1,guclu,30,empty,,0
+B,Çok davranışlı,0,guclu,30,offers,,200
+B,Çok davranışlı,0,guclu,30,cards,,600
+B,Çok davranışlı,0,guclu,30,withCurrent,,185
+B,Çok davranışlı,0,guclu,30,short,,0
+B,Çok davranışlı,0,guclu,30,empty,,0
+B,Çok davranışlı,1,guclu,33,offers,,200
+B,Çok davranışlı,1,guclu,33,cards,,600
+B,Çok davranışlı,1,guclu,33,withCurrent,,200
+B,Çok davranışlı,1,guclu,33,short,,0
+B,Çok davranışlı,1,guclu,33,empty,,0
+B,Çok davranışlı,0,guclu,33,offers,,200
+B,Çok davranışlı,0,guclu,33,cards,,600
+B,Çok davranışlı,0,guclu,33,withCurrent,,182
+B,Çok davranışlı,0,guclu,33,short,,0
+B,Çok davranışlı,0,guclu,33,empty,,0
+B,Çok davranışlı,1,guclu,36,offers,,200
+B,Çok davranışlı,1,guclu,36,cards,,600
+B,Çok davranışlı,1,guclu,36,withCurrent,,200
+B,Çok davranışlı,1,guclu,36,short,,0
+B,Çok davranışlı,1,guclu,36,empty,,0
+B,Çok davranışlı,0,guclu,36,offers,,200
+B,Çok davranışlı,0,guclu,36,cards,,600
+B,Çok davranışlı,0,guclu,36,withCurrent,,183
+B,Çok davranışlı,0,guclu,36,short,,0
+B,Çok davranışlı,0,guclu,36,empty,,0
+B,Çok davranışlı,1,guclu,40,offers,,200
+B,Çok davranışlı,1,guclu,40,cards,,600
+B,Çok davranışlı,1,guclu,40,withCurrent,,200
+B,Çok davranışlı,1,guclu,40,short,,0
+B,Çok davranışlı,1,guclu,40,empty,,0
+B,Çok davranışlı,0,guclu,40,offers,,200
+B,Çok davranışlı,0,guclu,40,cards,,600
+B,Çok davranışlı,0,guclu,40,withCurrent,,180
+B,Çok davranışlı,0,guclu,40,short,,0
+B,Çok davranışlı,0,guclu,40,empty,,0
+B,Çok davranışlı,1,guclu,43,offers,,200
+B,Çok davranışlı,1,guclu,43,cards,,600
+B,Çok davranışlı,1,guclu,43,withCurrent,,200
+B,Çok davranışlı,1,guclu,43,short,,0
+B,Çok davranışlı,1,guclu,43,empty,,0
+B,Çok davranışlı,0,guclu,43,offers,,200
+B,Çok davranışlı,0,guclu,43,cards,,600
+B,Çok davranışlı,0,guclu,43,withCurrent,,173
+B,Çok davranışlı,0,guclu,43,short,,0
+B,Çok davranışlı,0,guclu,43,empty,,0
+B,Çok davranışlı,1,guclu,46,offers,,200
+B,Çok davranışlı,1,guclu,46,cards,,600
+B,Çok davranışlı,1,guclu,46,withCurrent,,198
+B,Çok davranışlı,1,guclu,46,short,,0
+B,Çok davranışlı,1,guclu,46,empty,,0
+B,Çok davranışlı,0,guclu,46,offers,,200
+B,Çok davranışlı,0,guclu,46,cards,,600
+B,Çok davranışlı,0,guclu,46,withCurrent,,173
+B,Çok davranışlı,0,guclu,46,short,,0
+B,Çok davranışlı,0,guclu,46,empty,,0
+B,Çok davranışlı,1,guclu,50,offers,,200
+B,Çok davranışlı,1,guclu,50,cards,,600
+B,Çok davranışlı,1,guclu,50,withCurrent,,189
+B,Çok davranışlı,1,guclu,50,short,,0
+B,Çok davranışlı,1,guclu,50,empty,,0
+B,Çok davranışlı,0,guclu,50,offers,,200
+B,Çok davranışlı,0,guclu,50,cards,,600
+B,Çok davranışlı,0,guclu,50,withCurrent,,166
+B,Çok davranışlı,0,guclu,50,short,,0
+B,Çok davranışlı,0,guclu,50,empty,,0
+B,Çok davranışlı,1,,,taken,keskin_bicak,238
+B,Çok davranışlı,0,,,taken,keskin_bicak,288
+B,Çok davranışlı,1,,,taken,hizli_bilek,256
+B,Çok davranışlı,0,,,taken,hizli_bilek,291
+B,Çok davranışlı,1,,,taken,bereketli_toprak,0
+B,Çok davranışlı,0,,,taken,bereketli_toprak,0
+B,Çok davranışlı,1,,,taken,nadir_tohum,280
+B,Çok davranışlı,0,,,taken,nadir_tohum,286
+B,Çok davranışlı,1,,,taken,bilgi_filizi,217
+B,Çok davranışlı,0,,,taken,bilgi_filizi,231
+B,Çok davranışlı,1,,,taken,kivilcim,180
+B,Çok davranışlı,0,,,taken,kivilcim,206
+B,Çok davranışlı,1,,,taken,agir_darbe,200
+B,Çok davranışlı,0,,,taken,agir_darbe,192
+B,Çok davranışlı,1,,,taken,kritik_goz,211
+B,Çok davranışlı,0,,,taken,kritik_goz,219
+B,Çok davranışlı,1,,,taken,altin_hedef,170
+B,Çok davranışlı,0,,,taken,altin_hedef,197
+B,Çok davranışlı,1,,,taken,yikim_gucu,190
+B,Çok davranışlı,0,,,taken,yikim_gucu,206
+B,Çok davranışlı,1,,,taken,genis_savurus,257
+B,Çok davranışlı,0,,,taken,genis_savurus,190
+B,Çok davranışlı,1,,,taken,canavar_kesimi,169
+B,Çok davranışlı,0,,,taken,canavar_kesimi,137
+B,Çok davranışlı,1,,,taken,firtina_bilegi,156
+B,Çok davranışlı,0,,,taken,firtina_bilegi,143
+B,Çok davranışlı,1,,,taken,artci_patlama,154
+B,Çok davranışlı,0,,,taken,artci_patlama,138
+B,Çok davranışlı,1,,,taken,cifte_akim,160
+B,Çok davranışlı,0,,,taken,cifte_akim,139
+B,Çok davranışlı,1,,,taken,hasat_ritmi,162
+B,Çok davranışlı,0,,,taken,hasat_ritmi,137
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,offers,,1200
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,cards,,3600
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,withCurrent,,1200
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,short,,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,empty,,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,offers,,1200
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,cards,,3600
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,withCurrent,,1200
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,short,,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,empty,,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,offers,,1200
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,cards,,3600
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,withCurrent,,1200
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,short,,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,empty,,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,offers,,1200
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,cards,,3600
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,withCurrent,,1085
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,short,,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,empty,,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,offers,,3600
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,cards,,10800
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,withCurrent,,3600
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,short,,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,empty,,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,offers,,3600
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,cards,,10800
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,withCurrent,,3344
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,short,,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,empty,,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,frequency,keskin_bicak,700
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,frequency,keskin_bicak,700
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,frequency,keskin_bicak,276
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,frequency,keskin_bicak,370
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,frequency,keskin_bicak,376
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,frequency,keskin_bicak,506
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,frequency,hizli_bilek,713
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,frequency,hizli_bilek,713
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,frequency,hizli_bilek,317
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,frequency,hizli_bilek,370
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,frequency,hizli_bilek,412
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,frequency,hizli_bilek,536
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,frequency,bereketli_toprak,731
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,frequency,bereketli_toprak,731
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,frequency,bereketli_toprak,279
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,frequency,bereketli_toprak,375
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,frequency,bereketli_toprak,378
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,frequency,bereketli_toprak,508
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,frequency,nadir_tohum,741
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,frequency,nadir_tohum,741
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,frequency,nadir_tohum,308
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,frequency,nadir_tohum,385
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,frequency,nadir_tohum,394
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,frequency,nadir_tohum,527
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,frequency,bilgi_filizi,715
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,frequency,bilgi_filizi,715
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,frequency,bilgi_filizi,309
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,frequency,bilgi_filizi,398
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,frequency,bilgi_filizi,400
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,frequency,bilgi_filizi,526
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,frequency,kivilcim,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,frequency,kivilcim,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,frequency,kivilcim,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,frequency,kivilcim,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,frequency,kivilcim,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,frequency,kivilcim,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,frequency,agir_darbe,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,frequency,agir_darbe,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,frequency,agir_darbe,700
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,frequency,agir_darbe,567
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,frequency,agir_darbe,664
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,frequency,agir_darbe,864
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,frequency,kritik_goz,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,frequency,kritik_goz,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,frequency,kritik_goz,693
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,frequency,kritik_goz,552
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,frequency,kritik_goz,657
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,frequency,kritik_goz,931
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,frequency,altin_hedef,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,frequency,altin_hedef,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,frequency,altin_hedef,718
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,frequency,altin_hedef,583
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,frequency,altin_hedef,656
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,frequency,altin_hedef,871
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,frequency,yikim_gucu,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,frequency,yikim_gucu,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,frequency,yikim_gucu,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,frequency,yikim_gucu,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,frequency,yikim_gucu,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,frequency,yikim_gucu,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,frequency,genis_savurus,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,frequency,genis_savurus,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,frequency,genis_savurus,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,frequency,genis_savurus,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,frequency,genis_savurus,1721
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,frequency,genis_savurus,1378
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,frequency,canavar_kesimi,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,frequency,canavar_kesimi,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,frequency,canavar_kesimi,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,frequency,canavar_kesimi,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,frequency,canavar_kesimi,1718
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,frequency,canavar_kesimi,1406
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,frequency,firtina_bilegi,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,frequency,firtina_bilegi,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,frequency,firtina_bilegi,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,frequency,firtina_bilegi,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,frequency,firtina_bilegi,1697
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,frequency,firtina_bilegi,1373
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,frequency,artci_patlama,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,frequency,artci_patlama,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,frequency,artci_patlama,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,frequency,artci_patlama,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,frequency,artci_patlama,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,frequency,artci_patlama,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,frequency,cifte_akim,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,frequency,cifte_akim,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,frequency,cifte_akim,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,frequency,cifte_akim,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,frequency,cifte_akim,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,frequency,cifte_akim,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,,frequency,hasat_ritmi,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,,frequency,hasat_ritmi,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,,frequency,hasat_ritmi,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,,frequency,hasat_ritmi,0
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,,frequency,hasat_ritmi,1727
+A,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,,frequency,hasat_ritmi,1374
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,3,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,3,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,3,withCurrent,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,3,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,3,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,3,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,3,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,3,withCurrent,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,3,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,3,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,6,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,6,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,6,withCurrent,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,6,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,6,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,6,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,6,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,6,withCurrent,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,6,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,6,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,10,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,10,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,10,withCurrent,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,10,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,erken,10,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,10,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,10,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,10,withCurrent,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,10,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,erken,10,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,13,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,13,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,13,withCurrent,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,13,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,13,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,13,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,13,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,13,withCurrent,,178
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,13,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,13,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,16,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,16,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,16,withCurrent,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,16,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,16,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,16,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,16,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,16,withCurrent,,178
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,16,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,16,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,20,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,20,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,20,withCurrent,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,20,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,orta,20,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,20,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,20,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,20,withCurrent,,185
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,20,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,orta,20,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,23,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,23,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,23,withCurrent,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,23,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,23,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,23,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,23,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,23,withCurrent,,184
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,23,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,23,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,26,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,26,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,26,withCurrent,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,26,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,26,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,26,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,26,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,26,withCurrent,,185
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,26,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,26,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,30,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,30,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,30,withCurrent,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,30,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,30,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,30,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,30,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,30,withCurrent,,181
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,30,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,30,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,33,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,33,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,33,withCurrent,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,33,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,33,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,33,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,33,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,33,withCurrent,,175
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,33,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,33,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,36,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,36,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,36,withCurrent,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,36,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,36,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,36,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,36,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,36,withCurrent,,170
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,36,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,36,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,40,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,40,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,40,withCurrent,,198
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,40,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,40,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,40,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,40,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,40,withCurrent,,169
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,40,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,40,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,43,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,43,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,43,withCurrent,,183
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,43,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,43,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,43,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,43,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,43,withCurrent,,155
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,43,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,43,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,46,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,46,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,46,withCurrent,,167
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,46,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,46,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,46,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,46,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,46,withCurrent,,152
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,46,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,46,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,50,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,50,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,50,withCurrent,,134
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,50,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,guclu,50,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,50,offers,,200
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,50,cards,,600
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,50,withCurrent,,126
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,50,short,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,guclu,50,empty,,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,,,taken,keskin_bicak,272
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,,,taken,keskin_bicak,306
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,,,taken,hizli_bilek,262
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,,,taken,hizli_bilek,317
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,,,taken,bereketli_toprak,277
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,,,taken,bereketli_toprak,298
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,,,taken,nadir_tohum,306
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,,,taken,nadir_tohum,305
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,,,taken,bilgi_filizi,234
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,,,taken,bilgi_filizi,240
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,,,taken,kivilcim,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,,,taken,kivilcim,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,,,taken,agir_darbe,246
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,,,taken,agir_darbe,264
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,,,taken,kritik_goz,291
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,,,taken,kritik_goz,272
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,,,taken,altin_hedef,250
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,,,taken,altin_hedef,252
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,,,taken,yikim_gucu,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,,,taken,yikim_gucu,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,,,taken,genis_savurus,328
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,,,taken,genis_savurus,254
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,,,taken,canavar_kesimi,184
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,,,taken,canavar_kesimi,162
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,,,taken,firtina_bilegi,177
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,,,taken,firtina_bilegi,164
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,,,taken,artci_patlama,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,,,taken,artci_patlama,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,,,taken,cifte_akim,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,,,taken,cifte_akim,0
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),1,,,taken,hasat_ritmi,173
+B,Doğrudan vuruş · tarla boşalıyor (doluluk 0,50),0,,,taken,hasat_ritmi,166

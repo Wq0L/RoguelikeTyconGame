@@ -25,7 +25,7 @@ public class UnlockManager : MonoBehaviour
 
     public void Unlock(UnlockType type)
     {
-        if (type == UnlockType.None) return;
+        if (type == UnlockType.None || DemoSceneSettings.Blocks(type)) return;
         if (unlockedTypes.Contains(type)) return;
 
         unlockedTypes.Add(type);
@@ -37,6 +37,6 @@ public class UnlockManager : MonoBehaviour
 
     public bool IsUnlocked(UnlockType type)
     {
-        return unlockedTypes.Contains(type);
+        return !DemoSceneSettings.Blocks(type) && unlockedTypes.Contains(type);
     }
 }

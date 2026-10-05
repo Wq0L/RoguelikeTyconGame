@@ -1,0 +1,11 @@
+run,policy,farmer,scythe,seed,label,round,offered,chosen
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,6,bereketli_toprak bilgi_filizi hizli_bilek,hizli_bilek
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,10,nadir_tohum bilgi_filizi keskin_bicak,keskin_bicak
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,6,bereketli_toprak bilgi_filizi hizli_bilek,hizli_bilek
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,10,nadir_tohum bilgi_filizi keskin_bicak,keskin_bicak
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,13,keskin_bicak yikim_gucu kritik_goz,yikim_gucu
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,16,yikim_gucu keskin_bicak altin_hedef,yikim_gucu
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,20,nadir_tohum kivilcim bilgi_filizi,kivilcim
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,23,canavar_kesimi cifte_akim nadir_tohum,cifte_akim

@@ -30,7 +30,6 @@ public class PlanterShopPanelUI : MonoBehaviour
     [SerializeField] private CanvasGroup details;
     [SerializeField] private TMP_Text heading;
     [SerializeField] private TMP_Text summary;
-    [SerializeField] private TMP_Text stats;
     [SerializeField] private TMP_Text description;
     [SerializeField] private TMP_Text status;
     [SerializeField] private TMP_Text buyLabel;
@@ -222,7 +221,6 @@ public class PlanterShopPanelUI : MonoBehaviour
         if (sizeLabel != null) sizeLabel.text = $"{data.sizeX}x{data.sizeZ}";
         if (timeLabel != null) timeLabel.text = $"{EffectiveStat(data, StatType.PlantSpawnRate):0.#}s";
 
-        stats.text = $"<b>{data.planterName}</b>\n\nFOOTPRINT     {data.sizeX} x {data.sizeZ} / {cells} cells\nSPAWN INTERVAL     {EffectiveStat(data, StatType.PlantSpawnRate):0.##} s\nRARE BONUS     +{EffectiveStat(data, StatType.RareSpawnChance):0.##}%";
         StringBuilder plants = new StringBuilder();
         if (data.spawnTable != null)
             foreach (PlantSpawnEntry entry in data.spawnTable)

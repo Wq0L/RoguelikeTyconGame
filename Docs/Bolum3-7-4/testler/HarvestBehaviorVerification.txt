@@ -1,0 +1,44 @@
+PASS: 114 checks
+runs its own profile UzunRun130 (shared data); project selection: Run50_OdulAsamalariV1
+save kept in memory only
+runtime behavior manager initialized
+new cards locked in actual scene
+purchase unlock node
+purchase unlock node
+purchase unlock node
+purchase unlock node
+purchase unlock node
+skill purchase unlocks all rarities
+new cards locked in actual scene
+purchase unlock node
+skill purchase unlocks all rarities
+electric burst spawns
+electric excludes source planter
+electric excludes source planter
+electric excludes source planter
+electric excludes source planter
+electric excludes source planter
+electric excludes source planter
+electric hits diagonal target once
+electric hits diagonal target once
+electric hits diagonal target once
+electric hits diagonal target once
+electric hits diagonal target once
+electric hits diagonal target once
+electric hits diagonal target once
+electric hits diagonal target once
+electric pool cap (scene value)
+boomerang pool cap (scene value)
+flight uses exactly one grid axis
+flight range is two or three cells
+boomerang moves along straight flight
+moving boomerang deals swept damage
+projectile pauses in shop
+scaled lifetime pauses
+effects return naturally to pools
+reuse does not grow prewarmed pool
+round end returns every active effect
+selling source cancels projectile
+profile override removed; selection file unchanged
+
+cleanup after pass: profile override removed; selection file unchanged

@@ -56,16 +56,30 @@ public class Tornado : MonoBehaviour
     private int damage;
     private WaitForSeconds moveWait;
     private WaitForSeconds pauseWait;
+    // Zincir bağlamı (Bölüm 3.7.6): bütün vuruşlar onu taşır; kök, kasırga havuza dönene kadar tutulur (OnDisable bırakır).
+    private HarvestLink link;
+    private int heldRoot;
+    // 0: yol UnityEngine.Random'dan (normal tetik). Değilse zincirin ayrı akışı (zincirden doğan kasırga).
+    private uint pathRandom;
 
     // TornadoManager spawn eder etmez çağırır
     public void Launch(GroundCell startCell, int baseDamage, TornadoManager manager, float resonanceMultiplier = 1f)
+        => Launch(startCell, baseDamage, manager, resonanceMultiplier, HarvestLink.None, 1f, 0u);
+
+    public void Launch(GroundCell startCell, int baseDamage, TornadoManager manager, float resonanceMultiplier,
+        HarvestLink harvestLink, float damageFactor, uint pathSeed)
     {
         gridSystem = GridManager.Instance.GetGridSystem();
         currentCell = startCell;
         previousCell = null;
         owner = manager;
-        damage = Mathf.Max(1, Mathf.RoundToInt(baseDamage * damageMultiplier));
-        damage = (int)System.Math.Min(int.MaxValue, System.Math.Round(damage * (double)resonanceMultiplier));
+        damage = NumericSafety.ToInt(baseDamage * damageMultiplier, 1, NumericSite.BehaviorDamage);
+        damage = NumericSafety.ToInt(damage * (double)resonanceMultiplier, 0, NumericSite.BehaviorDamage);
+        // Zincir neslinin çarpanı normal kasırga hasarının üzerine bir kez.
+        damage = HarvestChain.Scale(damage, damageFactor);
+        link = harvestLink;
+        pathRandom = pathSeed;
+        heldRoot = HarvestChain.Hold(link.Root) ? link.Root : 0;
         transform.position = startCell.transform.position + Vector3.up * heightOffset;
         foreach (var particle in particles)
         {
@@ -129,7 +143,7 @@ public class Tornado : MonoBehaviour
         if (candidates.Count == 0)
             return previousCell;
 
-        return candidates[Random.Range(0, candidates.Count)];
+        return candidates[pathRandom != 0 ? ChainRandom.Range(ref pathRandom, 0, candidates.Count) : Random.Range(0, candidates.Count)];
     }
 
     private void HitCell(GroundCell cell)
@@ -146,13 +160,19 @@ public class Tornado : MonoBehaviour
             int shownDamage = damageable is PlantHealth health
                 ? health.GetIncomingDamage(damage, DamageType.Tornado) : damage;
 
-            damageable.TakeDamage(damage, DamageType.Tornado);
+            if (damageable is PlantHealth target) target.TakeDamage(damage, DamageType.Tornado, false, 1f, link);
+            else damageable.TakeDamage(damage, DamageType.Tornado);
             VFXManager.Instance.PlayHit(plant.transform.position, shownDamage, false);
         }
     }
 
     private void OnDisable()
     {
+        // Havuza dönüş, round sonu temizliği ve sahne kapanışı buradan geçer: kök bir kez bırakılır, bağlam taşınmaz.
+        HarvestChain.Release(heldRoot);
+        heldRoot = 0;
+        link = HarvestLink.None;
+        pathRandom = 0;
         StopAllCoroutines();
         transform.DOKill();
         if (visual != null) visual.DOKill();

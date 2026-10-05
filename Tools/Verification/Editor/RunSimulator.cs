@@ -944,6 +944,10 @@ public static class RunSimulator
     {
         var p = AssetDatabase.LoadAssetAtPath<RunProfileSO>(Reference50Path);
         if (p == null) throw new Exception("Run50_Referans.asset bulunamadı: " + Reference50Path);
+        // Simülatör yalnız eşit uzunluklu kota segmentlerini modeller; açık boss takvimi (Bölüm 3.7.2) olan profili sessizce
+        // 5 round'luk hesapla ölçmez.
+        if (p.Calendar.IsExplicit)
+            throw new Exception("Bu profil desteklenmiyor: açık boss takvimi (değişken kota dönemleri) run simülatöründe modellenmedi");
         if (p.events.Count > 0 || p.specializationAfterSegment > 0 || p.startingGold != 80 || p.startingIron != 0 || p.startingStone != 0 || p.debugBudget || p.fixedRoundDuration > 0)
             throw new Exception("Run50_Referans simülatörün modellediği ayarlarda değil (olay, uzmanlaşma, başlangıç ekonomisi ya da sabit süre)");
         return new Rules

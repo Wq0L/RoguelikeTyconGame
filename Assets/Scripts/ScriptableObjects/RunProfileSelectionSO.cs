@@ -40,6 +40,7 @@ public class RunProfileSelectionSO : ScriptableObject
     {
         get
         {
+            if (DemoSceneSettings.IsDemo) return DemoSceneSettings.Instance.Profile;
             if (overridden) return sessionProfile;
             if (!attempted)
             {

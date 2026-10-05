@@ -1,0 +1,7 @@
+run,profile,policy,farmer,scythe,seed,label,outcome,round,score,level,levels,choices,cardsTaken,cardTiles,cardUpgrades,cardBase,cardXpBase,cardWater,firstBehavior,firstEffective,firstTrigger,firstUpgrade,firstBase,xpSpent,xpGlobal,xpCardGroup,levelCost,storedXp,levelHalted,saturated,invalidNumbers,maxRoundChoices,maxRoundChoicesRound,maxWaitFrames,totalWaitFrames,remainingShownOk,tailGrowth
+1,Run50_XPV1,Temel güç XP stresi,bahcivan,standart,100,stres,KAZANDI,50,156178,75,74,261,261,81,180,0,0,8,2,3,5,8,0,1895,2.8125,0,27000,2795,0,0,0,8,29,0,0,1,0.05
+2,Run50_XPV1,Temel güç XP stresi,bahcivan,standart,101,stres,KAZANDI,50,359195,105,104,375,375,121,249,5,3,8,2,3,4,5,41,9055,3.8156,0.11,67000,64678,0,0,0,16,44,0,0,1,0.05
+3,Run50_XPV1,Temel güç XP stresi,bahcivan,standart,102,stres,KAZANDI,50,271652,89,88,300,300,121,179,0,0,7,2,3,3,4,0,6155,3.2292,0,42000,21890,0,0,0,12,39,0,0,1,0.05
+4,Run50_XPV1,Temel güç XP stresi,bahcivan,standart,103,stres,KAZANDI,50,345715,110,109,395,395,121,234,40,22,8,2,3,3,5,40,9055,6.2906,0.83,76000,17306,0,0,0,16,42,0,0,1,0.05
+5,Run50_XPV1,Temel güç XP stresi,bahcivan,standart,104,stres,KAZANDI,50,169278,77,76,269,269,81,186,2,2,8,2,3,3,5,50,2755,3.0625,0.05,29000,13629,0,0,0,12,47,0,0,1,0.05
+6,Run50_XPV1,Temel güç XP stresi,bahcivan,standart,110,stres,KAZANDI,50,373245,119,118,426,426,121,234,71,37,9,2,3,4,5,39,9055,8.25,1.4,94000,2893,0,0,0,16,42,0,0,1,0.05

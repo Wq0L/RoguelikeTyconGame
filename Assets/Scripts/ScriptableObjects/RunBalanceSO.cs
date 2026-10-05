@@ -33,6 +33,15 @@ public sealed class RunBalanceSO : ScriptableObject
              "bu türlerden gelir. Alınmazsa zorlanmaz; sonraki seçimde yine sunulur. Biri alınınca normal dağılıma dönülür.")]
     public List<TileModifierType> firstBehaviorOffer = new();
 
+    [Header("Temel güç kartları (Bölüm 3.7.7) — kapalıyken eski davranış")]
+    [Tooltip("Açık: tile ve yükseltmeler tükendikten sonra gelen 'XP kazancı' temel güç kartları KENDİ ARALARINDA TOPLANIR ve bu kart " +
+             "grubundan tek bir çarpan çıkar (iki +%5 kart ×1,10 verir). Kapalı (eski profiller): her kart ayrı çarpandır (×1,05 × 1,05). " +
+             "Diğer temel güç kartları ve diğer XP kaynakları (ağaç, tile, rezonans, çiftçi, boss ödülü) etkilenmez.")]
+    public bool additiveBaseXpCards;
+    [Tooltip("Açık: saldırı aralığı oyunun alt sınırına indiğinde (kart artık hiçbir şey değiştirmez) 'Atak aralığı' temel güç kartı " +
+             "sunulmaz. Kapalı (eski profiller): yine sunulur.")]
+    public bool hideFlooredBaseStats;
+
     [Header("Saksı fiyatları")]
     [Tooltip("Listede olmayan saksı kendi asset fiyatını kullanır.")]
     public List<PlanterPrice> planterPrices = new();
@@ -72,6 +81,16 @@ public sealed class RunBalanceSO : ScriptableObject
     {
         RunBalanceSO balance = Active;
         return type != UnlockType.None && balance != null && balance.startingUnlocks != null && balance.startingUnlocks.Contains(type);
+    }
+
+    public static bool AdditiveBaseXpCards
+    {
+        get { RunBalanceSO balance = Active; return balance != null && balance.additiveBaseXpCards; }
+    }
+
+    public static bool HideFlooredBaseStats
+    {
+        get { RunBalanceSO balance = Active; return balance != null && balance.hideFlooredBaseStats; }
     }
 
     public static bool IsFirstBehaviorType(TileModifierType type)

@@ -31,7 +31,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.CurrentState != GameStates.Round)
+        // Round süresi bitip kart kararı bekleyen level işini beklerken (RoundManager) saldırı yok.
+        if (GameManager.Instance.CurrentState != GameStates.Round || (RoundManager.Instance != null && !RoundManager.Instance.IsRoundActive))
         {
             if (radiusIndicator != null) radiusIndicator.enabled = false;
             if (cursorVisual != null) cursorVisual.gameObject.SetActive(false);
@@ -61,6 +62,9 @@ public class PlayerController : MonoBehaviour
         return Vector3.zero;
     }
 
+    // Saldırı aralığının oyundaki alt sınırı (sn). Stat bunun altına inse de saldırı hızlanmaz.
+    public const float MinAttackInterval = 0.1f;
+
     // Aralığı aşan süre sonraki vuruşa aktarılır: kare hızı vuruş sayısını düşürmez.
     // Bir karede en fazla bir vuruş; taşan birikim en fazla bir aralık (uzun karede telafi döngüsü yok).
     public static bool AdvanceAttackTimer(ref float timer, float deltaTime, float interval)
@@ -81,7 +85,7 @@ public class PlayerController : MonoBehaviour
         // 60 sn'yi aşan round süresi hıza dönüşür (RoundManager.TempoMultiplier). Taban önce uygulanır:
         // 60 sn'lik hızlı round, 90 sn'lik normal round'la aynı sayıda vuruş yapar.
         float tempo = RoundManager.Instance != null ? RoundManager.Instance.TempoMultiplier : 1f;
-        attackSpeed = Mathf.Max(attackSpeed, 0.1f) / tempo;
+        attackSpeed = Mathf.Max(attackSpeed, MinAttackInterval) / tempo;
 
         if (AdvanceAttackTimer(ref attackTimer, Time.deltaTime, attackSpeed))
         {
@@ -126,6 +130,9 @@ public class PlayerController : MonoBehaviour
 
         gridSystem.GetGridObjectsInRadius(center, radius, attackTargets);
         bool anyCrit = false;
+        // Zincir kökü (Bölüm 3.7.6): bu saldırının bütün vuruşları ve doğurdukları davranışlar aynı kökü taşır. Zincir Hasat
+        // alınmadıysa 0 (bağlam açılmaz). Saldırı bitince saldırının kök üzerindeki tutumu bırakılır.
+        int root = HarvestChain.BeginRoot();
 
         foreach (GridObject gridObject in attackTargets)
         {
@@ -142,12 +149,13 @@ public class PlayerController : MonoBehaviour
                 // Davranışların tabanı HarvestDamage stat'ıdır, bu değil.
                 // Nadirliğe bağlı boss ödülü (Altın Hedef) da aynı çarpımda, hedef başına bir kez.
                 PlantRarity? rarity = damageable is PlantHealth target && target.Data != null ? target.Data.rarity : (PlantRarity?)null;
-                int damage = Mathf.Max(1, Mathf.RoundToInt(RunPower.DirectDamage(baseDamage, variance, rarity, attack.DamageMultiplier)));
+                // int'e dönüşüm NumericSafety'de: int sınırını aşan hasar doyar (eskiden 1'e düşüyordu), kritik negatife taşmaz.
+                int damage = NumericSafety.ToInt(RunPower.DirectDamage(baseDamage, variance, rarity, attack.DamageMultiplier), 1, NumericSite.DirectDamage);
 
                 bool isCrit = Random.value <= critChance;
                 if (isCrit)
                 {
-                    damage = Mathf.RoundToInt(damage * critMultiplier);
+                    damage = NumericSafety.ToInt(damage * critMultiplier, 0, NumericSite.CritDamage);
                     anyCrit = true;
                 }
 
@@ -155,7 +163,7 @@ public class PlayerController : MonoBehaviour
                 if (damageable is PlantHealth hitPlant)
                 {
                     touchedLivingPlant = true;
-                    hitPlant.TakeDamage(damage, DamageType.Direct, isCrit);
+                    hitPlant.TakeDamage(damage, DamageType.Direct, isCrit, 1f, HarvestLink.Direct(root));
                     // Bu vuruşla ölen bitki doğrudan hasattır (ölümün tetiklediği davranış hasatları başka bitkilerdir).
                     if (hitPlant.IsDead) directHarvests++;
                 }
@@ -165,6 +173,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        HarvestChain.EndRoot(root);
         RunPower.Rhythm.Complete(attack, directHarvests, touchedLivingPlant);
         return anyCrit;
     }

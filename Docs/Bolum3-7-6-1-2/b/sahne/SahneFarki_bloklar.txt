@@ -1,0 +1,47 @@
+blok: eski 1378, yeni 1296 · silinen 82 · eklenen 0 · içeriği değişen 7 · başlık aynı: True
+silinen blok türleri: CanvasRenderer 16, GameObject 17, MonoBehaviour 32, RectTransform 16, Transform 1
+silinen GameObject adları: GameObject "Comic Coin", GameObject "Comic Coin", GameObject "Comic Coin", GameObject "Comic Coin", GameObject "Comic Coin", GameObject "Grass Button Text", GameObject "Grass Button Text", GameObject "Grass Button Text", GameObject "Grass Button Text", GameObject "Grass Button Text", GameObject "Legacy Stats", GameObject "Sellect Grass planter 1x2", GameObject "Sellect Grass planter 1x3", GameObject "Sellect Grass planter 2x2", GameObject "Sellect Grass planter 2x3", GameObject "Sellect Grass planter", GameObject "Sound Manager"
+silinen MonoBehaviour türleri: MonoBehaviour [ComicButtonVisual], MonoBehaviour [GrassPlanterButtonUI], MonoBehaviour [SoundManager], MonoBehaviour [TMPro.TextMeshProUGUI], MonoBehaviour [UnityEngine.UI.Button], MonoBehaviour [UnityEngine.UI.Image]
+kalan blokların sırası aynı: True
+
+&586766173 RectTransform (5 satır fark)
+   -  - {fileID: 1387955597}
+   -  - {fileID: 767219667}
+   -  - {fileID: 535644526}
+   -  - {fileID: 1235125644}
+   -  - {fileID: 394775270}
+
+&837521959 RectTransform (1 satır fark)
+   -  - {fileID: 792153834}
+
+&895153376 MonoBehaviour [ProgressionManager] (25 satır fark)
+   -  possibleModifiers:
+   -  - {fileID: 11400000, guid: d45324d51039e484fb289e35ea0c68f6, type: 2}
+   -  - {fileID: 11400000, guid: a2b9d6f9461c8c945a3a2f95fb8c7ba2, type: 2}
+   -  - {fileID: 11400000, guid: 583ed95e71bcb20438ba42e0d959643c, type: 2}
+   -  - {fileID: 11400000, guid: 4b0846c6b8ee1904ab7f878129e5a8a8, type: 2}
+   -  - {fileID: 11400000, guid: 0371183fba91f0d44a9253e34bc5f402, type: 2}
+   -  - {fileID: 11400000, guid: e7a84e00f1b82da479035feaec3f4dfd, type: 2}
+   -  - {fileID: 11400000, guid: 0fc4ba114d0038146959c2bda9d6a31c, type: 2}
+   -  - {fileID: 11400000, guid: 982a07e26b122bd419ce820355b9cf2a, type: 2}
+   -  - {fileID: 11400000, guid: 89935a8a18de8b54b869f5b51b082b47, type: 2}
+   -  - {fileID: 11400000, guid: 0137b8bd4e9de7c4789ac18b3e224a28, type: 2}
+   -  - {fileID: 11400000, guid: ad8bce194a8fe3140b07abd9264e6aa7, type: 2}
+   -  - {fileID: 11400000, guid: 6ac9fce87deccb4478310ca29107dca2, type: 2}
+   -  - {fileID: 11400000, guid: e793b4281b1da5d499fe091a0b74e6d0, type: 2}
+   … 11 satır daha
+
+&1565352991 MonoBehaviour [WaveManager] (3 satır fark)
+   -  exhaustThreshold: 0.3
+   -  exhaustRounds: 3
+   -  exhaustFromRound: 20
+
+&1967322490 Transform (1 satır fark)
+   -  - {fileID: 1910652545}
+
+&2045438566 MonoBehaviour [UIManager] (2 satır fark)
+   -  resourcesUI: {fileID: 0}
+   +  resourcesUI: {fileID: 1470462666}
+
+&7100000152 MonoBehaviour (1 satır fark)
+   -  stats: {fileID: 792153835}

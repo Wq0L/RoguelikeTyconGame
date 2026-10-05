@@ -59,7 +59,7 @@ public class CardUI : MonoBehaviour
             // Yükseltilecek tile kalmadı: kalıcı temel güç.
             nameText.text = "Temel güç";
             rarityText.text = rarityName;
-            buffText.text = TileBuffText.Modifiers(offer.Modifiers);
+            buffText.text = offer.IsSummed ? SummedText(offer) : TileBuffText.Modifiers(offer.Modifiers);
             if(effectNameText) effectNameText.text=offer.BaseStatName;
         }
         else
@@ -98,6 +98,26 @@ public class CardUI : MonoBehaviour
         };
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() => onSelected?.Invoke(currentOffer));
+    }
+
+    // Birikim grubuna eklenen temel güç kartı (Bölüm 3.7.7): kartın değeri ve grubun toplamının nasıl değişeceği. Uygulama da
+    // aynısını yapar (StatManager.AddToSummedGroup): değerler toplanır, gruptan tek çarpan çıkar.
+    //   "XP kazancı +5%"
+    //   "Toplanır: +10% → +15%"
+    public static string SummedText(TileCardOffer offer)
+    {
+        var text = new System.Text.StringBuilder();
+        var colors = TileBuffText.OnCard;
+        foreach (StatModifier mod in offer.Modifiers)
+        {
+            if (text.Length > 0) text.AppendLine();
+            float now = StatManager.Instance != null ? StatManager.Instance.SummedGroupTotal(mod.statType, mod.target) : 0f;
+            var before = mod; before.value = now;
+            var after = mod; after.value = now + mod.value;
+            text.Append(TileBuffText.Modifier(mod)).AppendLine();
+            text.Append("Toplanır: ").Append(TileBuffText.AmountChange(before, after, colors));
+        }
+        return text.ToString();
     }
 
     private void EnsureBuffText()

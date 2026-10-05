@@ -216,6 +216,8 @@ public static class BossBalanceMeasurement
     static double StartMeasurement()
     {
         var source = AssetDatabase.LoadAssetAtPath<RunProfileSO>(ProfilePath);
+        // Bu ölçüm boss hedeflerini 5 round'luk segmentlere göre okur (R5, R10 …); açık boss takvimli profili ölçmez.
+        if (source.Calendar.IsExplicit) throw new Exception("Bu profil desteklenmiyor: açık boss takvimi (Bölüm 3.7.2) bu ölçümde modellenmedi");
         realTargets = source.bossTargets.ToArray();
         foreach (var pol in new[] { RunSimulator.Policies[0], RunSimulator.Policies[1] })
         {

@@ -46,6 +46,40 @@ public static class RunProfileMenu
     [MenuItem(Root + "Run50 Kırılma V1 · 50 round (build kırılması adayı)", priority = 24)]
     private static void BreakthroughV1() => Select(Folder + "Run50_KirilmaV1.asset");
 
+    // Bölüm 3.7.2: Kırılma V1'in oynanış ayarları (aynı denge seti, XP, 3 seçim, 45 sn, aynı boss ve ödül havuzları) + açık boss takvimi:
+    // 15 boss (R3, 6, 10, 13, 16, 20, 23, 26, 30, 33, 36, 40, 43, 46, 50), kota dönemleri boss aralıklarını izler. Hedefler eski tablodan
+    // aktarılmış geçici değerlerdir (denge adayı değil); R50 şimdilik havuzdaki normal boss'tur.
+    [MenuItem(Root + "Run50 Takvim V1 · 50 round (15 boss takvimi prototipi)", priority = 25)]
+    private static void CalendarV1() => Select(Folder + "Run50_TakvimV1.asset");
+
+    // Bölüm 3.7.3: Takvim V1'in her şeyi (15 boss, hedefler, denge seti, 3 seçim, 45 sn) + aşamalı boss ödül havuzu:
+    // erken (R1–11), orta (R12–21), güçlü (R22–50). Mevcut 16 ödülün ilk dağılımı; etki ve katsayılar değişmedi.
+    [MenuItem(Root + "Run50 Ödül Aşamaları V1 · 50 round (aşamalı boss ödülleri prototipi)", priority = 26)]
+    private static void RewardStagesV1() => Select(Folder + "Run50_OdulAsamalariV1.asset");
+
+    // Bölüm 3.7.4: Ödül Aşamaları V1'in her şeyi + güçlü aşamada iki bedelli ödül (Bereketli Öğrenim: level başına seçim +1,
+    // doğrudan vuruş ×0,80 · Davranışa Adanış: davranış hasarı ×1,50, level başına seçim −1). İlk test değerleri; dengelenmedi.
+    [MenuItem(Root + "Run50 Bedelli Ödüller V1 · 50 round (bedelli boss ödülleri prototipi)", priority = 27)]
+    private static void CostRewardsV1() => Select(Folder + "Run50_BedelliOdullerV1.asset");
+
+    // Bölüm 3.7.5: Bedelli Ödüller V1'in her şeyi; yalnız Artçı Patlama'nın ikinci darbesinin yarıçapı (ve havuzda kaldıysa Çifte Akım'ın
+    // ikinci dalgasının erişimi) bu profile ait varyantlardan gelir. Hasar oranı, gecikme ve tetik kuralı aynıdır.
+    [MenuItem(Root + "Run50 Kırılma Erişimi V1 · 50 round (artçı ve ikinci dalga erişimi adayı)", priority = 28)]
+    private static void BreakthroughReachV1() => Select(Folder + "Run50_KirilmaErisimiV1.asset");
+
+    // Bölüm 3.7.6: Kırılma Erişimi V1'in her şeyi + güçlü aşamada Zincir Hasat ödülü (davranış hasatları başka saksıların
+    // davranışlarını sınırlı tetikler; iki ek nesil, kök başına bütçe). Ödül normal akışta R23 boss'undan itibaren kazanılır.
+    [MenuItem(Root + "Run50 Zincir V1 · 50 round (dört davranışlı zincir prototipi)", priority = 29)]
+    private static void ChainV1() => Select(Folder + "Run50_ZincirV1.asset");
+    // Bölüm 3.7.7: Zincir V1'in her şeyi + P7 ilerleme ayarları (tablo sonrası büyüyen level maliyeti, toplanan temel güç XP
+    // kartları). Veri: Tools/Balance/XPV1.
+    [MenuItem(Root + "Run50 XP V1 · 50 round (XP ve sınırsız level adayı)", priority = 30)]
+    private static void XpV1() => Select(Folder + "Run50_XPV1.asset");
+    // Bölüm 3.7.8: XP V1'in her şeyi + round süresi tablosu (45 / 55 / 65 sn; toplam 51 dk 40 sn aktif süre) ve bu süreye göre
+    // ayarlanan can eğrisi, kotalar ve boss hedefleri. Veri: Tools/Balance/AlphaDengeV1.
+    [MenuItem(Root + "Run50 Alpha Denge V1 · 50 round (51:40 aktif süre, ilk alpha denge adayı)", priority = 31)]
+    private static void AlphaV1() => Select(Folder + "Run50_AlphaDengeV1.asset");
+
     [MenuItem(Root + "Profil yok (sahnedeki ayarlar)", priority = 40)]
     private static void None() => Select(null);
 
@@ -67,6 +101,20 @@ public static class RunProfileMenu
     private static bool BalanceV1Check() => Check(Folder + "Run50_DengeV1.asset");
     [MenuItem(Root + "Run50 Kırılma V1 · 50 round (build kırılması adayı)", true)]
     private static bool BreakthroughV1Check() => Check(Folder + "Run50_KirilmaV1.asset");
+    [MenuItem(Root + "Run50 Takvim V1 · 50 round (15 boss takvimi prototipi)", true)]
+    private static bool CalendarV1Check() => Check(Folder + "Run50_TakvimV1.asset");
+    [MenuItem(Root + "Run50 Ödül Aşamaları V1 · 50 round (aşamalı boss ödülleri prototipi)", true)]
+    private static bool RewardStagesV1Check() => Check(Folder + "Run50_OdulAsamalariV1.asset");
+    [MenuItem(Root + "Run50 Bedelli Ödüller V1 · 50 round (bedelli boss ödülleri prototipi)", true)]
+    private static bool CostRewardsV1Check() => Check(Folder + "Run50_BedelliOdullerV1.asset");
+    [MenuItem(Root + "Run50 Kırılma Erişimi V1 · 50 round (artçı ve ikinci dalga erişimi adayı)", true)]
+    private static bool BreakthroughReachV1Check() => Check(Folder + "Run50_KirilmaErisimiV1.asset");
+    [MenuItem(Root + "Run50 Zincir V1 · 50 round (dört davranışlı zincir prototipi)", true)]
+    private static bool ChainV1Check() => Check(Folder + "Run50_ZincirV1.asset");
+    [MenuItem(Root + "Run50 XP V1 · 50 round (XP ve sınırsız level adayı)", true)]
+    private static bool XpV1Check() => Check(Folder + "Run50_XPV1.asset");
+    [MenuItem(Root + "Run50 Alpha Denge V1 · 50 round (51:40 aktif süre, ilk alpha denge adayı)", true)]
+    private static bool AlphaV1Check() => Check(Folder + "Run50_AlphaDengeV1.asset");
     [MenuItem(Root + "Profil yok (sahnedeki ayarlar)", true)]
     private static bool NoneCheck() => Check(null);
 
@@ -117,14 +165,27 @@ public static class RunProfileMenu
         : path.EndsWith("Run50_BossPrototip.asset") ? "Run50 Boss Prototip · 50 round (boss + ödül)"
         : path.EndsWith("Run50_DengeV1.asset") ? "Run50 Denge V1 · 50 round (ilk denge adayı)"
         : path.EndsWith("Run50_KirilmaV1.asset") ? "Run50 Kırılma V1 · 50 round (build kırılması adayı)"
+        : path.EndsWith("Run50_TakvimV1.asset") ? "Run50 Takvim V1 · 50 round (15 boss takvimi prototipi)"
+        : path.EndsWith("Run50_OdulAsamalariV1.asset") ? "Run50 Ödül Aşamaları V1 · 50 round (aşamalı boss ödülleri prototipi)"
+        : path.EndsWith("Run50_BedelliOdullerV1.asset") ? "Run50 Bedelli Ödüller V1 · 50 round (bedelli boss ödülleri prototipi)"
+        : path.EndsWith("Run50_KirilmaErisimiV1.asset") ? "Run50 Kırılma Erişimi V1 · 50 round (artçı ve ikinci dalga erişimi adayı)"
+        : path.EndsWith("Run50_ZincirV1.asset") ? "Run50 Zincir V1 · 50 round (dört davranışlı zincir prototipi)"
+        : path.EndsWith("Run50_XPV1.asset") ? "Run50 XP V1 · 50 round (XP ve sınırsız level adayı)"
+        : path.EndsWith("Run50_AlphaDengeV1.asset") ? "Run50 Alpha Denge V1 · 50 round (51:40 aktif süre, ilk alpha denge adayı)"
         : "Uzun run · 130 round (normal ekonomi)";
 
     private static void Select(string path)
     {
         var selection = AssetDatabase.LoadAssetAtPath<RunProfileSelectionSO>(SelectionPath);
         if (selection == null) { Debug.LogError("RunProfileSelection.asset bulunamadı: " + SelectionPath); return; }
-        selection.active = path != null ? AssetDatabase.LoadAssetAtPath<RunProfileSO>(path) : null;
-        if (path != null && selection.active == null) { Debug.LogError("Run profili bulunamadı: " + path); return; }
+        RunProfileSO profile = path != null ? AssetDatabase.LoadAssetAtPath<RunProfileSO>(path) : null;
+        if (path != null && profile == null) { Debug.LogError("Run profili bulunamadı: " + path); return; }
+        // Geçersiz boss takvimi olan profil seçilmez (oyun onu başlatmaz); seçim olduğu gibi kalır.
+        string calendarError = RunCalendar.Validate(profile);
+        if (calendarError != null) { Debug.LogError($"Run profili seçilmedi: '{profile.displayName}' boss takvimi geçersiz — {calendarError}", profile); return; }
+        string rewardError = profile != null ? BossRewardPoolSO.Validate(profile.bossRewards, profile.runLength) : null;
+        if (rewardError != null) { Debug.LogError($"Run profili seçilmedi: '{profile.displayName}' boss ödül aşamaları geçersiz — {rewardError}", profile); return; }
+        selection.active = profile;
         EditorUtility.SetDirty(selection);
         AssetDatabase.SaveAssetIfDirty(selection);
         Debug.Log("Run profili: " + (selection.active != null ? selection.active.displayName : "yok (sahnedeki ayarlar)"), selection);

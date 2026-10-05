@@ -1,0 +1,11 @@
+== ODULSUZ YOGUN TARLA
+Performans_odulsuz | KirilmaErisimMeasurement.RunPerformance | DONE: performans · 24 round | 19:18:01-19:18:47 | cikis: ok
+
+== ZINCIR LABORATUVARI
+Lab_R23 | KirilmaErisimMeasurement.RunChainR23 | DONE: zincir23 · 100 round | 19:18:48-19:21:41 | cikis: ok
+Lab_R30 | KirilmaErisimMeasurement.RunChainR30 | DONE: zincir30 · 100 round | 19:21:41-19:23:32 | cikis: ok
+Lab_R40 | KirilmaErisimMeasurement.RunChainR40 | DONE: zincir40 · 100 round | 19:23:32-19:25:34 | cikis: ok
+
+== SEED 101 KABUL SENARYOSU
+Run_k3761seed101 | BalanceRunMeasurement.RunK3761Seed101 | DONE (ölçüm; işlev testi değil) | 19:25:34-19:50:08 | cikis: ok
+

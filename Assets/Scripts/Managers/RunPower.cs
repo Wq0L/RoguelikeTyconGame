@@ -28,15 +28,24 @@ public static class RunPower
     public static int ScaleHarvestResource(ResourceType type, int amount) => resources.Apply(type, amount,
         SpecializationManager.HarvestResourceMultiplier * StartLoadoutManager.HarvestResourceMultiplier);
 
+    // Level başına kart seçim hakkı (Bölüm 3.7.4): temel hak (profil) + run'daki aktif değişimler (alınan boss ödülleri).
+    // Hak, level kazanıldığı anda bu değerle bekleyen sayaca eklenir; daha önce kazanılmış haklar yeniden hesaplanmaz.
+    // Geçerli aralık 1–5. Aralığın dışına çıkaracak ödül kırpılmaz: sunulmaz ve alınamaz (BossRewardManager).
+    public const int MinLevelChoices = 1, MaxLevelChoices = 5;
+    public static int LevelChoices(int baseChoices) => baseChoices + BossRewardManager.LevelChoiceDelta;
+    public static bool ValidLevelChoices(int choices) => choices >= MinLevelChoices && choices <= MaxLevelChoices;
+
     // Davranışın gecikmiş ikinci darbesi (Artçı Patlama, Çifte Akım) var mı; ayarı ödül verisinden gelir.
     public static bool TryGetEcho(DamageType type, out BehaviorEcho echo) => BossRewardManager.TryGetEcho(type, out echo);
 }
 
-// Gecikmiş ikinci darbenin ayarı: gecikme (sn), ilk darbenin hesaplanmış hasarına oran, ilk darbenin yarıçapına oran (yalnız patlama).
+// Gecikmiş ikinci darbenin ayarı: gecikme (sn), ilk darbenin hesaplanmış hasarına oran, ilk darbenin yarıçapına oran (yalnız patlama),
+// çapraz erişim (yalnız elektrik; hücre, 0: ilk dalgayla aynı).
 public readonly struct BehaviorEcho
 {
     public readonly float Delay, Damage, Radius;
-    public BehaviorEcho(float delay, float damage, float radius) { Delay = delay; Damage = damage; Radius = radius; }
+    public readonly int Reach;
+    public BehaviorEcho(float delay, float damage, float radius, int reach = 0) { Delay = delay; Damage = damage; Radius = radius; Reach = reach; }
 }
 
 public readonly struct HarvestRhythmConfig

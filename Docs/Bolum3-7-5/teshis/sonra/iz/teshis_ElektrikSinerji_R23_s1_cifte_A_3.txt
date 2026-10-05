@@ -1,0 +1,390 @@
+# ElektrikSinerji R23 seed 1 cifte_A tekrar 3 · Time.time 585.0832 · kare 28472
+61 saldiri 0 nisan 117 hedef 4 zar 1f4fc5c1
+61 hasar Direct 58 (6,4) yasam 1 can 85
+61 hasar Direct 54 (6,6) yasam 1 can 57
+61 hasar Direct 31 (7,4) yasam 1 can 57
+61 hasar Direct 26 (7,5) yasam 1 can 85
+121 saldiri 1 nisan 109 hedef 6 zar bb45e31a
+121 hasar Direct 58 (6,2) yasam 1 can 57
+121 hasat Direct (6,2) yasam 1
+121 hasar Electric 27 (8,4) yasam 1 can 57
+121 yanki plan Electric is 1 gecikme 0.15 kare 0 bekleyen 1 zar be352d7d
+121 hasar Direct 48 (6,3) yasam 1 can 57
+121 hasar Direct 27 (6,4) yasam 1 can 27
+121 hasat Direct (6,4) yasam 1
+121 hasar Electric 27 (8,3) yasam 1 can 85
+121 yanki plan Electric is 2 gecikme 0.15 kare 0 bekleyen 2 zar 00440d74
+121 hasar Direct 48 (7,2) yasam 1 can 57
+121 hasar Direct 24 (7,3) yasam 1 can 113
+121 hasar Direct 58 (7,4) yasam 1 can 26
+121 hasat Direct (7,4) yasam 1
+121 hasar Electric 27 (8,3) yasam 1 can 58
+121 yanki plan Electric is 3 gecikme 0.15 kare 0 bekleyen 3 zar 7d6eb08a
+126 hasar Electric yanki 27 (8,4) yasam 1 can 30
+126 yanki uygula Electric is 1 gecikme 0.15 kare 5 bekleyen 2 zar da1f0655
+126 hasar Electric yanki 27 (8,3) yasam 1 can 31
+126 yanki uygula Electric is 2 gecikme 0.15 kare 5 bekleyen 1 zar e4fe74cc
+126 hasar Electric yanki 27 (8,3) yasam 1 can 4
+126 hasat Electric yanki (8,3) yasam 1
+126 yanki uygula Electric is 3 gecikme 0.15 kare 5 bekleyen 0 zar e9e4224c
+181 saldiri 2 nisan 121 hedef 6 zar 585e493f
+181 hasar Direct 56 (6,5) yasam 1 can 57
+181 hasar Direct 29 (6,6) yasam 1 can 3
+181 hasat Direct (6,6) yasam 1
+181 hasar Electric 27 (8,5) yasam 1 can 57
+181 hasar Electric 27 (8,8) yasam 1 can 57
+181 yanki plan Electric is 4 gecikme 0.15 kare 0 bekleyen 1 zar fba2dc12
+181 hasar Direct 27 (6,7) yasam 1 can 85
+181 hasar Direct 48 (7,5) yasam 1 can 59
+181 hasar Direct 29 (7,6) yasam 2 can 85
+181 hasar Direct 26 (7,7) yasam 2 can 57
+186 hasar Electric yanki 27 (8,5) yasam 1 can 30
+186 hasar Electric yanki 27 (8,8) yasam 1 can 30
+186 yanki uygula Electric is 4 gecikme 0.15 kare 5 bekleyen 0 zar 8b5ece4f
+241 saldiri 3 nisan 147 hedef 6 zar d6373764
+241 hasar Direct 25 (7,5) yasam 1 can 11
+241 hasat Direct (7,5) yasam 1
+241 hasar Direct 62 (7,6) yasam 2 can 56
+241 hasat Direct (7,6) yasam 2
+241 hasar Electric 27 (8,5) yasam 1 can 3
+241 hasat Electric (8,5) yasam 1
+241 hasar Electric 27 (8,8) yasam 1 can 3
+241 hasat Electric (8,8) yasam 1
+241 yanki plan Electric is 5 gecikme 0.15 kare 0 bekleyen 1 zar d57a56a3
+241 hasar Direct 31 (7,7) yasam 2 can 31
+241 hasat Direct (7,7) yasam 2
+241 yanki plan Electric is 6 gecikme 0.15 kare 0 bekleyen 2 zar 82751bdb
+241 hasar Direct 28 (8,6) yasam 1 can 113
+241 hasar Direct 29 (8,7) yasam 1 can 57
+246 yanki uygula Electric is 5 gecikme 0.15 kare 5 bekleyen 1 zar e5c48b06
+246 yanki uygula Electric is 6 gecikme 0.15 kare 5 bekleyen 0 zar e5c48b06
+301 saldiri 4 nisan 73 hedef 6 zar 0d5f434c
+301 hasar Direct 62 (4,6) yasam 1 can 57
+301 hasat Direct (4,6) yasam 1
+301 hasar Electric 27 (3,5) yasam 1 can 113
+301 hasar Electric 27 (3,8) yasam 1 can 57
+301 hasar Electric 27 (6,5) yasam 1 can 1
+301 hasat Electric (6,5) yasam 1
+301 hasar Electric 27 (7,4) yasam 1 can 113
+301 hasar Electric 27 (6,8) yasam 1 can 57
+301 yanki plan Electric is 7 gecikme 0.15 kare 0 bekleyen 1 zar 6a4ddfbc
+301 hasar Direct 27 (4,7) yasam 1 can 57
+301 hasar Direct 29 (4,8) yasam 1 can 113
+301 hasar Direct 60 (5,6) yasam 1 can 57
+301 hasat Direct (5,6) yasam 1
+301 hasar Direct 27 (5,7) yasam 2 can 57
+301 hasar Direct 24 (5,8) yasam 1 can 113
+306 hasar Electric yanki 27 (3,5) yasam 1 can 86
+306 hasar Electric yanki 27 (3,8) yasam 1 can 30
+306 hasar Electric yanki 27 (7,4) yasam 1 can 86
+306 hasar Electric yanki 27 (6,8) yasam 1 can 30
+306 yanki uygula Electric is 7 gecikme 0.15 kare 5 bekleyen 0 zar 99255180
+361 saldiri 5 nisan 5 hedef 6 zar a329e894
+361 hasar Direct 29 (2,2) yasam 3 can 85
+361 hasar Direct 50 (2,3) yasam 1 can 85
+361 hasar Direct 24 (2,4) yasam 2 can 57
+361 hasar Direct 25 (3,2) yasam 1 can 57
+361 hasar Direct 30 (3,3) yasam 1 can 85
+361 hasar Direct 26 (3,4) yasam 1 can 57
+421 saldiri 6 nisan 9 hedef 6 zar 54ce620a
+421 hasar Direct 28 (2,3) yasam 1 can 35
+421 hasar Direct 29 (2,4) yasam 2 can 33
+421 hasar Direct 54 (2,5) yasam 1 can 57
+421 hasar Direct 24 (3,3) yasam 1 can 55
+421 hasar Direct 27 (3,4) yasam 1 can 31
+421 hasar Direct 50 (3,5) yasam 1 can 59
+481 saldiri 7 nisan 13 hedef 6 zar fe4861ab
+481 hasar Direct 26 (2,4) yasam 2 can 4
+481 hasat Direct (2,4) yasam 2
+481 hasar Electric 27 (4,3) yasam 2 can 85
+481 hasar Electric 27 (5,2) yasam 2 can 57
+481 hasar Electric 27 (5,7) yasam 2 can 30
+481 yanki plan Electric is 8 gecikme 0.15 kare 0 bekleyen 1 zar c1851e5f
+481 hasar Direct 56 (2,5) yasam 1 can 3
+481 hasat Direct (2,5) yasam 1
+481 hasar Electric 27 (4,3) yasam 2 can 58
+481 hasar Electric 27 (5,2) yasam 2 can 30
+481 hasar Electric 27 (5,7) yasam 2 can 3
+481 hasat Electric (5,7) yasam 2
+481 yanki plan Electric is 9 gecikme 0.15 kare 0 bekleyen 2 zar e2e6a680
+481 hasar Direct 28 (2,6) yasam 2 can 57
+481 hasar Direct 50 (3,4) yasam 1 can 4
+481 hasat Direct (3,4) yasam 1
+481 hasar Direct 29 (3,5) yasam 1 can 9
+481 hasat Direct (3,5) yasam 1
+481 hasar Electric 27 (4,3) yasam 2 can 31
+481 hasar Electric 27 (5,2) yasam 2 can 3
+481 hasat Electric (5,2) yasam 2
+481 yanki plan Electric is 10 gecikme 0.15 kare 0 bekleyen 3 zar 5bc6b756
+481 hasar Direct 25 (3,6) yasam 1 can 57
+486 hasar Electric yanki 27 (4,3) yasam 2 can 4
+486 hasat Electric yanki (4,3) yasam 2
+486 yanki uygula Electric is 8 gecikme 0.15 kare 5 bekleyen 2 zar c8b4ac3c
+486 yanki uygula Electric is 9 gecikme 0.15 kare 5 bekleyen 1 zar c8b4ac3c
+486 yanki uygula Electric is 10 gecikme 0.15 kare 5 bekleyen 0 zar c8b4ac3c
+541 saldiri 8 nisan 21 hedef 6 zar c8b4ac3c
+541 hasar Direct 62 (2,6) yasam 2 can 29
+541 hasat Direct (2,6) yasam 2
+541 hasar Electric 27 (4,5) yasam 1 can 57
+541 hasar Electric 27 (5,4) yasam 2 can 57
+541 hasar Electric 27 (4,8) yasam 1 can 84
+541 yanki plan Electric is 11 gecikme 0.15 kare 0 bekleyen 1 zar 95d04d23
+541 hasar Direct 25 (2,7) yasam 1 can 57
+541 hasar Direct 29 (2,8) yasam 3 can 57
+541 hasar Direct 31 (3,6) yasam 1 can 32
+541 hasar Direct 31 (3,7) yasam 2 can 57
+541 hasar Direct 24 (3,8) yasam 1 can 3
+541 hasat Direct (3,8) yasam 1
+546 hasar Electric yanki 27 (4,5) yasam 1 can 30
+546 hasar Electric yanki 27 (5,4) yasam 2 can 30
+546 hasar Electric yanki 27 (4,8) yasam 1 can 57
+546 yanki uygula Electric is 11 gecikme 0.15 kare 5 bekleyen 0 zar 393ed357
+601 saldiri 9 nisan 87 hedef 6 zar 393ed357
+601 hasar Direct 25 (5,3) yasam 1 can 57
+601 hasar Direct 31 (5,4) yasam 2 can 3
+601 hasat Direct (5,4) yasam 2
+601 hasar Direct 26 (5,5) yasam 1 can 85
+601 hasar Direct 29 (6,3) yasam 1 can 9
+601 hasat Direct (6,3) yasam 1
+601 hasar Direct 27 (6,4) yasam 1 can 85
+601 hasar Direct 25 (6,5) yasam 1 can 113
+661 saldiri 10 nisan 125 hedef 6 zar 0ef7f89f
+661 hasar Direct 60 (6,6) yasam 1 can 85
+661 hasar Direct 30 (6,7) yasam 1 can 58
+661 hasar Direct 25 (6,8) yasam 1 can 3
+661 hasat Direct (6,8) yasam 1
+661 hasar Direct 24 (7,6) yasam 1 can 85
+661 hasar Direct 27 (7,7) yasam 1 can 85
+661 hasar Direct 24 (7,8) yasam 1 can 85
+721 saldiri 11 nisan 92 hedef 6 zar 1b8cf3ff
+721 hasar Direct 24 (4,5) yasam 1 can 3
+721 hasat Direct (4,5) yasam 1
+721 hasar Electric 27 (3,3) yasam 1 can 31
+721 hasar Electric 27 (2,2) yasam 3 can 56
+721 hasar Electric 27 (3,6) yasam 1 can 1
+721 hasat Electric (3,6) yasam 1
+721 hasar Electric 27 (2,7) yasam 1 can 32
+721 hasar Electric 27 (7,2) yasam 1 can 9
+721 hasat Electric (7,2) yasam 1
+721 hasar Electric 27 (6,6) yasam 1 can 25
+721 hasat Electric (6,6) yasam 1
+721 hasar Electric 27 (7,7) yasam 1 can 58
+721 yanki plan Electric is 12 gecikme 0.15 kare 0 bekleyen 1 zar 269738d9
+721 hasar Direct 62 (4,6) yasam 3 can 85
+721 hasar Direct 30 (5,5) yasam 1 can 59
+721 hasar Direct 29 (5,6) yasam 2 can 57
+721 hasar Direct 28 (6,5) yasam 1 can 88
+726 hasar Electric yanki 27 (3,3) yasam 1 can 4
+726 hasat Electric yanki (3,3) yasam 1
+726 hasar Electric yanki 27 (2,2) yasam 3 can 29
+726 hasar Electric yanki 27 (2,7) yasam 1 can 5
+726 hasat Electric yanki (2,7) yasam 1
+726 hasar Electric yanki 27 (7,7) yasam 1 can 31
+726 yanki uygula Electric is 12 gecikme 0.15 kare 5 bekleyen 0 zar 87e0deab
+781 saldiri 12 nisan 113 hedef 6 zar 4e725dce
+781 hasar Direct 54 (6,3) yasam 2 can 113
+781 hasar Direct 27 (6,4) yasam 1 can 58
+781 hasar Direct 24 (6,5) yasam 1 can 60
+781 hasar Direct 28 (7,3) yasam 1 can 89
+781 hasar Direct 28 (7,4) yasam 1 can 59
+781 hasar Direct 56 (7,5) yasam 1 can 57
+841 saldiri 13 nisan 136 hedef 6 zar 0feeee1f
+841 hasar Direct 46 (6,3) yasam 2 can 59
+841 hasar Direct 29 (6,4) yasam 1 can 31
+841 hasar Direct 58 (7,3) yasam 1 can 61
+841 hasar Direct 54 (7,4) yasam 1 can 31
+841 hasat Direct (7,4) yasam 1
+841 hasar Electric 27 (5,3) yasam 1 can 32
+841 hasar Electric 27 (4,2) yasam 2 can 57
+841 hasar Electric 27 (5,6) yasam 2 can 28
+841 hasar Electric 27 (4,7) yasam 1 can 30
+841 hasar Electric 27 (8,3) yasam 1 can 85
+841 hasar Electric 27 (8,6) yasam 1 can 85
+841 yanki plan Electric is 13 gecikme 0.15 kare 0 bekleyen 1 zar f994cc97
+841 hasar Direct 60 (8,3) yasam 1 can 58
+841 hasat Direct (8,3) yasam 1
+841 hasar Direct 29 (8,4) yasam 1 can 3
+841 hasat Direct (8,4) yasam 1
+846 hasar Electric yanki 27 (5,3) yasam 1 can 5
+846 hasat Electric yanki (5,3) yasam 1
+846 hasar Electric yanki 27 (4,2) yasam 2 can 30
+846 hasar Electric yanki 27 (5,6) yasam 2 can 1
+846 hasat Electric yanki (5,6) yasam 2
+846 hasar Electric yanki 27 (4,7) yasam 1 can 3
+846 hasat Electric yanki (4,7) yasam 1
+846 hasar Electric yanki 27 (8,6) yasam 1 can 58
+846 yanki uygula Electric is 13 gecikme 0.15 kare 5 bekleyen 0 zar 71e94dac
+901 saldiri 14 nisan 126 hedef 6 zar f21b7394
+901 hasar Direct 46 (5,7) yasam 2 can 85
+901 hasar Direct 29 (5,8) yasam 1 can 89
+901 hasar Direct 50 (6,7) yasam 1 can 28
+901 hasat Direct (6,7) yasam 1
+901 hasar Electric 27 (5,5) yasam 1 can 29
+901 hasar Electric 27 (4,4) yasam 1 can 57
+901 hasar Electric 27 (5,8) yasam 1 can 60
+901 hasar Electric 27 (8,5) yasam 1 can 57
+901 hasar Electric 27 (8,8) yasam 1 can 85
+901 yanki plan Electric is 14 gecikme 0.15 kare 0 bekleyen 1 zar 22f60fee
+901 hasar Direct 60 (6,8) yasam 2 can 57
+901 hasat Direct (6,8) yasam 2
+901 hasar Electric 27 (5,7) yasam 2 can 39
+901 hasar Electric 27 (4,6) yasam 3 can 23
+901 hasat Electric (4,6) yasam 3
+901 hasar Electric 27 (7,7) yasam 1 can 4
+901 hasat Electric (7,7) yasam 1
+901 hasar Electric 27 (8,6) yasam 1 can 31
+901 yanki plan Electric is 15 gecikme 0.15 kare 0 bekleyen 2 zar 91fbe05b
+901 hasar Direct 25 (7,8) yasam 1 can 61
+906 hasar Electric yanki 27 (5,5) yasam 1 can 2
+906 hasat Electric yanki (5,5) yasam 1
+906 hasar Electric yanki 27 (4,4) yasam 1 can 30
+906 hasar Electric yanki 27 (5,8) yasam 1 can 33
+906 hasar Electric yanki 27 (8,5) yasam 1 can 30
+906 hasar Electric yanki 27 (8,8) yasam 1 can 58
+906 yanki uygula Electric is 14 gecikme 0.15 kare 5 bekleyen 1 zar e1a36a0f
+906 hasar Electric yanki 27 (5,7) yasam 2 can 12
+906 hasat Electric yanki (5,7) yasam 2
+906 hasar Electric yanki 27 (8,6) yasam 1 can 4
+906 hasat Electric yanki (8,6) yasam 1
+906 yanki uygula Electric is 15 gecikme 0.15 kare 5 bekleyen 0 zar c26974e5
+961 saldiri 15 nisan 28 hedef 5 zar 5c3cddd7
+961 hasar Direct 48 (2,2) yasam 3 can 2
+961 hasat Direct (2,2) yasam 3
+961 hasar Direct 27 (2,3) yasam 1 can 7
+961 hasat Direct (2,3) yasam 1
+961 hasar Direct 54 (3,2) yasam 1 can 32
+961 hasat Direct (3,2) yasam 1
+961 hasar Direct 29 (4,2) yasam 2 can 3
+961 hasat Direct (4,2) yasam 2
+961 hasar Direct 31 (4,3) yasam 1 can 85
+1021 saldiri 16 nisan 132 hedef 6 zar 5d170ece
+1021 hasar Direct 30 (6,2) yasam 2 can 85
+1021 hasar Direct 31 (6,3) yasam 2 can 13
+1021 hasat Direct (6,3) yasam 2
+1021 hasar Electric 27 (5,4) yasam 3 can 57
+1021 hasar Electric 27 (8,4) yasam 1 can 113
+1021 yanki plan Electric is 16 gecikme 0.15 kare 0 bekleyen 1 zar ee2eb88b
+1021 hasar Direct 60 (7,2) yasam 1 can 113
+1021 hasar Direct 29 (7,3) yasam 1 can 3
+1021 hasat Direct (7,3) yasam 1
+1021 hasar Direct 24 (8,2) yasam 1 can 142
+1021 hasar Direct 60 (8,3) yasam 2 can 57
+1021 hasat Direct (8,3) yasam 2
+1026 hasar Electric yanki 27 (5,4) yasam 3 can 30
+1026 hasar Electric yanki 27 (8,4) yasam 1 can 86
+1026 yanki uygula Electric is 16 gecikme 0.15 kare 5 bekleyen 0 zar bcf1629d
+1081 saldiri 17 nisan 140 hedef 6 zar fcdbe4f4
+1081 hasar Direct 29 (6,4) yasam 1 can 2
+1081 hasat Direct (6,4) yasam 1
+1081 hasar Direct 24 (6,5) yasam 1 can 36
+1081 hasar Direct 60 (7,4) yasam 2 can 85
+1081 hasar Direct 26 (7,5) yasam 1 can 1
+1081 hasat Direct (7,5) yasam 1
+1081 hasar Electric 27 (8,6) yasam 2 can 85
+1081 yanki plan Electric is 17 gecikme 0.15 kare 0 bekleyen 1 zar b906e6e4
+1081 hasar Direct 30 (8,4) yasam 1 can 59
+1081 hasar Direct 29 (8,5) yasam 1 can 3
+1081 hasat Direct (8,5) yasam 1
+1081 hasar Electric 27 (7,4) yasam 2 can 25
+1081 hasat Electric (7,4) yasam 2
+1081 hasar Electric 27 (7,6) yasam 1 can 61
+1081 hasar Electric 27 (6,7) yasam 1 can 142
+1081 yanki plan Electric is 18 gecikme 0.15 kare 0 bekleyen 2 zar ec06cf75
+1086 hasar Electric yanki 27 (8,6) yasam 2 can 58
+1086 yanki uygula Electric is 17 gecikme 0.15 kare 5 bekleyen 1 zar 0c893dde
+1086 hasar Electric yanki 27 (7,6) yasam 1 can 34
+1086 hasar Electric yanki 27 (6,7) yasam 1 can 115
+1086 yanki uygula Electric is 18 gecikme 0.15 kare 5 bekleyen 0 zar b4d034ec
+1141 saldiri 18 nisan 17 hedef 6 zar 463151fa
+1141 hasar Direct 26 (2,5) yasam 2 can 57
+1141 hasar Direct 29 (2,6) yasam 3 can 57
+1141 hasar Direct 24 (2,7) yasam 1 can 113
+1141 hasar Direct 26 (3,5) yasam 2 can 85
+1141 hasar Direct 30 (3,6) yasam 2 can 57
+1141 hasar Direct 30 (3,7) yasam 2 can 26
+1141 hasat Direct (3,7) yasam 2
+1141 hasar Electric 27 (4,5) yasam 2 can 57
+1141 hasar Electric 27 (5,4) yasam 3 can 3
+1141 hasat Electric (5,4) yasam 3
+1141 hasar Electric 27 (4,8) yasam 1 can 30
+1141 yanki plan Electric is 19 gecikme 0.15 kare 0 bekleyen 1 zar 78a490f9
+1146 hasar Electric yanki 27 (4,5) yasam 2 can 30
+1146 hasar Electric yanki 27 (4,8) yasam 1 can 3
+1146 hasat Electric yanki (4,8) yasam 1
+1146 yanki uygula Electric is 19 gecikme 0.15 kare 5 bekleyen 0 zar 15f088e3
+1201 saldiri 19 nisan 35 hedef 6 zar 44499d0c
+1201 hasar Direct 56 (3,3) yasam 2 can 113
+1201 hasar Direct 25 (3,4) yasam 3 can 57
+1201 hasar Direct 25 (3,5) yasam 2 can 59
+1201 hasar Direct 62 (4,3) yasam 1 can 54
+1201 hasat Direct (4,3) yasam 1
+1201 hasar Electric 27 (3,4) yasam 3 can 32
+1201 hasar Electric 27 (2,5) yasam 2 can 31
+1201 yanki plan Electric is 20 gecikme 0.15 kare 0 bekleyen 1 zar 5954466a
+1201 hasar Direct 31 (4,4) yasam 1 can 3
+1201 hasat Direct (4,4) yasam 1
+1201 hasar Electric 27 (3,3) yasam 2 can 57
+1201 hasar Electric 27 (3,6) yasam 2 can 27
+1201 hasat Electric (3,6) yasam 2
+1201 hasar Electric 27 (2,7) yasam 1 can 89
+1201 hasar Electric 27 (6,3) yasam 3 can 85
+1201 hasar Electric 27 (7,2) yasam 1 can 53
+1201 hasar Electric 27 (6,6) yasam 2 can 57
+1201 hasar Electric 27 (7,7) yasam 3 can 113
+1201 yanki plan Electric is 21 gecikme 0.15 kare 0 bekleyen 2 zar 9997df04
+1201 hasar Direct 25 (4,5) yasam 2 can 3
+1201 hasat Direct (4,5) yasam 2
+1206 hasar Electric yanki 27 (3,4) yasam 3 can 5
+1206 hasat Electric yanki (3,4) yasam 3
+1206 hasar Electric yanki 27 (2,5) yasam 2 can 4
+1206 hasat Electric yanki (2,5) yasam 2
+1206 yanki uygula Electric is 20 gecikme 0.15 kare 5 bekleyen 1 zar d746c3b8
+1206 hasar Electric yanki 27 (3,3) yasam 2 can 30
+1206 hasar Electric yanki 27 (2,7) yasam 1 can 62
+1206 hasar Electric yanki 27 (6,3) yasam 3 can 58
+1206 hasar Electric yanki 27 (7,2) yasam 1 can 26
+1206 hasat Electric yanki (7,2) yasam 1
+1206 hasar Electric yanki 27 (6,6) yasam 2 can 30
+1206 hasar Electric yanki 27 (7,7) yasam 3 can 86
+1206 yanki uygula Electric is 21 gecikme 0.15 kare 5 bekleyen 0 zar d930bab5
+1261 saldiri 20 nisan 139 hedef 6 zar 58f5cfc1
+1261 hasar Direct 27 (7,3) yasam 3 can 57
+1261 hasar Direct 27 (7,4) yasam 4 can 57
+1261 hasar Direct 27 (7,5) yasam 3 can 57
+1261 hasar Direct 29 (8,3) yasam 1 can 85
+1261 hasar Direct 26 (8,4) yasam 1 can 29
+1261 hasar Direct 29 (8,5) yasam 2 can 85
+1321 saldiri 21 nisan 95 hedef 6 zar 7cab2416
+1321 hasar Direct 23 (5,5) yasam 1 can 142
+1321 hasar Direct 31 (5,6) yasam 1 can 142
+1321 hasar Direct 54 (5,7) yasam 3 can 57
+1321 hasar Direct 26 (6,5) yasam 1 can 12
+1321 hasat Direct (6,5) yasam 1
+1321 hasar Electric 27 (5,3) yasam 2 can 113
+1321 hasar Electric 27 (5,6) yasam 1 can 111
+1321 hasar Electric 27 (4,7) yasam 2 can 57
+1321 hasar Electric 27 (8,3) yasam 1 can 56
+1321 hasar Electric 27 (8,6) yasam 2 can 31
+1321 yanki plan Electric is 22 gecikme 0.15 kare 0 bekleyen 1 zar e8cadc77
+1321 hasar Direct 58 (6,6) yasam 2 can 3
+1321 hasat Direct (6,6) yasam 2
+1321 hasar Electric 27 (5,5) yasam 1 can 119
+1321 hasar Electric 27 (5,8) yasam 1 can 6
+1321 hasat Electric (5,8) yasam 1
+1321 hasar Electric 27 (8,5) yasam 2 can 56
+1321 hasar Electric 27 (8,8) yasam 1 can 31
+1321 yanki plan Electric is 23 gecikme 0.15 kare 0 bekleyen 2 zar f3540bb3
+1321 hasar Direct 60 (6,7) yasam 1 can 88
+1326 hasar Electric yanki 27 (5,3) yasam 2 can 86
+1326 hasar Electric yanki 27 (5,6) yasam 1 can 84
+1326 hasar Electric yanki 27 (4,7) yasam 2 can 30
+1326 hasar Electric yanki 27 (8,3) yasam 1 can 29
+1326 hasar Electric yanki 27 (8,6) yasam 2 can 4
+1326 hasat Electric yanki (8,6) yasam 2
+1326 yanki uygula Electric is 22 gecikme 0.15 kare 5 bekleyen 1 zar 1d03ab26
+1326 hasar Electric yanki 27 (5,5) yasam 1 can 92
+1326 hasar Electric yanki 27 (8,5) yasam 2 can 29
+1326 hasar Electric yanki 27 (8,8) yasam 1 can 4
+1326 hasat Electric yanki (8,8) yasam 1
+1326 yanki uygula Electric is 23 gecikme 0.15 kare 5 bekleyen 0 zar bd59baa1
+# round sonu · kare 1354 · bekleyen is 0 · planlanan 23 uygulanan 23 dusen 0 · zar 3a9dfa5d

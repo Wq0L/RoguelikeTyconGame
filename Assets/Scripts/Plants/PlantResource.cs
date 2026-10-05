@@ -32,16 +32,20 @@ public class PlantResource : MonoBehaviour
         float resourceMultiplier = GetResourceMultiplier(plantData.resourceType);
         float xpMultiplier = GetXPMultiplier();
 
-        int reward = Mathf.RoundToInt(plantData.rewardAmount * resourceMultiplier);
-        // Denge seti nadirliğe göre XP çarpanı verebilir (Bölüm 3.5); yoksa ×1.
-        int xpAmount = Mathf.RoundToInt(plantData.xpAmount * xpMultiplier * RunBalanceSO.ActiveXpMultiplier(plantData.rarity));
+        int reward = NumericSafety.ToInt(plantData.rewardAmount * resourceMultiplier, 0, NumericSite.Resource);
+        // Denge seti nadirliğe göre XP çarpanı verebilir (Bölüm 3.5); yoksa ×1. XP int'e çevrilmez (eskiden büyük XP negatife
+        // taşıyordu): eski yuvarlamayla aynı tam sayı, double olarak. float çarpım taşarsa çarpım double'da yapılır.
+        float xpProduct = plantData.xpAmount * xpMultiplier * RunBalanceSO.ActiveXpMultiplier(plantData.rarity);
+        double xpAmount = System.Math.Round(float.IsPositiveInfinity(xpProduct)
+            ? plantData.xpAmount * (double)xpMultiplier * RunBalanceSO.ActiveXpMultiplier(plantData.rarity)
+            : xpProduct);
 
         if (planterBrain != null)
         {
             float dupChance = planterBrain.GetFinalStat(StatType.DuplicateChance);
             if (dupChance > 0f && Random.value <= dupChance)
             {
-                reward *= 2;
+                reward = NumericSafety.Add(reward, reward, NumericSite.Resource);
                 // Debug.Log("Duplicate! Ödül 2x");
             }
         }

@@ -4,8 +4,24 @@ using UnityEngine;
 public class PlantHealth : MonoBehaviour, IDamageable
 {
     public event Action OnDied;
-    // Ölçüm için: her hasatta (KilledBy doğrudan mı davranış mı). Oynanış buna bağlı değildir.
-    public static event Action<PlantHealth> AnyHarvested;
+    // Oynanış: bitki hasat edildi (görev sayacı). Dinleyicinin hatası gerçek bir oynanış hatasıdır ve yukarı çıkar; bitki yine havuza
+    // döner (Die).
+    public static event Action<PlantHealth> Harvested;
+    // Gözlem (ölçüm / test): her hasatta (KilledBy doğrudan mı davranış mı). Oynanış buna bağlı değildir; dinleyicinin hatası ölümü,
+    // ödülü ve havuza dönüşü engellemez (ObserverEvents).
+    private static Action<PlantHealth>[] harvestObservers = Array.Empty<Action<PlantHealth>>();
+    public static event Action<PlantHealth> AnyHarvested
+    {
+        add => ObserverEvents.Add(ref harvestObservers, value);
+        remove => ObserverEvents.Remove(ref harvestObservers, value);
+    }
+    // Gözlem: bitkiye uygulanan her hasar (saksı bonusu dahil, hesaplanmış değer) ve türü. Dinleyicinin hatası hasarı engellemez.
+    private static Action<PlantHealth, int, DamageType>[] damageObservers = Array.Empty<Action<PlantHealth, int, DamageType>>();
+    public static event Action<PlantHealth, int, DamageType> AnyDamaged
+    {
+        add => ObserverEvents.Add(ref damageObservers, value);
+        remove => ObserverEvents.Remove(ref damageObservers, value);
+    }
     // Görsel tepkiler için (PlantJuice squash). Parametre: crit mi.
     public event Action<bool> OnDamaged;
 
@@ -22,6 +38,10 @@ public class PlantHealth : MonoBehaviour, IDamageable
     public uint LifetimeVersion { get; private set; }
 
     public DamageType KilledBy => killedBy;
+    // Öldüren vuruşun zincir bağlamı (Bölüm 3.7.6): kök ve nesil. Bu yaşam için; havuzdan yeniden doğunca sıfırlanır.
+    public HarvestLink KillLink { get; private set; }
+    // Ölçüm için: son vuruşun bağlamı (AnyDamaged sırasında okunur). Oynanış buna bağlı değildir.
+    public HarvestLink LastHitLink { get; private set; }
     public bool IsDead => isDead;
     // Bu yaşamdaki bitki verisi (AnyHarvested sırasında dolu; havuza dönünce null).
     public PlantSO Data => plantData;
@@ -49,16 +69,19 @@ public class PlantHealth : MonoBehaviour, IDamageable
         HealthMultiplier = 1f;
         isDead = false;
         killedBy = DamageType.Direct;
+        KillLink = LastHitLink = HarvestLink.None;
         KillingElectricXPMultiplier = 1f;
         ApplyHealthMultiplier(healthMultiplier);
     }
 
     // Olay can çarpanı: azami ve mevcut can aynı oranda büyür (yaralı bitki dolmaz). Bu yaşamda zaten çarpan varsa uygulanmaz.
+    // Geçersiz çarpan (NaN, sonsuz) uygulanmaz ve raporlanır; büyük can int sınırında doyar (eskiden 1'e düşebiliyordu).
     public bool ApplyHealthMultiplier(float multiplier)
     {
+        if (float.IsNaN(multiplier) || float.IsInfinity(multiplier)) { NumericSafety.ReportInvalid(NumericSite.PlantHealth, multiplier); return false; }
         if (isDead || multiplier <= 0f || Mathf.Approximately(multiplier, 1f) || !Mathf.Approximately(HealthMultiplier, 1f)) return false;
-        int scaledMax = Mathf.Max(1, Mathf.RoundToInt(baseMaxHealth * multiplier));
-        currentHealth = Mathf.Max(1, (int)System.Math.Round((double)currentHealth * scaledMax / Mathf.Max(1, maxHealth)));
+        int scaledMax = NumericSafety.ToInt(baseMaxHealth * multiplier, 1, NumericSite.PlantHealth);
+        currentHealth = NumericSafety.ToInt((double)currentHealth * scaledMax / Mathf.Max(1, maxHealth), 1, NumericSite.PlantHealth);
         maxHealth = scaledMax;
         HealthMultiplier = multiplier;
         return true;
@@ -68,7 +91,7 @@ public class PlantHealth : MonoBehaviour, IDamageable
     public bool ClearHealthMultiplier()
     {
         if (isDead || Mathf.Approximately(HealthMultiplier, 1f)) return false;
-        currentHealth = Mathf.Max(1, (int)System.Math.Round((double)currentHealth * baseMaxHealth / Mathf.Max(1, maxHealth)));
+        currentHealth = NumericSafety.ToInt((double)currentHealth * baseMaxHealth / Mathf.Max(1, maxHealth), 1, NumericSite.PlantHealth);
         maxHealth = baseMaxHealth;
         HealthMultiplier = 1f;
         return true;
@@ -78,10 +101,16 @@ public class PlantHealth : MonoBehaviour, IDamageable
         => TakeDamage(damage, type, false);
 
     public void TakeDamage(int damage, DamageType type, bool isCrit, float sourceElectricXP = 1f)
+        => TakeDamage(damage, type, isCrit, sourceElectricXP, HarvestLink.None);
+
+    // link: vuruşun zincir bağlamı (kök, nesil). Bitki bu vuruşla ölürse saklanır; zincir kararı onu okur.
+    public void TakeDamage(int damage, DamageType type, bool isCrit, float sourceElectricXP, HarvestLink link)
     {
         if (isDead) return;
         damage = GetIncomingDamage(damage, type);
 
+        LastHitLink = link;
+        ObserverEvents.Raise(damageObservers, this, damage, type);
         currentHealth -= damage;
 
         // Hit flash
@@ -94,6 +123,7 @@ public class PlantHealth : MonoBehaviour, IDamageable
         if (currentHealth <= 0)
         {
             killedBy = type;
+            KillLink = link;
             KillingElectricXPMultiplier = type == DamageType.Electric ? Mathf.Max(1f, sourceElectricXP) : 1f;
             Die();
         }
@@ -104,14 +134,19 @@ public class PlantHealth : MonoBehaviour, IDamageable
         // Saksı bonusunu alıp almayacağı DamageTypeRules'tan gelir
         double multiplier = type.UsesPlanterBonus() && planter != null
             ? planter.GetFinalStat(StatType.PlanterDamageMultiplier) : 1d;
-        return (int)System.Math.Min(int.MaxValue, System.Math.Max(0, System.Math.Round(damage * multiplier)));
+        return NumericSafety.ToInt(damage * multiplier, 0, NumericSite.IncomingDamage);
     }
 
     private void Die()
     {
         isDead = true;
-        AnyHarvested?.Invoke(this);
-        try { OnDied?.Invoke(); }
+        ObserverEvents.Raise(harvestObservers, this);
+        // Oynanış dinleyicileri (görev sayacı, ödül, davranış tetiği): hata yukarı çıkar ama bitki her durumda havuza döner.
+        try
+        {
+            Harvested?.Invoke(this);
+            OnDied?.Invoke();
+        }
         finally { PlantPool.Release(gameObject); }
     }
 

@@ -47,28 +47,40 @@ public sealed class HarvestBehaviorManager : MonoBehaviour
         while (boomerangs.Count > 0) Release(boomerangs[boomerangs.Count - 1]);
         while (electricity.Count > 0) Release(electricity[electricity.Count - 1]);
     }
-    public bool TryBoomerang(PlanterBrain source, GridObject start, int damage)
+    // Aynı anda en çok maxBoomerangs. Zincir işi doluysa sırasını kaybetmeden bekler (HarvestChain).
+    public bool HasBoomerangCapacity => isActiveAndEnabled && boomerangPool != null && boomerangs.Count < maxBoomerangs;
+
+    public bool TryBoomerang(PlanterBrain source, GridObject start, int damage) => TryBoomerang(source, start, damage, HarvestLink.None, 1f, 0u);
+
+    // link: vuruşların zincir bağlamı. damageFactor: zincir neslinin hasar çarpanı. directionSeed: 0 ise yön ve menzil
+    // UnityEngine.Random'dan (normal tetik, eski akış); değilse zincirin ayrı akışından.
+    public bool TryBoomerang(PlanterBrain source, GridObject start, int damage, HarvestLink link, float damageFactor, uint directionSeed)
     {
-        if (!isActiveAndEnabled || boomerangPool == null || boomerangs.Count >= maxBoomerangs ||
-            RoundManager.Instance == null || !RoundManager.Instance.IsRoundActive || source == null) return false;
+        if (DemoSceneSettings.Blocks(UnlockType.TileBehavior_Boomerang)) return false;
+        if (!HasBoomerangCapacity || RoundManager.Instance == null || !RoundManager.Instance.IsRoundActive || source == null) return false;
         var manager = GridManager.Instance;
         var cell = start?.GetGroundCellCached();
         if (manager == null || cell == null) return false;
         // Pick a cardinal direction and a two/three-cell range independently.
         var grid = manager.GetGridSystem();
-        int direction = Random.Range(0, 4), distance = Random.Range(2, 4);
+        int direction, distance;
+        if (directionSeed != 0) { direction = ChainRandom.Range(ref directionSeed, 0, 4); distance = ChainRandom.Range(ref directionSeed, 2, 4); }
+        else { direction = Random.Range(0, 4); distance = Random.Range(2, 4); }
         Vector3 axis = direction < 2
             ? grid.GetWorldPosition(1, 0) - grid.GetWorldPosition(0, 0)
             : grid.GetWorldPosition(0, 1) - grid.GetWorldPosition(0, 0);
         if ((direction & 1) != 0) axis = -axis;
         Vector3 destination = cell.transform.position + axis * distance;
         var effect = boomerangPool.Get(); boomerangs.Add(effect);
-        effect.Launch(this, source, cell.transform.position, destination, damage);
+        effect.Launch(this, source, cell.transform.position, destination, damage, link, damageFactor);
         return true;
     }
+
+    public bool TryElectric(PlanterBrain source, int damage) => TryElectric(source, damage, HarvestLink.None, 1f);
+
     // Elektrik vuruşu anlıktır: hasar görselden bağımsız uygulanır. Efekt havuzu doluysa (maxElectricBursts)
-    // yalnız çizim atlanır, hedefler yine vurulur.
-    public bool TryElectric(PlanterBrain source, int damage)
+    // yalnız çizim atlanır, hedefler yine vurulur. damageFactor: zincir neslinin hasar çarpanı (normal davranış hasarının üzerine).
+    public bool TryElectric(PlanterBrain source, int damage, HarvestLink link, float damageFactor)
     {
         if (!isActiveAndEnabled || source == null ||
             RoundManager.Instance == null || !RoundManager.Instance.IsRoundActive || GridManager.Instance == null) return false;
@@ -83,14 +95,19 @@ public sealed class HarvestBehaviorManager : MonoBehaviour
         ElectricBurst effect = electricPool != null && electricity.Count < maxElectricBursts ? electricPool.Get() : null;
         if (effect != null) electricity.Add(effect);
         else SkippedElectricVisuals++;
-        ElectricBurst.Strike(this, effect, source, GridManager.Instance.GetGridSystem(), targets, origins, damage);
+        // Normal tetikte hasar Strike içinde bir kez katsayılarla hesaplanır (eski yol). Zincirde önce normal davranış hasarı
+        // hesaplanır, çarpan bir kez uygulanır ve hesaplanmış hasar olarak verilir.
+        bool chained = link.IsChain;
+        int final = chained ? HarvestChain.Scale(source.GetBehaviorDamage(damage, DamageType.Electric), damageFactor) : damage;
+        ElectricBurst.Strike(this, effect, source, GridManager.Instance.GetGridSystem(), targets, origins, final, chained, link, out _, out _, out _);
         return true;
     }
-    // Çifte Akım'ın ikinci dalgası: aynı saksıdan, aynı çapraz geometriyle, HESAPLANMIŞ hasarla (katsayılar yeniden uygulanmaz).
+    // Çifte Akım'ın ikinci dalgası: aynı saksıdan, aynı çapraz yönlerde, HESAPLANMIŞ hasarla (katsayılar yeniden uygulanmaz).
+    // reach: ışın başına hücre (0: ilk dalgayla aynı). Yeni hedefe yönelme, sıçrayış ya da zincir yoktur: yalnız ışınlar uzar.
     // Hedefler dalga anında değerlendirilir. Görsel havuzu doluysa yalnız çizim atlanır, hasar uygulanır. Hedef hücre yoksa false.
-    public bool TryElectricEcho(PlanterBrain source, int finalDamage, out int struck, out int killed)
+    public bool TryElectricEcho(PlanterBrain source, int finalDamage, int reach, out int struck, out int killed, out int cells)
     {
-        struck = killed = 0;
+        struck = killed = cells = 0;
         if (!isActiveAndEnabled || source == null ||
             RoundManager.Instance == null || !RoundManager.Instance.IsRoundActive || GridManager.Instance == null) return false;
         footprint.Clear();
@@ -99,15 +116,19 @@ public sealed class HarvestBehaviorManager : MonoBehaviour
             var cell = occupied?.GetGroundCellCached();
             if (cell != null) footprint.Add(cell.GetGridPosition());
         }
-        HarvestBehaviorGeometry.ElectricCells(footprint, targets, origins);
+        HarvestBehaviorGeometry.ElectricCells(footprint, targets, origins, reach > 0 ? reach : HarvestBehaviorGeometry.ElectricReachCells);
         if (targets.Count == 0) return false;
         ElectricBurst effect = electricPool != null && electricity.Count < maxElectricBursts ? electricPool.Get() : null;
         if (effect != null) electricity.Add(effect);
         else SkippedElectricVisuals++;
-        ElectricBurst.Strike(this, effect, source, GridManager.Instance.GetGridSystem(), targets, origins, finalDamage, true, out struck, out killed);
+        // İkinci dalganın vuruşları zincire katılmaz (HarvestLink.Aftershock).
+        ElectricBurst.Strike(this, effect, source, GridManager.Instance.GetGridSystem(), targets, origins, finalDamage, true, HarvestLink.Aftershock, out struck, out killed, out cells);
         return true;
     }
     public int SkippedElectricVisuals { get; private set; }
+    // Bir dalgada çizim kapasitesini (ElectricBurst.MaxBolts) aşan hedef sayısı: hasar uygulanır, yalnız o şimşek çizilmez.
+    public int SkippedElectricBolts { get; private set; }
+    public void CountSkippedBolts(int count) => SkippedElectricBolts += count;
     public void Release(BoomerangScythe effect) { if (boomerangs.Remove(effect)) boomerangPool.Return(effect); }
     public void Release(ElectricBurst effect) { if (electricity.Remove(effect)) electricPool.Return(effect); }
 }

@@ -1,0 +1,26 @@
+Bolum 3.7.2 - izole kopyada (Library/VerificationProject) gercekten calistirilan testler, 2026-10-02
+Sutunlar: etiket | cagrilan metot | sonuc dosyasinin ilk satiri | saat | cikis
+Hepsi son kodla, birer birer, varsayilan kisitla (dusuk oncelik, 4 cekirdek).
+
+TakvimV1Verification | TakvimV1Verification.RunBatch | PASS: 162 checks | 16:39:04-16:40:04 | cikis: ok
+KirilmaV1Verification (dosya: KirilmaV1Verification_ilk_FAIL.txt) | KirilmaV1Verification.RunBatch | FAIL: System.Exception: starting unlocks leaked to profile Run50_TakvimV1 | 16:40:04-16:40:22 | cikis: Verification failed with exit 1. See C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\KirilmaV1Verification_RunBatch.log
+DengeV1Verification | DengeV1Verification.RunBatch | PASS: 86 checks | 16:40:22-16:40:49 | cikis: ok
+BossRewardVerification | BossRewardVerification.RunBatch | PASS: 127 checks | 16:40:49-16:41:35 | cikis: ok
+BossWeatherVerification | BossWeatherVerification.RunBatch | PASS: 22 checks | 16:41:35-16:41:54 | cikis: ok
+RunPrototypeVerification | RunPrototypeVerification.RunBatch | PASS: 69 checks | 16:41:54-16:42:43 | cikis: ok
+SpecializationVerification | SpecializationVerification.RunBatch | PASS: 100 checks | 16:42:43-16:45:33 | cikis: ok
+StartLoadoutVerification | StartLoadoutVerification.RunBatch | PASS: 88 checks | 16:45:33-16:46:18 | cikis: ok
+RoundPreviewVerification | RoundPreviewVerification.RunBatch | PASS: 47 checks | 16:46:18-16:46:48 | cikis: ok
+Run50ReferenceVerification | Run50ReferenceVerification.RunBatch | PASS: 70 checks | 16:46:48-16:49:05 | cikis: ok
+MechanicsVerification | MechanicsVerification.RunBatch | PASS: 88 checks | 16:49:05-16:49:33 | cikis: ok
+ElectricRevertVerification | ElectricRevertVerification.RunBatch | PASS: 40 checks | 16:49:33-16:50:12 | cikis: ok
+HarvestBehaviorVerification | HarvestBehaviorVerification.RunBatch | PASS: 114 checks | 16:50:12-16:50:34 | cikis: ok
+SimpleResonanceVerification | SimpleResonanceVerification.RunBatch | PASS: 293 checks | 16:50:34-16:50:51 | cikis: ok
+ContactRefactorVerification | ContactRefactorVerification.RunBatch | PASS: 175 checks | 16:50:51-16:51:03 | cikis: ok
+OptionsMenuVerification | OptionsMenuVerification.RunBatch | PASS 22 rows | 16:51:03-16:51:22 | cikis: ok
+
+== KirilmaV1Verification beklentisi guncellendikten sonra yeniden (ilk calistirma yukarida FAIL)
+KirilmaV1Verification_guncel | KirilmaV1Verification.RunBatch | PASS: 189 checks | 16:51:33-16:52:11 | cikis: ok
+
+== Olcum araci denemesi (denge olcumu DEGIL): BalanceRunMeasurement, Run50_TakvimV1, 1 run, 13 round
+BalanceRuns_takvimsmoke | BalanceRunMeasurement.RunTakvimSmoke | DONE (ölçüm; işlev testi değil) | 16:52:11-16:52:37 | cikis: ok

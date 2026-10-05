@@ -8,6 +8,7 @@ name = sys.argv[1]
 checks = [int(x) for x in sys.argv[2:]] or [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
 rows = list(csv.reader(io.open(os.path.join(LOGS, 'BalanceRuns_%s.csv' % name), encoding='utf-8')))
 head = rows[0]
+import calendar_guard; calendar_guard.require_uniform(rows[1:], 'compare_groups.py')   # açık boss takvimli profil: açık 'desteklenmiyor' sonucu
 runs = OrderedDict()
 for r in rows[1:]:
     run = runs.setdefault(r[0], dict(rounds={}, outcome='?', end=0))

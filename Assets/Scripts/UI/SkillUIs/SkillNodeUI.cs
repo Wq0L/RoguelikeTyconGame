@@ -48,7 +48,7 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
     private int comicLayer;
     private RectTransform startLabel;
 
-    public bool ShowsStartingAccess => startLabel != null && startLabel.gameObject.activeSelf;
+    public bool ShowsStartingAccess => startLabel != null && startLabel.gameObject.activeSelf && !DemoSceneSettings.Blocks(node);
 
     // Also available before Awake, for nodes initially hidden by the tree.
     public SkillNodeSO Node => node;
@@ -195,7 +195,10 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         button.interactable = canUpgrade;
 
         UpdateTierDots(level, !grantedOnly);
-        RefreshStartLabel(startingAccess, !grantedOnly);
+        bool demoLocked = DemoSceneSettings.Blocks(node);
+        RefreshStartLabel(startingAccess || demoLocked, !grantedOnly);
+        if (startLabel != null && startLabel.gameObject.activeSelf)
+            startLabel.GetComponentInChildren<TextMeshProUGUI>().text = demoLocked ? "TAM SÜRÜMDE" : StartingAccessLabel;
 
 
         if (previousLevel == 0 && level == 1)
@@ -341,6 +344,14 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         content.SetName(node.nodeName);
         content.SetIcon(node.icon);
         content.SetSkillIcon(SkillIconCatalog.For(node));
+
+        if (DemoSceneSettings.Blocks(node))
+        {
+            content.SetLevel("DEMO KİLİDİ");
+            content.SetValues("Bu özellik tam sürümde açılır. Demoda satın alınamaz.");
+            content.SetCost("—");
+            return;
+        }
 
         if (SkillTreeManager.IsGrantedByProfile(node))
         {

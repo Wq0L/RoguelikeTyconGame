@@ -1,0 +1,46 @@
+PASS: 40 checks
+ok: Scene runs the former experiment profile Deney22_20
+ok: RoundManager does not create ElectricChargeManager; charge mode off
+ok: Prototip10: electric mode field is kill-trigger
+ok: Prototip10_DebugButce: electric mode field is kill-trigger
+ok: Uzmanlasma20: electric mode field is kill-trigger
+ok: UzunRun130: electric mode field is kill-trigger
+ok: Deney22_20: electric mode field is kill-trigger
+ok: Profile field set to Charge at runtime: charge mode still off (no component)
+ok: Stale ElectricChargeManager + Charge profile: Mode stays KillChance
+ok: Round 14 running
+ok: Electric chance 1 on A and B
+ok: Round still active after the frame wait (charge would have filled here)
+ok: After active round frames: no charge, no ring objects, discharge impossible
+ok: Round active for the electric checks
+ok: A: electric chance 0 after removing the tile
+ok: Chance 0: direct harvest fires no electric
+ok: A: electric chance back to 1 after re-applying the tile
+   tanı: A canı 4 → öldü True · tetik farkı 1 · atlanan farkı 0 · A şansı 1 · round açık True · durum Round · hasat olayı 1 · merkez canlı · B canlı · aktif elektrik 1
+ok: Guaranteed chance: 9 non-killing hits fired no electric
+ok: Killing direct hit → exactly one electric; each diagonal target hit once for 8 (8, 8)
+ok: One kill → one harvest reward (events 1, Gold +2, score +1)
+ok: Behavior coefficient applied once: 8 × 1,25 = 10
+ok: Lethal electric: one electric, 3 harvests, 3 rewards; electric kills do not chain (events 3, Gold +6)
+ok: Electric effect pool full (12)
+ok: Pool full: visual skipped, electric damage still applied
+ok: Electric triggers never reported as skipped
+ok: Electric visuals active before round end
+ok: Round end returns every electric visual
+ok: Next round started
+ok: Electric visuals active before run end
+ok: Run end returns every electric visual; no ring objects
+ok: Restart: fresh run, no charge component, no electric visuals
+ok: Profile still says Charge in memory after restart: charge mode stays off
+ok: Restarted run: kill-triggered electric works
+ok: Main menu: menu scene loaded, no charge component or ring objects
+ok: Back from menu on Uzmanlasma20: no charge component
+ok: Normal profile: kill-triggered electric works
+ok: Sample scene (erken · hasar 14 · aralık 3 sn · alan 1 · R5 canı): no charge component
+   --- his örneği: erken · hasar 14 · aralık 3 sn · alan 1 · R5 canı (3 seed × 45 sn; bot, insan verisi değil) ---
+   doğrudan hasat 54.7 [50–61] · elektrik tetik 9.3 [7–11] · elektrik öldürmesi 30.3 [19–38] · vuruş 14 [14–14] · tek vuruş (taze) %92 · elektrik görseli atlanan 0 · şarj halkası nesnesi 0
+ok: Sample scene (ileri · hasar 743 · aralık 2,03 sn · alan 1,1 · R40 canı): no charge component
+   --- his örneği: ileri · hasar 743 · aralık 2,03 sn · alan 1,1 · R40 canı (3 seed × 45 sn; bot, insan verisi değil) ---
+   doğrudan hasat 87 [83–91] · elektrik tetik 16.7 [13–21] · elektrik öldürmesi 33.7 [25–41] · vuruş 22 [22–22] · tek vuruş (taze) %100 · elektrik görseli atlanan 0 · şarj halkası nesnesi 0
+ok: No charge ring object appeared in any sample round
+ok: Electric fired in early and late samples

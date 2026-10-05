@@ -1,0 +1,45 @@
+PASS: 39 checks
+ok: Run50_XPV1 keeps Run50_ZincirV1's run: 50 rounds, 3 choices per level, boss calendar, quota and boss targets, boss pool, reward pool (chain included), round duration, starting economy
+ok: Its balance set is its own asset but shares core stats, plant health, skill tree, rarity XP, planter base stats, starting unlocks and the early behavior offer
+ok: Only the new balance set turns on the two base-card rules (summed XP cards, floored attack-interval card hidden)
+ok: XP table: the 140 authored costs are identical to the old table; the new table adds only the tail growth (s = 0.05), the old one has none
+ok: None of the 14 older profiles has the new rules: constant cost after the table, separate XP card multipliers, no card filter
+ok: Cost after the table (s = 0.025 / 0.05 / 0.10): continuous at level 140 (150000), C(N+1) = C(N) × (1 + s), equals C(N) × [1 + s × (L − N)] at every sampled level up to int.MaxValue (finite, no NaN), strictly increasing for every level up to 3000; the closed pending-level count matches level-by-level counting
+ok: A NaN, negative or infinite growth value is rejected by the table validation
+ok: Old table (growth 0): the cost stays 150000 after level 140, as before
+ok: Normal XP: an amount worth exactly 3 levels gives 3 levels in the same call, 0 XP left over, and 3 card choices per level (9 choices)
+ok: Large XP past the table (6e9): 1380 levels over 6 frames (at most 256 per frame), level 4 → 1384, 9306690 XP left, 4140 choices — identical to the level-by-level reference; every level counted once, no halt
+ok: No XP is lost (spent 5990693310 + stored 9306690); the next level now costs 9480000 XP (table end: 150000) — the cost keeps growing, there is no level cap in the tested range
+   izole ilerleme testi: XP doğrudan verildi; endless oynanış testi değildir
+ok: Open empty cells: the three offers are new tile cards from the unlocked pool, no banner; one slot is the early behavior offer (explosion / electric) while no behavior card has been taken
+ok: Locked tile types (tornado, boomerang, duplicate before their unlock) never appear in 120 rolled offers
+ok: Grid full: the offers are upgrades of existing tiles (the tile under a planter first), banner "GRİD DOLU · kart, seçtiğin tile'ı seviye atlatır"
+ok: Taking an upgrade card raises that tile's level and the next choice is offered in the same screen
+ok: Every tile at max level: the offers are permanent base-power cards, banner "TÜM TILE'LAR MAX · kart kalıcı Temel güç verir"
+ok: A rolled "XP kazancı" base card belongs to the summed group and keeps the old values (+2 / +3 / +4 / +5 %; this one +2 %)
+ok: The card says what will happen: "XP kazancı +2% / Toplanır: <color=#FF8577>+0%</color> → <color=#7CF08E>+2%</color>"
+ok: The second card shows the group total before and after: "XP kazancı +3% / Toplanır: <color=#FF8577>+2%</color> → <color=#7CF08E>+5%</color>"
+ok: Two XP cards (+2 % and +3 %) give ×1.05 from this card group — the sum (×1.05), not the product (×1.0506); the group is one modifier in the list
+ok: A separate XP source (×1.25, like a boss reward) multiplies with the group and is not summed into it; removing it leaves the group intact (group total +7 %)
+ok: The planter's harvest XP grows by the same group step (×1.0374) — the card reaches the real harvest XP path
+ok: Other base cards are unchanged: two damage cards (+3 %, +4 %) still multiply (×1.0712) and their text is the old one
+ok: Attack interval at the game's floor (0.1 s): the "Atak aralığı" base card (which would change nothing) is not offered in 180 offers; above the floor it is offered again
+ok: Five pending choices are offered one after another in the same panel (never closed and reopened in between); the panel shows the remaining choices: KALAN SEÇİM: 5 → KALAN SEÇİM: 4 → KALAN SEÇİM: 3 → KALAN SEÇİM: 2 → SON SEÇİM
+ok: Only after the last choice does the round move on (RoundEnd)
+   görüntü: Logs/T377_01_SeviyeHesaplaniyor.png
+ok: While the round end waits for pending level work the player sees "SEVİYE KAZANIMLARI HESAPLANIYOR / Level 6760"; it disappears when the work is done
+ok: Then the card screen opens with all 120000 choices of the 40000 levels — none decided early, none lost
+   görüntü: Logs/T377_02_KartPaneli_KalanSecim_ToplananXP.png
+ok: Boss round R6 with 2 pending card choices and a boss reward: the reward screen does not open and the next round cannot start until the last card is chosen; then the reward screen opens
+ok: After the boss reward the round closes normally
+ok: Two levels earned at 3 choices (6 pending); a +1 choice reward taken afterwards does not change them (still 6); the next level gives 4 (10 pending) — base choices stay 3
+   beklenen log: Level işleme durdu: bekleyen level sayısı (1.633e10) level sayacının int sınırını aşıyor; bu iş hiçbir karede bitmez. Saklı XP 1E+24 silinmedi; level 41387. Teknik sınır (P7 / endless sayı modeli).
+ok: Technical limit still reported with the growing cost: 1e24 XP would be 1.63e10 levels, more than the level counter holds — level work stops at once, the XP is kept, the reason is logged once
+ok: …and the round end does not wait for the halted work (RoundEnd)
+   teknik sınır: level sayacı int; sayaca sığan çok büyük iş kare başına 256 level ile işlenir (durdurulmaz)
+ok: Clearing the global modifier list (the run-end main-menu path) also empties the XP card group (it held +15 %): the next card starts from 0, not from the old total
+ok: New scene / new run: level 1, no stored XP, no pending level work or choices, no halt, the XP card group is empty, every base-power card is gone (stats and modifier list equal the first run's start), 3 choices per level again
+ok: Old profile (Run50_ZincirV1): after the table every level still costs 150000 XP (level 200, 75000 XP left = reference), 3 choices per level
+ok: Old profile: two XP base cards (+4 %, +3 %) still multiply (×1.0712), as two separate modifiers, with the old card text
+ok: Old profile: the attack-interval card is still offered at the floor (old behavior); the remaining-choice counter is shown in every profile
+ok: Every deliberately produced error was reported where expected (halted level work) and nothing else was logged as an error (0 unexpected)

@@ -7,6 +7,8 @@ using UnityEngine;
 // alt satırdaki kural / yaklaşan boss yazısı da aynı kimlikten renk alır.
 // Boss ritminde (Bölüm 3.4) iki koşul ayrı satırdadır: üstte "SEGMENT KOTASI", altında "BOSS HASADI" (boss round'unda sayaç,
 // hazırlık round'larında hedef). Alınan boss ödülleri en altta kısa liste olarak durur.
+// Level başına seçim hakkı bir ödülle değiştiyse (Bölüm 3.7.4) ödül listesinin üstünde tek satır yazar; değer değişmedikçe
+// yazı yeniden kurulmaz.
 // RoundUI kurar; sahneye kayıt gerekmez. Skoru saniyede 10 kez okur, değişmediyse yazıyı yeniden kurmaz.
 public sealed class QuotaHUD : MonoBehaviour
 {
@@ -25,9 +27,11 @@ public sealed class QuotaHUD : MonoBehaviour
     private RectTransform card, fill;
     private CanvasGroup group;
     private ComicPopupPlate fillPlate, paper;
-    private TextMeshProUGUI label, value, eventLine, specLine, bossLine, rewardList, rhythmLine;
-    private string shownEvent, shownSpec, shownBossLine, shownRewards, shownRhythm;
+    private TextMeshProUGUI label, value, eventLine, specLine, bossLine, rewardList, rhythmLine, choiceLine;
+    private string shownEvent, shownSpec, shownBossLine, shownRewards, shownRhythm, shownChoices;
     public string RhythmText => rhythmLine != null && rhythmLine.gameObject.activeSelf ? rhythmLine.text : null;
+    public string ChoiceText => choiceLine != null && choiceLine.gameObject.activeSelf ? choiceLine.text : null;
+    public string RewardListText => rewardList != null && rewardList.gameObject.activeSelf ? rewardList.text : null;
     private bool shownBoss;
     private SegmentEventSO shownBossIdentity;
     // Test ve doğrulama için: kartın şu anki kâğıt ve boss satırı rengi.
@@ -99,6 +103,12 @@ public sealed class QuotaHUD : MonoBehaviour
         rhythmLine.fontSizeMin = 12f;
         rhythmLine.fontSizeMax = 17f;
         rhythmLine.gameObject.SetActive(false);
+        choiceLine = CreateText("Level choices", 17f, TextAlignmentOptions.MidlineLeft, new Vector2(16f, -40f), new Vector2(Width - 32f, 22f), new Vector2(0f, 1f));
+        choiceLine.color = new Color32(54, 78, 128, 255);
+        choiceLine.enableAutoSizing = true;
+        choiceLine.fontSizeMin = 12f;
+        choiceLine.fontSizeMax = 17f;
+        choiceLine.gameObject.SetActive(false);
         rewardList = CreateText("Rewards", 15f, TextAlignmentOptions.TopLeft, new Vector2(16f, -40f), new Vector2(Width - 32f, RewardLineHeight), new Vector2(0f, 1f));
         rewardList.color = new Color32(70, 92, 40, 255);
         rewardList.enableAutoSizing = true;
@@ -170,12 +180,14 @@ public sealed class QuotaHUD : MonoBehaviour
         string bossText = bossMode ? BossLine(rounds, closed) : null;
         string rewards = RewardLines(out int rewardLines);
         string rhythmText = RhythmLine();
+        string choiceText = ChoiceLine(rounds);
 
         if (progress == shownProgress && target == shownTarget && left == shownLeft && state == shownState &&
-            boss == shownBoss && identity == shownBossIdentity && eventText == shownEvent && specText == shownSpec && bossText == shownBossLine && rewards == shownRewards && rhythmText == shownRhythm) return;
+            boss == shownBoss && identity == shownBossIdentity && eventText == shownEvent && specText == shownSpec && bossText == shownBossLine && rewards == shownRewards && rhythmText == shownRhythm &&
+            choiceText == shownChoices) return;
         bool reached = done && !wasDone && shownState >= 0 && rounds.IsRoundActive;
         shownProgress = progress; shownTarget = target; shownLeft = left; shownState = state; wasDone = done;
-        shownBoss = boss; shownBossIdentity = identity; shownEvent = eventText; shownSpec = specText; shownBossLine = bossText; shownRewards = rewards; shownRhythm = rhythmText;
+        shownBoss = boss; shownBossIdentity = identity; shownEvent = eventText; shownSpec = specText; shownBossLine = bossText; shownRewards = rewards; shownRhythm = rhythmText; shownChoices = choiceText;
 
         // Boss ritminde kota hep "segment kotası"dır; boss'un kendi hedefi alt satırda ayrı yazılır.
         string name = bossMode ? "SEGMENT KOTASI" : boss ? "BOSS KOTASI" : "KOTA";
@@ -207,6 +219,14 @@ public sealed class QuotaHUD : MonoBehaviour
             rhythmLine.rectTransform.anchoredPosition = new Vector2(16f, y);
             y -= 22f;
         }
+        // Level başına seçim hakkı (bir ödül değiştirdiyse): yeni kazanılan level'ların getireceği seçim sayısı.
+        choiceLine.gameObject.SetActive(choiceText != null);
+        if (choiceText != null)
+        {
+            choiceLine.text = choiceText;
+            choiceLine.rectTransform.anchoredPosition = new Vector2(16f, y);
+            y -= 22f;
+        }
         // Alınan boss ödülleri: ad, adet ve toplam etki.
         rewardList.gameObject.SetActive(rewards != null);
         if (rewards != null)
@@ -236,7 +256,7 @@ public sealed class QuotaHUD : MonoBehaviour
     private static string BossLine(RoundManager rounds, bool closed)
     {
         int segment = rounds.QuotaSegment;
-        if (rounds.Profile == null || !rounds.Profile.HasBoss(segment)) return null;
+        if (!rounds.Calendar.HasBoss(segment)) return null;
         long target = rounds.BossTargetFor(segment);
         bool bossRound = rounds.IsBossRound(rounds.CurrentRound) && (rounds.IsRoundActive || closed);
         if (!bossRound)
@@ -263,6 +283,19 @@ public sealed class QuotaHUD : MonoBehaviour
         return rhythmCached = rhythm.Ready
             ? "<color=#B26A00>HASAT RİTMİ HAZIR · sıradaki vuruş güçlü</color>"
             : $"<color=#5B4A2E>Hasat Ritmi {rhythm.Count} / {threshold}</color>";
+    }
+
+    // "Level başına seçim: 4 (temel 3) · yeni kazanılan level'lar". Hak temel değerdeyse satır yok.
+    // İki sayı değişmedikçe aynı metin döner (HUD saniyede 10 kez sorar).
+    private int choiceShown = -1, choiceBase = -1;
+    private string choiceCached;
+
+    private string ChoiceLine(RoundManager rounds)
+    {
+        int choices = rounds.ChoicesPerLevel, baseChoices = rounds.BaseChoicesPerLevel;
+        if (choices == choiceShown && baseChoices == choiceBase) return choiceCached;
+        choiceShown = choices; choiceBase = baseChoices;
+        return choiceCached = BossRewardText.LevelChoiceLine(choices, baseChoices);
     }
 
     private string RewardLines(out int lines)

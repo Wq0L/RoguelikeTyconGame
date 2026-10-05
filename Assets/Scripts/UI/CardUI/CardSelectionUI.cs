@@ -67,6 +67,7 @@ public class CardSelectionUI : MonoBehaviour
         SetBanner(!gridFull ? null : upgrades.Count > 0
             ? "GRİD DOLU · kart, seçtiğin tile'ı seviye atlatır"
             : "TÜM TILE'LAR MAX · kart kalıcı Temel güç verir");
+        SetRemaining(RoundManager.Instance != null ? RoundManager.Instance.PendingCardSelections : 0);
         int upgradeIndex = 0;
         // Erken davranış teklifi (Bölüm 3.6): bir slot davranış adaylarından gelir; hangi slot olduğu ve kartın kendisi rastgeledir.
         int behaviorSlot = gridFull ? -1 : FirstBehaviorSlot();
@@ -219,15 +220,28 @@ public class CardSelectionUI : MonoBehaviour
         ("XP kazancı", new[] { StatType.XPGainMultiplier }, StatTarget.Planter, 1f),
     };
 
+    // Temel güç "XP kazancı" kartı: profil istiyorsa (RunBalanceSO.additiveBaseXpCards) birikim grubuna eklenir (toplanır).
+    public static bool IsSummedBaseStat(StatType stat) => stat == StatType.XPGainMultiplier && RunBalanceSO.AdditiveBaseXpCards;
+
+    // Kart artık hiçbir şey değiştirmiyor mu: saldırı aralığı oyunun alt sınırında (yalnız profil isterse süzülür).
+    private static bool IsFloored(StatType stat) => stat == StatType.AttackSpeed && RunBalanceSO.HideFlooredBaseStats &&
+        StatManager.Instance.GetFinalStat(StatType.AttackSpeed, StatTarget.Player) <= PlayerController.MinAttackInterval;
+
+    private readonly List<int> baseStatPool = new();
+
     private TileCardOffer RollBaseStat()
     {
         TileRarity rarity = RollRarityTier();
         float amount = rarity switch { TileRarity.Legendary => .05f, TileRarity.Epic => .04f, TileRarity.Rare => .03f, _ => .02f };
-        var pick = BaseStats[Random.Range(0, BaseStats.Length)];
+        // İşlevsiz seçenek süzülmüyorsa havuz bütün listedir: zar eskisiyle aynıdır.
+        baseStatPool.Clear();
+        for (int i = 0; i < BaseStats.Length; i++)
+            if (!IsFloored(BaseStats[i].stats[0])) baseStatPool.Add(i);
+        var pick = BaseStats[baseStatPool[Random.Range(0, baseStatPool.Count)]];
         var modifiers = new List<StatModifier>();
         foreach (StatType stat in pick.stats)
             modifiers.Add(new StatModifier { statType = stat, target = pick.target, operation = ModifierOperation.MorePercent, value = amount * pick.sign });
-        return TileCardOffer.BaseStat(pick.name, rarity, modifiers);
+        return TileCardOffer.BaseStat(pick.name, rarity, modifiers, IsSummedBaseStat(pick.stats[0]));
     }
 
     private TextMeshProUGUI banner;
@@ -273,6 +287,54 @@ public class CardSelectionUI : MonoBehaviour
         banner.transform.parent.SetAsLastSibling();
     }
 
+    private TextMeshProUGUI remaining;
+    // Son gösterilen kalan seçim hakkı (ekrandaki dahil). Test ve ölçüm için.
+    public int ShownRemaining { get; private set; }
+    public string RemainingText => remaining != null && remaining.transform.parent.gameObject.activeSelf ? remaining.text : null;
+
+    // Kart ekranının altında (atlama düğmesinin altında) kalan seçim hakkı: ekrandaki seçim dahil, bu round sonunda kaç seçim daha
+    // yapılacak. Kart dizilimine girmez; her seçimden sonra yenilenir (panel kapanıp açılmaz).
+    private void SetRemaining(int count)
+    {
+        ShownRemaining = count;
+        if (count <= 0)
+        {
+            if (remaining != null) remaining.transform.parent.gameObject.SetActive(false);
+            return;
+        }
+        if (remaining == null)
+        {
+            var plate = new GameObject("Remaining Choices", typeof(RectTransform), typeof(LayoutElement));
+            plate.layer = gameObject.layer;
+            plate.GetComponent<LayoutElement>().ignoreLayout = true;
+            var rect = (RectTransform)plate.transform;
+            rect.SetParent(transform, false);
+            rect.anchorMin = rect.anchorMax = new Vector2(.5f, 0f);
+            rect.pivot = new Vector2(.5f, 0f);
+            rect.anchoredPosition = new Vector2(0f, 26f);
+            rect.sizeDelta = new Vector2(460f, 50f);
+            AddPlate(rect, "Ink", new Color32(54, 39, 54, 255), 0f);
+            AddPlate(rect, "Face", new Color32(255, 244, 214, 255), 3f);
+            var label = new GameObject("Label", typeof(RectTransform), typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
+            label.gameObject.layer = gameObject.layer;
+            label.rectTransform.SetParent(rect, false);
+            label.rectTransform.anchorMin = Vector2.zero;
+            label.rectTransform.anchorMax = Vector2.one;
+            label.rectTransform.offsetMin = new Vector2(16f, 4f);
+            label.rectTransform.offsetMax = new Vector2(-16f, -4f);
+            FeelOverlay.Theme?.StylePopupText(label);
+            label.alignment = TextAlignmentOptions.Center;
+            label.enableAutoSizing = true;
+            label.fontSizeMin = 16f;
+            label.fontSizeMax = 28f;
+            label.raycastTarget = false;
+            remaining = label;
+        }
+        remaining.text = count == 1 ? "SON SEÇİM" : $"KALAN SEÇİM: {count}";
+        remaining.transform.parent.gameObject.SetActive(true);
+        remaining.transform.parent.SetAsLastSibling();
+    }
+
     private static void AddPlate(RectTransform parent, string name, Color color, float inset)
     {
         var rect = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer)).GetComponent<RectTransform>();
@@ -295,10 +357,15 @@ public class CardSelectionUI : MonoBehaviour
         if (GameManager.Instance.CurrentState != GameStates.CardSelection)
             return;
 
+        bool applied = true;
         if (offer.IsUpgrade)
-            ProgressionManager.Instance.ApplyUpgrade(offer.UpgradeTarget, offer.Rarity);
+            applied = ProgressionManager.Instance.ApplyUpgrade(offer.UpgradeTarget, offer.Rarity);
         else if (offer.IsBaseStat)
-            foreach (StatModifier mod in offer.Modifiers) StatManager.Instance.AddGlobalModifier(mod);
+            foreach (StatModifier mod in offer.Modifiers)
+            {
+                if (offer.IsSummed) StatManager.Instance.AddToSummedGroup(mod);
+                else StatManager.Instance.AddGlobalModifier(mod);
+            }
         else
         {
             if (!modifier.IsAvailableInCardPool)
@@ -306,8 +373,10 @@ public class CardSelectionUI : MonoBehaviour
                 RefreshCards();
                 return;
             }
-            ProgressionManager.Instance.ApplyRandomEligibleCell(modifier, offer.Modifiers);
+            applied = ProgressionManager.Instance.ApplyRandomEligibleCell(modifier, offer.Modifiers);
         }
+        // Alınan kart sayacı: seçim hakkından ve ekrandaki aday sayısından ayrı tutulur (atlanan seçim sayılmaz).
+        if (applied) RoundManager.Instance.RecordCardTaken();
         currentCards.Clear(); // The displayed offer cannot be consumed twice.
 
         bool hasMore = RoundManager.Instance.OnCardSelectionComplete();

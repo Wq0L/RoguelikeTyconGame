@@ -1,0 +1,99 @@
+PASS: 88 checks
+ok: Batch mode without an explicit folder: memory only (the player's save is not read)
+ok: Batch default did not write the player's save: C:/Users/User/AppData/LocalLow/DefaultCompany/VerificationProject\meta.json
+ok: Catalog: 3 farmers, 2 scythes, 1 quest (Geniş Orak and the rest are not listed)
+ok: Stable unique ids: bahcivan, tuccar, secici_yetistirici, standart, dar_kesim
+ok: Defaults Bahçıvan + Standart: neutral and always open
+ok: Open at start: Bahçıvan, Tüccar, Standart, Dar Kesim; Seçici Yetiştirici needs the 5-Legendary quest
+ok: Test values from the 3.1 plan (Tüccar ×1,25 / ×0,9; Dar Kesim ×1,4 / radius ×0,75; Seçici +15 points / spawn ×1,15)
+ok: No save: Bahçıvan + Standart, no fallback flag
+ok: Open / locked state
+ok: Selection written: C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\MetaSaveTest\meta.json
+ok: Reload from disk: Tüccar + Dar Kesim remembered
+ok: File has version and stable ids
+ok: Locked id in the save → Bahçıvan (scythe kept), fallback flagged
+ok: Unknown / deleted / empty ids → Bahçıvan + Standart; unknown unlocked id kept, not deleted
+ok: Backup exists after replacing writes
+ok: Corrupt file + backup: loaded from backup, corrupt file kept aside
+ok: Main file restored from the backup
+ok: Empty/corrupt file without backup: defaults, nothing crashes
+ok: Newer save version: read, never overwritten
+ok: Carry: 10 × score 1 × 0,9 = 9; 4 × 2 Stone × 1,25 = 10 (per-reward rounding would give 8)
+ok: Menu scene
+ok: Play opens the start selection (main menu panel hidden, no scene load yet)
+ok: Still in the menu until the run is started
+ok: Last valid selection pre-selected: Tüccar + Dar Kesim
+ok: Cards: Bahçıvan, Tüccar, Seçici Yetiştirici | Standart, Dar Kesim
+ok: Locked card shows the quest and progress: KİLİTLİ · GÖREV/Tek run'da 5 Legendary bitki hasat et/En iyi run: 0 / 5
+ok: Locked card cannot be selected (click and direct request)
+ok: Click selects Bahçıvan
+ok: Click Tüccar; summary: Seçim: Tüccar + Dar Kesim
+ok: Card texts from asset values
+ok: Dar Kesim text makes no target-count or area claim: + Doğrudan vuruş hasarı ×1,40/davranış hasarı değişmez/− Vuruş yarıçapı ×0,75/imleç halkası küçülür
+   Tüccar: + Hasat kaynağı ×1,25/yalnız hasattan gelen Gold · Iron · Stone/− Hasat skoru ×0,90/kota ilerlemesi de bununla sayılır
+   Dar Kesim: + Doğrudan vuruş hasarı ×1,40/davranış hasarı değişmez/− Vuruş yarıçapı ×0,75/imleç halkası küçülür
+   Seçici Yetiştirici: + Nadirlik bonusu +15 puan/nadir bitkiler daha sık çıkar/− Üretim aralığı ×1,15/bitkiler daha seyrek çıkar
+ok: Selected cards marked
+saved Logs/StartSelection_Locked.png
+ok: Start → GameScene, Run50_Referans, run setup
+ok: Run uses Tüccar + Dar Kesim (one owned modifier: radius)
+ok: Effects: radius 0,75 · direct ×1,4 · harvest resources ×1,25 · score ×0,9
+ok: Starting money not scaled by Tüccar: 80 / 0 / 0
+ok: 10 real Grass harvests (Common, 2 Gold, score 1 each)
+ok: Tüccar: 10 × 2 Gold × 1,25 = 25 (carry keeps the bonus; without it 20)
+ok: Tüccar: 10 × score 1 × 0,9 = 9 (carry keeps the cost; per-harvest rounding would give 10)
+ok: Direct resource add not scaled (+7)
+ok: Sell refund not scaled: +10 Gold
+ok: Level-up at round 12 end opens the card screen
+ok: Card skip reward not scaled: +4 (formula 4)
+ok: Electric source A and diagonal target B (B HP 98 at R50)
+ok: Direct kill of A triggered electric once
+ok: Electric on B = 40 × 0.85 (Usta Biçici behavior) = 34: Dar Kesim ×1,4 not applied to behaviors
+ok: Direct hit on B = 40 × 0.976 × 1,25 (Usta) × 1,4 (Dar Kesim) = 68: each multiplier once, one rounding
+ok: Dar Kesim in the scene: radius 0.75; plants hit per swing on a full 3×3 (center / between two cells / corner) (1, 2, 4)
+saved Logs/DarKesim_Radius.png
+ok: Grape is Legendary (30 Gold)
+ok: Before: progress 0, Seçici locked
+ok: Direct kill + electric kill = 2 Legendary; still locked
+ok: Progress is buffered outside the synchronous harvest path
+ok: Buffered best progress persists on flush (2)
+ok: 4 Legendary: still locked
+ok: Duplicate: reward doubled (raw 60 Gold, paid 75 with ×1,25)
+ok: 5th Legendary (with double reward) counted once → quest done, Seçici Yetiştirici unlocked
+ok: Unlock saved to disk immediately
+ok: More Legendary harvests: no second completion, save unchanged
+   hasatlar: 5 doğrudan, 3 elektrik
+ok: Changing the saved selection mid-run does not change the active build
+ok: Run lost at round 50 (quota)
+ok: Run end screen: KOTA TUTMADI/Round 50 · segment skoru 0 / 280 (gereken kota)/Başlangıç: Tüccar · Dar Kesim/Harvest Score: 733/Kalıcı olarak açıldı: Seçici Yetiştirici
+saved Logs/RunEnd_Unlocked.png
+ok: Restart 1: same combination, effects applied once (radius 0,75, direct ×1,4)
+ok: Restart 1: single-run counter reset
+ok: Restart 1: unlock read back from disk
+ok: Restart 2: same combination, effects applied once (radius 0,75, direct ×1,4)
+ok: Restart 2: single-run counter reset
+ok: Restart 2: unlock read back from disk
+ok: Restart 3: same combination, effects applied once (radius 0,75, direct ×1,4)
+ok: Restart 3: single-run counter reset
+ok: Restart 3: unlock read back from disk
+ok: Restart 4: same combination, effects applied once (radius 0,75, direct ×1,4)
+ok: Restart 4: single-run counter reset
+ok: Restart 4: unlock read back from disk
+ok: Main menu: no active loadout, multipliers back to 1
+ok: Losing and returning to the menu does not revoke the unlock
+ok: Seçici Yetiştirici card unlocked and selectable
+ok: Selected Seçici Yetiştirici + Standart
+saved Logs/StartSelection_Unlocked.png
+ok: Seçici Yetiştirici + Standart: two planter modifiers, player radius and damage unchanged
+ok: GrassPlanter 1x1 (placed before the round): rarity 0 → 15, spawn 5 → 5.75 s
+ok: GrassPlanter 2x2 (placed mid-round): rarity 0 → 15, spawn 5 → 5.75 s
+ok: Before cleanup: loadout rarity + an identical foreign copy, loadout spawn
+ok: Cleanup removed only the loadout's own modifiers (identical foreign copy and other modifiers stay)
+ok: Re-apply adds exactly the loadout's two modifiers
+ok: After StatManager clears everything, loadout cleanup removes nothing and logs no warning
+ok: Bahçıvan + Standart: no modifiers, all multipliers 1 (same as before Bölüm 3.3)
+ok: Neutral score scaling is the identity
+ok: Standart in the scene: radius 1,00; plants hit per swing (5, 6, 4) (Dar Kesim (1, 2, 4))
+   yarıçap bedeli (sahne, 3×3 dolu tarla, gerçek AttackInRadius; merkez / iki hücre arası / köşe): Standart (5, 6, 4) · Dar Kesim (1, 2, 4)
+ok: Player's real save untouched by the whole test
+saved Logs/Standart_Radius.png

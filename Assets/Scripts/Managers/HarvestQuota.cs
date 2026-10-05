@@ -3,6 +3,8 @@ using System;
 // Hasat Kotası: run, N round'luk segmentlere bölünür. Segmentte kazanılan Harvest Score segmentin son round'unda
 // kotayı geçmeli, yoksa run biter. Kota her segmentte aynı oranda büyür; tarla büyümeyi bırakınca kota onu yakalar.
 // RoundManager, arayüz ve run simülatörü aynı hesabı kullanır.
+// Buradaki segment formülleri eşit uzunluklu dönemler içindir; oyun dönem ve boss sorularını RunCalendar'a sorar
+// (açık boss takvimi olan profillerde dönemler eşit değildir).
 public static class HarvestQuota
 {
     public const int DefaultSegmentRounds = 5;
@@ -13,6 +15,8 @@ public static class HarvestQuota
     public const float DefaultGrowth = 1.45f;
 
     public static int SegmentOf(int round, int segmentRounds) => (Math.Max(1, round) - 1) / Math.Max(1, segmentRounds) + 1;
+
+    public static int SegmentStart(int segment, int segmentRounds) => (Math.Max(1, segment) - 1) * Math.Max(1, segmentRounds) + 1;
 
     public static int SegmentEnd(int segment, int segmentRounds) => Math.Max(1, segment) * Math.Max(1, segmentRounds);
 

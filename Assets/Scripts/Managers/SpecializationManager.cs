@@ -85,7 +85,7 @@ public sealed class SpecializationManager : MonoBehaviour, IRoundChoice
         RunProfileSO profile = rounds.Profile;
         if (resolved || IsPending || profile == null || profile.specializationAfterSegment <= 0 || profile.specializationOptions.Count == 0) return;
         int round = rounds.CurrentRound;
-        if (!rounds.IsQuotaSegmentEnd(round) || round / rounds.QuotaSegmentRounds != profile.specializationAfterSegment) return;
+        if (!rounds.IsQuotaSegmentEnd(round) || rounds.Calendar.PeriodOf(round) != profile.specializationAfterSegment) return;
         // Kota tutmadıysa ödül yok; run'ın son round'uysa kullanılamayacak seçim açılmaz.
         if (rounds.RunFailed || round >= rounds.MaxRounds) return;
         IsPending = true;
@@ -142,7 +142,7 @@ public sealed class HarvestResourceScale
         int i = (int)type;
         raw[i] += reward;
         long due = (raw[i] * rate + Scale / 2) / Scale;
-        int give = (int)(due - paid[i]);
+        int give = NumericSafety.ToInt((double)(due - paid[i]), 0, NumericSite.Resource);
         paid[i] = due;
         return give;
     }

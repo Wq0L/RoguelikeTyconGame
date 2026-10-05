@@ -1,0 +1,113 @@
+PASS: 71 checks
+ok: Run50_OdulAsamalariV1 is a separate profile with its own (valid) reward pool asset
+ok: Everything except the reward pool is Takvim V1's: 15 boss dates, quota and boss targets, balance set (same asset), boss pool, 3 choices per level, start budget, 45 s rounds
+ok: Staged pool data: stages ERKEN (from R1), ORTA (from R12), GÜÇLÜ (from R22); 3 cards; distance weights 1 / 0,60 / 0,35; one slot reserved for the current stage
+ok: ERKEN stage rewards: Keskin Bıçak, Hızlı Bilek, Bereketli Toprak, Nadir Tohum, Bilgi Filizi
+ok: ORTA stage rewards: Kıvılcım, Ağır Darbe, Kritik Göz, Altın Hedef, Yıkım Gücü
+ok: GÜÇLÜ stage rewards: Geniş Savuruş, Canavar Kesimi, Fırtına Bileği, Artçı Patlama, Çifte Akım, Hasat Ritmi
+ok: The 16 rewards are the very same assets as in Kırılma V1's pool (referenced, not copied): effects, coefficients, stack limits and base weights are unchanged
+ok: Endless: a separate stage field exists as data only (name SINIRSIZ, no rewards); no round opens it — rounds past 50 still resolve to the last main-run stage
+ok: Stage boundaries in data: R11 erken · R12 orta · R21 orta · R22 güçlü (ranges 1–11, 12–21, 22–50)
+ok: All 15 boss dates resolve to the right stage: R3:ERKEN R6:ERKEN R10:ERKEN R13:ORTA R16:ORTA R20:ORTA R23:GÜÇLÜ R26:GÜÇLÜ R30:GÜÇLÜ R33:GÜÇLÜ R36:GÜÇLÜ R40:GÜÇLÜ R43:GÜÇLÜ R46:GÜÇLÜ R50:GÜÇLÜ
+ok: First boss of each stage comes from the run calendar: erken R3, orta R13, güçlü R23
+ok: Card notes in the staged pool never name a round; the reward assets keep their old notes and old minRound / maxRound (used only by the old pools)
+   açıklama · Bilgi Filizi: eski "Hasattan gelen XP. Round 30 boss'undan sonra çıkmaz." → yeni havuz "Hasattan gelen XP."
+   açıklama · Canavar Kesimi: eski "Yalnız kendi vuruşun. Round 25 boss'undan sonra çıkar; bir kez alınır." → yeni havuz "Yalnız kendi vuruşun. Bir kez alınır."
+   açıklama · Fırtına Bileği: eski "Round 25 boss'undan sonra çıkar; bir kez alınır. Taban 0,10 sn." → yeni havuz "Bir kez alınır. Taban 0,10 sn."
+ok: Old pools are untouched flat pools (Kırılma V1 / Takvim V1: 13 rewards + 3 breakthrough rewards; Denge V1; Boss Prototip)
+ok: Menu item and validator: Tools/Run Profili/Run50 Ödül Aşamaları V1 · 50 round (aşamalı boss ödülleri prototipi)
+   hatalı veri · aynı ödül iki aşamada (Keskin Bıçak erken + güçlü) → "'Keskin Bıçak' ödülü iki kez yazılmış (ERKEN ve GÜÇLÜ): bir ödül yalnız bir aşamada olabilir"
+   hatalı veri · aynı ödül aynı aşamada iki kez → "'Kıvılcım' ödülü iki kez yazılmış (ORTA ve ORTA): bir ödül yalnız bir aşamada olabilir"
+   hatalı veri · aynı kimlik, kopya asset (ayrı stack) → "'keskin_bicak' kimlikli ödül iki ayrı asset olarak yazılmış (ERKEN ve GÜÇLÜ): aynı etki ayrı stack olarak çoğaltılamaz"
+   hatalı veri · ana aşamadaki ödül sınırsız aşamada da → "'Hasat Ritmi' ödülü iki kez yazılmış (GÜÇLÜ ve SINIRSIZ): bir ödül yalnız bir aşamada olabilir"
+   hatalı veri · aşamalar sırasız (orta R12, güçlü R8) → "aşamalar sıralı değil: GÜÇLÜ aşamasının ilk round'u 8, bir önceki aşamanınki 12"
+   hatalı veri · iki aşama aynı round'da başlıyor → "aşamalar sıralı değil: GÜÇLÜ aşamasının ilk round'u 12, bir önceki aşamanınki 12"
+   hatalı veri · ilk aşama Round 4'te başlıyor → "ilk aşama Round 1'de başlamalı (şu an ilk round'u 4): öncesindeki boss'ların aşaması olmaz"
+   hatalı veri · aşama run'dan sonra başlıyor (R60) → "GÜÇLÜ aşamasının ilk round'u 60; run 50 round (aşama hiç açılmaz)"
+   hatalı veri · boş ödül satırı → "ERKEN aşamasında boş ödül satırı var"
+   hatalı veri · eski düz liste de dolu → "aşamalı havuzda eski 'rewards' / 'breakthroughs' listeleri boş olmalı (ödüller yalnız aşamalarda yazılır)"
+   hatalı veri · ağırlık çarpanı eksik (2 değer, 3 aşama) → "aşama uzaklığı ağırlıklarında 2 değer var, 3 aşama için 3 değer gerekir"
+   hatalı veri · negatif ağırlık çarpanı → "aşama uzaklığı ağırlığı negatif (1. değer)"
+   hatalı veri · aşama adı boş → "2. aşamanın adı boş"
+ok: 13 invalid staged pools are each rejected with a message naming the problem (nothing is corrected silently)
+ok: Valid variants pass: the pool as is; an endless stage with its own reward; no reserved slot; a distance weight of 0
+ok: Tools > Run Profili refuses a profile whose staged pool is invalid: error logged, selection unchanged (temporary assets removed)
+ok: The valid Ödül Aşamaları V1 profile is selected through the same menu path
+ok: GameScene runs Run50_OdulAsamalariV1 with its staged pool; no offer and no stage is pending at run start
+ok: 6300 offers over 7 fixed field states × 15 boss dates × 60 seeds all follow the rule: no duplicate card, nothing from a stage that is not open, every card eligible, at least one card from the current stage whenever it has an eligible reward, card count = min(3, candidates)
+ok: Building these offers never touched the gameplay random stream (checked before / after each of 6825 builds); all 16 rewards appeared somewhere
+ok: Erken boss'ları (R3, R6, R10), 300 seed: only the five erken rewards ever appear — no orta or güçlü reward leaks in
+ok: R10 → R13: the orta stage opens at R13 (orta and erken rewards appear); no güçlü reward appears at R13, R16 or R20
+ok: R20 → R23: the güçlü stage opens at R23 — Canavar Kesimi, Fırtına Bileği, Artçı Patlama, Çifte Akım, Hasat Ritmi and Geniş Savuruş first appear there; all 16 rewards are candidates up to R50
+ok: Bilgi Filizi stays a candidate up to R50 in the staged pool (its old maxRound 30 is not read there)
+ok: Reserved slot at R23 (400 seeds): with it every offer holds a güçlü card (400 / 400), without it 372 / 400; the güçlü card is not pinned to one screen position (first card güçlü in 278, third card güçlü in 275 offers)
+   oyunun rastgelelik akışı · tarlaya saksı koymak: değişti (saksı kurulumu kendi zarını atıyor) · ödül almak: değişmedi
+ok: Field without any behavior and not running low: Kıvılcım, Yıkım Gücü, Artçı Patlama, Çifte Akım and Bereketli Toprak are never offered, even at R50 (200 seeds)
+ok: Explosion layout: Kıvılcım and Yıkım Gücü from R13, Artçı Patlama from R23 (not at R20); Çifte Akım never (no electric planter)
+ok: Electric layout: Çifte Akım from R23; Artçı Patlama never (no explosion planter)
+ok: Bereketli Toprak is offered only while the field runs low (last round occupancy 0,50 → offered; 0,75 → never), also when it would be the current-stage pick
+ok: Stat ceiling: with the attack interval at its floor (0,10 s) Hızlı Bilek and Fırtına Bileği are not offered
+ok: Stat ceiling: the only behavior chance is already 100 % → Kıvılcım is not offered (Yıkım Gücü still is)
+ok: Stack limit: Keskin Bıçak is still offered at 2 / 3, cannot be taken a fourth time, and is never offered again once it is at 3 / 3
+ok: The reward keeps one identity across stages: a single entry with 3 stacks and one combined effect (no separate copy per stage)
+ok: Current stage exhausted at R13 (no eligible orta reward): the offer falls back to the lower stage — still three different cards, all erken
+ok: No candidate: the offer is empty (0 cards), never padded
+ok: One candidate: one card
+ok: Two candidates: two different cards (the same reward is not shown twice to reach three)
+ok: Tam run: starts clean in RunSetup (Run50_OdulAsamalariV1; no offer, no stage, no reward, no reward effect); field: doğrudan vuruş (davranışsız saksılar)
+ok: Tam run · R3: "ERKEN AŞAMA · BOSS ÖDÜLÜ" / "Boss geçildi · yalnız biri alınır · run sonuna kadar geçerli · etkisi Round 4 ve sonrası" — kartlar: Bilgi Filizi [ERKEN AŞAMA · Round 3 boss'undan itibaren] | Hızlı Bilek [ERKEN AŞAMA · Round 3 boss'undan itibaren] | Keskin Bıçak [ERKEN AŞAMA · Round 3 boss'undan itibaren]
+   görüntü: Logs/T373_01_R3_ErkenOduller.png
+   R3 ERKEN: Bilgi Filizi [ERKEN] | Hızlı Bilek [ERKEN] | Keskin Bıçak [ERKEN] → alınan: Bilgi Filizi
+   R6 ERKEN: Nadir Tohum [ERKEN] | Hızlı Bilek [ERKEN] | Keskin Bıçak [ERKEN] → alınan: Nadir Tohum
+ok: Tam run · R10: "ERKEN AŞAMA · BOSS ÖDÜLÜ" / "Boss geçildi · yalnız biri alınır · run sonuna kadar geçerli · etkisi Round 11 ve sonrası" — kartlar: Hızlı Bilek [ERKEN AŞAMA · Round 3 boss'undan itibaren] | Nadir Tohum [ERKEN AŞAMA · Round 3 boss'undan itibaren] | Keskin Bıçak [ERKEN AŞAMA · Round 3 boss'undan itibaren]
+   R10 ERKEN: Hızlı Bilek [ERKEN] | Nadir Tohum [ERKEN] | Keskin Bıçak [ERKEN] → alınan: Hızlı Bilek
+   R13 kartı: Çapraz Elektrik (saksının altına düştü)
+ok: R13 (first orta boss): the offer was prepared after the level cards and sees the behavior the first card brought — it offers Kıvılcım; cards: Altın Hedef, Bilgi Filizi, Kıvılcım
+ok: Tam run · R13: "ORTA AŞAMA · BOSS ÖDÜLÜ" / "Boss geçildi · yalnız biri alınır · run sonuna kadar geçerli · etkisi Round 14 ve sonrası" — kartlar: Altın Hedef [ORTA AŞAMA · Round 13 boss'undan itibaren] | Bilgi Filizi [ERKEN AŞAMA · Round 3 boss'undan itibaren] | Kıvılcım [ORTA AŞAMA · Round 13 boss'undan itibaren]
+   görüntü: Logs/T373_02_R13_OrtaOduller.png
+   R13 ORTA: Altın Hedef [ORTA] | Bilgi Filizi [ERKEN] | Kıvılcım [ORTA] → alınan: Altın Hedef
+   R16 ORTA: Yıkım Gücü [ORTA] | Nadir Tohum [ERKEN] | Ağır Darbe [ORTA] → alınan: Yıkım Gücü
+   R20 ORTA: Nadir Tohum [ERKEN] | Yıkım Gücü [ORTA] | Altın Hedef [ORTA] → alınan: Nadir Tohum
+ok: Tam run · R23: "GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ" / "Boss geçildi · yalnız biri alınır · run sonuna kadar geçerli · etkisi Round 24 ve sonrası" — kartlar: Hasat Ritmi [GÜÇLÜ AŞAMA · Round 23 boss'undan itibaren] | Canavar Kesimi [GÜÇLÜ AŞAMA · Round 23 boss'undan itibaren] | Ağır Darbe [ORTA AŞAMA · Round 13 boss'undan itibaren]
+   görüntü: Logs/T373_03_R23_GucluOduller.png
+   R23 GÜÇLÜ: Hasat Ritmi [GÜÇLÜ] | Canavar Kesimi [GÜÇLÜ] | Ağır Darbe [ORTA] → alınan: Canavar Kesimi
+   R26 GÜÇLÜ: Hızlı Bilek [ERKEN] | Fırtına Bileği [GÜÇLÜ] | Çifte Akım [GÜÇLÜ] → alınan: Hızlı Bilek
+   R30 GÜÇLÜ: Yıkım Gücü [ORTA] | Altın Hedef [ORTA] | Fırtına Bileği [GÜÇLÜ] → alınan: Yıkım Gücü
+   R33 GÜÇLÜ: Keskin Bıçak [ERKEN] | Kıvılcım [ORTA] | Fırtına Bileği [GÜÇLÜ] → alınan: Keskin Bıçak
+   R36 GÜÇLÜ: Çifte Akım [GÜÇLÜ] | Geniş Savuruş [GÜÇLÜ] | Fırtına Bileği [GÜÇLÜ] → alınan: Çifte Akım
+   R40 GÜÇLÜ: Geniş Savuruş [GÜÇLÜ] | Kıvılcım [ORTA] | Fırtına Bileği [GÜÇLÜ] → alınan: Geniş Savuruş
+   R43 GÜÇLÜ: Geniş Savuruş [GÜÇLÜ] | Yıkım Gücü [ORTA] | Altın Hedef [ORTA] → alınan: Geniş Savuruş
+   R46 GÜÇLÜ: Hızlı Bilek [ERKEN] | Kritik Göz [ORTA] | Fırtına Bileği [GÜÇLÜ] → alınan: Hızlı Bilek
+ok: Tam run · R50: "GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ" / "Son boss geçildi · yalnız biri alınır · run burada biter · ödül run sonu listesine yazılır" — kartlar: Artçı Patlama [GÜÇLÜ AŞAMA · Round 23 boss'undan itibaren] | Hasat Ritmi [GÜÇLÜ AŞAMA · Round 23 boss'undan itibaren] | Fırtına Bileği [GÜÇLÜ AŞAMA · Round 23 boss'undan itibaren]
+   görüntü: Logs/T373_04_R50_SonBoss_GucluOduller.png
+   R50 GÜÇLÜ: Artçı Patlama [GÜÇLÜ] | Hasat Ritmi [GÜÇLÜ] | Fırtına Bileği [GÜÇLÜ] → alınan: Artçı Patlama
+ok: Whole run R1–50 in order: the reward screen header followed the stage at all 15 bosses — R3 ERKEN AŞAMA · BOSS ÖDÜLÜ · R6 ERKEN AŞAMA · BOSS ÖDÜLÜ · R10 ERKEN AŞAMA · BOSS ÖDÜLÜ · R13 ORTA AŞAMA · BOSS ÖDÜLÜ · R16 ORTA AŞAMA · BOSS ÖDÜLÜ · R20 ORTA AŞAMA · BOSS ÖDÜLÜ · R23 GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ · R26 GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ · R30 GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ · R33 GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ · R36 GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ · R40 GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ · R43 GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ · R46 GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ · R50 GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ
+ok: Transitions on screen: R10 ERKEN → R13 ORTA, R20 ORTA → R23 GÜÇLÜ
+ok: Reward effects taken in an earlier stage stay in force after the stage changes (taken list, stat modifiers and damage multiplier never shrink)
+ok: R50: level cards → reward (Artçı Patlama) → victory; the run-end list holds the rewards including the R50 one: RUN TAMAMLANDI · ÖDÜL AŞAMALARI V1 / 50 round · son kota 4.800 / 4.800 / Başlangıç: Bahçıvan · Standart / Harvest Score: 15.825 / Boss ödülleri: Bilgi Filizi, Nadir Tohum ×2, Hızlı Bilek ×3, Altın Hedef, Yıkım Gücü ×2, Canavar Kesimi, Keskin Bıçak, Çifte Akım, Geniş Savuruş ×2, Artçı Patlama / Aktif oynanış 0:03 · seçimler 0:04 · mağaza ve hazırlık 0:25
+ok: R51 does not start
+ok: İkinci run: starts clean in RunSetup (Run50_OdulAsamalariV1; no offer, no stage, no reward, no reward effect); field: boş tarla
+ok: İkinci run · R3, no candidate: the screen says "Uygun ödül kalmadı" and DEVAM continues the run (no reward, no lock)
+ok: İkinci run · R6, 1 candidate: 1 card (Bilgi Filizi), taken Bilgi Filizi; the run continues
+ok: Hasat Ritmi card: the bottom text now wraps inside the card (3 lines at 21 pt, 349 px wide in a 372 px area)
+ok: All 16 reward cards, at every stack count (34 card states): no text is cut or leaves its area; smallest font 16.6 pt (Hasat Ritmi Note)
+   görüntü: Logs/T373_05_KartYazilari_HasatRitmi.png
+ok: İkinci run · R10, 2 candidates: 2 cards (Bilgi Filizi, Nadir Tohum), taken Bilgi Filizi; the run continues
+ok: İkinci run · R13, current stage exhausted: header "ORTA AŞAMA · BOSS ÖDÜLÜ", three erken cards, each tagged "ERKEN AŞAMA · Round 3 boss'undan itibaren"
+ok: Return to the main menu while an offer is pending: the offer, its stage, the taken rewards and their effects are all cleared
+ok: Menu scene: no reward manager, offer or reward effect survives the scene change
+ok: Test data: the new profile with a specialization choice after the first boss (options from Uzmanlasma20)
+ok: Uzmanlaşma sırası (test verisi): starts clean in RunSetup (Ödül aşamaları (test: uzmanlaşma); no offer, no stage, no reward, no reward effect); field: doğrudan vuruş (davranışsız saksılar)
+ok: After the level cards the specialization choice opens first; the reward offer is not prepared while it is pending (reading the offer does not prepare it)
+ok: Once the specialization (UstaBicici) is chosen the reward offer is prepared and shown: Bilgi Filizi, Hızlı Bilek, Keskin Bıçak
+ok: Invalid staged pool at run time: the run is not started and one clear error is logged ("Run başlatılmadı: 'Geçersiz havuz testi' profilinin boss ödül aşamaları geçersiz — 'Keskin Bıçak' ödülü iki kez yazılmış (ERKEN ve GÜÇLÜ): bir ödül yalnız bir aşamada olabilir. Havuz otomatik düzeltilmez; veri düzeltilince run başlar.")
+ok: The invalid data is left exactly as it was (no entry removed)
+ok: Old pools (Kırılma V1, Denge V1, Boss Prototip): 6480 offers over 3 field states × 2 stack states × 9 boss rounds × 40 seeds are identical, card for card and in order, to the sequences recorded before the offer code was changed
+ok: Old pools still use the rewards' own minRound / maxRound: Canavar Kesimi / Fırtına Bileği from the R25 boss, Bilgi Filizi not after R30, breakthrough rewards from R10
+ok: Eski profil (Kırılma V1): starts clean in RunSetup (Run50_KirilmaV1; no offer, no stage, no reward, no reward effect); field: boş tarla
+ok: Old profile (Kırılma V1): header "BOSS GEÇİLDİ · ÖDÜL SEÇ", no stage tag; cards show the asset's own note, which matches the old rule ("Round 25 boss'undan sonra çıkar")
+   görüntü: Logs/T373_06_EskiProfil_KirilmaV1.png
+ok: Expected error messages only from the invalid-pool probes (2 lines in total)
+   beklenen hata · Run profili seçilmedi: 'Run50 Ödül Aşamaları V1 · 50 round' boss ödül aşamaları geçersiz — 'Keskin Bıçak' ödülü iki kez yazılmış (ERKEN ve GÜÇLÜ): bir ödül yalnız bir aşamada olabilir
+   beklenen hata · Run başlatılmadı: 'Geçersiz havuz testi' profilinin boss ödül aşamaları geçersiz — 'Keskin Bıçak' ödülü iki kez yazılmış (ERKEN ve GÜÇLÜ): bir ödül yalnız bir aşamada olabilir. Havuz otomatik düzeltilmez; veri düzeltilince run başlar.
+ok: No other error or exception logged during the test

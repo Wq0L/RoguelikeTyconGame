@@ -10,6 +10,9 @@ using UnityEngine;
 //   behaviorDamageMultiplier → yalnız davranış hasarı: patlama, kasırga, bumerang, elektrik (Bölüm 3.5); doğrudan vuruşa geçmez
 //   echo                   → kırılma (Bölüm 3.6): şansı tutan normal patlama / elektrik tetiğinden sonra gecikmeli ikinci darbe (BehaviorEchoes)
 //   rhythmHarvests         → kırılma (Bölüm 3.6): her N doğrudan hasatta bir sonraki oyuncu saldırısı güçlenir (RunPower.Rhythm)
+//   levelChoiceDelta       → kazanç / bedel (Bölüm 3.7.4): gelecekte kazanılan her level'ın kart seçim hakkı (RoundManager.ChoicesPerLevel)
+//   chain                  → kırılma (Bölüm 3.7.6): davranış hasatları kendi saksılarının davranışlarını sınırlı tetikler (HarvestChain)
+// Bedelli ödül: etkilerinden en az biri bedeldir (çarpan 1'in altında ya da seçim hakkı eksi). Kazanç ve bedel tek işlemde uygulanır.
 [CreateAssetMenu(menuName = "ClickerGame/Boss Reward", fileName = "BossReward")]
 public sealed class BossRewardSO : ScriptableObject
 {
@@ -48,7 +51,7 @@ public sealed class BossRewardSO : ScriptableObject
     [Tooltip("Hazır hakla atılan saldırının vuruş yarıçapı çarpanı (yalnız o saldırı; davranışlara geçmez).")]
     [Min(0.01f)] public float rhythmRadius = 1.5f;
 
-    public bool IsBreakthrough => echo != BossRewardEcho.None || rhythmHarvests > 0;
+    public bool IsBreakthrough => echo != BossRewardEcho.None || rhythmHarvests > 0 || chain;
 
     [Header("Sunum")]
     [Min(1)] public int maxStacks = 3;
@@ -64,7 +67,42 @@ public sealed class BossRewardSO : ScriptableObject
     [Tooltip("Bu round'daki boss'tan sonra sunulmaz. 0: sınır yok.")]
     [Min(0)] public int maxRound;
 
+    [Header("Kazanç / bedel (Bölüm 3.7.4) — varsayılanlar etkisizdir")]
+    [Tooltip("Gelecekte kazanılan her level'ın kart seçim hakkına eklenir (+1 / −1). 0: yok. Yalnız ödül alındıktan sonra kazanılan " +
+             "level'lar etkilenir; bekleyen seçimler değişmez. Sonuç geçerli aralığın (1–5) dışına çıkacaksa ödül sunulmaz ve alınamaz.")]
+    [Range(-4, 4)] public int levelChoiceDelta;
+    [Tooltip("Karşılıklı dışlama grubu. Aynı gruptan başka bir ödül alındıysa bu ödül sunulmaz ve alınamaz; ikisi aynı teklifte " +
+             "seçenek olabilir. Boş: grup yok.")]
+    public string exclusiveGroup;
+
+    [Header("Kırılma erişimi (Bölüm 3.7.5) — varsayılan etkisizdir")]
+    [Tooltip("Yalnız elektrik yankısı (Çifte Akım): ikinci dalganın dört çapraz yöndeki erişimi, hücre. 0: ilk dalgayla aynı (2). " +
+             "İlk dalga değişmez; ikinci dalga yakın çapraz hücreleri de kapsar. Patlama yankısının erişimi echoRadius'tur.")]
+    [Range(0, 6)] public int echoReach;
+
+    [Header("Davranış zinciri (Bölüm 3.7.6) — varsayılan etkisizdir")]
+    [Tooltip("Zincir Hasat: normal davranışların öldürdüğü bitkiler kendi saksılarının davranışlarını sınırlı tetikleyebilir " +
+             "(HarvestChain). Kapalıyken aşağıdaki alanlar okunmaz.")]
+    public bool chain;
+    [Tooltip("Ek nesil sayısı. Doğrudan hasadın normal tetiği nesil 0'dır; son ek neslin öldürmeleri yeni davranış başlatmaz.")]
+    [Range(1, 4)] public int chainGenerations = 2;
+    [Tooltip("Ek nesil başına şans çarpanı (1. ek nesil, 2. ek nesil …): saksının gerçek davranış şansı × bu değer. " +
+             "Uzunluğu ek nesil sayısı kadar olmalı.")]
+    public float[] chainChance = { 0.75f, 0.5f };
+    [Tooltip("Ek nesil başına hasar çarpanı: tetiklenen saksının normal davranış hasarı × bu değer. Önceki neslin çarpanıyla " +
+             "birikmez. Uzunluğu ek nesil sayısı kadar olmalı.")]
+    public float[] chainDamage = { 0.75f, 0.5f };
+    [Tooltip("Bir doğrudan saldırının (kökün) en çok başarılı ek tetiği. Normal doğrudan tetikler sayılmaz.")]
+    [Min(1)] public int chainRootBudget = 32;
+    [Tooltip("Zincir kuyruğundan kare başına en çok işlenen iş. Kalan işler silinmez, sonraki kareye kalır.")]
+    [Min(1)] public int chainJobsPerFrame = 8;
+
     public bool OfferedAt(int bossRound) => (minRound <= 0 || bossRound >= minRound) && (maxRound <= 0 || bossRound <= maxRound);
+
+    // Bedeli olan ödül (etkilerinden biri oyuncunun aleyhine): kartta kazanç ve bedel ayrı yazılır, koşulu alınırken de aranır.
+    public bool HasCost => levelChoiceDelta < 0 || IsCost(directDamageMultiplier) || IsCost(rareDirectMultiplier) || IsCost(behaviorDamageMultiplier);
+
+    public static bool IsCost(float multiplier) => multiplier < 1f && !Mathf.Approximately(multiplier, 1f);
 }
 
 public enum BossRewardCondition

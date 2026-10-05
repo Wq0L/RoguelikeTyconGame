@@ -1,0 +1,14 @@
+== TEST TURU (hedefli regresyon)
+AlanGeriBildirimiVerification | AlanGeriBildirimiVerification.RunBatch | PASS: 23 checks | 08:22:42-08:23:18 | cikis: ok
+KirilmaErisimiV1Verification | KirilmaErisimiV1Verification.RunBatch | PASS: 35 checks | 08:23:18-08:24:05 | cikis: ok
+BedelliOdullerV1Verification | BedelliOdullerV1Verification.RunBatch | PASS: 93 checks | 08:24:05-08:25:26 | cikis: ok
+KirilmaV1Verification | KirilmaV1Verification.RunBatch | PASS: 189 checks | 08:25:26-08:26:04 | cikis: ok
+TakvimV1Verification | TakvimV1Verification.RunBatch | PASS: 162 checks | 08:26:04-08:27:03 | cikis: ok
+BossRewardVerification | BossRewardVerification.RunBatch | PASS: 127 checks | 08:27:03-08:27:47 | cikis: ok
+RunPrototypeVerification | RunPrototypeVerification.RunBatch | PASS: 69 checks | 08:27:47-08:28:36 | cikis: ok
+HarvestBehaviorVerification | HarvestBehaviorVerification.RunBatch | PASS: 114 checks | 08:28:36-08:28:57 | cikis: ok
+ElectricRevertVerification | ElectricRevertVerification.RunBatch | PASS: 40 checks | 08:28:57-08:29:35 | cikis: ok
+SpecializationVerification | SpecializationVerification.RunBatch | PASS: 100 checks | 08:29:35-08:32:24 | cikis: ok
+MechanicsVerification | MechanicsVerification.RunBatch | PASS: 88 checks | 08:32:24-08:32:50 | cikis: ok
+RewardOfferDistribution | RewardOfferMeasurement.RunDistribution | DONE: distribution | 08:32:50-08:33:44 | cikis: ok
+

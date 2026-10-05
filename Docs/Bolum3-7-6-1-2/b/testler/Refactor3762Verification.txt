@@ -1,0 +1,18 @@
+PASS: 8 checks
+ok: GameScene: the five hidden old 'Sellect Grass planter…' buttons, the hidden 'Legacy Stats' text and the unused 'Sound Manager' are gone (0 left); the SoundManager class is removed
+ok: Unused fields are removed (ProgressionManager.possibleModifiers, PlanterShopPanelUI.stats) and the saved scene keeps none of them or the old exhaust* values; ComicUIBuilder no longer creates 'Legacy Stats'
+ok: UIManager.resourcesUI is bound in the scene to the object the runtime fallback used to find (the GoldUI's parent 'ResourcesUI'); kept: 121 ground cells, 140 skill UI slots
+   beklenen log: Gözlem olayı dinleyicisi istisna attı: Refactor3762Verification.ThrowDamaged. Oynanış sürdü; bu dinleyicinin sonraki istisnaları yalnız sayılır.
+   beklenen log: InvalidOperationException: test gözlemcisi bilerek hata attı (AnyDamaged)
+   beklenen log: Gözlem olayı dinleyicisi istisna attı: Refactor3762Verification.ThrowHarvested. Oynanış sürdü; bu dinleyicinin sonraki istisnaları yalnız sayılır.
+   beklenen log: InvalidOperationException: test gözlemcisi bilerek hata attı (AnyHarvested)
+   beklenen log: Gözlem olayı dinleyicisi istisna attı: Refactor3762Verification.ThrowTraced. Oynanış sürdü; bu dinleyicinin sonraki istisnaları yalnız sayılır.
+   beklenen log: InvalidOperationException: test gözlemcisi bilerek hata attı (HarvestChain.Traced)
+   beklenen log: Gözlem olayı dinleyicisi istisna attı: Refactor3762Verification.ThrowEcho. Oynanış sürdü; bu dinleyicinin sonraki istisnaları yalnız sayılır.
+   beklenen log: InvalidOperationException: test gözlemcisi bilerek hata attı (BehaviorEchoes.Traced)
+ok: Observers that throw on every event: damage is still applied, the 3 plants (direct, normal explosion, chained explosion) die and return to the pool, each paid once (3 XP grants), the gameplay harvest event still ran (3); the counting observer after each thrower saw every event; the chain queue and roots and the echo job finished without leaking; 10 exceptions caught, each thrower logged once
+ok: A gameplay listener's exception is not swallowed (it propagates out of the attack) and the plant still returns to the pool; the quest counter listens on this gameplay event (PlantHealth.Harvested), not on the observer event
+   beklenen log: Boss ödülü uygulanamadı: 'Zincir Hasat' — zincir ayarı geçersiz (1. ek neslin şans çarpanı geçersiz (NaN)). Hiçbir etkisi bırakılmadı; ödül alınmadı.
+ok: Editor-only grant uses the game's own checks and apply path: first grant works (chain on); a second is refused (alınamaz: StackLimit); an invalid chain copy is refused with nothing applied (uygulanamadı (ödül verisi geçersiz)); refused while a boss offer is pending (bekleyen bir boss teklifi var); ChainDebugMenu no longer touches private fields by reflection
+ok: Shared area outline: the class is now AreaOutlineFeedback (same file GUID, old name gone); one pool of 8 waves for both uses — when the aftershock outlines fill it, both an aftershock and a chain-source outline are skipped and each is counted separately
+ok: Every deliberately produced error was reported where expected and nothing else was logged as an error (0 unexpected, 0 expected but missing)

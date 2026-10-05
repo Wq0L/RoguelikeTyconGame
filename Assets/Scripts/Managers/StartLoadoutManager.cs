@@ -74,6 +74,8 @@ public sealed class StartLoadoutManager : MonoBehaviour
     // Kayıttaki seçim → geçerli içerik. Katalog varsayılanları her zaman açık ve nötrdür.
     public static (FarmerSO farmer, ScytheSO scythe, bool fallback) Resolve(StartCatalogSO catalog)
     {
+        if (DemoSceneSettings.IsDemo && DemoSceneSettings.Instance.defaultLoadoutOnly)
+            return (catalog.defaultFarmer, catalog.defaultScythe, false);
         MetaSaveData save = MetaSave.Data;
         FarmerSO farmer = catalog.Farmer(save.farmer);
         ScytheSO scythe = catalog.Scythe(save.scythe);
@@ -155,7 +157,7 @@ public sealed class FractionalScale
         if (r != rate || raw > Limit) { Clear(); rate = r; }
         raw += value;
         long due = (raw * rate + Scale / 2) / Scale;
-        int give = (int)System.Math.Min(int.MaxValue, due - paid);
+        int give = NumericSafety.ToInt((double)(due - paid), 0, NumericSite.Score);
         paid = due;
         return give;
     }

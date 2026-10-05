@@ -1,0 +1,361 @@
+run,policy,farmer,scythe,seed,label,round,offered,chosen
+1,Hasar-alan,bahcivan,standart,100,HA,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+1,Hasar-alan,bahcivan,standart,100,HA,6,bereketli_toprak bilgi_filizi hizli_bilek,hizli_bilek
+1,Hasar-alan,bahcivan,standart,100,HA,10,nadir_tohum bilgi_filizi keskin_bicak,keskin_bicak
+1,Hasar-alan,bahcivan,standart,100,HA,13,keskin_bicak yikim_gucu kritik_goz,keskin_bicak
+1,Hasar-alan,bahcivan,standart,100,HA,16,yikim_gucu hizli_bilek altin_hedef,hizli_bilek
+1,Hasar-alan,bahcivan,standart,100,HA,20,bilgi_filizi kivilcim nadir_tohum,nadir_tohum
+1,Hasar-alan,bahcivan,standart,100,HA,23,canavar_kesimi cifte_akim bilgi_filizi,canavar_kesimi
+1,Hasar-alan,bahcivan,standart,100,HA,26,kritik_goz genis_savurus bereketli_ogrenim,genis_savurus
+1,Hasar-alan,bahcivan,standart,100,HA,30,zincir_hasat nadir_tohum bereketli_toprak,bereketli_toprak
+1,Hasar-alan,bahcivan,standart,100,HA,33,genis_savurus davranisa_adanis yikim_gucu,genis_savurus
+1,Hasar-alan,bahcivan,standart,100,HA,36,bereketli_ogrenim hizli_bilek artci_patlama,hizli_bilek
+1,Hasar-alan,bahcivan,standart,100,HA,40,bereketli_ogrenim kritik_goz artci_patlama,kritik_goz
+1,Hasar-alan,bahcivan,standart,100,HA,43,zincir_hasat altin_hedef hasat_ritmi,altin_hedef
+1,Hasar-alan,bahcivan,standart,100,HA,46,bereketli_ogrenim zincir_hasat nadir_tohum,nadir_tohum
+1,Hasar-alan,bahcivan,standart,100,HA,50,kivilcim zincir_hasat cifte_akim,kivilcim
+2,Hasar-alan,bahcivan,standart,101,HA,3,hizli_bilek nadir_tohum bereketli_toprak,hizli_bilek
+2,Hasar-alan,bahcivan,standart,101,HA,6,bilgi_filizi bereketli_toprak nadir_tohum,bereketli_toprak
+2,Hasar-alan,bahcivan,standart,101,HA,10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+2,Hasar-alan,bahcivan,standart,101,HA,13,agir_darbe kivilcim kritik_goz,kritik_goz
+2,Hasar-alan,bahcivan,standart,101,HA,16,kivilcim altin_hedef kritik_goz,kritik_goz
+2,Hasar-alan,bahcivan,standart,101,HA,20,hizli_bilek kivilcim yikim_gucu,hizli_bilek
+2,Hasar-alan,bahcivan,standart,101,HA,23,davranisa_adanis artci_patlama hasat_ritmi,hasat_ritmi
+2,Hasar-alan,bahcivan,standart,101,HA,26,zincir_hasat kritik_goz bereketli_ogrenim,kritik_goz
+2,Hasar-alan,bahcivan,standart,101,HA,30,cifte_akim zincir_hasat davranisa_adanis,cifte_akim
+2,Hasar-alan,bahcivan,standart,101,HA,33,nadir_tohum firtina_bilegi agir_darbe,firtina_bilegi
+2,Hasar-alan,bahcivan,standart,101,HA,36,bereketli_toprak agir_darbe genis_savurus,genis_savurus
+2,Hasar-alan,bahcivan,standart,101,HA,40,canavar_kesimi davranisa_adanis altin_hedef,canavar_kesimi
+2,Hasar-alan,bahcivan,standart,101,HA,43,genis_savurus davranisa_adanis altin_hedef,genis_savurus
+2,Hasar-alan,bahcivan,standart,101,HA,46,artci_patlama zincir_hasat bereketli_toprak,bereketli_toprak
+2,Hasar-alan,bahcivan,standart,101,HA,50,bilgi_filizi bereketli_ogrenim yikim_gucu,yikim_gucu
+3,Patlama yolu,bahcivan,standart,100,HA,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+3,Patlama yolu,bahcivan,standart,100,HA,6,bereketli_toprak bilgi_filizi hizli_bilek,bereketli_toprak
+3,Patlama yolu,bahcivan,standart,100,HA,10,nadir_tohum bilgi_filizi keskin_bicak,keskin_bicak
+3,Patlama yolu,bahcivan,standart,100,HA,13,keskin_bicak yikim_gucu kritik_goz,yikim_gucu
+3,Patlama yolu,bahcivan,standart,100,HA,16,yikim_gucu keskin_bicak altin_hedef,yikim_gucu
+3,Patlama yolu,bahcivan,standart,100,HA,20,bilgi_filizi kivilcim nadir_tohum,kivilcim
+3,Patlama yolu,bahcivan,standart,100,HA,23,canavar_kesimi cifte_akim bilgi_filizi,canavar_kesimi
+3,Patlama yolu,bahcivan,standart,100,HA,26,kritik_goz genis_savurus bereketli_ogrenim,genis_savurus
+3,Patlama yolu,bahcivan,standart,100,HA,30,zincir_hasat nadir_tohum hizli_bilek,hizli_bilek
+3,Patlama yolu,bahcivan,standart,100,HA,33,genis_savurus davranisa_adanis yikim_gucu,yikim_gucu
+3,Patlama yolu,bahcivan,standart,100,HA,36,bereketli_ogrenim keskin_bicak artci_patlama,artci_patlama
+3,Patlama yolu,bahcivan,standart,100,HA,40,bereketli_ogrenim agir_darbe firtina_bilegi,firtina_bilegi
+3,Patlama yolu,bahcivan,standart,100,HA,43,zincir_hasat agir_darbe bereketli_ogrenim,agir_darbe
+3,Patlama yolu,bahcivan,standart,100,HA,46,bereketli_ogrenim zincir_hasat hizli_bilek,hizli_bilek
+3,Patlama yolu,bahcivan,standart,100,HA,50,nadir_tohum zincir_hasat cifte_akim,nadir_tohum
+4,Patlama yolu,bahcivan,standart,101,HA,3,hizli_bilek nadir_tohum bereketli_toprak,bereketli_toprak
+4,Patlama yolu,bahcivan,standart,101,HA,6,bilgi_filizi hizli_bilek nadir_tohum,hizli_bilek
+4,Patlama yolu,bahcivan,standart,101,HA,10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+4,Patlama yolu,bahcivan,standart,101,HA,13,agir_darbe kivilcim kritik_goz,kivilcim
+4,Patlama yolu,bahcivan,standart,101,HA,16,kivilcim altin_hedef kritik_goz,kivilcim
+4,Patlama yolu,bahcivan,standart,101,HA,20,hizli_bilek kivilcim yikim_gucu,yikim_gucu
+4,Patlama yolu,bahcivan,standart,101,HA,23,davranisa_adanis artci_patlama hasat_ritmi,artci_patlama
+4,Patlama yolu,bahcivan,standart,101,HA,26,zincir_hasat kritik_goz bereketli_ogrenim,kritik_goz
+4,Patlama yolu,bahcivan,standart,101,HA,30,hasat_ritmi zincir_hasat davranisa_adanis,hasat_ritmi
+4,Patlama yolu,bahcivan,standart,101,HA,33,bilgi_filizi firtina_bilegi agir_darbe,firtina_bilegi
+4,Patlama yolu,bahcivan,standart,101,HA,36,bereketli_toprak agir_darbe genis_savurus,bereketli_toprak
+4,Patlama yolu,bahcivan,standart,101,HA,40,canavar_kesimi bereketli_ogrenim altin_hedef,canavar_kesimi
+4,Patlama yolu,bahcivan,standart,101,HA,43,genis_savurus davranisa_adanis altin_hedef,genis_savurus
+4,Patlama yolu,bahcivan,standart,101,HA,46,genis_savurus davranisa_adanis bereketli_toprak,bereketli_toprak
+4,Patlama yolu,bahcivan,standart,101,HA,50,kivilcim bereketli_ogrenim genis_savurus,kivilcim
+5,Davranış yönü,bahcivan,standart,100,HA,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+5,Davranış yönü,bahcivan,standart,100,HA,6,bereketli_toprak bilgi_filizi hizli_bilek,hizli_bilek
+5,Davranış yönü,bahcivan,standart,100,HA,10,bereketli_toprak bilgi_filizi keskin_bicak,bereketli_toprak
+5,Davranış yönü,bahcivan,standart,100,HA,13,keskin_bicak yikim_gucu kritik_goz,yikim_gucu
+5,Davranış yönü,bahcivan,standart,100,HA,16,yikim_gucu keskin_bicak altin_hedef,yikim_gucu
+5,Davranış yönü,bahcivan,standart,100,HA,20,nadir_tohum kivilcim bilgi_filizi,kivilcim
+5,Davranış yönü,bahcivan,standart,100,HA,23,canavar_kesimi cifte_akim bilgi_filizi,cifte_akim
+5,Davranış yönü,bahcivan,standart,100,HA,26,kritik_goz genis_savurus bereketli_ogrenim,genis_savurus
+5,Davranış yönü,bahcivan,standart,100,HA,30,zincir_hasat bereketli_toprak hizli_bilek,zincir_hasat
+5,Davranış yönü,bahcivan,standart,100,HA,33,genis_savurus bereketli_ogrenim altin_hedef,genis_savurus
+5,Davranış yönü,bahcivan,standart,100,HA,36,bereketli_ogrenim keskin_bicak firtina_bilegi,firtina_bilegi
+5,Davranış yönü,bahcivan,standart,100,HA,40,hasat_ritmi kivilcim artci_patlama,kivilcim
+5,Davranış yönü,bahcivan,standart,100,HA,43,davranisa_adanis agir_darbe hasat_ritmi,agir_darbe
+5,Davranış yönü,bahcivan,standart,100,HA,46,bereketli_ogrenim davranisa_adanis hizli_bilek,hizli_bilek
+5,Davranış yönü,bahcivan,standart,100,HA,50,nadir_tohum davranisa_adanis canavar_kesimi,nadir_tohum
+6,Davranış yönü,bahcivan,standart,101,HA,3,hizli_bilek nadir_tohum bereketli_toprak,hizli_bilek
+6,Davranış yönü,bahcivan,standart,101,HA,6,bilgi_filizi bereketli_toprak nadir_tohum,bereketli_toprak
+6,Davranış yönü,bahcivan,standart,101,HA,10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+6,Davranış yönü,bahcivan,standart,101,HA,13,agir_darbe kivilcim kritik_goz,kivilcim
+6,Davranış yönü,bahcivan,standart,101,HA,16,kivilcim altin_hedef kritik_goz,kivilcim
+6,Davranış yönü,bahcivan,standart,101,HA,20,hizli_bilek kivilcim yikim_gucu,kivilcim
+6,Davranış yönü,bahcivan,standart,101,HA,23,davranisa_adanis artci_patlama hasat_ritmi,artci_patlama
+6,Davranış yönü,bahcivan,standart,101,HA,26,zincir_hasat altin_hedef bereketli_ogrenim,zincir_hasat
+6,Davranış yönü,bahcivan,standart,101,HA,30,cifte_akim davranisa_adanis bereketli_ogrenim,cifte_akim
+6,Davranış yönü,bahcivan,standart,101,HA,33,nadir_tohum canavar_kesimi agir_darbe,nadir_tohum
+6,Davranış yönü,bahcivan,standart,101,HA,36,bereketli_toprak kritik_goz genis_savurus,bereketli_toprak
+6,Davranış yönü,bahcivan,standart,101,HA,40,canavar_kesimi bereketli_ogrenim altin_hedef,canavar_kesimi
+6,Davranış yönü,bahcivan,standart,101,HA,43,genis_savurus bereketli_ogrenim altin_hedef,genis_savurus
+6,Davranış yönü,bahcivan,standart,101,HA,46,firtina_bilegi bereketli_ogrenim bereketli_toprak,firtina_bilegi
+6,Davranış yönü,bahcivan,standart,101,HA,50,bilgi_filizi hasat_ritmi yikim_gucu,yikim_gucu
+7,Dengeli,bahcivan,standart,100,HA,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+7,Dengeli,bahcivan,standart,100,HA,6,bereketli_toprak bilgi_filizi hizli_bilek,hizli_bilek
+7,Dengeli,bahcivan,standart,100,HA,10,nadir_tohum bilgi_filizi keskin_bicak,keskin_bicak
+7,Dengeli,bahcivan,standart,100,HA,13,keskin_bicak yikim_gucu kritik_goz,keskin_bicak
+7,Dengeli,bahcivan,standart,100,HA,16,yikim_gucu hizli_bilek altin_hedef,hizli_bilek
+7,Dengeli,bahcivan,standart,100,HA,20,bilgi_filizi kivilcim nadir_tohum,nadir_tohum
+7,Dengeli,bahcivan,standart,100,HA,23,canavar_kesimi cifte_akim bilgi_filizi,canavar_kesimi
+7,Dengeli,bahcivan,standart,100,HA,26,kritik_goz genis_savurus bereketli_ogrenim,genis_savurus
+7,Dengeli,bahcivan,standart,100,HA,30,zincir_hasat nadir_tohum bereketli_toprak,bereketli_toprak
+7,Dengeli,bahcivan,standart,100,HA,33,genis_savurus davranisa_adanis yikim_gucu,genis_savurus
+7,Dengeli,bahcivan,standart,100,HA,36,bereketli_ogrenim hizli_bilek artci_patlama,hizli_bilek
+7,Dengeli,bahcivan,standart,100,HA,40,bereketli_ogrenim kritik_goz artci_patlama,kritik_goz
+7,Dengeli,bahcivan,standart,100,HA,43,zincir_hasat altin_hedef hasat_ritmi,altin_hedef
+7,Dengeli,bahcivan,standart,100,HA,46,bereketli_ogrenim zincir_hasat nadir_tohum,nadir_tohum
+7,Dengeli,bahcivan,standart,100,HA,50,kivilcim zincir_hasat cifte_akim,kivilcim
+8,Dengeli,bahcivan,standart,101,HA,3,hizli_bilek nadir_tohum bereketli_toprak,hizli_bilek
+8,Dengeli,bahcivan,standart,101,HA,6,bilgi_filizi bereketli_toprak nadir_tohum,bereketli_toprak
+8,Dengeli,bahcivan,standart,101,HA,10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+8,Dengeli,bahcivan,standart,101,HA,13,agir_darbe kivilcim kritik_goz,kritik_goz
+8,Dengeli,bahcivan,standart,101,HA,16,kivilcim altin_hedef kritik_goz,kritik_goz
+8,Dengeli,bahcivan,standart,101,HA,20,hizli_bilek kivilcim yikim_gucu,hizli_bilek
+8,Dengeli,bahcivan,standart,101,HA,23,davranisa_adanis artci_patlama hasat_ritmi,artci_patlama
+8,Dengeli,bahcivan,standart,101,HA,26,zincir_hasat kritik_goz bereketli_ogrenim,kritik_goz
+8,Dengeli,bahcivan,standart,101,HA,30,hasat_ritmi zincir_hasat davranisa_adanis,hasat_ritmi
+8,Dengeli,bahcivan,standart,101,HA,33,nadir_tohum firtina_bilegi agir_darbe,nadir_tohum
+8,Dengeli,bahcivan,standart,101,HA,36,nadir_tohum altin_hedef genis_savurus,genis_savurus
+8,Dengeli,bahcivan,standart,101,HA,40,canavar_kesimi bereketli_ogrenim yikim_gucu,canavar_kesimi
+8,Dengeli,bahcivan,standart,101,HA,43,genis_savurus bereketli_ogrenim yikim_gucu,genis_savurus
+8,Dengeli,bahcivan,standart,101,HA,46,cifte_akim davranisa_adanis bereketli_toprak,bereketli_toprak
+8,Dengeli,bahcivan,standart,101,HA,50,bilgi_filizi bereketli_ogrenim firtina_bilegi,firtina_bilegi
+9,Hasar-alan,bahcivan,standart,100,HB,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+9,Hasar-alan,bahcivan,standart,100,HB,6,bereketli_toprak bilgi_filizi hizli_bilek,hizli_bilek
+9,Hasar-alan,bahcivan,standart,100,HB,10,nadir_tohum bilgi_filizi keskin_bicak,keskin_bicak
+9,Hasar-alan,bahcivan,standart,100,HB,13,keskin_bicak yikim_gucu kritik_goz,keskin_bicak
+9,Hasar-alan,bahcivan,standart,100,HB,16,yikim_gucu hizli_bilek altin_hedef,hizli_bilek
+9,Hasar-alan,bahcivan,standart,100,HB,20,agir_darbe kivilcim bilgi_filizi,agir_darbe
+9,Hasar-alan,bahcivan,standart,100,HB,23,canavar_kesimi cifte_akim bilgi_filizi,canavar_kesimi
+9,Hasar-alan,bahcivan,standart,100,HB,26,kritik_goz genis_savurus bereketli_ogrenim,genis_savurus
+9,Hasar-alan,bahcivan,standart,100,HB,30,zincir_hasat nadir_tohum bereketli_toprak,bereketli_toprak
+9,Hasar-alan,bahcivan,standart,100,HB,33,genis_savurus davranisa_adanis firtina_bilegi,genis_savurus
+9,Hasar-alan,bahcivan,standart,100,HB,36,bereketli_ogrenim hizli_bilek artci_patlama,hizli_bilek
+9,Hasar-alan,bahcivan,standart,100,HB,40,bereketli_ogrenim kritik_goz artci_patlama,kritik_goz
+9,Hasar-alan,bahcivan,standart,100,HB,43,zincir_hasat altin_hedef hasat_ritmi,altin_hedef
+9,Hasar-alan,bahcivan,standart,100,HB,46,bereketli_ogrenim zincir_hasat nadir_tohum,nadir_tohum
+9,Hasar-alan,bahcivan,standart,100,HB,50,kivilcim zincir_hasat cifte_akim,kivilcim
+10,Hasar-alan,bahcivan,standart,101,HB,3,hizli_bilek nadir_tohum bereketli_toprak,hizli_bilek
+10,Hasar-alan,bahcivan,standart,101,HB,6,bilgi_filizi bereketli_toprak nadir_tohum,bereketli_toprak
+10,Hasar-alan,bahcivan,standart,101,HB,10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+10,Hasar-alan,bahcivan,standart,101,HB,13,agir_darbe kivilcim kritik_goz,kritik_goz
+10,Hasar-alan,bahcivan,standart,101,HB,16,kivilcim altin_hedef kritik_goz,kritik_goz
+10,Hasar-alan,bahcivan,standart,101,HB,20,hizli_bilek kivilcim yikim_gucu,hizli_bilek
+10,Hasar-alan,bahcivan,standart,101,HB,23,davranisa_adanis artci_patlama hasat_ritmi,hasat_ritmi
+10,Hasar-alan,bahcivan,standart,101,HB,26,zincir_hasat kritik_goz bereketli_ogrenim,kritik_goz
+10,Hasar-alan,bahcivan,standart,101,HB,30,cifte_akim zincir_hasat davranisa_adanis,cifte_akim
+10,Hasar-alan,bahcivan,standart,101,HB,33,nadir_tohum firtina_bilegi agir_darbe,firtina_bilegi
+10,Hasar-alan,bahcivan,standart,101,HB,36,bereketli_toprak agir_darbe genis_savurus,genis_savurus
+10,Hasar-alan,bahcivan,standart,101,HB,40,canavar_kesimi davranisa_adanis altin_hedef,canavar_kesimi
+10,Hasar-alan,bahcivan,standart,101,HB,43,genis_savurus davranisa_adanis altin_hedef,genis_savurus
+10,Hasar-alan,bahcivan,standart,101,HB,46,artci_patlama zincir_hasat bereketli_toprak,bereketli_toprak
+10,Hasar-alan,bahcivan,standart,101,HB,50,bilgi_filizi bereketli_ogrenim yikim_gucu,yikim_gucu
+11,Patlama yolu,bahcivan,standart,100,HB,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+11,Patlama yolu,bahcivan,standart,100,HB,6,bereketli_toprak bilgi_filizi hizli_bilek,bereketli_toprak
+11,Patlama yolu,bahcivan,standart,100,HB,10,nadir_tohum bilgi_filizi keskin_bicak,keskin_bicak
+11,Patlama yolu,bahcivan,standart,100,HB,13,keskin_bicak yikim_gucu kritik_goz,yikim_gucu
+11,Patlama yolu,bahcivan,standart,100,HB,16,yikim_gucu keskin_bicak altin_hedef,yikim_gucu
+11,Patlama yolu,bahcivan,standart,100,HB,20,nadir_tohum kivilcim bilgi_filizi,kivilcim
+11,Patlama yolu,bahcivan,standart,100,HB,23,canavar_kesimi cifte_akim bilgi_filizi,canavar_kesimi
+11,Patlama yolu,bahcivan,standart,100,HB,26,kritik_goz genis_savurus bereketli_ogrenim,genis_savurus
+11,Patlama yolu,bahcivan,standart,100,HB,30,zincir_hasat nadir_tohum hizli_bilek,hizli_bilek
+11,Patlama yolu,bahcivan,standart,100,HB,33,genis_savurus davranisa_adanis yikim_gucu,yikim_gucu
+11,Patlama yolu,bahcivan,standart,100,HB,36,bereketli_ogrenim keskin_bicak artci_patlama,artci_patlama
+11,Patlama yolu,bahcivan,standart,100,HB,40,bereketli_ogrenim agir_darbe firtina_bilegi,firtina_bilegi
+11,Patlama yolu,bahcivan,standart,100,HB,43,zincir_hasat agir_darbe bereketli_ogrenim,agir_darbe
+11,Patlama yolu,bahcivan,standart,100,HB,46,bereketli_ogrenim zincir_hasat hizli_bilek,hizli_bilek
+11,Patlama yolu,bahcivan,standart,100,HB,50,nadir_tohum zincir_hasat cifte_akim,nadir_tohum
+12,Patlama yolu,bahcivan,standart,101,HB,3,hizli_bilek nadir_tohum bereketli_toprak,bereketli_toprak
+12,Patlama yolu,bahcivan,standart,101,HB,6,bilgi_filizi hizli_bilek nadir_tohum,hizli_bilek
+12,Patlama yolu,bahcivan,standart,101,HB,10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+12,Patlama yolu,bahcivan,standart,101,HB,13,agir_darbe kivilcim kritik_goz,kivilcim
+12,Patlama yolu,bahcivan,standart,101,HB,16,kivilcim altin_hedef kritik_goz,kivilcim
+12,Patlama yolu,bahcivan,standart,101,HB,20,hizli_bilek kivilcim yikim_gucu,yikim_gucu
+12,Patlama yolu,bahcivan,standart,101,HB,23,davranisa_adanis artci_patlama hasat_ritmi,artci_patlama
+12,Patlama yolu,bahcivan,standart,101,HB,26,zincir_hasat kritik_goz bereketli_ogrenim,kritik_goz
+12,Patlama yolu,bahcivan,standart,101,HB,30,hasat_ritmi zincir_hasat davranisa_adanis,hasat_ritmi
+12,Patlama yolu,bahcivan,standart,101,HB,33,bilgi_filizi firtina_bilegi agir_darbe,firtina_bilegi
+12,Patlama yolu,bahcivan,standart,101,HB,36,bereketli_toprak agir_darbe genis_savurus,bereketli_toprak
+12,Patlama yolu,bahcivan,standart,101,HB,40,canavar_kesimi davranisa_adanis altin_hedef,canavar_kesimi
+12,Patlama yolu,bahcivan,standart,101,HB,43,yikim_gucu davranisa_adanis altin_hedef,yikim_gucu
+12,Patlama yolu,bahcivan,standart,101,HB,46,genis_savurus davranisa_adanis bereketli_toprak,bereketli_toprak
+12,Patlama yolu,bahcivan,standart,101,HB,50,kivilcim bereketli_ogrenim genis_savurus,kivilcim
+13,Davranış yönü,bahcivan,standart,100,HB,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+13,Davranış yönü,bahcivan,standart,100,HB,6,bereketli_toprak bilgi_filizi hizli_bilek,hizli_bilek
+13,Davranış yönü,bahcivan,standart,100,HB,10,bereketli_toprak bilgi_filizi keskin_bicak,bereketli_toprak
+13,Davranış yönü,bahcivan,standart,100,HB,13,keskin_bicak yikim_gucu kritik_goz,yikim_gucu
+13,Davranış yönü,bahcivan,standart,100,HB,16,yikim_gucu keskin_bicak altin_hedef,yikim_gucu
+13,Davranış yönü,bahcivan,standart,100,HB,20,bilgi_filizi kivilcim nadir_tohum,kivilcim
+13,Davranış yönü,bahcivan,standart,100,HB,23,canavar_kesimi cifte_akim bilgi_filizi,cifte_akim
+13,Davranış yönü,bahcivan,standart,100,HB,26,kritik_goz genis_savurus bereketli_ogrenim,genis_savurus
+13,Davranış yönü,bahcivan,standart,100,HB,30,zincir_hasat nadir_tohum hizli_bilek,zincir_hasat
+13,Davranış yönü,bahcivan,standart,100,HB,33,genis_savurus bereketli_ogrenim yikim_gucu,yikim_gucu
+13,Davranış yönü,bahcivan,standart,100,HB,36,hasat_ritmi keskin_bicak canavar_kesimi,keskin_bicak
+13,Davranış yönü,bahcivan,standart,100,HB,40,hasat_ritmi agir_darbe canavar_kesimi,canavar_kesimi
+13,Davranış yönü,bahcivan,standart,100,HB,43,davranisa_adanis agir_darbe hasat_ritmi,agir_darbe
+13,Davranış yönü,bahcivan,standart,100,HB,46,hasat_ritmi davranisa_adanis hizli_bilek,hizli_bilek
+13,Davranış yönü,bahcivan,standart,100,HB,50,bilgi_filizi davranisa_adanis firtina_bilegi,firtina_bilegi
+14,Davranış yönü,bahcivan,standart,101,HB,3,hizli_bilek nadir_tohum bereketli_toprak,hizli_bilek
+14,Davranış yönü,bahcivan,standart,101,HB,6,bilgi_filizi bereketli_toprak nadir_tohum,bereketli_toprak
+14,Davranış yönü,bahcivan,standart,101,HB,10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+14,Davranış yönü,bahcivan,standart,101,HB,13,agir_darbe kivilcim kritik_goz,kivilcim
+14,Davranış yönü,bahcivan,standart,101,HB,16,kivilcim altin_hedef kritik_goz,kivilcim
+14,Davranış yönü,bahcivan,standart,101,HB,20,hizli_bilek kivilcim yikim_gucu,kivilcim
+14,Davranış yönü,bahcivan,standart,101,HB,23,davranisa_adanis artci_patlama hasat_ritmi,artci_patlama
+14,Davranış yönü,bahcivan,standart,101,HB,26,zincir_hasat altin_hedef bereketli_ogrenim,zincir_hasat
+14,Davranış yönü,bahcivan,standart,101,HB,30,cifte_akim davranisa_adanis bereketli_ogrenim,cifte_akim
+14,Davranış yönü,bahcivan,standart,101,HB,33,nadir_tohum canavar_kesimi agir_darbe,nadir_tohum
+14,Davranış yönü,bahcivan,standart,101,HB,36,nadir_tohum altin_hedef genis_savurus,genis_savurus
+14,Davranış yönü,bahcivan,standart,101,HB,40,canavar_kesimi bereketli_ogrenim yikim_gucu,yikim_gucu
+14,Davranış yönü,bahcivan,standart,101,HB,43,genis_savurus hasat_ritmi yikim_gucu,yikim_gucu
+14,Davranış yönü,bahcivan,standart,101,HB,46,canavar_kesimi bereketli_ogrenim nadir_tohum,nadir_tohum
+14,Davranış yönü,bahcivan,standart,101,HB,50,agir_darbe firtina_bilegi genis_savurus,firtina_bilegi
+15,Dengeli,bahcivan,standart,100,HB,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+15,Dengeli,bahcivan,standart,100,HB,6,bereketli_toprak bilgi_filizi hizli_bilek,hizli_bilek
+15,Dengeli,bahcivan,standart,100,HB,10,nadir_tohum bilgi_filizi keskin_bicak,keskin_bicak
+15,Dengeli,bahcivan,standart,100,HB,13,keskin_bicak yikim_gucu kritik_goz,keskin_bicak
+15,Dengeli,bahcivan,standart,100,HB,16,yikim_gucu hizli_bilek altin_hedef,hizli_bilek
+15,Dengeli,bahcivan,standart,100,HB,20,agir_darbe kivilcim bilgi_filizi,bilgi_filizi
+15,Dengeli,bahcivan,standart,100,HB,23,canavar_kesimi cifte_akim bilgi_filizi,canavar_kesimi
+15,Dengeli,bahcivan,standart,100,HB,26,kritik_goz genis_savurus bereketli_ogrenim,genis_savurus
+15,Dengeli,bahcivan,standart,100,HB,30,zincir_hasat bilgi_filizi nadir_tohum,nadir_tohum
+15,Dengeli,bahcivan,standart,100,HB,33,genis_savurus davranisa_adanis yikim_gucu,genis_savurus
+15,Dengeli,bahcivan,standart,100,HB,36,bereketli_ogrenim hizli_bilek artci_patlama,hizli_bilek
+15,Dengeli,bahcivan,standart,100,HB,40,bereketli_ogrenim kritik_goz artci_patlama,kritik_goz
+15,Dengeli,bahcivan,standart,100,HB,43,zincir_hasat altin_hedef hasat_ritmi,altin_hedef
+15,Dengeli,bahcivan,standart,100,HB,46,bereketli_ogrenim zincir_hasat nadir_tohum,nadir_tohum
+15,Dengeli,bahcivan,standart,100,HB,50,kivilcim zincir_hasat cifte_akim,kivilcim
+16,Dengeli,bahcivan,standart,101,HB,3,hizli_bilek nadir_tohum bereketli_toprak,hizli_bilek
+16,Dengeli,bahcivan,standart,101,HB,6,bilgi_filizi bereketli_toprak nadir_tohum,bereketli_toprak
+16,Dengeli,bahcivan,standart,101,HB,10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+16,Dengeli,bahcivan,standart,101,HB,13,agir_darbe kivilcim kritik_goz,kritik_goz
+16,Dengeli,bahcivan,standart,101,HB,16,kivilcim altin_hedef kritik_goz,kritik_goz
+16,Dengeli,bahcivan,standart,101,HB,20,hizli_bilek kivilcim yikim_gucu,hizli_bilek
+16,Dengeli,bahcivan,standart,101,HB,23,davranisa_adanis artci_patlama hasat_ritmi,artci_patlama
+16,Dengeli,bahcivan,standart,101,HB,26,zincir_hasat kritik_goz bereketli_ogrenim,kritik_goz
+16,Dengeli,bahcivan,standart,101,HB,30,hasat_ritmi zincir_hasat davranisa_adanis,hasat_ritmi
+16,Dengeli,bahcivan,standart,101,HB,33,bilgi_filizi firtina_bilegi agir_darbe,firtina_bilegi
+16,Dengeli,bahcivan,standart,101,HB,36,nadir_tohum altin_hedef genis_savurus,genis_savurus
+16,Dengeli,bahcivan,standart,101,HB,40,canavar_kesimi davranisa_adanis yikim_gucu,canavar_kesimi
+16,Dengeli,bahcivan,standart,101,HB,43,genis_savurus davranisa_adanis yikim_gucu,genis_savurus
+16,Dengeli,bahcivan,standart,101,HB,46,cifte_akim zincir_hasat hizli_bilek,hizli_bilek
+16,Dengeli,bahcivan,standart,101,HB,50,kivilcim bereketli_ogrenim yikim_gucu,kivilcim
+17,Hasar-alan,bahcivan,standart,100,HC,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+17,Hasar-alan,bahcivan,standart,100,HC,6,bereketli_toprak bilgi_filizi hizli_bilek,hizli_bilek
+17,Hasar-alan,bahcivan,standart,100,HC,10,nadir_tohum bilgi_filizi keskin_bicak,keskin_bicak
+17,Hasar-alan,bahcivan,standart,100,HC,13,keskin_bicak yikim_gucu kritik_goz,keskin_bicak
+17,Hasar-alan,bahcivan,standart,100,HC,16,yikim_gucu hizli_bilek altin_hedef,hizli_bilek
+17,Hasar-alan,bahcivan,standart,100,HC,20,agir_darbe kivilcim bilgi_filizi,agir_darbe
+17,Hasar-alan,bahcivan,standart,100,HC,23,canavar_kesimi cifte_akim bilgi_filizi,canavar_kesimi
+17,Hasar-alan,bahcivan,standart,100,HC,26,kritik_goz genis_savurus bereketli_ogrenim,genis_savurus
+17,Hasar-alan,bahcivan,standart,100,HC,30,zincir_hasat bilgi_filizi nadir_tohum,nadir_tohum
+17,Hasar-alan,bahcivan,standart,100,HC,33,genis_savurus davranisa_adanis firtina_bilegi,genis_savurus
+17,Hasar-alan,bahcivan,standart,100,HC,36,bereketli_ogrenim hizli_bilek artci_patlama,hizli_bilek
+17,Hasar-alan,bahcivan,standart,100,HC,40,bereketli_ogrenim kritik_goz artci_patlama,kritik_goz
+17,Hasar-alan,bahcivan,standart,100,HC,43,zincir_hasat altin_hedef hasat_ritmi,altin_hedef
+17,Hasar-alan,bahcivan,standart,100,HC,46,bereketli_ogrenim zincir_hasat nadir_tohum,nadir_tohum
+17,Hasar-alan,bahcivan,standart,100,HC,50,kivilcim zincir_hasat cifte_akim,kivilcim
+18,Hasar-alan,bahcivan,standart,101,HC,3,hizli_bilek nadir_tohum bereketli_toprak,hizli_bilek
+18,Hasar-alan,bahcivan,standart,101,HC,6,bilgi_filizi bereketli_toprak nadir_tohum,bereketli_toprak
+18,Hasar-alan,bahcivan,standart,101,HC,10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+18,Hasar-alan,bahcivan,standart,101,HC,13,agir_darbe kivilcim kritik_goz,kritik_goz
+18,Hasar-alan,bahcivan,standart,101,HC,16,kivilcim altin_hedef kritik_goz,kritik_goz
+18,Hasar-alan,bahcivan,standart,101,HC,20,hizli_bilek kivilcim yikim_gucu,hizli_bilek
+18,Hasar-alan,bahcivan,standart,101,HC,23,davranisa_adanis artci_patlama hasat_ritmi,hasat_ritmi
+18,Hasar-alan,bahcivan,standart,101,HC,26,zincir_hasat kritik_goz bereketli_ogrenim,kritik_goz
+18,Hasar-alan,bahcivan,standart,101,HC,30,cifte_akim zincir_hasat davranisa_adanis,cifte_akim
+18,Hasar-alan,bahcivan,standart,101,HC,33,bilgi_filizi firtina_bilegi agir_darbe,firtina_bilegi
+18,Hasar-alan,bahcivan,standart,101,HC,36,nadir_tohum altin_hedef genis_savurus,genis_savurus
+18,Hasar-alan,bahcivan,standart,101,HC,40,canavar_kesimi davranisa_adanis yikim_gucu,canavar_kesimi
+18,Hasar-alan,bahcivan,standart,101,HC,43,genis_savurus davranisa_adanis yikim_gucu,genis_savurus
+18,Hasar-alan,bahcivan,standart,101,HC,46,artci_patlama zincir_hasat bereketli_toprak,bereketli_toprak
+18,Hasar-alan,bahcivan,standart,101,HC,50,kivilcim bereketli_ogrenim yikim_gucu,kivilcim
+19,Patlama yolu,bahcivan,standart,100,HC,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+19,Patlama yolu,bahcivan,standart,100,HC,6,bereketli_toprak bilgi_filizi hizli_bilek,bereketli_toprak
+19,Patlama yolu,bahcivan,standart,100,HC,10,nadir_tohum bilgi_filizi keskin_bicak,keskin_bicak
+19,Patlama yolu,bahcivan,standart,100,HC,13,keskin_bicak yikim_gucu kritik_goz,yikim_gucu
+19,Patlama yolu,bahcivan,standart,100,HC,16,yikim_gucu keskin_bicak altin_hedef,yikim_gucu
+19,Patlama yolu,bahcivan,standart,100,HC,20,bilgi_filizi kivilcim nadir_tohum,kivilcim
+19,Patlama yolu,bahcivan,standart,100,HC,23,canavar_kesimi cifte_akim bilgi_filizi,canavar_kesimi
+19,Patlama yolu,bahcivan,standart,100,HC,26,kritik_goz genis_savurus bereketli_ogrenim,genis_savurus
+19,Patlama yolu,bahcivan,standart,100,HC,30,zincir_hasat nadir_tohum hizli_bilek,hizli_bilek
+19,Patlama yolu,bahcivan,standart,100,HC,33,genis_savurus davranisa_adanis yikim_gucu,yikim_gucu
+19,Patlama yolu,bahcivan,standart,100,HC,36,bereketli_ogrenim keskin_bicak artci_patlama,artci_patlama
+19,Patlama yolu,bahcivan,standart,100,HC,40,bereketli_ogrenim agir_darbe firtina_bilegi,firtina_bilegi
+19,Patlama yolu,bahcivan,standart,100,HC,43,zincir_hasat agir_darbe bereketli_ogrenim,agir_darbe
+19,Patlama yolu,bahcivan,standart,100,HC,46,bereketli_ogrenim zincir_hasat hizli_bilek,hizli_bilek
+19,Patlama yolu,bahcivan,standart,100,HC,50,bilgi_filizi zincir_hasat cifte_akim,bilgi_filizi
+20,Patlama yolu,bahcivan,standart,101,HC,3,hizli_bilek nadir_tohum bereketli_toprak,bereketli_toprak
+20,Patlama yolu,bahcivan,standart,101,HC,6,bilgi_filizi hizli_bilek nadir_tohum,hizli_bilek
+20,Patlama yolu,bahcivan,standart,101,HC,10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+20,Patlama yolu,bahcivan,standart,101,HC,13,agir_darbe kivilcim kritik_goz,kivilcim
+20,Patlama yolu,bahcivan,standart,101,HC,16,kivilcim altin_hedef kritik_goz,kivilcim
+20,Patlama yolu,bahcivan,standart,101,HC,20,hizli_bilek kivilcim yikim_gucu,yikim_gucu
+20,Patlama yolu,bahcivan,standart,101,HC,23,davranisa_adanis artci_patlama hasat_ritmi,artci_patlama
+20,Patlama yolu,bahcivan,standart,101,HC,26,zincir_hasat kritik_goz bereketli_ogrenim,kritik_goz
+20,Patlama yolu,bahcivan,standart,101,HC,30,hasat_ritmi zincir_hasat davranisa_adanis,hasat_ritmi
+20,Patlama yolu,bahcivan,standart,101,HC,33,bilgi_filizi firtina_bilegi agir_darbe,firtina_bilegi
+20,Patlama yolu,bahcivan,standart,101,HC,36,nadir_tohum kritik_goz genis_savurus,genis_savurus
+20,Patlama yolu,bahcivan,standart,101,HC,40,canavar_kesimi bereketli_ogrenim altin_hedef,canavar_kesimi
+20,Patlama yolu,bahcivan,standart,101,HC,43,yikim_gucu davranisa_adanis altin_hedef,yikim_gucu
+20,Patlama yolu,bahcivan,standart,101,HC,46,genis_savurus davranisa_adanis bereketli_toprak,bereketli_toprak
+20,Patlama yolu,bahcivan,standart,101,HC,50,kivilcim bereketli_ogrenim genis_savurus,kivilcim
+21,Davranış yönü,bahcivan,standart,100,HC,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+21,Davranış yönü,bahcivan,standart,100,HC,6,bereketli_toprak bilgi_filizi hizli_bilek,hizli_bilek
+21,Davranış yönü,bahcivan,standart,100,HC,10,bereketli_toprak bilgi_filizi keskin_bicak,bereketli_toprak
+21,Davranış yönü,bahcivan,standart,100,HC,13,keskin_bicak yikim_gucu kritik_goz,yikim_gucu
+21,Davranış yönü,bahcivan,standart,100,HC,16,yikim_gucu keskin_bicak altin_hedef,yikim_gucu
+21,Davranış yönü,bahcivan,standart,100,HC,20,bilgi_filizi kivilcim nadir_tohum,kivilcim
+21,Davranış yönü,bahcivan,standart,100,HC,23,canavar_kesimi cifte_akim bilgi_filizi,cifte_akim
+21,Davranış yönü,bahcivan,standart,100,HC,26,kritik_goz genis_savurus bereketli_ogrenim,genis_savurus
+21,Davranış yönü,bahcivan,standart,100,HC,30,zincir_hasat nadir_tohum hizli_bilek,zincir_hasat
+21,Davranış yönü,bahcivan,standart,100,HC,33,genis_savurus bereketli_ogrenim yikim_gucu,yikim_gucu
+21,Davranış yönü,bahcivan,standart,100,HC,36,bereketli_ogrenim keskin_bicak canavar_kesimi,keskin_bicak
+21,Davranış yönü,bahcivan,standart,100,HC,40,hasat_ritmi agir_darbe canavar_kesimi,canavar_kesimi
+21,Davranış yönü,bahcivan,standart,100,HC,43,davranisa_adanis agir_darbe hasat_ritmi,agir_darbe
+21,Davranış yönü,bahcivan,standart,100,HC,46,hasat_ritmi davranisa_adanis hizli_bilek,hizli_bilek
+21,Davranış yönü,bahcivan,standart,100,HC,50,bilgi_filizi davranisa_adanis firtina_bilegi,firtina_bilegi
+22,Davranış yönü,bahcivan,standart,101,HC,3,hizli_bilek nadir_tohum bereketli_toprak,hizli_bilek
+22,Davranış yönü,bahcivan,standart,101,HC,6,bilgi_filizi bereketli_toprak nadir_tohum,bereketli_toprak
+22,Davranış yönü,bahcivan,standart,101,HC,10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+22,Davranış yönü,bahcivan,standart,101,HC,13,agir_darbe kivilcim kritik_goz,kivilcim
+22,Davranış yönü,bahcivan,standart,101,HC,16,kivilcim altin_hedef kritik_goz,kivilcim
+22,Davranış yönü,bahcivan,standart,101,HC,20,hizli_bilek kivilcim yikim_gucu,kivilcim
+22,Davranış yönü,bahcivan,standart,101,HC,23,davranisa_adanis artci_patlama hasat_ritmi,artci_patlama
+22,Davranış yönü,bahcivan,standart,101,HC,26,zincir_hasat altin_hedef bereketli_ogrenim,zincir_hasat
+22,Davranış yönü,bahcivan,standart,101,HC,30,cifte_akim davranisa_adanis bereketli_ogrenim,cifte_akim
+22,Davranış yönü,bahcivan,standart,101,HC,33,nadir_tohum canavar_kesimi agir_darbe,nadir_tohum
+22,Davranış yönü,bahcivan,standart,101,HC,36,nadir_tohum altin_hedef genis_savurus,genis_savurus
+22,Davranış yönü,bahcivan,standart,101,HC,40,canavar_kesimi bereketli_ogrenim yikim_gucu,yikim_gucu
+22,Davranış yönü,bahcivan,standart,101,HC,43,genis_savurus hasat_ritmi yikim_gucu,yikim_gucu
+22,Davranış yönü,bahcivan,standart,101,HC,46,canavar_kesimi bereketli_ogrenim nadir_tohum,nadir_tohum
+22,Davranış yönü,bahcivan,standart,101,HC,50,agir_darbe firtina_bilegi genis_savurus,firtina_bilegi
+23,Dengeli,bahcivan,standart,100,HC,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+23,Dengeli,bahcivan,standart,100,HC,6,bereketli_toprak bilgi_filizi hizli_bilek,hizli_bilek
+23,Dengeli,bahcivan,standart,100,HC,10,nadir_tohum bilgi_filizi keskin_bicak,keskin_bicak
+23,Dengeli,bahcivan,standart,100,HC,13,keskin_bicak yikim_gucu kritik_goz,keskin_bicak
+23,Dengeli,bahcivan,standart,100,HC,16,yikim_gucu hizli_bilek altin_hedef,hizli_bilek
+23,Dengeli,bahcivan,standart,100,HC,20,agir_darbe kivilcim bilgi_filizi,bilgi_filizi
+23,Dengeli,bahcivan,standart,100,HC,23,canavar_kesimi cifte_akim bilgi_filizi,canavar_kesimi
+23,Dengeli,bahcivan,standart,100,HC,26,kritik_goz genis_savurus bereketli_ogrenim,genis_savurus
+23,Dengeli,bahcivan,standart,100,HC,30,zincir_hasat bilgi_filizi nadir_tohum,nadir_tohum
+23,Dengeli,bahcivan,standart,100,HC,33,genis_savurus davranisa_adanis firtina_bilegi,genis_savurus
+23,Dengeli,bahcivan,standart,100,HC,36,bereketli_ogrenim hizli_bilek artci_patlama,hizli_bilek
+23,Dengeli,bahcivan,standart,100,HC,40,bereketli_ogrenim kritik_goz artci_patlama,kritik_goz
+23,Dengeli,bahcivan,standart,100,HC,43,zincir_hasat altin_hedef hasat_ritmi,altin_hedef
+23,Dengeli,bahcivan,standart,100,HC,46,bereketli_ogrenim zincir_hasat nadir_tohum,nadir_tohum
+23,Dengeli,bahcivan,standart,100,HC,50,kivilcim zincir_hasat cifte_akim,kivilcim
+24,Dengeli,bahcivan,standart,101,HC,3,hizli_bilek nadir_tohum bereketli_toprak,hizli_bilek
+24,Dengeli,bahcivan,standart,101,HC,6,bilgi_filizi bereketli_toprak nadir_tohum,bereketli_toprak
+24,Dengeli,bahcivan,standart,101,HC,10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+24,Dengeli,bahcivan,standart,101,HC,13,agir_darbe kivilcim kritik_goz,kritik_goz
+24,Dengeli,bahcivan,standart,101,HC,16,kivilcim altin_hedef kritik_goz,kritik_goz
+24,Dengeli,bahcivan,standart,101,HC,20,hizli_bilek kivilcim yikim_gucu,hizli_bilek
+24,Dengeli,bahcivan,standart,101,HC,23,davranisa_adanis artci_patlama hasat_ritmi,artci_patlama
+24,Dengeli,bahcivan,standart,101,HC,26,zincir_hasat kritik_goz bereketli_ogrenim,kritik_goz
+24,Dengeli,bahcivan,standart,101,HC,30,hasat_ritmi zincir_hasat davranisa_adanis,hasat_ritmi
+24,Dengeli,bahcivan,standart,101,HC,33,bilgi_filizi firtina_bilegi agir_darbe,firtina_bilegi
+24,Dengeli,bahcivan,standart,101,HC,36,nadir_tohum altin_hedef genis_savurus,genis_savurus
+24,Dengeli,bahcivan,standart,101,HC,40,canavar_kesimi davranisa_adanis yikim_gucu,canavar_kesimi
+24,Dengeli,bahcivan,standart,101,HC,43,genis_savurus davranisa_adanis yikim_gucu,genis_savurus
+24,Dengeli,bahcivan,standart,101,HC,46,cifte_akim zincir_hasat hizli_bilek,hizli_bilek
+24,Dengeli,bahcivan,standart,101,HC,50,kivilcim bereketli_ogrenim cifte_akim,kivilcim

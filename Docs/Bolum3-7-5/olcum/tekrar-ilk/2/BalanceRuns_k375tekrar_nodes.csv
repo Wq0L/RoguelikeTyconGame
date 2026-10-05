@@ -1,0 +1,963 @@
+run,policy,farmer,scythe,seed,label,round,node,level,cost,currency
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,1,Keskin Başlangıç - 1,1,5,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,2,Keskin Başlangıç - 1,2,7,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,2,Altın Hasat I - 1,1,7,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,3,Düzenli Üretim - 1,1,6,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,3,Keskin Başlangıç - 1,3,8,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,3,Hızlı Eller - 1,1,7,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,3,Hasat Deneyimi I - 1,1,6,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,5,Grid Genişleme I,1,30,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,6,Altın Hasat I - 1,2,9,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,6,Keskin Başlangıç - 2,1,10,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,6,Düzenli Üretim - 1,2,8,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,7,Hızlı Eller - 1,2,9,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,7,Keskin Başlangıç - 2,2,11,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,7,Altın Hasat I - 1,3,11,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,8,1×3 Saksı,1,30,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,8,Keskin Başlangıç - 3,1,13,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,9,Düzenli Üretim - 1,3,10,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,9,Hızlı Eller - 1,3,11,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,9,Altın Hasat I - 2,1,13,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,9,Keskin Başlangıç - 3,2,14,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,10,Kesim Tekniği - 1,1,25,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,11,Hızlı Eller - 2,1,12,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,11,Altın Hasat I - 2,2,16,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,11,Düzenli Üretim - 2,1,12,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,11,Hasat Deneyimi I - 1,2,8,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,11,Grid Genişleme I,2,30,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,12,Keskin Başlangıç - 4,1,16,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,12,Hızlı Eller - 2,2,14,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,12,Kesim Tekniği - 1,2,35,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,12,Altın Hasat I - 3,1,18,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,12,Hasat Deneyimi I - 1,3,10,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,13,2×2 Saksı,1,80,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,13,Keskin Başlangıç - 4,2,17,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,13,Çifte Hasat Kartları,1,25,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,14,Düzenli Üretim - 2,2,13,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,14,Hızlı Eller - 3,1,16,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,14,Altın Hasat I - 3,2,20,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,14,Kesim Tekniği - 1,3,40,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,14,Hasat Deneyimi I - 2,1,12,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,15,Demir Hasat - 1,1,25,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,15,Hızlı Eller - 3,2,18,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,15,Düzenli Üretim - 3,1,15,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,15,Altın Hasat I - 4,1,22,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,15,Geniş Süpürüş - 1,1,21,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,16,Kesim Tekniği - 2,1,50,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,16,Hasat Deneyimi I - 2,2,14,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,16,Hızlı Eller - 4,1,20,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,16,Altın Hasat I - 4,2,24,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,16,Demir Hasat - 1,2,35,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,16,Düzenli Üretim - 3,2,17,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,17,Geniş Süpürüş - 1,2,28,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,17,Hızlı Eller - 4,2,22,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,17,Hasat Deneyimi I - 3,1,16,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,17,Düzenli Üretim - 4,1,19,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,18,Güçlü Kesim - 1,1,120,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,18,Kesim Tekniği - 2,2,55,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,19,2×3 Saksı,1,200,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,19,Demir Hasat - 1,3,40,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,19,Taş Hasat - 1,1,35,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,20,Geniş Süpürüş - 1,3,35,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,20,Hasat Deneyimi I - 3,2,18,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,20,Düzenli Üretim - 4,2,21,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,20,Hasat Deneyimi I - 4,1,20,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,20,Hasat Deneyimi I - 4,2,21,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,21,İlk Vazgeçiş,1,150,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,21,Kesim Tekniği - 3,1,65,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,21,Hasat Rekoru - 1,1,180,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,21,Geniş Süpürüş - 2,1,40,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,21,Taş Hasat - 1,2,45,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,22,Güçlü Kesim - 1,2,160,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,22,Akıcı Kesim - 1,1,160,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,22,Kesim Tekniği - 3,2,70,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,23,Demir Hasat - 2,1,50,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,23,Güçlü Kesim - 1,3,195,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,23,Geniş Süpürüş - 2,2,45,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,23,Taş Hasat - 1,3,55,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,24,Akıcı Kesim - 1,2,210,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,24,Hasat Rekoru - 1,2,240,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,24,Kesim Tekniği - 4,1,80,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,24,Demir Hasat - 2,2,55,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,24,Güçlü Kesim - 2,1,230,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,25,Geniş Süpürüş - 3,1,55,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,25,Altın Hasat II - 1,1,180,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,25,Kesim Tekniği - 4,2,85,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,25,Verimli Üretim - 1,1,200,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,25,Akıcı Kesim - 1,3,260,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,26,Nadir Filizler - 1,1,230,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,26,Demir Hasat - 3,1,65,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,26,Hasat Rekoru - 1,3,290,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,26,Geniş Süpürüş - 3,2,60,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,26,Güçlü Kesim - 2,2,270,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,26,Grid Genişleme II,1,100,Stone
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,26,Verimli Üretim - 1,2,260,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,27,Altın Hasat II - 1,2,240,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,27,Geniş Süpürüş - 4,1,65,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,27,Demir Hasat - 3,2,70,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,27,Taş Hasat - 2,1,65,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,27,Geniş Süpürüş - 4,2,70,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,27,Zengin Cevher - 1,1,50,Stone
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,28,Akıcı Kesim - 2,1,310,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,28,Nadir Filizler - 1,2,300,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,28,Geniş Tarama - 1,1,160,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,28,Taş Hasat - 2,2,80,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,28,Taş Hasat - 3,1,90,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,29,Güçlü Kesim - 3,1,300,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,29,Altın Hasat II - 1,3,290,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,29,Demir Hasat - 4,1,80,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,29,Zengin Cevher - 1,2,65,Stone
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,29,Taş Hasat - 3,2,100,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,29,Zengin Cevher - 1,3,80,Stone
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,29,Taş Hasat - 4,1,110,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,30,Kesim Ustalığı - 1,1,560,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,30,Hasat Rekoru - 2,1,350,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,30,Akıcı Kesim - 2,2,360,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,31,Verimli Üretim - 1,3,320,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,31,Geniş Tarama - 1,2,210,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,31,Güçlü Kesim - 3,2,340,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,31,Demir Hasat - 4,2,85,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,31,Zengin Cevher - 2,1,95,Stone
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,31,Taş Hasat - 4,2,120,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,32,Kesim Ustalığı - 1,2,720,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,32,Altın Hasat II - 2,1,350,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,32,Akıcı Kesim - 3,1,400,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,32,Geniş Tarama - 1,3,260,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,33,Nadir Filizler - 1,3,360,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,33,Hasat Deneyimi II - 1,1,450,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,33,Hasat Rekoru - 2,2,400,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,33,Zengin Cevher - 2,2,110,Stone
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,34,İkinci Vazgeçiş,1,800,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,34,Güçlü Kesim - 4,1,380,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,34,Altın Hasat II - 2,2,400,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,34,Kritik Odak - 1,1,150,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,35,Verimli Üretim - 2,1,380,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,35,Kritik Odak - 1,2,195,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,35,Kritik Odak - 1,3,240,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,35,Kritik Odak - 2,1,290,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,35,Zengin Cevher - 3,1,125,Stone
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,36,Ağır Kesim - 1,1,1200,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,36,Kesim Ustalığı - 1,3,890,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,37,Nadir Filizler - 2,1,430,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,37,Akıcı Kesim - 3,2,450,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,37,Geniş Tarama - 2,1,310,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,37,Kart Sezgisi - 1,1,710,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,37,Verimli Üretim - 2,2,440,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,37,Zengin Cevher - 3,2,140,Stone
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,38,Hasat Deneyimi II - 1,2,590,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,38,Altın Hasat II - 3,1,450,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,38,Güçlü Kesim - 4,2,410,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,38,Kesim Ustalığı - 2,1,1100,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,38,Geniş Tarama - 2,2,360,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,38,Nadir Filizler - 2,2,500,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,39,Ağır Kesim - 1,2,1600,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,39,Hasat Rekoru - 3,1,450,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,39,Verimli Üretim - 3,1,510,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,39,Zengin Cevher - 4,1,155,Stone
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,40,Akıcı Kesim - 4,1,500,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,40,Hasat Deneyimi II - 1,3,730,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,40,Kart Sezgisi - 1,2,920,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,40,Kesim Ustalığı - 2,2,1200,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,40,Verimli Üretim - 3,2,570,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,40,Kritik Güç - 1,1,150,Stone
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,41,Altın Hasat II - 3,2,510,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,41,Ağır Kesim - 1,3,1900,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,41,Nadir Filizler - 3,1,570,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,41,Grid Genişleme II,2,1800,Stone
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,41,Zengin Cevher - 4,2,170,Stone
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,42,Akıcı Kesim - 4,2,550,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,42,Geniş Tarama - 3,1,400,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,42,Hasat Deneyimi II - 2,1,860,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,42,Hasat Rekoru - 3,2,510,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,42,Kesim Ustalığı - 3,1,1400,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,42,Verimli Üretim - 4,1,630,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,42,Kritik Güç - 1,2,195,Stone
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,43,Altın Hasat II - 4,1,560,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,43,Kart Sezgisi - 1,3,1100,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,43,Geniş Tarama - 3,2,450,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,43,Nadir Filizler - 3,2,640,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,43,Hasat Rekoru - 4,1,560,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,43,Geniş Tarama - 4,1,500,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,44,Ağır Kesim - 2,1,2300,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,44,Kesim Ustalığı - 3,2,1600,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,44,Verimli Üretim - 4,2,690,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,44,Nadir Filizler - 4,1,700,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,44,Kritik Güç - 1,3,240,Stone
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,45,Hasat Deneyimi II - 2,2,1000,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,45,Altın Hasat II - 4,2,620,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,45,Kart Sezgisi - 2,1,1300,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,45,Kritik Odak - 2,2,330,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,45,Kesim Ustalığı - 4,1,1700,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,46,Ağır Kesim - 2,2,2700,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,46,Nadir Filizler - 4,2,770,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,46,Kesim Ustalığı - 4,2,1900,Iron
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,46,Kritik Güç - 2,1,290,Stone
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,47,Hasat Deneyimi II - 3,1,1100,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,47,Geniş Tarama - 4,2,550,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,47,Kart Sezgisi - 2,2,1600,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,47,Hasat Rekoru - 4,2,620,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,47,Kritik Odak - 3,1,380,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,48,Ağır Kesim - 3,1,3000,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,48,Kritik Güç - 2,2,330,Stone
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,49,Hasat Deneyimi II - 3,2,1300,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,49,Kritik Odak - 3,2,420,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,49,Kritik Odak - 4,1,470,Gold
+1,Patlama yolu,bahcivan,standart,100,tekrar kontrolü,49,Kritik Odak - 4,2,520,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,1,Keskin Başlangıç - 1,1,5,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,2,Keskin Başlangıç - 1,2,7,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,2,Altın Hasat I - 1,1,7,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,4,Düzenli Üretim - 1,1,6,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,4,Keskin Başlangıç - 1,3,8,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,4,Hızlı Eller - 1,1,7,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,5,Grid Genişleme I,1,30,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,6,Altın Hasat I - 1,2,9,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,6,Keskin Başlangıç - 2,1,10,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,6,Düzenli Üretim - 1,2,8,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,6,Hızlı Eller - 1,2,9,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,7,Keskin Başlangıç - 2,2,11,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,7,Altın Hasat I - 1,3,11,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,7,Hasat Deneyimi I - 1,1,6,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,8,1×3 Saksı,1,30,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,8,Keskin Başlangıç - 3,1,13,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,8,Düzenli Üretim - 1,3,10,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,9,Hızlı Eller - 1,3,11,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,9,Altın Hasat I - 2,1,13,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,10,Keskin Başlangıç - 3,2,14,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,10,Kesim Tekniği - 1,1,25,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,10,Hızlı Eller - 2,1,12,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,11,Altın Hasat I - 2,2,16,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,11,Düzenli Üretim - 2,1,12,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,11,Hasat Deneyimi I - 1,2,8,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,11,Keskin Başlangıç - 4,1,16,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,11,Grid Genişleme I,2,30,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,12,Hızlı Eller - 2,2,14,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,13,Kesim Tekniği - 1,2,35,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,13,Altın Hasat I - 3,1,18,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,13,Keskin Başlangıç - 4,2,17,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,14,2×2 Saksı,1,80,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,14,Hasat Deneyimi I - 1,3,10,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,14,Çifte Hasat Kartları,1,25,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,15,Düzenli Üretim - 2,2,13,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,15,Hızlı Eller - 3,1,16,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,15,Altın Hasat I - 3,2,20,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,16,Kesim Tekniği - 1,3,40,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,16,Hasat Deneyimi I - 2,1,12,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,16,Demir Hasat - 1,1,25,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,16,Hızlı Eller - 3,2,18,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,16,Düzenli Üretim - 3,1,15,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,17,Altın Hasat I - 4,1,22,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,17,Geniş Süpürüş - 1,1,21,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,17,Kesim Tekniği - 2,1,50,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,18,Hasat Deneyimi I - 2,2,14,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,18,Hızlı Eller - 4,1,20,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,18,Altın Hasat I - 4,2,24,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,18,Demir Hasat - 1,2,35,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,18,Düzenli Üretim - 3,2,17,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,19,Geniş Süpürüş - 1,2,28,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,19,Hızlı Eller - 4,2,22,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,19,Hasat Deneyimi I - 3,1,16,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,19,Düzenli Üretim - 4,1,19,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,19,Hasat Deneyimi I - 3,2,18,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,19,Hasat Deneyimi I - 4,1,20,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,20,Düzenli Üretim - 4,2,21,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,20,Hasat Deneyimi I - 4,2,21,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,21,Güçlü Kesim - 1,1,120,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,21,Kesim Tekniği - 2,2,55,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,22,Demir Hasat - 1,3,40,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,22,Geniş Süpürüş - 1,3,35,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,22,Geniş Süpürüş - 2,1,40,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,22,Demir Hasat - 2,1,50,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,22,Taş Hasat - 1,1,35,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,23,2×3 Saksı,1,200,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,24,İlk Vazgeçiş,1,150,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,24,Kesim Tekniği - 3,1,65,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,24,Geniş Süpürüş - 2,2,45,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,24,Taş Hasat - 1,2,45,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,26,Hasat Rekoru - 1,1,180,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,26,Güçlü Kesim - 1,2,160,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,27,Akıcı Kesim - 1,1,160,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,27,Kesim Tekniği - 3,2,70,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,27,Güçlü Kesim - 1,3,195,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,28,Akıcı Kesim - 1,2,210,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,28,Demir Hasat - 2,2,55,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,28,Geniş Süpürüş - 3,1,55,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,28,Geniş Süpürüş - 3,2,60,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,29,Hasat Rekoru - 1,2,240,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,29,Kesim Tekniği - 4,1,80,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,29,Verimli Üretim - 1,1,200,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,29,Taş Hasat - 1,3,55,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,30,Güçlü Kesim - 2,1,230,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,31,Altın Hasat II - 1,1,180,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,31,Kesim Tekniği - 4,2,85,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,31,Nadir Filizler - 1,1,230,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,31,Akıcı Kesim - 1,3,260,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,31,Grid Genişleme II,1,100,Stone
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,31,Taş Hasat - 2,1,65,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,32,Demir Hasat - 3,1,65,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,32,Hasat Rekoru - 1,3,290,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,32,Geniş Süpürüş - 4,1,65,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,33,Güçlü Kesim - 2,2,270,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,33,Verimli Üretim - 1,2,260,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,33,Zengin Cevher - 1,1,50,Stone
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,34,Altın Hasat II - 1,2,240,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,34,Nadir Filizler - 1,2,300,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,34,Demir Hasat - 3,2,70,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,34,Taş Hasat - 2,2,80,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,34,Zengin Cevher - 1,2,65,Stone
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,35,Akıcı Kesim - 2,1,310,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,35,Taş Hasat - 3,1,90,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,35,Taş Hasat - 3,2,100,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,35,Zengin Cevher - 1,3,80,Stone
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,36,Geniş Tarama - 1,1,160,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,36,Güçlü Kesim - 3,1,300,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,36,Geniş Süpürüş - 4,2,70,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,36,Taş Hasat - 4,1,110,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,36,Zengin Cevher - 2,1,95,Stone
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,36,Taş Hasat - 4,2,120,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,37,Altın Hasat II - 1,3,290,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,37,Demir Hasat - 4,1,80,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,37,Demir Hasat - 4,2,85,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,37,Zengin Cevher - 2,2,110,Stone
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,38,Kesim Ustalığı - 1,1,560,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,38,Hasat Rekoru - 2,1,350,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,38,Akıcı Kesim - 2,2,360,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,38,Zengin Cevher - 3,1,125,Stone
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,39,Verimli Üretim - 1,3,320,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,39,Geniş Tarama - 1,2,210,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,39,Güçlü Kesim - 3,2,340,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,39,Zengin Cevher - 3,2,140,Stone
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,40,Altın Hasat II - 2,1,350,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,40,Akıcı Kesim - 3,1,400,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,40,Zengin Cevher - 4,1,155,Stone
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,41,Kesim Ustalığı - 1,2,720,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,41,Geniş Tarama - 1,3,260,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,41,Zengin Cevher - 4,2,170,Stone
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,42,Nadir Filizler - 1,3,360,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,42,Hasat Deneyimi II - 1,1,450,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,42,Hasat Rekoru - 2,2,400,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,43,İkinci Vazgeçiş,1,800,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,43,Güçlü Kesim - 4,1,380,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,43,Altın Hasat II - 2,2,400,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,44,Verimli Üretim - 2,1,380,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,44,Kritik Odak - 1,1,150,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,44,Kritik Odak - 1,2,195,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,44,Kritik Odak - 1,3,240,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,44,Kritik Güç - 1,1,150,Stone
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,44,Kritik Güç - 1,2,195,Stone
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,44,Kritik Güç - 1,3,240,Stone
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,45,Kritik Odak - 2,1,290,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,46,Ağır Kesim - 1,1,1200,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,46,Kesim Ustalığı - 1,3,890,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,46,Nadir Filizler - 2,1,430,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,46,Kritik Güç - 2,1,290,Stone
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,47,Akıcı Kesim - 3,2,450,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,47,Geniş Tarama - 2,1,310,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,47,Kart Sezgisi - 1,1,710,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,47,Verimli Üretim - 2,2,440,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,48,Hasat Deneyimi II - 1,2,590,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,48,Altın Hasat II - 3,1,450,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,48,Güçlü Kesim - 4,2,410,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,48,Kesim Ustalığı - 2,1,1100,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,48,Geniş Tarama - 2,2,360,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,48,Nadir Filizler - 2,2,500,Iron
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,48,Kritik Güç - 2,2,330,Stone
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,49,Ağır Kesim - 1,2,1600,Gold
+2,Patlama yolu,bahcivan,standart,101,tekrar kontrolü,49,Verimli Üretim - 3,1,510,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,1,Keskin Başlangıç - 1,1,5,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,1,Keskin Başlangıç - 1,2,7,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,3,Altın Hasat I - 1,1,7,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,3,Düzenli Üretim - 1,1,6,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,4,Keskin Başlangıç - 1,3,8,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,4,Hızlı Eller - 1,1,7,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,4,Hasat Deneyimi I - 1,1,6,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,5,Grid Genişleme I,1,30,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,5,Altın Hasat I - 1,2,9,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,5,Keskin Başlangıç - 2,1,10,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,5,Düzenli Üretim - 1,2,8,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,5,Hızlı Eller - 1,2,9,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,6,Keskin Başlangıç - 2,2,11,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,8,Altın Hasat I - 1,3,11,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,8,1×3 Saksı,1,30,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,9,Keskin Başlangıç - 3,1,13,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,9,Düzenli Üretim - 1,3,10,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,9,Hızlı Eller - 1,3,11,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,9,Altın Hasat I - 2,1,13,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,10,Keskin Başlangıç - 3,2,14,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,10,Kesim Tekniği - 1,1,25,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,11,Hızlı Eller - 2,1,12,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,11,Altın Hasat I - 2,2,16,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,11,Düzenli Üretim - 2,1,12,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,11,Hasat Deneyimi I - 1,2,8,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,11,Grid Genişleme I,2,30,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,12,Keskin Başlangıç - 4,1,16,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,12,Hızlı Eller - 2,2,14,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,12,Kesim Tekniği - 1,2,35,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,12,Altın Hasat I - 3,1,18,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,12,Keskin Başlangıç - 4,2,17,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,13,2×2 Saksı,1,80,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,13,Hasat Deneyimi I - 1,3,10,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,13,Düzenli Üretim - 2,2,13,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,13,Hızlı Eller - 3,1,16,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,13,Çifte Hasat Kartları,1,25,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,14,Altın Hasat I - 3,2,20,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,14,Kesim Tekniği - 1,3,40,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,14,Hasat Deneyimi I - 2,1,12,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,14,Demir Hasat - 1,1,25,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,14,Hızlı Eller - 3,2,18,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,14,Düzenli Üretim - 3,1,15,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,15,Altın Hasat I - 4,1,22,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,15,Geniş Süpürüş - 1,1,21,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,15,Kesim Tekniği - 2,1,50,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,15,Hasat Deneyimi I - 2,2,14,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,15,Hızlı Eller - 4,1,20,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,15,Altın Hasat I - 4,2,24,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,15,Demir Hasat - 1,2,35,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,16,Düzenli Üretim - 3,2,17,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,16,Geniş Süpürüş - 1,2,28,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,16,Güçlü Kesim - 1,1,120,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,16,Hızlı Eller - 4,2,22,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,16,Kesim Tekniği - 2,2,55,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,16,Hasat Deneyimi I - 3,1,16,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,16,2×3 Saksı,1,200,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,16,Düzenli Üretim - 4,1,19,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,17,Demir Hasat - 1,3,40,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,17,Geniş Süpürüş - 1,3,35,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,17,İlk Vazgeçiş,1,150,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,17,Hasat Deneyimi I - 3,2,18,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,17,Kesim Tekniği - 3,1,65,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,17,Hasat Rekoru - 1,1,180,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,17,Düzenli Üretim - 4,2,21,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,17,Geniş Süpürüş - 2,1,40,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,17,Hasat Deneyimi I - 4,1,20,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,17,Taş Hasat - 1,1,35,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,17,Taş Hasat - 1,2,45,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,18,Güçlü Kesim - 1,2,160,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,18,Akıcı Kesim - 1,1,160,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,18,Kesim Tekniği - 3,2,70,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,18,Demir Hasat - 2,1,50,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,18,Geniş Süpürüş - 2,2,45,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,18,Hasat Deneyimi I - 4,2,21,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,19,Güçlü Kesim - 1,3,195,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,19,Akıcı Kesim - 1,2,210,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,19,Hasat Rekoru - 1,2,240,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,19,Kesim Tekniği - 4,1,80,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,19,Verimli Üretim - 1,1,200,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,19,Taş Hasat - 1,3,55,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,20,Demir Hasat - 2,2,55,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,20,Güçlü Kesim - 2,1,230,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,20,Geniş Süpürüş - 3,1,55,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,20,Altın Hasat II - 1,1,180,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,20,Nadir Filizler - 1,1,230,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,21,Kesim Tekniği - 4,2,85,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,21,Akıcı Kesim - 1,3,260,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,21,Demir Hasat - 3,1,65,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,21,Hasat Rekoru - 1,3,290,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,21,Geniş Süpürüş - 3,2,60,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,21,Grid Genişleme II,1,100,Stone
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,21,Verimli Üretim - 1,2,260,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,21,Geniş Süpürüş - 4,1,65,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,22,Güçlü Kesim - 2,2,270,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,22,Nadir Filizler - 1,2,300,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,22,Taş Hasat - 2,1,65,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,23,Altın Hasat II - 1,2,240,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,23,Akıcı Kesim - 2,1,310,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,23,Geniş Tarama - 1,1,160,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,23,Kesim Ustalığı - 1,1,560,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,23,Demir Hasat - 3,2,70,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,23,Güçlü Kesim - 3,1,300,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,23,Taş Hasat - 2,2,80,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,24,Altın Hasat II - 1,3,290,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,24,Hasat Rekoru - 2,1,350,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,24,Akıcı Kesim - 2,2,360,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,24,Verimli Üretim - 1,3,320,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,24,Geniş Süpürüş - 4,2,70,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,24,Geniş Tarama - 1,2,210,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,24,Zengin Cevher - 1,1,50,Stone
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,25,Kesim Ustalığı - 1,2,720,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,25,Demir Hasat - 4,1,80,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,25,Güçlü Kesim - 3,2,340,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,25,Altın Hasat II - 2,1,350,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,25,Akıcı Kesim - 3,1,400,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,25,Geniş Tarama - 1,3,260,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,25,Taş Hasat - 3,1,90,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,26,Nadir Filizler - 1,3,360,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,26,Hasat Deneyimi II - 1,1,450,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,26,Hasat Rekoru - 2,2,400,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,26,Güçlü Kesim - 4,1,380,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,26,Altın Hasat II - 2,2,400,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,26,Demir Hasat - 4,2,85,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,26,Geniş Tarama - 2,1,310,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,27,İkinci Vazgeçiş,1,800,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,27,Verimli Üretim - 2,1,380,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,27,Ağır Kesim - 1,1,1200,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,27,Akıcı Kesim - 3,2,450,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,27,Güçlü Kesim - 4,2,410,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,27,Zengin Cevher - 1,2,65,Stone
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,27,Taş Hasat - 3,2,100,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,28,Kesim Ustalığı - 1,3,890,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,28,Nadir Filizler - 2,1,430,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,28,Kart Sezgisi - 1,1,710,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,28,Hasat Deneyimi II - 1,2,590,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,28,Altın Hasat II - 3,1,450,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,28,Kritik Odak - 1,1,150,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,28,Hasat Rekoru - 3,1,450,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,29,Verimli Üretim - 2,2,440,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,29,Ağır Kesim - 1,2,1600,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,29,Akıcı Kesim - 4,1,500,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,29,Geniş Tarama - 2,2,360,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,29,Nadir Filizler - 2,2,500,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,29,Kritik Odak - 1,2,195,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,29,Zengin Cevher - 1,3,80,Stone
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,29,Taş Hasat - 4,1,110,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,30,Kesim Ustalığı - 2,1,1100,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,30,Hasat Deneyimi II - 1,3,730,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,30,Kart Sezgisi - 1,2,920,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,30,Altın Hasat II - 3,2,510,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,31,Verimli Üretim - 3,1,510,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,31,Ağır Kesim - 1,3,1900,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,31,Akıcı Kesim - 4,2,550,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,31,Geniş Tarama - 3,1,400,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,31,Verimli Üretim - 3,2,570,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,31,Hasat Rekoru - 3,2,510,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,31,Nadir Filizler - 3,1,570,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,31,Zengin Cevher - 2,1,95,Stone
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,32,Kesim Ustalığı - 2,2,1200,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,32,Hasat Deneyimi II - 2,1,860,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,32,Altın Hasat II - 4,1,560,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,32,Kart Sezgisi - 1,3,1100,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,32,Kritik Odak - 1,3,240,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,32,Geniş Tarama - 3,2,450,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,32,Taş Hasat - 4,2,120,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,33,Ağır Kesim - 2,1,2300,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,33,Hasat Deneyimi II - 2,2,1000,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,33,Kesim Ustalığı - 3,1,1400,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,33,Altın Hasat II - 4,2,620,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,33,Zengin Cevher - 2,2,110,Stone
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,34,Verimli Üretim - 4,1,630,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,34,Kritik Odak - 2,1,290,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,34,Kart Sezgisi - 2,1,1300,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,34,Nadir Filizler - 3,2,640,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,34,Hasat Rekoru - 4,1,560,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,34,Geniş Tarama - 4,1,500,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,35,Ağır Kesim - 2,2,2700,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,35,Hasat Deneyimi II - 3,1,1100,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,35,Kesim Ustalığı - 3,2,1600,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,35,Kritik Odak - 2,2,330,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,35,Zengin Cevher - 3,1,125,Stone
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,36,Verimli Üretim - 4,2,690,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,36,Geniş Tarama - 4,2,550,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,36,Kart Sezgisi - 2,2,1600,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,36,Nadir Filizler - 4,1,700,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,36,Hasat Deneyimi II - 3,2,1300,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,37,Ağır Kesim - 3,1,3000,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,37,Hasat Rekoru - 4,2,620,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,37,Kesim Ustalığı - 4,1,1700,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,37,Kritik Odak - 3,1,380,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,37,Zengin Cevher - 3,2,140,Stone
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,38,Ağır Kesim - 3,2,3400,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,38,Kart Sezgisi - 3,1,1800,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,38,Nadir Filizler - 4,2,770,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,39,Hasat Deneyimi II - 4,1,1400,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,39,Kritik Odak - 3,2,420,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,39,Zengin Cevher - 4,1,155,Stone
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,39,Kesim Ustalığı - 4,2,1900,Iron
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,40,Ağır Kesim - 4,1,3800,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,40,Hasat Deneyimi II - 4,2,1500,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,40,Kritik Güç - 1,1,150,Stone
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,41,Kart Sezgisi - 3,2,2000,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,41,Kritik Odak - 4,1,470,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,41,Grid Genişleme II,2,1800,Stone
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,41,Zengin Cevher - 4,2,170,Stone
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,42,Ağır Kesim - 4,2,4100,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,42,Kritik Güç - 1,2,195,Stone
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,43,Kart Sezgisi - 4,1,2200,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,43,Kritik Odak - 4,2,520,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,44,Kritik Güç - 1,3,240,Stone
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,45,Kart Sezgisi - 4,2,2400,Gold
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,46,Kritik Güç - 2,1,290,Stone
+3,Patlama yolu,bahcivan,standart,102,tekrar kontrolü,48,Kritik Güç - 2,2,330,Stone
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,2,Keskin Başlangıç - 1,1,5,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,2,Keskin Başlangıç - 1,2,7,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,2,Altın Hasat I - 1,1,7,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,2,Düzenli Üretim - 1,1,6,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,4,Keskin Başlangıç - 1,3,8,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,4,Hızlı Eller - 1,1,7,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,4,Hasat Deneyimi I - 1,1,6,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,5,Grid Genişleme I,1,30,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,6,Altın Hasat I - 1,2,9,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,6,Keskin Başlangıç - 2,1,10,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,6,Düzenli Üretim - 1,2,8,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,7,Hızlı Eller - 1,2,9,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,7,Keskin Başlangıç - 2,2,11,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,7,Altın Hasat I - 1,3,11,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,8,1×3 Saksı,1,30,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,8,Keskin Başlangıç - 3,1,13,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,9,Düzenli Üretim - 1,3,10,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,9,Hızlı Eller - 1,3,11,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,9,Altın Hasat I - 2,1,13,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,9,Keskin Başlangıç - 3,2,14,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,10,Kesim Tekniği - 1,1,25,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,11,Hızlı Eller - 2,1,12,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,11,Altın Hasat I - 2,2,16,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,11,Düzenli Üretim - 2,1,12,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,11,Hasat Deneyimi I - 1,2,8,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,11,Grid Genişleme I,2,30,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,12,Keskin Başlangıç - 4,1,16,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,12,Hızlı Eller - 2,2,14,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,13,Kesim Tekniği - 1,2,35,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,13,Altın Hasat I - 3,1,18,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,13,Keskin Başlangıç - 4,2,17,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,14,2×2 Saksı,1,80,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,14,Hasat Deneyimi I - 1,3,10,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,14,Çifte Hasat Kartları,1,25,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,15,Düzenli Üretim - 2,2,13,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,15,Hızlı Eller - 3,1,16,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,15,Altın Hasat I - 3,2,20,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,16,Kesim Tekniği - 1,3,40,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,16,Hasat Deneyimi I - 2,1,12,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,16,Demir Hasat - 1,1,25,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,16,Hızlı Eller - 3,2,18,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,16,Düzenli Üretim - 3,1,15,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,17,Altın Hasat I - 4,1,22,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,17,Geniş Süpürüş - 1,1,21,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,18,Kesim Tekniği - 2,1,50,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,18,Hasat Deneyimi I - 2,2,14,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,18,Hızlı Eller - 4,1,20,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,18,Altın Hasat I - 4,2,24,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,18,Demir Hasat - 1,2,35,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,18,Düzenli Üretim - 3,2,17,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,19,Geniş Süpürüş - 1,2,28,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,19,Güçlü Kesim - 1,1,120,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,20,Hızlı Eller - 4,2,22,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,20,Kesim Tekniği - 2,2,55,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,20,Hasat Deneyimi I - 3,1,16,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,20,Düzenli Üretim - 4,1,19,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,20,Demir Hasat - 1,3,40,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,20,Taş Hasat - 1,1,35,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,21,2×3 Saksı,1,200,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,22,Geniş Süpürüş - 1,3,35,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,22,İlk Vazgeçiş,1,150,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,22,Hasat Deneyimi I - 3,2,18,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,22,Kesim Tekniği - 3,1,65,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,23,Hasat Rekoru - 1,1,180,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,23,Düzenli Üretim - 4,2,21,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,23,Geniş Süpürüş - 2,1,40,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,23,Hasat Deneyimi I - 4,1,20,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,23,Hasat Deneyimi I - 4,2,21,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,23,Taş Hasat - 1,2,45,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,24,Güçlü Kesim - 1,2,160,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,25,Akıcı Kesim - 1,1,160,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,25,Kesim Tekniği - 3,2,70,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,25,Demir Hasat - 2,1,50,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,25,Geniş Süpürüş - 2,2,45,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,25,Verimli Üretim - 1,1,200,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,25,Taş Hasat - 1,3,55,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,26,Güçlü Kesim - 1,3,195,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,26,Akıcı Kesim - 1,2,210,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,27,Hasat Rekoru - 1,2,240,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,27,Kesim Tekniği - 4,1,80,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,27,Demir Hasat - 2,2,55,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,27,Nadir Filizler - 1,1,230,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,27,Grid Genişleme II,1,100,Stone
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,27,Taş Hasat - 2,1,65,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,28,Güçlü Kesim - 2,1,230,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,28,Geniş Süpürüş - 3,1,55,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,29,Altın Hasat II - 1,1,180,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,29,Kesim Tekniği - 4,2,85,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,29,Demir Hasat - 3,1,65,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,29,Geniş Süpürüş - 3,2,60,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,29,Verimli Üretim - 1,2,260,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,29,Geniş Süpürüş - 4,1,65,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,29,Zengin Cevher - 1,1,50,Stone
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,30,Zengin Cevher - 1,2,65,Stone
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,31,Akıcı Kesim - 1,3,260,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,31,Hasat Rekoru - 1,3,290,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,31,Nadir Filizler - 1,2,300,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,31,Taş Hasat - 2,2,80,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,31,Taş Hasat - 3,1,90,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,32,Güçlü Kesim - 2,2,270,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,32,Altın Hasat II - 1,2,240,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,32,Taş Hasat - 3,2,100,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,32,Zengin Cevher - 1,3,80,Stone
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,32,Taş Hasat - 4,1,110,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,32,Zengin Cevher - 2,1,95,Stone
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,32,Taş Hasat - 4,2,120,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,33,Akıcı Kesim - 2,1,310,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,33,Geniş Tarama - 1,1,160,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,33,Demir Hasat - 3,2,70,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,34,Kesim Ustalığı - 1,1,560,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,34,Güçlü Kesim - 3,1,300,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,34,Altın Hasat II - 1,3,290,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,34,Geniş Süpürüş - 4,2,70,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,34,Zengin Cevher - 2,2,110,Stone
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,35,Hasat Rekoru - 2,1,350,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,35,Verimli Üretim - 1,3,320,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,35,Demir Hasat - 4,1,80,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,35,Demir Hasat - 4,2,85,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,35,Zengin Cevher - 3,1,125,Stone
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,36,Akıcı Kesim - 2,2,360,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,36,Geniş Tarama - 1,2,210,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,37,Kesim Ustalığı - 1,2,720,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,37,Nadir Filizler - 1,3,360,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,37,Güçlü Kesim - 3,2,340,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,37,Altın Hasat II - 2,1,350,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,37,Zengin Cevher - 3,2,140,Stone
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,38,Akıcı Kesim - 3,1,400,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,38,Geniş Tarama - 1,3,260,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,39,İkinci Vazgeçiş,1,800,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,39,Verimli Üretim - 2,1,380,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,39,Hasat Deneyimi II - 1,1,450,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,39,Hasat Rekoru - 2,2,400,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,39,Zengin Cevher - 4,1,155,Stone
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,40,Güçlü Kesim - 4,1,380,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,40,Altın Hasat II - 2,2,400,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,40,Kritik Odak - 1,1,150,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,41,Kesim Ustalığı - 1,3,890,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,41,Kritik Odak - 1,2,195,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,41,Kritik Odak - 1,3,240,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,41,Kritik Odak - 2,1,290,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,41,Kritik Güç - 1,1,150,Stone
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,41,Zengin Cevher - 4,2,170,Stone
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,42,Ağır Kesim - 1,1,1200,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,42,Nadir Filizler - 2,1,430,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,42,Verimli Üretim - 2,2,440,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,42,Kritik Güç - 1,2,195,Stone
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,43,Akıcı Kesim - 3,2,450,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,43,Geniş Tarama - 2,1,310,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,44,Kart Sezgisi - 1,1,710,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,44,Hasat Deneyimi II - 1,2,590,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,44,Altın Hasat II - 3,1,450,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,44,Kesim Ustalığı - 2,1,1100,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,44,Nadir Filizler - 2,2,500,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,44,Kritik Güç - 1,3,240,Stone
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,45,Güçlü Kesim - 4,2,410,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,45,Geniş Tarama - 2,2,360,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,45,Verimli Üretim - 3,1,510,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,45,Geniş Tarama - 3,1,400,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,45,Kritik Odak - 2,2,330,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,46,Ağır Kesim - 1,2,1600,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,46,Hasat Rekoru - 3,1,450,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,46,Kesim Ustalığı - 2,2,1200,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,46,Kritik Güç - 2,1,290,Stone
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,47,Akıcı Kesim - 4,1,500,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,47,Hasat Deneyimi II - 1,3,730,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,47,Verimli Üretim - 3,2,570,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,47,Nadir Filizler - 3,1,570,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,47,Grid Genişleme II,2,1800,Stone
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,48,Kart Sezgisi - 1,2,920,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,48,Altın Hasat II - 3,2,510,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,48,Geniş Tarama - 3,2,450,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,48,Kesim Ustalığı - 3,1,1400,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,48,Kritik Odak - 3,1,380,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,48,Kritik Odak - 3,2,420,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,48,Kritik Güç - 2,2,330,Stone
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,49,Ağır Kesim - 1,3,1900,Gold
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,49,Verimli Üretim - 4,1,630,Iron
+4,Patlama yolu,bahcivan,standart,103,tekrar kontrolü,49,Nadir Filizler - 3,2,640,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,1,Keskin Başlangıç - 1,1,5,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,2,Keskin Başlangıç - 1,2,7,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,3,Altın Hasat I - 1,1,7,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,4,Düzenli Üretim - 1,1,6,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,4,Keskin Başlangıç - 1,3,8,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,4,Hızlı Eller - 1,1,7,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,4,Hasat Deneyimi I - 1,1,6,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,5,Grid Genişleme I,1,30,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,5,Altın Hasat I - 1,2,9,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,5,Keskin Başlangıç - 2,1,10,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,7,Düzenli Üretim - 1,2,8,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,7,Hızlı Eller - 1,2,9,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,7,Keskin Başlangıç - 2,2,11,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,8,Altın Hasat I - 1,3,11,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,8,1×3 Saksı,1,30,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,8,Keskin Başlangıç - 3,1,13,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,9,Düzenli Üretim - 1,3,10,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,9,Hızlı Eller - 1,3,11,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,9,Altın Hasat I - 2,1,13,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,9,Keskin Başlangıç - 3,2,14,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,11,Kesim Tekniği - 1,1,25,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,11,Hızlı Eller - 2,1,12,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,11,Altın Hasat I - 2,2,16,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,11,Grid Genişleme I,2,30,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,12,Düzenli Üretim - 2,1,12,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,12,Hasat Deneyimi I - 1,2,8,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,12,Keskin Başlangıç - 4,1,16,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,12,Hızlı Eller - 2,2,14,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,13,Kesim Tekniği - 1,2,35,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,13,Altın Hasat I - 3,1,18,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,13,Keskin Başlangıç - 4,2,17,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,14,2×2 Saksı,1,80,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,14,Hasat Deneyimi I - 1,3,10,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,14,Çifte Hasat Kartları,1,25,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,15,Düzenli Üretim - 2,2,13,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,15,Hızlı Eller - 3,1,16,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,15,Altın Hasat I - 3,2,20,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,15,Kesim Tekniği - 1,3,40,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,15,Hasat Deneyimi I - 2,1,12,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,16,Demir Hasat - 1,1,25,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,16,Hızlı Eller - 3,2,18,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,16,Düzenli Üretim - 3,1,15,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,16,Altın Hasat I - 4,1,22,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,16,Geniş Süpürüş - 1,1,21,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,16,Kesim Tekniği - 2,1,50,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,16,Hasat Deneyimi I - 2,2,14,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,16,Hızlı Eller - 4,1,20,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,16,Altın Hasat I - 4,2,24,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,16,Demir Hasat - 1,2,35,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,17,Düzenli Üretim - 3,2,17,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,17,Geniş Süpürüş - 1,2,28,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,17,Hızlı Eller - 4,2,22,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,17,Hasat Deneyimi I - 3,1,16,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,17,Düzenli Üretim - 4,1,19,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,17,Hasat Deneyimi I - 3,2,18,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,18,Güçlü Kesim - 1,1,120,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,18,Kesim Tekniği - 2,2,55,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,18,Demir Hasat - 1,3,40,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,18,Düzenli Üretim - 4,2,21,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,18,Taş Hasat - 1,1,35,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,18,Taş Hasat - 1,2,45,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,19,Geniş Süpürüş - 1,3,35,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,19,Geniş Süpürüş - 2,1,40,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,19,Hasat Deneyimi I - 4,1,20,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,19,Demir Hasat - 2,1,50,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,19,Hasat Deneyimi I - 4,2,21,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,20,2×3 Saksı,1,200,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,21,İlk Vazgeçiş,1,150,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,21,Kesim Tekniği - 3,1,65,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,21,Hasat Rekoru - 1,1,180,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,21,Verimli Üretim - 1,1,200,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,21,Taş Hasat - 1,3,55,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,22,Güçlü Kesim - 1,2,160,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,22,Akıcı Kesim - 1,1,160,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,22,Kesim Tekniği - 3,2,70,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,23,Güçlü Kesim - 1,3,195,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,23,Geniş Süpürüş - 2,2,45,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,23,Akıcı Kesim - 1,2,210,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,23,Demir Hasat - 2,2,55,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,24,Hasat Rekoru - 1,2,240,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,24,Kesim Tekniği - 4,1,80,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,24,Geniş Süpürüş - 3,1,55,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,24,Nadir Filizler - 1,1,230,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,24,Taş Hasat - 2,1,65,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,25,Güçlü Kesim - 2,1,230,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,25,Altın Hasat II - 1,1,180,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,25,Kesim Tekniği - 4,2,85,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,25,Grid Genişleme II,1,100,Stone
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,26,Akıcı Kesim - 1,3,260,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,26,Verimli Üretim - 1,2,260,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,27,Demir Hasat - 3,1,65,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,27,Hasat Rekoru - 1,3,290,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,27,Nadir Filizler - 1,2,300,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,27,Taş Hasat - 2,2,80,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,27,Zengin Cevher - 1,1,50,Stone
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,28,Geniş Süpürüş - 3,2,60,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,28,Güçlü Kesim - 2,2,270,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,28,Taş Hasat - 3,1,90,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,28,Zengin Cevher - 1,2,65,Stone
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,28,Taş Hasat - 3,2,100,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,29,Altın Hasat II - 1,2,240,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,29,Geniş Süpürüş - 4,1,65,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,29,Demir Hasat - 3,2,70,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,29,Geniş Süpürüş - 4,2,70,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,29,Zengin Cevher - 1,3,80,Stone
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,29,Taş Hasat - 4,1,110,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,30,Akıcı Kesim - 2,1,310,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,30,Geniş Tarama - 1,1,160,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,30,Kesim Ustalığı - 1,1,560,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,31,Güçlü Kesim - 3,1,300,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,31,Altın Hasat II - 1,3,290,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,31,Hasat Rekoru - 2,1,350,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,31,Akıcı Kesim - 2,2,360,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,31,Verimli Üretim - 1,3,320,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,31,Zengin Cevher - 2,1,95,Stone
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,31,Taş Hasat - 4,2,120,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,32,Geniş Tarama - 1,2,210,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,32,Kesim Ustalığı - 1,2,720,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,32,Demir Hasat - 4,1,80,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,32,Güçlü Kesim - 3,2,340,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,32,Altın Hasat II - 2,1,350,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,32,Demir Hasat - 4,2,85,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,33,Nadir Filizler - 1,3,360,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,33,Akıcı Kesim - 3,1,400,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,33,Geniş Tarama - 1,3,260,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,33,Hasat Deneyimi II - 1,1,450,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,33,Zengin Cevher - 2,2,110,Stone
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,34,İkinci Vazgeçiş,1,800,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,34,Verimli Üretim - 2,1,380,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,34,Hasat Rekoru - 2,2,400,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,34,Güçlü Kesim - 4,1,380,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,34,Altın Hasat II - 2,2,400,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,34,Kritik Odak - 1,1,150,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,35,Kesim Ustalığı - 1,3,890,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,35,Kritik Odak - 1,2,195,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,35,Kritik Odak - 1,3,240,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,35,Kritik Odak - 2,1,290,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,35,Zengin Cevher - 3,1,125,Stone
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,36,Ağır Kesim - 1,1,1200,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,36,Nadir Filizler - 2,1,430,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,36,Akıcı Kesim - 3,2,450,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,36,Geniş Tarama - 2,1,310,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,36,Verimli Üretim - 2,2,440,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,37,Kart Sezgisi - 1,1,710,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,37,Hasat Deneyimi II - 1,2,590,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,37,Altın Hasat II - 3,1,450,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,37,Güçlü Kesim - 4,2,410,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,37,Kesim Ustalığı - 2,1,1100,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,37,Geniş Tarama - 2,2,360,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,37,Nadir Filizler - 2,2,500,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,37,Zengin Cevher - 3,2,140,Stone
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,38,Ağır Kesim - 1,2,1600,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,38,Verimli Üretim - 3,1,510,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,38,Kesim Ustalığı - 2,2,1200,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,39,Hasat Rekoru - 3,1,450,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,39,Akıcı Kesim - 4,1,500,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,39,Hasat Deneyimi II - 1,3,730,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,39,Verimli Üretim - 3,2,570,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,39,Nadir Filizler - 3,1,570,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,39,Zengin Cevher - 4,1,155,Stone
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,40,Kart Sezgisi - 1,2,920,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,40,Altın Hasat II - 3,2,510,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,40,Geniş Tarama - 3,1,400,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,40,Geniş Tarama - 3,2,450,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,40,Kesim Ustalığı - 3,1,1400,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,40,Kritik Güç - 1,1,150,Stone
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,41,Ağır Kesim - 1,3,1900,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,41,Akıcı Kesim - 4,2,550,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,41,Verimli Üretim - 4,1,630,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,41,Nadir Filizler - 3,2,640,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,41,Grid Genişleme II,2,1800,Stone
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,41,Zengin Cevher - 4,2,170,Stone
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,42,Hasat Deneyimi II - 2,1,860,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,42,Hasat Rekoru - 3,2,510,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,42,Altın Hasat II - 4,1,560,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,42,Kart Sezgisi - 1,3,1100,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,42,Kesim Ustalığı - 3,2,1600,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,42,Verimli Üretim - 4,2,690,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,42,Kritik Güç - 1,2,195,Stone
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,43,Ağır Kesim - 2,1,2300,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,43,Hasat Deneyimi II - 2,2,1000,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,43,Altın Hasat II - 4,2,620,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,43,Nadir Filizler - 4,1,700,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,43,Kesim Ustalığı - 4,1,1700,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,44,Kart Sezgisi - 2,1,1300,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,44,Hasat Rekoru - 4,1,560,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,44,Geniş Tarama - 4,1,500,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,44,Kritik Odak - 2,2,330,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,44,Geniş Tarama - 4,2,550,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,44,Hasat Rekoru - 4,2,620,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,44,Nadir Filizler - 4,2,770,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,44,Kesim Ustalığı - 4,2,1900,Iron
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,44,Kritik Güç - 1,3,240,Stone
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,45,Ağır Kesim - 2,2,2700,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,45,Hasat Deneyimi II - 3,1,1100,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,46,Kart Sezgisi - 2,2,1600,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,46,Kritik Odak - 3,1,380,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,46,Kritik Odak - 3,2,420,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,46,Kritik Odak - 4,1,470,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,46,Kritik Odak - 4,2,520,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,46,Kritik Güç - 2,1,290,Stone
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,47,Ağır Kesim - 3,1,3000,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,47,Hasat Deneyimi II - 3,2,1300,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,48,Ağır Kesim - 3,2,3400,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,48,Kart Sezgisi - 3,1,1800,Gold
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,48,Kritik Güç - 2,2,330,Stone
+5,Patlama yolu,bahcivan,standart,104,tekrar kontrolü,49,Hasat Deneyimi II - 4,1,1400,Gold

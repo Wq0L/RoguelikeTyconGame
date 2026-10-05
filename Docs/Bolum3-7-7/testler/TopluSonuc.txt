@@ -1,0 +1,37 @@
+== YENI TEST + REGRESYON
+XPV1Verification | XPV1Verification.RunBatch | PASS: 39 checks | 11:48:51-11:49:16 | cikis: ok
+SayisalGuvenlikVerification | SayisalGuvenlikVerification.RunBatch | PASS: 33 checks | 11:49:16-11:49:42 | cikis: ok
+Refactor3762Verification | Refactor3762Verification.RunBatch | PASS: 8 checks | 11:49:42-11:50:02 | cikis: ok
+ZincirV1Verification | ZincirV1Verification.RunBatch | PASS: 38 checks | 11:50:02-11:50:57 | cikis: ok
+AlanGeriBildirimiVerification | AlanGeriBildirimiVerification.RunBatch | PASS: 23 checks | 11:50:57-11:51:31 | cikis: ok
+KirilmaErisimiV1Verification | KirilmaErisimiV1Verification.RunBatch | PASS: 35 checks | 11:51:31-11:52:17 | cikis: ok
+BedelliOdullerV1Verification | BedelliOdullerV1Verification.RunBatch | PASS: 93 checks | 11:52:17-11:53:36 | cikis: ok
+OdulAsamalariV1Verification | OdulAsamalariV1Verification.RunBatch | PASS: 71 checks | 11:53:36-11:54:28 | cikis: ok
+BossRewardVerification | BossRewardVerification.RunBatch | PASS: 127 checks | 11:54:28-11:55:11 | cikis: ok
+KirilmaV1Verification | KirilmaV1Verification.RunBatch | FAIL: System.Exception: starting unlocks leaked to profile Run50_XPV1 | 11:55:11-11:55:27 | cikis: Verification failed with exit 1. See C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\KirilmaV1Verification_RunBatch.log
+TakvimV1Verification | TakvimV1Verification.RunBatch | FAIL: System.Exception: Run50_XPV1 should use the uniform rhythm | 11:55:27-11:55:43 | cikis: Verification failed with exit 1. See C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\TakvimV1Verification_RunBatch.log
+DengeV1Verification | DengeV1Verification.RunBatch | PASS: 86 checks | 11:55:43-11:56:09 | cikis: ok
+RewardOfferDistribution | RewardOfferMeasurement.RunDistribution | DONE: distribution | 11:56:09-11:57:01 | cikis: ok
+HarvestBehaviorVerification | HarvestBehaviorVerification.RunBatch | PASS: 114 checks | 11:57:01-11:57:24 | cikis: ok
+ElectricRevertVerification | ElectricRevertVerification.RunBatch | PASS: 40 checks | 11:57:24-11:58:01 | cikis: ok
+SpecializationVerification | SpecializationVerification.RunBatch | PASS: 100 checks | 11:58:01-12:00:49 | cikis: ok
+StartLoadoutVerification | StartLoadoutVerification.RunBatch | PASS: 88 checks | 12:00:49-12:01:32 | cikis: ok
+MechanicsVerification | MechanicsVerification.RunBatch | PASS: 88 checks | 12:01:32-12:01:57 | cikis: ok
+SimpleResonanceVerification | SimpleResonanceVerification.RunBatch | PASS: 293 checks | 12:01:57-12:02:12 | cikis: ok
+ContactRefactorVerification | ContactRefactorVerification.RunBatch | PASS: 175 checks | 12:02:12-12:02:23 | cikis: ok
+RunPrototypeVerification | RunPrototypeVerification.RunBatch | PASS: 69 checks | 12:02:23-12:03:10 | cikis: ok
+BossWeatherVerification | BossWeatherVerification.RunBatch | PASS: 22 checks | 12:03:10-12:03:22 | cikis: ok
+RoundPreviewVerification | RoundPreviewVerification.RunBatch | PASS: 47 checks | 12:03:22-12:03:50 | cikis: ok
+Run50ReferenceVerification | Run50ReferenceVerification.RunBatch | PASS: 70 checks | 12:03:50-12:06:05 | cikis: ok
+OptionsMenuVerification | OptionsMenuVerification.RunBatch | PASS 22 rows | 12:06:05-12:06:23 | cikis: ok
+ComicCardVerification | ComicCardVerification.RunBatch | sonuc dosyasi yok | 12:06:23-12:06:38 | cikis: ok
+BedelliOdulMeasurement | BedelliOdulMeasurement.Run | DONE: 117 round rows, 39 lab runs | 12:06:38-12:09:02 | cikis: ok
+
+Not: ilk turda iki test, profil adı listelerinde Run50_XPV1'i tanımadığı için düştü (KirilmaV1Verification: başlangıç kilitleri yalnız
+Kırılma V1 denge setinden gelir denetimi; TakvimV1Verification: açık takvimli profiller listesi). Listelere yeni profil eklendi
+(denetim gevşetilmedi: Run50_XPV1 için aynı takvim / hedef ve aynı başlangıç kilitleri aranıyor) ve iki test yeniden çalıştırıldı.
+ComicCardVerification sonuç dosyası yazmaz; Unity logunda COMIC_CARD_PLAY_PASS (46 kontrol) — ComicCardVerification.txt.
+
+== PROFIL LISTESI GUNCELLENEN IKI TEST (tekrar)
+KirilmaV1Verification | KirilmaV1Verification.RunBatch | PASS: 189 checks | 12:33:29-12:34:12 | cikis: ok
+TakvimV1Verification | TakvimV1Verification.RunBatch | PASS: 162 checks | 12:34:12-12:35:13 | cikis: ok

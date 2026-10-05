@@ -130,6 +130,7 @@ public class SkillTreeManager : MonoBehaviour
 
     public bool CanUpgrade(SkillNodeSO node)
     {
+        if (DemoSceneSettings.Blocks(node)) return false;
         if (IsDisabledByProfile(node)) return false;
         int currentLevel = GetCurrentLevel(node);
 
@@ -156,6 +157,7 @@ public class SkillTreeManager : MonoBehaviour
     // Both normal purchases and the editor helper replace the previous tier.
     private void ApplyLevel(SkillNodeSO node, int newLevel)
     {
+        if (DemoSceneSettings.Blocks(node)) return;
         int currentLevel = GetCurrentLevel(node);
         if (currentLevel > 0)
             StatManager.Instance.RemoveGlobalModifiers(node.tiers[currentLevel - 1].effects);

@@ -1,0 +1,447 @@
+run,policy,farmer,scythe,seed,label,round,offered,chosen
+1,Dengeli,bahcivan,standart,100,son,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+1,Dengeli,bahcivan,standart,100,son,6,bereketli_toprak bilgi_filizi hizli_bilek,hizli_bilek
+1,Dengeli,bahcivan,standart,100,son,10,nadir_tohum bilgi_filizi keskin_bicak,keskin_bicak
+1,Dengeli,bahcivan,standart,100,son,13,keskin_bicak yikim_gucu kritik_goz,keskin_bicak
+1,Dengeli,bahcivan,standart,100,son,16,yikim_gucu hizli_bilek altin_hedef,hizli_bilek
+1,Dengeli,bahcivan,standart,100,son,20,bilgi_filizi kivilcim nadir_tohum,nadir_tohum
+1,Dengeli,bahcivan,standart,100,son,23,canavar_kesimi cifte_akim bilgi_filizi,canavar_kesimi
+1,Dengeli,bahcivan,standart,100,son,26,kritik_goz genis_savurus bereketli_ogrenim,genis_savurus
+1,Dengeli,bahcivan,standart,100,son,30,zincir_hasat nadir_tohum bereketli_toprak,bereketli_toprak
+1,Dengeli,bahcivan,standart,100,son,33,genis_savurus davranisa_adanis yikim_gucu,genis_savurus
+1,Dengeli,bahcivan,standart,100,son,36,bereketli_ogrenim hizli_bilek artci_patlama,hizli_bilek
+1,Dengeli,bahcivan,standart,100,son,40,bereketli_ogrenim kritik_goz artci_patlama,kritik_goz
+1,Dengeli,bahcivan,standart,100,son,43,zincir_hasat altin_hedef hasat_ritmi,altin_hedef
+1,Dengeli,bahcivan,standart,100,son,46,bereketli_ogrenim zincir_hasat nadir_tohum,nadir_tohum
+1,Dengeli,bahcivan,standart,100,son,50,kivilcim zincir_hasat cifte_akim,kivilcim
+2,Dengeli,bahcivan,standart,101,son,3,hizli_bilek nadir_tohum bereketli_toprak,hizli_bilek
+2,Dengeli,bahcivan,standart,101,son,6,bilgi_filizi bereketli_toprak nadir_tohum,bereketli_toprak
+2,Dengeli,bahcivan,standart,101,son,10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+3,Dengeli,bahcivan,standart,102,son,3,nadir_tohum keskin_bicak bilgi_filizi,keskin_bicak
+3,Dengeli,bahcivan,standart,102,son,6,keskin_bicak nadir_tohum bereketli_toprak,keskin_bicak
+3,Dengeli,bahcivan,standart,102,son,10,nadir_tohum keskin_bicak hizli_bilek,hizli_bilek
+3,Dengeli,bahcivan,standart,102,son,13,bereketli_toprak nadir_tohum kivilcim,bereketli_toprak
+3,Dengeli,bahcivan,standart,102,son,16,yikim_gucu altin_hedef kivilcim,kivilcim
+3,Dengeli,bahcivan,standart,102,son,20,altin_hedef yikim_gucu kivilcim,kivilcim
+3,Dengeli,bahcivan,standart,102,son,23,artci_patlama kivilcim kritik_goz,kritik_goz
+3,Dengeli,bahcivan,standart,102,son,26,genis_savurus canavar_kesimi kivilcim,genis_savurus
+3,Dengeli,bahcivan,standart,102,son,30,firtina_bilegi artci_patlama davranisa_adanis,firtina_bilegi
+3,Dengeli,bahcivan,standart,102,son,33,artci_patlama hizli_bilek bereketli_ogrenim,hizli_bilek
+3,Dengeli,bahcivan,standart,102,son,36,kivilcim artci_patlama davranisa_adanis,kivilcim
+3,Dengeli,bahcivan,standart,102,son,40,artci_patlama hasat_ritmi davranisa_adanis,artci_patlama
+3,Dengeli,bahcivan,standart,102,son,43,zincir_hasat bereketli_toprak agir_darbe,bereketli_toprak
+3,Dengeli,bahcivan,standart,102,son,46,bereketli_toprak nadir_tohum zincir_hasat,bereketli_toprak
+3,Dengeli,bahcivan,standart,102,son,50,bereketli_ogrenim zincir_hasat nadir_tohum,nadir_tohum
+4,Dengeli,bahcivan,standart,103,son,3,keskin_bicak hizli_bilek bereketli_toprak,hizli_bilek
+4,Dengeli,bahcivan,standart,103,son,6,nadir_tohum bereketli_toprak hizli_bilek,hizli_bilek
+4,Dengeli,bahcivan,standart,103,son,10,nadir_tohum bilgi_filizi hizli_bilek,hizli_bilek
+4,Dengeli,bahcivan,standart,103,son,13,agir_darbe bereketli_toprak yikim_gucu,bereketli_toprak
+4,Dengeli,bahcivan,standart,103,son,16,kritik_goz altin_hedef yikim_gucu,kritik_goz
+4,Dengeli,bahcivan,standart,103,son,20,bilgi_filizi kivilcim altin_hedef,bilgi_filizi
+4,Dengeli,bahcivan,standart,103,son,23,genis_savurus artci_patlama zincir_hasat,genis_savurus
+4,Dengeli,bahcivan,standart,103,son,26,nadir_tohum davranisa_adanis zincir_hasat,nadir_tohum
+4,Dengeli,bahcivan,standart,103,son,30,firtina_bilegi agir_darbe davranisa_adanis,firtina_bilegi
+4,Dengeli,bahcivan,standart,103,son,33,artci_patlama genis_savurus kritik_goz,genis_savurus
+4,Dengeli,bahcivan,standart,103,son,36,bereketli_ogrenim hasat_ritmi cifte_akim,hasat_ritmi
+4,Dengeli,bahcivan,standart,103,son,40,canavar_kesimi altin_hedef agir_darbe,canavar_kesimi
+4,Dengeli,bahcivan,standart,103,son,43,davranisa_adanis artci_patlama zincir_hasat,artci_patlama
+4,Dengeli,bahcivan,standart,103,son,46,bereketli_ogrenim cifte_akim yikim_gucu,yikim_gucu
+4,Dengeli,bahcivan,standart,103,son,50,altin_hedef davranisa_adanis kivilcim,kivilcim
+5,Dengeli,bahcivan,standart,104,son,3,keskin_bicak nadir_tohum bereketli_toprak,keskin_bicak
+5,Dengeli,bahcivan,standart,104,son,6,bereketli_toprak keskin_bicak bilgi_filizi,keskin_bicak
+5,Dengeli,bahcivan,standart,104,son,10,hizli_bilek bilgi_filizi nadir_tohum,hizli_bilek
+5,Dengeli,bahcivan,standart,104,son,13,kritik_goz bilgi_filizi keskin_bicak,keskin_bicak
+5,Dengeli,bahcivan,standart,104,son,16,kivilcim bilgi_filizi yikim_gucu,bilgi_filizi
+5,Dengeli,bahcivan,standart,104,son,20,agir_darbe kritik_goz kivilcim,kritik_goz
+5,Dengeli,bahcivan,standart,104,son,23,davranisa_adanis genis_savurus cifte_akim,genis_savurus
+5,Dengeli,bahcivan,standart,104,son,26,kritik_goz bereketli_ogrenim hasat_ritmi,kritik_goz
+5,Dengeli,bahcivan,standart,104,son,30,genis_savurus altin_hedef firtina_bilegi,genis_savurus
+5,Dengeli,bahcivan,standart,104,son,33,hasat_ritmi firtina_bilegi nadir_tohum,nadir_tohum
+5,Dengeli,bahcivan,standart,104,son,36,davranisa_adanis hasat_ritmi bereketli_ogrenim,hasat_ritmi
+5,Dengeli,bahcivan,standart,104,son,40,zincir_hasat artci_patlama cifte_akim,zincir_hasat
+5,Dengeli,bahcivan,standart,104,son,43,cifte_akim nadir_tohum artci_patlama,nadir_tohum
+5,Dengeli,bahcivan,standart,104,son,46,canavar_kesimi firtina_bilegi artci_patlama,firtina_bilegi
+5,Dengeli,bahcivan,standart,104,son,50,agir_darbe davranisa_adanis bereketli_ogrenim,agir_darbe
+6,Dengeli,bahcivan,standart,105,son,3,hizli_bilek bilgi_filizi keskin_bicak,hizli_bilek
+6,Dengeli,bahcivan,standart,105,son,6,bilgi_filizi bereketli_toprak hizli_bilek,hizli_bilek
+6,Dengeli,bahcivan,standart,105,son,10,keskin_bicak hizli_bilek bilgi_filizi,hizli_bilek
+6,Dengeli,bahcivan,standart,105,son,13,yikim_gucu altin_hedef nadir_tohum,nadir_tohum
+6,Dengeli,bahcivan,standart,105,son,16,agir_darbe yikim_gucu altin_hedef,yikim_gucu
+6,Dengeli,bahcivan,standart,105,son,20,bilgi_filizi kritik_goz nadir_tohum,nadir_tohum
+6,Dengeli,bahcivan,standart,105,son,23,cifte_akim kritik_goz bilgi_filizi,kritik_goz
+6,Dengeli,bahcivan,standart,105,son,26,genis_savurus cifte_akim kivilcim,genis_savurus
+6,Dengeli,bahcivan,standart,105,son,30,bereketli_ogrenim keskin_bicak canavar_kesimi,keskin_bicak
+6,Dengeli,bahcivan,standart,105,son,33,canavar_kesimi bereketli_ogrenim bilgi_filizi,canavar_kesimi
+6,Dengeli,bahcivan,standart,105,son,36,cifte_akim artci_patlama davranisa_adanis,cifte_akim
+6,Dengeli,bahcivan,standart,105,son,40,bereketli_ogrenim artci_patlama genis_savurus,genis_savurus
+6,Dengeli,bahcivan,standart,105,son,43,bilgi_filizi hasat_ritmi kivilcim,bilgi_filizi
+6,Dengeli,bahcivan,standart,105,son,46,davranisa_adanis bereketli_ogrenim altin_hedef,altin_hedef
+6,Dengeli,bahcivan,standart,105,son,50,davranisa_adanis firtina_bilegi bereketli_ogrenim,firtina_bilegi
+7,Dengeli,bahcivan,standart,106,son,3,bereketli_toprak bilgi_filizi nadir_tohum,bereketli_toprak
+7,Dengeli,bahcivan,standart,106,son,6,nadir_tohum bilgi_filizi hizli_bilek,hizli_bilek
+7,Dengeli,bahcivan,standart,106,son,10,bereketli_toprak nadir_tohum keskin_bicak,keskin_bicak
+7,Dengeli,bahcivan,standart,106,son,13,bilgi_filizi altin_hedef keskin_bicak,keskin_bicak
+7,Dengeli,bahcivan,standart,106,son,16,bereketli_toprak altin_hedef yikim_gucu,bereketli_toprak
+7,Dengeli,bahcivan,standart,106,son,20,kivilcim altin_hedef keskin_bicak,keskin_bicak
+7,Dengeli,bahcivan,standart,106,son,23,firtina_bilegi canavar_kesimi bereketli_ogrenim,firtina_bilegi
+7,Dengeli,bahcivan,standart,106,son,26,kivilcim altin_hedef hasat_ritmi,kivilcim
+7,Dengeli,bahcivan,standart,106,son,30,davranisa_adanis altin_hedef bereketli_ogrenim,altin_hedef
+7,Dengeli,bahcivan,standart,106,son,33,altin_hedef canavar_kesimi kivilcim,canavar_kesimi
+7,Dengeli,bahcivan,standart,106,son,36,zincir_hasat agir_darbe genis_savurus,genis_savurus
+7,Dengeli,bahcivan,standart,106,son,40,bereketli_ogrenim nadir_tohum hasat_ritmi,nadir_tohum
+7,Dengeli,bahcivan,standart,106,son,43,artci_patlama kivilcim nadir_tohum,nadir_tohum
+7,Dengeli,bahcivan,standart,106,son,46,kivilcim altin_hedef cifte_akim,kivilcim
+7,Dengeli,bahcivan,standart,106,son,50,bereketli_ogrenim artci_patlama altin_hedef,altin_hedef
+8,Dengeli,bahcivan,standart,107,son,3,hizli_bilek bereketli_toprak bilgi_filizi,hizli_bilek
+8,Dengeli,bahcivan,standart,107,son,6,nadir_tohum hizli_bilek bilgi_filizi,hizli_bilek
+8,Dengeli,bahcivan,standart,107,son,10,bilgi_filizi hizli_bilek keskin_bicak,hizli_bilek
+8,Dengeli,bahcivan,standart,107,son,13,altin_hedef agir_darbe kivilcim,kivilcim
+8,Dengeli,bahcivan,standart,107,son,16,altin_hedef nadir_tohum agir_darbe,nadir_tohum
+8,Dengeli,bahcivan,standart,107,son,20,yikim_gucu keskin_bicak bilgi_filizi,keskin_bicak
+8,Dengeli,bahcivan,standart,107,son,23,bereketli_ogrenim canavar_kesimi genis_savurus,genis_savurus
+8,Dengeli,bahcivan,standart,107,son,26,canavar_kesimi firtina_bilegi zincir_hasat,firtina_bilegi
+8,Dengeli,bahcivan,standart,107,son,30,hasat_ritmi cifte_akim canavar_kesimi,canavar_kesimi
+8,Dengeli,bahcivan,standart,107,son,33,cifte_akim artci_patlama zincir_hasat,cifte_akim
+8,Dengeli,bahcivan,standart,107,son,36,hasat_ritmi genis_savurus zincir_hasat,genis_savurus
+8,Dengeli,bahcivan,standart,107,son,40,hasat_ritmi altin_hedef artci_patlama,altin_hedef
+8,Dengeli,bahcivan,standart,107,son,43,agir_darbe artci_patlama kritik_goz,kritik_goz
+8,Dengeli,bahcivan,standart,107,son,46,artci_patlama davranisa_adanis bereketli_ogrenim,artci_patlama
+8,Dengeli,bahcivan,standart,107,son,50,yikim_gucu hasat_ritmi altin_hedef,yikim_gucu
+9,Dengeli,bahcivan,standart,108,son,3,bilgi_filizi nadir_tohum keskin_bicak,keskin_bicak
+9,Dengeli,bahcivan,standart,108,son,6,keskin_bicak nadir_tohum bereketli_toprak,keskin_bicak
+9,Dengeli,bahcivan,standart,108,son,10,bereketli_toprak keskin_bicak hizli_bilek,hizli_bilek
+9,Dengeli,bahcivan,standart,108,son,13,hizli_bilek kritik_goz yikim_gucu,hizli_bilek
+9,Dengeli,bahcivan,standart,108,son,16,bilgi_filizi yikim_gucu agir_darbe,bilgi_filizi
+9,Dengeli,bahcivan,standart,108,son,20,agir_darbe nadir_tohum kivilcim,nadir_tohum
+9,Dengeli,bahcivan,standart,108,son,23,firtina_bilegi keskin_bicak bereketli_ogrenim,keskin_bicak
+9,Dengeli,bahcivan,standart,108,son,26,zincir_hasat canavar_kesimi kivilcim,canavar_kesimi
+9,Dengeli,bahcivan,standart,108,son,30,cifte_akim davranisa_adanis genis_savurus,genis_savurus
+9,Dengeli,bahcivan,standart,108,son,33,bereketli_ogrenim hizli_bilek kritik_goz,hizli_bilek
+9,Dengeli,bahcivan,standart,108,son,36,yikim_gucu artci_patlama davranisa_adanis,yikim_gucu
+9,Dengeli,bahcivan,standart,108,son,40,bereketli_ogrenim hasat_ritmi genis_savurus,genis_savurus
+9,Dengeli,bahcivan,standart,108,son,43,hasat_ritmi bereketli_ogrenim zincir_hasat,hasat_ritmi
+9,Dengeli,bahcivan,standart,108,son,46,davranisa_adanis artci_patlama bereketli_ogrenim,artci_patlama
+9,Dengeli,bahcivan,standart,108,son,50,davranisa_adanis bereketli_toprak firtina_bilegi,bereketli_toprak
+10,Dengeli,bahcivan,standart,109,son,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+10,Dengeli,bahcivan,standart,109,son,6,hizli_bilek keskin_bicak nadir_tohum,hizli_bilek
+10,Dengeli,bahcivan,standart,109,son,10,hizli_bilek bilgi_filizi keskin_bicak,hizli_bilek
+11,Uyumsuz,bahcivan,standart,100,son,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+11,Uyumsuz,bahcivan,standart,100,son,6,bereketli_toprak bilgi_filizi hizli_bilek,bilgi_filizi
+11,Uyumsuz,bahcivan,standart,100,son,10,nadir_tohum bilgi_filizi keskin_bicak,keskin_bicak
+11,Uyumsuz,bahcivan,standart,100,son,13,keskin_bicak yikim_gucu kritik_goz,kritik_goz
+11,Uyumsuz,bahcivan,standart,100,son,16,yikim_gucu keskin_bicak altin_hedef,altin_hedef
+11,Uyumsuz,bahcivan,standart,100,son,20,nadir_tohum kivilcim bilgi_filizi,nadir_tohum
+11,Uyumsuz,bahcivan,standart,100,son,23,canavar_kesimi cifte_akim bilgi_filizi,canavar_kesimi
+11,Uyumsuz,bahcivan,standart,100,son,26,kritik_goz genis_savurus bereketli_ogrenim,kritik_goz
+11,Uyumsuz,bahcivan,standart,100,son,30,zincir_hasat bereketli_toprak hizli_bilek,bereketli_toprak
+11,Uyumsuz,bahcivan,standart,100,son,33,genis_savurus davranisa_adanis yikim_gucu,genis_savurus
+11,Uyumsuz,bahcivan,standart,100,son,36,bereketli_ogrenim keskin_bicak artci_patlama,keskin_bicak
+11,Uyumsuz,bahcivan,standart,100,son,40,hasat_ritmi kritik_goz artci_patlama,kritik_goz
+11,Uyumsuz,bahcivan,standart,100,son,43,zincir_hasat yikim_gucu hasat_ritmi,yikim_gucu
+11,Uyumsuz,bahcivan,standart,100,son,46,bereketli_ogrenim zincir_hasat bereketli_toprak,bereketli_toprak
+11,Uyumsuz,bahcivan,standart,100,son,50,kivilcim zincir_hasat cifte_akim,kivilcim
+12,Uyumsuz,bahcivan,standart,101,son,3,hizli_bilek nadir_tohum bereketli_toprak,nadir_tohum
+12,Uyumsuz,bahcivan,standart,101,son,6,bilgi_filizi hizli_bilek nadir_tohum,nadir_tohum
+12,Uyumsuz,bahcivan,standart,101,son,10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+13,Uyumsuz,bahcivan,standart,102,son,3,nadir_tohum keskin_bicak bilgi_filizi,keskin_bicak
+13,Uyumsuz,bahcivan,standart,102,son,6,keskin_bicak nadir_tohum bereketli_toprak,keskin_bicak
+13,Uyumsuz,bahcivan,standart,102,son,10,nadir_tohum keskin_bicak hizli_bilek,keskin_bicak
+13,Uyumsuz,bahcivan,standart,102,son,13,nadir_tohum bilgi_filizi kivilcim,nadir_tohum
+13,Uyumsuz,bahcivan,standart,102,son,16,yikim_gucu altin_hedef kivilcim,altin_hedef
+13,Uyumsuz,bahcivan,standart,102,son,20,altin_hedef yikim_gucu kivilcim,altin_hedef
+13,Uyumsuz,bahcivan,standart,102,son,23,artci_patlama agir_darbe kritik_goz,kritik_goz
+13,Uyumsuz,bahcivan,standart,102,son,26,genis_savurus canavar_kesimi kivilcim,canavar_kesimi
+13,Uyumsuz,bahcivan,standart,102,son,30,firtina_bilegi cifte_akim davranisa_adanis,firtina_bilegi
+13,Uyumsuz,bahcivan,standart,102,son,33,cifte_akim bereketli_toprak bereketli_ogrenim,bereketli_toprak
+13,Uyumsuz,bahcivan,standart,102,son,36,kivilcim cifte_akim davranisa_adanis,kivilcim
+13,Uyumsuz,bahcivan,standart,102,son,40,artci_patlama bereketli_ogrenim davranisa_adanis,artci_patlama
+13,Uyumsuz,bahcivan,standart,102,son,43,zincir_hasat nadir_tohum kivilcim,nadir_tohum
+13,Uyumsuz,bahcivan,standart,102,son,46,bereketli_toprak bilgi_filizi zincir_hasat,bilgi_filizi
+13,Uyumsuz,bahcivan,standart,102,son,50,davranisa_adanis zincir_hasat nadir_tohum,nadir_tohum
+14,Uyumsuz,bahcivan,standart,103,son,3,keskin_bicak hizli_bilek bereketli_toprak,keskin_bicak
+14,Uyumsuz,bahcivan,standart,103,son,6,nadir_tohum bereketli_toprak hizli_bilek,nadir_tohum
+14,Uyumsuz,bahcivan,standart,103,son,10,nadir_tohum bilgi_filizi hizli_bilek,nadir_tohum
+14,Uyumsuz,bahcivan,standart,103,son,13,agir_darbe hizli_bilek yikim_gucu,agir_darbe
+14,Uyumsuz,bahcivan,standart,103,son,16,kritik_goz altin_hedef yikim_gucu,kritik_goz
+14,Uyumsuz,bahcivan,standart,103,son,20,bilgi_filizi kivilcim altin_hedef,altin_hedef
+14,Uyumsuz,bahcivan,standart,103,son,23,yikim_gucu artci_patlama zincir_hasat,yikim_gucu
+14,Uyumsuz,bahcivan,standart,103,son,26,hizli_bilek davranisa_adanis zincir_hasat,hizli_bilek
+14,Uyumsuz,bahcivan,standart,103,son,30,firtina_bilegi agir_darbe davranisa_adanis,agir_darbe
+14,Uyumsuz,bahcivan,standart,103,son,33,firtina_bilegi genis_savurus altin_hedef,altin_hedef
+14,Uyumsuz,bahcivan,standart,103,son,36,hasat_ritmi bereketli_ogrenim cifte_akim,hasat_ritmi
+14,Uyumsuz,bahcivan,standart,103,son,40,canavar_kesimi genis_savurus kritik_goz,kritik_goz
+14,Uyumsuz,bahcivan,standart,103,son,43,zincir_hasat firtina_bilegi davranisa_adanis,firtina_bilegi
+14,Uyumsuz,bahcivan,standart,103,son,46,cifte_akim artci_patlama bereketli_ogrenim,cifte_akim
+14,Uyumsuz,bahcivan,standart,103,son,50,yikim_gucu bereketli_ogrenim kivilcim,kivilcim
+15,Uyumsuz,bahcivan,standart,104,son,3,keskin_bicak nadir_tohum bereketli_toprak,keskin_bicak
+15,Uyumsuz,bahcivan,standart,104,son,6,bereketli_toprak keskin_bicak bilgi_filizi,keskin_bicak
+15,Uyumsuz,bahcivan,standart,104,son,10,hizli_bilek bilgi_filizi nadir_tohum,nadir_tohum
+15,Uyumsuz,bahcivan,standart,104,son,13,kritik_goz bilgi_filizi keskin_bicak,kritik_goz
+15,Uyumsuz,bahcivan,standart,104,son,16,kivilcim nadir_tohum yikim_gucu,nadir_tohum
+15,Uyumsuz,bahcivan,standart,104,son,20,agir_darbe kritik_goz kivilcim,kritik_goz
+16,Uyumsuz,bahcivan,standart,105,son,3,hizli_bilek bilgi_filizi keskin_bicak,keskin_bicak
+16,Uyumsuz,bahcivan,standart,105,son,6,bilgi_filizi bereketli_toprak hizli_bilek,bilgi_filizi
+16,Uyumsuz,bahcivan,standart,105,son,10,keskin_bicak hizli_bilek bilgi_filizi,keskin_bicak
+16,Uyumsuz,bahcivan,standart,105,son,13,yikim_gucu altin_hedef hizli_bilek,altin_hedef
+17,Uyumsuz,bahcivan,standart,106,son,3,bereketli_toprak bilgi_filizi nadir_tohum,nadir_tohum
+17,Uyumsuz,bahcivan,standart,106,son,6,nadir_tohum bilgi_filizi hizli_bilek,nadir_tohum
+17,Uyumsuz,bahcivan,standart,106,son,10,bereketli_toprak nadir_tohum keskin_bicak,keskin_bicak
+18,Uyumsuz,bahcivan,standart,107,son,3,hizli_bilek bereketli_toprak bilgi_filizi,bilgi_filizi
+18,Uyumsuz,bahcivan,standart,107,son,6,nadir_tohum hizli_bilek bilgi_filizi,nadir_tohum
+18,Uyumsuz,bahcivan,standart,107,son,10,bilgi_filizi hizli_bilek keskin_bicak,keskin_bicak
+18,Uyumsuz,bahcivan,standart,107,son,13,altin_hedef kivilcim agir_darbe,agir_darbe
+19,Uyumsuz,bahcivan,standart,108,son,3,bilgi_filizi nadir_tohum keskin_bicak,keskin_bicak
+19,Uyumsuz,bahcivan,standart,108,son,6,keskin_bicak nadir_tohum bereketli_toprak,keskin_bicak
+19,Uyumsuz,bahcivan,standart,108,son,10,bereketli_toprak keskin_bicak hizli_bilek,keskin_bicak
+19,Uyumsuz,bahcivan,standart,108,son,13,nadir_tohum kritik_goz yikim_gucu,kritik_goz
+19,Uyumsuz,bahcivan,standart,108,son,16,kivilcim yikim_gucu kritik_goz,kritik_goz
+19,Uyumsuz,bahcivan,standart,108,son,20,agir_darbe bilgi_filizi kritik_goz,kritik_goz
+19,Uyumsuz,bahcivan,standart,108,son,23,firtina_bilegi hizli_bilek bereketli_ogrenim,hizli_bilek
+19,Uyumsuz,bahcivan,standart,108,son,26,zincir_hasat canavar_kesimi bilgi_filizi,canavar_kesimi
+19,Uyumsuz,bahcivan,standart,108,son,30,cifte_akim davranisa_adanis genis_savurus,genis_savurus
+19,Uyumsuz,bahcivan,standart,108,son,33,bereketli_ogrenim hizli_bilek altin_hedef,altin_hedef
+19,Uyumsuz,bahcivan,standart,108,son,36,genis_savurus cifte_akim davranisa_adanis,genis_savurus
+19,Uyumsuz,bahcivan,standart,108,son,40,bereketli_ogrenim hasat_ritmi yikim_gucu,yikim_gucu
+19,Uyumsuz,bahcivan,standart,108,son,43,hasat_ritmi davranisa_adanis zincir_hasat,hasat_ritmi
+19,Uyumsuz,bahcivan,standart,108,son,46,davranisa_adanis artci_patlama bereketli_ogrenim,artci_patlama
+19,Uyumsuz,bahcivan,standart,108,son,50,davranisa_adanis hizli_bilek firtina_bilegi,hizli_bilek
+20,Uyumsuz,bahcivan,standart,109,son,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+20,Uyumsuz,bahcivan,standart,109,son,6,hizli_bilek keskin_bicak nadir_tohum,keskin_bicak
+20,Uyumsuz,bahcivan,standart,109,son,10,hizli_bilek bilgi_filizi keskin_bicak,keskin_bicak
+20,Uyumsuz,bahcivan,standart,109,son,13,agir_darbe kritik_goz nadir_tohum,kritik_goz
+20,Uyumsuz,bahcivan,standart,109,son,16,yikim_gucu bereketli_toprak altin_hedef,altin_hedef
+20,Uyumsuz,bahcivan,standart,109,son,20,agir_darbe altin_hedef nadir_tohum,agir_darbe
+20,Uyumsuz,bahcivan,standart,109,son,23,zincir_hasat artci_patlama bereketli_ogrenim,zincir_hasat
+20,Uyumsuz,bahcivan,standart,109,son,26,kritik_goz firtina_bilegi artci_patlama,kritik_goz
+20,Uyumsuz,bahcivan,standart,109,son,30,bereketli_ogrenim davranisa_adanis genis_savurus,genis_savurus
+20,Uyumsuz,bahcivan,standart,109,son,33,bilgi_filizi kritik_goz firtina_bilegi,kritik_goz
+20,Uyumsuz,bahcivan,standart,109,son,36,cifte_akim bereketli_ogrenim genis_savurus,genis_savurus
+20,Uyumsuz,bahcivan,standart,109,son,40,canavar_kesimi artci_patlama nadir_tohum,canavar_kesimi
+20,Uyumsuz,bahcivan,standart,109,son,43,bereketli_ogrenim artci_patlama kivilcim,kivilcim
+20,Uyumsuz,bahcivan,standart,109,son,46,artci_patlama bereketli_toprak kivilcim,bereketli_toprak
+20,Uyumsuz,bahcivan,standart,109,son,50,nadir_tohum bereketli_ogrenim cifte_akim,nadir_tohum
+26,Hasar-alan,bahcivan,standart,100,son · XP'siz,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+26,Hasar-alan,bahcivan,standart,100,son · XP'siz,6,bereketli_toprak bilgi_filizi hizli_bilek,hizli_bilek
+26,Hasar-alan,bahcivan,standart,100,son · XP'siz,10,nadir_tohum bilgi_filizi keskin_bicak,keskin_bicak
+26,Hasar-alan,bahcivan,standart,100,son · XP'siz,13,keskin_bicak yikim_gucu kritik_goz,keskin_bicak
+26,Hasar-alan,bahcivan,standart,100,son · XP'siz,16,yikim_gucu hizli_bilek altin_hedef,hizli_bilek
+26,Hasar-alan,bahcivan,standart,100,son · XP'siz,20,bilgi_filizi kivilcim nadir_tohum,nadir_tohum
+26,Hasar-alan,bahcivan,standart,100,son · XP'siz,23,canavar_kesimi cifte_akim bilgi_filizi,canavar_kesimi
+26,Hasar-alan,bahcivan,standart,100,son · XP'siz,26,kritik_goz genis_savurus bereketli_ogrenim,genis_savurus
+26,Hasar-alan,bahcivan,standart,100,son · XP'siz,30,zincir_hasat nadir_tohum bereketli_toprak,bereketli_toprak
+26,Hasar-alan,bahcivan,standart,100,son · XP'siz,33,genis_savurus davranisa_adanis firtina_bilegi,genis_savurus
+26,Hasar-alan,bahcivan,standart,100,son · XP'siz,36,bereketli_ogrenim hizli_bilek artci_patlama,hizli_bilek
+26,Hasar-alan,bahcivan,standart,100,son · XP'siz,40,bereketli_ogrenim kritik_goz artci_patlama,kritik_goz
+26,Hasar-alan,bahcivan,standart,100,son · XP'siz,43,zincir_hasat altin_hedef hasat_ritmi,altin_hedef
+26,Hasar-alan,bahcivan,standart,100,son · XP'siz,46,bereketli_ogrenim zincir_hasat nadir_tohum,nadir_tohum
+26,Hasar-alan,bahcivan,standart,100,son · XP'siz,50,kivilcim zincir_hasat cifte_akim,kivilcim
+27,Hasar-alan,bahcivan,standart,101,son · XP'siz,3,hizli_bilek nadir_tohum bereketli_toprak,hizli_bilek
+27,Hasar-alan,bahcivan,standart,101,son · XP'siz,6,bilgi_filizi bereketli_toprak nadir_tohum,bereketli_toprak
+27,Hasar-alan,bahcivan,standart,101,son · XP'siz,10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+27,Hasar-alan,bahcivan,standart,101,son · XP'siz,13,agir_darbe kivilcim kritik_goz,kritik_goz
+27,Hasar-alan,bahcivan,standart,101,son · XP'siz,16,kivilcim altin_hedef kritik_goz,kritik_goz
+27,Hasar-alan,bahcivan,standart,101,son · XP'siz,20,hizli_bilek kivilcim yikim_gucu,hizli_bilek
+27,Hasar-alan,bahcivan,standart,101,son · XP'siz,23,davranisa_adanis artci_patlama hasat_ritmi,hasat_ritmi
+27,Hasar-alan,bahcivan,standart,101,son · XP'siz,26,zincir_hasat kritik_goz bereketli_ogrenim,kritik_goz
+27,Hasar-alan,bahcivan,standart,101,son · XP'siz,30,cifte_akim zincir_hasat davranisa_adanis,cifte_akim
+27,Hasar-alan,bahcivan,standart,101,son · XP'siz,33,nadir_tohum firtina_bilegi agir_darbe,firtina_bilegi
+27,Hasar-alan,bahcivan,standart,101,son · XP'siz,36,bereketli_toprak agir_darbe genis_savurus,genis_savurus
+27,Hasar-alan,bahcivan,standart,101,son · XP'siz,40,canavar_kesimi davranisa_adanis altin_hedef,canavar_kesimi
+27,Hasar-alan,bahcivan,standart,101,son · XP'siz,43,genis_savurus davranisa_adanis altin_hedef,genis_savurus
+27,Hasar-alan,bahcivan,standart,101,son · XP'siz,46,artci_patlama zincir_hasat bereketli_toprak,bereketli_toprak
+27,Hasar-alan,bahcivan,standart,101,son · XP'siz,50,bilgi_filizi bereketli_ogrenim yikim_gucu,yikim_gucu
+28,Hasar-alan,bahcivan,standart,102,son · XP'siz,3,nadir_tohum keskin_bicak bilgi_filizi,keskin_bicak
+28,Hasar-alan,bahcivan,standart,102,son · XP'siz,6,keskin_bicak nadir_tohum bereketli_toprak,keskin_bicak
+28,Hasar-alan,bahcivan,standart,102,son · XP'siz,10,nadir_tohum keskin_bicak hizli_bilek,keskin_bicak
+28,Hasar-alan,bahcivan,standart,102,son · XP'siz,13,nadir_tohum bilgi_filizi kivilcim,nadir_tohum
+28,Hasar-alan,bahcivan,standart,102,son · XP'siz,16,yikim_gucu altin_hedef kivilcim,altin_hedef
+28,Hasar-alan,bahcivan,standart,102,son · XP'siz,20,altin_hedef yikim_gucu kivilcim,altin_hedef
+28,Hasar-alan,bahcivan,standart,102,son · XP'siz,23,artci_patlama agir_darbe kritik_goz,kritik_goz
+28,Hasar-alan,bahcivan,standart,102,son · XP'siz,26,genis_savurus canavar_kesimi kivilcim,genis_savurus
+28,Hasar-alan,bahcivan,standart,102,son · XP'siz,30,firtina_bilegi artci_patlama davranisa_adanis,firtina_bilegi
+28,Hasar-alan,bahcivan,standart,102,son · XP'siz,33,artci_patlama bereketli_toprak bereketli_ogrenim,bereketli_toprak
+28,Hasar-alan,bahcivan,standart,102,son · XP'siz,36,agir_darbe artci_patlama davranisa_adanis,agir_darbe
+28,Hasar-alan,bahcivan,standart,102,son · XP'siz,40,artci_patlama hasat_ritmi davranisa_adanis,hasat_ritmi
+28,Hasar-alan,bahcivan,standart,102,son · XP'siz,43,zincir_hasat bilgi_filizi agir_darbe,agir_darbe
+28,Hasar-alan,bahcivan,standart,102,son · XP'siz,46,bereketli_toprak bilgi_filizi zincir_hasat,bereketli_toprak
+28,Hasar-alan,bahcivan,standart,102,son · XP'siz,50,bereketli_ogrenim zincir_hasat bilgi_filizi,bilgi_filizi
+29,Hasar-alan,bahcivan,standart,103,son · XP'siz,3,keskin_bicak hizli_bilek bereketli_toprak,keskin_bicak
+29,Hasar-alan,bahcivan,standart,103,son · XP'siz,6,nadir_tohum bereketli_toprak hizli_bilek,hizli_bilek
+29,Hasar-alan,bahcivan,standart,103,son · XP'siz,10,nadir_tohum bilgi_filizi hizli_bilek,hizli_bilek
+29,Hasar-alan,bahcivan,standart,103,son · XP'siz,13,agir_darbe hizli_bilek yikim_gucu,hizli_bilek
+29,Hasar-alan,bahcivan,standart,103,son · XP'siz,16,kritik_goz altin_hedef yikim_gucu,kritik_goz
+29,Hasar-alan,bahcivan,standart,103,son · XP'siz,20,bilgi_filizi kivilcim altin_hedef,altin_hedef
+29,Hasar-alan,bahcivan,standart,103,son · XP'siz,23,yikim_gucu artci_patlama zincir_hasat,yikim_gucu
+29,Hasar-alan,bahcivan,standart,103,son · XP'siz,26,nadir_tohum davranisa_adanis zincir_hasat,nadir_tohum
+29,Hasar-alan,bahcivan,standart,103,son · XP'siz,30,firtina_bilegi agir_darbe davranisa_adanis,firtina_bilegi
+29,Hasar-alan,bahcivan,standart,103,son · XP'siz,33,artci_patlama genis_savurus kritik_goz,genis_savurus
+29,Hasar-alan,bahcivan,standart,103,son · XP'siz,36,bereketli_ogrenim hasat_ritmi cifte_akim,hasat_ritmi
+29,Hasar-alan,bahcivan,standart,103,son · XP'siz,40,genis_savurus yikim_gucu agir_darbe,genis_savurus
+29,Hasar-alan,bahcivan,standart,103,son · XP'siz,43,davranisa_adanis artci_patlama zincir_hasat,artci_patlama
+29,Hasar-alan,bahcivan,standart,103,son · XP'siz,46,bereketli_ogrenim canavar_kesimi cifte_akim,canavar_kesimi
+29,Hasar-alan,bahcivan,standart,103,son · XP'siz,50,kritik_goz davranisa_adanis kivilcim,kritik_goz
+30,Hasar-alan,bahcivan,standart,104,son · XP'siz,3,keskin_bicak nadir_tohum bereketli_toprak,keskin_bicak
+30,Hasar-alan,bahcivan,standart,104,son · XP'siz,6,bereketli_toprak keskin_bicak bilgi_filizi,keskin_bicak
+30,Hasar-alan,bahcivan,standart,104,son · XP'siz,10,hizli_bilek bilgi_filizi nadir_tohum,hizli_bilek
+30,Hasar-alan,bahcivan,standart,104,son · XP'siz,13,kritik_goz bilgi_filizi keskin_bicak,keskin_bicak
+30,Hasar-alan,bahcivan,standart,104,son · XP'siz,16,kivilcim bilgi_filizi yikim_gucu,kivilcim
+30,Hasar-alan,bahcivan,standart,104,son · XP'siz,20,agir_darbe kritik_goz altin_hedef,kritik_goz
+30,Hasar-alan,bahcivan,standart,104,son · XP'siz,23,davranisa_adanis genis_savurus cifte_akim,genis_savurus
+30,Hasar-alan,bahcivan,standart,104,son · XP'siz,26,kritik_goz bereketli_ogrenim hasat_ritmi,kritik_goz
+30,Hasar-alan,bahcivan,standart,104,son · XP'siz,30,genis_savurus altin_hedef firtina_bilegi,genis_savurus
+30,Hasar-alan,bahcivan,standart,104,son · XP'siz,33,hasat_ritmi firtina_bilegi nadir_tohum,firtina_bilegi
+30,Hasar-alan,bahcivan,standart,104,son · XP'siz,36,davranisa_adanis hasat_ritmi bereketli_ogrenim,hasat_ritmi
+30,Hasar-alan,bahcivan,standart,104,son · XP'siz,40,zincir_hasat artci_patlama cifte_akim,zincir_hasat
+30,Hasar-alan,bahcivan,standart,104,son · XP'siz,43,cifte_akim nadir_tohum artci_patlama,nadir_tohum
+30,Hasar-alan,bahcivan,standart,104,son · XP'siz,46,canavar_kesimi yikim_gucu artci_patlama,canavar_kesimi
+30,Hasar-alan,bahcivan,standart,104,son · XP'siz,50,kivilcim davranisa_adanis bereketli_ogrenim,kivilcim
+31,Hasar-alan,bahcivan,standart,105,son · XP'siz,3,hizli_bilek bilgi_filizi keskin_bicak,keskin_bicak
+31,Hasar-alan,bahcivan,standart,105,son · XP'siz,6,bilgi_filizi bereketli_toprak hizli_bilek,hizli_bilek
+31,Hasar-alan,bahcivan,standart,105,son · XP'siz,10,keskin_bicak hizli_bilek bilgi_filizi,keskin_bicak
+31,Hasar-alan,bahcivan,standart,105,son · XP'siz,13,yikim_gucu altin_hedef hizli_bilek,hizli_bilek
+31,Hasar-alan,bahcivan,standart,105,son · XP'siz,16,agir_darbe yikim_gucu altin_hedef,agir_darbe
+31,Hasar-alan,bahcivan,standart,105,son · XP'siz,20,nadir_tohum kritik_goz bereketli_toprak,kritik_goz
+31,Hasar-alan,bahcivan,standart,105,son · XP'siz,23,cifte_akim agir_darbe nadir_tohum,agir_darbe
+31,Hasar-alan,bahcivan,standart,105,son · XP'siz,26,genis_savurus cifte_akim kivilcim,genis_savurus
+31,Hasar-alan,bahcivan,standart,105,son · XP'siz,30,bereketli_ogrenim keskin_bicak canavar_kesimi,keskin_bicak
+31,Hasar-alan,bahcivan,standart,105,son · XP'siz,33,canavar_kesimi bereketli_ogrenim nadir_tohum,canavar_kesimi
+31,Hasar-alan,bahcivan,standart,105,son · XP'siz,36,cifte_akim artci_patlama zincir_hasat,cifte_akim
+31,Hasar-alan,bahcivan,standart,105,son · XP'siz,40,bereketli_ogrenim artci_patlama genis_savurus,genis_savurus
+31,Hasar-alan,bahcivan,standart,105,son · XP'siz,43,nadir_tohum hasat_ritmi bilgi_filizi,nadir_tohum
+31,Hasar-alan,bahcivan,standart,105,son · XP'siz,46,davranisa_adanis bereketli_ogrenim yikim_gucu,yikim_gucu
+31,Hasar-alan,bahcivan,standart,105,son · XP'siz,50,davranisa_adanis firtina_bilegi bereketli_ogrenim,firtina_bilegi
+32,Hasar-alan,bahcivan,standart,106,son · XP'siz,3,bereketli_toprak bilgi_filizi nadir_tohum,bereketli_toprak
+32,Hasar-alan,bahcivan,standart,106,son · XP'siz,6,nadir_tohum bilgi_filizi hizli_bilek,hizli_bilek
+32,Hasar-alan,bahcivan,standart,106,son · XP'siz,10,bereketli_toprak nadir_tohum keskin_bicak,keskin_bicak
+32,Hasar-alan,bahcivan,standart,106,son · XP'siz,13,bilgi_filizi altin_hedef keskin_bicak,keskin_bicak
+32,Hasar-alan,bahcivan,standart,106,son · XP'siz,16,bereketli_toprak altin_hedef yikim_gucu,bereketli_toprak
+32,Hasar-alan,bahcivan,standart,106,son · XP'siz,20,kivilcim altin_hedef keskin_bicak,keskin_bicak
+32,Hasar-alan,bahcivan,standart,106,son · XP'siz,23,firtina_bilegi canavar_kesimi bereketli_ogrenim,canavar_kesimi
+32,Hasar-alan,bahcivan,standart,106,son · XP'siz,26,kivilcim altin_hedef hasat_ritmi,altin_hedef
+32,Hasar-alan,bahcivan,standart,106,son · XP'siz,30,davranisa_adanis altin_hedef bereketli_ogrenim,altin_hedef
+32,Hasar-alan,bahcivan,standart,106,son · XP'siz,33,yikim_gucu firtina_bilegi kivilcim,firtina_bilegi
+32,Hasar-alan,bahcivan,standart,106,son · XP'siz,36,zincir_hasat agir_darbe artci_patlama,agir_darbe
+32,Hasar-alan,bahcivan,standart,106,son · XP'siz,40,bereketli_ogrenim nadir_tohum hasat_ritmi,nadir_tohum
+32,Hasar-alan,bahcivan,standart,106,son · XP'siz,43,artci_patlama kivilcim nadir_tohum,nadir_tohum
+32,Hasar-alan,bahcivan,standart,106,son · XP'siz,46,kivilcim kritik_goz cifte_akim,kritik_goz
+32,Hasar-alan,bahcivan,standart,106,son · XP'siz,50,bereketli_ogrenim cifte_akim yikim_gucu,yikim_gucu
+33,Hasar-alan,bahcivan,standart,107,son · XP'siz,3,hizli_bilek bereketli_toprak bilgi_filizi,hizli_bilek
+33,Hasar-alan,bahcivan,standart,107,son · XP'siz,6,nadir_tohum hizli_bilek bilgi_filizi,hizli_bilek
+33,Hasar-alan,bahcivan,standart,107,son · XP'siz,10,bilgi_filizi hizli_bilek keskin_bicak,keskin_bicak
+33,Hasar-alan,bahcivan,standart,107,son · XP'siz,13,altin_hedef kivilcim agir_darbe,agir_darbe
+33,Hasar-alan,bahcivan,standart,107,son · XP'siz,16,kritik_goz hizli_bilek agir_darbe,hizli_bilek
+33,Hasar-alan,bahcivan,standart,107,son · XP'siz,20,yikim_gucu keskin_bicak bilgi_filizi,keskin_bicak
+33,Hasar-alan,bahcivan,standart,107,son · XP'siz,23,bereketli_ogrenim canavar_kesimi genis_savurus,genis_savurus
+33,Hasar-alan,bahcivan,standart,107,son · XP'siz,26,canavar_kesimi firtina_bilegi zincir_hasat,canavar_kesimi
+33,Hasar-alan,bahcivan,standart,107,son · XP'siz,30,artci_patlama cifte_akim genis_savurus,genis_savurus
+33,Hasar-alan,bahcivan,standart,107,son · XP'siz,33,cifte_akim artci_patlama zincir_hasat,cifte_akim
+33,Hasar-alan,bahcivan,standart,107,son · XP'siz,36,hasat_ritmi firtina_bilegi zincir_hasat,firtina_bilegi
+33,Hasar-alan,bahcivan,standart,107,son · XP'siz,40,hasat_ritmi altin_hedef artci_patlama,altin_hedef
+33,Hasar-alan,bahcivan,standart,107,son · XP'siz,43,agir_darbe artci_patlama kritik_goz,kritik_goz
+33,Hasar-alan,bahcivan,standart,107,son · XP'siz,46,artci_patlama davranisa_adanis bereketli_ogrenim,artci_patlama
+33,Hasar-alan,bahcivan,standart,107,son · XP'siz,50,yikim_gucu hasat_ritmi altin_hedef,altin_hedef
+34,Hasar-alan,bahcivan,standart,108,son · XP'siz,3,bilgi_filizi nadir_tohum keskin_bicak,keskin_bicak
+34,Hasar-alan,bahcivan,standart,108,son · XP'siz,6,keskin_bicak nadir_tohum bereketli_toprak,keskin_bicak
+34,Hasar-alan,bahcivan,standart,108,son · XP'siz,10,bereketli_toprak keskin_bicak hizli_bilek,keskin_bicak
+34,Hasar-alan,bahcivan,standart,108,son · XP'siz,13,bereketli_toprak kritik_goz yikim_gucu,kritik_goz
+34,Hasar-alan,bahcivan,standart,108,son · XP'siz,16,kivilcim yikim_gucu kritik_goz,kritik_goz
+34,Hasar-alan,bahcivan,standart,108,son · XP'siz,20,agir_darbe bilgi_filizi kritik_goz,kritik_goz
+34,Hasar-alan,bahcivan,standart,108,son · XP'siz,23,firtina_bilegi hizli_bilek davranisa_adanis,hizli_bilek
+34,Hasar-alan,bahcivan,standart,108,son · XP'siz,26,zincir_hasat canavar_kesimi kivilcim,canavar_kesimi
+34,Hasar-alan,bahcivan,standart,108,son · XP'siz,30,cifte_akim davranisa_adanis genis_savurus,genis_savurus
+34,Hasar-alan,bahcivan,standart,108,son · XP'siz,33,bereketli_ogrenim hizli_bilek altin_hedef,hizli_bilek
+34,Hasar-alan,bahcivan,standart,108,son · XP'siz,36,genis_savurus cifte_akim davranisa_adanis,genis_savurus
+34,Hasar-alan,bahcivan,standart,108,son · XP'siz,40,bereketli_ogrenim hasat_ritmi yikim_gucu,hasat_ritmi
+34,Hasar-alan,bahcivan,standart,108,son · XP'siz,43,bereketli_ogrenim davranisa_adanis zincir_hasat,zincir_hasat
+34,Hasar-alan,bahcivan,standart,108,son · XP'siz,46,bereketli_ogrenim firtina_bilegi cifte_akim,firtina_bilegi
+34,Hasar-alan,bahcivan,standart,108,son · XP'siz,50,bereketli_ogrenim hizli_bilek artci_patlama,hizli_bilek
+35,Hasar-alan,bahcivan,standart,109,son · XP'siz,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+35,Hasar-alan,bahcivan,standart,109,son · XP'siz,6,hizli_bilek keskin_bicak nadir_tohum,keskin_bicak
+35,Hasar-alan,bahcivan,standart,109,son · XP'siz,10,hizli_bilek bilgi_filizi keskin_bicak,keskin_bicak
+35,Hasar-alan,bahcivan,standart,109,son · XP'siz,13,agir_darbe kritik_goz nadir_tohum,kritik_goz
+35,Hasar-alan,bahcivan,standart,109,son · XP'siz,16,yikim_gucu bereketli_toprak altin_hedef,bereketli_toprak
+35,Hasar-alan,bahcivan,standart,109,son · XP'siz,20,agir_darbe altin_hedef nadir_tohum,agir_darbe
+35,Hasar-alan,bahcivan,standart,109,son · XP'siz,23,zincir_hasat artci_patlama bereketli_ogrenim,zincir_hasat
+35,Hasar-alan,bahcivan,standart,109,son · XP'siz,26,kritik_goz firtina_bilegi artci_patlama,firtina_bilegi
+35,Hasar-alan,bahcivan,standart,109,son · XP'siz,30,bereketli_ogrenim davranisa_adanis yikim_gucu,yikim_gucu
+35,Hasar-alan,bahcivan,standart,109,son · XP'siz,33,bilgi_filizi agir_darbe canavar_kesimi,canavar_kesimi
+35,Hasar-alan,bahcivan,standart,109,son · XP'siz,36,hasat_ritmi davranisa_adanis altin_hedef,altin_hedef
+35,Hasar-alan,bahcivan,standart,109,son · XP'siz,40,genis_savurus artci_patlama nadir_tohum,genis_savurus
+35,Hasar-alan,bahcivan,standart,109,son · XP'siz,43,bereketli_ogrenim artci_patlama kivilcim,kivilcim
+35,Hasar-alan,bahcivan,standart,109,son · XP'siz,46,artci_patlama nadir_tohum kivilcim,nadir_tohum
+35,Hasar-alan,bahcivan,standart,109,son · XP'siz,50,bilgi_filizi bereketli_ogrenim cifte_akim,bilgi_filizi
+36,Davranış yönü,bahcivan,standart,100,son · XP'siz,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+36,Davranış yönü,bahcivan,standart,100,son · XP'siz,6,bereketli_toprak bilgi_filizi hizli_bilek,hizli_bilek
+36,Davranış yönü,bahcivan,standart,100,son · XP'siz,10,nadir_tohum bilgi_filizi keskin_bicak,keskin_bicak
+36,Davranış yönü,bahcivan,standart,100,son · XP'siz,13,keskin_bicak yikim_gucu kritik_goz,yikim_gucu
+36,Davranış yönü,bahcivan,standart,100,son · XP'siz,16,yikim_gucu keskin_bicak altin_hedef,yikim_gucu
+36,Davranış yönü,bahcivan,standart,100,son · XP'siz,20,nadir_tohum kivilcim bilgi_filizi,kivilcim
+36,Davranış yönü,bahcivan,standart,100,son · XP'siz,23,canavar_kesimi cifte_akim bilgi_filizi,cifte_akim
+36,Davranış yönü,bahcivan,standart,100,son · XP'siz,26,kritik_goz genis_savurus bereketli_ogrenim,genis_savurus
+36,Davranış yönü,bahcivan,standart,100,son · XP'siz,30,zincir_hasat bereketli_toprak hizli_bilek,zincir_hasat
+36,Davranış yönü,bahcivan,standart,100,son · XP'siz,33,genis_savurus bereketli_ogrenim altin_hedef,genis_savurus
+36,Davranış yönü,bahcivan,standart,100,son · XP'siz,36,bereketli_ogrenim keskin_bicak firtina_bilegi,firtina_bilegi
+36,Davranış yönü,bahcivan,standart,100,son · XP'siz,40,hasat_ritmi kivilcim artci_patlama,kivilcim
+36,Davranış yönü,bahcivan,standart,100,son · XP'siz,43,davranisa_adanis agir_darbe hasat_ritmi,agir_darbe
+36,Davranış yönü,bahcivan,standart,100,son · XP'siz,46,bereketli_ogrenim davranisa_adanis hizli_bilek,hizli_bilek
+36,Davranış yönü,bahcivan,standart,100,son · XP'siz,50,nadir_tohum davranisa_adanis canavar_kesimi,nadir_tohum
+37,Davranış yönü,bahcivan,standart,101,son · XP'siz,3,hizli_bilek nadir_tohum bereketli_toprak,hizli_bilek
+37,Davranış yönü,bahcivan,standart,101,son · XP'siz,6,bilgi_filizi bereketli_toprak nadir_tohum,bereketli_toprak
+37,Davranış yönü,bahcivan,standart,101,son · XP'siz,10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+37,Davranış yönü,bahcivan,standart,101,son · XP'siz,13,agir_darbe kivilcim kritik_goz,kivilcim
+37,Davranış yönü,bahcivan,standart,101,son · XP'siz,16,kivilcim altin_hedef kritik_goz,kivilcim
+37,Davranış yönü,bahcivan,standart,101,son · XP'siz,20,hizli_bilek kivilcim yikim_gucu,kivilcim
+37,Davranış yönü,bahcivan,standart,101,son · XP'siz,23,davranisa_adanis artci_patlama hasat_ritmi,artci_patlama
+37,Davranış yönü,bahcivan,standart,101,son · XP'siz,26,zincir_hasat altin_hedef bereketli_ogrenim,zincir_hasat
+37,Davranış yönü,bahcivan,standart,101,son · XP'siz,30,cifte_akim davranisa_adanis bereketli_ogrenim,cifte_akim
+37,Davranış yönü,bahcivan,standart,101,son · XP'siz,33,nadir_tohum canavar_kesimi agir_darbe,nadir_tohum
+37,Davranış yönü,bahcivan,standart,101,son · XP'siz,36,nadir_tohum altin_hedef genis_savurus,genis_savurus
+37,Davranış yönü,bahcivan,standart,101,son · XP'siz,40,canavar_kesimi bereketli_ogrenim altin_hedef,canavar_kesimi
+37,Davranış yönü,bahcivan,standart,101,son · XP'siz,43,genis_savurus bereketli_ogrenim altin_hedef,genis_savurus
+37,Davranış yönü,bahcivan,standart,101,son · XP'siz,46,firtina_bilegi davranisa_adanis bereketli_toprak,firtina_bilegi
+37,Davranış yönü,bahcivan,standart,101,son · XP'siz,50,nadir_tohum bereketli_ogrenim altin_hedef,nadir_tohum
+38,Davranış yönü,bahcivan,standart,102,son · XP'siz,3,nadir_tohum keskin_bicak bilgi_filizi,keskin_bicak
+38,Davranış yönü,bahcivan,standart,102,son · XP'siz,6,keskin_bicak nadir_tohum bereketli_toprak,bereketli_toprak
+38,Davranış yönü,bahcivan,standart,102,son · XP'siz,10,nadir_tohum keskin_bicak hizli_bilek,hizli_bilek
+38,Davranış yönü,bahcivan,standart,102,son · XP'siz,13,bereketli_toprak nadir_tohum kivilcim,kivilcim
+38,Davranış yönü,bahcivan,standart,102,son · XP'siz,16,yikim_gucu altin_hedef kivilcim,kivilcim
+38,Davranış yönü,bahcivan,standart,102,son · XP'siz,20,altin_hedef yikim_gucu kivilcim,kivilcim
+38,Davranış yönü,bahcivan,standart,102,son · XP'siz,23,artci_patlama agir_darbe altin_hedef,artci_patlama
+38,Davranış yönü,bahcivan,standart,102,son · XP'siz,26,genis_savurus canavar_kesimi bilgi_filizi,genis_savurus
+38,Davranış yönü,bahcivan,standart,102,son · XP'siz,30,canavar_kesimi cifte_akim davranisa_adanis,cifte_akim
+38,Davranış yönü,bahcivan,standart,102,son · XP'siz,33,firtina_bilegi hizli_bilek bereketli_ogrenim,hizli_bilek
+38,Davranış yönü,bahcivan,standart,102,son · XP'siz,36,agir_darbe firtina_bilegi davranisa_adanis,firtina_bilegi
+38,Davranış yönü,bahcivan,standart,102,son · XP'siz,40,canavar_kesimi bereketli_ogrenim davranisa_adanis,canavar_kesimi
+38,Davranış yönü,bahcivan,standart,102,son · XP'siz,43,zincir_hasat bereketli_toprak bilgi_filizi,zincir_hasat
+38,Davranış yönü,bahcivan,standart,102,son · XP'siz,46,hizli_bilek bereketli_toprak davranisa_adanis,hizli_bilek
+38,Davranış yönü,bahcivan,standart,102,son · XP'siz,50,bereketli_ogrenim davranisa_adanis bereketli_toprak,bereketli_toprak
+39,Davranış yönü,bahcivan,standart,103,son · XP'siz,3,keskin_bicak hizli_bilek bereketli_toprak,hizli_bilek
+39,Davranış yönü,bahcivan,standart,103,son · XP'siz,6,nadir_tohum bereketli_toprak hizli_bilek,hizli_bilek
+39,Davranış yönü,bahcivan,standart,103,son · XP'siz,10,nadir_tohum bilgi_filizi hizli_bilek,hizli_bilek
+39,Davranış yönü,bahcivan,standart,103,son · XP'siz,13,agir_darbe bereketli_toprak yikim_gucu,yikim_gucu
+39,Davranış yönü,bahcivan,standart,103,son · XP'siz,16,kritik_goz altin_hedef yikim_gucu,yikim_gucu
+39,Davranış yönü,bahcivan,standart,103,son · XP'siz,20,bilgi_filizi kivilcim altin_hedef,kivilcim
+39,Davranış yönü,bahcivan,standart,103,son · XP'siz,23,genis_savurus artci_patlama zincir_hasat,zincir_hasat
+39,Davranış yönü,bahcivan,standart,103,son · XP'siz,26,bereketli_toprak bereketli_ogrenim davranisa_adanis,bereketli_toprak
+39,Davranış yönü,bahcivan,standart,103,son · XP'siz,30,canavar_kesimi kivilcim bereketli_ogrenim,kivilcim
+39,Davranış yönü,bahcivan,standart,103,son · XP'siz,33,firtina_bilegi genis_savurus kritik_goz,firtina_bilegi
+39,Davranış yönü,bahcivan,standart,103,son · XP'siz,36,hasat_ritmi cifte_akim artci_patlama,artci_patlama
+39,Davranış yönü,bahcivan,standart,103,son · XP'siz,40,genis_savurus altin_hedef agir_darbe,genis_savurus
+39,Davranış yönü,bahcivan,standart,103,son · XP'siz,43,bereketli_ogrenim canavar_kesimi davranisa_adanis,canavar_kesimi
+39,Davranış yönü,bahcivan,standart,103,son · XP'siz,46,hasat_ritmi genis_savurus cifte_akim,cifte_akim
+39,Davranış yönü,bahcivan,standart,103,son · XP'siz,50,kritik_goz bereketli_ogrenim kivilcim,kivilcim
+40,Davranış yönü,bahcivan,standart,104,son · XP'siz,3,keskin_bicak nadir_tohum bereketli_toprak,bereketli_toprak
+40,Davranış yönü,bahcivan,standart,104,son · XP'siz,6,bereketli_toprak keskin_bicak bilgi_filizi,bereketli_toprak
+40,Davranış yönü,bahcivan,standart,104,son · XP'siz,10,hizli_bilek bilgi_filizi nadir_tohum,hizli_bilek
+40,Davranış yönü,bahcivan,standart,104,son · XP'siz,13,kritik_goz kivilcim keskin_bicak,kivilcim
+40,Davranış yönü,bahcivan,standart,104,son · XP'siz,16,kivilcim nadir_tohum yikim_gucu,kivilcim
+40,Davranış yönü,bahcivan,standart,104,son · XP'siz,20,agir_darbe kritik_goz kivilcim,kivilcim
+40,Davranış yönü,bahcivan,standart,104,son · XP'siz,23,davranisa_adanis genis_savurus cifte_akim,cifte_akim
+40,Davranış yönü,bahcivan,standart,104,son · XP'siz,26,altin_hedef hasat_ritmi bereketli_ogrenim,altin_hedef
+40,Davranış yönü,bahcivan,standart,104,son · XP'siz,30,genis_savurus altin_hedef firtina_bilegi,firtina_bilegi
+40,Davranış yönü,bahcivan,standart,104,son · XP'siz,33,hasat_ritmi canavar_kesimi bereketli_toprak,bereketli_toprak
+40,Davranış yönü,bahcivan,standart,104,son · XP'siz,36,davranisa_adanis hasat_ritmi bereketli_ogrenim,hasat_ritmi
+40,Davranış yönü,bahcivan,standart,104,son · XP'siz,40,zincir_hasat canavar_kesimi artci_patlama,zincir_hasat
+40,Davranış yönü,bahcivan,standart,104,son · XP'siz,43,artci_patlama nadir_tohum canavar_kesimi,artci_patlama
+40,Davranış yönü,bahcivan,standart,104,son · XP'siz,46,genis_savurus yikim_gucu canavar_kesimi,yikim_gucu
+40,Davranış yönü,bahcivan,standart,104,son · XP'siz,50,agir_darbe davranisa_adanis bereketli_ogrenim,agir_darbe

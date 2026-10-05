@@ -13,6 +13,7 @@ def read(suffix=''):
     return rows[0], rows[1:]
 
 head, rows = read()
+import calendar_guard; calendar_guard.require_uniform(rows, 'analyze_runs.py')   # açık boss takvimli profil: açık 'desteklenmiyor' sonucu
 runs = OrderedDict()   # run id -> dict(meta, rounds{round: row dict}, outcome, end)
 for r in rows:
     rid = r[0]

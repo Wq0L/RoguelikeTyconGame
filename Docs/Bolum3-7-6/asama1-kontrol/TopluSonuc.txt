@@ -1,0 +1,11 @@
+== ASAMA 1 SONRASI KONTROLLER
+Performans_odulsuz | KirilmaErisimMeasurement.RunPerformance | DONE: performans · 24 round | 10:25:56-10:26:40 | cikis: ok
+RewardOfferDistribution | RewardOfferMeasurement.RunDistribution | DONE: distribution | 10:26:41-10:27:35 | cikis: ok
+KirilmaErisimiV1Verification | KirilmaErisimiV1Verification.RunBatch | PASS: 35 checks | 10:27:35-10:28:21 | cikis: ok
+AlanGeriBildirimiVerification | AlanGeriBildirimiVerification.RunBatch | PASS: 23 checks | 10:28:21-10:28:57 | cikis: ok
+KirilmaV1Verification | KirilmaV1Verification.RunBatch | PASS: 189 checks | 10:28:57-10:29:34 | cikis: ok
+HarvestBehaviorVerification | HarvestBehaviorVerification.RunBatch | PASS: 114 checks | 10:29:34-10:29:56 | cikis: ok
+ElectricRevertVerification | ElectricRevertVerification.RunBatch | PASS: 40 checks | 10:29:56-10:30:34 | cikis: ok
+TakvimV1Verification | TakvimV1Verification.RunBatch | PASS: 162 checks | 10:30:34-10:31:33 | cikis: ok
+BossRewardVerification | BossRewardVerification.RunBatch | PASS: 127 checks | 10:31:33-10:32:18 | cikis: ok
+

@@ -1,0 +1,223 @@
+PASS: 70 checks
+ok: Run50_Referans asset exists: Run50 Referans · 50 round
+ok: 50 rounds in ten 5-round segments
+ok: Quota source: same curve as UzunRun130 (start 10, growth 1.45, no table)
+ok: Segment quotas equal UzunRun130's first 10 segments: 10/15/20/30/45/65/95/130/200/280
+ok: No segment events, no specialization (explicit)
+ok: Normal starting economy 80 / 0 / 0, no debug budget
+ok: Duration from upgrades (no fixed duration); kill-trigger electric
+ok: Victory title
+ok: Prototip10 unchanged (10 rounds, 40/200, Don segment 2, 80 Gold)
+ok: Prototip10_DebugButce unchanged (debug budget)
+ok: Uzmanlasma20 unchanged (20 rounds, 40/200/350/600, Don 2+4, specialization after segment 2)
+ok: Deney22_20 unchanged (20 rounds, 40/200/350/600, Don 2+4, specialization after segment 2)
+ok: UzunRun130 unchanged (130 rounds, curve, no events)
+ok: Menu item and validator: Tools/Run Profili/Run50 Referans · 50 round (ölçüm tabanı)
+ok: Previous profile menu items still present
+ok: Menu: long run selects UzunRun130
+ok: Menu: Run50 Referans selects Run50_Referans.asset
+ok: Menu labels: Run50 and long run distinct
+ok: GameScene runs Run50_Referans: 50 rounds, 5-round quota segments
+ok: RoundManager quota targets 10…280 from the profile
+ok: Starting resources 80 / 0 / 0
+ok: No segment event scheduled
+ok: No specialization offered
+ok: Round duration from stats: 30 s base, tempo 1
+ok: Reference start is the neutral Bahçıvan + Standart (batch save is memory-only: the player's selection cannot leak in)
+ok: 10 segment ends judged exactly at rounds 5, 10, …, 50; never mid-segment; no event or specialization screen
+ok: Round 50 with quota 280 / 280 → victory, run complete
+ok: Victory screen: REFERANS RUN TAMAMLANDI/50 round · son kota 280 / 280/Başlangıç: Bahçıvan · Standart/Harvest Score: 890/Aktif oynanış 0:00 · seçimler 0:00 · mağaza ve hazırlık 0:04
+ok: Restart: fresh run in RunSetup, score 0, 80 / 0 / 0
+ok: Segment 4 at 29 / 30 → run lost at round 20 (segments 1–3 passed above target)
+ok: Defeat screen: KOTA TUTMADI/Round 20 · segment skoru 29 / 30 (gereken kota)/Başlangıç: Bahçıvan · Standart/Harvest Score: 83/Aktif oynanış 0:00 · seçimler 0:00 · mağaza ve hazırlık 0:03
+ok: Main menu button loads MenuScene
+ok: Single GameManager after returning to the menu
+ok: Deneyimli: representative simulator run (condition B, seed 11016 of 100; quota passed every segment, same run under A)
+   durum Deneyimli R10: 9 skill etkisi, 6 saksı (3×1x2, 3×1x1), 9 tile (Crystal 3, Damage 2, Fertile 1, Water 2, Energy 1), banka 3G/86I/6S
+   durum Deneyimli R20: 23 skill etkisi, 11 saksı (3×1x3, 3×1x1, 5×2x3), 17 tile (Crystal 6, Damage 5, Fertile 2, Water 3, Energy 1), banka 17G/217I/15S
+   durum Deneyimli R30: 46 skill etkisi, 11 saksı (1×1x1, 10×2x3), 30 tile (Crystal 8, Water 7, Explosive 1, Damage 6, Fertile 3, Energy 3, Tornado 2), banka 166G/36I/330S
+   durum Deneyimli R40: 58 skill etkisi, 17 saksı (1×1x1, 16×2x3), 39 tile (Boomerang 2, Explosive 2, Crystal 11, Fertile 4, Water 8, Damage 6, Tornado 3, Energy 3), banka 80G/57I/141S
+   durum Deneyimli R50: 74 skill etkisi, 17 saksı (1×1x1, 16×2x3), 48 tile (Boomerang 2, Explosive 3, Crystal 12, Water 12, Fertile 6, Damage 6, Tornado 3, Energy 3, Electric 1), banka 155G/7I/188S
+ok: Orta: representative simulator run (condition B, seed 11098 of 100; quota passed every segment, same run under A)
+   durum Orta R10: 12 skill etkisi, 6 saksı (3×1x2, 3×1x1), 9 tile (Crystal 3, Water 3, Fertile 2, Damage 1), banka 9G/110I/11S
+   durum Orta R20: 24 skill etkisi, 13 saksı (4×1x3, 3×1x2, 1×1x1, 5×2x3), 18 tile (Damage 4, Crystal 5, Electric 1, Water 4, Explosive 1, Fertile 2, Duplicate 1), banka 19G/30I/15S
+   durum Orta R30: 46 skill etkisi, 10 saksı (1×1x2, 9×2x3), 34 tile (Fertile 4, Explosive 3, Damage 5, Crystal 7, Electric 2, Water 9, Energy 3, Duplicate 1), banka 62G/20I/333S
+   durum Orta R40: 58 skill etkisi, 18 saksı (1×1x2, 17×2x3), 43 tile (Fertile 6, Explosive 4, Crystal 11, Damage 5, Water 10, Electric 3, Energy 3, Duplicate 1), banka 34G/165I/138S
+   durum Orta R50: 71 skill etkisi, 18 saksı (1×1x2, 17×2x3), 50 tile (Fertile 9, Water 11, Explosive 4, Crystal 13, Damage 5, Electric 4, Energy 3, Duplicate 1), banka 221G/217I/63S
+   === SAHNE ÖLÇÜMÜ: 11 durum × 5 seed, tam round, kare 1/30 sn; bot her saldırıda en çok canlı bitkiyi kapsayan nişana vurur (merkez, hücre arası, köşe; insan isabeti değil) ===
+ok: Measurement scene (Deneyimli · R10): measurement profile copy, 11×11 grid
+ok: Deneyimli · R10: 6 planters, 9 production points, 9 open cells
+ok: Deneyimli · R10: scene reproduces the simulator state (damage 61, interval 3 s, duration 45 s, tempo 1)
+   --- Deneyimli · R10 (sahne, 5 seed; ort. [en az–en çok]) ---
+   durum: hasar 61 · kritik %30 ×2.0 · saldırı aralığı 3 sn · yarıçap 1 · süre 45 sn (etkili 45, tempo 1) · 6 saksı / 9 üretim noktası / 9 açık hücre · 9 tile · üretim tavanı 86/round · can R10 15/18/24/30/45
+   sahne: hasat 60 [56–63] · doğrudan 60 · davranış 0 (%0: patlama 0 kasırga 0 bumerang 0 elektrik 0)
+         skor 140 [109–160] · XP 1367 · G/I/S 139/11/1 · saldırı 14 (boşa 0) · vuruş/saldırı 4.3
+         darboğaz: hasat/üretim tavanı %70 · üretim noktası doluluğu %26 (yüksek = hasat yetişmiyor, düşük = üretim yetişmiyor) · saldırı başına canlı hedef var %100
+         Common hasat 44 · tek vuruş %100 (218/218) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Uncommon hasat 13 · tek vuruş %100 (65/65) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Rare hasat 3 · tek vuruş %100 (14/14) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Epic hasat 1 · tek vuruş %100 (3/3) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Legendary hasat 0 · tek vuruş %NaN (0/0) · doğrudan öldürmede vuruş NaN · ilk vuruştan hasada NaN sn
+         tek vuruş (bütün nadirlikler, taze bitki) %100 (300/300)
+   simülatör (aynı durum, aynı round; isabet politikası, davranış MODEL): hasat 59 · doğrudan 59 · davranış %0 · skor 161 · G/I/S 134/18/1 · hasat/tavan %69 · tek vuruş (model) %100
+   sahne / simülatör: hasat ×1.01 · doğrudan ×1.01 · skor ×0.87 · Gold ×1.04
+ok: Measurement scene (Deneyimli · R20): measurement profile copy, 11×11 grid
+ok: Deneyimli · R20: 11 planters, 42 production points, 49 open cells
+ok: Deneyimli · R20: scene reproduces the simulator state (damage 64.1, interval 2.1 s, duration 45 s, tempo 1)
+   --- Deneyimli · R20 (sahne, 5 seed; ort. [en az–en çok]) ---
+   durum: hasar 64.1 · kritik %30 ×2.0 · saldırı aralığı 2.1 sn · yarıçap 1.03 · süre 45 sn (etkili 45, tempo 1) · 11 saksı / 42 üretim noktası / 49 açık hücre · 17 tile · üretim tavanı 492/round · can R20 27/32/43/53/80
+   sahne: hasat 123 [122–125] · doğrudan 123 · davranış 0 (%0: patlama 0 kasırga 0 bumerang 0 elektrik 0)
+         skor 1605 [1189–1809] · XP 2816 · G/I/S 374/121/48 · saldırı 21 (boşa 0) · vuruş/saldırı 6.0
+         darboğaz: hasat/üretim tavanı %25 · üretim noktası doluluğu %72 (yüksek = hasat yetişmiyor, düşük = üretim yetişmiyor) · saldırı başına canlı hedef var %100
+         Common hasat 45 · tek vuruş %100 (223/223) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Uncommon hasat 33 · tek vuruş %100 (163/163) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Rare hasat 23 · tek vuruş %100 (114/114) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Epic hasat 19 · tek vuruş %100 (95/95) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Legendary hasat 4 · tek vuruş %55 (12/22) · doğrudan öldürmede vuruş 1.43 · ilk vuruştan hasada 2.7 sn
+         tek vuruş (bütün nadirlikler, taze bitki) %98 (607/617)
+   simülatör (aynı durum, aynı round; isabet politikası, davranış MODEL): hasat 85 · doğrudan 85 · davranış %0 · skor 1115 · G/I/S 271/93/32 · hasat/tavan %17 · tek vuruş (model) %98
+   sahne / simülatör: hasat ×1.45 · doğrudan ×1.45 · skor ×1.44 · Gold ×1.38
+ok: Measurement scene (Deneyimli · R30): measurement profile copy, 11×11 grid
+ok: Deneyimli · R30: 11 planters, 61 production points, 81 open cells
+ok: Deneyimli · R30: scene reproduces the simulator state (damage 91.5, interval 2.1 s, duration 48 s, tempo 1)
+   --- Deneyimli · R30 (sahne, 5 seed; ort. [en az–en çok]) ---
+   durum: hasar 91.5 · kritik %40 ×2.17 · saldırı aralığı 2.1 sn · yarıçap 1.3 · süre 48 sn (etkili 48, tempo 1) · 11 saksı / 61 üretim noktası / 81 açık hücre · 30 tile · üretim tavanı 765/round · can R30 44/52/69/87/130
+   sahne: hasat 127 [123–131] · doğrudan 126 · davranış 2 (%1: patlama 2 kasırga 0 bumerang 0 elektrik 0)
+         skor 1660 [1366–2040] · XP 4085 · G/I/S 389/268/63 · saldırı 22 (boşa 0) · vuruş/saldırı 6.0
+         darboğaz: hasat/üretim tavanı %17 · üretim noktası doluluğu %79 (yüksek = hasat yetişmiyor, düşük = üretim yetişmiyor) · saldırı başına canlı hedef var %100
+         Common hasat 48 · tek vuruş %100 (235/235) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Uncommon hasat 30 · tek vuruş %100 (150/150) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Rare hasat 23 · tek vuruş %100 (114/114) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Epic hasat 19 · tek vuruş %86 (85/99) · doğrudan öldürmede vuruş 1.12 · ilk vuruştan hasada 0.5 sn
+         Legendary hasat 7 · tek vuruş %55 (18/33) · doğrudan öldürmede vuruş 1.45 · ilk vuruştan hasada 1.9 sn
+         tek vuruş (bütün nadirlikler, taze bitki) %95 (602/631)
+   simülatör (aynı durum, aynı round; isabet politikası, davranış MODEL): hasat 158 · doğrudan 130 · davranış %18 · skor 2323 · G/I/S 502/342/66 · hasat/tavan %21 · tek vuruş (model) %97
+   sahne / simülatör: hasat ×0.80 · doğrudan ×0.97 · skor ×0.71 · Gold ×0.78
+ok: Measurement scene (Deneyimli · R40): measurement profile copy, 11×11 grid
+ok: Deneyimli · R40: 17 planters, 97 production points, 121 open cells
+ok: Deneyimli · R40: scene reproduces the simulator state (damage 867.3, interval 1.958 s, duration 54 s, tempo 1)
+   --- Deneyimli · R40 (sahne, 5 seed; ort. [en az–en çok]) ---
+   durum: hasar 867.3 · kritik %45 ×2.5 · saldırı aralığı 1.958 sn · yarıçap 1.3 · süre 54 sn (etkili 54, tempo 1) · 17 saksı / 97 üretim noktası / 121 açık hücre · 39 tile · üretim tavanı 1384/round · can R40 66/79/105/131/196
+   sahne: hasat 203 [189–215] · doğrudan 161 · davranış 42 (%20: patlama 40 kasırga 2 bumerang 0 elektrik 0)
+         skor 2329 [1995–2579] · XP 6206 · G/I/S 650/520/146 · saldırı 27 (boşa 0) · vuruş/saldırı 6.0
+         darboğaz: hasat/üretim tavanı %15 · üretim noktası doluluğu %82 (yüksek = hasat yetişmiyor, düşük = üretim yetişmiyor) · saldırı başına canlı hedef var %100
+         Common hasat 74 · tek vuruş %100 (295/296) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Uncommon hasat 50 · tek vuruş %100 (208/208) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Rare hasat 43 · tek vuruş %98 (170/173) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Epic hasat 27 · tek vuruş %99 (101/102) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Legendary hasat 8 · tek vuruş %100 (31/31) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         tek vuruş (bütün nadirlikler, taze bitki) %99 (805/810)
+   simülatör (aynı durum, aynı round; isabet politikası, davranış MODEL): hasat 200 · doğrudan 157 · davranış %21 · skor 2619 · G/I/S 631/521/145 · hasat/tavan %14 · tek vuruş (model) %100
+   sahne / simülatör: hasat ×1.01 · doğrudan ×1.02 · skor ×0.89 · Gold ×1.03
+ok: Measurement scene (Deneyimli · R50): measurement profile copy, 11×11 grid
+ok: Deneyimli · R50: 17 planters, 97 production points, 121 open cells
+ok: Deneyimli · R50: scene reproduces the simulator state (damage 1816.8, interval 1.693 s, duration 60 s, tempo 1.12)
+   --- Deneyimli · R50 (sahne, 5 seed; ort. [en az–en çok]) ---
+   durum: hasar 1816.8 · kritik %45 ×2.5 · saldırı aralığı 1.693 sn · yarıçap 1.53 · süre 67 sn (etkili 60, tempo 1.12) · 17 saksı / 97 üretim noktası / 121 açık hücre · 48 tile · üretim tavanı 1746/round · can R50 98/118/157/196/294
+   sahne: hasat 496 [485–507] · doğrudan 281 · davranış 215 (%43: patlama 73 kasırga 127 bumerang 0 elektrik 14)
+         skor 7161 [6329–7855] · XP 16320 · G/I/S 2815/1641/548 · saldırı 35 (boşa 0) · vuruş/saldırı 9.0
+         darboğaz: hasat/üretim tavanı %28 · üretim noktası doluluğu %70 (yüksek = hasat yetişmiyor, düşük = üretim yetişmiyor) · saldırı başına canlı hedef var %100
+         Common hasat 182 · tek vuruş %90 (508/563) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Uncommon hasat 123 · tek vuruş %90 (341/381) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Rare hasat 105 · tek vuruş %90 (302/336) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Epic hasat 68 · tek vuruş %89 (203/229) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Legendary hasat 18 · tek vuruş %85 (52/61) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         tek vuruş (bütün nadirlikler, taze bitki) %90 (1406/1570)
+   simülatör (aynı durum, aynı round; isabet politikası, davranış MODEL): hasat 374 · doğrudan 291 · davranış %22 · skor 5568 · G/I/S 2093/1274/425 · hasat/tavan %21 · tek vuruş (model) %100
+   sahne / simülatör: hasat ×1.33 · doğrudan ×0.97 · skor ×1.29 · Gold ×1.35
+ok: Measurement scene (Orta · R10): measurement profile copy, 11×11 grid
+ok: Orta · R10: 6 planters, 9 production points, 9 open cells
+ok: Orta · R10: scene reproduces the simulator state (damage 61, interval 3 s, duration 45 s, tempo 1)
+   --- Orta · R10 (sahne, 5 seed; ort. [en az–en çok]) ---
+   durum: hasar 61 · kritik %30 ×2.0 · saldırı aralığı 3 sn · yarıçap 1 · süre 45 sn (etkili 45, tempo 1) · 6 saksı / 9 üretim noktası / 9 açık hücre · 9 tile · üretim tavanı 99/round · can R10 15/18/24/30/45
+   sahne: hasat 68 [63–70] · doğrudan 68 · davranış 0 (%0: patlama 0 kasırga 0 bumerang 0 elektrik 0)
+         skor 163 [144–181] · XP 2161 · G/I/S 218/26/1 · saldırı 14 (boşa 0) · vuruş/saldırı 4.9
+         darboğaz: hasat/üretim tavanı %69 · üretim noktası doluluğu %27 (yüksek = hasat yetişmiyor, düşük = üretim yetişmiyor) · saldırı başına canlı hedef var %100
+         Common hasat 49 · tek vuruş %100 (246/246) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Uncommon hasat 12 · tek vuruş %100 (59/59) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Rare hasat 7 · tek vuruş %100 (33/33) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Epic hasat 0 · tek vuruş %100 (2/2) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Legendary hasat 0 · tek vuruş %NaN (0/0) · doğrudan öldürmede vuruş NaN · ilk vuruştan hasada NaN sn
+         tek vuruş (bütün nadirlikler, taze bitki) %100 (340/340)
+   simülatör (aynı durum, aynı round; isabet politikası, davranış MODEL): hasat 58 · doğrudan 58 · davranış %0 · skor 145 · G/I/S 197/18/1 · hasat/tavan %59 · tek vuruş (model) %100
+   sahne / simülatör: hasat ×1.17 · doğrudan ×1.17 · skor ×1.12 · Gold ×1.11
+ok: Measurement scene (Orta · R20): measurement profile copy, 11×11 grid
+ok: Orta · R20: 13 planters, 49 production points, 49 open cells
+ok: Orta · R20: scene reproduces the simulator state (damage 67.1, interval 2.1 s, duration 47 s, tempo 1)
+   --- Orta · R20 (sahne, 5 seed; ort. [en az–en çok]) ---
+   durum: hasar 67.1 · kritik %30 ×2.0 · saldırı aralığı 2.1 sn · yarıçap 1.03 · süre 47 sn (etkili 47, tempo 1) · 13 saksı / 49 üretim noktası / 49 açık hücre · 18 tile · üretim tavanı 716/round · can R20 27/32/43/53/80
+   sahne: hasat 161 [157–166] · doğrudan 126 · davranış 35 (%22: patlama 19 kasırga 0 bumerang 0 elektrik 16)
+         skor 1598 [1490–1696] · XP 5019 · G/I/S 561/153/50 · saldırı 22 (boşa 0) · vuruş/saldırı 6.0
+         darboğaz: hasat/üretim tavanı %22 · üretim noktası doluluğu %71 (yüksek = hasat yetişmiyor, düşük = üretim yetişmiyor) · saldırı başına canlı hedef var %100
+         Common hasat 63 · tek vuruş %99 (233/236) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Uncommon hasat 43 · tek vuruş %98 (178/181) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Rare hasat 31 · tek vuruş %98 (121/124) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Epic hasat 19 · tek vuruş %95 (76/80) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Legendary hasat 5 · tek vuruş %33 (9/27) · doğrudan öldürmede vuruş 1.57 · ilk vuruştan hasada 3.6 sn
+         tek vuruş (bütün nadirlikler, taze bitki) %95 (617/648)
+   simülatör (aynı durum, aynı round; isabet politikası, davranış MODEL): hasat 93 · doğrudan 86 · davranış %7 · skor 1059 · G/I/S 307/99/35 · hasat/tavan %13 · tek vuruş (model) %97
+   sahne / simülatör: hasat ×1.73 · doğrudan ×1.46 · skor ×1.51 · Gold ×1.83
+ok: Measurement scene (Orta · R30): measurement profile copy, 11×11 grid
+ok: Orta · R30: 10 planters, 56 production points, 81 open cells
+ok: Orta · R30: scene reproduces the simulator state (damage 91.5, interval 2.1 s, duration 48 s, tempo 1)
+   --- Orta · R30 (sahne, 5 seed; ort. [en az–en çok]) ---
+   durum: hasar 91.5 · kritik %40 ×2.33 · saldırı aralığı 2.1 sn · yarıçap 1.3 · süre 48 sn (etkili 48, tempo 1) · 10 saksı / 56 üretim noktası / 81 açık hücre · 34 tile · üretim tavanı 854/round · can R30 44/52/69/87/130
+   sahne: hasat 175 [165–185] · doğrudan 122 · davranış 53 (%30: patlama 53 kasırga 0 bumerang 0 elektrik 0)
+         skor 1922 [1471–2383] · XP 6407 · G/I/S 528/363/68 · saldırı 22 (boşa 0) · vuruş/saldırı 6.0
+         darboğaz: hasat/üretim tavanı %20 · üretim noktası doluluğu %72 (yüksek = hasat yetişmiyor, düşük = üretim yetişmiyor) · saldırı başına canlı hedef var %100
+         Common hasat 71 · tek vuruş %96 (232/241) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Uncommon hasat 38 · tek vuruş %93 (131/141) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Rare hasat 36 · tek vuruş %99 (136/138) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Epic hasat 25 · tek vuruş %82 (76/93) · doğrudan öldürmede vuruş 1.14 · ilk vuruştan hasada 0.6 sn
+         Legendary hasat 5 · tek vuruş %36 (8/22) · doğrudan öldürmede vuruş 1.62 · ilk vuruştan hasada 3.0 sn
+         tek vuruş (bütün nadirlikler, taze bitki) %92 (583/635)
+   simülatör (aynı durum, aynı round; isabet politikası, davranış MODEL): hasat 138 · doğrudan 117 · davranış %15 · skor 2069 · G/I/S 446/305/60 · hasat/tavan %16 · tek vuruş (model) %96
+   sahne / simülatör: hasat ×1.27 · doğrudan ×1.04 · skor ×0.93 · Gold ×1.18
+ok: Measurement scene (Orta · R40): measurement profile copy, 11×11 grid
+ok: Orta · R40: 18 planters, 104 production points, 121 open cells
+ok: Orta · R40: scene reproduces the simulator state (damage 826, interval 2.028 s, duration 54 s, tempo 1)
+   --- Orta · R40 (sahne, 5 seed; ort. [en az–en çok]) ---
+   durum: hasar 826 · kritik %45 ×2.5 · saldırı aralığı 2.028 sn · yarıçap 1.3 · süre 54 sn (etkili 54, tempo 1) · 18 saksı / 104 üretim noktası / 121 açık hücre · 43 tile · üretim tavanı 1671/round · can R40 66/79/105/131/196
+   sahne: hasat 210 [208–213] · doğrudan 156 · davranış 54 (%26: patlama 54 kasırga 0 bumerang 0 elektrik 1)
+         skor 2244 [2035–2473] · XP 6760 · G/I/S 635/534/150 · saldırı 26 (boşa 0) · vuruş/saldırı 6.0
+         darboğaz: hasat/üretim tavanı %13 · üretim noktası doluluğu %82 (yüksek = hasat yetişmiyor, düşük = üretim yetişmiyor) · saldırı başına canlı hedef var %100
+         Common hasat 77 · tek vuruş %100 (272/272) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Uncommon hasat 54 · tek vuruş %100 (204/204) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Rare hasat 45 · tek vuruş %100 (166/166) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Epic hasat 28 · tek vuruş %100 (110/110) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Legendary hasat 7 · tek vuruş %100 (28/28) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         tek vuruş (bütün nadirlikler, taze bitki) %100 (780/780)
+   simülatör (aynı durum, aynı round; isabet politikası, davranış MODEL): hasat 167 · doğrudan 136 · davranış %19 · skor 2697 · G/I/S 535/450/127 · hasat/tavan %10 · tek vuruş (model) %100
+   sahne / simülatör: hasat ×1.26 · doğrudan ×1.15 · skor ×0.83 · Gold ×1.19
+ok: Measurement scene (Orta · R50): measurement profile copy, 11×11 grid
+ok: Orta · R50: 18 planters, 104 production points, 121 open cells
+ok: Orta · R50: scene reproduces the simulator state (damage 1682.2, interval 1.731 s, duration 60 s, tempo 1.05)
+   --- Orta · R50 (sahne, 5 seed; ort. [en az–en çok]) ---
+   durum: hasar 1682.2 · kritik %45 ×2.5 · saldırı aralığı 1.731 sn · yarıçap 1.5 · süre 63 sn (etkili 60, tempo 1.05) · 18 saksı / 104 üretim noktası / 121 açık hücre · 50 tile · üretim tavanı 2041/round · can R50 98/118/157/196/294
+   sahne: hasat 363 [331–473] · doğrudan 263 · davranış 100 (%26: patlama 76 kasırga 0 bumerang 0 elektrik 24)
+         skor 4395 [3908–5478] · XP 16300 · G/I/S 1578/1259/408 · saldırı 34 (boşa 0) · vuruş/saldırı 9.0
+         darboğaz: hasat/üretim tavanı %18 · üretim noktası doluluğu %80 (yüksek = hasat yetişmiyor, düşük = üretim yetişmiyor) · saldırı başına canlı hedef var %100
+         Common hasat 132 · tek vuruş %85 (444/521) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Uncommon hasat 90 · tek vuruş %82 (304/371) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Rare hasat 75 · tek vuruş %86 (286/331) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Epic hasat 51 · tek vuruş %93 (220/237) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Legendary hasat 15 · tek vuruş %91 (62/68) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         tek vuruş (bütün nadirlikler, taze bitki) %86 (1316/1528)
+   simülatör (aynı durum, aynı round; isabet politikası, davranış MODEL): hasat 269 · doğrudan 219 · davranış %19 · skor 4388 · G/I/S 1149/965/323 · hasat/tavan %13 · tek vuruş (model) %100
+   sahne / simülatör: hasat ×1.35 · doğrudan ×1.20 · skor ×1.00 · Gold ×1.37
+ok: Measurement scene (Uç durum · tam ağaç (Deneyimli R50 saksı ve tile'ları; normal build değil)): measurement profile copy, 11×11 grid
+ok: Uç durum · tam ağaç (Deneyimli R50 saksı ve tile'ları; normal build değil): 17 planters, 97 production points, 121 open cells
+   --- Uç durum · tam ağaç (Deneyimli R50 saksı ve tile'ları; normal build değil) (sahne, 5 seed; ort. [en az–en çok]) ---
+   durum: hasar 3201552 · kritik %45 ×4.0 · saldırı aralığı 0.133 sn · yarıçap 1.6 · süre 90 sn (etkili 60, tempo 1.5) · 17 saksı / 97 üretim noktası / 121 açık hücre · 48 tile · üretim tavanı 17460/round · can R50 98/118/157/196/294
+   sahne: hasat 5395 [5355–5473] · doğrudan 3426 · davranış 1969 (%36: patlama 1117 kasırga 731 bumerang 0 elektrik 120)
+         skor 145478 [141529–150288] · XP 337388 · G/I/S 45317/31368/11430 · saldırı 449 (boşa 0) · vuruş/saldırı 9.0
+         darboğaz: hasat/üretim tavanı %31 · üretim noktası doluluğu %72 (yüksek = hasat yetişmiyor, düşük = üretim yetişmiyor) · saldırı başına canlı hedef var %100
+         Common hasat 1688 · tek vuruş %85 (5274/6219) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Uncommon hasat 1372 · tek vuruş %85 (4366/5112) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Rare hasat 1262 · tek vuruş %85 (4071/4796) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Epic hasat 830 · tek vuruş %85 (2655/3133) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         Legendary hasat 242 · tek vuruş %83 (762/923) · doğrudan öldürmede vuruş 1.00 · ilk vuruştan hasada 0.0 sn
+         tek vuruş (bütün nadirlikler, taze bitki) %85 (17128/20183)
+ok: Measured 11 states × 5 seeds = 55 full rounds
+ok: Bot harvested in every measured round
+ok: Behaviors fired in the R30+ states (kill-trigger)

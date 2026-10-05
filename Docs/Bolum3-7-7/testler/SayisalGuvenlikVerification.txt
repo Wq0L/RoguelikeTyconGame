@@ -1,0 +1,44 @@
+PASS: 33 checks
+ok: Normal range keeps the old rounding (round half to even, like Mathf.RoundToInt) and the caller's minimum (0 or 1); a negative finite value is floored to the minimum
+ok: float: the largest float below 2^31 (2147483520) converts exactly; 2^31, 3e10, float.MaxValue and +∞ saturate to int.MaxValue (counted: 4) — never 1, 0 or negative
+ok: double: values around the limit convert or saturate correctly (2147483646,4 → 2147483646; 2147483647,5 → int.MaxValue; 2^31 and 1e300 saturate, counted: 2); −1e300 → minimum
+ok: Saturating add: int.MaxValue − 1 + 5 stays int.MaxValue; 3 + 4 = 7
+   beklenen log: Sayısal güvenlik (Score): geçersiz değer NaN. En küçük değer kullanıldı; oyun sürüyor. Bu, bozuk veri, hesap hatası ya da sayı sınırını aşmış bir stat demektir (bu oturumda bu tür için bir kez yazılır, sonrakiler sayılır).
+ok: NaN and −∞ return the caller's minimum (0 / 1), are counted (1003 here) and reported with ONE error log for this kind — no log per call
+ok: Same results as the old formulas over 100 000 normal-range samples each: direct (Max(1, RoundToInt)), double conversions (Min/Max/Round) and crit (RoundToInt(damage × multiplier)) — 0 differences
+   eski dönüşümler bu platformda: doğrudan 3e10 → 1, kritik int.MaxValue × 2 → -2147483648, davranış tabanı 3e10 → 0
+ok: Chain config: NaN chance, +∞ damage, NaN damage, chance 1,5 and a short array are refused (1. ek neslin şans çarpanı geçersiz (NaN) / 1. ek neslin hasar çarpanı geçersiz (Infinity) / 2. ek neslin hasar çarpanı geçersiz (NaN) / 1. ek neslin şans çarpanı geçersiz (1.5)); the real Zincir Hasat and edge values 0 / 1 are accepted
+   beklenen log: Boss ödülü uygulanamadı: 'Zincir Hasat' — zincir ayarı geçersiz (2. ek neslin hasar çarpanı geçersiz (NaN)). Hiçbir etkisi bırakılmadı; ödül alınmadı.
+ok: An invalid chain reward is not applied at all (no stack, no taken entry, chain stays off) and the refusal is logged
+   beklenen log: Sayısal güvenlik (ChainDamage): geçersiz değer NaN. En küçük değer kullanıldı; oyun sürüyor. Bu, bozuk veri, hesap hatası ya da sayı sınırını aşmış bir stat demektir (bu oturumda bu tür için bir kez yazılır, sonrakiler sayılır).
+ok: HarvestChain.Scale: the factor-1 shortcut no longer passes a broken (negative) damage through (−5 → 0); NaN factor → 1 and reported; int.MaxValue × 1,5 saturates; generation 1 of int.MaxValue = 1 610 612 735; 188 → 188 / 141 as before
+ok: Direct hit with HarvestDamage 3e10: 2147483647 applied (int.MaxValue — before this fix the same hit was 1); the plant with int.MaxValue health dies
+ok: Crit ×3 on a ~1e9 hit: 2147483647 applied (saturated; the old crit conversion of the same product gives -2147483648 — negative, i.e. healing)
+ok: High damage, patlama: 4 hits of 2147483647 (taban HarvestDamage 3e10 doyar; the old conversion made this behavior deal 0); 4 plants with int.MaxValue health harvested
+ok: High damage, elektrik: 4 hits of 2147483647 (taban HarvestDamage 3e10 doyar; the old conversion made this behavior deal 0); 4 plants with int.MaxValue health harvested
+ok: High damage, kasırga: 2 hits of 1073741824 (taban HarvestDamage 3e10 doyar; the old conversion made this behavior deal 1); 0 plants with int.MaxValue health harvested
+ok: High damage, bumerang: 2 hits of 1395864320 (taban HarvestDamage 3e10 doyar; the old conversion made this behavior deal 1); 1 plants with int.MaxValue health harvested
+ok: Artçı and the second wave with a first hit of int.MaxValue and ratio 2 (2^32 computed): 4 + 4 echo hits, all int.MaxValue — they saturate instead of wrapping
+ok: Chain generation 1 on saturated damage: 1610612735 = int.MaxValue × 0,75 (the factor is applied once to the saturated normal damage, not to the overflowed stat)
+ok: Sert Kabuk ×2 on a 2e9-health plant at half health: max 2147483647 (saturated; the old conversion gave 1), current 1073741824 (the ratio is kept); clearing restores 2000000000 / 1000000000
+   beklenen log: Sayısal güvenlik (PlantHealth): geçersiz değer NaN. Değer kullanılmadı (eklenmedi / uygulanmadı); oyun sürüyor. Bu, bozuk veri, hesap hatası ya da sayı sınırını aşmış bir stat demektir (bu oturumda bu tür için bir kez yazılır, sonrakiler sayılır).
+ok: NaN and +∞ health multipliers are refused (health unchanged) and reported (before: NaN set max health to 1)
+ok: Chained electric with the visual pool full: drawing skipped (1), damage still applied to all 4 diagonal targets, 4 harvested; 6 harvests = 6 XP grants (one reward per death)
+ok: Round ends with 2 chain job(s) queued and 1 chained tornadoes + 1 chained boomerangs alive: everything is cleared and every root released
+ok: Normal XP: an amount worth exactly 3 levels gives 3 levels in the same call and frame (old timing kept), 0 XP left over
+ok: Large finite XP (1e9 in four calls in one frame): the frame processes exactly its budget (256 of 6764 levels) — the first call uses it up, the other three add XP but process no further level; the rest is kept as pending level work
+ok: …then over 27 frames (at most 256 levels per frame): 6764 levels, 2600 XP left and 20292 card choices — identical to the small reference calculation (6764 levels, 2600 XP, × 3 choices); every level raised OnLevelUp exactly once, in order
+ok: Round end with pending level work: the round stays in its end state until every level is processed, then opens the card screen with all 19998 choices (= reference) — no choice is lost or decided early
+   beklenen log: Sayısal güvenlik (Experience): geçersiz değer NaN. Değer kullanılmadı (eklenmedi / uygulanmadı); oyun sürüyor. Bu, bozuk veri, hesap hatası ya da sayı sınırını aşmış bir stat demektir (bu oturumda bu tür için bir kez yazılır, sonrakiler sayılır).
+ok: Invalid XP (NaN, +∞, negative) is not added and is reported once (counted: 4); XP and level unchanged (before: NaN silently stopped all levelling, +∞ looped forever)
+   beklenen log: Level işleme durdu: bekleyen level sayısı (6.667e10) level sayacının int sınırını aşıyor; bu iş hiçbir karede bitmez. Saklı XP 1.00000000001026E+16 silinmedi; level 13436. Teknik sınır (P7 / endless sayı modeli).
+ok: XP 1e16 past the cost table (≈ 6,7e10 levels at the constant cost; seed 101 reached 1,6e11): the backlog can never fit the int level counter, so level processing stops at once and says why (bekleyen level sayısı (6.667e10) level sayacının int sınırını aşıyor; bu iş hiçbir karede bitmez); the XP is kept, not clipped; no days-long wait
+   durmuş level işi round sonunu bekletmedi: round normal kapandı
+   beklenen log: Level işleme durdu: level maliyeti (390) saklı XP'nin (1E+22) hassasiyetinden küçük. Saklı XP 1E+22 silinmedi; level 1. Teknik sınır (P7 / endless sayı modeli).
+ok: XP 1e22 at the start of the table (level cost below the precision of the stored XP): level processing stops at once and says why (level maliyeti (390) saklı XP'nin (1E+22) hassasiyetinden küçük); the XP is kept; no endless loop (before: the level counter rose forever while the XP never fell)
+   beklenen log: Level işleme durdu: level 2 maliyeti geçersiz (NaN). Saklı XP 50 silinmedi; level 2. Teknik sınır (P7 / endless sayı modeli).
+ok: A NaN level cost stops level processing as soon as it is reached (level 2 maliyeti geçersiz (NaN)); the 50 XP left over is kept; ProgressionSO.Validate refuses the table (2. maliyet NaN) and accepts the real one
+ok: Run ends (quota failed) with 2 chain jobs queued, 1 tornadoes + 1 boomerangs alive and level work pending: the run ends at once (a failed run does not wait for levels), effects and roots are cleared, no card choices remain
+ok: After the run ended, the pending level work is not processed any more (0 levels in the following frames)
+ok: New scene / new run: level 1, no stored XP, no pending level work, no halt, no card choices, no chain work — nothing of the old run is left
+ok: Every deliberately produced error was reported where expected (invalid numbers once per kind, refused reward, halted level work) and nothing else was logged as an error (0 unexpected)

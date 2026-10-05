@@ -1,0 +1,28 @@
+== LABORATUVAR (duzeltilmis yanki zamanlamasiyla)
+Teshis_sonra | KirilmaErisimMeasurement.RunDiagnosis | DONE: teshis · 18 round | 22:05:49-22:06:28 | cikis: ok
+Lab_R23 | KirilmaErisimMeasurement.RunLabR23 | DONE: lab23 · 400 round | 22:06:28-22:12:57 | cikis: ok
+Lab_R30 | KirilmaErisimMeasurement.RunLabR30 | DONE: lab30 · 400 round | 22:12:57-22:19:36 | cikis: ok
+Lab_R40 | KirilmaErisimMeasurement.RunLabR40 | DONE: lab40 · 400 round | 22:19:36-22:28:30 | cikis: ok
+Geometri | KirilmaErisimMeasurement.RunGeometry | DONE: geometri · 0 round | 22:28:30-22:28:46 | cikis: ok
+Performans | KirilmaErisimMeasurement.RunPerformance | DONE: performans · 24 round | 22:28:46-22:29:31 | cikis: ok
+GercekZaman | KirilmaErisimMeasurement.RunRealtime | DONE: gercekzaman · 24 round | 22:29:31-22:48:01 | cikis: ok
+
+== GEOMETRI (7x7 ve 9x9)
+Geometri | KirilmaErisimMeasurement.RunGeometry | DONE: geometri · 0 round | 23:02:49-23:03:06 | cikis: ok
+
+== TAM RUN TEKRAR KONTROLU 1
+Tekrar_1 | BalanceRunMeasurement.RunK375Tekrar | DONE (ölçüm; işlev testi değil) | 23:03:06-23:07:08 | cikis: ok
+
+== TAM RUN TEKRAR KONTROLU 2 (ayri calistirma)
+Tekrar_2 | BalanceRunMeasurement.RunK375Tekrar | DONE (ölçüm; işlev testi değil) | 23:07:08-23:11:10 | cikis: ok
+
+== TAM RUN TEKRAR KONTROLU 1 (olcum saati duzeltmesinden sonra)
+Tekrar_1 | BalanceRunMeasurement.RunK375Tekrar | DONE (ölçüm; işlev testi değil) | 23:30:17-23:34:28 | cikis: ok
+
+== TAM RUN TEKRAR KONTROLU 2 (ayri calistirma)
+Tekrar_2 | BalanceRunMeasurement.RunK375Tekrar | DONE (ölçüm; işlev testi değil) | 23:34:28-23:38:37 | cikis: ok
+
+== BIRIKIMLI RUN DOGRULAMASI
+Dogrulama_Patlama | BalanceRunMeasurement.RunK375Patlama | DONE (ölçüm; işlev testi değil) | 23:38:37-00:04:32 | cikis: ok
+Dogrulama_Elektrik | BalanceRunMeasurement.RunK375Elektrik | DONE (ölçüm; işlev testi değil) | 00:04:32-00:28:15 | cikis: ok
+

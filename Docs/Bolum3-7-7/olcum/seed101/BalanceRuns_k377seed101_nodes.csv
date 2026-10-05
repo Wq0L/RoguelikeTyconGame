@@ -1,0 +1,431 @@
+run,policy,farmer,scythe,seed,label,round,node,level,cost,currency,category
+1,Davranış-rezonans,bahcivan,standart,101,aday,1,Keskin Başlangıç - 1,1,5,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,2,Keskin Başlangıç - 1,2,7,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,2,Altın Hasat I - 1,1,7,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,4,Düzenli Üretim - 1,1,6,Gold,Production
+1,Davranış-rezonans,bahcivan,standart,101,aday,5,Keskin Başlangıç - 1,3,8,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,5,Grid Genişleme I,1,30,Gold,Grid
+1,Davranış-rezonans,bahcivan,standart,101,aday,5,Hızlı Eller - 1,1,7,Gold,Speed
+1,Davranış-rezonans,bahcivan,standart,101,aday,6,Altın Hasat I - 1,2,9,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,6,Keskin Başlangıç - 2,1,10,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,6,Düzenli Üretim - 1,2,8,Gold,Production
+1,Davranış-rezonans,bahcivan,standart,101,aday,7,Hızlı Eller - 1,2,9,Gold,Speed
+1,Davranış-rezonans,bahcivan,standart,101,aday,7,Keskin Başlangıç - 2,2,11,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,7,Altın Hasat I - 1,3,11,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,7,Hasat Deneyimi I - 1,1,6,Gold,Xp
+1,Davranış-rezonans,bahcivan,standart,101,aday,8,1×3 Saksı,1,30,Gold,PlanterUnlock
+1,Davranış-rezonans,bahcivan,standart,101,aday,8,Tornado Kartları,1,30,Iron,BehaviorUnlock
+1,Davranış-rezonans,bahcivan,standart,101,aday,8,Keskin Başlangıç - 3,1,13,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,8,Düzenli Üretim - 1,3,10,Gold,Production
+1,Davranış-rezonans,bahcivan,standart,101,aday,9,Hızlı Eller - 1,3,11,Gold,Speed
+1,Davranış-rezonans,bahcivan,standart,101,aday,9,Altın Hasat I - 2,1,13,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,9,Keskin Başlangıç - 3,2,14,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,11,Kesim Tekniği - 1,1,25,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,11,Hızlı Eller - 2,1,12,Gold,Speed
+1,Davranış-rezonans,bahcivan,standart,101,aday,11,Altın Hasat I - 2,2,16,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,11,Düzenli Üretim - 2,1,12,Gold,Production
+1,Davranış-rezonans,bahcivan,standart,101,aday,12,Bumerang Orak Kartları,1,40,Iron,BehaviorUnlock
+1,Davranış-rezonans,bahcivan,standart,101,aday,12,Hasat Deneyimi I - 1,2,8,Gold,Xp
+1,Davranış-rezonans,bahcivan,standart,101,aday,12,Keskin Başlangıç - 4,1,16,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,12,Hızlı Eller - 2,2,14,Gold,Speed
+1,Davranış-rezonans,bahcivan,standart,101,aday,12,Kesim Tekniği - 1,2,35,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,12,Altın Hasat I - 3,1,18,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,13,2×2 Saksı,1,80,Gold,PlanterUnlock
+1,Davranış-rezonans,bahcivan,standart,101,aday,13,Keskin Başlangıç - 4,2,17,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,13,Hasat Deneyimi I - 1,3,10,Gold,Xp
+1,Davranış-rezonans,bahcivan,standart,101,aday,13,Çifte Hasat Kartları,1,25,Iron,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,14,Düzenli Üretim - 2,2,13,Gold,Production
+1,Davranış-rezonans,bahcivan,standart,101,aday,14,Hızlı Eller - 3,1,16,Gold,Speed
+1,Davranış-rezonans,bahcivan,standart,101,aday,14,Altın Hasat I - 3,2,20,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,14,Kesim Tekniği - 1,3,40,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,14,Hasat Deneyimi I - 2,1,12,Gold,Xp
+1,Davranış-rezonans,bahcivan,standart,101,aday,14,Demir Hasat - 1,1,25,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,14,Hızlı Eller - 3,2,18,Gold,Speed
+1,Davranış-rezonans,bahcivan,standart,101,aday,14,Düzenli Üretim - 3,1,15,Gold,Production
+1,Davranış-rezonans,bahcivan,standart,101,aday,14,Altın Hasat I - 4,1,22,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,14,Geniş Süpürüş - 1,1,21,Gold,Area
+1,Davranış-rezonans,bahcivan,standart,101,aday,14,Grid Genişleme I,2,30,Iron,Grid
+1,Davranış-rezonans,bahcivan,standart,101,aday,15,Kesim Tekniği - 2,1,50,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,15,Hasat Deneyimi I - 2,2,14,Gold,Xp
+1,Davranış-rezonans,bahcivan,standart,101,aday,15,Hızlı Eller - 4,1,20,Gold,Speed
+1,Davranış-rezonans,bahcivan,standart,101,aday,15,Altın Hasat I - 4,2,24,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,15,Demir Hasat - 1,2,35,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,16,Düzenli Üretim - 3,2,17,Gold,Production
+1,Davranış-rezonans,bahcivan,standart,101,aday,16,Geniş Süpürüş - 1,2,28,Gold,Area
+1,Davranış-rezonans,bahcivan,standart,101,aday,16,Hızlı Eller - 4,2,22,Gold,Speed
+1,Davranış-rezonans,bahcivan,standart,101,aday,16,Hasat Deneyimi I - 3,1,16,Gold,Xp
+1,Davranış-rezonans,bahcivan,standart,101,aday,16,Düzenli Üretim - 4,1,19,Gold,Production
+1,Davranış-rezonans,bahcivan,standart,101,aday,16,Hasat Deneyimi I - 3,2,18,Gold,Xp
+1,Davranış-rezonans,bahcivan,standart,101,aday,16,Düzenli Üretim - 4,2,21,Gold,Production
+1,Davranış-rezonans,bahcivan,standart,101,aday,17,Güçlü Kesim - 1,1,120,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,17,Kesim Tekniği - 2,2,55,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,17,Demir Hasat - 1,3,40,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,17,Geniş Süpürüş - 1,3,35,Gold,Area
+1,Davranış-rezonans,bahcivan,standart,101,aday,17,Hasat Deneyimi I - 4,1,20,Gold,Xp
+1,Davranış-rezonans,bahcivan,standart,101,aday,17,Taş Hasat - 1,1,35,Iron,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,18,2×3 Saksı,1,200,Gold,PlanterUnlock
+1,Davranış-rezonans,bahcivan,standart,101,aday,18,Hasat Deneyimi I - 4,2,21,Gold,Xp
+1,Davranış-rezonans,bahcivan,standart,101,aday,18,Taş Hasat - 1,2,45,Iron,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,19,İlk Vazgeçiş,1,150,Gold,Cards
+1,Davranış-rezonans,bahcivan,standart,101,aday,19,Kesim Tekniği - 3,1,65,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,19,Hasat Rekoru - 1,1,180,Gold,Score
+1,Davranış-rezonans,bahcivan,standart,101,aday,19,Geniş Süpürüş - 2,1,40,Gold,Area
+1,Davranış-rezonans,bahcivan,standart,101,aday,20,Güçlü Kesim - 1,2,160,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,20,Akıcı Kesim - 1,1,160,Gold,Speed
+1,Davranış-rezonans,bahcivan,standart,101,aday,20,Kesim Tekniği - 3,2,70,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,20,Demir Hasat - 2,1,50,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,20,Geniş Süpürüş - 2,2,45,Gold,Area
+1,Davranış-rezonans,bahcivan,standart,101,aday,21,Güçlü Kesim - 1,3,195,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,21,Akıcı Kesim - 1,2,210,Gold,Speed
+1,Davranış-rezonans,bahcivan,standart,101,aday,21,Demir Hasat - 2,2,55,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,21,Geniş Süpürüş - 3,1,55,Gold,Area
+1,Davranış-rezonans,bahcivan,standart,101,aday,21,Verimli Üretim - 1,1,200,Iron,Production
+1,Davranış-rezonans,bahcivan,standart,101,aday,21,Geniş Süpürüş - 3,2,60,Gold,Area
+1,Davranış-rezonans,bahcivan,standart,101,aday,21,Taş Hasat - 1,3,55,Iron,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,22,Hasat Rekoru - 1,2,240,Gold,Score
+1,Davranış-rezonans,bahcivan,standart,101,aday,22,Kesim Tekniği - 4,1,80,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,22,Güçlü Kesim - 2,1,230,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,22,Nadir Filizler - 1,1,230,Iron,Rarity
+1,Davranış-rezonans,bahcivan,standart,101,aday,22,Taş Hasat - 2,1,65,Iron,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,23,Altın Hasat II - 1,1,180,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,23,Kesim Tekniği - 4,2,85,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,23,Akıcı Kesim - 1,3,260,Gold,Speed
+1,Davranış-rezonans,bahcivan,standart,101,aday,23,Demir Hasat - 3,1,65,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,23,Grid Genişleme II,1,100,Stone,Grid
+1,Davranış-rezonans,bahcivan,standart,101,aday,23,Verimli Üretim - 1,2,260,Iron,Production
+1,Davranış-rezonans,bahcivan,standart,101,aday,23,Geniş Süpürüş - 4,1,65,Gold,Area
+1,Davranış-rezonans,bahcivan,standart,101,aday,23,Demir Hasat - 3,2,70,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,24,Hasat Rekoru - 1,3,290,Gold,Score
+1,Davranış-rezonans,bahcivan,standart,101,aday,24,Güçlü Kesim - 2,2,270,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,24,Altın Hasat II - 1,2,240,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,24,Akıcı Kesim - 2,1,310,Gold,Speed
+1,Davranış-rezonans,bahcivan,standart,101,aday,24,Nadir Filizler - 1,2,300,Iron,Rarity
+1,Davranış-rezonans,bahcivan,standart,101,aday,24,Taş Hasat - 2,2,80,Iron,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,24,Zengin Cevher - 1,1,50,Stone,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,25,Geniş Tarama - 1,1,160,Gold,Area
+1,Davranış-rezonans,bahcivan,standart,101,aday,25,Kesim Ustalığı - 1,1,560,Iron,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,25,Güçlü Kesim - 3,1,300,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,25,Altın Hasat II - 1,3,290,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,25,Hasat Rekoru - 2,1,350,Gold,Score
+1,Davranış-rezonans,bahcivan,standart,101,aday,25,Verimli Üretim - 1,3,320,Iron,Production
+1,Davranış-rezonans,bahcivan,standart,101,aday,25,Geniş Süpürüş - 4,2,70,Gold,Area
+1,Davranış-rezonans,bahcivan,standart,101,aday,25,Demir Hasat - 4,1,80,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,25,Demir Hasat - 4,2,85,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,25,Taş Hasat - 3,1,90,Iron,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,26,Akıcı Kesim - 2,2,360,Gold,Speed
+1,Davranış-rezonans,bahcivan,standart,101,aday,26,Geniş Tarama - 1,2,210,Gold,Area
+1,Davranış-rezonans,bahcivan,standart,101,aday,26,Kesim Ustalığı - 1,2,720,Iron,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,26,Güçlü Kesim - 3,2,340,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,27,Nadir Filizler - 1,3,360,Iron,Rarity
+1,Davranış-rezonans,bahcivan,standart,101,aday,27,Altın Hasat II - 2,1,350,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,27,İkinci Vazgeçiş,1,800,Iron,Cards
+1,Davranış-rezonans,bahcivan,standart,101,aday,27,Akıcı Kesim - 3,1,400,Gold,Speed
+1,Davranış-rezonans,bahcivan,standart,101,aday,27,Geniş Tarama - 1,3,260,Gold,Area
+1,Davranış-rezonans,bahcivan,standart,101,aday,27,Hasat Deneyimi II - 1,1,450,Gold,Xp
+1,Davranış-rezonans,bahcivan,standart,101,aday,27,Hasat Rekoru - 2,2,400,Gold,Score
+1,Davranış-rezonans,bahcivan,standart,101,aday,27,Zengin Cevher - 1,2,65,Stone,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,28,Verimli Üretim - 2,1,380,Iron,Production
+1,Davranış-rezonans,bahcivan,standart,101,aday,28,Güçlü Kesim - 4,1,380,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,28,Altın Hasat II - 2,2,400,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,28,Ağır Kesim - 1,1,1200,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,28,Kesim Ustalığı - 1,3,890,Iron,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,28,Akıcı Kesim - 3,2,450,Gold,Speed
+1,Davranış-rezonans,bahcivan,standart,101,aday,28,Taş Hasat - 3,2,100,Iron,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,29,Nadir Filizler - 2,1,430,Iron,Rarity
+1,Davranış-rezonans,bahcivan,standart,101,aday,29,Geniş Tarama - 2,1,310,Gold,Area
+1,Davranış-rezonans,bahcivan,standart,101,aday,29,Kart Sezgisi - 1,1,710,Gold,Cards
+1,Davranış-rezonans,bahcivan,standart,101,aday,29,Verimli Üretim - 2,2,440,Iron,Production
+1,Davranış-rezonans,bahcivan,standart,101,aday,29,Hasat Deneyimi II - 1,2,590,Gold,Xp
+1,Davranış-rezonans,bahcivan,standart,101,aday,29,Altın Hasat II - 3,1,450,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,29,Güçlü Kesim - 4,2,410,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,29,Kritik Odak - 1,1,150,Gold,Crit
+1,Davranış-rezonans,bahcivan,standart,101,aday,29,Hasat Rekoru - 3,1,450,Gold,Score
+1,Davranış-rezonans,bahcivan,standart,101,aday,29,Nadir Filizler - 2,2,500,Iron,Rarity
+1,Davranış-rezonans,bahcivan,standart,101,aday,29,Kritik Odak - 1,2,195,Gold,Crit
+1,Davranış-rezonans,bahcivan,standart,101,aday,29,Zengin Cevher - 1,3,80,Stone,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,29,Taş Hasat - 4,1,110,Iron,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,30,Ağır Kesim - 1,2,1600,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,30,Kesim Ustalığı - 2,1,1100,Iron,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,30,Akıcı Kesim - 4,1,500,Gold,Speed
+1,Davranış-rezonans,bahcivan,standart,101,aday,30,Geniş Tarama - 2,2,360,Gold,Area
+1,Davranış-rezonans,bahcivan,standart,101,aday,30,Verimli Üretim - 3,1,510,Iron,Production
+1,Davranış-rezonans,bahcivan,standart,101,aday,30,Altın Hasat II - 3,2,510,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,31,Hasat Deneyimi II - 1,3,730,Gold,Xp
+1,Davranış-rezonans,bahcivan,standart,101,aday,31,Kart Sezgisi - 1,2,920,Gold,Cards
+1,Davranış-rezonans,bahcivan,standart,101,aday,31,Ağır Kesim - 1,3,1900,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,31,Geniş Tarama - 3,1,400,Gold,Area
+1,Davranış-rezonans,bahcivan,standart,101,aday,31,Kesim Ustalığı - 2,2,1200,Iron,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,31,Verimli Üretim - 3,2,570,Iron,Production
+1,Davranış-rezonans,bahcivan,standart,101,aday,31,Nadir Filizler - 3,1,570,Iron,Rarity
+1,Davranış-rezonans,bahcivan,standart,101,aday,31,Zengin Cevher - 2,1,95,Stone,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,31,Taş Hasat - 4,2,120,Iron,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,32,Akıcı Kesim - 4,2,550,Gold,Speed
+1,Davranış-rezonans,bahcivan,standart,101,aday,32,Hasat Deneyimi II - 2,1,860,Gold,Xp
+1,Davranış-rezonans,bahcivan,standart,101,aday,32,Hasat Rekoru - 3,2,510,Gold,Score
+1,Davranış-rezonans,bahcivan,standart,101,aday,32,Altın Hasat II - 4,1,560,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,32,Kart Sezgisi - 1,3,1100,Gold,Cards
+1,Davranış-rezonans,bahcivan,standart,101,aday,32,Kritik Odak - 1,3,240,Gold,Crit
+1,Davranış-rezonans,bahcivan,standart,101,aday,32,Kesim Ustalığı - 3,1,1400,Iron,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,32,Verimli Üretim - 4,1,630,Iron,Production
+1,Davranış-rezonans,bahcivan,standart,101,aday,33,Ağır Kesim - 2,1,2300,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,33,Geniş Tarama - 3,2,450,Gold,Area
+1,Davranış-rezonans,bahcivan,standart,101,aday,33,Altın Hasat II - 4,2,620,Gold,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,33,Nadir Filizler - 3,2,640,Iron,Rarity
+1,Davranış-rezonans,bahcivan,standart,101,aday,33,Zengin Cevher - 2,2,110,Stone,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,34,Hasat Deneyimi II - 2,2,1000,Gold,Xp
+1,Davranış-rezonans,bahcivan,standart,101,aday,34,Kritik Odak - 2,1,290,Gold,Crit
+1,Davranış-rezonans,bahcivan,standart,101,aday,34,Kart Sezgisi - 2,1,1300,Gold,Cards
+1,Davranış-rezonans,bahcivan,standart,101,aday,34,Hasat Rekoru - 4,1,560,Gold,Score
+1,Davranış-rezonans,bahcivan,standart,101,aday,34,Geniş Tarama - 4,1,500,Gold,Area
+1,Davranış-rezonans,bahcivan,standart,101,aday,34,Kesim Ustalığı - 3,2,1600,Iron,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,34,Verimli Üretim - 4,2,690,Iron,Production
+1,Davranış-rezonans,bahcivan,standart,101,aday,35,Ağır Kesim - 2,2,2700,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,35,Hasat Deneyimi II - 3,1,1100,Gold,Xp
+1,Davranış-rezonans,bahcivan,standart,101,aday,35,Kritik Odak - 2,2,330,Gold,Crit
+1,Davranış-rezonans,bahcivan,standart,101,aday,35,Zengin Cevher - 3,1,125,Stone,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,35,Geniş Tarama - 4,2,550,Gold,Area
+1,Davranış-rezonans,bahcivan,standart,101,aday,36,Kart Sezgisi - 2,2,1600,Gold,Cards
+1,Davranış-rezonans,bahcivan,standart,101,aday,36,Ağır Kesim - 3,1,3000,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,36,Nadir Filizler - 4,1,700,Iron,Rarity
+1,Davranış-rezonans,bahcivan,standart,101,aday,36,Hasat Rekoru - 4,2,620,Gold,Score
+1,Davranış-rezonans,bahcivan,standart,101,aday,37,Hasat Deneyimi II - 3,2,1300,Gold,Xp
+1,Davranış-rezonans,bahcivan,standart,101,aday,37,Kesim Ustalığı - 4,1,1700,Iron,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,37,Kritik Odak - 3,1,380,Gold,Crit
+1,Davranış-rezonans,bahcivan,standart,101,aday,37,Zengin Cevher - 3,2,140,Stone,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,38,Ağır Kesim - 3,2,3400,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,38,Kart Sezgisi - 3,1,1800,Gold,Cards
+1,Davranış-rezonans,bahcivan,standart,101,aday,38,Hasat Deneyimi II - 4,1,1400,Gold,Xp
+1,Davranış-rezonans,bahcivan,standart,101,aday,38,Nadir Filizler - 4,2,770,Iron,Rarity
+1,Davranış-rezonans,bahcivan,standart,101,aday,39,Kritik Odak - 3,2,420,Gold,Crit
+1,Davranış-rezonans,bahcivan,standart,101,aday,39,Zengin Cevher - 4,1,155,Stone,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,39,Kesim Ustalığı - 4,2,1900,Iron,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,40,Ağır Kesim - 4,1,3800,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,40,Hasat Deneyimi II - 4,2,1500,Gold,Xp
+1,Davranış-rezonans,bahcivan,standart,101,aday,40,Kart Sezgisi - 3,2,2000,Gold,Cards
+1,Davranış-rezonans,bahcivan,standart,101,aday,40,Kritik Güç - 1,1,150,Stone,Crit
+1,Davranış-rezonans,bahcivan,standart,101,aday,41,Kritik Odak - 4,1,470,Gold,Crit
+1,Davranış-rezonans,bahcivan,standart,101,aday,41,Grid Genişleme II,2,1800,Stone,Grid
+1,Davranış-rezonans,bahcivan,standart,101,aday,41,Zengin Cevher - 4,2,170,Stone,Economy
+1,Davranış-rezonans,bahcivan,standart,101,aday,42,Ağır Kesim - 4,2,4100,Gold,Damage
+1,Davranış-rezonans,bahcivan,standart,101,aday,42,Kritik Güç - 1,2,195,Stone,Crit
+1,Davranış-rezonans,bahcivan,standart,101,aday,43,Kart Sezgisi - 4,1,2200,Gold,Cards
+1,Davranış-rezonans,bahcivan,standart,101,aday,43,Kritik Odak - 4,2,520,Gold,Crit
+1,Davranış-rezonans,bahcivan,standart,101,aday,44,Kritik Güç - 1,3,240,Stone,Crit
+1,Davranış-rezonans,bahcivan,standart,101,aday,45,Kart Sezgisi - 4,2,2400,Gold,Cards
+1,Davranış-rezonans,bahcivan,standart,101,aday,46,Kritik Güç - 2,1,290,Stone,Crit
+1,Davranış-rezonans,bahcivan,standart,101,aday,48,Kritik Güç - 2,2,330,Stone,Crit
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,1,Keskin Başlangıç - 1,1,5,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,2,Keskin Başlangıç - 1,2,7,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,2,Altın Hasat I - 1,1,7,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,4,Düzenli Üretim - 1,1,6,Gold,Production
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,5,Keskin Başlangıç - 1,3,8,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,5,Grid Genişleme I,1,30,Gold,Grid
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,5,Hızlı Eller - 1,1,7,Gold,Speed
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,6,Altın Hasat I - 1,2,9,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,6,Keskin Başlangıç - 2,1,10,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,6,Düzenli Üretim - 1,2,8,Gold,Production
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,7,Hızlı Eller - 1,2,9,Gold,Speed
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,7,Keskin Başlangıç - 2,2,11,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,7,Altın Hasat I - 1,3,11,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,7,Hasat Deneyimi I - 1,1,6,Gold,Xp
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,8,1×3 Saksı,1,30,Gold,PlanterUnlock
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,8,Tornado Kartları,1,30,Iron,BehaviorUnlock
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,8,Keskin Başlangıç - 3,1,13,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,8,Düzenli Üretim - 1,3,10,Gold,Production
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,9,Hızlı Eller - 1,3,11,Gold,Speed
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,9,Altın Hasat I - 2,1,13,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,9,Keskin Başlangıç - 3,2,14,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,11,Kesim Tekniği - 1,1,25,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,11,Hızlı Eller - 2,1,12,Gold,Speed
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,11,Altın Hasat I - 2,2,16,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,11,Düzenli Üretim - 2,1,12,Gold,Production
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,12,Bumerang Orak Kartları,1,40,Iron,BehaviorUnlock
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,12,Hasat Deneyimi I - 1,2,8,Gold,Xp
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,12,Keskin Başlangıç - 4,1,16,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,12,Hızlı Eller - 2,2,14,Gold,Speed
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,12,Kesim Tekniği - 1,2,35,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,12,Altın Hasat I - 3,1,18,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,13,2×2 Saksı,1,80,Gold,PlanterUnlock
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,13,Keskin Başlangıç - 4,2,17,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,13,Hasat Deneyimi I - 1,3,10,Gold,Xp
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,13,Çifte Hasat Kartları,1,25,Iron,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,14,Düzenli Üretim - 2,2,13,Gold,Production
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,14,Hızlı Eller - 3,1,16,Gold,Speed
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,14,Altın Hasat I - 3,2,20,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,14,Kesim Tekniği - 1,3,40,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,14,Hasat Deneyimi I - 2,1,12,Gold,Xp
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,14,Demir Hasat - 1,1,25,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,14,Hızlı Eller - 3,2,18,Gold,Speed
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,14,Düzenli Üretim - 3,1,15,Gold,Production
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,14,Altın Hasat I - 4,1,22,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,14,Geniş Süpürüş - 1,1,21,Gold,Area
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,14,Grid Genişleme I,2,30,Iron,Grid
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,15,Kesim Tekniği - 2,1,50,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,15,Hasat Deneyimi I - 2,2,14,Gold,Xp
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,15,Hızlı Eller - 4,1,20,Gold,Speed
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,15,Altın Hasat I - 4,2,24,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,15,Demir Hasat - 1,2,35,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,16,Düzenli Üretim - 3,2,17,Gold,Production
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,16,Geniş Süpürüş - 1,2,28,Gold,Area
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,16,Hızlı Eller - 4,2,22,Gold,Speed
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,16,Hasat Deneyimi I - 3,1,16,Gold,Xp
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,16,Düzenli Üretim - 4,1,19,Gold,Production
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,16,Hasat Deneyimi I - 3,2,18,Gold,Xp
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,16,Düzenli Üretim - 4,2,21,Gold,Production
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,17,Güçlü Kesim - 1,1,120,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,17,Kesim Tekniği - 2,2,55,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,17,Demir Hasat - 1,3,40,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,17,Geniş Süpürüş - 1,3,35,Gold,Area
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,17,Hasat Deneyimi I - 4,1,20,Gold,Xp
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,17,Taş Hasat - 1,1,35,Iron,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,18,2×3 Saksı,1,200,Gold,PlanterUnlock
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,18,Hasat Deneyimi I - 4,2,21,Gold,Xp
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,18,Taş Hasat - 1,2,45,Iron,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,19,İlk Vazgeçiş,1,150,Gold,Cards
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,19,Kesim Tekniği - 3,1,65,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,19,Hasat Rekoru - 1,1,180,Gold,Score
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,19,Geniş Süpürüş - 2,1,40,Gold,Area
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,20,Güçlü Kesim - 1,2,160,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,20,Akıcı Kesim - 1,1,160,Gold,Speed
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,20,Kesim Tekniği - 3,2,70,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,20,Demir Hasat - 2,1,50,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,20,Geniş Süpürüş - 2,2,45,Gold,Area
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,21,Güçlü Kesim - 1,3,195,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,21,Akıcı Kesim - 1,2,210,Gold,Speed
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,21,Demir Hasat - 2,2,55,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,21,Geniş Süpürüş - 3,1,55,Gold,Area
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,21,Verimli Üretim - 1,1,200,Iron,Production
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,21,Geniş Süpürüş - 3,2,60,Gold,Area
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,21,Taş Hasat - 1,3,55,Iron,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,22,Hasat Rekoru - 1,2,240,Gold,Score
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,22,Kesim Tekniği - 4,1,80,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,22,Güçlü Kesim - 2,1,230,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,22,Nadir Filizler - 1,1,230,Iron,Rarity
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,22,Taş Hasat - 2,1,65,Iron,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,23,Altın Hasat II - 1,1,180,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,23,Kesim Tekniği - 4,2,85,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,23,Akıcı Kesim - 1,3,260,Gold,Speed
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,23,Demir Hasat - 3,1,65,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,23,Grid Genişleme II,1,100,Stone,Grid
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,23,Verimli Üretim - 1,2,260,Iron,Production
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,23,Geniş Süpürüş - 4,1,65,Gold,Area
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,23,Demir Hasat - 3,2,70,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,24,Hasat Rekoru - 1,3,290,Gold,Score
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,24,Güçlü Kesim - 2,2,270,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,24,Altın Hasat II - 1,2,240,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,24,Akıcı Kesim - 2,1,310,Gold,Speed
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,24,Nadir Filizler - 1,2,300,Iron,Rarity
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,24,Taş Hasat - 2,2,80,Iron,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,24,Zengin Cevher - 1,1,50,Stone,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,25,Geniş Tarama - 1,1,160,Gold,Area
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,25,Kesim Ustalığı - 1,1,560,Iron,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,25,Güçlü Kesim - 3,1,300,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,25,Altın Hasat II - 1,3,290,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,25,Hasat Rekoru - 2,1,350,Gold,Score
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,25,Verimli Üretim - 1,3,320,Iron,Production
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,25,Geniş Süpürüş - 4,2,70,Gold,Area
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,25,Demir Hasat - 4,1,80,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,25,Demir Hasat - 4,2,85,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,25,Taş Hasat - 3,1,90,Iron,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,26,Akıcı Kesim - 2,2,360,Gold,Speed
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,26,Geniş Tarama - 1,2,210,Gold,Area
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,26,Kesim Ustalığı - 1,2,720,Iron,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,26,Güçlü Kesim - 3,2,340,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,27,Nadir Filizler - 1,3,360,Iron,Rarity
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,27,Altın Hasat II - 2,1,350,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,27,İkinci Vazgeçiş,1,800,Iron,Cards
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,27,Akıcı Kesim - 3,1,400,Gold,Speed
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,27,Geniş Tarama - 1,3,260,Gold,Area
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,27,Hasat Deneyimi II - 1,1,450,Gold,Xp
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,27,Hasat Rekoru - 2,2,400,Gold,Score
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,27,Güçlü Kesim - 4,1,380,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,27,Zengin Cevher - 1,2,65,Stone,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,28,Verimli Üretim - 2,1,380,Iron,Production
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,28,Altın Hasat II - 2,2,400,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,28,Ağır Kesim - 1,1,1200,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,28,Akıcı Kesim - 3,2,450,Gold,Speed
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,28,Taş Hasat - 3,2,100,Iron,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,29,Kesim Ustalığı - 1,3,890,Iron,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,29,Nadir Filizler - 2,1,430,Iron,Rarity
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,29,Geniş Tarama - 2,1,310,Gold,Area
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,29,Kart Sezgisi - 1,1,710,Gold,Cards
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,29,Verimli Üretim - 2,2,440,Iron,Production
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,29,Hasat Deneyimi II - 1,2,590,Gold,Xp
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,29,Altın Hasat II - 3,1,450,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,29,Zengin Cevher - 1,3,80,Stone,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,29,Taş Hasat - 4,1,110,Iron,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,30,Güçlü Kesim - 4,2,410,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,30,Kritik Odak - 1,1,150,Gold,Crit
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,30,Ağır Kesim - 1,2,1600,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,30,Kesim Ustalığı - 2,1,1100,Iron,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,30,Hasat Rekoru - 3,1,450,Gold,Score
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,30,Akıcı Kesim - 4,1,500,Gold,Speed
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,30,Nadir Filizler - 2,2,500,Iron,Rarity
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,31,Geniş Tarama - 2,2,360,Gold,Area
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,31,Hasat Deneyimi II - 1,3,730,Gold,Xp
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,31,Verimli Üretim - 3,1,510,Iron,Production
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,31,Kart Sezgisi - 1,2,920,Gold,Cards
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,31,Altın Hasat II - 3,2,510,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,31,Kritik Odak - 1,2,195,Gold,Crit
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,31,Akıcı Kesim - 4,2,550,Gold,Speed
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,31,Kesim Ustalığı - 2,2,1200,Iron,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,31,Zengin Cevher - 2,1,95,Stone,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,31,Taş Hasat - 4,2,120,Iron,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,32,Ağır Kesim - 1,3,1900,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,32,Geniş Tarama - 3,1,400,Gold,Area
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,32,Hasat Deneyimi II - 2,1,860,Gold,Xp
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,32,Verimli Üretim - 3,2,570,Iron,Production
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,32,Hasat Rekoru - 3,2,510,Gold,Score
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,32,Nadir Filizler - 3,1,570,Iron,Rarity
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,32,Verimli Üretim - 4,1,630,Iron,Production
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,33,Altın Hasat II - 4,1,560,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,33,Kart Sezgisi - 1,3,1100,Gold,Cards
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,33,Kritik Odak - 1,3,240,Gold,Crit
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,33,Geniş Tarama - 3,2,450,Gold,Area
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,33,Kesim Ustalığı - 3,1,1400,Iron,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,33,Kritik Odak - 2,1,290,Gold,Crit
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,33,Nadir Filizler - 3,2,640,Iron,Rarity
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,33,Zengin Cevher - 2,2,110,Stone,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,34,Ağır Kesim - 2,1,2300,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,34,Hasat Deneyimi II - 2,2,1000,Gold,Xp
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,34,Altın Hasat II - 4,2,620,Gold,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,34,Kart Sezgisi - 2,1,1300,Gold,Cards
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,34,Kesim Ustalığı - 3,2,1600,Iron,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,34,Verimli Üretim - 4,2,690,Iron,Production
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,35,Hasat Rekoru - 4,1,560,Gold,Score
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,35,Ağır Kesim - 2,2,2700,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,35,Geniş Tarama - 4,1,500,Gold,Area
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,35,Hasat Deneyimi II - 3,1,1100,Gold,Xp
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,35,Kritik Odak - 2,2,330,Gold,Crit
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,35,Zengin Cevher - 3,1,125,Stone,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,35,Geniş Tarama - 4,2,550,Gold,Area
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,36,Kart Sezgisi - 2,2,1600,Gold,Cards
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,36,Ağır Kesim - 3,1,3000,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,36,Nadir Filizler - 4,1,700,Iron,Rarity
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,36,Hasat Deneyimi II - 3,2,1300,Gold,Xp
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,36,Hasat Rekoru - 4,2,620,Gold,Score
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,37,Kesim Ustalığı - 4,1,1700,Iron,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,37,Kritik Odak - 3,1,380,Gold,Crit
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,37,Zengin Cevher - 3,2,140,Stone,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,38,Ağır Kesim - 3,2,3400,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,38,Kart Sezgisi - 3,1,1800,Gold,Cards
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,38,Hasat Deneyimi II - 4,1,1400,Gold,Xp
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,38,Nadir Filizler - 4,2,770,Iron,Rarity
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,39,Kritik Odak - 3,2,420,Gold,Crit
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,39,Zengin Cevher - 4,1,155,Stone,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,39,Kesim Ustalığı - 4,2,1900,Iron,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,40,Ağır Kesim - 4,1,3800,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,40,Hasat Deneyimi II - 4,2,1500,Gold,Xp
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,40,Kart Sezgisi - 3,2,2000,Gold,Cards
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,40,Kritik Güç - 1,1,150,Stone,Crit
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,41,Kritik Odak - 4,1,470,Gold,Crit
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,41,Grid Genişleme II,2,1800,Stone,Grid
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,41,Zengin Cevher - 4,2,170,Stone,Economy
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,42,Ağır Kesim - 4,2,4100,Gold,Damage
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,42,Kritik Güç - 1,2,195,Stone,Crit
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,43,Kart Sezgisi - 4,1,2200,Gold,Cards
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,43,Kritik Odak - 4,2,520,Gold,Crit
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,44,Kritik Güç - 1,3,240,Stone,Crit
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,45,Kart Sezgisi - 4,2,2400,Gold,Cards
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,46,Kritik Güç - 2,1,290,Stone,Crit
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,48,Kritik Güç - 2,2,330,Stone,Crit

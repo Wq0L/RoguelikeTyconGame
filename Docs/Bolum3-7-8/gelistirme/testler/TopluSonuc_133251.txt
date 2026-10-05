@@ -1,0 +1,3 @@
+== P8 ISLEV TESTI
+AlphaDengeV1Verification | AlphaDengeV1Verification.RunBatch | FAIL: System.Exception: R1 played to the end of its timer: the round counter ran 45.0000 s (table: 45 s); real time during those frames 0.279 s (+-44.721 s from the round-end slow motion) | 13:32:51-13:33:21 | cikis: Verification failed with exit 1. See C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\AlphaDengeV1Verification_RunBatch.log
+

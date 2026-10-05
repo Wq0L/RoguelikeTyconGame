@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20152d765c3d4138baba9d0ff9adab37, type: 3}
+  m_Name: Run50_ZincirV1
+  m_EditorClassIdentifier: Assembly-CSharp::RunProfileSO
+  displayName: "Run50 Zincir V1 \xB7 50 round"
+  runLength: 50
+  segmentRounds: 5
+  quotaStart: 10
+  quotaGrowth: 1.45
+  segmentTargets:
+  - 27
+  - 40
+  - 88
+  - 90
+  - 104
+  - 176
+  - 180
+  - 220
+  - 400
+  - 720
+  - 1040
+  - 2240
+  - 2700
+  - 3000
+  - 4800
+  events: []
+  specializationAfterSegment: 0
+  specializationOptions: []
+  bossPool: {fileID: 11400000, guid: 2a8605ee0afb967ce4faad837a770e5c, type: 2}
+  bossTargets:
+  - 5
+  - 10
+  - 16
+  - 24
+  - 33
+  - 45
+  - 57
+  - 72
+  - 100
+  - 172
+  - 276
+  - 500
+  - 680
+  - 860
+  - 1100
+  bossRewards: {fileID: 11400000, guid: 033bcf187bb1dbe61117602cb3a72db5, type: 2}
+  bossSeed: 0
+  bossCalendar:
+  - round: 3
+    final: 0
+    boss: {fileID: 0}
+  - round: 6
+    final: 0
+    boss: {fileID: 0}
+  - round: 10
+    final: 0
+    boss: {fileID: 0}
+  - round: 13
+    final: 0
+    boss: {fileID: 0}
+  - round: 16
+    final: 0
+    boss: {fileID: 0}
+  - round: 20
+    final: 0
+    boss: {fileID: 0}
+  - round: 23
+    final: 0
+    boss: {fileID: 0}
+  - round: 26
+    final: 0
+    boss: {fileID: 0}
+  - round: 30
+    final: 0
+    boss: {fileID: 0}
+  - round: 33
+    final: 0
+    boss: {fileID: 0}
+  - round: 36
+    final: 0
+    boss: {fileID: 0}
+  - round: 40
+    final: 0
+    boss: {fileID: 0}
+  - round: 43
+    final: 0
+    boss: {fileID: 0}
+  - round: 46
+    final: 0
+    boss: {fileID: 0}
+  - round: 50
+    final: 1
+    boss: {fileID: 0}
+  balance: {fileID: 11400000, guid: c9487dec2feb6a3a3bc5bc54a0836a0a, type: 2}
+  choicesPerLevel: 3
+  startingGold: 80
+  startingIron: 0
+  startingStone: 0
+  debugBudget: 0
+  electricMode: 0
+  electricCharge:
+    referenceSeconds: 10
+    referenceChance: 0.5
+    minimumSeconds: 3
+    quickChargeMultiplier: 1
+  fixedRoundDuration: 45
+  victoryTitle: "RUN TAMAMLANDI \xB7 Z\u0130NC\u0130R V1"

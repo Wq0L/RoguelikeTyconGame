@@ -133,13 +133,14 @@ public class GameFeelDirector : MonoBehaviour
         pendingThumpTime = Time.unscaledTime + 0.2f;
     }
 
-    // Hasat Kotası: segmentin ilk round'unda yeni kota duyurulur; son round'unda kota tutmadıysa kalan miktar uyarılır.
+    // Hasat Kotası: dönemin ilk round'unda yeni kota duyurulur; son round'unda kota tutmadıysa kalan miktar uyarılır.
+    // Dönem uzunluğu run takviminden gelir (eşit segment ya da açık boss takvimi).
     public static string QuotaIntro(RoundManager rounds)
     {
         if (rounds == null || !rounds.QuotaEnabled) return null;
-        int round = rounds.CurrentRound, segmentRounds = rounds.QuotaSegmentRounds;
-        if ((round - 1) % segmentRounds == 0)
-            return $"KOTA {HarvestQuota.Format(rounds.QuotaTarget)} · {segmentRounds} ROUND";
+        int round = rounds.CurrentRound;
+        if (rounds.Calendar.IsPeriodStart(round))
+            return $"KOTA {HarvestQuota.Format(rounds.QuotaTarget)} · {rounds.Calendar.PeriodLength(rounds.QuotaSegment)} ROUND";
         long missing = rounds.QuotaTarget - rounds.QuotaProgress;
         return rounds.IsQuotaSegmentEnd(round) && missing > 0 ? $"SON ROUND · KOTAYA {HarvestQuota.Format(missing)} KALDI" : null;
     }

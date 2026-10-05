@@ -1,0 +1,151 @@
+run,policy,farmer,scythe,seed,label,round,node,level,cost,currency,category
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,1,Keskin Başlangıç - 1,1,5,Gold,Damage
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,2,Keskin Başlangıç - 1,2,7,Gold,Damage
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,2,Keskin Başlangıç - 1,3,8,Gold,Damage
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,3,Keskin Başlangıç - 2,1,10,Gold,Damage
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,3,Altın Hasat I - 1,1,7,Gold,Economy
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,3,Keskin Başlangıç - 2,2,11,Gold,Damage
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,3,Düzenli Üretim - 1,1,6,Gold,Production
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,4,Hızlı Eller - 1,1,7,Gold,Speed
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,5,Hasat Deneyimi I - 1,1,6,Gold,Xp
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,6,Grid Genişleme I,1,30,Gold,Grid
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,6,Altın Hasat I - 1,2,9,Gold,Economy
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,6,Keskin Başlangıç - 3,1,13,Gold,Damage
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,7,Hızlı Eller - 1,2,9,Gold,Speed
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,9,Altın Hasat I - 1,3,11,Gold,Economy
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,9,Keskin Başlangıç - 3,2,14,Gold,Damage
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,9,1×3 Saksı,1,30,Gold,PlanterUnlock
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,10,Kesim Tekniği - 1,1,25,Gold,Damage
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,10,Hasat Deneyimi I - 1,2,8,Gold,Xp
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,10,Hızlı Eller - 1,3,11,Gold,Speed
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,10,Geniş Süpürüş - 1,1,21,Gold,Area
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,10,Düzenli Üretim - 1,2,8,Gold,Production
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,10,Keskin Başlangıç - 4,1,16,Gold,Damage
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,10,Altın Hasat I - 2,1,13,Gold,Economy
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,11,Geniş Süpürüş - 1,2,28,Gold,Area
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,11,Kesim Tekniği - 1,2,35,Gold,Damage
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,11,Keskin Başlangıç - 4,2,17,Gold,Damage
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,11,Hızlı Eller - 2,1,12,Gold,Speed
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,11,Hasat Deneyimi I - 1,3,10,Gold,Xp
+1,Hasar-alan,bahcivan,standart,100,araç denemesi,11,Grid Genişleme I,2,30,Iron,Grid
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,1,Keskin Başlangıç - 1,1,5,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,2,Keskin Başlangıç - 1,2,7,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,2,Altın Hasat I - 1,1,7,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,3,Düzenli Üretim - 1,1,6,Gold,Production
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,3,Keskin Başlangıç - 1,3,8,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,3,Hızlı Eller - 1,1,7,Gold,Speed
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,3,Hasat Deneyimi I - 1,1,6,Gold,Xp
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,5,Grid Genişleme I,1,30,Gold,Grid
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,5,Altın Hasat I - 1,2,9,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,5,Keskin Başlangıç - 2,1,10,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,6,Düzenli Üretim - 1,2,8,Gold,Production
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,7,Hızlı Eller - 1,2,9,Gold,Speed
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,8,Keskin Başlangıç - 2,2,11,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,8,Altın Hasat I - 1,3,11,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,8,1×3 Saksı,1,30,Gold,PlanterUnlock
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,8,Tornado Kartları,1,30,Iron,BehaviorUnlock
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,8,Keskin Başlangıç - 3,1,13,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,9,Düzenli Üretim - 1,3,10,Gold,Production
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,9,Hızlı Eller - 1,3,11,Gold,Speed
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,9,Altın Hasat I - 2,1,13,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,9,Keskin Başlangıç - 3,2,14,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,9,Bumerang Orak Kartları,1,40,Iron,BehaviorUnlock
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,9,Kesim Tekniği - 1,1,25,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,10,Hızlı Eller - 2,1,12,Gold,Speed
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,10,Altın Hasat I - 2,2,16,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,10,Düzenli Üretim - 2,1,12,Gold,Production
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,10,Hasat Deneyimi I - 1,2,8,Gold,Xp
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,10,Keskin Başlangıç - 4,1,16,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,10,Hızlı Eller - 2,2,14,Gold,Speed
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,11,Kesim Tekniği - 1,2,35,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,11,Altın Hasat I - 3,1,18,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,11,2×2 Saksı,1,80,Gold,PlanterUnlock
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,11,Keskin Başlangıç - 4,2,17,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,11,Hasat Deneyimi I - 1,3,10,Gold,Xp
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,11,Düzenli Üretim - 2,2,13,Gold,Production
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,11,Hızlı Eller - 3,1,16,Gold,Speed
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,11,Altın Hasat I - 3,2,20,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,11,Çifte Hasat Kartları,1,25,Iron,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,12,Kesim Tekniği - 1,3,40,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,12,Hasat Deneyimi I - 2,1,12,Gold,Xp
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,12,Demir Hasat - 1,1,25,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,12,Hızlı Eller - 3,2,18,Gold,Speed
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,12,Düzenli Üretim - 3,1,15,Gold,Production
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,12,Altın Hasat I - 4,1,22,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,12,Geniş Süpürüş - 1,1,21,Gold,Area
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,12,Kesim Tekniği - 2,1,50,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,12,Hasat Deneyimi I - 2,2,14,Gold,Xp
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,12,Hızlı Eller - 4,1,20,Gold,Speed
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,12,Altın Hasat I - 4,2,24,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,12,Demir Hasat - 1,2,35,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,12,Düzenli Üretim - 3,2,17,Gold,Production
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,12,Geniş Süpürüş - 1,2,28,Gold,Area
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,12,Hızlı Eller - 4,2,22,Gold,Speed
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,12,Hasat Deneyimi I - 3,1,16,Gold,Xp
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,12,Düzenli Üretim - 4,1,19,Gold,Production
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,12,Hasat Deneyimi I - 3,2,18,Gold,Xp
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,13,Güçlü Kesim - 1,1,120,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,13,Kesim Tekniği - 2,2,55,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,13,Demir Hasat - 1,3,40,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,13,Geniş Süpürüş - 1,3,35,Gold,Area
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,13,İlk Vazgeçiş,1,150,Gold,Cards
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,13,Grid Genişleme I,2,30,Iron,Grid
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,13,Düzenli Üretim - 4,2,21,Gold,Production
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,13,Hasat Deneyimi I - 4,1,20,Gold,Xp
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,14,2×3 Saksı,1,200,Gold,PlanterUnlock
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,14,Taş Hasat - 1,1,35,Iron,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,15,Kesim Tekniği - 3,1,65,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,15,Hasat Rekoru - 1,1,180,Gold,Score
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,15,Güçlü Kesim - 1,2,160,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,15,Akıcı Kesim - 1,1,160,Gold,Speed
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,15,Geniş Süpürüş - 2,1,40,Gold,Area
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,15,Kesim Tekniği - 3,2,70,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,15,Demir Hasat - 2,1,50,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,15,Geniş Süpürüş - 2,2,45,Gold,Area
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,15,Hasat Deneyimi I - 4,2,21,Gold,Xp
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,16,Güçlü Kesim - 1,3,195,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,16,Akıcı Kesim - 1,2,210,Gold,Speed
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,16,Hasat Rekoru - 1,2,240,Gold,Score
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,16,Kesim Tekniği - 4,1,80,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,16,Demir Hasat - 2,2,55,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,16,Geniş Süpürüş - 3,1,55,Gold,Area
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,16,Verimli Üretim - 1,1,200,Iron,Production
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,17,Güçlü Kesim - 2,1,230,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,17,Altın Hasat II - 1,1,180,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,17,Kesim Tekniği - 4,2,85,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,17,Nadir Filizler - 1,1,230,Iron,Rarity
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,17,Taş Hasat - 1,2,45,Iron,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,17,Akıcı Kesim - 1,3,260,Gold,Speed
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,18,Demir Hasat - 3,1,65,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,18,Hasat Rekoru - 1,3,290,Gold,Score
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,18,Geniş Süpürüş - 3,2,60,Gold,Area
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,18,Güçlü Kesim - 2,2,270,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,18,Altın Hasat II - 1,2,240,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,18,Grid Genişleme II,1,100,Stone,Grid
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,19,Taş Hasat - 1,3,55,Iron,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,19,Verimli Üretim - 1,2,260,Iron,Production
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,19,Akıcı Kesim - 2,1,310,Gold,Speed
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,19,Nadir Filizler - 1,2,300,Iron,Rarity
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,19,Geniş Tarama - 1,1,160,Gold,Area
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,19,Kesim Ustalığı - 1,1,560,Iron,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,20,Geniş Süpürüş - 4,1,65,Gold,Area
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,20,Demir Hasat - 3,2,70,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,20,Güçlü Kesim - 3,1,300,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,20,Altın Hasat II - 1,3,290,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,21,Hasat Rekoru - 2,1,350,Gold,Score
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,21,Taş Hasat - 2,1,65,Iron,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,21,Akıcı Kesim - 2,2,360,Gold,Speed
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,21,Verimli Üretim - 1,3,320,Iron,Production
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,21,Geniş Süpürüş - 4,2,70,Gold,Area
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,21,Geniş Tarama - 1,2,210,Gold,Area
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,22,Kesim Ustalığı - 1,2,720,Iron,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,22,Nadir Filizler - 1,3,360,Iron,Rarity
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,22,Demir Hasat - 4,1,80,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,22,Güçlü Kesim - 3,2,340,Gold,Damage
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,22,Altın Hasat II - 2,1,350,Gold,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,23,İkinci Vazgeçiş,1,800,Iron,Cards
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,23,Taş Hasat - 2,2,80,Iron,Economy
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,23,Akıcı Kesim - 3,1,400,Gold,Speed
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,23,Verimli Üretim - 2,1,380,Iron,Production
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,23,Geniş Tarama - 1,3,260,Gold,Area
+2,Davranış yönü,bahcivan,standart,100,araç denemesi · nişan 2,23,Hasat Deneyimi II - 1,1,450,Gold,Xp

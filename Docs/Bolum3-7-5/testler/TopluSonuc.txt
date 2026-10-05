@@ -1,0 +1,23 @@
+== TEST TURU
+KirilmaErisimiV1Verification | KirilmaErisimiV1Verification.RunBatch | PASS: 35 checks | 23:11:10-23:11:57 | cikis: ok
+BedelliOdullerV1Verification | BedelliOdullerV1Verification.RunBatch | PASS: 93 checks | 23:11:57-23:13:17 | cikis: ok
+OdulAsamalariV1Verification | OdulAsamalariV1Verification.RunBatch | PASS: 71 checks | 23:13:17-23:14:11 | cikis: ok
+BossRewardVerification | BossRewardVerification.RunBatch | PASS: 127 checks | 23:14:11-23:14:56 | cikis: ok
+KirilmaV1Verification | KirilmaV1Verification.RunBatch | PASS: 189 checks | 23:14:56-23:15:34 | cikis: ok
+TakvimV1Verification | TakvimV1Verification.RunBatch | PASS: 162 checks | 23:15:34-23:16:33 | cikis: ok
+DengeV1Verification | DengeV1Verification.RunBatch | PASS: 86 checks | 23:16:33-23:17:00 | cikis: ok
+RewardOfferDistribution | RewardOfferMeasurement.RunDistribution | DONE: distribution | 23:17:00-23:17:54 | cikis: ok
+HarvestBehaviorVerification | HarvestBehaviorVerification.RunBatch | PASS: 114 checks | 23:17:54-23:18:15 | cikis: ok
+ElectricRevertVerification | ElectricRevertVerification.RunBatch | PASS: 40 checks | 23:18:15-23:18:53 | cikis: ok
+SpecializationVerification | SpecializationVerification.RunBatch | PASS: 100 checks | 23:18:53-23:21:42 | cikis: ok
+StartLoadoutVerification | StartLoadoutVerification.RunBatch | PASS: 88 checks | 23:21:42-23:22:26 | cikis: ok
+MechanicsVerification | MechanicsVerification.RunBatch | PASS: 88 checks | 23:22:26-23:22:53 | cikis: ok
+SimpleResonanceVerification | SimpleResonanceVerification.RunBatch | PASS: 293 checks | 23:22:53-23:23:08 | cikis: ok
+ContactRefactorVerification | ContactRefactorVerification.RunBatch | PASS: 175 checks | 23:23:08-23:23:21 | cikis: ok
+RunPrototypeVerification | RunPrototypeVerification.RunBatch | PASS: 69 checks | 23:23:21-23:24:10 | cikis: ok
+BossWeatherVerification | BossWeatherVerification.RunBatch | PASS: 22 checks | 23:24:10-23:24:23 | cikis: ok
+RoundPreviewVerification | RoundPreviewVerification.RunBatch | PASS: 47 checks | 23:24:23-23:24:52 | cikis: ok
+Run50ReferenceVerification | Run50ReferenceVerification.RunBatch | PASS: 70 checks | 23:24:52-23:27:05 | cikis: ok
+OptionsMenuVerification | OptionsMenuVerification.RunBatch | PASS 22 rows | 23:27:05-23:27:24 | cikis: ok
+BedelliOdulMeasurement | BedelliOdulMeasurement.Run | DONE: 117 round rows, 39 lab runs | 23:27:24-23:29:41 | cikis: ok
+

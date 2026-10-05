@@ -1,0 +1,43 @@
+PASS: 35 checks
+ok: Run50_KirilmaErisimiV1 is a separate profile with its own (valid) reward pool asset
+ok: Everything except the reward pool is Bedelli Ödüller V1's: 15 boss dates, quota and boss targets, balance set (XP, economy, plant health, tree: same asset), boss pool, 3 choices per level, start budget, round duration
+ok: Pool: same stages and offer policy; the other 16 rewards are the very same assets (Hasat Ritmi and the two cost rewards included); Artçı Patlama and Çifte Akım are replaced by this profile's own variants
+ok: Artçı Patlama variant: only the second blast's radius differs — 2.00 cells (data multiplier ×1.667 of the 1.2 cell base); the Kırılma V1 asset still has ×1,25 (1,50 cells); delay, damage ratio, trigger condition, name and note are identical
+ok: Çifte Akım variant: only the second wave's reach differs — 4 cells per diagonal; the Kırılma V1 asset keeps reach 0 (= first wave, 2 cells)
+ok: All 25 other reward assets keep echoReach 0 (the new field defaults to no effect); every other Artçı asset keeps radius ×1,25
+ok: Older profiles (Kırılma V1, Takvim V1, Ödül Aşamaları V1, Bedelli Ödüller V1) still reference the unchanged Kırılma V1 reward assets
+ok: Hasat Ritmi is the same asset with its values untouched (every 5 direct harvests: damage ×1,75, radius ×1,60)
+ok: The two cost rewards are the same assets with the same coefficients (×0,80 / ×1,50, ±1 choice)
+ok: Card effect text comes from data: "Artçı patlama: ilk patlamanın %100 hasarı · yarıçap ×1,67 · 0,20 sn sonra" · "İkinci elektrik dalgası: ilk dalganın %100 hasarı · çaprazda 4 hücre · 0,15 sn sonra"; old assets read as before ("İkinci elektrik dalgası: ilk dalganın %100 hasarı · 0,15 sn sonra")
+ok: Menu item and validator: Tools/Run Profili/Run50 Kırılma Erişimi V1 · 50 round (artçı ve ikinci dalga erişimi adayı)
+ok: Explosion around a 1×1 planter in the open: first blast 4 cells; aftershock 1,50 cells → 8 (the report's value is what the code does: 1,2 × 1,25), 2,00 → 12, 2,25 → 20
+   geometri · 1×1 orta: patlama 4 → artçı 1,50: 8 · 2,00: 12 · 2,25: 20 | elektrik 2: 8 · 3: 12 · 4: 16
+   geometri · 1×1 kenar: patlama 3 → artçı 1,50: 5 · 2,00: 8 · 2,25: 12 | elektrik 2: 4 · 3: 6 · 4: 8
+   geometri · 1×1 köşe: patlama 2 → artçı 1,50: 3 · 2,00: 5 · 2,25: 7 | elektrik 2: 2 · 3: 3 · 4: 4
+   geometri · 2×2 orta: patlama 8 → artçı 1,50: 12 · 2,00: 20 · 2,25: 28 | elektrik 2: 8 · 3: 12 · 4: 16
+   geometri · 2×2 köşe: patlama 4 → artçı 1,50: 5 · 2,00: 9 · 2,25: 11 | elektrik 2: 2 · 3: 3 · 4: 4
+   geometri · 2×3 kenar: patlama 7 → artçı 1,50: 9 · 2,00: 16 · 2,25: 20 | elektrik 2: 4 · 3: 6 · 4: 8
+ok: 6 placements (centre, edge, corner; 1×1, 2×2, 2×3) × 4 radii and 4 reaches: the game's cell sets equal an independent calculation; no cell is listed twice; cells outside the field are simply absent
+ok: Electric reach: 2 → 8 cells, 3 → 12, 4 → 16 (four diagonals only); a longer reach still contains the near cells; a 2×2 planter gives 16 unique cells from its four corners; a corner planter reaches 4
+ok: The variant's data multiplier (×1.666667) resolves to exactly the 2.00-cell set (12 cells) despite float rounding
+ok: Aftershock · orta 1×1 · 2.00 cells: first blast 4 cells of 100 (unchanged); second blast hits 12 living plants, each exactly once, 100 each; 8 of them are cells the first blast never reached; nothing else is triggered
+ok: Aftershock · köşe 1×1 · 2.00 cells: first blast 2 cells of 100 (unchanged); second blast hits 5 living plants, each exactly once, 100 each; 3 of them are cells the first blast never reached; nothing else is triggered
+ok: Aftershock · kenar 2×2 · 2.00 cells: first blast 6 cells of 100 (unchanged); second blast hits 14 living plants, each exactly once, 100 each; 8 of them are cells the first blast never reached; nothing else is triggered
+ok: Aftershock · orta 2×3 · 2.00 cells: first blast 10 cells of 100 (unchanged); second blast hits 24 living plants, each exactly once, 100 each; 14 of them are cells the first blast never reached; nothing else is triggered
+ok: Aftershock · eski ödül, orta 1×1 · 1.50 cells: first blast 4 cells of 100 (unchanged); second blast hits 8 living plants, each exactly once, 100 each; 4 of them are cells the first blast never reached; nothing else is triggered
+ok: Second wave · orta 1×1 · reach 0 (old reward: same as the first wave): first wave 8 cells of 100 (unchanged); second wave hits 8 living plants, each exactly once, 100 each, the near cells included; 0 are beyond the first wave; four diagonals only, no jump to other targets
+ok: Second wave · orta 1×1 · reach 3: first wave 8 cells of 100 (unchanged); second wave hits 12 living plants, each exactly once, 100 each, the near cells included; 4 are beyond the first wave; four diagonals only, no jump to other targets
+ok: Second wave · orta 1×1 · reach 4: first wave 8 cells of 100 (unchanged); second wave hits 16 living plants, each exactly once, 100 each, the near cells included; 8 are beyond the first wave; four diagonals only, no jump to other targets
+ok: Second wave · köşe 1×1 · reach 4: first wave 2 cells of 100 (unchanged); second wave hits 4 living plants, each exactly once, 100 each, the near cells included; 2 are beyond the first wave; four diagonals only, no jump to other targets
+ok: Second wave · orta 2×2 · reach 4: first wave 8 cells of 100 (unchanged); second wave hits 16 living plants, each exactly once, 100 each, the near cells included; 8 are beyond the first wave; four diagonals only, no jump to other targets
+ok: Drawing capacity: a test reach of 6 from the centre of the 11×11 field gives 20 target cells; all 20 plants are damaged once, 16 bolts are drawn and 4 are counted as not drawn — the cap never cuts damage
+ok: Visual pool full: 18 second waves in one frame (reach 4) — every wave still damages all 16 plants (288 hits); 6 waves were not drawn because only 12 effects exist (0 were active before)
+ok: Pooled plants: the job holds cells, not plant objects — a plant reborn inside the area during the delay is hit once as the living plant of that cell; a plant reborn outside the area is not hit
+ok: Echo delay at a fixed 1/30 s step, tried at six different absolute game times (Time.time now 782.7): the aftershock (0,20 s) always lands 6 frames after it was scheduled (6, 6, 6), the second wave (0,15 s) 5 frames (5, 5, 5) — the delay no longer depends on the absolute time
+ok: Coefficients with the wider aftershock: Davranışa Adanış ×1,50 and Davranış Ustası ×1,25 → first blast 188 (100 × 1,25 × 1,50, once); the aftershock uses that computed value × 1,00 = 188 on every cell of the wider area — neither coefficient is applied a second time
+ok: Round ends during the delay: the pending aftershock is dropped and never deals damage (no late hit after the round)
+ok: New scene / new run: no pending aftershock, echo counters at 0, no echo reward and no reward effect carried over
+ok: Reward cards of the variants (placed on the screen by the test): no text is cut or leaves its area — Artçı patlama: ilk patlamanın %100 hasarı · yarıçap ×1,67 · 0,20 sn sonra | İkinci elektrik dalgası: ilk dalganın %100 hasarı · çaprazda 4 hücre · 0,15 sn sonra | Ritim: her 5 doğrudan hasatta bir: hasar ×1,75 · yarıçap ×1,60
+   görüntü: Logs/T375_01_ErisimKartlari.png
+ok: Old profile (Kırılma V1): its Artçı Patlama still gives radius ×1,25 (1,50 cells) and its Çifte Akım the first wave's reach; the live echo settings read exactly those values
+ok: No error or exception logged during the test

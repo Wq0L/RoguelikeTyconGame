@@ -1,0 +1,10 @@
+== SON OLCUM ONCESI KRITIK TESTLER
+AlphaDengeV1Verification | AlphaDengeV1Verification.RunBatch | PASS: 51 checks | 16:40:12-16:40:45 | cikis: ok
+XPV1Verification | XPV1Verification.RunBatch | PASS: 39 checks | 16:40:45-16:41:08 | cikis: ok
+KirilmaV1Verification | KirilmaV1Verification.RunBatch | PASS: 189 checks | 16:41:08-16:41:45 | cikis: ok
+TakvimV1Verification | TakvimV1Verification.RunBatch | PASS: 162 checks | 16:41:45-16:42:44 | cikis: ok
+DengeV1Verification | DengeV1Verification.RunBatch | PASS: 86 checks | 16:42:44-16:43:10 | cikis: ok
+MechanicsVerification | MechanicsVerification.RunBatch | PASS: 88 checks | 16:43:10-16:43:35 | cikis: ok
+ZincirV1Verification | ZincirV1Verification.RunBatch | PASS: 38 checks | 16:43:35-16:44:32 | cikis: ok
+RunPrototypeVerification | RunPrototypeVerification.RunBatch | PASS: 69 checks | 16:44:32-16:45:21 | cikis: ok
+

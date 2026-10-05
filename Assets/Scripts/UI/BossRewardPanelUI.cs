@@ -6,17 +6,24 @@ using UnityEngine.UI;
 // Boss ödülü ekranı (RoundChoice durumu): geçilen boss'tan sonra en çok üç farklı ödül gösterir, biri alınır.
 // Yalnız gösterir ve isteği iletir: teklif, tek sefer uygulama ve birikme BossRewardManager'da. UIManager kurar ve açıp kapatır.
 // Kart: etki (tek alış), şu anki birikim ve seçince oluşacak toplam. Uygun ödül kalmadıysa "DEVAM" ile geçilir.
+// Aşamalı havuzda (Bölüm 3.7.3) başlık teklifin aşamasını ("GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ"), kartın üstündeki etiket ödülün kendi
+// sınıfını ve ilk sunulduğu boss'u yazar. Aşama ve round bilgisi BossRewardManager'dan okunur; burada round eşiği hesaplanmaz.
+// Bedelli ödülde (Bölüm 3.7.4) kart kazanç ve bedeli ayrı yazar: satırlar ödül verisinden, "3 → 4" gerçek seçim hakkından üretilir;
+// altında geçerlilik notu ve birlikte alınamayan ödül durur. Diğer kartların düzeni aynıdır.
 public sealed class BossRewardPanelUI : MonoBehaviour
 {
     private const float CardWidth = 400f, CardHeight = 430f, Gap = 36f;
     private static readonly Color Ink = new Color32(54, 39, 54, 255);
     private static readonly Color Plus = new Color32(46, 125, 50, 255);
     private static readonly Color Muted = new Color32(110, 96, 110, 255);
+    private const string GainColor = "#2E7D32", CostColor = "#B4231A";
+    private readonly List<string> gains = new(), costs = new();
+    private readonly List<BossRewardSO> exclusive = new();
 
     private sealed class Card
     {
         public RectTransform root;
-        public TextMeshProUGUI title, effect, note, stack;
+        public TextMeshProUGUI title, effect, note, stack, stage;
         public Button button;
         public BossRewardSO reward;
     }
@@ -28,6 +35,17 @@ public sealed class BossRewardPanelUI : MonoBehaviour
     private Button continueButton;
     private bool requested;
     private int shownVersion = -1;
+    // Test ve doğrulama için: ekrandaki başlık, alt başlık ve kartların yazıları.
+    public string TitleText => title != null ? title.text : null;
+    public string SubtitleText => subtitle != null ? subtitle.text : null;
+    public int ShownCards { get; private set; }
+    public IEnumerable<TextMeshProUGUI> CardTexts(int index)
+    {
+        Card card = cards[index];
+        yield return card.title; yield return card.effect; yield return card.note; yield return card.stack; yield return card.stage;
+    }
+    public string StageTagText(int index) => cards[index].stage.gameObject.activeSelf ? cards[index].stage.text : null;
+    public string NoteText(int index) => cards[index].note.text;
 
     public static BossRewardPanelUI Attach(Transform canvasRoot)
     {
@@ -90,10 +108,16 @@ public sealed class BossRewardPanelUI : MonoBehaviour
         IReadOnlyList<BossRewardSO> offer = manager != null ? manager.Offer : null;
         int count = offer != null ? offer.Count : 0;
         int next = rounds != null ? rounds.CurrentRound + 1 : 0;
-        title.text = "BOSS GEÇİLDİ · ÖDÜL SEÇ";
-        subtitle.text = count > 0
-            ? $"Yalnız biri alınır · run sonuna kadar geçerli · etkisi Round {next} ve sonrası"
-            : "Bu boss için sunulabilecek ödül yok";
+        // Run'ın son boss'u (açık boss takvimi): sonraki round yok; seçimden sonra zafer ekranı gelir.
+        bool last = rounds != null && rounds.CurrentRound >= rounds.MaxRounds;
+        // Aşamalı havuz: başlık teklifin aşamasıdır; "boss geçildi" bilgisi alt satıra iner. Düz havuzda metinler eskisi gibi.
+        BossRewardStage offerStage = manager != null ? manager.OfferStage : null;
+        string passed = offerStage == null ? "" : last ? "Son boss geçildi · " : "Boss geçildi · ";
+        title.text = offerStage != null ? BossRewardText.StageHeader(offerStage) : last ? "SON BOSS GEÇİLDİ · ÖDÜL SEÇ" : "BOSS GEÇİLDİ · ÖDÜL SEÇ";
+        subtitle.text = count == 0 ? "Bu boss için sunulabilecek ödül yok"
+            : last ? Sentence(passed + "Yalnız biri alınır · run burada biter · ödül run sonu listesine yazılır")
+            : Sentence(passed + $"Yalnız biri alınır · run sonuna kadar geçerli · etkisi Round {next} ve sonrası");
+        ShownCards = count;
         float total = count * CardWidth + Mathf.Max(0, count - 1) * Gap;
         for (int i = 0; i < count; i++)
         {
@@ -105,9 +129,33 @@ public sealed class BossRewardPanelUI : MonoBehaviour
             card.root.anchoredPosition = new Vector2(-total * 0.5f + CardWidth * 0.5f + i * (CardWidth + Gap), 0f);
             int have = manager.Stacks(reward);
             card.title.text = reward.displayName;
-            card.effect.text = BossRewardText.Effect(reward);
-            card.note.text = reward.note;
-            card.stack.text = StackText(reward, have);
+            bool trade = BossRewardText.IsTrade(reward);
+            Arrange(card, trade);
+            if (trade)
+            {
+                BossRewardText.TradeLines(reward, rounds != null ? rounds.ChoicesPerLevel : 0, gains, costs);
+                manager.ExclusiveWith(reward, exclusive);
+                card.effect.text = TradeText(gains, costs);
+                string note = manager.NoteFor(reward);
+                card.note.text = reward.levelChoiceDelta != 0 ? (BossRewardText.PendingChoicesNote + " " + note).Trim() : note;
+                card.stack.text = TradeStackText(reward, have, exclusive);
+                card.stack.textWrappingMode = TextWrappingModes.Normal;
+            }
+            else
+            {
+                card.effect.text = BossRewardText.Effect(reward);
+                card.note.text = manager.NoteFor(reward);
+                card.stack.text = StackText(reward, have);
+                KeepTwoLines(card.stack);
+            }
+            // Ödülün kendi sınıfı (teklifin aşamasından düşük olabilir) ve ilk sunulduğu boss.
+            BossRewardStage stage = manager.StageOf(reward);
+            card.stage.gameObject.SetActive(stage != null);
+            if (stage != null)
+            {
+                card.stage.text = BossRewardText.StageTag(stage, manager.FirstOfferRound(stage));
+                card.stage.color = stage.color;
+            }
             card.button.interactable = manager.IsPending && !requested;
         }
         for (int i = count; i < cards.Count; i++) cards[i].root.gameObject.SetActive(false);
@@ -116,6 +164,59 @@ public sealed class BossRewardPanelUI : MonoBehaviour
         continueButton.gameObject.SetActive(none);
         takenList.text = TakenText(manager);
     }
+
+    // Birikim yazısı eskisi gibi iki satırdır ("Şu an …" / "Seçince …"): satır kırmadan, gerekirse en küçük puntoya kadar küçülür.
+    // O puntoda da kart genişliğine sığmıyorsa (Hasat Ritmi) satır kırılır; taşmak yerine bölgesinin içinde üç satır olur.
+    private static void KeepTwoLines(TextMeshProUGUI text)
+    {
+        text.textWrappingMode = TextWrappingModes.NoWrap;
+        text.ForceMeshUpdate();
+        if (!text.isTextTruncated && !text.isTextOverflowing && text.textBounds.size.x <= text.rectTransform.rect.width + .5f) return;
+        text.textWrappingMode = TextWrappingModes.Normal;
+        text.ForceMeshUpdate();
+    }
+
+    // Bedelli kartın düzeni: kazanç + bedel dört satır tutar, o yüzden etki bölgesi büyür, açıklama ve alt bölge küçülür.
+    // Diğer kartlar 3.7.3'teki üç bölgeyi aynen kullanır.
+    private static void Arrange(Card card, bool trade)
+    {
+        float top = CardHeight * 0.5f;
+        Place(card.effect.rectTransform, new Vector2(0f, top - (trade ? 143f : 124f)), new Vector2(CardWidth - 36f, trade ? 122f : 70f));
+        Place(card.note.rectTransform, new Vector2(0f, top - (trade ? 234f : 199f)), new Vector2(CardWidth - 40f, trade ? 56f : 76f));
+        Place(card.stack.rectTransform, new Vector2(0f, top - (trade ? 298f : 286f)), new Vector2(CardWidth - 28f, trade ? 68f : 92f));
+        card.effect.fontSizeMin = trade ? 17f : 20f;
+        card.effect.fontSizeMax = trade ? 24f : 27f;
+    }
+
+    // "KAZANÇ / Gelecekteki her level: 3 → 4 seçim / BEDEL / Doğrudan vuruş hasarı ×0,80": başlıklar küçük, satırlar renkli.
+    private static string TradeText(List<string> gains, List<string> costs)
+    {
+        var text = new System.Text.StringBuilder();
+        void Block(string caption, string color, List<string> lines)
+        {
+            if (lines.Count == 0) return;
+            if (text.Length > 0) text.Append('\n');
+            text.Append("<color=").Append(color).Append("><size=62%>").Append(caption).Append("</size>");
+            foreach (string line in lines) text.Append('\n').Append(line);
+            text.Append("</color>");
+        }
+        Block("KAZANÇ", GainColor, gains);
+        Block("BEDEL", CostColor, costs);
+        return text.ToString();
+    }
+
+    // Bedelli kartın alt satırları: kaç kez alınabildiği ve birlikte alınamayan ödül (karşılıklı dışlama).
+    public static string TradeStackText(BossRewardSO reward, int have, List<BossRewardSO> exclusive)
+    {
+        string count = reward.maxStacks == 1 ? "Bir kez alınır" : $"Şu an {have}/{reward.maxStacks}";
+        if (exclusive == null || exclusive.Count == 0) return $"<color=#6E606E>{count}</color>";
+        var names = new List<string>();
+        foreach (BossRewardSO other in exclusive) names.Add(other.displayName);
+        return $"<color=#6E606E>{count}</color>\n<color=#8A3A12>Bunu alırsan {string.Join(", ", names)} bir daha sunulmaz</color>";
+    }
+
+    // Aşamalı başlıkta cümle "Boss geçildi · yalnız biri alınır …" diye sürer: ön ek varsa ardından gelen ilk harf küçülür.
+    private static string Sentence(string text) => text.Replace(" · Yalnız", " · yalnız");
 
     // "Şu an 1/3: ×1,15" ve "Seçince 2/3: ×1,32" — art arda alışların nasıl birleştiği kartta görünür.
     public static string StackText(BossRewardSO reward, int have)
@@ -168,22 +269,38 @@ public sealed class BossRewardPanelUI : MonoBehaviour
         float top = CardHeight * 0.5f;
         card.title = CreateText(root, "Name", 34f, TextAlignmentOptions.Center, Ink);
         Place(card.title.rectTransform, new Vector2(0f, top - 42f), new Vector2(CardWidth - 30f, 56f));
+        // Üç metin bölgesi alt alta, üst üste binmeden: etki (başlığın altı), açıklama, birikim (düğmenin üstüne kadar).
+        // Uzun metin satır kırar; sığmazsa bölgenin en küçük puntosuna kadar küçülür, kartın dışına taşmaz.
         card.effect = CreateText(root, "Effect", 27f, TextAlignmentOptions.Center, Plus);
-        card.effect.textWrappingMode = TextWrappingModes.Normal;
-        Place(card.effect.rectTransform, new Vector2(0f, top - 128f), new Vector2(CardWidth - 40f, 76f));
+        Wrap(card.effect, 20f, 27f);
+        Place(card.effect.rectTransform, new Vector2(0f, top - 124f), new Vector2(CardWidth - 36f, 70f));
         card.note = CreateText(root, "Note", 19f, TextAlignmentOptions.Center, Muted);
-        card.note.textWrappingMode = TextWrappingModes.Normal;
-        Place(card.note.rectTransform, new Vector2(0f, top - 204f), new Vector2(CardWidth - 44f, 64f));
-        // İki satır: şu anki birikim ve seçince oluşacak toplam (satır taşmasın diye otomatik küçülür).
+        Wrap(card.note, 15f, 19f);
+        Place(card.note.rectTransform, new Vector2(0f, top - 199f), new Vector2(CardWidth - 40f, 76f));
+        // Şu anki birikim ve seçince oluşacak toplam. Uzun etki (Hasat Ritmi) ikinci satırı kırar.
         card.stack = CreateText(root, "Stack", 21f, TextAlignmentOptions.Center, Ink);
-        card.stack.enableAutoSizing = true;
-        card.stack.fontSizeMin = 14f;
-        card.stack.fontSizeMax = 21f;
-        Place(card.stack.rectTransform, new Vector2(0f, top - 278f), new Vector2(CardWidth - 30f, 60f));
+        Wrap(card.stack, 15f, 21f);
+        Place(card.stack.rectTransform, new Vector2(0f, top - 286f), new Vector2(CardWidth - 28f, 92f));
+        // Aşama etiketi kartın üstünde durur (yalnız aşamalı havuzda görünür).
+        card.stage = CreateText(root, "Stage", 18f, TextAlignmentOptions.Center, Color.white);
+        card.stage.enableAutoSizing = true;
+        card.stage.fontSizeMin = 14f;
+        card.stage.fontSizeMax = 18f;
+        Place(card.stage.rectTransform, new Vector2(0f, top + 20f), new Vector2(CardWidth, 28f));
+        card.stage.gameObject.SetActive(false);
         card.button = CreateButton(root, "Choose", "AL", "green", new Vector2(220f, 76f));
         Place((RectTransform)card.button.transform, new Vector2(0f, -top + 54f), new Vector2(220f, 76f));
         card.button.onClick.AddListener(() => Request(card));
         return card;
+    }
+
+    private static void Wrap(TextMeshProUGUI text, float min, float max)
+    {
+        text.textWrappingMode = TextWrappingModes.Normal;
+        text.overflowMode = TextOverflowModes.Truncate;
+        text.enableAutoSizing = true;
+        text.fontSizeMin = min;
+        text.fontSizeMax = max;
     }
 
     private Button CreateButton(RectTransform parent, string name, string caption, string palette, Vector2 size)

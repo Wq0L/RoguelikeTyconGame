@@ -1,0 +1,202 @@
+PASS: 162 checks
+ok: Run50_TakvimV1 is a separate profile asset and its calendar is valid
+ok: Gameplay settings are Kırılma V1's: same balance set, boss pool and reward pool assets (referenced, not copied), 3 choices per level, same start budget, 45 s rounds
+ok: Kırılma V1 itself is unchanged: no calendar, 5-round segments, its own 10 quotas and 9 boss targets
+ok: Calendar data: 15 boss dates 3, 6, 10, 13, 16, 20, 23, 26, 30, 33, 36, 40, 43, 46, 50; R50 is a separate 'final' entry; no date has a hand-picked boss (pool rule)
+ok: Profile asset carries the 15 quota and 15 boss targets as explicit tables
+ok: Quota transfer recomputed from Kırılma V1's table gives the same 15 values; total budget kept: 15825
+ok: Boss target transfer recomputed (linear between old points, R0 = 0, last slope continued) gives the same 15 values: 5 10 16 24 33 45 57 72 100 172 276 500 680 860 1100
+   ara değerler: R3 4.8 R6 9.6 R10 16.0 R13 24.4 R16 33.0 R20 45.0 R23 57.0 R26 72.0 R30 100.0 R33 172.0 R36 276.0 R40 500.0 R43 680.0 R46 860.0 R50 1100.0
+ok: Calendar: every round 1–50 belongs to exactly one period; periods 1–3 4–6 7–10 11–13 14–16 17–20 21–23 24–26 27–30 31–33 34–36 37–40 41–43 44–46 47–50; boss rounds are exactly the 15 dates
+ok: Period targets come from the tables by period index; R50 is the final entry; the last round keeps its choices (cards, reward) before victory
+   eski profil · Deney22_20: 20 round, 5 round'luk segment, boss yok — eski formülle aynı
+   eski profil · Prototip10: 10 round, 5 round'luk segment, boss yok — eski formülle aynı
+   eski profil · Prototip10_DebugButce: 10 round, 5 round'luk segment, boss yok — eski formülle aynı
+   açık takvimli profil · Run50_BedelliOdullerV1: Takvim V1 ile aynı 15 tarih ve aynı hedefler
+   eski profil · Run50_BossPrototip: 50 round, 5 round'luk segment, boss son segment hariç her segment sonu — eski formülle aynı
+   eski profil · Run50_DengeV1: 50 round, 5 round'luk segment, boss son segment hariç her segment sonu — eski formülle aynı
+   açık takvimli profil · Run50_KirilmaErisimiV1: Takvim V1 ile aynı 15 tarih ve aynı hedefler
+   eski profil · Run50_KirilmaV1: 50 round, 5 round'luk segment, boss son segment hariç her segment sonu — eski formülle aynı
+   açık takvimli profil · Run50_OdulAsamalariV1: Takvim V1 ile aynı 15 tarih ve aynı hedefler
+   eski profil · Run50_Referans: 50 round, 5 round'luk segment, boss yok — eski formülle aynı
+   eski profil · Uzmanlasma20: 20 round, 5 round'luk segment, boss yok — eski formülle aynı
+   eski profil · UzunRun130: 130 round, 5 round'luk segment, boss yok — eski formülle aynı
+ok: The 9 older profiles have no calendar and resolve periods, boss rounds and targets exactly as the old formulas did (checked for every round)
+ok: Old event timings unchanged: boss of segment 3 → announced R11, active R15; whole-segment event of segment 2 → R6–10, announced R1
+ok: Menu item and validator: Tools/Run Profili/Run50 Takvim V1 · 50 round (15 boss takvimi prototipi)
+   hatalı veri · sıralı değil (… 6, 3 …) → "tarihler sıralı değil: 2. tarih (Round 3) bir öncekinden (Round 6) küçük"
+   hatalı veri · aynı round iki kez (3, 3) → "Round 3 takvimde iki kez yazılmış (1. ve 2. tarih)"
+   hatalı veri · round 0 → "1. tarih (Round 0) run sınırlarının dışında (1–50)"
+   hatalı veri · round 51 (run 50 round) → "15. tarih (Round 51) run sınırlarının dışında (1–50)"
+   hatalı veri · son tarih 49 → "son tarih Round 49, run 50 round: son tarih run'ın son round'u olmalı (yoksa Round 50 hiçbir kota dönemine ait olmaz)"
+   hatalı veri · son tarih eksik (… 46) → "son tarih Round 46, run 50 round: son tarih run'ın son round'u olmalı (yoksa Round 47–50 hiçbir kota dönemine ait olmaz)"
+   hatalı veri · final kaydı ortada → "final kaydı (Round 20) takvimin son tarihi olmalı"
+   hatalı veri · kota tablosu kısa → "kota tablosunda 14 değer var, takvimde 15 dönem: her dönemin kotası açık yazılmalı"
+   hatalı veri · kota 0 → "5. dönemin (Round 14–16) kotası 0: 0'dan büyük olmalı"
+   hatalı veri · boss hedefi tablosu kısa → "boss hasadı tablosunda 14 değer var, takvimde 15 boss: her boss'un hedefi açık yazılmalı (0: hedef yok)"
+   hatalı veri · negatif boss hedefi → "3. boss'un (Round 10) hasat hedefi negatif"
+   hatalı veri · boss havuzu yok → "boss takvimi dolu ama boss havuzu (bossPool) boş"
+   hatalı veri · eski olay listesi dolu → "boss takvimi eski 'Segment olayları' listesiyle birlikte kullanılamaz (liste bütün segmenti kapsayan eski ritim içindir)"
+ok: 13 invalid calendars are each rejected with a message naming the problem (nothing is corrected silently)
+ok: Valid variants pass: the profile as is, a boss with target 0 (boss without a harvest target), a calendar without a 'final' mark
+ok: Tools > Run Profili refuses a profile with an invalid calendar: error logged, selection unchanged (temporary asset removed)
+ok: The valid Takvim V1 profile is selected through the same menu path
+ok: Tam run: starts clean in RunSetup (Run50_TakvimV1, round 1, score 0, no reward, no active boss; first boss DON CEPHESİ announced for Round 3)
+   görüntü: Logs/T372_01_R1_Hazirlik_Onizleme.png
+ok: Tam run · R1 (dönem 1: 1–3, hazırlık): önizleme Round 3, HUD "SEGMENT KOTASI · 3 ROUND", dönem skoru 22 / 27, toplam 22
+   görüntü: Logs/T372_02_R1_HUD_YaklasanBoss.png
+ok: Tam run · R2 (dönem 1: 1–3, hazırlık): önizleme Round 3, HUD "SEGMENT KOTASI · 2 ROUND", dönem skoru 22 / 27, toplam 22
+ok: Tam run · R2 bitti: level kartları (3 seçim) → round özeti; kota değerlendirmesi yok
+   görüntü: Logs/T372_03_R3_SonHazirlik.png
+ok: Tam run · R3 (dönem 1: 1–3, BOSS DON CEPHESİ): önizleme Round 3, HUD "SEGMENT KOTASI TAMAM", dönem skoru 27 / 27, boss hasadı 5 / 5, toplam 27
+   görüntü: Logs/T372_04_R3_AktifBoss.png
+ok: Tam run · R3 boss geçildi: kota 27 / 27 (eşit), boss hasadı 5 / 5 (eşit), önce 3 kart, ödül: Geniş Savuruş; etkiler temizlendi; sıradaki boss SERT KABUK Round 6
+   görüntü: Logs/T372_05_R4_Hazirlik_SiradakiBoss.png
+ok: Geçiş R3→R4: DON CEPHESİ bitti; yeni dönem 4–6 (3 round) dönem skoru 0'dan başladı, kota 40; toplam skor 27 korundu; önizleme SERT KABUK · Round 6 (boss hasadı hedefi 10)
+ok: Tam run · R4 (dönem 2: 4–6, hazırlık): önizleme Round 6, HUD "SEGMENT KOTASI · 3 ROUND", dönem skoru 30 / 40, toplam 57
+ok: Tam run · R5 (dönem 2: 4–6, hazırlık): önizleme Round 6, HUD "SEGMENT KOTASI · 2 ROUND", dönem skoru 30 / 40, toplam 57
+ok: Tam run · R6 (dönem 2: 4–6, BOSS SERT KABUK): önizleme Round 6, HUD "SEGMENT KOTASI TAMAM", dönem skoru 40 / 40, boss hasadı 10 / 10, toplam 67
+ok: Tam run · R6 boss geçildi: kota 40 / 40 (eşit), boss hasadı 10 / 10 (eşit), ödül: Bilgi Filizi; etkiler temizlendi; sıradaki boss DON CEPHESİ Round 10
+ok: Geçiş R6→R7: SERT KABUK bitti; yeni dönem 7–10 (4 round) dönem skoru 0'dan başladı, kota 88; toplam skor 67 korundu; önizleme DON CEPHESİ · Round 10 (boss hasadı hedefi 16)
+ok: Tam run · R7 (dönem 3: 7–10, hazırlık): önizleme Round 10, HUD "SEGMENT KOTASI · 4 ROUND", dönem skoru 72 / 88, toplam 139
+ok: Tam run · R8 (dönem 3: 7–10, hazırlık): önizleme Round 10, HUD "SEGMENT KOTASI · 3 ROUND", dönem skoru 72 / 88, toplam 139
+ok: Tam run · R9 (dönem 3: 7–10, hazırlık): önizleme Round 10, HUD "SEGMENT KOTASI · 2 ROUND", dönem skoru 72 / 88, toplam 139
+ok: Tam run · R10 (dönem 3: 7–10, BOSS DON CEPHESİ): önizleme Round 10, HUD "SEGMENT KOTASI TAMAM", dönem skoru 88 / 88, boss hasadı 16 / 16, toplam 155
+ok: Tam run · R10 boss geçildi: kota 88 / 88 (eşit), boss hasadı 16 / 16 (eşit), ödül: Geniş Savuruş; etkiler temizlendi; sıradaki boss SERT KABUK Round 13
+ok: Geçiş R10→R11: DON CEPHESİ bitti; yeni dönem 11–13 (3 round) dönem skoru 0'dan başladı, kota 90; toplam skor 155 korundu; önizleme SERT KABUK · Round 13 (boss hasadı hedefi 24)
+ok: Tam run · R11 (dönem 4: 11–13, hazırlık): önizleme Round 13, HUD "SEGMENT KOTASI · 3 ROUND", dönem skoru 66 / 90, toplam 221
+ok: Tam run · R12 (dönem 4: 11–13, hazırlık): önizleme Round 13, HUD "SEGMENT KOTASI · 2 ROUND", dönem skoru 66 / 90, toplam 221
+ok: Tam run · R13 (dönem 4: 11–13, BOSS SERT KABUK): önizleme Round 13, HUD "SEGMENT KOTASI TAMAM", dönem skoru 90 / 90, boss hasadı 24 / 24, toplam 245
+ok: Tam run · R13 boss geçildi: kota 90 / 90 (eşit), boss hasadı 24 / 24 (eşit), ödül: Ağır Darbe; etkiler temizlendi; sıradaki boss DON CEPHESİ Round 16
+ok: Geçiş R13→R14: SERT KABUK bitti; yeni dönem 14–16 (3 round) dönem skoru 0'dan başladı, kota 104; toplam skor 245 korundu; önizleme DON CEPHESİ · Round 16 (boss hasadı hedefi 33)
+ok: Tam run · R14 (dönem 5: 14–16, hazırlık): önizleme Round 16, HUD "SEGMENT KOTASI · 3 ROUND", dönem skoru 71 / 104, toplam 316
+ok: Tam run · R15 (dönem 5: 14–16, hazırlık): önizleme Round 16, HUD "SEGMENT KOTASI · 2 ROUND", dönem skoru 71 / 104, toplam 316
+ok: Tam run · R16 (dönem 5: 14–16, BOSS DON CEPHESİ): önizleme Round 16, HUD "SEGMENT KOTASI TAMAM", dönem skoru 104 / 104, boss hasadı 33 / 33, toplam 349
+ok: Tam run · R16 boss geçildi: kota 104 / 104 (eşit), boss hasadı 33 / 33 (eşit), ödül: Keskin Bıçak; etkiler temizlendi; sıradaki boss SERT KABUK Round 20
+ok: Geçiş R16→R17: DON CEPHESİ bitti; yeni dönem 17–20 (4 round) dönem skoru 0'dan başladı, kota 176; toplam skor 349 korundu; önizleme SERT KABUK · Round 20 (boss hasadı hedefi 45)
+ok: Tam run · R17 (dönem 6: 17–20, hazırlık): önizleme Round 20, HUD "SEGMENT KOTASI · 4 ROUND", dönem skoru 131 / 176, toplam 480
+ok: Tam run · R18 (dönem 6: 17–20, hazırlık): önizleme Round 20, HUD "SEGMENT KOTASI · 3 ROUND", dönem skoru 131 / 176, toplam 480
+ok: Tam run · R19 (dönem 6: 17–20, hazırlık): önizleme Round 20, HUD "SEGMENT KOTASI · 2 ROUND", dönem skoru 131 / 176, toplam 480
+ok: Tam run · R20 (dönem 6: 17–20, BOSS SERT KABUK): önizleme Round 20, HUD "SEGMENT KOTASI TAMAM", dönem skoru 176 / 176, boss hasadı 45 / 45, toplam 525
+ok: Tam run · R20 boss geçildi: kota 176 / 176 (eşit), boss hasadı 45 / 45 (eşit), ödül: Keskin Bıçak; etkiler temizlendi; sıradaki boss DON CEPHESİ Round 23
+ok: Geçiş R20→R21: SERT KABUK bitti; yeni dönem 21–23 (3 round) dönem skoru 0'dan başladı, kota 180; toplam skor 525 korundu; önizleme DON CEPHESİ · Round 23 (boss hasadı hedefi 57)
+ok: Tam run · R21 (dönem 7: 21–23, hazırlık): önizleme Round 23, HUD "SEGMENT KOTASI · 3 ROUND", dönem skoru 123 / 180, toplam 648
+ok: Tam run · R22 (dönem 7: 21–23, hazırlık): önizleme Round 23, HUD "SEGMENT KOTASI · 2 ROUND", dönem skoru 123 / 180, toplam 648
+ok: Tam run · R23 (dönem 7: 21–23, BOSS DON CEPHESİ): önizleme Round 23, HUD "SEGMENT KOTASI TAMAM", dönem skoru 180 / 180, boss hasadı 57 / 57, toplam 705
+ok: Tam run · R23 boss geçildi: kota 180 / 180 (eşit), boss hasadı 57 / 57 (eşit), ödül: Nadir Tohum; etkiler temizlendi; sıradaki boss SİS Round 26
+ok: Geçiş R23→R24: DON CEPHESİ bitti; yeni dönem 24–26 (3 round) dönem skoru 0'dan başladı, kota 220; toplam skor 705 korundu; önizleme SİS · Round 26 (boss hasadı hedefi 72)
+ok: Tam run · R24 (dönem 8: 24–26, hazırlık): önizleme Round 26, HUD "SEGMENT KOTASI · 3 ROUND", dönem skoru 148 / 220, toplam 853
+ok: Tam run · R25 (dönem 8: 24–26, hazırlık): önizleme Round 26, HUD "SEGMENT KOTASI · 2 ROUND", dönem skoru 148 / 220, toplam 853
+ok: Tam run · R26 (dönem 8: 24–26, BOSS SİS): önizleme Round 26, HUD "SEGMENT KOTASI TAMAM", dönem skoru 220 / 220, boss hasadı 72 / 72, toplam 925
+ok: Tam run · R26 boss geçildi: kota 220 / 220 (eşit), boss hasadı 72 / 72 (eşit), ödül: Bilgi Filizi; etkiler temizlendi; sıradaki boss SERT KABUK Round 30
+ok: Geçiş R26→R27: SİS bitti; yeni dönem 27–30 (4 round) dönem skoru 0'dan başladı, kota 400; toplam skor 925 korundu; önizleme SERT KABUK · Round 30 (boss hasadı hedefi 100)
+ok: Tam run · R27 (dönem 9: 27–30, hazırlık): önizleme Round 30, HUD "SEGMENT KOTASI · 4 ROUND", dönem skoru 300 / 400, toplam 1.225
+ok: Tam run · R28 (dönem 9: 27–30, hazırlık): önizleme Round 30, HUD "SEGMENT KOTASI · 3 ROUND", dönem skoru 300 / 400, toplam 1.225
+ok: Tam run · R29 (dönem 9: 27–30, hazırlık): önizleme Round 30, HUD "SEGMENT KOTASI · 2 ROUND", dönem skoru 300 / 400, toplam 1.225
+ok: Tam run · R30 (dönem 9: 27–30, BOSS SERT KABUK): önizleme Round 30, HUD "SEGMENT KOTASI TAMAM", dönem skoru 400 / 400, boss hasadı 100 / 100, toplam 1.325
+ok: Tam run · R30 boss geçildi: kota 400 / 400 (eşit), boss hasadı 100 / 100 (eşit), ödül: Fırtına Bileği; etkiler temizlendi; sıradaki boss SİS Round 33
+ok: Geçiş R30→R31: SERT KABUK bitti; yeni dönem 31–33 (3 round) dönem skoru 0'dan başladı, kota 720; toplam skor 1.325 korundu; önizleme SİS · Round 33 (boss hasadı hedefi 172)
+ok: Tam run · R31 (dönem 10: 31–33, hazırlık): önizleme Round 33, HUD "SEGMENT KOTASI · 3 ROUND", dönem skoru 548 / 720, toplam 1.873
+ok: Tam run · R32 (dönem 10: 31–33, hazırlık): önizleme Round 33, HUD "SEGMENT KOTASI · 2 ROUND", dönem skoru 548 / 720, toplam 1.873
+ok: Tam run · R33 (dönem 10: 31–33, BOSS SİS): önizleme Round 33, HUD "SEGMENT KOTASI TAMAM", dönem skoru 720 / 720, boss hasadı 172 / 172, toplam 2.045
+ok: Tam run · R33 boss geçildi: kota 720 / 720 (eşit), boss hasadı 172 / 172 (eşit), ödül: Nadir Tohum; etkiler temizlendi; sıradaki boss DON CEPHESİ Round 36
+ok: Geçiş R33→R34: SİS bitti; yeni dönem 34–36 (3 round) dönem skoru 0'dan başladı, kota 1.040; toplam skor 2.045 korundu; önizleme DON CEPHESİ · Round 36 (boss hasadı hedefi 276)
+ok: Tam run · R34 (dönem 11: 34–36, hazırlık): önizleme Round 36, HUD "SEGMENT KOTASI · 3 ROUND", dönem skoru 764 / 1.040, toplam 2.809
+ok: Tam run · R35 (dönem 11: 34–36, hazırlık): önizleme Round 36, HUD "SEGMENT KOTASI · 2 ROUND", dönem skoru 764 / 1.040, toplam 2.809
+ok: Tam run · R36 (dönem 11: 34–36, BOSS DON CEPHESİ): önizleme Round 36, HUD "SEGMENT KOTASI TAMAM", dönem skoru 1.040 / 1.040, boss hasadı 276 / 276, toplam 3.085
+ok: Tam run · R36 boss geçildi: kota 1.040 / 1.040 (eşit), boss hasadı 276 / 276 (eşit), ödül: Keskin Bıçak; etkiler temizlendi; sıradaki boss SİS Round 40
+ok: Geçiş R36→R37: DON CEPHESİ bitti; yeni dönem 37–40 (4 round) dönem skoru 0'dan başladı, kota 2.240; toplam skor 3.085 korundu; önizleme SİS · Round 40 (boss hasadı hedefi 500)
+ok: Tam run · R37 (dönem 12: 37–40, hazırlık): önizleme Round 40, HUD "SEGMENT KOTASI · 4 ROUND", dönem skoru 1.740 / 2.240, toplam 4.825
+ok: Tam run · R38 (dönem 12: 37–40, hazırlık): önizleme Round 40, HUD "SEGMENT KOTASI · 3 ROUND", dönem skoru 1.740 / 2.240, toplam 4.825
+ok: Tam run · R39 (dönem 12: 37–40, hazırlık): önizleme Round 40, HUD "SEGMENT KOTASI · 2 ROUND", dönem skoru 1.740 / 2.240, toplam 4.825
+ok: Tam run · R40 (dönem 12: 37–40, BOSS SİS): önizleme Round 40, HUD "SEGMENT KOTASI TAMAM", dönem skoru 2.240 / 2.240, boss hasadı 500 / 500, toplam 5.325
+ok: Tam run · R40 boss geçildi: kota 2.240 / 2.240 (eşit), boss hasadı 500 / 500 (eşit), ödül: Canavar Kesimi; etkiler temizlendi; sıradaki boss SERT KABUK Round 43
+ok: Geçiş R40→R41: SİS bitti; yeni dönem 41–43 (3 round) dönem skoru 0'dan başladı, kota 2.700; toplam skor 5.325 korundu; önizleme SERT KABUK · Round 43 (boss hasadı hedefi 680)
+ok: Tam run · R41 (dönem 13: 41–43, hazırlık): önizleme Round 43, HUD "SEGMENT KOTASI · 3 ROUND", dönem skoru 2.020 / 2.700, toplam 7.345
+ok: Tam run · R42 (dönem 13: 41–43, hazırlık): önizleme Round 43, HUD "SEGMENT KOTASI · 2 ROUND", dönem skoru 2.020 / 2.700, toplam 7.345
+ok: Tam run · R43 (dönem 13: 41–43, BOSS SERT KABUK): önizleme Round 43, HUD "SEGMENT KOTASI TAMAM", dönem skoru 2.700 / 2.700, boss hasadı 680 / 680, toplam 8.025
+ok: Tam run · R43 boss geçildi: kota 2.700 / 2.700 (eşit), boss hasadı 680 / 680 (eşit), ödül: Altın Hedef; etkiler temizlendi; sıradaki boss SİS Round 46
+ok: Geçiş R43→R44: SERT KABUK bitti; yeni dönem 44–46 (3 round) dönem skoru 0'dan başladı, kota 3.000; toplam skor 8.025 korundu; önizleme SİS · Round 46 (boss hasadı hedefi 860)
+ok: Tam run · R44 (dönem 14: 44–46, hazırlık): önizleme Round 46, HUD "SEGMENT KOTASI · 3 ROUND", dönem skoru 2.140 / 3.000, toplam 10.165
+ok: Tam run · R45 (dönem 14: 44–46, hazırlık): önizleme Round 46, HUD "SEGMENT KOTASI · 2 ROUND", dönem skoru 2.140 / 3.000, toplam 10.165
+ok: Tam run · R46 (dönem 14: 44–46, BOSS SİS): önizleme Round 46, HUD "SEGMENT KOTASI TAMAM", dönem skoru 3.000 / 3.000, boss hasadı 860 / 860, toplam 11.025
+ok: Tam run · R46 boss geçildi: kota 3.000 / 3.000 (eşit), boss hasadı 860 / 860 (eşit), ödül: Kritik Göz; etkiler temizlendi; sıradaki boss SERT KABUK Round 50
+ok: Geçiş R46→R47: SİS bitti; yeni dönem 47–50 (4 round) dönem skoru 0'dan başladı, kota 4.800; toplam skor 11.025 korundu; önizleme SERT KABUK · Round 50 (boss hasadı hedefi 1.100)
+ok: Tam run · R47 (dönem 15: 47–50, hazırlık): önizleme Round 50, HUD "SEGMENT KOTASI · 4 ROUND", dönem skoru 3.700 / 4.800, toplam 14.725
+ok: Tam run · R48 (dönem 15: 47–50, hazırlık): önizleme Round 50, HUD "SEGMENT KOTASI · 3 ROUND", dönem skoru 3.700 / 4.800, toplam 14.725
+ok: Tam run · R49 (dönem 15: 47–50, hazırlık): önizleme Round 50, HUD "SEGMENT KOTASI · 2 ROUND", dönem skoru 3.700 / 4.800, toplam 14.725
+ok: Tam run · R50 (dönem 15: 47–50, BOSS SERT KABUK): önizleme Round 50, HUD "SEGMENT KOTASI TAMAM", dönem skoru 4.800 / 4.800, boss hasadı 1.100 / 1.100, toplam 15.825
+   görüntü: Logs/T372_06_R50_AktifBoss.png
+ok: R50 passed (exact quota 4.800 / 4.800 and boss harvest 1.100 / 1.100): the pending level cards open first; the boss reward waits; no victory screen yet
+ok: R50: the next round cannot start while card choices are pending
+   görüntü: Logs/T372_07_R50_LevelKartlari.png
+ok: R50: after the three card choices the boss reward selection opens (still no victory screen)
+   görüntü: Logs/T372_08_R50_BossOdulu.png
+ok: R50 reward panel: "SON BOSS GEÇİLDİ · ÖDÜL SEÇ" / "Yalnız biri alınır · run burada biter · ödül run sonu listesine yazılır" (does not promise a Round 51)
+ok: R50: one reward taken (Kritik Göz); a second request and 'continue' are rejected; then the victory screen
+ok: Whole run R1–50 played in order: exactly 15 boss activations, on rounds 3, 6, 10, 13, 16, 20, 23, 26, 30, 33, 36, 40, 43, 46, 50; no boss active on any other round
+   boss sırası: DON CEPHESİ → SERT KABUK → DON CEPHESİ → SERT KABUK → DON CEPHESİ → SERT KABUK → DON CEPHESİ → SİS → SERT KABUK → SİS → DON CEPHESİ → SİS → SERT KABUK → SİS → SERT KABUK
+ok: 15 bosses gave 15 reward selections: 15 rewards taken, 0 empty offers; never more than one per boss
+ok: Total run score was never reset by a period change: 15.825 = sum of the 15 period quotas
+   görüntü: Logs/T372_09_R50_Zafer.png
+ok: Victory screen lists the rewards of the run, including the one taken at R50: RUN TAMAMLANDI · TAKVİM V1 / 50 round · son kota 4.800 / 4.800 / Başlangıç: Bahçıvan · Standart / Harvest Score: 15.825 / Boss ödülleri: Geniş Savuruş ×2, Bilgi Filizi ×2, Ağır Darbe, Keskin Bıçak ×3, Nadir Tohum ×2, Fırtına Bileği, Canavar Kesimi, Altın Hedef, Kritik Göz ×2
+ok: R51 does not start; boss weather, zone and rule are cleared on the victory screen
+ok: Kota bir eksik (R3): starts clean in RunSetup (Run50_TakvimV1, round 1, score 0, no reward, no active boss; first boss DON CEPHESİ announced for Round 3)
+ok: Kota bir eksik (R3) · R3 (dönem 1: 1–3, BOSS DON CEPHESİ): önizleme Round 3, HUD "SEGMENT KOTASI · SON ROUND", dönem skoru 26 / 27, boss hasadı 5 / 5, toplam 26
+ok: Kota bir eksik (R3): kota 26 / 27, boss hasadı 5 / 5 → QuotaFailed; bekleyen kart seçimi ve ödül açılmadı (bir level bekliyordu), sonraki round başlamadı; ekran: KOTA TUTMADI / Round 3 · segment skoru 26 / 27 (gereken kota) · boss hasadı 5 / 5 (tamam) / Başlangıç: Bahçıvan · Standart / Harvest Score: 26
+ok: Boss hasadı bir eksik (R6): starts clean in RunSetup (Run50_TakvimV1, round 1, score 0, no reward, no active boss; first boss DON CEPHESİ announced for Round 3)
+ok: Boss hasadı bir eksik (R6) · R3 (dönem 1: 1–3, BOSS DON CEPHESİ): önizleme Round 3, HUD "SEGMENT KOTASI TAMAM", dönem skoru 27 / 27, boss hasadı 5 / 5, toplam 27
+ok: Boss hasadı bir eksik (R6) · R3 boss geçildi: kota 27 / 27 (eşit), boss hasadı 5 / 5 (eşit), ödül: Geniş Savuruş; etkiler temizlendi; sıradaki boss SERT KABUK Round 6
+ok: Boss hasadı bir eksik (R6) · R6 (dönem 2: 4–6, BOSS SERT KABUK): önizleme Round 6, HUD "SEGMENT KOTASI · SON ROUND", dönem skoru 40 / 40, boss hasadı 9 / 10, toplam 67
+ok: Boss hasadı bir eksik (R6): kota 40 / 40, boss hasadı 9 / 10 → BossFailed; bekleyen kart seçimi ve ödül açılmadı (bir level bekliyordu), sonraki round başlamadı; ekran: BOSS HASADI TUTMADI / Round 6 · boss hasadı 9 / 10 (eksik) · segment kotası 40 / 40 (tamam) / Başlangıç: Bahçıvan · Standart / Harvest Score: 67 / Boss ödülleri: Geniş Savuruş
+ok: İkisi de eksik (R3): starts clean in RunSetup (Run50_TakvimV1, round 1, score 0, no reward, no active boss; first boss DON CEPHESİ announced for Round 3)
+ok: İkisi de eksik (R3) · R3 (dönem 1: 1–3, BOSS DON CEPHESİ): önizleme Round 3, HUD "SEGMENT KOTASI · SON ROUND", dönem skoru 26 / 27, boss hasadı 4 / 5, toplam 26
+ok: İkisi de eksik (R3): kota 26 / 27, boss hasadı 4 / 5 → QuotaFailed; bekleyen kart seçimi ve ödül açılmadı (level yoktu), sonraki round başlamadı; ekran: KOTA VE BOSS HASADI TUTMADI / Round 3 · boss hasadı 4 / 5 (eksik) · segment kotası 26 / 27 (eksik) / Başlangıç: Bahçıvan · Standart / Harvest Score: 26
+ok: R50'de kayıp: starts clean in RunSetup (Run50_TakvimV1, round 1, score 0, no reward, no active boss; first boss DON CEPHESİ announced for Round 3)
+ok: R50'de kayıp · R3 (dönem 1: 1–3, BOSS DON CEPHESİ): önizleme Round 3, HUD "SEGMENT KOTASI TAMAM", dönem skoru 27 / 27, boss hasadı 5 / 5, toplam 27
+ok: R50'de kayıp · R3 boss geçildi: kota 27 / 27 (eşit), boss hasadı 5 / 5 (eşit), ödül: Geniş Savuruş; etkiler temizlendi; sıradaki boss SERT KABUK Round 6
+ok: R50'de kayıp · R6 (dönem 2: 4–6, BOSS SERT KABUK): önizleme Round 6, HUD "SEGMENT KOTASI TAMAM", dönem skoru 40 / 40, boss hasadı 10 / 10, toplam 67
+ok: R50'de kayıp · R6 boss geçildi: kota 40 / 40 (eşit), boss hasadı 10 / 10 (eşit), ödül: Bilgi Filizi; etkiler temizlendi; sıradaki boss DON CEPHESİ Round 10
+ok: R50'de kayıp · R10 (dönem 3: 7–10, BOSS DON CEPHESİ): önizleme Round 10, HUD "SEGMENT KOTASI TAMAM", dönem skoru 88 / 88, boss hasadı 16 / 16, toplam 155
+ok: R50'de kayıp · R10 boss geçildi: kota 88 / 88 (eşit), boss hasadı 16 / 16 (eşit), ödül: Geniş Savuruş; etkiler temizlendi; sıradaki boss SERT KABUK Round 13
+ok: R50'de kayıp · R13 (dönem 4: 11–13, BOSS SERT KABUK): önizleme Round 13, HUD "SEGMENT KOTASI TAMAM", dönem skoru 90 / 90, boss hasadı 24 / 24, toplam 245
+ok: R50'de kayıp · R13 boss geçildi: kota 90 / 90 (eşit), boss hasadı 24 / 24 (eşit), ödül: Ağır Darbe; etkiler temizlendi; sıradaki boss DON CEPHESİ Round 16
+ok: R50'de kayıp · R16 (dönem 5: 14–16, BOSS DON CEPHESİ): önizleme Round 16, HUD "SEGMENT KOTASI TAMAM", dönem skoru 104 / 104, boss hasadı 33 / 33, toplam 349
+ok: R50'de kayıp · R16 boss geçildi: kota 104 / 104 (eşit), boss hasadı 33 / 33 (eşit), ödül: Keskin Bıçak; etkiler temizlendi; sıradaki boss SERT KABUK Round 20
+ok: R50'de kayıp · R20 (dönem 6: 17–20, BOSS SERT KABUK): önizleme Round 20, HUD "SEGMENT KOTASI TAMAM", dönem skoru 176 / 176, boss hasadı 45 / 45, toplam 525
+ok: R50'de kayıp · R20 boss geçildi: kota 176 / 176 (eşit), boss hasadı 45 / 45 (eşit), ödül: Keskin Bıçak; etkiler temizlendi; sıradaki boss DON CEPHESİ Round 23
+ok: R50'de kayıp · R23 (dönem 7: 21–23, BOSS DON CEPHESİ): önizleme Round 23, HUD "SEGMENT KOTASI TAMAM", dönem skoru 180 / 180, boss hasadı 57 / 57, toplam 705
+ok: R50'de kayıp · R23 boss geçildi: kota 180 / 180 (eşit), boss hasadı 57 / 57 (eşit), ödül: Nadir Tohum; etkiler temizlendi; sıradaki boss SİS Round 26
+ok: R50'de kayıp · R26 (dönem 8: 24–26, BOSS SİS): önizleme Round 26, HUD "SEGMENT KOTASI TAMAM", dönem skoru 220 / 220, boss hasadı 72 / 72, toplam 925
+ok: R50'de kayıp · R26 boss geçildi: kota 220 / 220 (eşit), boss hasadı 72 / 72 (eşit), ödül: Bilgi Filizi; etkiler temizlendi; sıradaki boss SERT KABUK Round 30
+ok: R50'de kayıp · R30 (dönem 9: 27–30, BOSS SERT KABUK): önizleme Round 30, HUD "SEGMENT KOTASI TAMAM", dönem skoru 400 / 400, boss hasadı 100 / 100, toplam 1.325
+ok: R50'de kayıp · R30 boss geçildi: kota 400 / 400 (eşit), boss hasadı 100 / 100 (eşit), ödül: Fırtına Bileği; etkiler temizlendi; sıradaki boss SİS Round 33
+ok: R50'de kayıp · R33 (dönem 10: 31–33, BOSS SİS): önizleme Round 33, HUD "SEGMENT KOTASI TAMAM", dönem skoru 720 / 720, boss hasadı 172 / 172, toplam 2.045
+ok: R50'de kayıp · R33 boss geçildi: kota 720 / 720 (eşit), boss hasadı 172 / 172 (eşit), ödül: Nadir Tohum; etkiler temizlendi; sıradaki boss DON CEPHESİ Round 36
+ok: R50'de kayıp · R36 (dönem 11: 34–36, BOSS DON CEPHESİ): önizleme Round 36, HUD "SEGMENT KOTASI TAMAM", dönem skoru 1.040 / 1.040, boss hasadı 276 / 276, toplam 3.085
+ok: R50'de kayıp · R36 boss geçildi: kota 1.040 / 1.040 (eşit), boss hasadı 276 / 276 (eşit), ödül: Keskin Bıçak; etkiler temizlendi; sıradaki boss SİS Round 40
+ok: R50'de kayıp · R40 (dönem 12: 37–40, BOSS SİS): önizleme Round 40, HUD "SEGMENT KOTASI TAMAM", dönem skoru 2.240 / 2.240, boss hasadı 500 / 500, toplam 5.325
+ok: R50'de kayıp · R40 boss geçildi: kota 2.240 / 2.240 (eşit), boss hasadı 500 / 500 (eşit), ödül: Canavar Kesimi; etkiler temizlendi; sıradaki boss SERT KABUK Round 43
+ok: R50'de kayıp · R43 (dönem 13: 41–43, BOSS SERT KABUK): önizleme Round 43, HUD "SEGMENT KOTASI TAMAM", dönem skoru 2.700 / 2.700, boss hasadı 680 / 680, toplam 8.025
+ok: R50'de kayıp · R43 boss geçildi: kota 2.700 / 2.700 (eşit), boss hasadı 680 / 680 (eşit), ödül: Altın Hedef; etkiler temizlendi; sıradaki boss SİS Round 46
+ok: R50'de kayıp · R46 (dönem 14: 44–46, BOSS SİS): önizleme Round 46, HUD "SEGMENT KOTASI TAMAM", dönem skoru 3.000 / 3.000, boss hasadı 860 / 860, toplam 11.025
+ok: R50'de kayıp · R46 boss geçildi: kota 3.000 / 3.000 (eşit), boss hasadı 860 / 860 (eşit), ödül: Kritik Göz; etkiler temizlendi; sıradaki boss SERT KABUK Round 50
+ok: R50'de kayıp · R50 (dönem 15: 47–50, BOSS SERT KABUK): önizleme Round 50, HUD "SEGMENT KOTASI · SON ROUND", dönem skoru 4.800 / 4.800, boss hasadı 1.099 / 1.100, toplam 15.825
+ok: R50'de kayıp: kota 4.800 / 4.800, boss hasadı 1.099 / 1.100 → BossFailed; bekleyen kart seçimi ve ödül açılmadı (bir level bekliyordu), sonraki round başlamadı; ekran: BOSS HASADI TUTMADI / Round 50 · boss hasadı 1.099 / 1.100 (eksik) · segment kotası 4.800 / 4.800 (tamam) / Başlangıç: Bahçıvan · Standart / Harvest Score: 15.825 / Boss ödülleri: Geniş Savuruş ×2, Bilgi Filizi ×2, Ağır Darbe, Keskin Bıçak ×3, Nadir Tohum ×2, Fırtına Bileği, Canavar Kesimi, Altın Hedef, Kritik Göz
+   görüntü: Logs/T372_10_R50_Kayip.png
+ok: Return to the main menu after the R50 loss: no boss, zone, offer or reward effect survives the scene change
+ok: Test data: a 6-round calendar (R3, R6) whose final entry R6 names its own boss, separate from the pool
+ok: Final kaydı (test verisi, 6 round): starts clean in RunSetup (Takvim (test: final kaydı), round 1, score 0, no reward, no active boss; first boss DON CEPHESİ announced for Round 3)
+ok: Final kaydı (test verisi, 6 round) · R3 (dönem 1: 1–3, BOSS DON CEPHESİ): önizleme Round 3, HUD "SEGMENT KOTASI TAMAM", dönem skoru 27 / 27, boss hasadı 5 / 5, toplam 27
+ok: Final kaydı (test verisi, 6 round) · R3 boss geçildi: kota 27 / 27 (eşit), boss hasadı 5 / 5 (eşit), ödül: Geniş Savuruş; etkiler temizlendi; sıradaki boss FİNAL TEST BOSS'U Round 6
+ok: Final kaydı (test verisi, 6 round) · R6 (dönem 2: 4–6, BOSS FİNAL TEST BOSS'U): önizleme Round 6, HUD "SEGMENT KOTASI TAMAM", dönem skoru 40 / 40, boss hasadı 10 / 10, toplam 67
+ok: Final kaydı (test verisi, 6 round) · R6 son boss: ödül (Bilgi Filizi) → zafer; aktif boss round'ları 3, 6; run sonu: TEST RUN'I TAMAMLANDI / 6 round · son kota 40 / 40 / Başlangıç: Bahçıvan · Standart / Harvest Score: 67 / Boss ödülleri: Geniş Savuruş, Bilgi Filizi
+ok: Final entry with its own boss: R3 came from the pool, R6 ran the boss named by the calendar; one boss per date (2 activations), then reward → victory at the 6-round run length
+ok: Invalid calendar at run time: the run is not started (state stays RunComplete), one clear error is logged ("Run başlatılmadı: 'Geçersiz takvim testi' profilinin boss takvimi geçersiz — tarihler sıralı değil: 2. tarih (Round 3) bir öncekinden (Round 6) küçük. Takvim otomatik düzeltilmez; profil verisi düzeltilince run başlar."); the calendar is not corrected
+ok: The invalid data is left exactly as it was
+ok: Right after the calendar runs, Kırılma V1 still runs its old rhythm in the scene: 5-round segments, first boss at R5, quota 45, boss target 8, no boss at R50
+ok: Kırılma V1 HUD unchanged: "SEGMENT KOTASI · 5 ROUND" / "Yaklaşan boss: DON CEPHESİ · Round 5 · mavi şerit" / "Boss hasadı hedefi (Round 5): 8"
+ok: Expected error messages only from the two invalid-calendar probes (2 lines in total)
+   beklenen hata · Run profili seçilmedi: 'Run50 Takvim V1 · 50 round' boss takvimi geçersiz — tarihler sıralı değil: 2. tarih (Round 2) bir öncekinden (Round 3) küçük
+   beklenen hata · Run başlatılmadı: 'Geçersiz takvim testi' profilinin boss takvimi geçersiz — tarihler sıralı değil: 2. tarih (Round 3) bir öncekinden (Round 6) küçük. Takvim otomatik düzeltilmez; profil verisi düzeltilince run başlar.
+ok: No other error or exception logged during the test

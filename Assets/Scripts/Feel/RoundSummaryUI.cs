@@ -147,22 +147,25 @@ public sealed class RoundSummaryUI : MonoBehaviour
     {
         tone = QuotaTone.Info;
         if (rounds == null || !rounds.QuotaEnabled || rounds.EndedByQuota) return null;
-        int segmentRounds = rounds.QuotaSegmentRounds;
+        // Dönemler run takviminden: eşit segmentlerde hep aynı uzunluk, açık boss takviminde dönemden döneme değişir.
+        RunCalendar calendar = rounds.Calendar;
         SegmentEventDirector events = SegmentEventDirector.Instance;
         string Name(int s, string plain, string boss) => SegmentEventText.IsEventSegment(events, s) ? boss : plain;
         if (finishedRound <= 0)
-            return $"{Name(1, "İlk kota", "İlk boss kotası")}: {HarvestQuota.Format(rounds.QuotaTargetFor(1))} · {segmentRounds} round\n" +
-                   $"<size=72%>Kota her {segmentRounds} round'da kontrol edilir; tutmazsa run biter</size>";
+            return $"{Name(1, "İlk kota", "İlk boss kotası")}: {HarvestQuota.Format(rounds.QuotaTargetFor(1))} · {calendar.PeriodLength(1)} round\n" +
+                   (calendar.IsExplicit
+                       ? "<size=72%>Kota her boss round'unun sonunda kontrol edilir; tutmazsa run biter</size>"
+                       : $"<size=72%>Kota her {calendar.UniformRounds} round'da kontrol edilir; tutmazsa run biter</size>");
         if (rounds.LastQuotaRound == finishedRound)
         {
             tone = QuotaTone.Done;
-            int closed = HarvestQuota.SegmentOf(finishedRound, segmentRounds), next = closed + 1;
+            int closed = calendar.PeriodOf(finishedRound), next = closed + 1;
             string passed = $"{Name(closed, "KOTA", "BOSS KOTASI")} TAMAM · {HarvestQuota.Format(rounds.LastQuotaScore)} / {HarvestQuota.Format(rounds.LastQuotaTarget)}";
             if (finishedRound >= rounds.MaxRounds) return passed;
-            return passed + $"\n<size=72%>{Name(next, "Sıradaki kota", "Sıradaki boss kotası")}: {HarvestQuota.Format(rounds.QuotaTargetFor(next))} · {segmentRounds} round</size>";
+            return passed + $"\n<size=72%>{Name(next, "Sıradaki kota", "Sıradaki boss kotası")}: {HarvestQuota.Format(rounds.QuotaTargetFor(next))} · {calendar.PeriodLength(next)} round</size>";
         }
-        int segment = HarvestQuota.SegmentOf(finishedRound, segmentRounds);
-        int end = HarvestQuota.SegmentEnd(segment, segmentRounds), left = end - finishedRound;
+        int segment = calendar.PeriodOf(finishedRound);
+        int end = calendar.PeriodEnd(segment), left = end - finishedRound;
         long target = rounds.QuotaTargetFor(segment), progress = rounds.QuotaProgress;
         string score = $"{HarvestQuota.Format(progress)} / {HarvestQuota.Format(target)}";
         string kota = Name(segment, "Kota", "Boss kotası");

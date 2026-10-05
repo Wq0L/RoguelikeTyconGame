@@ -31,7 +31,7 @@ public class HarvestScoreManager : MonoBehaviour
     }
 
     public static int CalculateAward(PlantRarity rarity, float playerMultiplier, float planterMultiplier) =>
-        (int)System.Math.Min(int.MaxValue, System.Math.Max(0, System.Math.Round(GetScoreForRarity(rarity) * (double)playerMultiplier * planterMultiplier)));
+        NumericSafety.ToInt(GetScoreForRarity(rarity) * (double)playerMultiplier * planterMultiplier, 0, NumericSite.Score);
 
     private static int GetScoreForRarity(PlantRarity rarity)
     {

@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d024a02157794a408ec9280332f18793, type: 3}
+  m_Name: DavranisaAdanis_B1
+  m_EditorClassIdentifier: Assembly-CSharp::BossRewardSO
+  id: davranisa_adanis
+  displayName: "Davran\u0131\u015Fa Adan\u0131\u015F"
+  effectLabel: 
+  inverseLabel: 
+  note: "Patlama \xB7 elektrik \xB7 kas\u0131rga \xB7 bumerang. Kendi vuru\u015Fun de\u011Fi\u015Fmez."
+  modifiersPerStack: []
+  directDamageMultiplier: 1
+  rareDirectMultiplier: 1
+  rareDirectFrom: 2
+  behaviorDamageMultiplier: 1.5
+  echo: 0
+  echoDelay: 0.2
+  echoDamage: 0.7
+  echoRadius: 1.25
+  rhythmHarvests: 0
+  rhythmDamage: 1.5
+  rhythmRadius: 1.5
+  maxStacks: 1
+  weight: 1
+  condition: 2
+  conditionStat: 0
+  conditionThreshold: 0.7
+  minRound: 0
+  maxRound: 0
+  levelChoiceDelta: -1
+  exclusiveGroup: secim_hakki_takasi

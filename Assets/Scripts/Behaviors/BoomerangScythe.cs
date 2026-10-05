@@ -14,15 +14,26 @@ public sealed class BoomerangScythe : MonoBehaviour
     float progress, duration;
     int damage;
     bool returning;
+    // Zincir bağlamı (Bölüm 3.7.6): bütün vuruşlar onu taşır; kök, bumerang havuza dönene kadar tutulur (OnDisable bırakır).
+    HarvestLink link;
+    int heldRoot;
 
     public void Launch(HarvestBehaviorManager manager, PlanterBrain planter, Vector3 start, Vector3 destination, int baseDamage)
+        => Launch(manager, planter, start, destination, baseDamage, HarvestLink.None, 1f);
+
+    public void Launch(HarvestBehaviorManager manager, PlanterBrain planter, Vector3 start, Vector3 destination, int baseDamage,
+        HarvestLink harvestLink, float damageFactor)
     {
         owner = manager; source = planter; returning = false; progress = 0;
         from = start + Vector3.up * .8f; to = destination + Vector3.up * .8f;
         float distance = Vector3.Distance(from, to);
         duration = Mathf.Clamp(distance / travelSpeed, .4f, 1.6f);
-        damage = Mathf.Max(1, Mathf.RoundToInt(baseDamage * damageMultiplier));
+        damage = NumericSafety.ToInt(baseDamage * damageMultiplier, 1, NumericSite.BehaviorDamage);
         if (planter != null) damage = planter.GetBehaviorDamage(damage, DamageType.Boomerang);
+        // Zincir neslinin çarpanı normal bumerang hasarının üzerine bir kez.
+        damage = HarvestChain.Scale(damage, damageFactor);
+        link = harvestLink;
+        heldRoot = HarvestChain.Hold(link.Root) ? link.Root : 0;
         hitThisLeg.Clear(); transform.position = from; transform.rotation = Quaternion.identity;
         if (visual != null) visual.localRotation = Quaternion.identity;
         if (trail != null) { trail.Clear(); trail.emitting = true; }
@@ -61,12 +72,15 @@ public sealed class BoomerangScythe : MonoBehaviour
                 HarvestBehaviorGeometry.SegmentDistanceSquared(cell.transform.position, a, b) > radius * radius) continue;
             if (!plant.TryGetComponent<PlantHealth>(out var health) || health.IsDead || !hitThisLeg.Add((health, health.LifetimeVersion))) continue;
             Vector3 point = plant.transform.position;
-            health.TakeDamage(damage, DamageType.Boomerang);
+            health.TakeDamage(damage, DamageType.Boomerang, false, 1f, link);
             VFXManager.Instance?.PlayHit(point, damage, false);
         }
     }
     void OnDisable()
     {
+        // Havuza dönüş, round sonu ve sahne kapanışı buradan geçer: kök bir kez bırakılır, bağlam taşınmaz.
+        HarvestChain.Release(heldRoot);
+        heldRoot = 0; link = HarvestLink.None;
         if (trail != null) { trail.emitting = false; trail.Clear(); }
         hitThisLeg.Clear(); owner = null; source = null; progress = 0;
     }

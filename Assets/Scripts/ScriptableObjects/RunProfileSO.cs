@@ -42,6 +42,13 @@ public class RunProfileSO : ScriptableObject
     [Tooltip("Boss ve ödül seçimi seed'i. 0: her run farklı. Başka bir sayı: aynı kararlarla aynı dizi (test ve karşılaştırma).")]
     public int bossSeed;
 
+    [Header("Boss takvimi (Bölüm 3.7.2) — boş bırakılırsa segmentRounds ritmi (eski davranış)")]
+    [Tooltip("Açık boss tarihleri, küçükten büyüğe. Her tarih bir kota dönemini kapatır: dönem, bir önceki tarihten sonraki round'dan bu " +
+             "round'a kadardır. Boss dönemin ilk round'unda duyurulur, yalnız bu round'da aktiftir. Son tarih run'ın son round'u olmalıdır. " +
+             "Doluysa segmentRounds kullanılmaz; kota ve boss hedefi tabloları dönem sırasıyla (0. eleman 1. dönem) eksiksiz yazılır. " +
+             "Geçersiz takvim düzeltilmez: run başlamaz ve hata yazılır.")]
+    public List<BossDate> bossCalendar = new();
+
     [Header("Denge verisi (Bölüm 3.5) — boş bırakılırsa ortak asset'ler kullanılır")]
     [Tooltip("Bu profilin kendi temel statları, can eğrisi, XP tablosu, skill tree'si ve fiyatları. Boş: eski profillerdeki ortak veri.")]
     public RunBalanceSO balance;
@@ -68,20 +75,59 @@ public class RunProfileSO : ScriptableObject
              "yalnız süre veren node'lar satın alınamaz ve önkoşul olarak karşılanmış sayılır. 0: mevcut kural.")]
     [Min(0f)] public float fixedRoundDuration;
 
+    [Header("Round süresi tablosu (Bölüm 3.7.8) — boş bırakılırsa yukarıdaki sabit süre / süre yükseltmeleri (eski davranış)")]
+    [Tooltip("Round numarasına göre süre: her satır 'bu round'dan itibaren şu kadar saniye' der (ilk satır Round 1). Doluysa süre " +
+             "yükseltmeleri ve süreden gelen tempo bu run'da etkisizdir (sabit süredeki kuralla aynı); 60 sn üstü de yazılabilir " +
+             "(sınırlar: RoundDurations). Sabit süreyle birlikte kullanılamaz. Geçersiz tablo düzeltilmez: run başlamaz ve hata yazılır.")]
+    public List<RoundDurationBand> roundDurations = new();
+
     [Header("Bitiş")]
     [Tooltip("Son round'da kota geçilince run sonu ekranının başlığı.")]
     public string victoryTitle = "RUN TAMAMLANDI";
+
+    [NonSerialized] private RunCalendar calendar;
+    // Kota dönemleri ve boss round'ları için tek hesap (veriyi kopyalamaz, bu profili canlı okur).
+    public RunCalendar Calendar => calendar ??= new RunCalendar(this);
 
     public long TargetFor(int segment) =>
         segment >= 1 && segment <= segmentTargets.Count && segmentTargets[segment - 1] > 0
             ? segmentTargets[segment - 1]
             : HarvestQuota.Target(segment, quotaStart, quotaGrowth);
 
-    // Boss ritmi: son segment hariç her segmentin son round'u boss round'udur.
-    public bool HasBoss(int segment) => bossPool != null && segment >= 1 && segment * Mathf.Max(1, segmentRounds) < runLength;
+    // Boss ritmi: eşit segmentte son segment hariç her segmentin son round'u, açık takvimde her tarih boss round'udur.
+    public bool HasBoss(int segment) => Calendar.HasBoss(segment);
 
-    public long BossTargetFor(int segment) =>
-        HasBoss(segment) && segment <= bossTargets.Count && bossTargets[segment - 1] > 0 ? bossTargets[segment - 1] : 0;
+    public long BossTargetFor(int segment) => Calendar.BossTarget(segment);
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        string error = RunCalendar.Validate(this);
+        if (error != null) Debug.LogError($"Run profili '{name}': boss takvimi geçersiz — {error}. Bu hâliyle run başlamaz.", this);
+        error = RoundDurations.Validate(this);
+        if (error != null) Debug.LogError($"Run profili '{name}': round süresi tablosu geçersiz — {error}. Bu hâliyle run başlamaz.", this);
+    }
+#endif
+}
+
+// Round süresi tablosunun bir satırı: fromRound'dan (dahil) bir sonraki satıra kadar her round bu kadar saniye sürer.
+[Serializable]
+public struct RoundDurationBand
+{
+    [Min(1)] public int fromRound;
+    [Min(1f)] public float seconds;
+}
+
+// Boss takvimindeki bir tarih: boss round'u ve o round'da kapanan kota dönemi.
+[Serializable]
+public struct BossDate
+{
+    [Min(1)] public int round;
+    [Tooltip("Run finali (yalnız takvimin son tarihi olabilir). Şimdilik kayıttır: kuralı havuzdaki normal boss'tur; " +
+             "final içeriği (canavar bitki) ayrı pakette tanımlanacak.")]
+    public bool final;
+    [Tooltip("Bu tarihte havuz yerine kullanılacak boss (boş: havuzdan seçilir). Tarih başına tek boss kurulur.")]
+    public SegmentEventSO boss;
 }
 
 public enum ElectricTriggerMode { KillChance = 0, Charge = 1 }

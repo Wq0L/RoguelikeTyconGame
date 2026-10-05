@@ -1,0 +1,294 @@
+PASS: 293 checks
+Runs its own profile UzunRun130 (shared data); project selection: Run50_BedelliOdullerV1
+10 authored rules
+Stable unique recipe identities
+focus threshold 2
+focus below threshold 2
+focus threshold 3
+focus below threshold 3
+focus threshold 4
+focus below threshold 4
+fame threshold 2
+fame below threshold 2
+fame threshold 3
+fame below threshold 3
+fame threshold 4
+fame below threshold 4
+bounty threshold 2
+bounty below threshold 2
+bounty threshold 3
+bounty below threshold 3
+bounty threshold 4
+bounty below threshold 4
+wisdom threshold 2
+wisdom below threshold 2
+wisdom threshold 3
+wisdom below threshold 3
+wisdom threshold 4
+wisdom below threshold 4
+crystal-garden threshold 2
+crystal-garden below threshold 2
+crystal-garden threshold 3
+crystal-garden below threshold 3
+crystal-garden threshold 4
+crystal-garden below threshold 4
+empowered-harvest threshold 1
+empowered-harvest below threshold 1
+empowered-harvest threshold 2
+empowered-harvest below threshold 2
+precious-harvest threshold 2
+precious-harvest below threshold 2
+fertile-soil threshold 2
+fertile-soil below threshold 2
+electric-wisdom threshold 2
+electric-wisdom below threshold 2
+rare-nursery threshold 2
+rare-nursery below threshold 2
+All ten recipes coexist without identity collision
+Resources strongest wins: 2
+Rarity strongest wins: 35
+Spawn floor after resonance: 0.5
+Rare score does not multiply fame: 3
+Behavior bonus never applies to direct: 1
+Behavior bonus Explosion: 2
+Behavior bonus Tornado: 2
+Behavior bonus Boomerang: 2
+Behavior bonus Electric: 2
+Identical refresh has no new popup
+Downgrade does not replay popup
+Evaluation does not consume gameplay RNG
+Source XP replaces target XP resonance rather than multiplying: 10
+Normal target XP resonance retained: 2
+Electrical source XP snapshot: 10
+Matching source behavior boosted: 150
+Unmatched behavior not boosted: 100
+Normal score resonance: 2
+Rare score takes strongest: 3
+Combined Crystal rarity max: 25
+Four recipes on six-cell footprint
+Popup generated
+Popup contains fame
+Popup contains crystal-garden
+Popup contains precious-harvest
+Popup contains rare-nursery
+Energy serialized score Common
+Energy serialized score Rare
+Energy serialized score Epic
+Energy serialized score Legendary
+Global All score counted once: 60
+Nonlethal electric hit
+Nonlethal electricity does not taint direct kill XP: 4
+Single base resource delivery: 5
+One score delivery: 10
+Electric killing hit gets tenfold XP once: 20
+Dead plant cannot reward twice: 90
+Resource resonance x2 plus successful Duplicate x2: 20
+Duplicate is not an XP multiplier: 2
+Duplicate is not a score multiplier: 10
+Actual ElectricBurst transfers source XP to other planter: 20
+Pooled electric reuse does not retain previous XP bonus: 4
+Actual orak base damage 65 then resonance x2: 130
+Pooled orak reuse resets source damage: 65
+Ghost displays all four active recipes: 4
+Placement details start open
+Alt toggle hides details independently of badges
+Details toggle restores panel
+Ghost and placed planter agree
+Invalid placement hides badges: 0
+Placement cancellation hides badges: 0
+Disabled ghost hides badges: 0
+Moving ghost removes previous recipes: 1
+Mouse movement reuses ten badge objects: 22
+Analyzer resolves Rare+ score: 3
+Analyzer resonance-off retains baseline score: 1
+Analyzer ordinary score: 2
+Analyzer strongest rarity contribution: 25
+Simulated per-kill Rare+ score: 1050
+History row uses its own score multiplier: 360
+Round-by-round XP history: 142
+Seeded score replay: 360
+Simulator Duplicate leaves XP unchanged: 70
+Simulator Duplicate leaves score unchanged: 1050
+Simulator Duplicate doubles only resource: 350
+Score distribution P10/P50/P90 and average
+Badge mesh built: focus
+Badge mesh built: fame
+Badge mesh built: bounty
+Badge mesh built: wisdom
+Badge mesh built: crystal-garden
+Badge mesh built: empowered-harvest
+Badge mesh built: precious-harvest
+Badge mesh built: fertile-soil
+Badge mesh built: electric-wisdom
+Badge mesh built: rare-nursery
+Rendered badge gallery has colored geometry: 15 colors
+Third resonance grows tile popup or enables scrolling at screen limit
+Popup toon theme available
+Turkish comic glyphs are pre-baked
+Turkish character stays in comic face: Ç
+Turkish character stays in comic face: ç
+Turkish character stays in comic face: Ğ
+Turkish character stays in comic face: ğ
+Turkish character stays in comic face: İ
+Turkish character stays in comic face: ı
+Turkish character stays in comic face: Ö
+Turkish character stays in comic face: ö
+Turkish character stays in comic face: Ş
+Turkish character stays in comic face: ş
+Turkish character stays in comic face: Ü
+Turkish character stays in comic face: ü
+Every popup uses toon font with solid dark ink on cream paper
+Skill category icon visible before title
+Authored skill has supported icon: 1×3 Saksı
+Authored skill has supported icon: 2×2 Saksı
+Authored skill has supported icon: 2×3 Saksı
+Authored skill has supported icon: Akıcı Kesim - 1
+Authored skill has supported icon: Akıcı Kesim - 2
+Authored skill has supported icon: Akıcı Kesim - 3
+Authored skill has supported icon: Akıcı Kesim - 4
+Authored skill has supported icon: Altın Hasat I - 1
+Authored skill has supported icon: Altın Hasat I - 2
+Authored skill has supported icon: Altın Hasat I - 3
+Authored skill has supported icon: Altın Hasat I - 4
+Authored skill has supported icon: Altın Hasat II - 1
+Authored skill has supported icon: Altın Hasat II - 2
+Authored skill has supported icon: Altın Hasat II - 3
+Authored skill has supported icon: Altın Hasat II - 4
+Authored skill has supported icon: Ağır Kesim - 1
+Authored skill has supported icon: Ağır Kesim - 2
+Authored skill has supported icon: Ağır Kesim - 3
+Authored skill has supported icon: Ağır Kesim - 4
+Authored skill has supported icon: Aşırı Güç I
+Authored skill has supported icon: Aşırı Güç II
+Authored skill has supported icon: Biraz Daha Zaman - 1
+Authored skill has supported icon: Biraz Daha Zaman - 2
+Authored skill has supported icon: Biraz Daha Zaman - 3
+Authored skill has supported icon: Biraz Daha Zaman - 4
+Authored skill has supported icon: Bumerang Orak Kartları
+Authored skill has supported icon: Demir Hasat - 1
+Authored skill has supported icon: Demir Hasat - 2
+Authored skill has supported icon: Demir Hasat - 3
+Authored skill has supported icon: Demir Hasat - 4
+Authored skill has supported icon: Düzenli Üretim - 1
+Authored skill has supported icon: Düzenli Üretim - 2
+Authored skill has supported icon: Düzenli Üretim - 3
+Authored skill has supported icon: Düzenli Üretim - 4
+Authored skill has supported icon: Geniş Süpürüş - 1
+Authored skill has supported icon: Geniş Süpürüş - 2
+Authored skill has supported icon: Geniş Süpürüş - 3
+Authored skill has supported icon: Geniş Süpürüş - 4
+Authored skill has supported icon: Geniş Tarama - 1
+Authored skill has supported icon: Geniş Tarama - 2
+Authored skill has supported icon: Geniş Tarama - 3
+Authored skill has supported icon: Geniş Tarama - 4
+Authored skill has supported icon: Grid Genişleme I
+Authored skill has supported icon: Grid Genişleme II
+Authored skill has supported icon: Güçlü Kesim - 1
+Authored skill has supported icon: Güçlü Kesim - 2
+Authored skill has supported icon: Güçlü Kesim - 3
+Authored skill has supported icon: Güçlü Kesim - 4
+Authored skill has supported icon: Hasat Deneyimi I - 1
+Authored skill has supported icon: Hasat Deneyimi I - 2
+Authored skill has supported icon: Hasat Deneyimi I - 3
+Authored skill has supported icon: Hasat Deneyimi I - 4
+Authored skill has supported icon: Hasat Deneyimi II - 1
+Authored skill has supported icon: Hasat Deneyimi II - 2
+Authored skill has supported icon: Hasat Deneyimi II - 3
+Authored skill has supported icon: Hasat Deneyimi II - 4
+Authored skill has supported icon: Hasat Rekoru - 1
+Authored skill has supported icon: Hasat Rekoru - 2
+Authored skill has supported icon: Hasat Rekoru - 3
+Authored skill has supported icon: Hasat Rekoru - 4
+Authored skill has supported icon: Hasat Zirvesi - 1
+Authored skill has supported icon: Hasat Zirvesi - 2
+Authored skill has supported icon: Hasat Zirvesi - 3
+Authored skill has supported icon: Hasat Zirvesi - 4
+Authored skill has supported icon: Hızlı Eller - 1
+Authored skill has supported icon: Hızlı Eller - 2
+Authored skill has supported icon: Hızlı Eller - 3
+Authored skill has supported icon: Hızlı Eller - 4
+Authored skill has supported icon: Kart Sezgisi - 1
+Authored skill has supported icon: Kart Sezgisi - 2
+Authored skill has supported icon: Kart Sezgisi - 3
+Authored skill has supported icon: Kart Sezgisi - 4
+Authored skill has supported icon: Kesim Tekniği - 1
+Authored skill has supported icon: Kesim Tekniği - 2
+Authored skill has supported icon: Kesim Tekniği - 3
+Authored skill has supported icon: Kesim Tekniği - 4
+Authored skill has supported icon: Kesim Ustalığı - 1
+Authored skill has supported icon: Kesim Ustalığı - 2
+Authored skill has supported icon: Kesim Ustalığı - 3
+Authored skill has supported icon: Kesim Ustalığı - 4
+Authored skill has supported icon: Keskin Başlangıç - 1
+Authored skill has supported icon: Keskin Başlangıç - 2
+Authored skill has supported icon: Keskin Başlangıç - 3
+Authored skill has supported icon: Keskin Başlangıç - 4
+Authored skill has supported icon: Kritik Güç - 1
+Authored skill has supported icon: Kritik Güç - 2
+Authored skill has supported icon: Kritik Güç - 3
+Authored skill has supported icon: Kritik Güç - 4
+Authored skill has supported icon: Kritik Odak - 1
+Authored skill has supported icon: Kritik Odak - 2
+Authored skill has supported icon: Kritik Odak - 3
+Authored skill has supported icon: Kritik Odak - 4
+Authored skill has supported icon: Nadir Filizler - 1
+Authored skill has supported icon: Nadir Filizler - 2
+Authored skill has supported icon: Nadir Filizler - 3
+Authored skill has supported icon: Nadir Filizler - 4
+Authored skill has supported icon: Patlayıcı Kartlar
+Authored skill has supported icon: Plazma Kesim - 1
+Authored skill has supported icon: Plazma Kesim - 2
+Authored skill has supported icon: Plazma Kesim - 3
+Authored skill has supported icon: Plazma Kesim - 4
+Authored skill has supported icon: Seri Üretim - 1
+Authored skill has supported icon: Seri Üretim - 2
+Authored skill has supported icon: Seri Üretim - 3
+Authored skill has supported icon: Son Vardiya - 1
+Authored skill has supported icon: Son Vardiya - 2
+Authored skill has supported icon: Son Vardiya - 3
+Authored skill has supported icon: Son Vardiya - 4
+Authored skill has supported icon: Taş Hasat - 1
+Authored skill has supported icon: Taş Hasat - 2
+Authored skill has supported icon: Taş Hasat - 3
+Authored skill has supported icon: Taş Hasat - 4
+Authored skill has supported icon: Tornado Kartları
+Authored skill has supported icon: Uzun Hasat - 1
+Authored skill has supported icon: Uzun Hasat - 2
+Authored skill has supported icon: Uzun Hasat - 3
+Authored skill has supported icon: Uzun Hasat - 4
+Authored skill has supported icon: Verimli Üretim - 1
+Authored skill has supported icon: Verimli Üretim - 2
+Authored skill has supported icon: Verimli Üretim - 3
+Authored skill has supported icon: Verimli Üretim - 4
+Authored skill has supported icon: Yıldırım Kesim - 1
+Authored skill has supported icon: Yıldırım Kesim - 2
+Authored skill has supported icon: Yıldırım Kesim - 3
+Authored skill has supported icon: Yıldız Kesim - 1
+Authored skill has supported icon: Yıldız Kesim - 2
+Authored skill has supported icon: Yıldız Kesim - 3
+Authored skill has supported icon: Yıldız Kesim - 4
+Authored skill has supported icon: Zengin Cevher - 1
+Authored skill has supported icon: Zengin Cevher - 2
+Authored skill has supported icon: Zengin Cevher - 3
+Authored skill has supported icon: Zengin Cevher - 4
+Authored skill has supported icon: Çapraz Elektrik Kartları
+Authored skill has supported icon: Çifte Hasat Kartları
+Authored skill has supported icon: İkinci Vazgeçiş
+Authored skill has supported icon: İleri Ustalık - 1
+Authored skill has supported icon: İleri Ustalık - 2
+Authored skill has supported icon: İleri Ustalık - 3
+Authored skill has supported icon: İleri Ustalık - 4
+Authored skill has supported icon: İlk Vazgeçiş
+Complete authored skill tree checked
+Behavior unlock uses its own pictogram
+Real skill node prefab loaded
+Actual prefab no longer washes out its icon
+Actual prefab icon uses full scale
+Comic face renders in front of shadow
+Legacy button tint cannot wash out node
+Ten resonances retained with clipped scrolling
+Long popup scroll reaches later entries
+Pooled popup shrinks and resets scroll
+Presentation never blocks placement input
+Pooled popup clears previous skill icon
+Profile override removed; selection file unchanged

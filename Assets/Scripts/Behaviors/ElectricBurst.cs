@@ -5,8 +5,11 @@ public sealed class ElectricBurst : MonoBehaviour
 {
     [SerializeField] Material boltMaterial;
     [SerializeField] float lifetime = .28f;
-    readonly LineRenderer[] bolts = new LineRenderer[16];
-    readonly Vector3[] start = new Vector3[8], end = new Vector3[8];
+    // Bir dalgada çizilebilen en çok şimşek: dört çapraz ışın × en çok dört hücre. Bu yalnız ÇİZİM kapasitesidir; hasar bütün
+    // hedeflere uygulanır.
+    public const int MaxBolts = 16;
+    readonly LineRenderer[] bolts = new LineRenderer[MaxBolts * 2];
+    readonly Vector3[] start = new Vector3[MaxBolts], end = new Vector3[MaxBolts];
     HarvestBehaviorManager owner;
     PlanterBrain source;
     int count;
@@ -25,46 +28,53 @@ public sealed class ElectricBurst : MonoBehaviour
             line.enabled = false;
         }
     }
-    static readonly Vector3[] scratchStart = new Vector3[8], scratchEnd = new Vector3[8];
-
     public void Launch(HarvestBehaviorManager manager, PlanterBrain planter, GridSystem grid,
         IReadOnlyList<GridPosition> targets, IReadOnlyList<GridPosition> origins, int damage) =>
         Strike(manager, this, planter, grid, targets, origins, damage);
 
     public static void Strike(HarvestBehaviorManager manager, ElectricBurst visual, PlanterBrain planter, GridSystem grid,
         IReadOnlyList<GridPosition> targets, IReadOnlyList<GridPosition> origins, int damage) =>
-        Strike(manager, visual, planter, grid, targets, origins, damage, false, out _, out _);
+        Strike(manager, visual, planter, grid, targets, origins, damage, false, HarvestLink.None, out _, out _, out _);
 
     // Hedefleri vurur; visual verilirse aynı hedeflere şimşeği çizer. visual null: havuz dolu, sadece hasar.
-    // precomputed: damage zaten hesaplanmış son hasardır (Çifte Akım'ın ikinci dalgası); davranış katsayıları yeniden uygulanmaz.
+    // precomputed: damage zaten hesaplanmış son hasardır (Çifte Akım'ın ikinci dalgası, zincir nesli); davranış katsayıları
+    // yeniden uygulanmaz. link: vuruşların zincir bağlamı (Bölüm 3.7.6).
     // Aynı dalgada bir hedefe bir kez vurulur (hedef listesi tekrarsızdır). struck / killed: vurulan ve ölen canlı bitki sayısı.
+    // Hasar hedef sayısıyla sınırlı değildir: çizim kapasitesini (MaxBolts) aşan hedefler de vurulur, yalnız şimşekleri çizilmez.
+    // cells: dalganın eriştiği tarla hücresi sayısı (canlı bitki olsun olmasın).
     public static void Strike(HarvestBehaviorManager manager, ElectricBurst visual, PlanterBrain planter, GridSystem grid,
-        IReadOnlyList<GridPosition> targets, IReadOnlyList<GridPosition> origins, int damage, bool precomputed, out int struck, out int killed)
+        IReadOnlyList<GridPosition> targets, IReadOnlyList<GridPosition> origins, int damage, bool precomputed, HarvestLink link,
+        out int struck, out int killed, out int cells)
     {
-        struck = killed = 0;
-        Vector3[] from = visual != null ? visual.start : scratchStart, to = visual != null ? visual.end : scratchEnd;
+        struck = killed = cells = 0;
         if (!precomputed) damage = planter != null ? planter.GetBehaviorDamage(damage, DamageType.Electric) : damage;
         float xp = planter != null ? ResonanceManager.ElectricXP(planter.ActiveResonances) : 1f;
-        int count = 0;
-        for (int i = 0; i < targets.Count && count < 8; i++)
+        int count = 0, undrawn = 0;
+        for (int i = 0; i < targets.Count; i++)
         {
             var entry = grid.GetGridObject(targets[i]); var cell = entry?.GetGroundCellCached();
             var origin = grid.GetGridObject(origins[i])?.GetGroundCellCached();
             if (cell == null || cell.IsLocked || origin == null || entry.GetPlanterBrain() == planter) continue;
-            from[count] = origin.transform.position + Vector3.up * .8f;
-            to[count] = cell.transform.position + Vector3.up * .8f;
-            count++;
+            cells++;
+            if (visual != null && count < MaxBolts)
+            {
+                visual.start[count] = origin.transform.position + Vector3.up * .8f;
+                visual.end[count] = cell.transform.position + Vector3.up * .8f;
+                count++;
+            }
+            else if (visual != null) undrawn++;
             var plant = entry.GetPlantObject();
             if (plant != null && plant.TryGetComponent<PlantHealth>(out var health) && !health.IsDead)
             {
                 Vector3 point = plant.transform.position;
                 struck++;
-                health.TakeDamage(damage, DamageType.Electric, false, xp);
+                health.TakeDamage(damage, DamageType.Electric, false, xp, link);
                 if (health.IsDead) killed++;
                 VFXManager.Instance?.PlayHit(point, damage, false);
             }
         }
         if (visual != null) visual.Show(manager, planter, count);
+        if (undrawn > 0 && manager != null) manager.CountSkippedBolts(undrawn);
     }
 
     void Show(HarvestBehaviorManager manager, PlanterBrain planter, int boltCount)

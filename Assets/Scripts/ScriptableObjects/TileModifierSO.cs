@@ -56,8 +56,9 @@ public class TileModifierSO : ScriptableObject
     [Tooltip("None: başlangıçtan itibaren havuzda. Diğerleri: skill tree bu kilidi açınca havuza girer.")]
     public UnlockType requiredUnlock = UnlockType.None;
 
-    public bool IsAvailableInCardPool => requiredUnlock == UnlockType.None ||
-        (UnlockManager.Instance != null && UnlockManager.Instance.IsUnlocked(requiredUnlock));
+    public bool IsAvailableInCardPool => !DemoSceneSettings.Blocks(modifierType) &&
+        (requiredUnlock == UnlockType.None ||
+        (UnlockManager.Instance != null && UnlockManager.Instance.IsUnlocked(requiredUnlock)));
 
     [Header("Davranış")]
     public TileBehavior behavior = TileBehavior.None;

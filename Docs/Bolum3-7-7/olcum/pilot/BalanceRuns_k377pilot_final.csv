@@ -1,0 +1,13 @@
+run,profile,policy,farmer,scythe,seed,label,outcome,round,score,level,levels,choices,cardsTaken,cardTiles,cardUpgrades,cardBase,cardXpBase,cardWater,firstBehavior,firstEffective,firstTrigger,firstUpgrade,firstBase,xpSpent,xpGlobal,xpCardGroup,levelCost,storedXp,levelHalted,saturated,invalidNumbers,maxRoundChoices,maxRoundChoicesRound,maxWaitFrames,totalWaitFrames,remainingShownOk,tailGrowth
+1,Run50_XPV1,Davranış-rezonans,bahcivan,standart,101,s=0.025,KAZANDI,50,1362576,179,178,534,534,121,234,179,35,13,2,3,4,5,34,9055,5.544,1.52,296250,19351,0,0,0,24,42,0,0,1,0.025
+2,Run50_XPV1,Davranış-rezonans,bahcivan,standart,110,s=0.025,KAZANDI,50,910124,141,140,420,420,121,240,59,15,7,2,3,4,5,36,9055,4.5375,0.65,153750,151767,0,0,0,15,21,0,0,1,0.025
+3,Run50_XPV1,XP stresi,bahcivan,standart,100,s=0.025,KAZANDI,50,30907,75,74,259,259,81,173,5,2,22,2,3,5,5,8,4855,3.2812,0.05,27000,6534,0,0,0,12,44,0,0,1,0.025
+4,Run50_XPV1,XP stresi,bahcivan,standart,101,s=0.025,KOTA,23,1131,29,28,84,81,49,32,0,0,22,2,3,4,5,0,125,2.5,0,2800,1091,0,0,0,6,6,0,0,1,0.025
+5,Run50_XPV1,Davranış-rezonans,bahcivan,standart,101,s=0.05,KAZANDI,50,1359660,169,168,504,504,121,234,149,28,13,2,3,4,5,34,9055,4.774,1.17,367500,315112,0,0,0,24,42,0,0,1,0.05
+6,Run50_XPV1,Davranış-rezonans,bahcivan,standart,110,s=0.05,KAZANDI,50,910124,141,140,420,420,121,240,59,15,7,2,3,4,5,36,9055,4.5375,0.65,157500,151767,0,0,0,15,21,0,0,1,0.05
+7,Run50_XPV1,XP stresi,bahcivan,standart,100,s=0.05,KAZANDI,50,30907,75,74,259,259,81,173,5,2,22,2,3,5,5,8,4855,3.2812,0.05,27000,6534,0,0,0,12,44,0,0,1,0.05
+8,Run50_XPV1,XP stresi,bahcivan,standart,101,s=0.05,KOTA,23,1131,29,28,84,81,49,32,0,0,22,2,3,4,5,0,125,2.5,0,2800,1091,0,0,0,6,6,0,0,1,0.05
+9,Run50_XPV1,Davranış-rezonans,bahcivan,standart,101,s=0.1,KAZANDI,50,1324315,162,161,483,483,121,236,126,23,13,2,3,4,5,34,9055,4.312,0.96,480000,323485,0,0,0,24,42,0,0,1,0.1
+10,Run50_XPV1,Davranış-rezonans,bahcivan,standart,110,s=0.1,KAZANDI,50,910124,141,140,420,420,121,240,59,15,7,2,3,4,5,36,9055,4.5375,0.65,165000,151767,0,0,0,15,21,0,0,1,0.1
+11,Run50_XPV1,XP stresi,bahcivan,standart,100,s=0.1,KAZANDI,50,30907,75,74,259,259,81,173,5,2,22,2,3,5,5,8,4855,3.2812,0.05,27000,6534,0,0,0,12,44,0,0,1,0.1
+12,Run50_XPV1,XP stresi,bahcivan,standart,101,s=0.1,KOTA,23,1131,29,28,84,81,49,32,0,0,22,2,3,4,5,0,125,2.5,0,2800,1091,0,0,0,6,6,0,0,1,0.1

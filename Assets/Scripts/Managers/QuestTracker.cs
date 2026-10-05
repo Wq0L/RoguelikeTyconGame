@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Kalıcı görevlerin run içi sayacı. RoundManager kurar.
-// Kaynak olay: PlantHealth.AnyHarvested — Die içinde bitki başına bir kez (ölü bitki yeniden ölemez). Doğrudan ve davranış
-// öldürmelerini kapsar; çifte ödül yalnız kaynağı ikiler, ayrı hasat olayı değildir.
+// Kaynak olay: PlantHealth.Harvested (oynanış olayı; ölçüm için olan AnyHarvested değil) — Die içinde bitki başına bir kez (ölü
+// bitki yeniden ölemez). Doğrudan ve davranış öldürmelerini kapsar; çifte ödül yalnız kaynağı ikiler, ayrı hasat olayı değildir.
 // - Tek-run sayaçları yeni run'da (OnRunStarted) sıfırlanır; ana menüde sayım durur.
 // - Olaya yalnız etkin tracker (Instance) tepki verir: sahne değişirken iki kopya aynı hasadı iki kez sayamaz.
 // - Hedefe ulaşınca MetaSave'e hemen yazılır (kalıcı; kaybetmek ya da menüye dönmek geri almaz). Tamamlanmış görev yeniden sayılmaz.
@@ -29,14 +29,14 @@ public sealed class QuestTracker : MonoBehaviour
 
     private void OnEnable()
     {
-        PlantHealth.AnyHarvested += HandleHarvest;
+        PlantHealth.Harvested += HandleHarvest;
         if (rounds != null) rounds.OnRunStarted += ResetRun;
         if (rounds != null) rounds.OnRoundEnded += FlushSave;
     }
 
     private void OnDisable()
     {
-        PlantHealth.AnyHarvested -= HandleHarvest;
+        PlantHealth.Harvested -= HandleHarvest;
         if (rounds != null) rounds.OnRunStarted -= ResetRun;
         if (rounds != null) rounds.OnRoundEnded -= FlushSave;
         FlushSave();
@@ -71,7 +71,7 @@ public sealed class QuestTracker : MonoBehaviour
     {
         counts.Clear();
         unlockedThisRun.Clear();
-        counting = true;
+        counting = !DemoSceneSettings.IsDemo;
     }
 
     private void HandleHarvest(PlantHealth plant)

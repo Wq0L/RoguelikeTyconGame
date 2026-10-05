@@ -1,0 +1,30 @@
+== YENI TEST + REGRESYON
+AlphaDengeV1Verification | AlphaDengeV1Verification.RunBatch | PASS: 51 checks | 19:09:43-19:10:18 | cikis: ok
+XPV1Verification | XPV1Verification.RunBatch | PASS: 39 checks | 19:10:18-19:10:46 | cikis: ok
+SayisalGuvenlikVerification | SayisalGuvenlikVerification.RunBatch | PASS: 33 checks | 19:10:46-19:11:13 | cikis: ok
+Refactor3762Verification | Refactor3762Verification.RunBatch | PASS: 8 checks | 19:11:13-19:11:35 | cikis: ok
+ZincirV1Verification | ZincirV1Verification.RunBatch | PASS: 38 checks | 19:11:35-19:12:38 | cikis: ok
+AlanGeriBildirimiVerification | AlanGeriBildirimiVerification.RunBatch | PASS: 23 checks | 19:12:38-19:13:16 | cikis: ok
+KirilmaErisimiV1Verification | KirilmaErisimiV1Verification.RunBatch | PASS: 35 checks | 19:13:16-19:14:04 | cikis: ok
+BedelliOdullerV1Verification | BedelliOdullerV1Verification.RunBatch | PASS: 93 checks | 19:14:04-19:15:47 | cikis: ok
+OdulAsamalariV1Verification | OdulAsamalariV1Verification.RunBatch | PASS: 71 checks | 19:15:47-19:16:58 | cikis: ok
+BossRewardVerification | BossRewardVerification.RunBatch | PASS: 127 checks | 19:16:58-19:17:44 | cikis: ok
+KirilmaV1Verification | KirilmaV1Verification.RunBatch | PASS: 189 checks | 19:17:44-19:18:23 | cikis: ok
+TakvimV1Verification | TakvimV1Verification.RunBatch | PASS: 162 checks | 19:18:23-19:19:23 | cikis: ok
+DengeV1Verification | DengeV1Verification.RunBatch | PASS: 86 checks | 19:19:23-19:19:52 | cikis: ok
+RewardOfferDistribution | RewardOfferMeasurement.RunDistribution | DONE: distribution | 19:19:52-19:21:09 | cikis: ok
+HarvestBehaviorVerification | HarvestBehaviorVerification.RunBatch | PASS: 114 checks | 19:21:09-19:21:42 | cikis: ok
+ElectricRevertVerification | ElectricRevertVerification.RunBatch | PASS: 40 checks | 19:21:42-19:22:29 | cikis: ok
+SpecializationVerification | SpecializationVerification.RunBatch | PASS: 100 checks | 19:22:29-19:27:07 | cikis: ok
+StartLoadoutVerification | StartLoadoutVerification.RunBatch | PASS: 88 checks | 19:27:07-19:27:52 | cikis: ok
+MechanicsVerification | MechanicsVerification.RunBatch | PASS: 88 checks | 19:27:52-19:28:18 | cikis: ok
+SimpleResonanceVerification | SimpleResonanceVerification.RunBatch | PASS: 293 checks | 19:28:18-19:28:33 | cikis: ok
+ContactRefactorVerification | ContactRefactorVerification.RunBatch | PASS: 175 checks | 19:28:33-19:28:46 | cikis: ok
+RunPrototypeVerification | RunPrototypeVerification.RunBatch | PASS: 69 checks | 19:28:46-19:29:34 | cikis: ok
+BossWeatherVerification | BossWeatherVerification.RunBatch | PASS: 22 checks | 19:29:34-19:29:47 | cikis: ok
+RoundPreviewVerification | RoundPreviewVerification.RunBatch | PASS: 47 checks | 19:29:47-19:30:17 | cikis: ok
+Run50ReferenceVerification | Run50ReferenceVerification.RunBatch | PASS: 70 checks | 19:30:17-19:32:34 | cikis: ok
+OptionsMenuVerification | OptionsMenuVerification.RunBatch | PASS 22 rows | 19:32:34-19:32:53 | cikis: ok
+ComicCardVerification | ComicCardVerification.RunBatch | sonuc dosyasi yok | 19:32:53-19:33:08 | cikis: ok
+BedelliOdulMeasurement | BedelliOdulMeasurement.Run | DONE: 117 round rows, 39 lab runs | 19:33:08-19:35:30 | cikis: ok
+

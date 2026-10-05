@@ -13,6 +13,8 @@ public sealed class TileCardOffer
     public string BaseStatName { get; }
     public bool IsUpgrade => UpgradeTarget != null;
     public bool IsBaseStat => Tile == null;
+    // Temel güç kartı bir birikim grubuna ekleniyor (Bölüm 3.7.7; StatManager.AddToSummedGroup): değeri grubun toplamına eklenir.
+    public bool IsSummed { get; }
 
     public TileCardOffer(TileModifierSO tile)
     {
@@ -21,8 +23,9 @@ public sealed class TileCardOffer
         Modifiers = tile.RollModifiers().AsReadOnly();
     }
 
-    private TileCardOffer(TileModifierSO tile, TileRarity rarity, IReadOnlyList<StatModifier> modifiers, GroundCell target, int levelGain, string baseStatName)
+    private TileCardOffer(TileModifierSO tile, TileRarity rarity, IReadOnlyList<StatModifier> modifiers, GroundCell target, int levelGain, string baseStatName, bool summed = false)
     {
+        IsSummed = summed;
         Tile = tile;
         Rarity = rarity;
         Modifiers = modifiers;
@@ -38,6 +41,6 @@ public sealed class TileCardOffer
         return new TileCardOffer(target.CurrentModifier, rarity, target.PreviewLevels(gain).AsReadOnly(), target, gain, null);
     }
 
-    public static TileCardOffer BaseStat(string name, TileRarity rarity, List<StatModifier> modifiers) =>
-        new TileCardOffer(null, rarity, modifiers.AsReadOnly(), null, 0, name);
+    public static TileCardOffer BaseStat(string name, TileRarity rarity, List<StatModifier> modifiers, bool summed = false) =>
+        new TileCardOffer(null, rarity, modifiers.AsReadOnly(), null, 0, name, summed);
 }

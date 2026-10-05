@@ -1,0 +1,492 @@
+run,policy,farmer,scythe,seed,label,round,node,level,cost,currency,category
+7,Dengeli,bahcivan,standart,100,önce hasar,1,Keskin Başlangıç - 1,1,5,Gold,Damage
+7,Dengeli,bahcivan,standart,100,önce hasar,1,Keskin Başlangıç - 1,2,7,Gold,Damage
+7,Dengeli,bahcivan,standart,100,önce hasar,1,Keskin Başlangıç - 1,3,8,Gold,Damage
+7,Dengeli,bahcivan,standart,100,önce hasar,1,Altın Hasat I - 1,1,7,Gold,Economy
+7,Dengeli,bahcivan,standart,100,önce hasar,2,Keskin Başlangıç - 2,1,10,Gold,Damage
+7,Dengeli,bahcivan,standart,100,önce hasar,2,Keskin Başlangıç - 2,2,11,Gold,Damage
+7,Dengeli,bahcivan,standart,100,önce hasar,2,Hızlı Eller - 1,1,7,Gold,Speed
+7,Dengeli,bahcivan,standart,100,önce hasar,2,Düzenli Üretim - 1,1,6,Gold,Production
+7,Dengeli,bahcivan,standart,100,önce hasar,3,Hasat Deneyimi I - 1,1,6,Gold,Xp
+7,Dengeli,bahcivan,standart,100,önce hasar,6,Grid Genişleme I,1,30,Gold,Grid
+7,Dengeli,bahcivan,standart,100,önce hasar,6,Altın Hasat I - 1,2,9,Gold,Economy
+7,Dengeli,bahcivan,standart,100,önce hasar,6,Hızlı Eller - 1,2,9,Gold,Speed
+7,Dengeli,bahcivan,standart,100,önce hasar,6,Altın Hasat I - 1,3,11,Gold,Economy
+7,Dengeli,bahcivan,standart,100,önce hasar,6,Hızlı Eller - 1,3,11,Gold,Speed
+7,Dengeli,bahcivan,standart,100,önce hasar,8,1×3 Saksı,1,30,Gold,PlanterUnlock
+7,Dengeli,bahcivan,standart,100,önce hasar,8,Hasat Deneyimi I - 1,2,8,Gold,Xp
+7,Dengeli,bahcivan,standart,100,önce hasar,8,Düzenli Üretim - 1,2,8,Gold,Production
+7,Dengeli,bahcivan,standart,100,önce hasar,8,Altın Hasat I - 2,1,13,Gold,Economy
+7,Dengeli,bahcivan,standart,100,önce hasar,8,Hızlı Eller - 2,1,12,Gold,Speed
+7,Dengeli,bahcivan,standart,100,önce hasar,8,Tornado Kartları,1,30,Iron,BehaviorUnlock
+7,Dengeli,bahcivan,standart,100,önce hasar,9,Hasat Deneyimi I - 1,3,10,Gold,Xp
+7,Dengeli,bahcivan,standart,100,önce hasar,9,Altın Hasat I - 2,2,16,Gold,Economy
+7,Dengeli,bahcivan,standart,100,önce hasar,9,Hızlı Eller - 2,2,14,Gold,Speed
+7,Dengeli,bahcivan,standart,100,önce hasar,9,Keskin Başlangıç - 3,1,13,Gold,Damage
+7,Dengeli,bahcivan,standart,100,önce hasar,9,Düzenli Üretim - 1,3,10,Gold,Production
+8,Dengeli,bahcivan,standart,101,önce hasar,1,Keskin Başlangıç - 1,1,5,Gold,Damage
+8,Dengeli,bahcivan,standart,101,önce hasar,1,Keskin Başlangıç - 1,2,7,Gold,Damage
+8,Dengeli,bahcivan,standart,101,önce hasar,1,Keskin Başlangıç - 1,3,8,Gold,Damage
+8,Dengeli,bahcivan,standart,101,önce hasar,1,Altın Hasat I - 1,1,7,Gold,Economy
+8,Dengeli,bahcivan,standart,101,önce hasar,2,Keskin Başlangıç - 2,1,10,Gold,Damage
+8,Dengeli,bahcivan,standart,101,önce hasar,2,Keskin Başlangıç - 2,2,11,Gold,Damage
+8,Dengeli,bahcivan,standart,101,önce hasar,2,Hızlı Eller - 1,1,7,Gold,Speed
+8,Dengeli,bahcivan,standart,101,önce hasar,2,Düzenli Üretim - 1,1,6,Gold,Production
+8,Dengeli,bahcivan,standart,101,önce hasar,4,Hasat Deneyimi I - 1,1,6,Gold,Xp
+8,Dengeli,bahcivan,standart,101,önce hasar,6,Grid Genişleme I,1,30,Gold,Grid
+8,Dengeli,bahcivan,standart,101,önce hasar,7,Altın Hasat I - 1,2,9,Gold,Economy
+8,Dengeli,bahcivan,standart,101,önce hasar,7,Hızlı Eller - 1,2,9,Gold,Speed
+8,Dengeli,bahcivan,standart,101,önce hasar,7,Altın Hasat I - 1,3,11,Gold,Economy
+8,Dengeli,bahcivan,standart,101,önce hasar,7,Hızlı Eller - 1,3,11,Gold,Speed
+8,Dengeli,bahcivan,standart,101,önce hasar,8,1×3 Saksı,1,30,Gold,PlanterUnlock
+8,Dengeli,bahcivan,standart,101,önce hasar,8,Hasat Deneyimi I - 1,2,8,Gold,Xp
+8,Dengeli,bahcivan,standart,101,önce hasar,8,Düzenli Üretim - 1,2,8,Gold,Production
+8,Dengeli,bahcivan,standart,101,önce hasar,8,Tornado Kartları,1,30,Iron,BehaviorUnlock
+8,Dengeli,bahcivan,standart,101,önce hasar,9,Altın Hasat I - 2,1,13,Gold,Economy
+8,Dengeli,bahcivan,standart,101,önce hasar,9,Hızlı Eller - 2,1,12,Gold,Speed
+8,Dengeli,bahcivan,standart,101,önce hasar,9,Hasat Deneyimi I - 1,3,10,Gold,Xp
+8,Dengeli,bahcivan,standart,101,önce hasar,9,Altın Hasat I - 2,2,16,Gold,Economy
+9,Dengeli,bahcivan,standart,102,önce hasar,1,Keskin Başlangıç - 1,1,5,Gold,Damage
+9,Dengeli,bahcivan,standart,102,önce hasar,1,Keskin Başlangıç - 1,2,7,Gold,Damage
+9,Dengeli,bahcivan,standart,102,önce hasar,1,Keskin Başlangıç - 1,3,8,Gold,Damage
+9,Dengeli,bahcivan,standart,102,önce hasar,1,Keskin Başlangıç - 2,1,10,Gold,Damage
+9,Dengeli,bahcivan,standart,102,önce hasar,2,Keskin Başlangıç - 2,2,11,Gold,Damage
+9,Dengeli,bahcivan,standart,102,önce hasar,4,Altın Hasat I - 1,1,7,Gold,Economy
+9,Dengeli,bahcivan,standart,102,önce hasar,4,Hızlı Eller - 1,1,7,Gold,Speed
+9,Dengeli,bahcivan,standart,102,önce hasar,5,Grid Genişleme I,1,30,Gold,Grid
+9,Dengeli,bahcivan,standart,102,önce hasar,5,Altın Hasat I - 1,2,9,Gold,Economy
+9,Dengeli,bahcivan,standart,102,önce hasar,5,Hızlı Eller - 1,2,9,Gold,Speed
+9,Dengeli,bahcivan,standart,102,önce hasar,5,Düzenli Üretim - 1,1,6,Gold,Production
+9,Dengeli,bahcivan,standart,102,önce hasar,6,Hasat Deneyimi I - 1,1,6,Gold,Xp
+9,Dengeli,bahcivan,standart,102,önce hasar,7,Altın Hasat I - 1,3,11,Gold,Economy
+9,Dengeli,bahcivan,standart,102,önce hasar,7,Hızlı Eller - 1,3,11,Gold,Speed
+9,Dengeli,bahcivan,standart,102,önce hasar,8,1×3 Saksı,1,30,Gold,PlanterUnlock
+9,Dengeli,bahcivan,standart,102,önce hasar,8,Hasat Deneyimi I - 1,2,8,Gold,Xp
+9,Dengeli,bahcivan,standart,102,önce hasar,8,Düzenli Üretim - 1,2,8,Gold,Production
+9,Dengeli,bahcivan,standart,102,önce hasar,8,Altın Hasat I - 2,1,13,Gold,Economy
+9,Dengeli,bahcivan,standart,102,önce hasar,8,Tornado Kartları,1,30,Iron,BehaviorUnlock
+9,Dengeli,bahcivan,standart,102,önce hasar,9,Hızlı Eller - 2,1,12,Gold,Speed
+9,Dengeli,bahcivan,standart,102,önce hasar,9,Hasat Deneyimi I - 1,3,10,Gold,Xp
+9,Dengeli,bahcivan,standart,102,önce hasar,9,Altın Hasat I - 2,2,16,Gold,Economy
+9,Dengeli,bahcivan,standart,102,önce hasar,9,Hızlı Eller - 2,2,14,Gold,Speed
+10,Dengeli,bahcivan,standart,100,önce hız,1,Hızlı Eller - 1,1,7,Gold,Speed
+10,Dengeli,bahcivan,standart,100,önce hız,1,Hızlı Eller - 1,2,9,Gold,Speed
+10,Dengeli,bahcivan,standart,100,önce hız,1,Hızlı Eller - 1,3,11,Gold,Speed
+10,Dengeli,bahcivan,standart,100,önce hız,2,Hızlı Eller - 2,1,12,Gold,Speed
+10,Dengeli,bahcivan,standart,100,önce hız,2,Hızlı Eller - 2,2,14,Gold,Speed
+10,Dengeli,bahcivan,standart,100,önce hız,2,Altın Hasat I - 1,1,7,Gold,Economy
+10,Dengeli,bahcivan,standart,100,önce hız,3,Keskin Başlangıç - 1,1,5,Gold,Damage
+10,Dengeli,bahcivan,standart,100,önce hız,5,Keskin Başlangıç - 1,2,7,Gold,Damage
+10,Dengeli,bahcivan,standart,100,önce hız,5,Düzenli Üretim - 1,1,6,Gold,Production
+10,Dengeli,bahcivan,standart,100,önce hız,6,Grid Genişleme I,1,30,Gold,Grid
+10,Dengeli,bahcivan,standart,100,önce hız,6,Altın Hasat I - 1,2,9,Gold,Economy
+10,Dengeli,bahcivan,standart,100,önce hız,6,Hasat Deneyimi I - 1,1,6,Gold,Xp
+10,Dengeli,bahcivan,standart,100,önce hız,6,Keskin Başlangıç - 1,3,8,Gold,Damage
+10,Dengeli,bahcivan,standart,100,önce hız,7,Altın Hasat I - 1,3,11,Gold,Economy
+10,Dengeli,bahcivan,standart,100,önce hız,8,1×3 Saksı,1,30,Gold,PlanterUnlock
+10,Dengeli,bahcivan,standart,100,önce hız,8,Keskin Başlangıç - 2,1,10,Gold,Damage
+10,Dengeli,bahcivan,standart,100,önce hız,8,Hasat Deneyimi I - 1,2,8,Gold,Xp
+10,Dengeli,bahcivan,standart,100,önce hız,8,Düzenli Üretim - 1,2,8,Gold,Production
+10,Dengeli,bahcivan,standart,100,önce hız,8,Altın Hasat I - 2,1,13,Gold,Economy
+10,Dengeli,bahcivan,standart,100,önce hız,9,Keskin Başlangıç - 2,2,11,Gold,Damage
+10,Dengeli,bahcivan,standart,100,önce hız,9,Hasat Deneyimi I - 1,3,10,Gold,Xp
+10,Dengeli,bahcivan,standart,100,önce hız,9,Altın Hasat I - 2,2,16,Gold,Economy
+10,Dengeli,bahcivan,standart,100,önce hız,9,Keskin Başlangıç - 3,1,13,Gold,Damage
+10,Dengeli,bahcivan,standart,100,önce hız,9,Düzenli Üretim - 1,3,10,Gold,Production
+11,Dengeli,bahcivan,standart,101,önce hız,1,Hızlı Eller - 1,1,7,Gold,Speed
+11,Dengeli,bahcivan,standart,101,önce hız,1,Hızlı Eller - 1,2,9,Gold,Speed
+11,Dengeli,bahcivan,standart,101,önce hız,1,Hızlı Eller - 1,3,11,Gold,Speed
+11,Dengeli,bahcivan,standart,101,önce hız,2,Hızlı Eller - 2,1,12,Gold,Speed
+11,Dengeli,bahcivan,standart,101,önce hız,2,Hızlı Eller - 2,2,14,Gold,Speed
+11,Dengeli,bahcivan,standart,101,önce hız,4,Altın Hasat I - 1,1,7,Gold,Economy
+11,Dengeli,bahcivan,standart,101,önce hız,6,Keskin Başlangıç - 1,1,5,Gold,Damage
+11,Dengeli,bahcivan,standart,101,önce hız,6,Grid Genişleme I,1,30,Gold,Grid
+11,Dengeli,bahcivan,standart,101,önce hız,6,Keskin Başlangıç - 1,2,7,Gold,Damage
+11,Dengeli,bahcivan,standart,101,önce hız,6,Altın Hasat I - 1,2,9,Gold,Economy
+11,Dengeli,bahcivan,standart,101,önce hız,6,Düzenli Üretim - 1,1,6,Gold,Production
+11,Dengeli,bahcivan,standart,101,önce hız,7,Hasat Deneyimi I - 1,1,6,Gold,Xp
+11,Dengeli,bahcivan,standart,101,önce hız,7,Keskin Başlangıç - 1,3,8,Gold,Damage
+11,Dengeli,bahcivan,standart,101,önce hız,7,Altın Hasat I - 1,3,11,Gold,Economy
+11,Dengeli,bahcivan,standart,101,önce hız,8,1×3 Saksı,1,30,Gold,PlanterUnlock
+11,Dengeli,bahcivan,standart,101,önce hız,8,Keskin Başlangıç - 2,1,10,Gold,Damage
+11,Dengeli,bahcivan,standart,101,önce hız,8,Hasat Deneyimi I - 1,2,8,Gold,Xp
+11,Dengeli,bahcivan,standart,101,önce hız,8,Düzenli Üretim - 1,2,8,Gold,Production
+11,Dengeli,bahcivan,standart,101,önce hız,9,Altın Hasat I - 2,1,13,Gold,Economy
+11,Dengeli,bahcivan,standart,101,önce hız,9,Keskin Başlangıç - 2,2,11,Gold,Damage
+11,Dengeli,bahcivan,standart,101,önce hız,9,Hasat Deneyimi I - 1,3,10,Gold,Xp
+11,Dengeli,bahcivan,standart,101,önce hız,9,Altın Hasat I - 2,2,16,Gold,Economy
+11,Dengeli,bahcivan,standart,101,önce hız,9,Keskin Başlangıç - 3,1,13,Gold,Damage
+11,Dengeli,bahcivan,standart,101,önce hız,9,Düzenli Üretim - 1,3,10,Gold,Production
+11,Dengeli,bahcivan,standart,101,önce hız,9,Tornado Kartları,1,30,Iron,BehaviorUnlock
+12,Dengeli,bahcivan,standart,102,önce hız,1,Hızlı Eller - 1,1,7,Gold,Speed
+12,Dengeli,bahcivan,standart,102,önce hız,1,Hızlı Eller - 1,2,9,Gold,Speed
+12,Dengeli,bahcivan,standart,102,önce hız,1,Hızlı Eller - 1,3,11,Gold,Speed
+12,Dengeli,bahcivan,standart,102,önce hız,2,Hızlı Eller - 2,1,12,Gold,Speed
+12,Dengeli,bahcivan,standart,102,önce hız,2,Hızlı Eller - 2,2,14,Gold,Speed
+12,Dengeli,bahcivan,standart,102,önce hız,2,Altın Hasat I - 1,1,7,Gold,Economy
+12,Dengeli,bahcivan,standart,102,önce hız,2,Keskin Başlangıç - 1,1,5,Gold,Damage
+12,Dengeli,bahcivan,standart,102,önce hız,3,Keskin Başlangıç - 1,2,7,Gold,Damage
+12,Dengeli,bahcivan,standart,102,önce hız,5,Düzenli Üretim - 1,1,6,Gold,Production
+12,Dengeli,bahcivan,standart,102,önce hız,5,Hasat Deneyimi I - 1,1,6,Gold,Xp
+12,Dengeli,bahcivan,standart,102,önce hız,6,Grid Genişleme I,1,30,Gold,Grid
+12,Dengeli,bahcivan,standart,102,önce hız,6,Altın Hasat I - 1,2,9,Gold,Economy
+12,Dengeli,bahcivan,standart,102,önce hız,6,Keskin Başlangıç - 1,3,8,Gold,Damage
+12,Dengeli,bahcivan,standart,102,önce hız,6,Altın Hasat I - 1,3,11,Gold,Economy
+12,Dengeli,bahcivan,standart,102,önce hız,7,1×3 Saksı,1,30,Gold,PlanterUnlock
+12,Dengeli,bahcivan,standart,102,önce hız,7,Keskin Başlangıç - 2,1,10,Gold,Damage
+12,Dengeli,bahcivan,standart,102,önce hız,7,Hasat Deneyimi I - 1,2,8,Gold,Xp
+12,Dengeli,bahcivan,standart,102,önce hız,7,Düzenli Üretim - 1,2,8,Gold,Production
+12,Dengeli,bahcivan,standart,102,önce hız,7,Altın Hasat I - 2,1,13,Gold,Economy
+12,Dengeli,bahcivan,standart,102,önce hız,7,Tornado Kartları,1,30,Iron,BehaviorUnlock
+12,Dengeli,bahcivan,standart,102,önce hız,8,Keskin Başlangıç - 2,2,11,Gold,Damage
+12,Dengeli,bahcivan,standart,102,önce hız,8,Hasat Deneyimi I - 1,3,10,Gold,Xp
+12,Dengeli,bahcivan,standart,102,önce hız,8,Altın Hasat I - 2,2,16,Gold,Economy
+12,Dengeli,bahcivan,standart,102,önce hız,8,Keskin Başlangıç - 3,1,13,Gold,Damage
+12,Dengeli,bahcivan,standart,102,önce hız,8,Düzenli Üretim - 1,3,10,Gold,Production
+12,Dengeli,bahcivan,standart,102,önce hız,9,Keskin Başlangıç - 3,2,14,Gold,Damage
+12,Dengeli,bahcivan,standart,102,önce hız,9,Altın Hasat I - 3,1,18,Gold,Economy
+12,Dengeli,bahcivan,standart,102,önce hız,9,Hasat Deneyimi I - 2,1,12,Gold,Xp
+12,Dengeli,bahcivan,standart,102,önce hız,9,Hızlı Eller - 3,1,16,Gold,Speed
+12,Dengeli,bahcivan,standart,102,önce hız,9,Düzenli Üretim - 2,1,12,Gold,Production
+13,Dengeli,bahcivan,standart,100,önce ekonomi,1,Altın Hasat I - 1,1,7,Gold,Economy
+13,Dengeli,bahcivan,standart,100,önce ekonomi,1,Altın Hasat I - 1,2,9,Gold,Economy
+13,Dengeli,bahcivan,standart,100,önce ekonomi,1,Altın Hasat I - 1,3,11,Gold,Economy
+13,Dengeli,bahcivan,standart,100,önce ekonomi,2,Altın Hasat I - 2,1,13,Gold,Economy
+13,Dengeli,bahcivan,standart,100,önce ekonomi,2,Altın Hasat I - 2,2,16,Gold,Economy
+13,Dengeli,bahcivan,standart,100,önce ekonomi,5,Hızlı Eller - 1,1,7,Gold,Speed
+13,Dengeli,bahcivan,standart,100,önce ekonomi,5,Keskin Başlangıç - 1,1,5,Gold,Damage
+13,Dengeli,bahcivan,standart,100,önce ekonomi,5,Grid Genişleme I,1,30,Gold,Grid
+13,Dengeli,bahcivan,standart,100,önce ekonomi,5,Keskin Başlangıç - 1,2,7,Gold,Damage
+13,Dengeli,bahcivan,standart,100,önce ekonomi,5,Hızlı Eller - 1,2,9,Gold,Speed
+13,Dengeli,bahcivan,standart,100,önce ekonomi,5,Düzenli Üretim - 1,1,6,Gold,Production
+13,Dengeli,bahcivan,standart,100,önce ekonomi,5,Hasat Deneyimi I - 1,1,6,Gold,Xp
+13,Dengeli,bahcivan,standart,100,önce ekonomi,5,Keskin Başlangıç - 1,3,8,Gold,Damage
+13,Dengeli,bahcivan,standart,100,önce ekonomi,6,Hızlı Eller - 1,3,11,Gold,Speed
+13,Dengeli,bahcivan,standart,100,önce ekonomi,7,1×3 Saksı,1,30,Gold,PlanterUnlock
+13,Dengeli,bahcivan,standart,100,önce ekonomi,7,Keskin Başlangıç - 2,1,10,Gold,Damage
+13,Dengeli,bahcivan,standart,100,önce ekonomi,7,Hasat Deneyimi I - 1,2,8,Gold,Xp
+13,Dengeli,bahcivan,standart,100,önce ekonomi,7,Düzenli Üretim - 1,2,8,Gold,Production
+13,Dengeli,bahcivan,standart,100,önce ekonomi,7,Hızlı Eller - 2,1,12,Gold,Speed
+13,Dengeli,bahcivan,standart,100,önce ekonomi,7,Keskin Başlangıç - 2,2,11,Gold,Damage
+13,Dengeli,bahcivan,standart,100,önce ekonomi,7,Hasat Deneyimi I - 1,3,10,Gold,Xp
+13,Dengeli,bahcivan,standart,100,önce ekonomi,8,Hızlı Eller - 2,2,14,Gold,Speed
+13,Dengeli,bahcivan,standart,100,önce ekonomi,8,Keskin Başlangıç - 3,1,13,Gold,Damage
+13,Dengeli,bahcivan,standart,100,önce ekonomi,8,Düzenli Üretim - 1,3,10,Gold,Production
+13,Dengeli,bahcivan,standart,100,önce ekonomi,8,Keskin Başlangıç - 3,2,14,Gold,Damage
+13,Dengeli,bahcivan,standart,100,önce ekonomi,8,Altın Hasat I - 3,1,18,Gold,Economy
+13,Dengeli,bahcivan,standart,100,önce ekonomi,8,Hasat Deneyimi I - 2,1,12,Gold,Xp
+13,Dengeli,bahcivan,standart,100,önce ekonomi,9,Hızlı Eller - 3,1,16,Gold,Speed
+13,Dengeli,bahcivan,standart,100,önce ekonomi,9,Düzenli Üretim - 2,1,12,Gold,Production
+13,Dengeli,bahcivan,standart,100,önce ekonomi,9,Keskin Başlangıç - 4,1,16,Gold,Damage
+13,Dengeli,bahcivan,standart,100,önce ekonomi,9,Altın Hasat I - 3,2,20,Gold,Economy
+13,Dengeli,bahcivan,standart,100,önce ekonomi,9,Hızlı Eller - 3,2,18,Gold,Speed
+13,Dengeli,bahcivan,standart,100,önce ekonomi,9,Tornado Kartları,1,30,Iron,BehaviorUnlock
+14,Dengeli,bahcivan,standart,101,önce ekonomi,1,Altın Hasat I - 1,1,7,Gold,Economy
+14,Dengeli,bahcivan,standart,101,önce ekonomi,1,Altın Hasat I - 1,2,9,Gold,Economy
+14,Dengeli,bahcivan,standart,101,önce ekonomi,1,Altın Hasat I - 1,3,11,Gold,Economy
+14,Dengeli,bahcivan,standart,101,önce ekonomi,2,Altın Hasat I - 2,1,13,Gold,Economy
+14,Dengeli,bahcivan,standart,101,önce ekonomi,2,Altın Hasat I - 2,2,16,Gold,Economy
+14,Dengeli,bahcivan,standart,101,önce ekonomi,3,Hızlı Eller - 1,1,7,Gold,Speed
+14,Dengeli,bahcivan,standart,101,önce ekonomi,3,Keskin Başlangıç - 1,1,5,Gold,Damage
+14,Dengeli,bahcivan,standart,101,önce ekonomi,4,Düzenli Üretim - 1,1,6,Gold,Production
+14,Dengeli,bahcivan,standart,101,önce ekonomi,5,Grid Genişleme I,1,30,Gold,Grid
+14,Dengeli,bahcivan,standart,101,önce ekonomi,5,Keskin Başlangıç - 1,2,7,Gold,Damage
+14,Dengeli,bahcivan,standart,101,önce ekonomi,6,Hızlı Eller - 1,2,9,Gold,Speed
+14,Dengeli,bahcivan,standart,101,önce ekonomi,6,Hasat Deneyimi I - 1,1,6,Gold,Xp
+14,Dengeli,bahcivan,standart,101,önce ekonomi,6,Keskin Başlangıç - 1,3,8,Gold,Damage
+14,Dengeli,bahcivan,standart,101,önce ekonomi,6,Hızlı Eller - 1,3,11,Gold,Speed
+14,Dengeli,bahcivan,standart,101,önce ekonomi,7,1×3 Saksı,1,30,Gold,PlanterUnlock
+14,Dengeli,bahcivan,standart,101,önce ekonomi,7,Keskin Başlangıç - 2,1,10,Gold,Damage
+14,Dengeli,bahcivan,standart,101,önce ekonomi,7,Hasat Deneyimi I - 1,2,8,Gold,Xp
+14,Dengeli,bahcivan,standart,101,önce ekonomi,7,Düzenli Üretim - 1,2,8,Gold,Production
+14,Dengeli,bahcivan,standart,101,önce ekonomi,7,Hızlı Eller - 2,1,12,Gold,Speed
+14,Dengeli,bahcivan,standart,101,önce ekonomi,8,Keskin Başlangıç - 2,2,11,Gold,Damage
+14,Dengeli,bahcivan,standart,101,önce ekonomi,8,Hasat Deneyimi I - 1,3,10,Gold,Xp
+14,Dengeli,bahcivan,standart,101,önce ekonomi,8,Hızlı Eller - 2,2,14,Gold,Speed
+14,Dengeli,bahcivan,standart,101,önce ekonomi,8,Keskin Başlangıç - 3,1,13,Gold,Damage
+14,Dengeli,bahcivan,standart,101,önce ekonomi,8,Düzenli Üretim - 1,3,10,Gold,Production
+14,Dengeli,bahcivan,standart,101,önce ekonomi,9,Keskin Başlangıç - 3,2,14,Gold,Damage
+14,Dengeli,bahcivan,standart,101,önce ekonomi,9,Altın Hasat I - 3,1,18,Gold,Economy
+14,Dengeli,bahcivan,standart,101,önce ekonomi,9,Hasat Deneyimi I - 2,1,12,Gold,Xp
+14,Dengeli,bahcivan,standart,101,önce ekonomi,9,Hızlı Eller - 3,1,16,Gold,Speed
+14,Dengeli,bahcivan,standart,101,önce ekonomi,9,Düzenli Üretim - 2,1,12,Gold,Production
+14,Dengeli,bahcivan,standart,101,önce ekonomi,9,Tornado Kartları,1,30,Iron,BehaviorUnlock
+15,Dengeli,bahcivan,standart,102,önce ekonomi,1,Altın Hasat I - 1,1,7,Gold,Economy
+15,Dengeli,bahcivan,standart,102,önce ekonomi,1,Altın Hasat I - 1,2,9,Gold,Economy
+15,Dengeli,bahcivan,standart,102,önce ekonomi,1,Altın Hasat I - 1,3,11,Gold,Economy
+15,Dengeli,bahcivan,standart,102,önce ekonomi,2,Altın Hasat I - 2,1,13,Gold,Economy
+15,Dengeli,bahcivan,standart,102,önce ekonomi,2,Altın Hasat I - 2,2,16,Gold,Economy
+15,Dengeli,bahcivan,standart,102,önce ekonomi,4,Hızlı Eller - 1,1,7,Gold,Speed
+15,Dengeli,bahcivan,standart,102,önce ekonomi,5,Keskin Başlangıç - 1,1,5,Gold,Damage
+15,Dengeli,bahcivan,standart,102,önce ekonomi,5,Grid Genişleme I,1,30,Gold,Grid
+15,Dengeli,bahcivan,standart,102,önce ekonomi,5,Keskin Başlangıç - 1,2,7,Gold,Damage
+15,Dengeli,bahcivan,standart,102,önce ekonomi,5,Hızlı Eller - 1,2,9,Gold,Speed
+15,Dengeli,bahcivan,standart,102,önce ekonomi,5,Düzenli Üretim - 1,1,6,Gold,Production
+15,Dengeli,bahcivan,standart,102,önce ekonomi,5,Hasat Deneyimi I - 1,1,6,Gold,Xp
+15,Dengeli,bahcivan,standart,102,önce ekonomi,5,Keskin Başlangıç - 1,3,8,Gold,Damage
+15,Dengeli,bahcivan,standart,102,önce ekonomi,5,Hızlı Eller - 1,3,11,Gold,Speed
+15,Dengeli,bahcivan,standart,102,önce ekonomi,8,1×3 Saksı,1,30,Gold,PlanterUnlock
+15,Dengeli,bahcivan,standart,102,önce ekonomi,8,Keskin Başlangıç - 2,1,10,Gold,Damage
+15,Dengeli,bahcivan,standart,102,önce ekonomi,8,Hasat Deneyimi I - 1,2,8,Gold,Xp
+15,Dengeli,bahcivan,standart,102,önce ekonomi,8,Düzenli Üretim - 1,2,8,Gold,Production
+15,Dengeli,bahcivan,standart,102,önce ekonomi,8,Hızlı Eller - 2,1,12,Gold,Speed
+15,Dengeli,bahcivan,standart,102,önce ekonomi,8,Keskin Başlangıç - 2,2,11,Gold,Damage
+15,Dengeli,bahcivan,standart,102,önce ekonomi,8,Hasat Deneyimi I - 1,3,10,Gold,Xp
+15,Dengeli,bahcivan,standart,102,önce ekonomi,8,Tornado Kartları,1,30,Iron,BehaviorUnlock
+15,Dengeli,bahcivan,standart,102,önce ekonomi,9,Hızlı Eller - 2,2,14,Gold,Speed
+15,Dengeli,bahcivan,standart,102,önce ekonomi,9,Keskin Başlangıç - 3,1,13,Gold,Damage
+15,Dengeli,bahcivan,standart,102,önce ekonomi,9,Düzenli Üretim - 1,3,10,Gold,Production
+15,Dengeli,bahcivan,standart,102,önce ekonomi,9,Keskin Başlangıç - 3,2,14,Gold,Damage
+15,Dengeli,bahcivan,standart,102,önce ekonomi,9,Altın Hasat I - 3,1,18,Gold,Economy
+15,Dengeli,bahcivan,standart,102,önce ekonomi,9,Hasat Deneyimi I - 2,1,12,Gold,Xp
+16,Dengeli,bahcivan,standart,100,önce üretim,1,Düzenli Üretim - 1,1,6,Gold,Production
+16,Dengeli,bahcivan,standart,100,önce üretim,1,Düzenli Üretim - 1,2,8,Gold,Production
+16,Dengeli,bahcivan,standart,100,önce üretim,1,Düzenli Üretim - 1,3,10,Gold,Production
+16,Dengeli,bahcivan,standart,100,önce üretim,2,Grid Genişleme I,1,30,Gold,Grid
+16,Dengeli,bahcivan,standart,100,önce üretim,3,Altın Hasat I - 1,1,7,Gold,Economy
+16,Dengeli,bahcivan,standart,100,önce üretim,3,Hızlı Eller - 1,1,7,Gold,Speed
+16,Dengeli,bahcivan,standart,100,önce üretim,5,Keskin Başlangıç - 1,1,5,Gold,Damage
+16,Dengeli,bahcivan,standart,100,önce üretim,5,Keskin Başlangıç - 1,2,7,Gold,Damage
+16,Dengeli,bahcivan,standart,100,önce üretim,5,Altın Hasat I - 1,2,9,Gold,Economy
+16,Dengeli,bahcivan,standart,100,önce üretim,5,Hızlı Eller - 1,2,9,Gold,Speed
+16,Dengeli,bahcivan,standart,100,önce üretim,6,Hasat Deneyimi I - 1,1,6,Gold,Xp
+16,Dengeli,bahcivan,standart,100,önce üretim,7,Keskin Başlangıç - 1,3,8,Gold,Damage
+16,Dengeli,bahcivan,standart,100,önce üretim,7,Altın Hasat I - 1,3,11,Gold,Economy
+16,Dengeli,bahcivan,standart,100,önce üretim,7,Hızlı Eller - 1,3,11,Gold,Speed
+16,Dengeli,bahcivan,standart,100,önce üretim,8,1×3 Saksı,1,30,Gold,PlanterUnlock
+16,Dengeli,bahcivan,standart,100,önce üretim,8,Keskin Başlangıç - 2,1,10,Gold,Damage
+16,Dengeli,bahcivan,standart,100,önce üretim,8,Hasat Deneyimi I - 1,2,8,Gold,Xp
+16,Dengeli,bahcivan,standart,100,önce üretim,8,Altın Hasat I - 2,1,13,Gold,Economy
+16,Dengeli,bahcivan,standart,100,önce üretim,9,Hızlı Eller - 2,1,12,Gold,Speed
+16,Dengeli,bahcivan,standart,100,önce üretim,9,Keskin Başlangıç - 2,2,11,Gold,Damage
+16,Dengeli,bahcivan,standart,100,önce üretim,9,Hasat Deneyimi I - 1,3,10,Gold,Xp
+16,Dengeli,bahcivan,standart,100,önce üretim,9,Altın Hasat I - 2,2,16,Gold,Economy
+16,Dengeli,bahcivan,standart,100,önce üretim,9,Hızlı Eller - 2,2,14,Gold,Speed
+17,Dengeli,bahcivan,standart,101,önce üretim,1,Düzenli Üretim - 1,1,6,Gold,Production
+17,Dengeli,bahcivan,standart,101,önce üretim,1,Düzenli Üretim - 1,2,8,Gold,Production
+17,Dengeli,bahcivan,standart,101,önce üretim,1,Düzenli Üretim - 1,3,10,Gold,Production
+17,Dengeli,bahcivan,standart,101,önce üretim,2,Grid Genişleme I,1,30,Gold,Grid
+17,Dengeli,bahcivan,standart,101,önce üretim,5,Altın Hasat I - 1,1,7,Gold,Economy
+17,Dengeli,bahcivan,standart,101,önce üretim,5,Hızlı Eller - 1,1,7,Gold,Speed
+17,Dengeli,bahcivan,standart,101,önce üretim,5,Keskin Başlangıç - 1,1,5,Gold,Damage
+17,Dengeli,bahcivan,standart,101,önce üretim,6,Keskin Başlangıç - 1,2,7,Gold,Damage
+17,Dengeli,bahcivan,standart,101,önce üretim,6,Altın Hasat I - 1,2,9,Gold,Economy
+17,Dengeli,bahcivan,standart,101,önce üretim,6,Hızlı Eller - 1,2,9,Gold,Speed
+17,Dengeli,bahcivan,standart,101,önce üretim,6,Hasat Deneyimi I - 1,1,6,Gold,Xp
+17,Dengeli,bahcivan,standart,101,önce üretim,7,Keskin Başlangıç - 1,3,8,Gold,Damage
+17,Dengeli,bahcivan,standart,101,önce üretim,7,Altın Hasat I - 1,3,11,Gold,Economy
+17,Dengeli,bahcivan,standart,101,önce üretim,7,Hızlı Eller - 1,3,11,Gold,Speed
+17,Dengeli,bahcivan,standart,101,önce üretim,8,1×3 Saksı,1,30,Gold,PlanterUnlock
+17,Dengeli,bahcivan,standart,101,önce üretim,8,Keskin Başlangıç - 2,1,10,Gold,Damage
+17,Dengeli,bahcivan,standart,101,önce üretim,8,Hasat Deneyimi I - 1,2,8,Gold,Xp
+17,Dengeli,bahcivan,standart,101,önce üretim,9,Grid Genişleme I,2,30,Iron,Grid
+17,Dengeli,bahcivan,standart,101,önce üretim,9,Altın Hasat I - 2,1,13,Gold,Economy
+17,Dengeli,bahcivan,standart,101,önce üretim,9,Hızlı Eller - 2,1,12,Gold,Speed
+17,Dengeli,bahcivan,standart,101,önce üretim,9,Keskin Başlangıç - 2,2,11,Gold,Damage
+17,Dengeli,bahcivan,standart,101,önce üretim,9,Hasat Deneyimi I - 1,3,10,Gold,Xp
+18,Dengeli,bahcivan,standart,102,önce üretim,1,Düzenli Üretim - 1,1,6,Gold,Production
+18,Dengeli,bahcivan,standart,102,önce üretim,1,Düzenli Üretim - 1,2,8,Gold,Production
+18,Dengeli,bahcivan,standart,102,önce üretim,1,Düzenli Üretim - 1,3,10,Gold,Production
+18,Dengeli,bahcivan,standart,102,önce üretim,1,Altın Hasat I - 1,1,7,Gold,Economy
+18,Dengeli,bahcivan,standart,102,önce üretim,2,Hızlı Eller - 1,1,7,Gold,Speed
+18,Dengeli,bahcivan,standart,102,önce üretim,3,Grid Genişleme I,1,30,Gold,Grid
+18,Dengeli,bahcivan,standart,102,önce üretim,3,Keskin Başlangıç - 1,1,5,Gold,Damage
+18,Dengeli,bahcivan,standart,102,önce üretim,5,Keskin Başlangıç - 1,2,7,Gold,Damage
+18,Dengeli,bahcivan,standart,102,önce üretim,5,Altın Hasat I - 1,2,9,Gold,Economy
+18,Dengeli,bahcivan,standart,102,önce üretim,5,Hızlı Eller - 1,2,9,Gold,Speed
+18,Dengeli,bahcivan,standart,102,önce üretim,6,Hasat Deneyimi I - 1,1,6,Gold,Xp
+18,Dengeli,bahcivan,standart,102,önce üretim,6,Keskin Başlangıç - 1,3,8,Gold,Damage
+18,Dengeli,bahcivan,standart,102,önce üretim,7,Altın Hasat I - 1,3,11,Gold,Economy
+18,Dengeli,bahcivan,standart,102,önce üretim,7,Hızlı Eller - 1,3,11,Gold,Speed
+18,Dengeli,bahcivan,standart,102,önce üretim,8,1×3 Saksı,1,30,Gold,PlanterUnlock
+18,Dengeli,bahcivan,standart,102,önce üretim,8,Keskin Başlangıç - 2,1,10,Gold,Damage
+18,Dengeli,bahcivan,standart,102,önce üretim,8,Hasat Deneyimi I - 1,2,8,Gold,Xp
+18,Dengeli,bahcivan,standart,102,önce üretim,8,Altın Hasat I - 2,1,13,Gold,Economy
+18,Dengeli,bahcivan,standart,102,önce üretim,8,Hızlı Eller - 2,1,12,Gold,Speed
+18,Dengeli,bahcivan,standart,102,önce üretim,9,Grid Genişleme I,2,30,Iron,Grid
+18,Dengeli,bahcivan,standart,102,önce üretim,9,Keskin Başlangıç - 2,2,11,Gold,Damage
+18,Dengeli,bahcivan,standart,102,önce üretim,9,Hasat Deneyimi I - 1,3,10,Gold,Xp
+18,Dengeli,bahcivan,standart,102,önce üretim,9,Altın Hasat I - 2,2,16,Gold,Economy
+18,Dengeli,bahcivan,standart,102,önce üretim,9,Hızlı Eller - 2,2,14,Gold,Speed
+19,Dengeli,bahcivan,standart,100,önce XP,1,Düzenli Üretim - 1,1,6,Gold,Production
+19,Dengeli,bahcivan,standart,100,önce XP,1,Hasat Deneyimi I - 1,1,6,Gold,Xp
+19,Dengeli,bahcivan,standart,100,önce XP,1,Hasat Deneyimi I - 1,2,8,Gold,Xp
+19,Dengeli,bahcivan,standart,100,önce XP,1,Altın Hasat I - 1,1,7,Gold,Economy
+19,Dengeli,bahcivan,standart,100,önce XP,2,Hasat Deneyimi I - 1,3,10,Gold,Xp
+19,Dengeli,bahcivan,standart,100,önce XP,2,Hasat Deneyimi I - 2,1,12,Gold,Xp
+19,Dengeli,bahcivan,standart,100,önce XP,2,Hızlı Eller - 1,1,7,Gold,Speed
+19,Dengeli,bahcivan,standart,100,önce XP,3,Hasat Deneyimi I - 2,2,14,Gold,Xp
+19,Dengeli,bahcivan,standart,100,önce XP,4,Keskin Başlangıç - 1,1,5,Gold,Damage
+19,Dengeli,bahcivan,standart,100,önce XP,5,Keskin Başlangıç - 1,2,7,Gold,Damage
+19,Dengeli,bahcivan,standart,100,önce XP,7,Grid Genişleme I,1,30,Gold,Grid
+19,Dengeli,bahcivan,standart,100,önce XP,7,Altın Hasat I - 1,2,9,Gold,Economy
+19,Dengeli,bahcivan,standart,100,önce XP,7,Hızlı Eller - 1,2,9,Gold,Speed
+19,Dengeli,bahcivan,standart,100,önce XP,7,Keskin Başlangıç - 1,3,8,Gold,Damage
+19,Dengeli,bahcivan,standart,100,önce XP,7,Altın Hasat I - 1,3,11,Gold,Economy
+19,Dengeli,bahcivan,standart,100,önce XP,7,Hızlı Eller - 1,3,11,Gold,Speed
+19,Dengeli,bahcivan,standart,100,önce XP,7,1×3 Saksı,1,30,Gold,PlanterUnlock
+19,Dengeli,bahcivan,standart,100,önce XP,8,Tornado Kartları,1,30,Iron,BehaviorUnlock
+19,Dengeli,bahcivan,standart,100,önce XP,9,Keskin Başlangıç - 2,1,10,Gold,Damage
+19,Dengeli,bahcivan,standart,100,önce XP,9,Düzenli Üretim - 1,2,8,Gold,Production
+19,Dengeli,bahcivan,standart,100,önce XP,9,Altın Hasat I - 2,1,13,Gold,Economy
+20,Dengeli,bahcivan,standart,101,önce XP,1,Düzenli Üretim - 1,1,6,Gold,Production
+20,Dengeli,bahcivan,standart,101,önce XP,1,Hasat Deneyimi I - 1,1,6,Gold,Xp
+20,Dengeli,bahcivan,standart,101,önce XP,1,Hasat Deneyimi I - 1,2,8,Gold,Xp
+20,Dengeli,bahcivan,standart,101,önce XP,1,Altın Hasat I - 1,1,7,Gold,Economy
+20,Dengeli,bahcivan,standart,101,önce XP,2,Hasat Deneyimi I - 1,3,10,Gold,Xp
+20,Dengeli,bahcivan,standart,101,önce XP,2,Hasat Deneyimi I - 2,1,12,Gold,Xp
+20,Dengeli,bahcivan,standart,101,önce XP,2,Hızlı Eller - 1,1,7,Gold,Speed
+20,Dengeli,bahcivan,standart,101,önce XP,3,Hasat Deneyimi I - 2,2,14,Gold,Xp
+20,Dengeli,bahcivan,standart,101,önce XP,3,Keskin Başlangıç - 1,1,5,Gold,Damage
+20,Dengeli,bahcivan,standart,101,önce XP,4,Keskin Başlangıç - 1,2,7,Gold,Damage
+20,Dengeli,bahcivan,standart,101,önce XP,6,Grid Genişleme I,1,30,Gold,Grid
+20,Dengeli,bahcivan,standart,101,önce XP,7,Altın Hasat I - 1,2,9,Gold,Economy
+20,Dengeli,bahcivan,standart,101,önce XP,7,Hızlı Eller - 1,2,9,Gold,Speed
+20,Dengeli,bahcivan,standart,101,önce XP,7,Keskin Başlangıç - 1,3,8,Gold,Damage
+20,Dengeli,bahcivan,standart,101,önce XP,7,Altın Hasat I - 1,3,11,Gold,Economy
+20,Dengeli,bahcivan,standart,101,önce XP,7,Hızlı Eller - 1,3,11,Gold,Speed
+20,Dengeli,bahcivan,standart,101,önce XP,8,1×3 Saksı,1,30,Gold,PlanterUnlock
+20,Dengeli,bahcivan,standart,101,önce XP,8,Keskin Başlangıç - 2,1,10,Gold,Damage
+20,Dengeli,bahcivan,standart,101,önce XP,9,Düzenli Üretim - 1,2,8,Gold,Production
+20,Dengeli,bahcivan,standart,101,önce XP,9,Altın Hasat I - 2,1,13,Gold,Economy
+20,Dengeli,bahcivan,standart,101,önce XP,9,Hızlı Eller - 2,1,12,Gold,Speed
+20,Dengeli,bahcivan,standart,101,önce XP,9,Keskin Başlangıç - 2,2,11,Gold,Damage
+20,Dengeli,bahcivan,standart,101,önce XP,9,Tornado Kartları,1,30,Iron,BehaviorUnlock
+21,Dengeli,bahcivan,standart,102,önce XP,1,Düzenli Üretim - 1,1,6,Gold,Production
+21,Dengeli,bahcivan,standart,102,önce XP,1,Hasat Deneyimi I - 1,1,6,Gold,Xp
+21,Dengeli,bahcivan,standart,102,önce XP,1,Hasat Deneyimi I - 1,2,8,Gold,Xp
+21,Dengeli,bahcivan,standart,102,önce XP,1,Hasat Deneyimi I - 1,3,10,Gold,Xp
+21,Dengeli,bahcivan,standart,102,önce XP,2,Hasat Deneyimi I - 2,1,12,Gold,Xp
+21,Dengeli,bahcivan,standart,102,önce XP,2,Hasat Deneyimi I - 2,2,14,Gold,Xp
+21,Dengeli,bahcivan,standart,102,önce XP,3,Altın Hasat I - 1,1,7,Gold,Economy
+21,Dengeli,bahcivan,standart,102,önce XP,5,Hızlı Eller - 1,1,7,Gold,Speed
+21,Dengeli,bahcivan,standart,102,önce XP,5,Keskin Başlangıç - 1,1,5,Gold,Damage
+21,Dengeli,bahcivan,standart,102,önce XP,5,Keskin Başlangıç - 1,2,7,Gold,Damage
+21,Dengeli,bahcivan,standart,102,önce XP,6,Grid Genişleme I,1,30,Gold,Grid
+21,Dengeli,bahcivan,standart,102,önce XP,6,Altın Hasat I - 1,2,9,Gold,Economy
+21,Dengeli,bahcivan,standart,102,önce XP,6,Hızlı Eller - 1,2,9,Gold,Speed
+21,Dengeli,bahcivan,standart,102,önce XP,7,Keskin Başlangıç - 1,3,8,Gold,Damage
+21,Dengeli,bahcivan,standart,102,önce XP,7,Altın Hasat I - 1,3,11,Gold,Economy
+21,Dengeli,bahcivan,standart,102,önce XP,7,Hızlı Eller - 1,3,11,Gold,Speed
+21,Dengeli,bahcivan,standart,102,önce XP,8,1×3 Saksı,1,30,Gold,PlanterUnlock
+21,Dengeli,bahcivan,standart,102,önce XP,8,Keskin Başlangıç - 2,1,10,Gold,Damage
+21,Dengeli,bahcivan,standart,102,önce XP,8,Düzenli Üretim - 1,2,8,Gold,Production
+21,Dengeli,bahcivan,standart,102,önce XP,8,Altın Hasat I - 2,1,13,Gold,Economy
+21,Dengeli,bahcivan,standart,102,önce XP,8,Tornado Kartları,1,30,Iron,BehaviorUnlock
+21,Dengeli,bahcivan,standart,102,önce XP,9,Hızlı Eller - 2,1,12,Gold,Speed
+21,Dengeli,bahcivan,standart,102,önce XP,9,Keskin Başlangıç - 2,2,11,Gold,Damage
+21,Dengeli,bahcivan,standart,102,önce XP,9,Altın Hasat I - 2,2,16,Gold,Economy
+21,Dengeli,bahcivan,standart,102,önce XP,9,Hızlı Eller - 2,2,14,Gold,Speed
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),1,Altın Hasat I - 1,1,7,Gold,Economy
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),2,Hızlı Eller - 1,1,7,Gold,Speed
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),3,Keskin Başlangıç - 1,1,5,Gold,Damage
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),3,Keskin Başlangıç - 1,2,7,Gold,Damage
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),3,Düzenli Üretim - 1,1,6,Gold,Production
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),4,Hasat Deneyimi I - 1,1,6,Gold,Xp
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),5,Grid Genişleme I,1,30,Gold,Grid
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),5,Altın Hasat I - 1,2,9,Gold,Economy
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),5,Hızlı Eller - 1,2,9,Gold,Speed
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),6,Keskin Başlangıç - 1,3,8,Gold,Damage
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),7,Altın Hasat I - 1,3,11,Gold,Economy
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),8,Hızlı Eller - 1,3,11,Gold,Speed
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),8,1×3 Saksı,1,30,Gold,PlanterUnlock
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),8,Keskin Başlangıç - 2,1,10,Gold,Damage
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),8,Hasat Deneyimi I - 1,2,8,Gold,Xp
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),8,Düzenli Üretim - 1,2,8,Gold,Production
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),8,Tornado Kartları,1,30,Iron,BehaviorUnlock
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),9,Altın Hasat I - 2,1,13,Gold,Economy
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),9,Hızlı Eller - 2,1,12,Gold,Speed
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),9,Keskin Başlangıç - 2,2,11,Gold,Damage
+22,Dengeli,bahcivan,standart,100,politika (açılış yok),9,Hasat Deneyimi I - 1,3,10,Gold,Xp
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),1,Altın Hasat I - 1,1,7,Gold,Economy
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),2,Hızlı Eller - 1,1,7,Gold,Speed
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),2,Keskin Başlangıç - 1,1,5,Gold,Damage
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),2,Keskin Başlangıç - 1,2,7,Gold,Damage
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),2,Düzenli Üretim - 1,1,6,Gold,Production
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),3,Hasat Deneyimi I - 1,1,6,Gold,Xp
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),6,Grid Genişleme I,1,30,Gold,Grid
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),6,Altın Hasat I - 1,2,9,Gold,Economy
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),6,Hızlı Eller - 1,2,9,Gold,Speed
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),6,Keskin Başlangıç - 1,3,8,Gold,Damage
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),6,Altın Hasat I - 1,3,11,Gold,Economy
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),6,Hızlı Eller - 1,3,11,Gold,Speed
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),7,1×3 Saksı,1,30,Gold,PlanterUnlock
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),7,Keskin Başlangıç - 2,1,10,Gold,Damage
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),7,Hasat Deneyimi I - 1,2,8,Gold,Xp
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),8,Düzenli Üretim - 1,2,8,Gold,Production
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),8,Altın Hasat I - 2,1,13,Gold,Economy
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),8,Hızlı Eller - 2,1,12,Gold,Speed
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),8,Keskin Başlangıç - 2,2,11,Gold,Damage
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),8,Hasat Deneyimi I - 1,3,10,Gold,Xp
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),9,Altın Hasat I - 2,2,16,Gold,Economy
+23,Dengeli,bahcivan,standart,101,politika (açılış yok),9,Hızlı Eller - 2,2,14,Gold,Speed
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),1,Altın Hasat I - 1,1,7,Gold,Economy
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),2,Hızlı Eller - 1,1,7,Gold,Speed
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),2,Keskin Başlangıç - 1,1,5,Gold,Damage
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),3,Keskin Başlangıç - 1,2,7,Gold,Damage
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),3,Düzenli Üretim - 1,1,6,Gold,Production
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),4,Hasat Deneyimi I - 1,1,6,Gold,Xp
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),5,Grid Genişleme I,1,30,Gold,Grid
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),5,Altın Hasat I - 1,2,9,Gold,Economy
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),5,Hızlı Eller - 1,2,9,Gold,Speed
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),5,Keskin Başlangıç - 1,3,8,Gold,Damage
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),6,Altın Hasat I - 1,3,11,Gold,Economy
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),7,Hızlı Eller - 1,3,11,Gold,Speed
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),8,1×3 Saksı,1,30,Gold,PlanterUnlock
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),8,Keskin Başlangıç - 2,1,10,Gold,Damage
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),8,Hasat Deneyimi I - 1,2,8,Gold,Xp
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),8,Düzenli Üretim - 1,2,8,Gold,Production
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),8,Tornado Kartları,1,30,Iron,BehaviorUnlock
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),9,Altın Hasat I - 2,1,13,Gold,Economy
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),9,Hızlı Eller - 2,1,12,Gold,Speed
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),9,Keskin Başlangıç - 2,2,11,Gold,Damage
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),9,Hasat Deneyimi I - 1,3,10,Gold,Xp
+24,Dengeli,bahcivan,standart,102,politika (açılış yok),9,Altın Hasat I - 2,2,16,Gold,Economy
+25,Yeni,bahcivan,standart,100,acemi,0,Keskin Başlangıç - 1,1,5,Gold,Damage
+25,Yeni,bahcivan,standart,100,acemi,0,Düzenli Üretim - 1,1,6,Gold,Production
+25,Yeni,bahcivan,standart,100,acemi,0,Hızlı Eller - 1,1,7,Gold,Speed
+25,Yeni,bahcivan,standart,100,acemi,1,Hasat Deneyimi I - 1,1,6,Gold,Xp
+25,Yeni,bahcivan,standart,100,acemi,1,Altın Hasat I - 1,1,7,Gold,Economy
+25,Yeni,bahcivan,standart,100,acemi,2,Düzenli Üretim - 1,2,8,Gold,Production
+25,Yeni,bahcivan,standart,100,acemi,2,Hasat Deneyimi I - 1,2,8,Gold,Xp
+25,Yeni,bahcivan,standart,100,acemi,3,Düzenli Üretim - 1,3,10,Gold,Production
+25,Yeni,bahcivan,standart,100,acemi,3,Keskin Başlangıç - 1,2,7,Gold,Damage
+25,Yeni,bahcivan,standart,100,acemi,4,Altın Hasat I - 1,2,9,Gold,Economy
+25,Yeni,bahcivan,standart,100,acemi,5,Hasat Deneyimi I - 1,3,10,Gold,Xp
+25,Yeni,bahcivan,standart,100,acemi,7,Keskin Başlangıç - 1,3,8,Gold,Damage
+25,Yeni,bahcivan,standart,100,acemi,7,Altın Hasat I - 1,3,11,Gold,Economy
+25,Yeni,bahcivan,standart,100,acemi,8,Düzenli Üretim - 2,1,12,Gold,Production
+25,Yeni,bahcivan,standart,100,acemi,8,Keskin Başlangıç - 2,1,10,Gold,Damage
+25,Yeni,bahcivan,standart,100,acemi,8,Keskin Başlangıç - 2,2,11,Gold,Damage
+25,Yeni,bahcivan,standart,100,acemi,9,Düzenli Üretim - 2,2,13,Gold,Production
+25,Yeni,bahcivan,standart,100,acemi,9,Hızlı Eller - 1,2,9,Gold,Speed
+26,Yeni,bahcivan,standart,101,acemi,0,Düzenli Üretim - 1,1,6,Gold,Production
+26,Yeni,bahcivan,standart,101,acemi,0,Hızlı Eller - 1,1,7,Gold,Speed
+26,Yeni,bahcivan,standart,101,acemi,0,Keskin Başlangıç - 1,1,5,Gold,Damage
+26,Yeni,bahcivan,standart,101,acemi,1,Hızlı Eller - 1,2,9,Gold,Speed
+26,Yeni,bahcivan,standart,101,acemi,1,Hasat Deneyimi I - 1,1,6,Gold,Xp
+26,Yeni,bahcivan,standart,101,acemi,3,Keskin Başlangıç - 1,2,7,Gold,Damage
+26,Yeni,bahcivan,standart,101,acemi,4,Düzenli Üretim - 1,2,8,Gold,Production
+26,Yeni,bahcivan,standart,101,acemi,4,Keskin Başlangıç - 1,3,8,Gold,Damage
+26,Yeni,bahcivan,standart,101,acemi,5,Düzenli Üretim - 1,3,10,Gold,Production
+26,Yeni,bahcivan,standart,101,acemi,6,Hasat Deneyimi I - 1,2,8,Gold,Xp
+26,Yeni,bahcivan,standart,101,acemi,6,Keskin Başlangıç - 2,1,10,Gold,Damage
+26,Yeni,bahcivan,standart,101,acemi,7,Altın Hasat I - 1,1,7,Gold,Economy
+26,Yeni,bahcivan,standart,101,acemi,7,Hasat Deneyimi I - 1,3,10,Gold,Xp
+26,Yeni,bahcivan,standart,101,acemi,8,Altın Hasat I - 1,2,9,Gold,Economy
+26,Yeni,bahcivan,standart,101,acemi,9,Hızlı Eller - 1,3,11,Gold,Speed
+27,Yeni,bahcivan,standart,102,acemi,1,Altın Hasat I - 1,1,7,Gold,Economy
+27,Yeni,bahcivan,standart,102,acemi,1,Düzenli Üretim - 1,1,6,Gold,Production
+27,Yeni,bahcivan,standart,102,acemi,2,Hasat Deneyimi I - 1,1,6,Gold,Xp
+27,Yeni,bahcivan,standart,102,acemi,2,Keskin Başlangıç - 1,1,5,Gold,Damage
+27,Yeni,bahcivan,standart,102,acemi,4,Keskin Başlangıç - 1,2,7,Gold,Damage
+27,Yeni,bahcivan,standart,102,acemi,4,Keskin Başlangıç - 1,3,8,Gold,Damage
+27,Yeni,bahcivan,standart,102,acemi,5,Hızlı Eller - 1,1,7,Gold,Speed
+27,Yeni,bahcivan,standart,102,acemi,5,Keskin Başlangıç - 2,1,10,Gold,Damage
+27,Yeni,bahcivan,standart,102,acemi,6,Hızlı Eller - 1,2,9,Gold,Speed
+27,Yeni,bahcivan,standart,102,acemi,6,Altın Hasat I - 1,2,9,Gold,Economy
+27,Yeni,bahcivan,standart,102,acemi,7,Hasat Deneyimi I - 1,2,8,Gold,Xp
+27,Yeni,bahcivan,standart,102,acemi,8,Düzenli Üretim - 1,2,8,Gold,Production
+27,Yeni,bahcivan,standart,102,acemi,8,Düzenli Üretim - 1,3,10,Gold,Production
+27,Yeni,bahcivan,standart,102,acemi,8,Hasat Deneyimi I - 1,3,10,Gold,Xp
+27,Yeni,bahcivan,standart,102,acemi,9,Hızlı Eller - 1,3,11,Gold,Speed

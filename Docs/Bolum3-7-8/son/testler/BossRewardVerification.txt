@@ -1,0 +1,139 @@
+PASS: 127 checks
+ok: Run50_BossPrototip: 50 rounds, 5-round segments, normal start 80 / 0 / 0
+ok: Segment quotas equal Run50_Referans (not rebalanced); no legacy event list, no specialization
+ok: Boss pool: Don Cephesi, Sert Kabuk, Sis (equal weights, data-driven)
+ok: Boss targets table for R5…R45: 15/40/60/80/105/120/135/150/170; no boss on the final segment (R50)
+ok: Reward pool: six rewards, 3 choices, max 3 stacks, equal weights
+ok: Older profiles and Run50_Referans carry no boss data (legacy event path)
+ok: Menu item and validator: Tools/Run Profili/Run50 Boss Prototip · 50 round (boss + ödül)
+ok: GameScene runs the prototype in boss mode with the fixed seed
+ok: Start selection system active (neutral Bahçıvan + Standart; batch save in memory only)
+ok: Normal economy; reward manager present with nothing taken
+ok: Pool pick: never the same boss twice in a row; all three appear; A-B-A happens (no forced three-boss cycle)
+ok: Radius 1,00 (below the Sis threshold 1,2): only Don and Sert Kabuk, alternating, no fallback
+ok: Same seed and candidates → same pick; seed mixing is stable and never 0
+ok: No eligible boss → pool returns none (director uses the visible no-rule fallback)
+ok: Only the previous boss eligible → it repeats and the repeat is flagged
+ok: Boss pick and zone choice do not consume UnityEngine.Random (harvest / crit / card stream)
+ok: Run setup: exactly one boss chosen (segment 1), none active, no fallback
+ok: Boss 1: announced from round 1, active only on round 5
+ok: Start radius 1,00: Sis is not eligible; boss is SERT KABUK
+ok: Zone covers 3 of the 9 open cells (never the whole field)
+ok: Preparation notice (name, rule, target, rounds left): Yaklaşan boss: SERT KABUK · Round 5/Turuncu şerit: 7. satırda bitki canı ×1,5 · boss hasadı hedefi 15 · 4 round hazırlık
+ok: World markers show the previewed zone (not active yet)
+ok: Round map marks the same 3 cells
+saved Logs/Boss_Preview.png
+ok: Preparation HUD: SEGMENT KOTASI TAMAM 500 / 10 | Boss hasadı hedefi (Round 5): 15 | Yaklaşan boss: SERT KABUK · Round 5 · turuncu şerit
+ok: Rounds 1–4: no boss effect (multipliers 1, radius unchanged, boss counter off); segment quota already full (500 / 10)
+ok: Round 5: the previewed boss is active on the previewed zone
+ok: Boss counter starts at 0 although the segment quota is already met (500 / 10)
+ok: Boss start intro: BOSS: SERT KABUK · HASAT HEDEFİ 15
+ok: Sert Kabuk active: band spawn health ×1,5, the other 6 points unchanged
+ok: World markers switch to active
+ok: Boss HUD separates the two conditions: SEGMENT KOTASI TAMAM 509 / 10 | BOSS HASADI: 9 / 15 | SERT KABUK: 7. satırda bitki canı ×1,5
+saved Logs/Boss_HUD_Active.png
+ok: Round keeps running (target reached or not, the timer decides)
+ok: Boss harvest 14 / 15 with the quota met → run lost (boss condition is separate)
+ok: Failed boss gives no reward
+ok: Failure screen names the missing condition: BOSS HASADI TUTMADI/Round 5 · boss hasadı 14 / 15 (eksik) · segment kotası 514 / 10 (tamam)/Başlangıç: Bahçıvan · Standart/Harvest Score: 514/Aktif oynanış 0:00 · seçimler 0:00 · mağaza ve hazırlık 0:05
+ok: Run end clears the boss
+saved Logs/Boss_Fail.png
+ok: Restart with the same seed → same boss and same zone
+ok: Round 5 boss active again
+ok: Boss harvest 15 / 15 passes (equality is success)
+ok: Pending level card comes first; the reward waits
+ok: Offer is not frozen while level cards are pending
+ok: After the cards: boss reward choice
+ok: Three different eligible rewards; Kıvılcım not offered without a behavior planter: Keskin Bıçak, Hızlı Bilek, Bilgi Filizi
+ok: Offer is reproducible from the run seed and does not consume UnityEngine.Random
+ok: Reward panel open (specialization panel closed: none in this profile)
+ok: Cards show effect, current stack and the result of choosing
+ok: Card stack line: multipliers multiply, points add up, shown as the total after choosing
+ok: Card stack text fits its box and stays above the button (no overlap)
+   kart: Keskin Bıçak | Doğrudan vuruş hasarı ×1,15 | Yalnız kendi vuruşun. Davranış hasarı değişmez. | Şu an 0/3: yok/Seçince 1/3: toplam ×1,15
+   kart: Hızlı Bilek | Saldırı aralığı ×0,90 (saldırı sıklığı ×1,11) | Vuruşlar arası süre kısalır. Taban 0,10 sn. | Şu an 0/3: yok/Seçince 1/3: toplam ×0,90 (saldırı sıklığı ×1,11)
+   kart: Bilgi Filizi | Kazanılan XP ×1,25 | Hasattan gelen XP. | Şu an 0/3: yok/Seçince 1/3: toplam ×1,25
+saved Logs/BossReward_Offer.png
+ok: Next round cannot start before the reward is chosen
+ok: A reward that was not offered cannot be taken
+ok: One click = one reward; flow continues to the round summary
+ok: Second request rejected: effect applied exactly once
+ok: Re-opening the panel does not duplicate the reward
+ok: Next boss announced right after the boss round and differs from the previous one: DON CEPHESİ
+ok: Summary after the boss: SERT KABUK GEÇTİ · boss hasadı 15 / 15/Sıradaki boss: DON CEPHESİ (Round 10) · Mavi şerit: 7. satırda üretim ×1,5 yavaş · boss hasadı hedefi 40
+ok: Round 6 starts after the choice; no boss active
+ok: HUD lists the taken reward: Boss ödülleri/· Keskin Bıçak 1/3 · Doğrudan vuruş hasarı ×1,15
+saved Logs/Boss_HUD_Rewards.png
+ok: ClearAll removes the taken reward's effect
+ok: Keskin Bıçak ×1: direct multiplier 1,15; HarvestDamage stat still 40 (no stat modifier)
+ok: Electric from A hits B for 40: behavior damage not raised by Keskin Bıçak
+ok: Direct hit = 40 × 0.857 × 1,15 = 39
+ok: Keskin Bıçak ×3: multipliers multiply (1,15³ = 1,52)
+ok: Fourth copy refused: max 3
+ok: With Usta Biçici: 40 × 1.029 × 1,25 × 1,52 = 78 (each direct multiplier once, one rounding)
+ok: Keskin Bıçak text
+ok: Hızlı Bilek: interval 3 → ×0,9 → ×0,729 after three; fourth refused
+ok: Hızlı Bilek text separates interval from frequency: Saldırı aralığı ×0,90 (saldırı sıklığı ×1,11)
+ok: Existing planter: spawn 5 → 4.5 s, rarity 0 → 8, XP ×1,25
+ok: Planter placed afterwards gets the same bonuses
+ok: Nadir Tohum ×3: points add up (+8 → +24); fourth refused
+ok: Texts: multipliers with ×, percentage points as 'puan'
+ok: Kıvılcım not offered when the only behavior chance is already 100% (nothing to add)
+ok: Behavior planters with 40% and 90% → Kıvılcım eligible
+ok: Kıvılcım: 40% → 50%, 90% → 100% (capped), planter without behavior stays at 0
+ok: No behavior planter left → Kıvılcım not eligible
+ok: Attack interval at the 0,10 s floor → Hızlı Bilek not offered
+ok: Above the floor → offered again
+ok: Two stacks + an identical foreign modifier
+ok: Cleanup removes only the rewards' own modifiers (foreign copy and test modifiers stay; no warnings)
+ok: Round 10: second boss active, target 40
+ok: Only two rewards eligible (three maxed, Kıvılcım without behavior) → two different cards, no filler, no duplicates
+ok: Panel shows exactly two cards
+ok: Second offer in the same run: both cards can be clicked again (the panel does not stay locked after the first choice)
+saved Logs/BossReward_TwoOptions.png
+ok: Chose Bilgi Filizi
+ok: Everything maxed or not applicable
+ok: Boss passed with no eligible reward → empty offer, still an explicit step
+ok: Panel says 'Uygun ödül kalmadı' with a continue button and no cards
+saved Logs/BossReward_None.png
+ok: Still blocked until continue; nothing can be taken
+ok: Continue resolves the step once; the player is not locked
+ok: Round 50: no boss, no boss target
+ok: Round 50 ends the run through the existing victory flow; no run buff offered
+ok: Result screen lists the rewards: BOSS PROTOTİPİ TAMAMLANDI/50 round · son kota 381 / 280/Başlangıç: Bahçıvan · Standart/Harvest Score: 896/Boss ödülleri: Keskin Bıçak ×3, Hızlı Bilek ×3, Bereketli Toprak ×3, Bilgi Filizi ×3, Nadir Tohum ×3/Aktif oynanış 0:01 · seçimler 0:01 · mağaza ve hazırlık 0:03
+saved Logs/Boss_RunEnd.png
+ok: Restart: no reward, no modifier, direct multiplier 1 (nothing accumulates)
+ok: Restart: boss sequence starts over with the same seed
+ok: New run in the same scene clears run buffs
+ok: Main menu: no boss, no reward state survives
+ok: Run buffs were not written to the persistent save
+ok: Test pool with only Sert Kabuk: boss 1 is Sert Kabuk
+ok: Round 4 stock: 9 Grass plants at base health 8, no multiplier
+ok: Stock survives into the boss round (plants persist between rounds)
+ok: Round 5: Sert Kabuk active
+ok: Living stock in the band is hardened at activation (8 → 12); plants outside unchanged
+ok: Wounded plant keeps its ratio (4/8 → 6/12), it is not refilled; full plants stay full
+ok: Multiplier cannot be applied twice in one lifetime
+ok: Plant born in the band during the boss: 9 × 1,5 = 14, once
+ok: A hardened band plant is about to be harvested and returned to the pool
+ok: The same pooled object, reused outside the band: base health 9, no carried multiplier
+ok: Boss over: band plants back to base (wounded 4/8, ratio kept); no leak into round 6
+ok: Round 6: a plant born in the band has base health
+ok: Round 10: Sert Kabuk again (only candidate → repeat, flagged)
+ok: Round 10: 2 living plants hardened at activation
+ok: Run ends while the boss is active: every hardened plant is back to base
+ok: Base health data untouched (PlantHealthScaling, PlantSO)
+ok: Restart after Sert Kabuk: no plant carries a multiplier
+ok: Pool with only Sis at radius 1,00: nothing eligible → visible fallback 'KURALSIZ BOSS', boss target still 15
+ok: Fallback is shown to the player: Yaklaşan boss: KURALSIZ BOSS · Round 5/Kural yok · boss hasadı hedefi 15 · 4 round hazırlık
+ok: Fallback boss round: no rule applied, boss target counted
+ok: Radius 1,30 ≥ 1,2: Sis chosen for round 10 (no zone)
+ok: Sis preview text: KURALSIZ BOSS GEÇTİ · boss hasadı 15 / 15/Sıradaki boss: SİS (Round 10) · Vuruş yarıçapı ×0,85 · boss hasadı hedefi 40
+ok: Sis active: radius 1,30 → 1.105; exactly one player-radius modifier added (behaviors use no radius stat)
+ok: Surface-contact targeting on the legacy fixed-multiplier Sis: before (5, 6), during (5, 6); this multiplier no longer crosses a cell threshold
+ok: Sis over: radius back to 1,30, modifier count restored
+ok: Round 15: Sis again (only candidate → repeat, flagged)
+ok: Run lost during the fog: radius restored, no stray modifier
+ok: New run: Sis active at round 10 with one reward taken
+ok: Main menu while Sis was active and a reward was held: everything cleared, no modifier warning
+ok: No 'modifier not found' warning in the whole test

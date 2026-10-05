@@ -1,0 +1,4 @@
+DONE (ölçüm; işlev testi değil)
+run 1 | Run50_XPV1 | Hasar-alan | bahcivan+standart | seed 100 | XP'siz | durduruldu (ölçüm sınırı) @R8 | skor 465 | level 9 | ağaç 11/221 | ödül keskin_bicak×1 hizli_bilek×1 | 8 level · 24 seçim hakkı · kart 18 tile + 6 yükseltme + 0 temel güç | ilk davranış kartı R2 · ilk tetik R4 | kırılma -
+run 2 | Run50_XPV1 | Hasar-alan | bahcivan+standart | seed 100 | erken XP | durduruldu (ölçüm sınırı) @R8 | skor 437 | level 10 | ağaç 17/221 | ödül bilgi_filizi×2 | 9 level · 27 seçim hakkı · kart 9 tile + 17 yükseltme + 1 temel güç | ilk davranış kartı R2 · ilk tetik R3 | kırılma -
+run 3 | Run50_XPV1 | XP stresi | bahcivan+standart | seed 100 | stres | durduruldu (ölçüm sınırı) @R8 | skor 294 | level 12 | ağaç 13/221 | ödül bilgi_filizi×2 | 11 level · 33 seçim hakkı · kart 9 tile + 19 yükseltme + 5 temel güç | ilk davranış kartı R2 · ilk tetik R5 | kırılma -

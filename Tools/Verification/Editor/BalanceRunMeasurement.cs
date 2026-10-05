@@ -50,6 +50,14 @@ public static class BalanceRunMeasurement
         public int EarlyOnlyUntil;                            // >0: yatırım tercihi yalnız bu round'a kadar; sonra dengeli politika
         public TileModifierType? WantBehavior;                // yol politikası: bu türden ilk kartı (yoksa ilk patlama / elektrik kartını) görünce alır
         public HashSet<UnlockType> AvoidUnlocks = new();      // bu kilitleri açan düğümleri almaz (kart havuzu kendi yolundan seyrelmesin)
+        // Bölüm 3.7.7: temel güç kartı tercihi (kartın ilk stat'ı; yoksa 1 — eski politikalarda boş: yalnız nadirlik).
+        public Dictionary<StatType, float> BaseWeight = new();
+        // XP kolu (RunConfig.XpArm): bu round'a kadar (dahil) Water (XP) kartının ağırlığı XpCardWeight olur ve Bilgi Filizi öne alınır.
+        public int XpEarlyUntil; public float XpCardWeight = 1f;
+        public bool TakesFirstBehavior;                       // ilk patlama / elektrik kartını teklif edildiği anda alır (erken davranış erişimi)
+        // Bölüm 3.7.8 ikinci nişan politikası (RunConfig.Aim = "davranis"): bitkinin nişan değeri, saksısının davranış şansıyla büyür
+        // (değer × (1 + 2 × min(1, patlama + elektrik + kasırga + bumerang şansı))). Bot politikasıdır; insan davranışı değildir.
+        public bool BehaviorAim;
         public bool Early(int round) => EarlyOnlyUntil <= 0 || round <= EarlyOnlyUntil;
         public float Bias_(Cat c, int round) => Early(round) && Bias.TryGetValue(c, out float b) ? b : 0f;
     }
@@ -110,12 +118,69 @@ public static class BalanceRunMeasurement
         p.FixedRewardOrder = true;
         return p;
     }
+    // Bölüm 3.7.7 devam yönleri. İkisi de ilk davranış kartını teklif edilince alır (erken davranış erişimi ölçülür); temel güç
+    // kartlarında kendi yönünün stat'ını öne alır. XP tercihi yönde yoktur: XP kolu (RunConfig.XpArm) ekler ya da kapatır.
+    static Policy DamageArea() => new Policy
+    {
+        Name = "Hasar-alan", TakesFirstBehavior = true,
+        Bias = { [Cat.Damage] = -4, [Cat.Area] = -4, [Cat.Crit] = -2, [Cat.Speed] = 1, [Cat.Rarity] = 3, [Cat.Cards] = 8, [Cat.BehaviorUnlock] = 6, [Cat.Score] = 2 },
+        CardWeight = { [TileModifierType.Damage] = 1.8f, [TileModifierType.Fertile] = 1.3f, [TileModifierType.Energy] = 1.2f },
+        BaseWeight = { [StatType.HarvestDamage] = 2f, [StatType.AttackSpeed] = 1.5f },
+        RewardOrder = new[] { "keskin_bicak", "genis_savurus", "canavar_kesimi", "hizli_bilek", "firtina_bilegi", "kritik_goz", "agir_darbe", "bereketli_toprak", "nadir_tohum", "altin_hedef", "hasat_ritmi", "kivilcim", "yikim_gucu", "bilgi_filizi" },
+        FixedRewardOrder = true,
+    };
+    static Policy BehaviorDirection()
+    {
+        Policy p = Behavior();
+        p.Name = "Davranış yönü"; p.TakesFirstBehavior = true;
+        p.BaseWeight = new Dictionary<StatType, float> { [StatType.HarvestDamage] = 2f, [StatType.PlantSpawnRate] = 1.5f };
+        p.RewardOrder = new[] { "zincir_hasat", "kivilcim", "yikim_gucu", "artci_patlama", "cifte_akim", "hizli_bilek", "firtina_bilegi", "bereketli_toprak", "genis_savurus", "keskin_bicak", "nadir_tohum", "canavar_kesimi", "kritik_goz", "agir_darbe", "altin_hedef", "bilgi_filizi" };
+        p.FixedRewardOrder = true;
+        return p;
+    }
+    // XP stresi: kontrolsüz geri beslemeyi yakalamak için. XP veren her şeyi önce alır: XP düğümleri, Water kartı, Bilgi Filizi,
+    // seçim hakkı veren Bereketli Öğrenim ve temel güçte teklif edilen her XP kartı. Gerçekçi bir oyuncu değildir.
+    static Policy XpStress()
+    {
+        Policy p = Behavior();
+        p.Name = "XP stresi"; p.TakesFirstBehavior = true;
+        p.Bias[Cat.Xp] = -40; p.Bias[Cat.Cards] = -10;
+        p.CardWeight[TileModifierType.Water] = 6f;
+        p.BaseWeight = new Dictionary<StatType, float> { [StatType.XPGainMultiplier] = 1000f, [StatType.PlantSpawnRate] = 1.5f, [StatType.AttackSpeed] = 1.5f };
+        p.RewardOrder = new[] { "bilgi_filizi", "bereketli_ogrenim", "zincir_hasat", "kivilcim", "yikim_gucu", "hizli_bilek", "firtina_bilegi", "bereketli_toprak", "genis_savurus", "keskin_bicak", "nadir_tohum", "canavar_kesimi", "kritik_goz", "agir_darbe", "altin_hedef" };
+        p.FixedRewardOrder = true;
+        return p;
+    }
+    // İkinci stres tanımı (pilot sonrası eklendi): ilk tanım ağaçta XP'yi öne alınca build zayıf kaldı ve temel güç evresine hiç
+    // ulaşmadı (geri besleme rejimi sınanmadı). Bu tanım, temel güç evresine ulaşan "Davranış-rezonans" build'ini aynen kullanır
+    // (ağaç ve tile tercihleri aynı) ve yalnız şunları ekler: temel güçte teklif edilen her XP kartını alır; Bilgi Filizi'ni,
+    // Bereketli Öğrenim'i (level başına seçim +1) ve Zincir Hasat'ı teklif edilince alır.
+    static Policy BaseXpStress()
+    {
+        Policy p = Behavior();
+        p.Name = "Temel güç XP stresi";
+        p.BaseWeight = new Dictionary<StatType, float> { [StatType.XPGainMultiplier] = 1000f };
+        p.RewardOrder = new[] { "bilgi_filizi", "bereketli_ogrenim", "zincir_hasat" }.Concat(p.RewardOrder.Where(r => r != "bilgi_filizi")).ToArray();
+        p.FixedRewardOrder = true;
+        return p;
+    }
+    // Bölüm 3.7.8 — düşük uyumlu tercih: davranış tile'larını ve rezonans yerleşimini seçer (Davranış-rezonans'ın ağacı ve kartları)
+    // ama ödüllerde kendi davranışını beslemeyen doğrudan vuruş / kritik ödüllerini öne alır; kritik düğümlerini de geç alır
+    // (yönün ağaç tercihi), yani aldığı ödül ne tile'larına ne ağacına uyar. Kırılma ödülleri ve zincir sırasında yoktur.
+    static Policy Mismatch()
+    {
+        Policy p = Behavior();
+        p.Name = "Uyumsuz"; p.TakesFirstBehavior = true;
+        p.RewardOrder = new[] { "kritik_goz", "agir_darbe", "altin_hedef", "keskin_bicak", "canavar_kesimi", "nadir_tohum", "bilgi_filizi", "bereketli_toprak", "genis_savurus", "hizli_bilek", "firtina_bilegi", "kivilcim", "yikim_gucu" };
+        p.FixedRewardOrder = true;
+        return p;
+    }
     static Policy Balanced() => new Policy { Name = "Dengeli", RewardOrder = new[] { "hizli_bilek", "keskin_bicak", "genis_savurus", "bereketli_toprak", "nadir_tohum", "firtina_bilegi", "canavar_kesimi", "kritik_goz", "bilgi_filizi", "kivilcim", "yikim_gucu", "agir_darbe", "altin_hedef" } };
     static Policy Newbie() => new Policy { Name = "Yeni", Naive = true, PlanterShare = .5f };
 
     static Policy ByName(string name)
     {
-        foreach (var p in new[] { Speed(), Damage(), Behavior(), Economy(), Balanced(), Newbie(), ExplosionPath(), ElectricPath(), RhythmPath() }) if (p.Name == name) return p;
+        foreach (var p in new[] { Speed(), Damage(), Behavior(), Economy(), Balanced(), Newbie(), ExplosionPath(), ElectricPath(), RhythmPath(), DamageArea(), BehaviorDirection(), XpStress(), BaseXpStress(), Mismatch() }) if (p.Name == name) return p;
         throw new Exception("policy " + name);
     }
 
@@ -131,11 +196,70 @@ public static class BalanceRunMeasurement
         public Cat[] Never;            // bu kategorilerdeki düğümleri hiç almaz (yatırımın geri ödemesini ölçmek için)
         public bool NoBreakthroughs;   // kırılma ödülleri havuzdan çıkarılır ("ödülsüz eş": aynı politika ve seed, kırılma ödülü yok)
         public bool DeclineBreakthroughs; // teklifler aynı kalır (aynı zar akışı), bot kırılma ödülünü ALMAZ: diğer iki seçenekten birini alır.
+        public string DeclineId;       // Bölüm 3.7.6: yalnız bu ödül alınmaz (teklifte başka seçenek varken); diğer kırılma ödülleri alınabilir
                                           // Kırılma ödülünü alan run ile ödülün alındığı round'a kadar birebir aynıdır ("almayan eş").
         public int ChoicesPerLevel;    // >0: profilin level başına seçim sayısı bu run için değiştirilir (ölçüm)
         public int[] LabRounds;        // bu round'ların başındaki durum kaydedilir; run bitince laboratuvar turları oynanır
         public string LabReward;       // laboratuvarın B kolunda eklenen kırılma ödülü (id)
         public int LabSynergyRound;    // >0: o round'un kaydı üstüne "güçlü sinerji" kurulumu da oynanır (A / B)
+        public double WallLimitSec;    // Bölüm 3.7.6.1: >0: run bu kadar gerçek saniyede bitmezse "durduruldu (süre sınırı)" olarak kapanır
+        // Bölüm 3.7.7 — eş bütçeli XP kolları (aynı seed, aynı başlangıç bütçesi; bedava kart ya da kaynak yok):
+        //   "yok"   : hiçbir XP düğümü almaz (o kaynak yön politikasının diğer düğümlerine ve saksıya gider); Water (XP) kartını, Bilgi
+        //             Filizi'ni ve temel güç XP kartını yalnız başka seçenek yoksa alır.
+        //   "erken" : Hasat Deneyimi I ailesini alabildiği anda alır (ön koşuluyla); XpEarlyRound'a kadar Water kartını öne alır
+        //             (ağırlık ×2) ve Bilgi Filizi'ni teklif edilince alır. Sonra XP'ye özel tercih yok: yön politikası.
+        //   "vadesinde" (A/B sonuçlarından sonra eklendi; "erken" kolu XP'yi saksı ve grid'in önüne aldığı için ayrı bir ölçü):
+        //             XP düğümlerini ağaçta yazılı vadelerinde alır (Hasat Deneyimi I: R3–16, II: R25–42; diğer vadesi gelmiş
+        //             düğümlerle aynı sırada, öne alınmaz). Water kartı, Bilgi Filizi ve temel güç XP kartı yönün kendi tercihiyle.
+        public string XpArm;
+        public float TailGrowth = -1f; // ≥0: bu run'da tablo sonrası büyüme katsayısı (ölçüm; profilin denge seti kopyalanır)
+        public int AdditiveXp = -1;    // 0 / 1: bu run'da temel güç XP kartlarının toplanması kapalı / açık (ölçüm: iki kuralın ayrı etkisi)
+        // Bölüm 3.7.8
+        public string Aim;             // "davranis": ikinci nişan politikası (Policy.BehaviorAim). null: politikanın kendi nişanı (en kalabalık hedef)
+        public bool NoTargets;         // kalibrasyon: bütün kota ve boss hedefleri 1 (run hedeften elenmez; hedef tabloları bu run'ların skorundan değerlendirilir)
+        public float[] Hp;             // can eğrisi adayı: Common canı noktaları (round, can, round, can, …). Yalnız bu run; asset değişmez
+        public long[] Quota, Boss;     // hedef tablosu adayı (dönem sırasıyla). Yalnız bu run
+        public float[] ChainChance, ChainDamage;   // zincir çarpanı adayı (ek nesil 1, 2). Yalnız bu run; havuz ve ödül kopyalanır
+        // Zincir laboratuvarı: B kolları (ad, şans, hasar). Boş: tek B kolu, ödül asset'inin kendi değerleri.
+        public (string name, float[] chance, float[] damage)[] LabChain;
+    }
+    // Bölüm 3.7.8 zincir laboratuvarının B kolları (izinli aralığın uçları ve ayrı ayrı şans / hasar).
+    static readonly (string, float[], float[])[] ChainArms =
+    {
+        ("mevcut", new[] { .75f, .50f }, new[] { .75f, .50f }),
+        ("şans üst", new[] { 1f, .75f }, new[] { .75f, .50f }),
+        ("hasar üst", new[] { .75f, .50f }, new[] { 1f, .75f }),
+        ("ikisi üst", new[] { 1f, .75f }, new[] { 1f, .75f }),
+    };
+    // Bölüm 3.7.8, 1. ayar turu: can eğrisi adayları (round, Common canı). R1–10 çapaları Denge V1 ile aynı.
+    static readonly (string, float[])[] HpCandidates =
+    {
+        ("HA", new float[] { 1, 20, 5, 25, 10, 31, 15, 43, 20, 62, 25, 88, 30, 125, 35, 176, 40, 247, 45, 345, 50, 480 }),
+        ("HB", new float[] { 1, 20, 5, 25, 10, 31, 15, 46, 20, 73, 25, 112, 30, 170, 35, 255, 40, 380, 45, 560, 50, 820 }),
+        ("HC", new float[] { 1, 20, 5, 25, 10, 31, 15, 49, 20, 78, 25, 125, 30, 200, 35, 310, 40, 475, 45, 720, 50, 1080 }),
+    };
+    // 2. ayar turu: HA ile HB'nin orta eğrisi (geometrik orta, tam sayıya yuvarlanmış).
+    static readonly float[] HpMid = { 1, 20, 5, 25, 10, 31, 15, 44, 20, 67, 25, 99, 30, 146, 35, 212, 40, 306, 45, 440, 50, 627 };
+    const int XpEarlyRound = 20;
+    static readonly string[] XpFamilyFirst = { "Düzenli Üretim - 1@1", "Hasat Deneyimi I - 1", "Hasat Deneyimi I - 2", "Hasat Deneyimi I - 3", "Hasat Deneyimi I - 4" };
+
+    static void ApplyXpArm(Policy p, RunConfig c)
+    {
+        if (c.XpArm == null) return;
+        if (c.XpArm == "yok")
+        {
+            p.Bias[Cat.Xp] = 9999f;
+            p.CardWeight[TileModifierType.Water] = .05f;
+            p.BaseWeight[StatType.XPGainMultiplier] = .05f;
+            p.RewardOrder = p.RewardOrder.Where(r => r != "bilgi_filizi").Concat(new[] { "bilgi_filizi" }).ToArray();
+        }
+        else if (c.XpArm == "erken")
+        {
+            p.FirstBuys = XpFamilyFirst;
+            p.XpEarlyUntil = XpEarlyRound; p.XpCardWeight = 2f;
+        }
+        else if (c.XpArm == "vadesinde") p.Bias[Cat.Xp] = 0f;
+        else throw new Exception("unknown XP arm " + c.XpArm);
     }
 
     static List<RunConfig> BuildSet(string set)
@@ -143,14 +267,22 @@ public static class BalanceRunMeasurement
         var list = new List<RunConfig>();
         void Add(string policy, string farmer, string scythe, int seeds, int maxRound = 50, string profile = "Run50_DengeV1", string label = "", string[] first = null, bool none = false,
                  string boss = null, bool noRewards = false, string[] rewards = null, Cat[] never = null,
-                 bool noBreak = false, int choices = 0, int[] lab = null, string labReward = null, int synergy = 0, bool decline = false)
+                 bool noBreak = false, int choices = 0, int[] lab = null, string labReward = null, int synergy = 0, bool decline = false, string declineId = null, int firstSeed = 100,
+                 double wallLimit = 0, string xp = null, float tail = -1f, int additive = -1,
+                 string aim = null, bool noTargets = false, float[] hp = null, long[] quota = null, long[] bossTargets = null,
+                 float[] chainChance = null, float[] chainDamage = null, (string, float[], float[])[] labChain = null)
         {
             for (int s = 0; s < seeds; s++)
-                list.Add(new RunConfig { Profile = profile, Farmer = farmer, Scythe = scythe, PolicyName = policy, Seed = 100 + s, MaxRound = maxRound, Label = label, FirstBuys = first, NoPurchases = none,
+                list.Add(new RunConfig { Profile = profile, Farmer = farmer, Scythe = scythe, PolicyName = policy, Seed = firstSeed + s, MaxRound = maxRound, Label = label, FirstBuys = first, NoPurchases = none,
                                          BossOnly = boss, NoRewards = noRewards, RewardOrder = rewards, Never = never,
-                                         NoBreakthroughs = noBreak, ChoicesPerLevel = choices, LabRounds = lab, LabReward = labReward, LabSynergyRound = synergy, DeclineBreakthroughs = decline });
+                                         NoBreakthroughs = noBreak, ChoicesPerLevel = choices, LabRounds = lab, LabReward = labReward, LabSynergyRound = synergy, DeclineBreakthroughs = decline, DeclineId = declineId,
+                                         WallLimitSec = wallLimit, XpArm = xp, TailGrowth = tail, AdditiveXp = additive,
+                                         Aim = aim, NoTargets = noTargets, Hp = hp, Quota = quota, Boss = bossTargets,
+                                         ChainChance = chainChance, ChainDamage = chainDamage, LabChain = labChain });
         }
         const string K = "Run50_KirilmaV1";
+        const string X = "Run50_XPV1";
+        const string A8 = "Run50_AlphaDengeV1";
         var paths = new[] { ("Patlama yolu", "artci_patlama"), ("Elektrik yolu", "cifte_akim"), ("Hız-alan + Ritim", "hasat_ritmi") };
         switch (set)
         {
@@ -238,6 +370,200 @@ public static class BalanceRunMeasurement
                 foreach (var (p, _) in paths) Add(p, "bahcivan", "standart", 5, 50, K, "3 seçim · boss ödülü yok", noRewards: true);
                 foreach (var (p, _) in paths) Add(p, "bahcivan", "standart", 5, 50, K, "1 seçim · boss ödülü yok", choices: 1, noRewards: true);
                 break;
+            // ---------------- Bölüm 3.7.2 ----------------
+            case "takvimsmoke": // araç denemesi (denge ölçümü değil): açık boss takviminde dönem skoru ve boss sütunları doğru round'larda mı
+                Add("Dengeli", "bahcivan", "standart", 1, 13, "Run50_TakvimV1", "takvim araç denemesi");
+                break;
+            // ---------------- Bölüm 3.7.5 ----------------
+            case "k375tekrar": // tekrar kontrolü: Artçı Patlama'lı tam run aynı seed'le iki ayrı çalıştırmada aynı mı (yankı zamanlaması düzeltmesi)
+                Add("Patlama yolu", "bahcivan", "standart", 5, 50, K, "tekrar kontrolü");
+                break;
+            case "k375patlama": // seçilen Artçı adayının birikimli run doğrulaması: aday / mevcut ödül / almayan eş (aynı seed'ler)
+                Add("Patlama yolu", "bahcivan", "standart", 10, 50, "Run50_KirilmaErisimiV1", "aday");
+                Add("Patlama yolu", "bahcivan", "standart", 10, 50, "Run50_BedelliOdullerV1", "mevcut");
+                Add("Patlama yolu", "bahcivan", "standart", 10, 50, "Run50_KirilmaErisimiV1", "almayan eş", decline: true);
+                break;
+            case "k375elektrik": // seçilen Çifte Akım adayının birikimli run doğrulaması (havuzda kaldıysa)
+                Add("Elektrik yolu", "bahcivan", "standart", 10, 50, "Run50_KirilmaErisimiV1", "aday");
+                Add("Elektrik yolu", "bahcivan", "standart", 10, 50, "Run50_BedelliOdullerV1", "mevcut");
+                Add("Elektrik yolu", "bahcivan", "standart", 10, 50, "Run50_KirilmaErisimiV1", "almayan eş", decline: true);
+                break;
+            case "k376zincir": // Bölüm 3.7.6: Zincir Hasat'ın birikimli run etkisi. aday: teklif edilince alır · eş: yalnız onu almaz (aynı seed)
+                foreach (string policy in new[] { "Patlama yolu", "Elektrik yolu", "Davranış-rezonans" })
+                {
+                    Add(policy, "bahcivan", "standart", 10, 50, "Run50_ZincirV1", "aday", rewards: new[] { "zincir_hasat" });
+                    Add(policy, "bahcivan", "standart", 10, 50, "Run50_ZincirV1", "almayan eş", declineId: "zincir_hasat");
+                }
+                break;
+            case "k376zincirdevam": // k376zincir'in kalanı: run 52'den (Davranış-rezonans seed 101, almayan eş) sonrası. Seed 101'in iki kolu
+                                    // geç round'da seviye patlamasına girdi (bkz. Docs/Bolum3-7-6-DavranisZinciri.md); onuncu çift seed 110.
+                Add("Davranış-rezonans", "bahcivan", "standart", 8, 50, "Run50_ZincirV1", "almayan eş", declineId: "zincir_hasat", firstSeed: 102);
+                Add("Davranış-rezonans", "bahcivan", "standart", 1, 50, "Run50_ZincirV1", "aday", rewards: new[] { "zincir_hasat" }, firstSeed: 110);
+                Add("Davranış-rezonans", "bahcivan", "standart", 1, 50, "Run50_ZincirV1", "almayan eş", declineId: "zincir_hasat", firstSeed: 110);
+                break;
+            // ---------------- Bölüm 3.7.6.1 ----------------
+            case "k3761": // sayısal güvenlik ve refactor karşılaştırması: P6'nın birikimli setinin (k376zincir + devam) aynısı, seed 101 Davranış-rezonans çifti hariç
+                foreach (string policy in new[] { "Patlama yolu", "Elektrik yolu", "Davranış-rezonans" })
+                    foreach (var (label, decline, order) in new[] { ("aday", (string)null, new[] { "zincir_hasat" }), ("almayan eş", "zincir_hasat", (string[])null) })
+                    {
+                        bool dr = policy == "Davranış-rezonans";
+                        Add(policy, "bahcivan", "standart", dr ? 1 : 10, 50, "Run50_ZincirV1", label, rewards: order, declineId: decline);
+                        if (dr) Add(policy, "bahcivan", "standart", 9, 50, "Run50_ZincirV1", label, rewards: order, declineId: decline, firstSeed: 102);
+                    }
+                break;
+            case "k3761seed101": // kabul senaryosu: P6'da taşan seed 101 Davranış-rezonans çifti; run başına 25 dk gerçek süre sınırı
+                Add("Davranış-rezonans", "bahcivan", "standart", 1, 50, "Run50_ZincirV1", "aday", rewards: new[] { "zincir_hasat" }, firstSeed: 101, wallLimit: 1500);
+                Add("Davranış-rezonans", "bahcivan", "standart", 1, 50, "Run50_ZincirV1", "almayan eş", declineId: "zincir_hasat", firstSeed: 101, wallLimit: 1500);
+                break;
+            // ---------------- Bölüm 3.7.7 (P7) ----------------
+            case "k377smoke": // araç denemesi
+                Add("Hasar-alan", "bahcivan", "standart", 1, 8, X, "XP'siz", xp: "yok");
+                Add("Hasar-alan", "bahcivan", "standart", 1, 8, X, "erken XP", xp: "erken");
+                Add("XP stresi", "bahcivan", "standart", 1, 8, X, "stres");
+                break;
+            case "k377pilot": // tablo sonrası büyüme katsayısı: küçük eşleştirilmiş pilot. Yalnız level 140'ı aşan ya da aşabilecek run'lar
+                              // katsayıdan etkilenir: P6'da taşan seed 101 (zincirsiz eş), level 141'e ulaşan seed 110 ve XP stresi.
+                foreach (float s in new[] { .025f, .05f, .10f })
+                {
+                    string label = "s=" + s.ToString("0.###", CultureInfo.InvariantCulture);
+                    Add("Davranış-rezonans", "bahcivan", "standart", 1, 50, X, label, declineId: "zincir_hasat", firstSeed: 101, wallLimit: 1500, tail: s);
+                    Add("Davranış-rezonans", "bahcivan", "standart", 1, 50, X, label, rewards: new[] { "zincir_hasat" }, firstSeed: 110, wallLimit: 1500, tail: s);
+                    Add("XP stresi", "bahcivan", "standart", 2, 50, X, label, firstSeed: 100, wallLimit: 1500, tail: s);
+                }
+                break;
+            case "k377ab": // eş bütçeli XP yatırımı: iki devam yönü × iki kol × 10 seed
+                foreach (string policy in new[] { "Hasar-alan", "Davranış yönü" })
+                {
+                    Add(policy, "bahcivan", "standart", 10, 50, X, "XP'siz", xp: "yok");
+                    Add(policy, "bahcivan", "standart", 10, 50, X, "erken XP", xp: "erken");
+                }
+                break;
+            case "k377ab2": // üçüncü kol: XP düğümleri yazılı vadesinde (aynı yönler ve seed'ler; k377ab'nin A koluyla karşılaştırılır)
+                foreach (string policy in new[] { "Hasar-alan", "Davranış yönü" })
+                    Add(policy, "bahcivan", "standart", 10, 50, X, "vadesinde XP", xp: "vadesinde");
+                break;
+            case "k377seed101": // kabul: P6'da taşan seed 101 Davranış-rezonans çifti, yeni profilde (politika ve seed P6 ile aynı)
+                Add("Davranış-rezonans", "bahcivan", "standart", 1, 50, X, "aday", rewards: new[] { "zincir_hasat" }, firstSeed: 101, wallLimit: 1500);
+                Add("Davranış-rezonans", "bahcivan", "standart", 1, 50, X, "almayan eş", declineId: "zincir_hasat", firstSeed: 101, wallLimit: 1500);
+                break;
+            case "k377stres": // ikinci stres tanımı (temel güç evresine ulaşan build + her XP kartı), yeni profil: seed 100–104 ve 110
+                Add("Temel güç XP stresi", "bahcivan", "standart", 5, 50, X, "stres", wallLimit: 1500);
+                Add("Temel güç XP stresi", "bahcivan", "standart", 1, 50, X, "stres", firstSeed: 110, wallLimit: 1500);
+                break;
+            case "k377stresEski": // aynı stres politikası eski kuralla (Run50_ZincirV1): karşılaştırma. Run başına 15 dk gerçek süre sınırı.
+                Add("Temel güç XP stresi", "bahcivan", "standart", 1, 50, "Run50_ZincirV1", "stres (eski kural)", firstSeed: 101, wallLimit: 900);
+                Add("Temel güç XP stresi", "bahcivan", "standart", 1, 50, "Run50_ZincirV1", "stres (eski kural)", firstSeed: 110, wallLimit: 900);
+                break;
+            case "k377ayristirma": // iki kuralın ayrı etkisi, seed 101 zincirsiz kol: yalnız toplanan XP kartı (kuyruk sabit) / yalnız büyüyen kuyruk
+                Add("Davranış-rezonans", "bahcivan", "standart", 1, 50, X, "yalnız toplanan XP kartı (s=0)", declineId: "zincir_hasat", firstSeed: 101, wallLimit: 1500, tail: 0f);
+                Add("Davranış-rezonans", "bahcivan", "standart", 1, 50, X, "yalnız büyüyen kuyruk (s=0.05; kartlar çarpımsal)", declineId: "zincir_hasat", firstSeed: 101, wallLimit: 1500, additive: 0);
+                break;
+            // ---------------- Bölüm 3.7.8 (P8) ----------------
+            case "k378smoke": // araç denemesi: süre tablosu, ikinci nişan, zincir laboratuvarı (kısa)
+                Add("Hasar-alan", "bahcivan", "standart", 1, 12, A8, "araç denemesi", xp: "vadesinde");
+                Add("Davranış yönü", "bahcivan", "standart", 1, 24, A8, "araç denemesi · nişan 2", declineId: "zincir_hasat", aim: "davranis", noTargets: true,
+                    lab: new[] { 24 }, labReward: "zincir_hasat", labChain: ChainArms);
+                break;
+            // Başlangıç ölçümü (yalnız süre tablosu; diğer her şey Run50_XPV1 ile aynı). Hedefsiz: hedef tabloları bu skorlardan değerlendirilir.
+            case "k378tabanA": // dört build yolu
+                Add("Hasar-alan", "bahcivan", "standart", 5, 50, A8, "taban", xp: "vadesinde", noTargets: true, wallLimit: 900);
+                Add("Patlama yolu", "bahcivan", "standart", 3, 50, A8, "taban", declineId: "zincir_hasat", noTargets: true, wallLimit: 900);
+                Add("Elektrik yolu", "bahcivan", "standart", 3, 50, A8, "taban", declineId: "zincir_hasat", noTargets: true, wallLimit: 900);
+                Add("Davranış yönü", "bahcivan", "standart", 5, 50, A8, "taban", xp: "vadesinde", noTargets: true, wallLimit: 900);
+                break;
+            case "k378tabanB": // zinciri almayan eş + zincir laboratuvarı (R30, R40); ortalama / düşük uyumlu / acemi
+                Add("Davranış yönü", "bahcivan", "standart", 5, 50, A8, "taban · almayan eş", xp: "vadesinde", declineId: "zincir_hasat", noTargets: true, wallLimit: 900,
+                    lab: new[] { 30, 40 }, labReward: "zincir_hasat", labChain: ChainArms);
+                Add("Dengeli", "bahcivan", "standart", 3, 50, A8, "taban", noTargets: true, wallLimit: 900);
+                Add("Uyumsuz", "bahcivan", "standart", 3, 50, A8, "taban", noTargets: true, wallLimit: 900);
+                Add("Yeni", "bahcivan", "standart", 3, 50, A8, "taban", noTargets: true, wallLimit: 900);
+                break;
+            case "k378tur1": // 1. ayar turu: can eğrisi adayları (HA / HB / HC) × dört politika × 2 seed, hedefsiz. Kontrol: başlangıç ölçümü.
+                foreach (var (name, curve) in HpCandidates)
+                {
+                    Add("Hasar-alan", "bahcivan", "standart", 2, 50, A8, name, xp: "vadesinde", noTargets: true, wallLimit: 900, hp: curve);
+                    Add("Patlama yolu", "bahcivan", "standart", 2, 50, A8, name, declineId: "zincir_hasat", noTargets: true, wallLimit: 900, hp: curve);
+                    Add("Davranış yönü", "bahcivan", "standart", 2, 50, A8, name, xp: "vadesinde", noTargets: true, wallLimit: 900, hp: curve);
+                    Add("Dengeli", "bahcivan", "standart", 2, 50, A8, name, noTargets: true, wallLimit: 900, hp: curve);
+                }
+                break;
+            case "k378acilis": // ilk üç boss (R3, R6, R10): tek bir zorunlu açılış var mı? Hedefsiz; R1–10 can çapaları adaylarda aynı.
+                Add("Dengeli", "bahcivan", "standart", 3, 10, A8, "hiçbir şey almaz", none: true, noTargets: true);
+                Add("Dengeli", "bahcivan", "standart", 3, 10, A8, "yalnız saksı", first: new[] { "-" }, noTargets: true);
+                Add("Dengeli", "bahcivan", "standart", 3, 10, A8, "önce hasar", first: new[] { "Keskin Başlangıç - 1", "Keskin Başlangıç - 2" }, noTargets: true);
+                Add("Dengeli", "bahcivan", "standart", 3, 10, A8, "önce hız", first: new[] { "Hızlı Eller - 1", "Hızlı Eller - 2" }, noTargets: true);
+                Add("Dengeli", "bahcivan", "standart", 3, 10, A8, "önce ekonomi", first: new[] { "Altın Hasat I - 1", "Altın Hasat I - 2" }, noTargets: true);
+                Add("Dengeli", "bahcivan", "standart", 3, 10, A8, "önce üretim", first: new[] { "Düzenli Üretim - 1", "Grid Genişleme I" }, noTargets: true);
+                Add("Dengeli", "bahcivan", "standart", 3, 10, A8, "önce XP", first: new[] { "Düzenli Üretim - 1@1", "Hasat Deneyimi I - 1", "Hasat Deneyimi I - 2" }, noTargets: true);
+                Add("Dengeli", "bahcivan", "standart", 3, 10, A8, "politika (açılış yok)", noTargets: true);
+                Add("Yeni", "bahcivan", "standart", 3, 10, A8, "acemi", noTargets: true);
+                break;
+            // 2. ayar turu (hedefsiz): can eğrisi HA ve HM (HA ile HB'nin orta eğrisi). Her kolda altı politika + zinciri almayan eş ve
+            // zincir laboratuvarı (R30 / R40). HA kolunda 1. turun seed 100–101 run'ları yeniden oynanmaz (aynı aday, aynı kod).
+            case "k378tur2A":
+                Add("Uyumsuz", "bahcivan", "standart", 5, 50, A8, "HA", noTargets: true, wallLimit: 900, hp: HpCandidates[0].Item2);
+                Add("Elektrik yolu", "bahcivan", "standart", 3, 50, A8, "HA", declineId: "zincir_hasat", noTargets: true, wallLimit: 900, hp: HpCandidates[0].Item2);
+                Add("Hasar-alan", "bahcivan", "standart", 1, 50, A8, "HA", xp: "vadesinde", noTargets: true, wallLimit: 900, hp: HpCandidates[0].Item2, firstSeed: 102);
+                Add("Patlama yolu", "bahcivan", "standart", 1, 50, A8, "HA", declineId: "zincir_hasat", noTargets: true, wallLimit: 900, hp: HpCandidates[0].Item2, firstSeed: 102);
+                Add("Davranış yönü", "bahcivan", "standart", 1, 50, A8, "HA", xp: "vadesinde", noTargets: true, wallLimit: 900, hp: HpCandidates[0].Item2, firstSeed: 102);
+                Add("Dengeli", "bahcivan", "standart", 1, 50, A8, "HA", noTargets: true, wallLimit: 900, hp: HpCandidates[0].Item2, firstSeed: 102);
+                Add("Davranış yönü", "bahcivan", "standart", 3, 50, A8, "HA · almayan eş", xp: "vadesinde", declineId: "zincir_hasat", noTargets: true, wallLimit: 900, hp: HpCandidates[0].Item2,
+                    lab: new[] { 30, 40 }, labReward: "zincir_hasat", labChain: ChainArms);
+                break;
+            case "k378tur2B":
+                Add("Uyumsuz", "bahcivan", "standart", 5, 50, A8, "HM", noTargets: true, wallLimit: 900, hp: HpMid);
+                Add("Elektrik yolu", "bahcivan", "standart", 3, 50, A8, "HM", declineId: "zincir_hasat", noTargets: true, wallLimit: 900, hp: HpMid);
+                Add("Hasar-alan", "bahcivan", "standart", 3, 50, A8, "HM", xp: "vadesinde", noTargets: true, wallLimit: 900, hp: HpMid);
+                Add("Patlama yolu", "bahcivan", "standart", 3, 50, A8, "HM", declineId: "zincir_hasat", noTargets: true, wallLimit: 900, hp: HpMid);
+                Add("Davranış yönü", "bahcivan", "standart", 3, 50, A8, "HM", xp: "vadesinde", noTargets: true, wallLimit: 900, hp: HpMid);
+                Add("Dengeli", "bahcivan", "standart", 3, 50, A8, "HM", noTargets: true, wallLimit: 900, hp: HpMid);
+                Add("Davranış yönü", "bahcivan", "standart", 3, 50, A8, "HM · almayan eş", xp: "vadesinde", declineId: "zincir_hasat", noTargets: true, wallLimit: 900, hp: HpMid,
+                    lab: new[] { 30, 40 }, labReward: "zincir_hasat", labChain: ChainArms);
+                break;
+            // Son aday doğrulaması: profilin kendi verisi (can eğrisi, hedefler, zincir değerleri), GERÇEK hedeflerle. Elenen run biter.
+            case "k378sonA": // dört build yolu × 10 seed
+                Add("Hasar-alan", "bahcivan", "standart", 10, 50, A8, "son", xp: "vadesinde", wallLimit: 900);
+                Add("Patlama yolu", "bahcivan", "standart", 10, 50, A8, "son", declineId: "zincir_hasat", wallLimit: 900);
+                Add("Elektrik yolu", "bahcivan", "standart", 10, 50, A8, "son", declineId: "zincir_hasat", wallLimit: 900);
+                Add("Davranış yönü", "bahcivan", "standart", 10, 50, A8, "son", xp: "vadesinde", wallLimit: 900);
+                break;
+            case "k378sonB": // genelci, düşük uyumlu, acemi; XP yatırımsız alt karşılaştırma (ana set = XP düğümleri vadesinde)
+                Add("Dengeli", "bahcivan", "standart", 10, 50, A8, "son", wallLimit: 900);
+                Add("Uyumsuz", "bahcivan", "standart", 10, 50, A8, "son", wallLimit: 900);
+                Add("Yeni", "bahcivan", "standart", 5, 50, A8, "son", wallLimit: 900);
+                Add("Hasar-alan", "bahcivan", "standart", 10, 50, A8, "son · XP'siz", xp: "yok", wallLimit: 900);
+                Add("Davranış yönü", "bahcivan", "standart", 5, 50, A8, "son · XP'siz", xp: "yok", wallLimit: 900);
+                break;
+            case "k378sonC": // zincirin fırsat maliyeti (almayan eş + laboratuvar), ikinci nişan politikası, başlangıç alternatifleri, stres
+                Add("Davranış yönü", "bahcivan", "standart", 10, 50, A8, "son · almayan eş", xp: "vadesinde", declineId: "zincir_hasat", wallLimit: 900,
+                    lab: new[] { 30, 40 }, labReward: "zincir_hasat");
+                Add("Patlama yolu", "bahcivan", "standart", 5, 50, A8, "son · nişan 2", declineId: "zincir_hasat", aim: "davranis", wallLimit: 900);
+                Add("Davranış yönü", "bahcivan", "standart", 5, 50, A8, "son · nişan 2", xp: "vadesinde", aim: "davranis", wallLimit: 900);
+                Add("Hasar-alan", "tuccar", "standart", 2, 50, A8, "son · Tüccar", xp: "vadesinde", wallLimit: 900);
+                Add("Hasar-alan", "bahcivan", "dar_kesim", 2, 50, A8, "son · Dar Kesim", xp: "vadesinde", wallLimit: 900);
+                Add("Davranış yönü", "secici_yetistirici", "standart", 2, 50, A8, "son · Seçici Yetiştirici", xp: "vadesinde", wallLimit: 900);
+                // P7'nin seed 101 stres koşulları (politika ve seed P6 / P7 ile aynı): zincirli ve zincirsiz kol; temel güç XP stresi.
+                Add("Davranış-rezonans", "bahcivan", "standart", 1, 50, A8, "stres · zincirli", rewards: new[] { "zincir_hasat" }, firstSeed: 101, wallLimit: 1500);
+                Add("Davranış-rezonans", "bahcivan", "standart", 1, 50, A8, "stres · zincirsiz", declineId: "zincir_hasat", firstSeed: 101, wallLimit: 1500);
+                Add("Temel güç XP stresi", "bahcivan", "standart", 1, 50, A8, "stres · XP", firstSeed: 101, wallLimit: 1500);
+                Add("Temel güç XP stresi", "bahcivan", "standart", 1, 50, A8, "stres · XP", firstSeed: 110, wallLimit: 1500);
+                break;
+            case "k378stres": // teknik stres, HEDEFSİZ: k378sonC'deki dört stres run'ı gerçek hedeflerle R13 kotasında elendi ve geç oyunu
+                              // sınamadı. Aynı koşullar (P7'nin seed 101 çifti, temel güç XP stresi) run R50'ye kadar oynansın diye hedefsiz.
+                Add("Davranış-rezonans", "bahcivan", "standart", 1, 50, A8, "stres · zincirli (hedefsiz)", rewards: new[] { "zincir_hasat" }, firstSeed: 101, wallLimit: 1500, noTargets: true);
+                Add("Davranış-rezonans", "bahcivan", "standart", 1, 50, A8, "stres · zincirsiz (hedefsiz)", declineId: "zincir_hasat", firstSeed: 101, wallLimit: 1500, noTargets: true);
+                Add("Temel güç XP stresi", "bahcivan", "standart", 1, 50, A8, "stres · XP (hedefsiz)", firstSeed: 101, wallLimit: 1500, noTargets: true);
+                Add("Temel güç XP stresi", "bahcivan", "standart", 1, 50, A8, "stres · XP (hedefsiz)", firstSeed: 110, wallLimit: 1500, noTargets: true);
+                break;
+            case "k378sonAcilis": // ilk üç boss, gerçek hedeflerle
+                Add("Dengeli", "bahcivan", "standart", 3, 10, A8, "hiçbir şey almaz", none: true);
+                Add("Dengeli", "bahcivan", "standart", 3, 10, A8, "yalnız saksı", first: new[] { "-" });
+                Add("Dengeli", "bahcivan", "standart", 3, 10, A8, "önce hasar", first: new[] { "Keskin Başlangıç - 1", "Keskin Başlangıç - 2" });
+                Add("Dengeli", "bahcivan", "standart", 3, 10, A8, "önce hız", first: new[] { "Hızlı Eller - 1", "Hızlı Eller - 2" });
+                Add("Dengeli", "bahcivan", "standart", 3, 10, A8, "önce ekonomi", first: new[] { "Altın Hasat I - 1", "Altın Hasat I - 2" });
+                Add("Dengeli", "bahcivan", "standart", 3, 10, A8, "önce üretim", first: new[] { "Düzenli Üretim - 1", "Grid Genişleme I" });
+                Add("Dengeli", "bahcivan", "standart", 3, 10, A8, "önce XP", first: new[] { "Düzenli Üretim - 1@1", "Hasat Deneyimi I - 1", "Hasat Deneyimi I - 2" });
+                break;
             default: throw new Exception("unknown run set " + set);
         }
         return list;
@@ -259,6 +585,34 @@ public static class BalanceRunMeasurement
     public static void RunK36Choice() => Begin("k36choice");
     public static void RunK36Decline() => Begin("k36decline");
     public static void RunK36Lab25() => Begin("k36lab25");
+    public static void RunTakvimSmoke() => Begin("takvimsmoke");
+    public static void RunK375Tekrar() => Begin("k375tekrar");
+    public static void RunK375Patlama() => Begin("k375patlama");
+    public static void RunK375Elektrik() => Begin("k375elektrik");
+    public static void RunK376Zincir() => Begin("k376zincir");
+    public static void RunK376ZincirDevam() => Begin("k376zincirdevam");
+    public static void RunK3761() => Begin("k3761");
+    public static void RunK3761Seed101() => Begin("k3761seed101");
+    public static void RunK377Smoke() => Begin("k377smoke");
+    public static void RunK377Pilot() => Begin("k377pilot");
+    public static void RunK377AB() => Begin("k377ab");
+    public static void RunK377AB2() => Begin("k377ab2");
+    public static void RunK377Seed101() => Begin("k377seed101");
+    public static void RunK377Stres() => Begin("k377stres");
+    public static void RunK377StresEski() => Begin("k377stresEski");
+    public static void RunK377Ayristirma() => Begin("k377ayristirma");
+    public static void RunK378Smoke() => Begin("k378smoke");
+    public static void RunK378TabanA() => Begin("k378tabanA");
+    public static void RunK378TabanB() => Begin("k378tabanB");
+    public static void RunK378Tur1() => Begin("k378tur1");
+    public static void RunK378Acilis() => Begin("k378acilis");
+    public static void RunK378Tur2A() => Begin("k378tur2A");
+    public static void RunK378Tur2B() => Begin("k378tur2B");
+    public static void RunK378SonA() => Begin("k378sonA");
+    public static void RunK378SonB() => Begin("k378sonB");
+    public static void RunK378SonC() => Begin("k378sonC");
+    public static void RunK378SonAcilis() => Begin("k378sonAcilis");
+    public static void RunK378Stres() => Begin("k378stres");
 
     static BalanceRunMeasurement() { EditorApplication.update += Tick; }
 
@@ -279,8 +633,8 @@ public static class BalanceRunMeasurement
 
     // ---------------------------------------------------------------- yürütme
     static string setName; static List<RunConfig> configs; static int runIndex = -1;
-    static double nextAt, stepSince; static string lastSignature, lastProgress;
-    static readonly StringBuilder csv = new(), nodeCsv = new(), rewardCsv = new(), summary = new();
+    static double nextAt, stepSince, runStartedAt; static string lastSignature, lastProgress;
+    static readonly StringBuilder csv = new(), nodeCsv = new(), rewardCsv = new(), summary = new(), finalCsv = new();
     static RunBot bot; static Policy policy; static RunConfig config; static RunProfileSO runProfile;
     static bool sceneReady; static int stuckGuard;
     static void SetP(object o, string n, object v) => o.GetType().GetProperty(n).GetSetMethod(true).Invoke(o, new[] { v });
@@ -296,7 +650,7 @@ public static class BalanceRunMeasurement
         public List<UnlockType> Unlocks = new();
         public SegmentEventSO Boss;                                  // o round'un boss'u (boss round'u değilse null)
     }
-    sealed class LabJob { public Snapshot Shot; public bool WithReward, Synergy; public int Repeat; }
+    sealed class LabJob { public Snapshot Shot; public bool WithReward, Synergy; public int Repeat, Variant = -1; }
     // Her kol bu kadar farklı zar akışıyla oynanır (tek round gürültülüdür); A ve B aynı akışları kullanır.
     const int LabRepeats = 3;
     static readonly List<Snapshot> snapshots = new();
@@ -337,9 +691,18 @@ public static class BalanceRunMeasurement
         }
         if (rewards != null) foreach (var r in rewards.Taken) s.Rewards.Add((r, rewards.Stacks(r)));
         foreach (UnlockType u in Enum.GetValues(typeof(UnlockType))) if (u != UnlockType.None && UnlockManager.Instance.IsUnlocked(u)) s.Unlocks.Add(u);
-        var e = SegmentEventDirector.Instance != null ? SegmentEventDirector.Instance.ForSegment(HarvestQuota.SegmentOf(round, RM.QuotaSegmentRounds)) : null;
+        var e = SegmentEventDirector.Instance != null ? SegmentEventDirector.Instance.ForSegment(RM.Calendar.PeriodOf(round)) : null;
         s.Boss = e != null && RM.IsBossRound(round) && !(e.Data is NoRuleBossSO) ? e.Data : null;
         return s;
+    }
+
+    // Ödül id'siyle: düz liste, kırılma listesi ve aşamalı havuzun aşamaları.
+    static BossRewardSO FindReward(BossRewardPoolSO pool, string id)
+    {
+        if (pool == null) return null;
+        var found = pool.rewards.Concat(pool.breakthroughs).FirstOrDefault(r => r != null && r.id == id);
+        if (found == null && pool.IsStaged) found = pool.stages.SelectMany(st => st.rewards).Select(e => e.reward).FirstOrDefault(r => r != null && r.id == id);
+        return found;
     }
 
     static bool Grant(BossRewardSO reward)
@@ -369,7 +732,6 @@ public static class BalanceRunMeasurement
             int i = present.FindIndex(o => o.Equals(m));
             if (i >= 0) present.RemoveAt(i); else Stats.AddGlobalModifier(m);
         }
-        foreach (var (reward, stacks) in s.Rewards) for (int i = 0; i < stacks; i++) if (!Grant(reward)) throw new Exception("lab: reward not granted " + reward.id);
         foreach (var (cell, tile, rolled, level) in s.Tiles)
         {
             var ground = Grid.GetGridObject(cell).GetGroundCellCached();
@@ -381,6 +743,8 @@ public static class BalanceRunMeasurement
             Bank.AddResource(planter.PriceType, planter.Price);
             Place(planter, new Spot { Origin = Grid.GetGridObject(origin), Rotation = rotation });
         }
+        // Ödüller saksılardan sonra: bedelli ödülün koşulu (yerleşmiş davranış saksısı) alınırken yeniden aranır.
+        foreach (var (reward, stacks) in s.Rewards) for (int i = 0; i < stacks; i++) if (!Grant(reward)) throw new Exception("lab: reward not granted " + reward.id);
         string note = "";
         if (synergy) note = ApplySynergy(extra);
         if (extra != null && !Grant(extra)) throw new Exception("lab: breakthrough not granted " + extra.id);
@@ -435,8 +799,15 @@ public static class BalanceRunMeasurement
         foreach (var s in snapshots)
             for (int repeat = 0; repeat < LabRepeats; repeat++)
             {
+                // Kayıtta ödül zaten varsa (bot onu almak zorunda kaldı) A / B karşılaştırması kurulamaz: atlanır ve yazılır.
+                if (config.LabReward != null && s.Rewards.Any(r => r.reward.id == config.LabReward))
+                {
+                    if (repeat == 0) summary.AppendLine($"   LAB R{s.Round} atlandı: {config.LabReward} bu run'da zaten alınmış (seed {config.Seed}, {policy.Name})");
+                    continue;
+                }
                 labJobs.Enqueue(new LabJob { Shot = s, WithReward = false, Repeat = repeat });
-                labJobs.Enqueue(new LabJob { Shot = s, WithReward = true, Repeat = repeat });
+                if (config.LabChain == null) labJobs.Enqueue(new LabJob { Shot = s, WithReward = true, Repeat = repeat });
+                else for (int v = 0; v < config.LabChain.Length; v++) labJobs.Enqueue(new LabJob { Shot = s, WithReward = true, Repeat = repeat, Variant = v });
                 if (config.LabSynergyRound == s.Round)
                 {
                     labJobs.Enqueue(new LabJob { Shot = s, WithReward = false, Synergy = true, Repeat = repeat });
@@ -459,6 +830,7 @@ public static class BalanceRunMeasurement
         runProfile = Object.Instantiate(source);
         runProfile.name = source.name + " (laboratuvar)";
         runProfile.bossSeed = 7000 + config.Seed;
+        ApplyRunOverrides(runProfile, config);   // laboratuvar round'u run'la aynı can eğrisi / hedef adayıyla oynanır
         if (lab.Shot.Boss != null)
         {
             // Round'un boss'u gerçek run'daki türle aynı (bölgesi laboratuvarda yeniden seçilir; iki kolda aynıdır).
@@ -480,11 +852,21 @@ public static class BalanceRunMeasurement
             { if (stuckGuard++ > 600) throw new Exception("lab scene did not reach RunSetup"); return .05; }
             Object.FindFirstObjectByType<PlayerController>(FindObjectsInactive.Include).enabled = false;
             var pool = runProfile.bossRewards;
-            var extra = lab.WithReward || lab.Synergy ? pool.breakthroughs.First(r => r.id == config.LabReward) : null;
+            var extra = lab.WithReward || lab.Synergy ? FindReward(pool, config.LabReward) : null;
+            if ((lab.WithReward || lab.Synergy) && extra == null) throw new Exception("lab: reward not in pool " + config.LabReward);
+            string variant = "";
+            if (lab.WithReward && lab.Variant >= 0)
+            {
+                // Zincir kolu: aynı ödülün kopyası, yalnız iki çarpan dizisi farklı (asset değişmez).
+                var arm = config.LabChain[lab.Variant];
+                extra = Object.Instantiate(extra);
+                extra.chainChance = (float[])arm.chance.Clone(); extra.chainDamage = (float[])arm.damage.Clone();
+                variant = " [" + arm.name + "]";
+            }
             string note = ApplySnapshot(lab.Shot, lab.WithReward ? extra : null, false);
             if (lab.Synergy) { note = ApplySynergy(extra); if (lab.WithReward && BossRewardManager.Instance.Stacks(extra) == 0) Grant(extra); }
             labConfig = new RunConfig { Profile = config.Profile, Farmer = config.Farmer, Scythe = config.Scythe, PolicyName = config.PolicyName, Seed = config.Seed, MaxRound = lab.Shot.Round,
-                                        Label = $"LAB R{lab.Shot.Round} {(lab.Synergy ? "sinerji " : "")}{(lab.WithReward ? "B +" + config.LabReward : "A ödülsüz")} #{lab.Repeat + 1}" };
+                                        Label = $"LAB R{lab.Shot.Round} {(lab.Synergy ? "sinerji " : "")}{(lab.WithReward ? "B +" + config.LabReward + variant : "A ödülsüz")} #{lab.Repeat + 1}" };
             if (note != "" && !lab.WithReward && lab.Repeat == 0) summary.AppendLine($"   {labConfig.Label} · {note}");
             bot = new GameObject("Run bot (laboratory)").AddComponent<RunBot>();
             bot.Init(policy, labConfig, runIndex, csv);
@@ -526,7 +908,8 @@ public static class BalanceRunMeasurement
             {
                 setName = set; configs = BuildSet(set); nextAt = EditorApplication.timeSinceStartup + 2;
                 csv.AppendLine(RunBot.Header);
-                nodeCsv.AppendLine("run,policy,farmer,scythe,seed,label,round,node,level,cost,currency");
+                nodeCsv.AppendLine("run,policy,farmer,scythe,seed,label,round,node,level,cost,currency,category");
+                finalCsv.AppendLine(RunBot.FinalHeader);
                 rewardCsv.AppendLine("run,policy,farmer,scythe,seed,label,round,offered,chosen");
                 MetaSave.UseMemoryOnly();
             }
@@ -534,8 +917,10 @@ public static class BalanceRunMeasurement
             double wait = Drive();
             if (wait < 0) { Finish(null); return; }
             nextAt = EditorApplication.timeSinceStartup + wait;
-            // takılma dedektörü: durum imzası 240 sn değişmezse
-            string signature = runIndex + "/" + (RM != null ? RM.CurrentRound : -1) + "/" + (GameManager.Instance != null ? State.ToString() : "-") + "/" + (RM != null ? Mathf.FloorToInt(RM.RemainingTime) : -1);
+            // takılma dedektörü: durum imzası 240 sn değişmezse. Level işleme ve kart seçimi de ilerlemedir (Bölüm 3.7.6.1: XP geri
+            // beslemesinde binlerce level ve kart seçimi; ilerleyen ama uzun süren run takılma sayılmaz, süre sınırı ayrıdır).
+            string signature = runIndex + "/" + (RM != null ? RM.CurrentRound : -1) + "/" + (GameManager.Instance != null ? State.ToString() : "-") + "/" + (RM != null ? Mathf.FloorToInt(RM.RemainingTime) : -1) +
+                               "/" + (ProgressionManager.Instance != null ? ProgressionManager.Instance.CurrentLevel : -1) + "/" + (RM != null ? RM.PendingCardSelections : -1);
             if (signature != lastSignature) { lastSignature = signature; stepSince = EditorApplication.timeSinceStartup; }
             string progress = runIndex + "/" + (RM != null ? RM.CurrentRound : -1);
             if (progress != lastProgress) { lastProgress = progress; WriteProgress(); }
@@ -557,6 +942,7 @@ public static class BalanceRunMeasurement
         File.WriteAllText($"Logs/BalanceRuns_{setName}.csv", csv.ToString(), new UTF8Encoding(false));
         File.WriteAllText($"Logs/BalanceRuns_{setName}_nodes.csv", nodeCsv.ToString(), new UTF8Encoding(false));
         File.WriteAllText($"Logs/BalanceRuns_{setName}_rewards.csv", rewardCsv.ToString(), new UTF8Encoding(false));
+        File.WriteAllText($"Logs/BalanceRuns_{setName}_final.csv", finalCsv.ToString(), new UTF8Encoding(false));
     }
 
     static void Finish(Exception ex)
@@ -579,7 +965,19 @@ public static class BalanceRunMeasurement
             if (GameManager.Instance == null || RM == null || RM.Profile != runProfile || State != GameStates.RunSetup)
             { if (stuckGuard++ > 600) throw new Exception("scene did not reach RunSetup with the measurement profile"); return .05; }
             PrepareScene();
+            runStartedAt = EditorApplication.timeSinceStartup;
             return .05;
+        }
+        // Süre sınırı (yalnız bunu isteyen setlerde): run tamamlanmış gösterilmez; o anki round'un yarım satırı "kesildi" diye yazılır.
+        if (config.WallLimitSec > 0 && EditorApplication.timeSinceStartup - runStartedAt > config.WallLimitSec)
+        {
+            bot.WritePartial();
+            var progress = ProgressionManager.Instance;
+            double left = progress.HasPendingLevels ? Math.Floor(progress.StoredXP / progress.XPToNextLevel) : 0;
+            string E(double v) => v.ToString("0.###e0", CultureInfo.InvariantCulture);   // CSV sütunu: ondalık virgül olmasın
+            EndRun($"durduruldu (süre sınırı {config.WallLimitSec:0} sn; {State}; level {progress.CurrentLevel}; saklı XP {E(progress.StoredXP)} ≈ {E(left)} level daha bekliyor" +
+                   $"{(progress.LevelProcessingHalted ? " · level işleme teknik sınırda durdu" : "")}; bekleyen seçim {RM.PendingCardSelections})");
+            return AfterRun();
         }
         switch (State)
         {
@@ -621,12 +1019,21 @@ public static class BalanceRunMeasurement
         policy.FirstBuys = config.FirstBuys; policy.NoPurchases = config.NoPurchases;
         if (config.Never != null) foreach (Cat c in config.Never) policy.Bias[c] = 9999f;
         if (config.RewardOrder != null) { policy.RewardOrder = config.RewardOrder.Concat(policy.RewardOrder.Where(r => !config.RewardOrder.Contains(r))).ToArray(); policy.FixedRewardOrder = true; }
+        ApplyXpArm(policy, config);
+        if (config.Aim == "davranis") policy.BehaviorAim = true;
+        else if (config.Aim != null) throw new Exception("unknown aim policy " + config.Aim);
         var source = AssetDatabase.LoadAssetAtPath<RunProfileSO>(ProfileFolder + config.Profile + ".asset");
         if (source == null) throw new Exception("profile not found: " + config.Profile);
         runProfile = Object.Instantiate(source);
         runProfile.name = source.name + " (ölçüm)";
         if (runProfile.bossPool != null) runProfile.bossSeed = 7000 + config.Seed;   // aynı seed aynı boss ve ödül dizisi
         if (config.NoRewards) runProfile.bossRewards = null;
+        // Aşamalı ödül havuzunda (Bölüm 3.7.3) ayrı bir kırılma ödülü listesi yoktur: "ödülsüz eş", "almayan eş" ve laboratuvar kolları
+        // o listeye göre yazıldı. Bu kollar aşamalı havuzda sessizce eski varsayımla çalıştırılmaz.
+        // "Almayan eş" yalnız teklifi süzer (IsBreakthrough), kırılma listesine bakmaz: aşamalı havuzda da çalışır (Bölüm 3.7.5).
+        // Laboratuvar (Bölüm 3.7.8) aşamalı havuzda çalışır: ödül id'yle aşamalardan bulunur; "ödülsüz eş" hâlâ desteklenmez.
+        if (runProfile.bossRewards != null && runProfile.bossRewards.IsStaged && config.NoBreakthroughs)
+            throw new Exception("Bu profil desteklenmiyor: aşamalı ödül havuzu için ödülsüz eş kolu uyarlanmadı (" + config.Profile + ")");
         if (config.NoBreakthroughs && runProfile.bossRewards != null)
         {
             // Ödülsüz eş: aynı havuz, kırılma ödülleri olmadan (asset değişmez; kopya üzerinde).
@@ -634,6 +1041,19 @@ public static class BalanceRunMeasurement
             runProfile.bossRewards.breakthroughs.Clear();
         }
         if (config.ChoicesPerLevel > 0) runProfile.choicesPerLevel = config.ChoicesPerLevel;
+        if (config.TailGrowth >= 0f || config.AdditiveXp >= 0)
+        {
+            // Yalnız bu run için: denge seti (ve XP tablosu) kopyalanır, kural değişir (asset'ler değişmez).
+            if (runProfile.balance == null || runProfile.balance.progression == null) throw new Exception("rule override needs a profile balance set: " + config.Profile);
+            runProfile.balance = Object.Instantiate(runProfile.balance);
+            if (config.AdditiveXp >= 0) runProfile.balance.additiveBaseXpCards = config.AdditiveXp == 1;
+            if (config.TailGrowth >= 0f)
+            {
+                runProfile.balance.progression = Object.Instantiate(runProfile.balance.progression);
+                runProfile.balance.progression.tailGrowth = config.TailGrowth;
+            }
+        }
+        ApplyRunOverrides(runProfile, config);
         if (config.BossOnly != null && runProfile.bossPool != null)
         {
             // Tek adaylı havuz. "none": hiçbir zaman uygun olmayan aday → oyunun kendi yedeği (kuralsız boss; hedef ve ödül sürer).
@@ -659,6 +1079,43 @@ public static class BalanceRunMeasurement
         return 1.5;
     }
 
+    // Bölüm 3.7.8: yalnız bu run için (profil kopyası üzerinde; asset'ler değişmez) hedef tablosu, can eğrisi ve zincir çarpanı adayı.
+    static void ApplyRunOverrides(RunProfileSO profile, RunConfig c)
+    {
+        if (c.Quota != null) profile.segmentTargets = c.Quota.ToList();
+        if (c.Boss != null) profile.bossTargets = c.Boss.ToList();
+        if (c.NoTargets)
+        {
+            profile.segmentTargets = profile.segmentTargets.Select(_ => 1L).ToList();
+            profile.bossTargets = profile.bossTargets.Select(_ => 1L).ToList();
+        }
+        if (c.Hp != null)
+        {
+            if (profile.balance == null || profile.balance.plantHealth == null || c.Hp.Length < 2 || c.Hp.Length % 2 != 0) throw new Exception("health override needs a profile balance set and (round, health) pairs: " + c.Profile);
+            profile.balance = Object.Instantiate(profile.balance);
+            profile.balance.plantHealth = Object.Instantiate(profile.balance.plantHealth);
+            profile.balance.plantHealth.anchors = Enumerable.Range(0, c.Hp.Length / 2).Select(i => new PlantHealthAnchor { round = Mathf.RoundToInt(c.Hp[2 * i]), commonHealth = c.Hp[2 * i + 1] }).ToList();
+        }
+        if (c.ChainChance != null || c.ChainDamage != null)
+        {
+            var pool = profile.bossRewards;
+            if (pool == null || !pool.IsStaged) throw new Exception("chain override needs a staged reward pool: " + c.Profile);
+            pool = profile.bossRewards = Object.Instantiate(pool);
+            bool done = false;
+            foreach (var stage in pool.stages)
+                for (int i = 0; i < stage.rewards.Count; i++)
+                {
+                    var entry = stage.rewards[i];
+                    if (entry.reward == null || !entry.reward.chain) continue;
+                    entry.reward = Object.Instantiate(entry.reward);
+                    if (c.ChainChance != null) entry.reward.chainChance = (float[])c.ChainChance.Clone();
+                    if (c.ChainDamage != null) entry.reward.chainDamage = (float[])c.ChainDamage.Clone();
+                    stage.rewards[i] = entry; done = true;
+                }
+            if (!done) throw new Exception("chain override: no chain reward in the pool of " + c.Profile);
+        }
+    }
+
     static void PrepareScene()
     {
         if (RM.Profile != runProfile) throw new Exception("measurement profile not active");
@@ -681,7 +1138,9 @@ public static class BalanceRunMeasurement
         summary.AppendLine($"run {runIndex + 1} | {config.Profile} | {policy.Name} | {config.Farmer}+{config.Scythe} | seed {config.Seed} | {config.Label} | {outcome} @R{RM.CurrentRound} | " +
                            $"skor {HarvestScoreManager.Instance.TotalScore} | level {ProgressionManager.Instance.CurrentLevel} | ağaç {tiers}/{total} | ödül {rewards} | " +
                            $"{RM.LevelsGained} level · {RM.CardChoicesGranted} seçim hakkı · kart {bot.CardTiles} tile + {bot.CardUpgrades} yükseltme + {bot.CardBase} temel güç | " +
-                           $"ilk davranış kartı R{bot.FirstBehavior} · ilk tetik R{bot.FirstTrigger} | kırılma {(bot.Breakthroughs.Count > 0 ? string.Join(" ", bot.Breakthroughs) : "-")}");
+                           $"ilk davranış kartı R{bot.FirstBehavior} · ilk tetik R{bot.FirstTrigger} | kırılma {(bot.Breakthroughs.Count > 0 ? string.Join(" ", bot.Breakthroughs) : "-")}" +
+                           (RunClock.Instance != null ? $" | aktif süre {N(RunClock.Instance.ActiveGameSeconds, "0.#")} sn (gerçek {N(RunClock.Instance.ActiveRealSeconds, "0.#")} sn) · {RunClock.Instance.RoundsTimed} round" : ""));
+        finalCsv.AppendLine(bot.FinalRow(outcome));
         Time.captureDeltaTime = 0f;
         WriteCsv();
     }
@@ -761,7 +1220,8 @@ public static class BalanceRunMeasurement
         var tier = node.tiers[level];
         if (!SkillTreeManager.Instance.TryUpgrade(node)) throw new Exception("upgrade failed: " + node.name);
         bot.TiersBought++;
-        nodeCsv.AppendLine($"{runIndex + 1},{policy.Name},{config.Farmer},{config.Scythe},{config.Seed},{config.Label},{ShopRound},{node.name},{level + 1},{tier.cost},{tier.costType}");
+        nodeCsv.AppendLine($"{runIndex + 1},{policy.Name},{config.Farmer},{config.Scythe},{config.Seed},{config.Label},{ShopRound},{node.name},{level + 1},{tier.cost},{tier.costType},{Category(node)}");
+        if (Category(node) == Cat.Xp) bot.XpSpent += tier.cost;
     }
 
     // Alışveriş round'u: ilk hazırlık 0, sonra biten round.
@@ -943,8 +1403,18 @@ public static class BalanceRunMeasurement
         {
             double rarity = RarityPower[(int)o.Rarity];
             float w = o.Tile != null && policy.Early(RM.CurrentRound) && policy.CardWeight.TryGetValue(o.Tile.modifierType, out float cw) ? cw : 1f;
+            // Bölüm 3.7.7: XP kolunun erken Water tercihi ve temel güç kartı tercihi (eski politikalarda ikisi de yok: w değişmez).
+            if (o.Tile != null && o.Tile.modifierType == TileModifierType.Water && RM.CurrentRound <= policy.XpEarlyUntil) w = policy.XpCardWeight;
+            if (o.IsBaseStat && policy.BaseWeight.TryGetValue(o.Modifiers[0].statType, out float bw)) w = bw;
             return rarity * w;
         }).First();
+        // Erken davranış erişimi: ilk patlama / elektrik kartı teklif edildiği anda alınır (yol politikalarının kuralıyla aynı).
+        if (!policy.Naive && policy.TakesFirstBehavior && bot.FirstBehavior == 0)
+        {
+            var first = offers.Where(o => !o.IsUpgrade && o.Tile != null && (o.Tile.modifierType == TileModifierType.Explosive || o.Tile.modifierType == TileModifierType.Electric))
+                .OrderByDescending(o => RarityPower[(int)o.Rarity]).FirstOrDefault();
+            if (first != null) pick = first;
+        }
         // Yol politikası: kendi davranış kartını henüz almadıysa, teklif edildiği anda alır (yoksa ilk patlama / elektrik kartını).
         // Bot yalnız ekrandaki üç adayı görür; yeri seçmez.
         if (!policy.Naive && policy.WantBehavior.HasValue && bot.FirstOwn == 0)
@@ -956,15 +1426,22 @@ public static class BalanceRunMeasurement
             if (own != null) pick = own;
         }
         bot.CardScreens++;
-        if (pick.IsUpgrade) bot.CardUpgrades++;
-        else if (pick.IsBaseStat) bot.CardBase++;
+        // FirstUpgrade / FirstBase: ilk yükseltme ve ilk temel güç kartının alındığı round sonu.
+        if (pick.IsUpgrade) { bot.CardUpgrades++; if (bot.FirstUpgrade == 0) bot.FirstUpgrade = RM.CurrentRound; }
+        else if (pick.IsBaseStat)
+        {
+            bot.CardBase++; if (bot.FirstBase == 0) bot.FirstBase = RM.CurrentRound;
+            if (pick.Modifiers[0].statType == StatType.XPGainMultiplier) bot.CardXpBase++;
+        }
         else
         {
             bot.CardTiles++;
             var type = pick.Tile.modifierType;
+            if (type == TileModifierType.Water) bot.CardWater++;
             if ((type == TileModifierType.Explosive || type == TileModifierType.Electric) && bot.FirstBehavior == 0) bot.FirstBehavior = RM.CurrentRound;
             if (policy.WantBehavior == type && bot.FirstOwn == 0) bot.FirstOwn = RM.CurrentRound;
         }
+        bot.NoteCardScreen(cardUI);
         Call(cardUI, "OnCardSelected", pick);
     }
 
@@ -977,13 +1454,16 @@ public static class BalanceRunMeasurement
         if (offer.Count == 0) { boss.ContinueWithoutReward(); rewardCsv.AppendLine(Row(offered, "-")); return; }
         // Almayan eş: aynı teklif, kırılma ödülü seçenek dışı (teklifte yalnız o kaldıysa mecburen alınır ve özet satırında görünür).
         if (config.DeclineBreakthroughs && offer.Any(r => !r.IsBreakthrough)) offer = offer.Where(r => !r.IsBreakthrough).ToList();
+        if (config.DeclineId != null && offer.Any(r => r.id != config.DeclineId)) offer = offer.Where(r => r.id != config.DeclineId).ToList();
         BossRewardSO pick = null;
         if (policy.Naive) pick = offer[naive.Next(offer.Count)];
         else
         {
             string[] order = policy.FixedRewardOrder || policy.Early(RM.CurrentRound) ? policy.RewardOrder : Balanced().RewardOrder;
-            foreach (string id in order) { pick = offer.FirstOrDefault(r => r.id == id); if (pick != null) break; }
-            pick ??= offer[0];
+            if (RM.CurrentRound <= policy.XpEarlyUntil) pick = offer.FirstOrDefault(r => r.id == "bilgi_filizi");
+            if (pick == null) foreach (string id in order) { pick = offer.FirstOrDefault(r => r.id == id); if (pick != null) break; }
+            // Bedelli ödüller (Bölüm 3.7.4) politikaların sırasında yoktur: bot onları yalnız başka seçenek kalmadıysa alır.
+            pick ??= offer.FirstOrDefault(r => !r.HasCost) ?? offer[0];
         }
         if (!boss.Choose(pick)) throw new Exception("reward not taken: " + pick.id);
         if (pick.IsBreakthrough) bot.Breakthroughs.Add(pick.id + "@R" + RM.CurrentRound);
@@ -1001,14 +1481,47 @@ public static class BalanceRunMeasurement
             "planters,points,fill,minFill,spawnInterval,capacity,tiersBought,treeTiers,plantersBought,rewards,best5s,emptyShare,duration," +
             // Bölüm 3.6 (sona eklendi: eski çözümleyiciler etkilenmez). levels / choices / card* run başından beri toplamdır; diğerleri o round.
             "levels,choices,cardTiles,cardUpgrades,cardBase,firstBehavior,firstOwn,firstTrigger,breakthrough," +
-            "echoSched,echoExec,echoDrop,echoHits,echoKills,rhythmCharges,rhythmAttacks,skipElectricVisual,skipExplosionVisual,skipBoomerang,endFill,scorePerSec,killsPerSec";
+            "echoSched,echoExec,echoDrop,echoHits,echoKills,rhythmCharges,rhythmAttacks,skipElectricVisual,skipExplosionVisual,skipBoomerang,endFill,scorePerSec,killsPerSec,normalBehaviorKills,chainKills," +
+            // Bölüm 3.7.6.1 (sona eklendi): o round'da uygulanan en büyük doğrudan vuruş, doyan / geçersiz sayı dönüşümleri, round sonunda
+            // saklı XP, işlenmeyi bekleyen level işi ve teknik sınırda duran level işleme.
+            "maxDirectHit,saturated,invalidNumbers,storedXp,pendingLevels,levelHalted," +
+            // Bölüm 3.7.7 (sona eklendi). firstEffective: davranış şansı olan bir saksıyla başlanan ilk round. behaviorTiles /
+            // behaviorPlanted: round sonunda tarladaki patlama-elektrik tile'ları ve saksı altındakiler. xpSpent: XP düğümlerine
+            // harcanan kaynak (run başından). cardWater / cardXpBase: alınan Water tile ve temel güç XP kartı (run başından).
+            // xpGlobal: global XP çarpanı (ağaç × ödül × temel güç; tile ve rezonans hariç). xpCardGroup: toplanan temel güç XP
+            // kartlarının toplamı (yalnız yeni kuralda). levelCost: sonraki level'ın maliyeti. waitFrames: bir önceki round sonunun
+            // level işleme bekleyişi (kare). prevChoices: bir önceki round sonunda yapılan kart seçimi.
+            "firstEffective,behaviorTiles,behaviorPlanted,xpSpent,cardWater,cardXpBase,xpGlobal,xpCardGroup,levelCost,waitFrames,prevChoices," +
+            // Bölüm 3.7.8 (sona eklendi). activeGame / activeReal: round sayacından düşen süre ve aynı karelerde gerçekte geçen süre
+            // (RunClock; sabit kare adımında ikisi de tekrarlanabilir). plantWait: o round'da hasat edilen bitkilerin tarlada
+            // beklediği ortalama süre (sn, yalnız aktif round kareleri); wait*: öldüren kaynağa göre (doğrudan / normal davranış /
+            // zincir nesil 1 / nesil 2 / artçı-ikinci dalga). behaviorHits / chainHits: normal (nesil 0) ve zincir davranış vuruşu;
+            // chainHitsNew: kökün doğrudan vuruşunun ve normal tetiğinin dokunmadığı hücrelere zincir vuruşu. *KillHp: öldüren
+            // vuruştan önceki can / azami can ortalaması. ch*: zincir hunisi (deneme, başarılı tetik, yürütülen iş; retler; havuz
+            // beklemesi; kuyruk gecikmesi). ghost*: zincirin öldürdüğü bitkilerden, sıradaki doğrudan saldırının (o bitkiler yerinde
+            // dursaydı seçeceği nişanla) yine erişeceği (Reached) ve en düşük doğrudan hasarla kesin öldüreceği (Lethal) olanlar.
+            // frameMs*: aktif round karelerinin gerçek süresi (ölçüm botu dahil; batch, GPU sonucu değildir), botMsAvg: botun payı.
+            "activeGame,activeReal,plantWait,waitDirect,waitBehavior,waitChain1,waitChain2,waitEcho," +
+            "behaviorHits,chainHits,chainHitsNew,chainKills1,chainKills2,chainKillHp,behaviorKillHp," +
+            "chAttempts1,chAttempts2,chTriggers1,chTriggers2,chFired1,chFired2,chRejRepeat,chRejGeneration,chRejBudget,chRejInvalid,chRejRoundEnd,chRejExcluded," +
+            "chPoolWaitJobs,chPoolWaitFrames,chDelayFrames,ghostKills,ghostResolved,ghostReached,ghostLethal,frameMsAvg,frameMsP95,frameMsMax,botMsAvg,gc0,aim";
+        public const string FinalHeader = "run,profile,policy,farmer,scythe,seed,label,outcome,round,score,level,levels,choices,cardsTaken,cardTiles,cardUpgrades,cardBase,cardXpBase,cardWater," +
+            "firstBehavior,firstEffective,firstTrigger,firstUpgrade,firstBase,xpSpent,xpGlobal,xpCardGroup,levelCost,storedXp,levelHalted,saturated,invalidNumbers," +
+            "maxRoundChoices,maxRoundChoicesRound,maxWaitFrames,totalWaitFrames,remainingShownOk,tailGrowth," +
+            // Bölüm 3.7.8: run süre sayaçları (RunClock). clockActive*: tekrarlanabilir. Diğerleri botun menüde geçirdiği kare
+            // sayısına bağlıdır (insan süresi DEĞİLDİR, makineye göre değişir): yalnız sayaçların ayrıldığını gösterir.
+            "clockActiveGame,clockActiveReal,roundsTimed,clockLevelWork,clockCards,clockRoundChoice,clockShop,clockPrep,clockOther,clockPaused,chainMaxPending,aim";
 
         public int TiersBought, PlantersBought, CardScreens;
         // run boyunca: alınan kartlar (tile / yükseltme / temel güç), ilk davranış kartı, ilk gerçek tetik, kırılma ödülleri
         public int CardTiles, CardUpgrades, CardBase, FirstBehavior, FirstOwn, FirstTrigger;
+        // Bölüm 3.7.7
+        public int CardXpBase, CardWater, FirstEffective, FirstUpgrade, FirstBase; public long XpSpent;
+        int waitFrames, prevWaitFrames, maxWaitFrames, totalWaitFrames, prevChoices, maxRoundChoices, maxRoundChoicesRound, saturatedRun0, invalidRun0;
+        bool remainingOk = true; int screensThisEnd;
         public readonly List<string> Breakthroughs = new();
         public string LabLine = "";
-        int triggers0, echoKillsRound; double lastFill;
+        int triggers0, echoKillsRound, chainKillsRound, normalKillsRound; double lastFill;
         readonly int[] echo0 = new int[4]; int charges0, strong0, skipElectric0, skipExplosion0, skipBoomerang0;
         static int Triggers() => HarvestBehaviorStats.Triggered(DamageType.Explosion) + HarvestBehaviorStats.Triggered(DamageType.Electric);
         static int EchoSum(Func<BehaviorEchoes, DamageType, int> f) =>
@@ -1022,13 +1535,55 @@ public static class BalanceRunMeasurement
         // round sayaçları
         readonly int[] kills = new int[5], byRarity = new int[5];
         readonly double[] hitSum = new double[5], ttkSum = new double[5]; readonly int[] tracked = new int[5], oneShots = new int[5], fresh = new int[5];
-        readonly Dictionary<PlantHealth, (uint life, int hits, float first)> hitLog = new();
-        readonly Dictionary<ResourceType, int> income = new(), lastIncome = new();
+        // Süreler kare sayısıyla tutulur (sabit adım: FrameTime). Time.time tek duyarlıklıdır; farkı oturumun mutlak zamanına göre
+        // yuvarlanır ve aynı run'ın iki ayrı çalıştırmasında süre sütunlarını 0,01 sn oynatırdı (Bölüm 3.7.5).
+        const int Best5sFrames = 150;   // 5 sn
+        readonly Dictionary<PlantHealth, (uint life, int hits, int first)> hitLog = new();
+        readonly Dictionary<ResourceType, long> income = new(), lastIncome = new();
+        int maxDirectHit, saturated0, invalid0;
+        // Bölüm 3.7.8
+        readonly Dictionary<GridObject, int> bornAt = new();   // üretim noktası → üstündeki bitkinin görüldüğü ilk aktif kare
+        int activeFrame;                                       // run boyunca aktif round karesi (menüde ilerlemez)
+        readonly double[] waitBy = new double[5]; readonly int[] waitByN = new int[5];   // 0 doğrudan · 1 normal davranış · 2 zincir nesil 1 · 3 zincir nesil 2 · 4 artçı
+        readonly HashSet<long> rootCells = new();
+        int behaviorHits, chainHits, chainHitsNew, behaviorKillN; readonly int[] chainKills = new int[3];
+        double chainKillHp, behaviorKillHp;
+        PlantHealth lastHit; int lastHitHp;
+        readonly Dictionary<GridObject, (int hp, int rarity)> ghosts = new();   // son doğrudan saldırıdan beri zincirin öldürdükleri
+        int ghostKills, ghostResolved, ghostReached, ghostLethal;
+        readonly int[] chain0 = new int[16];
+        readonly List<float> frameMs = new(); long frameStamp; bool frameWasActive; double botMsSum; int gcStart;
+        readonly Dictionary<PlanterBrain, float> behaviorChance = new();
+        static readonly double TickMs = 1000.0 / System.Diagnostics.Stopwatch.Frequency;
+
+        static int[] ChainNow()
+        {
+            var c = HarvestChain.Instance; var a = new int[16];
+            if (c == null) return a;
+            a[0] = c.Attempts(1); a[1] = c.Attempts(2); a[2] = c.Triggers(1); a[3] = c.Triggers(2); a[4] = c.Fired(1); a[5] = c.Fired(2);
+            for (int k = 0; k < HarvestChain.RejectKinds; k++) a[6 + k] = c.Rejected((HarvestChain.Reject)k);
+            a[12] = c.PoolWaitJobs; a[13] = c.PoolWaitFrames; a[14] = (int)Math.Min(int.MaxValue, c.DelayFramesTotal);
+            return a;
+        }
+
+        // Nişan değeri: politika (bitki sayısı ya da skor değeri) × ikinci nişan politikasında saksının davranış şansı.
+        double AimWeight(PlantHealth h)
+        {
+            double w = policy.ValueAim && h.Data != null ? Value[(int)h.Data.rarity] : 1;
+            if (!policy.BehaviorAim || h.Owner == null) return w;
+            if (!behaviorChance.TryGetValue(h.Owner, out float chance))
+            {
+                var o = h.Owner;
+                chance = Mathf.Min(1f, o.GetFinalStat(StatType.ExplosionChance) + o.GetFinalStat(StatType.ElectricChance) + o.GetFinalStat(StatType.TornadoChance) + o.GetFinalStat(StatType.BoomerangChance));
+                behaviorChance[o] = chance;
+            }
+            return w * (1 + 2 * chance);
+        }
         int attacks, hitTargets, fillSamples, emptySamples; double fillSum, minFill; long score0, segScore0; double xp0;
-        readonly Queue<float> killTimes = new(); int best5s;
+        readonly Queue<int> killTimes = new(); int best5s;
         int lastRound; bool roundOpen; string outcome = "";
 
-        public float LastIncome(ResourceType t) => lastIncome.TryGetValue(t, out int v) ? v : 0;
+        public float LastIncome(ResourceType t) => lastIncome.TryGetValue(t, out long v) ? v : 0;
         public float LastFill { get; private set; } = -1f;   // son round'un ortalama tarla doluluğu (ölçüm yoksa -1)
 
         public void Init(Policy p, RunConfig c, int runIndex, StringBuilder output)
@@ -1037,37 +1592,122 @@ public static class BalanceRunMeasurement
             player = FindFirstObjectByType<PlayerController>(FindObjectsInactive.Include);
             attack = typeof(PlayerController).GetMethod("AttackInRadius", BindingFlags.NonPublic | BindingFlags.Instance);
             PlantHealth.AnyHarvested += OnHarvest;
+            PlantHealth.AnyDamaged += OnDamaged;
             ResourceManager.Instance.OnHarvestResourceAdded += OnIncome;
             RoundManager.Instance.OnRoundChanged += OnRoundStart;
             RoundManager.Instance.OnRoundEnded += OnRoundEnd;
             triggers0 = Triggers();   // sayaç statiktir (sahne değişiminde sıfırlanmaz): run başındaki değer taban alınır
+            saturatedRun0 = NumericSafety.TotalSaturated; invalidRun0 = NumericSafety.TotalInvalid;
+        }
+
+        static bool IsBehaviorTile(GroundCell cell) => cell != null && cell.CurrentModifier != null &&
+            (cell.CurrentModifier.modifierType == TileModifierType.Explosive || cell.CurrentModifier.modifierType == TileModifierType.Electric);
+
+        // Tarladaki patlama / elektrik tile'ları ve saksı altında olanlar.
+        static (int tiles, int planted) BehaviorTiles()
+        {
+            int tiles = 0, planted = 0;
+            var grid = GridManager.Instance.GetGridSystem();
+            int w = GridManager.Instance.GetWidth(), h = GridManager.Instance.GetHeight();
+            for (int x = 0; x < w; x++) for (int z = 0; z < h; z++)
+            {
+                var cell = grid.GetGridObject(new GridPosition(x, z))?.GetGroundCellCached();
+                if (cell == null || cell.IsLocked || !IsBehaviorTile(cell)) continue;
+                tiles++;
+                if (cell.Planter != null) planted++;
+            }
+            return (tiles, planted);
+        }
+
+        // Kart ekranı: kalan seçim sayacı gerçek bekleyen hakla aynı mı (panelin gösterdiği sayı; her seçimde denetlenir).
+        public void NoteCardScreen(CardSelectionUI ui)
+        {
+            screensThisEnd++;
+            if (ui.ShownRemaining != RoundManager.Instance.PendingCardSelections || ui.RemainingText == null) remainingOk = false;
+        }
+
+        public string FinalRow(string result)
+        {
+            CloseRoundEnd();
+            var rm = RoundManager.Instance; var progress = ProgressionManager.Instance; var stats = StatManager.Instance;
+            return $"{run + 1},{config.Profile},{policy.Name},{config.Farmer},{config.Scythe},{config.Seed},{config.Label},{result.Split(' ')[0]},{rm.CurrentRound},{HarvestScoreManager.Instance.TotalScore}," +
+                   $"{progress.CurrentLevel},{rm.LevelsGained},{rm.CardChoicesGranted},{rm.CardsTaken},{CardTiles},{CardUpgrades},{CardBase},{CardXpBase},{CardWater}," +
+                   $"{FirstBehavior},{FirstEffective},{FirstTrigger},{FirstUpgrade},{FirstBase},{XpSpent},{N(stats.GetFinalStat(StatType.XPGainMultiplier, StatTarget.Planter), "0.####")}," +
+                   $"{N(stats.SummedGroupTotal(StatType.XPGainMultiplier, StatTarget.Planter), "0.####")},{N(progress.XPToNextLevel, "0")},{N(progress.StoredXP, "0")},{(progress.LevelProcessingHalted ? 1 : 0)}," +
+                   $"{NumericSafety.TotalSaturated - saturatedRun0},{NumericSafety.TotalInvalid - invalidRun0},{maxRoundChoices},{maxRoundChoicesRound},{maxWaitFrames},{totalWaitFrames},{(remainingOk ? 1 : 0)}," +
+                   $"{N(progress.Data != null ? progress.Data.tailGrowth : 0, "0.####")}," + ClockColumns();
+        }
+
+        string ClockColumns()
+        {
+            var c = RunClock.Instance;
+            string aim = policy.BehaviorAim ? "davranis" : policy.Naive ? "rastgele" : policy.ValueAim ? "deger" : "kalabalik";
+            int pending = HarvestChain.Instance != null ? HarvestChain.Instance.MaxPending : 0;
+            if (c == null) return $",,,,,,,,,,{pending},{aim}";
+            return $"{N(c.ActiveGameSeconds, "0.###")},{N(c.ActiveRealSeconds, "0.###")},{c.RoundsTimed},{N(c.LevelWorkSeconds, "0.#")},{N(c.CardSelectionSeconds, "0.#")},{N(c.RoundChoiceSeconds, "0.#")}," +
+                   $"{N(c.ShopSeconds, "0.#")},{N(c.PreparationSeconds, "0.#")},{N(c.OtherSeconds, "0.#")},{N(c.PausedSeconds, "0.#")},{pending},{aim}";
+        }
+
+        // Bir round sonunun kart seçimleri ve level bekleyişi kapanır (sonraki round başlarken ya da run biterken).
+        void CloseRoundEnd()
+        {
+            prevChoices = screensThisEnd; prevWaitFrames = waitFrames;
+            if (screensThisEnd > maxRoundChoices) { maxRoundChoices = screensThisEnd; maxRoundChoicesRound = lastRound; }
+            maxWaitFrames = Math.Max(maxWaitFrames, waitFrames); totalWaitFrames += waitFrames;
+            screensThisEnd = 0; waitFrames = 0;
+        }
+
+        void OnDamaged(PlantHealth plant, int damage, DamageType type)
+        {
+            if (type == DamageType.Direct && damage > maxDirectHit) maxDirectHit = damage;
+            if (!roundOpen) return;
+            // Olay can düşmeden önce gelir: CurrentHealth bu vuruştan önceki candır.
+            lastHit = plant; lastHitHp = plant.CurrentHealth;
+            HarvestLink link = plant.LastHitLink;
+            if (type != DamageType.Direct && !link.Echo) { if (link.IsChain) chainHits++; else behaviorHits++; }
+            if (link.Root == 0) return;
+            var cell = GridManager.Instance.GetGridSystem().GetGridPosition(plant.transform.position);
+            long key = ((long)link.Root << 16) | (long)((cell.x & 0xFF) << 8) | (long)(cell.z & 0xFF);
+            if (link.Generation <= 0) rootCells.Add(key);
+            else if (!rootCells.Contains(key)) chainHitsNew++;
         }
 
         void OnDestroy()
         {
             PlantHealth.AnyHarvested -= OnHarvest;
+            PlantHealth.AnyDamaged -= OnDamaged;
             if (ResourceManager.Instance != null) ResourceManager.Instance.OnHarvestResourceAdded -= OnIncome;
             if (RoundManager.Instance != null) { RoundManager.Instance.OnRoundChanged -= OnRoundStart; RoundManager.Instance.OnRoundEnded -= OnRoundEnd; }
         }
 
-        void OnIncome(ResourceType type, int amount, Vector3 _) { income.TryGetValue(type, out int v); income[type] = v + amount; }
+        void OnIncome(ResourceType type, int amount, Vector3 _) { income.TryGetValue(type, out long v); income[type] = v + amount; }
 
         void OnRoundStart(int round)
         {
+            CloseRoundEnd();
+            if (FirstEffective == 0 && FindObjectsByType<PlanterBrain>(FindObjectsSortMode.None).Any(p => p.OccupiedGrids.Count > 0 &&
+                    (p.GetFinalStat(StatType.ExplosionChance) > 0f || p.GetFinalStat(StatType.ElectricChance) > 0f))) FirstEffective = round;
             Array.Clear(kills, 0, 5); Array.Clear(byRarity, 0, 5); Array.Clear(hitSum, 0, 5); Array.Clear(ttkSum, 0, 5);
             Array.Clear(tracked, 0, 5); Array.Clear(oneShots, 0, 5); Array.Clear(fresh, 0, 5);
             hitLog.Clear(); income.Clear(); attacks = hitTargets = fillSamples = emptySamples = 0; fillSum = 0; minFill = 1; timer = 0;
             killTimes.Clear(); best5s = 0; CardScreens = 0;
             score0 = HarvestScoreManager.Instance.TotalScore;
-            if ((round - 1) % RoundManager.Instance.QuotaSegmentRounds == 0) segScore0 = score0;
+            if (RoundManager.Instance.Calendar.IsPeriodStart(round)) segScore0 = score0;   // dönem başı: ortak run takvimi
             xp0 = ProgressionManager.Instance.TotalXPEarned;
             lastRound = round; roundOpen = true; aims = null;
             var now = EchoNow(); for (int i = 0; i < 4; i++) echo0[i] = now[i];
-            echoKillsRound = 0; lastFill = 0;
+            echoKillsRound = chainKillsRound = normalKillsRound = 0; lastFill = 0;
             charges0 = RunPower.Rhythm.Charges; strong0 = RunPower.Rhythm.EmpoweredAttacks;
             skipElectric0 = HarvestBehaviorManager.Instance != null ? HarvestBehaviorManager.Instance.SkippedElectricVisuals : 0;
             skipExplosion0 = VFXManager.Instance != null ? VFXManager.Instance.ExplosionVisualsSkipped : 0;
             skipBoomerang0 = HarvestBehaviorStats.Skipped(DamageType.Boomerang);
+            maxDirectHit = 0; saturated0 = NumericSafety.TotalSaturated; invalid0 = NumericSafety.TotalInvalid;
+            Array.Clear(waitBy, 0, 5); Array.Clear(waitByN, 0, 5); Array.Clear(chainKills, 0, 3);
+            rootCells.Clear(); ghosts.Clear(); behaviorChance.Clear(); frameMs.Clear();
+            behaviorHits = chainHits = chainHitsNew = behaviorKillN = ghostKills = ghostResolved = ghostReached = ghostLethal = 0;
+            chainKillHp = behaviorKillHp = botMsSum = 0; frameWasActive = false; lastHit = null;
+            var chainNow = ChainNow(); for (int i = 0; i < chain0.Length; i++) chain0[i] = chainNow[i];
+            gcStart = GC.CollectionCount(0);
         }
 
         void OnHarvest(PlantHealth h)
@@ -1075,17 +1715,31 @@ public static class BalanceRunMeasurement
             if (!roundOpen || h.Data == null) return;
             kills[(int)h.KilledBy]++;
             if (BehaviorEchoes.IsExecuting) echoKillsRound++;   // artçı / ikinci dalganın gerçek hasadı
+            // Bölüm 3.7.6: öldüren vuruşun bağlamı — zincirden doğan davranış (nesil ≥ 1) ya da normal davranış (nesil 0).
+            if (h.KilledBy != DamageType.Direct && !h.KillLink.Echo) { if (h.KillLink.IsChain) chainKillsRound++; else normalKillsRound++; }
+            // Bölüm 3.7.8: kaynak (0 doğrudan · 1 normal davranış · 2 / 3 zincir nesil 1 / 2 · 4 artçı), bekleme süresi, öldüren vuruştan önceki can.
+            int source = h.KilledBy == DamageType.Direct ? 0 : h.KillLink.Echo ? 4 : h.KillLink.IsChain ? Math.Min(2, (int)h.KillLink.Generation) + 1 : 1;
+            var grid = GridManager.Instance.GetGridSystem();
+            GridObject spot = grid.GetGridObject(grid.GetGridPosition(h.transform.position));
+            if (spot != null && bornAt.TryGetValue(spot, out int born)) { waitBy[source] += (activeFrame - born) * (double)FrameTime; waitByN[source]++; bornAt.Remove(spot); }
+            double hpShare = lastHit == h && h.MaxHealth > 0 ? Math.Min(1.0, lastHitHp / (double)h.MaxHealth) : 1.0;
+            if (source == 1) { behaviorKillHp += hpShare; behaviorKillN++; }
+            if (source == 2 || source == 3)
+            {
+                chainKills[source - 1]++; chainKillHp += hpShare;
+                if (spot != null && h.Data != null) { ghosts[spot] = (lastHit == h ? lastHitHp : h.MaxHealth, (int)h.Data.rarity); ghostKills++; }
+            }
             int r = (int)h.Data.rarity; byRarity[r]++;
-            float now = Time.time;
+            int now = Time.frameCount;
             killTimes.Enqueue(now);
-            while (killTimes.Count > 0 && now - killTimes.Peek() > 5f) killTimes.Dequeue();
+            while (killTimes.Count > 0 && now - killTimes.Peek() > Best5sFrames) killTimes.Dequeue();
             best5s = Math.Max(best5s, killTimes.Count);
             if (hitLog.TryGetValue(h, out var log) && log.life == h.LifetimeVersion)
             {
                 // Doğrudan vuruşla ölen bitkide: kaç doğrudan vuruş aldı ve ilk vuruştan ölüme kaç saniye geçti.
                 if (h.KilledBy == DamageType.Direct)
                 {
-                    tracked[r]++; hitSum[r] += log.hits; ttkSum[r] += now - log.first;
+                    tracked[r]++; hitSum[r] += log.hits; ttkSum[r] += (now - log.first) * (double)FrameTime;
                 }
                 hitLog.Remove(h);
             }
@@ -1095,10 +1749,18 @@ public static class BalanceRunMeasurement
         {
             if (!roundOpen) return;
             roundOpen = false;
-            foreach (ResourceType t in Enum.GetValues(typeof(ResourceType))) lastIncome[t] = income.TryGetValue(t, out int v) ? v : 0;
+            foreach (ResourceType t in Enum.GetValues(typeof(ResourceType))) lastIncome[t] = income.TryGetValue(t, out long v) ? v : 0;
             LastFill = fillSamples > 0 ? (float)(fillSum / fillSamples) : -1f;
             if (FirstTrigger == 0 && Triggers() > triggers0) FirstTrigger = lastRound;
             WriteRow("");
+        }
+
+        // Süre sınırında: açık round'un o ana kadarki satırı (sonuç sütunu "kesildi"). Round zaten kapandıysa bir şey yazmaz.
+        public void WritePartial()
+        {
+            if (!roundOpen) return;
+            roundOpen = false;
+            WriteRow("kesildi");
         }
 
         public void Close(string result)
@@ -1144,13 +1806,31 @@ public static class BalanceRunMeasurement
             int skipExplosion = (VFXManager.Instance != null ? VFXManager.Instance.ExplosionVisualsSkipped : 0) - skipExplosion0;
             sb.Append($"{rm.LevelsGained},{rm.CardChoicesGranted},{CardTiles},{CardUpgrades},{CardBase},{FirstBehavior},{FirstOwn},{FirstTrigger},{string.Join(" ", Breakthroughs)},");
             sb.Append($"{echo[0] - echo0[0]},{echo[1] - echo0[1]},{echo[2] - echo0[2]},{echo[3] - echo0[3]},{echoKillsRound},{RunPower.Rhythm.Charges - charges0},{RunPower.Rhythm.EmpoweredAttacks - strong0},");
-            sb.Append($"{skipElectric},{skipExplosion},{HarvestBehaviorStats.Skipped(DamageType.Boomerang) - skipBoomerang0},{N(lastFill, "0.###")},{N(duration > 0 ? (score - score0) / duration : 0, "0.###")},{N(duration > 0 ? total / duration : 0, "0.###")}");
+            sb.Append($"{skipElectric},{skipExplosion},{HarvestBehaviorStats.Skipped(DamageType.Boomerang) - skipBoomerang0},{N(lastFill, "0.###")},{N(duration > 0 ? (score - score0) / duration : 0, "0.###")},{N(duration > 0 ? total / duration : 0, "0.###")},{normalKillsRound},{chainKillsRound},");
+            var progress = ProgressionManager.Instance;
+            sb.Append($"{maxDirectHit},{NumericSafety.TotalSaturated - saturated0},{NumericSafety.TotalInvalid - invalid0},{N(progress.StoredXP, "0")},{(progress.HasPendingLevels ? 1 : 0)},{(progress.LevelProcessingHalted ? 1 : 0)},");
+            var behaviorTiles = BehaviorTiles();
+            sb.Append($"{FirstEffective},{behaviorTiles.tiles},{behaviorTiles.planted},{XpSpent},{CardWater},{CardXpBase},{N(stats.GetFinalStat(StatType.XPGainMultiplier, StatTarget.Planter), "0.####")}," +
+                      $"{N(stats.SummedGroupTotal(StatType.XPGainMultiplier, StatTarget.Planter), "0.####")},{N(progress.XPToNextLevel, "0")},{prevWaitFrames},{prevChoices},");
+            var clock = RunClock.Instance;
+            int waitN = waitByN.Sum();
+            string W(int i) => N(waitByN[i] > 0 ? waitBy[i] / waitByN[i] : double.NaN, "0.###");
+            sb.Append($"{N(clock != null ? clock.LastRoundGameSeconds : double.NaN, "0.###")},{N(clock != null ? clock.LastRoundRealSeconds : double.NaN, "0.###")},");
+            sb.Append($"{N(waitN > 0 ? waitBy.Sum() / waitN : double.NaN, "0.###")},{W(0)},{W(1)},{W(2)},{W(3)},{W(4)},");
+            int chainKillN = chainKills[1] + chainKills[2];
+            sb.Append($"{behaviorHits},{chainHits},{chainHitsNew},{chainKills[1]},{chainKills[2]},{N(chainKillN > 0 ? chainKillHp / chainKillN : double.NaN, "0.###")},{N(behaviorKillN > 0 ? behaviorKillHp / behaviorKillN : double.NaN, "0.###")},");
+            var chainNow = ChainNow();
+            for (int i = 0; i < 15; i++) sb.Append(chainNow[i] - chain0[i]).Append(',');
+            frameMs.Sort();
+            sb.Append($"{ghostKills},{ghostResolved},{ghostReached},{ghostLethal},{N(frameMs.Count > 0 ? frameMs.Average() : double.NaN, "0.###")},{N(frameMs.Count > 0 ? frameMs[(int)((frameMs.Count - 1) * .95)] : double.NaN, "0.###")}," +
+                      $"{N(frameMs.Count > 0 ? frameMs[frameMs.Count - 1] : double.NaN, "0.###")},{N(frameMs.Count > 0 ? botMsSum / frameMs.Count : double.NaN, "0.###")},{GC.CollectionCount(0) - gcStart}," +
+                      (policy.BehaviorAim ? "davranis" : policy.Naive ? "rastgele" : policy.ValueAim ? "deger" : "kalabalik"));
             csv.AppendLine(sb.ToString());
             LabLine = $"hasat {total} (doğrudan {kills[0]} · patlama {kills[1]} · elektrik {kills[4]} · kasırga {kills[2]} · bumerang {kills[3]}; yankı hasadı {echoKillsRound}) | skor {score - score0} | " +
                       $"vuruş {attacks} · vuruş başına hedef {N(attacks > 0 ? hitTargets / (double)attacks : 0)} | doluluk {N(fillSamples > 0 ? fillSum / fillSamples : 0, "0.###")} (round sonu {N(lastFill, "0.###")}) | " +
                       $"yankı {echo[1] - echo0[1]} uygulandı / {echo[2] - echo0[2]} düştü | ritim hakkı {RunPower.Rhythm.Charges - charges0}";
             TiersBought = 0; PlantersBought = 0;
-            int V(ResourceType t) => income.TryGetValue(t, out int v) ? v : 0;
+            long V(ResourceType t) => income.TryGetValue(t, out long v) ? v : 0;
         }
 
         // Round sonunda bekleyen kart ekranı sayısı (round içinde kazanılan level sayısı).
@@ -1201,14 +1881,33 @@ public static class BalanceRunMeasurement
 
         void Update()
         {
-            if (GameManager.Instance == null || GameManager.Instance.CurrentState != GameStates.Round || !roundOpen) return;
+            if (GameManager.Instance != null && GameManager.Instance.CurrentState == GameStates.Round && !roundOpen && RoundManager.Instance.IsAwaitingLevels) waitFrames++;
+            if (GameManager.Instance == null || GameManager.Instance.CurrentState != GameStates.Round || !roundOpen) { frameWasActive = false; return; }
+            // Kare süresi: art arda iki aktif round karesinin arası (gerçek saat). İçinde oyun, editör ve bu bot vardır.
+            long stamp = System.Diagnostics.Stopwatch.GetTimestamp();
+            if (frameWasActive) frameMs.Add((float)((stamp - frameStamp) * TickMs));
+            frameStamp = stamp; frameWasActive = true;
+            activeFrame++;
+            Work();
+            botMsSum += (System.Diagnostics.Stopwatch.GetTimestamp() - stamp) * TickMs;
+        }
+
+        void Work()
+        {
             var rm = RoundManager.Instance; var stats = StatManager.Instance;
             var grid = GridManager.Instance.GetGridSystem();
             // Nişan, sıradaki saldırının gerçek temas alanına göre seçilir (hazır Hasat Ritmi hakkı alanı büyütür; imleç halkası da bunu gösterir).
             float radius = stats.GetFinalStat(StatType.AreaRadius, StatTarget.Player) * RunPower.Rhythm.Next().RadiusMultiplier;
             BuildAims(grid, radius);
             if (spawnerRefresh++ % 60 == 0) spawners = FindObjectsByType<PlantSpawner>(FindObjectsSortMode.None).Where(s => s.GridObject != null).ToList();
-            int filled = 0; foreach (var s in spawners) if (s != null && s.GridObject.HasPlantObject()) filled++;
+            int filled = 0;
+            foreach (var s in spawners)
+            {
+                if (s == null) continue;
+                var spot = s.GridObject;
+                if (spot.HasPlantObject()) { filled++; if (!bornAt.ContainsKey(spot)) bornAt[spot] = activeFrame; }
+                else bornAt.Remove(spot);
+            }
             double fill = spawners.Count > 0 ? filled / (double)spawners.Count : 0;
             fillSum += fill; fillSamples++; minFill = Math.Min(minFill, fill); if (fill < .15) emptySamples++;
             lastFill = fill;
@@ -1217,27 +1916,49 @@ public static class BalanceRunMeasurement
             if (!PlayerController.AdvanceAttackTimer(ref timer, Time.deltaTime, interval)) return;
 
             int bestAim = -1; double bestScore = 0;
+            int ghostAim = -1; double ghostScore = 0;   // zincirin öldürdükleri yerinde dursaydı seçilecek nişan
             if (policy.Naive)
             {
                 // Yeni oyuncu: canlı bitkisi olan rastgele bir hücreye nişan alır (en iyi konumu aramaz).
                 var live = new List<int>();
                 for (int a = 0; a < aims.Count; a++) if (Living(aimCells[a]) > 0) live.Add(a);
                 if (live.Count > 0) { bestAim = live[random.Next(live.Count)]; bestScore = 1; }
+                ghosts.Clear();   // rastgele nişanda karşı-olgusal tanımsız
             }
             else
                 for (int a = 0; a < aims.Count; a++)
                 {
-                    double s = 0;
+                    double s = 0, ghost = 0;
                     foreach (var g in aimCells[a])
                     {
                         var p = g.GetPlantObject();
-                        if (p != null && p.TryGetComponent(out PlantHealth h) && !h.IsDead) s += policy.ValueAim && h.Data != null ? Value[(int)h.Data.rarity] : 1;
+                        if (p != null && p.TryGetComponent(out PlantHealth h) && !h.IsDead) s += AimWeight(h);
+                        else if (ghosts.Count > 0 && p == null && ghosts.TryGetValue(g, out var gone)) ghost += policy.ValueAim ? Value[gone.rarity] : 1;
                     }
                     if (s > bestScore + 1e-9 || (s > 0 && Math.Abs(s - bestScore) <= 1e-9 && lastUsed[a] < lastUsed[bestAim])) { bestScore = s; bestAim = a; }
+                    if (ghosts.Count == 0) continue;
+                    double c = s + ghost;
+                    if (c > ghostScore + 1e-9 || (c > 0 && Math.Abs(c - ghostScore) <= 1e-9 && lastUsed[a] < lastUsed[ghostAim])) { ghostScore = c; ghostAim = a; }
                 }
+            // Karşı-olgusal (ilk mertebe): zincirin son saldırıdan beri öldürdüğü bitkiler yerinde dursaydı sıradaki doğrudan saldırı
+            // onlara erişir miydi, en düşük hasarıyla (sapmanın alt ucu, kritiksiz) öldürür müydü? Yeniden doğan hücre sayılmaz.
+            if (ghosts.Count > 0 && ghostAim >= 0)
+            {
+                float baseDamage = stats.GetFinalStat(StatType.HarvestDamage, StatTarget.Player);
+                float boost = RunPower.Rhythm.Next().DamageMultiplier;
+                foreach (var pair in ghosts)
+                {
+                    if (pair.Key.HasPlantObject()) continue;
+                    ghostResolved++;
+                    if (!aimCells[ghostAim].Contains(pair.Key)) continue;
+                    ghostReached++;
+                    if (RunPower.DirectDamage(baseDamage, .85f, (PlantRarity)pair.Value.rarity, boost) >= pair.Value.hp) ghostLethal++;
+                }
+                ghosts.Clear();
+            }
             if (bestAim < 0 || bestScore <= 0) return;
             lastUsed[bestAim] = attacks;
-            float now = Time.time;
+            int now = Time.frameCount;
             foreach (var g in aimCells[bestAim])
             {
                 var p = g.GetPlantObject();

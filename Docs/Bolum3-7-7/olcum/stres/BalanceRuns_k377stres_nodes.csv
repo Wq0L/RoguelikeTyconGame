@@ -1,0 +1,1205 @@
+run,policy,farmer,scythe,seed,label,round,node,level,cost,currency,category
+1,Temel güç XP stresi,bahcivan,standart,100,stres,1,Keskin Başlangıç - 1,1,5,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,2,Keskin Başlangıç - 1,2,7,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,2,Altın Hasat I - 1,1,7,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,3,Düzenli Üretim - 1,1,6,Gold,Production
+1,Temel güç XP stresi,bahcivan,standart,100,stres,3,Keskin Başlangıç - 1,3,8,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,3,Hızlı Eller - 1,1,7,Gold,Speed
+1,Temel güç XP stresi,bahcivan,standart,100,stres,3,Hasat Deneyimi I - 1,1,6,Gold,Xp
+1,Temel güç XP stresi,bahcivan,standart,100,stres,4,Grid Genişleme I,1,30,Gold,Grid
+1,Temel güç XP stresi,bahcivan,standart,100,stres,5,Altın Hasat I - 1,2,9,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,5,Keskin Başlangıç - 2,1,10,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,5,Düzenli Üretim - 1,2,8,Gold,Production
+1,Temel güç XP stresi,bahcivan,standart,100,stres,7,Hızlı Eller - 1,2,9,Gold,Speed
+1,Temel güç XP stresi,bahcivan,standart,100,stres,7,Keskin Başlangıç - 2,2,11,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,7,Altın Hasat I - 1,3,11,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,8,1×3 Saksı,1,30,Gold,PlanterUnlock
+1,Temel güç XP stresi,bahcivan,standart,100,stres,8,Keskin Başlangıç - 3,1,13,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,8,Düzenli Üretim - 1,3,10,Gold,Production
+1,Temel güç XP stresi,bahcivan,standart,100,stres,9,Hızlı Eller - 1,3,11,Gold,Speed
+1,Temel güç XP stresi,bahcivan,standart,100,stres,9,Altın Hasat I - 2,1,13,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,9,Keskin Başlangıç - 3,2,14,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,10,Kesim Tekniği - 1,1,25,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,10,Hızlı Eller - 2,1,12,Gold,Speed
+1,Temel güç XP stresi,bahcivan,standart,100,stres,10,Altın Hasat I - 2,2,16,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,10,Düzenli Üretim - 2,1,12,Gold,Production
+1,Temel güç XP stresi,bahcivan,standart,100,stres,10,Hasat Deneyimi I - 1,2,8,Gold,Xp
+1,Temel güç XP stresi,bahcivan,standart,100,stres,11,Tornado Kartları,1,30,Iron,BehaviorUnlock
+1,Temel güç XP stresi,bahcivan,standart,100,stres,11,Keskin Başlangıç - 4,1,16,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,11,Hızlı Eller - 2,2,14,Gold,Speed
+1,Temel güç XP stresi,bahcivan,standart,100,stres,11,Kesim Tekniği - 1,2,35,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,11,Altın Hasat I - 3,1,18,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,11,Keskin Başlangıç - 4,2,17,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,12,2×2 Saksı,1,80,Gold,PlanterUnlock
+1,Temel güç XP stresi,bahcivan,standart,100,stres,12,Hasat Deneyimi I - 1,3,10,Gold,Xp
+1,Temel güç XP stresi,bahcivan,standart,100,stres,12,Düzenli Üretim - 2,2,13,Gold,Production
+1,Temel güç XP stresi,bahcivan,standart,100,stres,13,Hızlı Eller - 3,1,16,Gold,Speed
+1,Temel güç XP stresi,bahcivan,standart,100,stres,13,Altın Hasat I - 3,2,20,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,14,Bumerang Orak Kartları,1,40,Iron,BehaviorUnlock
+1,Temel güç XP stresi,bahcivan,standart,100,stres,14,Kesim Tekniği - 1,3,40,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,14,Hasat Deneyimi I - 2,1,12,Gold,Xp
+1,Temel güç XP stresi,bahcivan,standart,100,stres,14,Demir Hasat - 1,1,25,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,15,Hızlı Eller - 3,2,18,Gold,Speed
+1,Temel güç XP stresi,bahcivan,standart,100,stres,15,Düzenli Üretim - 3,1,15,Gold,Production
+1,Temel güç XP stresi,bahcivan,standart,100,stres,15,Altın Hasat I - 4,1,22,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,15,Geniş Süpürüş - 1,1,21,Gold,Area
+1,Temel güç XP stresi,bahcivan,standart,100,stres,16,Kesim Tekniği - 2,1,50,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,16,Hasat Deneyimi I - 2,2,14,Gold,Xp
+1,Temel güç XP stresi,bahcivan,standart,100,stres,16,Hızlı Eller - 4,1,20,Gold,Speed
+1,Temel güç XP stresi,bahcivan,standart,100,stres,16,Altın Hasat I - 4,2,24,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,16,Demir Hasat - 1,2,35,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,17,Çifte Hasat Kartları,1,25,Iron,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,17,Düzenli Üretim - 3,2,17,Gold,Production
+1,Temel güç XP stresi,bahcivan,standart,100,stres,17,Geniş Süpürüş - 1,2,28,Gold,Area
+1,Temel güç XP stresi,bahcivan,standart,100,stres,17,Hızlı Eller - 4,2,22,Gold,Speed
+1,Temel güç XP stresi,bahcivan,standart,100,stres,17,Hasat Deneyimi I - 3,1,16,Gold,Xp
+1,Temel güç XP stresi,bahcivan,standart,100,stres,17,Düzenli Üretim - 4,1,19,Gold,Production
+1,Temel güç XP stresi,bahcivan,standart,100,stres,17,Hasat Deneyimi I - 3,2,18,Gold,Xp
+1,Temel güç XP stresi,bahcivan,standart,100,stres,18,Güçlü Kesim - 1,1,120,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,19,Kesim Tekniği - 2,2,55,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,19,Demir Hasat - 1,3,40,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,19,Geniş Süpürüş - 1,3,35,Gold,Area
+1,Temel güç XP stresi,bahcivan,standart,100,stres,19,Grid Genişleme I,2,30,Iron,Grid
+1,Temel güç XP stresi,bahcivan,standart,100,stres,19,Düzenli Üretim - 4,2,21,Gold,Production
+1,Temel güç XP stresi,bahcivan,standart,100,stres,20,Geniş Süpürüş - 2,1,40,Gold,Area
+1,Temel güç XP stresi,bahcivan,standart,100,stres,20,Hasat Deneyimi I - 4,1,20,Gold,Xp
+1,Temel güç XP stresi,bahcivan,standart,100,stres,20,Demir Hasat - 2,1,50,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,21,Geniş Süpürüş - 2,2,45,Gold,Area
+1,Temel güç XP stresi,bahcivan,standart,100,stres,21,Hasat Deneyimi I - 4,2,21,Gold,Xp
+1,Temel güç XP stresi,bahcivan,standart,100,stres,21,Taş Hasat - 1,1,35,Iron,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,22,2×3 Saksı,1,200,Gold,PlanterUnlock
+1,Temel güç XP stresi,bahcivan,standart,100,stres,22,Taş Hasat - 1,2,45,Iron,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,23,İlk Vazgeçiş,1,150,Gold,Cards
+1,Temel güç XP stresi,bahcivan,standart,100,stres,23,Kesim Tekniği - 3,1,65,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,24,Hasat Rekoru - 1,1,180,Gold,Score
+1,Temel güç XP stresi,bahcivan,standart,100,stres,25,Güçlü Kesim - 1,2,160,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,26,Akıcı Kesim - 1,1,160,Gold,Speed
+1,Temel güç XP stresi,bahcivan,standart,100,stres,26,Kesim Tekniği - 3,2,70,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,27,Güçlü Kesim - 1,3,195,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,27,Akıcı Kesim - 1,2,210,Gold,Speed
+1,Temel güç XP stresi,bahcivan,standart,100,stres,27,Taş Hasat - 1,3,55,Iron,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,28,Hasat Rekoru - 1,2,240,Gold,Score
+1,Temel güç XP stresi,bahcivan,standart,100,stres,28,Kesim Tekniği - 4,1,80,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,28,Demir Hasat - 2,2,55,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,29,Güçlü Kesim - 2,1,230,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,29,Geniş Süpürüş - 3,1,55,Gold,Area
+1,Temel güç XP stresi,bahcivan,standart,100,stres,30,Altın Hasat II - 1,1,180,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,30,Verimli Üretim - 1,1,200,Iron,Production
+1,Temel güç XP stresi,bahcivan,standart,100,stres,31,Kesim Tekniği - 4,2,85,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,31,Akıcı Kesim - 1,3,260,Gold,Speed
+1,Temel güç XP stresi,bahcivan,standart,100,stres,31,Demir Hasat - 3,1,65,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,31,Geniş Süpürüş - 3,2,60,Gold,Area
+1,Temel güç XP stresi,bahcivan,standart,100,stres,32,Nadir Filizler - 1,1,230,Iron,Rarity
+1,Temel güç XP stresi,bahcivan,standart,100,stres,32,Hasat Rekoru - 1,3,290,Gold,Score
+1,Temel güç XP stresi,bahcivan,standart,100,stres,32,Geniş Süpürüş - 4,1,65,Gold,Area
+1,Temel güç XP stresi,bahcivan,standart,100,stres,32,Taş Hasat - 2,1,65,Iron,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,33,Güçlü Kesim - 2,2,270,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,34,Altın Hasat II - 1,2,240,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,34,Grid Genişleme II,1,100,Stone,Grid
+1,Temel güç XP stresi,bahcivan,standart,100,stres,34,Verimli Üretim - 1,2,260,Iron,Production
+1,Temel güç XP stresi,bahcivan,standart,100,stres,34,Akıcı Kesim - 2,1,310,Gold,Speed
+1,Temel güç XP stresi,bahcivan,standart,100,stres,35,Geniş Tarama - 1,1,160,Gold,Area
+1,Temel güç XP stresi,bahcivan,standart,100,stres,35,Demir Hasat - 3,2,70,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,35,Geniş Süpürüş - 4,2,70,Gold,Area
+1,Temel güç XP stresi,bahcivan,standart,100,stres,35,Zengin Cevher - 1,1,50,Stone,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,36,Nadir Filizler - 1,2,300,Iron,Rarity
+1,Temel güç XP stresi,bahcivan,standart,100,stres,36,Güçlü Kesim - 3,1,300,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,36,Altın Hasat II - 1,3,290,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,36,Demir Hasat - 4,1,80,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,36,Taş Hasat - 2,2,80,Iron,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,37,Hasat Rekoru - 2,1,350,Gold,Score
+1,Temel güç XP stresi,bahcivan,standart,100,stres,37,Akıcı Kesim - 2,2,360,Gold,Speed
+1,Temel güç XP stresi,bahcivan,standart,100,stres,37,Taş Hasat - 3,1,90,Iron,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,37,Taş Hasat - 3,2,100,Iron,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,37,Taş Hasat - 4,1,110,Iron,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,38,Geniş Tarama - 1,2,210,Gold,Area
+1,Temel güç XP stresi,bahcivan,standart,100,stres,38,Güçlü Kesim - 3,2,340,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,38,Demir Hasat - 4,2,85,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,38,Zengin Cevher - 1,2,65,Stone,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,38,Zengin Cevher - 1,3,80,Stone,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,38,Taş Hasat - 4,2,120,Iron,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,39,Kesim Ustalığı - 1,1,560,Iron,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,39,Altın Hasat II - 2,1,350,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,39,Akıcı Kesim - 3,1,400,Gold,Speed
+1,Temel güç XP stresi,bahcivan,standart,100,stres,39,Zengin Cevher - 2,1,95,Stone,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,40,Verimli Üretim - 1,3,320,Iron,Production
+1,Temel güç XP stresi,bahcivan,standart,100,stres,40,Geniş Tarama - 1,3,260,Gold,Area
+1,Temel güç XP stresi,bahcivan,standart,100,stres,40,Zengin Cevher - 2,2,110,Stone,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,41,Kesim Ustalığı - 1,2,720,Iron,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,41,Hasat Deneyimi II - 1,1,450,Gold,Xp
+1,Temel güç XP stresi,bahcivan,standart,100,stres,41,Hasat Rekoru - 2,2,400,Gold,Score
+1,Temel güç XP stresi,bahcivan,standart,100,stres,41,Güçlü Kesim - 4,1,380,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,41,Zengin Cevher - 3,1,125,Stone,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,41,Zengin Cevher - 3,2,140,Stone,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,42,Nadir Filizler - 1,3,360,Iron,Rarity
+1,Temel güç XP stresi,bahcivan,standart,100,stres,42,Altın Hasat II - 2,2,400,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,42,Ağır Kesim - 1,1,1200,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,42,Zengin Cevher - 4,1,155,Stone,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,42,Zengin Cevher - 4,2,170,Stone,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,43,İkinci Vazgeçiş,1,800,Iron,Cards
+1,Temel güç XP stresi,bahcivan,standart,100,stres,43,Verimli Üretim - 2,1,380,Iron,Production
+1,Temel güç XP stresi,bahcivan,standart,100,stres,43,Akıcı Kesim - 3,2,450,Gold,Speed
+1,Temel güç XP stresi,bahcivan,standart,100,stres,43,Geniş Tarama - 2,1,310,Gold,Area
+1,Temel güç XP stresi,bahcivan,standart,100,stres,43,Kritik Odak - 1,1,150,Gold,Crit
+1,Temel güç XP stresi,bahcivan,standart,100,stres,44,Kesim Ustalığı - 1,3,890,Iron,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,44,Kart Sezgisi - 1,1,710,Gold,Cards
+1,Temel güç XP stresi,bahcivan,standart,100,stres,44,Hasat Deneyimi II - 1,2,590,Gold,Xp
+1,Temel güç XP stresi,bahcivan,standart,100,stres,44,Altın Hasat II - 3,1,450,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,45,Nadir Filizler - 2,1,430,Iron,Rarity
+1,Temel güç XP stresi,bahcivan,standart,100,stres,45,Verimli Üretim - 2,2,440,Iron,Production
+1,Temel güç XP stresi,bahcivan,standart,100,stres,45,Güçlü Kesim - 4,2,410,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,45,Geniş Tarama - 2,2,360,Gold,Area
+1,Temel güç XP stresi,bahcivan,standart,100,stres,45,Kritik Odak - 1,2,195,Gold,Crit
+1,Temel güç XP stresi,bahcivan,standart,100,stres,45,Geniş Tarama - 3,1,400,Gold,Area
+1,Temel güç XP stresi,bahcivan,standart,100,stres,45,Kritik Odak - 1,3,240,Gold,Crit
+1,Temel güç XP stresi,bahcivan,standart,100,stres,45,Kritik Güç - 1,1,150,Stone,Crit
+1,Temel güç XP stresi,bahcivan,standart,100,stres,45,Kritik Güç - 1,2,195,Stone,Crit
+1,Temel güç XP stresi,bahcivan,standart,100,stres,45,Kritik Güç - 1,3,240,Stone,Crit
+1,Temel güç XP stresi,bahcivan,standart,100,stres,46,Kesim Ustalığı - 2,1,1100,Iron,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,46,Kritik Odak - 2,1,290,Gold,Crit
+1,Temel güç XP stresi,bahcivan,standart,100,stres,46,Kritik Odak - 2,2,330,Gold,Crit
+1,Temel güç XP stresi,bahcivan,standart,100,stres,46,Kritik Odak - 3,1,380,Gold,Crit
+1,Temel güç XP stresi,bahcivan,standart,100,stres,46,Kritik Güç - 2,1,290,Stone,Crit
+1,Temel güç XP stresi,bahcivan,standart,100,stres,47,Ağır Kesim - 1,2,1600,Gold,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,47,Nadir Filizler - 2,2,500,Iron,Rarity
+1,Temel güç XP stresi,bahcivan,standart,100,stres,47,Verimli Üretim - 3,1,510,Iron,Production
+1,Temel güç XP stresi,bahcivan,standart,100,stres,48,Hasat Rekoru - 3,1,450,Gold,Score
+1,Temel güç XP stresi,bahcivan,standart,100,stres,48,Akıcı Kesim - 4,1,500,Gold,Speed
+1,Temel güç XP stresi,bahcivan,standart,100,stres,48,Hasat Deneyimi II - 1,3,730,Gold,Xp
+1,Temel güç XP stresi,bahcivan,standart,100,stres,48,Kesim Ustalığı - 2,2,1200,Iron,Damage
+1,Temel güç XP stresi,bahcivan,standart,100,stres,48,Kritik Güç - 2,2,330,Stone,Crit
+1,Temel güç XP stresi,bahcivan,standart,100,stres,49,Kart Sezgisi - 1,2,920,Gold,Cards
+1,Temel güç XP stresi,bahcivan,standart,100,stres,49,Altın Hasat II - 3,2,510,Gold,Economy
+1,Temel güç XP stresi,bahcivan,standart,100,stres,49,Verimli Üretim - 3,2,570,Iron,Production
+1,Temel güç XP stresi,bahcivan,standart,100,stres,49,Nadir Filizler - 3,1,570,Iron,Rarity
+1,Temel güç XP stresi,bahcivan,standart,100,stres,49,Geniş Tarama - 3,2,450,Gold,Area
+1,Temel güç XP stresi,bahcivan,standart,100,stres,49,Kritik Odak - 3,2,420,Gold,Crit
+2,Temel güç XP stresi,bahcivan,standart,101,stres,1,Keskin Başlangıç - 1,1,5,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,2,Keskin Başlangıç - 1,2,7,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,2,Altın Hasat I - 1,1,7,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,4,Düzenli Üretim - 1,1,6,Gold,Production
+2,Temel güç XP stresi,bahcivan,standart,101,stres,5,Keskin Başlangıç - 1,3,8,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,5,Grid Genişleme I,1,30,Gold,Grid
+2,Temel güç XP stresi,bahcivan,standart,101,stres,5,Hızlı Eller - 1,1,7,Gold,Speed
+2,Temel güç XP stresi,bahcivan,standart,101,stres,6,Altın Hasat I - 1,2,9,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,6,Keskin Başlangıç - 2,1,10,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,6,Düzenli Üretim - 1,2,8,Gold,Production
+2,Temel güç XP stresi,bahcivan,standart,101,stres,7,Hızlı Eller - 1,2,9,Gold,Speed
+2,Temel güç XP stresi,bahcivan,standart,101,stres,7,Keskin Başlangıç - 2,2,11,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,7,Altın Hasat I - 1,3,11,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,7,Hasat Deneyimi I - 1,1,6,Gold,Xp
+2,Temel güç XP stresi,bahcivan,standart,101,stres,8,1×3 Saksı,1,30,Gold,PlanterUnlock
+2,Temel güç XP stresi,bahcivan,standart,101,stres,9,Tornado Kartları,1,30,Iron,BehaviorUnlock
+2,Temel güç XP stresi,bahcivan,standart,101,stres,9,Keskin Başlangıç - 3,1,13,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,9,Düzenli Üretim - 1,3,10,Gold,Production
+2,Temel güç XP stresi,bahcivan,standart,101,stres,9,Hızlı Eller - 1,3,11,Gold,Speed
+2,Temel güç XP stresi,bahcivan,standart,101,stres,10,Altın Hasat I - 2,1,13,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,11,Keskin Başlangıç - 3,2,14,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,11,Kesim Tekniği - 1,1,25,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,11,Hızlı Eller - 2,1,12,Gold,Speed
+2,Temel güç XP stresi,bahcivan,standart,101,stres,12,Altın Hasat I - 2,2,16,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,12,Düzenli Üretim - 2,1,12,Gold,Production
+2,Temel güç XP stresi,bahcivan,standart,101,stres,12,Hasat Deneyimi I - 1,2,8,Gold,Xp
+2,Temel güç XP stresi,bahcivan,standart,101,stres,12,Keskin Başlangıç - 4,1,16,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,12,Hızlı Eller - 2,2,14,Gold,Speed
+2,Temel güç XP stresi,bahcivan,standart,101,stres,13,Bumerang Orak Kartları,1,40,Iron,BehaviorUnlock
+2,Temel güç XP stresi,bahcivan,standart,101,stres,13,Kesim Tekniği - 1,2,35,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,13,Altın Hasat I - 3,1,18,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,13,Keskin Başlangıç - 4,2,17,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,14,2×2 Saksı,1,80,Gold,PlanterUnlock
+2,Temel güç XP stresi,bahcivan,standart,101,stres,14,Hasat Deneyimi I - 1,3,10,Gold,Xp
+2,Temel güç XP stresi,bahcivan,standart,101,stres,15,Düzenli Üretim - 2,2,13,Gold,Production
+2,Temel güç XP stresi,bahcivan,standart,101,stres,15,Hızlı Eller - 3,1,16,Gold,Speed
+2,Temel güç XP stresi,bahcivan,standart,101,stres,15,Altın Hasat I - 3,2,20,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,15,Çifte Hasat Kartları,1,25,Iron,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,16,Kesim Tekniği - 1,3,40,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,16,Hasat Deneyimi I - 2,1,12,Gold,Xp
+2,Temel güç XP stresi,bahcivan,standart,101,stres,16,Demir Hasat - 1,1,25,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,16,Hızlı Eller - 3,2,18,Gold,Speed
+2,Temel güç XP stresi,bahcivan,standart,101,stres,16,Düzenli Üretim - 3,1,15,Gold,Production
+2,Temel güç XP stresi,bahcivan,standart,101,stres,16,Altın Hasat I - 4,1,22,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,16,Geniş Süpürüş - 1,1,21,Gold,Area
+2,Temel güç XP stresi,bahcivan,standart,101,stres,17,Kesim Tekniği - 2,1,50,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,17,Hasat Deneyimi I - 2,2,14,Gold,Xp
+2,Temel güç XP stresi,bahcivan,standart,101,stres,17,Hızlı Eller - 4,1,20,Gold,Speed
+2,Temel güç XP stresi,bahcivan,standart,101,stres,17,Altın Hasat I - 4,2,24,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,17,Demir Hasat - 1,2,35,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,17,Düzenli Üretim - 3,2,17,Gold,Production
+2,Temel güç XP stresi,bahcivan,standart,101,stres,18,Geniş Süpürüş - 1,2,28,Gold,Area
+2,Temel güç XP stresi,bahcivan,standart,101,stres,18,Güçlü Kesim - 1,1,120,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,18,Hızlı Eller - 4,2,22,Gold,Speed
+2,Temel güç XP stresi,bahcivan,standart,101,stres,18,Grid Genişleme I,2,30,Iron,Grid
+2,Temel güç XP stresi,bahcivan,standart,101,stres,19,Kesim Tekniği - 2,2,55,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,19,Hasat Deneyimi I - 3,1,16,Gold,Xp
+2,Temel güç XP stresi,bahcivan,standart,101,stres,19,Düzenli Üretim - 4,1,19,Gold,Production
+2,Temel güç XP stresi,bahcivan,standart,101,stres,19,Geniş Süpürüş - 1,3,35,Gold,Area
+2,Temel güç XP stresi,bahcivan,standart,101,stres,20,Demir Hasat - 1,3,40,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,20,Hasat Deneyimi I - 3,2,18,Gold,Xp
+2,Temel güç XP stresi,bahcivan,standart,101,stres,20,Düzenli Üretim - 4,2,21,Gold,Production
+2,Temel güç XP stresi,bahcivan,standart,101,stres,20,Geniş Süpürüş - 2,1,40,Gold,Area
+2,Temel güç XP stresi,bahcivan,standart,101,stres,20,Hasat Deneyimi I - 4,1,20,Gold,Xp
+2,Temel güç XP stresi,bahcivan,standart,101,stres,20,Hasat Deneyimi I - 4,2,21,Gold,Xp
+2,Temel güç XP stresi,bahcivan,standart,101,stres,21,Demir Hasat - 2,1,50,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,21,Geniş Süpürüş - 2,2,45,Gold,Area
+2,Temel güç XP stresi,bahcivan,standart,101,stres,21,Taş Hasat - 1,1,35,Iron,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,22,2×3 Saksı,1,200,Gold,PlanterUnlock
+2,Temel güç XP stresi,bahcivan,standart,101,stres,22,İlk Vazgeçiş,1,150,Gold,Cards
+2,Temel güç XP stresi,bahcivan,standart,101,stres,22,Taş Hasat - 1,2,45,Iron,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,23,Kesim Tekniği - 3,1,65,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,23,Hasat Rekoru - 1,1,180,Gold,Score
+2,Temel güç XP stresi,bahcivan,standart,101,stres,23,Güçlü Kesim - 1,2,160,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,24,Akıcı Kesim - 1,1,160,Gold,Speed
+2,Temel güç XP stresi,bahcivan,standart,101,stres,24,Kesim Tekniği - 3,2,70,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,24,Güçlü Kesim - 1,3,195,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,25,Akıcı Kesim - 1,2,210,Gold,Speed
+2,Temel güç XP stresi,bahcivan,standart,101,stres,25,Hasat Rekoru - 1,2,240,Gold,Score
+2,Temel güç XP stresi,bahcivan,standart,101,stres,25,Kesim Tekniği - 4,1,80,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,25,Demir Hasat - 2,2,55,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,25,Güçlü Kesim - 2,1,230,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,25,Geniş Süpürüş - 3,1,55,Gold,Area
+2,Temel güç XP stresi,bahcivan,standart,101,stres,25,Verimli Üretim - 1,1,200,Iron,Production
+2,Temel güç XP stresi,bahcivan,standart,101,stres,25,Taş Hasat - 1,3,55,Iron,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,26,Altın Hasat II - 1,1,180,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,26,Kesim Tekniği - 4,2,85,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,26,Nadir Filizler - 1,1,230,Iron,Rarity
+2,Temel güç XP stresi,bahcivan,standart,101,stres,26,Demir Hasat - 3,1,65,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,26,Geniş Süpürüş - 3,2,60,Gold,Area
+2,Temel güç XP stresi,bahcivan,standart,101,stres,26,Geniş Süpürüş - 4,1,65,Gold,Area
+2,Temel güç XP stresi,bahcivan,standart,101,stres,26,Taş Hasat - 2,1,65,Iron,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,27,Akıcı Kesim - 1,3,260,Gold,Speed
+2,Temel güç XP stresi,bahcivan,standart,101,stres,27,Hasat Rekoru - 1,3,290,Gold,Score
+2,Temel güç XP stresi,bahcivan,standart,101,stres,27,Grid Genişleme II,1,100,Stone,Grid
+2,Temel güç XP stresi,bahcivan,standart,101,stres,27,Verimli Üretim - 1,2,260,Iron,Production
+2,Temel güç XP stresi,bahcivan,standart,101,stres,27,Zengin Cevher - 1,1,50,Stone,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,28,Güçlü Kesim - 2,2,270,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,29,Altın Hasat II - 1,2,240,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,29,Akıcı Kesim - 2,1,310,Gold,Speed
+2,Temel güç XP stresi,bahcivan,standart,101,stres,29,Nadir Filizler - 1,2,300,Iron,Rarity
+2,Temel güç XP stresi,bahcivan,standart,101,stres,29,Geniş Tarama - 1,1,160,Gold,Area
+2,Temel güç XP stresi,bahcivan,standart,101,stres,29,Demir Hasat - 3,2,70,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,29,Geniş Süpürüş - 4,2,70,Gold,Area
+2,Temel güç XP stresi,bahcivan,standart,101,stres,29,Taş Hasat - 2,2,80,Iron,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,29,Taş Hasat - 3,1,90,Iron,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,29,Zengin Cevher - 1,2,65,Stone,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,30,Güçlü Kesim - 3,1,300,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,30,Altın Hasat II - 1,3,290,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,30,Hasat Rekoru - 2,1,350,Gold,Score
+2,Temel güç XP stresi,bahcivan,standart,101,stres,30,Taş Hasat - 3,2,100,Iron,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,30,Zengin Cevher - 1,3,80,Stone,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,30,Taş Hasat - 4,1,110,Iron,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,31,Kesim Ustalığı - 1,1,560,Iron,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,31,Akıcı Kesim - 2,2,360,Gold,Speed
+2,Temel güç XP stresi,bahcivan,standart,101,stres,31,Geniş Tarama - 1,2,210,Gold,Area
+2,Temel güç XP stresi,bahcivan,standart,101,stres,31,Demir Hasat - 4,1,80,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,31,Güçlü Kesim - 3,2,340,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,31,Demir Hasat - 4,2,85,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,31,Zengin Cevher - 2,1,95,Stone,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,32,Verimli Üretim - 1,3,320,Iron,Production
+2,Temel güç XP stresi,bahcivan,standart,101,stres,32,Kesim Ustalığı - 1,2,720,Iron,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,32,Altın Hasat II - 2,1,350,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,32,Akıcı Kesim - 3,1,400,Gold,Speed
+2,Temel güç XP stresi,bahcivan,standart,101,stres,32,Geniş Tarama - 1,3,260,Gold,Area
+2,Temel güç XP stresi,bahcivan,standart,101,stres,32,Hasat Deneyimi II - 1,1,450,Gold,Xp
+2,Temel güç XP stresi,bahcivan,standart,101,stres,33,Nadir Filizler - 1,3,360,Iron,Rarity
+2,Temel güç XP stresi,bahcivan,standart,101,stres,33,Hasat Rekoru - 2,2,400,Gold,Score
+2,Temel güç XP stresi,bahcivan,standart,101,stres,33,Güçlü Kesim - 4,1,380,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,33,Altın Hasat II - 2,2,400,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,33,Kritik Odak - 1,1,150,Gold,Crit
+2,Temel güç XP stresi,bahcivan,standart,101,stres,33,Kritik Odak - 1,2,195,Gold,Crit
+2,Temel güç XP stresi,bahcivan,standart,101,stres,33,Taş Hasat - 4,2,120,Iron,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,33,Zengin Cevher - 2,2,110,Stone,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,34,İkinci Vazgeçiş,1,800,Iron,Cards
+2,Temel güç XP stresi,bahcivan,standart,101,stres,34,Verimli Üretim - 2,1,380,Iron,Production
+2,Temel güç XP stresi,bahcivan,standart,101,stres,34,Ağır Kesim - 1,1,1200,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,35,Kesim Ustalığı - 1,3,890,Iron,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,35,Akıcı Kesim - 3,2,450,Gold,Speed
+2,Temel güç XP stresi,bahcivan,standart,101,stres,35,Geniş Tarama - 2,1,310,Gold,Area
+2,Temel güç XP stresi,bahcivan,standart,101,stres,35,Kart Sezgisi - 1,1,710,Gold,Cards
+2,Temel güç XP stresi,bahcivan,standart,101,stres,35,Hasat Deneyimi II - 1,2,590,Gold,Xp
+2,Temel güç XP stresi,bahcivan,standart,101,stres,35,Zengin Cevher - 3,1,125,Stone,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,36,Nadir Filizler - 2,1,430,Iron,Rarity
+2,Temel güç XP stresi,bahcivan,standart,101,stres,36,Verimli Üretim - 2,2,440,Iron,Production
+2,Temel güç XP stresi,bahcivan,standart,101,stres,36,Altın Hasat II - 3,1,450,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,36,Güçlü Kesim - 4,2,410,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,36,Geniş Tarama - 2,2,360,Gold,Area
+2,Temel güç XP stresi,bahcivan,standart,101,stres,36,Kritik Odak - 1,3,240,Gold,Crit
+2,Temel güç XP stresi,bahcivan,standart,101,stres,37,Ağır Kesim - 1,2,1600,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,37,Kesim Ustalığı - 2,1,1100,Iron,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,37,Hasat Rekoru - 3,1,450,Gold,Score
+2,Temel güç XP stresi,bahcivan,standart,101,stres,37,Akıcı Kesim - 4,1,500,Gold,Speed
+2,Temel güç XP stresi,bahcivan,standart,101,stres,37,Nadir Filizler - 2,2,500,Iron,Rarity
+2,Temel güç XP stresi,bahcivan,standart,101,stres,37,Verimli Üretim - 3,1,510,Iron,Production
+2,Temel güç XP stresi,bahcivan,standart,101,stres,37,Zengin Cevher - 3,2,140,Stone,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,38,Hasat Deneyimi II - 1,3,730,Gold,Xp
+2,Temel güç XP stresi,bahcivan,standart,101,stres,38,Kart Sezgisi - 1,2,920,Gold,Cards
+2,Temel güç XP stresi,bahcivan,standart,101,stres,38,Altın Hasat II - 3,2,510,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,38,Geniş Tarama - 3,1,400,Gold,Area
+2,Temel güç XP stresi,bahcivan,standart,101,stres,38,Kesim Ustalığı - 2,2,1200,Iron,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,38,Verimli Üretim - 3,2,570,Iron,Production
+2,Temel güç XP stresi,bahcivan,standart,101,stres,38,Kritik Odak - 2,1,290,Gold,Crit
+2,Temel güç XP stresi,bahcivan,standart,101,stres,39,Ağır Kesim - 1,3,1900,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,39,Akıcı Kesim - 4,2,550,Gold,Speed
+2,Temel güç XP stresi,bahcivan,standart,101,stres,39,Hasat Deneyimi II - 2,1,860,Gold,Xp
+2,Temel güç XP stresi,bahcivan,standart,101,stres,39,Nadir Filizler - 3,1,570,Iron,Rarity
+2,Temel güç XP stresi,bahcivan,standart,101,stres,39,Kesim Ustalığı - 3,1,1400,Iron,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,39,Zengin Cevher - 4,1,155,Stone,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,40,Hasat Rekoru - 3,2,510,Gold,Score
+2,Temel güç XP stresi,bahcivan,standart,101,stres,40,Altın Hasat II - 4,1,560,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,40,Kart Sezgisi - 1,3,1100,Gold,Cards
+2,Temel güç XP stresi,bahcivan,standart,101,stres,40,Geniş Tarama - 3,2,450,Gold,Area
+2,Temel güç XP stresi,bahcivan,standart,101,stres,40,Verimli Üretim - 4,1,630,Iron,Production
+2,Temel güç XP stresi,bahcivan,standart,101,stres,40,Nadir Filizler - 3,2,640,Iron,Rarity
+2,Temel güç XP stresi,bahcivan,standart,101,stres,40,Kritik Odak - 2,2,330,Gold,Crit
+2,Temel güç XP stresi,bahcivan,standart,101,stres,40,Kritik Güç - 1,1,150,Stone,Crit
+2,Temel güç XP stresi,bahcivan,standart,101,stres,41,Ağır Kesim - 2,1,2300,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,41,Hasat Deneyimi II - 2,2,1000,Gold,Xp
+2,Temel güç XP stresi,bahcivan,standart,101,stres,41,Altın Hasat II - 4,2,620,Gold,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,41,Kesim Ustalığı - 3,2,1600,Iron,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,41,Verimli Üretim - 4,2,690,Iron,Production
+2,Temel güç XP stresi,bahcivan,standart,101,stres,41,Nadir Filizler - 4,1,700,Iron,Rarity
+2,Temel güç XP stresi,bahcivan,standart,101,stres,41,Grid Genişleme II,2,1800,Stone,Grid
+2,Temel güç XP stresi,bahcivan,standart,101,stres,41,Zengin Cevher - 4,2,170,Stone,Economy
+2,Temel güç XP stresi,bahcivan,standart,101,stres,42,Kart Sezgisi - 2,1,1300,Gold,Cards
+2,Temel güç XP stresi,bahcivan,standart,101,stres,42,Hasat Rekoru - 4,1,560,Gold,Score
+2,Temel güç XP stresi,bahcivan,standart,101,stres,42,Geniş Tarama - 4,1,500,Gold,Area
+2,Temel güç XP stresi,bahcivan,standart,101,stres,42,Geniş Tarama - 4,2,550,Gold,Area
+2,Temel güç XP stresi,bahcivan,standart,101,stres,42,Hasat Rekoru - 4,2,620,Gold,Score
+2,Temel güç XP stresi,bahcivan,standart,101,stres,42,Kesim Ustalığı - 4,1,1700,Iron,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,42,Nadir Filizler - 4,2,770,Iron,Rarity
+2,Temel güç XP stresi,bahcivan,standart,101,stres,42,Kritik Güç - 1,2,195,Stone,Crit
+2,Temel güç XP stresi,bahcivan,standart,101,stres,43,Ağır Kesim - 2,2,2700,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,43,Hasat Deneyimi II - 3,1,1100,Gold,Xp
+2,Temel güç XP stresi,bahcivan,standart,101,stres,43,Kesim Ustalığı - 4,2,1900,Iron,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,44,Kart Sezgisi - 2,2,1600,Gold,Cards
+2,Temel güç XP stresi,bahcivan,standart,101,stres,44,Ağır Kesim - 3,1,3000,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,44,Hasat Deneyimi II - 3,2,1300,Gold,Xp
+2,Temel güç XP stresi,bahcivan,standart,101,stres,44,Kritik Odak - 3,1,380,Gold,Crit
+2,Temel güç XP stresi,bahcivan,standart,101,stres,44,Kritik Güç - 1,3,240,Stone,Crit
+2,Temel güç XP stresi,bahcivan,standart,101,stres,45,Ağır Kesim - 3,2,3400,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,45,Kart Sezgisi - 3,1,1800,Gold,Cards
+2,Temel güç XP stresi,bahcivan,standart,101,stres,46,Hasat Deneyimi II - 4,1,1400,Gold,Xp
+2,Temel güç XP stresi,bahcivan,standart,101,stres,46,Kritik Odak - 3,2,420,Gold,Crit
+2,Temel güç XP stresi,bahcivan,standart,101,stres,46,Ağır Kesim - 4,1,3800,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,46,Kritik Güç - 2,1,290,Stone,Crit
+2,Temel güç XP stresi,bahcivan,standart,101,stres,47,Hasat Deneyimi II - 4,2,1500,Gold,Xp
+2,Temel güç XP stresi,bahcivan,standart,101,stres,47,Kart Sezgisi - 3,2,2000,Gold,Cards
+2,Temel güç XP stresi,bahcivan,standart,101,stres,47,Kritik Odak - 4,1,470,Gold,Crit
+2,Temel güç XP stresi,bahcivan,standart,101,stres,47,Kritik Odak - 4,2,520,Gold,Crit
+2,Temel güç XP stresi,bahcivan,standart,101,stres,48,Ağır Kesim - 4,2,4100,Gold,Damage
+2,Temel güç XP stresi,bahcivan,standart,101,stres,48,Kart Sezgisi - 4,1,2200,Gold,Cards
+2,Temel güç XP stresi,bahcivan,standart,101,stres,48,Kart Sezgisi - 4,2,2400,Gold,Cards
+2,Temel güç XP stresi,bahcivan,standart,101,stres,48,Kritik Güç - 2,2,330,Stone,Crit
+3,Temel güç XP stresi,bahcivan,standart,102,stres,1,Keskin Başlangıç - 1,1,5,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,1,Keskin Başlangıç - 1,2,7,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,3,Altın Hasat I - 1,1,7,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,3,Düzenli Üretim - 1,1,6,Gold,Production
+3,Temel güç XP stresi,bahcivan,standart,102,stres,4,Keskin Başlangıç - 1,3,8,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,4,Grid Genişleme I,1,30,Gold,Grid
+3,Temel güç XP stresi,bahcivan,standart,102,stres,5,Hızlı Eller - 1,1,7,Gold,Speed
+3,Temel güç XP stresi,bahcivan,standart,102,stres,6,Altın Hasat I - 1,2,9,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,7,Keskin Başlangıç - 2,1,10,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,7,Düzenli Üretim - 1,2,8,Gold,Production
+3,Temel güç XP stresi,bahcivan,standart,102,stres,7,Hızlı Eller - 1,2,9,Gold,Speed
+3,Temel güç XP stresi,bahcivan,standart,102,stres,7,Keskin Başlangıç - 2,2,11,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,8,Altın Hasat I - 1,3,11,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,8,1×3 Saksı,1,30,Gold,PlanterUnlock
+3,Temel güç XP stresi,bahcivan,standart,102,stres,8,Tornado Kartları,1,30,Iron,BehaviorUnlock
+3,Temel güç XP stresi,bahcivan,standart,102,stres,9,Keskin Başlangıç - 3,1,13,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,9,Düzenli Üretim - 1,3,10,Gold,Production
+3,Temel güç XP stresi,bahcivan,standart,102,stres,9,Hızlı Eller - 1,3,11,Gold,Speed
+3,Temel güç XP stresi,bahcivan,standart,102,stres,9,Hasat Deneyimi I - 1,1,6,Gold,Xp
+3,Temel güç XP stresi,bahcivan,standart,102,stres,10,Altın Hasat I - 2,1,13,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,10,Keskin Başlangıç - 3,2,14,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,10,Bumerang Orak Kartları,1,40,Iron,BehaviorUnlock
+3,Temel güç XP stresi,bahcivan,standart,102,stres,10,Kesim Tekniği - 1,1,25,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,11,Hızlı Eller - 2,1,12,Gold,Speed
+3,Temel güç XP stresi,bahcivan,standart,102,stres,11,Altın Hasat I - 2,2,16,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,11,Düzenli Üretim - 2,1,12,Gold,Production
+3,Temel güç XP stresi,bahcivan,standart,102,stres,12,Hasat Deneyimi I - 1,2,8,Gold,Xp
+3,Temel güç XP stresi,bahcivan,standart,102,stres,12,Keskin Başlangıç - 4,1,16,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,12,Hızlı Eller - 2,2,14,Gold,Speed
+3,Temel güç XP stresi,bahcivan,standart,102,stres,13,Grid Genişleme I,2,30,Iron,Grid
+3,Temel güç XP stresi,bahcivan,standart,102,stres,14,Kesim Tekniği - 1,2,35,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,14,Altın Hasat I - 3,1,18,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,14,2×2 Saksı,1,80,Gold,PlanterUnlock
+3,Temel güç XP stresi,bahcivan,standart,102,stres,15,Keskin Başlangıç - 4,2,17,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,15,Hasat Deneyimi I - 1,3,10,Gold,Xp
+3,Temel güç XP stresi,bahcivan,standart,102,stres,15,Düzenli Üretim - 2,2,13,Gold,Production
+3,Temel güç XP stresi,bahcivan,standart,102,stres,15,Hızlı Eller - 3,1,16,Gold,Speed
+3,Temel güç XP stresi,bahcivan,standart,102,stres,15,Altın Hasat I - 3,2,20,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,16,Kesim Tekniği - 1,3,40,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,16,Hasat Deneyimi I - 2,1,12,Gold,Xp
+3,Temel güç XP stresi,bahcivan,standart,102,stres,16,Demir Hasat - 1,1,25,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,16,Hızlı Eller - 3,2,18,Gold,Speed
+3,Temel güç XP stresi,bahcivan,standart,102,stres,16,Düzenli Üretim - 3,1,15,Gold,Production
+3,Temel güç XP stresi,bahcivan,standart,102,stres,16,Altın Hasat I - 4,1,22,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,16,Geniş Süpürüş - 1,1,21,Gold,Area
+3,Temel güç XP stresi,bahcivan,standart,102,stres,17,Çifte Hasat Kartları,1,25,Iron,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,17,Kesim Tekniği - 2,1,50,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,17,Hasat Deneyimi I - 2,2,14,Gold,Xp
+3,Temel güç XP stresi,bahcivan,standart,102,stres,17,Hızlı Eller - 4,1,20,Gold,Speed
+3,Temel güç XP stresi,bahcivan,standart,102,stres,17,Altın Hasat I - 4,2,24,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,17,Demir Hasat - 1,2,35,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,17,Düzenli Üretim - 3,2,17,Gold,Production
+3,Temel güç XP stresi,bahcivan,standart,102,stres,17,Geniş Süpürüş - 1,2,28,Gold,Area
+3,Temel güç XP stresi,bahcivan,standart,102,stres,17,Hasat Deneyimi I - 3,1,16,Gold,Xp
+3,Temel güç XP stresi,bahcivan,standart,102,stres,18,Güçlü Kesim - 1,1,120,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,18,Hızlı Eller - 4,2,22,Gold,Speed
+3,Temel güç XP stresi,bahcivan,standart,102,stres,19,Kesim Tekniği - 2,2,55,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,19,Düzenli Üretim - 4,1,19,Gold,Production
+3,Temel güç XP stresi,bahcivan,standart,102,stres,19,Demir Hasat - 1,3,40,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,19,Geniş Süpürüş - 1,3,35,Gold,Area
+3,Temel güç XP stresi,bahcivan,standart,102,stres,19,Hasat Deneyimi I - 3,2,18,Gold,Xp
+3,Temel güç XP stresi,bahcivan,standart,102,stres,19,Düzenli Üretim - 4,2,21,Gold,Production
+3,Temel güç XP stresi,bahcivan,standart,102,stres,19,Hasat Deneyimi I - 4,1,20,Gold,Xp
+3,Temel güç XP stresi,bahcivan,standart,102,stres,19,Taş Hasat - 1,1,35,Iron,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,20,Geniş Süpürüş - 2,1,40,Gold,Area
+3,Temel güç XP stresi,bahcivan,standart,102,stres,21,2×3 Saksı,1,200,Gold,PlanterUnlock
+3,Temel güç XP stresi,bahcivan,standart,102,stres,21,İlk Vazgeçiş,1,150,Gold,Cards
+3,Temel güç XP stresi,bahcivan,standart,102,stres,21,Kesim Tekniği - 3,1,65,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,22,Hasat Rekoru - 1,1,180,Gold,Score
+3,Temel güç XP stresi,bahcivan,standart,102,stres,22,Güçlü Kesim - 1,2,160,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,22,Akıcı Kesim - 1,1,160,Gold,Speed
+3,Temel güç XP stresi,bahcivan,standart,102,stres,22,Taş Hasat - 1,2,45,Iron,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,23,Kesim Tekniği - 3,2,70,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,23,Demir Hasat - 2,1,50,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,23,Güçlü Kesim - 1,3,195,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,23,Geniş Süpürüş - 2,2,45,Gold,Area
+3,Temel güç XP stresi,bahcivan,standart,102,stres,23,Hasat Deneyimi I - 4,2,21,Gold,Xp
+3,Temel güç XP stresi,bahcivan,standart,102,stres,24,Akıcı Kesim - 1,2,210,Gold,Speed
+3,Temel güç XP stresi,bahcivan,standart,102,stres,24,Hasat Rekoru - 1,2,240,Gold,Score
+3,Temel güç XP stresi,bahcivan,standart,102,stres,24,Verimli Üretim - 1,1,200,Iron,Production
+3,Temel güç XP stresi,bahcivan,standart,102,stres,25,Kesim Tekniği - 4,1,80,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,25,Demir Hasat - 2,2,55,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,25,Güçlü Kesim - 2,1,230,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,25,Geniş Süpürüş - 3,1,55,Gold,Area
+3,Temel güç XP stresi,bahcivan,standart,102,stres,25,Nadir Filizler - 1,1,230,Iron,Rarity
+3,Temel güç XP stresi,bahcivan,standart,102,stres,25,Taş Hasat - 1,3,55,Iron,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,26,Altın Hasat II - 1,1,180,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,26,Kesim Tekniği - 4,2,85,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,26,Akıcı Kesim - 1,3,260,Gold,Speed
+3,Temel güç XP stresi,bahcivan,standart,102,stres,26,Grid Genişleme II,1,100,Stone,Grid
+3,Temel güç XP stresi,bahcivan,standart,102,stres,26,Taş Hasat - 2,1,65,Iron,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,27,Demir Hasat - 3,1,65,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,27,Hasat Rekoru - 1,3,290,Gold,Score
+3,Temel güç XP stresi,bahcivan,standart,102,stres,27,Zengin Cevher - 1,1,50,Stone,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,28,Geniş Süpürüş - 3,2,60,Gold,Area
+3,Temel güç XP stresi,bahcivan,standart,102,stres,28,Güçlü Kesim - 2,2,270,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,28,Altın Hasat II - 1,2,240,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,28,Verimli Üretim - 1,2,260,Iron,Production
+3,Temel güç XP stresi,bahcivan,standart,102,stres,29,Akıcı Kesim - 2,1,310,Gold,Speed
+3,Temel güç XP stresi,bahcivan,standart,102,stres,29,Nadir Filizler - 1,2,300,Iron,Rarity
+3,Temel güç XP stresi,bahcivan,standart,102,stres,29,Geniş Tarama - 1,1,160,Gold,Area
+3,Temel güç XP stresi,bahcivan,standart,102,stres,29,Geniş Süpürüş - 4,1,65,Gold,Area
+3,Temel güç XP stresi,bahcivan,standart,102,stres,29,Demir Hasat - 3,2,70,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,29,Taş Hasat - 2,2,80,Iron,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,29,Taş Hasat - 3,1,90,Iron,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,29,Zengin Cevher - 1,2,65,Stone,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,30,Güçlü Kesim - 3,1,300,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,30,Taş Hasat - 3,2,100,Iron,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,30,Zengin Cevher - 1,3,80,Stone,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,30,Taş Hasat - 4,1,110,Iron,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,31,Kesim Ustalığı - 1,1,560,Iron,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,31,Altın Hasat II - 1,3,290,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,31,Hasat Rekoru - 2,1,350,Gold,Score
+3,Temel güç XP stresi,bahcivan,standart,102,stres,31,Geniş Süpürüş - 4,2,70,Gold,Area
+3,Temel güç XP stresi,bahcivan,standart,102,stres,31,Demir Hasat - 4,1,80,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,31,Zengin Cevher - 2,1,95,Stone,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,32,Akıcı Kesim - 2,2,360,Gold,Speed
+3,Temel güç XP stresi,bahcivan,standart,102,stres,32,Verimli Üretim - 1,3,320,Iron,Production
+3,Temel güç XP stresi,bahcivan,standart,102,stres,32,Geniş Tarama - 1,2,210,Gold,Area
+3,Temel güç XP stresi,bahcivan,standart,102,stres,32,Güçlü Kesim - 3,2,340,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,32,Demir Hasat - 4,2,85,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,32,Taş Hasat - 4,2,120,Iron,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,33,Altın Hasat II - 2,1,350,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,33,Akıcı Kesim - 3,1,400,Gold,Speed
+3,Temel güç XP stresi,bahcivan,standart,102,stres,33,Geniş Tarama - 1,3,260,Gold,Area
+3,Temel güç XP stresi,bahcivan,standart,102,stres,33,Zengin Cevher - 2,2,110,Stone,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,34,Kesim Ustalığı - 1,2,720,Iron,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,34,Nadir Filizler - 1,3,360,Iron,Rarity
+3,Temel güç XP stresi,bahcivan,standart,102,stres,34,Hasat Deneyimi II - 1,1,450,Gold,Xp
+3,Temel güç XP stresi,bahcivan,standart,102,stres,34,Hasat Rekoru - 2,2,400,Gold,Score
+3,Temel güç XP stresi,bahcivan,standart,102,stres,35,İkinci Vazgeçiş,1,800,Iron,Cards
+3,Temel güç XP stresi,bahcivan,standart,102,stres,35,Güçlü Kesim - 4,1,380,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,35,Altın Hasat II - 2,2,400,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,35,Kritik Odak - 1,1,150,Gold,Crit
+3,Temel güç XP stresi,bahcivan,standart,102,stres,35,Zengin Cevher - 3,1,125,Stone,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,36,Verimli Üretim - 2,1,380,Iron,Production
+3,Temel güç XP stresi,bahcivan,standart,102,stres,36,Kritik Odak - 1,2,195,Gold,Crit
+3,Temel güç XP stresi,bahcivan,standart,102,stres,36,Kritik Odak - 1,3,240,Gold,Crit
+3,Temel güç XP stresi,bahcivan,standart,102,stres,36,Kritik Odak - 2,1,290,Gold,Crit
+3,Temel güç XP stresi,bahcivan,standart,102,stres,37,Ağır Kesim - 1,1,1200,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,37,Kesim Ustalığı - 1,3,890,Iron,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,37,Zengin Cevher - 3,2,140,Stone,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,38,Nadir Filizler - 2,1,430,Iron,Rarity
+3,Temel güç XP stresi,bahcivan,standart,102,stres,38,Akıcı Kesim - 3,2,450,Gold,Speed
+3,Temel güç XP stresi,bahcivan,standart,102,stres,38,Geniş Tarama - 2,1,310,Gold,Area
+3,Temel güç XP stresi,bahcivan,standart,102,stres,38,Kart Sezgisi - 1,1,710,Gold,Cards
+3,Temel güç XP stresi,bahcivan,standart,102,stres,38,Verimli Üretim - 2,2,440,Iron,Production
+3,Temel güç XP stresi,bahcivan,standart,102,stres,39,Hasat Deneyimi II - 1,2,590,Gold,Xp
+3,Temel güç XP stresi,bahcivan,standart,102,stres,39,Altın Hasat II - 3,1,450,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,39,Güçlü Kesim - 4,2,410,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,39,Kesim Ustalığı - 2,1,1100,Iron,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,39,Geniş Tarama - 2,2,360,Gold,Area
+3,Temel güç XP stresi,bahcivan,standart,102,stres,39,Nadir Filizler - 2,2,500,Iron,Rarity
+3,Temel güç XP stresi,bahcivan,standart,102,stres,39,Zengin Cevher - 4,1,155,Stone,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,40,Ağır Kesim - 1,2,1600,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,40,Verimli Üretim - 3,1,510,Iron,Production
+3,Temel güç XP stresi,bahcivan,standart,102,stres,40,Kritik Güç - 1,1,150,Stone,Crit
+3,Temel güç XP stresi,bahcivan,standart,102,stres,41,Hasat Rekoru - 3,1,450,Gold,Score
+3,Temel güç XP stresi,bahcivan,standart,102,stres,41,Akıcı Kesim - 4,1,500,Gold,Speed
+3,Temel güç XP stresi,bahcivan,standart,102,stres,41,Hasat Deneyimi II - 1,3,730,Gold,Xp
+3,Temel güç XP stresi,bahcivan,standart,102,stres,41,Kart Sezgisi - 1,2,920,Gold,Cards
+3,Temel güç XP stresi,bahcivan,standart,102,stres,41,Kesim Ustalığı - 2,2,1200,Iron,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,41,Verimli Üretim - 3,2,570,Iron,Production
+3,Temel güç XP stresi,bahcivan,standart,102,stres,41,Nadir Filizler - 3,1,570,Iron,Rarity
+3,Temel güç XP stresi,bahcivan,standart,102,stres,41,Grid Genişleme II,2,1800,Stone,Grid
+3,Temel güç XP stresi,bahcivan,standart,102,stres,41,Zengin Cevher - 4,2,170,Stone,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,42,Altın Hasat II - 3,2,510,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,42,Geniş Tarama - 3,1,400,Gold,Area
+3,Temel güç XP stresi,bahcivan,standart,102,stres,42,Geniş Tarama - 3,2,450,Gold,Area
+3,Temel güç XP stresi,bahcivan,standart,102,stres,42,Kesim Ustalığı - 3,1,1400,Iron,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,42,Kritik Odak - 2,2,330,Gold,Crit
+3,Temel güç XP stresi,bahcivan,standart,102,stres,42,Kritik Odak - 3,1,380,Gold,Crit
+3,Temel güç XP stresi,bahcivan,standart,102,stres,42,Kritik Güç - 1,2,195,Stone,Crit
+3,Temel güç XP stresi,bahcivan,standart,102,stres,43,Ağır Kesim - 1,3,1900,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,43,Akıcı Kesim - 4,2,550,Gold,Speed
+3,Temel güç XP stresi,bahcivan,standart,102,stres,43,Verimli Üretim - 4,1,630,Iron,Production
+3,Temel güç XP stresi,bahcivan,standart,102,stres,43,Nadir Filizler - 3,2,640,Iron,Rarity
+3,Temel güç XP stresi,bahcivan,standart,102,stres,44,Hasat Deneyimi II - 2,1,860,Gold,Xp
+3,Temel güç XP stresi,bahcivan,standart,102,stres,44,Hasat Rekoru - 3,2,510,Gold,Score
+3,Temel güç XP stresi,bahcivan,standart,102,stres,44,Altın Hasat II - 4,1,560,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,44,Kart Sezgisi - 1,3,1100,Gold,Cards
+3,Temel güç XP stresi,bahcivan,standart,102,stres,44,Hasat Rekoru - 4,1,560,Gold,Score
+3,Temel güç XP stresi,bahcivan,standart,102,stres,44,Geniş Tarama - 4,1,500,Gold,Area
+3,Temel güç XP stresi,bahcivan,standart,102,stres,44,Kesim Ustalığı - 3,2,1600,Iron,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,44,Verimli Üretim - 4,2,690,Iron,Production
+3,Temel güç XP stresi,bahcivan,standart,102,stres,44,Nadir Filizler - 4,1,700,Iron,Rarity
+3,Temel güç XP stresi,bahcivan,standart,102,stres,44,Kritik Odak - 3,2,420,Gold,Crit
+3,Temel güç XP stresi,bahcivan,standart,102,stres,44,Kritik Güç - 1,3,240,Stone,Crit
+3,Temel güç XP stresi,bahcivan,standart,102,stres,45,Ağır Kesim - 2,1,2300,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,45,Hasat Deneyimi II - 2,2,1000,Gold,Xp
+3,Temel güç XP stresi,bahcivan,standart,102,stres,45,Altın Hasat II - 4,2,620,Gold,Economy
+3,Temel güç XP stresi,bahcivan,standart,102,stres,45,Kesim Ustalığı - 4,1,1700,Iron,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,46,Kart Sezgisi - 2,1,1300,Gold,Cards
+3,Temel güç XP stresi,bahcivan,standart,102,stres,46,Geniş Tarama - 4,2,550,Gold,Area
+3,Temel güç XP stresi,bahcivan,standart,102,stres,46,Hasat Rekoru - 4,2,620,Gold,Score
+3,Temel güç XP stresi,bahcivan,standart,102,stres,46,Nadir Filizler - 4,2,770,Iron,Rarity
+3,Temel güç XP stresi,bahcivan,standart,102,stres,46,Kritik Odak - 4,1,470,Gold,Crit
+3,Temel güç XP stresi,bahcivan,standart,102,stres,46,Kritik Güç - 2,1,290,Stone,Crit
+3,Temel güç XP stresi,bahcivan,standart,102,stres,47,Ağır Kesim - 2,2,2700,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,47,Hasat Deneyimi II - 3,1,1100,Gold,Xp
+3,Temel güç XP stresi,bahcivan,standart,102,stres,47,Kesim Ustalığı - 4,2,1900,Iron,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,48,Kart Sezgisi - 2,2,1600,Gold,Cards
+3,Temel güç XP stresi,bahcivan,standart,102,stres,48,Ağır Kesim - 3,1,3000,Gold,Damage
+3,Temel güç XP stresi,bahcivan,standart,102,stres,48,Hasat Deneyimi II - 3,2,1300,Gold,Xp
+3,Temel güç XP stresi,bahcivan,standart,102,stres,48,Kritik Güç - 2,2,330,Stone,Crit
+3,Temel güç XP stresi,bahcivan,standart,102,stres,49,Ağır Kesim - 3,2,3400,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,2,Keskin Başlangıç - 1,1,5,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,2,Keskin Başlangıç - 1,2,7,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,2,Altın Hasat I - 1,1,7,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,2,Düzenli Üretim - 1,1,6,Gold,Production
+4,Temel güç XP stresi,bahcivan,standart,103,stres,4,Keskin Başlangıç - 1,3,8,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,4,Hızlı Eller - 1,1,7,Gold,Speed
+4,Temel güç XP stresi,bahcivan,standart,103,stres,4,Hasat Deneyimi I - 1,1,6,Gold,Xp
+4,Temel güç XP stresi,bahcivan,standart,103,stres,5,Grid Genişleme I,1,30,Gold,Grid
+4,Temel güç XP stresi,bahcivan,standart,103,stres,5,Altın Hasat I - 1,2,9,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,5,Keskin Başlangıç - 2,1,10,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,5,Düzenli Üretim - 1,2,8,Gold,Production
+4,Temel güç XP stresi,bahcivan,standart,103,stres,7,Hızlı Eller - 1,2,9,Gold,Speed
+4,Temel güç XP stresi,bahcivan,standart,103,stres,7,Keskin Başlangıç - 2,2,11,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,7,Altın Hasat I - 1,3,11,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,8,1×3 Saksı,1,30,Gold,PlanterUnlock
+4,Temel güç XP stresi,bahcivan,standart,103,stres,8,Keskin Başlangıç - 3,1,13,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,8,Düzenli Üretim - 1,3,10,Gold,Production
+4,Temel güç XP stresi,bahcivan,standart,103,stres,9,Tornado Kartları,1,30,Iron,BehaviorUnlock
+4,Temel güç XP stresi,bahcivan,standart,103,stres,9,Hızlı Eller - 1,3,11,Gold,Speed
+4,Temel güç XP stresi,bahcivan,standart,103,stres,9,Altın Hasat I - 2,1,13,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,9,Keskin Başlangıç - 3,2,14,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,10,Kesim Tekniği - 1,1,25,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,10,Hızlı Eller - 2,1,12,Gold,Speed
+4,Temel güç XP stresi,bahcivan,standart,103,stres,11,Altın Hasat I - 2,2,16,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,11,Düzenli Üretim - 2,1,12,Gold,Production
+4,Temel güç XP stresi,bahcivan,standart,103,stres,11,Hasat Deneyimi I - 1,2,8,Gold,Xp
+4,Temel güç XP stresi,bahcivan,standart,103,stres,11,Keskin Başlangıç - 4,1,16,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,12,Bumerang Orak Kartları,1,40,Iron,BehaviorUnlock
+4,Temel güç XP stresi,bahcivan,standart,103,stres,12,Hızlı Eller - 2,2,14,Gold,Speed
+4,Temel güç XP stresi,bahcivan,standart,103,stres,12,Kesim Tekniği - 1,2,35,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,12,Altın Hasat I - 3,1,18,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,13,2×2 Saksı,1,80,Gold,PlanterUnlock
+4,Temel güç XP stresi,bahcivan,standart,103,stres,14,Keskin Başlangıç - 4,2,17,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,14,Hasat Deneyimi I - 1,3,10,Gold,Xp
+4,Temel güç XP stresi,bahcivan,standart,103,stres,14,Düzenli Üretim - 2,2,13,Gold,Production
+4,Temel güç XP stresi,bahcivan,standart,103,stres,14,Hızlı Eller - 3,1,16,Gold,Speed
+4,Temel güç XP stresi,bahcivan,standart,103,stres,14,Altın Hasat I - 3,2,20,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,14,Kesim Tekniği - 1,3,40,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,14,Hasat Deneyimi I - 2,1,12,Gold,Xp
+4,Temel güç XP stresi,bahcivan,standart,103,stres,14,Demir Hasat - 1,1,25,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,14,Çifte Hasat Kartları,1,25,Iron,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,15,Hızlı Eller - 3,2,18,Gold,Speed
+4,Temel güç XP stresi,bahcivan,standart,103,stres,15,Düzenli Üretim - 3,1,15,Gold,Production
+4,Temel güç XP stresi,bahcivan,standart,103,stres,15,Altın Hasat I - 4,1,22,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,15,Geniş Süpürüş - 1,1,21,Gold,Area
+4,Temel güç XP stresi,bahcivan,standart,103,stres,15,Kesim Tekniği - 2,1,50,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,15,Hasat Deneyimi I - 2,2,14,Gold,Xp
+4,Temel güç XP stresi,bahcivan,standart,103,stres,15,Hızlı Eller - 4,1,20,Gold,Speed
+4,Temel güç XP stresi,bahcivan,standart,103,stres,16,Altın Hasat I - 4,2,24,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,16,Demir Hasat - 1,2,35,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,16,Düzenli Üretim - 3,2,17,Gold,Production
+4,Temel güç XP stresi,bahcivan,standart,103,stres,16,Geniş Süpürüş - 1,2,28,Gold,Area
+4,Temel güç XP stresi,bahcivan,standart,103,stres,16,Hızlı Eller - 4,2,22,Gold,Speed
+4,Temel güç XP stresi,bahcivan,standart,103,stres,16,Hasat Deneyimi I - 3,1,16,Gold,Xp
+4,Temel güç XP stresi,bahcivan,standart,103,stres,16,Düzenli Üretim - 4,1,19,Gold,Production
+4,Temel güç XP stresi,bahcivan,standart,103,stres,16,Hasat Deneyimi I - 3,2,18,Gold,Xp
+4,Temel güç XP stresi,bahcivan,standart,103,stres,16,Düzenli Üretim - 4,2,21,Gold,Production
+4,Temel güç XP stresi,bahcivan,standart,103,stres,17,Güçlü Kesim - 1,1,120,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,17,Kesim Tekniği - 2,2,55,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,18,Demir Hasat - 1,3,40,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,18,Geniş Süpürüş - 1,3,35,Gold,Area
+4,Temel güç XP stresi,bahcivan,standart,103,stres,18,İlk Vazgeçiş,1,150,Gold,Cards
+4,Temel güç XP stresi,bahcivan,standart,103,stres,18,Grid Genişleme I,2,30,Iron,Grid
+4,Temel güç XP stresi,bahcivan,standart,103,stres,19,Geniş Süpürüş - 2,1,40,Gold,Area
+4,Temel güç XP stresi,bahcivan,standart,103,stres,19,Hasat Deneyimi I - 4,1,20,Gold,Xp
+4,Temel güç XP stresi,bahcivan,standart,103,stres,19,Demir Hasat - 2,1,50,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,19,Geniş Süpürüş - 2,2,45,Gold,Area
+4,Temel güç XP stresi,bahcivan,standart,103,stres,19,Hasat Deneyimi I - 4,2,21,Gold,Xp
+4,Temel güç XP stresi,bahcivan,standart,103,stres,19,Taş Hasat - 1,1,35,Iron,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,21,2×3 Saksı,1,200,Gold,PlanterUnlock
+4,Temel güç XP stresi,bahcivan,standart,103,stres,21,Kesim Tekniği - 3,1,65,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,21,Taş Hasat - 1,2,45,Iron,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,22,Hasat Rekoru - 1,1,180,Gold,Score
+4,Temel güç XP stresi,bahcivan,standart,103,stres,22,Güçlü Kesim - 1,2,160,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,22,Akıcı Kesim - 1,1,160,Gold,Speed
+4,Temel güç XP stresi,bahcivan,standart,103,stres,22,Kesim Tekniği - 3,2,70,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,23,Güçlü Kesim - 1,3,195,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,23,Akıcı Kesim - 1,2,210,Gold,Speed
+4,Temel güç XP stresi,bahcivan,standart,103,stres,23,Demir Hasat - 2,2,55,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,23,Geniş Süpürüş - 3,1,55,Gold,Area
+4,Temel güç XP stresi,bahcivan,standart,103,stres,24,Hasat Rekoru - 1,2,240,Gold,Score
+4,Temel güç XP stresi,bahcivan,standart,103,stres,24,Kesim Tekniği - 4,1,80,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,24,Güçlü Kesim - 2,1,230,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,24,Altın Hasat II - 1,1,180,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,24,Verimli Üretim - 1,1,200,Iron,Production
+4,Temel güç XP stresi,bahcivan,standart,103,stres,24,Taş Hasat - 1,3,55,Iron,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,25,Kesim Tekniği - 4,2,85,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,25,Nadir Filizler - 1,1,230,Iron,Rarity
+4,Temel güç XP stresi,bahcivan,standart,103,stres,25,Akıcı Kesim - 1,3,260,Gold,Speed
+4,Temel güç XP stresi,bahcivan,standart,103,stres,25,Demir Hasat - 3,1,65,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,25,Hasat Rekoru - 1,3,290,Gold,Score
+4,Temel güç XP stresi,bahcivan,standart,103,stres,25,Geniş Süpürüş - 3,2,60,Gold,Area
+4,Temel güç XP stresi,bahcivan,standart,103,stres,25,Geniş Süpürüş - 4,1,65,Gold,Area
+4,Temel güç XP stresi,bahcivan,standart,103,stres,25,Taş Hasat - 2,1,65,Iron,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,26,Güçlü Kesim - 2,2,270,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,26,Altın Hasat II - 1,2,240,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,26,Grid Genişleme II,1,100,Stone,Grid
+4,Temel güç XP stresi,bahcivan,standart,103,stres,26,Verimli Üretim - 1,2,260,Iron,Production
+4,Temel güç XP stresi,bahcivan,standart,103,stres,26,Zengin Cevher - 1,1,50,Stone,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,27,Akıcı Kesim - 2,1,310,Gold,Speed
+4,Temel güç XP stresi,bahcivan,standart,103,stres,27,Nadir Filizler - 1,2,300,Iron,Rarity
+4,Temel güç XP stresi,bahcivan,standart,103,stres,27,Geniş Tarama - 1,1,160,Gold,Area
+4,Temel güç XP stresi,bahcivan,standart,103,stres,27,Demir Hasat - 3,2,70,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,27,Geniş Süpürüş - 4,2,70,Gold,Area
+4,Temel güç XP stresi,bahcivan,standart,103,stres,27,Taş Hasat - 2,2,80,Iron,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,27,Zengin Cevher - 1,2,65,Stone,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,28,Güçlü Kesim - 3,1,300,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,28,Altın Hasat II - 1,3,290,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,28,Demir Hasat - 4,1,80,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,28,Demir Hasat - 4,2,85,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,28,Taş Hasat - 3,1,90,Iron,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,28,Taş Hasat - 3,2,100,Iron,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,29,Kesim Ustalığı - 1,1,560,Iron,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,29,Hasat Rekoru - 2,1,350,Gold,Score
+4,Temel güç XP stresi,bahcivan,standart,103,stres,29,Akıcı Kesim - 2,2,360,Gold,Speed
+4,Temel güç XP stresi,bahcivan,standart,103,stres,29,Verimli Üretim - 1,3,320,Iron,Production
+4,Temel güç XP stresi,bahcivan,standart,103,stres,29,Geniş Tarama - 1,2,210,Gold,Area
+4,Temel güç XP stresi,bahcivan,standart,103,stres,29,Zengin Cevher - 1,3,80,Stone,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,30,Güçlü Kesim - 3,2,340,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,30,Altın Hasat II - 2,1,350,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,30,Akıcı Kesim - 3,1,400,Gold,Speed
+4,Temel güç XP stresi,bahcivan,standart,103,stres,30,Taş Hasat - 4,1,110,Iron,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,31,Kesim Ustalığı - 1,2,720,Iron,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,31,Nadir Filizler - 1,3,360,Iron,Rarity
+4,Temel güç XP stresi,bahcivan,standart,103,stres,31,Geniş Tarama - 1,3,260,Gold,Area
+4,Temel güç XP stresi,bahcivan,standart,103,stres,31,Hasat Deneyimi II - 1,1,450,Gold,Xp
+4,Temel güç XP stresi,bahcivan,standart,103,stres,31,Hasat Rekoru - 2,2,400,Gold,Score
+4,Temel güç XP stresi,bahcivan,standart,103,stres,31,Güçlü Kesim - 4,1,380,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,31,Zengin Cevher - 2,1,95,Stone,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,31,Taş Hasat - 4,2,120,Iron,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,32,İkinci Vazgeçiş,1,800,Iron,Cards
+4,Temel güç XP stresi,bahcivan,standart,103,stres,32,Altın Hasat II - 2,2,400,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,32,Ağır Kesim - 1,1,1200,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,33,Verimli Üretim - 2,1,380,Iron,Production
+4,Temel güç XP stresi,bahcivan,standart,103,stres,33,Akıcı Kesim - 3,2,450,Gold,Speed
+4,Temel güç XP stresi,bahcivan,standart,103,stres,33,Geniş Tarama - 2,1,310,Gold,Area
+4,Temel güç XP stresi,bahcivan,standart,103,stres,33,Kart Sezgisi - 1,1,710,Gold,Cards
+4,Temel güç XP stresi,bahcivan,standart,103,stres,33,Zengin Cevher - 2,2,110,Stone,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,34,Kesim Ustalığı - 1,3,890,Iron,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,34,Nadir Filizler - 2,1,430,Iron,Rarity
+4,Temel güç XP stresi,bahcivan,standart,103,stres,34,Hasat Deneyimi II - 1,2,590,Gold,Xp
+4,Temel güç XP stresi,bahcivan,standart,103,stres,34,Altın Hasat II - 3,1,450,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,34,Güçlü Kesim - 4,2,410,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,34,Kritik Odak - 1,1,150,Gold,Crit
+4,Temel güç XP stresi,bahcivan,standart,103,stres,34,Geniş Tarama - 2,2,360,Gold,Area
+4,Temel güç XP stresi,bahcivan,standart,103,stres,34,Kritik Odak - 1,2,195,Gold,Crit
+4,Temel güç XP stresi,bahcivan,standart,103,stres,34,Kritik Odak - 1,3,240,Gold,Crit
+4,Temel güç XP stresi,bahcivan,standart,103,stres,35,Verimli Üretim - 2,2,440,Iron,Production
+4,Temel güç XP stresi,bahcivan,standart,103,stres,35,Ağır Kesim - 1,2,1600,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,35,Kesim Ustalığı - 2,1,1100,Iron,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,35,Hasat Rekoru - 3,1,450,Gold,Score
+4,Temel güç XP stresi,bahcivan,standart,103,stres,35,Zengin Cevher - 3,1,125,Stone,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,36,Akıcı Kesim - 4,1,500,Gold,Speed
+4,Temel güç XP stresi,bahcivan,standart,103,stres,36,Nadir Filizler - 2,2,500,Iron,Rarity
+4,Temel güç XP stresi,bahcivan,standart,103,stres,36,Hasat Deneyimi II - 1,3,730,Gold,Xp
+4,Temel güç XP stresi,bahcivan,standart,103,stres,36,Verimli Üretim - 3,1,510,Iron,Production
+4,Temel güç XP stresi,bahcivan,standart,103,stres,37,Kart Sezgisi - 1,2,920,Gold,Cards
+4,Temel güç XP stresi,bahcivan,standart,103,stres,37,Altın Hasat II - 3,2,510,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,37,Ağır Kesim - 1,3,1900,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,37,Kesim Ustalığı - 2,2,1200,Iron,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,37,Verimli Üretim - 3,2,570,Iron,Production
+4,Temel güç XP stresi,bahcivan,standart,103,stres,37,Zengin Cevher - 3,2,140,Stone,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,38,Akıcı Kesim - 4,2,550,Gold,Speed
+4,Temel güç XP stresi,bahcivan,standart,103,stres,38,Geniş Tarama - 3,1,400,Gold,Area
+4,Temel güç XP stresi,bahcivan,standart,103,stres,38,Hasat Deneyimi II - 2,1,860,Gold,Xp
+4,Temel güç XP stresi,bahcivan,standart,103,stres,38,Hasat Rekoru - 3,2,510,Gold,Score
+4,Temel güç XP stresi,bahcivan,standart,103,stres,38,Nadir Filizler - 3,1,570,Iron,Rarity
+4,Temel güç XP stresi,bahcivan,standart,103,stres,38,Altın Hasat II - 4,1,560,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,39,Kart Sezgisi - 1,3,1100,Gold,Cards
+4,Temel güç XP stresi,bahcivan,standart,103,stres,39,Ağır Kesim - 2,1,2300,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,39,Geniş Tarama - 3,2,450,Gold,Area
+4,Temel güç XP stresi,bahcivan,standart,103,stres,39,Kesim Ustalığı - 3,1,1400,Iron,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,39,Verimli Üretim - 4,1,630,Iron,Production
+4,Temel güç XP stresi,bahcivan,standart,103,stres,39,Nadir Filizler - 3,2,640,Iron,Rarity
+4,Temel güç XP stresi,bahcivan,standart,103,stres,39,Zengin Cevher - 4,1,155,Stone,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,40,Hasat Deneyimi II - 2,2,1000,Gold,Xp
+4,Temel güç XP stresi,bahcivan,standart,103,stres,40,Altın Hasat II - 4,2,620,Gold,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,40,Kritik Odak - 2,1,290,Gold,Crit
+4,Temel güç XP stresi,bahcivan,standart,103,stres,40,Kart Sezgisi - 2,1,1300,Gold,Cards
+4,Temel güç XP stresi,bahcivan,standart,103,stres,40,Kesim Ustalığı - 3,2,1600,Iron,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,40,Verimli Üretim - 4,2,690,Iron,Production
+4,Temel güç XP stresi,bahcivan,standart,103,stres,40,Kritik Güç - 1,1,150,Stone,Crit
+4,Temel güç XP stresi,bahcivan,standart,103,stres,41,Hasat Rekoru - 4,1,560,Gold,Score
+4,Temel güç XP stresi,bahcivan,standart,103,stres,41,Ağır Kesim - 2,2,2700,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,41,Geniş Tarama - 4,1,500,Gold,Area
+4,Temel güç XP stresi,bahcivan,standart,103,stres,41,Nadir Filizler - 4,1,700,Iron,Rarity
+4,Temel güç XP stresi,bahcivan,standart,103,stres,41,Grid Genişleme II,2,1800,Stone,Grid
+4,Temel güç XP stresi,bahcivan,standart,103,stres,41,Zengin Cevher - 4,2,170,Stone,Economy
+4,Temel güç XP stresi,bahcivan,standart,103,stres,42,Hasat Deneyimi II - 3,1,1100,Gold,Xp
+4,Temel güç XP stresi,bahcivan,standart,103,stres,42,Kritik Odak - 2,2,330,Gold,Crit
+4,Temel güç XP stresi,bahcivan,standart,103,stres,42,Geniş Tarama - 4,2,550,Gold,Area
+4,Temel güç XP stresi,bahcivan,standart,103,stres,42,Kart Sezgisi - 2,2,1600,Gold,Cards
+4,Temel güç XP stresi,bahcivan,standart,103,stres,42,Hasat Rekoru - 4,2,620,Gold,Score
+4,Temel güç XP stresi,bahcivan,standart,103,stres,42,Kesim Ustalığı - 4,1,1700,Iron,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,42,Kritik Odak - 3,1,380,Gold,Crit
+4,Temel güç XP stresi,bahcivan,standart,103,stres,42,Nadir Filizler - 4,2,770,Iron,Rarity
+4,Temel güç XP stresi,bahcivan,standart,103,stres,42,Kritik Odak - 3,2,420,Gold,Crit
+4,Temel güç XP stresi,bahcivan,standart,103,stres,42,Kesim Ustalığı - 4,2,1900,Iron,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,42,Kritik Odak - 4,1,470,Gold,Crit
+4,Temel güç XP stresi,bahcivan,standart,103,stres,42,Kritik Güç - 1,2,195,Stone,Crit
+4,Temel güç XP stresi,bahcivan,standart,103,stres,43,Ağır Kesim - 3,1,3000,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,43,Hasat Deneyimi II - 3,2,1300,Gold,Xp
+4,Temel güç XP stresi,bahcivan,standart,103,stres,43,Kritik Odak - 4,2,520,Gold,Crit
+4,Temel güç XP stresi,bahcivan,standart,103,stres,44,Ağır Kesim - 3,2,3400,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,44,Kart Sezgisi - 3,1,1800,Gold,Cards
+4,Temel güç XP stresi,bahcivan,standart,103,stres,44,Hasat Deneyimi II - 4,1,1400,Gold,Xp
+4,Temel güç XP stresi,bahcivan,standart,103,stres,44,Kritik Güç - 1,3,240,Stone,Crit
+4,Temel güç XP stresi,bahcivan,standart,103,stres,45,Ağır Kesim - 4,1,3800,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,45,Hasat Deneyimi II - 4,2,1500,Gold,Xp
+4,Temel güç XP stresi,bahcivan,standart,103,stres,45,Kart Sezgisi - 3,2,2000,Gold,Cards
+4,Temel güç XP stresi,bahcivan,standart,103,stres,46,Ağır Kesim - 4,2,4100,Gold,Damage
+4,Temel güç XP stresi,bahcivan,standart,103,stres,46,Kart Sezgisi - 4,1,2200,Gold,Cards
+4,Temel güç XP stresi,bahcivan,standart,103,stres,46,Kritik Güç - 2,1,290,Stone,Crit
+4,Temel güç XP stresi,bahcivan,standart,103,stres,47,Kart Sezgisi - 4,2,2400,Gold,Cards
+4,Temel güç XP stresi,bahcivan,standart,103,stres,48,Kritik Güç - 2,2,330,Stone,Crit
+5,Temel güç XP stresi,bahcivan,standart,104,stres,1,Keskin Başlangıç - 1,1,5,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,2,Keskin Başlangıç - 1,2,7,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,3,Altın Hasat I - 1,1,7,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,3,Düzenli Üretim - 1,1,6,Gold,Production
+5,Temel güç XP stresi,bahcivan,standart,104,stres,3,Keskin Başlangıç - 1,3,8,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,3,Hızlı Eller - 1,1,7,Gold,Speed
+5,Temel güç XP stresi,bahcivan,standart,104,stres,3,Hasat Deneyimi I - 1,1,6,Gold,Xp
+5,Temel güç XP stresi,bahcivan,standart,104,stres,5,Grid Genişleme I,1,30,Gold,Grid
+5,Temel güç XP stresi,bahcivan,standart,104,stres,5,Altın Hasat I - 1,2,9,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,7,Keskin Başlangıç - 2,1,10,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,7,Düzenli Üretim - 1,2,8,Gold,Production
+5,Temel güç XP stresi,bahcivan,standart,104,stres,7,Hızlı Eller - 1,2,9,Gold,Speed
+5,Temel güç XP stresi,bahcivan,standart,104,stres,8,Keskin Başlangıç - 2,2,11,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,8,Altın Hasat I - 1,3,11,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,8,1×3 Saksı,1,30,Gold,PlanterUnlock
+5,Temel güç XP stresi,bahcivan,standart,104,stres,8,Tornado Kartları,1,30,Iron,BehaviorUnlock
+5,Temel güç XP stresi,bahcivan,standart,104,stres,8,Keskin Başlangıç - 3,1,13,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,9,Düzenli Üretim - 1,3,10,Gold,Production
+5,Temel güç XP stresi,bahcivan,standart,104,stres,9,Hızlı Eller - 1,3,11,Gold,Speed
+5,Temel güç XP stresi,bahcivan,standart,104,stres,9,Altın Hasat I - 2,1,13,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,9,Keskin Başlangıç - 3,2,14,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,10,Kesim Tekniği - 1,1,25,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,10,Hızlı Eller - 2,1,12,Gold,Speed
+5,Temel güç XP stresi,bahcivan,standart,104,stres,11,Altın Hasat I - 2,2,16,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,11,Düzenli Üretim - 2,1,12,Gold,Production
+5,Temel güç XP stresi,bahcivan,standart,104,stres,11,Hasat Deneyimi I - 1,2,8,Gold,Xp
+5,Temel güç XP stresi,bahcivan,standart,104,stres,11,Keskin Başlangıç - 4,1,16,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,12,Hızlı Eller - 2,2,14,Gold,Speed
+5,Temel güç XP stresi,bahcivan,standart,104,stres,12,Kesim Tekniği - 1,2,35,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,12,Altın Hasat I - 3,1,18,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,12,Keskin Başlangıç - 4,2,17,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,12,Hasat Deneyimi I - 1,3,10,Gold,Xp
+5,Temel güç XP stresi,bahcivan,standart,104,stres,13,Düzenli Üretim - 2,2,13,Gold,Production
+5,Temel güç XP stresi,bahcivan,standart,104,stres,14,Bumerang Orak Kartları,1,40,Iron,BehaviorUnlock
+5,Temel güç XP stresi,bahcivan,standart,104,stres,14,2×2 Saksı,1,80,Gold,PlanterUnlock
+5,Temel güç XP stresi,bahcivan,standart,104,stres,15,Hızlı Eller - 3,1,16,Gold,Speed
+5,Temel güç XP stresi,bahcivan,standart,104,stres,15,Altın Hasat I - 3,2,20,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,15,Kesim Tekniği - 1,3,40,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,15,Hasat Deneyimi I - 2,1,12,Gold,Xp
+5,Temel güç XP stresi,bahcivan,standart,104,stres,16,Demir Hasat - 1,1,25,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,16,Çifte Hasat Kartları,1,25,Iron,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,16,Hızlı Eller - 3,2,18,Gold,Speed
+5,Temel güç XP stresi,bahcivan,standart,104,stres,16,Düzenli Üretim - 3,1,15,Gold,Production
+5,Temel güç XP stresi,bahcivan,standart,104,stres,16,Altın Hasat I - 4,1,22,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,17,Geniş Süpürüş - 1,1,21,Gold,Area
+5,Temel güç XP stresi,bahcivan,standart,104,stres,17,Kesim Tekniği - 2,1,50,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,17,Hasat Deneyimi I - 2,2,14,Gold,Xp
+5,Temel güç XP stresi,bahcivan,standart,104,stres,17,Hızlı Eller - 4,1,20,Gold,Speed
+5,Temel güç XP stresi,bahcivan,standart,104,stres,17,Altın Hasat I - 4,2,24,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,18,Demir Hasat - 1,2,35,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,18,Düzenli Üretim - 3,2,17,Gold,Production
+5,Temel güç XP stresi,bahcivan,standart,104,stres,18,Geniş Süpürüş - 1,2,28,Gold,Area
+5,Temel güç XP stresi,bahcivan,standart,104,stres,18,Hızlı Eller - 4,2,22,Gold,Speed
+5,Temel güç XP stresi,bahcivan,standart,104,stres,18,Hasat Deneyimi I - 3,1,16,Gold,Xp
+5,Temel güç XP stresi,bahcivan,standart,104,stres,18,Düzenli Üretim - 4,1,19,Gold,Production
+5,Temel güç XP stresi,bahcivan,standart,104,stres,18,Hasat Deneyimi I - 3,2,18,Gold,Xp
+5,Temel güç XP stresi,bahcivan,standart,104,stres,18,Grid Genişleme I,2,30,Iron,Grid
+5,Temel güç XP stresi,bahcivan,standart,104,stres,18,Düzenli Üretim - 4,2,21,Gold,Production
+5,Temel güç XP stresi,bahcivan,standart,104,stres,19,Hasat Deneyimi I - 4,1,20,Gold,Xp
+5,Temel güç XP stresi,bahcivan,standart,104,stres,19,Hasat Deneyimi I - 4,2,21,Gold,Xp
+5,Temel güç XP stresi,bahcivan,standart,104,stres,20,Güçlü Kesim - 1,1,120,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,21,Kesim Tekniği - 2,2,55,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,21,Demir Hasat - 1,3,40,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,21,Geniş Süpürüş - 1,3,35,Gold,Area
+5,Temel güç XP stresi,bahcivan,standart,104,stres,21,Taş Hasat - 1,1,35,Iron,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,22,2×3 Saksı,1,200,Gold,PlanterUnlock
+5,Temel güç XP stresi,bahcivan,standart,104,stres,23,İlk Vazgeçiş,1,150,Gold,Cards
+5,Temel güç XP stresi,bahcivan,standart,104,stres,23,Kesim Tekniği - 3,1,65,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,23,Geniş Süpürüş - 2,1,40,Gold,Area
+5,Temel güç XP stresi,bahcivan,standart,104,stres,24,Hasat Rekoru - 1,1,180,Gold,Score
+5,Temel güç XP stresi,bahcivan,standart,104,stres,24,Taş Hasat - 1,2,45,Iron,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,25,Güçlü Kesim - 1,2,160,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,25,Akıcı Kesim - 1,1,160,Gold,Speed
+5,Temel güç XP stresi,bahcivan,standart,104,stres,25,Kesim Tekniği - 3,2,70,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,26,Demir Hasat - 2,1,50,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,26,Güçlü Kesim - 1,3,195,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,26,Verimli Üretim - 1,1,200,Iron,Production
+5,Temel güç XP stresi,bahcivan,standart,104,stres,27,Geniş Süpürüş - 2,2,45,Gold,Area
+5,Temel güç XP stresi,bahcivan,standart,104,stres,27,Akıcı Kesim - 1,2,210,Gold,Speed
+5,Temel güç XP stresi,bahcivan,standart,104,stres,27,Demir Hasat - 2,2,55,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,27,Taş Hasat - 1,3,55,Iron,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,28,Hasat Rekoru - 1,2,240,Gold,Score
+5,Temel güç XP stresi,bahcivan,standart,104,stres,28,Kesim Tekniği - 4,1,80,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,28,Geniş Süpürüş - 3,1,55,Gold,Area
+5,Temel güç XP stresi,bahcivan,standart,104,stres,29,Güçlü Kesim - 2,1,230,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,29,Altın Hasat II - 1,1,180,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,29,Kesim Tekniği - 4,2,85,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,29,Nadir Filizler - 1,1,230,Iron,Rarity
+5,Temel güç XP stresi,bahcivan,standart,104,stres,29,Grid Genişleme II,1,100,Stone,Grid
+5,Temel güç XP stresi,bahcivan,standart,104,stres,29,Taş Hasat - 2,1,65,Iron,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,30,Akıcı Kesim - 1,3,260,Gold,Speed
+5,Temel güç XP stresi,bahcivan,standart,104,stres,30,Demir Hasat - 3,1,65,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,31,Hasat Rekoru - 1,3,290,Gold,Score
+5,Temel güç XP stresi,bahcivan,standart,104,stres,31,Geniş Süpürüş - 3,2,60,Gold,Area
+5,Temel güç XP stresi,bahcivan,standart,104,stres,31,Verimli Üretim - 1,2,260,Iron,Production
+5,Temel güç XP stresi,bahcivan,standart,104,stres,31,Geniş Süpürüş - 4,1,65,Gold,Area
+5,Temel güç XP stresi,bahcivan,standart,104,stres,31,Zengin Cevher - 1,1,50,Stone,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,32,Güçlü Kesim - 2,2,270,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,32,Nadir Filizler - 1,2,300,Iron,Rarity
+5,Temel güç XP stresi,bahcivan,standart,104,stres,32,Taş Hasat - 2,2,80,Iron,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,33,Altın Hasat II - 1,2,240,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,33,Demir Hasat - 3,2,70,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,33,Geniş Süpürüş - 4,2,70,Gold,Area
+5,Temel güç XP stresi,bahcivan,standart,104,stres,33,Taş Hasat - 3,1,90,Iron,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,33,Zengin Cevher - 1,2,65,Stone,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,33,Taş Hasat - 3,2,100,Iron,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,34,Akıcı Kesim - 2,1,310,Gold,Speed
+5,Temel güç XP stresi,bahcivan,standart,104,stres,34,Geniş Tarama - 1,1,160,Gold,Area
+5,Temel güç XP stresi,bahcivan,standart,104,stres,34,Güçlü Kesim - 3,1,300,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,34,Zengin Cevher - 1,3,80,Stone,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,34,Taş Hasat - 4,1,110,Iron,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,34,Taş Hasat - 4,2,120,Iron,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,35,Altın Hasat II - 1,3,290,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,35,Demir Hasat - 4,1,80,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,35,Demir Hasat - 4,2,85,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,35,Zengin Cevher - 2,1,95,Stone,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,36,Kesim Ustalığı - 1,1,560,Iron,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,36,Hasat Rekoru - 2,1,350,Gold,Score
+5,Temel güç XP stresi,bahcivan,standart,104,stres,37,Akıcı Kesim - 2,2,360,Gold,Speed
+5,Temel güç XP stresi,bahcivan,standart,104,stres,37,Verimli Üretim - 1,3,320,Iron,Production
+5,Temel güç XP stresi,bahcivan,standart,104,stres,37,Geniş Tarama - 1,2,210,Gold,Area
+5,Temel güç XP stresi,bahcivan,standart,104,stres,37,Zengin Cevher - 2,2,110,Stone,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,37,Zengin Cevher - 3,1,125,Stone,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,38,Güçlü Kesim - 3,2,340,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,38,Altın Hasat II - 2,1,350,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,39,Kesim Ustalığı - 1,2,720,Iron,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,39,Nadir Filizler - 1,3,360,Iron,Rarity
+5,Temel güç XP stresi,bahcivan,standart,104,stres,39,Akıcı Kesim - 3,1,400,Gold,Speed
+5,Temel güç XP stresi,bahcivan,standart,104,stres,39,Geniş Tarama - 1,3,260,Gold,Area
+5,Temel güç XP stresi,bahcivan,standart,104,stres,39,Zengin Cevher - 3,2,140,Stone,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,40,Hasat Deneyimi II - 1,1,450,Gold,Xp
+5,Temel güç XP stresi,bahcivan,standart,104,stres,40,Hasat Rekoru - 2,2,400,Gold,Score
+5,Temel güç XP stresi,bahcivan,standart,104,stres,40,Zengin Cevher - 4,1,155,Stone,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,41,İkinci Vazgeçiş,1,800,Iron,Cards
+5,Temel güç XP stresi,bahcivan,standart,104,stres,41,Verimli Üretim - 2,1,380,Iron,Production
+5,Temel güç XP stresi,bahcivan,standart,104,stres,41,Güçlü Kesim - 4,1,380,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,41,Altın Hasat II - 2,2,400,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,41,Kritik Odak - 1,1,150,Gold,Crit
+5,Temel güç XP stresi,bahcivan,standart,104,stres,41,Kritik Odak - 1,2,195,Gold,Crit
+5,Temel güç XP stresi,bahcivan,standart,104,stres,41,Kritik Odak - 1,3,240,Gold,Crit
+5,Temel güç XP stresi,bahcivan,standart,104,stres,41,Kritik Güç - 1,1,150,Stone,Crit
+5,Temel güç XP stresi,bahcivan,standart,104,stres,42,Ağır Kesim - 1,1,1200,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,42,Akıcı Kesim - 3,2,450,Gold,Speed
+5,Temel güç XP stresi,bahcivan,standart,104,stres,42,Zengin Cevher - 4,2,170,Stone,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,43,Kesim Ustalığı - 1,3,890,Iron,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,43,Nadir Filizler - 2,1,430,Iron,Rarity
+5,Temel güç XP stresi,bahcivan,standart,104,stres,43,Geniş Tarama - 2,1,310,Gold,Area
+5,Temel güç XP stresi,bahcivan,standart,104,stres,43,Kart Sezgisi - 1,1,710,Gold,Cards
+5,Temel güç XP stresi,bahcivan,standart,104,stres,43,Verimli Üretim - 2,2,440,Iron,Production
+5,Temel güç XP stresi,bahcivan,standart,104,stres,43,Kritik Güç - 1,2,195,Stone,Crit
+5,Temel güç XP stresi,bahcivan,standart,104,stres,44,Hasat Deneyimi II - 1,2,590,Gold,Xp
+5,Temel güç XP stresi,bahcivan,standart,104,stres,44,Altın Hasat II - 3,1,450,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,44,Güçlü Kesim - 4,2,410,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,44,Kritik Güç - 1,3,240,Stone,Crit
+5,Temel güç XP stresi,bahcivan,standart,104,stres,45,Ağır Kesim - 1,2,1600,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,45,Kesim Ustalığı - 2,1,1100,Iron,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,45,Hasat Rekoru - 3,1,450,Gold,Score
+5,Temel güç XP stresi,bahcivan,standart,104,stres,45,Nadir Filizler - 2,2,500,Iron,Rarity
+5,Temel güç XP stresi,bahcivan,standart,104,stres,46,Akıcı Kesim - 4,1,500,Gold,Speed
+5,Temel güç XP stresi,bahcivan,standart,104,stres,46,Geniş Tarama - 2,2,360,Gold,Area
+5,Temel güç XP stresi,bahcivan,standart,104,stres,46,Verimli Üretim - 3,1,510,Iron,Production
+5,Temel güç XP stresi,bahcivan,standart,104,stres,46,Kritik Güç - 2,1,290,Stone,Crit
+5,Temel güç XP stresi,bahcivan,standart,104,stres,47,Hasat Deneyimi II - 1,3,730,Gold,Xp
+5,Temel güç XP stresi,bahcivan,standart,104,stres,47,Kart Sezgisi - 1,2,920,Gold,Cards
+5,Temel güç XP stresi,bahcivan,standart,104,stres,47,Altın Hasat II - 3,2,510,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,47,Geniş Tarama - 3,1,400,Gold,Area
+5,Temel güç XP stresi,bahcivan,standart,104,stres,47,Kesim Ustalığı - 2,2,1200,Iron,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,47,Verimli Üretim - 3,2,570,Iron,Production
+5,Temel güç XP stresi,bahcivan,standart,104,stres,48,Ağır Kesim - 1,3,1900,Gold,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,48,Akıcı Kesim - 4,2,550,Gold,Speed
+5,Temel güç XP stresi,bahcivan,standart,104,stres,48,Nadir Filizler - 3,1,570,Iron,Rarity
+5,Temel güç XP stresi,bahcivan,standart,104,stres,48,Kritik Güç - 2,2,330,Stone,Crit
+5,Temel güç XP stresi,bahcivan,standart,104,stres,49,Hasat Deneyimi II - 2,1,860,Gold,Xp
+5,Temel güç XP stresi,bahcivan,standart,104,stres,49,Hasat Rekoru - 3,2,510,Gold,Score
+5,Temel güç XP stresi,bahcivan,standart,104,stres,49,Altın Hasat II - 4,1,560,Gold,Economy
+5,Temel güç XP stresi,bahcivan,standart,104,stres,49,Kart Sezgisi - 1,3,1100,Gold,Cards
+5,Temel güç XP stresi,bahcivan,standart,104,stres,49,Kesim Ustalığı - 3,1,1400,Iron,Damage
+5,Temel güç XP stresi,bahcivan,standart,104,stres,49,Verimli Üretim - 4,1,630,Iron,Production
+6,Temel güç XP stresi,bahcivan,standart,110,stres,1,Keskin Başlangıç - 1,1,5,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,2,Keskin Başlangıç - 1,2,7,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,2,Altın Hasat I - 1,1,7,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,3,Düzenli Üretim - 1,1,6,Gold,Production
+6,Temel güç XP stresi,bahcivan,standart,110,stres,3,Keskin Başlangıç - 1,3,8,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,3,Hızlı Eller - 1,1,7,Gold,Speed
+6,Temel güç XP stresi,bahcivan,standart,110,stres,3,Hasat Deneyimi I - 1,1,6,Gold,Xp
+6,Temel güç XP stresi,bahcivan,standart,110,stres,5,Grid Genişleme I,1,30,Gold,Grid
+6,Temel güç XP stresi,bahcivan,standart,110,stres,7,Altın Hasat I - 1,2,9,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,7,Keskin Başlangıç - 2,1,10,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,7,Düzenli Üretim - 1,2,8,Gold,Production
+6,Temel güç XP stresi,bahcivan,standart,110,stres,7,Hızlı Eller - 1,2,9,Gold,Speed
+6,Temel güç XP stresi,bahcivan,standart,110,stres,7,Keskin Başlangıç - 2,2,11,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,8,Altın Hasat I - 1,3,11,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,8,1×3 Saksı,1,30,Gold,PlanterUnlock
+6,Temel güç XP stresi,bahcivan,standart,110,stres,9,Tornado Kartları,1,30,Iron,BehaviorUnlock
+6,Temel güç XP stresi,bahcivan,standart,110,stres,9,Keskin Başlangıç - 3,1,13,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,9,Düzenli Üretim - 1,3,10,Gold,Production
+6,Temel güç XP stresi,bahcivan,standart,110,stres,9,Hızlı Eller - 1,3,11,Gold,Speed
+6,Temel güç XP stresi,bahcivan,standart,110,stres,9,Altın Hasat I - 2,1,13,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,10,Keskin Başlangıç - 3,2,14,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,10,Kesim Tekniği - 1,1,25,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,10,Hızlı Eller - 2,1,12,Gold,Speed
+6,Temel güç XP stresi,bahcivan,standart,110,stres,10,Altın Hasat I - 2,2,16,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,11,Düzenli Üretim - 2,1,12,Gold,Production
+6,Temel güç XP stresi,bahcivan,standart,110,stres,11,Hasat Deneyimi I - 1,2,8,Gold,Xp
+6,Temel güç XP stresi,bahcivan,standart,110,stres,11,Keskin Başlangıç - 4,1,16,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,11,Hızlı Eller - 2,2,14,Gold,Speed
+6,Temel güç XP stresi,bahcivan,standart,110,stres,12,Kesim Tekniği - 1,2,35,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,12,Altın Hasat I - 3,1,18,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,12,Hasat Deneyimi I - 1,3,10,Gold,Xp
+6,Temel güç XP stresi,bahcivan,standart,110,stres,14,2×2 Saksı,1,80,Gold,PlanterUnlock
+6,Temel güç XP stresi,bahcivan,standart,110,stres,14,Keskin Başlangıç - 4,2,17,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,14,Düzenli Üretim - 2,2,13,Gold,Production
+6,Temel güç XP stresi,bahcivan,standart,110,stres,15,Hızlı Eller - 3,1,16,Gold,Speed
+6,Temel güç XP stresi,bahcivan,standart,110,stres,15,Altın Hasat I - 3,2,20,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,15,Kesim Tekniği - 1,3,40,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,15,Hasat Deneyimi I - 2,1,12,Gold,Xp
+6,Temel güç XP stresi,bahcivan,standart,110,stres,15,Demir Hasat - 1,1,25,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,15,Hızlı Eller - 3,2,18,Gold,Speed
+6,Temel güç XP stresi,bahcivan,standart,110,stres,15,Düzenli Üretim - 3,1,15,Gold,Production
+6,Temel güç XP stresi,bahcivan,standart,110,stres,15,Altın Hasat I - 4,1,22,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,15,Geniş Süpürüş - 1,1,21,Gold,Area
+6,Temel güç XP stresi,bahcivan,standart,110,stres,16,Bumerang Orak Kartları,1,40,Iron,BehaviorUnlock
+6,Temel güç XP stresi,bahcivan,standart,110,stres,16,Kesim Tekniği - 2,1,50,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,16,Hasat Deneyimi I - 2,2,14,Gold,Xp
+6,Temel güç XP stresi,bahcivan,standart,110,stres,16,Hızlı Eller - 4,1,20,Gold,Speed
+6,Temel güç XP stresi,bahcivan,standart,110,stres,16,Altın Hasat I - 4,2,24,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,16,Demir Hasat - 1,2,35,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,16,Düzenli Üretim - 3,2,17,Gold,Production
+6,Temel güç XP stresi,bahcivan,standart,110,stres,17,Çifte Hasat Kartları,1,25,Iron,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,17,Geniş Süpürüş - 1,2,28,Gold,Area
+6,Temel güç XP stresi,bahcivan,standart,110,stres,17,Güçlü Kesim - 1,1,120,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,17,Hızlı Eller - 4,2,22,Gold,Speed
+6,Temel güç XP stresi,bahcivan,standart,110,stres,17,Kesim Tekniği - 2,2,55,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,17,Hasat Deneyimi I - 3,1,16,Gold,Xp
+6,Temel güç XP stresi,bahcivan,standart,110,stres,17,Düzenli Üretim - 4,1,19,Gold,Production
+6,Temel güç XP stresi,bahcivan,standart,110,stres,18,Demir Hasat - 1,3,40,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,18,Geniş Süpürüş - 1,3,35,Gold,Area
+6,Temel güç XP stresi,bahcivan,standart,110,stres,18,İlk Vazgeçiş,1,150,Gold,Cards
+6,Temel güç XP stresi,bahcivan,standart,110,stres,18,Hasat Deneyimi I - 3,2,18,Gold,Xp
+6,Temel güç XP stresi,bahcivan,standart,110,stres,18,Grid Genişleme I,2,30,Iron,Grid
+6,Temel güç XP stresi,bahcivan,standart,110,stres,19,2×3 Saksı,1,200,Gold,PlanterUnlock
+6,Temel güç XP stresi,bahcivan,standart,110,stres,19,Kesim Tekniği - 3,1,65,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,19,Taş Hasat - 1,1,35,Iron,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,20,Hasat Rekoru - 1,1,180,Gold,Score
+6,Temel güç XP stresi,bahcivan,standart,110,stres,20,Düzenli Üretim - 4,2,21,Gold,Production
+6,Temel güç XP stresi,bahcivan,standart,110,stres,20,Geniş Süpürüş - 2,1,40,Gold,Area
+6,Temel güç XP stresi,bahcivan,standart,110,stres,20,Taş Hasat - 1,2,45,Iron,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,21,Güçlü Kesim - 1,2,160,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,21,Akıcı Kesim - 1,1,160,Gold,Speed
+6,Temel güç XP stresi,bahcivan,standart,110,stres,21,Hasat Deneyimi I - 4,1,20,Gold,Xp
+6,Temel güç XP stresi,bahcivan,standart,110,stres,21,Kesim Tekniği - 3,2,70,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,21,Demir Hasat - 2,1,50,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,21,Güçlü Kesim - 1,3,195,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,22,Geniş Süpürüş - 2,2,45,Gold,Area
+6,Temel güç XP stresi,bahcivan,standart,110,stres,22,Hasat Deneyimi I - 4,2,21,Gold,Xp
+6,Temel güç XP stresi,bahcivan,standart,110,stres,22,Akıcı Kesim - 1,2,210,Gold,Speed
+6,Temel güç XP stresi,bahcivan,standart,110,stres,22,Hasat Rekoru - 1,2,240,Gold,Score
+6,Temel güç XP stresi,bahcivan,standart,110,stres,22,Kesim Tekniği - 4,1,80,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,22,Demir Hasat - 2,2,55,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,22,Verimli Üretim - 1,1,200,Iron,Production
+6,Temel güç XP stresi,bahcivan,standart,110,stres,22,Nadir Filizler - 1,1,230,Iron,Rarity
+6,Temel güç XP stresi,bahcivan,standart,110,stres,23,Güçlü Kesim - 2,1,230,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,23,Geniş Süpürüş - 3,1,55,Gold,Area
+6,Temel güç XP stresi,bahcivan,standart,110,stres,23,Altın Hasat II - 1,1,180,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,23,Kesim Tekniği - 4,2,85,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,23,Grid Genişleme II,1,100,Stone,Grid
+6,Temel güç XP stresi,bahcivan,standart,110,stres,23,Taş Hasat - 1,3,55,Iron,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,23,Taş Hasat - 2,1,65,Iron,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,24,Akıcı Kesim - 1,3,260,Gold,Speed
+6,Temel güç XP stresi,bahcivan,standart,110,stres,24,Demir Hasat - 3,1,65,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,24,Hasat Rekoru - 1,3,290,Gold,Score
+6,Temel güç XP stresi,bahcivan,standart,110,stres,24,Verimli Üretim - 1,2,260,Iron,Production
+6,Temel güç XP stresi,bahcivan,standart,110,stres,24,Zengin Cevher - 1,1,50,Stone,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,25,Geniş Süpürüş - 3,2,60,Gold,Area
+6,Temel güç XP stresi,bahcivan,standart,110,stres,25,Güçlü Kesim - 2,2,270,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,25,Altın Hasat II - 1,2,240,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,25,Akıcı Kesim - 2,1,310,Gold,Speed
+6,Temel güç XP stresi,bahcivan,standart,110,stres,25,Nadir Filizler - 1,2,300,Iron,Rarity
+6,Temel güç XP stresi,bahcivan,standart,110,stres,25,Taş Hasat - 2,2,80,Iron,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,26,Geniş Tarama - 1,1,160,Gold,Area
+6,Temel güç XP stresi,bahcivan,standart,110,stres,26,Geniş Süpürüş - 4,1,65,Gold,Area
+6,Temel güç XP stresi,bahcivan,standart,110,stres,26,Demir Hasat - 3,2,70,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,26,Güçlü Kesim - 3,1,300,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,26,Altın Hasat II - 1,3,290,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,26,Taş Hasat - 3,1,90,Iron,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,27,Kesim Ustalığı - 1,1,560,Iron,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,27,Hasat Rekoru - 2,1,350,Gold,Score
+6,Temel güç XP stresi,bahcivan,standart,110,stres,27,Akıcı Kesim - 2,2,360,Gold,Speed
+6,Temel güç XP stresi,bahcivan,standart,110,stres,27,Geniş Süpürüş - 4,2,70,Gold,Area
+6,Temel güç XP stresi,bahcivan,standart,110,stres,27,Geniş Tarama - 1,2,210,Gold,Area
+6,Temel güç XP stresi,bahcivan,standart,110,stres,27,Demir Hasat - 4,1,80,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,27,Zengin Cevher - 1,2,65,Stone,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,28,Verimli Üretim - 1,3,320,Iron,Production
+6,Temel güç XP stresi,bahcivan,standart,110,stres,28,Güçlü Kesim - 3,2,340,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,28,Altın Hasat II - 2,1,350,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,28,Akıcı Kesim - 3,1,400,Gold,Speed
+6,Temel güç XP stresi,bahcivan,standart,110,stres,28,Taş Hasat - 3,2,100,Iron,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,29,Kesim Ustalığı - 1,2,720,Iron,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,29,Geniş Tarama - 1,3,260,Gold,Area
+6,Temel güç XP stresi,bahcivan,standart,110,stres,29,Hasat Deneyimi II - 1,1,450,Gold,Xp
+6,Temel güç XP stresi,bahcivan,standart,110,stres,29,Hasat Rekoru - 2,2,400,Gold,Score
+6,Temel güç XP stresi,bahcivan,standart,110,stres,29,Güçlü Kesim - 4,1,380,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,29,Altın Hasat II - 2,2,400,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,29,Zengin Cevher - 1,3,80,Stone,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,30,Nadir Filizler - 1,3,360,Iron,Rarity
+6,Temel güç XP stresi,bahcivan,standart,110,stres,30,Demir Hasat - 4,2,85,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,30,Kritik Odak - 1,1,150,Gold,Crit
+6,Temel güç XP stresi,bahcivan,standart,110,stres,30,Kritik Odak - 1,2,195,Gold,Crit
+6,Temel güç XP stresi,bahcivan,standart,110,stres,30,Taş Hasat - 4,1,110,Iron,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,31,İkinci Vazgeçiş,1,800,Iron,Cards
+6,Temel güç XP stresi,bahcivan,standart,110,stres,31,Verimli Üretim - 2,1,380,Iron,Production
+6,Temel güç XP stresi,bahcivan,standart,110,stres,31,Ağır Kesim - 1,1,1200,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,31,Akıcı Kesim - 3,2,450,Gold,Speed
+6,Temel güç XP stresi,bahcivan,standart,110,stres,31,Geniş Tarama - 2,1,310,Gold,Area
+6,Temel güç XP stresi,bahcivan,standart,110,stres,31,Zengin Cevher - 2,1,95,Stone,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,31,Taş Hasat - 4,2,120,Iron,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,32,Kesim Ustalığı - 1,3,890,Iron,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,32,Kart Sezgisi - 1,1,710,Gold,Cards
+6,Temel güç XP stresi,bahcivan,standart,110,stres,32,Hasat Deneyimi II - 1,2,590,Gold,Xp
+6,Temel güç XP stresi,bahcivan,standart,110,stres,32,Altın Hasat II - 3,1,450,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,32,Güçlü Kesim - 4,2,410,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,32,Geniş Tarama - 2,2,360,Gold,Area
+6,Temel güç XP stresi,bahcivan,standart,110,stres,32,Kritik Odak - 1,3,240,Gold,Crit
+6,Temel güç XP stresi,bahcivan,standart,110,stres,33,Nadir Filizler - 2,1,430,Iron,Rarity
+6,Temel güç XP stresi,bahcivan,standart,110,stres,33,Verimli Üretim - 2,2,440,Iron,Production
+6,Temel güç XP stresi,bahcivan,standart,110,stres,33,Ağır Kesim - 1,2,1600,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,33,Zengin Cevher - 2,2,110,Stone,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,34,Kesim Ustalığı - 2,1,1100,Iron,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,34,Hasat Rekoru - 3,1,450,Gold,Score
+6,Temel güç XP stresi,bahcivan,standart,110,stres,34,Akıcı Kesim - 4,1,500,Gold,Speed
+6,Temel güç XP stresi,bahcivan,standart,110,stres,34,Hasat Deneyimi II - 1,3,730,Gold,Xp
+6,Temel güç XP stresi,bahcivan,standart,110,stres,34,Kart Sezgisi - 1,2,920,Gold,Cards
+6,Temel güç XP stresi,bahcivan,standart,110,stres,35,Nadir Filizler - 2,2,500,Iron,Rarity
+6,Temel güç XP stresi,bahcivan,standart,110,stres,35,Verimli Üretim - 3,1,510,Iron,Production
+6,Temel güç XP stresi,bahcivan,standart,110,stres,35,Altın Hasat II - 3,2,510,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,35,Ağır Kesim - 1,3,1900,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,35,Zengin Cevher - 3,1,125,Stone,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,36,Akıcı Kesim - 4,2,550,Gold,Speed
+6,Temel güç XP stresi,bahcivan,standart,110,stres,36,Geniş Tarama - 3,1,400,Gold,Area
+6,Temel güç XP stresi,bahcivan,standart,110,stres,36,Kesim Ustalığı - 2,2,1200,Iron,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,36,Hasat Deneyimi II - 2,1,860,Gold,Xp
+6,Temel güç XP stresi,bahcivan,standart,110,stres,36,Hasat Rekoru - 3,2,510,Gold,Score
+6,Temel güç XP stresi,bahcivan,standart,110,stres,37,Verimli Üretim - 3,2,570,Iron,Production
+6,Temel güç XP stresi,bahcivan,standart,110,stres,37,Nadir Filizler - 3,1,570,Iron,Rarity
+6,Temel güç XP stresi,bahcivan,standart,110,stres,37,Altın Hasat II - 4,1,560,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,37,Kart Sezgisi - 1,3,1100,Gold,Cards
+6,Temel güç XP stresi,bahcivan,standart,110,stres,37,Geniş Tarama - 3,2,450,Gold,Area
+6,Temel güç XP stresi,bahcivan,standart,110,stres,37,Kritik Odak - 2,1,290,Gold,Crit
+6,Temel güç XP stresi,bahcivan,standart,110,stres,37,Hasat Rekoru - 4,1,560,Gold,Score
+6,Temel güç XP stresi,bahcivan,standart,110,stres,37,Kritik Odak - 2,2,330,Gold,Crit
+6,Temel güç XP stresi,bahcivan,standart,110,stres,37,Zengin Cevher - 3,2,140,Stone,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,38,Ağır Kesim - 2,1,2300,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,38,Hasat Deneyimi II - 2,2,1000,Gold,Xp
+6,Temel güç XP stresi,bahcivan,standart,110,stres,38,Kesim Ustalığı - 3,1,1400,Iron,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,38,Verimli Üretim - 4,1,630,Iron,Production
+6,Temel güç XP stresi,bahcivan,standart,110,stres,39,Altın Hasat II - 4,2,620,Gold,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,39,Kart Sezgisi - 2,1,1300,Gold,Cards
+6,Temel güç XP stresi,bahcivan,standart,110,stres,39,Nadir Filizler - 3,2,640,Iron,Rarity
+6,Temel güç XP stresi,bahcivan,standart,110,stres,39,Geniş Tarama - 4,1,500,Gold,Area
+6,Temel güç XP stresi,bahcivan,standart,110,stres,39,Geniş Tarama - 4,2,550,Gold,Area
+6,Temel güç XP stresi,bahcivan,standart,110,stres,39,Hasat Rekoru - 4,2,620,Gold,Score
+6,Temel güç XP stresi,bahcivan,standart,110,stres,39,Zengin Cevher - 4,1,155,Stone,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,40,Ağır Kesim - 2,2,2700,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,40,Kesim Ustalığı - 3,2,1600,Iron,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,40,Verimli Üretim - 4,2,690,Iron,Production
+6,Temel güç XP stresi,bahcivan,standart,110,stres,40,Nadir Filizler - 4,1,700,Iron,Rarity
+6,Temel güç XP stresi,bahcivan,standart,110,stres,40,Kritik Güç - 1,1,150,Stone,Crit
+6,Temel güç XP stresi,bahcivan,standart,110,stres,41,Hasat Deneyimi II - 3,1,1100,Gold,Xp
+6,Temel güç XP stresi,bahcivan,standart,110,stres,41,Kart Sezgisi - 2,2,1600,Gold,Cards
+6,Temel güç XP stresi,bahcivan,standart,110,stres,41,Ağır Kesim - 3,1,3000,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,41,Kesim Ustalığı - 4,1,1700,Iron,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,41,Nadir Filizler - 4,2,770,Iron,Rarity
+6,Temel güç XP stresi,bahcivan,standart,110,stres,41,Grid Genişleme II,2,1800,Stone,Grid
+6,Temel güç XP stresi,bahcivan,standart,110,stres,41,Zengin Cevher - 4,2,170,Stone,Economy
+6,Temel güç XP stresi,bahcivan,standart,110,stres,42,Hasat Deneyimi II - 3,2,1300,Gold,Xp
+6,Temel güç XP stresi,bahcivan,standart,110,stres,42,Kritik Odak - 3,1,380,Gold,Crit
+6,Temel güç XP stresi,bahcivan,standart,110,stres,42,Ağır Kesim - 3,2,3400,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,42,Kritik Odak - 3,2,420,Gold,Crit
+6,Temel güç XP stresi,bahcivan,standart,110,stres,42,Kesim Ustalığı - 4,2,1900,Iron,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,42,Kritik Güç - 1,2,195,Stone,Crit
+6,Temel güç XP stresi,bahcivan,standart,110,stres,43,Kart Sezgisi - 3,1,1800,Gold,Cards
+6,Temel güç XP stresi,bahcivan,standart,110,stres,43,Hasat Deneyimi II - 4,1,1400,Gold,Xp
+6,Temel güç XP stresi,bahcivan,standart,110,stres,43,Kritik Odak - 4,1,470,Gold,Crit
+6,Temel güç XP stresi,bahcivan,standart,110,stres,43,Kritik Odak - 4,2,520,Gold,Crit
+6,Temel güç XP stresi,bahcivan,standart,110,stres,44,Ağır Kesim - 4,1,3800,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,44,Hasat Deneyimi II - 4,2,1500,Gold,Xp
+6,Temel güç XP stresi,bahcivan,standart,110,stres,44,Kart Sezgisi - 3,2,2000,Gold,Cards
+6,Temel güç XP stresi,bahcivan,standart,110,stres,44,Kritik Güç - 1,3,240,Stone,Crit
+6,Temel güç XP stresi,bahcivan,standart,110,stres,45,Ağır Kesim - 4,2,4100,Gold,Damage
+6,Temel güç XP stresi,bahcivan,standart,110,stres,45,Kart Sezgisi - 4,1,2200,Gold,Cards
+6,Temel güç XP stresi,bahcivan,standart,110,stres,45,Kart Sezgisi - 4,2,2400,Gold,Cards
+6,Temel güç XP stresi,bahcivan,standart,110,stres,46,Kritik Güç - 2,1,290,Stone,Crit
+6,Temel güç XP stresi,bahcivan,standart,110,stres,48,Kritik Güç - 2,2,330,Stone,Crit

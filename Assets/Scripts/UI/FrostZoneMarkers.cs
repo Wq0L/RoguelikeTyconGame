@@ -22,8 +22,6 @@ public sealed class FrostZoneMarkers : MonoBehaviour
     public const float OccludedAlpha = 0.5f;
     private const float Lift = 0.02f;
 
-    private static readonly Vector2Int[] Sides = { new Vector2Int(1, 0), new Vector2Int(-1, 0), new Vector2Int(0, 1), new Vector2Int(0, -1) };
-
     private readonly List<GridPosition> shownCells = new();
     private readonly HashSet<long> shownSet = new();
     private readonly List<Vector3> vertices = new();
@@ -79,7 +77,7 @@ public sealed class FrostZoneMarkers : MonoBehaviour
     // Grid büyüyünce şeridin yeni açılan hücreleri de bölgeye girer: çevre yeniden çizilir.
     private void HandleGridSizeChanged() => gridVersion++;
 
-    private static long Key(int x, int z) => ((long)x << 32) ^ (uint)z;
+    private static long Key(int x, int z) => CellOutlineMesh.Key(x, z);
 
     private void Sync(SegmentEventRuntime shown, int version)
     {
@@ -114,11 +112,11 @@ public sealed class FrostZoneMarkers : MonoBehaviour
                 Renderer groundRenderer = ground.GroundRenderer;
                 Bounds bounds = groundRenderer != null ? groundRenderer.bounds : new Bounds(ground.transform.position, Vector3.zero);
                 Vector3 center = new Vector3(ground.transform.position.x, bounds.max.y + Lift, ground.transform.position.z);
-                foreach (Vector2Int side in Sides)
+                foreach (Vector2Int side in CellOutlineMesh.Sides)
                 {
                     // Komşu da gösterilen bölgedeyse bu kenar bölgenin içindedir: çizilmez.
                     if (shownSet.Contains(Key(cell.x + side.x, cell.z + side.y))) continue;
-                    AddEdge(center, side, half);
+                    CellOutlineMesh.AddEdge(vertices, uvs, triangles, center, side, half, LineInset, LineWidth);
                     edgeCount++;
                 }
             }
@@ -132,33 +130,6 @@ public sealed class FrostZoneMarkers : MonoBehaviour
             mesh.RecalculateBounds();
         }
         outline.enabled = occluded.enabled = vertices.Count > 0;
-    }
-
-    // Hücrenin "side" yönündeki kenarı boyunca, hücrenin içinde kalan bir şerit. UV.x: şerit boyunca dünya koordinatı.
-    private void AddEdge(Vector3 center, Vector2Int side, float half)
-    {
-        float outer = half - LineInset, inner = outer - LineWidth;
-        int start = vertices.Count;
-        if (side.x != 0)
-        {
-            float xo = center.x + side.x * outer, xi = center.x + side.x * inner;
-            float z0 = center.z - half, z1 = center.z + half;
-            vertices.Add(new Vector3(xo, center.y, z0)); uvs.Add(new Vector2(z0, 0f));
-            vertices.Add(new Vector3(xo, center.y, z1)); uvs.Add(new Vector2(z1, 0f));
-            vertices.Add(new Vector3(xi, center.y, z0)); uvs.Add(new Vector2(z0, 1f));
-            vertices.Add(new Vector3(xi, center.y, z1)); uvs.Add(new Vector2(z1, 1f));
-        }
-        else
-        {
-            float zo = center.z + side.y * outer, zi = center.z + side.y * inner;
-            float x0 = center.x - half, x1 = center.x + half;
-            vertices.Add(new Vector3(x0, center.y, zo)); uvs.Add(new Vector2(x0, 0f));
-            vertices.Add(new Vector3(x1, center.y, zo)); uvs.Add(new Vector2(x1, 0f));
-            vertices.Add(new Vector3(x0, center.y, zi)); uvs.Add(new Vector2(x0, 1f));
-            vertices.Add(new Vector3(x1, center.y, zi)); uvs.Add(new Vector2(x1, 1f));
-        }
-        triangles.Add(start); triangles.Add(start + 2); triangles.Add(start + 1);
-        triangles.Add(start + 2); triangles.Add(start + 3); triangles.Add(start + 1);
     }
 
     private void Hide()

@@ -1,0 +1,13 @@
+FAIL: System.Exception: starting unlocks leaked to profile Run50_TakvimV1
+  at KirilmaV1Verification.Assets () [0x00ad2] in C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Assets\Editor\KirilmaV1Verification.cs:403 
+  at KirilmaV1Verification.Run (System.Int32 i) [0x00073] in C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Assets\Editor\KirilmaV1Verification.cs:306 
+  at KirilmaV1Verification.Tick () [0x00139] in C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Assets\Editor\KirilmaV1Verification.cs:78 
+ok: Run50_KirilmaV1 is a separate profile with its own balance set
+   profil · Deney22_20: başlangıç kilidi yok
+   profil · Prototip10: başlangıç kilidi yok
+   profil · Prototip10_DebugButce: başlangıç kilidi yok
+   profil · Run50_BossPrototip: başlangıç kilidi yok
+   profil · Run50_DengeV1: başlangıç kilidi yok
+   profil · Run50_KirilmaV1: başlangıç kilidi TileBehavior_Explosive, TileBehavior_Electric
+   profil · Run50_Referans: başlangıç kilidi yok
+   profil · Run50_TakvimV1: başlangıç kilidi TileBehavior_Explosive, TileBehavior_Electric

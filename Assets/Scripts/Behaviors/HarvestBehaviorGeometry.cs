@@ -42,8 +42,14 @@ public static class HarvestBehaviorGeometry
             }
     }
 
-    // Four diagonal rays start at the footprint corners, never inside the planter.
-    public static void ElectricCells(IReadOnlyList<GridPosition> footprint, List<GridPosition> targets, List<GridPosition> origins)
+    // Elektriğin çapraz erişimi (hücre): normal dalga ve erişimi verilmemiş ikinci dalga. Çifte Akım'ın ikinci dalgası ödül
+    // verisinden daha uzun bir erişim alabilir (BossRewardSO.echoReach); ilk dalga hep bu değerdedir.
+    public const int ElectricReachCells = 2;
+
+    // Four diagonal rays start at the footprint corners, never inside the planter. reach: ışın başına hücre sayısı; yakın hücreler
+    // de kapsanır (1 … reach). Hedef listesi tekrarsızdır: çok hücreli saksıda aynı hücre iki ışından gelse de bir kez yazılır.
+    public static void ElectricCells(IReadOnlyList<GridPosition> footprint, List<GridPosition> targets, List<GridPosition> origins,
+        int reach = ElectricReachCells)
     {
         targets.Clear(); origins.Clear();
         if (footprint.Count == 0) return;
@@ -53,7 +59,7 @@ public static class HarvestBehaviorGeometry
             GridPosition corner = footprint[0];
             foreach (var p in footprint)
                 if (p.x * dx + p.z * dz > corner.x * dx + corner.z * dz) corner = p;
-            for (int step = 1; step <= 2; step++)
+            for (int step = 1; step <= reach; step++)
             {
                 var next = new GridPosition(corner.x + dx * step, corner.z + dz * step);
                 bool inside = false, duplicate = false;

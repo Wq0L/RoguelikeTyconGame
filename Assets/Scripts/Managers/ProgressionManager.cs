@@ -7,7 +7,6 @@ public class ProgressionManager : MonoBehaviour
     public static ProgressionManager Instance { get; private set; }
 
     [SerializeField] private ProgressionSO progressionData;
-    [SerializeField] private List<TileModifierSO> possibleModifiers;
     [SerializeField] private GridManager gridManager;
 
     public event Action<int> OnLevelUp;
@@ -37,10 +36,27 @@ public class ProgressionManager : MonoBehaviour
     }
 
     public int CurrentLevel { get; private set; } = 1;
-    public float CurrentXP { get; private set; } = 0f;
+    // Henüz level'a dönüşmemiş XP (Bölüm 3.7.6.1: double; büyük XP float'ta ilerlemeyen döngüye girebiliyordu). Arayüz float okur.
+    private double xp;
+    public float CurrentXP => (float)xp;
+    public double StoredXP => xp;
     public float XPToNextLevel { get; private set; }
     // Run boyunca kazanılan toplam XP; round özeti round başı farkı gösterir.
     public double TotalXPEarned { get; private set; }
+
+    // Level işleme bütçesi (Bölüm 3.7.6.1): bir karede, bütün AddXP çağrıları toplamında en çok bu kadar level işlenir. Normal
+    // hasatta bütçe dolmaz: level'lar eskisi gibi AddXP içinde, aynı anda işlenir. Bütçeyi aşan level işi saklanır ve sonraki
+    // karelerde aynı bütçeyle sürer. Round sonu kart kararı bekleyen iş bitince verilir (RoundManager). Her level bir kez işlenir
+    // ve OnLevelUp'ı bir kez çağırır; XP silinmez. (Bütçe çağrı başına olsaydı, her hasadın binlerce level getirdiği durumda
+    // kare başına iş hasat sayısıyla çarpılırdı.)
+    public const int LevelsPerFrame = 256;
+    private int budgetFrame = -1, budgetUsed;
+    // XP'si olup işlenmeyi bekleyen level var mı (teknik sınırda durduysa yok sayılır: o durum raporlanır, XP saklı kalır).
+    public bool HasPendingLevels => !LevelProcessingHalted && xp >= XPToNextLevel;
+    // Teknik sınır: geçersiz level maliyeti, level sayacının int sınırı ya da maliyetin XP'nin hassasiyetinden küçük kalması.
+    // Level işleme durur, XP silinmez; neden bir kez raporlanır (P7 / endless sayı modeli).
+    public bool LevelProcessingHalted { get; private set; }
+    public string HaltReason { get; private set; }
 
     private int pendingMutationCount = 0;
 
@@ -56,7 +72,19 @@ public class ProgressionManager : MonoBehaviour
         // Run profilinin denge seti kendi XP tablosunu getirebilir (Bölüm 3.5); yoksa sahnedeki veri.
         RunBalanceSO balance = RunBalanceSO.Active;
         if (balance != null && balance.progression != null) progressionData = balance.progression;
-        XPToNextLevel = progressionData.GetXPForLevel(CurrentLevel);
+        string error = progressionData != null ? progressionData.Validate() : "XP tablosu yok";
+        if (error != null) Halt($"XP tablosu geçersiz ({error})");
+        XPToNextLevel = progressionData != null ? progressionData.GetXPForLevel(CurrentLevel) : float.PositiveInfinity;
+        CostUsable();
+    }
+
+    private void Update()
+    {
+        // Kalan level işi: karenin bütçesinden kalanla. Run bitmişken ya da menüde işlenmez (eski run'ın işi sürmez).
+        if (!HasPendingLevels || GameManager.Instance == null) return;
+        GameStates state = GameManager.Instance.CurrentState;
+        if (state == GameStates.RunComplete || state == GameStates.MainMenu) return;
+        if (ProcessLevels() > 0) OnXPChanged?.Invoke();
     }
 
     
@@ -146,26 +174,78 @@ public class ProgressionManager : MonoBehaviour
     }
 
 
-    public void AddXP(float amount)
+    // Geçersiz XP (NaN, sonsuz, negatif) eklenmez ve raporlanır. Geçerli XP saklanır; level'lar bütçeyle işlenir.
+    public void AddXP(double amount)
     {
-        CurrentXP += amount;
+        if (double.IsNaN(amount) || double.IsInfinity(amount) || amount < 0d)
+        {
+            NumericSafety.ReportInvalid(NumericSite.Experience, amount);
+            return;
+        }
+        xp += amount;
         TotalXPEarned += amount;
         OnXPChanged?.Invoke();
-
-        while (CurrentXP >= XPToNextLevel)
-            LevelUp();
+        ProcessLevels();
     }
 
-    private void LevelUp()
+    // Bu karenin bütçesinden kalan kadar level işler; işlenen sayıyı döner.
+    private int ProcessLevels()
     {
-        CurrentXP -= XPToNextLevel;
+        int frame = Time.frameCount;
+        if (frame != budgetFrame) { budgetFrame = frame; budgetUsed = 0; }
+        if (HasPendingLevels && BacklogExceedsCounter())
+        {
+            Halt($"bekleyen level sayısı ({PendingLevelEstimate:0.###e0}) level sayacının int sınırını aşıyor; bu iş hiçbir karede bitmez");
+            return 0;
+        }
+        int done = 0;
+        while (budgetUsed < LevelsPerFrame && HasPendingLevels && LevelUp()) { budgetUsed++; done++; }
+        return done;
+    }
+
+    // Tablo bittikten sonra bekleyen level sayısı bellidir (sabit maliyette saklı XP ÷ maliyet; büyüyen kuyrukta kapalı hesap:
+    // ProgressionSO.LevelsAffordable). Level sayacına (int) sığmıyorsa iş tamamlanamaz: kare bütçesiyle günlerce işleyip sayacın
+    // sınırında durmak ve round sonunu o süre bekletmek yerine hemen durur ve raporlar. XP silinmez. (Sayaca sığan ama çok büyük
+    // bir iş durdurulmaz; bütçeyle işlenir.)
+    private bool BacklogExceedsCounter() => PendingLevelEstimate > int.MaxValue - CurrentLevel;
+
+    // Saklı XP'nin yettiği level sayısının kapalı hesabı (yalnız tablo bittikten sonra; tablo içinde −1). Ölçüm ve durum yazısı için.
+    public double PendingLevelEstimate => progressionData != null ? progressionData.LevelsAffordable(CurrentLevel, xp) : -1d;
+    // Aktif XP verisinin tablo sonrası kuralı (ölçüm ve test için).
+    public ProgressionSO Data => progressionData;
+
+    private bool LevelUp()
+    {
+        if (!CostUsable()) return false;
+        if (CurrentLevel == int.MaxValue) { Halt("level sayacı int sınırında"); return false; }
+        double remaining = xp - XPToNextLevel;
+        if (remaining == xp) { Halt($"level maliyeti ({XPToNextLevel}) saklı XP'nin ({xp}) hassasiyetinden küçük"); return false; }
+        xp = remaining;
         CurrentLevel++;
         XPToNextLevel = progressionData.GetXPForLevel(CurrentLevel);
+        CostUsable();   // NaN / sonsuz maliyet karşılaştırmada sessizce takılmasın: hemen raporlanır
 
         pendingMutationCount++;
         OnLevelUp?.Invoke(CurrentLevel);
+        return true;
+    }
 
-        // Debug.Log("Level Up! Seviye: " + CurrentLevel);
+    // Sonraki level'ın maliyeti: NaN ya da ≤ 0 geçersiz veridir (eskiden ilerlemeyen döngü ya da sessiz durma), +sonsuz formülün
+    // sayı sınırıdır. İkisinde de level işleme durur ve raporlanır.
+    private bool CostUsable()
+    {
+        float cost = XPToNextLevel;
+        if (cost > 0f && !float.IsInfinity(cost)) return true;
+        Halt(float.IsPositiveInfinity(cost) ? $"level {CurrentLevel} maliyeti sayı sınırını aştı" : $"level {CurrentLevel} maliyeti geçersiz ({cost})");
+        return false;
+    }
+
+    private void Halt(string reason)
+    {
+        if (LevelProcessingHalted) return;
+        LevelProcessingHalted = true;
+        HaltReason = reason;
+        Debug.LogError($"Level işleme durdu: {reason}. Saklı XP {xp} silinmedi; level {CurrentLevel}. Teknik sınır (P7 / endless sayı modeli).");
     }
 
     private void HandleRoundEnded()

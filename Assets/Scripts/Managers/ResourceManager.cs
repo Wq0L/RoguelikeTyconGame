@@ -54,7 +54,8 @@ public class ResourceManager : MonoBehaviour
     {
         if (amount <= 0) return;
 
-        resources[type] += amount;
+        // Banka int sınırında doyar (NumericSafety); taşıp negatife dönmez.
+        resources[type] = NumericSafety.Add(resources[type], amount, NumericSite.Resource);
 
         // Register visual deliveries before notifying counters of the new balance.
         if (harvestPosition.HasValue)

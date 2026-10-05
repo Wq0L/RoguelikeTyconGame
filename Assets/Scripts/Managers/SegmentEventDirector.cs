@@ -3,8 +3,10 @@ using UnityEngine;
 
 // Segment olaylarını (boss) yürütür. RoundManager kurar; olayları aktif run profilinden alır. İki ritim:
 // - Eski profiller (RunProfileSO.events): olay bütün segment aktiftir; bir önceki segmentin başında duyurulur ve bölgesi seçilir.
-// - Boss ritmi (RunProfileSO.bossPool, Bölüm 3.4): her segmentin boss'u segment başında havuzdan seçilir ve duyurulur
-//   (ilk dört round hazırlık), yalnız segmentin son round'unda aktiftir. Run'ın son segmentinde boss yoktur.
+// - Boss ritmi (RunProfileSO.bossPool, Bölüm 3.4): her dönemin boss'u dönemin başında havuzdan seçilir ve duyurulur
+//   (önceki round'lar hazırlık), yalnız dönemin son round'unda aktiftir.
+// Dönemler ve boss round'ları run takviminden (RunCalendar) okunur: eşit segmentli profillerde son segmentte boss yoktur,
+// açık boss takvimli profillerde (Bölüm 3.7.2) her tarih bir boss'tur. Tarih başına tek olay kurulur.
 // Boss seçimi: run'ın boss seed'i + segmentten türeyen ayrı bir System.Random; aynı seed ve aynı tarla durumu aynı diziyi verir,
 // UnityEngine.Random akışına (hasat, kritik, kart) dokunmaz. Seçilen boss ve bölgesi duyurudan sonra değişmez.
 // Run sonu, ana menü ve yok edilmede (sahne değişimi, yeniden başlatma) bütün olaylar aynı yoldan temizlenir.
@@ -119,9 +121,11 @@ public sealed class SegmentEventDirector : MonoBehaviour
             Version++;
             return;
         }
+        RunCalendar calendar = rounds.Calendar;
         foreach (SegmentEventEntry entry in profile.events)
             if (entry.segmentEvent != null && entry.segment >= 1)
-                events.Add(entry.segmentEvent.CreateRuntime(SegmentEventTiming.WholeSegment(entry.segment, rounds.QuotaSegmentRounds)));
+                events.Add(entry.segmentEvent.CreateRuntime(SegmentEventTiming.WholeSegment(entry.segment, calendar.PeriodStart(entry.segment),
+                    calendar.PeriodEnd(entry.segment), calendar.PeriodStart(entry.segment - 1))));
         events.Sort((a, b) => a.Segment.CompareTo(b.Segment));
         Version++;
     }
@@ -191,19 +195,21 @@ public sealed class SegmentEventDirector : MonoBehaviour
             if (!e.IsPrepared && !e.IsFinished && rounds.CurrentRound >= e.AnnounceRound) Prepare(e);
     }
 
-    // Boss, segmentinin ilk round'undan önce duyurulur: run başında (1. segment) ya da bir önceki boss round'u bittiği anda.
+    // Boss, döneminin ilk round'undan önce duyurulur: run başında (1. dönem) ya da bir önceki boss round'u bittiği anda.
     private void ChooseDueBosses()
     {
-        RunProfileSO profile = rounds.Profile;
-        int segmentRounds = rounds.QuotaSegmentRounds;
-        while (profile != null && profile.HasBoss(nextBossSegment))
+        RunCalendar calendar = rounds.Calendar;
+        while (calendar.HasBoss(nextBossSegment))
         {
-            int first = (nextBossSegment - 1) * segmentRounds + 1;
+            int first = calendar.PeriodStart(nextBossSegment);
             bool due = rounds.CurrentRound >= first ||
                        (rounds.CurrentRound == first - 1 && !rounds.IsRoundActive && !rounds.IsPreparingFirstRound);
             if (!due || !BuildContext()) return;
             int segment = nextBossSegment;
-            SegmentEventSO pick = bossPool.Pick(context, previousBoss, new System.Random(Mix(RunSeed, segment, 0x424F5353)), out bool repeated); // 'BOSS'
+            // Takvim tarihe boss atadıysa o kullanılır (havuz seçimi yapılmaz); atamadıysa havuzun normal kuralı.
+            SegmentEventSO pick = calendar.FixedBoss(segment);
+            bool repeated = false;
+            if (pick == null) pick = bossPool.Pick(context, previousBoss, new System.Random(Mix(RunSeed, segment, 0x424F5353)), out repeated); // 'BOSS'
             LastPickNote = repeated ? "tekrar" : null;
             if (pick == null)
             {
@@ -211,7 +217,7 @@ public sealed class SegmentEventDirector : MonoBehaviour
                 pick = fallbackBoss;
                 LastPickNote = "yedek";
             }
-            SegmentEventRuntime e = pick.CreateRuntime(SegmentEventTiming.BossRound(segment, segmentRounds, Mix(RunSeed, segment, 0x5A4F4E45))); // 'ZONE'
+            SegmentEventRuntime e = pick.CreateRuntime(SegmentEventTiming.BossRound(segment, first, calendar.PeriodEnd(segment), Mix(RunSeed, segment, 0x5A4F4E45))); // 'ZONE'
             e.TryPrepare(context);
             events.Add(e);
             previousBoss = pick;

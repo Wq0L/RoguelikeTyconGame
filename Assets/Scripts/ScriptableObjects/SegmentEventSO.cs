@@ -18,7 +18,8 @@ public abstract class SegmentEventSO : ScriptableObject
 
 // Olayın run içindeki yeri. İki kullanım:
 // - WholeSegment (eski profiller): bütün segment aktif, bir önceki segmentin başında duyurulur.
-// - BossRound (Bölüm 3.4): segmentin ilk round'unda duyurulur, yalnız son round'unda aktiftir.
+// - BossRound (Bölüm 3.4): dönemin ilk round'unda duyurulur, yalnız son round'unda aktiftir.
+// Round'ları yürütücü run takviminden (RunCalendar) verir; segmentRounds alan kısa yollar eşit segment formülüdür.
 // Seed 0: olay kendi verisindeki seed'i kullanır (eski davranış). Başka değer: run'ın boss seed'inden türetilmiş bölge seed'i.
 public readonly struct SegmentEventTiming
 {
@@ -30,19 +31,20 @@ public readonly struct SegmentEventTiming
         Segment = segment; StartRound = start; EndRound = end; AnnounceRound = announce; Seed = seed; BossRoundOnly = bossRoundOnly;
     }
 
+    public static SegmentEventTiming WholeSegment(int segment, int startRound, int endRound, int announceRound) =>
+        new SegmentEventTiming(Mathf.Max(1, segment), startRound, endRound, Mathf.Max(1, announceRound), 0, false);
+
     public static SegmentEventTiming WholeSegment(int segment, int segmentRounds)
     {
-        segment = Mathf.Max(1, segment);
-        int start = (segment - 1) * segmentRounds + 1;
-        return new SegmentEventTiming(segment, start, segment * segmentRounds, Mathf.Max(1, start - segmentRounds), 0, false);
+        int start = HarvestQuota.SegmentStart(segment, segmentRounds);
+        return WholeSegment(segment, start, HarvestQuota.SegmentEnd(segment, segmentRounds), start - segmentRounds);
     }
 
-    public static SegmentEventTiming BossRound(int segment, int segmentRounds, int seed)
-    {
-        segment = Mathf.Max(1, segment);
-        int end = segment * segmentRounds;
-        return new SegmentEventTiming(segment, end, end, (segment - 1) * segmentRounds + 1, seed, true);
-    }
+    public static SegmentEventTiming BossRound(int period, int announceRound, int bossRound, int seed) =>
+        new SegmentEventTiming(Mathf.Max(1, period), bossRound, bossRound, announceRound, seed, true);
+
+    public static SegmentEventTiming BossRound(int segment, int segmentRounds, int seed) =>
+        BossRound(segment, HarvestQuota.SegmentStart(segment, segmentRounds), HarvestQuota.SegmentEnd(segment, segmentRounds), seed);
 }
 
 // Olayın hazırlığı için tarlanın o anki durumu.

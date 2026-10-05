@@ -1,0 +1,230 @@
+PASS: 100 checks
+ok: Specialization profile: 20 rounds, choice after segment 2, 3 options
+ok: Quota table 40 / 200 / 350 / 600
+ok: Normal economy (80 Gold)
+ok: No specialization at start
+ok: Assets: Usta 1,25/0,85/1 · Davranış 1/1,25/kaynak 0,90 · Koru 1/1/1
+ok: Failed boss quota: run lost, no specialization screen
+ok: Round 10 running
+ok: 200 / 200 at round 10: boss passed, specialization pending
+ok: Pending card selections come first
+ok: Both pending card selections kept: 2
+ok: Then the specialization screen
+ok: Round 11 cannot start before choosing
+ok: Specialization panel open
+ok: Three options shown
+ok: Gains and costs visible before choosing (Davranış Ustası: cost is harvest resources, no direct penalty)
+ok: Keep-current option is explicit
+ok: Card cost text follows the asset value (×0,80 → ×0,90)
+saved Logs/SpecChoice.png
+ok: Three active choose buttons
+ok: Usta Biçici chosen once, back to round end
+ok: Second request rejected (no double reward, no switching)
+ok: Re-opened panel cannot choose again
+ok: Choice adds no stat modifiers; only the coefficients (×1,25 / ×0,85, resources ×1)
+ok: Specialization screen opened exactly once
+ok: Summary shows the choice: Uzmanlaşma: USTA BİÇİCİ · doğrudan ×1,25 · davranış ×0,85
+ok: Short description lists only changed values: DAVRANIŞ USTASI · davranış ×1,25 · hasat kaynağı ×0,90
+saved Logs/SpecSummary.png
+ok: Round 11 starts after the choice
+ok: HUD shows the choice
+saved Logs/SpecHUD.png
+ok: tornado launched
+ok: boomerang launched
+ok: yok: doğrudan 11 (beklenen 11) · kasırga 5/5 · bumerang 6/6 · elektrik 10/10 · patlama 100/100
+ok: tornado launched
+ok: boomerang launched
+ok: Koru: doğrudan 11 (beklenen 11) · kasırga 5/5 · bumerang 6/6 · elektrik 10/10 · patlama 100/100
+ok: tornado launched
+ok: boomerang launched
+ok: Usta: doğrudan 14 (beklenen 14) · kasırga 4/4 · bumerang 5/5 · elektrik 9/9 · patlama 85/85
+ok: tornado launched
+ok: boomerang launched
+ok: Davranış: doğrudan 11 (beklenen 11) · kasırga 6/6 · bumerang 8/8 · elektrik 12/12 · patlama 125/125
+ok: Keep-current changes no damage value
+ok: Davranış Ustası: direct damage unchanged (×1,00)
+ok: Behavior coefficient applied once, on the shared base (explosion 125 Davranış / 85 Usta)
+ok: Direct kill triggers the explosion the same way for every option
+ok: Small harvest rewards: Grass 2 Gold, Carrot 4 Iron, Potato 2 Stone
+ok: Koru: 100 Gold / 100 Iron / 100 Stone from 50+25+50 harvests (100/100/100)
+ok: Davranış Ustası: the same harvests pay 90 / 90 / 90 (90/90/90)
+   karşılaştırma: ödül başına en yakına yuvarlama 2×0,9→2, 4×0,9→4 olurdu (100/100/100, ceza yok); aşağı yuvarlama 2→1, 4→3 olurdu (50/75/50)
+ok: XP and score not penalized (XP 2500 = 2500, score 1800 = 1800)
+ok: Carry kept per resource (raw 100 → paid 90 each)
+ok: Running total stays within 0,5 of raw × 0,90 at every harvest (steps: 2212222122…)
+ok: Duplicate included, applied once after it: Koru 100 → Davranış 90
+ok: 10 direct + 20 electric kills per option (10+20)
+ok: Direct and behavior kills share one carry: 60 → 54 Gold (steps 2,3,2,4,2,3,2,4…)
+ok: Kill XP and score unchanged (XP 600, score 30)
+ok: Carry pending before the non-harvest checks
+ok: Plain AddResource keeps its amount (+7)
+ok: Sale refund untouched: +10 Gold
+ok: Round 11 ends with a card selection
+ok: Card skip reward untouched: +4 (Common)
+ok: Round 11 closed; Davranış Ustası still active
+ok: No second choice after segment 3
+ok: Round 20 passed: victory, still one choice
+ok: Victory screen: UZMANLAŞMA TESTİ TAMAMLANDI/20 round · son kota 600 / 600/Başlangıç: Bahçıvan · Standart/Uzmanlaşma: USTA BİÇİCİ · doğrudan ×1,25 · davranış ×0,85/Harvest Score: 1.190
+saved Logs/SpecVictory.png
+ok: Old run still holds a resource carry before restart
+ok: New run: specialization cleared
+ok: New run: coefficients back to 1
+ok: New run: resource carry is zero
+ok: New run: starting budget untouched (80 Gold)
+ok: ClearAll also clears the carry
+ok: 10-round prototype has no specialization
+ok: 10-round prototype: victory at 10, no choice screen
+ok: Long-run profile loaded
+ok: Long run: round 10 ends normally, no choice screen
+ok: Measurement run (Doğrudan ağırlıklı · hasar 6 · R12 canı)
+ok: 25 production points
+   düzen Doğrudan ağırlıklı: 6 Odak (Damage-Rare) tile, davranış yok
+   --- Doğrudan ağırlıklı · hasar 6 · R12 canı (4 seed × 30 sn round, kare 1/30 sn; ortalama [en az–en çok]) ---
+   seçenek | toplam hasat | doğrudan | davranış (P/K/B/E ort.) | skor | XP | Gold/Iron/Stone ort. | kaynak toplamı | tetik P/K/B/E ort. (atlanan) | vuruş
+   USTA BİÇİCİ | 71 [70–72] | 71 [70–72] | 0 [0–0] (0/0/0/0) | 275 [161–323] | 1425 [1400–1440] | 151/37/6 | 194 [182–202] | 0/0/0/0 (0) | 31
+   DAVRANIŞ USTASI | 64 [61–66] | 64 [61–66] | 0 [0–0] (0/0/0/0) | 217 [172–288] | 1280 [1220–1320] | 126/26/4 | 155 [144–168] | 0/0/0/0 (0) | 31
+   MEVCUT DÜZENİ KORU | 64 [61–66] | 64 [61–66] | 0 [0–0] (0/0/0/0) | 217 [172–288] | 1280 [1220–1320] | 140/29/4 | 173 [160–186] | 0/0/0/0 (0) | 31
+   KONTROL: DAVRANIŞ ×1,25 BEDELSİZ | 64 [61–66] | 64 [61–66] | 0 [0–0] (0/0/0/0) | 217 [172–288] | 1280 [1220–1320] | 140/29/4 | 173 [160–186] | 0/0/0/0 (0) | 31
+     USTA BİÇİCİ / Koru: hasat +11% · skor +26% (seed bazında 3 üstün / 1 geride) · XP +11% · kaynak +12% · tetik -
+     DAVRANIŞ USTASI / Koru: hasat 0% · skor 0% (seed bazında 0 üstün / 0 geride) · XP 0% · kaynak -10% · tetik -
+     KONTROL: DAVRANIŞ ×1,25 BEDELSİZ / Koru: hasat 0% · skor 0% (seed bazında 0 üstün / 0 geride) · XP 0% · kaynak 0% · tetik -
+     Davranış Ustası / bedelsiz kopya: birebir aynı hasat+tetik+skor+XP 4/4 seed · tetik 0 / 0 · hasat 256 / 256 · kaynak oranı 0.900
+ok: Measurement run (Doğrudan ağırlıklı · hasar 10 · R14 canı)
+ok: 25 production points
+   --- Doğrudan ağırlıklı · hasar 10 · R14 canı (4 seed × 30 sn round, kare 1/30 sn; ortalama [en az–en çok]) ---
+   seçenek | toplam hasat | doğrudan | davranış (P/K/B/E ort.) | skor | XP | Gold/Iron/Stone ort. | kaynak toplamı | tetik P/K/B/E ort. (atlanan) | vuruş
+   USTA BİÇİCİ | 85 [83–90] | 85 [83–90] | 0 [0–0] (0/0/0/0) | 345 [260–501] | 1705 [1660–1800] | 186/38/9 | 233 [228–238] | 0/0/0/0 (0) | 31
+   DAVRANIŞ USTASI | 80 [75–83] | 80 [75–83] | 0 [0–0] (0/0/0/0) | 308 [249–422] | 1590 [1500–1660] | 155/33/7 | 195 [185–209] | 0/0/0/0 (0) | 31
+   MEVCUT DÜZENİ KORU | 80 [75–83] | 80 [75–83] | 0 [0–0] (0/0/0/0) | 308 [249–422] | 1590 [1500–1660] | 173/36/8 | 216 [206–232] | 0/0/0/0 (0) | 31
+   KONTROL: DAVRANIŞ ×1,25 BEDELSİZ | 80 [75–83] | 80 [75–83] | 0 [0–0] (0/0/0/0) | 308 [249–422] | 1590 [1500–1660] | 173/36/8 | 216 [206–232] | 0/0/0/0 (0) | 31
+     USTA BİÇİCİ / Koru: hasat +7% · skor +12% (seed bazında 3 üstün / 1 geride) · XP +7% · kaynak +8% · tetik -
+     DAVRANIŞ USTASI / Koru: hasat 0% · skor 0% (seed bazında 0 üstün / 0 geride) · XP 0% · kaynak -10% · tetik -
+     KONTROL: DAVRANIŞ ×1,25 BEDELSİZ / Koru: hasat 0% · skor 0% (seed bazında 0 üstün / 0 geride) · XP 0% · kaynak 0% · tetik -
+     Davranış Ustası / bedelsiz kopya: birebir aynı hasat+tetik+skor+XP 4/4 seed · tetik 0 / 0 · hasat 318 / 318 · kaynak oranı 0.900
+ok: Measurement run (Doğrudan ağırlıklı · hasar 14 · R12 canı)
+ok: 25 production points
+   --- Doğrudan ağırlıklı · hasar 14 · R12 canı (4 seed × 30 sn round, kare 1/30 sn; ortalama [en az–en çok]) ---
+   seçenek | toplam hasat | doğrudan | davranış (P/K/B/E ort.) | skor | XP | Gold/Iron/Stone ort. | kaynak toplamı | tetik P/K/B/E ort. (atlanan) | vuruş
+   USTA BİÇİCİ | 99 [96–103] | 99 [96–103] | 0 [0–0] (0/0/0/0) | 324 [275–375] | 1985 [1920–2060] | 223/39/6 | 268 [260–278] | 0/0/0/0 (0) | 31
+   DAVRANIŞ USTASI | 90 [87–95] | 90 [87–95] | 0 [0–0] (0/0/0/0) | 357 [288–415] | 1805 [1740–1900] | 173/41/8 | 221 [214–232] | 0/0/0/0 (0) | 31
+   MEVCUT DÜZENİ KORU | 90 [87–95] | 90 [87–95] | 0 [0–0] (0/0/0/0) | 357 [288–415] | 1805 [1740–1900] | 192/45/9 | 246 [238–258] | 0/0/0/0 (0) | 31
+   KONTROL: DAVRANIŞ ×1,25 BEDELSİZ | 90 [87–95] | 90 [87–95] | 0 [0–0] (0/0/0/0) | 357 [288–415] | 1805 [1740–1900] | 192/45/9 | 246 [238–258] | 0/0/0/0 (0) | 31
+     USTA BİÇİCİ / Koru: hasat +10% · skor -9% (seed bazında 1 üstün / 3 geride) · XP +10% · kaynak +9% · tetik -
+     DAVRANIŞ USTASI / Koru: hasat 0% · skor 0% (seed bazında 0 üstün / 0 geride) · XP 0% · kaynak -10% · tetik -
+     KONTROL: DAVRANIŞ ×1,25 BEDELSİZ / Koru: hasat 0% · skor 0% (seed bazında 0 üstün / 0 geride) · XP 0% · kaynak 0% · tetik -
+     Davranış Ustası / bedelsiz kopya: birebir aynı hasat+tetik+skor+XP 4/4 seed · tetik 0 / 0 · hasat 361 / 361 · kaynak oranı 0.900
+ok: Measurement run (Doğrudan ağırlıklı · hasar 30 · R14 canı)
+ok: 25 production points
+   --- Doğrudan ağırlıklı · hasar 30 · R14 canı (4 seed × 30 sn round, kare 1/30 sn; ortalama [en az–en çok]) ---
+   seçenek | toplam hasat | doğrudan | davranış (P/K/B/E ort.) | skor | XP | Gold/Iron/Stone ort. | kaynak toplamı | tetik P/K/B/E ort. (atlanan) | vuruş
+   USTA BİÇİCİ | 120 [118–121] | 120 [118–121] | 0 [0–0] (0/0/0/0) | 433 [388–532] | 2395 [2360–2420] | 267/53/9 | 329 [298–344] | 0/0/0/0 (0) | 23
+   DAVRANIŞ USTASI | 118 [117–120] | 118 [117–120] | 0 [0–0] (0/0/0/0) | 425 [350–558] | 2365 [2340–2400] | 233/58/6 | 296 [281–313] | 0/0/0/0 (0) | 26
+   MEVCUT DÜZENİ KORU | 118 [117–120] | 118 [117–120] | 0 [0–0] (0/0/0/0) | 425 [350–558] | 2365 [2340–2400] | 259/64/7 | 330 [312–348] | 0/0/0/0 (0) | 26
+   KONTROL: DAVRANIŞ ×1,25 BEDELSİZ | 118 [117–120] | 118 [117–120] | 0 [0–0] (0/0/0/0) | 425 [350–558] | 2365 [2340–2400] | 259/64/7 | 330 [312–348] | 0/0/0/0 (0) | 26
+     USTA BİÇİCİ / Koru: hasat +1% · skor +2% (seed bazında 2 üstün / 2 geride) · XP +1% · kaynak 0% · tetik -
+     DAVRANIŞ USTASI / Koru: hasat 0% · skor 0% (seed bazında 0 üstün / 0 geride) · XP 0% · kaynak -10% · tetik -
+     KONTROL: DAVRANIŞ ×1,25 BEDELSİZ / Koru: hasat 0% · skor 0% (seed bazında 0 üstün / 0 geride) · XP 0% · kaynak 0% · tetik -
+     Davranış Ustası / bedelsiz kopya: birebir aynı hasat+tetik+skor+XP 4/4 seed · tetik 0 / 0 · hasat 473 / 473 · kaynak oranı 0.899
+ok: Measurement run (Davranışlı · hasar 6 · R12 canı)
+ok: 25 production points
+   düzen Davranışlı: Legendary davranış: 2 patlama, 2 elektrik, 2 bumerang (şans üst sınır), 2 kasırga (%60)
+   --- Davranışlı · hasar 6 · R12 canı (4 seed × 30 sn round, kare 1/30 sn; ortalama [en az–en çok]) ---
+   seçenek | toplam hasat | doğrudan | davranış (P/K/B/E ort.) | skor | XP | Gold/Iron/Stone ort. | kaynak toplamı | tetik P/K/B/E ort. (atlanan) | vuruş
+   USTA BİÇİCİ | 73 [71–75] | 66 [62–69] | 7 [5–9] (2.8/2/1/1.5) | 275 [187–419] | 1455 [1420–1500] | 162/31/7 | 200 [188–206] | 4.3/3.8/3.3/2.8 (0) | 31
+   DAVRANIŞ USTASI | 67 [65–68] | 59 [57–61] | 7 [4–11] (2.3/1.5/0.5/3) | 222 [184–274] | 1330 [1300–1360] | 132/26/4 | 162 [155–170] | 3.5/2.3/3/3.8 (0) | 31
+   MEVCUT DÜZENİ KORU | 65 [62–68] | 58 [53–61] | 8 [4–15] (3.5/0.5/1/2.5) | 236 [184–315] | 1305 [1240–1360] | 143/32/5 | 180 [168–190] | 3.8/2/3/3.5 (0) | 31
+   KONTROL: DAVRANIŞ ×1,25 BEDELSİZ | 67 [65–68] | 59 [57–61] | 7 [4–11] (2.3/1.5/0.5/3) | 222 [184–274] | 1330 [1300–1360] | 147/29/4 | 180 [172–188] | 3.5/2.3/3/3.8 (0) | 31
+     USTA BİÇİCİ / Koru: hasat +11% · skor +17% (seed bazında 3 üstün / 1 geride) · XP +11% · kaynak +11% · tetik +14%
+     DAVRANIŞ USTASI / Koru: hasat +2% · skor -6% (seed bazında 1 üstün / 2 geride) · XP +2% · kaynak -10% · tetik +2%
+     KONTROL: DAVRANIŞ ×1,25 BEDELSİZ / Koru: hasat +2% · skor -6% (seed bazında 1 üstün / 2 geride) · XP +2% · kaynak 0% · tetik +2%
+     Davranış Ustası / bedelsiz kopya: birebir aynı hasat+tetik+skor+XP 4/4 seed · tetik 50 / 50 · hasat 266 / 266 · kaynak oranı 0.900
+ok: Measurement run (Davranışlı · hasar 10 · R14 canı)
+ok: 25 production points
+   --- Davranışlı · hasar 10 · R14 canı (4 seed × 30 sn round, kare 1/30 sn; ortalama [en az–en çok]) ---
+   seçenek | toplam hasat | doğrudan | davranış (P/K/B/E ort.) | skor | XP | Gold/Iron/Stone ort. | kaynak toplamı | tetik P/K/B/E ort. (atlanan) | vuruş
+   USTA BİÇİCİ | 89 [82–92] | 79 [77–81] | 10 [5–13] (4/1.3/1.8/3) | 331 [286–447] | 1780 [1640–1840] | 195/48/6 | 249 [242–264] | 4.8/3.3/3.5/4.3 (0) | 31
+   DAVRANIŞ USTASI | 84 [82–87] | 74 [72–77] | 10 [7–13] (4/2/0.8/3) | 321 [230–371] | 1680 [1640–1740] | 162/41/6 | 209 [198–228] | 4.8/4.8/4.3/4.3 (0) | 31
+   MEVCUT DÜZENİ KORU | 83 [82–85] | 74 [70–77] | 10 [7–12] (5.3/1.5/0.8/2.3) | 305 [230–346] | 1665 [1640–1700] | 178/37/7 | 222 [214–230] | 5.5/4/4.8/3.8 (0) | 31
+   KONTROL: DAVRANIŞ ×1,25 BEDELSİZ | 84 [82–87] | 74 [72–77] | 10 [7–13] (4/2/0.8/3) | 321 [230–371] | 1680 [1640–1740] | 180/45/7 | 232 [220–252] | 4.8/4.8/4.3/4.3 (0) | 31
+     USTA BİÇİCİ / Koru: hasat +7% · skor +9% (seed bazında 2 üstün / 2 geride) · XP +7% · kaynak +12% · tetik -13%
+     DAVRANIŞ USTASI / Koru: hasat +1% · skor +5% (seed bazında 2 üstün / 0 geride) · XP +1% · kaynak -6% · tetik 0%
+     KONTROL: DAVRANIŞ ×1,25 BEDELSİZ / Koru: hasat +1% · skor +5% (seed bazında 2 üstün / 0 geride) · XP +1% · kaynak +5% · tetik 0%
+     Davranış Ustası / bedelsiz kopya: birebir aynı hasat+tetik+skor+XP 4/4 seed · tetik 72 / 72 · hasat 336 / 336 · kaynak oranı 0.902
+ok: Measurement run (Davranışlı · hasar 14 · R12 canı)
+ok: 25 production points
+   --- Davranışlı · hasar 14 · R12 canı (4 seed × 30 sn round, kare 1/30 sn; ortalama [en az–en çok]) ---
+   seçenek | toplam hasat | doğrudan | davranış (P/K/B/E ort.) | skor | XP | Gold/Iron/Stone ort. | kaynak toplamı | tetik P/K/B/E ort. (atlanan) | vuruş
+   USTA BİÇİCİ | 104 [99–107] | 95 [92–101] | 9 [6–12] (3/2.8/0.8/2.3) | 407 [268–579] | 2070 [1980–2140] | 223/54/9 | 286 [276–310] | 6.5/4.3/5/6.3 (0) | 30
+   DAVRANIŞ USTASI | 96 [93–98] | 74 [70–79] | 22 [19–28] (10.5/4.3/0.8/6.8) | 358 [336–407] | 1920 [1860–1960] | 190/42/7 | 238 [216–257] | 6.8/4/2.5/5 (0) | 31
+   MEVCUT DÜZENİ KORU | 98 [93–100] | 84 [77–87] | 14 [13–16] (5.8/3.3/1.8/3) | 385 [309–465] | 1950 [1860–2000] | 209/49/9 | 267 [254–274] | 6.3/4.5/4.3/5.8 (0) | 31
+   KONTROL: DAVRANIŞ ×1,25 BEDELSİZ | 96 [93–98] | 74 [70–79] | 22 [19–28] (10.5/4.3/0.8/6.8) | 358 [336–407] | 1920 [1860–1960] | 211/46/8 | 265 [240–286] | 6.8/4/2.5/5 (0) | 31
+     USTA BİÇİCİ / Koru: hasat +6% · skor +6% (seed bazında 2 üstün / 2 geride) · XP +6% · kaynak +7% · tetik +6%
+     DAVRANIŞ USTASI / Koru: hasat -2% · skor -7% (seed bazında 1 üstün / 3 geride) · XP -2% · kaynak -11% · tetik -12%
+     KONTROL: DAVRANIŞ ×1,25 BEDELSİZ / Koru: hasat -2% · skor -7% (seed bazında 1 üstün / 3 geride) · XP -2% · kaynak -1% · tetik -12%
+     Davranış Ustası / bedelsiz kopya: birebir aynı hasat+tetik+skor+XP 4/4 seed · tetik 73 / 73 · hasat 384 / 384 · kaynak oranı 0.901
+ok: Measurement run (Davranışlı · hasar 30 · R14 canı)
+ok: 25 production points
+   --- Davranışlı · hasar 30 · R14 canı (4 seed × 30 sn round, kare 1/30 sn; ortalama [en az–en çok]) ---
+   seçenek | toplam hasat | doğrudan | davranış (P/K/B/E ort.) | skor | XP | Gold/Iron/Stone ort. | kaynak toplamı | tetik P/K/B/E ort. (atlanan) | vuruş
+   USTA BİÇİCİ | 121 [120–121] | 102 [98–106] | 19 [15–22] (8/0/0/10.5) | 418 [328–564] | 2410 [2400–2420] | 277/53/8 | 337 [312–362] | 5.5/5.5/2/6.3 (0) | 23
+   DAVRANIŞ USTASI | 117 [114–119] | 93 [84–98] | 24 [19–30] (7.8/1.5/0.3/14) | 384 [311–458] | 2335 [2280–2380] | 236/50/5 | 291 [278–306] | 4.3/5/2/5.8 (0) | 30
+   MEVCUT DÜZENİ KORU | 117 [116–119] | 98 [94–102] | 19 [16–22] (8.8/0.3/0.3/10) | 464 [307–534] | 2345 [2320–2380] | 245/63/11 | 319 [304–334] | 6.5/5.3/2.5/7 (0) | 29
+   KONTROL: DAVRANIŞ ×1,25 BEDELSİZ | 117 [114–119] | 93 [84–98] | 24 [19–30] (7.8/1.5/0.3/14) | 384 [311–458] | 2335 [2280–2380] | 262/56/6 | 323 [308–340] | 4.3/5/2/5.8 (0) | 30
+     USTA BİÇİCİ / Koru: hasat +3% · skor -10% (seed bazında 2 üstün / 2 geride) · XP +3% · kaynak +6% · tetik -9%
+     DAVRANIŞ USTASI / Koru: hasat 0% · skor -17% (seed bazında 1 üstün / 3 geride) · XP 0% · kaynak -9% · tetik -20%
+     KONTROL: DAVRANIŞ ×1,25 BEDELSİZ / Koru: hasat 0% · skor -17% (seed bazında 1 üstün / 3 geride) · XP 0% · kaynak +1% · tetik -20%
+     Davranış Ustası / bedelsiz kopya: birebir aynı hasat+tetik+skor+XP 4/4 seed · tetik 68 / 68 · hasat 467 / 467 · kaynak oranı 0.901
+ok: Measurement run (Davranış yoğun · hasar 6 · R12 canı)
+ok: 25 production points
+   düzen Davranış yoğun: Legendary davranış dış halkada 16 hücre (4'er patlama/elektrik/bumerang/kasırga), iç 3×3 düz
+   --- Davranış yoğun · hasar 6 · R12 canı (4 seed × 30 sn round, kare 1/30 sn; ortalama [en az–en çok]) ---
+   seçenek | toplam hasat | doğrudan | davranış (P/K/B/E ort.) | skor | XP | Gold/Iron/Stone ort. | kaynak toplamı | tetik P/K/B/E ort. (atlanan) | vuruş
+   USTA BİÇİCİ | 74 [72–77] | 66 [64–68] | 8 [6–9] (2/3.5/1/1.3) | 283 [171–416] | 1475 [1440–1540] | 157/36/7 | 200 [186–222] | 8/5.3/6.3/5.3 (0) | 31
+   DAVRANIŞ USTASI | 68 [66–73] | 57 [52–62] | 12 [9–14] (6/1/1.5/3) | 248 [213–308] | 1365 [1320–1460] | 136/29/4 | 169 [160–184] | 8.3/3.5/5.3/6 (0) | 31
+   MEVCUT DÜZENİ KORU | 69 [66–70] | 58 [55–61] | 11 [5–15] (5.8/2.8/0.8/1.5) | 224 [179–330] | 1375 [1320–1400] | 162/25/4 | 191 [184–198] | 8.5/5.3/4/6.3 (0) | 31
+   KONTROL: DAVRANIŞ ×1,25 BEDELSİZ | 68 [66–73] | 57 [52–62] | 12 [9–14] (6/1/1.5/3) | 248 [213–308] | 1365 [1320–1460] | 151/32/5 | 188 [178–204] | 8.3/3.5/5.3/6 (0) | 31
+     USTA BİÇİCİ / Koru: hasat +7% · skor +27% (seed bazında 3 üstün / 1 geride) · XP +7% · kaynak +5% · tetik +3%
+     DAVRANIŞ USTASI / Koru: hasat -1% · skor +11% (seed bazında 3 üstün / 1 geride) · XP -1% · kaynak -12% · tetik -4%
+     KONTROL: DAVRANIŞ ×1,25 BEDELSİZ / Koru: hasat -1% · skor +11% (seed bazında 3 üstün / 1 geride) · XP -1% · kaynak -2% · tetik -4%
+     Davranış Ustası / bedelsiz kopya: birebir aynı hasat+tetik+skor+XP 4/4 seed · tetik 92 / 92 · hasat 273 / 273 · kaynak oranı 0.899
+ok: Measurement run (Davranış yoğun · hasar 10 · R14 canı)
+ok: 25 production points
+   --- Davranış yoğun · hasar 10 · R14 canı (4 seed × 30 sn round, kare 1/30 sn; ortalama [en az–en çok]) ---
+   seçenek | toplam hasat | doğrudan | davranış (P/K/B/E ort.) | skor | XP | Gold/Iron/Stone ort. | kaynak toplamı | tetik P/K/B/E ort. (atlanan) | vuruş
+   USTA BİÇİCİ | 88 [87–91] | 76 [75–77] | 12 [11–15] (4.5/2/2/3.8) | 321 [228–416] | 1765 [1740–1820] | 192/45/6 | 243 [234–260] | 9/6/6/7.5 (0) | 31
+   DAVRANIŞ USTASI | 86 [84–89] | 71 [67–73] | 15 [12–17] (5.8/2/2.8/4.3) | 300 [284–332] | 1720 [1680–1780] | 165/36/5 | 206 [203–209] | 9.3/6.3/6.8/6.5 (0) | 31
+   MEVCUT DÜZENİ KORU | 83 [80–87] | 68 [63–71] | 16 [12–19] (8.8/2.8/1.5/2.5) | 297 [242–367] | 1660 [1600–1740] | 177/40/6 | 223 [212–236] | 9.3/5.8/5.8/5.5 (0) | 31
+   KONTROL: DAVRANIŞ ×1,25 BEDELSİZ | 86 [84–89] | 71 [67–73] | 15 [12–17] (5.8/2/2.8/4.3) | 300 [284–332] | 1720 [1680–1780] | 183/40/6 | 229 [226–232] | 9.3/6.3/6.8/6.5 (0) | 31
+     USTA BİÇİCİ / Koru: hasat +6% · skor +8% (seed bazında 3 üstün / 1 geride) · XP +6% · kaynak +9% · tetik +9%
+     DAVRANIŞ USTASI / Koru: hasat +4% · skor +1% (seed bazında 2 üstün / 2 geride) · XP +4% · kaynak -8% · tetik +10%
+     KONTROL: DAVRANIŞ ×1,25 BEDELSİZ / Koru: hasat +4% · skor +1% (seed bazında 2 üstün / 2 geride) · XP +4% · kaynak +3% · tetik +10%
+     Davranış Ustası / bedelsiz kopya: birebir aynı hasat+tetik+skor+XP 4/4 seed · tetik 115 / 115 · hasat 344 / 344 · kaynak oranı 0.900
+ok: Measurement run (Davranış yoğun · hasar 14 · R12 canı)
+ok: 25 production points
+   --- Davranış yoğun · hasar 14 · R12 canı (4 seed × 30 sn round, kare 1/30 sn; ortalama [en az–en çok]) ---
+   seçenek | toplam hasat | doğrudan | davranış (P/K/B/E ort.) | skor | XP | Gold/Iron/Stone ort. | kaynak toplamı | tetik P/K/B/E ort. (atlanan) | vuruş
+   USTA BİÇİCİ | 104 [103–105] | 90 [84–95] | 14 [10–20] (5.5/3.5/2.3/2.8) | 380 [297–444] | 2085 [2060–2100] | 221/59/7 | 287 [276–296] | 13.5/8.5/10.3/7.3 (0) | 30
+   DAVRANIŞ USTASI | 98 [95–100] | 75 [73–77] | 23 [21–26] (11/5.3/1.8/5.3) | 379 [301–429] | 1955 [1900–2000] | 195/40/8 | 243 [214–262] | 11.3/5.5/5.3/6 (0) | 31
+   MEVCUT DÜZENİ KORU | 96 [93–99] | 79 [77–81] | 16 [12–19] (6/5.5/2/2.8) | 381 [297–464] | 1910 [1860–1980] | 207/53/8 | 268 [260–282] | 11.8/6.5/6/7.3 (0) | 31
+   KONTROL: DAVRANIŞ ×1,25 BEDELSİZ | 98 [95–100] | 75 [73–77] | 23 [21–26] (11/5.3/1.8/5.3) | 379 [301–429] | 1955 [1900–2000] | 217/44/9 | 270 [238–290] | 11.3/5.5/5.3/6 (0) | 31
+     USTA BİÇİCİ / Koru: hasat +9% · skor 0% (seed bazında 1 üstün / 2 geride) · XP +9% · kaynak +7% · tetik +25%
+     DAVRANIŞ USTASI / Koru: hasat +2% · skor -1% (seed bazında 2 üstün / 2 geride) · XP +2% · kaynak -9% · tetik -11%
+     KONTROL: DAVRANIŞ ×1,25 BEDELSİZ / Koru: hasat +2% · skor -1% (seed bazında 2 üstün / 2 geride) · XP +2% · kaynak +1% · tetik -11%
+     Davranış Ustası / bedelsiz kopya: birebir aynı hasat+tetik+skor+XP 4/4 seed · tetik 112 / 112 · hasat 391 / 391 · kaynak oranı 0.901
+ok: Measurement run (Davranış yoğun · hasar 30 · R14 canı)
+ok: 25 production points
+   --- Davranış yoğun · hasar 30 · R14 canı (4 seed × 30 sn round, kare 1/30 sn; ortalama [en az–en çok]) ---
+   seçenek | toplam hasat | doğrudan | davranış (P/K/B/E ort.) | skor | XP | Gold/Iron/Stone ort. | kaynak toplamı | tetik P/K/B/E ort. (atlanan) | vuruş
+   USTA BİÇİCİ | 121 [121–121] | 101 [100–102] | 20 [19–21] (13.5/0.3/1.8/4.3) | 461 [356–575] | 2420 [2420–2420] | 256/65/10 | 331 [312–354] | 15.5/9.8/11/6.8 (0) | 21
+   DAVRANIŞ USTASI | 119 [116–120] | 96 [95–98] | 23 [18–25] (15/3.3/1/3.5) | 421 [311–505] | 2380 [2320–2400] | 247/42/8 | 296 [290–306] | 15/10.8/7.5/6 (0) | 25
+   MEVCUT DÜZENİ KORU | 118 [115–121] | 98 [94–104] | 19 [14–22] (13.5/0.5/2/3.3) | 424 [370–479] | 2350 [2300–2420] | 257/53/9 | 319 [304–332] | 15.3/9.8/11/6.5 (0) | 25
+   KONTROL: DAVRANIŞ ×1,25 BEDELSİZ | 119 [116–120] | 96 [95–98] | 23 [18–25] (15/3.3/1/3.5) | 421 [311–505] | 2380 [2320–2400] | 274/46/9 | 329 [322–340] | 15/10.8/7.5/6 (0) | 25
+     USTA BİÇİCİ / Koru: hasat +3% · skor +9% (seed bazında 2 üstün / 2 geride) · XP +3% · kaynak +4% · tetik +1%
+     DAVRANIŞ USTASI / Koru: hasat +1% · skor -1% (seed bazında 3 üstün / 1 geride) · XP +1% · kaynak -7% · tetik -8%
+     KONTROL: DAVRANIŞ ×1,25 BEDELSİZ / Koru: hasat +1% · skor -1% (seed bazında 3 üstün / 1 geride) · XP +1% · kaynak +3% · tetik -8%
+     Davranış Ustası / bedelsiz kopya: birebir aynı hasat+tetik+skor+XP 4/4 seed · tetik 157 / 157 · hasat 476 / 476 · kaynak oranı 0.900
+ok: Measured 3 layouts × 4 stat sets × 4 options × 4 seeds
+ok: Bot harvested in every direct-layout round
+ok: Behaviors killed plants in the behavior layouts
+   Davranış Ustası / bedelsiz kopya, tüm yapılandırmalar: aynı hasat+tetik 48/48 · tetik 739 / 739 · kaynak oranı 0.900
+ok: Resource cost does not change triggers or harvests (identical on every seed); resources ×0.900

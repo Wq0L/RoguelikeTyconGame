@@ -89,6 +89,36 @@ public class StatManager : MonoBehaviour
         OnStatChanged?.Invoke(modifier.statType, newValue);
     }
 
+    // Birikim grubu (Bölüm 3.7.7): aynı gruba eklenen MorePercent değerleri TOPLANIR ve gruptan listede tek bir modifier durur
+    // (iki +%5 → tek ×1,10; ayrı ayrı eklenselerdi ×1,05 × 1,05). Grup, stat ve hedefiyle tanımlanır; grubun dışındaki
+    // modifier'larla ilişkisi değişmez (grup çarpanı diğer kaynaklarla eskisi gibi çarpılır). Şu an tek kullanıcı: temel güç
+    // "XP kazancı" kartları (RunBalanceSO.additiveBaseXpCards). Liste temizlenince ve yeni sahnede (yeni run) grup da sıfırlanır.
+    private readonly Dictionary<(StatType, StatTarget), StatModifier> summedGroups = new();
+
+    // Grubun şu anki toplamı (0: gruba henüz kart eklenmedi).
+    public float SummedGroupTotal(StatType statType, StatTarget target) =>
+        summedGroups.TryGetValue((statType, target), out StatModifier group) ? group.value : 0f;
+
+    public void AddToSummedGroup(StatModifier modifier)
+    {
+        if (modifier.operation != ModifierOperation.MorePercent)
+        {
+            Debug.LogError($"AddToSummedGroup: yalnız MorePercent toplanır ({modifier.statType} {modifier.operation}); normal modifier olarak eklendi.");
+            AddGlobalModifier(modifier);
+            return;
+        }
+        var key = (modifier.statType, modifier.target);
+        if (summedGroups.TryGetValue(key, out StatModifier current))
+        {
+            // Eski toplam listeden çıkar, yeni toplam girer. Değerce eşit başka bir modifier varsa hangisinin çıktığı sonucu değiştirmez.
+            globalModifiers.Remove(current);
+            OnGlobalModifierRemoved?.Invoke(current);
+            modifier.value += current.value;
+        }
+        summedGroups[key] = modifier;
+        AddGlobalModifier(modifier);
+    }
+
     public void AddGlobalModifiers(List<StatModifier> modifiers)
     {
         if (modifiers == null)
@@ -136,6 +166,7 @@ public class StatManager : MonoBehaviour
     public void ClearGlobalModifiers()
     {
         globalModifiers.Clear();
+        summedGroups.Clear();
 
         globalVersion++;
 

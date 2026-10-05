@@ -1,0 +1,89 @@
+PASS: 88 checks
+ok: Scene starts in RunSetup
+ok: Card placed Damage-Rare
+ok: Card placed Damage-Common
+ok: Card placed Fertile-Epic
+ok: Card placed Water-Rare
+ok: Card placed Energy-Common
+ok: Card placed Crystal-Rare
+ok: Card placed Damage-Epic
+ok: Card placed Water-Common
+ok: Card placed Fertile-Rare
+ok: 3x3 open area is full
+ok: Upgrade candidates come from tiles under planters first
+ok: Level-ups open card selection
+ok: Card vignette opens with the panel and starts transparent (fade-in): alpha 0
+ok: Grid full: all three cards are upgrades
+ok: Grid full banner shown: GRİD DOLU · kart, seçtiğin tile'ı seviye atlatır
+ok: Level gain follows rarity Common → +1
+ok: Level gain follows rarity Epic → +2
+ok: Level gain follows rarity Common → +1
+ok: Card shows level change: Sv 0 → Sv 1/+17.95% → +22.43%
+ok: Card colors old red, new green
+ok: Card shows old → new value: Sv 0 → Sv 1/+17.95% → +22.43%
+ok: Card shows level change: Sv 0 → Sv 2/+41.46% → +62.18%
+ok: Card colors old red, new green
+ok: Card shows old → new value: Sv 0 → Sv 2/+41.46% → +62.18%
+ok: Card shows level change: Sv 0 → Sv 1/+27.57% → +34.47% puan
+ok: Card colors old red, new green
+ok: Card shows old → new value: Sv 0 → Sv 1/+27.57% → +34.47% puan
+ok: Card selection vignette behind the cards, not blocking clicks
+ok: Vignette faded in to its design opacity 0.65: alpha 0.65 (design constant 0.65)
+ok: Card selection vignette is gold: #EBB134
+ok: Boss reward vignette is purple and also starts transparent: #9957E0
+saved Logs/UpgradeCards.png
+ok: Picked tile gained levels: Sv 1
+ok: Tile value scaled by +25%/level
+ok: Upgraded tile tagged +SV for the map
+ok: Round end after the last pick
+ok: Vignette only while choosing cards: gone on the round end screen
+ok: Round summary counts XP earned: 1816
+ok: Round summary shows an XP row
+ok: Upgrade record keeps the old state: Sv 0 → 1
+ok: New tiles row shows level and value change: Odak-Hasar/Sv 0 → 1 · +17.95% → +22.43%
+ok: New tiles row colors old red, new green
+saved Logs/RoundEndUpgrades.png
+ok: Found a level-0 tile
+ok: Tooltip sections and old/new values are colored
+ok: Level-0 tooltip shows the level: Epic · Sv 0/3
+ok: Upgraded tooltip caption: Epic · Sv 1/3 · +SV
+ok: Tooltip says how many levels: Bu round'un kartı bu tile'ı yükseltti.
+ok: Tooltip lists old → new values: Hasar +17.95% → +22.43%
+saved Logs/UpgradeTooltip.png
+ok: Every open tile at max level
+ok: Reopened card selection: the vignette restarts its fade from transparent (no leftover opacity): alpha 0
+ok: All tiles max: cards give Temel güç
+ok: Temel güç added as global modifier: Hasat hasarı
+ok: No luck: 60/25/12/3 as before
+ok: Weights sum to 100 for every luck value
+ok: Tree gives 9 luck tiers: 0.3
+ok: Full Kart Sezgisi: 3/7/42/48
+ok: Live rolls with full tree: Common+Rare 10.0%, Legendary 47.9%
+ok: Skill tooltip: Kart nadirliği Epic+ %15 · Leg %3 → Epic+ %90 · Leg %48
+ok: 90 s of duration skills → 60 s round, 1.5× tempo
+ok: Spawn interval sped up by tempo: 0.9270681
+ok: No tempo below 60 s
+ok: Quota curve 10 / 15 / 20 … r50 280: 10 15 20 30 45 65 95 130 200 280 410 600
+ok: Nice rounding and 1.234.567 formatting
+ok: Segments are rounds 1-5, 6-10, …
+ok: Scene RoundManager uses the default quota (5 rounds, starts at 10)
+ok: Round 6 opens segment 2 with quota 15 and zero progress
+ok: Segment start intro: KOTA 15 · 5 ROUND
+ok: Quota HUD attached under the round HUD
+ok: HUD: KOTA · 5 ROUND | 8 / 15
+saved Logs/QuotaHUD.png
+ok: Mid-segment round end does not judge the quota
+ok: Round 6 summary data recorded
+ok: Round summary shows segment progress: Kota 8 / 15 · 4 round kaldı/<size=72%>Tutmazsa run 10. round sonunda biter</size>
+saved Logs/QuotaSummary.png
+ok: Round 9 summary warns: SON ROUND · kotaya 7 kaldı/<size=72%>Kota 8 / 15 · tutmazsa run biter</size>
+ok: Round 10 intro: SON ROUND · KOTAYA 7 KALDI
+saved Logs/QuotaSummaryLastRound.png
+ok: Round 10 keeps segment progress
+ok: 52 / 15 passes segment 2
+ok: Passed summary: KOTA TAMAM · 52 / 15/<size=72%>Sıradaki kota: 20 · 5 round</size>
+saved Logs/QuotaPassed.png
+ok: Round 11 resets progress, quota 20
+ok: 12 / 20 at round 15 ends the run
+ok: Run complete shows the reason: KOTA TUTMADI/Round 15 · segment skoru 12 / 20 (gereken kota)/Başlangıç: Bahçıvan · Standart/Harvest Score: 64
+saved Logs/RunCompleteQuota.png

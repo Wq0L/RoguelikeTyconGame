@@ -1,0 +1,61 @@
+run,policy,farmer,scythe,seed,label,round,offered,chosen
+1,Davranış-rezonans,bahcivan,standart,101,stres · zincirli (hedefsiz),3,hizli_bilek nadir_tohum bereketli_toprak,hizli_bilek
+1,Davranış-rezonans,bahcivan,standart,101,stres · zincirli (hedefsiz),6,bilgi_filizi bereketli_toprak nadir_tohum,bereketli_toprak
+1,Davranış-rezonans,bahcivan,standart,101,stres · zincirli (hedefsiz),10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+1,Davranış-rezonans,bahcivan,standart,101,stres · zincirli (hedefsiz),13,agir_darbe kivilcim kritik_goz,kivilcim
+1,Davranış-rezonans,bahcivan,standart,101,stres · zincirli (hedefsiz),16,kivilcim altin_hedef kritik_goz,kivilcim
+1,Davranış-rezonans,bahcivan,standart,101,stres · zincirli (hedefsiz),20,hizli_bilek kivilcim yikim_gucu,kivilcim
+1,Davranış-rezonans,bahcivan,standart,101,stres · zincirli (hedefsiz),23,davranisa_adanis artci_patlama hasat_ritmi,artci_patlama
+1,Davranış-rezonans,bahcivan,standart,101,stres · zincirli (hedefsiz),26,zincir_hasat altin_hedef bereketli_ogrenim,zincir_hasat
+1,Davranış-rezonans,bahcivan,standart,101,stres · zincirli (hedefsiz),30,cifte_akim davranisa_adanis bereketli_ogrenim,cifte_akim
+1,Davranış-rezonans,bahcivan,standart,101,stres · zincirli (hedefsiz),33,nadir_tohum canavar_kesimi agir_darbe,nadir_tohum
+1,Davranış-rezonans,bahcivan,standart,101,stres · zincirli (hedefsiz),36,bereketli_toprak kritik_goz genis_savurus,bereketli_toprak
+1,Davranış-rezonans,bahcivan,standart,101,stres · zincirli (hedefsiz),40,canavar_kesimi bereketli_ogrenim yikim_gucu,yikim_gucu
+1,Davranış-rezonans,bahcivan,standart,101,stres · zincirli (hedefsiz),43,genis_savurus hasat_ritmi yikim_gucu,yikim_gucu
+1,Davranış-rezonans,bahcivan,standart,101,stres · zincirli (hedefsiz),46,canavar_kesimi bereketli_ogrenim nadir_tohum,nadir_tohum
+1,Davranış-rezonans,bahcivan,standart,101,stres · zincirli (hedefsiz),50,agir_darbe firtina_bilegi genis_savurus,firtina_bilegi
+2,Davranış-rezonans,bahcivan,standart,101,stres · zincirsiz (hedefsiz),3,hizli_bilek nadir_tohum bereketli_toprak,hizli_bilek
+2,Davranış-rezonans,bahcivan,standart,101,stres · zincirsiz (hedefsiz),6,bilgi_filizi bereketli_toprak nadir_tohum,bereketli_toprak
+2,Davranış-rezonans,bahcivan,standart,101,stres · zincirsiz (hedefsiz),10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+2,Davranış-rezonans,bahcivan,standart,101,stres · zincirsiz (hedefsiz),13,agir_darbe kivilcim kritik_goz,kivilcim
+2,Davranış-rezonans,bahcivan,standart,101,stres · zincirsiz (hedefsiz),16,kivilcim altin_hedef kritik_goz,kivilcim
+2,Davranış-rezonans,bahcivan,standart,101,stres · zincirsiz (hedefsiz),20,hizli_bilek kivilcim yikim_gucu,kivilcim
+2,Davranış-rezonans,bahcivan,standart,101,stres · zincirsiz (hedefsiz),23,davranisa_adanis artci_patlama hasat_ritmi,artci_patlama
+2,Davranış-rezonans,bahcivan,standart,101,stres · zincirsiz (hedefsiz),26,zincir_hasat altin_hedef bereketli_ogrenim,altin_hedef
+2,Davranış-rezonans,bahcivan,standart,101,stres · zincirsiz (hedefsiz),30,hasat_ritmi zincir_hasat davranisa_adanis,hasat_ritmi
+2,Davranış-rezonans,bahcivan,standart,101,stres · zincirsiz (hedefsiz),33,nadir_tohum firtina_bilegi kritik_goz,firtina_bilegi
+2,Davranış-rezonans,bahcivan,standart,101,stres · zincirsiz (hedefsiz),36,bereketli_toprak kritik_goz genis_savurus,bereketli_toprak
+2,Davranış-rezonans,bahcivan,standart,101,stres · zincirsiz (hedefsiz),40,canavar_kesimi davranisa_adanis altin_hedef,canavar_kesimi
+2,Davranış-rezonans,bahcivan,standart,101,stres · zincirsiz (hedefsiz),43,genis_savurus davranisa_adanis altin_hedef,genis_savurus
+2,Davranış-rezonans,bahcivan,standart,101,stres · zincirsiz (hedefsiz),46,cifte_akim davranisa_adanis bereketli_toprak,bereketli_toprak
+2,Davranış-rezonans,bahcivan,standart,101,stres · zincirsiz (hedefsiz),50,agir_darbe bereketli_ogrenim genis_savurus,genis_savurus
+3,Temel güç XP stresi,bahcivan,standart,101,stres · XP (hedefsiz),3,hizli_bilek nadir_tohum bereketli_toprak,hizli_bilek
+3,Temel güç XP stresi,bahcivan,standart,101,stres · XP (hedefsiz),6,bilgi_filizi bereketli_toprak nadir_tohum,bilgi_filizi
+3,Temel güç XP stresi,bahcivan,standart,101,stres · XP (hedefsiz),10,keskin_bicak nadir_tohum bilgi_filizi,bilgi_filizi
+3,Temel güç XP stresi,bahcivan,standart,101,stres · XP (hedefsiz),13,agir_darbe kivilcim kritik_goz,kivilcim
+3,Temel güç XP stresi,bahcivan,standart,101,stres · XP (hedefsiz),16,kivilcim altin_hedef kritik_goz,kivilcim
+3,Temel güç XP stresi,bahcivan,standart,101,stres · XP (hedefsiz),20,hizli_bilek kivilcim yikim_gucu,kivilcim
+3,Temel güç XP stresi,bahcivan,standart,101,stres · XP (hedefsiz),23,davranisa_adanis artci_patlama hasat_ritmi,artci_patlama
+3,Temel güç XP stresi,bahcivan,standart,101,stres · XP (hedefsiz),26,zincir_hasat altin_hedef bereketli_ogrenim,bereketli_ogrenim
+3,Temel güç XP stresi,bahcivan,standart,101,stres · XP (hedefsiz),30,firtina_bilegi zincir_hasat hasat_ritmi,zincir_hasat
+3,Temel güç XP stresi,bahcivan,standart,101,stres · XP (hedefsiz),33,bereketli_toprak canavar_kesimi kritik_goz,bereketli_toprak
+3,Temel güç XP stresi,bahcivan,standart,101,stres · XP (hedefsiz),36,hizli_bilek kritik_goz genis_savurus,hizli_bilek
+3,Temel güç XP stresi,bahcivan,standart,101,stres · XP (hedefsiz),40,canavar_kesimi cifte_akim altin_hedef,canavar_kesimi
+3,Temel güç XP stresi,bahcivan,standart,101,stres · XP (hedefsiz),43,yikim_gucu cifte_akim altin_hedef,yikim_gucu
+3,Temel güç XP stresi,bahcivan,standart,101,stres · XP (hedefsiz),46,genis_savurus hasat_ritmi hizli_bilek,hizli_bilek
+3,Temel güç XP stresi,bahcivan,standart,101,stres · XP (hedefsiz),50,agir_darbe firtina_bilegi genis_savurus,firtina_bilegi
+4,Temel güç XP stresi,bahcivan,standart,110,stres · XP (hedefsiz),3,bilgi_filizi hizli_bilek nadir_tohum,bilgi_filizi
+4,Temel güç XP stresi,bahcivan,standart,110,stres · XP (hedefsiz),6,keskin_bicak nadir_tohum bereketli_toprak,bereketli_toprak
+4,Temel güç XP stresi,bahcivan,standart,110,stres · XP (hedefsiz),10,keskin_bicak bilgi_filizi nadir_tohum,bilgi_filizi
+4,Temel güç XP stresi,bahcivan,standart,110,stres · XP (hedefsiz),13,agir_darbe hizli_bilek kritik_goz,hizli_bilek
+4,Temel güç XP stresi,bahcivan,standart,110,stres · XP (hedefsiz),16,kritik_goz hizli_bilek kivilcim,kivilcim
+4,Temel güç XP stresi,bahcivan,standart,110,stres · XP (hedefsiz),20,altin_hedef kivilcim agir_darbe,kivilcim
+4,Temel güç XP stresi,bahcivan,standart,110,stres · XP (hedefsiz),23,artci_patlama zincir_hasat altin_hedef,zincir_hasat
+4,Temel güç XP stresi,bahcivan,standart,110,stres · XP (hedefsiz),26,firtina_bilegi bereketli_ogrenim davranisa_adanis,bereketli_ogrenim
+4,Temel güç XP stresi,bahcivan,standart,110,stres · XP (hedefsiz),30,canavar_kesimi hasat_ritmi cifte_akim,canavar_kesimi
+4,Temel güç XP stresi,bahcivan,standart,110,stres · XP (hedefsiz),33,nadir_tohum genis_savurus agir_darbe,genis_savurus
+4,Temel güç XP stresi,bahcivan,standart,110,stres · XP (hedefsiz),36,kritik_goz artci_patlama genis_savurus,genis_savurus
+4,Temel güç XP stresi,bahcivan,standart,110,stres · XP (hedefsiz),40,artci_patlama cifte_akim agir_darbe,agir_darbe
+4,Temel güç XP stresi,bahcivan,standart,110,stres · XP (hedefsiz),43,artci_patlama agir_darbe cifte_akim,agir_darbe
+4,Temel güç XP stresi,bahcivan,standart,110,stres · XP (hedefsiz),46,artci_patlama hasat_ritmi altin_hedef,altin_hedef
+4,Temel güç XP stresi,bahcivan,standart,110,stres · XP (hedefsiz),50,firtina_bilegi hizli_bilek hasat_ritmi,hizli_bilek

@@ -1,0 +1,31 @@
+run,policy,farmer,scythe,seed,label,round,offered,chosen
+1,Davranış-rezonans,bahcivan,standart,101,aday,3,hizli_bilek nadir_tohum bereketli_toprak,hizli_bilek
+1,Davranış-rezonans,bahcivan,standart,101,aday,6,bilgi_filizi hizli_bilek nadir_tohum,hizli_bilek
+1,Davranış-rezonans,bahcivan,standart,101,aday,10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+1,Davranış-rezonans,bahcivan,standart,101,aday,13,agir_darbe kivilcim kritik_goz,kivilcim
+1,Davranış-rezonans,bahcivan,standart,101,aday,16,kivilcim altin_hedef kritik_goz,kivilcim
+1,Davranış-rezonans,bahcivan,standart,101,aday,20,hizli_bilek kivilcim yikim_gucu,kivilcim
+1,Davranış-rezonans,bahcivan,standart,101,aday,23,davranisa_adanis artci_patlama hasat_ritmi,artci_patlama
+1,Davranış-rezonans,bahcivan,standart,101,aday,26,zincir_hasat altin_hedef bereketli_ogrenim,zincir_hasat
+1,Davranış-rezonans,bahcivan,standart,101,aday,30,cifte_akim davranisa_adanis bereketli_ogrenim,cifte_akim
+1,Davranış-rezonans,bahcivan,standart,101,aday,33,nadir_tohum canavar_kesimi agir_darbe,nadir_tohum
+1,Davranış-rezonans,bahcivan,standart,101,aday,36,bereketli_toprak kritik_goz genis_savurus,bereketli_toprak
+1,Davranış-rezonans,bahcivan,standart,101,aday,40,canavar_kesimi bereketli_ogrenim altin_hedef,canavar_kesimi
+1,Davranış-rezonans,bahcivan,standart,101,aday,43,genis_savurus bereketli_ogrenim altin_hedef,genis_savurus
+1,Davranış-rezonans,bahcivan,standart,101,aday,46,firtina_bilegi bereketli_ogrenim bereketli_toprak,firtina_bilegi
+1,Davranış-rezonans,bahcivan,standart,101,aday,50,agir_darbe hasat_ritmi genis_savurus,genis_savurus
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,3,hizli_bilek nadir_tohum bereketli_toprak,hizli_bilek
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,6,bilgi_filizi hizli_bilek nadir_tohum,hizli_bilek
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,13,agir_darbe kivilcim kritik_goz,kivilcim
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,16,kivilcim altin_hedef kritik_goz,kivilcim
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,20,hizli_bilek kivilcim yikim_gucu,kivilcim
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,23,davranisa_adanis artci_patlama hasat_ritmi,artci_patlama
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,26,zincir_hasat altin_hedef bereketli_ogrenim,altin_hedef
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,30,hasat_ritmi zincir_hasat davranisa_adanis,hasat_ritmi
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,33,nadir_tohum firtina_bilegi kritik_goz,firtina_bilegi
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,36,bereketli_toprak kritik_goz genis_savurus,bereketli_toprak
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,40,canavar_kesimi davranisa_adanis altin_hedef,canavar_kesimi
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,43,genis_savurus davranisa_adanis altin_hedef,genis_savurus
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,46,cifte_akim davranisa_adanis bereketli_toprak,bereketli_toprak
+2,Davranış-rezonans,bahcivan,standart,101,almayan eş,50,agir_darbe bereketli_ogrenim genis_savurus,genis_savurus

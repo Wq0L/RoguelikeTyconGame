@@ -45,34 +45,63 @@ public class RoundManager : MonoBehaviour
 
     private int pendingCardSelections = 0;
     // Level kartları (Bölüm 3.6): her level profilin verdiği kadar ayrı seçim hakkı getirir (varsayılan 1).
-    public int ChoicesPerLevel => Profile != null ? Mathf.Max(1, Profile.choicesPerLevel) : 1;
+    public int BaseChoicesPerLevel => Profile != null ? Mathf.Max(1, Profile.choicesPerLevel) : 1;
+    // Şu an kazanılacak bir level'ın getireceği hak: temel hak + run'daki aktif değişimler (Bölüm 3.7.4; RunPower.LevelChoices).
+    // Ekrandaki aday sayısı (her seçimde üç kart, biri alınır) bundan ayrıdır ve değişmez.
+    public int ChoicesPerLevel => RunPower.LevelChoices(BaseChoicesPerLevel);
     public int PendingCardSelections => pendingCardSelections;
-    // Run sayaçları (HUD ve ölçüm): kazanılan level ve verilen seçim hakkı.
+    // Run sayaçları (HUD ve ölçüm), birbirinden ayrı: kazanılan level, verilen seçim hakkı, alınan kart (atlanan seçim kart değildir).
     public int LevelsGained { get; private set; }
     public int CardChoicesGranted { get; private set; }
+    public int CardsTaken { get; private set; }
+    public void RecordCardTaken() => CardsTaken++;
     private int skipUsesRemaining;
     private bool awaitingFirstRound = true;
+    // Round süresi bitti, kart kararı bekleyen level işini bekliyor (Bölüm 3.7.6.1; ProgressionManager kare bütçesi).
+    private bool awaitingLevels;
+    public bool IsAwaitingLevels => awaitingLevels;
 
     public bool IsPreparingFirstRound => awaitingFirstRound;
     // Deney (Bölüm 2.2): profil süreyi sabitlerse süre stat'ı okunmaz; 60 sn üstü verilemez, yani süreden tempo doğmaz.
-    public bool FixedRoundDuration => Profile != null && Profile.fixedRoundDuration > 0f;
-    public float RawRoundDuration => FixedRoundDuration ? Mathf.Clamp(Profile.fixedRoundDuration, 30f, RoundSecondsCap) :
+    // Bölüm 3.7.8: profil round süresi tablosu taşıyorsa (RoundDurations) süre round numarasına göre tablodan gelir. Süre yine
+    // profilce sabittir (süre düğümleri etkisiz, tempo yok); tablodaki süre 60 sn sınırına takılmaz ve hıza dönüşmez.
+    public bool HasDurationTable => RoundDurations.HasTable(Profile);
+    public bool FixedRoundDuration => Profile != null && (Profile.fixedRoundDuration > 0f || HasDurationTable);
+    public float RawRoundDuration => RoundSecondsFor(CurrentRound);
+    public float EffectiveRoundDuration => HasDurationTable ? RawRoundDuration : Mathf.Min(RawRoundDuration, RoundSecondsCap);
+    // 1: normal. 90 sn'lik süre 60 sn'ye sığınca 1,5: saldırı ve bitki üretimi 1,5 kat hızlı.
+    public float TempoMultiplier => HasDurationTable ? 1f : Mathf.Max(1f, RawRoundDuration / RoundSecondsCap);
+    // Verilen round'un süresi (sn). Tablolu profilde round'a göre değişir; diğerlerinde bütün round'lar için aynı kuraldır.
+    public float RoundSecondsFor(int round) =>
+        HasDurationTable ? RoundDurations.SecondsFor(Profile, Mathf.Max(1, round)) :
+        FixedRoundDuration ? Mathf.Clamp(Profile.fixedRoundDuration, 30f, RoundSecondsCap) :
         Mathf.Clamp(StatManager.Instance != null
         ? StatManager.Instance.GetFinalStat(StatType.RoundDuration, StatTarget.All) : roundDuration, 30f, 90f);
-    public float EffectiveRoundDuration => Mathf.Min(RawRoundDuration, RoundSecondsCap);
-    // 1: normal. 90 sn'lik süre 60 sn'ye sığınca 1,5: saldırı ve bitki üretimi 1,5 kat hızlı.
-    public float TempoMultiplier => Mathf.Max(1f, RawRoundDuration / RoundSecondsCap);
+    // Süre tablosu geçersizse run başlatılmaz (BeginRun). Tablo sessizce düzeltilmez.
+    public string DurationError { get; private set; }
+    private RunClock clock;
 
-    // Hasat Kotası: segment = QuotaSegmentRounds round. İlerleme, segmentin ilk round'undan beri kazanılan Harvest Score.
-    // Segment sonunda değerlendirilir; sonuç bir sonraki segment başlayana kadar Last* alanlarında kalır.
-    public bool QuotaEnabled => (Profile != null ? Profile.segmentRounds : quotaSegmentRounds) > 0;
-    public int QuotaSegmentRounds => Mathf.Max(1, Profile != null ? Profile.segmentRounds : quotaSegmentRounds);
-    public int QuotaSegment => HarvestQuota.SegmentOf(CurrentRound, QuotaSegmentRounds);
-    public int QuotaSegmentEnd => HarvestQuota.SegmentEnd(QuotaSegment, QuotaSegmentRounds);
+    // Run takvimi: kota dönemleri ve boss round'ları tek yerden çözülür (RunCalendar). Profil açık boss takvimi taşıyorsa dönemler
+    // o tarihleri izler; taşımıyorsa eşit segmentler (eski davranış). Buradaki dönem / boss soruları takvime sorulur.
+    private RunCalendar sceneCalendar;
+    public RunCalendar Calendar => Profile != null ? Profile.Calendar
+        : sceneCalendar ??= new RunCalendar(quotaSegmentRounds, maxRounds, quotaStart, quotaGrowth);
+    // Açık takvim geçersizse run başlatılmaz (BeginRun); hata burada durur. Takvim sessizce düzeltilmez.
+    public string CalendarError { get; private set; }
+    // Aşamalı ödül havuzu geçersizse de run başlatılmaz (aynı ödül iki aşamada, sırasız aşamalar …). Veri düzeltilmez.
+    public string RewardPoolError { get; private set; }
+
+    // Hasat Kotası: dönem (segment) boyunca kazanılan Harvest Score. İlerleme, dönemin ilk round'undan beri kazanılan skordur.
+    // Dönem sonunda değerlendirilir; sonuç bir sonraki dönem başlayana kadar Last* alanlarında kalır.
+    public bool QuotaEnabled => Calendar.QuotaEnabled;
+    // Eşit segment uzunluğu (eski profiller). Açık takvimde dönemler eşit değildir: içinde bulunulan dönemin uzunluğunu verir.
+    public int QuotaSegmentRounds => Calendar.IsExplicit ? Calendar.PeriodLength(QuotaSegment) : Calendar.UniformRounds;
+    public int QuotaSegment => Calendar.PeriodOf(CurrentRound);
+    public int QuotaSegmentEnd => Calendar.PeriodEnd(QuotaSegment);
     public long QuotaTarget => QuotaTargetFor(QuotaSegment);
     public long QuotaProgress => System.Math.Max(0L, CurrentScore - segmentStartScore);
-    public bool IsQuotaSegmentEnd(int round) => QuotaEnabled && round % QuotaSegmentRounds == 0;
-    public long QuotaTargetFor(int segment) => Profile != null ? Profile.TargetFor(segment) : HarvestQuota.Target(segment, quotaStart, quotaGrowth);
+    public bool IsQuotaSegmentEnd(int round) => Calendar.IsPeriodEnd(round);
+    public long QuotaTargetFor(int segment) => Calendar.QuotaTarget(segment);
     public bool EndedByQuota { get; private set; }
     public int LastQuotaRound { get; private set; }
     public long LastQuotaScore { get; private set; }
@@ -82,8 +111,8 @@ public class RoundManager : MonoBehaviour
 
     // Boss hasadı (Bölüm 3.4): boss round'unda, yalnız o round'da kazanılan Harvest Score. Segment kotasından ayrı ikinci koşuldur;
     // hedef profil tablosundan gelir (oyuncunun gücüne göre ölçeklenmez). Hedef tutunca round erken bitmez.
-    public bool IsBossRound(int round) => Profile != null && IsQuotaSegmentEnd(round) && Profile.HasBoss(HarvestQuota.SegmentOf(round, QuotaSegmentRounds));
-    public long BossTargetFor(int segment) => Profile != null ? Profile.BossTargetFor(segment) : 0;
+    public bool IsBossRound(int round) => Calendar.IsBossRound(round);
+    public long BossTargetFor(int segment) => Calendar.BossTarget(segment);
     public long BossTarget => BossTargetFor(QuotaSegment);
     public long BossProgress => IsBossRound(CurrentRound) ? System.Math.Max(0L, CurrentScore - roundStartScore) : 0L;
     public bool EndedByBoss { get; private set; }
@@ -125,6 +154,10 @@ public class RoundManager : MonoBehaviour
         if (!TryGetComponent(out BossRewardManager _)) gameObject.AddComponent<BossRewardManager>();
         // Kırılma ödüllerinin gecikmiş ikinci darbeleri: ödül alınmadıysa hiçbir şey yapmaz.
         if (!TryGetComponent(out BehaviorEchoes _)) gameObject.AddComponent<BehaviorEchoes>();
+        // Davranış zinciri (Zincir Hasat ödülü): ödül alınmadıysa hiçbir şey yapmaz; kuralları HarvestChain'dedir.
+        if (!TryGetComponent(out HarvestChain _)) gameObject.AddComponent<HarvestChain>();
+        // Run süre sayaçları (aktif / seçim / mağaza / hazırlık / duraklama): yalnız sayar, akışı değiştirmez.
+        if (!TryGetComponent(out clock)) clock = gameObject.AddComponent<RunClock>();
     }
 
     private void Start()
@@ -165,6 +198,12 @@ public class RoundManager : MonoBehaviour
         if (GameManager.Instance.CurrentState != GameStates.Round)
             return;
 
+        if (awaitingLevels)
+        {
+            ContinueRoundEnd();
+            return;
+        }
+
         if (!IsRoundActive)
             return;
 
@@ -173,8 +212,11 @@ public class RoundManager : MonoBehaviour
 
     private void TickRound()
     {
+        float before = RemainingTime;
         RemainingTime -= Time.deltaTime;
         RemainingTime = Mathf.Max(RemainingTime, 0f);
+        // Aktif süre: sayaçtan düşen oyun zamanı ve bu karede gerçekte geçen süre ayrı tutulur (RunClock).
+        if (clock != null) clock.AddActive((double)before - RemainingTime, RunClock.FrameRealSeconds);
         ApplyEndSlowdown();
 
         int currentSecond = Mathf.CeilToInt(RemainingTime);
@@ -211,11 +253,34 @@ public class RoundManager : MonoBehaviour
 
     public void BeginRun()
     {
+        CalendarError = RunCalendar.Validate(Profile);
+        if (CalendarError != null)
+        {
+            Debug.LogError($"Run başlatılmadı: '{Profile.displayName}' profilinin boss takvimi geçersiz — {CalendarError}. " +
+                           "Takvim otomatik düzeltilmez; profil verisi düzeltilince run başlar.", Profile);
+            return;
+        }
+        RewardPoolError = Profile != null ? BossRewardPoolSO.Validate(Profile.bossRewards, Profile.runLength) : null;
+        if (RewardPoolError != null)
+        {
+            Debug.LogError($"Run başlatılmadı: '{Profile.displayName}' profilinin boss ödül aşamaları geçersiz — {RewardPoolError}. " +
+                           "Havuz otomatik düzeltilmez; veri düzeltilince run başlar.", Profile);
+            return;
+        }
+        DurationError = RoundDurations.Validate(Profile);
+        if (DurationError != null)
+        {
+            Debug.LogError($"Run başlatılmadı: '{Profile.displayName}' profilinin round süresi tablosu geçersiz — {DurationError}. " +
+                           "Tablo otomatik düzeltilmez; veri düzeltilince run başlar.", Profile);
+            return;
+        }
         RunPower.Reset();
         CurrentRound = 1;
+        awaitingLevels = false;
         pendingCardSelections = 0;
         LevelsGained = 0;
         CardChoicesGranted = 0;
+        CardsTaken = 0;
         awaitingFirstRound = true;
         IsRoundActive = false;
         RemainingTime = EffectiveRoundDuration;
@@ -247,10 +312,11 @@ public class RoundManager : MonoBehaviour
     public void StartRound()
     {
         awaitingFirstRound = false;
+        awaitingLevels = false;
         CurrentRound = Mathf.Max(CurrentRound, 1);
         RemainingTime = EffectiveRoundDuration;
         IsRoundActive = true;
-        if ((CurrentRound - 1) % QuotaSegmentRounds == 0) segmentStartScore = CurrentScore;
+        if (Calendar.IsPeriodStart(CurrentRound)) segmentStartScore = CurrentScore;
         roundStartScore = CurrentScore;
         EndSlowdownProgress = 0f;
         lastDisplayedSecond = -1;
@@ -268,25 +334,38 @@ public class RoundManager : MonoBehaviour
         RemainingTime = 0f;
         EvaluateQuota();
         OnRoundEnded?.Invoke();
+        awaitingLevels = true;
+        ContinueRoundEnd();
+    }
 
+    // Round sonu kararı. Run bitmiyorsa kart kararı, round içinde kazanılan XP'nin bütün level'ları işlenmeden verilmez: bekleyen
+    // level işi varsa (ProgressionManager kare bütçesi) her karede yeniden denenir. Normal hasatta bekleyen iş olmaz; karar
+    // EndRound içinde, eskisi gibi aynı karede verilir.
+    private void ContinueRoundEnd()
+    {
         // Kota ya da boss hasadı tutmadı: run burada biter, bekleyen kart seçimleri atlanır
         if (RunFailed)
         {
+            awaitingLevels = false;
             pendingCardSelections = 0;
             Outcome = EndedByQuota ? RunOutcome.QuotaFailed : RunOutcome.BossFailed;
             GameManager.Instance.CompleteRun();
             return;
         }
 
-        // Son round ise direkt bitir: kota geçildi (ya da kapalı), run kazanıldı
-        if (CurrentRound >= MaxRounds)
+        // Son round ise direkt bitir: kota geçildi (ya da kapalı), run kazanıldı.
+        // Açık takvimde son round boss round'uysa sıra bozulmaz: kartlar → boss ödülü → zafer (CloseRound).
+        if (CurrentRound >= MaxRounds && !Calendar.FinalRoundHasChoices)
         {
+            awaitingLevels = false;
             pendingCardSelections = 0; // kart seçimini atla
             Outcome = RunOutcome.Victory;
             GameManager.Instance.CompleteRun();
             return;
         }
 
+        if (ProgressionManager.Instance != null && ProgressionManager.Instance.HasPendingLevels) return;
+        awaitingLevels = false;
 
         if (pendingCardSelections > 0)
             GameManager.Instance.StartCardSelection();
@@ -298,22 +377,37 @@ public class RoundManager : MonoBehaviour
     private void ShowRoundEndOrChoice()
     {
         if (IsRoundChoicePending) GameManager.Instance.StartRoundChoice();
-        else GameManager.Instance.ShowRoundEnd();
+        else CloseRound();
     }
 
     // Seçim tamamlanınca (IRoundChoice sahibi çağırır) round özetine geçilir.
     public void ContinueAfterRoundChoice()
     {
         if (GameManager.Instance.CurrentState != GameStates.RoundChoice || IsRoundChoicePending) return;
+        CloseRound();
+    }
+
+    // Seçimler bitti: run'ın son round'uysa zafer ekranı (sonraki round başlamaz), değilse round özeti.
+    private void CloseRound()
+    {
+        if (CurrentRound >= MaxRounds)
+        {
+            Outcome = RunOutcome.Victory;
+            GameManager.Instance.CompleteRun();
+            return;
+        }
         GameManager.Instance.ShowRoundEnd();
     }
     
+    // Hak, level kazanıldığı anda hesaplanır: aynı karede kazanılan her level kendi hakkını ekler; bekleyen sayaç sonradan
+    // alınan bir ödülle yeniden hesaplanmaz.
     private void HandleLevelUp(int newLevel)
     {
         int choices = ChoicesPerLevel;
         LevelsGained++;
-        CardChoicesGranted += choices;
-        pendingCardSelections += choices;
+        // Sayaçlar int sınırında doyar (NumericSafety, raporlanır): o kadar seçim zaten oynanamaz (P7: seçim ekranı yükü).
+        CardChoicesGranted = NumericSafety.Add(CardChoicesGranted, choices, NumericSite.Experience);
+        pendingCardSelections = NumericSafety.Add(pendingCardSelections, choices, NumericSite.Experience);
     }
 
     public bool OnCardSelectionComplete()
@@ -344,8 +438,8 @@ public class RoundManager : MonoBehaviour
             GameManager.Instance.CurrentState != GameStates.RoundEnd &&
             GameManager.Instance.CurrentState != GameStates.RunSetup)
             return;
-        // Round sonu seçimi tamamlanmadan sonraki round başlamaz.
-        if (IsRoundChoicePending) return;
+        // Round sonu seçimi tamamlanmadan sonraki round başlamaz. Geçersiz takvim, ödül havuzu ya da süre tablosuyla run hiç başlamaz.
+        if (IsRoundChoicePending || CalendarError != null || RewardPoolError != null || DurationError != null) return;
 
         if (!awaitingFirstRound) CurrentRound++;
 

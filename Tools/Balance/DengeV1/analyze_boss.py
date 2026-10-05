@@ -7,6 +7,7 @@ LOGS = os.environ.get('BALANCE_LOGS', os.path.join(_REPO, 'Library', 'Verificati
 name = sys.argv[1] if len(sys.argv) > 1 else 'bossab'
 rows = list(csv.reader(io.open(os.path.join(LOGS, 'BalanceRuns_%s.csv' % name), encoding='utf-8')))
 head = rows[0]
+import calendar_guard; calendar_guard.require_uniform(rows[1:], 'analyze_boss.py')   # açık boss takvimli profil: açık 'desteklenmiyor' sonucu
 runs = defaultdict(dict); meta = {}
 for r in rows[1:]:
     if len(r) < 12: meta.setdefault(r[0], {})['outcome'] = (r[8], int(r[7])); continue

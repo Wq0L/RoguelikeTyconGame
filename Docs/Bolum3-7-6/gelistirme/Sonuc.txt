@@ -1,0 +1,12 @@
+== ASAMA 1 ILK DENEME
+ZincirV1_asama1 | ZincirV1Verification.RunBatch | PASS: 24 checks | 10:24:54-10:25:28 | cikis: ok
+
+== ASAMA 2 ILK DENEME
+ZincirV1_asama2 | ZincirV1Verification.RunBatch | sonuc dosyasi yok | 10:32:43-10:32:49 | cikis: Verification failed with exit 1. See C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\ZincirV1Verification_RunBatch.log
+
+== ASAMA 2 IKINCI DENEME
+ZincirV1_asama2 | ZincirV1Verification.RunBatch | PASS: 38 checks | 10:33:08-10:34:08 | cikis: ok
+
+== ASAMA 2 UCUNCU DENEME (goruntu: patlama-elektrik)
+ZincirV1_asama2 | ZincirV1Verification.RunBatch | PASS: 38 checks | 10:35:17-10:36:17 | cikis: ok
+

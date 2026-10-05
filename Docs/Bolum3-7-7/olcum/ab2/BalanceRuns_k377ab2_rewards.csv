@@ -1,0 +1,301 @@
+run,policy,farmer,scythe,seed,label,round,offered,chosen
+1,Hasar-alan,bahcivan,standart,100,vadesinde XP,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+1,Hasar-alan,bahcivan,standart,100,vadesinde XP,6,bereketli_toprak bilgi_filizi hizli_bilek,hizli_bilek
+1,Hasar-alan,bahcivan,standart,100,vadesinde XP,10,nadir_tohum bilgi_filizi keskin_bicak,keskin_bicak
+1,Hasar-alan,bahcivan,standart,100,vadesinde XP,13,keskin_bicak yikim_gucu kritik_goz,keskin_bicak
+1,Hasar-alan,bahcivan,standart,100,vadesinde XP,16,yikim_gucu hizli_bilek altin_hedef,hizli_bilek
+1,Hasar-alan,bahcivan,standart,100,vadesinde XP,20,bilgi_filizi kivilcim nadir_tohum,nadir_tohum
+1,Hasar-alan,bahcivan,standart,100,vadesinde XP,23,canavar_kesimi cifte_akim bilgi_filizi,canavar_kesimi
+1,Hasar-alan,bahcivan,standart,100,vadesinde XP,26,kritik_goz genis_savurus bereketli_ogrenim,genis_savurus
+1,Hasar-alan,bahcivan,standart,100,vadesinde XP,30,zincir_hasat nadir_tohum bereketli_toprak,bereketli_toprak
+1,Hasar-alan,bahcivan,standart,100,vadesinde XP,33,genis_savurus davranisa_adanis yikim_gucu,genis_savurus
+1,Hasar-alan,bahcivan,standart,100,vadesinde XP,36,bereketli_ogrenim hizli_bilek artci_patlama,hizli_bilek
+1,Hasar-alan,bahcivan,standart,100,vadesinde XP,40,bereketli_ogrenim kritik_goz artci_patlama,kritik_goz
+1,Hasar-alan,bahcivan,standart,100,vadesinde XP,43,zincir_hasat altin_hedef hasat_ritmi,altin_hedef
+1,Hasar-alan,bahcivan,standart,100,vadesinde XP,46,bereketli_ogrenim zincir_hasat nadir_tohum,nadir_tohum
+1,Hasar-alan,bahcivan,standart,100,vadesinde XP,50,kivilcim zincir_hasat cifte_akim,kivilcim
+2,Hasar-alan,bahcivan,standart,101,vadesinde XP,3,hizli_bilek nadir_tohum bereketli_toprak,hizli_bilek
+2,Hasar-alan,bahcivan,standart,101,vadesinde XP,6,bilgi_filizi bereketli_toprak nadir_tohum,bereketli_toprak
+2,Hasar-alan,bahcivan,standart,101,vadesinde XP,10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+2,Hasar-alan,bahcivan,standart,101,vadesinde XP,13,agir_darbe kivilcim kritik_goz,kritik_goz
+2,Hasar-alan,bahcivan,standart,101,vadesinde XP,16,kivilcim altin_hedef kritik_goz,kritik_goz
+2,Hasar-alan,bahcivan,standart,101,vadesinde XP,20,hizli_bilek kivilcim yikim_gucu,hizli_bilek
+2,Hasar-alan,bahcivan,standart,101,vadesinde XP,23,davranisa_adanis artci_patlama hasat_ritmi,hasat_ritmi
+2,Hasar-alan,bahcivan,standart,101,vadesinde XP,26,zincir_hasat kritik_goz bereketli_ogrenim,kritik_goz
+2,Hasar-alan,bahcivan,standart,101,vadesinde XP,30,cifte_akim zincir_hasat davranisa_adanis,cifte_akim
+2,Hasar-alan,bahcivan,standart,101,vadesinde XP,33,nadir_tohum firtina_bilegi agir_darbe,firtina_bilegi
+2,Hasar-alan,bahcivan,standart,101,vadesinde XP,36,bereketli_toprak agir_darbe genis_savurus,genis_savurus
+2,Hasar-alan,bahcivan,standart,101,vadesinde XP,40,canavar_kesimi davranisa_adanis altin_hedef,canavar_kesimi
+2,Hasar-alan,bahcivan,standart,101,vadesinde XP,43,genis_savurus davranisa_adanis altin_hedef,genis_savurus
+2,Hasar-alan,bahcivan,standart,101,vadesinde XP,46,artci_patlama zincir_hasat bereketli_toprak,bereketli_toprak
+2,Hasar-alan,bahcivan,standart,101,vadesinde XP,50,bilgi_filizi bereketli_ogrenim yikim_gucu,yikim_gucu
+3,Hasar-alan,bahcivan,standart,102,vadesinde XP,3,nadir_tohum keskin_bicak bilgi_filizi,keskin_bicak
+3,Hasar-alan,bahcivan,standart,102,vadesinde XP,6,keskin_bicak nadir_tohum bereketli_toprak,keskin_bicak
+3,Hasar-alan,bahcivan,standart,102,vadesinde XP,10,nadir_tohum keskin_bicak hizli_bilek,keskin_bicak
+3,Hasar-alan,bahcivan,standart,102,vadesinde XP,13,nadir_tohum bilgi_filizi kivilcim,nadir_tohum
+3,Hasar-alan,bahcivan,standart,102,vadesinde XP,16,yikim_gucu altin_hedef kivilcim,altin_hedef
+3,Hasar-alan,bahcivan,standart,102,vadesinde XP,20,altin_hedef yikim_gucu kivilcim,altin_hedef
+3,Hasar-alan,bahcivan,standart,102,vadesinde XP,23,artci_patlama agir_darbe kritik_goz,kritik_goz
+3,Hasar-alan,bahcivan,standart,102,vadesinde XP,26,genis_savurus canavar_kesimi kivilcim,genis_savurus
+3,Hasar-alan,bahcivan,standart,102,vadesinde XP,30,firtina_bilegi artci_patlama davranisa_adanis,firtina_bilegi
+3,Hasar-alan,bahcivan,standart,102,vadesinde XP,33,artci_patlama bereketli_toprak bereketli_ogrenim,bereketli_toprak
+3,Hasar-alan,bahcivan,standart,102,vadesinde XP,36,agir_darbe artci_patlama davranisa_adanis,agir_darbe
+3,Hasar-alan,bahcivan,standart,102,vadesinde XP,40,artci_patlama hasat_ritmi davranisa_adanis,hasat_ritmi
+3,Hasar-alan,bahcivan,standart,102,vadesinde XP,43,zincir_hasat nadir_tohum kivilcim,nadir_tohum
+3,Hasar-alan,bahcivan,standart,102,vadesinde XP,46,bereketli_toprak bilgi_filizi zincir_hasat,bereketli_toprak
+3,Hasar-alan,bahcivan,standart,102,vadesinde XP,50,bereketli_ogrenim zincir_hasat bilgi_filizi,bilgi_filizi
+4,Hasar-alan,bahcivan,standart,103,vadesinde XP,3,keskin_bicak hizli_bilek bereketli_toprak,keskin_bicak
+4,Hasar-alan,bahcivan,standart,103,vadesinde XP,6,nadir_tohum bereketli_toprak hizli_bilek,hizli_bilek
+4,Hasar-alan,bahcivan,standart,103,vadesinde XP,10,nadir_tohum bilgi_filizi hizli_bilek,hizli_bilek
+4,Hasar-alan,bahcivan,standart,103,vadesinde XP,13,agir_darbe hizli_bilek yikim_gucu,hizli_bilek
+4,Hasar-alan,bahcivan,standart,103,vadesinde XP,16,kritik_goz altin_hedef yikim_gucu,kritik_goz
+4,Hasar-alan,bahcivan,standart,103,vadesinde XP,20,bilgi_filizi kivilcim altin_hedef,altin_hedef
+4,Hasar-alan,bahcivan,standart,103,vadesinde XP,23,genis_savurus artci_patlama zincir_hasat,genis_savurus
+4,Hasar-alan,bahcivan,standart,103,vadesinde XP,26,nadir_tohum davranisa_adanis zincir_hasat,nadir_tohum
+4,Hasar-alan,bahcivan,standart,103,vadesinde XP,30,firtina_bilegi agir_darbe davranisa_adanis,firtina_bilegi
+4,Hasar-alan,bahcivan,standart,103,vadesinde XP,33,artci_patlama genis_savurus kritik_goz,genis_savurus
+4,Hasar-alan,bahcivan,standart,103,vadesinde XP,36,bereketli_ogrenim hasat_ritmi cifte_akim,hasat_ritmi
+4,Hasar-alan,bahcivan,standart,103,vadesinde XP,40,canavar_kesimi altin_hedef agir_darbe,canavar_kesimi
+4,Hasar-alan,bahcivan,standart,103,vadesinde XP,43,davranisa_adanis artci_patlama zincir_hasat,artci_patlama
+4,Hasar-alan,bahcivan,standart,103,vadesinde XP,46,bereketli_ogrenim cifte_akim yikim_gucu,yikim_gucu
+4,Hasar-alan,bahcivan,standart,103,vadesinde XP,50,kritik_goz davranisa_adanis kivilcim,kritik_goz
+5,Hasar-alan,bahcivan,standart,104,vadesinde XP,3,keskin_bicak nadir_tohum bereketli_toprak,keskin_bicak
+5,Hasar-alan,bahcivan,standart,104,vadesinde XP,6,bereketli_toprak keskin_bicak bilgi_filizi,keskin_bicak
+5,Hasar-alan,bahcivan,standart,104,vadesinde XP,10,hizli_bilek bilgi_filizi nadir_tohum,hizli_bilek
+5,Hasar-alan,bahcivan,standart,104,vadesinde XP,13,kritik_goz bilgi_filizi keskin_bicak,keskin_bicak
+5,Hasar-alan,bahcivan,standart,104,vadesinde XP,16,kivilcim bilgi_filizi yikim_gucu,kivilcim
+5,Hasar-alan,bahcivan,standart,104,vadesinde XP,20,agir_darbe kritik_goz kivilcim,kritik_goz
+5,Hasar-alan,bahcivan,standart,104,vadesinde XP,23,davranisa_adanis genis_savurus cifte_akim,genis_savurus
+5,Hasar-alan,bahcivan,standart,104,vadesinde XP,26,kritik_goz bereketli_ogrenim hasat_ritmi,kritik_goz
+5,Hasar-alan,bahcivan,standart,104,vadesinde XP,30,genis_savurus altin_hedef firtina_bilegi,genis_savurus
+5,Hasar-alan,bahcivan,standart,104,vadesinde XP,33,hasat_ritmi firtina_bilegi nadir_tohum,firtina_bilegi
+5,Hasar-alan,bahcivan,standart,104,vadesinde XP,36,davranisa_adanis hasat_ritmi bereketli_ogrenim,hasat_ritmi
+5,Hasar-alan,bahcivan,standart,104,vadesinde XP,40,zincir_hasat artci_patlama cifte_akim,zincir_hasat
+5,Hasar-alan,bahcivan,standart,104,vadesinde XP,43,cifte_akim nadir_tohum artci_patlama,nadir_tohum
+5,Hasar-alan,bahcivan,standart,104,vadesinde XP,46,canavar_kesimi yikim_gucu artci_patlama,canavar_kesimi
+5,Hasar-alan,bahcivan,standart,104,vadesinde XP,50,kivilcim davranisa_adanis bereketli_ogrenim,kivilcim
+6,Hasar-alan,bahcivan,standart,105,vadesinde XP,3,hizli_bilek bilgi_filizi keskin_bicak,keskin_bicak
+6,Hasar-alan,bahcivan,standart,105,vadesinde XP,6,bilgi_filizi bereketli_toprak hizli_bilek,hizli_bilek
+6,Hasar-alan,bahcivan,standart,105,vadesinde XP,10,keskin_bicak hizli_bilek bilgi_filizi,keskin_bicak
+6,Hasar-alan,bahcivan,standart,105,vadesinde XP,13,yikim_gucu altin_hedef hizli_bilek,hizli_bilek
+6,Hasar-alan,bahcivan,standart,105,vadesinde XP,16,agir_darbe yikim_gucu altin_hedef,agir_darbe
+6,Hasar-alan,bahcivan,standart,105,vadesinde XP,20,nadir_tohum kritik_goz bereketli_toprak,kritik_goz
+6,Hasar-alan,bahcivan,standart,105,vadesinde XP,23,cifte_akim agir_darbe nadir_tohum,agir_darbe
+6,Hasar-alan,bahcivan,standart,105,vadesinde XP,26,genis_savurus cifte_akim kivilcim,genis_savurus
+6,Hasar-alan,bahcivan,standart,105,vadesinde XP,30,bereketli_ogrenim keskin_bicak canavar_kesimi,keskin_bicak
+6,Hasar-alan,bahcivan,standart,105,vadesinde XP,33,canavar_kesimi bereketli_ogrenim bilgi_filizi,canavar_kesimi
+6,Hasar-alan,bahcivan,standart,105,vadesinde XP,36,cifte_akim artci_patlama zincir_hasat,cifte_akim
+6,Hasar-alan,bahcivan,standart,105,vadesinde XP,40,bereketli_ogrenim artci_patlama genis_savurus,genis_savurus
+6,Hasar-alan,bahcivan,standart,105,vadesinde XP,43,nadir_tohum hasat_ritmi bilgi_filizi,nadir_tohum
+6,Hasar-alan,bahcivan,standart,105,vadesinde XP,46,davranisa_adanis bereketli_ogrenim yikim_gucu,yikim_gucu
+6,Hasar-alan,bahcivan,standart,105,vadesinde XP,50,davranisa_adanis firtina_bilegi bereketli_ogrenim,firtina_bilegi
+7,Hasar-alan,bahcivan,standart,106,vadesinde XP,3,bereketli_toprak bilgi_filizi nadir_tohum,bereketli_toprak
+7,Hasar-alan,bahcivan,standart,106,vadesinde XP,6,nadir_tohum bilgi_filizi hizli_bilek,hizli_bilek
+7,Hasar-alan,bahcivan,standart,106,vadesinde XP,10,bereketli_toprak nadir_tohum keskin_bicak,keskin_bicak
+7,Hasar-alan,bahcivan,standart,106,vadesinde XP,13,bilgi_filizi altin_hedef keskin_bicak,keskin_bicak
+7,Hasar-alan,bahcivan,standart,106,vadesinde XP,16,bereketli_toprak altin_hedef yikim_gucu,bereketli_toprak
+7,Hasar-alan,bahcivan,standart,106,vadesinde XP,20,kivilcim altin_hedef keskin_bicak,keskin_bicak
+7,Hasar-alan,bahcivan,standart,106,vadesinde XP,23,firtina_bilegi canavar_kesimi bereketli_ogrenim,canavar_kesimi
+7,Hasar-alan,bahcivan,standart,106,vadesinde XP,26,kivilcim altin_hedef hasat_ritmi,altin_hedef
+7,Hasar-alan,bahcivan,standart,106,vadesinde XP,30,davranisa_adanis altin_hedef bereketli_ogrenim,altin_hedef
+7,Hasar-alan,bahcivan,standart,106,vadesinde XP,33,yikim_gucu firtina_bilegi kivilcim,firtina_bilegi
+7,Hasar-alan,bahcivan,standart,106,vadesinde XP,36,zincir_hasat agir_darbe artci_patlama,agir_darbe
+7,Hasar-alan,bahcivan,standart,106,vadesinde XP,40,bereketli_ogrenim nadir_tohum hasat_ritmi,nadir_tohum
+7,Hasar-alan,bahcivan,standart,106,vadesinde XP,43,artci_patlama kivilcim nadir_tohum,nadir_tohum
+7,Hasar-alan,bahcivan,standart,106,vadesinde XP,46,kivilcim kritik_goz cifte_akim,kritik_goz
+7,Hasar-alan,bahcivan,standart,106,vadesinde XP,50,bereketli_ogrenim artci_patlama kritik_goz,kritik_goz
+8,Hasar-alan,bahcivan,standart,107,vadesinde XP,3,hizli_bilek bereketli_toprak bilgi_filizi,hizli_bilek
+8,Hasar-alan,bahcivan,standart,107,vadesinde XP,6,nadir_tohum hizli_bilek bilgi_filizi,hizli_bilek
+8,Hasar-alan,bahcivan,standart,107,vadesinde XP,10,bilgi_filizi hizli_bilek keskin_bicak,keskin_bicak
+8,Hasar-alan,bahcivan,standart,107,vadesinde XP,13,altin_hedef kivilcim agir_darbe,agir_darbe
+8,Hasar-alan,bahcivan,standart,107,vadesinde XP,16,altin_hedef hizli_bilek agir_darbe,hizli_bilek
+8,Hasar-alan,bahcivan,standart,107,vadesinde XP,20,yikim_gucu keskin_bicak bilgi_filizi,keskin_bicak
+8,Hasar-alan,bahcivan,standart,107,vadesinde XP,23,bereketli_ogrenim canavar_kesimi genis_savurus,genis_savurus
+8,Hasar-alan,bahcivan,standart,107,vadesinde XP,26,canavar_kesimi firtina_bilegi zincir_hasat,canavar_kesimi
+8,Hasar-alan,bahcivan,standart,107,vadesinde XP,30,artci_patlama cifte_akim genis_savurus,genis_savurus
+8,Hasar-alan,bahcivan,standart,107,vadesinde XP,33,cifte_akim artci_patlama zincir_hasat,cifte_akim
+8,Hasar-alan,bahcivan,standart,107,vadesinde XP,36,hasat_ritmi firtina_bilegi zincir_hasat,firtina_bilegi
+8,Hasar-alan,bahcivan,standart,107,vadesinde XP,40,hasat_ritmi altin_hedef artci_patlama,altin_hedef
+8,Hasar-alan,bahcivan,standart,107,vadesinde XP,43,agir_darbe artci_patlama kritik_goz,kritik_goz
+8,Hasar-alan,bahcivan,standart,107,vadesinde XP,46,artci_patlama davranisa_adanis bereketli_ogrenim,artci_patlama
+8,Hasar-alan,bahcivan,standart,107,vadesinde XP,50,yikim_gucu hasat_ritmi altin_hedef,altin_hedef
+9,Hasar-alan,bahcivan,standart,108,vadesinde XP,3,bilgi_filizi nadir_tohum keskin_bicak,keskin_bicak
+9,Hasar-alan,bahcivan,standart,108,vadesinde XP,6,keskin_bicak nadir_tohum bereketli_toprak,keskin_bicak
+9,Hasar-alan,bahcivan,standart,108,vadesinde XP,10,bereketli_toprak keskin_bicak hizli_bilek,keskin_bicak
+9,Hasar-alan,bahcivan,standart,108,vadesinde XP,13,nadir_tohum kritik_goz yikim_gucu,kritik_goz
+9,Hasar-alan,bahcivan,standart,108,vadesinde XP,16,kivilcim yikim_gucu kritik_goz,kritik_goz
+9,Hasar-alan,bahcivan,standart,108,vadesinde XP,20,agir_darbe bilgi_filizi kritik_goz,kritik_goz
+9,Hasar-alan,bahcivan,standart,108,vadesinde XP,23,firtina_bilegi hizli_bilek davranisa_adanis,hizli_bilek
+9,Hasar-alan,bahcivan,standart,108,vadesinde XP,26,zincir_hasat canavar_kesimi kivilcim,canavar_kesimi
+9,Hasar-alan,bahcivan,standart,108,vadesinde XP,30,cifte_akim davranisa_adanis genis_savurus,genis_savurus
+9,Hasar-alan,bahcivan,standart,108,vadesinde XP,33,bereketli_ogrenim hizli_bilek altin_hedef,hizli_bilek
+9,Hasar-alan,bahcivan,standart,108,vadesinde XP,36,genis_savurus cifte_akim davranisa_adanis,genis_savurus
+9,Hasar-alan,bahcivan,standart,108,vadesinde XP,40,bereketli_ogrenim hasat_ritmi yikim_gucu,hasat_ritmi
+9,Hasar-alan,bahcivan,standart,108,vadesinde XP,43,bereketli_ogrenim davranisa_adanis zincir_hasat,zincir_hasat
+9,Hasar-alan,bahcivan,standart,108,vadesinde XP,46,bereketli_ogrenim firtina_bilegi cifte_akim,firtina_bilegi
+9,Hasar-alan,bahcivan,standart,108,vadesinde XP,50,bereketli_ogrenim hizli_bilek artci_patlama,hizli_bilek
+10,Hasar-alan,bahcivan,standart,109,vadesinde XP,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+10,Hasar-alan,bahcivan,standart,109,vadesinde XP,6,hizli_bilek keskin_bicak nadir_tohum,keskin_bicak
+10,Hasar-alan,bahcivan,standart,109,vadesinde XP,10,hizli_bilek bilgi_filizi keskin_bicak,keskin_bicak
+10,Hasar-alan,bahcivan,standart,109,vadesinde XP,13,agir_darbe kritik_goz nadir_tohum,kritik_goz
+10,Hasar-alan,bahcivan,standart,109,vadesinde XP,16,yikim_gucu bereketli_toprak altin_hedef,bereketli_toprak
+10,Hasar-alan,bahcivan,standart,109,vadesinde XP,20,agir_darbe altin_hedef nadir_tohum,agir_darbe
+10,Hasar-alan,bahcivan,standart,109,vadesinde XP,23,zincir_hasat artci_patlama bereketli_ogrenim,zincir_hasat
+10,Hasar-alan,bahcivan,standart,109,vadesinde XP,26,altin_hedef firtina_bilegi artci_patlama,firtina_bilegi
+10,Hasar-alan,bahcivan,standart,109,vadesinde XP,30,bereketli_ogrenim davranisa_adanis genis_savurus,genis_savurus
+10,Hasar-alan,bahcivan,standart,109,vadesinde XP,33,bilgi_filizi agir_darbe canavar_kesimi,canavar_kesimi
+10,Hasar-alan,bahcivan,standart,109,vadesinde XP,36,hasat_ritmi davranisa_adanis altin_hedef,altin_hedef
+10,Hasar-alan,bahcivan,standart,109,vadesinde XP,40,genis_savurus artci_patlama nadir_tohum,genis_savurus
+10,Hasar-alan,bahcivan,standart,109,vadesinde XP,43,bereketli_ogrenim cifte_akim kivilcim,kivilcim
+10,Hasar-alan,bahcivan,standart,109,vadesinde XP,46,cifte_akim bereketli_toprak kivilcim,bereketli_toprak
+10,Hasar-alan,bahcivan,standart,109,vadesinde XP,50,nadir_tohum bereketli_ogrenim cifte_akim,nadir_tohum
+11,Davranış yönü,bahcivan,standart,100,vadesinde XP,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+11,Davranış yönü,bahcivan,standart,100,vadesinde XP,6,bereketli_toprak bilgi_filizi hizli_bilek,hizli_bilek
+11,Davranış yönü,bahcivan,standart,100,vadesinde XP,10,nadir_tohum bilgi_filizi keskin_bicak,keskin_bicak
+11,Davranış yönü,bahcivan,standart,100,vadesinde XP,13,keskin_bicak yikim_gucu kritik_goz,yikim_gucu
+11,Davranış yönü,bahcivan,standart,100,vadesinde XP,16,yikim_gucu keskin_bicak altin_hedef,yikim_gucu
+11,Davranış yönü,bahcivan,standart,100,vadesinde XP,20,nadir_tohum kivilcim bilgi_filizi,kivilcim
+11,Davranış yönü,bahcivan,standart,100,vadesinde XP,23,canavar_kesimi cifte_akim bilgi_filizi,cifte_akim
+11,Davranış yönü,bahcivan,standart,100,vadesinde XP,26,kritik_goz genis_savurus bereketli_ogrenim,genis_savurus
+11,Davranış yönü,bahcivan,standart,100,vadesinde XP,30,zincir_hasat bereketli_toprak hizli_bilek,zincir_hasat
+11,Davranış yönü,bahcivan,standart,100,vadesinde XP,33,genis_savurus bereketli_ogrenim altin_hedef,genis_savurus
+11,Davranış yönü,bahcivan,standart,100,vadesinde XP,36,bereketli_ogrenim keskin_bicak firtina_bilegi,firtina_bilegi
+11,Davranış yönü,bahcivan,standart,100,vadesinde XP,40,hasat_ritmi kivilcim artci_patlama,kivilcim
+11,Davranış yönü,bahcivan,standart,100,vadesinde XP,43,davranisa_adanis agir_darbe hasat_ritmi,agir_darbe
+11,Davranış yönü,bahcivan,standart,100,vadesinde XP,46,bereketli_ogrenim davranisa_adanis hizli_bilek,hizli_bilek
+11,Davranış yönü,bahcivan,standart,100,vadesinde XP,50,nadir_tohum davranisa_adanis canavar_kesimi,nadir_tohum
+12,Davranış yönü,bahcivan,standart,101,vadesinde XP,3,hizli_bilek nadir_tohum bereketli_toprak,hizli_bilek
+12,Davranış yönü,bahcivan,standart,101,vadesinde XP,6,bilgi_filizi hizli_bilek nadir_tohum,hizli_bilek
+12,Davranış yönü,bahcivan,standart,101,vadesinde XP,10,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+12,Davranış yönü,bahcivan,standart,101,vadesinde XP,13,agir_darbe kivilcim kritik_goz,kivilcim
+12,Davranış yönü,bahcivan,standart,101,vadesinde XP,16,kivilcim altin_hedef kritik_goz,kivilcim
+12,Davranış yönü,bahcivan,standart,101,vadesinde XP,20,hizli_bilek kivilcim yikim_gucu,kivilcim
+12,Davranış yönü,bahcivan,standart,101,vadesinde XP,23,davranisa_adanis artci_patlama hasat_ritmi,artci_patlama
+12,Davranış yönü,bahcivan,standart,101,vadesinde XP,26,zincir_hasat kritik_goz bereketli_ogrenim,zincir_hasat
+12,Davranış yönü,bahcivan,standart,101,vadesinde XP,30,cifte_akim davranisa_adanis bereketli_ogrenim,cifte_akim
+12,Davranış yönü,bahcivan,standart,101,vadesinde XP,33,nadir_tohum canavar_kesimi agir_darbe,nadir_tohum
+12,Davranış yönü,bahcivan,standart,101,vadesinde XP,36,bereketli_toprak kritik_goz genis_savurus,bereketli_toprak
+12,Davranış yönü,bahcivan,standart,101,vadesinde XP,40,canavar_kesimi bereketli_ogrenim altin_hedef,canavar_kesimi
+12,Davranış yönü,bahcivan,standart,101,vadesinde XP,43,genis_savurus bereketli_ogrenim altin_hedef,genis_savurus
+12,Davranış yönü,bahcivan,standart,101,vadesinde XP,46,firtina_bilegi bereketli_ogrenim bereketli_toprak,firtina_bilegi
+12,Davranış yönü,bahcivan,standart,101,vadesinde XP,50,bilgi_filizi hasat_ritmi yikim_gucu,yikim_gucu
+13,Davranış yönü,bahcivan,standart,102,vadesinde XP,3,nadir_tohum keskin_bicak bilgi_filizi,keskin_bicak
+13,Davranış yönü,bahcivan,standart,102,vadesinde XP,6,keskin_bicak nadir_tohum bereketli_toprak,bereketli_toprak
+13,Davranış yönü,bahcivan,standart,102,vadesinde XP,10,nadir_tohum keskin_bicak bereketli_toprak,bereketli_toprak
+13,Davranış yönü,bahcivan,standart,102,vadesinde XP,13,nadir_tohum bilgi_filizi kivilcim,kivilcim
+13,Davranış yönü,bahcivan,standart,102,vadesinde XP,16,yikim_gucu altin_hedef kivilcim,kivilcim
+13,Davranış yönü,bahcivan,standart,102,vadesinde XP,20,altin_hedef yikim_gucu kivilcim,kivilcim
+13,Davranış yönü,bahcivan,standart,102,vadesinde XP,23,artci_patlama agir_darbe altin_hedef,artci_patlama
+13,Davranış yönü,bahcivan,standart,102,vadesinde XP,26,genis_savurus canavar_kesimi agir_darbe,genis_savurus
+13,Davranış yönü,bahcivan,standart,102,vadesinde XP,30,canavar_kesimi cifte_akim davranisa_adanis,cifte_akim
+13,Davranış yönü,bahcivan,standart,102,vadesinde XP,33,firtina_bilegi hizli_bilek bereketli_ogrenim,hizli_bilek
+13,Davranış yönü,bahcivan,standart,102,vadesinde XP,36,agir_darbe firtina_bilegi davranisa_adanis,firtina_bilegi
+13,Davranış yönü,bahcivan,standart,102,vadesinde XP,40,canavar_kesimi bereketli_ogrenim davranisa_adanis,canavar_kesimi
+13,Davranış yönü,bahcivan,standart,102,vadesinde XP,43,zincir_hasat bereketli_toprak bilgi_filizi,zincir_hasat
+13,Davranış yönü,bahcivan,standart,102,vadesinde XP,46,hizli_bilek bereketli_toprak davranisa_adanis,hizli_bilek
+13,Davranış yönü,bahcivan,standart,102,vadesinde XP,50,bereketli_ogrenim davranisa_adanis hizli_bilek,hizli_bilek
+14,Davranış yönü,bahcivan,standart,103,vadesinde XP,3,keskin_bicak hizli_bilek bereketli_toprak,hizli_bilek
+14,Davranış yönü,bahcivan,standart,103,vadesinde XP,6,nadir_tohum bereketli_toprak hizli_bilek,hizli_bilek
+14,Davranış yönü,bahcivan,standart,103,vadesinde XP,10,nadir_tohum bilgi_filizi hizli_bilek,hizli_bilek
+14,Davranış yönü,bahcivan,standart,103,vadesinde XP,13,agir_darbe bereketli_toprak yikim_gucu,yikim_gucu
+14,Davranış yönü,bahcivan,standart,103,vadesinde XP,16,kritik_goz altin_hedef yikim_gucu,yikim_gucu
+14,Davranış yönü,bahcivan,standart,103,vadesinde XP,20,bilgi_filizi kivilcim altin_hedef,kivilcim
+14,Davranış yönü,bahcivan,standart,103,vadesinde XP,23,genis_savurus artci_patlama zincir_hasat,zincir_hasat
+14,Davranış yönü,bahcivan,standart,103,vadesinde XP,26,bereketli_toprak bereketli_ogrenim davranisa_adanis,bereketli_toprak
+14,Davranış yönü,bahcivan,standart,103,vadesinde XP,30,canavar_kesimi kivilcim bereketli_ogrenim,kivilcim
+14,Davranış yönü,bahcivan,standart,103,vadesinde XP,33,firtina_bilegi genis_savurus kritik_goz,firtina_bilegi
+14,Davranış yönü,bahcivan,standart,103,vadesinde XP,36,hasat_ritmi cifte_akim artci_patlama,artci_patlama
+14,Davranış yönü,bahcivan,standart,103,vadesinde XP,40,genis_savurus altin_hedef agir_darbe,genis_savurus
+14,Davranış yönü,bahcivan,standart,103,vadesinde XP,43,bereketli_ogrenim canavar_kesimi davranisa_adanis,canavar_kesimi
+14,Davranış yönü,bahcivan,standart,103,vadesinde XP,46,hasat_ritmi genis_savurus cifte_akim,cifte_akim
+14,Davranış yönü,bahcivan,standart,103,vadesinde XP,50,kritik_goz bereketli_ogrenim kivilcim,kivilcim
+15,Davranış yönü,bahcivan,standart,104,vadesinde XP,3,keskin_bicak nadir_tohum bereketli_toprak,bereketli_toprak
+15,Davranış yönü,bahcivan,standart,104,vadesinde XP,6,bereketli_toprak keskin_bicak bilgi_filizi,bereketli_toprak
+15,Davranış yönü,bahcivan,standart,104,vadesinde XP,10,hizli_bilek bilgi_filizi nadir_tohum,hizli_bilek
+15,Davranış yönü,bahcivan,standart,104,vadesinde XP,13,kritik_goz bilgi_filizi keskin_bicak,keskin_bicak
+15,Davranış yönü,bahcivan,standart,104,vadesinde XP,16,kivilcim nadir_tohum yikim_gucu,kivilcim
+15,Davranış yönü,bahcivan,standart,104,vadesinde XP,20,agir_darbe kritik_goz kivilcim,kivilcim
+15,Davranış yönü,bahcivan,standart,104,vadesinde XP,23,davranisa_adanis genis_savurus cifte_akim,cifte_akim
+15,Davranış yönü,bahcivan,standart,104,vadesinde XP,26,kritik_goz hasat_ritmi bereketli_ogrenim,kritik_goz
+15,Davranış yönü,bahcivan,standart,104,vadesinde XP,30,genis_savurus kritik_goz firtina_bilegi,firtina_bilegi
+15,Davranış yönü,bahcivan,standart,104,vadesinde XP,33,hasat_ritmi canavar_kesimi bereketli_toprak,bereketli_toprak
+15,Davranış yönü,bahcivan,standart,104,vadesinde XP,36,davranisa_adanis hasat_ritmi bereketli_ogrenim,hasat_ritmi
+15,Davranış yönü,bahcivan,standart,104,vadesinde XP,40,zincir_hasat canavar_kesimi artci_patlama,zincir_hasat
+15,Davranış yönü,bahcivan,standart,104,vadesinde XP,43,artci_patlama nadir_tohum canavar_kesimi,artci_patlama
+15,Davranış yönü,bahcivan,standart,104,vadesinde XP,46,genis_savurus altin_hedef canavar_kesimi,genis_savurus
+15,Davranış yönü,bahcivan,standart,104,vadesinde XP,50,kivilcim davranisa_adanis bereketli_ogrenim,kivilcim
+16,Davranış yönü,bahcivan,standart,105,vadesinde XP,3,hizli_bilek bilgi_filizi keskin_bicak,hizli_bilek
+16,Davranış yönü,bahcivan,standart,105,vadesinde XP,6,bilgi_filizi bereketli_toprak hizli_bilek,hizli_bilek
+16,Davranış yönü,bahcivan,standart,105,vadesinde XP,10,keskin_bicak hizli_bilek bilgi_filizi,hizli_bilek
+16,Davranış yönü,bahcivan,standart,105,vadesinde XP,13,yikim_gucu altin_hedef bereketli_toprak,yikim_gucu
+16,Davranış yönü,bahcivan,standart,105,vadesinde XP,16,agir_darbe yikim_gucu altin_hedef,yikim_gucu
+16,Davranış yönü,bahcivan,standart,105,vadesinde XP,20,bilgi_filizi kritik_goz nadir_tohum,nadir_tohum
+16,Davranış yönü,bahcivan,standart,105,vadesinde XP,23,cifte_akim kritik_goz bilgi_filizi,cifte_akim
+16,Davranış yönü,bahcivan,standart,105,vadesinde XP,26,genis_savurus artci_patlama kivilcim,kivilcim
+16,Davranış yönü,bahcivan,standart,105,vadesinde XP,30,davranisa_adanis keskin_bicak genis_savurus,genis_savurus
+16,Davranış yönü,bahcivan,standart,105,vadesinde XP,33,genis_savurus bereketli_ogrenim nadir_tohum,genis_savurus
+16,Davranış yönü,bahcivan,standart,105,vadesinde XP,36,firtina_bilegi artci_patlama zincir_hasat,zincir_hasat
+16,Davranış yönü,bahcivan,standart,105,vadesinde XP,40,hasat_ritmi firtina_bilegi canavar_kesimi,firtina_bilegi
+16,Davranış yönü,bahcivan,standart,105,vadesinde XP,43,nadir_tohum artci_patlama bilgi_filizi,artci_patlama
+16,Davranış yönü,bahcivan,standart,105,vadesinde XP,46,bereketli_ogrenim hasat_ritmi agir_darbe,agir_darbe
+16,Davranış yönü,bahcivan,standart,105,vadesinde XP,50,bereketli_ogrenim canavar_kesimi hasat_ritmi,canavar_kesimi
+17,Davranış yönü,bahcivan,standart,106,vadesinde XP,3,bereketli_toprak bilgi_filizi nadir_tohum,bereketli_toprak
+17,Davranış yönü,bahcivan,standart,106,vadesinde XP,6,nadir_tohum bilgi_filizi hizli_bilek,hizli_bilek
+17,Davranış yönü,bahcivan,standart,106,vadesinde XP,10,bereketli_toprak nadir_tohum keskin_bicak,bereketli_toprak
+17,Davranış yönü,bahcivan,standart,106,vadesinde XP,13,bilgi_filizi altin_hedef keskin_bicak,keskin_bicak
+17,Davranış yönü,bahcivan,standart,106,vadesinde XP,16,bereketli_toprak altin_hedef yikim_gucu,yikim_gucu
+17,Davranış yönü,bahcivan,standart,106,vadesinde XP,20,kivilcim altin_hedef keskin_bicak,kivilcim
+17,Davranış yönü,bahcivan,standart,106,vadesinde XP,23,canavar_kesimi genis_savurus bereketli_ogrenim,genis_savurus
+17,Davranış yönü,bahcivan,standart,106,vadesinde XP,26,kivilcim altin_hedef hasat_ritmi,kivilcim
+17,Davranış yönü,bahcivan,standart,106,vadesinde XP,30,davranisa_adanis altin_hedef bereketli_ogrenim,altin_hedef
+17,Davranış yönü,bahcivan,standart,106,vadesinde XP,33,altin_hedef canavar_kesimi kivilcim,kivilcim
+17,Davranış yönü,bahcivan,standart,106,vadesinde XP,36,zincir_hasat altin_hedef canavar_kesimi,zincir_hasat
+17,Davranış yönü,bahcivan,standart,106,vadesinde XP,40,hasat_ritmi bereketli_toprak artci_patlama,artci_patlama
+17,Davranış yönü,bahcivan,standart,106,vadesinde XP,43,canavar_kesimi bilgi_filizi hizli_bilek,hizli_bilek
+17,Davranış yönü,bahcivan,standart,106,vadesinde XP,46,nadir_tohum kritik_goz firtina_bilegi,firtina_bilegi
+17,Davranış yönü,bahcivan,standart,106,vadesinde XP,50,bereketli_ogrenim canavar_kesimi kritik_goz,canavar_kesimi
+18,Davranış yönü,bahcivan,standart,107,vadesinde XP,3,hizli_bilek bereketli_toprak bilgi_filizi,hizli_bilek
+18,Davranış yönü,bahcivan,standart,107,vadesinde XP,6,nadir_tohum hizli_bilek bilgi_filizi,hizli_bilek
+18,Davranış yönü,bahcivan,standart,107,vadesinde XP,10,bilgi_filizi hizli_bilek keskin_bicak,hizli_bilek
+18,Davranış yönü,bahcivan,standart,107,vadesinde XP,13,altin_hedef agir_darbe kivilcim,kivilcim
+18,Davranış yönü,bahcivan,standart,107,vadesinde XP,16,altin_hedef nadir_tohum agir_darbe,nadir_tohum
+18,Davranış yönü,bahcivan,standart,107,vadesinde XP,20,yikim_gucu keskin_bicak bilgi_filizi,yikim_gucu
+18,Davranış yönü,bahcivan,standart,107,vadesinde XP,23,bereketli_ogrenim canavar_kesimi genis_savurus,genis_savurus
+18,Davranış yönü,bahcivan,standart,107,vadesinde XP,26,canavar_kesimi firtina_bilegi zincir_hasat,zincir_hasat
+18,Davranış yönü,bahcivan,standart,107,vadesinde XP,30,firtina_bilegi artci_patlama genis_savurus,artci_patlama
+18,Davranış yönü,bahcivan,standart,107,vadesinde XP,33,firtina_bilegi canavar_kesimi davranisa_adanis,firtina_bilegi
+18,Davranış yönü,bahcivan,standart,107,vadesinde XP,36,cifte_akim genis_savurus davranisa_adanis,cifte_akim
+18,Davranış yönü,bahcivan,standart,107,vadesinde XP,40,canavar_kesimi altin_hedef genis_savurus,genis_savurus
+18,Davranış yönü,bahcivan,standart,107,vadesinde XP,43,kivilcim canavar_kesimi agir_darbe,kivilcim
+18,Davranış yönü,bahcivan,standart,107,vadesinde XP,46,yikim_gucu davranisa_adanis hasat_ritmi,yikim_gucu
+18,Davranış yönü,bahcivan,standart,107,vadesinde XP,50,yikim_gucu canavar_kesimi altin_hedef,yikim_gucu
+19,Davranış yönü,bahcivan,standart,108,vadesinde XP,3,bilgi_filizi nadir_tohum keskin_bicak,keskin_bicak
+19,Davranış yönü,bahcivan,standart,108,vadesinde XP,6,keskin_bicak nadir_tohum bereketli_toprak,bereketli_toprak
+19,Davranış yönü,bahcivan,standart,108,vadesinde XP,10,bereketli_toprak keskin_bicak hizli_bilek,hizli_bilek
+19,Davranış yönü,bahcivan,standart,108,vadesinde XP,13,hizli_bilek kritik_goz yikim_gucu,yikim_gucu
+19,Davranış yönü,bahcivan,standart,108,vadesinde XP,16,bilgi_filizi yikim_gucu agir_darbe,yikim_gucu
+19,Davranış yönü,bahcivan,standart,108,vadesinde XP,20,agir_darbe nadir_tohum kivilcim,kivilcim
+19,Davranış yönü,bahcivan,standart,108,vadesinde XP,23,firtina_bilegi keskin_bicak bereketli_ogrenim,firtina_bilegi
+19,Davranış yönü,bahcivan,standart,108,vadesinde XP,26,zincir_hasat canavar_kesimi bilgi_filizi,zincir_hasat
+19,Davranış yönü,bahcivan,standart,108,vadesinde XP,30,artci_patlama bereketli_ogrenim yikim_gucu,yikim_gucu
+19,Davranış yönü,bahcivan,standart,108,vadesinde XP,33,hasat_ritmi keskin_bicak agir_darbe,keskin_bicak
+19,Davranış yönü,bahcivan,standart,108,vadesinde XP,36,altin_hedef artci_patlama bereketli_ogrenim,artci_patlama
+19,Davranış yönü,bahcivan,standart,108,vadesinde XP,40,cifte_akim hasat_ritmi kritik_goz,cifte_akim
+19,Davranış yönü,bahcivan,standart,108,vadesinde XP,43,hasat_ritmi bereketli_ogrenim davranisa_adanis,hasat_ritmi
+19,Davranış yönü,bahcivan,standart,108,vadesinde XP,46,canavar_kesimi altin_hedef bereketli_ogrenim,canavar_kesimi
+19,Davranış yönü,bahcivan,standart,108,vadesinde XP,50,bereketli_ogrenim keskin_bicak genis_savurus,genis_savurus
+20,Davranış yönü,bahcivan,standart,109,vadesinde XP,3,keskin_bicak nadir_tohum bilgi_filizi,keskin_bicak
+20,Davranış yönü,bahcivan,standart,109,vadesinde XP,6,hizli_bilek keskin_bicak nadir_tohum,hizli_bilek
+20,Davranış yönü,bahcivan,standart,109,vadesinde XP,10,hizli_bilek bilgi_filizi keskin_bicak,hizli_bilek
+20,Davranış yönü,bahcivan,standart,109,vadesinde XP,13,agir_darbe kritik_goz hizli_bilek,hizli_bilek
+20,Davranış yönü,bahcivan,standart,109,vadesinde XP,16,yikim_gucu bereketli_toprak altin_hedef,yikim_gucu
+20,Davranış yönü,bahcivan,standart,109,vadesinde XP,20,kivilcim altin_hedef bereketli_toprak,kivilcim
+20,Davranış yönü,bahcivan,standart,109,vadesinde XP,23,zincir_hasat artci_patlama bereketli_ogrenim,zincir_hasat
+20,Davranış yönü,bahcivan,standart,109,vadesinde XP,26,kritik_goz firtina_bilegi artci_patlama,artci_patlama
+20,Davranış yönü,bahcivan,standart,109,vadesinde XP,30,bereketli_ogrenim davranisa_adanis yikim_gucu,yikim_gucu
+20,Davranış yönü,bahcivan,standart,109,vadesinde XP,33,bilgi_filizi agir_darbe canavar_kesimi,canavar_kesimi
+20,Davranış yönü,bahcivan,standart,109,vadesinde XP,36,hasat_ritmi davranisa_adanis altin_hedef,altin_hedef
+20,Davranış yönü,bahcivan,standart,109,vadesinde XP,40,genis_savurus firtina_bilegi nadir_tohum,firtina_bilegi
+20,Davranış yönü,bahcivan,standart,109,vadesinde XP,43,bereketli_ogrenim cifte_akim kivilcim,kivilcim
+20,Davranış yönü,bahcivan,standart,109,vadesinde XP,46,cifte_akim bereketli_toprak kivilcim,kivilcim
+20,Davranış yönü,bahcivan,standart,109,vadesinde XP,50,bereketli_toprak bereketli_ogrenim cifte_akim,cifte_akim

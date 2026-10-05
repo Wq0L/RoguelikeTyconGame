@@ -53,6 +53,7 @@ public class UIManager : MonoBehaviour
         BossWeatherOverlay.Ensure();
         specializationPanel = SpecializationPanelUI.Attach(roundEndUI.transform.parent);
         bossRewardPanel = BossRewardPanelUI.Attach(roundEndUI.transform.parent);
+        LevelWorkStatusUI.Attach(roundEndUI.transform.parent);
         RoundNewTilesUI.Attach(roundEndUI);
         roundPreview = RoundPreviewUI.Attach(roundEndUI, this);
         if (roundPreview != null) UIPanelTransition.Attach(roundPreview.gameObject, true);

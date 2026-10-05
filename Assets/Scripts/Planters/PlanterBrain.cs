@@ -187,6 +187,7 @@ public class PlanterBrain : MonoBehaviour
 
     public float GetFinalStat(StatType statType)
     {
+        if (DemoSceneSettings.Blocks(statType)) return 0f;
         int currentVersion = StatManager.Instance.GlobalVersion;
 
         if (currentVersion != cachedVersion || localDirty)
@@ -246,8 +247,8 @@ public class PlanterBrain : MonoBehaviour
     public float BehaviorDamageMultiplier(DamageType type) =>
         RunPower.Behavior(ResonanceManager.BehaviorMultiplier(activeResonances, type));
 
-    public int GetBehaviorDamage(int baseDamage, DamageType type) => (int)System.Math.Min(int.MaxValue,
-        System.Math.Max(0, System.Math.Round(baseDamage * (double)BehaviorDamageMultiplier(type))));
+    public int GetBehaviorDamage(int baseDamage, DamageType type) =>
+        NumericSafety.ToInt(baseDamage * (double)BehaviorDamageMultiplier(type), 0, NumericSite.BehaviorDamage);
 
     public void RemoveSelf()
     {
@@ -312,13 +313,24 @@ public class PlanterBrain : MonoBehaviour
         return closest;
     }
 
-    private bool IsValidHarvestSource(GridObject sourceGrid, PlantHealth sourcePlant)
+    // Saksı yerinde ve kendi hücrelerinin sahibi mi (satılmış / yok olmuş saksı zincir işi yürütmez).
+    public bool IsPlaced => !removed && occupiedGrids.Count > 0;
+
+    // Ölen bitki bu saksının, verilen hücrede ve o hücre hâlâ bu saksının mı (hasadın türünden bağımsız).
+    public bool IsHarvestSource(GridObject sourceGrid, PlantHealth sourcePlant)
     {
-        return !removed && sourcePlant != null && sourcePlant.IsDead &&
-            sourcePlant.KilledBy.CanTriggerBehaviors() && sourcePlant.Owner == this &&
-            sourceGrid != null && occupiedGrids.Contains(sourceGrid) &&
-            sourceGrid.GetPlanterBrain() == this;
+        return !removed && sourcePlant != null && sourcePlant.IsDead && sourcePlant.Owner == this &&
+            sourceGrid != null && occupiedGrids.Contains(sourceGrid) && sourceGrid.GetPlanterBrain() == this;
     }
+
+    // Normal tetik yalnız doğrudan hasatta (DamageTypeRules.CanTriggerBehaviors).
+    private bool IsValidHarvestSource(GridObject sourceGrid, PlantHealth sourcePlant) =>
+        IsHarvestSource(sourceGrid, sourcePlant) && sourcePlant.KilledBy.CanTriggerBehaviors();
+
+    // Davranışların taban hasarı (HarvestDamage stat'ı): normal tetik ve zincir aynı değeri kullanır. int sınırını aşan stat doyar
+    // (eskiden negatife taşıp davranışı 0 / 1 hasara düşürüyordu).
+    public static int HarvestDamage =>
+        NumericSafety.ToInt(StatManager.Instance.GetFinalStat(StatType.HarvestDamage, StatTarget.Player), 0, NumericSite.BehaviorBase);
 
     public void TryExplode(GridObject sourceGrid, PlantHealth sourcePlant)
     {
@@ -327,37 +339,39 @@ public class PlanterBrain : MonoBehaviour
         if (chance <= 0f) return;
         if (Random.value > chance) return; // şans tutmadı
 
-        VFXManager.Instance?.PlayExplosion(sourcePlant.transform.position, true);
         HarvestBehaviorStats.Record(DamageType.Explosion, true);
+        int root = sourcePlant.KillLink.Root;
+        int damage = Explode(sourcePlant.transform.position, HarvestLink.Behavior(root, 0), 1f);
+        HarvestChain.MarkTriggered(root, this, DamageType.Explosion);
+        // Artçı Patlama (kırılma ödülü): şansı tutan bu normal patlamadan sonra, aynı merkezde gecikmeli ikinci patlama.
+        // "damage" burada ilk patlamanın hesaplanmış hasarıdır; artçı onun bir oranını kullanır, katsayılar yeniden uygulanmaz.
+        // Zincirden doğan patlama Explode'u doğrudan çağırır: artçı üretmez.
+        if (RunPower.TryGetEcho(DamageType.Explosion, out BehaviorEcho echo) && BehaviorEchoes.Instance != null)
+            BehaviorEchoes.Instance.ScheduleExplosion(this, occupiedGrids, sourcePlant.transform.position, damage, echo);
+    }
 
-        int damage = Mathf.RoundToInt(
-            StatManager.Instance.GetFinalStat(StatType.HarvestDamage, StatTarget.Player)
-        );
+    private static readonly Vector2Int[] ExplosionDirections = { new(0, 1), new(0, -1), new(1, 0), new(-1, 0) };
+    private readonly HashSet<GridObject> explosionTargets = new();
 
+    // Patlama: saksının dört yönden komşuları, bir kez. Normal tetik ve zincir aynı yoldan geçer. damageFactor: zincir neslinin
+    // hasar çarpanı (normal tetikte 1); normal davranış hasarının üzerine bir kez. link: vuruşların bağlamı. Hesaplanmış hasarı döner.
+    public int Explode(Vector3 center, HarvestLink link, float damageFactor)
+    {
+        VFXManager.Instance?.PlayExplosion(center, true);
+        int damage = HarvestChain.Scale(GetBehaviorDamage(HarvestDamage, DamageType.Explosion), damageFactor);
         GridSystem gridSystem = GridManager.Instance.GetGridSystem();
-        damage = GetBehaviorDamage(damage, DamageType.Explosion);
-        HashSet<GridObject> hitTargets = new HashSet<GridObject>();
-
+        explosionTargets.Clear();
         foreach (GridObject occupiedGrid in occupiedGrids)
         {
             GroundCell cell = occupiedGrid.GetGroundCellCached();
             if (cell == null) continue;
-
             GridPosition pos = cell.GetGridPosition();
-
-            Vector2Int[] directions = {
-                new Vector2Int(0, 1), new Vector2Int(0, -1),
-                new Vector2Int(1, 0), new Vector2Int(-1, 0)
-            };
-
-            foreach (Vector2Int dir in directions)
+            foreach (Vector2Int dir in ExplosionDirections)
             {
-                GridPosition neighborPos = new GridPosition(pos.x + dir.x, pos.z + dir.y);
-                GridObject neighbor = gridSystem.GetGridObject(neighborPos);
-
+                GridObject neighbor = gridSystem.GetGridObject(new GridPosition(pos.x + dir.x, pos.z + dir.y));
                 if (neighbor == null) continue;
                 if (occupiedGrids.Contains(neighbor)) continue;
-                if (!hitTargets.Add(neighbor)) continue;
+                if (!explosionTargets.Add(neighbor)) continue;
 
                 GameObject plant = neighbor.GetPlantObject();
                 if (plant == null) continue;
@@ -365,32 +379,47 @@ public class PlanterBrain : MonoBehaviour
                 IDamageable damageable = plant.GetComponent<IDamageable>();
                 if (damageable == null || (damageable is PlantHealth health && health.IsDead)) continue;
                 VFXManager.Instance?.PlayExplosion(plant.transform.position, false);
-                damageable.TakeDamage(damage, DamageType.Explosion);
+                if (damageable is PlantHealth target) target.TakeDamage(damage, DamageType.Explosion, false, 1f, link);
+                else damageable.TakeDamage(damage, DamageType.Explosion);
             }
         }
-        // Artçı Patlama (kırılma ödülü): şansı tutan bu normal patlamadan sonra, aynı merkezde gecikmeli ikinci patlama.
-        // "damage" burada ilk patlamanın hesaplanmış hasarıdır; artçı onun bir oranını kullanır, katsayılar yeniden uygulanmaz.
-        if (RunPower.TryGetEcho(DamageType.Explosion, out BehaviorEcho echo) && BehaviorEchoes.Instance != null)
-            BehaviorEchoes.Instance.ScheduleExplosion(this, occupiedGrids, sourcePlant.transform.position, damage, echo);
+        explosionTargets.Clear();
+        return damage;
     }
 
+    // Bitki öldüğünde (PlantSpawner). Doğrudan hasat: normal tetik — eski şans, eski zar sırası, eski hasar; vuruşların bağlamı
+    // doğrudan saldırının kökünü taşır ve gerçekten çalışan davranış kökte işaretlenir. Davranış hasadı: zincir kararı
+    // HarvestChain'de (ödül yoksa hiçbir şey olmaz).
     public void TriggerHarvestBehaviors(GridObject sourceGrid, PlantHealth sourcePlant)
     {
+        if (sourcePlant != null && !sourcePlant.KilledBy.CanTriggerBehaviors())
+        {
+            if (HarvestChain.Instance != null) HarvestChain.Instance.OnBehaviorHarvest(this, sourceGrid, sourcePlant);
+            return;
+        }
         TryExplode(sourceGrid, sourcePlant);
         TryTornado(sourceGrid, sourcePlant);
         if (IsValidHarvestSource(sourceGrid, sourcePlant) && HarvestBehaviorManager.Instance != null)
         {
-            int damage = Mathf.RoundToInt(StatManager.Instance.GetFinalStat(StatType.HarvestDamage, StatTarget.Player));
+            int root = sourcePlant.KillLink.Root;
+            HarvestLink link = HarvestLink.Behavior(root, 0);
+            int damage = HarvestDamage;
             float boomerang = GetFinalStat(StatType.BoomerangChance);
             if (boomerang > 0f && Random.value < boomerang)
-                HarvestBehaviorStats.Record(DamageType.Boomerang, HarvestBehaviorManager.Instance.TryBoomerang(this, sourceGrid, damage));
+            {
+                bool launched = HarvestBehaviorManager.Instance.TryBoomerang(this, sourceGrid, damage, link, 1f, 0u);
+                HarvestBehaviorStats.Record(DamageType.Boomerang, launched);
+                if (launched) HarvestChain.MarkTriggered(root, this, DamageType.Boomerang);
+            }
             // Elektrik eski hasat tetiğini kullanır; yük deneyi oynanış hissi nedeniyle kaldırıldı.
             float electric = GetFinalStat(StatType.ElectricChance);
             if (electric > 0f && Random.value < electric)
             {
-                bool struck = HarvestBehaviorManager.Instance.TryElectric(this, damage);
+                bool struck = HarvestBehaviorManager.Instance.TryElectric(this, damage, link, 1f);
                 HarvestBehaviorStats.Record(DamageType.Electric, struck);
+                if (struck) HarvestChain.MarkTriggered(root, this, DamageType.Electric);
                 // Çifte Akım (kırılma ödülü): başarılı normal dalgadan sonra aynı saksıdan gecikmeli ikinci dalga; yeni şans atılmaz.
+                // Zincirden doğan elektrik TryElectric'i doğrudan çağırır: ikinci dalga üretmez.
                 if (struck && RunPower.TryGetEcho(DamageType.Electric, out BehaviorEcho echo) && BehaviorEchoes.Instance != null)
                     BehaviorEchoes.Instance.ScheduleElectric(this, GetBehaviorDamage(damage, DamageType.Electric), echo);
             }
@@ -399,7 +428,6 @@ public class PlanterBrain : MonoBehaviour
 
     public void TryTornado(GridObject sourceGrid, PlantHealth sourcePlant)
     {
-        
         if (!IsValidHarvestSource(sourceGrid, sourcePlant)) return;
 
         float chance = GetFinalStat(StatType.TornadoChance);
@@ -407,11 +435,10 @@ public class PlanterBrain : MonoBehaviour
         if (Random.value > chance) return; // şans tutmadı
         if (TornadoManager.Instance == null) return;
 
-        int damage = Mathf.RoundToInt(
-            StatManager.Instance.GetFinalStat(StatType.HarvestDamage, StatTarget.Player)
-        );
-
-        HarvestBehaviorStats.Record(DamageType.Tornado, TornadoManager.Instance.TrySpawn(sourceGrid, damage));
+        int root = sourcePlant.KillLink.Root;
+        bool launched = TornadoManager.Instance.TrySpawn(sourceGrid, HarvestDamage, HarvestLink.Behavior(root, 0), 1f, 0u);
+        HarvestBehaviorStats.Record(DamageType.Tornado, launched);
+        if (launched) HarvestChain.MarkTriggered(root, this, DamageType.Tornado);
     }
 
     public void SetGridObject(GridObject gridObject)

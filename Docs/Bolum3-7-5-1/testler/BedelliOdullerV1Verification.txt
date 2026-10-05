@@ -1,0 +1,109 @@
+PASS: 93 checks
+ok: Run50_BedelliOdullerV1 is a separate profile with its own (valid) reward pool asset
+ok: Everything except the reward pool is Ödül Aşamaları V1's: 15 boss dates, quota and boss targets, balance set (same asset: XP, economy), boss pool, base 3 choices per level, start budget, 45 s rounds
+ok: Pool: the same three stages, offer policy and the same 16 reward assets as Ödül Aşamaları V1 (referenced, not copied); the güçlü stage holds two more rewards (8 in total)
+ok: The 16 existing rewards keep their stage and card note in the new pool
+ok: Bereketli Öğrenim data: level choice +1, direct hit damage ×0,80, behavior damage untouched, no stat modifier, at most once, weight 1, no condition, güçlü stage
+ok: Davranışa Adanış data: behavior damage ×1,50, level choice −1, direct damage untouched, at most once, weight 1, needs a placed planter with a behavior chance, güçlü stage
+ok: Both rewards are in the same mutual-exclusion group ("secim_hakki_takasi"); the pool resolves each one's counterpart from data
+ok: First offer round comes from the stage and the calendar (güçlü opens at R22 → first boss R23); the rewards carry no round of their own
+ok: All 24 older reward assets: level choice change 0, no exclusion group, no cost — the new fields default to no effect
+ok: Older profiles' pools are unchanged and hold no cost reward (Ödül Aşamaları V1: 16 rewards; Kırılma V1 / Takvim V1: 13 + 3; Denge V1; Boss Prototip)
+ok: Valid range of choices per level in this package: 1–5
+ok: Menu item and validator: Tools/Run Profili/Run50 Bedelli Ödüller V1 · 50 round (bedelli boss ödülleri prototipi)
+ok: Tools > Run Profili selects the new profile through the same menu path (and back from another profile)
+ok: GameScene runs Run50_BedelliOdullerV1 with its pool; at run start a level gives 3 choices and no reward effect is active
+ok: 6300 offers over 7 fixed field states × 15 boss dates × 60 seeds follow the staged rule (no duplicate, nothing from an unopened stage, every card eligible, one card from the current stage when possible); no cost reward before R23; building them never touched the gameplay random stream
+ok: Field without any behavior: Davranışa Adanış is never offered at any of the 15 bosses (200 seeds each); Bereketli Öğrenim is offered from R23, not at R20
+ok: One placed planter with an explosion, electric, tornado or boomerang chance is enough for Davranışa Adanış (each tried alone): offered from R23, never at R20
+ok: R23, all behaviors on the field, 400 seeds: both in the same offer 29 times, only Öğrenim 90, only Adanış 83, neither 198 — no separate guarantee; seen in 119 / 112 offers vs 112 on average for the other six güçlü rewards (same base weight 1)
+   R23 görülme · Geniş Savuruş: 110 / 400
+   R23 görülme · Canavar Kesimi: 110 / 400
+   R23 görülme · Fırtına Bileği: 113 / 400
+   R23 görülme · Artçı Patlama: 113 / 400
+   R23 görülme · Çifte Akım: 107 / 400
+   R23 görülme · Hasat Ritmi: 117 / 400
+   R23 görülme · Bereketli Öğrenim: 119 / 400
+   R23 görülme · Davranışa Adanış: 112 / 400
+ok: After Bereketli Öğrenim is taken: Davranışa Adanış is blocked by the exclusion group and never offered at R23 … R50 (200 seeds each); Öğrenim itself is at its limit (1 / 1)
+ok: After Davranışa Adanış is taken: Bereketli Öğrenim is never offered again (same rule in the other direction)
+ok: A new run state (ClearAll) lifts the exclusion: both are candidates again
+ok: Start: 3 choices per level; no level, no granted choice, no pending choice, no card taken (four separate counters)
+ok: Two levels from one XP gain (same frame): each level adds 3 → 6 pending choices
+ok: Bereketli Öğrenim taken with 6 choices pending: a level now gives 4, the 6 pending choices stay 6 (not 8); direct ×0,80 and no behavior change — gain and cost together
+ok: The next level adds 4 choices (6 → 10)
+ok: Two levels at once after the reward: 4 each (10 → 18)
+ok: Stack limit: a second Bereketli Öğrenim is refused; nothing changes (still 4 choices, direct ×0,80, 1 / 1)
+ok: Exclusion at take time: Davranışa Adanış is refused while Öğrenim is held, even when it is forced into the offer; no effect, no stack, no taken entry
+ok: Clearing the reward state returns to 3 choices per level and direct ×1; choices already earned are still pending (18)
+ok: Davranışa Adanış taken with 18 choices pending: a level now gives 2, none of the 18 pending choices is removed; behavior ×1,50 and no direct change
+ok: Two levels at once add 2 each (18 → 22); Bereketli Öğrenim is refused while Adanış is held
+ok: Test reward +1: 3 → 4
+ok: Then a test reward −2 in the same run: 4 → 2; pending choices unchanged
+ok: 3 → 4 → 2 in one run: effects add up (+1 − 2 = −1); two more levels add 2 each
+ok: Upper bound: two +1 rewards → 5 choices per level
+ok: A level at the upper bound adds 5 choices
+ok: A third +1 would give 6: not eligible and refused at take time; its damage cost is not applied either (direct stays ×0,81, stacks 2 / 3)
+ok: The out-of-range reward is never put into an offer at 5 choices (200 seeds); the same reward is offered while it fits (test pool copy)
+ok: No clipping: at 4 choices a +2 reward (would be 6) is refused whole — it is not cut down to 5, and its ×0,50 damage cost is not applied
+ok: Lower bound: two −1 rewards → 1 choice per level
+ok: Two levels at the lower bound add 1 choice each
+ok: A third −1 would give 0: not eligible and refused; its behavior gain is not applied either (behavior stays ×1,21)
+ok: No clipping at the bottom: at 2 choices a −2 reward (would be 0) is refused whole — not cut to 1, its ×2 behavior gain is not applied
+ok: Counters stay separate: 13 levels gained, 37 choices granted, 37 pending, 0 cards taken (no card was picked in this artificial-XP check)
+ok: A reward that is not in the pending offer is refused: no effect, no stack, no taken entry, the offer still waits
+ok: The offered reward is taken once; a second request (double click) and a request for another reward after it change nothing
+ok: Failure in the middle of applying (a listener throws on the second stat modifier): the first modifier is rolled back, and no multiplier, no choice change, no stack and no taken entry is left behind; one clear error is logged
+   beklenen hata · Boss ödülü uygulanamadı: 'Test t_bozuk' — test: dinleyici hatası. Hiçbir etkisi bırakılmadı; ödül alınmadı.
+ok: Without the failing listener the same reward applies all of its effects exactly once (2 modifiers, both multipliers, +1 choice); asking again adds nothing
+ok: ClearAll removes exactly what the reward added
+ok: Required behavior is checked again when the reward is taken: with no behavior planter left, Davranışa Adanış is refused and its cost (−1 choice) is not paid
+ok: Rewards without a cost keep the old rule (condition checked when the offer is built, not when it is taken): Yıkım Gücü forced into an offer is still applied
+ok: New run in the same scene: 3 choices per level again, direct ×1, no taken reward; level, granted-choice, pending and taken-card counters are back to 0
+ok: No reward: direct 100 → 100; explosion, electric, tornado and boomerang 100 → 100
+ok: Bereketli Öğrenim: direct 100 → 80; all four behaviors stay 100 (the penalty does not leak into behavior damage)
+ok: Davranışa Adanış: direct stays 100; explosion, electric, tornado and boomerang 100 → 150
+ok: Davranış Ustası ×1,25 with Adanış: 100 × 1,25 × 1,50 = 187,5 → 188 (each coefficient once, one rounding); direct 100
+ok: Usta Biçici (direct ×1,25, behavior ×0,85) with Öğrenim: direct 100 × 1,25 × 0,80 = 100; behavior 85
+ok: Scythe multiplier ×1,40 with Öğrenim: direct 100 × 1,40 × 0,80 = 112; behaviors 100
+ok: Keskin Bıçak ×1,25 with Öğrenim: direct 100 × 1,25 × 0,80 = 100
+ok: Altın Hedef (×1,50 on Rare and above) with Keskin Bıçak and Öğrenim: 100 × 1,25 × 0,80 × 1,50 = 150 on a Legendary plant, 100 on a Common one
+ok: A Hasat Ritmi attack (×1,75 for that attack) multiplies the same product once: 100 × 1,25 × 0,80 × 1,75 = 175
+ok: Yıkım Gücü ×1,30 with Adanış: behavior 100 × 1,30 × 1,50 = 195; direct 100
+ok: Real hits · ödülsüz: explosion 4 × 100, electric 4 × 100; 20 direct hits = round(100 × variance × 1,00) each (range 86–112, allowed 85–115)
+ok: Real hits · ödülsüz: tornado 7 hits of 50 each (50 × 1,00)
+ok: Real hits · ödülsüz: boomerang 2 hits of 65 each (65 × 1,00)
+ok: Real hits · Bereketli Öğrenim: explosion 4 × 100, electric 4 × 100; 20 direct hits = round(100 × variance × 0,80) each (range 69–91, allowed 68–92)
+ok: Real hits · Bereketli Öğrenim: tornado 8 hits of 50 each (50 × 1,00)
+ok: Real hits · Bereketli Öğrenim: boomerang 2 hits of 65 each (65 × 1,00)
+ok: Real hits · Davranışa Adanış: explosion 4 × 150, electric 4 × 150; 20 direct hits = round(100 × variance × 1,00) each (range 87–115, allowed 85–115)
+ok: Real hits · Davranışa Adanış: tornado 7 hits of 75 each (50 × 1,50)
+ok: Real hits · Davranışa Adanış: boomerang 2 hits of 98 each (65 × 1,50)
+ok: Artçı Patlama with Adanış: the first explosion hits for 150, the aftershock hits 8 plants for 150 = 150 × 1,00 (the computed damage × the reward's ratio; ×1,50 is not multiplied in a second time — that would be 225)
+ok: Çifte Akım with Adanış: first wave 150, second wave 4 hits of 150 = 150 × 1,00 (not 225)
+ok: Tam run (Bereketli Öğrenim): starts clean in RunSetup — 3 choices per level, no reward, direct ×1, behavior ×1, counters 0, 0 global modifiers (same as the first scene)
+ok: R23, level gained before the reward: 3 card choices (each showing 3 candidates), then the reward screen
+ok: R23 reward screen: "GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ" / "Boss geçildi · yalnız biri alınır · run sonuna kadar geçerli · etkisi Round 24 ve sonrası" — cards: Kıvılcım, Davranışa Adanış, Bereketli Öğrenim
+ok: Bereketli Öğrenim card: "KAZANÇ / Gelecekteki her level: 3 → 4 seçim / BEDEL / Doğrudan vuruş hasarı ×0,80" · "Önceden kazanılmış seçimler değişmez. Davranış hasarı değişmez." · "Bir kez alınır / Bunu alırsan Davranışa Adanış bir daha sunulmaz"
+ok: Davranışa Adanış card: "KAZANÇ / Davranış hasarı ×1,50 / BEDEL / Gelecekteki her level: 3 → 2 seçim" · "Önceden kazanılmış seçimler değişmez. Patlama · elektrik · kasırga · bumerang. Kendi vuruşun değişmez." · "Bir kez alınır / Bunu alırsan Bereketli Öğrenim bir daha sunulmaz"
+   görüntü: Logs/T374_01_R23_IkiBedelliOdul.png
+ok: R23: Bereketli Öğrenim taken from the real offer; a click on the other card and a second click do nothing (1 / 1, effect once); a level now gives 4 choices; granted and pending counters untouched
+ok: HUD: "Level başına seçim: 4 (temel 3) · yeni kazanılan level'lar" and reward list line "Bereketli Öğrenim 1/1 · Level seçimi +1 · Doğrudan ×0,80"; the line text is built once and reused until the value changes
+   görüntü: Logs/T374_02_R24_HUD_Ogrenim.png
+   görüntü: Logs/T374_03_R26_AlinanOdulListesi.png
+ok: R26 and later: neither cost reward is offered again in this run (live state, 200 seeds for R30); the level choice stays 4
+   R26 alınan ödül listesi (ekran): Alınan boss ödülleri / Keskin Bıçak 1/3 · Doğrudan vuruş hasarı ×1,25   ·   Hızlı Bilek 1/3 · Saldırı aralığı ×0,85 (saldırı sıklığı ×1,18)   ·   Bilgi Filizi 1/2 · Kazanılan XP ×1,25   ·   Yıkım Gücü 1/3 · Davranış hasarı ×1,30   ·   Nadir Tohum 1/3 · Nadirlik bonusu +10 puan   ·   Altın Hedef 1/2 · Rare ve üstü bitkiye doğrudan hasar ×1,50   ·   Bereketli Öğrenim 1/1 · Level seçimi +1 · Doğrudan ×0,80
+ok: Whole run R1–50: the reward screen header named the stage at all 15 bosses — R3 ERKEN AŞAMA · BOSS ÖDÜLÜ · R6 ERKEN AŞAMA · BOSS ÖDÜLÜ · R10 ERKEN AŞAMA · BOSS ÖDÜLÜ · R13 ORTA AŞAMA · BOSS ÖDÜLÜ · R16 ORTA AŞAMA · BOSS ÖDÜLÜ · R20 ORTA AŞAMA · BOSS ÖDÜLÜ · R23 GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ · R26 GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ · R30 GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ · R33 GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ · R36 GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ · R40 GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ · R43 GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ · R46 GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ · R50 GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ
+ok: Levels in the run: R23 (before the reward) 3 choices; R24, R30 and R50 (after it) 4 choices each — 4 levels, 15 choices granted, 15 cards taken, 0 pending
+ok: Run end screen lists the rewards and spells out the gain and the cost: RUN TAMAMLANDI · BEDELLİ ÖDÜLLER V1 / 50 round · son kota 4.800 / 4.800 / Başlangıç: Bahçıvan · Standart / Harvest Score: 15.825 / Boss ödülleri: Keskin Bıçak, Hızlı Bilek, Bilgi Filizi, Yıkım Gücü, Nadir Tohum ×2, Altın Hedef ×2, Bereketli Öğrenim, Canavar Kesimi, Kıvılcım, Çifte Akım, Hasat Ritmi, Geniş Savuruş, Kritik Göz / Bereketli Öğrenim → kazanç: level başına seçim +1 · bedel: doğrudan vuruş hasarı ×0,80 / Level başına seçim: 4 (temel 3) · yeni kazanılan level'lar
+   görüntü: Logs/T374_04_RunSonu_KazancBedel.png
+ok: İkinci run (Davranışa Adanış): starts clean in RunSetup — 3 choices per level, no reward, direct ×1, behavior ×1, counters 0, 0 global modifiers (same as the first scene)
+ok: İkinci run · R23: Davranışa Adanış taken once; a level now gives 2 choices; HUD: "Level başına seçim: 2 (temel 3) · yeni kazanılan level'lar" and "Davranışa Adanış 1/1 · Davranış ×1,50 · Level seçimi −1"
+   görüntü: Logs/T374_05_R24_HUD_Adanis.png
+ok: Return to the main menu: the taken rewards and their effects are cleared — 3 choices per level, behavior ×1, direct ×1
+ok: Menu scene: no reward manager and no reward effect survives the scene change (choices per level back to the base value)
+ok: İkinci run · R24: the level gained after Adanış gave 2 card choices and 2 cards were taken (each choice still showed 3 candidates)
+ok: Old profile (Kırılma V1): 3 choices per level, no level-choice line on the HUD, and its pool never offers a cost reward (R5, R10, R25, R45 × 200 seeds)
+ok: Old profile: two levels still give 3 choices each
+ok: The only error message is the one from the deliberate apply-failure probe
+ok: No other error or exception logged during the test

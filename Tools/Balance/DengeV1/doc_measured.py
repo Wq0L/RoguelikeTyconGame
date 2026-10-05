@@ -12,6 +12,7 @@ def read(suffix=''):
     rows = list(csv.reader(io.open(path, encoding='utf-8')))
     return rows[0], rows[1:]
 head, rows = read()
+import calendar_guard; calendar_guard.require_uniform(rows, 'doc_measured.py')   # açık boss takvimli profil: açık 'desteklenmiyor' sonucu
 runs = OrderedDict()
 for r in rows:
     run = runs.setdefault(r[0], dict(id=r[0], rounds={}, meta=(r[2], r[3], r[4], r[6]), seed=r[5], outcome='?', end=0))

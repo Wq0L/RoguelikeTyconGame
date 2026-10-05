@@ -1,0 +1,48 @@
+PASS: 47 checks
+ok: Scene starts in RunSetup
+ok: UIManager found the resource counters: ResourcesUI
+ok: Round end panel open in RunSetup
+ok: Preview button attached to round end panel
+ok: New tiles card attached
+ok: GrassPlanter 2x3 footprint is free and unlocked
+ok: GrassPlanter 1x2 footprint is free and unlocked
+ok: GrassPlanter 1x1 footprint is free and unlocked
+ok: Round started
+ok: Plants grew during the round: 7 renderers
+ok: Card 1 applied
+ok: Card 2 applied
+ok: Card 3 applied
+ok: Round list has 3 cells
+ok: Map highlights exactly the 3 fresh cells: 3
+ok: Ring sits on a fresh cell Cell_x2_z8
+ok: Ring sits on a fresh cell Cell_x4_z8
+ok: Ring sits on a fresh cell Cell_x6_z4
+ok: New tiles card visible
+ok: World markers on 3 fresh tiles
+roundEnd alpha=1 frame=12670 unscaled=11.95143
+saved Logs/RoundEnd.png
+saved Logs/World.png
+camera pos=(-20.00, 28.00, -20.00) rot=(33.00, 45.00, 0.00) ortho=True fov=60 size=11 near=0.01 far=5000 mask=-1 clear=SolidColor bg=RGBA(0.192, 0.223, 0.274, 0.000)
+ground pos=(4.00, 0.00, 8.00) renderer=True mat=Ground_bceae80c25d1ef64fa3f436304c13b04_7553114150769584927 shader=Simple Toon/SToon Default layer=6 screen=(821.15, 370.31, 46.09)
+ok: Preview replaces the round end panel
+ok: All plant renderers hidden in preview
+ok: Two planters with resonances get badge rows: 2
+ok: Resonance strip lists the active recipes: 3
+ok: Three YENİ tags in world
+ok: Preview does not change game state
+preview alpha=1 canvas=True scale=(1.00, 1.00, 1.00) frame=13392 unscaled=13.27873 ts=0
+ok: Details popup shows for a planter tile
+saved Logs/Preview.png
+ok: Back returns to the round end panel
+ok: Plant renderers restored
+ok: TAB opens preview
+ok: TAB closes preview
+ok: Counters pinned on top of the skill tree
+ok: Counters visible in the skill tree
+saved Logs/SkillTree.png
+ok: Skill tree space background active
+saved Logs/SkillTreeBefore.png
+ok: Counters return home after closing the skill tree
+ok: CloseAll returns counters home
+ok: Next round started
+ok: New round clears the fresh list

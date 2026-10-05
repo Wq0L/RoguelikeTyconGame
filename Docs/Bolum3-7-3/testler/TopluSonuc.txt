@@ -1,0 +1,43 @@
+Bolum 3.7.3 - izole kopyada (Library/VerificationProject) gercekten calistirilan testler, 2026-10-02
+Sutunlar: etiket | cagrilan metot | sonuc dosyasinin ilk satiri | saat | cikis
+Hepsi birer birer, varsayilan kisitla (dusuk oncelik, 4 cekirdek).
+
+== SON TUR (son kodla; teslim sonuclari)
+BossRewardVerification | BossRewardVerification.RunBatch | PASS: 127 checks | 17:45:50-17:46:40 | cikis: ok
+OdulAsamalariV1Verification | OdulAsamalariV1Verification.RunBatch | PASS: 71 checks | 17:46:40-17:47:33 | cikis: ok
+KirilmaV1Verification | KirilmaV1Verification.RunBatch | PASS: 189 checks | 17:47:33-17:48:10 | cikis: ok
+TakvimV1Verification | TakvimV1Verification.RunBatch | PASS: 162 checks | 17:48:10-17:49:10 | cikis: ok
+DengeV1Verification | DengeV1Verification.RunBatch | PASS: 86 checks | 17:49:10-17:49:37 | cikis: ok
+RewardOfferDistribution | RewardOfferMeasurement.RunDistribution | DONE: distribution | 17:49:53-17:50:48 | cikis: ok
+BossWeatherVerification | BossWeatherVerification.RunBatch | PASS: 22 checks | 17:50:48-17:51:00 | cikis: ok
+RunPrototypeVerification | RunPrototypeVerification.RunBatch | PASS: 69 checks | 17:51:00-17:51:49 | cikis: ok
+SpecializationVerification | SpecializationVerification.RunBatch | PASS: 100 checks | 17:51:49-17:54:38 | cikis: ok
+StartLoadoutVerification | StartLoadoutVerification.RunBatch | PASS: 88 checks | 17:54:38-17:55:22 | cikis: ok
+RoundPreviewVerification | RoundPreviewVerification.RunBatch | PASS: 47 checks | 17:55:22-17:55:51 | cikis: ok
+Run50ReferenceVerification | Run50ReferenceVerification.RunBatch | PASS: 70 checks | 17:55:51-17:58:05 | cikis: ok
+MechanicsVerification | MechanicsVerification.RunBatch | PASS: 88 checks | 17:58:05-17:58:30 | cikis: ok
+ElectricRevertVerification | ElectricRevertVerification.RunBatch | PASS: 40 checks | 17:58:30-17:59:08 | cikis: ok
+HarvestBehaviorVerification | HarvestBehaviorVerification.RunBatch | PASS: 114 checks | 17:59:08-17:59:31 | cikis: ok
+SimpleResonanceVerification | SimpleResonanceVerification.RunBatch | PASS: 293 checks | 17:59:31-17:59:46 | cikis: ok
+ContactRefactorVerification | ContactRefactorVerification.RunBatch | PASS: 175 checks | 17:59:46-17:59:58 | cikis: ok
+OptionsMenuVerification | OptionsMenuVerification.RunBatch | PASS 22 rows | 17:59:58-18:00:17 | cikis: ok
+
+== ILK TUR (kart yazisi duzeltmesinden once; BossRewardVerification dustu, digerleri gecti)
+OdulAsamalariV1Verification | OdulAsamalariV1Verification.RunBatch | PASS: 71 checks | 17:31:06-17:32:04 | cikis: ok
+RewardOfferDistribution | RewardOfferMeasurement.RunDistribution | DONE: distribution | 17:32:04-17:32:58 | cikis: ok
+TakvimV1Verification | TakvimV1Verification.RunBatch | PASS: 162 checks | 17:32:58-17:33:58 | cikis: ok
+KirilmaV1Verification | KirilmaV1Verification.RunBatch | PASS: 189 checks | 17:33:58-17:34:35 | cikis: ok
+DengeV1Verification | DengeV1Verification.RunBatch | PASS: 86 checks | 17:34:35-17:35:01 | cikis: ok
+BossRewardVerification | BossRewardVerification.RunBatch | FAIL: System.Exception: Card stack text fits its box and stays above the button (no overlap) | 17:35:01-17:35:25 | cikis: Verification failed with exit 1. See C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\BossRewardVerification_RunBatch.log
+BossWeatherVerification | BossWeatherVerification.RunBatch | PASS: 22 checks | 17:35:25-17:35:37 | cikis: ok
+RunPrototypeVerification | RunPrototypeVerification.RunBatch | PASS: 69 checks | 17:35:37-17:36:26 | cikis: ok
+SpecializationVerification | SpecializationVerification.RunBatch | PASS: 100 checks | 17:36:26-17:39:15 | cikis: ok
+StartLoadoutVerification | StartLoadoutVerification.RunBatch | PASS: 88 checks | 17:39:15-17:39:59 | cikis: ok
+RoundPreviewVerification | RoundPreviewVerification.RunBatch | PASS: 47 checks | 17:39:59-17:40:29 | cikis: ok
+Run50ReferenceVerification | Run50ReferenceVerification.RunBatch | PASS: 70 checks | 17:40:29-17:42:43 | cikis: ok
+MechanicsVerification | MechanicsVerification.RunBatch | PASS: 88 checks | 17:42:43-17:43:09 | cikis: ok
+ElectricRevertVerification | ElectricRevertVerification.RunBatch | PASS: 40 checks | 17:43:09-17:43:47 | cikis: ok
+HarvestBehaviorVerification | HarvestBehaviorVerification.RunBatch | PASS: 114 checks | 17:43:47-17:44:08 | cikis: ok
+SimpleResonanceVerification | SimpleResonanceVerification.RunBatch | PASS: 293 checks | 17:44:08-17:44:24 | cikis: ok
+ContactRefactorVerification | ContactRefactorVerification.RunBatch | PASS: 175 checks | 17:44:24-17:44:36 | cikis: ok
+OptionsMenuVerification | OptionsMenuVerification.RunBatch | PASS 22 rows | 17:44:36-17:44:54 | cikis: ok

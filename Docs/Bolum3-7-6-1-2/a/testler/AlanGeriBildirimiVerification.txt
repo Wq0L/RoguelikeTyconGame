@@ -1,0 +1,47 @@
+PASS: 23 checks
+ok: Aftershock area · yeni 2,00 · orta 1×1: one outline, drawn in the frame of the second blast (frame 9236, scheduled at 8933); its region is the planter (1) + the 12 cells the blast really hit (2.00 cells, field edge clipped) = 13 cells, 20 border edges; all 80 outline vertices lie on those cells; damage unchanged (12 hits of 100, each cell once)
+ok: Aftershock area · yeni 2,00 · kenar 1×1: one outline, drawn in the frame of the second blast (frame 12132, scheduled at 11738); its region is the planter (1) + the 8 cells the blast really hit (2.00 cells, field edge clipped) = 9 cells, 16 border edges; all 64 outline vertices lie on those cells; damage unchanged (8 hits of 100, each cell once)
+ok: Aftershock area · yeni 2,00 · köşe 1×1: one outline, drawn in the frame of the second blast (frame 14939, scheduled at 14492); its region is the planter (1) + the 5 cells the blast really hit (2.00 cells, field edge clipped) = 6 cells, 12 border edges; all 48 outline vertices lie on those cells; damage unchanged (5 hits of 100, each cell once)
+ok: Aftershock area · yeni 2,00 · orta 2×2: one outline, drawn in the frame of the second blast (frame 17784, scheduled at 17418); its region is the planter (4) + the 20 cells the blast really hit (2.00 cells, field edge clipped) = 24 cells, 24 border edges; all 96 outline vertices lie on those cells; damage unchanged (20 hits of 100, each cell once)
+ok: Aftershock area · yeni 2,00 · kenar 2×2: one outline, drawn in the frame of the second blast (frame 20216, scheduled at 19823); its region is the planter (4) + the 14 cells the blast really hit (2.00 cells, field edge clipped) = 18 cells, 20 border edges; all 80 outline vertices lie on those cells; damage unchanged (14 hits of 100, each cell once)
+ok: Aftershock area · yeni 2,00 · orta 2×3: one outline, drawn in the frame of the second blast (frame 22644, scheduled at 22317); its region is the planter (6) + the 24 cells the blast really hit (2.00 cells, field edge clipped) = 30 cells, 26 border edges; all 104 outline vertices lie on those cells; damage unchanged (24 hits of 100, each cell once)
+ok: Aftershock area · eski 1,50 · orta 1×1: one outline, drawn in the frame of the second blast (frame 24920, scheduled at 24512); its region is the planter (1) + the 8 cells the blast really hit (1.50 cells, field edge clipped) = 9 cells, 12 border edges; all 48 outline vertices lie on those cells; damage unchanged (8 hits of 100, each cell once)
+ok: Aftershock area · eski 1,50 · orta 2×3: one outline, drawn in the frame of the second blast (frame 27643, scheduled at 27305); its region is the planter (6) + the 14 cells the blast really hit (1.50 cells, field edge clipped) = 20 cells, 18 border edges; all 72 outline vertices lie on those cells; damage unchanged (14 hits of 100, each cell once)
+ok: The outline follows each profile's own reward: old Artçı (Kırılma V1 asset, ×1.25) 1.50 cells → a 3×3 block of 9 cells; new variant (×1.666667) 2.00 cells → 13 cells; nothing is fixed to 2,00 in the visual
+ok: Visual pool full: 10 aftershocks land in the same frame; 8 outlines drawn, 2 not drawn (capacity 8) — all 108 aftershock hits are still applied (expected 108); the pool does not grow
+ok: No allocation per aftershock: 500 outlines for a 2×3 planter at 2,00 cells (30 cells, 26 edges) allocated 0 bytes; building one outline costs 14.6 µs on this machine (batch, mesh build only)
+   görüntü: Logs/T3751_01_Dizi_0_vurustan_once.png (+ _yakin)
+   görüntü: Logs/T3751_01_Dizi_1_ilk_darbe.png (+ _yakin)
+   görüntü: Logs/T3751_01_Dizi_2_bekleme.png (+ _yakin)
+   görüntü: Logs/T3751_01_Dizi_3_ikinci_darbe.png (+ _yakin)
+   görüntü: Logs/T3751_01_Dizi_4_yayilma.png (+ _yakin)
+   görüntü: Logs/T3751_01_Dizi_5_sinir.png (+ _yakin)
+   görüntü: Logs/T3751_01_Dizi_6_bulut_sonrasi.png (+ _yakin)
+   görüntü: Logs/T3751_01_Dizi_7_sonme.png (+ _yakin)
+   görüntü: Logs/T3751_01_Dizi_8_temizlik.png (+ _yakin)
+   görüntü: Logs/T3751_02_Eski150_orta_1x1.png (+ _yakin)
+   görüntü: Logs/T3751_03_Yeni200_orta_1x1_sonra.png (+ _yakin)
+   görüntü: Logs/T3751_03_Yeni200_orta_1x1_once.png (+ _yakin)
+   görüntü: Logs/T3751_04_Eski150_orta_2x3.png (+ _yakin)
+   görüntü: Logs/T3751_05_Yeni200_orta_2x3_sonra.png (+ _yakin)
+   görüntü: Logs/T3751_05_Yeni200_orta_2x3_once.png (+ _yakin)
+   görüntü: Logs/T3751_06_Yeni200_kenar_1x1.png (+ _yakin)
+   görüntü: Logs/T3751_07_Yeni200_kose_2x2.png (+ _yakin)
+   görüntü: Logs/T3751_08_Don_dolu_tarla.png (+ _yakin)
+   görüntü: Logs/T3751_09_SertKabuk_dolu_tarla.png (+ _yakin)
+ok: 19 real-render images written (sequence 9, comparison 6, the same frame without the outline 2, boss weather 2); every frame came from the real game loop
+ok: Direct harvest counts, behavior harvest does not: one swing touches A and B; A dies to the hit, its explosion harvests B before the swing reaches B; B is gone from the cell, so the swing does not hit it again — two harvests, counter +1 (the dead plant is never counted twice)
+ok: Both plants hit directly before any explosion reaches them: counter +2 (now 3 / 5); the count follows how each plant really died
+ok: Aftershock harvests do not count: the aftershock harvested 4 plants, the counter stays at 4 / 5
+ok: Threshold crossed in the middle of a swing (4 + 3 direct harvests): every target of that swing got normal damage (38 / 44 / 46, normal 34–46) and normal radius; afterwards exactly one charge is ready and the counter is 0 (the surplus of 2 is not banked)
+ok: Empowered swing: decided once at the start; all three targets got the strong damage (67 / 60 / 60, range 59–81) and the radius ×1.6; the charge is spent once for the whole swing, not per target
+ok: A swing that touches no living plant does not spend the charge (existing rule, unchanged)
+   görüntü: Logs/T3751_10_Ritim_normal.png (+ _yakin)
+ok: Cursor shows the next swing's real contact area: normal ring 1.5, with a ready charge 2.4 (= 1.5 × 1.6) in gold
+   görüntü: Logs/T3751_11_Ritim_hazir.png (+ _yakin)
+   görüntü: Logs/T3751_12_Ritim_guclu_vurus.png (+ _yakin)
+ok: After the empowered swing the cursor is normal again (ring 1.5, no gold)
+   görüntü: Logs/T3751_13_Ritim_normale_donus.png (+ _yakin)
+ok: Round ends while an outline is on screen: it is removed at once (no renderer left on); the same rule covers the menu (state is no longer Round)
+ok: Scene change / new run: no aftershock outline object survives; the rhythm counter and charge are reset and the reward is gone
+ok: No error or exception logged during the test

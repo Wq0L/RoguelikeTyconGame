@@ -1,0 +1,23 @@
+== ZINCIR LABORATUVARI (sabit stat)
+Lab_R23 | KirilmaErisimMeasurement.RunChainR23 | DONE: zincir23 · 100 round | 10:38:04-10:39:56 | cikis: ok
+Lab_R30 | KirilmaErisimMeasurement.RunChainR30 | DONE: zincir30 · 100 round | 10:39:56-10:41:44 | cikis: ok
+Lab_R40 | KirilmaErisimMeasurement.RunChainR40 | DONE: zincir40 · 100 round | 10:41:44-10:43:44 | cikis: ok
+
+== BIRIKIMLI TAM RUN (XP ve kartlar ilerler)
+Run_k376zincir | BalanceRunMeasurement.RunK376Zincir | FAIL: System.Exception: stuck: 51/50/CardSelection/0 timeScale 0 | 10:43:44-11:45:45 | cikis: Verification failed with exit 1. See C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\BalanceRunMeasurement_RunK376Zincir.log
+
+== BIRIKIMLI TAM RUN - KALAN (Davranis-rezonans 102-109 es + seed 110 cifti; run 52 seviye patlamasinda durmustu, bkz. Bolum3-7-6-DavranisZinciri.md 6.3)
+Run_k376zincirdevam | BalanceRunMeasurement.RunK376ZincirDevam | DONE (ölçüm; işlev testi değil) | 12:57:59-13:11:00 | cikis: ok
+
+== R40 YENIDEN (havuz round basinda kurulur)
+Lab_R40_onceden | KirilmaErisimMeasurement.RunChainR40 | DONE: zincir40 · 100 round | 13:12:01-13:14:03 | cikis: ok
+
+== GUCLU SINERJI (ek bilgi)
+Lab_sinerji | KirilmaErisimMeasurement.RunChainSynergy | DONE: zincirsinerji · 80 round | 13:14:03-13:15:59 | cikis: ok
+
+== HIZLI KARSILASTIRMA
+Lab_kisa | KirilmaErisimMeasurement.RunChainQuick | DONE: zincirkisa · 8 round | 13:15:59-13:16:24 | cikis: ok
+
+== ODUL YOKKEN ESKI OYNANIS (3.7.5.1 ile ayni kapsam)
+Performans_odulsuz | KirilmaErisimMeasurement.RunPerformance | DONE: performans · 24 round | 13:16:24-13:17:10 | cikis: ok
+

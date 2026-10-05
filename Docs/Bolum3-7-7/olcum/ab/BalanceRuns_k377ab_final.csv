@@ -1,0 +1,41 @@
+run,profile,policy,farmer,scythe,seed,label,outcome,round,score,level,levels,choices,cardsTaken,cardTiles,cardUpgrades,cardBase,cardXpBase,cardWater,firstBehavior,firstEffective,firstTrigger,firstUpgrade,firstBase,xpSpent,xpGlobal,xpCardGroup,levelCost,storedXp,levelHalted,saturated,invalidNumbers,maxRoundChoices,maxRoundChoicesRound,maxWaitFrames,totalWaitFrames,remainingShownOk,tailGrowth
+1,Run50_XPV1,Hasar-alan,bahcivan,standart,100,XP'siz,KAZANDI,50,481892,77,76,228,228,117,111,0,0,0,2,3,4,5,0,0,1,0,29000,5200,0,0,0,9,19,0,0,1,0.05
+2,Run50_XPV1,Hasar-alan,bahcivan,standart,101,XP'siz,KAZANDI,50,738379,81,80,240,240,121,119,0,0,1,2,3,7,5,0,0,1,0,33000,7664,0,0,0,6,8,0,0,1,0.05
+3,Run50_XPV1,Hasar-alan,bahcivan,standart,102,XP'siz,KAZANDI,50,322944,74,73,219,219,117,102,0,0,0,2,3,3,4,0,0,1,0,26000,3090,0,0,0,9,12,0,0,1,0.05
+4,Run50_XPV1,Hasar-alan,bahcivan,standart,103,XP'siz,KAZANDI,50,1332167,85,84,252,252,121,131,0,0,0,2,3,3,5,0,0,1,0,38000,8820,0,0,0,9,17,0,0,1,0.05
+5,Run50_XPV1,Hasar-alan,bahcivan,standart,104,XP'siz,KAZANDI,50,494236,76,75,225,225,121,104,0,0,0,2,3,3,5,0,0,1,0,28000,6160,0,0,0,6,5,0,0,1,0.05
+6,Run50_XPV1,Hasar-alan,bahcivan,standart,105,XP'siz,KAZANDI,50,430470,74,73,219,219,114,105,0,0,0,2,3,5,5,0,0,1,0,26000,12070,0,0,0,6,7,0,0,1,0.05
+7,Run50_XPV1,Hasar-alan,bahcivan,standart,106,XP'siz,KAZANDI,50,630541,70,69,207,207,111,96,0,0,0,2,3,3,5,0,0,1,0,22000,5740,0,0,0,9,22,0,0,1,0.05
+8,Run50_XPV1,Hasar-alan,bahcivan,standart,107,XP'siz,KAZANDI,50,912379,82,81,243,243,120,123,0,0,0,2,4,4,5,0,0,1,0,34000,29310,0,0,0,9,24,0,0,1,0.05
+9,Run50_XPV1,Hasar-alan,bahcivan,standart,108,XP'siz,KAZANDI,50,765945,72,71,213,213,121,92,0,0,0,2,5,5,5,0,0,1,0,24000,22250,0,0,0,6,9,0,0,1,0.05
+10,Run50_XPV1,Hasar-alan,bahcivan,standart,109,XP'siz,KAZANDI,50,295913,69,68,204,204,105,99,0,0,1,2,3,3,5,0,0,1,0,22000,642,0,0,0,6,6,0,0,1,0.05
+11,Run50_XPV1,Hasar-alan,bahcivan,standart,100,erken XP,KAZANDI,50,434086,98,97,291,291,105,181,5,0,18,2,3,3,5,8,6155,3.2292,0,55000,8329,0,0,0,12,26,0,0,1,0.05
+12,Run50_XPV1,Hasar-alan,bahcivan,standart,101,erken XP,KAZANDI,50,328677,111,110,330,330,121,195,14,3,28,2,3,5,5,9,7555,3.6667,0.1,78000,35936,0,0,0,15,47,0,0,1,0.05
+13,Run50_XPV1,Hasar-alan,bahcivan,standart,102,erken XP,KAZANDI,50,336733,100,99,297,297,121,172,4,1,22,2,9,10,4,8,9055,2.8325,0.03,58000,690,0,0,0,9,32,0,0,1,0.05
+14,Run50_XPV1,Hasar-alan,bahcivan,standart,103,erken XP,KAZANDI,50,489315,131,130,390,390,121,251,18,1,24,2,3,3,5,41,9055,2.86,0.04,120000,118380,0,0,0,15,39,0,0,1,0.05
+15,Run50_XPV1,Hasar-alan,bahcivan,standart,104,erken XP,KAZANDI,50,539397,114,113,339,339,121,208,10,2,18,2,7,7,5,8,9055,3.6094,0.05,84000,20268,0,0,0,9,8,0,0,1,0.05
+16,Run50_XPV1,Hasar-alan,bahcivan,standart,105,erken XP,KAZANDI,50,506160,139,138,414,414,121,247,46,5,27,2,9,10,5,39,9055,4.125,0.2,150000,129872,0,0,0,18,44,0,0,1,0.05
+17,Run50_XPV1,Hasar-alan,bahcivan,standart,106,erken XP,KAZANDI,50,467098,140,139,417,417,121,233,63,5,27,2,3,3,5,7,9055,4.0562,0.18,150000,20730,0,0,0,15,25,0,0,1,0.05
+18,Run50_XPV1,Hasar-alan,bahcivan,standart,107,erken XP,KAZANDI,50,474557,120,119,357,357,121,216,20,2,19,2,8,8,4,8,9055,3.6781,0.07,97000,84029,0,0,0,12,24,0,0,1,0.05
+19,Run50_XPV1,Hasar-alan,bahcivan,standart,108,erken XP,KAZANDI,50,649105,137,136,408,408,121,237,50,5,19,2,3,4,5,8,9055,4.0906,0.19,140000,10588,0,0,0,15,25,0,0,1,0.05
+20,Run50_XPV1,Hasar-alan,bahcivan,standart,109,erken XP,KAZANDI,50,569643,131,130,390,390,121,244,25,5,21,2,3,3,5,9,9055,4.0906,0.19,120000,28945,0,0,0,15,41,0,0,1,0.05
+21,Run50_XPV1,Davranış yönü,bahcivan,standart,100,XP'siz,KAZANDI,50,593697,82,81,243,243,120,123,0,0,0,2,3,4,5,0,0,1,0,34000,8390,0,0,0,9,21,0,0,1,0.05
+22,Run50_XPV1,Davranış yönü,bahcivan,standart,101,XP'siz,KAZANDI,50,453780,79,78,234,234,120,114,0,0,0,2,3,4,5,0,0,1,0,31000,1760,0,0,0,9,18,0,0,1,0.05
+23,Run50_XPV1,Davranış yönü,bahcivan,standart,102,XP'siz,KAZANDI,50,523978,79,78,234,234,120,114,0,0,1,2,3,3,4,0,0,1,0,31000,9080,0,0,0,9,24,0,0,1,0.05
+24,Run50_XPV1,Davranış yönü,bahcivan,standart,103,XP'siz,KAZANDI,50,897213,86,85,255,255,121,134,0,0,0,2,3,3,5,0,0,1,0,39000,7380,0,0,0,9,16,0,0,1,0.05
+25,Run50_XPV1,Davranış yönü,bahcivan,standart,104,XP'siz,KAZANDI,50,431015,77,76,228,228,121,107,0,0,0,2,3,3,5,0,0,1,0,29000,16490,0,0,0,6,9,0,0,1,0.05
+26,Run50_XPV1,Davranış yönü,bahcivan,standart,105,XP'siz,KAZANDI,50,413691,76,75,225,225,120,105,0,0,2,2,3,4,5,0,0,1,0,28000,20996,0,0,0,6,7,0,0,1,0.05
+27,Run50_XPV1,Davranış yönü,bahcivan,standart,106,XP'siz,KAZANDI,50,460263,75,74,222,222,120,102,0,0,0,2,3,3,5,0,0,1,0,27000,24970,0,0,0,9,20,0,0,1,0.05
+28,Run50_XPV1,Davranış yönü,bahcivan,standart,107,XP'siz,KAZANDI,50,791443,79,78,234,234,121,113,0,0,0,2,3,4,5,0,0,1,0,31000,26790,0,0,0,9,31,0,0,1,0.05
+29,Run50_XPV1,Davranış yönü,bahcivan,standart,108,XP'siz,KAZANDI,50,446188,80,79,237,237,121,116,0,0,0,2,3,5,5,0,0,1,0,32000,10070,0,0,0,9,29,0,0,1,0.05
+30,Run50_XPV1,Davranış yönü,bahcivan,standart,109,XP'siz,KAZANDI,50,418301,77,76,228,228,121,107,0,0,0,2,3,3,5,0,0,1,0,29000,4870,0,0,0,6,6,0,0,1,0.05
+31,Run50_XPV1,Davranış yönü,bahcivan,standart,100,erken XP,KAZANDI,50,335152,156,155,465,465,121,247,97,18,19,2,3,3,5,8,9055,5.8781,0.71,270000,10947,0,0,0,24,35,0,0,1,0.05
+32,Run50_XPV1,Davranış yönü,bahcivan,standart,101,erken XP,KAZANDI,50,293860,101,100,300,300,121,169,10,2,11,2,3,5,5,22,9055,3.6781,0.07,60000,962,0,0,0,9,27,0,0,1,0.05
+33,Run50_XPV1,Davranış yönü,bahcivan,standart,102,erken XP,BOSS,23,1023,26,25,75,72,25,47,0,0,7,2,3,3,4,0,125,2,0,2200,2060,0,0,0,6,4,0,0,1,0.05
+34,Run50_XPV1,Davranış yönü,bahcivan,standart,103,erken XP,KAZANDI,50,223316,105,104,312,312,121,188,3,0,17,2,3,3,5,9,9055,2.75,0,67000,49230,0,0,0,15,34,0,0,1,0.05
+35,Run50_XPV1,Davranış yönü,bahcivan,standart,104,erken XP,BOSS,23,1080,28,27,81,78,28,50,0,0,7,2,6,8,5,0,125,2.5,0,2600,1648,0,0,0,6,5,0,0,1,0.05
+36,Run50_XPV1,Davranış yönü,bahcivan,standart,105,erken XP,KAZANDI,50,393338,133,132,396,396,121,235,40,6,17,2,7,8,5,20,9055,4.2969,0.25,130000,61486,0,0,0,18,31,0,0,1,0.05
+37,Run50_XPV1,Davranış yönü,bahcivan,standart,106,erken XP,KAZANDI,50,708372,183,182,546,546,121,242,183,32,27,2,3,3,5,8,9055,8.3531,1.43,472500,439726,0,0,0,27,42,0,0,1,0.05
+38,Run50_XPV1,Davranış yönü,bahcivan,standart,107,erken XP,KAZANDI,50,305334,132,131,393,393,121,252,20,0,29,2,7,8,5,8,9055,3.4375,0,130000,44936,0,0,0,15,31,0,0,1,0.05
+39,Run50_XPV1,Davranış yönü,bahcivan,standart,108,erken XP,BOSS,10,220,13,12,36,33,9,17,7,0,3,2,3,4,5,8,125,2,0,810,332,0,0,0,6,4,0,0,1,0.05
+40,Run50_XPV1,Davranış yönü,bahcivan,standart,109,erken XP,KAZANDI,50,314534,110,109,327,327,121,202,4,0,16,2,3,3,5,9,7555,3.3333,0,76000,74136,0,0,0,12,31,0,0,1,0.05

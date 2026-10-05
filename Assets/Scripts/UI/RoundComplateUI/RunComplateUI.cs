@@ -31,6 +31,14 @@ public class RunCompleteUI : MonoBehaviour
         // Bu run'da alınan boss ödülleri.
         string rewards = BossRewardText.Summary(BossRewardManager.Instance);
         if (rewards != null) total += $"\n<size=70%>Boss ödülleri: {rewards}</size>";
+        // Bedelli ödüller (Bölüm 3.7.4): kazanç ve bedel ayrı yazılır; seçim hakkı değiştiyse run sonundaki değer de.
+        string trades = BossRewardText.TradeSummary(BossRewardManager.Instance);
+        if (trades != null) total += $"\n<size=70%>{trades}</size>";
+        string choices = BossRewardText.LevelChoiceLine(rounds.ChoicesPerLevel, rounds.BaseChoicesPerLevel);
+        if (choices != null) total += $"\n<size=70%>{choices}</size>";
+        // Süreler (Bölüm 3.7.8): aktif oynanış yalnız round'ların kendisidir; seçim, mağaza, hazırlık ve duraklama ayrı sayılır.
+        string times = TimeLine(RunClock.Instance);
+        if (times != null) total += $"\n<size=60%>{times}</size>";
         if (rounds.EndedByBoss)
         {
             // Boss round'unda iki koşul aranır; hangisinin eksik kaldığı ayrı ayrı yazılır.
@@ -55,6 +63,17 @@ public class RunCompleteUI : MonoBehaviour
         else scoreText.text = total;
     }
 
+    // "Aktif oynanış 51:40 · seçimler 6:12 · mağaza ve hazırlık 9:30" (+ varsa level hesaplama bekleyişi ve duraklama).
+    public static string TimeLine(RunClock clock)
+    {
+        if (clock == null || clock.RoundsTimed <= 0) return null;
+        string line = $"Aktif oynanış {RunClock.Format(clock.ActiveGameSeconds)} · seçimler {RunClock.Format(clock.ChoiceSeconds)} · " +
+                      $"mağaza ve hazırlık {RunClock.Format(clock.ShopSeconds + clock.PreparationSeconds)}";
+        if (clock.LevelWorkSeconds >= 1d) line += $" · seviye hesaplama {RunClock.Format(clock.LevelWorkSeconds)}";
+        if (clock.PausedSeconds >= 1d) line += $" · duraklama {RunClock.Format(clock.PausedSeconds)}";
+        return line;
+    }
+
     public void OnRestartPressed()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -62,6 +81,11 @@ public class RunCompleteUI : MonoBehaviour
 
     public void OnMainMenuPressed()
     {
+        if (DemoSceneSettings.IsDemo)
+        {
+            DemoSceneSettings.Instance.ReturnToDemo();
+            return;
+        }
         HarvestScoreManager.Instance.ResetScore();
         RoundManager.Instance.ResetRounds();
         StatManager.Instance.ClearGlobalModifiers();

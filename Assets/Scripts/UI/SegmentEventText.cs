@@ -101,7 +101,7 @@ public static class SegmentEventText
     {
         if (events == null || rounds == null) return null;
         int round = rounds.CurrentRound;
-        bool segmentStart = (round - 1) % rounds.QuotaSegmentRounds == 0 && rounds.QuotaEnabled;
+        bool segmentStart = rounds.QuotaEnabled && rounds.Calendar.IsPeriodStart(round);
         string quota = segmentStart ? $" · KOTA {HarvestQuota.Format(rounds.QuotaTarget)}" : "";
         if (events.Active != null && round == events.Active.StartRound)
         {

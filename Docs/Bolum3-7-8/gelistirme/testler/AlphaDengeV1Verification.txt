@@ -1,0 +1,70 @@
+PASS: 51 checks
+ok: Run50_AlphaDengeV1 keeps Run50_XPV1's run: 50 rounds, the same 15 boss dates (R50 final), 3 choices per level, boss pool, starting economy; calendar valid
+ok: Round duration comes from the profile's table: R1+ 45 s, R6+ 55 s, R11+ 65 s (no fixed duration next to it); Run50_XPV1 keeps its fixed 45 s and has no table
+ok: Every round resolves from the table (R1–5 45 s, R6–10 55 s, R11–50 65 s); the 50 rounds add up to 3100 s = 51 min 40 s of active play
+ok: Quota and boss targets are complete tables of the profile (15 periods): quota 27 / 40 / 88 / 90 / 104 / 176 / 180 / 220 / 400 / 720 / 1040 / 2240 / 2700 / 3000 / 4800 · boss 5 / 10 / 16 / 24 / 33 / 45 / 57 / 72 / 100 / 172 / 276 / 500 / 680 / 860 / 1100
+ok: Its balance set is its own asset; core stats, skill tree, rarity XP, planter data, early behavior access and the two P7 card rules are XP V1's
+ok: XP table: the same asset as Run50_XPV1 (not changed by this profile)
+ok: Plant health is the profile's own curve: round based (R1 … R50), never decreasing, largest single-round step ×1.10 (R2; integer rounding included), rarity multipliers unchanged (1 / 1.5 / 2 / 2.5 / 3). Common health R1 20 · R10 31 · R20 49 · R30 79 · R40 132 · R50 215
+ok: Reward pool: the same asset as Run50_XPV1 — same stages, same rewards in the same order, same stack limits, weights and level-choice trades (no reward added, removed or re-weighted)
+   değeri bu profilde değişen ödül sayısı: 0
+ok: None of the 15 older profiles has a duration table: they keep the fixed duration / duration upgrades path
+ok: Empty table: valid, and the table code decides nothing (old path)
+ok: One row from Round 1 covers the whole run (50 × 60 s = 3 000 s)
+ok: Limits are inclusive: 30 s and 120 s are accepted; a row may start on the last round
+ok: A round uses the last row that starts at or before it (R5 45 · R6 55 · R10 55 · R11 65); rounds outside the run read the nearest row
+ok: Rejected, each with its own message: first row not at Round 1 · the same start twice · rows out of order · a row beyond the run
+ok: Rejected: a duration below 30 s or above 120 s, zero, negative, NaN and infinity
+ok: Rejected: a table together with a fixed duration (the duration must come from one place)
+ok: Invalid data is reported, not corrected ("2. satırın süresi 20 sn: 30–120 sn arasında olmalı")
+ok: Quota periods still follow the 15 boss dates and every round belongs to exactly one period; the periods' active seconds add up to 3 100 s (a period's seconds are the sum of its rounds: R1–3 135 s, R4–6 145 s, R7–10 220 s, R11–13 195 s …)
+   dönem  1 R1–3: 135 sn aktif · boss round'u R3 45 sn · kota 27 · boss hedefi 5
+   dönem  2 R4–6: 145 sn aktif · boss round'u R6 55 sn · kota 40 · boss hedefi 10
+   dönem  3 R7–10: 220 sn aktif · boss round'u R10 55 sn · kota 88 · boss hedefi 16
+   dönem  4 R11–13: 195 sn aktif · boss round'u R13 65 sn · kota 90 · boss hedefi 24
+   dönem  5 R14–16: 195 sn aktif · boss round'u R16 65 sn · kota 104 · boss hedefi 33
+   dönem  6 R17–20: 260 sn aktif · boss round'u R20 65 sn · kota 176 · boss hedefi 45
+   dönem  7 R21–23: 195 sn aktif · boss round'u R23 65 sn · kota 180 · boss hedefi 57
+   dönem  8 R24–26: 195 sn aktif · boss round'u R26 65 sn · kota 220 · boss hedefi 72
+   dönem  9 R27–30: 260 sn aktif · boss round'u R30 65 sn · kota 400 · boss hedefi 100
+   dönem 10 R31–33: 195 sn aktif · boss round'u R33 65 sn · kota 720 · boss hedefi 172
+   dönem 11 R34–36: 195 sn aktif · boss round'u R36 65 sn · kota 1040 · boss hedefi 276
+   dönem 12 R37–40: 260 sn aktif · boss round'u R40 65 sn · kota 2240 · boss hedefi 500
+   dönem 13 R41–43: 195 sn aktif · boss round'u R43 65 sn · kota 2700 · boss hedefi 680
+   dönem 14 R44–46: 195 sn aktif · boss round'u R46 65 sn · kota 3000 · boss hedefi 860
+   dönem 15 R47–50: 260 sn aktif · boss round'u R50 65 sn · kota 4800 · boss hedefi 1100
+ok: Scene runs Run50_AlphaDengeV1: the round timer is ready at 45 s for Round 1, no tempo
+ok: RoundManager answers every round's duration from the profile table (no round-number branches of its own)
+ok: 65 s rounds are not cut to the old 60 s cap and do not turn into tempo: R6 55 s, R11 65 s, R50 65 s, attack and spawn tempo ×1
+ok: Duration upgrades stay out of this run, as with the fixed duration (0 duration-only nodes in this tree)
+ok: Run clock starts at zero: no active time, no menu time, no pause
+ok: Each screen writes to its own counter: pending level work 1 s · card choice 2 s · boss reward 3 s · shop, placing and selling 12 s · run setup and round summary 12 s · run end 7 s; none of it reaches the active time (an active round frame is reported only by the round timer)
+ok: Totals: choice screens = cards + boss reward; outside-round time = level work + choices + shop + preparation
+ok: Pause: 30 s away with no frame processed counts as 30 s of pause; the first frame after the return (30.02 s reported by the engine) adds only 0.02 s to the screen it belongs to
+ok: Pause: if the engine already left the gap out of the next frame (0.03 s), nothing is subtracted twice
+ok: Focus lost but frames kept running (editor, background build): not a pause — the time stays on the screen's own counter
+ok: Pause during a round: 20 s away is pause, not active play (active real time grows by the 0.03 s frame only)
+ok: Time text: 3 100 s → 51:40, an hour and more → 1:02:05
+ok: Reset clears every counter (the same reset runs at run start)
+ok: R1 played to the end of its timer: the round counter ran 45.0000 s (table: 45 s); real time during those frames 45.133 s (+0.133 s from the round-end slow motion)
+ok: Time on the round summary went to preparation and time in the shop to the shop counter (33.4 s in this test); the active time did not move while they were open
+ok: R7 played to the end of its timer: the round counter ran 55.0000 s (table: 55 s); real time during those frames 55.133 s (+0.133 s from the round-end slow motion)
+ok: Round end waited for 60000 pending levels: 6.2 s went to the level-work counter, the active time did not move; then the card screen opened with 180000 choices (3 per level)
+ok: Time on the card screen went to the card counter (31.7 s in this test), not to the active time
+ok: R11 played to the end of its timer: the round counter ran 65.0000 s (table: 65 s); real time during those frames 65.167 s (+0.167 s from the round-end slow motion)
+ok: XP in this profile: 3 choices per level, the growing cost after the table, no halt, no saturated or invalid number after 60000 levels in one round end
+ok: Boss round R13 (65 s) with 2 pending card choices and a boss reward: the reward screen does not open and the next round cannot start until the last card is chosen; then the reward screen opens
+ok: Time on the boss reward screen went to its own counter (52.3 s in this test); after the reward the round closes normally
+ok: Zincir Hasat in this profile: 2 extra generations, root budget 32, 8 jobs per frame (unchanged); chance ×0.75 / ×0.5, damage ×0.75 / ×0.5 — inside the allowed range (0.75 / 0.50 … 1.00 / 0.75); the same asset as Zincir V1
+ok: The running chain reads exactly these values from the reward (per-generation factors, not accumulated); no chain is active before the reward is taken
+ok: Run end screen shows the separate times: "Aktif oynanış 2:45 · seçimler 1:24 · mağaza ve hazırlık 1:35 · seviye hesaplama 0:06" (three rounds were played to the end here: 45 + 55 + 65 s)
+   görüntü: Logs/T378_01_RunSonu_SureSatiri.png
+ok: The main-menu path resets the round to 1 and the timer to Round 1's 45 s (not the 65 s of the round it left)
+ok: New scene / new run: Round 1 with 45 s, the run clock back at zero (active, level work, cards, boss reward, shop, pause), level 1, no pending choices, no boss reward, no chain, score 0
+   beklenen log: Run başlatılmadı: 'Run50 Alpha Denge V1 · 50 round' profilinin round süresi tablosu geçersiz — 2. satırın süresi 20 sn: 30–120 sn arasında olmalı. Tablo otomatik düzeltilmez; veri düzeltilince run başlar.
+ok: Invalid duration table at run time: the run is not set up (state stayed MainMenu), a round cannot be started, and one clear error is logged ("Run başlatılmadı: 'Run50 Alpha Denge V1 · 50 round' profilinin round süresi tablosu geçersiz — 2. satırın süresi 20 sn: 30–120 sn arasında olmalı. Tablo otomatik düzeltilmez; veri düzeltilince run başlar.")
+ok: The invalid data is left exactly as it was (20 s is not raised to the limit)
+ok: Run50_XPV1 (old fixed path): no table, every round 45 s (R1, R6, R11, R50), no tempo — unchanged
+ok: The run clock also runs for old profiles (it only counts)
+ok: Old profile, Round 11 played to the end: 45.0000 s on the round counter (45 s, not 65 s)
+ok: Every deliberately produced error was reported where expected (invalid duration table) and nothing else was logged as an error (0 unexpected)

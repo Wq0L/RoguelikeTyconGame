@@ -323,9 +323,8 @@ public static class ComicUIBuilder
         var buyLabel=buy.GetComponentInChildren<TMP_Text>();buyLabel.rectTransform.sizeDelta=new Vector2(500,74);buyLabel.rectTransform.anchoredPosition=new Vector2(43,3);
         var resourceIcon=Pic("Cost Resource",buy.transform,theme.coinSprite,new Vector2(-250,4),new Vector2(75,76));resourceIcon.preserveAspect=true;
         var back=Button("Back",root,"CLEAR",new Vector2(-90,352),new Vector2(170,62));
-        var stats=Text("Legacy Stats",detailRoot,"",Vector2.zero,Vector2.one,20);stats.gameObject.SetActive(false);
         Set(so,"normalCard",theme.cardSprite);Set(so,"selectedCard",theme.cardSprite);Set(so,"pressedCard",theme.cardSprite);
-        Set(so,"details",groupDetails);Set(so,"heading",heading);Set(so,"summary",summary);Set(so,"stats",stats);Set(so,"description",description);Set(so,"status",status);
+        Set(so,"details",groupDetails);Set(so,"heading",heading);Set(so,"summary",summary);Set(so,"description",description);Set(so,"status",status);
         Set(so,"buyButton",buy);Set(so,"buyLabel",buyLabel);Set(so,"backButton",back);Set(so,"detailPreview",detailPreview);Set(so,"detailTitle",detailTitle);
         Set(so,"plotsLabel",values[0]);Set(so,"sizeLabel",values[1]);Set(so,"timeLabel",values[2]);so.ApplyModifiedPropertiesWithoutUndo();
         Set(so,"theme",theme);Set(so,"buyResourceIcon",resourceIcon);so.ApplyModifiedPropertiesWithoutUndo();

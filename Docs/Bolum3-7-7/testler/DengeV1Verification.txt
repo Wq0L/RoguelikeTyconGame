@@ -1,0 +1,105 @@
+PASS: 86 checks
+ok: Run50_DengeV1: 50 rounds, 5-round segments, normal economy (start 80 / 0 / 0)
+ok: Round duration fixed by the profile (45 s); no legacy event list, no specialization
+ok: Boss on R5…R45 with a boss target each; none on R50
+ok: Menu item and validator: Tools/Run Profili/Run50 Denge V1 · 50 round (ilk denge adayı)
+ok: Balance set: own core stats, plant health, XP table and skill tree
+ok: Older profiles (incl. Run50_Referans and Run50_BossPrototip) carry no balance set: shared assets
+ok: Shared core stats (damage 1) and shared health curve (round 1: 5) are separate assets and unchanged
+ok: Core stat differences: HarvestDamage 1 → 10, AreaRadius 1 → 0.9
+ok: Tree set: one slot for each of the 140 shared nodes (the scene's interface slots)
+ok: Tree set: 104 own node assets (none shared with the old tree); 36 slots closed
+ok: Every prerequisite points inside the set and to an existing tier
+ok: 5 root nodes; every node reachable (no cycle, no orphan)
+ok: 1–3 tiers per node (interface dots), every tier has a price
+ok: No round-duration node in the set (duration is the profile's)
+ok: Closed slots include the peak nodes moved to boss rewards (Aşırı Güç, Yıldırım Kesim, Seri Üretim, Plazma Kesim …)
+   kapalı yuvalar: Aşırı Güç I, Aşırı Güç II, Biraz Daha Zaman - 1, Biraz Daha Zaman - 2, Biraz Daha Zaman - 3, Biraz Daha Zaman - 4, Hasat Zirvesi - 1, Hasat Zirvesi - 2, Hasat Zirvesi - 3, Hasat Zirvesi - 4, Plazma Kesim - 1, Plazma Kesim - 2, Plazma Kesim - 3, Plazma Kesim - 4, Seri Üretim - 1, Seri Üretim - 2, Seri Üretim - 3, Son Vardiya - 1, Son Vardiya - 2, Son Vardiya - 3, Son Vardiya - 4, Uzun Hasat - 1, Uzun Hasat - 2, Uzun Hasat - 3, Uzun Hasat - 4, Yıldırım Kesim - 1, Yıldırım Kesim - 2, Yıldırım Kesim - 3, Yıldız Kesim - 1, Yıldız Kesim - 2, Yıldız Kesim - 3, Yıldız Kesim - 4, İleri Ustalık - 1, İleri Ustalık - 2, İleri Ustalık - 3, İleri Ustalık - 4
+ok: Shared tree untouched: Keskin Başlangıç - 1 still 3 / 5 / 8 G for +8, Aşırı Güç I still ×8
+ok: Common health R1…R50: 20 … 215, monotone, largest round-to-round step ×1.1 (no wall)
+ok: Rarity health is linear: 1 + 0.5 × step (1 / 1.5 / 2 / 2.5 / 3)
+ok: XP table: 140 levels, non-decreasing (390 … 150000)
+ok: Reward pool: 13 rewards with unique ids, own assets (3 choices)
+ok: Pool uses the new data: late-only rewards, an early-only reward, a behavior-damage reward and a rarity-direct reward
+ok: Boss prototype keeps its own bosses and rewards (new reward fields at neutral defaults)
+ok: GameScene runs Run50_DengeV1 with its balance set
+ok: Round lasts 45 s, no tempo
+ok: Base damage from the set: 10 (shared: 1)
+ok: Plant health from the set: Grass R1 20 (shared 5), Grape R30 237 (shared 130)
+ok: XP for level 2 from the set: 390
+ok: SkillTreeManager uses the set's 104 nodes
+ok: Starting gold from the profile
+ok: Planter base stats from the set: PlantSpawnRate 8
+ok: Neutral start; batch save in memory only
+ok: Tree interface: 104 of 140 slots show the set's nodes, each node once
+ok: Closed slots are hidden
+ok: Each slot sits at its node's own position
+ok: Visible at run start: the 5 roots (Altın Hasat I - 1, Düzenli Üretim - 1, Grid Genişleme I, Hızlı Eller - 1, Keskin Başlangıç - 1)
+ok: Connection lines follow the set's prerequisites (107)
+ok: Keskin Başlangıç - 1 tier 1: damage 10 → 10.67, price 5 G paid
+ok: Later tiers replace the earlier one (not added twice)
+ok: Completing Keskin Başlangıç - 1 opens Güçlü Kesim - 1
+ok: Hızlı Eller - 1: attack interval 3 → 2.892
+ok: Planter price without an entry in the set: asset price (20 Gold)
+ok: Planter price with an entry in the set: the set's price; the asset itself is unchanged
+ok: ResetTree removes the set's node effects
+ok: Harvest XP follows the set's rarity multipliers: Common 20, Legendary 60
+ok: Late rewards are never offered before their round and do appear from it: Canavar Kesimi R25+, Fırtına Bileği R25+
+ok: Early-only rewards stop after their round: Bilgi Filizi ≤R30
+ok: Enough different rewards at the first (8) and the last boss (9)
+ok: Field occupancy of the finished round was sampled: 0 (two planters, both harvested once)
+ok: Bereketli Toprak: offered only while the field runs low (average occupancy below 0.65)
+ok: ClearAll resets the occupancy reading
+ok: Yıkım Gücü: not offered while no planter has a behavior
+ok: Yıkım Gücü ×1: behavior multiplier 1.3, direct multiplier still 1, no stat modifier
+ok: Electric from A hits B for 52 = 40 × 1.3
+ok: Direct hit unchanged by Yıkım Gücü: 40
+ok: Altın Hedef ×1: Rare and above ×1.5, Common ×1
+ok: Same roll: Rare takes 66 (×1.5), Common takes 44 — one multiplication, one rounding
+ok: Altın Hedef does not change behavior damage
+ok: Second copy multiplies (up to the stack limit)
+ok: Card values: Davranış hasarı ×1,30 · Rare ve üstü bitkiye doğrudan hasar ×1,50
+ok: ClearAll resets behavior, rarity-direct and direct multipliers
+   Kritik Göz: CritChance 0.3 → 0.42
+   Ağır Darbe: CritMultiplier 2 → 2.75
+   Hızlı Bilek: AttackSpeed 3 → 2.55
+   Fırtına Bileği: AttackSpeed 2.55 → 1.785
+   Geniş Savuruş: AreaRadius 0.9 → 1.188
+   Nadir Tohum: RareSpawnChance 0 → 10
+   Bilgi Filizi: XPGainMultiplier 1 → 1.25
+ok: Each stat reward changes its stat by exactly its data value
+ok: ClearAll removes every reward modifier
+ok: Contact targeting: visible circle uses radius 1, no added half cell
+ok: Aim at a cell centre: the neighbour 2 away (on the reach circle) is hit, the diagonal 2.83 away is not
+ok: Cursor ring is drawn at the reach (1), not at the bare radius (1): the neighbour's centre lies on the ring
+ok: Radius 1 % smaller: the neighbour is just outside and is not hit (targeting rule unchanged)
+   alan · başlangıç: Standart yarıçap 0.9 → 4 bitki · Dar Kesim 0.675 → 4 bitki
+   alan · + Geniş Süpürüş: Standart yarıçap 1.215 → 6 bitki · Dar Kesim 0.911 → 4 bitki
+   alan · + Geniş Tarama: Standart yarıçap 1.665 → 9 bitki · Dar Kesim 1.249 → 6 bitki
+   alan · + Geniş Savuruş ×1: Standart yarıçap 2.198 → 12 bitki · Dar Kesim 1.648 → 9 bitki
+   alan · + Geniş Savuruş ×2: Standart yarıçap 2.901 → 16 bitki · Dar Kesim 2.176 → 12 bitki
+ok: Best-aim target count on a full field: formula equals the real hit count at every stage (Standart and Dar Kesim)
+ok: Standart: every area family in the tree adds targets (4 → 6 → 9)
+ok: Standart: the first Geniş Savuruş adds targets (9 → 12 → 16)
+ok: Dar Kesim: area investment also adds targets, in fewer steps (4 → 4 → 6 → 9 → 12)
+ok: Sis (DengeV1) uses the one-step rule; the prototype's Sis keeps the fixed multiplier
+ok: Sis is only picked from radius 1.01 (where the best aim reaches 6 cells)
+   Sis · yarıçap 1.3: 6 → 4 bitki (yarıçap 0.99) · "vuruş alanı bir basamak dar: en iyi nişanda 6 → 4 bitki"
+   Sis · yarıçap 1.6: 9 → 6 bitki (yarıçap 1.404) · "vuruş alanı bir basamak dar: en iyi nişanda 9 → 6 bitki"
+   Sis · yarıçap 1.85: 9 → 6 bitki (yarıçap 1.404) · "vuruş alanı bir basamak dar: en iyi nişanda 9 → 6 bitki"
+   Sis · yarıçap 2.22: 12 → 9 bitki (yarıçap 1.99) · "vuruş alanı bir basamak dar: en iyi nişanda 12 → 9 bitki"
+   Sis · yarıçap 2.66: 12 → 9 bitki (yarıçap 1.99) · "vuruş alanı bir basamak dar: en iyi nişanda 12 → 9 bitki"
+ok: Sis lowers the best-aim target count by exactly one step at every tested radius and restores the radius afterwards
+ok: Prototype Sis: still radius × 0.85
+ok: GameScene runs Run50_Referans without a balance set
+ok: Old profile: shared core stats (damage 1)
+ok: Old profile: shared health curve (Grass R1 5, Grape R50 294)
+ok: Old profile: the shared 140-node tree
+ok: Old profile: duration from the stat (30 s base), duration nodes active
+ok: Old profile: shared XP table (605)
+ok: Old profile: every interface slot keeps its shared node
+ok: Old profile: Legendary gives the plain XP (20)
+ok: Old profile: planter prices from the assets
+ok: Old profile: planter base spawn interval from the asset (5 s)
+ok: Boss prototype still runs on the shared data with its own bosses and rewards
+ok: No error or exception logged during the test

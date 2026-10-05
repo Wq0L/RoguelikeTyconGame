@@ -1,0 +1,225 @@
+PASS: 189 checks
+ok: Run50_KirilmaV1 is a separate profile with its own balance set
+   profil · Deney22_20: başlangıç kilidi yok
+   profil · Prototip10: başlangıç kilidi yok
+   profil · Prototip10_DebugButce: başlangıç kilidi yok
+   profil · Run50_BedelliOdullerV1: başlangıç kilidi TileBehavior_Explosive, TileBehavior_Electric
+   profil · Run50_BossPrototip: başlangıç kilidi yok
+   profil · Run50_DengeV1: başlangıç kilidi yok
+   profil · Run50_KirilmaErisimiV1: başlangıç kilidi TileBehavior_Explosive, TileBehavior_Electric
+   profil · Run50_KirilmaV1: başlangıç kilidi TileBehavior_Explosive, TileBehavior_Electric
+   profil · Run50_OdulAsamalariV1: başlangıç kilidi TileBehavior_Explosive, TileBehavior_Electric
+   profil · Run50_Referans: başlangıç kilidi yok
+   profil · Run50_TakvimV1: başlangıç kilidi TileBehavior_Explosive, TileBehavior_Electric
+   profil · Run50_ZincirV1: başlangıç kilidi TileBehavior_Explosive, TileBehavior_Electric
+   profil · Uzmanlasma20: başlangıç kilidi yok
+   profil · UzunRun130: başlangıç kilidi yok
+ok: Profile assets: unlocks open from the start only through Kırılma V1's balance set (Run50_KirilmaV1, and Run50_TakvimV1 / Run50_OdulAsamalariV1 / Run50_BedelliOdullerV1 / Run50_KirilmaErisimiV1 / Run50_ZincirV1 which reference the same set); every older profile has none
+ok: 50 rounds; fixed round duration (45 s) and start budget (80 gold) are DengeV1's
+ok: Quota table, boss targets and boss pool are DengeV1's (same pool asset)
+ok: Core stats, plant health curve, XP table, skill tree and planter data are the same DengeV1 assets (referenced, not copied): XP is not changed
+ok: choicesPerLevel: 3 in KirilmaV1 (profile data), 1 in DengeV1 and the older profiles
+ok: Starting unlocks: explosion and electric cards in KirilmaV1; none in DengeV1
+ok: Early behavior offer: explosion / electric candidates in KirilmaV1; none in DengeV1
+ok: Reward pool: DengeV1's 13 small rewards (same assets) kept; DengeV1's own pool has no breakthrough rewards
+ok: Three breakthrough rewards only in the new pool: once per run, first offered at the R10 boss
+ok: Artçı Patlama data: delay 0.2 s, damage ×1, radius ×1.25 (inside the allowed tuning range)
+ok: Çifte Akım data: delay 0.15 s, damage ×1 (inside the allowed tuning range)
+ok: Hasat Ritmi data: every 5 direct harvests, damage ×1.75, radius ×1.6 (inside the allowed tuning range)
+ok: Existing reward assets carry the new fields at neutral defaults
+ok: Menu item and validator: Tools/Run Profili/Run50 Kırılma V1 · 50 round (build kırılması adayı)
+   patlama hücreleri 1×1 saksı: normal 4 → artçı 8
+   patlama hücreleri 1×3 saksı: normal 8 → artçı 12
+   patlama hücreleri 2×2 saksı: normal 8 → artçı 12
+   patlama hücreleri 2×3 saksı: normal 10 → artçı 14
+ok: Explosion radius 1,2 cells reproduces the existing 4-neighbour rule for 1×1, 1×3, 2×2 and 2×3 planters; the aftershock radius adds cells around it
+ok: GameScene runs Run50_KirilmaV1 (3 choices per level, boss mode, fixed seed)
+ok: Batch save is in memory only (the player's save file is not read or written)
+ok: Run start: explosion and electric cards unlocked; tornado, boomerang, duplicate and bigger planters still locked
+ok: Card pool: explosion and electric tiles available from the start
+   kilit düğümü · 1×3 Saksı · guid 2a73cb510c0de487812647d379a89275 · Planter_1x3 · konum (5,0) · run başında kilit kapalı · başlangıç erişimi hayır · satın alma seviyesi 0/1
+   kilit düğümü · Patlayıcı Kartlar · guid 34b548f5faaf0d03ed119e57055eb3ab · TileBehavior_Explosive · konum (7,2) · run başında kilit AÇIK · başlangıç erişimi evet · satın alma seviyesi 0/1
+   kilit düğümü · Çapraz Elektrik Kartları · guid 3075880d57f929325e4b0e9895366f56 · TileBehavior_Electric · konum (7,5) · run başında kilit AÇIK · başlangıç erişimi evet · satın alma seviyesi 0/1
+   kilit düğümü · 2×2 Saksı · guid 5fd1fac1441f2a2cd63a34b6017135fb · Planter_2x2 · konum (9,-2) · run başında kilit kapalı · başlangıç erişimi hayır · satın alma seviyesi 0/1
+   kilit düğümü · Tornado Kartları · guid 6ac2ee4972064b91b1d82650d54ec347 · TileBehavior_Tornado · konum (10,3) · run başında kilit kapalı · başlangıç erişimi hayır · satın alma seviyesi 0/1
+   kilit düğümü · 2×3 Saksı · guid 0ae9f4403bef1a915d2fb1f5b582adb0 · Planter_2x3 · konum (12,-5) · run başında kilit kapalı · başlangıç erişimi hayır · satın alma seviyesi 0/1
+   kilit düğümü · Çifte Hasat Kartları · guid 8f656982a93b5b7af4a9a57de349a9b8 · TileBehavior_Duplicate · konum (12,0) · run başında kilit kapalı · başlangıç erişimi hayır · satın alma seviyesi 0/1
+   kilit düğümü · Bumerang Orak Kartları · guid 56d9411c7818595e0e411aa338c20e54 · TileBehavior_Boomerang · konum (13,4) · run başında kilit kapalı · başlangıç erişimi hayır · satın alma seviyesi 0/1
+ok: Run start, every unlock type checked: only explosion and electric are open (tornado, boomerang, duplicate and the three planters are locked)
+ok: Starting access belongs to exactly two nodes (Patlayıcı Kartlar, Çapraz Elektrik Kartları); no node has a purchase level at run start
+ok: Scene card roster: no tornado, boomerang or duplicate card is in the pool at run start
+ok: No free tile and no free planter: empty field, normal start budget
+ok: The two paid unlock nodes are not sold in this profile (a rich player cannot buy them; nothing is charged)
+ok: Tornado Kartları keeps its place in the chain: locked until the nodes before the removed step are bought
+ok: With 1×3 Saksı owned the removed step counts as met: Tornado Kartları can be bought; only the paid unlock step disappeared
+ok: Tree interface: the granted node is drawn as 'Başlangıçtan açık' (own color and label, not the green of a bought node), keeps purchase level 0 and cannot be clicked
+ok: Test fixture removed (budget and tree as at run start)
+ok: No planter on the field: no slot is reserved for a behavior card (0 of 60 offers)
+ok: With a planter: every one of 200 offers has one slot from the explosion / electric candidates; the slot (60 / 69 / 71), the type and the rarity are random
+ok: The other two slots keep the normal distribution: all three cards are behavior cards in only 4 of 200 offers
+ok: Offers alone place nothing and take nothing
+ok: Run setup: the first boss is announced with its zone (DON CEPHESİ), not active yet
+ok: Boss identity color: DON CEPHESİ #8CD1FF; zone 6 of 9 open cells
+ok: Field: the zone is drawn as its perimeter only: 10 cell edges around 6 cells, boss color, preview (dashed) state
+ok: Outline shader imports without errors; one outline mesh (drawn once normally, once faint where an object hides it), no per-tile fill quads
+ok: Damage tile inside the zone keeps its own fill color: #40100A with the zone shown = #40100A without it (empty ground is #404040; nothing is blended over the tile)
+ok: Planter and plant inside the zone: pixels unchanged, no boss color over them
+ok: Preview perimeter is a dashed line: 33 of 60 samples along one cell edge are drawn (7 on/off changes), the rest show the ground
+ok: Round map: the same 6 cells carry a dashed frame in the boss color; the tile image keeps its own color (#FF4026)
+ok: Map frame geometry: nothing is drawn over the central 60 % of the tile (frame and a small corner mark only)
+ok: HUD preview line "Yaklaşan boss: DON CEPHESİ · Round 5 · mavi şerit" uses the boss identity color #125480; the card paper stays neutral until the boss is active
+ok: Round intro text takes its color from the same boss identity
+ok: New run: no level, no pending choice
+ok: Two levels gained in the round: 2 × 3 = 6 separate choices queued (none lost)
+ok: Round end opens the first choice: three candidates, one of them from the behavior candidates
+ok: One card is taken from the three (not all three); the next choice shows three NEW candidates generated after the first was applied
+ok: The player took another card: nothing was forced, and the next choice offers a behavior slot again
+ok: Double click on the already taken card does nothing (no extra card, no extra choice consumed)
+ok: Reopening the panel does not create or consume a choice
+ok: Behavior card (Çapraz Elektrik) taken through the normal choice and placed by the existing random rule; the next choice is back to the normal distribution
+ok: Skip consumes only that one choice; the level's remaining choices stay queued
+ok: No skip left: pressing skip again changes nothing
+ok: The remaining three choices are taken one after another; then the round summary opens (6 choices = 5 cards + 1 skip)
+ok: Late clicks after the last choice do nothing
+ok: After the first behavior card no slot is reserved any more (0 of 60 offers)
+ok: Grid full: the three candidates are tile upgrades (existing alternative kept)
+ok: All tiles at max level: the candidates are permanent base-power cards (existing alternative kept)
+ok: Round 5: the announced boss is active on the announced zone
+ok: Screen weather effect is separate from the cell markers and still follows the active boss: Snow
+ok: Field: the same perimeter switches to the active (solid) state; the zone itself is unchanged
+ok: Active perimeter is a solid line in the boss color: 60 of 60 samples drawn, 57 in the boss color #8CD1FF
+ok: Active boss: tile fill and planter / plant pixels are still unchanged (no boss fill over them)
+ok: Boss HUD: paper #E0F3FF and rule line #125480 derive from DON CEPHESİ (ice blue)
+ok: Status color kept (boss harvest not reached yet): BOSS HASADI: 0 / 8
+ok: Field full of planters: the zone border under a planter is still readable (60 of 60 samples along the edge show the line); the planter's and plant's own pixels at the cell centre are unchanged
+ok: Status color kept (boss harvest reached: green)
+ok: Boss passed with one level: the three card choices come first, the boss reward waits
+ok: After the last card choice the boss reward selection opens
+ok: R5 boss offer: three different small rewards, no breakthrough reward before R10
+ok: The offer does not change when it is read again or when the panel is reopened
+ok: One of the three rewards is taken; a second request for the same boss is rejected; then the round summary
+ok: Boss ended; the next boss is a different one: SERT KABUK
+ok: Field markers follow the new boss (preview state, its own color) or disappear for a boss without a zone
+ok: Round summary notice and its color subject agree: the finished boss right after its round, otherwise the upcoming boss
+ok: Round summary on screen: "Yaklaşan boss: SERT KABUK · Round 10" in the color of the boss it talks about (#804812)
+ok: Next round: paper back to neutral, line in the new boss's color #804812 (the old #125480 is gone)
+ok: Empty field: only Hasat Ritmi is eligible (the echo rewards need their behavior on a placed planter)
+ok: Eligibility: Artçı Patlama needs a placed explosion planter (present), Çifte Akım a placed electric planter (absent)
+ok: Building reward offers does not consume the gameplay random stream; the same seed gives the same offer
+ok: R5: no breakthrough reward in any of 80 offers
+ok: From R10: exactly one slot holds a random eligible breakthrough reward (Artçı 35, Ritim 45 of 80, never the ineligible Çifte Akım); its position varies; the other two slots come from the normal pool
+ok: With an electric planter placed Çifte Akım becomes eligible
+ok: A breakthrough reward is taken at most once per run
+ok: The taken one is never offered again; the slot goes to the remaining eligible breakthrough rewards
+ok: All three taken: offers return to the normal flow (three different small rewards)
+ok: Taken breakthrough rewards expose their data through the reward manager (no stat modifier involved)
+ok: Card texts are written from the reward data: Artçı patlama: ilk patlamanın %100 hasarı · yarıçap ×1,25 · 0,20 sn sonra | İkinci elektrik dalgası: ilk dalganın %100 hasarı · 0,15 sn sonra | Ritim: her 5 doğrudan hasatta bir: hasar ×1,75 · yarıçap ×1,60
+ok: ClearAll (new run / menu) removes the breakthrough effects
+ok: Kıvılcım multiplies the four behavior chances of planters by ×1.35 per copy (up to 3)
+ok: Tornado / Boomerang / Electric chance have no base in the core (player/global) stat set: their base belongs to the planter (no made-up value was added to the core set)
+ok: Before the reward: each planter's chance is the value of its own tile (planter base 0 + tile); a planter without that tile has 0
+ok: Kıvılcım taken through the reward manager: no 'base stat not found' warning (the player/global base is no longer queried for planter stats)
+ok: Change notifications are still sent once for each of the four stats; planter-owned stats report no global value
+ok: After one Kıvılcım: existing chances × 1.35 exactly once (0,30 → 0.405), capped at 1 (0,80 → 1), no new behavior on planters without it
+ok: Three copies: ×2.46 on each existing chance (0.738 / 0.541 / 0.443 / 0.984); still no warning
+ok: Reward card and HUD list texts are produced without any stat query warning: Kıvılcım 3/3 · Mevcut davranış şansları ×2,46
+ok: Removing the reward (new run / menu path) restores the chances and logs no warning either
+ok: Real explosion triggers on 1000 direct harvests: 203 at chance 0.2 before, 475 at chance 0.492 after three Kıvılcım (the trigger frequency follows the computed chance)
+ok: A planter without the behavior never triggers it, before or after the reward (0 of 200 + 200 harvests)
+ok: Electric at 0,80: 164 of 200 before; capped at 1,00 after the reward: 200 of 200 (every direct harvest triggers, exactly once each)
+ok: Echo scheduler present, idle
+ok: Without the reward: one explosion, 40 damage to the four neighbours, nothing scheduled
+ok: With the reward (and Yıkım Gücü): the normal explosion hits for its computed 52; one aftershock is scheduled and has not hit yet
+ok: After 0.2 s the aftershock hits the same neighbours for 52 = 52 × 1 (computed damage × ratio; the behavior multiplier is not applied a second time)
+ok: Aftershock radius ×1.25: the diagonal neighbours are hit too (52), the cell two steps away is not
+ok: One trigger, one aftershock (6 plants hit); the aftershock is not a new trigger and schedules nothing
+ok: Chain test: the neighbour (explosion chance 100 %) survives the first explosion with 1 HP
+ok: The aftershock really harvested that plant (a behavior harvest): no explosion from it, no new aftershock, the plant behind it is untouched
+ok: Aftershock scheduled
+ok: Round ends during the delay: the pending aftershock is dropped, it never executes
+ok: Pool test: the first explosion kills the neighbour at (0,1); the aftershock is pending
+ok: Targets are evaluated at aftershock time by cell: the plant respawned outside the area is untouched, the one now standing inside the area is hit once (52); no stale plant reference is used
+ok: Without the reward: one electric wave, 40 damage on the diagonal cells, nothing scheduled
+ok: With the reward: the first wave hits for 40 (visual pool full: only the drawing is skipped); one second wave is scheduled
+ok: After 0.15 s the second wave uses the same diagonal geometry from the same planter and hits for 40 = 40 × 1
+ok: The second wave rolls no new chance and starts no chain: the planter it harvested (electric chance 100 %) triggers nothing; each living target was hit once
+ok: The plant killed by the first wave is not harvested / rewarded again: the second wave produced exactly one new harvest
+ok: Second wave with the visual pool full: damage applied, only the drawing skipped
+ok: Second wave scheduled
+ok: Round ends during the delay: the pending second wave is dropped
+ok: Without the reward nothing is counted and attacks are neutral
+ok: Reward taken: HUD shows the counter: Hasat Ritmi 0 / 5
+ok: One direct harvest whose explosion harvests a second plant: the counter goes up by 1 (behavior harvests do not count)
+ok: Counter 4 / 5 after 4 direct harvests
+ok: The counter is kept between rounds
+ok: A swing with several direct harvests crosses the threshold: exactly one charge is ready, the surplus is not banked
+ok: Ready: HUD says "HASAT RİTMİ HAZIR · sıradaki vuruş güçlü"; the cursor ring is highlighted and drawn at the empowered contact radius 1.6 = 1 × 1.6
+ok: The general AreaRadius stat is untouched while the charge is ready
+ok: A swing that touches no living plant does not spend the charge
+ok: Empowered attack: three cells reached with radius 1.6 (the normal radius reaches two), damage 71 / 78 / 63 inside 59–81 (normal hits are 34–46)
+ok: The charge is spent by that one attack; no extra attack is produced and the stat is unchanged
+ok: The next attack is normal again: the third cell is out of reach, damage 40 / 45 without the multiplier
+ok: Nine direct harvests in one normal swing: one charge ready again
+ok: The empowered attack's own harvests (nine) do not fill the counter
+ok: Single target, known roll: 77 = round(40 × 1.106 × 1.75) — one multiplication, one rounding
+ok: Charge ready for the behavior check
+ok: Empowered direct hit that triggers an explosion: the explosion keeps its own damage (40) and its own cells (the bonus does not leak to behaviors)
+ok: Identity colors: Don #8CD1FF ice blue, Sert Kabuk #FF9E40 amber, Sis #C7BDEB grey-lilac
+   boss rengi · Assets/ScriptableObjects/SegmentEvents/DengeV1/DonCephesi_V1.asset: #8CD1FF
+   boss rengi · Assets/ScriptableObjects/SegmentEvents/DengeV1/SertKabuk_V1.asset: #FF9E40
+   boss rengi · Assets/ScriptableObjects/SegmentEvents/DengeV1/Sis_V1.asset: #C7BDEB
+   boss rengi · Assets/ScriptableObjects/SegmentEvents/DonCephesi.asset: #8CD1FF
+   boss rengi · Assets/ScriptableObjects/SegmentEvents/SertKabuk.asset: #FF9E40
+   boss rengi · Assets/ScriptableObjects/SegmentEvents/Sis.asset: #C7BDEB
+ok: Every boss asset (older profiles too) carries the identity color of its boss type
+   HUD · SERT KABUK: kâğıt #FFE5CB, satır #804812
+   HUD · SİS: kâğıt #F0EDF9, satır #564A80
+   HUD · DON CEPHESİ: kâğıt #E0F3FF, satır #125480
+ok: HUD for each boss in turn (Sert Kabuk → Sis → Don): preview line and active paper follow the current boss; after each boss the paper is neutral again and the line is gone
+ok: Paper tints differ per boss: Sert Kabuk #FFE5CB warm, Don #E0F3FF cold, Sis #F0EDF9 lilac-grey
+ok: Clean-up path used by restart and return to menu: paper neutral, boss line gone, zone outline hidden
+ok: Two Kıvılcım copies are left active at the end of this run (they must not carry into the next run)
+ok: Skill tree opened the way the player opens it (round end → skill shop)
+ok: Before 1×3 Saksı is bought none of the four behavior nodes is shown in the tree (their place in the chain is kept)
+ok: Real purchases: Grid Genişleme I (first of two tiers) and 1×3 Saksı (its only tier)
+ok: Starting access (Patlayıcı Kartlar, Çapraz Elektrik Kartları): label "BAŞLANGIÇTAN AÇIK", own face color #86C7E8 (bought nodes are #7DDFA2), no tier dots, purchase level 0, not clickable
+ok: The label is laid-out text on the node, not only a color: "BAŞLANGIÇTAN AÇIK" (17 glyphs, font size 14.7)
+ok: A rich player is not charged for the granted access: no purchase, no resource spent, no purchase level written
+ok: Completed purchase (1×3 Saksı): green, its tier dot filled, no starting-access label
+ok: Purchase level (Grid Genişleme I, 1 of 2 tiers): one of two dots filled, still purchasable, not shown as completed
+ok: Purchasable (Tornado Kartları): shown with an empty tier dot and no label; tornado cards are NOT in the pool until it is bought (the node being visible is not an unlock)
+ok: Bumerang Orak Kartları stays hidden and locked until Tornado Kartları is bought
+ok: Connections: plain line into and between the two starting nodes, arrow from Patlayıcı Kartlar to the not-yet-bought Tornado Kartları, nothing drawn beyond it
+ok: Tooltip of a starting node: caption "BAŞLANGIÇTAN AÇIK", says it was not bought, no tier and no cost section — ERİŞİM / Patlama kartları başlangıçtan açık: run başından beri seçim havuzunda. Bu düğüm satın alınmadı; bu profilde ücret ödenmez.
+ok: Tooltip of a purchasable node: tier 0 / 1 and its price — SONRAKİ KADEME / Son seviyede Tornado kartlarını seçim havuzuna ekler. / YÜKSELTME MALİYETİ / 30 Iron
+ok: Tooltip of a completed node: TAMAMLANDI  ·  MAX
+ok: Tornado Kartları is an ordinary purchase: 30 Iron charged once, level 1/1, tornado cards enter the pool only now
+ok: After the purchase: Tornado Kartları green, Bumerang Orak Kartları appears as purchasable and is still locked; the two starting nodes keep level 0 and their label
+ok: Mixed node (test data): access is from the start, but its stat tiers stay purchasable — label shown together with tier dots, clickable, not drawn as a finished starting node
+ok: Mixed node tooltip: tier 0 / 2 with its price; the card access is described as open from the start, not as something the last tier adds — SONRAKİ KADEME / Hasar: 10 → 11 Patlama kartları başlangıçtan açık: run başından beri seçim havuzunda. / YÜKSELTME MALİYETİ / 10 Gold
+ok: Mixed node: both stat tiers are bought at their own price (10 + 20 Gold) and apply their effect (damage 10 → 11 → 13); nothing is charged twice
+ok: Mixed node completed: green with both dots filled; the starting-access label stays (the access itself was never bought)
+ok: Test node removed (stat and tree as before)
+ok: GameScene runs Run50_DengeV1: one choice per level
+ok: New run after restart: rhythm counter and charge, rewards, echo jobs and counters, pending choices are all reset
+ok: DengeV1: explosion and electric cards are still locked at run start and their unlock nodes are sold as before
+ok: DengeV1 run start, every unlock type checked: nothing is open from the start and no node has starting access (no leak from Kırılma V1, also right after playing it)
+ok: Restart: the two Kıvılcım copies of the previous run are gone (no leftover chance modifier); a 0,20 explosion tile gives 0,20 again
+ok: New run, ONE Kıvılcım: 0,20 → 0.27 (×1.35 applied once; not stacked on the previous run's copies)
+ok: Second copy: 0.3645
+ok: THREE copies (the maximum): 0,20 → 0.4921 = 0,20 × 1.35³ (×2.46); this figure is the effect of three rewards, not of one. No 'base stat' warning
+ok: Rewards removed again: the chance is back to the tile's own 0,20
+ok: DengeV1: Patlayıcı Kartlar is bought the old way
+ok: DengeV1: no reserved behavior slot in card offers
+ok: After restart the HUD starts clean: neutral paper, line in the color of this run's first boss (DON CEPHESİ)
+ok: DengeV1: two levels give two choices
+ok: DengeV1: two card choices, then the round summary
+ok: DengeV1: reward offers hold three small rewards, never a breakthrough reward
+ok: DengeV1: explosion as before (40 to the four neighbours), no aftershock, no rhythm counting
+ok: DengeV1: nothing delayed happened after the explosion
+ok: DengeV1 tree: Patlayıcı Kartlar bought the old way is a completed purchase (green, dot filled, level 1/1), without a starting-access label
+ok: DengeV1 tree: no node anywhere carries the starting-access label or color
+ok: DengeV1 tree: Çapraz Elektrik and Tornado are ordinary purchasable nodes behind the bought Patlayıcı Kartlar (arrows point to them); both still locked
+ok: DengeV1 tooltip of the bought node: completed purchase text, no 'başlangıçtan açık' wording — MEVCUT ETKİ / Patlama kartları seçim havuzuna eklendi.
+ok: No 'base stat not found' warning in the whole test
+ok: No error or exception logged during the test

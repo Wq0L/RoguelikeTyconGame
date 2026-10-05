@@ -343,9 +343,19 @@ public static class KirilmaV1Verification
             var profile = AssetDatabase.LoadAssetAtPath<RunProfileSO>(AssetDatabase.GUIDToAssetPath(guid));
             bool starts = profile.balance != null && profile.balance.startingUnlocks != null && profile.balance.startingUnlocks.Count > 0;
             Note($"profil · {profile.name}: başlangıç kilidi {(starts ? string.Join(", ", profile.balance.startingUnlocks) : "yok")}");
-            if (starts != (profile == k)) throw new Exception("starting unlocks leaked to profile " + profile.name);
+            // Bölüm 3.7.2 – 3.7.4: Run50_TakvimV1, Run50_OdulAsamalariV1 ve Run50_BedelliOdullerV1, Kırılma V1'in denge setini (aynı asset) bilerek paylaşır;
+            // başlangıç kilitleri onunla gelir. Başka hiçbir profil bu seti kullanmaz ve kilit açmaz.
+            bool sharesSet = profile.balance == k.balance;
+            if (sharesSet != (profile == k || profile.name == "Run50_TakvimV1" || profile.name == "Run50_OdulAsamalariV1" || profile.name == "Run50_BedelliOdullerV1" || profile.name == "Run50_KirilmaErisimiV1" || profile.name == "Run50_ZincirV1"))
+                throw new Exception("Kırılma V1's balance set is used by an unexpected profile: " + profile.name);
+            // Bölüm 3.7.7: Run50_XPV1 kendi denge setini taşır (RunBalance_XPV1: Kırılma V1 setinin üretilmiş kopyası; yalnız XP tablosu ve
+            // temel güç kartı kuralları farklı). Başlangıç kilitleri ve erken davranış teklifi kopyada birebir aynı olmalıdır.
+            // Bölüm 3.7.8: Run50_AlphaDengeV1 de aynı kurala girer (RunBalance_AlphaDengeV1: XP V1 setinin üretilmiş kopyası).
+            bool copiedSet = (profile.name == "Run50_XPV1" || profile.name == "Run50_AlphaDengeV1") && profile.balance != null && profile.balance != k.balance &&
+                             profile.balance.startingUnlocks.SequenceEqual(k.balance.startingUnlocks) && profile.balance.firstBehaviorOffer.SequenceEqual(k.balance.firstBehaviorOffer);
+            if (starts != (sharesSet || copiedSet)) throw new Exception("starting unlocks leaked to profile " + profile.name);
         }
-        Require(true, "Profile assets: only Run50_KirilmaV1 opens unlocks from the start; every older profile has none");
+        Require(true, "Profile assets: unlocks open from the start only through Kırılma V1's balance set (Run50_KirilmaV1, and Run50_TakvimV1 / Run50_OdulAsamalariV1 / Run50_BedelliOdullerV1 / Run50_KirilmaErisimiV1 / Run50_ZincirV1 which reference the same set; Run50_XPV1 and Run50_AlphaDengeV1 through generated copies of that set with identical unlocks); every older profile has none");
         Require(k.runLength == 50 && k.runLength == d.runLength && k.segmentRounds == d.segmentRounds && k.fixedRoundDuration == d.fixedRoundDuration && k.startingGold == d.startingGold &&
                 k.startingIron == d.startingIron && k.startingStone == d.startingStone && !k.debugBudget,
             $"50 rounds; fixed round duration ({k.fixedRoundDuration} s) and start budget ({k.startingGold} gold) are DengeV1's");

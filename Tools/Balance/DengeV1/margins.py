@@ -10,6 +10,7 @@ LOGS = os.environ.get('BALANCE_LOGS', _DEF)
 name = sys.argv[1]; sections = sys.argv[2:] or ['margin', 'split', 'share']
 rows = list(csv.reader(io.open(os.path.join(LOGS, 'BalanceRuns_%s.csv' % name), encoding='utf-8')))
 head = rows[0]; runs = OrderedDict()
+import calendar_guard; calendar_guard.require_uniform(rows[1:], 'margins.py')   # açık boss takvimli profil: açık 'desteklenmiyor' sonucu
 for r in rows[1:]:
     run = runs.setdefault(r[0], dict(rounds={}, meta=(r[2], r[3], r[4], r[6]), outcome='?', end=0))
     if len(r) < 12: run['outcome'] = r[8]; run['end'] = int(r[7]); continue

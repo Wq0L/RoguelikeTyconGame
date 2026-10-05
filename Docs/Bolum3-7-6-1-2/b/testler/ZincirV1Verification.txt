@@ -1,0 +1,59 @@
+PASS: 38 checks
+ok: Zincir Hasat data: chain on, 2 extra generations, chance ×0,75 / ×0,50, damage ×0,75 / ×0,50, root budget 32, 8 jobs per frame; strong stage (first offered at the R23 boss), weight 1, max 1, offered only with a behavior planter, no cost, no damage or speed bonus
+ok: Pool: Kırılma Erişimi V1's pool with Zincir Hasat added to the strong stage; every other reward is the same asset (Artçı 2,00, Çifte Akım 4, Hasat Ritmi, cost rewards); stages and offer rules unchanged
+ok: Profile: everything except the reward pool is Kırılma Erişimi V1's (calendar, targets, balance set, start budget, round length, choices)
+ok: Older pools (6) contain no chain reward; the chain reward exists once
+ok: No reward: the old rule — A's direct harvest fires A's explosion, B dies to it and nothing more happens (no root is opened, no chain roll, no queue)
+ok: Generations: A's direct harvest (one root) → A's explosion (generation 0, 100) kills B → B explodes as generation 1 (75 = 100 × 0,75) and kills C → C explodes as generation 2 (50 = 100 × 0,50, not 0,75 × 0,50) and kills D → D starts nothing (generation limit)
+ok: Explosion → electric → explosion: A's explosion kills E → E's electric fires as generation 1 (75 per bolt = normal electric × 0,75) and kills X on a diagonal → X explodes as generation 2 → Y, killed by it, starts nothing
+ok: A → B → A: A's explosion (normal trigger, marked visited) kills B → B's electric kills another plant of A → A's same explosion is refused in this root (repeat), no second explosion
+ok: The same behavior on different planters: B1 and B2 (both explosion) each fire once in the same root
+ok: Different behaviors of the same planter: B (2×2, explosion + electric tiles) is tried once per behavior — both fire
+ok: A failed roll uses up the try: two of B's plants die in one root; the first death rolls (chance 0 → fails), the second is refused as a repeat — no second roll
+ok: A multi-cell planter is one identity: two of B's plants die in one root, B's explosion is tried and fires once
+ok: Two separate attacks are two roots (8, 9): B fires in each; the first root's visit does not leak into the second; both roots are released afterwards
+ok: Generation 1 chance (real reward data): B's real explosion chance 0.8 × 0,75 = 0.6 (rolled success)
+ok: Generation 2 chance: C's real chance 0.8 × 0,50 = 0.4 — the generation's own factor, not multiplied with generation 1's
+ok: Coefficients once: Davranışa Adanış ×1,50 and Davranış Ustası ×1,25 → normal explosion 188 (100 × 1,25 × 1,50); generation 1 = 188 × 0,75 = 141 (the coefficients are not applied again, the direct-damage cost does not leak)
+ok: Artçı is outside the chain: the aftershock kills X, X starts nothing (excluded); B's chained explosion fires but schedules no new aftershock (only A's normal explosion did)
+ok: Çifte Akım's second wave is outside the chain: it kills Y, Y starts nothing; B's chained electric fires but schedules no second wave (only A's normal electric did)
+ok: Queue: ten generation-1 triggers born in one frame run from the next frame on, 8 per frame (frames: 8 + 2); none is lost; nothing runs inside the death event
+ok: Root budget (test value 3): three triggers succeed and run; the other seven are counted as budget-refused and are not even rolled (no RNG is spent once the budget is full)
+ok: Source sold while its job waits: the job is refused (invalid source) and dropped; the root is released
+   eşleşme · patlama öldürür → patlama çalışır: kaynağın 4 hasadı, 4 nesil 1 tetiği, 4 vuruş (hepsi kök 18, nesil 1)
+   eşleşme · patlama öldürür → elektrik çalışır: kaynağın 4 hasadı, 4 nesil 1 tetiği, 0 vuruş (hepsi kök 19, nesil 1)
+   eşleşme · patlama öldürür → kasırga çalışır: kaynağın 4 hasadı, 4 nesil 1 tetiği, 1 vuruş (hepsi kök 20, nesil 1)
+   eşleşme · patlama öldürür → bumerang çalışır: kaynağın 4 hasadı, 4 nesil 1 tetiği, 0 vuruş (hepsi kök 21, nesil 1)
+   eşleşme · elektrik öldürür → patlama çalışır: kaynağın 4 hasadı, 4 nesil 1 tetiği, 4 vuruş (hepsi kök 22, nesil 1)
+   eşleşme · elektrik öldürür → elektrik çalışır: kaynağın 4 hasadı, 4 nesil 1 tetiği, 0 vuruş (hepsi kök 23, nesil 1)
+   eşleşme · elektrik öldürür → kasırga çalışır: kaynağın 4 hasadı, 4 nesil 1 tetiği, 2 vuruş (hepsi kök 24, nesil 1)
+   eşleşme · elektrik öldürür → bumerang çalışır: kaynağın 4 hasadı, 4 nesil 1 tetiği, 2 vuruş (hepsi kök 25, nesil 1)
+   eşleşme · kasırga öldürür → patlama çalışır: kaynağın 1 hasadı, 1 nesil 1 tetiği, 2 vuruş (hepsi kök 26, nesil 1)
+   eşleşme · kasırga öldürür → elektrik çalışır: kaynağın 1 hasadı, 1 nesil 1 tetiği, 2 vuruş (hepsi kök 27, nesil 1)
+   eşleşme · kasırga öldürür → kasırga çalışır: kaynağın 2 hasadı, 2 nesil 1 tetiği, 1 vuruş (hepsi kök 28, nesil 1)
+   eşleşme · kasırga öldürür → bumerang çalışır: kaynağın 1 hasadı, 1 nesil 1 tetiği, 1 vuruş (hepsi kök 29, nesil 1)
+   eşleşme · bumerang öldürür → patlama çalışır: kaynağın 1 hasadı, 1 nesil 1 tetiği, 2 vuruş (hepsi kök 30, nesil 1)
+   eşleşme · bumerang öldürür → elektrik çalışır: kaynağın 1 hasadı, 1 nesil 1 tetiği, 2 vuruş (hepsi kök 31, nesil 1)
+   eşleşme · bumerang öldürür → kasırga çalışır: kaynağın 1 hasadı, 1 nesil 1 tetiği, 0 vuruş (hepsi kök 32, nesil 1)
+   eşleşme · bumerang öldürür → bumerang çalışır: kaynağın 1 hasadı, 1 nesil 1 tetiği, 1 vuruş (hepsi kök 33, nesil 1)
+ok: All four behaviors trigger each other: 16 of 16 source → target pairs (explosion, electric, tornado, boomerang) — a plant killed by the source's normal behavior fires its own planter's behavior as generation 1 with the same root; the chained planter's footprint got the short source outline (79 so far)
+ok: kasırga pool full (10 active): 9 chained kasırga jobs wait in place without a new roll or a second budget charge; the explosion job queued behind them runs in the first frame (it is not blocked)
+ok: When the pool frees up, every waiting kasırga job runs (9 of 9); still 10 rolls and 10 budget charges in total; longest queue delay so far 3.6 s, 90918 job-frames waited — counted, not lost
+ok: After the last chained kasırga ends, its root is released (the context lived through the delayed hits and is returned to the pool)
+ok: bumerang pool full (12 active): 9 chained bumerang jobs wait in place without a new roll or a second budget charge; the explosion job queued behind them runs in the first frame (it is not blocked)
+ok: When the pool frees up, every waiting bumerang job runs (9 of 9); still 10 rolls and 10 budget charges in total; longest queue delay so far 3.6 s, 107237 job-frames waited — counted, not lost
+ok: After the last chained bumerang ends, its root is released (the context lived through the delayed hits and is returned to the pool)
+   görüntü: Logs/T376_01_Zincir_once.png (+ _yakin)
+   görüntü: Logs/T376_02_Zincir_nesil1.png (+ _yakin)
+   görüntü: Logs/T376_03_Zincir_nesil1_yayilma.png (+ _yakin)
+ok: Chain images written from the real game loop: before, the frame generation 1 fires (violet source outline on the chained planter) and three frames later
+ok: Menu / run complete: pending jobs and open roots are dropped by the state change handler
+ok: Round ends with 10 chain jobs queued: all are dropped (counted as round end), no root stays open
+ok: Round ends while 10 chained tornadoes are alive and hold the root: they are cleared at once and the root is released (no context survives the round)
+ok: Hasat Ritmi across a real round change (RoundManager.EndRound → StartNextRound, R4 → R5): the ready charge is kept (existing behavior, unchanged); the next swing is empowered and the HUD still says ready
+ok: Pooled plant: the plant reborn in B's cell carries no root or generation from its previous life
+ok: One death, one reward: 208 harvests in this test, each plant life harvested once, and exactly one XP grant per harvest (208) — chained deaths do not pay twice
+ok: New scene / new run (restart): a fresh chain with no queue, no open root and zero counters; the reward is gone, so no root opens; Hasat Ritmi reset
+ok: Zincir Hasat card (placed on the screen by the test): fits, and says what the chain does in player terms — Zincir Hasat | Zincir: davranış hasatları başka saksıların davranışlarını tetikler · en çok 2 ek nesil · şans ve hasar ×0,75 / ×0,50 | Her saksı ve davranışı bir saldırının zincirinde bir kez denenir. Artçı ve ikinci dalga zincire katılmaz. | Şu an 0/1: yok / Seçince 1/1: toplam davranış hasatları başka saksıların davranışlarını tetikler · en çok 2 ek nesil · şans ve hasar ×0,75 / ×0,50 | GÜÇLÜ AŞAMA · Round 23 boss'undan itibaren
+   görüntü: Logs/T376_04_ZincirKarti.png (+ _yakin)
+ok: No error or exception logged during the test

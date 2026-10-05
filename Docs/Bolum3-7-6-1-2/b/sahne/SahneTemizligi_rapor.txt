@@ -1,0 +1,12 @@
+DONE: GameScene temizlendi ve kaydedildi
+Silinecek alt ağaçlar:
+  $UI/Canvas/[Shop]/Placment Shop Panel/Sellect Grass planter · etkin False · 3 nesne · bileşenler: RectTransform, CanvasRenderer, Image, Button, GrassPlanterButtonUI, ComicButtonVisual, TextMeshProUGUI
+  $UI/Canvas/[Shop]/Placment Shop Panel/Sellect Grass planter 1x2 · etkin False · 3 nesne · bileşenler: RectTransform, CanvasRenderer, Image, Button, GrassPlanterButtonUI, ComicButtonVisual, TextMeshProUGUI
+  $UI/Canvas/[Shop]/Placment Shop Panel/Sellect Grass planter 1x3 · etkin False · 3 nesne · bileşenler: RectTransform, CanvasRenderer, Image, Button, GrassPlanterButtonUI, ComicButtonVisual, TextMeshProUGUI
+  $UI/Canvas/[Shop]/Placment Shop Panel/Sellect Grass planter 2x2 · etkin False · 3 nesne · bileşenler: RectTransform, CanvasRenderer, Image, Button, GrassPlanterButtonUI, ComicButtonVisual, TextMeshProUGUI
+  $UI/Canvas/[Shop]/Placment Shop Panel/Sellect Grass planter 2x3 · etkin False · 3 nesne · bileşenler: RectTransform, CanvasRenderer, Image, Button, GrassPlanterButtonUI, ComicButtonVisual, TextMeshProUGUI
+  $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Details/Legacy Stats · etkin False · 1 nesne · bileşenler: RectTransform, CanvasRenderer, TextMeshProUGUI
+  //Managers/Sound Manager · etkin True · 1 nesne · bileşenler: Transform, SoundManager
+Dışarıdan referans: 0
+UIManager.resourcesUI: önce boş, sonra $UI/Canvas/[Game]/ResourcesUI
+Zemin hücresi 121 → 121 · skill UI yuvası 140 → 140
