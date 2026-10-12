@@ -1,0 +1,8 @@
+Harvest Panel TR is a modified Bangers font, not an original typeface drawn from scratch.
+Original copyright (c) 2010 Vernon Adams. Reserved Font Name: Bangers.
+License: SIL OFL 1.1; see HarvestPanelTR-OFL.txt.
+Changes: added Turkish G/g breve, dotted capital I, S/s cedilla and Turkish lira;
+renamed family to Harvest Panel TR. Original source remains untouched.
+Rebuild: Tools/build-comic-localization-fonts.py.
+Per-character rotation and baseline variation are applied by the preview, not baked
+into the glyphs; accented letters move together as a single complete glyph.

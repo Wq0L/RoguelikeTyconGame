@@ -15,6 +15,19 @@ public class PlantSpawner : MonoBehaviour
     private GameObject spawnedPlant;
 
     public GridObject GridObject => gridObject;
+    public GameObject SpawnedPlant => spawnedPlant;
+
+    // Tarla olayı (Bölüm 3.8, Gezgin Bereket): BOŞ üretim noktası beklemeden, normal üretim yoluyla (aynı bitki zarı, aynı havuz,
+    // aynı can ve ödül kurulumu) bir bitki çıkarır. Dolu noktaya ikinci bitki eklenmez; round dışında çalışmaz. Kaynak, XP ya da
+    // hasat üretmez: yalnız bitkinin doğuşunu öne alır.
+    public bool TryReviveNow()
+    {
+        if (!enabled || spawnedPlant != null || planterData == null || GameManager.Instance == null ||
+            GameManager.Instance.CurrentState != GameStates.Round) return false;
+        timer = 0f;
+        TrySpawnPlant();
+        return spawnedPlant != null;
+    }
 
     public void RemoveSpawnedPlant()
     {
@@ -51,12 +64,18 @@ public class PlantSpawner : MonoBehaviour
         if (spawnedPlant != null)
             return;
 
+        // Tarla olayı (Bölüm 3.8: Diken Kuşatması, Aşılı Kabuk): kapalı bölgedeki üretim noktası bekler. Süre birikmez; bölge
+        // açılınca sayaç kaldığı yerden sürer (üretim borcu ya da toplu geri ödeme yok).
+        if (gridObject != null && FieldEventDirector.BlocksSpawn(gridObject.GetGridPosition()))
+            return;
+
         timer += Time.deltaTime;
 
         if (timer >= GetEffectiveSpawnInterval())
         {
             timer = 0f;
             TrySpawnPlant();
+            if(spawnedPlant!=null && gridObject!=null)FieldEventDirector.BountyAt(gridObject.GetGridPosition())?.RecordSpawn(gridObject.GetGridPosition());
         }
     }
 
@@ -71,7 +90,11 @@ public class PlantSpawner : MonoBehaviour
         // Segment olayı (Don Cephesi) bu üretim noktasının nihai süresini uzatır: taban ve tempodan sonra uygulanır,
         // böylece tabandaki saksı da gerçekten yavaşlar ve taban taşması → nadirlik hesabına dokunulmaz.
         float eventMultiplier = gridObject != null ? SegmentEventDirector.SpawnIntervalMultiplier(gridObject.GetGridPosition()) : 1f;
-        return Mathf.Max(StatCalculator.MinimumSpawnInterval, interval) / tempo * eventMultiplier;
+        // Tarla olayı (Bölüm 3.8, İstilacı Filiz): boss kuralından ayrı bir çarpan. İkisi ayrı sorulur ve çarpılır; biri kalkınca
+        // diğeri aynen sürer. Olay yokken 1'dir (sonuç değişmez).
+        float fieldMultiplier = gridObject != null ? FieldEventDirector.SpawnIntervalMultiplier(gridObject.GetGridPosition()) : 1f;
+        float bountySpeed=gridObject!=null&&FieldEventDirector.BountyAt(gridObject.GetGridPosition())!=null?WanderingBountyEvent.SpawnSpeed:1f;
+        return Mathf.Max(StatCalculator.MinimumSpawnInterval, interval) / tempo * eventMultiplier * fieldMultiplier / bountySpeed;
     }
 
     private float GetEffectiveRareBonus()

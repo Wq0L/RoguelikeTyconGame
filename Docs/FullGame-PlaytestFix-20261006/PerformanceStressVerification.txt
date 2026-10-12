@@ -1,0 +1,660 @@
+PASS: lifecycle and allocation stress
+Unity 6000.3.14f1; AMD Ryzen 7 7800X3D 8-Core Processor ; NVIDIA GeForce RTX 5080
+Isolated Editor Play Mode; actual plant prefabs; no full GameScene GPU/FPS claim.
+Loaded actual plant prefabs: 12
+One owned shared attack-ring material
+Grass reset life 0
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Grass reset life 1
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Grass reset life 2
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Grass reset life 3
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Grass reset life 4
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Grass reset life 5
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Grass reset life 6
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Grass reset life 7
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Grass reset life 8
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Grass reset life 9
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Grass reset life 10
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Grass reset life 11
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Grass reused one instance across 12 deaths
+Grass exact single rewards; electric/direct XP isolated
+Plant_Beetroot reset life 0
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Beetroot reset life 1
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Beetroot reset life 2
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Beetroot reset life 3
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Beetroot reset life 4
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Beetroot reset life 5
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Beetroot reset life 6
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Beetroot reset life 7
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Beetroot reset life 8
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Beetroot reset life 9
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Beetroot reset life 10
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Beetroot reset life 11
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Beetroot reused one instance across 12 deaths
+Plant_Beetroot exact single rewards; electric/direct XP isolated
+Plant_Carrot reset life 0
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Carrot reset life 1
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Carrot reset life 2
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Carrot reset life 3
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Carrot reset life 4
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Carrot reset life 5
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Carrot reset life 6
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Carrot reset life 7
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Carrot reset life 8
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Carrot reset life 9
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Carrot reset life 10
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Carrot reset life 11
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Carrot reused one instance across 12 deaths
+Plant_Carrot exact single rewards; electric/direct XP isolated
+Plant_Corn reset life 0
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Corn reset life 1
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Corn reset life 2
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Corn reset life 3
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Corn reset life 4
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Corn reset life 5
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Corn reset life 6
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Corn reset life 7
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Corn reset life 8
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Corn reset life 9
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Corn reset life 10
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Corn reset life 11
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Corn reused one instance across 12 deaths
+Plant_Corn exact single rewards; electric/direct XP isolated
+Plant_Grape reset life 0
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Grape reset life 1
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Grape reset life 2
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Grape reset life 3
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Grape reset life 4
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Grape reset life 5
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Grape reset life 6
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Grape reset life 7
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Grape reset life 8
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Grape reset life 9
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Grape reset life 10
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Grape reset life 11
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Grape reused one instance across 12 deaths
+Plant_Grape exact single rewards; electric/direct XP isolated
+Plant_Lettuce reset life 0
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Lettuce reset life 1
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Lettuce reset life 2
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Lettuce reset life 3
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Lettuce reset life 4
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Lettuce reset life 5
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Lettuce reset life 6
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Lettuce reset life 7
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Lettuce reset life 8
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Lettuce reset life 9
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Lettuce reset life 10
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Lettuce reset life 11
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Lettuce reused one instance across 12 deaths
+Plant_Lettuce exact single rewards; electric/direct XP isolated
+Plant_Pepper reset life 0
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pepper reset life 1
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pepper reset life 2
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pepper reset life 3
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pepper reset life 4
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pepper reset life 5
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pepper reset life 6
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pepper reset life 7
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pepper reset life 8
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pepper reset life 9
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pepper reset life 10
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pepper reset life 11
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pepper reused one instance across 12 deaths
+Plant_Pepper exact single rewards; electric/direct XP isolated
+Plant_Pineapple reset life 0
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pineapple reset life 1
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pineapple reset life 2
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pineapple reset life 3
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pineapple reset life 4
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pineapple reset life 5
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pineapple reset life 6
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pineapple reset life 7
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pineapple reset life 8
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pineapple reset life 9
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pineapple reset life 10
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pineapple reset life 11
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pineapple reused one instance across 12 deaths
+Plant_Pineapple exact single rewards; electric/direct XP isolated
+Plant_Potato reset life 0
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Potato reset life 1
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Potato reset life 2
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Potato reset life 3
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Potato reset life 4
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Potato reset life 5
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Potato reset life 6
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Potato reset life 7
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Potato reset life 8
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Potato reset life 9
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Potato reset life 10
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Potato reset life 11
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Potato reused one instance across 12 deaths
+Plant_Potato exact single rewards; electric/direct XP isolated
+Plant_Pumpkin reset life 0
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pumpkin reset life 1
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pumpkin reset life 2
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pumpkin reset life 3
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pumpkin reset life 4
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pumpkin reset life 5
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pumpkin reset life 6
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pumpkin reset life 7
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pumpkin reset life 8
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pumpkin reset life 9
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pumpkin reset life 10
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pumpkin reset life 11
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Pumpkin reused one instance across 12 deaths
+Plant_Pumpkin exact single rewards; electric/direct XP isolated
+Plant_Strawberry reset life 0
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Strawberry reset life 1
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Strawberry reset life 2
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Strawberry reset life 3
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Strawberry reset life 4
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Strawberry reset life 5
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Strawberry reset life 6
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Strawberry reset life 7
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Strawberry reset life 8
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Strawberry reset life 9
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Strawberry reset life 10
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Strawberry reset life 11
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Strawberry reused one instance across 12 deaths
+Plant_Strawberry exact single rewards; electric/direct XP isolated
+Plant_Tomato reset life 0
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Tomato reset life 1
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Tomato reset life 2
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Tomato reset life 3
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Tomato reset life 4
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Tomato reset life 5
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Tomato reset life 6
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Tomato reset life 7
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Tomato reset life 8
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Tomato reset life 9
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Tomato reset life 10
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Tomato reset life 11
+Death clears grid before callbacks finish
+Returned plant inactive
+Flash cleared on return
+Plant_Tomato reused one instance across 12 deaths
+Plant_Tomato exact single rewards; electric/direct XP isolated
+Actual Update spawns after interval
+Occupied cell cannot spawn again
+Death resets full spawn timer
+No spawning while paused
+Spawn resumes after remaining interval
+Selling/removal returns without any award
+Gold reward data reset on pooled reuse
+Iron reward data reset on pooled reuse
+Stone reward data reset on pooled reuse
+Initial owner / round snapshot
+Returned plant releases owner reference
+Reused plant takes new owner and R130 health
+Boomerang identity changes on pooled respawn
+VFX destruction releases owned ring material
+Instantiate/Destroy baseline exact rewards
+121,000 pooled harvests: exact Gold/XP/score despite duplicate damage calls
+1000 waves plateau: created=132, retained=132, active=0, pending=0
+Material count unchanged through 1000 pooled waves
+121 plants/wave; baseline 100 waves, pooled 1000 waves (first excluded from warmed metrics).
+Synchronous lifecycle submission only, deferred engine/pool work excluded: baseline mean 2.732 ms; pooled mean 0.938 ms, P50 0.934, P95 1.001, P99 1.050 ms.
+Managed allocation counter failed 16 KB calibration on this Unity runtime; allocation values are unavailable, not zero.
+20,000 ring requests: exactly 1 material / 4 renderers retained
+Ring stress cleanup: 0 owned materials remain
+Scene unload destroys active pool and plants
+Debug tree action is gated off by default
+Debug tree completes tiers and ignores duplicate node references
+Debug tree applies mechanic unlocks
+Debug tree repeated clicks are idempotent
+Debug tree uses normal run reset
+VFX telemetry counts pool growth and leases
+VFX telemetry distinguishes reuse from growth
+Dropped damage text preserves random consumption
+Visual cap refuses the 122nd concurrent effect
+Visual cap bounds creation and live leases
+Capped pool reuses returned effect without growth
+Trend recorder is opt-in
+Trend recorder writes CSV rows
+Trend CSV column count
+DOTween telemetry API available
+Trend capture does not change gameplay RNG
+Trend capture closes its writer
+Lightweight recorder version is explicit
+Moving behavior capacity telemetry: boomerang_active
+Moving behavior capacity telemetry: boomerang_limit
+Moving behavior capacity telemetry: boomerang_rejected_triggers
+Moving behavior capacity telemetry: tornado_active
+Moving behavior capacity telemetry: tornado_limit
+Moving behavior capacity telemetry: tornado_rejected_triggers
+Per-window drop columns are recorded
+Hardware columns are recorded
+Lightweight schema excludes native object census
+Managed memory telemetry is available
+Recorder can restart and flush a new session
+No runtime errors/exceptions during stress
+Editor-only SearchDatabase startup exceptions (excluded): 1

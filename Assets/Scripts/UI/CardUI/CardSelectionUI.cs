@@ -221,7 +221,9 @@ public class CardSelectionUI : MonoBehaviour
     };
 
     // Temel güç "XP kazancı" kartı: profil istiyorsa (RunBalanceSO.additiveBaseXpCards) birikim grubuna eklenir (toplanır).
-    public static bool IsSummedBaseStat(StatType stat) => stat == StatType.XPGainMultiplier && RunBalanceSO.AdditiveBaseXpCards;
+    public static bool IsSummedBaseStat(StatType stat) => DemoSceneSettings.IsDemo
+        ? stat == StatType.XPGainMultiplier && RunBalanceSO.AdditiveBaseXpCards
+        : BasePowerCardRules.IsSummed(stat, BasePowerCardRules.Current);
 
     // Kart artık hiçbir şey değiştirmiyor mu: saldırı aralığı oyunun alt sınırında (yalnız profil isterse süzülür).
     private static bool IsFloored(StatType stat) => stat == StatType.AttackSpeed && RunBalanceSO.HideFlooredBaseStats &&
@@ -232,7 +234,7 @@ public class CardSelectionUI : MonoBehaviour
     private TileCardOffer RollBaseStat()
     {
         TileRarity rarity = RollRarityTier();
-        float amount = rarity switch { TileRarity.Legendary => .05f, TileRarity.Epic => .04f, TileRarity.Rare => .03f, _ => .02f };
+        float amount = BasePowerCardRules.Amount(rarity, BasePowerCardRules.Current);
         // İşlevsiz seçenek süzülmüyorsa havuz bütün listedir: zar eskisiyle aynıdır.
         baseStatPool.Clear();
         for (int i = 0; i < BaseStats.Length; i++)
@@ -361,11 +363,7 @@ public class CardSelectionUI : MonoBehaviour
         if (offer.IsUpgrade)
             applied = ProgressionManager.Instance.ApplyUpgrade(offer.UpgradeTarget, offer.Rarity);
         else if (offer.IsBaseStat)
-            foreach (StatModifier mod in offer.Modifiers)
-            {
-                if (offer.IsSummed) StatManager.Instance.AddToSummedGroup(mod);
-                else StatManager.Instance.AddGlobalModifier(mod);
-            }
+            BasePowerCardRules.Apply(offer, StatManager.Instance);
         else
         {
             if (!modifier.IsAvailableInCardPool)

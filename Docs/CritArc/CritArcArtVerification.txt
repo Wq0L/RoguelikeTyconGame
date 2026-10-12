@@ -1,0 +1,12 @@
+PASS 11 checks
+PASS existing CritArc mechanical regression: nearest target, 30 percent, max 3, no crit no arc
+PASS harvested source snapshot and actual hit target
+PASS one bolt and one contact for a successful arc
+PASS bolt starts at actual plant position
+PASS bolt endpoint matches damaged target in 3D
+PASS catalog lifetime 0.12 seconds
+PASS pause preserves visual age
+PASS 12 reuse cycles retain stable pooled object count
+PASS reused arc resets and displays
+PASS restart clears arc visuals
+PASS all plants directly touched: no eligible target and no fake arc

@@ -94,7 +94,8 @@ public sealed class PerformanceTrendCapture : MonoBehaviour
         writer.WriteLine("elapsed_s,window_s,frames,avg_fps,avg_frame_ms,frame_ms_p99,frame_ms_max,frames_over_16ms,frames_over_33ms," +
             "state,round,time_scale,focused,editor_paused,text_total,text_leased,hit_total,hit_leased,explosion_total,explosion_leased," +
             "plant_created,plant_active,plant_inactive,plant_pending,tweens_active,tweens_playing,global_modifiers,managed_heap_bytes," +
-            "gc0_total,logs,warnings,errors,screen,fullscreen_mode,quality,vsync,target_fps,graphics_api,gpu,cpu,ram_mb,probe_ms,recorder_version");
+            "gc0_total,logs,warnings,errors,screen,fullscreen_mode,quality,vsync,target_fps,graphics_api,gpu,cpu,ram_mb,probe_ms,recorder_version," +
+            "boomerang_active,boomerang_limit,boomerang_rejected_triggers,tornado_active,tornado_limit,tornado_rejected_triggers");
         writer.Flush();
         systemColumns = Clean(SystemInfo.graphicsDeviceType.ToString()) + "," + Clean(SystemInfo.graphicsDeviceName) + "," +
             Clean(SystemInfo.processorType) + "," + SystemInfo.systemMemorySize.ToString(CultureInfo.InvariantCulture);
@@ -105,7 +106,7 @@ public sealed class PerformanceTrendCapture : MonoBehaviour
         beganInMenu = InMainMenu;
         probe.indicator.SetRecording(true);
         Notify("PERF KAYIT BAŞLADI");
-        UnityEngine.Debug.Log("Performance capture v3 (F9): " + path);
+        UnityEngine.Debug.Log("Performance capture v4 (F9): " + path);
         Application.logMessageReceived += CountLog;
     }
 
@@ -199,7 +200,15 @@ public sealed class PerformanceTrendCapture : MonoBehaviour
         Add(QualitySettings.vSyncCount); Add(Application.targetFrameRate);
         row.Append(',').Append(systemColumns);
         Add(Math.Round((Stopwatch.GetTimestamp() - start) * 1000d / Stopwatch.Frequency, 4));
-        Add(3); // Recorder schema version: F9 toggle, drop columns, hardware columns.
+        Add(4); // Includes moving behavior capacity pressure.
+        var behavior = HarvestBehaviorManager.Instance;
+        var tornado = TornadoManager.Instance;
+        Add(behavior != null ? behavior.ActiveBoomerangs : 0);
+        Add(behavior != null ? behavior.BoomerangLimit : 0);
+        Add(behavior != null ? behavior.RejectedBoomerangTriggers : 0);
+        Add(tornado != null ? tornado.ActiveCount : 0);
+        Add(tornado != null ? tornado.ActiveLimit : 0);
+        Add(tornado != null ? tornado.RejectedTriggers : 0);
         writer.WriteLine(row.ToString()); writer.Flush();
         last = now; frame = Time.frameCount;
         ResetWindow();

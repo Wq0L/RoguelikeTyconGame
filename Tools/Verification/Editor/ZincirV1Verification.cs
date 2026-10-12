@@ -350,9 +350,21 @@ public static class ZincirV1Verification
                 Z1.bossCalendar.Select(d => d.round).SequenceEqual(e.bossCalendar.Select(d => d.round)) && Z1.choicesPerLevel == e.choicesPerLevel &&
                 Z1.startingGold == e.startingGold && Z1.fixedRoundDuration == e.fixedRoundDuration,
             "Profile: everything except the reward pool is Kırılma Erişimi V1's (calendar, targets, balance set, start budget, round length, choices)");
-        var others = AssetDatabase.FindAssets("t:BossRewardPoolSO").Select(g => AssetDatabase.LoadAssetAtPath<BossRewardPoolSO>(AssetDatabase.GUIDToAssetPath(g))).Where(p => p != zPool).ToList();
-        Require(others.All(p => !RewardOfferLab.All(p).Any(r => r.chain)) && AssetDatabase.FindAssets("t:BossRewardSO").Select(g => AssetDatabase.LoadAssetAtPath<BossRewardSO>(AssetDatabase.GUIDToAssetPath(g))).Count(r => r.chain) == 1,
-            $"Older pools ({others.Count}) contain no chain reward; the chain reward exists once");
+        var alphaPool = AssetDatabase.LoadAssetAtPath<BossRewardPoolSO>("Assets/ScriptableObjects/BossRewards/AlphaDengeV1/BossRewardPool_AlphaDengeV1.asset");
+        var alphaChain = RewardOfferLab.All(alphaPool).Single(r => r.chain);
+        var originalChain = RewardOfferLab.All(zPool).Single(r => r.chain);
+        Require(alphaChain != originalChain && alphaChain.id == originalChain.id && alphaChain.fullGameExclusiveGroup && alphaChain.exclusiveGroup == "harvest_playstyle" &&
+                alphaChain.chainChance.SequenceEqual(originalChain.chainChance) && alphaChain.chainDamage.SequenceEqual(originalChain.chainDamage) &&
+                alphaChain.chainGenerations == originalChain.chainGenerations && alphaChain.chainRootBudget == originalChain.chainRootBudget && alphaChain.chainJobsPerFrame == originalChain.chainJobsPerFrame,
+            "Full-game Alpha owns one chain copy with the same chain rules and explicit rhythm exclusion");
+        // Bölüm 3.8: Geç Oyun V1 havuzu Alpha havuzunun ödüllerini AYNI asset'lerle taşır; zinciri de Alpha'nın kopyasının kendisidir
+        // (yeni bir zincir asset'i yok). Bu havuz "eski havuz" sayılmaz; aynı zincir asset'ini kullandığı ayrıca denetlenir.
+        var latePool = AssetDatabase.LoadAssetAtPath<BossRewardPoolSO>("Assets/ScriptableObjects/BossRewards/GecOyunV1/BossRewardPool_GecOyunV1.asset");
+        Must(latePool != null && RewardOfferLab.All(latePool).Single(r => r.chain) == alphaChain, "the late-game pool should reuse the full-game chain asset");
+        var others = AssetDatabase.FindAssets("t:BossRewardPoolSO").Select(g => AssetDatabase.LoadAssetAtPath<BossRewardPoolSO>(AssetDatabase.GUIDToAssetPath(g))).Where(p => p != zPool && p != alphaPool && p != latePool).ToList();
+        var chains = AssetDatabase.FindAssets("t:BossRewardSO").Select(g => AssetDatabase.LoadAssetAtPath<BossRewardSO>(AssetDatabase.GUIDToAssetPath(g))).Where(r => r.chain).ToList();
+        Require(others.All(p => !RewardOfferLab.All(p).Any(r => r.chain)) && chains.Count == 2 && chains.Contains(originalChain) && chains.Contains(alphaChain),
+            $"Older pools ({others.Count}) contain no chain reward; only the original and full-game copy exist");
         return .05;
     }
 

@@ -1,0 +1,37 @@
+{
+  "tested_files_compared": 65,
+  "mismatches": [],
+  "missing_asset_guids": [],
+  "audio": [
+    {
+      "name": "Break.wav",
+      "channels": 1,
+      "rate": 22050,
+      "seconds": 0.46
+    },
+    {
+      "name": "Clear.wav",
+      "channels": 1,
+      "rate": 22050,
+      "seconds": 0.64
+    },
+    {
+      "name": "Emerge.wav",
+      "channels": 1,
+      "rate": 22050,
+      "seconds": 0.52
+    },
+    {
+      "name": "Hit.wav",
+      "channels": 1,
+      "rate": 22050,
+      "seconds": 0.16
+    },
+    {
+      "name": "Prepare.wav",
+      "channels": 1,
+      "rate": 22050,
+      "seconds": 0.8
+    }
+  ]
+}

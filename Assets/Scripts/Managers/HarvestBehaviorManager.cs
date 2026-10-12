@@ -18,12 +18,14 @@ public sealed class HarvestBehaviorManager : MonoBehaviour
     GameManager game;
     public int ActiveBoomerangs => boomerangs.Count;
     public int ActiveElectricBursts => electricity.Count;
+    public int BoomerangLimit => MovingBehaviorLimits.Resolve(maxBoomerangs);
+    public int RejectedBoomerangTriggers { get; private set; }
 
     void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(this); return; }
         Instance = this;
-        if (boomerangPrefab != null) boomerangPool = new(boomerangPrefab, maxBoomerangs, transform);
+        if (boomerangPrefab != null) boomerangPool = new(boomerangPrefab, BoomerangLimit, transform);
         if (electricPrefab != null) electricPool = new(electricPrefab, maxElectricBursts, transform);
     }
     void Start()
@@ -47,8 +49,8 @@ public sealed class HarvestBehaviorManager : MonoBehaviour
         while (boomerangs.Count > 0) Release(boomerangs[boomerangs.Count - 1]);
         while (electricity.Count > 0) Release(electricity[electricity.Count - 1]);
     }
-    // Aynı anda en çok maxBoomerangs. Zincir işi doluysa sırasını kaybetmeden bekler (HarvestChain).
-    public bool HasBoomerangCapacity => isActiveAndEnabled && boomerangPool != null && boomerangs.Count < maxBoomerangs;
+    // Hard gameplay cap; chained jobs use HarvestChain's existing bounded wait queue.
+    public bool HasBoomerangCapacity => isActiveAndEnabled && boomerangPool != null && boomerangs.Count < BoomerangLimit;
 
     public bool TryBoomerang(PlanterBrain source, GridObject start, int damage) => TryBoomerang(source, start, damage, HarvestLink.None, 1f, 0u);
 
@@ -57,7 +59,8 @@ public sealed class HarvestBehaviorManager : MonoBehaviour
     public bool TryBoomerang(PlanterBrain source, GridObject start, int damage, HarvestLink link, float damageFactor, uint directionSeed)
     {
         if (DemoSceneSettings.Blocks(UnlockType.TileBehavior_Boomerang)) return false;
-        if (!HasBoomerangCapacity || RoundManager.Instance == null || !RoundManager.Instance.IsRoundActive || source == null) return false;
+        if (!isActiveAndEnabled || RoundManager.Instance == null || !RoundManager.Instance.IsRoundActive || source == null) return false;
+        if (!HasBoomerangCapacity) { RejectedBoomerangTriggers++; return false; }
         var manager = GridManager.Instance;
         var cell = start?.GetGroundCellCached();
         if (manager == null || cell == null) return false;
@@ -129,6 +132,9 @@ public sealed class HarvestBehaviorManager : MonoBehaviour
     // Bir dalgada çizim kapasitesini (ElectricBurst.MaxBolts) aşan hedef sayısı: hasar uygulanır, yalnız o şimşek çizilmez.
     public int SkippedElectricBolts { get; private set; }
     public void CountSkippedBolts(int count) => SkippedElectricBolts += count;
-    public void Release(BoomerangScythe effect) { if (boomerangs.Remove(effect)) boomerangPool.Return(effect); }
+    public void Release(BoomerangScythe effect)
+    {
+        if (boomerangs.Remove(effect)) boomerangPool.Return(effect);
+    }
     public void Release(ElectricBurst effect) { if (electricity.Remove(effect)) electricPool.Return(effect); }
 }

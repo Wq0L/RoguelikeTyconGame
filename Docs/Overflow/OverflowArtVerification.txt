@@ -1,0 +1,18 @@
+PASS 17 checks
+PASS existing CritArc and Overflow regressions: damage, target order, caps, no kill no transfer
+PASS actual harvested source and both real targets captured
+PASS zero-based presentation steps
+PASS each transfer creates only shard and true-hit contact
+PASS second hop shorter lifetime
+PASS second hop smaller and shorter trail
+PASS shard starts at captured plant with rim clearance
+PASS bounded shard travels toward actual target
+PASS two transfers use at most one soft voice
+PASS 12 two-hop reuse cycles retain stable object count
+PASS nonlethal direct hit has no fake effect
+PASS one surviving target stops at one transfer
+PASS round restart clears travel contacts and audio
+PASS no living destination creates no fake transfer
+PASS existing CritArc and Overflow regressions: damage, target order, caps, no kill no transfer
+PASS pause freezes travel lifetime across frames
+PASS expired shard returns to pool

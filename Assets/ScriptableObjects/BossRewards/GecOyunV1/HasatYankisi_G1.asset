@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d024a02157794a408ec9280332f18793, type: 3}
+  m_Name: HasatYankisi_G1
+  m_EditorClassIdentifier: Assembly-CSharp::BossRewardSO
+  id: hasat_yankisi
+  displayName: "Hasat Yank\u0131s\u0131"
+  effectLabel: "Yank\u0131:"
+  inverseLabel: 
+  note: "Yaln\u0131z kendi vuru\u015Funla yapt\u0131\u011F\u0131n hasatlar say\u0131l\u0131r. Yank\u0131 yeni yank\u0131 do\u011Furmaz."
+  modifiersPerStack: []
+  directDamageMultiplier: 1
+  rareDirectMultiplier: 1
+  rareDirectFrom: 2
+  behaviorDamageMultiplier: 1
+  echo: 0
+  echoDelay: 0.2
+  echoDamage: 0.7
+  echoRadius: 1.25
+  rhythmHarvests: 0
+  rhythmDamage: 1.5
+  rhythmRadius: 1.5
+  maxStacks: 1
+  weight: 1
+  condition: 0
+  conditionStat: 0
+  conditionThreshold: 0.7
+  minRound: 0
+  maxRound: 0
+  levelChoiceDelta: 0
+  exclusiveGroup: 
+  fullGameExclusiveGroup: 0
+  movingBehaviorLimitBonus: 0
+  echoReach: 0
+  chain: 0
+  effect: {fileID: 11400000, guid: 6f95e9af835d8c58752413a12fbb0b66, type: 2}
+  requires: {fileID: 0}

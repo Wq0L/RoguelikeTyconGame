@@ -1,0 +1,46 @@
+[
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Resources\\RunProfileSelection.asset",
+    "Hash": "72AAB3D1352A923C9EB01492A79DD2E2C52839849A198A7497232C6B77E6F612"
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scenes\\GameScene.unity",
+    "Hash": "B143450FB221E13B125A99D6EEDF759143A2C9AE6CD933235D4D49EC70DF192A"
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scenes\\DemoScene.unity",
+    "Hash": "D001015B620FFA0910D0330B32DA2116C14601515969F3CEE83277CABBF06403"
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\FieldEvent.cs",
+    "Hash": "067F8B0BCBF0BFF4E713388B402E2FA4286EFA11539758658B51011AAA4FD6A9"
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\FieldEventDirector.cs",
+    "Hash": "9D5A4DABEFB5B47CD6242BDCC2C89502E5E16298B6A0E07F28A7446982FD3C0D"
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\FieldEventPlanSO.cs",
+    "Hash": "2EDC50273CBEC753014824D9C90676C37842D1380C9A67AB8B743FC00C7F5D6A"
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\GraftedShellEvent.cs",
+    "Hash": "4D20B899BE2B2979E2FA1A4C4D769CB047220FC1A2E204B7D8EEA3CCD1DA29E8"
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\InvasiveSproutEvent.cs",
+    "Hash": "FBF737844DE8DF4B6EF0AE3D28FD6302090E6BF2E9F70A21F02E3DB61C240A4E"
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\ThornSiegeEvent.cs",
+    "Hash": "12780A936589478E6902D8C76C95ABF8B4FF25CF7F72FC2305D4756C85AF9EB6"
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\WanderingBountyEvent.cs",
+    "Hash": "BCF5E4583F9361FAFE0117A0802951A3F1CC997AE9ACC3D7537077863C9F2502"
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\ScriptableObjects\\FieldEvents\\GecOyunV1\\FieldEventPlan_GecOyunV1.asset",
+    "Hash": "25F1F1ECF4027357E0693BC1505E92C579352232B9DF283B0830899FDC395E18"
+  }
+]

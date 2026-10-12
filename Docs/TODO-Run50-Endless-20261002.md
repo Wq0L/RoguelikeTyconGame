@@ -198,6 +198,84 @@ Kabul: R50→51→55→60, sonraki boss döngüleri, kayıp ve gönüllü bitiri
 
 Kabul: bu paket sırf asset altyapısı var diye kapanmaz. Seçilmiş içerik listesi gerçekten oynanabilir ve açıklanabilir olur; kalan fikirler açık/ertelenmiş/iptal durumuyla görünürdür.
 
+## P11-a — Geç oyun tarla olayları ve yeni boss ödülleri (Bölüm 3.8, 7 Ekim)
+
+P11'in bir alt paketidir. P11'in tamamını, P9'u, P10'u ya da başka bir eski paketi **kapatmaz**. Aday profil `Run50_GecOyunV1`
+(Alpha Denge V1'in her şeyi + bu içerik). Bütün sayılar ilk prototip değeridir; bütün görseller yer tutucudur. Bir kutunun işaretli
+olması "çalışıyor ve otomatik testle doğrulandı" demektir; denge, nihai görsel ve insan onayı aşağıda **ayrı** maddelerdir.
+Ayrıntı: [Bolum3-8-GecOyunOlaylariVeBossOdulleri.md](Bolum3-8-GecOyunOlaylariVeBossOdulleri.md), içerik bağlama:
+[Bolum3-8-IcerikBaglama.md](Bolum3-8-IcerikBaglama.md).
+
+### Mevcut içerik koruma
+
+- [x] Mevcut 19 boss ödülü (listedeki 13 + Artçı Patlama, Çifte Akım, Hasat Ritmi, Bereketli Öğrenim, Davranışa Adanış, Zincir Hasat) yeni havuzda aynı asset, aynı aşama, aynı sıra, aynı stack ve ağırlıkla duruyor; kopya ya da yeniden adlandırma yok.
+- [x] Eşleştirme tablosu çıkarıldı (istenen ad → kimlik / asset → gerçek davranış → karar); kod belgedeki eski ifadeye uydurulmadı.
+- [x] Eski 16 profil, eski havuzlar ve DemoScene değişmedi; yeni içerik yalnız yeni profilde etkin.
+- [x] Kota, bitki canı, XP maliyeti, round süreleri, mevcut ödül değerleri ve küçültülmüş temel güç kartları aynı (aynı denge asset'i).
+- [x] Kasırga / bumerang 12 aktif sınırı ve kapasite artırma yolu korunuyor.
+- [x] Hasat Ritmi doğrudan hasat sayıyor; Zincir Hasat kuralları ve Hasat Ritmi ↔ Zincir Hasat dışlaması aynen.
+- [ ] Bilgi Filizi "R30 sonrası çıkmasın", Canavar Kesimi "R25 sınırı" ve mevcut kartların aşama değişikliği (bu pakette bilerek uygulanmadı; aşamalı havuz asset'lerdeki `minRound` / `maxRound` alanlarını okumuyor — karar bekliyor).
+- [ ] "Şarjlı Savuruş" ve "Zincir Reaksiyon": kodda yok; Hasat Ritmi ve Zincir Hasat'ın yerine geçmedi, kopyaları eklenmedi. Farklı vuruş / bedel tarifleri ayrı tasarım farkı olarak belgelendi; kesin tarif kullanıcıdan bekleniyor.
+
+### Tarla olayları (boss ödülü değil; ayrı katman)
+
+- [x] Ortak yaşam döngüsü: hazırlık → ortaya çıkış → aktif → çözülme → temizlik; aynı anda tek olay; R26'dan önce yok; boss kurallarıyla birlikte çalışıyor; ayrı rastgelelik akışı.
+- [x] Diken Kuşatması (bölgede üretim durur; iki kök doğrudan vuruşla kırılır).
+- [x] İstilacı Filiz (yayılan yavaşlatma; ana filiz kırılınca kalkar).
+- [x] Aşılı Kabuk (iki bölge, iki düğüm; kırılanın bölgesi kurtulur; çift temasta A önce; seçilmezse A kapanır).
+- [x] Gezgin Bereket (gezen bölge; doğrudan hasat ilerlemesi; boş yuvaların canlanması; ceza yok).
+- [x] Temizlik: duraklatma, round sonu, kayıp, menü, yeniden başlatma. (Zafer yolu aynı durum işleyicisinden geçer; ayrı testi yok.)
+- [ ] Takvim, süre, alan ve dayanıklılık değerleri (ilk prototip; karar ve denge).
+- [ ] Yaklaşan tarla olayının round öncesi ÖNİZLEME ekranında / haritada gösterimi (şu an olay yalnız round içindeki hazırlık aşamasıyla ve durum plakasıyla duyuruluyor).
+
+### Yeni boss ödülleri (her biri normal teklif → seçim → gerçek etki yoluyla)
+
+- [x] Elektrik Anteni (erken) — kenar konumu seçimiyle.
+- [x] Hilal Darbesi (erken).
+- [x] İletken Hat (orta; ön koşul: Elektrik Anteni) — ikinci anten konumu seçimiyle.
+- [x] Büyüyen Ay (orta; ön koşul: Hilal Darbesi).
+- [x] Kritik Ark (orta).
+- [x] Hasat Yankısı (orta).
+- [x] Taşan Hasar (orta).
+- [x] Nadir Reaktör (orta).
+- [x] Kritik Patlama (orta).
+- [x] Açgözlü Hasat (orta).
+- [x] Kapalı Devre (güçlü; ön koşul: İletken Hat). Kuralı bir yorumdur (hat hasadı → saksının davranış şansıyla zar → tek ek hat vuruşu); onay bekliyor.
+- [x] Dolunay (güçlü; ön koşul: Büyüyen Ay) — bedeli: sınırlı doğrudan saldırı duraklaması.
+- [x] Aşırı Yükleme (güçlü).
+- [ ] 13 ödülün sayıları (hasar oranı, süre, alan, bekleme, sınır) ve aşama dağılımı: ilk prototip; ölçüm ve denge yapılmadı.
+
+### Kapsam değişikliği ve karar bekleyenler
+
+- Rezonans Çöküşü: **kapsamdan çıkarıldı** (uygulanmadı).
+- Rezonans Darbesi: **kapsamdan çıkarıldı** (uygulanmadı; "Tetik Darbesi" adıyla da eklenmedi).
+- [ ] Hilal–rezonans bağlantısı: **korunuyor, somut etkileşim kararı bekliyor.** Patlama / pulse içermeyen iki kısa öneri belgede (9.1); karar gelmeden hiçbir etkisi uygulanmadı.
+- [ ] Yorumla doldurulan kurallar (belge 9.2): Kapalı Devre tetiği, ikinci antenin kendi vuruşu, anten / hilalin davranış çarpanından yararlanmaması, Hasat Yankısı'nın hasat başına yansıma vurması, Nadir Reaktör'ün yalnız doğrudan hasatla çalışması, Aşılı Kabuk'ta A'nın önceliği.
+
+### Nihai model / VFX / ses
+
+- [ ] Kök yumrusu, diken ve filiz parçaları, kabuk düğümü ve örtüsü, zemin hazırlık belirtileri, bereket belirtisi (model / animasyon).
+- [ ] Darbe / kırılma, polen ve canlanma, anten / hat / ark vuruşları, hilal, darbe (VFX).
+- [ ] Anten modeli ve yerleşim işaretleri.
+- [ ] Sesler (14 ses olayı).
+- [x] Bağlama altyapısı: prefab / klip kataloğu (`LateGameArt`), sunum olayları, havuz ve sıfırlama kuralları, içerik bağlama belgesi. (Altyapıdır; yukarıdaki dört maddeyi kapatmaz.)
+
+### İnsan Play ve okunurluk
+
+- [ ] Dört olayın Play'de okunurluğu: bölge, hedef, kalan dayanıklılık, Aşılı Kabuk'ta hangi düğümün hangi bölgeyi kurtardığı (plakada A / B renk açıklaması eklendi; yeterli mi Play'de bakılacak).
+- [ ] Durum plakasının yeri: bölge tarlanın uzak köşesine düşünce yüksek hedef yer tutucusunun üstü plakanın arkasında kalıyor (yakalama `Docs/Bolum3-8/G1_01_DikenKusatmasi_Aktif.png`).
+- [ ] Anten yerleşim adımının kullanılabilirliği (konum seçimi, vazgeçme).
+- [ ] 13 ödülün Play'de anlaşılırlığı ve güç hissi; Dolunay duraklamasının hissi.
+- [ ] Olay sıklığı ve sürelerinin tempoya etkisi.
+
+### Regresyon / performans
+
+- [x] Yeni işlev testi: `GecOyunV1Verification` (97 denetim).
+- [x] Mevcut işlev takımlarının son kodla yeniden çalıştırılması: 19 takım geçti (liste ve notlar belgede 11.2, çıktı `Docs/Bolum3-8/Regresyon-20261007.txt`). `TakvimV1Verification` ilk koşuda düştü: zafer ekranı denetimi 6 Ekim'de değişen ödül listesi biçimini eski metinle arıyordu (bu paketten bağımsız); denetim aynı anlamla güncel biçime çevrildi, takım 162 denetimle geçti. `DemoVerification`'ın 65 oyun denetimi geçti; ilk satırındaki not Unity'nin arama dizini istisnasıdır (6 Ekim sonucuyla birebir aynı).
+- [ ] 60 run'lık denge / kazanma oranı ölçümü (bu pakette bilerek başlatılmadı).
+- [x] Yoğun tarlada batch CPU / ayırma ölçümü (saldırı başına süre ve bayt; sınırlı havuzlar). GPU, FPS ve insan Play ölçümü **değildir**.
+- [ ] Gerçek oyuncu bilgisayarında F9 kaydı ve profiler (P12 ile birlikte).
+
 ## P12 — Bütünleşik teslim ve insan doğrulaması
 
 - [ ] Aynı seed setinde normal bütçeli en az 10 run/politika; elenenler dahil. Çiftçi/tırpan çeşitleri de kapsansın.
@@ -231,3 +309,71 @@ Kabul: Kullanıcı uzun run beklemeden her eklenen mekanizmayı gerçek oyun yol
 Başlangıç: **P0 kararları + P1 bağımsız düzeltmeler**. Sonra P2 → P3 → P4. P5 ve P6 ayrı deneyler; P7/P8 birikimli etkiler görüldükten sonra. P9/P10 final sözleşmesiyle birlikte. P11 sistemler oturduktan sonra, P12 bütünleşik doğrulama, P13 ayrı test sahnesiyle kullanıcı kabulü; ardından polish.
 
 P1 2 Ekim'de Bölüm 3.7.1 ile, P2 Bölüm 3.7.2 ile, P3'ün ana run kısmı Bölüm 3.7.3 ile, P4 (bir madde hariç) Bölüm 3.7.4 ile, P5 Bölüm 3.7.5 ve 3.7.5.1 ile, P6a ve P6b (görsel maddesi hariç) Bölüm 3.7.6 ile yapıldı (altısı da Play'de gözle onay bekliyor; P2'nin hedef sayıları geçici, final içeriği P9'da; P3'te endless havuzu yalnız boş veri alanı; P4'te iki ödülün katsayıları ilk test değeri, "zaten kapalı şeyi bedel gösterme" filtresi açık; P5'te Çifte Akım ×1,5 hedefini tutmadı, kullanıcı kararıyla havuzda kalıyor; P6'da zincir değerleri ilk prototip sınırı, etkisi küçük, görsel maddesi açık). P7 öncesi Bölüm 3.7.6.1–2 ile sayısal taşmalar kapatıldı ve kontrollü refactor yapıldı (geçici teknik güvenlik; denge ve içerik değişmedi). P7 Bölüm 3.7.7 ile uygulandı ve ölçüldü (aday profil `Run50_XPV1`): XP geri beslemesi ve tablo sonrası maliyet kapandı; XP yatırımının R50 öncesi geri ödemesi ölçümde sağlanmadı ve seçim ekranı yükü çözülmedi — bu iki madde açık, kullanıcı kararı ve insan testi bekliyor. P8 Bölüm 3.7.8 ile uygulandı ve ölçüldü (aday profil `Run50_AlphaDengeV1`: 51 dk 40 sn aktif süre, süre sayaçları, yeni can eğrisi ve hedefler): süre ve sayaç işi, süre etkisi ölçümü ve zincir ayrıştırması kapandı; denge adayı oynanabilir ama "en az iki yolda belirgin üstünlük penceresi" ölçütü tam tutmadı (orta oyun kotası R13–16) — bu madde ve toplam süre / final ilişkisi açık, kullanıcı kararı ve insan testi bekliyor. P0'da durum kaydı, kota dönemleri ve ödül havuzu politikası kararları kapandı, diğer kararlar açık. P9 ve sonrası açık. 3.6'dan zaten mevcut olan özellikler yeniden yazılacak değil; ihtiyaç duyulan yerlerde doğrulanacak/genişletilecek. Güncel kapsamın tamamlanması P12 bütünleşik doğrulaması ve P13 test sahnesiyle kullanıcı kabulünden sonra kapanır; sırf ilk prototip veya altyapı teslimiyle değil.
+
+P11-a (7 Ekim, Bölüm 3.8): P11'in bir alt paketi olarak dört etkileşimli geç oyun tarla olayı (Diken Kuşatması, İstilacı Filiz, Aşılı Kabuk, Gezgin Bereket) ve 13 yeni boss ödülü ayrı bir aday profilde (`Run50_GecOyunV1`) uygulandı ve otomatik testle doğrulandı; mevcut 19 ödül ve eski profiller aynen korundu. Rezonans Çöküşü ve Rezonans Darbesi kullanıcı kararıyla kapsamdan çıkarıldı; Hilal–rezonans bağlantısı tasarımda duruyor, somut kuralı karar bekliyor. Sayılar ilk prototip değeri, görseller yer tutucu; denge, nihai model / VFX / ses ve insan Play onayı açık. Bu paket P11'i, P9'u ve P10'u kapatmaz.
+
+### Diken Kuşatması üretim ilerlemesi — 7 Ekim 2026
+
+- [x] Yedi altyapı açığının güncel kod incelemesi; hedef kimliğini koruyan sunum, gerçek Hit, sınırlı Hide,
+  slot/varyant ömrü, ShellA/B ve ödül Pulse varyantı, zemin/üst uyarı ayrımı, ses tekrar/eşzamanlı sınırı.
+- [x] Özgün düşük poligonlu kök, diken kümesi, toprak kabarması, üç çatlak aşaması, toon kırıntılar ve çözülme.
+- [x] Hazırlık/çıkış/darbe/kırılma/açılma için beş özgün sentez ses. Yeni dış asset veya bağımlılık yok.
+- [x] Tek kök önce dolu GameScene kamerasında kontrol edildi; plaka sol kota panelinin altına taşındı.
+- [ ] İnsan Play kalite/his ve ses miks onayı; diğer çözünürlükler ve gerçek GPU ölçümü.
+
+Ayrıntı ve güncel test kanıtı: [ThornSiege/README.md](ThornSiege/README.md). Bu ilerleme diğer olayların/ödüllerin
+nihai içerik maddelerini kapatmaz. Mekanik, süre, dayanıklılık ve denge aynı; Hilal kararı bu görevde uygulanmadı.
+
+8 Ekim ek sunum düzeltmesi: Diken'in havadaki sarı işaretleri kaldırıldı; zemin kabarması/titremesi, alttan yükselme,
+toon toprak sıçraması ve yalnız çıkış animasyonu boyunca hafif ekran sarsıntısı eklendi. Özel test 40 kontrol PASS.
+
+### İstilacı Filiz sunumu ve hedef konturu — 8 Ekim 2026
+
+- [x] Dört yapraklı ana taç, iki yapraklı küçük yayılma parçaları; özgün düşük poligon ve ortak toon shader.
+- [x] Toprak hazırlığı/açılma, canlılık, yayılma, gerçek darbe tepkisi ve anında mekanik temizlikten bağımsız sıralı solma.
+- [x] Ortak Diken toprak/VFX/ses altyapısı; dört özgün sentez ses. Dış içerik alınmadı; kaynak kaydı ThirdParty-Licenses.md'de.
+- [x] Kullanıcı seçimiyle Diken ve Filiz hedeflerine kırmızı ikinci kontur. Ana hedef belirgin, küçük parçalar ince konturlu.
+- [x] İzole GameScene: Filiz 34, Diken 40, genel geç oyun 97 kontrol; normal kamerada 121 bitkili görüntüler Docs/InvasiveSprout/.
+- [x] Mevcut değerler, DemoScene, seçili profil ve gerçek kayıt korundu. Commit yok; Aşılı Kabuk sunumuna geçilmedi.
+- [x] İki içerik için vertex/üçgen ve ayrı kontur maliyeti Docs/InvasiveSprout/LateGameGeometry.md'de ölçüldü.
+- [ ] İnsan Play: kırmızı kontur okunurluğu, ses miks dengesi, küçük parçaların fark edilmesi ve solma hissi.
+- [ ] Ölçülen geometri/renderer sayılarına göre sonraki optimizasyon kararını kullanıcıyla ver.
+
+8 Ekim vuruş hissi düzeltmesi: Diken ve Filiz hedefleri bitkilerle aynı havuzlanan beyaz flash'a bağlandı;
+yüzey toon shader'ı bu protokolü destekliyor. Ezilme/yaylanma güçlendirildi, kırmızı kontur korundu.
+Ek mesh/poligon yok; mekanik değerler değişmedi. Kanıt: Docs/EventHitFeedback/.
+
+### Aşılı Kabuk sunumu — 8 Ekim 2026
+
+- [x] Kalın kabuk düğümleri, düzensiz sırtlar, menteşeli köşe parçaları; A tek üçgen, B çift baklava.
+- [x] HUD/world ortak motif tanımı, A otomatik kapanma uyarısı, dayanıklılık/çatlak ve ortak beyaz darbe flash'ı.
+- [x] Hazırlık/yükselme, kurtulan tarafın açılması, diğer tarafın kapanması, süre sonunda çözülme.
+- [x] Ortak materyal, toprak/darbe/kırılma VFX ve ses havuzu; dört yeni özgün sentez ses. Dış içerik yok.
+- [x] Üç farklı dolu tarla yerleşiminde A, B ve seçimsiz yol: 91 kontrol. Diken 41 ve Filiz 37 regresyon geçti.
+- [x] Oynanış planı/süre/dayanıklılık, onaylı art, sahneler, profil ve kayıt korundu: 121 koruma hash'inde fark yok.
+- [ ] İnsan Play: motif-hedef-bölge eşleşmesi, yoğun saldırı VFX'i arasında hedefler, ses miksinin hissi, farklı ekran oranları.
+- [ ] İnsan Play: menü/round/restart düğmeleriyle uçtan uca temizlik. Otomatik callback kontrolleri geçti.
+
+Kanıtlar ve geometri bütçesi Docs/GraftedShell/. Commit yok; Gezgin Bereket sunumuna geçilmedi.
+- 2026-10-08 Aşılı Kabuk revizyonu: sıcak açılmış tomurcuk / uzun buz kozası, hücre etrafında yükselen sarmaşıklar, yaprak/dal/puf VFX. Kabuk 100 + genel 97 kontrol geçti. Rapor: Docs/GraftedShell/README.md. Korunan 121 dosya aynı. Commit yok; Gezgin Bereket kapsam dışı.
+
+- 2026-10-08 Diken/Filiz etkilenen hücre çevreleri tamamlandı: dikenli kökler / turkuaz yapraklı sürgünler. Ana hedef hücresi dahil etkilenen alan okunur. Diken 41 + Filiz 37 + genel 97 kontrol geçti. Rapor ve normal kamera görüntüleri: Docs/FieldFootprints. Mekanik, ana hedefler, Kabuk, profil/kayıt korunur; commit yok.
+
+- BEKLEYEN (kullanıcı, 2026-10-08): Bazı buff modellerinde yanlış spawn konumu, hücreye tam oturmama ve alan işaretlenirken ayrıca çıkan toprak parçalarının kötü görünmesi. Bu turda değiştirme; bir sonraki düzeltmede olay/hücre bazında incele.
+
+- 2026-10-08 Gezgin Bereket sunumu tamamlandı: polen hücre işaretleri, gerçek veriye bağlı altı çiçek ilerleme göstergesi, yalnız başarılı canlanma hücrelerine akış/VFX, üç özgün ses. 42 özel + 97 genel kontrol geçti. Docs/WanderingBounty raporu ve Play listesi. Yoğun elektrik altında örtülme görsel sınırlama; kullanıcının konum/hücre/toprak notları sonraki düzeltmeye bırakıldı. Commit yok; anten/hilal üretimine geçilmedi.
+
+- 2026-10-08 Kullanıcı yeni yönü: Gezgin Bereket altı hasat eşiği yerine pasif 2× kaynak + 2× XP + 2× hızlı üretim. Seviye ölçeklemesi yok (kullanıcı seçimini düzeltti). Round boyu kalır; 10 sn'de bir rastgele komşu hücreye adım. Mavi aurora/tarama, yükseltilmiş çiçekler. 27 özel kontrol ve genel regresyon geçti. Önceki mekanik notları bu yeni talep ile geçersizdir. Docs/WanderingBounty/README.md.
+
+- 2026-10-08 Gezgin Bereket altın robot revizyonu: tek 3×3 dış perde, hücrelerde ayrı tarama halkası ve ışın gönderen küçük toplama robotları. Bitkilerin özgün materyalini değiştirmeyen geçici altın katman; alan ayrılınca çizim kesilir. 2× kaynak/XP, yarı üretim süresi, round boyu süre ve yavaş rastgele adımlar korunur. Son rapor: Docs/WanderingBounty/README.md.
+
+### Kritik Ark sunumu — 2026-10-12
+- [x] Yalnız Kritik Ark görsel/ses üretimi ve katalog bağlantısı tamamlandı.
+  Cyan/krem tek ark, gerçek isabet yıldızı ve özgün kısa çıt; mekanik değerler korunur.
+- [ ] Kritik Ark ayrıntılı görsel/işitsel insan Play kabulü, farklı kamera/ekran oranları.
+  Temsilci görüntü ve sınırlı işlev kontrolleri nihai kabul değildir. Docs/CritArc/README.md.
+
+### Taşan Hasar sunumu — 2026-10-12
+- [x] Mevcut Taşan Hasar görsel/ses üretimi ve Overflow katalog bağlantısı tamamlandı.
+- [ ] Ayrıntılı görsel/işitsel insan Play kabulü. Temsilci görüntü nihai kabul değildir.
+  Docs/Overflow/README.md. Kazanç/bedel ve ana build dışlama eşleşmeleri bu görevde uygulanmadı.

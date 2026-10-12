@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 // Boss ödülleri (run buff'ları). RoundManager kurar; havuz aktif run profilinden gelir (RunProfileSO.bossRewards).
@@ -16,6 +16,10 @@ using UnityEngine;
 //   olabilir (exclusiveGroup). Alınabilirlik tek yerde denetlenir (BlockOf): stack sınırı, çakışan ödül, seçim hakkı aralığı, koşul.
 //   Aynı denetim teklif hazırlanırken ve ödül alınırken çalışır. Uygulama tek işlemdir (TryApply): önce her şey doğrulanır,
 //   sonra bütün etkiler bir kez yazılır; arada hata olursa eklenenler geri alınır ve hiçbir kayıt değişmez.
+// - Çalışma zamanı etkisi (Bölüm 3.8): ödül kendi mekaniğini taşıyabilir (BossRewardSO.effect) ve bir ön koşul ödül isteyebilir
+//   (requires). Ön koşul ve etkinin işlev görebilirliği aynı denetimde (BlockOf) hem teklifte hem alımda aranır. Etkiyi RunEffects
+//   yürütür; burada yalnız aynı tek işlemin içinde kurulur ve kaldırılır. Yerleşim isteyen ödül (anten) konum seçilmeden alınmaz:
+//   teklif açık kalır (PlacementReward), konum seçilince ödül bir kez uygulanır, vazgeçilince hiçbir şey değişmez.
 // - Temizlik tek yol: yeni run, ana menü, yok edilme. Yalnız bu sistemin eklediği modifier'lar kaldırılır. Kalıcı kayda yazılmaz.
 [DisallowMultipleComponent]
 public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
@@ -29,6 +33,7 @@ public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
     private StatManager stats;
     private readonly List<BossRewardSO> offer = new();
     private readonly List<BossRewardSO> taken = new();
+    public int MovingBehaviorLimitBonus { get; private set; }
     private readonly Dictionary<BossRewardSO, int> stacks = new();
     private readonly List<StatModifier> owned = new();
     private float direct = 1f;
@@ -53,6 +58,9 @@ public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
 
     public bool IsPending { get; private set; }
     public int Version { get; private set; }
+    // Yerleşimi bekleyen ödül (Bölüm 3.8): oyuncu ödülü seçti, konumunu seçiyor. Teklif açıktır ve değişmez; hiçbir etki uygulanmamıştır.
+    public BossRewardSO PlacementReward { get; private set; }
+    public bool NeedsPlacement(BossRewardSO reward) => reward != null && reward.effect != null && reward.effect.NeedsPlacement;
     // Bekleyen teklif. Bekleme varken boşsa: uygun ödül kalmadı (ContinueWithoutReward).
     public IReadOnlyList<BossRewardSO> Offer { get { PrepareOffer(); return offer; } }
     // Alınan ödüller, ilk alınış sırasıyla (her ödül bir kez; adet Stacks ile).
@@ -80,7 +88,7 @@ public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
     {
         into.Clear();
         BossRewardPoolSO pool = Pool;
-        if (pool != null && reward != null) pool.CollectExclusive(reward, into);
+        if (pool != null && reward != null) pool.CollectExclusive(reward, into, !DemoSceneSettings.IsDemo);
     }
 
     public static float DirectDamageMultiplier => Instance != null ? Instance.direct : 1f;
@@ -320,9 +328,10 @@ public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
     {
         if (reward == null || reward.weight <= 0f || BlockOf(reward, true) != BossRewardBlock.None) return false;
         // Kırılma ödülü: etkisi stat ya da çarpan değil, ayrı bir mekaniktir; koşulu sağlanıyorsa sunulabilir.
-        if (reward.IsBreakthrough) return true;
+        // Çalışma zamanı etkisi olan ödül de öyle: işlev görebilirliği BlockOf'ta arandı.
+        if (reward.IsBreakthrough || reward.effect != null) return true;
         if (!Mathf.Approximately(reward.directDamageMultiplier, 1f) || !Mathf.Approximately(reward.rareDirectMultiplier, 1f) ||
-            !Mathf.Approximately(reward.behaviorDamageMultiplier, 1f) || reward.levelChoiceDelta != 0) return true;
+            !Mathf.Approximately(reward.behaviorDamageMultiplier, 1f) || reward.levelChoiceDelta != 0 || reward.movingBehaviorLimitBonus > 0) return true;
         foreach (StatModifier modifier in reward.modifiersPerStack)
             if (CanStillChange(modifier)) return true;
         return false;
@@ -337,9 +346,16 @@ public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
         if (DemoSceneSettings.Blocks(reward)) return BossRewardBlock.Condition;
         if (Stacks(reward) >= reward.maxStacks) return BossRewardBlock.StackLimit;
         if (ExcludedByTaken(reward)) return BossRewardBlock.Exclusive;
+        // Ön koşul ödül bu run'da alınmamış (Bölüm 3.8): sunulmaz ve alınamaz.
+        if (reward.requires != null && Stacks(reward.requires) <= 0) return BossRewardBlock.Prerequisite;
+        if (reward.movingBehaviorLimitBonus != 0 && !MovingBehaviorLimits.CanAdd(reward.movingBehaviorLimitBonus))
+            return BossRewardBlock.BehaviorLimitRange;
         if (reward.levelChoiceDelta != 0 && (rounds == null || !RunPower.ValidLevelChoices(rounds.ChoicesPerLevel + reward.levelChoiceDelta)))
             return BossRewardBlock.LevelChoiceRange;
         if (checkCondition && !ConditionHolds(reward)) return BossRewardBlock.Condition;
+        // Çalışma zamanı etkisi şu an işlev göremiyorsa (kurulacağı etki yok, yerleşecek konum yok) koşul tutmuyor sayılır.
+        if (checkCondition && reward.effect != null && (RunEffects.Instance == null || !RunEffects.Instance.CanTake(reward.effect)))
+            return BossRewardBlock.Condition;
         return BossRewardBlock.None;
     }
 
@@ -347,8 +363,9 @@ public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
     private bool ExcludedByTaken(BossRewardSO reward)
     {
         if (string.IsNullOrEmpty(reward.exclusiveGroup)) return false;
+        if (DemoSceneSettings.IsDemo && reward.fullGameExclusiveGroup) return false;
         foreach (BossRewardSO other in taken)
-            if (other != reward && other.exclusiveGroup == reward.exclusiveGroup) return true;
+            if (other != reward && (!DemoSceneSettings.IsDemo || !other.fullGameExclusiveGroup) && other.exclusiveGroup == reward.exclusiveGroup) return true;
         return false;
     }
 
@@ -412,14 +429,37 @@ public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
 
     // Tek işlem: önce bütün koşullar doğrulanır (teklifte mi, stack, çakışan ödül, seçim hakkı aralığı, bedelli ödülde koşul);
     // biri tutmazsa hiçbir şey değişmez. Uygulama başarılıysa teklif kapanır: ikinci istek ve çift tıklama reddedilir.
-    public bool Choose(BossRewardSO reward)
+    public bool Choose(BossRewardSO reward) => Choose(reward, RunEffectSO.NoPlacement);
+
+    // placement: yerleşim isteyen ödülün seçilen konumu (anten). Konumsuz ya da geçersiz konumla istek reddedilir ve hiçbir şey
+    // değişmez. Koşul, bedelli ödülde ve çalışma zamanı etkisi olan ödülde alınırken de aranır.
+    public bool Choose(BossRewardSO reward, int placement)
     {
         PrepareOffer();
         if (!IsPending || !offerPrepared || reward == null || !offer.Contains(reward)) return false;
-        if (BlockOf(reward, reward.HasCost) != BossRewardBlock.None) return false;
-        if (!TryApply(reward)) return false;
+        if (BlockOf(reward, reward.HasCost || reward.effect != null) != BossRewardBlock.None) return false;
+        if (!TryApply(reward, placement)) return false;
         Resolve();
         return true;
+    }
+
+    // Yerleşim adımı: ödül teklifte ve alınabilirse konum seçimi başlar. Henüz hiçbir şey uygulanmaz.
+    public bool BeginPlacement(BossRewardSO reward)
+    {
+        PrepareOffer();
+        if (!IsPending || !offerPrepared || !NeedsPlacement(reward) || !offer.Contains(reward)) return false;
+        if (BlockOf(reward, true) != BossRewardBlock.None) return false;
+        PlacementReward = reward;
+        Version++;
+        return true;
+    }
+
+    // Vazgeçme: aynı teklife dönülür; stack, etki ve teklif değişmez.
+    public void CancelPlacement()
+    {
+        if (PlacementReward == null) return;
+        PlacementReward = null;
+        Version++;
     }
 
     // Uygun ödül kalmadığında (boş teklif) oyuncuyu kilitlemeden devam.
@@ -434,17 +474,22 @@ public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
     private void Resolve()
     {
         IsPending = false;
+        PlacementReward = null;
         offer.Clear();
         Version++;
         rounds.ContinueAfterRoundChoice();
     }
 
 #if UNITY_EDITOR
+    public void EditorDiscardPendingOffer()
+    { IsPending=false; PlacementReward=null; offer.Clear(); offerPrepared=false; Version++; }
+
     // Yalnız Editor (Bölüm 3.7.6.2; ChainDebugMenu'nün karşılaştırma yolu): boss teklifi olmadan bir ödülü bu run'a verir. Ayrı bir
     // uygulama yolu yoktur: alınabilirlik oyunun kendi denetimiyle (BlockOf: stack sınırı, çakışan ödül, seçim hakkı aralığı, koşul)
     // ve uygulama oyunun tek işlemli yoluyla (TryApply: geçersiz veride hiçbir şey değişmez) yapılır. Bekleyen bir boss teklifi
     // varken reddeder. refusal: neden verilmediği. Bu blok build'e girmez.
-    public bool EditorGrant(BossRewardSO reward, out string refusal)
+    // placement: yerleşim isteyen ödülün konumu; verilmezse ilk geçerli konum kullanılır (yalnız bu Editor girişinde).
+    public bool EditorGrant(BossRewardSO reward, out string refusal, int placement = RunEffectSO.NoPlacement)
     {
         refusal = null;
         if (reward == null) refusal = "ödül yok";
@@ -455,7 +500,13 @@ public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
             if (block != BossRewardBlock.None) refusal = "alınamaz: " + block;
         }
         if (refusal != null) return false;
-        if (!TryApply(reward)) { refusal = "uygulanamadı (ödül verisi geçersiz)"; return false; }
+        if (NeedsPlacement(reward) && placement == RunEffectSO.NoPlacement)
+        {
+            var slots = new List<int>();
+            reward.effect.CollectPlacements(RunEffects.Instance, slots);
+            if (slots.Count > 0) placement = slots[0];
+        }
+        if (!TryApply(reward, placement)) { refusal = "uygulanamadı (ödül verisi ya da konum geçersiz)"; return false; }
         Version++;
         return true;
     }
@@ -464,7 +515,7 @@ public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
     // Ödülün bütün etkileri (kazanç ve bedel) tek işlem olarak uygulanır. Hata verebilecek tek adım stat modifier'larının
     // StatManager'a eklenmesidir (dinleyicileri çağırır): o adım önce yapılır; yarıda kesilirse eklenenler geri alınır ve
     // çarpanlar, seçim hakkı, stack ve alınan ödül kaydı hiç değişmemiş olur. Kalan adımlar yalnız alan atamasıdır.
-    private bool TryApply(BossRewardSO reward)
+    private bool TryApply(BossRewardSO reward, int placement = RunEffectSO.NoPlacement)
     {
         // Zincir ayarı önce doğrulanır: tutarsız veride ödül hiç uygulanmaz (değer kırpılmaz).
         HarvestChainConfig chainConfig = default;
@@ -473,6 +524,10 @@ public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
             Debug.LogError($"Boss ödülü uygulanamadı: '{reward.displayName}' — zincir ayarı geçersiz ({chainError}). Hiçbir etkisi bırakılmadı; ödül alınmadı.", reward);
             return false;
         }
+        // Çalışma zamanı etkisi de önce doğrulanır: kurulamayacaksa (ön koşul etkisi yok, konum geçersiz) ödül hiç uygulanmaz.
+        RunEffects effects = RunEffects.Instance;
+        if (reward.effect != null && (effects == null || !effects.CanTake(reward.effect) ||
+            (reward.effect.NeedsPlacement && !reward.effect.IsValidPlacement(effects, placement)))) return false;
         if (stats == null)
         {
             stats = StatManager.Instance;
@@ -488,14 +543,25 @@ public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
         catch (System.Exception error)
         {
             // Yarıda kalan modifier listeye girmiş olabilir (ekleme, bildirimden önce yapılır): o da geri alınır.
-            for (int i = Mathf.Min(attempted, count - 1); i >= 0; i--)
-            {
-                if (!Contains(stats.GlobalModifiers, reward.modifiersPerStack[i])) continue;
-                try { stats.RemoveGlobalModifier(reward.modifiersPerStack[i]); }
-                catch (System.Exception) { /* dinleyici yine hata verdi; modifier listeden çıktı */ }
-            }
+            RollBackModifiers(reward, Mathf.Min(attempted, count - 1));
             Debug.LogError($"Boss ödülü uygulanamadı: '{reward.displayName}' — {error.Message}. Hiçbir etkisi bırakılmadı; ödül alınmadı.", reward);
             return false;
+        }
+        // Çalışma zamanı etkisi: tek işlemle kurulur (RunEffects.TryAdd). Kurulamazsa eklenen modifier'lar geri alınır; etki kendi
+        // yarım kalan durumunu kendisi geri alır. Hata yutulmaz, raporlanır.
+        if (reward.effect != null)
+        {
+            bool added = false;
+            string reason = "etki kurulamadı";
+            try { added = effects.TryAdd(reward.effect, placement); }
+            catch (System.Exception error) { reason = error.Message; Debug.LogException(error, reward); }
+            if (!added)
+            {
+                effects.Remove(reward.effect);
+                RollBackModifiers(reward, count - 1);
+                Debug.LogError($"Boss ödülü uygulanamadı: '{reward.displayName}' — {reason}. Hiçbir etkisi bırakılmadı; ödül alınmadı.", reward);
+                return false;
+            }
         }
         for (int i = 0; i < count; i++) owned.Add(reward.modifiersPerStack[i]);
         direct *= reward.directDamageMultiplier;
@@ -503,6 +569,7 @@ public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
         if (!Mathf.Approximately(reward.rareDirectMultiplier, 1f))
             for (int i = Mathf.Max(0, (int)reward.rareDirectFrom); i < rareDirect.Length; i++) rareDirect[i] *= reward.rareDirectMultiplier;
         levelChoices += reward.levelChoiceDelta;
+        MovingBehaviorLimitBonus += reward.movingBehaviorLimitBonus;
         if (reward.echo == BossRewardEcho.Explosion)
         { explosionEcho = new BehaviorEcho(reward.echoDelay, reward.echoDamage, reward.echoRadius); hasExplosionEcho = true; }
         if (reward.echo == BossRewardEcho.Electric)
@@ -515,9 +582,23 @@ public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
         return true;
     }
 
+    // Bu ödülün StatManager'a eklenmiş modifier'larını (0 … last) geri alır.
+    private void RollBackModifiers(BossRewardSO reward, int last)
+    {
+        for (int i = last; i >= 0; i--)
+        {
+            if (!Contains(stats.GlobalModifiers, reward.modifiersPerStack[i])) continue;
+            try { stats.RemoveGlobalModifier(reward.modifiersPerStack[i]); }
+            catch (System.Exception) { /* dinleyici yine hata verdi; modifier listeden çıktı */ }
+        }
+    }
+
     // Tek temizlik yolu: yeni run, ana menü, yok edilme (yeniden başlatma ve sahne değişimi).
     public void ClearAll()
     {
+        // Çalışma zamanı etkileri de aynı yoldan kalkar (geçici stat'ları ve kilitleri dahil); yerleşim adımı kapanır.
+        if (RunEffects.Instance != null) RunEffects.Instance.ClearAll();
+        PlacementReward = null;
         if (stats != null)
         {
             // Aynı ödül birden çok alındıysa aynı değer listede birden çok kez durur; her biri bir kez kaldırılır.
@@ -530,6 +611,7 @@ public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
         direct = 1f;
         behavior = 1f;
         levelChoices = 0;
+        MovingBehaviorLimitBonus = 0;
         for (int i = 0; i < rareDirect.Length; i++) rareDirect[i] = 1f;
         hasExplosionEcho = hasElectricEcho = hasRhythm = hasChain = false;
         explosionEcho = electricEcho = default;
@@ -570,4 +652,7 @@ public enum BossRewardBlock
     LevelChoiceRange = 4,
     // Ödülün koşulu sağlanmıyor (ör. davranışı olan saksı yok).
     Condition = 5,
+    BehaviorLimitRange = 6,
+    // Ön koşul ödül bu run'da alınmamış (Bölüm 3.8).
+    Prerequisite = 7,
 }

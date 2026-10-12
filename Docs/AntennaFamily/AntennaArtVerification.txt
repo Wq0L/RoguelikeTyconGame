@@ -1,0 +1,46 @@
+PASS 45 checks
+PASS real saves disabled in isolated GameScene
+PASS actual antenna data: 2.5 seconds and three cells
+PASS actual line data: four seconds, second antenna also pulses
+PASS saved return-token mesh stays compact after editor/play reload
+PASS model faces inward on edge 0
+PASS no early attack on edge 0
+PASS three actual contact cues on edge 0
+PASS contact locations match actual reachable cells on edge 0
+PASS short attack is one bounded three-cell bolt on edge 0
+PASS model faces inward on edge 1
+PASS no early attack on edge 1
+PASS three actual contact cues on edge 1
+PASS contact locations match actual reachable cells on edge 1
+PASS short attack is one bounded three-cell bolt on edge 1
+PASS model faces inward on edge 2
+PASS no early attack on edge 2
+PASS three actual contact cues on edge 2
+PASS contact locations match actual reachable cells on edge 2
+PASS short attack is one bounded three-cell bolt on edge 2
+PASS model faces inward on edge 3
+PASS no early attack on edge 3
+PASS three actual contact cues on edge 3
+PASS contact locations match actual reachable cells on edge 3
+PASS short attack is one bounded three-cell bolt on edge 3
+PASS two models share family prefab
+PASS both models charge from real read-only countdown before firing
+PASS full line contacts match eleven actual hits
+PASS line follows cell path plus antenna tips
+PASS empty line cell emits no contact
+PASS successful real circuit schedule emits one return cue
+PASS real circuit callback emits one additional line pulse
+PASS extra line uses split shape and double-beat animation
+PASS pause freezes charge and model pose
+PASS field expansion moves same pooled model to new real edge
+PASS decorations respect shared cap
+PASS real second-antenna placement begins from a valid offer
+PASS second-antenna preview uses real eleven-cell line
+PASS occupied first antenna is not a selectable second position
+PASS cancel hides sockets model line and reach previews
+PASS same placement can reopen after cancel
+PASS reopened preview has current line without stale cells
+PASS common damage-text pool remains capped at 121 during stress warmup
+PASS 30 warmed cycles retain bounded pooled object count
+PASS 30 warmed cycles retain stable material and mesh counts: 149/301 -> 149/301
+PASS cleanup leaves no active antenna or effect

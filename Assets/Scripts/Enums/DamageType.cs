@@ -5,7 +5,11 @@ public enum DamageType
     Explosion,
     Tornado,
     Boomerang,
-    Electric
+    Electric,
+    // Boss ödülü etkisinin vuruşu (Bölüm 3.8: anten, hat, hilal, ark, yankı, taşma, kritik patlama). Doğrudan vuruş değildir ve
+    // dört davranıştan biri de değildir: saksı bonusu almaz, davranış tetiklemez, davranış rezonansı ve davranış çarpanı uygulanmaz.
+    // Hangi etkiden geldiği vuruşun bağlamındadır (HarvestLink.Source).
+    Reward
 }
 
 // Hasar tipine göre davranış kuralları TEK yerde.

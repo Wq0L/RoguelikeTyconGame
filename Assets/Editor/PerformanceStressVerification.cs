@@ -65,6 +65,7 @@ public static class PerformanceStressVerification
     }
     static void Finish(bool pass, Exception error)
     {
+        RunProfileSelectionSO.ClearSessionOverride();
         SessionState.SetBool(Key, false);
         Application.logMessageReceived -= Log;
         Directory.CreateDirectory("Logs");
@@ -93,6 +94,8 @@ public static class PerformanceStressVerification
     static int RingMaterials() => Resources.FindObjectsOfTypeAll<Material>().Count(m => m.name == "Shared Attack Ring (runtime)");
     static IEnumerator Execute()
     {
+        // This fixture supplies its own stats/progression. A selected run's rarity XP multipliers must not leak into it.
+        RunProfileSelectionSO.OverrideForSession(null);
         notes.Add("Unity " + Application.unityVersion + "; " + SystemInfo.processorType + "; " + SystemInfo.graphicsDeviceName);
         notes.Add("Isolated Editor Play Mode; actual plant prefabs; no full GameScene GPU/FPS claim.");
         var game = Component<GameManager>("Game"); game.StartGame();
@@ -352,7 +355,9 @@ public static class PerformanceStressVerification
         Check(int.Parse(values[Array.IndexOf(header, "tweens_active")]) >= 0, "DOTween telemetry API available");
         Check(JsonUtility.ToJson(randomBeforeCapture) == JsonUtility.ToJson(UnityEngine.Random.state), "Trend capture does not change gameplay RNG");
         Check(!PerformanceTrendCapture.IsRecording, "Trend capture closes its writer");
-        Check(values[Array.IndexOf(header, "recorder_version")] == "3", "Lightweight recorder version is explicit");
+        Check(values[Array.IndexOf(header, "recorder_version")] == "4", "Lightweight recorder version is explicit");
+        foreach (string column in new[] { "boomerang_active", "boomerang_limit", "boomerang_rejected_triggers", "tornado_active", "tornado_limit", "tornado_rejected_triggers" })
+            Check(Array.IndexOf(header, column) >= 0 && int.Parse(values[Array.IndexOf(header, column)]) >= 0, "Moving behavior capacity telemetry: " + column);
         Check(float.Parse(values[Array.IndexOf(header, "frame_ms_p99")], System.Globalization.CultureInfo.InvariantCulture) >= 0f &&
             float.Parse(values[Array.IndexOf(header, "frame_ms_max")], System.Globalization.CultureInfo.InvariantCulture) >= 0f,
             "Per-window drop columns are recorded");

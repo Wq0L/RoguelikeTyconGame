@@ -17,6 +17,8 @@ public static class BossRewardText
     public static string Value(BossRewardSO reward, int count)
     {
         if (reward == null || count <= 0) return "";
+        // Çalışma zamanı etkisi (Bölüm 3.8): metin etkinin kendi verisinden yazılır.
+        if (reward.effect != null) return reward.effect.Summary;
         if (reward.IsBreakthrough) return Breakthrough(reward);
         if (IsTrade(reward)) return TradeValue(reward, count);
         int special = (!Mathf.Approximately(reward.directDamageMultiplier, 1f) ? 1 : 0) +
@@ -96,8 +98,27 @@ public static class BossRewardText
         }
     }
 
-    // Run sırasındaki kısa liste satırı: "Keskin Bıçak 2/3 · Doğrudan vuruş hasarı ×1,32".
-    public static string ListLine(BossRewardSO reward, int count) => $"{reward.displayName} {count}/{reward.maxStacks} · {Total(reward, count)}";
+    // Run sırasındaki kısa liste satırı: "Keskin Bıçak 2/3 · Doğrudan vuruş hasarı ×1,32". Etkili ödülde uzun kural metni
+    // tekrarlanmaz: yalnız ad ve etiket ("Elektrik Anteni · Anten").
+    public static string ListLine(BossRewardSO reward, int count) => reward.effect != null
+        ? $"{reward.displayName} · {reward.effectLabel}".TrimEnd(' ', '·')
+        : $"{reward.displayName} {count}/{reward.maxStacks} · {Total(reward, count)}";
+
+    // Etkili ödülün kartındaki alt satırlar (Bölüm 3.8): bir kez alındığı, ön koşulu, yerleşim adımı ve birlikte alınamayan ödül.
+    public static string EffectStackText(BossRewardSO reward, List<BossRewardSO> exclusive)
+    {
+        var text = new System.Text.StringBuilder("<color=#6E606E>Bir kez alınır");
+        if (reward.requires != null) text.Append(" · ön koşul: ").Append(reward.requires.displayName);
+        text.Append("</color>");
+        if (reward.effect != null && reward.effect.NeedsPlacement) text.Append("\n<color=#2E7D32>Seçince konumunu sen belirlersin</color>");
+        if (exclusive != null && exclusive.Count > 0)
+        {
+            var names = new List<string>();
+            foreach (BossRewardSO other in exclusive) names.Add(other.displayName);
+            text.Append("\n<color=#8A3A12>Bunu alırsan ").Append(string.Join(", ", names)).Append(" bir daha sunulmaz</color>");
+        }
+        return text.ToString();
+    }
 
     // Run sonu ekranı: "Keskin Bıçak ×2, Nadir Tohum".
     public static string Summary(BossRewardManager manager)
@@ -118,7 +139,7 @@ public static class BossRewardText
     // ardına yazılır.
 
     // Kartta kazanç / bedel ayrımıyla gösterilen ödül: bedeli olan ya da seçim hakkını değiştiren.
-    public static bool IsTrade(BossRewardSO reward) => reward != null && (reward.HasCost || reward.levelChoiceDelta != 0);
+    public static bool IsTrade(BossRewardSO reward) => reward != null && (reward.HasCost || reward.levelChoiceDelta != 0 || reward.movingBehaviorLimitBonus != 0);
 
     private enum TradeStyle { Card, Short, Long }
 
@@ -128,6 +149,14 @@ public static class BossRewardText
     {
         gains.Clear(); costs.Clear();
         if (reward == null) return;
+        if (reward.movingBehaviorLimitBonus > 0)
+        {
+            int bonus = reward.movingBehaviorLimitBonus * count;
+            int current = MovingBehaviorLimits.Resolve(12);
+            gains.Add(style == TradeStyle.Card
+                ? $"Aynı anda kasırga / bumerang (her biri): {current} → {current + bonus}"
+                : $"Kasırga / bumerang aktif sınırı +{bonus}");
+        }
         int delta = reward.levelChoiceDelta * count;
         if (delta != 0)
             (delta > 0 ? gains : costs).Add(style == TradeStyle.Card ? $"Gelecekteki her level: {choicesNow} → {choicesNow + delta} seçim"

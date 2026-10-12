@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public enum RunOutcome { None, Victory, QuotaFailed, BossFailed }
@@ -156,6 +156,10 @@ public class RoundManager : MonoBehaviour
         if (!TryGetComponent(out BehaviorEchoes _)) gameObject.AddComponent<BehaviorEchoes>();
         // Davranış zinciri (Zincir Hasat ödülü): ödül alınmadıysa hiçbir şey yapmaz; kuralları HarvestChain'dedir.
         if (!TryGetComponent(out HarvestChain _)) gameObject.AddComponent<HarvestChain>();
+        // Boss ödüllerinin çalışma zamanı etkileri (Bölüm 3.8: anten, hilal …): etki alınmadıysa hiçbir şey yapmaz ve dinlemez.
+        if (!TryGetComponent(out RunEffects _)) gameObject.AddComponent<RunEffects>();
+        // Geç oyun tarla olayları (Bölüm 3.8): profil olay planı göstermiyorsa ve demoda hiçbir şey yapmaz.
+        if (!TryGetComponent(out FieldEventDirector _)) gameObject.AddComponent<FieldEventDirector>();
         // Run süre sayaçları (aktif / seçim / mağaza / hazırlık / duraklama): yalnız sayar, akışı değiştirmez.
         if (!TryGetComponent(out clock)) clock = gameObject.AddComponent<RunClock>();
     }
@@ -451,6 +455,40 @@ public class RoundManager : MonoBehaviour
         }
         StartRound();
     }
+
+#if UNITY_EDITOR
+    // Capture tooling: keep the player's field/build; do not simulate skipped wins/rewards.
+    public bool EditorJumpToRound(int round)
+    {
+        if(!Application.isPlaying || DemoSceneSettings.IsDemo || GameManager.Instance==null ||
+           CalendarError!=null || RewardPoolError!=null || DurationError!=null) return false;
+        MetaSave.EditorProtectTestSession();
+        if(GameManager.Instance.CurrentState==GameStates.Placing) PlacementManager.Instance?.CancelPlacement();
+        IsRoundActive=false;
+        OnRoundEnded?.Invoke();
+        BossRewardManager.Instance?.EditorDiscardPendingOffer();
+        SpecializationManager.Instance?.EditorDiscardPendingChoice();
+        var presenter=FindAnyObjectByType<LateGamePresenter>();
+        if(presenter!=null){presenter.enabled=false;presenter.enabled=true;}
+        GameManager.Instance.StartRunSetup();
+        CurrentRound=Mathf.Clamp(round,1,MaxRounds);
+        awaitingLevels=false;pendingCardSelections=0;awaitingFirstRound=false;
+        EndedByQuota=false;EndedByBoss=false;Outcome=RunOutcome.None;
+        LastQuotaRound=LastBossRound=0;
+        LastQuotaScore=LastQuotaTarget=LastBossScore=LastBossTarget=0;
+        segmentStartScore=roundStartScore=CurrentScore;
+        StartRound();
+        return true;
+    }
+    public void EditorAddRoundTime(float seconds)
+    {
+        if(!Application.isPlaying || !IsRoundActive || seconds<=0 || float.IsNaN(seconds) || float.IsInfinity(seconds)) return;
+        MetaSave.EditorProtectTestSession();
+        RemainingTime=Mathf.Min(RemainingTime+seconds,86400f);
+        EndSlowdownProgress=0f;lastDisplayedSecond=-1;
+        Time.timeScale=1f;
+    }
+#endif
 
     public void ResetRounds()
     {

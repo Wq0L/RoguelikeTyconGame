@@ -1,0 +1,47 @@
+Bölüm 3.8 — işlev regresyonu (2026-10-07)
+İzole proje kopyası (Library/VerificationProject), kısılmış çalıştırıcı (düşük öncelik, 4 çekirdek), tek Unity, sırayla.
+Biçim: takım | çalıştırıcı | süre | sonuç dosyasının ilk satırı
+
+[Parti A — 17:25]
+FullGameFixVerification | ok | 0.5 dk | PASS 71
+BossRewardVerification | ok | 0.8 dk | PASS: 127 checks
+ZincirV1Verification | ok | 1 dk | PASS: 39 checks
+BedelliOdullerV1Verification | ok | 1.4 dk | PASS: 94 checks
+AlanGeriBildirimiVerification | ok | 0.7 dk | PASS: 23 checks
+HarvestBehaviorVerification | ok | 0.4 dk | PASS: 114 checks
+DemoVerification | ok | 0.6 dk | EDITOR INFRASTRUCTURE (not gameplay): ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+  Not: 65 PASS, 0 FAIL. İlk satır Unity editörünün arama dizini (UnityEditor.Search.SearchDatabase) istisnasıdır; test onu oyun
+  hatası saymaz. Dosya 6 Ekim'de kaydedilen sonuçla (Docs/FullGame-PlaytestFix-20261006/DemoVerification.txt) bayt bayt aynı.
+
+[Parti B — 17:34] (durum plakasına A / B açıklaması eklendikten sonra)
+KirilmaV1Verification | ok | 0.7 dk | PASS: 189 checks
+TakvimV1Verification | runner: Verification failed with exit 1 | 0.6 dk | FAIL: System.Exception: Victory screen lists the rewards of the run, including the one taken at R50: RUN TAMAMLANDI · TAKVİM V1 / 50 round · son kota 4.800 / 4.800 / Başlangıç: Bahçıvan · Standart / Harvest Score: 15.825 /  / BOSS ÖDÜLLERİ / • Geniş Savuruş ×2 / • Bilgi Filizi ×2 / • Ağır Darbe / • Keskin Bıçak ×3 / • Nadir Tohum ×2 / • Fırtına Bileği / • Canavar Kesimi / • Altın Hedef / • Kritik Göz ×2 / Aktif oynanış 0:05 · seçimler 0:02 · mağaza ve hazırlık 0:13
+  Not: denetim eski tek satırlık "Boss ödülleri: …" metnini arıyordu; tam sürüm sonuç ekranı 6 Ekim'de başlık + madde
+  satırlarına çevrilmişti (RunComplateUI.cs, bu işten önce). Bu paketten kaynaklanmıyor. 104 denetim geçmişti.
+XPV1Verification | ok | 0.5 dk | PASS: 39 checks
+AlphaDengeV1Verification | ok | 0.5 dk | PASS: 51 checks
+OdulAsamalariV1Verification | ok | 0.9 dk | PASS: 71 checks
+KirilmaErisimiV1Verification | ok | 0.8 dk | PASS: 35 checks
+SayisalGuvenlikVerification | ok | 0.5 dk | PASS: 33 checks
+Refactor3762Verification | ok | 0.3 dk | PASS: 8 checks
+SimpleResonanceVerification | ok | 0.3 dk | PASS: 294 checks
+PerformanceStressVerification | ok | 0.3 dk | PASS: lifecycle and allocation stress
+BossWeatherVerification | ok | 0.2 dk | PASS: 22 checks
+MechanicsVerification | ok | 0.5 dk | PASS: 88 checks
+GecOyunV1Verification | ok | 0.5 dk | PASS: 97 checks
+
+[TakvimV1 yeniden — 17:42] (zafer ekranı denetimi aynı anlamla güncel biçime çevrildikten sonra)
+TakvimV1Verification | ok | 1.1 dk | PASS: 162 checks
+
+[Parti A yeniden — 17:44] (son kodla: A / B açıklaması Parti A'dan sonra eklenmişti)
+FullGameFixVerification | ok | 0.5 dk | PASS 71
+BossRewardVerification | ok | 0.8 dk | PASS: 127 checks
+ZincirV1Verification | ok | 1 dk | PASS: 39 checks
+BedelliOdullerV1Verification | ok | 1.4 dk | PASS: 94 checks
+AlanGeriBildirimiVerification | ok | 0.7 dk | PASS: 23 checks
+HarvestBehaviorVerification | ok | 0.4 dk | PASS: 114 checks
+DemoVerification | ok | 0.6 dk | EDITOR INFRASTRUCTURE (not gameplay): … (65 PASS, 0 FAIL; 6 Ekim sonucuyla yine bayt bayt aynı)
+
+Son durum: 20 takımın 20'si son kodla geçti (GecOyunV1Verification dahil).
+Koruma denetimleri (bitişte): RunProfileSelection.asset, DemoScene.unity, GameScene.unity, meta.json, meta.json.bak SHA-256
+özetleri başlangıçla aynı; make_gec_oyun_v1.py --check ve make_alpha_denge_v1.py --check temiz; HEAD ec6bd3d (commit yok).

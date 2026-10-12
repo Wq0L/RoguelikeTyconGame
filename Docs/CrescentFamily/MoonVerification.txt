@@ -1,0 +1,40 @@
+PASS 39 checks
+PASS isolated GameScene real saves disabled
+PASS new full-game profile opts into full rows
+PASS other profiles retain legacy default
+PASS original trigger damage cadence and capacity data unchanged
+PASS five valid attacks count; empty swing does not
+PASS sixth genuine direct attack launches full row
+PASS legacy rule still hits original four cells at 80 damage
+PASS independent seeded selection covers both directions and multiple eligible rows
+PASS route launches do not consume reward RNG
+PASS row choice does not consume Unity RNG
+PASS 24 full rows hit each target once including both endpoints, no crit/direct amplification
+PASS empty row continues for all eleven steps without fake contacts
+PASS sparse row hits only living cells and reaches final cell
+PASS locked hole does not stop wave and never takes damage
+PASS three-cell field includes both endpoints in both directions
+PASS small-field route stays three cells after field expansion
+PASS first harvest widens the same wave for remaining steps
+PASS one full-moon return uses exactly the same row in reverse including endpoints
+PASS full moon keeps existing bounded direct pause
+PASS non-harvest step resets visual width immediately
+PASS return keeps .7 base damage, never grows or triggers another return
+PASS base growth and return never trigger planter behavior
+PASS a previously struck plant moved ahead takes no second damage in the same wave
+PASS completed waves release retained plant references
+PASS edge row selected without occupancy bias
+PASS grown edge visual clips to two real in-field rows
+PASS grown edge damage clips to same two rows
+PASS four-wave capacity unchanged and dropped launches are observable
+PASS low FPS .3s frames visit all eleven cells once with actual scheduler
+PASS one persistent visual per wave
+PASS cutting tip follows authoritative cell position without a visual lead
+PASS pause freezes wave and visual
+PASS round cleanup removes active waves timers and pause
+PASS menu clears wave and visuals
+PASS run-complete victory/loss cleanup stops waves and timers
+PASS new run clears wave and visuals
+PASS 30 warmed wave reuse cycles retain stable presenter objects
+PASS 30 warmed wave reuse cycles retain stable materials
+PASS sustained four-wave real-scheduler frame sample completed

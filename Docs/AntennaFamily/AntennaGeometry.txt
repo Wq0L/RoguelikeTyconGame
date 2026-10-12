@@ -1,0 +1,10 @@
+AntennaSnap: triangles=98; flat-shaded vertices=294; triangles including ink=98; renderers=1
+CircuitDouble: triangles=196; flat-shaded vertices=588; triangles including ink=196; renderers=1
+CircuitReturn: triangles=48; flat-shaded vertices=144; triangles including ink=48; renderers=1
+ConductiveFlash: triangles=98; flat-shaded vertices=294; triangles including ink=98; renderers=1
+ContactDouble: triangles=108; flat-shaded vertices=324; triangles including ink=108; renderers=1
+ContactStar: triangles=72; flat-shaded vertices=216; triangles including ink=72; renderers=1
+FieldAntenna: triangles=576; flat-shaded vertices=1728; triangles including ink=1136; renderers=5
+PlacementAim: triangles=80; flat-shaded vertices=240; triangles including ink=80; renderers=1
+PlacementCell: triangles=48; flat-shaded vertices=144; triangles including ink=48; renderers=1
+PlacementSocket: triangles=72; flat-shaded vertices=216; triangles including ink=72; renderers=1

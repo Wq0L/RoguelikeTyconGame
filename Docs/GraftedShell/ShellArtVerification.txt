@@ -1,0 +1,101 @@
+PASS 100 checks
+PASS route 0: real save disabled
+PASS route 0: start real shell plan
+PASS route 0: mechanical values unchanged
+PASS route 0: preparation does not block production
+PASS route 0: both targets visible during preparation
+PASS route 0: each region point has a shell motif
+PASS route 0: default A warning visible
+PASS route 0: A/B HUD legend visible
+PASS route 0: HUD uses same two polygon motifs
+PASS route 0: pool appearance and damage reset
+PASS route 0: A/B animation state reset
+PASS route 0: pooled vines return to low preparation pose
+PASS route 0: vine geometry stays inside its cell footprint
+PASS route 0: all art and VFX use shared toon
+PASS route 0: targets clear top counters
+PASS route 0: real direct hit flashes and consumes one durability
+PASS route 0: hit presentation squashes at 70ms
+PASS route 0: damage reveals cracks
+PASS route 0: exact closed region effect count
+PASS route 0: correct region blocks immediately
+PASS route 0: player choice versus timeout path correct
+PASS route 0: saved region opens independently of gameplay
+PASS route 0: logical closure precedes visual closure
+PASS route 0: pause freezes closing and logic
+PASS route 0: only closed region remains after saved release
+PASS route 0: closed vines rise around every affected pot
+PASS route 0: expiry removes logical closure immediately
+PASS route 0: reopening tail remains after production resumes
+PASS route 0: pause freezes reopening tail
+PASS route 0: hard cleanup clears all tails
+PASS route 1: start real shell plan
+PASS route 1: mechanical values unchanged
+PASS route 1: preparation does not block production
+PASS route 1: both targets visible during preparation
+PASS route 1: each region point has a shell motif
+PASS route 1: default A warning visible
+PASS route 1: A/B HUD legend visible
+PASS route 1: HUD uses same two polygon motifs
+PASS route 1: pool appearance and damage reset
+PASS route 1: A/B animation state reset
+PASS route 1: pooled vines return to low preparation pose
+PASS route 1: vine geometry stays inside its cell footprint
+PASS route 1: all art and VFX use shared toon
+PASS route 1: targets clear top counters
+PASS route 1: exact closed region effect count
+PASS route 1: correct region blocks immediately
+PASS route 1: player choice versus timeout path correct
+PASS route 1: saved region opens independently of gameplay
+PASS route 1: logical closure precedes visual closure
+PASS route 1: pause freezes closing and logic
+PASS route 1: only closed region remains after saved release
+PASS route 1: closed vines rise around every affected pot
+PASS route 1: expiry removes logical closure immediately
+PASS route 1: reopening tail remains after production resumes
+PASS route 1: pause freezes reopening tail
+PASS route 1: hard cleanup clears all tails
+PASS route 2: start real shell plan
+PASS route 2: mechanical values unchanged
+PASS route 2: preparation does not block production
+PASS route 2: both targets visible during preparation
+PASS route 2: each region point has a shell motif
+PASS route 2: default A warning visible
+PASS route 2: A/B HUD legend visible
+PASS route 2: HUD uses same two polygon motifs
+PASS route 2: A target reused from pool
+PASS route 2: pool appearance and damage reset
+PASS route 2: A/B animation state reset
+PASS route 2: pooled vines return to low preparation pose
+PASS route 2: vine geometry stays inside its cell footprint
+PASS route 2: all art and VFX use shared toon
+PASS route 2: targets clear top counters
+PASS route 2: exact closed region effect count
+PASS route 2: correct region blocks immediately
+PASS route 2: player choice versus timeout path correct
+PASS route 2: saved region opens independently of gameplay
+PASS route 2: logical closure precedes visual closure
+PASS route 2: pause freezes closing and logic
+PASS route 2: only closed region remains after saved release
+PASS route 2: closed vines rise around every affected pot
+PASS route 2: expiry removes logical closure immediately
+PASS route 2: reopening tail remains after production resumes
+PASS route 2: pause freezes reopening tail
+PASS route 2: hard cleanup clears all tails
+PASS route 2: restart ready
+PASS route 2: restart default closure active
+PASS route 2: menu callback cleans closure and visuals
+PASS route 2: start before run restart
+PASS route 2: run restart callback clears state
+PASS route 2: sound bound ShellA EventPrepared
+PASS route 2: sound bound ShellA ShellChoice
+PASS route 2: sound bound ShellA ShellClose
+PASS route 2: sound bound ShellA ShellOpen
+PASS route 2: sound bound ShellA TargetHit
+PASS route 2: sound bound ShellA TargetBroken
+PASS route 2: sound bound ShellB EventPrepared
+PASS route 2: sound bound ShellB ShellChoice
+PASS route 2: sound bound ShellB ShellClose
+PASS route 2: sound bound ShellB ShellOpen
+PASS route 2: sound bound ShellB TargetHit
+PASS route 2: sound bound ShellB TargetBroken

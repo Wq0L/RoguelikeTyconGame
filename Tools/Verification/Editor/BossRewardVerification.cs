@@ -646,7 +646,7 @@ public static class BossRewardVerification
     {
         string text = RunEndText();
         Require(text.StartsWith("BOSS PROTOTİPİ TAMAMLANDI") && text.Contains("Başlangıç: Bahçıvan · Standart") &&
-                text.Contains("Boss ödülleri: Keskin Bıçak ×3, Hızlı Bilek ×3, Bereketli Toprak ×3, Bilgi Filizi ×3, Nadir Tohum ×3"), "Result screen lists the rewards: " + text);
+                text.Contains("BOSS ÖDÜLLERİ/• Keskin Bıçak ×3/• Hızlı Bilek ×3/• Bereketli Toprak ×3/• Bilgi Filizi ×3/• Nadir Tohum ×3"), "Result screen lists each reward and stack on its own line: " + text);
         Screenshot("Boss_RunEnd");
         Object.FindFirstObjectByType<RunCompleteUI>(FindObjectsInactive.Include).OnRestartPressed();
         return 3;

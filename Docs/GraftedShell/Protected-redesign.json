@@ -1,0 +1,607 @@
+[
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scenes\\GameScene.unity",
+    "Hash": "B143450FB221E13B125A99D6EEDF759143A2C9AE6CD933235D4D49EC70DF192A",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scenes\\DemoScene.unity",
+    "Hash": "D001015B620FFA0910D0330B32DA2116C14601515969F3CEE83277CABBF06403",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Resources\\RunProfileSelection.asset",
+    "Hash": "72AAB3D1352A923C9EB01492A79DD2E2C52839849A198A7497232C6B77E6F612",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Resources\\ThornComicToon.shader",
+    "Hash": "43FCACC375B6B429986C8197AB81E37A7F4D0D22BB47A0AD43CC7CE09922EBBA",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\Audio.meta",
+    "Hash": "2C4EF25154F445BE3DD74672D96FEDC67DCB7AAED2A3CF0FBD8E8ECC7FC2087A",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\CrackStage0.asset",
+    "Hash": "18AE3FC72192BAC8B15C7190440326BCADE0F7067BB74293C7392124F7F575FD",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\CrackStage0.asset.meta",
+    "Hash": "1100B59B7D6CF657FA0580FE84856E6D79F547B0AE243C15FA44BFE8ABCE32BC",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\CrackStage1.asset",
+    "Hash": "544F7E32B2242034112A043794FAF654C50959D9825875E216507AD80D781619",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\CrackStage1.asset.meta",
+    "Hash": "CBFC8A461E9AFE6C3E5ECC4E93B667981FBEB101462B21D19F9FD7661067FE2C",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\CrackStage2.asset",
+    "Hash": "B69B1651E44F33ED0F10868CE012F3AEDEDB449568593F2483F43DFEC771B1C3",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\CrackStage2.asset.meta",
+    "Hash": "96879B995EB9391CAA64F3C5F19E0CBEC7671EF51F36268B35233655C48B9377",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\GroundHeave.prefab",
+    "Hash": "C75FAB34D07010DDA68016804EABDE4FC1D42AD5E7AC7B9339DF172E856482A7",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\GroundHeave.prefab.meta",
+    "Hash": "DFA92A87543E606871417F2528A4555B5CDC907CD3ADE05A4865A1C38BE66D73",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\RootBody.asset",
+    "Hash": "402E1A18D9F424C5BC43521935FF339C4A9A9533C2E03E5B69F2E1508CA19EA5",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\RootBody.asset.meta",
+    "Hash": "B55B0690E864DDF84E8FE95524B8376352A01C5A70A6B45C202572927A93345F",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\SoilHeave.asset",
+    "Hash": "767B5E48B637F365181F71CD54EAEDCE44681C97C296488231D64B6419BECC95",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\SoilHeave.asset.meta",
+    "Hash": "8FD0EFE07B7D0011A0A83F6C79B2A544A117C07D4FDE4F11F9D0EB0705E762F1",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornBreak.prefab",
+    "Hash": "E888751EC8CA665948276E7348210E3AC83CDDF847F1D516D4F1528669732EDC",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornBreak.prefab.meta",
+    "Hash": "8F6DCD1B67EAEF03F5B4C3A5B2C492C643DA5699BAB7CB981CFF0723CCF8B520",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornBreakFragmentLeaf.asset",
+    "Hash": "DE2CA2FE39D0E31496890F068D2ED61A15B3C03A36FA35B98ECCD411F6B941D1",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornBreakFragmentLeaf.asset.meta",
+    "Hash": "B7546E7FB16226CD5139E437A8081431E1D0328BED65D62BD31FA561085C9F24",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornBreakFragmentSoil.asset",
+    "Hash": "5B9A6E453DB71D870192370A9B2DD67242C993D0E3885E04B9662C1FCA3402D2",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornBreakFragmentSoil.asset.meta",
+    "Hash": "94B655F116886CE6D89483147A4175B7F217FC2893571EAD2EEF677D7A610D62",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornBreakFragmentWood.asset",
+    "Hash": "9F94B2D2AC40CCC2645A82EE3E6124DC0DDED6F3420FCFA311FFCCD756C51809",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornBreakFragmentWood.asset.meta",
+    "Hash": "284AFFBEBB9E470A949F7B38A9093B18A7969A707647003E9A9B1055E26B221F",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornCluster.asset",
+    "Hash": "5545A0A3F08D4BFA1B593C7FA8536BC904EB5490B7FD0277711F268CA7AC9AF9",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornCluster.asset.meta",
+    "Hash": "5C1225246F760AA67EF49A6D492F7290831F4C135B2DD8073AF7A3EA30EF091A",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornHit.prefab",
+    "Hash": "4A66EFAFF9CAF3FD5A38CB0DDA12D22FE1433DE4B74D8D39FE943044A20B9F1E",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornHit.prefab.meta",
+    "Hash": "22042DD006C2C3C3EF9E46AA6853EDB320C517CB43E4EF7E07B77C4749DB2E1E",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornHitFragmentLeaf.asset",
+    "Hash": "F34FC1B2752700E96E3B812E32BEB81A53725D45619A417E6692F7E8A6FC6E22",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornHitFragmentLeaf.asset.meta",
+    "Hash": "072E8A58F4A19E11C8C166F8DA84C5E048C37C91BF4B61BFA04308A00034A91D",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornHitFragmentSoil.asset",
+    "Hash": "4B106D93B9FFD6AD91D2D8D54406E7B32A65C90F78C6690A8A4596334B5E0219",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornHitFragmentSoil.asset.meta",
+    "Hash": "83392A29D85DE373DAEB041879E97E608E90728E286786A3229A0C2C0B8342EC",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornHitFragmentWood.asset",
+    "Hash": "A659050CF1E5152B9C6552F62AAC8596FF745D85D124F96E3EBC51B987308B38",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornHitFragmentWood.asset.meta",
+    "Hash": "BA494CE4C87D5E2BF71B37488CE789A93E6BAE9E3DE4A6B12F1641287639D25D",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornInk.mat",
+    "Hash": "ABA32C829A56B9E8CC0838F2EBBF35F9B283DE360AA4382CA79365D6B10D3135",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornInk.mat.meta",
+    "Hash": "5F65C189713423B5898A851BAFB77D46BBCE95182269D5C853DB5A4C27F6CF50",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornPiece.prefab",
+    "Hash": "66B4E7A6659896672C4F2B469C5284E87F644DEEF1283E47F0B45D05087A2A0C",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornPiece.prefab.meta",
+    "Hash": "D21B6C942C0568627EC301079C6A786C927ADE2C5B81086A8A6E9C8765FD94B4",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornRoot.prefab",
+    "Hash": "FF6D1AE18EC136C3A3DBC55AAB661072E3DFF2E88B14055A72A2861ABC2DA1DE",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornRoot.prefab.meta",
+    "Hash": "A70C11A299C317B004F92D0D4C86F8AA427851106FBFC127040001113F4CEA5F",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornSoilBurst.prefab",
+    "Hash": "43EF8BA0BB03C108F6A44B8A1C9CC7BC7CD5800AAD63A180DA8AE559502DE5B5",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornSoilBurst.prefab.meta",
+    "Hash": "63744B493A236B20B7AA3BA060EAAB882CFE2E963BC48DD059BFC7F67FBE7EFA",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornSoilBurstFragmentSoil.asset",
+    "Hash": "5226649C2F47D4E90C7EB587D6F068A8B214A1580B9DF13682C54BA31774B65A",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornSoilBurstFragmentSoil.asset.meta",
+    "Hash": "780226A2BA171AA7D87D777626F33880E555168E1D833BC37E3AB5DB1FD1667D",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornSoilBurstFragmentWood.asset",
+    "Hash": "FD4B2AEBFD03D431B8FA564BC69179AB5A94A9FFC895347501D21EDF7B11F2AD",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornSoilBurstFragmentWood.asset.meta",
+    "Hash": "33080007DC766E43572B3C4A5F857921964F8D0E3D68B56819AFD78BD757493D",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornToon.mat",
+    "Hash": "6BAFD75FE48F557704948350CC0C5C057A1D4B9ABB4BA626887F4B3B370E7888",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\ThornToon.mat.meta",
+    "Hash": "9E27B4F3621DF992AF696688406087E4D7D30921A7EDAE079B8EFCEE50A76F17",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\Audio\\Break.wav",
+    "Hash": "CF93C9DCCB11FC8A563DA732D27DFF3239B33F7D67D0025B22E28EAED4C5A096",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\Audio\\Break.wav.meta",
+    "Hash": "D6F2958E23EED8A25ABEB7B133EA255058C9613654042A1161DE8E41D29C8ED1",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\Audio\\Clear.wav",
+    "Hash": "D2364D717012DAB4A5215C764FCAA1EF027D93DF36716790F869CD8EF783A35A",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\Audio\\Clear.wav.meta",
+    "Hash": "AF76EACCF58D6F224BC244699CE9DCE22D8C5EE12299DC9E9B0ECC4E6B3819EC",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\Audio\\Emerge.wav",
+    "Hash": "26A3CE2E19F463C91D03AF281E30C50F58F54D6D4C2CC73CF10FD7DCECD05502",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\Audio\\Emerge.wav.meta",
+    "Hash": "B409F09F7DA8C5A3FE7BA374CBB41A670438EA39D9A7EC0DF2FA42EBBC3C65B7",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\Audio\\Hit.wav",
+    "Hash": "1A36DAB5579D5F8279343BDD87F1562A94323D6740C6340FBF3E46927E7C655E",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\Audio\\Hit.wav.meta",
+    "Hash": "7CCCA6F4AA3C96974B489D9A4DD5F5899AF0FDC1F3E582DF9E9CC69D9BDE97BF",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\Audio\\Prepare.wav",
+    "Hash": "0396230318B7E9C086EA19B3DF1E612136EE7C217B3DE8A728E41BB104FA328D",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\ThornSiege\\Audio\\Prepare.wav.meta",
+    "Hash": "8BF7BC1E39D7AA6D6E9C447C91CBA523A705F1575CA88E4C73FFE366A0232C23",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\Audio.meta",
+    "Hash": "A1D71505BE282D8E9B91E4A8F4CF5FF6C96C4AD59253FC3F4E4BA0951FBB9779",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutBreak.prefab",
+    "Hash": "011D160659FB84049ADBE3625B2E0A7FF23C3E3868208BBB6F3EE07DC17174B1",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutBreak.prefab.meta",
+    "Hash": "47BB08E083BBDC06E7F473A18EA0E2E17DEFBC6A359B75F32253A9E581C68135",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutBreakLeaf0.asset",
+    "Hash": "79522A5CBBD9146F8428D16D00DA1904B43856B8D3206AE7C57523F145D31E25",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutBreakLeaf0.asset.meta",
+    "Hash": "5366219877FAE76AC78CDD1A90D1D8FBF0C1368052EC0F6AD17CC30217E765C7",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutBreakLeaf1.asset",
+    "Hash": "E0FE6474759097B0ADA9284C6DBD4FB1D28C84B10265E05390849F32005F130D",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutBreakLeaf1.asset.meta",
+    "Hash": "138297BB7445D8C34F83A4721887023B186AFE15A532C079708E55D9826B9E84",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutHit.prefab",
+    "Hash": "F1DAB35D46214FC64181BBBBB5F611692D33AEACB19CC398729BC52A60D095F1",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutHit.prefab.meta",
+    "Hash": "EAF394A482899B0ED38EA81E06B8E9906F80F37937B5CAF4A0ADEF670570EFD4",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutHitLeaf0.asset",
+    "Hash": "44A8F4CC7DFB25608C9F5F79EA0CF5A7219292183204E9B56BF7D4A863C23603",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutHitLeaf0.asset.meta",
+    "Hash": "BCB6E61AAF146B04E69899209EFA1BE73D390A988D10678D61D81BA917BD3B92",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutHitLeaf1.asset",
+    "Hash": "CD6EA508E85D7EC5B63A59E259084886C6D4879BB93243741A62F859667CF895",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutHitLeaf1.asset.meta",
+    "Hash": "4EA8C80C719BC114A8D2DCFFFD846604CCC671C39D75D94B31CDD348B254BA18",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutMain.prefab",
+    "Hash": "EC256A3F4C3B4B8835574E46424D2B88D5E585996B86336EB3FDB5064558414F",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutMain.prefab.meta",
+    "Hash": "C3E44406621C18B050B1FC28CD40D81A6135429716B2A98F1A13B6AB1EAB912E",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutMainBody.asset",
+    "Hash": "E91E044E6448D6C72A179D1C302DF216E6B2063FFDAC1767235ABC6C9B12C5F2",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutMainBody.asset.meta",
+    "Hash": "A595F44B63A11DDBD2AF86646CC45E133933D6B96B6A80352580CE320297EF5E",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutMainLeaf0.asset",
+    "Hash": "C6F633DB5BF5A4EFA48FB9214BAEEE33ED301E8C22B67C3BFE151D0E8FB9AEA7",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutMainLeaf0.asset.meta",
+    "Hash": "2AB17BAC6BB106DD93FF4B26A127185C8EE5C719F6FE38804ECC039BCE872D24",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutMainLeaf1.asset",
+    "Hash": "332F5013DD29B8EFB3B275940B9EE64662C45B0C127E5189CEEDBEBA1FC2CDF5",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutMainLeaf1.asset.meta",
+    "Hash": "FBD988D6234942B84BB43319256F7E53730DB456F5E524DD8184C20023EBB022",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutPiece.prefab",
+    "Hash": "5428C7C2FE7ECF92FA109EDE8B1CEB9BE193095F471C13A94DCF86B9636B93F1",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutPiece.prefab.meta",
+    "Hash": "8D2740DE59373F7BC74945183C81B61D5C75039CD600C3CC5E5A3FB8FB505DFE",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutPieceBody.asset",
+    "Hash": "708A12E98EDD743E88CB73E29108B37685E2913668B8BE8F565466C425C39420",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutPieceBody.asset.meta",
+    "Hash": "545E130942160AF7C1998B490321386891E5C2766667A74A458222579FEFA804",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutPieceLeaf0.asset",
+    "Hash": "95FA68547AB1A8D55EE253EDAF94BCE39024BC2997C98570487E0BDC28B99A51",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutPieceLeaf0.asset.meta",
+    "Hash": "1A76F2D61E623FC86D99669EF859E3C127F75EFF90D89773745B1C55FA956946",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutPieceLeaf1.asset",
+    "Hash": "FF852E3AEB8C6F871B05B1B8E619DA0B1F268DC82EDC00563FB14472E93D1A9D",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutPieceLeaf1.asset.meta",
+    "Hash": "BB54B4BE52B1FC35A8D1465D7A726AF4BD478AC31ACF68C678E2CE95F20998E1",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutScar0.asset",
+    "Hash": "DA799A1D39115215008FD5FBA38677A14D6A1BA335AC575BEA10551CCE8F58BE",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutScar0.asset.meta",
+    "Hash": "BEDDAB18973F9CB8325F209E8612F05747CF485B6455D5835D08062EE6D1F5DC",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutScar1.asset",
+    "Hash": "872A752110784FCAA53217B53995B451F45F28791C1BFFAD1B3915C4C595CF91",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutScar1.asset.meta",
+    "Hash": "5958142CD1B417E24FC363D1B855C5FD3027F92B7DF93822E648ADFC20CD2AC6",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutScar2.asset",
+    "Hash": "37F1A5EED0AC941AE0BC08FD17760BF69F0746E6426791A5EF34C9D4FA6018B3",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\SproutScar2.asset.meta",
+    "Hash": "DAC1B8264819A87DEEF2C2324052C97E131AE911805F66A64195089722AC969F",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\Audio\\LeafHit.wav",
+    "Hash": "2C820AE81A6E0BAC1F96902F816C007BADE451120C1DF48B9E1A61665E3C32CA",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\Audio\\LeafHit.wav.meta",
+    "Hash": "81B0E16602C492ADF9A5CAB71B9281120098E595B1E7223FBE2F0D8894A12353",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\Audio\\Spread.wav",
+    "Hash": "DFEDA55B63B7F5ACE7F2CFA62DCD033BD2A1DC2669DE319C1A20DA7DB9978007",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\Audio\\Spread.wav.meta",
+    "Hash": "9F0092A1392FB2BCE6AFC663B54D9CE94543B178D9816C28A4494F9CDF4A9151",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\Audio\\Unfurl.wav",
+    "Hash": "A8ADED01A9F40E8E8798AA02EA30CF19E6C233A1DC03A78C0A701F797FE3D031",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\Audio\\Unfurl.wav.meta",
+    "Hash": "794B66DEEE63335E5B86F09FF4858EB852DA327A04EA317F8801050C2CAA3F2D",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\Audio\\Wilt.wav",
+    "Hash": "E439BB585A85BB032862731D6AF99884B580B82BC6B19898B0DE0F449690EDC0",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\InvasiveSprout\\Audio\\Wilt.wav.meta",
+    "Hash": "1BD2EA3BF50282FF4BFEE6B2EC2C3574EB95602E189FB9962BAA708DBECDA3C9",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\FieldEvent.cs",
+    "Hash": "067F8B0BCBF0BFF4E713388B402E2FA4286EFA11539758658B51011AAA4FD6A9",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\FieldEvent.cs.meta",
+    "Hash": "F1467E6F4A33418FFDA1B86D03EB6A505CCF6F762978EBD5C916AE9700ECC8DC",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\FieldEventDirector.cs",
+    "Hash": "9D5A4DABEFB5B47CD6242BDCC2C89502E5E16298B6A0E07F28A7446982FD3C0D",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\FieldEventDirector.cs.meta",
+    "Hash": "F9084533F185B0A441D3A7C581F4A12D0E0AE502138CEAAE1872AF860AD15F45",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\FieldEventPlanSO.cs",
+    "Hash": "2EDC50273CBEC753014824D9C90676C37842D1380C9A67AB8B743FC00C7F5D6A",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\FieldEventPlanSO.cs.meta",
+    "Hash": "88DC27D8694E3100A470081B60CD8720CC4AF82A25127D4C2FE788D262BCA6C6",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\GraftedShellEvent.cs",
+    "Hash": "4D20B899BE2B2979E2FA1A4C4D769CB047220FC1A2E204B7D8EEA3CCD1DA29E8",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\GraftedShellEvent.cs.meta",
+    "Hash": "88C5E82D0E417A3C757D249CE5B1576064749376696F36710CC8D9408AEEB9F4",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\InvasiveSproutEvent.cs",
+    "Hash": "FBF737844DE8DF4B6EF0AE3D28FD6302090E6BF2E9F70A21F02E3DB61C240A4E",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\InvasiveSproutEvent.cs.meta",
+    "Hash": "ABFD9AEDC8D6D7857119B0816167A715C1374B2D9CDA82185B6DE2EDDFBC3ED5",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\ThornSiegeEvent.cs",
+    "Hash": "12780A936589478E6902D8C76C95ABF8B4FF25CF7F72FC2305D4756C85AF9EB6",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\ThornSiegeEvent.cs.meta",
+    "Hash": "12632FDF39961C08D2769D5299F5E8956326AADDD9FF148233FCD1651AD9F59E",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\WanderingBountyEvent.cs",
+    "Hash": "BCF5E4583F9361FAFE0117A0802951A3F1CC997AE9ACC3D7537077863C9F2502",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Scripts\\FieldEvents\\WanderingBountyEvent.cs.meta",
+    "Hash": "2CD5AC6284B72669D379E5A036881D72BA38C79EB0063D69D00C6BEEF112F044",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\ScriptableObjects\\FieldEvents\\GecOyunV1.meta",
+    "Hash": "1E3F5B0C2635949AC61D50730ED15260B12EB5DCA2C9BF3716576A15B433C151",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\ScriptableObjects\\FieldEvents\\GecOyunV1\\FieldEventPlan_GecOyunV1.asset",
+    "Hash": "25F1F1ECF4027357E0693BC1505E92C579352232B9DF283B0830899FDC395E18",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\ScriptableObjects\\FieldEvents\\GecOyunV1\\FieldEventPlan_GecOyunV1.asset.meta",
+    "Hash": "301A5C4542ACD5D337231E4BA9B2D7D19FD63801C9E9F9FF97472155CD95D3C3",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\AppData\\LocalLow\\DefaultCompany\\clickerTycon\\meta.json",
+    "Hash": "16E9080F6005EE7FB2C6478ADD3CC6A1771A29CAE89E19C620E22A8EDF45FDB9",
+    "Unchanged": true
+  },
+  {
+    "Path": "C:\\Users\\User\\AppData\\LocalLow\\DefaultCompany\\clickerTycon\\meta.json.bak",
+    "Hash": "512084F99AF4E79043B5188D71E50211768795A63825F2B9EA4F6EE2E41572D6",
+    "Unchanged": true
+  }
+]

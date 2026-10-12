@@ -47,6 +47,9 @@ public class PlantHealth : MonoBehaviour, IDamageable
     public PlantSO Data => plantData;
     public PlanterBrain Owner => planter;
     public float KillingElectricXPMultiplier { get; private set; } = 1f;
+    // Öldüren vuruşun, bitkinin gerçek kalan canını aşan kısmı (Bölüm 3.8, Taşan Hasar): uygulanan hasar − vuruştan önceki can.
+    // Yaşayan bitkide 0; havuzdan yeniden doğunca sıfırlanır.
+    public int Overkill { get; private set; }
     // Olay can çarpanı (Sert Kabuk): bu yaşam için en fazla bir kez uygulanır. 1 = yok.
     public float HealthMultiplier { get; private set; } = 1f;
     private int baseMaxHealth;
@@ -71,6 +74,7 @@ public class PlantHealth : MonoBehaviour, IDamageable
         killedBy = DamageType.Direct;
         KillLink = LastHitLink = HarvestLink.None;
         KillingElectricXPMultiplier = 1f;
+        Overkill = 0;
         ApplyHealthMultiplier(healthMultiplier);
     }
 
@@ -124,6 +128,7 @@ public class PlantHealth : MonoBehaviour, IDamageable
         {
             killedBy = type;
             KillLink = link;
+            Overkill = -currentHealth;
             KillingElectricXPMultiplier = type == DamageType.Electric ? Mathf.Max(1f, sourceElectricXP) : 1f;
             Die();
         }

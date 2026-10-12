@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="tr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Comic butonlar · Orbit Ink TR</title>
+<style>
+@font-face{font-family:Orbit;src:url('../../Assets/Art/UI/ComicToon/Fonts/OrbitInkTR-Regular.ttf')}*{box-sizing:border-box}body{margin:0;background:#14111f;color:#f5edcf;font:15px system-ui;padding:22px}main{max-width:1288px;margin:auto}h1{font-size:20px;margin:0 0 8px}p{color:#b8b0c6;margin:0 0 18px}.scene{position:relative;aspect-ratio:644/363;background:url(reference.png) center/100% 100%;overflow:hidden;border:1px solid #443750}.control{position:absolute;border:0;background:none;padding:0;cursor:pointer;transition:transform .12s,filter .12s;transform:rotate(var(--tilt,0deg));filter:drop-shadow(2px 5px 0 #140924)}.control:hover{transform:translateY(-3px) rotate(var(--tilt,0deg)) scale(1.025);filter:brightness(1.09) drop-shadow(2px 7px 0 #140924)}.control:active{transform:translateY(2px) rotate(var(--tilt,0deg));filter:brightness(.92)}.control svg{display:block;width:100%;height:100%;overflow:visible}.control text{font-family:Orbit;font-weight:normal;fill:#fffdf2;paint-order:stroke fill;stroke:#100b18;stroke-width:5;stroke-linejoin:round}.shop{left:9%;bottom:4.4%;width:26%;height:14%;--tilt:-1deg}.run{left:36.8%;bottom:3.8%;width:28.2%;height:15.5%;--tilt:.4deg}.skill{left:66.2%;bottom:4.5%;width:27%;height:14%;--tilt:-1.1deg}.preview{left:80.5%;top:16.7%;width:18%;height:12%;--tilt:-1.5deg}.samples{margin-top:22px;padding:22px;background:#221b30;border:1px solid #443750}.samples h2{font:30px Orbit;margin:0 0 12px}.glyphs{font:27px/1.55 Orbit;overflow-wrap:anywhere}.note{font:13px system-ui;color:#b8b0c6;margin-top:14px}.toggle{margin-bottom:12px;display:flex;gap:12px;align-items:center}label{cursor:pointer}#status{min-height:20px;font-size:13px;color:#cebe8d;margin-top:12px}
+</style><main>
+<h1>Buton ve font taslağı</h1><p>Referans görsel üzerinde yeni butonlar. Unity ekran görüntüsü değildir; onay örneğidir.</p>
+<div class="toggle"><label><input type="checkbox" id="new" checked> Yeni butonları göster</label><span>Üzerine gel / basılı tut</span></div>
+<div class="scene" id="scene"></div>
+<div id="status"></div>
+<section class="samples"><h2>Orbit Ink TR — yeni başlık fontu</h2><div class="glyphs">ABCÇDEFGĞHIİJKLMNOÖPQRSŞTUÜVWXYZ<br>abcçdefgğhıijklmnoöpqrsştuüvwxyz<br>0123456789 · ₺ € £ $ % + − × ÷ → ← ↑ ↓<br>ÖNİZLEME · RUN’I BAŞLAT · IĞDIR · İŞÇİ · ÇÖĞÜŞ<br>“Hasat hazır!” — Güç +25% · 1.250 ₺ · [A–K]</div><div class="note">235 karakter eşlemesi. Türkçe/İngilizce, rakamlar, noktalama, para birimleri ve oklar kontrol edildi. OFL lisanslı mevcut fonttan türetilmiştir; tamamen sıfırdan çizilmiş bir font değildir.</div></section>
+</main><script>
+const configs=[
+ {cls:'shop',text:'PLANTER SHOP',color:'#0fb48c',light:'#45dfb1',size:36,path:'M12 12 L74 9 L80 14 L393 8 L386 30 L405 32 L392 87 L30 91 L25 73 L17 75 Z',icon:'cart'},
+ {cls:'run',text:'RUN’I BAŞLAT',color:'#009cb9',light:'#37cfdb',size:37,path:'M13 16 L119 7 L382 11 L377 23 L408 26 L395 80 L386 81 L384 93 L24 88 L28 68 L17 67 Z',icon:'play'},
+ {cls:'skill',text:'SKILL SHOP',color:'#f1cc32',light:'#ffe575',size:37,path:'M23 14 L398 7 L389 34 L405 32 L388 85 L313 86 L309 92 L11 87 L20 58 L12 56 Z',icon:'star'},
+ {cls:'preview',text:'ÖNİZLEME',color:'#079ebb',light:'#35cdda',size:37,path:'M15 14 L80 10 L84 14 L387 8 L390 25 L407 29 L395 85 L325 84 L321 91 L28 86 L25 71 L16 74 Z',icon:'eye'}];
+const icons={play:'<path d="M46 27 L46 74 L85 50 Z"/>',star:'<path d="M64 23 L73 42 L96 44 L79 58 L84 79 L64 68 L45 79 L48 58 L32 44 L55 42 Z"/>',cart:'<path d="M29 27 L42 30 L49 62 L80 61 L90 38 L44 36" fill="none"/><circle cx="54" cy="76" r="5"/><circle cx="78" cy="76" r="5"/>',eye:'<path d="M28 51 Q60 15 94 49 Q64 81 28 51Z"/><ellipse cx="62" cy="49" rx="13" ry="16" fill="#0fa4ca"/><ellipse cx="62" cy="50" rx="5" ry="9" fill="#151020"/>'};
+for(const [i,c] of configs.entries()){
+ const button=document.createElement('button');button.className='control '+c.cls;button.setAttribute('aria-label',c.text);
+ let dots='';for(let y=0;y<4;y++)for(let x=0;x<5-y;x++)dots+=`<circle cx="${31+x*5+i}" cy="${78-y*5}" r="${1.1-y*.1}"/>`;
+ button.innerHTML=`<svg viewBox="0 0 420 105" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="wash${i}" x2=".15" y2="1"><stop stop-color="${c.light}"/><stop offset="1" stop-color="${c.color}"/></linearGradient></defs><path d="${c.path}" transform="translate(4 6)" fill="#130b22" stroke="#130b22" stroke-width="7"/><path d="${c.path}" fill="url(#wash${i})" stroke="#0f0918" stroke-width="7" stroke-linejoin="miter"/><path d="M31 29 L28 20 L${130+i*22} 17 M374 72 L380 77 L292 81" stroke="#eff4bc" stroke-width="2" fill="none" opacity=".7"/><path d="M36 22 L28 23 L32 39 M365 78 L379 76 L383 61 M48 83 L33 80 L32 71" stroke="#17202b" stroke-width="2.5" fill="none"/><g fill="#143b42" opacity=".52">${dots}</g><path d="M343 19 Q365 13 374 28" fill="none" stroke="#eaffdf" stroke-width="6" stroke-linecap="round"/><g fill="#fffcec" stroke="#100b19" stroke-width="4.7" stroke-linejoin="round">${icons[c.icon]}</g><text x="242" y="63" font-size="${c.size}" text-anchor="middle">${c.text}</text></svg>`;
+ button.onclick=()=>document.getElementById('status').textContent=c.text+' — örnek buton, oyun eylemi çalıştırmaz.';
+ document.getElementById('scene').append(button);
+}
+document.getElementById('new').onchange=e=>document.querySelectorAll('.control').forEach(b=>b.hidden=!e.target.checked);
+document.fonts.ready.then(()=>document.body.dataset.fontReady='true');
+</script></html>

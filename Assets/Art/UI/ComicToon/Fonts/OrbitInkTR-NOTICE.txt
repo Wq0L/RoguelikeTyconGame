@@ -1,0 +1,11 @@
+Orbit Ink TR is an OFL-licensed derivative of Harvest Comic TR / Lilita One.
+Original copyright (c) 2011 Juan Montoreano (juan@remolacha.biz).
+Original reserved font name: Lilita. This derivative is renamed Orbit Ink TR.
+See OrbitInkTR-OFL.txt for the license.
+
+Changes: decomposed accents; subtle fixed per-glyph width and slant adjustments;
+added Turkish lira and missing arrow symbols. Original source fonts are untouched.
+235 mapped characters. Verified Turkish/English uppercase and lowercase, digits,
+common punctuation, currency symbols and arrows. Not universal Unicode coverage.
+Rebuild: python Tools/build-orbit-comic-font.py (requires fonttools).
+Currently used only by the button approval preview; no global TMP replacement.

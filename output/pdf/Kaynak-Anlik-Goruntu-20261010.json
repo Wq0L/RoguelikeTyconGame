@@ -1,0 +1,430 @@
+{
+  "snapshotDate": "2026-10-10",
+  "scope": "GameScene / Run50_GecOyunV1",
+  "humanPlayThisTask": false,
+  "testsRunThisTask": false,
+  "gitHead": "ec6bd3dd1ba0a7cc2d45b08b5a8b1dcdbab6b0a3",
+  "warning": "Working tree contains uncommitted work; HEAD alone is not this snapshot.",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "71453445f1605a8019dc82b1b8eac7c7c23018c8aced7c9bfced5f6a7784635a"
+    },
+    {
+      "path": "Assets/Resources/RunProfileSelection.asset",
+      "sha256": "72aab3d1352a923c9eb01492a79dd2e2c52839849a198a7497232c6b77e6f612"
+    },
+    {
+      "path": "Assets/ScriptableObjects/Balance/AlphaDengeV1/RunBalance_AlphaDengeV1.asset",
+      "sha256": "9e49077211a72666ed9a23726a8b6bf7a249bc67d9c0b527a2a3adb8047dd2f0"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/AlphaDengeV1/HasatRitmi_A1.asset",
+      "sha256": "67456fae2343774983e33777bf4bcd81bb914563f5fd51d3c2d89352e82ebf24"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/AlphaDengeV1/ZincirHasat_A1.asset",
+      "sha256": "73eb8691ae08548e0dcc0fea49e421479d0cb6974e1f7c4e53b3e184ea4e0a0a"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/BedelliOdullerV1/BereketliOgrenim_B1.asset",
+      "sha256": "11b72210824135016dcc3eb76e841f382675c8f72a7f41d5ebaa7a06117af495"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/BedelliOdullerV1/DavranisaAdanis_B1.asset",
+      "sha256": "2136769ef1c007b51195baa154796119b5998f331664c6cb9ea8de7721af97ca"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/DengeV1/AgirDarbe_V1.asset",
+      "sha256": "a621e0cb67589d49308b9beaf8c88e290db9393c7cb9630732e3874a1576babd"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/DengeV1/AltinHedef_V1.asset",
+      "sha256": "66b8be38d568cc295d60c67ce2a588f78e6d101f2b76c8b150b23ef5b467b002"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/DengeV1/BereketliToprak_V1.asset",
+      "sha256": "18d68c3a849a422f11573c3ef892c4a8fc68211ad7ae8e8c8fee9e3c8b01eae0"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/DengeV1/BilgiFilizi_V1.asset",
+      "sha256": "3b61c6a857f14bc5a04a057124a39198dae476647af5375548b6251c874a7f7e"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/DengeV1/CanavarKesimi_V1.asset",
+      "sha256": "86113038849655969b0f0e76b4847b69dae6ea4625be98ab3d1411ce40afea4e"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/DengeV1/FirtinaBilegi_V1.asset",
+      "sha256": "29bd3de91077e9ba08528671fc298a2de61af1c54e98c1492a5b22d38a79db37"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/DengeV1/GenisSavurus_V1.asset",
+      "sha256": "228381e754170d21f82ce4a83d69e8da677818876b741fec432da03642a1ed9e"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/DengeV1/HizliBilek_V1.asset",
+      "sha256": "38d05662371926efb7e6051d33c24150414a6dafd20a393fd1ce1c1b3a2d5c23"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/DengeV1/KeskinBicak_V1.asset",
+      "sha256": "c098bc1dbb26b64a65f7698531f0568d83544f1b6663176997986459a1bd7691"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/DengeV1/Kivilcim_V1.asset",
+      "sha256": "b4fa4317d48d39ae1ce31243495ed1ca183d5e760baf2dd2579b63782af7884d"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/DengeV1/KritikGoz_V1.asset",
+      "sha256": "71ad1effff1f361d827b8bad105e75c6f485b292b04f108e0c9c3fdca267435b"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/DengeV1/NadirTohum_V1.asset",
+      "sha256": "73238f1d5ca743fc848e817b3b4c2889f40657b1274956fadc901b5968004401"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/DengeV1/YikimGucu_V1.asset",
+      "sha256": "4a70db87903a4560bc9172eb271638a0dcabd663433daf52d2dec855f3b13c81"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/GecOyunV1/AcgozluHasat_G1.asset",
+      "sha256": "90a6223a9544e9887d47f967f56dbcf9fb1b43b62c913d4a814951dfb83e3800"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/GecOyunV1/AsiriYukleme_G1.asset",
+      "sha256": "047df85eb353a458742504064d6ccdf4a4c5a2d1101343931e3bfb7f9d2455e3"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/GecOyunV1/BossRewardPool_GecOyunV1.asset",
+      "sha256": "ec68dda23dde809417fe9c64bf3d5acdec82ae013c1ffcf735ef34423fade941"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/GecOyunV1/BuyuyenAy_G1.asset",
+      "sha256": "5f362764e1147ea2c0a564c302e803794800cbb13e59b91f8be6a6649675e53c"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/GecOyunV1/Dolunay_G1.asset",
+      "sha256": "a41bf9e50405377c3f05c286f58479f63d26a4c59ead00546c7158b9d40b58aa"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/GecOyunV1/ElektrikAnteni_G1.asset",
+      "sha256": "96283d9afe5fa85973b0e1aa14a0d9eeadfcc0aee3ecda990a1eeb564bc6da6e"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/GecOyunV1/HasatYankisi_G1.asset",
+      "sha256": "318cdd13301647fd119f3e09eeeb4238defcfeee615804a3d3ec88403196ac59"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/GecOyunV1/HilalDarbesi_G1.asset",
+      "sha256": "d2b91bf95b9ad7cf70f3028ae890d45c1fb2a0e417339f1f43d000f9da748589"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/GecOyunV1/IletkenHat_G1.asset",
+      "sha256": "bd51f5d7d4fc01f05e0f72933fb051c19bdecbb5f58427d642648c0adcf9693a"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/GecOyunV1/KapaliDevre_G1.asset",
+      "sha256": "d446331800f5d3d922b4fb80785cd512ef6d159eeec348c99a4e021e38269f86"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/GecOyunV1/KritikArk_G1.asset",
+      "sha256": "027897f3ac15680401e322b0fa09e3a148dfcc0319143dc2d65352297c1bf6ef"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/GecOyunV1/KritikPatlama_G1.asset",
+      "sha256": "51adf8dcb6dae68f618b4a77ba9b070b0f4e56a94f8b57eac43350a9c7db6de6"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/GecOyunV1/NadirReaktor_G1.asset",
+      "sha256": "f569877083a05d001d282aa569bb3618e96625bc4b440a51b604997336f72c1c"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/GecOyunV1/TasanHasar_G1.asset",
+      "sha256": "c864db828476a431aed7f58b3223df8851c8a329ef17ed10e8fe77204ff9c1d1"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/KirilmaErisimiV1/ArtciPatlama_E1.asset",
+      "sha256": "e5b1c1400ec3ed279e24a42aedaaeb2bb0d7fdcb510e2ff2f16398d7a59e4c27"
+    },
+    {
+      "path": "Assets/ScriptableObjects/BossRewards/KirilmaErisimiV1/CifteAkim_E1.asset",
+      "sha256": "93a7dc079406062310f59ad1727bfff2d27beea4181557ae264e591020b5bc9f"
+    },
+    {
+      "path": "Assets/ScriptableObjects/FieldEvents/GecOyunV1/FieldEventPlan_GecOyunV1.asset",
+      "sha256": "25f1f1ecf4027357e0693bc1505e92c579352232b9df283b0830899fdc395e18"
+    },
+    {
+      "path": "Assets/ScriptableObjects/RunEffects/GecOyunV1/AcgozluHasatEffect_G1.asset",
+      "sha256": "cf814cd968ac6f5191e8e916b89037289c833d0e60ccacccaa53db4f61f8c9be"
+    },
+    {
+      "path": "Assets/ScriptableObjects/RunEffects/GecOyunV1/AsiriYuklemeEffect_G1.asset",
+      "sha256": "cf1777e05e23a00907828bc23b6c26e6e74c242525b26606e1734bc0f86d9c1a"
+    },
+    {
+      "path": "Assets/ScriptableObjects/RunEffects/GecOyunV1/BuyuyenAyEffect_G1.asset",
+      "sha256": "36c7bb730ab554851e0c67b82ace3d2f0f7092723171fc479bfdaec381034426"
+    },
+    {
+      "path": "Assets/ScriptableObjects/RunEffects/GecOyunV1/DolunayEffect_G1.asset",
+      "sha256": "e15f62e145d36cacc6b7bb2834f9a996e56d8360581b7ffa8d41239abdcdd561"
+    },
+    {
+      "path": "Assets/ScriptableObjects/RunEffects/GecOyunV1/ElektrikAnteniEffect_G1.asset",
+      "sha256": "05c666963f396bf709697b6879df07209da703f7ed67f5165aee193866054462"
+    },
+    {
+      "path": "Assets/ScriptableObjects/RunEffects/GecOyunV1/HasatYankisiEffect_G1.asset",
+      "sha256": "169cbc86bb110fba845a8b27913be0a73520472f15dd5fdd946bf5f76fd004a6"
+    },
+    {
+      "path": "Assets/ScriptableObjects/RunEffects/GecOyunV1/HilalDarbesiEffect_G1.asset",
+      "sha256": "f3e23797f2640c0bb15681ddf94f45e6f126e846f2a08daf9f826a11a5ed9af2"
+    },
+    {
+      "path": "Assets/ScriptableObjects/RunEffects/GecOyunV1/IletkenHatEffect_G1.asset",
+      "sha256": "f95991dfd1f416cf332d94fec516fbea97662c589958a78710fc6050f7c86e8b"
+    },
+    {
+      "path": "Assets/ScriptableObjects/RunEffects/GecOyunV1/KapaliDevreEffect_G1.asset",
+      "sha256": "aa3765340c840405554493530a1302f66f938213b07cd6f2f2ac0b8811c75a47"
+    },
+    {
+      "path": "Assets/ScriptableObjects/RunEffects/GecOyunV1/KritikArkEffect_G1.asset",
+      "sha256": "ee20a8fb2ac7537097556bd092d122666c3e1a5a521729e68ddd6704adfa0f61"
+    },
+    {
+      "path": "Assets/ScriptableObjects/RunEffects/GecOyunV1/KritikPatlamaEffect_G1.asset",
+      "sha256": "5e998ea098d8965e33c9a97cb1d92c1eff0681a862b45834e40c3f4df2a21bc0"
+    },
+    {
+      "path": "Assets/ScriptableObjects/RunEffects/GecOyunV1/NadirReaktorEffect_G1.asset",
+      "sha256": "4c45cb75482b7bd7a16c908eb5563ed47e314a92de2a8fd1a14f124d4c422fdf"
+    },
+    {
+      "path": "Assets/ScriptableObjects/RunEffects/GecOyunV1/TasanHasarEffect_G1.asset",
+      "sha256": "821ceb02f424ae4283c50e3c504546468c47d45828bb402de0627387cc6582b5"
+    },
+    {
+      "path": "Assets/ScriptableObjects/RunProfiles/Run50_GecOyunV1.asset",
+      "sha256": "0c3ce0806351176f066147691cf6018fa52178b83bca4c5da5c9abaecedb4bd8"
+    },
+    {
+      "path": "Assets/Scripts/FieldEvents/FieldEvent.cs",
+      "sha256": "067f8b0bcbf0bff4e713388b402e2fa4286efa11539758658b51011aaa4fd6a9"
+    },
+    {
+      "path": "Assets/Scripts/FieldEvents/FieldEventDirector.cs",
+      "sha256": "0ada3e9aaac4975148021832c9a50464a90371e2741f5906036fcbc1f58d0c40"
+    },
+    {
+      "path": "Assets/Scripts/FieldEvents/FieldEventPlanSO.cs",
+      "sha256": "c647334c8572d5c0fa5eb5cc87457da32d8893f1fbc7d14fc2fb1718c466b4a2"
+    },
+    {
+      "path": "Assets/Scripts/FieldEvents/GraftedShellEvent.cs",
+      "sha256": "4d20b899be2b2979e2fa1a4c4d769cb047220fc1a2e204b7d8eea3ccd1da29e8"
+    },
+    {
+      "path": "Assets/Scripts/FieldEvents/InvasiveSproutEvent.cs",
+      "sha256": "fbf737844de8df4b6ef0ae3d28fd6302090e6bf2e9f70a21f02e3db61c240a4e"
+    },
+    {
+      "path": "Assets/Scripts/FieldEvents/ThornSiegeEvent.cs",
+      "sha256": "12780a936589478e6902d8c76c95abf8b4ff25cf7f72fc2305d4756c85af9eb6"
+    },
+    {
+      "path": "Assets/Scripts/FieldEvents/WanderingBountyEvent.cs",
+      "sha256": "7b69ff7801f3a4191d8fb88d92d6553f462b884f0abae0a082e5ccf8daf6daa3"
+    },
+    {
+      "path": "Assets/Scripts/Managers/BossRewardManager.cs",
+      "sha256": "c0b1df5bc3412078e519d6e529d38f4dc961aab6e109fbd4d2a497d638e5e855"
+    },
+    {
+      "path": "Assets/Scripts/Managers/GameSettings.cs",
+      "sha256": "4d67a7f282f0812607b3a78e582aa2da1d9d9e8e4ee179f87c57663cd19c61f6"
+    },
+    {
+      "path": "Assets/Scripts/Managers/HarvestChain.cs",
+      "sha256": "118c305c5f60870e4280a37743420e49ac55cda6e4539ddc159a8254e8f26b49"
+    },
+    {
+      "path": "Assets/Scripts/Managers/PlacementManager.cs",
+      "sha256": "e08071347d20d18f5eaaf85466b2c19369d02454c2e0a5c688902cd62cabbb68"
+    },
+    {
+      "path": "Assets/Scripts/Managers/ProgressionManager.cs",
+      "sha256": "82905d144fc90f5272d258ddec6ced999101cca91f706e3ad73ee5947f9041ed"
+    },
+    {
+      "path": "Assets/Scripts/Managers/RoundManager.cs",
+      "sha256": "3ec28d66ac63a03f5ece13f3077ce916e2318eb56b62e94d765b3125821cfd6a"
+    },
+    {
+      "path": "Assets/Scripts/Managers/RunCalendar.cs",
+      "sha256": "8da9452a69e3cc5ed8471af0456e2de3d1fae96766996bd645e867b53128fe05"
+    },
+    {
+      "path": "Assets/Scripts/Managers/StatManager.cs",
+      "sha256": "6d862a1aee584893b628b68905182d563f5017dd4a114d095a3e65d390354c3e"
+    },
+    {
+      "path": "Assets/Scripts/Plants/GroundCell.cs",
+      "sha256": "2cdf56ae4c7bc6de00113b76d19d1c07ea571c29e818c7753b37814dbc79ef54"
+    },
+    {
+      "path": "Assets/Scripts/Player/PlayerController.cs",
+      "sha256": "50f64110d54126ba0a3e4d919361721c6a418f9dc264f9bc976010d7fb24182f"
+    },
+    {
+      "path": "Assets/Scripts/RunEffects/AttackFeed.cs",
+      "sha256": "8fcaa6311361bed2d8cb4c5dd34bda8c01cb6b6c614b8542aa66b9bcc6625e0b"
+    },
+    {
+      "path": "Assets/Scripts/RunEffects/Effects/AntennaEffectSO.cs",
+      "sha256": "65c7f8965080c7dd728b6045f5a199082d27cb2a08e8f98724f1f2c3fa382983"
+    },
+    {
+      "path": "Assets/Scripts/RunEffects/Effects/ClosedCircuitEffectSO.cs",
+      "sha256": "73b521b4087ec778d121a07225c13d108fabce49d75c0d65011167f40717b2f2"
+    },
+    {
+      "path": "Assets/Scripts/RunEffects/Effects/ConductiveLineEffectSO.cs",
+      "sha256": "ecd341b1a463845f385d5f8aec11228aa8dd58b524aec24bfc2b51f7e2189402"
+    },
+    {
+      "path": "Assets/Scripts/RunEffects/Effects/CrescentEffect.Presentation.cs",
+      "sha256": "a904e3274910cd332b0ab7c899f9d460c9a2b1ee7824b22751bb5b2a0720fa4c"
+    },
+    {
+      "path": "Assets/Scripts/RunEffects/Effects/CrescentEffectSO.cs",
+      "sha256": "41be44fb92429dd10b74dfede6d0d29e9db13f950d9505e78e5613ffa010138a"
+    },
+    {
+      "path": "Assets/Scripts/RunEffects/Effects/CritArcEffectSO.cs",
+      "sha256": "eb4ef2c302231f71a8178cec43e63abc6a62624c17951031842186954c0ce999"
+    },
+    {
+      "path": "Assets/Scripts/RunEffects/Effects/CritBurstEffectSO.cs",
+      "sha256": "d844fe50bbbf3511ef990c3fbbf2e043f8f1771c3139e59e8531cb9e6f82525e"
+    },
+    {
+      "path": "Assets/Scripts/RunEffects/Effects/FullMoonEffectSO.cs",
+      "sha256": "cb8a7ec29f9609ead6bf2a1e3fcafdee76d87c9187e3ab5798ed918c095b7a32"
+    },
+    {
+      "path": "Assets/Scripts/RunEffects/Effects/GreedyHarvestEffectSO.cs",
+      "sha256": "3abe5ffc2d849db4eefa7ef56c1edc45cc8bac6d84205e4fc1310d3c2bea44a5"
+    },
+    {
+      "path": "Assets/Scripts/RunEffects/Effects/GrowingMoonEffectSO.cs",
+      "sha256": "a307dacb28a6358f71627be610b9516607172aa0695e154769c42a312182971c"
+    },
+    {
+      "path": "Assets/Scripts/RunEffects/Effects/HarvestEchoEffectSO.cs",
+      "sha256": "65c83d1c4d40692c88ddd08d085845f3a0cc5f1e89b182961786fc1aeb1908e9"
+    },
+    {
+      "path": "Assets/Scripts/RunEffects/Effects/OverflowEffectSO.cs",
+      "sha256": "d998efa0cec4663ac3ace92e3f28b5d08ac7ace773e32e61b5c002d96745321b"
+    },
+    {
+      "path": "Assets/Scripts/RunEffects/Effects/OverloadEffectSO.cs",
+      "sha256": "70b6d9d742c6751a33b9533698700eb059115d764326370e3cedc1713f63735d"
+    },
+    {
+      "path": "Assets/Scripts/RunEffects/Effects/RareReactorEffectSO.cs",
+      "sha256": "18f31aa4723c3f76bcc1d846cb6d2df20aa57bc6d28b419272ab905faec58ce2"
+    },
+    {
+      "path": "Assets/Scripts/RunEffects/RunEffectSO.cs",
+      "sha256": "f3e4cd6a6c726f905b59be352ac32ce0ed6fddc85087b24df3208187610fa7d5"
+    },
+    {
+      "path": "Assets/Scripts/RunEffects/RunEffects.cs",
+      "sha256": "2c0e50ebc10e3c95c1feec9da29c07cb275278a76495db6a5aa243b4b93f0d03"
+    },
+    {
+      "path": "Assets/Scripts/ScriptableObjects/TileModifierSO.cs",
+      "sha256": "dfd041aa8bddf882ae5b2291a7feb6557ac6faa82b0dd32421491737c3cdf7c3"
+    },
+    {
+      "path": "Assets/Scripts/Stats/BasePowerCardRules.cs",
+      "sha256": "1c9839fb0ad9d190e1ac0a4b6ef6a6bd96360e7e99490c2b2a8be841a29201f2"
+    },
+    {
+      "path": "Assets/Scripts/Stats/NumericSafety.cs",
+      "sha256": "8022d502e774314938f83593865d90a371e089ffa8d2edc1e8f106dff1bc0ce8"
+    },
+    {
+      "path": "Assets/Scripts/Stats/StatCalculator.cs",
+      "sha256": "d9120a0e41b5f407784360ee31d05dd7406166a012e2e1a2146f17d86e9c3da1"
+    },
+    {
+      "path": "Assets/Scripts/UI/CardUI/CardSelectionUI.cs",
+      "sha256": "3cd41394cb389fabe7ef916dc383cc007ddc24a12370671b7cacaa3bcd0cc4f0"
+    },
+    {
+      "path": "Docs/AntennaFamily/README.md",
+      "sha256": "daebc9ae59f442166305905efb3a4a2cf6caf45d94f4e577b3ecd554e6406f3c"
+    },
+    {
+      "path": "Docs/Bolum3-3-BaslangicSecimiVeGorevler.md",
+      "sha256": "816e2235cd303d63da6883e3a4740fca420a116824c490bdd0382c35b929b742"
+    },
+    {
+      "path": "Docs/Bolum3-8-GecOyunOlaylariVeBossOdulleri.md",
+      "sha256": "7e454423f205acbe20bf0086184231a82ce64448c94a9cdfeed87b2816f00914"
+    },
+    {
+      "path": "Docs/Bolum3-8-IcerikBaglama.md",
+      "sha256": "6ced8e6926f8cdeafa6725f3205fac4fdd0f0cedcc8cd6cf42eeda6c1c2a80c4"
+    },
+    {
+      "path": "Docs/CrescentFamily/CursorRoute.md",
+      "sha256": "cd1c059d06b7e277d96cac56e359ac67612e842198a8d08f639ca6e910ab743c"
+    },
+    {
+      "path": "Docs/CrescentFamily/README.md",
+      "sha256": "19c6217635c937ae8d5b895d6b469960927ac278a7c9621206457c21f06a6078"
+    },
+    {
+      "path": "Docs/DemoScene.md",
+      "sha256": "053e5004527163379bf12423813e50f0d77fdecc2fada4770aef54ceefe42f28"
+    },
+    {
+      "path": "Docs/FinalSkillTree.md",
+      "sha256": "787669bd5ec18a6c230a38d2f1b045714764a4146d136fe6aa433049ef752ef9"
+    },
+    {
+      "path": "Docs/FullGame-PlaytestFix-20261006.md",
+      "sha256": "a2e507867e89150d1b1abd7cfc9a7275040856d6d342214e106df18160f02038"
+    },
+    {
+      "path": "Docs/SimpleResonance.md",
+      "sha256": "9bfc32164eae0aa1ebe193627edc97efd998dd8a8821e2c503fb58a0c1455d1c"
+    },
+    {
+      "path": "Docs/ThornSiege/README.md",
+      "sha256": "2169ef883d3ccc19f127e589810c176008477bdfbaed4540ee3e213457208b9a"
+    },
+    {
+      "path": "Docs/UI-Art-Direction.md",
+      "sha256": "a91011051e8c857dd975904539b76460114ca3758bd95e9912a54c0b7f4973a9"
+    },
+    {
+      "path": "Docs/WanderingBounty/README.md",
+      "sha256": "56101a0d82c4a2d06de559227bc1fe4ed6bc0172a312011ac040ed178f5126b4"
+    },
+    {
+      "path": "Packages/manifest.json",
+      "sha256": "b9d60db04c98224bdd48545e67d65ad590b514d54e31bb561c8afcbe873b43b3"
+    },
+    {
+      "path": "ProjectSettings/ProjectVersion.txt",
+      "sha256": "0e9a62459535e28cbae39573f6a4858db49eeb3b0ec6ebe3241233ff9ca9584e"
+    }
+  ]
+}

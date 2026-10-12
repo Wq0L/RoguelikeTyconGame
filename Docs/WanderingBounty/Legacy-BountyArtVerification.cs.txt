@@ -1,0 +1,116 @@
+using System;
+using System.IO;
+using System.Linq;
+using System.Collections.Generic;
+using System.Reflection;
+using UnityEditor;
+using UnityEngine;
+using Object=UnityEngine.Object;
+
+[InitializeOnLoad]
+public static class BountyArtVerification
+{
+ const string Key="BountyArtVerification";static int step=-1,progressCues,blooms;static double next;static float at;static GridPosition[] zone;static GameObject[] kept;static Vector3[] paused;static LateGameBounty[] flows;static int[] markerIds;
+ static readonly List<string> notes=new();
+ static FieldEventDirector D=>FieldEventDirector.Instance;
+ static WanderingBountyEvent E=>D.Current as WanderingBountyEvent;
+ static LateGamePresenter P=>Object.FindAnyObjectByType<LateGamePresenter>();
+ static FieldEventHud H=>Object.FindAnyObjectByType<FieldEventHud>();
+ static BountyArtVerification(){EditorApplication.update+=Tick;}
+ public static void RunBatch(){if(!Application.dataPath.Contains("VerificationProject"))throw new Exception("isolated only");GecOyunV1Verification.RunBatch();SessionState.SetBool("GecOyunV1Verification",false);SessionState.SetBool(Key,true);}
+ static object Lab(string name,params object[] args)=>typeof(GecOyunV1Verification).GetMethod(name,BindingFlags.Static|BindingFlags.NonPublic).Invoke(null,args);
+ static object Call(object o,string name,params object[] args)=>o.GetType().GetMethod(name,BindingFlags.Instance|BindingFlags.NonPublic|BindingFlags.Public).Invoke(o,args);
+ static void Check(bool yes,string note){if(!yes)throw new Exception(note);notes.Add("PASS "+note);}
+ static LateGameContent[] Content(string name)=>P.GetComponentsInChildren<LateGameContent>().Where(c=>c.name.StartsWith(name)).ToArray();
+ static void Capture(string name){Call(H,"Update");Lab("Capture","Bounty_"+name);}
+ static PlantHealth Plant(GridPosition c)=>(PlantHealth)Lab("PlantAt",c.x,c.z);
+ static void Harvest(GridPosition c){Lab("SetHealth",c.x,c.z,1);Lab("Attack",c.x,c.z);}
+ static void Cue(FieldEventCue cue){if(cue.Kind==FieldEventCueKind.Progress)progressCues++;if(cue.Kind==FieldEventCueKind.Bloom)blooms++;}
+ static bool MarkersMatch()=>Content("BountyMarker").Length==E.Zone(0).Count&&Content("BountyMarker").All(c=>E.Zone(0).Any(cell=>Vector2.Distance(new Vector2(c.transform.position.x,c.transform.position.z),new Vector2(FieldCells.Grid.GetWorldPosition(cell.x,cell.z).x,FieldCells.Grid.GetWorldPosition(cell.x,cell.z).z))<.01f));
+ static void Tick()
+ {
+  if(!SessionState.GetBool(Key,false)||!EditorApplication.isPlaying||EditorApplication.isCompiling)return;
+  if(next==0){next=EditorApplication.timeSinceStartup+2;return;}if(EditorApplication.timeSinceStartup<next){EditorApplication.QueuePlayerLoopUpdate();return;}
+  try
+  {
+   switch(step)
+   {
+    case -1:if(double.IsNaN((double)Lab("Lab")))return;Time.captureDeltaTime=0;Check(MetaSave.LastLoad==MetaSave.LoadResult.MemoryOnly,"disk save disabled");FieldEventDirector.Cued+=Cue;break;
+    case 0:
+     Check(D.StartNow(FieldEventKind.WanderingBounty,0,41),"start full real bounty plan");var cfg=D.Plan.wanderingBounty;
+     Check(cfg.zoneSize==3&&cfg.threshold==6&&cfg.maxBlooms==3&&cfg.moveInterval==5&&cfg.timing.activeSeconds==30,"3x3, six harvests, three blooms, five-second step, thirty-second duration unchanged");break;
+    case 1:if(E.Phase!=FieldEventPhase.Preparing||E.PhaseTime<.65f)return;Check(MarkersMatch(),"preparation marks exact nine cells");Check(P.GetComponentsInChildren<Renderer>().All(r=>r.sharedMaterial.shader.name=="ClickerGame/ThornComicToon"),"all bounty meshes use shared toon");Capture("01_Prepare");break;
+    case 2:
+     if(E.Phase!=FieldEventPhase.Active)return;zone=E.Zone(0).ToArray();markerIds=Content("BountyMarker").Select(c=>c.GetInstanceID()).ToArray();
+     Check(E.Targets.Count==0&&D.Zones.BlockedCells==0&&D.Zones.SlowedCells==0,"opportunity has no intervention target, block or slow");
+     Check(Content("BountyMarker").All(c=>c.GetComponentsInChildren<ParticleSystem>().Length==0&&c.GetComponentsInChildren<Animator>().Length==0),"markers have no ParticleSystem or Animator");Capture("02_Active");
+     Lab("Strike",10f,.05f,0f);Harvest(zone[0]);Check(E.Progress==1&&progressCues==1,"one real direct harvest gives one progress cue");
+     Plant(zone[1]).TakeDamage(1000000,DamageType.Explosion);Check(E.Progress==1&&progressCues==1,"behavior kill produces no progress cue");
+     Call(H,"Update");Check(H.BountyProgress==1&&H.Text.Contains("1/6"),"six seed display and counter read same progress");Capture("03_Progress");
+     kept=zone.Skip(7).Select(c=>Plant(c).gameObject).ToArray();
+     for(int i=2;i<=6;i++)Harvest(zone[i]);
+     Check(E.Blooms==1&&E.Progress==0&&E.Revived==7&&E.BloomCells.Count==7,"six direct harvests revive exactly seven empty slots");
+     Check(zone.All(c=>Plant(c)!=null)&&zone.Skip(7).Select((c,i)=>Plant(c).gameObject==kept[i]).All(x=>x),"occupied slots keep original plant");
+     Check(Content("BountyBloom").Length==7&&Content("BountyFlow").Length==7,"only seven successful slots receive bloom and flow");
+     flows=Content("BountyFlow").Select(c=>c.bounty).ToArray();
+     Check(flows.All(f=>E.BloomCells.Any(c=>Vector2.Distance(new Vector2(f.transform.TransformPoint(f.Destination).x,f.transform.TransformPoint(f.Destination).z),new Vector2(FieldCells.Grid.GetWorldPosition(c.x,c.z).x,FieldCells.Grid.GetWorldPosition(c.x,c.z).z))<.01f)),"every pollen endpoint is a real revived cell");
+     Time.timeScale=0;Call(H,"Update");Check(H.Text.Contains("7 yuva")&&H.BountyProgress==0,"HUD reports actual gain and resets progress");step=29;break;
+    case 30: Measure();paused=flows.Select(f=>f.pollen.position).ToArray();Capture("04_Bloom");break;
+    case 31:
+     Check(flows.Select((f,i)=>f.pollen.position==paused[i]).All(x=>x),"pause freezes pollen flow");Time.timeScale=1;at=Time.time;step=3;break;
+    case 4:
+     if(Time.time-at<1)return;Check(Content("BountyFlow").Length==0&&Content("BountyBloom").Length==0,"bounded completion effects expire");
+     Harvest(zone[0]);Check(E.Progress==0&&E.IgnoredOwnHarvests==1,"revived harvest cannot refill progress");
+     D.End();Check(P.EventItems==0&&P.Flashes==0&&P.ActiveDecorations==0,"round cleanup clears signs flows and tails");
+     Lab("Refill",true,10000);Check(D.StartNow(FieldEventKind.WanderingBounty,0,41),"restart event");Call(E,"Tick",.01f);Call(E,"Tick",3f);Call(E,"Tick",.8f);break;
+    case 5:
+     Check(MarkersMatch()&&Content("BountyMarker").All(c=>markerIds.Contains(c.GetInstanceID())),"nine marker instances reused from pool");Call(H,"Update");Check(H.BountyProgress==0,"restart seed progress reset");
+     var before=E.Zone(0).ToArray();Call(E,"Tick",5f);Check(E.Moves==1&&MarkersMatch(),"step immediately marks exact new region");
+     Check(before.Any(c=>!E.Zone(0).Any(n=>n.x==c.x&&n.z==c.z)),"region actually changed cells");Capture("05_Moved");
+     var count=E.Revived;Call(E,"Bloom");Check(E.BloomCells.Count==0&&E.Revived==count&&Content("BountyFlow").Length==0&&Content("BountyBloom").Length==0,"full region produces no fake revive VFX");Call(H,"Update");Check(H.Text.Contains("uygun boş yuva yok"),"no-target completion is honest in HUD");Capture("06_NoEmpty");
+     Time.timeScale=0;at=E.PhaseTime;break;
+    case 6:Check(E.PhaseTime==at,"pause freezes movement timer");Time.timeScale=1;Call(D,"HandleStateChanged",GameStates.MainMenu);Check(D.Current==null&&P.ActiveDecorations==0&&P.Flashes==0,"menu clears all presentation");break;
+    case 7:
+     Check(D.StartNow(FieldEventKind.WanderingBounty,0,41),"restart before cleanup");Call(E,"Tick",.01f);Call(D,"HandleRunStarted");Check(D.Current==null&&P.ActiveDecorations==0,"run restart clears presentation");
+     Check(D.StartNow(FieldEventKind.WanderingBounty,0,41),"start ignored opportunity");Call(E,"Tick",.01f);Call(E,"Tick",3f);Call(E,"Tick",.8f);Call(E,"Tick",30f);
+     Check(E.Progress==0&&E.Blooms==0&&E.Revived==0&&D.Zones.BlockedCells==0&&D.Zones.SlowedCells==0,"ignoring opportunity gives neither fake gain nor penalty");D.End();
+     AudioChecks();break;
+    case 8:
+     Lab("Refill",true,10000);Check(D.StartNow(FieldEventKind.WanderingBounty,0,41),"start dense behavior overlap sample");Call(E,"Tick",.01f);Call(E,"Tick",3f);Call(E,"Tick",.8f);int cues=progressCues;
+     foreach(var cell in E.Zone(0))
+     {
+       var brain=(PlanterBrain)Lab("BrainAt",cell.x,cell.z);
+       brain.Explode(FieldCells.Grid.GetWorldPosition(cell.x,cell.z),HarvestLink.None,1f);
+       HarvestBehaviorManager.Instance.TryElectric(brain,100);
+     }
+     Check(E.Progress==0&&progressCues==cues&&MarkersMatch(),"overlapping explosion/electricity keeps real area and produces no false progress");Capture("07_BehaviorOverlap");
+     D.End();Budget();Finish(null);return;
+   }
+   step++;next=EditorApplication.timeSinceStartup+.035;File.WriteAllLines("Logs/BountyArtVerification.txt",new[]{"RUNNING step "+step}.Concat(notes));
+  }
+  catch(Exception ex){Finish(ex.InnerException??ex);}EditorApplication.QueuePlayerLoopUpdate();
+ }
+ static void Measure()
+ {
+  var update=(Action)Delegate.CreateDelegate(typeof(Action),P,typeof(LateGamePresenter).GetMethod("Update",BindingFlags.Instance|BindingFlags.NonPublic));
+  for(int i=0;i<20;i++)update();long before=GC.GetAllocatedBytesForCurrentThread();var timer=System.Diagnostics.Stopwatch.StartNew();
+  for(int i=0;i<500;i++)update();timer.Stop();long bytes=GC.GetAllocatedBytesForCurrentThread()-before;
+  File.WriteAllText("Logs/BountyPerformance.txt",$"Presenter only, paused peak completion, 500 calls: {timer.Elapsed.TotalMilliseconds:F3} ms total; allocation {bytes} bytes (includes Stopwatch object). Active decorations {P.ActiveDecorations}; renderers {P.GetComponentsInChildren<Renderer>().Length}. CPU microcheck, not GPU or full-frame benchmark.");
+  Check(P.ActiveDecorations<40&&P.GetComponentsInChildren<ParticleSystem>().Length==0,"peak effects bounded without transparent particle layers");
+ }
+ static void AudioChecks()
+ {
+  var art=Resources.Load<LateGameArtSO>(LateGameArtSO.ResourcePath);var audio=new LateGameAudio(P.gameObject);
+  foreach(var sound in new[]{LateGameSound.EventPrepared,LateGameSound.BountyProgress,LateGameSound.Bloom})Check(art.Sound(sound,LateGameVariant.Bounty).clip!=null,"audio bound "+sound);
+  var binding=art.Sound(LateGameSound.BountyProgress,LateGameVariant.Bounty);for(int i=0;i<30;i++)audio.Play(binding);
+  Check(audio.ActiveVoices==1&&audio.Skipped==29,"thirty immediate progress sounds use one voice");audio.Step(0,false);Check(audio.ActiveVoices==1,"pause retains bounded voice");audio.Clear();Check(audio.ActiveVoices==0,"audio cleanup stops voices");
+ }
+ static void Budget()
+ {
+  var lines=new List<string>();foreach(var path in Directory.GetFiles("Assets/Art/LateGame/WanderingBounty","*.prefab"))
+  {var root=AssetDatabase.LoadAssetAtPath<GameObject>(path);var f=root.GetComponentsInChildren<MeshFilter>(true);lines.Add(root.name+": triangles including ink="+f.Sum(x=>x.sharedMesh.triangles.Length/3)+", renderers="+f.Length);}
+  Check(P.DecorationsSkipped==0&&P.ActiveDecorations<=LateGamePresenter.DecorationCapacity,"no decoration capacity drops");File.WriteAllLines("Logs/BountyGeometry.txt",lines);
+ }
+ static void Finish(Exception ex){SessionState.SetBool(Key,false);Time.timeScale=1;FieldEventDirector.Cued-=Cue;File.WriteAllLines("Logs/BountyArtVerification.txt",new[]{ex==null?"PASS "+notes.Count+" checks":"FAIL "+ex}.Concat(notes));EditorApplication.Exit(ex==null?0:1);}
+}
+

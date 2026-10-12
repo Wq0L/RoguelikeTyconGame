@@ -75,12 +75,14 @@ public sealed class BossRewardPoolSO : ScriptableObject
     }
 
     // Havuzda, verilen ödülle aynı dışlama grubunda olan diğer ödüller (aşamalı havuzda aşamalardan, düz havuzda iki listeden).
-    public void CollectExclusive(BossRewardSO reward, List<BossRewardSO> into)
+    public void CollectExclusive(BossRewardSO reward, List<BossRewardSO> into, bool includeFullGameGroups = true)
     {
         if (reward == null || string.IsNullOrEmpty(reward.exclusiveGroup)) return;
+        if (!includeFullGameGroups && reward.fullGameExclusiveGroup) return;
         void Consider(BossRewardSO other)
         {
-            if (other != null && other != reward && other.exclusiveGroup == reward.exclusiveGroup && !into.Contains(other)) into.Add(other);
+            if (other != null && other != reward && (includeFullGameGroups || !other.fullGameExclusiveGroup) &&
+                other.exclusiveGroup == reward.exclusiveGroup && !into.Contains(other)) into.Add(other);
         }
         if (IsStaged)
             foreach (BossRewardStage stage in stages)
@@ -131,6 +133,19 @@ public sealed class BossRewardPoolSO : ScriptableObject
                 }
             }
         }
+        // Ön koşullu ödül (Bölüm 3.8): ön koşulu aynı havuzda, aynı ya da daha erken bir aşamada yazılmış olmalı (yoksa hiç alınamaz).
+        // Etkili ödül bir kez alınır: stack sınırı 1 değilse ikinci alış hiçbir şey yapmaz.
+        for (int i = 0; i < pool.stages.Count; i++)
+            foreach (BossRewardStageEntry entry in pool.stages[i].rewards)
+            {
+                BossRewardSO reward = entry.reward;
+                if (reward.effect != null && reward.maxStacks != 1)
+                    return $"'{reward.displayName}' ödülünün çalışma zamanı etkisi var ama stack sınırı {reward.maxStacks}: etkili ödül bir kez alınır (1 olmalı)";
+                if (reward.requires == null) continue;
+                int stage = pool.StageIndexOf(reward.requires);
+                if (stage < 0) return $"'{reward.displayName}' ödülünün ön koşulu '{reward.requires.displayName}' bu havuzda yok: ödül hiç alınamaz";
+                if (stage > i) return $"'{reward.displayName}' ödülünün ön koşulu '{reward.requires.displayName}' daha geç bir aşamada: ön koşul aynı ya da daha erken aşamada olmalı";
+            }
         if (pool.stageDistanceWeights.Count < pool.stages.Count)
             return $"aşama uzaklığı ağırlıklarında {pool.stageDistanceWeights.Count} değer var, {pool.stages.Count} aşama için {pool.stages.Count} değer gerekir";
         for (int i = 0; i < pool.stageDistanceWeights.Count; i++)

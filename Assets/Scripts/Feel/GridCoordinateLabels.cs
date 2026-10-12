@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-// Satranç tahtası gibi grid koordinatları: kameraya bakan ön kenarlarda harfler (sütun) ve sayılar (satır).
+// Grid koordinatları: üst kenarda harfler (sütun), sol kenarda sayılar (satır).
 // Adlandırma round haritasıyla (RoundMapUI) birebir aynı: A = x0, "1" = en üst satır (z en büyük).
 // İmlecin altındaki tile'ın harfi ve sayısı parlayıp büyür; oyuncu yeri "D4" diye hemen okur.
 // Görünüm harita başlıklarıyla aynı: mavi yuvarlak kare + beyaz konturlu yazı.
@@ -58,7 +58,7 @@ public class GridCoordinateLabels : MonoBehaviour
         columns = new Label[width];
         rows = new Label[height];
         for (int x = 0; x < width; x++)
-            columns[x] = CreateLabel(ColumnName(x), new Vector3(x * cell, this.height, -offset));
+            columns[x] = CreateLabel(ColumnName(x), new Vector3(x * cell, this.height, (height - 1) * cell + offset));
         for (int z = 0; z < height; z++)
             rows[z] = CreateLabel((height - z).ToString(), new Vector3(-offset, this.height, z * cell));
     }

@@ -1,8 +1,14 @@
 {
   "ScriptableObjects/Balance/AlphaDengeV1/PlantHealth_AlphaDengeV1.asset": "3c7f0dafa2753772bf6df8aa3f28b7e89c3d3369af452cf7e7b5046319971f5a",
   "ScriptableObjects/Balance/AlphaDengeV1/PlantHealth_AlphaDengeV1.asset.meta": "40cf78bbed0cc3dd90d7dd1ba923406fcf0eccabba3ede7a8590d7a301660b28",
-  "ScriptableObjects/Balance/AlphaDengeV1/RunBalance_AlphaDengeV1.asset": "a8f0cc23675cadac0aeae8ad7fc70fcfb6f7371e8a6bd15c2bce824594eecad7",
+  "ScriptableObjects/Balance/AlphaDengeV1/RunBalance_AlphaDengeV1.asset": "9e49077211a72666ed9a23726a8b6bf7a249bc67d9c0b527a2a3adb8047dd2f0",
   "ScriptableObjects/Balance/AlphaDengeV1/RunBalance_AlphaDengeV1.asset.meta": "f95072ee0e4954440d88867f334ff1ce08669f55120b3365b7632f903ab412c3",
-  "ScriptableObjects/RunProfiles/Run50_AlphaDengeV1.asset": "20f4a1869d46993c999e24be3466948d1de9e3078cfa0bde0852ea8fceded697",
+  "ScriptableObjects/BossRewards/AlphaDengeV1/BossRewardPool_AlphaDengeV1.asset": "c736b18b53f503e9eb214dc35c9c8ca11cd25e58d8f83e2d297228cb2a26e292",
+  "ScriptableObjects/BossRewards/AlphaDengeV1/BossRewardPool_AlphaDengeV1.asset.meta": "dfb0de8bb8f63d85c9171951827004588d8b6094f553926c8b94eaad0cbe2173",
+  "ScriptableObjects/BossRewards/AlphaDengeV1/HasatRitmi_A1.asset": "67456fae2343774983e33777bf4bcd81bb914563f5fd51d3c2d89352e82ebf24",
+  "ScriptableObjects/BossRewards/AlphaDengeV1/HasatRitmi_A1.asset.meta": "2545439ac6eb11837c6c3bdea731b130b1866213aed3c08c37955bc443b7134d",
+  "ScriptableObjects/BossRewards/AlphaDengeV1/ZincirHasat_A1.asset": "73eb8691ae08548e0dcc0fea49e421479d0cb6974e1f7c4e53b3e184ea4e0a0a",
+  "ScriptableObjects/BossRewards/AlphaDengeV1/ZincirHasat_A1.asset.meta": "1640034e050737b3d89aba65a03adaaa10fcdf6904f8f905ca7b58bb4a6f4667",
+  "ScriptableObjects/RunProfiles/Run50_AlphaDengeV1.asset": "9f27cc23eca176f6c2abcf9b01d44a933bfbacc34d597fad8ca0554d8e5e41d3",
   "ScriptableObjects/RunProfiles/Run50_AlphaDengeV1.asset.meta": "47fc81fa7f64f7d86ae56de466350b1df4a163de2452ac0fbd7c8123cdf7fa7a"
 }

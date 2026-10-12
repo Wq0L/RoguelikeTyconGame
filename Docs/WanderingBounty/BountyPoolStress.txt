@@ -1,0 +1,1 @@
+3 warmup + 40 measured cycles, five region moves and nine synthetic spawn/harvest cues per cycle. Pooled transforms=310; materials=151; meshes=188; counts unchanged. Retained pool is intentional. This is bounded object-retention testing, not a long-session native-memory profiler capture.

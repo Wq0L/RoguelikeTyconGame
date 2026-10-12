@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a54c87ec1d618bb9c0ab8d7b213cdfa3, type: 3}
+  m_Name: FieldEventPlan_GecOyunV1
+  m_EditorClassIdentifier: Assembly-CSharp::FieldEventPlanSO
+  firstRound: 26
+  startDelay: 4
+  bossRounds:
+  - kind: 0
+    weight: 1
+  - kind: 1
+    weight: 1
+  - kind: 2
+    weight: 1
+  normalRoundChance: 0.5
+  normalRounds:
+  - kind: 3
+    weight: 1
+  pinned: []
+  thornSiege:
+    timing:
+      prepareSeconds: 5
+      emergeSeconds: 1.2
+      activeSeconds: 30
+      resolveSeconds: 1
+    zoneWidth: 3
+    zoneHeight: 3
+    maxProductionShare: 0.4
+    rootDurability: 6
+  invasiveSprout:
+    timing:
+      prepareSeconds: 4
+      emergeSeconds: 1
+      activeSeconds: 35
+      resolveSeconds: 1
+    mainDurability: 8
+    spreadInterval: 2.5
+    spreadSeconds: 20
+    maxPieces: 8
+    maxRadius: 2
+    slowMultiplier: 1.6
+  graftedShell:
+    timing:
+      prepareSeconds: 6
+      emergeSeconds: 1.2
+      activeSeconds: 28
+      resolveSeconds: 1
+    zoneWidth: 3
+    zoneHeight: 2
+    maxProductionShare: 0.6
+    targetDurability: 4
+    choiceSeconds: 8
+    closedSeconds: 20
+  wanderingBounty:
+    timing:
+      prepareSeconds: 3
+      emergeSeconds: 0.8
+      activeSeconds: 30
+      resolveSeconds: 1
+    zoneSize: 3
+    moveInterval: 5
+    threshold: 6
+    maxBlooms: 3

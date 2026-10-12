@@ -1,0 +1,163 @@
+{
+  "pdf": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\output\\pdf\\Oyun-Sistem-Rehberi-20261010.pdf",
+  "chapters": 38,
+  "section_pages": [
+    {
+      "title": "OYUNUN GÜNCEL SÝSTEM REHBERÝ",
+      "page": 1
+    },
+    {
+      "title": "Ýçindekiler",
+      "page": 2
+    },
+    {
+      "title": "01 / Önce bunu anla",
+      "page": 3
+    },
+    {
+      "title": "02 / Terimler ve birbirinden ayrýlmasý gereken sayýlar",
+      "page": 4
+    },
+    {
+      "title": "03 / Run akýþý, süre ve kaybetme",
+      "page": 5
+    },
+    {
+      "title": "04 / Grid, saksý ve yerleþim kararý",
+      "page": 6
+    },
+    {
+      "title": "05 / Üretim, hasar, ödül ve ekonomi",
+      "page": 7
+    },
+    {
+      "title": "06 / Level kartlarý ve temel güç evresi",
+      "page": 8
+    },
+    {
+      "title": "07 / Skill aðacý, baþlangýç ve kayýt",
+      "page": 9
+    },
+    {
+      "title": "08 / Statlarýn sahipliði ve hesap kurallarý",
+      "page": 10
+    },
+    {
+      "title": "09 / Rezonanslar: yerleþimin koþullu ödülü",
+      "page": 11
+    },
+    {
+      "title": "10 / Dört temel davranýþ",
+      "page": 12
+    },
+    {
+      "title": "11 / Zincir, Artçý ve Hasat Ritmi",
+      "page": 13
+    },
+    {
+      "title": "12 / Boss takvimi ve hedefler",
+      "page": 14
+    },
+    {
+      "title": "13 / Boss ödülü seçimi ve bedeller",
+      "page": 15
+    },
+    {
+      "title": "14 / Mevcut ödüllerin build rolleri",
+      "page": 16
+    },
+    {
+      "title": "15 / Yeni saldýrý ödülleri: ortak kurallar",
+      "page": 17
+    },
+    {
+      "title": "16 / Anten ailesi: oyuncunun seçtiði hat",
+      "page": 18
+    },
+    {
+      "title": "17 / Hilal ailesi: 10 Ekim güncel kural",
+      "page": 19
+    },
+    {
+      "title": "18 / Geç oyun olaylarý: oyuncunun odaðý",
+      "page": 20
+    },
+    {
+      "title": "19 / Gezgin Bereket ve olaylarýn sunumu",
+      "page": 21
+    },
+    {
+      "title": "20 / Teknik mimari ve veri akýþý",
+      "page": 22
+    },
+    {
+      "title": "21 / Sahne, demo ve profil ayrýmý",
+      "page": 23
+    },
+    {
+      "title": "22 / Görsel dil, ses ve performans",
+      "page": 24
+    },
+    {
+      "title": "23 / Ne kanýtlandý, ne henüz bilinmiyor?",
+      "page": 25
+    },
+    {
+      "title": "24 / Sonraki AI için çalýþma sözleþmesi",
+      "page": 26
+    },
+    {
+      "title": "EK A1 / Baðlý boss ödülleri",
+      "page": 27
+    },
+    {
+      "title": "EK A2 / Baðlý boss ödülleri",
+      "page": 28
+    },
+    {
+      "title": "EK A3 / Baðlý boss ödülleri",
+      "page": 29
+    },
+    {
+      "title": "EK A4 / Baðlý boss ödülleri",
+      "page": 30
+    },
+    {
+      "title": "EK A5 / Baðlý boss ödülleri",
+      "page": 31
+    },
+    {
+      "title": "EK A6 / Baðlý boss ödülleri",
+      "page": 32
+    },
+    {
+      "title": "EK B / Yeni ödüllerin veri parametreleri",
+      "page": 33
+    },
+    {
+      "title": "EK B / Yeni ödüllerin veri parametreleri",
+      "page": 34
+    },
+    {
+      "title": "EK B / Temel ödüllerin sayýsal etkileri",
+      "page": 35
+    },
+    {
+      "title": "EK B / Temel ödüllerin sayýsal etkileri",
+      "page": 36
+    },
+    {
+      "title": "EK C / Tile aileleri, can ve seçenekler",
+      "page": 37
+    },
+    {
+      "title": "EK C / Kaynaða nasýl geri dönülür?",
+      "page": 38
+    },
+    {
+      "title": "EK D / Gömülü font lisans bildirimi",
+      "page": 39
+    }
+  ],
+  "source_count": 105
+}

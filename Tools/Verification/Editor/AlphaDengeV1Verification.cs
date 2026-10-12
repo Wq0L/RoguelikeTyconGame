@@ -252,6 +252,13 @@ public static class AlphaDengeV1Verification
         {
             var p = AssetDatabase.LoadAssetAtPath<RunProfileSO>(AssetDatabase.GUIDToAssetPath(guid));
             if (p == a) continue;
+            // Bölüm 3.8: Run50_GecOyunV1 sonraki adaydır ve Alpha Denge V1'in süre tablosunu AYNEN taşır (eski profil değildir).
+            if (p.name == "Run50_GecOyunV1")
+            {
+                Must(p.roundDurations.Select(b => (b.fromRound, b.seconds)).SequenceEqual(a.roundDurations.Select(b => (b.fromRound, b.seconds))) && RoundDurations.Validate(p) == null,
+                    "the later candidate should carry Alpha's duration table unchanged: " + p.name);
+                continue;
+            }
             old++;
             Must(p.roundDurations == null || p.roundDurations.Count == 0, "old profile got a duration table: " + p.name);
             Must(RoundDurations.Validate(p) == null && !RoundDurations.HasTable(p) && RoundDurations.SecondsFor(p, 11) == 0f, "old profile should be untouched by the table code: " + p.name);

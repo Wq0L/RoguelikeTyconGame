@@ -130,23 +130,33 @@ public sealed class BossRewardPanelUI : MonoBehaviour
             int have = manager.Stacks(reward);
             card.title.text = reward.displayName;
             bool trade = BossRewardText.IsTrade(reward);
-            Arrange(card, trade);
+            manager.ExclusiveWith(reward, exclusive);
+            // Etkili ödülün kural metni uzundur: bedelli kartın geniş etki bölgesini kullanır.
+            Arrange(card, trade || reward.effect != null);
             if (trade)
             {
                 BossRewardText.TradeLines(reward, rounds != null ? rounds.ChoicesPerLevel : 0, gains, costs);
-                manager.ExclusiveWith(reward, exclusive);
                 card.effect.text = TradeText(gains, costs);
                 string note = manager.NoteFor(reward);
                 card.note.text = reward.levelChoiceDelta != 0 ? (BossRewardText.PendingChoicesNote + " " + note).Trim() : note;
                 card.stack.text = TradeStackText(reward, have, exclusive);
                 card.stack.textWrappingMode = TextWrappingModes.Normal;
             }
+            else if (reward.effect != null)
+            {
+                // Çalışma zamanı etkisi olan ödül (Bölüm 3.8): kural metni etkinin verisinden; altında ön koşul ve yerleşim adımı.
+                card.effect.text = BossRewardText.Effect(reward);
+                card.note.text = manager.NoteFor(reward);
+                card.stack.text = BossRewardText.EffectStackText(reward, exclusive);
+                card.stack.textWrappingMode = TextWrappingModes.Normal;
+            }
             else
             {
                 card.effect.text = BossRewardText.Effect(reward);
                 card.note.text = manager.NoteFor(reward);
-                card.stack.text = StackText(reward, have);
-                KeepTwoLines(card.stack);
+                card.stack.text = exclusive.Count > 0 ? TradeStackText(reward, have, exclusive) : StackText(reward, have);
+                if (exclusive.Count > 0) card.stack.textWrappingMode = TextWrappingModes.Normal;
+                else KeepTwoLines(card.stack);
             }
             // Ödülün kendi sınıfı (teklifin aşamasından düşük olabilir) ve ilk sunulduğu boss.
             BossRewardStage stage = manager.StageOf(reward);
@@ -238,6 +248,9 @@ public sealed class BossRewardPanelUI : MonoBehaviour
     {
         BossRewardManager manager = BossRewardManager.Instance;
         if (requested || manager == null || card.reward == null) return;
+        // Yerleşim isteyen ödül (anten): ödül henüz alınmaz; konum seçimi açılır (RewardPlacementUI). Vazgeçilirse bu panel aynı
+        // teklifle yeniden açılır (OnEnable isteği sıfırlar).
+        if (manager.NeedsPlacement(card.reward)) { manager.BeginPlacement(card.reward); return; }
         requested = true;
         foreach (Card c in cards) c.button.interactable = false;
         if (!manager.Choose(card.reward)) requested = false;

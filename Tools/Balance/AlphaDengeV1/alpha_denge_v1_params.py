@@ -50,6 +50,15 @@ CHAIN_DAMAGE_RANGE = ([0.75, 0.50], [1.00, 0.75])
 # havuzundaki asset'lerin kendisidir (kopya oluşmaz).
 REWARD_OVERRIDES = {}
 
+# Full-game Play feedback (2026-10-06): only unlimited base cards are reduced.
+# Fractions, NOT percentage points: .0002 = 0.02%, .001 = 0.10%.
+BASE_POWER_AMOUNTS = [.0002, .0004, .0007, .001]
+MOVING_BEHAVIOR_LIMIT = 12
+REWARD_EXCLUSIVE_GROUPS = {
+    'hasat_ritmi': 'harvest_playstyle',
+    'zincir_hasat': 'harvest_playstyle',
+}
+
 # ---------------------------------------------------------------- XP tablosu
 # {seviye: maliyet} — yalnız yazılan seviyeler değişir. Boş: tablo Run50_XPV1 ile aynı asset'tir (kopya oluşmaz).
 XP_TABLE_OVERRIDES = {}

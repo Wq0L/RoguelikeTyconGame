@@ -13,17 +13,23 @@ public class TornadoManager : MonoBehaviour
 
     private readonly List<Tornado> activeTornadoes = new();
     private VFXPool<Tornado> tornadoPool;
+    private GameManager game;
+    public int ActiveCount => activeTornadoes.Count;
+    public int ActiveLimit => MovingBehaviorLimits.Resolve(maxActiveTornadoes);
+    public int RejectedTriggers { get; private set; }
 
     private void Awake()
     {
         if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
         if (tornadoPrefab != null)
-            tornadoPool = new VFXPool<Tornado>(tornadoPrefab, Mathf.Max(1, maxActiveTornadoes), transform);
+            tornadoPool = new VFXPool<Tornado>(tornadoPrefab, ActiveLimit, transform);
     }
 
     private void Start()
     {
+        game = GameManager.Instance;
+        if (game != null) game.OnGameStateChanged += StateChanged;
         // RoundManager Instance'ını Awake'te kuruyor, Start'ta abone olmak güvenli
         if (RoundManager.Instance != null)
             RoundManager.Instance.OnRoundEnded += ClearAll;
@@ -31,14 +37,22 @@ public class TornadoManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (game != null) game.OnGameStateChanged -= StateChanged;
         if (RoundManager.Instance != null)
             RoundManager.Instance.OnRoundEnded -= ClearAll;
 
         if (Instance == this) Instance = null;
     }
 
-    // Aynı anda en çok maxActiveTornadoes. Zincir işi doluysa sırasını kaybetmeden bekler (HarvestChain).
-    public bool HasCapacity => tornadoPool != null && activeTornadoes.Count < maxActiveTornadoes;
+    // Aynı anda en çok ActiveLimit. Zincir işi doluysa sırasını kaybetmeden bekler (HarvestChain).
+    public bool HasCapacity => isActiveAndEnabled && tornadoPool != null && activeTornadoes.Count < ActiveLimit;
+
+    void OnDisable() => ClearAll();
+
+    void StateChanged(GameStates state)
+    {
+        if (state == GameStates.MainMenu || state == GameStates.RunSetup || state == GameStates.RunComplete) ClearAll();
+    }
 
     public bool TrySpawn(GridObject startGrid, int baseDamage) => TrySpawn(startGrid, baseDamage, HarvestLink.None, 1f, 0u);
 
@@ -47,7 +61,8 @@ public class TornadoManager : MonoBehaviour
     public bool TrySpawn(GridObject startGrid, int baseDamage, HarvestLink link, float damageFactor, uint pathSeed)
     {
         if (DemoSceneSettings.Blocks(UnlockType.TileBehavior_Tornado)) return false;
-        if (startGrid == null || !HasCapacity) return false;
+        if (startGrid == null || !isActiveAndEnabled) return false;
+        if (!HasCapacity) { RejectedTriggers++; return false; }
 
         GroundCell startCell = startGrid.GetGroundCellCached();
         if (startCell == null) return false;

@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d024a02157794a408ec9280332f18793, type: 3}
+  m_Name: KapaliDevre_G1
+  m_EditorClassIdentifier: Assembly-CSharp::BossRewardSO
+  id: kapali_devre
+  displayName: "Kapal\u0131 Devre"
+  effectLabel: "Devre:"
+  inverseLabel: 
+  note: "Ek vuru\u015F kendini yeniden ba\u015Flatamaz. Davran\u0131\u015F\u0131 olan saks\u0131 yoksa \xE7al\u0131\u015Fmaz."
+  modifiersPerStack: []
+  directDamageMultiplier: 1
+  rareDirectMultiplier: 1
+  rareDirectFrom: 2
+  behaviorDamageMultiplier: 1
+  echo: 0
+  echoDelay: 0.2
+  echoDamage: 0.7
+  echoRadius: 1.25
+  rhythmHarvests: 0
+  rhythmDamage: 1.5
+  rhythmRadius: 1.5
+  maxStacks: 1
+  weight: 1
+  condition: 2
+  conditionStat: 0
+  conditionThreshold: 0.7
+  minRound: 0
+  maxRound: 0
+  levelChoiceDelta: 0
+  exclusiveGroup: 
+  fullGameExclusiveGroup: 0
+  movingBehaviorLimitBonus: 0
+  echoReach: 0
+  chain: 0
+  effect: {fileID: 11400000, guid: 964b7506d3e0a6244f4395cdbb5b8845, type: 2}
+  requires: {fileID: 11400000, guid: c996b78f82f79f85291060255ec54724, type: 2}

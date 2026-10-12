@@ -12,6 +12,7 @@ using UnityEngine;
 //   rhythmHarvests         → kırılma (Bölüm 3.6): her N doğrudan hasatta bir sonraki oyuncu saldırısı güçlenir (RunPower.Rhythm)
 //   levelChoiceDelta       → kazanç / bedel (Bölüm 3.7.4): gelecekte kazanılan her level'ın kart seçim hakkı (RoundManager.ChoicesPerLevel)
 //   chain                  → kırılma (Bölüm 3.7.6): davranış hasatları kendi saksılarının davranışlarını sınırlı tetikler (HarvestChain)
+//   effect                 → çalışma zamanı etkisi (Bölüm 3.8): ödülün kendi mekaniği ayrı bir veri + sınıftır (RunEffectSO → RunEffects)
 // Bedelli ödül: etkilerinden en az biri bedeldir (çarpan 1'in altında ya da seçim hakkı eksi). Kazanç ve bedel tek işlemde uygulanır.
 [CreateAssetMenu(menuName = "ClickerGame/Boss Reward", fileName = "BossReward")]
 public sealed class BossRewardSO : ScriptableObject
@@ -74,6 +75,11 @@ public sealed class BossRewardSO : ScriptableObject
     [Tooltip("Karşılıklı dışlama grubu. Aynı gruptan başka bir ödül alındıysa bu ödül sunulmaz ve alınamaz; ikisi aynı teklifte " +
              "seçenek olabilir. Boş: grup yok.")]
     public string exclusiveGroup;
+    [Tooltip("Bu dışlama grubu yalnız tam oyunda geçerli; aynı havuzu kullanan demo etkilenmez.")]
+    public bool fullGameExclusiveGroup;
+
+    [Tooltip("Bu run'da kasırga ve bumerangın ayrı ayrı aktif sınırına eklenir. Örneğin +4: 12 → 16. 0: etki yok.")]
+    [Min(0)] public int movingBehaviorLimitBonus;
 
     [Header("Kırılma erişimi (Bölüm 3.7.5) — varsayılan etkisizdir")]
     [Tooltip("Yalnız elektrik yankısı (Çifte Akım): ikinci dalganın dört çapraz yöndeki erişimi, hücre. 0: ilk dalgayla aynı (2). " +
@@ -96,6 +102,13 @@ public sealed class BossRewardSO : ScriptableObject
     [Min(1)] public int chainRootBudget = 32;
     [Tooltip("Zincir kuyruğundan kare başına en çok işlenen iş. Kalan işler silinmez, sonraki kareye kalır.")]
     [Min(1)] public int chainJobsPerFrame = 8;
+
+    [Header("Çalışma zamanı etkisi (Bölüm 3.8) — varsayılan etkisizdir")]
+    [Tooltip("Ödülün kendi mekaniği (anten, hilal, ark …): kuralı ve prototip sayıları bu asset'tedir (RunEffectSO), RunEffects yürütür. " +
+             "Boş: yok. Etkili ödül bir kez alınır (maxStacks 1 olmalı).")]
+    public RunEffectSO effect;
+    [Tooltip("Ön koşul ödül: bu run'da alınmadıysa bu ödül sunulmaz ve alınamaz (İletken Hat → Elektrik Anteni). Boş: yok.")]
+    public BossRewardSO requires;
 
     public bool OfferedAt(int bossRound) => (minRound <= 0 || bossRound >= minRound) && (maxRound <= 0 || bossRound <= maxRound);
 

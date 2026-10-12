@@ -53,8 +53,17 @@ public class PlantResource : MonoBehaviour
         // Uzmanlaşma hasat kaynağı çarpanı: duplicate dahil ödüle bir kez, kesirli kalan kaynak başına taşınır. XP ve skor etkilenmez.
         reward = SpecializationManager.ScaleHarvestResource(plantData.resourceType, reward);
 
+        // Resolve at harvest time, not birth: moving/expired regions never leave a permanent pooled buff.
+        GridPosition bountyCell=FieldCells.Grid!=null?FieldCells.Grid.GetGridPosition(transform.position):default;
+        var bounty=FieldCells.Grid!=null?FieldEventDirector.BountyAt(bountyCell):null;
+        if(bounty!=null)
+        {
+            reward=NumericSafety.Add(reward,reward,NumericSite.Resource);
+            xpAmount*=2d;
+        }
         ResourceManager.Instance.AddResource(plantData.resourceType, reward, transform.position);
         ProgressionManager.Instance.AddXP(xpAmount);
+        bounty?.RecordHarvest(bountyCell);
 
         HarvestScoreManager.Instance.AddScore(plantData.rarity, planterBrain);
         VFXManager.Instance?.PlayRarityHarvest(plantData.rarity, transform.position);

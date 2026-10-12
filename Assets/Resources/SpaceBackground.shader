@@ -122,6 +122,19 @@ Shader "ClickerGame/SpaceBackground"
                 return float3(1.0, 0.95, 0.85) * (line_ * inTrail * inTrail + headGlow) * fade * visible * 1.6;
             }
 
+            // Elliptical broken ink arcs, with a small sunlit lip like a drawn crater.
+            float2 ComicCrater(float2 p, float2 center, float2 scale, float tilt, float aa)
+            {
+                float2 v = p - center;
+                v = float2(v.x + v.y * tilt, v.y) / scale;
+                float ring = length(v);
+                float width = aa / min(scale.x, scale.y);
+                float arc = smoothstep(-0.5, 0.1, v.y + v.x * 0.35);
+                float ink = (1.0 - smoothstep(0.045, 0.045 + width, abs(ring - 1.0))) * arc;
+                float lip = (1.0 - smoothstep(0.09, 0.09 + width, abs(ring - 1.19))) * saturate(v.y);
+                return float2(ink, lip);
+            }
+
             float4 frag(Varyings input) : SV_Target
             {
                 float time = _SpaceView.x;
@@ -156,7 +169,7 @@ Shader "ClickerGame/SpaceBackground"
                 stars += SpaceStarLayer(LAYER(0.45) + 71.3, 22.0, 0.22 * density, 0.06, 0.45, time) * 1.3;
                 color += stars * _StarIntensity * (1.0 - mask * 0.35);
 
-                // Gezegen: ışıklı küre, yavaş dönen bantlar ve atmosfer halkası.
+                // Comic planet: stepped warm shading, painted patches, broken crater ink and cyan halo.
                 // _PlanetParams.w ile çarpılır (dallanma yok, fwidth güvenli).
                 float planetOn = step(0.5, _PlanetParams.w);
                 float2 center = (_PlanetParams.xy - 0.5) * float2(aspect, 1.0);
@@ -167,22 +180,35 @@ Shader "ClickerGame/SpaceBackground"
                 float3 normal = float3(q, z);
                 float3 lightDir = normalize(float3(-0.55, 0.45, 0.7));
                 float lambert = saturate(dot(normal, lightDir));
-                // Bant gürültüsü sadece gezegenin üstündeki piksellerde hesaplanır (içeride türev kullanılmaz).
-                float band = 0.5;
+                float planetAA = max(fwidth(d), 1e-4);
+                float3 planet = _PlanetColor.rgb;
                 [branch] if (d < 1.02 && planetOn > 0.5)
                 {
-                    float bandCoord = q.y * 6.0 + SpaceNoise(q * 2.5 + float2(time * 0.02, 0.0)) * 1.6;
-                    band = SpaceNoise(float2(bandCoord, 0.5));
+                    float2 terrain = float2(q.x, q.y + z * 0.22);
+                    float patches = SpaceNoise(terrain * float2(5.0, 8.0) + SpaceNoise(terrain * 3.0) * 2.0);
+                    float paint = smoothstep(.36, .39, patches) * .12 + smoothstep(.65, .68, patches) * .13;
+                    float shade = .32 + .24 * smoothstep(.19, .22, lambert)
+                        + .24 * smoothstep(.46, .49, lambert) + .20 * smoothstep(.73, .76, lambert);
+                    float3 surface = lerp(_PlanetColor.rgb * float3(1.0, .72, .62), float3(1.0, .73, .48), paint);
+                    planet = surface * shade;
+                    planet += float3(1.0, .65, .37) * smoothstep(.86, .89, lambert) * .16;
+                    float2 crater = ComicCrater(q, float2(-.61, .35), float2(.12, .055), -.7, planetAA);
+                    crater += ComicCrater(q, float2(.30, .51), float2(.23, .10), -.4, planetAA);
+                    crater += ComicCrater(q, float2(-.20, .80), float2(.17, .045), -.3, planetAA);
+                    crater += ComicCrater(q, float2(.49, -.23), float2(.18, .08), .5, planetAA);
+                    crater += ComicCrater(q, float2(-.19, -.68), float2(.25, .065), .5, planetAA);
+                    planet += float3(1.0, .67, .43) * saturate(crater.y) * .24 * shade;
+                    planet = lerp(planet, float3(.065, .032, .065), saturate(crater.x) * .86);
                 }
-                float3 surface = lerp(_PlanetColor.rgb * 0.55, _PlanetColor.rgb, band);
-                float3 planet = surface * (0.05 + lambert);
-                float rim = saturate(1.0 - z);
-                planet += _PlanetRim.rgb * rim * rim * rim * (0.25 + lambert);
-                float planetAA = max(fwidth(d), 1e-4);
+                float rimLight = smoothstep(.88, .92, d) * (1.0 - smoothstep(.957, .973, d));
+                planet = lerp(planet, float3(1.0, .81, .57), rimLight * smoothstep(.15, .6, lambert) * .85);
+                float outline = smoothstep(.973 - planetAA, .973 + planetAA, d);
+                planet = lerp(planet, float3(.035, .018, .055), outline);
                 float inside = (1.0 - smoothstep(1.0 - planetAA, 1.0 + planetAA, d)) * planetOn;
                 color = lerp(color, planet, inside);
                 float lit = saturate(dot(normalize(q + 1e-4), lightDir.xy) * 0.5 + 0.6);
-                color += _PlanetRim.rgb * exp(-max(d - 1.0, 0.0) * 14.0) * (1.0 - inside) * 0.35 * lit * planetOn;
+                color += _PlanetRim.rgb * (exp(-max(d - 1.0, 0.0) * 17.0) * .48
+                    + exp(-max(d - 1.0, 0.0) * 95.0) * .55) * (1.0 - inside) * lit * planetOn;
 
                 color += ShootingStar(LAYER(0.1), aspect, time);
 

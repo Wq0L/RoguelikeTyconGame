@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20152d765c3d4138baba9d0ff9adab37, type: 3}
+  m_Name: Run50_GecOyunV1
+  m_EditorClassIdentifier: Assembly-CSharp::RunProfileSO
+  displayName: "Run50 Ge\xE7 Oyun V1 \xB7 50 round"
+  runLength: 50
+  segmentRounds: 5
+  quotaStart: 10
+  quotaGrowth: 1.45
+  segmentTargets: 28000000000000004b00000000000000be00000000000000f401000000000000b0040000000000003c0f0000000000005014000000000000bc1b000000000000c832000000000000803e000000000000f0550000000000007094000000000000889000000000000080bb000000000000a009010000000000
+  events: []
+  specializationAfterSegment: 0
+  specializationOptions: []
+  bossPool: {fileID: 11400000, guid: 2a8605ee0afb967ce4faad837a770e5c, type: 2}
+  bossTargets: 0a00000000000000190000000000000028000000000000009600000000000000ae01000000000000e803000000000000a406000000000000fc08000000000000b80b000000000000cc100000000000006419000000000000d020000000000000f82a000000000000c832000000000000c832000000000000
+  bossRewards: {fileID: 11400000, guid: 7d331c4bc91a8c75ad14e63c37e023d0, type: 2}
+  bossSeed: 0
+  crescentFullRows: 1
+  bossCalendar:
+  - round: 3
+    final: 0
+    boss: {fileID: 0}
+  - round: 6
+    final: 0
+    boss: {fileID: 0}
+  - round: 10
+    final: 0
+    boss: {fileID: 0}
+  - round: 13
+    final: 0
+    boss: {fileID: 0}
+  - round: 16
+    final: 0
+    boss: {fileID: 0}
+  - round: 20
+    final: 0
+    boss: {fileID: 0}
+  - round: 23
+    final: 0
+    boss: {fileID: 0}
+  - round: 26
+    final: 0
+    boss: {fileID: 0}
+  - round: 30
+    final: 0
+    boss: {fileID: 0}
+  - round: 33
+    final: 0
+    boss: {fileID: 0}
+  - round: 36
+    final: 0
+    boss: {fileID: 0}
+  - round: 40
+    final: 0
+    boss: {fileID: 0}
+  - round: 43
+    final: 0
+    boss: {fileID: 0}
+  - round: 46
+    final: 0
+    boss: {fileID: 0}
+  - round: 50
+    final: 1
+    boss: {fileID: 0}
+  balance: {fileID: 11400000, guid: 2b2dcfd7ffe96940b5455fa9fb9874dc, type: 2}
+  choicesPerLevel: 3
+  startingGold: 80
+  startingIron: 0
+  startingStone: 0
+  debugBudget: 0
+  electricMode: 0
+  electricCharge:
+    referenceSeconds: 10
+    referenceChance: 0.5
+    minimumSeconds: 3
+    quickChargeMultiplier: 1
+  fixedRoundDuration: 0
+  roundDurations:
+  - fromRound: 1
+    seconds: 45
+  - fromRound: 6
+    seconds: 55
+  - fromRound: 11
+    seconds: 65
+  fieldEvents: {fileID: 11400000, guid: c13eae896f7ff1a8730e4a83095f73ef, type: 2}
+  victoryTitle: "RUN TAMAMLANDI \xB7 GE\xC7 OYUN V1"

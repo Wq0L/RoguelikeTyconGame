@@ -130,8 +130,11 @@ public static class SimpleResonanceVerification
         Equal(StatCalculator.Calculate(.5f,StatType.PlantSpawnRate,StatTarget.Planter,null,mods),.5,"Spawn floor after resonance");
         Equal(ResonanceManager.Multiplier(active,StatType.HarvestScoreMultiplier,PlantRarity.Rare),3,"Rare score does not multiply fame");
         Equal(ResonanceManager.BehaviorMultiplier(active,DamageType.Direct),1,"Behavior bonus never applies to direct");
-        foreach(DamageType type in Enum.GetValues(typeof(DamageType)))
-            if(type!=DamageType.Direct) Equal(ResonanceManager.BehaviorMultiplier(active,type),2,"Behavior bonus " + type);
+        // Davranış rezonansı dört davranışa uygulanır. Bölüm 3.8'de eklenen hasar türü (DamageType.Reward: boss ödülü etkisinin
+        // vuruşu) davranış değildir: dört davranışın beklentisi aynen durur, yeni tür için "bonus almaz" beklentisi eklenir.
+        foreach(DamageType type in new[]{DamageType.Explosion,DamageType.Tornado,DamageType.Boomerang,DamageType.Electric})
+            Equal(ResonanceManager.BehaviorMultiplier(active,type),2,"Behavior bonus " + type);
+        Equal(ResonanceManager.BehaviorMultiplier(active,DamageType.Reward),1,"Behavior bonus never applies to reward-effect damage");
         var previous = new List<ActiveResonance>(active);
         Require(active.All(a=>!ResonanceManager.IsNewTier(a,previous)),"Identical refresh has no new popup");
         counts[TileModifierType.Damage]=1; ResonanceManager.Evaluate(rules,counts,mods,active);

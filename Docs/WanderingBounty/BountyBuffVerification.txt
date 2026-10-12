@@ -1,0 +1,43 @@
+PASS 42 checks
+PASS real saves disabled
+PASS start real plan
+PASS no benefit during preparation
+PASS all nine existing plants tint on first visible preparation frame without damage or respawn
+PASS immediate tint keeps existing plant and does not require harvest or spawn
+PASS existing plants stay gold throughout emergence
+PASS active region halves normal production interval
+PASS nine signs and no attack target
+PASS one outer curtain and nine independent scanner robots
+PASS curtain covers full 3x3 footprint
+PASS nine already-existing regional plants submit actual gold meshes
+PASS gold material references the actual gold shader asset
+PASS gold overlay changes visible existing-plant pixels: 6179
+PASS tint does not replace original plant materials
+PASS no six-harvest gate or fabricated reward
+PASS same plant resource payout exactly doubles
+PASS same plant XP payout exactly doubles
+PASS score is not doubled
+PASS outside plants have no bounty multiplier
+PASS HUD shows passive resource XP and speed, no obsolete counter
+PASS actual direct kill pays once and leaves empty slot
+PASS empty slot respawns through normal production without six kills
+PASS full slot never duplicates
+PASS behavior harvest also benefits from passive area
+PASS pause freezes region and markers
+PASS movement instantly updates benefit membership
+PASS movement updates tint on the same frame without a hit or respawn
+PASS old cell already uses normal spawn interval before event ends
+PASS end removes all benefits and visuals
+PASS no tint submissions after region is gone
+PASS cleanup restores normal spawn timing
+PASS restart
+PASS restart counters reset
+PASS menu cleanup
+PASS start before run reset
+PASS run reset cleanup
+PASS start expiry test
+PASS bounty remains active beyond old thirty-second timeout
+PASS 40 warmed start/move/effect/end cycles keep pool object count stable
+PASS 40 warmed cycles create no accumulating materials
+PASS 40 warmed cycles create no accumulating meshes
+PASS stress cleanup has zero live signs effects and tint

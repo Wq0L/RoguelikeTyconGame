@@ -1,0 +1,246 @@
+[
+  {
+    "Path": "Assets/Resources/LateGameArt.asset",
+    "Hash": "38F1E46AAB8771246D20C2EB3A04795C8564CF6DD6810573175214F1BE415C76"
+  },
+  {
+    "Path": "Assets/Resources/RunProfileSelection.asset",
+    "Hash": "72AAB3D1352A923C9EB01492A79DD2E2C52839849A198A7497232C6B77E6F612"
+  },
+  {
+    "Path": "Assets/Scripts/RunEffects/Effects/CritArcEffectSO.cs",
+    "Hash": "042A2B0FB156F6A69C5E17BC4A72AE3F3DBE9003BA18AA7047A2FB9E4D89B8A0"
+  },
+  {
+    "Path": "Assets/ScriptableObjects/RunEffects/GecOyunV1/TasanHasarEffect_G1.asset",
+    "Hash": "821CEB02F424AE4283C50E3C504546468C47D45828BB402DE0627387CC6582B5"
+  },
+  {
+    "Path": "Assets/ScriptableObjects/BossRewards/GecOyunV1/TasanHasar_G1.asset",
+    "Hash": "C864DB828476A431AED7F58B3223DF8851C8A329EF17ED10E8FE77204FF9C1D1"
+  },
+  {
+    "Path": "Assets/ScriptableObjects/RunProfiles/Run50_GecOyunV1.asset",
+    "Hash": "0C3CE0806351176F066147691CF6018FA52178B83BCA4C5DA5C9ABAECEDB4BD8"
+  },
+  {
+    "Path": "Assets/Art/LateGame/CritArc\\CritArcClick.wav.meta",
+    "Hash": "0F7316043D032FB72D10144B3C57D88274DE88507C22324319524402A6C1A1F5"
+  },
+  {
+    "Path": "Assets/Art/LateGame/CritArc\\CritArcClick.wav",
+    "Hash": "CA3639642B00C0FD50CD28F33B78242D3E877B8886D0DAB67CA910DDBEE5FA26"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\StoneLeafBase.asset.meta",
+    "Hash": "BDE53490F8C1FAF9E1AFF7DF8799E54F9E06C0A8E877701D129AD8A09EBCFF9B"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\StoneLeafBase.asset",
+    "Hash": "90B5CDCB52E2625F8BA54CB570436180422BA2C07437B0B68E4416A8CE9FB979"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\PlacementSocketMesh.asset.meta",
+    "Hash": "DD0370A309BF893B6814041F4A4993B5D241396E5BD0C67B550FCAD486FDFA42"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\PlacementSocketMesh.asset",
+    "Hash": "2D16573681DCAE14BA4F59CA2B4B1C1CBC76191B0D44117DE364583D8F7CECB6"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\PlacementSocket.prefab.meta",
+    "Hash": "0E60A3DCDF5E9FD797E3A214ACE6520114A1FFBFAECD425072A6D1A57B204CAC"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\PlacementSocket.prefab",
+    "Hash": "58D4A2D9FE57B71720564C9ABE1A6D24F7612CE6F9D3E3243D89F67C2E58CA8A"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\PlacementCellMesh.asset.meta",
+    "Hash": "E5A89E7761E1FF6BBF27A9722113B021B40F589A369E38E0635904F814FA5665"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\PlacementCellMesh.asset",
+    "Hash": "5ED00A2000DB568043E80F8B2220C66E93432BDD64EBBA59FD4D5E8D26EB556B"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\PlacementCell.prefab.meta",
+    "Hash": "E17660A29965BC59AB09D71AA8D0B07897AB6BDA3985DDE56C4D3F7302FC8713"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\PlacementCell.prefab",
+    "Hash": "139FB82BBA66F489FB6E44987EFFEE8264F3E417C330800395DE4F30C8D04F03"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\PlacementAimMesh.asset.meta",
+    "Hash": "26C1E0EA67EA5F47EDCA89D6039F6E5747DD2682D73E8712DC79714A3C7DB0CC"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\PlacementAimMesh.asset",
+    "Hash": "D922E6D1B946BCA6046255A18B90AD6F54CC9A59F862912FBB8FBCEFA6CACDE1"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\PlacementAim.prefab.meta",
+    "Hash": "AC868B8B677A76E0018B53A45E005F64CFCD606A0EAC4D8F74F9C76A0BDF9902"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\PlacementAim.prefab",
+    "Hash": "45C67C6A710F4883336CE667457D01FADDD686083BCD23E661F0C81489E3AF14"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\FieldAntenna.prefab.meta",
+    "Hash": "0D94672C6A9E4D13E69FB0B69703FFCE14B7C2E26CFCB478356434A551F4371F"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\FieldAntenna.prefab",
+    "Hash": "5F4D3CD6E94C70E05AE24C78FEED3381AA518ACAA59C710EB1229576DA068B8F"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\ContactStarMesh.asset.meta",
+    "Hash": "32FFAB080300B4A59C70B3CDC78DFE1D7C141EDDDC06837DB742189C650FA4E6"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\ContactStarMesh.asset",
+    "Hash": "797D0148A60A7E0BBCF66B9DDCFDE90E04279AC0199E2A68B5335548E5DBE869"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\ContactStar.prefab.meta",
+    "Hash": "EB3FDB0ADC89BED74A3897F75693471BB28EB003025BA17287C867DD3628BB93"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\ContactStar.prefab",
+    "Hash": "D761E8D9A2A41BDCFD0CDA6C30E7070BDDB74F749B70E746305D1C4833D57E84"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\ContactDoubleMesh.asset.meta",
+    "Hash": "5EDC91791EB96A86475E51246E22F8B6A25CEBD044384E22FFA30CE2CB0B5700"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\ContactDoubleMesh.asset",
+    "Hash": "DBA4DD9320016C97F5BA9AD4EAB48C9C8C1CC6EC66123A83850F438DC9893E7C"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\ContactDouble.prefab.meta",
+    "Hash": "B6D0F0CBA4F7ABCB1AD34ABC7B5C94F4222819D8D1A41CD56C557F99BD9A653C"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\ContactDouble.prefab",
+    "Hash": "81CEE48044B4F94C7DF33847C9453AD68796E01A1436787123D0AEC0E12A4B19"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\ConductiveFlashMesh.asset.meta",
+    "Hash": "DC7700E060ECA6922DAA36C221A01A4DDD076E7C704756034CC48DFE111BBA91"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\ConductiveFlashMesh.asset",
+    "Hash": "26070DF4172DA57D8850B0D384BA4AACEC92D54CA0E015E0201E8337B7DA44D5"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\ConductiveFlash.prefab.meta",
+    "Hash": "B86039DF3ECB19FF73E1464AA78C088E165A69363545A05F23788AC1234235AE"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\ConductiveFlash.prefab",
+    "Hash": "757CD21275EA2CD824F271BF7940288E77A13B0BB5D9E02C222051D4DC0A1BF5"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\CoilAndFork.asset.meta",
+    "Hash": "F69C698EE4799EDA502557DE5AC229E744D7ADC55028FC1E0834D1DAE6A098A2"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\CoilAndFork.asset",
+    "Hash": "AE4F0399A0168DE5030CB78D8B695CC4D44C1AD0287FB7B9A9C1396D2138FDBE"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\CircuitReturnMesh.asset.meta",
+    "Hash": "3027F193FBC74CF45C568A1B22B76125CBEBED02C3BA3CE03076E1FB65B20C70"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\CircuitReturnMesh.asset",
+    "Hash": "3345B0585B9E801871426D43A883EB924DF342B9D55ADA01C6547746278EC4C1"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\CircuitReturn.prefab.meta",
+    "Hash": "2EA50D9CB20B18A78FF4D6DD89F16F012BF6B69A2DE6F9688841FF7A9DAB23C6"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\CircuitReturn.prefab",
+    "Hash": "98241F203F753B4BD4E526303C2EBD9D6CE083F493219A0E60C25A13BF8A5DA2"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\CircuitDoubleMesh.asset.meta",
+    "Hash": "199B9076AE8F1EFEE4BE7533EB84D118B0DB89EA1BFCD8EEDF7FD567B7C713E3"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\CircuitDoubleMesh.asset",
+    "Hash": "23A0642B8A717DDDD4A00C627D227C327192EA7E62EE3280C8632FAF5FAEB9BF"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\CircuitDouble.prefab.meta",
+    "Hash": "E3F132BED15DE846B08E6691B37E37E718237B071286F9F6FFBE4279A3F40EDE"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\CircuitDouble.prefab",
+    "Hash": "87F74CDD9F8F46D9E1824FE3F4C112AE19ED64E30F4BF3AA85B7BA0D7BF650E3"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\ChargeDiamond.asset.meta",
+    "Hash": "27D7340823D557A0594DCD36476591129D393C64B69521C23F549218731E751E"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\ChargeDiamond.asset",
+    "Hash": "9E413BCC929D0E35996D5200675ABF008285FB43F541428D00F37E059C24583E"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\Audio.meta",
+    "Hash": "59D7E9425E58381A7419EB9E0DAF2C18AF7CC393856738725B92522198E5A036"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\Audio\\Snap.wav.meta",
+    "Hash": "0B0FFA352217A9A498FCB29403BE22D0E680E763B42B068A234D893D7E6B8F5A"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\Audio\\Snap.wav",
+    "Hash": "DB87A43DE940F9D7F41D365EF910C04B06189E7C99B4A1259E27C2BC4E991EEE"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\Audio\\Settle.wav.meta",
+    "Hash": "0F4DB4C90012945A51B55C368DFC7D685B7B47054372F559738ED3AB42D03505"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\Audio\\Settle.wav",
+    "Hash": "2520D8FC942501FFC83ABEC257895A7B06C2329E5690A398A397C795A63450BB"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\Audio\\Line.wav.meta",
+    "Hash": "58EDDF4586364D8C4DDE8229C2E6F0EDEFD7B2CB2D6F601C9ABCCBAE1DBACD4C"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\Audio\\Line.wav",
+    "Hash": "E6595648ED5D983E8269DFA0596F857A6C16A6B2DEBA5E0BA68FB4CA00F873D0"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\Audio\\Circuit.wav.meta",
+    "Hash": "40898FBE099668E267CAFF7945556BE45C2E52B81AB04C2B5D97E59E779A4413"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\Audio\\Circuit.wav",
+    "Hash": "03963EA495B19E99EAEE07878EB82EF5E30C98B2E9DB7D90892C587AE542E1B8"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\AntennaSnapMesh.asset.meta",
+    "Hash": "8A9155B9E509393CF5BF2E254FE9E10E0C8E4D15FF08334F4C04C070598876D3"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\AntennaSnapMesh.asset",
+    "Hash": "94A099296350191899CC3853A4C0F6180AD0F041E0D613E11795A2C6A89D1C7F"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\AntennaSnap.prefab.meta",
+    "Hash": "B3B04B5DA9807FAB05461B0123E53C458416F4151F15750FC6DC4154E166BCF3"
+  },
+  {
+    "Path": "Assets/Art/LateGame/AntennaFamily\\AntennaSnap.prefab",
+    "Hash": "D70B656B71D6BEE5494B3C95A5EDFC6DA02ABA9B32612A1A1B787147C74027C7"
+  }
+]

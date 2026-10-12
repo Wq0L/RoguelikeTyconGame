@@ -91,8 +91,8 @@ public class StatManager : MonoBehaviour
 
     // Birikim grubu (Bölüm 3.7.7): aynı gruba eklenen MorePercent değerleri TOPLANIR ve gruptan listede tek bir modifier durur
     // (iki +%5 → tek ×1,10; ayrı ayrı eklenselerdi ×1,05 × 1,05). Grup, stat ve hedefiyle tanımlanır; grubun dışındaki
-    // modifier'larla ilişkisi değişmez (grup çarpanı diğer kaynaklarla eskisi gibi çarpılır). Şu an tek kullanıcı: temel güç
-    // "XP kazancı" kartları (RunBalanceSO.additiveBaseXpCards). Liste temizlenince ve yeni sahnede (yeni run) grup da sıfırlanır.
+    // modifier'larla ilişkisi değişmez (grup çarpanı diğer kaynaklarla eskisi gibi çarpılır). Profilin seçtiği temel güç
+    // kartları bu yolu kullanır (BasePowerCardRules). Liste temizlenince ve yeni sahnede (yeni run) grup da sıfırlanır.
     private readonly Dictionary<(StatType, StatTarget), StatModifier> summedGroups = new();
 
     // Grubun şu anki toplamı (0: gruba henüz kart eklenmedi).

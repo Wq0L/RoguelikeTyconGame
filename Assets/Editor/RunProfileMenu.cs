@@ -79,6 +79,10 @@ public static class RunProfileMenu
     // ayarlanan can eğrisi, kotalar ve boss hedefleri. Veri: Tools/Balance/AlphaDengeV1.
     [MenuItem(Root + "Run50 Alpha Denge V1 · 50 round (51:40 aktif süre, ilk alpha denge adayı)", priority = 31)]
     private static void AlphaV1() => Select(Folder + "Run50_AlphaDengeV1.asset");
+    // Bölüm 3.8: Alpha Denge V1'in her şeyi (süre, can, hedefler, denge seti, mevcut 19 boss ödülü) + R26'dan itibaren etkileşimli
+    // tarla olayları ve 13 yeni boss ödülü. İlk prototip değerleri; dengelenmedi. Veri: Tools/Balance/GecOyunV1.
+    [MenuItem(Root + "Run50 Geç Oyun V1 · 50 round (tarla olayları ve yeni boss ödülleri prototipi)", priority = 32)]
+    private static void LateGameV1() => Select(Folder + "Run50_GecOyunV1.asset");
 
     [MenuItem(Root + "Profil yok (sahnedeki ayarlar)", priority = 40)]
     private static void None() => Select(null);
@@ -115,6 +119,8 @@ public static class RunProfileMenu
     private static bool XpV1Check() => Check(Folder + "Run50_XPV1.asset");
     [MenuItem(Root + "Run50 Alpha Denge V1 · 50 round (51:40 aktif süre, ilk alpha denge adayı)", true)]
     private static bool AlphaV1Check() => Check(Folder + "Run50_AlphaDengeV1.asset");
+    [MenuItem(Root + "Run50 Geç Oyun V1 · 50 round (tarla olayları ve yeni boss ödülleri prototipi)", true)]
+    private static bool LateGameV1Check() => Check(Folder + "Run50_GecOyunV1.asset");
     [MenuItem(Root + "Profil yok (sahnedeki ayarlar)", true)]
     private static bool NoneCheck() => Check(null);
 
@@ -172,6 +178,7 @@ public static class RunProfileMenu
         : path.EndsWith("Run50_ZincirV1.asset") ? "Run50 Zincir V1 · 50 round (dört davranışlı zincir prototipi)"
         : path.EndsWith("Run50_XPV1.asset") ? "Run50 XP V1 · 50 round (XP ve sınırsız level adayı)"
         : path.EndsWith("Run50_AlphaDengeV1.asset") ? "Run50 Alpha Denge V1 · 50 round (51:40 aktif süre, ilk alpha denge adayı)"
+        : path.EndsWith("Run50_GecOyunV1.asset") ? "Run50 Geç Oyun V1 · 50 round (tarla olayları ve yeni boss ödülleri prototipi)"
         : "Uzun run · 130 round (normal ekonomi)";
 
     private static void Select(string path)

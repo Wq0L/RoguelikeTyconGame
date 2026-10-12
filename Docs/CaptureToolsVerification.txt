@@ -1,0 +1,17 @@
+PASS 16 checks
+PASS grant existing reward before jump: 
+PASS active wave exists before transition
+PASS jump to chosen boss round starts actual Round state
+PASS previous wave timers removed on jump
+PASS owned rewards preserved
+PASS placed field and plants preserved
+PASS no stale choice blocks new round
+PASS save writes disabled without replacing loaded progression
+PASS extra 60 seconds applied
+PASS resource granted: Stone
+PASS resource granted: Iron
+PASS resource granted: Gold
+PASS out-of-range round clamps to final round
+PASS backward jump resets quota/failure state
+PASS same round can restart
+PASS existing LateGameTestWindow remains available

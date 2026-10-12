@@ -8,7 +8,8 @@ using UnityEngine;
 //   bundan büyük olabilir; uygulanan değer doyar. Sayılır, ilk seferde bir uyarı yazılır.
 // - NaN ve -sonsuz: geçersiz. En küçük değer döner (oyun kilitlenmez); sayılır, ilk seferde bir hata yazılır (vuruş başına log yok).
 // - Sonlu negatif değer: en küçük değere kırpılır (eski Math.Max(0, …) kuralı); sayılmaz.
-public enum NumericSite { DirectDamage, CritDamage, BehaviorBase, BehaviorDamage, ChainDamage, EchoDamage, IncomingDamage, PlantHealth, Experience, Resource, Score }
+// RewardDamage: boss ödülü etkilerinin vuruşları (Bölüm 3.8). Score sonda kalır (SiteCount ondan hesaplanır).
+public enum NumericSite { DirectDamage, CritDamage, BehaviorBase, BehaviorDamage, ChainDamage, EchoDamage, IncomingDamage, PlantHealth, Experience, Resource, RewardDamage, Score }
 
 public static class NumericSafety
 {

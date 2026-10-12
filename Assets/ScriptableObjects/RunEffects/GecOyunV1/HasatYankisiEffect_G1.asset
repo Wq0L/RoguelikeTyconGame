@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d3eda28f51be0f428010d74c511793c, type: 3}
+  m_Name: HasatYankisiEffect_G1
+  m_EditorClassIdentifier: Assembly-CSharp::HarvestEchoEffectSO
+  minHarvests: 3
+  damage: 0.5
+  maxCells: 3
+  delay: 0.12

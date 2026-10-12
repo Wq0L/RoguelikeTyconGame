@@ -297,7 +297,8 @@ public static class XPV1Verification
             var p = AssetDatabase.LoadAssetAtPath<RunProfileSO>(AssetDatabase.GUIDToAssetPath(guid));
             if (p == x) continue;
             // Bölüm 3.7.8: Run50_AlphaDengeV1, XP V1'den sonra gelen adaydır ve P7 kurallarını aynen taşır (eski profil değildir).
-            if (p.name == "Run50_AlphaDengeV1")
+            // Bölüm 3.8: Run50_GecOyunV1 aynı denge setini (Alpha Denge V1) kullanır; aynı denetimden geçer.
+            if (p.name == "Run50_AlphaDengeV1" || p.name == "Run50_GecOyunV1")
             {
                 Must(p.balance != null && p.balance.additiveBaseXpCards && p.balance.hideFlooredBaseStats && p.balance.progression != null &&
                      p.balance.progression.tailGrowth == xt.tailGrowth, "the later candidate should keep the P7 rules: " + p.name);

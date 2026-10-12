@@ -10,6 +10,9 @@ public class RunCompleteUI : MonoBehaviour
 
     private void OnEnable()
     {
+        bool fullGame = !DemoSceneSettings.IsDemo && gameObject.scene.name == "GameScene";
+        if (fullGame && scoreText != null)
+            (GetComponent<RunResultLayout>() ?? gameObject.AddComponent<RunResultLayout>()).Prepare(scoreText);
         // Run'ın nasıl bittiği skorun üstünde yazar: kota tutmadı (ulaşılan skor / gereken kota) ya da run kazanıldı.
         RoundManager rounds = RoundManager.Instance;
         string total = $"Harvest Score: {HarvestQuota.Format(HarvestScoreManager.Instance.TotalScore)}";
@@ -30,7 +33,9 @@ public class RunCompleteUI : MonoBehaviour
         }
         // Bu run'da alınan boss ödülleri.
         string rewards = BossRewardText.Summary(BossRewardManager.Instance);
-        if (rewards != null) total += $"\n<size=70%>Boss ödülleri: {rewards}</size>";
+        if (rewards != null) total += fullGame
+            ? $"\n\n<b>BOSS ÖDÜLLERİ</b>\n<size=85%>• {rewards.Replace(", ", "\n• ")}</size>"
+            : $"\n<size=70%>Boss ödülleri: {rewards}</size>";
         // Bedelli ödüller (Bölüm 3.7.4): kazanç ve bedel ayrı yazılır; seçim hakkı değiştiyse run sonundaki değer de.
         string trades = BossRewardText.TradeSummary(BossRewardManager.Instance);
         if (trades != null) total += $"\n<size=70%>{trades}</size>";

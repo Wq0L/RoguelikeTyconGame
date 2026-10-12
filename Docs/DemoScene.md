@@ -15,7 +15,13 @@ DemoScene açılıp Play'e basılır. `Demo Settings` kökündeki `DemoSceneSett
 
 `Tools > Demo > Build WebGL Demo` komutu yalnız DemoScene'i build eder; tam oyunun Build Settings sahne listesini değiştirmez. Unity WebGL Build Support gerekir. Decompression Fallback yalnız bu build sırasında açılır ve önceki ayar geri konur.
 
-Çıktının içindeki `index.html`, `Build`, `TemplateData` ve varsa diğer dosyaları birlikte ZIP yapın; ZIP kökünde index.html olmalı. itch.io HTML projesine yükleyin, tarayıcıda oynanacak dosya olarak işaretleyin. Gerçek WebGL performansı/tarayıcı testi ayrıca yapılmalıdır.
+Çıktının içindeki `index.html`, `Build`, `TemplateData` ve varsa diğer dosyaları birlikte ZIP yapın; ZIP kökünde index.html olmalı. itch.io HTML projesine yükleyin, tarayıcıda oynanacak dosya olarak işaretleyin.
+
+5 Ekim 2026 WebGL paketi: `Builds/EarthIsGone-LunchIsnt-WebGL-Demo-20261005.zip`. Kaynak çıktı: `Builds/WebGLDemo-20261005-v2`. ZIP kökünde index.html ve gerekli Build/TemplateData dosyaları doğrulandı.
+
+Demo build sırasında `DemoWebGL_RPAsset` kullanılır: render scale 1, 4x MSAA. Build sonunda kalite seviyelerinin önceki pipeline referansları geri yüklenir. DemoScene kamera kırpma aralığı 0.3–200; GameScene değişmez. HTML canvas tarayıcı alanına uyarlanır. Zemindeki düzenli kare oluklar modelin geometrisidir; düşük çözünürlükteki yoğun basamaklanmayla karıştırılmamalıdır.
+
+Yerel tarayıcıda açılış, oyun alanı ve saksı yerleştirme görünümü kontrol edildi; gözlenen oturumda tarayıcı konsolunda hata/uyarı yoktu. Tarayıcıda 20 round boyunca oynanmış performans testi veya itch.io üzerinde yayın testi yapılmadı.
 
 ## Doğrulama
 
@@ -23,4 +29,4 @@ DemoScene açılıp Play'e basılır. `Demo Settings` kökündeki `DemoSceneSett
 
 Test izole proje kopyasında çalışır: 20 round akışı (skor verilerek), ödül aşamaları, kart ve satın alma kilitleri, kayıtlı açık başlangıç seçiminin engellenmesi, bitki canı/kota verisi, kaynak asset izolasyonu, zafer, restart, demo menüsüne dönüş ve GameScene'e geçince normal kuralların geri gelmesi. Denge veya insan oynanış testi değildir.
 
-5 Ekim 2026: izole Unity testi geçti. R13/R16 teklifleri yalnız güçlü aşamadan, R20 zafer ve R21 engeli doğrulandı. Açılış ve zafer görüntüleri incelendi. Sonuç: [DemoVerification.txt](DemoScene/DemoVerification.txt). Unity editörünün SearchDatabase başlangıç indekslemesinde oyun kodundan gelmeyen bir ArgumentOutOfRangeException görüldü; test bunu ayrıca kaydeder, oyun hatalarını saymaya devam eder. WebGL çıktısı bu çalışmada üretilmedi; tarayıcı performansı ve insan oyun hissi testi bekliyor.
+5 Ekim 2026: izole Unity testi geçti. R13/R16 teklifleri yalnız güçlü aşamadan, R20 zafer ve R21 engeli doğrulandı. Açılış ve zafer görüntüleri incelendi. Sonuç: [DemoVerification.txt](DemoScene/DemoVerification.txt). Unity editörünün SearchDatabase başlangıç indekslemesinde oyun kodundan gelmeyen bir ArgumentOutOfRangeException görüldü; test bunu ayrıca kaydeder, oyun hatalarını saymaya devam eder. WebGL çıktısı üretildi ve ilk tarayıcı kontrolü yapıldı; uzun oturum performansı ve insan oyun hissi testi bekliyor.

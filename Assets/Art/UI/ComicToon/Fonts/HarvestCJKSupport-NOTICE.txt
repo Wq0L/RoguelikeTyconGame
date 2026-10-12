@@ -1,0 +1,9 @@
+Harvest CJK Support is a static weight-800 derivative of Noto Sans SC.
+Copyright 2014-2021 Adobe; Reserved Font Name: Source.
+License: SIL OFL 1.1; see HarvestCJKSupport-OFL.txt.
+Source: https://github.com/google/fonts/tree/main/ofl/notosanssc
+Changes: instantiated the variable wght axis at 800 and renamed family.
+Glyph designs retained. Includes Simplified Chinese and Cyrillic coverage.
+Original source and its OFL license are in Tools/FontSources.
+Rebuild: Tools/build-comic-localization-fonts.py.
+Free commercial use; preserve copyright and license notices when redistributing.

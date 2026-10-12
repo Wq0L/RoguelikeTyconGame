@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -59,6 +59,16 @@ public static class MetaSave
         memoryOnly = true;
         data = null;
     }
+
+#if UNITY_EDITOR
+    // Keep loaded progression in memory, but never persist a capture/test session.
+    public static bool EditorSessionMemoryOnly => memoryOnly;
+    public static void EditorProtectTestSession()
+    {
+        _ = Data;
+        memoryOnly = true;
+    }
+#endif
 
     public static string FilePath => Path.Combine(directory ?? Application.persistentDataPath, FileName);
     public static string BackupPath => FilePath + ".bak";

@@ -34,3 +34,10 @@ MonoBehaviour:
   additiveBaseXpCards: 1
   hideFlooredBaseStats: 1
   planterPrices: []
+  smallBasePowerCards: 1
+  basePowerAmounts:
+  - 0.0002
+  - 0.0004
+  - 0.0007
+  - 0.001
+  movingBehaviorLimit: 12

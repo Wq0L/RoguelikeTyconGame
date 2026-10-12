@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,6 +41,8 @@ public class RunProfileSO : ScriptableObject
     public BossRewardPoolSO bossRewards;
     [Tooltip("Boss ve ödül seçimi seed'i. 0: her run farklı. Başka bir sayı: aynı kararlarla aynı dizi (test ve karşılaştırma).")]
     public int bossSeed;
+    [Tooltip("Hilal: bitki isabetiyle dolar; fareden dört yönden birine açık kenara gider. Alan adı eski kayıtlarla uyumluluk için korunur. Kapalı: eski dört hücre rotası.")]
+    public bool crescentFullRows;
 
     [Header("Boss takvimi (Bölüm 3.7.2) — boş bırakılırsa segmentRounds ritmi (eski davranış)")]
     [Tooltip("Açık boss tarihleri, küçükten büyüğe. Her tarih bir kota dönemini kapatır: dönem, bir önceki tarihten sonraki round'dan bu " +
@@ -80,6 +82,11 @@ public class RunProfileSO : ScriptableObject
              "yükseltmeleri ve süreden gelen tempo bu run'da etkisizdir (sabit süredeki kuralla aynı); 60 sn üstü de yazılabilir " +
              "(sınırlar: RoundDurations). Sabit süreyle birlikte kullanılamaz. Geçersiz tablo düzeltilmez: run başlamaz ve hata yazılır.")]
     public List<RoundDurationBand> roundDurations = new();
+
+    [Header("Geç oyun tarla olayları (Bölüm 3.8) — boş bırakılırsa olay yok (eski davranış)")]
+    [Tooltip("Etkileşimli tarla olaylarının takvimi, süreleri ve alanları (Diken Kuşatması, İstilacı Filiz, Aşılı Kabuk, Gezgin Bereket). " +
+             "Boss ödülü değildir; FieldEventDirector yürütür. Boş: bu profilde tarla olayı çıkmaz.")]
+    public FieldEventPlanSO fieldEvents;
 
     [Header("Bitiş")]
     [Tooltip("Son round'da kota geçilince run sonu ekranının başlığı.")]

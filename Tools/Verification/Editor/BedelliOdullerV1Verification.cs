@@ -309,8 +309,13 @@ public static class BedelliOdullerV1Verification
         // Eski ödüllerde yeni alanların varsayılanı etkisizdir.
         var all = AssetDatabase.FindAssets("t:BossRewardSO", new[] { "Assets/ScriptableObjects/BossRewards" })
             .Select(g => AssetDatabase.LoadAssetAtPath<BossRewardSO>(AssetDatabase.GUIDToAssetPath(g))).ToList();
-        var others = all.Where(r => r != og && r != ad).ToList();
-        Require(all.Count == others.Count + 2 && others.Count >= 22 && others.All(r => r.levelChoiceDelta == 0 && string.IsNullOrEmpty(r.exclusiveGroup) && !r.HasCost && !BossRewardText.IsTrade(r)),
+        // The full-game Play patch added two explicit copies; verify those separately instead of counting them as old assets.
+        var fullGame = all.Where(r => AssetDatabase.GetAssetPath(r).StartsWith("Assets/ScriptableObjects/BossRewards/AlphaDengeV1/")).ToList();
+        Require(fullGame.Count == 2 && fullGame.Select(r => r.id).OrderBy(id => id).SequenceEqual(new[] { "hasat_ritmi", "zincir_hasat" }) &&
+                fullGame.All(r => r.exclusiveGroup == "harvest_playstyle" && r.fullGameExclusiveGroup && r.levelChoiceDelta == 0 && !r.HasCost),
+            "Only the two explicit full-game reward copies add the rhythm/chain exclusion");
+        var others = all.Where(r => r != og && r != ad && !fullGame.Contains(r)).ToList();
+        Require(all.Count == others.Count + 2 + fullGame.Count && others.Count >= 22 && others.All(r => r.levelChoiceDelta == 0 && string.IsNullOrEmpty(r.exclusiveGroup) && !r.HasCost && !BossRewardText.IsTrade(r)),
             $"All {others.Count} older reward assets: level choice change 0, no exclusion group, no cost — the new fields default to no effect");
         foreach (string name in new[] { "Run50_KirilmaV1", "Run50_DengeV1", "Run50_TakvimV1", "Run50_BossPrototip", "Run50_OdulAsamalariV1" })
         {

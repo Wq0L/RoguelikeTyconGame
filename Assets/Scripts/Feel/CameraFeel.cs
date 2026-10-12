@@ -2,7 +2,7 @@ using UnityEngine;
 
 // Kameranın tek sahibi. Shake, idle "nefes" ve zoom punch hepsi sabit bir base pozisyonun
 // üstüne ofset olarak eklenir; üst üste binen efektler kamerayı asla kaydırmaz.
-// Hepsi unscaled time kullanır: shop/menüde timeScale 0 iken de ekran canlı kalır.
+// Temel efektler unscaled time kullanır. Kısa olay ofseti yalnız gönderildiği karede geçerlidir; pause sırasında sıfırdır.
 [DefaultExecutionOrder(900)]
 [RequireComponent(typeof(Camera))]
 public class CameraFeel : MonoBehaviour
@@ -47,12 +47,23 @@ public class CameraFeel : MonoBehaviour
     private float zoom, zoomVelocity, zoomTarget;
     private Vector2 shakeOffset, idleOffsetValue;
     private float seed;
+    private Vector2 frameShake;
+    private int frameShakeFrame = -1;
+
+    // One-frame contribution for a bounded visual sequence. No trauma tail or persistent camera owner.
+    public Vector2 FrameShakeOffset => frameShakeFrame == Time.frameCount && Time.timeScale > 0f
+        ? frameShake * (shakeIntensity * GameSettings.ScreenShake) : Vector2.zero;
+    public void SetFrameShake(Vector2 offset)
+    {
+        frameShake = Vector2.ClampMagnitude(offset, .08f);
+        frameShakeFrame = Time.frameCount;
+    }
 
     private GameManager subscribedGame;
     private GameStates lastState;
 
     // Arka plan paralaksı için: kamera düzlemindeki anlık ofset (dünya birimi) ve zoom oranı.
-    public Vector2 ViewOffset => shakeOffset + idleOffsetValue;
+    public Vector2 ViewOffset => shakeOffset + idleOffsetValue + FrameShakeOffset;
     public float ZoomOffset { get; private set; }
     public Quaternion BaseWorldRotation =>
         transform.parent != null ? transform.parent.rotation * baseRotation : baseRotation;
@@ -84,6 +95,8 @@ public class CameraFeel : MonoBehaviour
     private void OnDisable()
     {
         Unsubscribe();
+        frameShake = Vector2.zero;
+        frameShakeFrame = -1;
         RestoreBase();
         if (Instance == this) Instance = null;
     }

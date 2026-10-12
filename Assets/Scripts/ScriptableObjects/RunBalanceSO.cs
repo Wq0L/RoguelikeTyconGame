@@ -42,6 +42,13 @@ public sealed class RunBalanceSO : ScriptableObject
              "sunulmaz. Kapalı (eski profiller): yine sunulur.")]
     public bool hideFlooredBaseStats;
 
+    [Tooltip("Tam oyun temel güç kartlarının pozitif statları kendi aralarında toplanır. Demo ve eski profiller etkilenmez.")]
+    public bool smallBasePowerCards;
+    [Tooltip("Common, Rare, Epic, Legendary; oran olarak (0.001 = %0.1).")]
+    public float[] basePowerAmounts = { .0002f, .0004f, .0007f, .001f };
+    [Tooltip("Kasırga ve bumerang için ayrı ayrı aktif sınır. 0: sahnenin eski sınırını kullan.")]
+    [Min(0)] public int movingBehaviorLimit;
+
     [Header("Saksı fiyatları")]
     [Tooltip("Listede olmayan saksı kendi asset fiyatını kullanır.")]
     public List<PlanterPrice> planterPrices = new();

@@ -29,5 +29,6 @@ public static class FeelBootstrap
         if (Object.FindAnyObjectByType<GameFeelDirector>() == null) new GameObject("Game Feel Director").AddComponent<GameFeelDirector>();
         if (Object.FindAnyObjectByType<GridCoordinateLabels>() == null) new GameObject("Grid Coordinates").AddComponent<GridCoordinateLabels>();
         if (Object.FindAnyObjectByType<FreshTileMarkers>() == null) new GameObject("Fresh Tile Markers").AddComponent<FreshTileMarkers>();
+        if (Object.FindAnyObjectByType<GreenhouseMascot>() == null) new GameObject("Greenhouse Mascot").AddComponent<GreenhouseMascot>();
     }
 }

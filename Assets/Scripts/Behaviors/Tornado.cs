@@ -88,8 +88,8 @@ public class Tornado : MonoBehaviour
         }
 
         // Her adımda new'lemesin diye bir kere oluşturuyoruz (GC dostu)
-        moveWait = new WaitForSeconds(stepDuration);
-        pauseWait = new WaitForSeconds(stepPause);
+        moveWait ??= new WaitForSeconds(stepDuration);
+        pauseWait ??= new WaitForSeconds(stepPause);
 
         if (visual != null)
         {

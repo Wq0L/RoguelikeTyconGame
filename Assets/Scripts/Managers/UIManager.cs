@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     private RoundPreviewUI roundPreview;
     private SpecializationPanelUI specializationPanel;
     private BossRewardPanelUI bossRewardPanel;
+    private RewardPlacementUI rewardPlacementPanel;
     private Transform resourcesHome;
     private int resourcesHomeIndex;
 
@@ -53,6 +54,10 @@ public class UIManager : MonoBehaviour
         BossWeatherOverlay.Ensure();
         specializationPanel = SpecializationPanelUI.Attach(roundEndUI.transform.parent);
         bossRewardPanel = BossRewardPanelUI.Attach(roundEndUI.transform.parent);
+        // Bölüm 3.8: yerleşim isteyen boss ödülünün konum seçimi, tarla olayı durum plakası ve geç oyun görsel bağlama katmanı.
+        rewardPlacementPanel = RewardPlacementUI.Attach(roundEndUI.transform.parent);
+        FieldEventHud.Attach(roundEndUI.transform.parent);
+        LateGamePresenter.Ensure();
         LevelWorkStatusUI.Attach(roundEndUI.transform.parent);
         RoundNewTilesUI.Attach(roundEndUI);
         roundPreview = RoundPreviewUI.Attach(roundEndUI, this);
@@ -93,8 +98,12 @@ public class UIManager : MonoBehaviour
         bool choice = state == GameStates.RoundChoice;
         bool reward = choice && BossRewardManager.Instance != null && BossRewardManager.Instance.IsPending;
         bool specialization = choice && (!reward || (SpecializationManager.Instance != null && SpecializationManager.Instance.IsPending));
+        // Yerleşim adımı (Bölüm 3.8): ödül seçildi, konumu bekleniyor. Ödül ekranı kapanır (tarla görünmeli), yerleşim paneli açılır;
+        // vazgeçilince aynı teklifle ödül ekranı geri gelir.
+        bool placing = reward && !specialization && rewardPlacementPanel != null && BossRewardManager.Instance.PlacementReward != null;
         SetChoicePanel(specializationPanel != null ? specializationPanel.gameObject : null, specialization);
-        SetChoicePanel(bossRewardPanel != null ? bossRewardPanel.gameObject : null, reward && !specialization);
+        SetChoicePanel(bossRewardPanel != null ? bossRewardPanel.gameObject : null, reward && !specialization && !placing);
+        SetChoicePanel(rewardPlacementPanel != null ? rewardPlacementPanel.gameObject : null, placing);
     }
 
     private static void SetChoicePanel(GameObject panel, bool show)
@@ -301,6 +310,7 @@ public class UIManager : MonoBehaviour
         cardSelectionPanel.SetActive(false); // yeni
         if (specializationPanel != null) specializationPanel.gameObject.SetActive(false);
         if (bossRewardPanel != null) bossRewardPanel.gameObject.SetActive(false);
+        if (rewardPlacementPanel != null) rewardPlacementPanel.gameObject.SetActive(false);
         currentPanel = null;
     }
 

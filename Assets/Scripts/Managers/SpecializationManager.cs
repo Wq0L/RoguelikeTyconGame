@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 // Boss sonrası bedelli uzmanlaşma (run başına bir seçim). RoundManager kurar; ayarlar aktif run profilinden gelir.
@@ -110,6 +110,10 @@ public sealed class SpecializationManager : MonoBehaviour, IRoundChoice
     }
 
     // Tek temizlik yolu: yeni run, ana menü, yok edilme (yeniden başlatma ve sahne değişimi).
+#if UNITY_EDITOR
+    public void EditorDiscardPendingChoice() { IsPending=false; Version++; }
+#endif
+
     public void ClearAll()
     {
         Chosen = null;

@@ -1,0 +1,222 @@
+[
+  {
+    "file": "UI/A.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "530,113;592,108;595,157;535,159;532,145;525,119;534,119"
+  },
+  {
+    "file": "UI/B.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "597,112;653,110;658,128;654,157;596,158;596,139;592,139"
+  },
+  {
+    "file": "UI/C.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "660,111;718,109;719,153;709,157;657,158;655,142"
+  },
+  {
+    "file": "UI/D.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "722,111;777,109;783,128;779,156;721,158;719,139"
+  },
+  {
+    "file": "UI/E.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "785,111;841,110;844,128;840,155;782,158;781,131"
+  },
+  {
+    "file": "UI/F.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "847,111;903,109;906,130;902,155;845,158;843,133"
+  },
+  {
+    "file": "UI/G.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "910,110;965,111;969,148;963,157;906,157;905,130"
+  },
+  {
+    "file": "UI/H.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "974,110;1025,111;1029,153;973,157;969,145;969,120"
+  },
+  {
+    "file": "UI/I.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "1034,111;1086,109;1091,130;1089,158;1032,156;1028,140"
+  },
+  {
+    "file": "UI/J.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "1097,111;1147,108;1153,126;1148,158;1092,159;1090,143"
+  },
+  {
+    "file": "UI/K.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "1157,111;1214,109;1216,132;1213,159;1153,157;1152,137"
+  },
+  {
+    "file": "UI/01.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "483,159;527,156;531,170;528,207;480,210;478,201;474,201;474,166;481,166"
+  },
+  {
+    "file": "UI/02.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "480,212;526,210;531,225;528,257;480,262;475,255;475,215"
+  },
+  {
+    "file": "UI/03.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "483,264;524,261;530,282;528,310;482,314;475,304;480,286;477,278"
+  },
+  {
+    "file": "UI/04.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "481,317;527,313;529,352;525,364;480,365;474,352;477,327"
+  },
+  {
+    "file": "UI/05.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "480,369;526,366;530,381;528,416;479,416;479,402;474,397"
+  },
+  {
+    "file": "UI/06.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "481,423;525,418;530,439;527,469;479,472;475,452;477,429"
+  },
+  {
+    "file": "UI/07.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "482,477;525,472;530,487;526,523;482,526;475,508;479,494"
+  },
+  {
+    "file": "UI/08.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "483,528;526,524;530,544;526,576;483,578;476,566;474,535"
+  },
+  {
+    "file": "UI/09.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "482,581;526,577;530,594;526,629;481,632;476,614;476,585"
+  },
+  {
+    "file": "UI/10.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "482,634;526,630;530,650;528,682;481,681;477,664;478,641"
+  },
+  {
+    "file": "UI/11.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "484,688;526,684;531,723;527,738;484,733;482,709"
+  },
+  {
+    "file": "World/ReferenceCuts/03.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "277,579;323,588;333,638;324,648;275,631;272,620"
+  },
+  {
+    "file": "World/ReferenceCuts/04.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "341,612;385,624;396,671;386,681;339,665;335,654"
+  },
+  {
+    "file": "World/ReferenceCuts/05.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "405,647;450,659;459,704;450,716;401,699;398,686"
+  },
+  {
+    "file": "World/ReferenceCuts/09.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "604,740;649,747;660,791;651,796;600,785;599,760"
+  },
+  {
+    "file": "World/ReferenceCuts/C.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "1040,751;1089,740;1096,782;1087,790;1038,790;1034,772"
+  },
+  {
+    "file": "World/ReferenceCuts/D.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "1106,735;1153,724;1161,770;1108,790;1099,780;1100,748"
+  },
+  {
+    "file": "World/ReferenceCuts/F.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "1217,687;1253,675;1261,719;1217,740;1210,734;1210,699"
+  },
+  {
+    "file": "World/ReferenceCuts/G.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "1268,653;1308,635;1319,683;1266,711;1258,701;1260,668"
+  },
+  {
+    "file": "World/ReferenceCuts/H.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "1329,618;1371,601;1381,651;1327,678;1318,665;1320,632"
+  },
+  {
+    "file": "World/ReferenceCuts/I.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "1390,581;1433,566;1445,614;1389,642;1379,629;1382,596"
+  },
+  {
+    "file": "World/ReferenceCuts/J.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "1451,543;1499,528;1507,578;1450,606;1440,592;1442,558"
+  },
+  {
+    "file": "World/ReferenceCuts/K.png",
+    "method": "Original screenshot cut; no redraw or resizing",
+    "polygon": "1509,508;1555,492;1568,540;1510,566;1500,554;1501,520"
+  },
+  {
+    "file": "World/Completed/A.png",
+    "method": "Occluded in screenshot: perspective adaptation of the corresponding unique UI cut",
+    "polygon": ""
+  },
+  {
+    "file": "World/Completed/B.png",
+    "method": "Occluded in screenshot: perspective adaptation of the corresponding unique UI cut",
+    "polygon": ""
+  },
+  {
+    "file": "World/Completed/E.png",
+    "method": "Occluded in screenshot: perspective adaptation of the corresponding unique UI cut",
+    "polygon": ""
+  },
+  {
+    "file": "World/Completed/01.png",
+    "method": "Occluded in screenshot: perspective adaptation of the corresponding unique UI cut",
+    "polygon": ""
+  },
+  {
+    "file": "World/Completed/02.png",
+    "method": "Occluded in screenshot: perspective adaptation of the corresponding unique UI cut",
+    "polygon": ""
+  },
+  {
+    "file": "World/Completed/06.png",
+    "method": "Occluded in screenshot: perspective adaptation of the corresponding unique UI cut",
+    "polygon": ""
+  },
+  {
+    "file": "World/Completed/07.png",
+    "method": "Occluded in screenshot: perspective adaptation of the corresponding unique UI cut",
+    "polygon": ""
+  },
+  {
+    "file": "World/Completed/08.png",
+    "method": "Occluded in screenshot: perspective adaptation of the corresponding unique UI cut",
+    "polygon": ""
+  },
+  {
+    "file": "World/Completed/10.png",
+    "method": "Occluded in screenshot: perspective adaptation of the corresponding unique UI cut",
+    "polygon": ""
+  },
+  {
+    "file": "World/Completed/11.png",
+    "method": "Occluded in screenshot: perspective adaptation of the corresponding unique UI cut",
+    "polygon": ""
+  }
+]

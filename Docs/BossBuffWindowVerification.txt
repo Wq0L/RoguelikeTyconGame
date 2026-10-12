@@ -1,0 +1,14 @@
+PASS 13 checks
+PASS all active-pool rewards present: 32
+PASS no duplicate asset rows
+PASS stat buffs included
+PASS breakthrough buffs included
+PASS tradeoff buffs included
+PASS runtime effect buffs included
+PASS repeat grant agir_darbe stack 1
+PASS repeat grant agir_darbe stack 2
+PASS stack cap enforced
+PASS runtime effect granted through same window entry
+PASS window grant protects real save
+PASS search finds ID and filters unrelated rows
+PASS prerequisite preserved

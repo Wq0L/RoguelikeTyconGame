@@ -61,6 +61,23 @@ public class SpaceBackground : MonoBehaviour
     private Color originalFogColor, originalBackground;
     private bool sceneChanged;
 
+    // Project a point on the shader's planet into screen space, including zoom/parallax.
+    public bool TryGetPlanetScreenPoint(Vector2 pointOnDisc, out Vector2 screenPoint)
+    {
+        screenPoint = default;
+        if (!showPlanet || material == null || quad == null || cam == null) return false;
+        Vector4 view = material.GetVector(SpaceViewId);
+        Vector4 offset = material.GetVector(SpaceOffsetId);
+        float aspect = Mathf.Max(.01f, view.y);
+        Vector2 center = Vector2.Scale(planetPosition - Vector2.one * .5f, new Vector2(aspect, 1));
+        Vector2 p = (center + pointOnDisc * planetRadius - new Vector2(offset.x, offset.y) * (.05f * parallax))
+            / (1f + view.z * .1f * parallax);
+        Vector3 local = new Vector3(p.x / (Margin * aspect), p.y / Margin, 0);
+        Vector3 projected = cam.WorldToScreenPoint(quad.TransformPoint(local));
+        screenPoint = projected;
+        return projected.z > 0;
+    }
+
     private void OnEnable()
     {
         cam = GetComponent<Camera>();

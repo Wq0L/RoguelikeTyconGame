@@ -39,6 +39,15 @@ public class GridSystem
         return new GridPosition(x, z);
     }
 
+    // Broad phase only. Callers still perform their exact segment/cell hit test.
+    public void GetSegmentBounds(Vector3 a, Vector3 b, float radius, out GridPosition min, out GridPosition max)
+    {
+        min = new GridPosition(Mathf.Max(0, Mathf.CeilToInt((Mathf.Min(a.x, b.x) - radius) / cellSize)),
+                               Mathf.Max(0, Mathf.CeilToInt((Mathf.Min(a.z, b.z) - radius) / cellSize)));
+        max = new GridPosition(Mathf.Min(width - 1, Mathf.FloorToInt((Mathf.Max(a.x, b.x) + radius) / cellSize)),
+                               Mathf.Min(height - 1, Mathf.FloorToInt((Mathf.Max(a.z, b.z) + radius) / cellSize)));
+    }
+
     public bool IsValidGridPosition(GridPosition gridPosition)
     {
         return gridPosition.x >= 0 &&

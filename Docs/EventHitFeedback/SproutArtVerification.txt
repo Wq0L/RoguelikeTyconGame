@@ -1,0 +1,38 @@
+PASS 37 checks
+PASS real save disabled
+PASS start unchanged sprout plan
+PASS real durability, interval, capacity, slow and duration unchanged
+PASS preparation has no slowdown or target art
+PASS shared ground preparation reused
+PASS bud rises from soil
+PASS main silhouette has four hinged crown leaves
+PASS crown unfolds from bud pose
+PASS only main cell slowed before first spread
+PASS root and logical target stay fixed
+PASS all event renderers share approved toon shader
+PASS real first spread creates one small piece and one slowdown
+PASS spread preserves main instance
+PASS spread reuses pooled soil burst
+PASS eight-point cap including seven small sprouts
+PASS small silhouette has two low leaves, distinct from main
+PASS small pieces remain below .8 world units
+PASS main crown clearly taller than small pieces
+PASS main has shared red rim on body and four leaves
+PASS broad crown mesh retained
+PASS one real direct hit consumes one durability
+PASS real hit uses plant white flash
+PASS pause retains hit flash
+PASS direct hit visibly squashes main
+PASS damage reveals scars
+PASS pause freezes leaf animation and event
+PASS all slow effects clear immediately on eighth hit
+PASS visual tails remain after gameplay slowdown is removed
+PASS spread pieces wilt in a short staggered sequence
+PASS pause freezes staggered exit
+PASS round-style hard cleanup removes tails and effects
+PASS restart while old tails were pending
+PASS main prefab reused from pool
+PASS reuse clears scars and underground offset
+PASS pool reuse clears hit flash
+PASS old tails cannot change new event slowdown
+PASS real timeout clears all slowdown

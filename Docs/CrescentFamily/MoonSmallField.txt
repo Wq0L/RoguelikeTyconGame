@@ -1,0 +1,5 @@
+Real Update/LateUpdate, no manually advanced timer or presenter. 3x3 field.
+Base: world (13.18, 1.13, 12.00), extents (0.41, 0.00, 0.96), viewport (0.53, 0.62, 53.29); active 1, steps 0
+Growth: world (12.60, 1.13, 11.00), extents (0.60, 0.02, 1.91), viewport (0.54, 0.59, 52.35); active 1, steps 1
+Return: world (6.40, 1.13, 11.00), extents (0.60, 0.00, 1.91), viewport (0.39, 0.48, 48.68); active 2, steps 2
+PASS all three forms rendered through real lifecycle inside small field camera; 3-step forward + 3-step return.

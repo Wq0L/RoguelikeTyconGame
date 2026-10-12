@@ -1,0 +1,7 @@
+Original authored meshes; flat shading duplicates vertices per triangle. Ink hull adds a second draw of the same mesh.
+GroundHeave: renderers=2, submitted triangles (including ink / all cracks)=340, submitted vertices=1020
+ThornBreak: renderers=9, submitted triangles (including ink / all cracks)=216, submitted vertices=648
+ThornHit: renderers=5, submitted triangles (including ink / all cracks)=120, submitted vertices=360
+ThornPiece: renderers=2, submitted triangles (including ink / all cracks)=180, submitted vertices=540
+ThornRoot: renderers=5, submitted triangles (including ink / all cracks)=728, submitted vertices=2184
+ThornSoilBurst: renderers=4, submitted triangles (including ink / all cracks)=96, submitted vertices=288

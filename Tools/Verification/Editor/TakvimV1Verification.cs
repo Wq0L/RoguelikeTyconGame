@@ -352,7 +352,8 @@ public static class TakvimV1Verification
                 continue;
             }
             // Bölüm 3.7.8: Run50_AlphaDengeV1 aynı 15 tarihi taşır; kota ve boss hedefleri kendi tablosudur (P8 ayarı), geçerli olmalıdır.
-            if (p.name == "Run50_AlphaDengeV1")
+            // Bölüm 3.8: Run50_GecOyunV1, Alpha Denge V1'in takvimini ve hedef tablosunu aynen taşır; aynı denetimden geçer.
+            if (p.name == "Run50_AlphaDengeV1" || p.name == "Run50_GecOyunV1")
             {
                 if (!p.bossCalendar.Select(d => d.round).SequenceEqual(ExpectedDates) || p.segmentTargets.Count != 15 || p.bossTargets.Count != 15 || RunCalendar.Validate(p) != null ||
                     !p.Calendar.IsFinal(15) || !p.Calendar.FinalRoundHasChoices)
@@ -738,7 +739,9 @@ public static class TakvimV1Verification
     static double FinalVictory()
     {
         string end = EndText();
-        Require(end.StartsWith("RUN TAMAMLANDI · TAKVİM V1") && end.Contains("50 round") && end.Contains("Boss ödülleri:") && end.Contains(finalReward),
+        // Tam sürüm sonuç ekranı ödülleri başlık + satır başına bir madde olarak listeler (6 Ekim düzeni; eski tek satırlık
+        // "Boss ödülleri: …" biçimi yalnız demo'da kaldı). Aynı beklenti: liste var ve R50'de alınan ödül kendi satırında.
+        Require(end.StartsWith("RUN TAMAMLANDI · TAKVİM V1") && end.Contains("50 round") && end.Contains("BOSS ÖDÜLLERİ / • ") && end.Contains("• " + finalReward),
             "Victory screen lists the rewards of the run, including the one taken at R50: " + end);
         RM.StartNextRound();
         Weather.SendMessage("LateUpdate"); Markers.SendMessage("LateUpdate");

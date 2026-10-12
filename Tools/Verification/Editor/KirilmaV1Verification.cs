@@ -351,7 +351,8 @@ public static class KirilmaV1Verification
             // Bölüm 3.7.7: Run50_XPV1 kendi denge setini taşır (RunBalance_XPV1: Kırılma V1 setinin üretilmiş kopyası; yalnız XP tablosu ve
             // temel güç kartı kuralları farklı). Başlangıç kilitleri ve erken davranış teklifi kopyada birebir aynı olmalıdır.
             // Bölüm 3.7.8: Run50_AlphaDengeV1 de aynı kurala girer (RunBalance_AlphaDengeV1: XP V1 setinin üretilmiş kopyası).
-            bool copiedSet = (profile.name == "Run50_XPV1" || profile.name == "Run50_AlphaDengeV1") && profile.balance != null && profile.balance != k.balance &&
+            // Bölüm 3.8: Run50_GecOyunV1, Alpha Denge V1'in denge setinin KENDİSİNİ kullanır (aynı asset): aynı kurala girer.
+            bool copiedSet = (profile.name == "Run50_XPV1" || profile.name == "Run50_AlphaDengeV1" || profile.name == "Run50_GecOyunV1") && profile.balance != null && profile.balance != k.balance &&
                              profile.balance.startingUnlocks.SequenceEqual(k.balance.startingUnlocks) && profile.balance.firstBehaviorOffer.SequenceEqual(k.balance.firstBehaviorOffer);
             if (starts != (sharesSet || copiedSet)) throw new Exception("starting unlocks leaked to profile " + profile.name);
         }

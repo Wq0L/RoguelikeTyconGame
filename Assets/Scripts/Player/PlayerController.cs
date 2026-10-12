@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -87,6 +87,9 @@ public class PlayerController : MonoBehaviour
         float tempo = RoundManager.Instance != null ? RoundManager.Instance.TempoMultiplier : 1f;
         attackSpeed = Mathf.Max(attackSpeed, MinAttackInterval) / tempo;
 
+        // Doğrudan saldırı duraklaması (Bölüm 3.8, Dolunay): yalnız bu zamanlayıcı bekler; imleç ve oyunun geri kalanı sürer.
+        if (DirectAttackPause.Tick(Time.deltaTime)) return;
+
         if (AdvanceAttackTimer(ref attackTimer, Time.deltaTime, attackSpeed))
         {
 
@@ -129,6 +132,9 @@ public class PlayerController : MonoBehaviour
         bool touchedLivingPlant = false;
 
         gridSystem.GetGridObjectsInRadius(center, radius, attackTargets);
+        // Boss ödülü etkileri ve tarla olayları (Bölüm 3.8, AttackFeed): dinleyici yokken çarpan 1'dir ve hiçbir şey kaydedilmez.
+        // Çarpan (Açgözlü Hasat) yalnız bu saldırının doğrudan hasarına, Hasat Ritmi'yle aynı çarpımda bir kez girer.
+        float attackMultiplier = attack.DamageMultiplier * AttackFeed.Begin(center, radius, attackTargets);
         bool anyCrit = false;
         // Zincir kökü (Bölüm 3.7.6): bu saldırının bütün vuruşları ve doğurdukları davranışlar aynı kökü taşır. Zincir Hasat
         // alınmadıysa 0 (bağlam açılmaz). Saldırı bitince saldırının kök üzerindeki tutumu bırakılır.
@@ -150,7 +156,7 @@ public class PlayerController : MonoBehaviour
                 // Nadirliğe bağlı boss ödülü (Altın Hedef) da aynı çarpımda, hedef başına bir kez.
                 PlantRarity? rarity = damageable is PlantHealth target && target.Data != null ? target.Data.rarity : (PlantRarity?)null;
                 // int'e dönüşüm NumericSafety'de: int sınırını aşan hasar doyar (eskiden 1'e düşüyordu), kritik negatife taşmaz.
-                int damage = NumericSafety.ToInt(RunPower.DirectDamage(baseDamage, variance, rarity, attack.DamageMultiplier), 1, NumericSite.DirectDamage);
+                int damage = NumericSafety.ToInt(RunPower.DirectDamage(baseDamage, variance, rarity, attackMultiplier), 1, NumericSite.DirectDamage);
 
                 bool isCrit = Random.value <= critChance;
                 if (isCrit)
@@ -162,10 +168,13 @@ public class PlayerController : MonoBehaviour
                 int displayedDamage = damageable is PlantHealth health ? health.GetIncomingDamage(damage) : damage;
                 if (damageable is PlantHealth hitPlant)
                 {
+                    Vector3 hitPoint = hitPlant.transform.position;
+                    bool damagedLivingPlant = !hitPlant.IsDead && displayedDamage > 0;
                     touchedLivingPlant = true;
                     hitPlant.TakeDamage(damage, DamageType.Direct, isCrit, 1f, HarvestLink.Direct(root));
                     // Bu vuruşla ölen bitki doğrudan hasattır (ölümün tetiklediği davranış hasatları başka bitkilerdir).
                     if (hitPlant.IsDead) directHarvests++;
+                    AttackFeed.Hit(gridObject, hitPlant, damage, isCrit, damagedLivingPlant, hitPoint);
                 }
                 else
                     damageable.TakeDamage(damage);
@@ -175,6 +184,8 @@ public class PlayerController : MonoBehaviour
 
         HarvestChain.EndRoot(root);
         RunPower.Rhythm.Complete(attack, directHarvests, touchedLivingPlant);
+        // Bütün doğrudan vuruşlar uygulandı: ödül etkileri ve tarla olayları bu saldırının kaydını şimdi okur.
+        AttackFeed.End(directHarvests, touchedLivingPlant);
         return anyCrit;
     }
 

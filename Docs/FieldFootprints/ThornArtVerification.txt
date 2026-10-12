@@ -1,0 +1,68 @@
+PASS
+PASS real save disabled in batch
+PASS start real 3x3 / six-hit / thirty-second data
+cue Prepared t=8.001988 phase=Preparing
+PASS no floating canopy warning symbols
+PASS nine ground patches heave during preparation
+PASS ground quake moves visual children only
+PASS nine cells prepared
+cue Emerged t=13.00211 phase=Emerging
+PASS light camera shake runs during visual emergence
+PASS screen shake preference disables event shake
+PASS root rises from below ground
+PASS soil fragments burst during emergence
+PASS pause freezes underground emergence
+PASS emergence camera shake stops during pause
+cue ZoneClosed t=14.20231 phase=Active
+cue Activated t=14.20231 phase=Active
+PASS emergence camera and soil sequence observed
+PASS camera shake ends with visual emergence
+PASS two authored roots
+PASS all event models and VFX use toon shader
+PASS root vertices clear top resource counters at 1600x900
+PASS all root renderers use toon shader
+cue TargetHit t=15.06452 phase=Active
+PASS real hit uses plant white flash
+PASS hit preserves same root instance
+PASS one direct hit uses one of six
+PASS actual TargetHit squashes visual child
+PASS target root transform stays fixed
+cue TargetHit t=15.06452 phase=Active
+cue TargetHit t=15.06452 phase=Active
+cue TargetHit t=15.06452 phase=Active
+PASS damage reveals persistent cracks
+PASS pause freezes event phase
+cue TargetHit t=15.20249 phase=Active
+cue TargetBroken t=15.20249 phase=Active
+PASS six direct hits break only the selected root
+PASS one root remaining keeps production blocked
+PASS broken root keeps a bounded visual exit
+cue TargetHit t=15.30255 phase=Active
+cue TargetHit t=15.30255 phase=Active
+cue TargetHit t=15.30255 phase=Active
+cue TargetHit t=15.30255 phase=Active
+cue TargetHit t=15.30255 phase=Active
+cue TargetBroken t=15.30255 phase=Active
+cue ZoneOpened t=15.30255 phase=Resolving
+cue Resolved t=15.30255 phase=Resolving
+PASS production unblocks immediately before exit animation ends
+cue Cleaned t=15.45285 phase=Done
+PASS cleanup leaves no event camera shake
+PASS hard cleanup removes event, effects and tails
+PASS new event starts after hard cleanup
+cue Prepared t=15.49738 phase=Preparing
+cue Emerged t=20.49741 phase=Emerging
+cue ZoneClosed t=21.69741 phase=Active
+cue Activated t=21.69741 phase=Active
+PASS pooled roots reset cracks
+cue ZoneOpened t=21.69741 phase=Resolving
+cue Resolved t=21.69741 phase=Resolving
+PASS real thirty-second timeout opens zone
+cue Cleaned t=21.69741 phase=Done
+PASS reward variant and common fallback
+PASS per-variant lifetime
+PASS shell A/B prefab motifs can differ
+PASS dense sound cues throttled
+PASS per-clip concurrent voice cap
+PASS pause retains bounded audio voices
+PASS audio cleanup

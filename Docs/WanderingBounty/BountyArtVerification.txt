@@ -1,0 +1,43 @@
+PASS 42 checks
+PASS disk save disabled
+PASS start full real bounty plan
+PASS 3x3, six harvests, three blooms, five-second step, thirty-second duration unchanged
+PASS preparation marks exact nine cells
+PASS all bounty meshes use shared toon
+PASS opportunity has no intervention target, block or slow
+PASS markers have no ParticleSystem or Animator
+PASS one real direct harvest gives one progress cue
+PASS behavior kill produces no progress cue
+PASS six seed display and counter read same progress
+PASS six direct harvests revive exactly seven empty slots
+PASS occupied slots keep original plant
+PASS only seven successful slots receive bloom and flow
+PASS every pollen endpoint is a real revived cell
+PASS HUD reports actual gain and resets progress
+PASS peak effects bounded without transparent particle layers
+PASS pause freezes pollen flow
+PASS bounded completion effects expire
+PASS revived harvest cannot refill progress
+PASS round cleanup clears signs flows and tails
+PASS restart event
+PASS nine marker instances reused from pool
+PASS restart seed progress reset
+PASS step immediately marks exact new region
+PASS region actually changed cells
+PASS full region produces no fake revive VFX
+PASS no-target completion is honest in HUD
+PASS pause freezes movement timer
+PASS menu clears all presentation
+PASS restart before cleanup
+PASS run restart clears presentation
+PASS start ignored opportunity
+PASS ignoring opportunity gives neither fake gain nor penalty
+PASS audio bound EventPrepared
+PASS audio bound BountyProgress
+PASS audio bound Bloom
+PASS thirty immediate progress sounds use one voice
+PASS pause retains bounded voice
+PASS audio cleanup stops voices
+PASS start dense behavior overlap sample
+PASS overlapping explosion/electricity keeps real area and produces no false progress
+PASS no decoration capacity drops

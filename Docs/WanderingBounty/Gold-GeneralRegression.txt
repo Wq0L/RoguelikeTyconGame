@@ -1,0 +1,100 @@
+PASS: 97 checks
+ok: Round 26 (real calendar boss round) starts through the normal round path: a boss field event is scheduled (DİKEN KUŞATMASI) while the boss rule (DON CEPHESİ) is active — the two layers coexist
+ok: Ending the event leaves no production effect and no attack listener
+ok: Profile Run50_GecOyunV1: Alpha Denge V1's run unchanged (50 rounds, 15 boss dates, quota and boss targets, round durations, 3 choices, the SAME balance asset: plant health, XP, base cards, moving limit 12); only the reward pool and the field event plan differ
+ok: Pool: valid; the same stages, slot and weight policy; every Alpha reward is the SAME asset in the same order with the same note at the start of its stage
+ok: Pool: all 19 existing rewards kept in their stages — the 13 listed (Keskin Bıçak, Kritik Göz, Ağır Darbe, Hızlı Bilek, Fırtına Bileği, Geniş Savuruş, Altın Hedef, Nadir Tohum, Bilgi Filizi, Bereketli Toprak, Kıvılcım, Yıkım Gücü, Canavar Kesimi) plus Artçı Patlama, Çifte Akım, Hasat Ritmi, Bereketli Öğrenim, Davranışa Adanış, Zincir Hasat
+ok: Pool: exactly 13 new rewards, each with a runtime effect, taken once, weight 1, no stat or multiplier side effect
+ok: Stages: early = Elektrik Anteni, Hilal Darbesi; middle = İletken Hat, Büyüyen Ay, Kritik Ark, Hasat Yankısı, Taşan Hasar, Nadir Reaktör, Kritik Patlama, Açgözlü Hasat; strong = Kapalı Devre, Dolunay, Aşırı Yükleme
+ok: Dependencies: İletken Hat → Elektrik Anteni, Kapalı Devre → İletken Hat, Büyüyen Ay → Hilal Darbesi, Dolunay → Büyüyen Ay; behavior-dependent rewards (Nadir Reaktör, Kapalı Devre, Aşırı Yükleme) need a behavior planter
+ok: Out of scope stays out: no Rezonans Çöküşü / Rezonans Darbesi / Tetik Darbesi, no second copy of Hasat Ritmi (Şarjlı Savuruş) or Zincir Hasat (Zincir Reaksiyon)
+ok: Field event plan (single data source): valid; nothing before Round 26; boss rounds = Diken Kuşatması / İstilacı Filiz / Aşılı Kabuk; other rounds = Gezgin Bereket at 50 %; prototype durations, areas and durabilities as generated
+ok: Older profiles (16) have no field event plan; older pools (8) contain no effect or prerequisite reward; the 29 older reward assets carry neither
+ok: Demo source (Run50_AlphaDengeV1) has no field event plan and no effect reward: the demo cannot schedule events or offer the new rewards (the director also refuses in a demo scene)
+ok: Damage types: the five old values keep their numbers; reward-effect damage is a sixth type that takes no planter bonus and triggers no behavior
+ok: Schedule rule over 40 seeds × 50 rounds: no event before Round 26; every boss round from R26 (26, 30, 33, 36, 40, 43, 46, 50) gets one of the three boss events, never the same as the event right before it; other rounds get only Gezgin Bereket, 47 % of the time (data: 50 %); the same seed and round always give the same pick
+ok: Director: Round 25 schedules nothing, Round 30 schedules a boss event, Rounds 27–29 schedule only Gezgin Bereket (2/3 with this seed); choosing and placing events consumes neither the gameplay random stream nor the reward offer stream (the R26 offer is identical before and after)
+ok: Diken Kuşatması is set up once: a 3 × 3 zone inside the open field (9 of 121 production points, never the whole field), two roots on opposite corners of the zone, nothing blocked yet
+ok: Preparation: the zone is marked but production is not affected yet
+ok: Emergence: roots are not hittable before the active phase and production is still not affected
+ok: Active: production is blocked in exactly the 9 zone cells and nowhere else; both roots are hittable
+ok: Active (1,2 s later): the production point outside the zone grew a new plant; the one inside did not and its timer did not accumulate; the other 8 plants of the zone, every planter and every tile are untouched
+ok: A direct attack on a root's cell counts exactly once; asking the same attack again (as a second collider would) is refused by the attack serial
+ok: Behavior damage (explosion, electricity) and reward-effect damage hit the plant standing on the root's cell but never the root: only the player's direct attack counts
+ok: With the pointer over a UI element the attack does not count against the root (no hitting targets through the UI)
+ok: One wide attack touching both roots counts once on each
+ok: Pause (time scale 0): the event's phase clock does not advance while frames keep running
+ok: One root broken: the zone stays closed until both are broken
+ok: Both roots broken: the zone opens at once (resolved by the player); nothing is paid back instantly — the empty production point is still empty this frame
+ok: After the event: it cleaned itself up, the reopened production point produced one plant after its normal interval, and no planter was lost
+ok: Untouched Diken Kuşatması: the active time runs out, the zone reopens by itself and the event cleans up (the closure is always finite)
+ok: Multi-cell planter: the effect applies per production point, not per planter — the 1 × 2 planter's point inside the zone stopped while its other point kept producing; writing the same slow twice stays ×1,6 (not ×2,56); a cell blocked by two sources stays blocked until both remove it, and an extra removal cannot go below zero
+ok: Overlap with a boss rule: on a cell slowed by Don Cephesi (×2.5) and by a field event (×1,6) the interval is 8 → 32 sn; removing the boss rule leaves the field event's slow, removing the field event leaves the boss rule's — neither removes the other
+ok: İstilacı Filiz is set up: the main sprout stands on a production point; no cell is slowed before the active phase
+ok: Spread: one new piece every interval, each next to an earlier piece, all within 2 cells of the main sprout, stopping at the piece limit (5 in the test plan); exactly those cells are slowed ×1,6, nothing is blocked
+ok: Main sprout broken by direct attacks: every effect of this event is removed at once
+ok: No valid neighbour (radius 0): spreading stops for good after one bounded look — no search loop, the event keeps running with the main sprout only
+ok: Aşılı Kabuk status plate: names both nodes and shows the A / B colour legend (same two colours as the zone signs and nodes on the field)
+ok: Aşılı Kabuk: breaking B's target saves zone B and closes zone A (exactly its 6 cells, through the same blocker as Diken Kuşatması); the first valid choice is final — A's target can no longer be hit
+ok: The closed zone reopens after its closed time
+ok: No choice made: when the choice window ends the default zone shown in the preparation (A) closes
+ok: One attack that would break both targets: they are evaluated in list order (A first), so A is saved and B closes; B's target is not counted — documented and deterministic
+ok: Bounty is a passive active-region benefit, with no harvest gate, blocking or slowdown
+ok: Direct harvest receives bounty; respawn uses its normal timer instead of immediate duplicate creation
+ok: Behavior harvest in the passive region also receives its reward benefit
+ok: Ending bounty removes benefits immediately
+ok: The bounty zone wanders one cell at a time inside the open field (3 slow region steps); ignoring it creates no harvest rewards
+ok: Prerequisites: İletken Hat, Kapalı Devre, Büyüyen Ay and Dolunay are never offered (300 seeds) and cannot be taken even from a forced offer while their prerequisite is missing; a refused take changes nothing
+ok: Behavior-dependent rewards (Nadir Reaktör, Aşırı Yükleme) are neither offered nor takeable on a field without a behavior planter
+ok: Crit rewards are not offered with 0 crit chance; with crit chance they and the unconditional rewards appear in normal offers
+ok: Elektrik Anteni cannot be taken without a position or with an invalid one: nothing is applied (no stack, no effect, no half state)
+ok: Elektrik Anteni taken from a normal offer with the chosen edge position (west edge, row 5): one antenna, no planter and no tile modifier changed, cannot be taken twice
+ok: Antenna pulse after 2,5 s: the first 3 cells in its facing direction take 60 (= 100 × 0,60) as reward damage — not direct (no crit, no planter bonus); the plant it harvested on an explosive planter (chance 1) triggered no behavior and was harvested once
+ok: İletken Hat becomes available once Elektrik Anteni is taken; positions that cannot form a line are not selectable (the first antenna's own position, and positions giving a line shorter than 3 cells)
+ok: İletken Hat taken: second antenna on the east edge of the same row; the line is the 11 cells between the two antennas
+ok: Line pulse after 4 s: all 11 cells between the antennas take 45 (= 100 × 0,45); the second antenna also fires its own 3 cells
+ok: Kapalı Devre: the line harvested a behavior planter's plant, rolled that planter's behavior chance (1) once and fired ONE extra line pulse at 27 (= 45 × 0,60); the extra pulse also harvested a behavior plant but started nothing — it cannot restart itself; no behavior was triggered by line harvests
+ok: Line cooldown (3 s): a second trigger inside the cooldown is refused without a roll
+ok: Hilal Darbesi: five valid direct attacks count; an empty swing (no living plant) does not
+ok: Crescent: starts at the attacked cell (2, 5), travels toward the middle of the field (+x), one cell per step for 4 steps — (3,5) (4,5) (5,5) (6,5) on later frames — 80 (= 100 × 0,80) each as reward damage; its hits do not count as attacks
+ok: Büyüyen Ay: step 1 really harvested → growth 1 applies to the REST of the same wave: step 2 hits a 3-cell front at 100 (= 80 × 1,25); step 2 harvested nothing (a failed step) → growth resets: steps 3 and 4 are back to 1 cell at 80
+ok: Dolunay trigger: growth reached 2 on step 2; the forward wave goes on (step 3 at growth 2: 3 cells at 120 = 80 × 1,5; then a failed step resets it)
+ok: Second wave from the opposite side: starts at the first wave's last cell (6,5) and comes back to the start cell (2,5), a 3-cell front at 56 (= 80 × 0,70); it does not grow and does not start another Dolunay
+ok: Cost: a direct-attack pause of at most 0,35 s was requested once (0.35 s left); while it lasts the player's attack timer does not advance and no attack happens, but the game, the round clock and the effects keep running
+ok: Pause rules: a request is clipped to the hard limit (0,6 s); releasing one source does not release another; the pause ends by game time and the attack timer runs again — it never waits for a visual
+ok: Kritik Ark: a direct crit (218) arcs to the nearest OTHER plant the attack did not touch — (4,5) by the fixed scan order — for 30 % of the computed crit damage (65); the arc does not crit and does not arc again
+ok: Nine crits in one attack: at most 3 arcs, each to a different plant outside the attack
+ok: No crit, no arc: the per-plant crit roll is unchanged and decides alone
+ok: Hasat Yankısı: a strong direct harvest (3 in one attack) hits the cells mirrored through the centre of the open field — (1,1)→(9,9), (1,2)→(9,8), (2,1)→(8,9) — for 50 (= 100 × 0,50) after the delay
+ok: A mirror cell inside the attack's own area is skipped (an attack on the centre mirrors onto itself)
+ok: Taşan Hasar: the direct hit (98) on a plant with 30 health leaves 68 real overkill; half (34) moves to the nearest plant (10 health → dies), half of ITS overkill (12) moves once more, then the transfer limit (2) stops it; each plant is harvested once
+ok: No kill, no overkill: nothing moves
+ok: Nadir Reaktör: a Common direct harvest and a Rare behavior harvest do nothing; a Rare DIRECT harvest raises existing behavior chances ×1,25 (0,54 → 0,675) with four own modifiers; a planter without the behavior stays at 0
+ok: After 4 s the reactor removes exactly its own four modifiers: the chance is back to 0,54 and the other source's bonus (×1,35) is still there
+ok: Kritik Patlama: 9 different plants crit in one attack (≥ 3) → one extra area hit on the same 9 cells for 100 (= 100 × crit multiplier 2 × 0,50), with no direct multiplier and no crit of its own
+ok: Exactly at the threshold (3 crits in a corner) it fires once more
+ok: One crit is below the threshold: no burst
+ok: Açgözlü Hasat: 3 direct harvests in one attack arm the next attack; an empty swing keeps the charge; the next attack on 5 plants deals ×1,5 direct damage (normal hits 100, 99, 108, 98, 109 lie in 85–115 = 100 × variance; empowered hits 150, 147, 172, 129, 150 lie in 127–173 = 150 × variance — the ranges do not overlap) and spends it
+ok: An empowered attack that itself harvests 3 does not arm a new charge (at best every second attack is empowered)
+ok: A single-target attack loses the charge and deals normal damage (111, in 85–115)
+ok: Aşırı Yükleme: the triggered explosion runs once more 0,3 s later through the planter's own explosion path at 50 (= its normal behavior damage 100 × 0,50, the planter's stats applied once), marked as outside the chain
+ok: Cooldown (2,5 s per planter + behavior): a second trigger inside it grants nothing; the extra proc never granted another one
+ok: Moving-behavior limit: with 12 tornadoes active the extra tornado proc is dropped, not queued and not hidden — the limit of 12 is never exceeded
+ok: Chain protection: the plant killed by the extra proc belongs to an explosive planter, yet Zincir Hasat refuses it as excluded — the extra proc neither joins the chain nor bypasses its repeat rule
+ok: The existing capacity path still works: a +4 reward raises both limits to 16 and a new run returns them to 12
+ok: Existing rule kept: Hasat Ritmi and Zincir Hasat still exclude each other in the new pool; Hasat Ritmi still needs 5 direct harvests
+ok: Hasat Ritmi counts HARVESTS made by the player's own attack: three plants harvested by the antenna did not move the counter
+ok: All 13 new rewards taken in one run, each from an offer produced by the game's offer builder and through Choose
+ok: All 13 together on a dense, low-health field, 24 wide crit attacks: every loop ended (260 reward hits; arcs 72, overflow 115, echo 38, burst 0, crescent 2, line 13, antenna 20); per-attack caps held, the delayed queue drained, nothing was dropped and no error was logged
+   measurement (baseline): 0.5863 ms and 0 bytes per direct attack (9-cell attack, 121 plants, 400 attacks); effects 0, timers 0, presenter items 2
+   measurement (13 rewards + field event): 0.6277 ms and 0 bytes per direct attack (9-cell attack, 121 plants, 400 attacks); effects 13, timers 4, presenter items 96
+ok: Batch CPU measurement only (not GPU, not a human Play test): a direct attack costs 0.5863 ms / 0 B without the new content and 0.6277 ms / 0 B with all 13 rewards and a field event; decoration and timer pools stayed inside their limits (96/96 decorations, skipped 1064)
+ok: Round end by LOSS (R26 without score): the field event is cleaned up, no cell stays blocked or slowed, the attack pause is lifted, delayed jobs are dropped, the reactor's temporary modifiers are removed; taken rewards stay listed for the result screen
+ok: Return to menu: every effect, listener and reward is cleared through the single cleanup path
+ok: Restart (new scene, new run): no effect, no event, no pause, no listener; moving limit 12
+ok: Real boss flow (R3 passed with score): the reward screen opens with the normal offer [Bilgi Filizi, Elektrik Anteni, Hilal Darbesi]; the Elektrik Anteni card shows its rule from the effect data, 'taken once' and the placement note, and no text of a new reward's card is truncated
+ok: Placement step: the reward screen closes, the placement panel shows the 44 valid edge positions; hovering one previews the 3 cells it would hit
+ok: Cancel: the reward screen reopens with the same three cards; no stack, effect or half state was left
+ok: Position chosen: the reward is applied once with that position (north edge, column 4), the choice closes and the run continues to the round summary; a second confirm does nothing
+ok: Ordinary round end with an active event: the event and its blocked cells are cleaned up (visual items too); the taken reward stays for the next round
+ok: No error or exception was logged and no presentation listener failed during the whole run

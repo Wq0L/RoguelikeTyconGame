@@ -62,6 +62,12 @@ def number(v):
 
 def validate():
     """Veri düzeltilmez; hatalı parametrede yazmadan durur."""
+    if len(P.BASE_POWER_AMOUNTS) != 4 or any(not number(v) or not 0 < v < 1 for v in P.BASE_POWER_AMOUNTS):
+        raise SystemExit('BASE_POWER_AMOUNTS: 4 finite fractions between 0 and 1.')
+    if not isinstance(P.MOVING_BEHAVIOR_LIMIT, int) or not 1 <= P.MOVING_BEHAVIOR_LIMIT <= 16:
+        raise SystemExit('MOVING_BEHAVIOR_LIMIT: integer from 1 to 16 required.')
+    if any(not isinstance(v, str) or not v.strip() for v in P.REWARD_EXCLUSIVE_GROUPS.values()):
+        raise SystemExit('REWARD_EXCLUSIVE_GROUPS: nonempty group names required.')
     low, high = code_const('Managers/RoundDurations.cs', 'MinSeconds'), code_const('Managers/RoundDurations.cs', 'MaxSeconds')
     bands = P.ROUND_DURATIONS
     if not bands or bands[0][0] != 1: raise SystemExit('ROUND_DURATIONS: ilk satır Round 1 olmalı.')
@@ -188,6 +194,8 @@ if P.XP_TABLE_OVERRIDES:
 balance_text = replace(read(BASE_BALANCE), 'm_Name', 'RunBalance_AlphaDengeV1')
 balance_text = replace(balance_text, 'plantHealth', ref(health))
 balance_text = replace(balance_text, 'progression', ref(progression))
+balance_text += '  smallBasePowerCards: 1\n  basePowerAmounts:\n' + ''.join('  - %s\n' % fmt(v) for v in P.BASE_POWER_AMOUNTS)
+balance_text += '  movingBehaviorLimit: %d\n' % P.MOVING_BEHAVIOR_LIMIT
 balance = write_raw(BALANCE, balance_text)
 
 # ---------------------------------------------------------------- ödüller: yalnız değeri değişen ödülün kopyası + havuz kopyası
@@ -197,7 +205,7 @@ base_chance = [float(v) for v in re.search(r'  chainChance:\n((?:  - .*\n)+)', c
 base_damage = [float(v) for v in re.search(r'  chainDamage:\n((?:  - .*\n)+)', chain_text).group(1).replace('  - ', '').split()]
 chain_changed = list(map(float, P.CHAIN_CHANCE)) != base_chance or list(map(float, P.CHAIN_DAMAGE)) != base_damage
 copies = []
-if chain_changed or P.REWARD_OVERRIDES:
+if chain_changed or P.REWARD_OVERRIDES or P.REWARD_EXCLUSIVE_GROUPS:
     ensure_folder(RW_DIR)
     pool_text = replace(read(BASE_POOL), 'm_Name', 'BossRewardPool_AlphaDengeV1')
     by_guid = {}
@@ -205,6 +213,7 @@ if chain_changed or P.REWARD_OVERRIDES:
         rel = os.path.relpath(meta[:-5], A).replace('\\', '/')
         by_guid[guid_of(rel)] = rel
     wanted = dict(P.REWARD_OVERRIDES)
+    for reward_id in P.REWARD_EXCLUSIVE_GROUPS: wanted.setdefault(reward_id, {})
     if chain_changed: wanted.setdefault(CHAIN_ID, {})
     for g in re.findall(r'reward: \{fileID: 11400000, guid: ([0-9a-f]+), type: 2\}', pool_text):
         text = read(by_guid[g])
@@ -213,6 +222,11 @@ if chain_changed or P.REWARD_OVERRIDES:
         name = re.search(r'^  m_Name: (.*)$', text, flags=re.M).group(1).strip().rsplit('_', 1)[0] + '_A1'
         text = replace(text, 'm_Name', name)
         for field, value in wanted.pop(reward_id).items(): text = replace(text, field, fmt(value))
+        if reward_id in P.REWARD_EXCLUSIVE_GROUPS:
+            group = yaml_str(P.REWARD_EXCLUSIVE_GROUPS[reward_id])
+            if re.search(r'^  exclusiveGroup:', text, flags=re.M): text = replace(text, 'exclusiveGroup', group)
+            else: text += '  exclusiveGroup: %s\n' % group
+            text += '  fullGameExclusiveGroup: 1\n'
         if reward_id == CHAIN_ID:
             text = replace_list(text, 'chainChance', P.CHAIN_CHANCE, lambda v: '  - %s\n' % fmt(v))
             text = replace_list(text, 'chainDamage', P.CHAIN_DAMAGE, lambda v: '  - %s\n' % fmt(v))

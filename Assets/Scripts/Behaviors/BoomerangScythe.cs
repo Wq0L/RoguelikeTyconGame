@@ -64,7 +64,8 @@ public sealed class BoomerangScythe : MonoBehaviour
         var manager = GridManager.Instance; if (manager == null) return;
         var grid = manager.GetGridSystem();
         float radius = Vector3.Distance(grid.GetWorldPosition(0, 0), grid.GetWorldPosition(1, 0)) * .42f;
-        for (int x = 0; x < manager.GetWidth(); x++) for (int z = 0; z < manager.GetHeight(); z++)
+        grid.GetSegmentBounds(a, b, radius, out var min, out var max);
+        for (int x = min.x; x <= max.x; x++) for (int z = min.z; z <= max.z; z++)
         {
             var entry = grid.GetGridObject(new GridPosition(x, z));
             var cell = entry?.GetGroundCellCached(); var plant = entry?.GetPlantObject();

@@ -1,0 +1,3 @@
+Arrive.wav: mono=True, sample rate=22050, duration=0.620s, peak=0.4500, clipping=False
+Bloom.wav: mono=True, sample rate=22050, duration=0.840s, peak=0.4500, clipping=False
+Progress.wav: mono=True, sample rate=22050, duration=0.190s, peak=0.4500, clipping=False

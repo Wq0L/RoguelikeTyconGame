@@ -1,0 +1,72 @@
+PASS 71
+ok: Full-game Alpha profile in GameScene
+ok: Dense 11x11 field with live center planter
+ok: Base card amount Common
+ok: Base card amount Rare
+ok: Base card amount Epic
+ok: Base card amount Legendary
+ok: Legacy profile keeps 5% and old pool policy
+ok: HarvestDamage: 1000 cards give x2 on actual target, one modifier
+ok: Card displays the actual 0.1% unit: HarvestDamage
+ok: XPGainMultiplier: 1000 cards give x2 on actual target, one modifier
+ok: Card displays the actual 0.1% unit: XPGainMultiplier
+ok: GoldGainMultiplier: 1000 cards give x2 on actual target, one modifier
+ok: Card displays the actual 0.1% unit: GoldGainMultiplier
+ok: IronGainMultiplier: 1000 cards give x2 on actual target, one modifier
+ok: Card displays the actual 0.1% unit: IronGainMultiplier
+ok: StoneGainMultiplier: 1000 cards give x2 on actual target, one modifier
+ok: Card displays the actual 0.1% unit: StoneGainMultiplier
+ok: AttackSpeed: reduction has correct sign and units
+ok: PlantSpawnRate: reduction has correct sign and units
+ok: New run clears base-card accumulation
+ok: Rhythm/chain share the explicit choice group
+ok: Rhythm blocks offering and accepting chain
+ok: Chain blocks offering and accepting rhythm
+ok: Card explanation resolves the excluded reward from pool data
+ok: Demo keeps the previous nonexclusive rhythm/chain policy
+ok: 10000 sweeps omit no geometric hits; candidate cells 10277 vs 1210000
+ok: Each moving behavior starts at exactly 12
+ok: Boomerang accepted 0
+ok: Tornado accepted 0
+ok: Boomerang accepted 1
+ok: Tornado accepted 1
+ok: Boomerang accepted 2
+ok: Tornado accepted 2
+ok: Boomerang accepted 3
+ok: Tornado accepted 3
+ok: Boomerang accepted 4
+ok: Tornado accepted 4
+ok: Boomerang accepted 5
+ok: Tornado accepted 5
+ok: Boomerang accepted 6
+ok: Tornado accepted 6
+ok: Boomerang accepted 7
+ok: Tornado accepted 7
+ok: Boomerang accepted 8
+ok: Tornado accepted 8
+ok: Boomerang accepted 9
+ok: Tornado accepted 9
+ok: Boomerang accepted 10
+ok: Tornado accepted 10
+ok: Boomerang accepted 11
+ok: Tornado accepted 11
+ok: 13th normal trigger is refused, no hidden overflow
+ok: Capacity card preview uses live limit
+ok: Only taking a capacity reward raises both limits to 16
+ok: One-stack capacity reward cannot be taken twice
+ok: Negative and overflowing capacity cards are rejected without partial effect
+ok: Reward permits one additional active pair 0
+ok: Reward permits one additional active pair 1
+ok: Reward permits one additional active pair 2
+ok: Reward permits one additional active pair 3
+ok: Reward remains bounded: 17th trigger refused
+ok: Accepted behaviors reach real PlantHealth: boomerang hits=110, tornado hits=128
+ok: Both behaviors return to pool after movement completes
+ok: Round cleanup cancels moving behaviors and releases roots
+ok: New run resets the capacity reward to 12
+ok: Actual boss card displays and fits exclusion: Zincir Hasat
+ok: Actual boss card displays and fits exclusion: Hasat Ritmi
+ok: GameScene result gets readable layout and retains both buttons
+ok: Long reward list scrolls instead of shrinking text
+ok: Reopening result does not duplicate layout
+ok: No unexpected runtime errors

@@ -53,7 +53,7 @@ MonoBehaviour:
   - 11000
   - 13000
   - 13000
-  bossRewards: {fileID: 11400000, guid: 033bcf187bb1dbe61117602cb3a72db5, type: 2}
+  bossRewards: {fileID: 11400000, guid: da56518884bcfeac58cad96cf299dea4, type: 2}
   bossSeed: 0
   bossCalendar:
   - round: 3

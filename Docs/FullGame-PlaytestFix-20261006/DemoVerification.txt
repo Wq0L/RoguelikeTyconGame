@@ -1,0 +1,67 @@
+EDITOR INFRASTRUCTURE (not gameplay): ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+PASS DemoScene starts standalone with 20 rounds
+PASS Runtime copies isolate original assets
+PASS Full profile retained 50 rounds, R22 rewards and original HP
+PASS Demo common HP reduced by 25 percent
+PASS Demo quota and boss goals halved
+PASS Six expected boss rounds
+PASS Calendar, duration, reward validation
+PASS Even unlocked saved farmer/scythe cannot bypass demo defaults
+PASS Demo does not progress permanent unlock quests
+PASS Unlock guard TileBehavior_Tornado
+PASS Unlock guard TileBehavior_Boomerang
+PASS Both locked behavior nodes exist
+PASS Skill cannot be purchased: Bumerang Orak Kartları
+PASS Skill cannot be purchased: Tornado Kartları
+PASS Card excluded: Boomerang-Common
+PASS Card excluded: Boomerang-Epic
+PASS Card excluded: Boomerang-Legendary
+PASS Card excluded: Boomerang-Rare
+PASS Card excluded: Tornado-Common
+PASS Card excluded: Tornado-Epic
+PASS Card excluded: Tornado-Legendary
+PASS Card excluded: Tornado-Rare
+PASS Explosion and electricity remain available
+PASS Start round 1
+PASS Start round 2
+PASS Start round 3
+PASS Reward offer at R3
+PASS Boss reward accepted at R3
+PASS Start round 4
+PASS Start round 5
+PASS Start round 6
+PASS Reward offer at R6
+PASS Boss reward accepted at R6
+PASS Start round 7
+PASS Start round 8
+PASS Start round 9
+PASS Start round 10
+PASS Reward offer at R10
+PASS Boss reward accepted at R10
+PASS Start round 11
+PASS Start round 12
+PASS Start round 13
+PASS Reward offer at R13
+PASS Only strong rewards at R13
+PASS Boss reward accepted at R13
+PASS Start round 14
+PASS Start round 15
+PASS Start round 16
+PASS Reward offer at R16
+PASS Only strong rewards at R16
+PASS Boss reward accepted at R16
+PASS Start round 17
+PASS Start round 18
+PASS Start round 19
+PASS Start round 20
+PASS Reward offer at R20
+PASS Boss reward accepted at R20
+PASS R20 ends in victory
+PASS Cannot enter R21 after victory
+PASS Runtime changes did not mutate full-game source assets
+PASS Menu return reloads demo, not full game
+PASS Restart retains demo settings
+PASS Loading GameScene restores full-game profile
+PASS Full-game tornado and boomerang still unlock
+PASS No runtime errors

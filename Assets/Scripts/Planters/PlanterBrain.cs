@@ -343,6 +343,7 @@ public class PlanterBrain : MonoBehaviour
         int root = sourcePlant.KillLink.Root;
         int damage = Explode(sourcePlant.transform.position, HarvestLink.Behavior(root, 0), 1f);
         HarvestChain.MarkTriggered(root, this, DamageType.Explosion);
+        AttackFeed.NotifyBehavior(this, DamageType.Explosion, sourceGrid, sourcePlant.transform.position);
         // Artçı Patlama (kırılma ödülü): şansı tutan bu normal patlamadan sonra, aynı merkezde gecikmeli ikinci patlama.
         // "damage" burada ilk patlamanın hesaplanmış hasarıdır; artçı onun bir oranını kullanır, katsayılar yeniden uygulanmaz.
         // Zincirden doğan patlama Explode'u doğrudan çağırır: artçı üretmez.
@@ -409,7 +410,11 @@ public class PlanterBrain : MonoBehaviour
             {
                 bool launched = HarvestBehaviorManager.Instance.TryBoomerang(this, sourceGrid, damage, link, 1f, 0u);
                 HarvestBehaviorStats.Record(DamageType.Boomerang, launched);
-                if (launched) HarvestChain.MarkTriggered(root, this, DamageType.Boomerang);
+                if (launched)
+                {
+                    HarvestChain.MarkTriggered(root, this, DamageType.Boomerang);
+                    AttackFeed.NotifyBehavior(this, DamageType.Boomerang, sourceGrid, sourcePlant.transform.position);
+                }
             }
             // Elektrik eski hasat tetiğini kullanır; yük deneyi oynanış hissi nedeniyle kaldırıldı.
             float electric = GetFinalStat(StatType.ElectricChance);
@@ -417,7 +422,11 @@ public class PlanterBrain : MonoBehaviour
             {
                 bool struck = HarvestBehaviorManager.Instance.TryElectric(this, damage, link, 1f);
                 HarvestBehaviorStats.Record(DamageType.Electric, struck);
-                if (struck) HarvestChain.MarkTriggered(root, this, DamageType.Electric);
+                if (struck)
+                {
+                    HarvestChain.MarkTriggered(root, this, DamageType.Electric);
+                    AttackFeed.NotifyBehavior(this, DamageType.Electric, sourceGrid, sourcePlant.transform.position);
+                }
                 // Çifte Akım (kırılma ödülü): başarılı normal dalgadan sonra aynı saksıdan gecikmeli ikinci dalga; yeni şans atılmaz.
                 // Zincirden doğan elektrik TryElectric'i doğrudan çağırır: ikinci dalga üretmez.
                 if (struck && RunPower.TryGetEcho(DamageType.Electric, out BehaviorEcho echo) && BehaviorEchoes.Instance != null)
@@ -438,7 +447,11 @@ public class PlanterBrain : MonoBehaviour
         int root = sourcePlant.KillLink.Root;
         bool launched = TornadoManager.Instance.TrySpawn(sourceGrid, HarvestDamage, HarvestLink.Behavior(root, 0), 1f, 0u);
         HarvestBehaviorStats.Record(DamageType.Tornado, launched);
-        if (launched) HarvestChain.MarkTriggered(root, this, DamageType.Tornado);
+        if (launched)
+        {
+            HarvestChain.MarkTriggered(root, this, DamageType.Tornado);
+            AttackFeed.NotifyBehavior(this, DamageType.Tornado, sourceGrid, sourcePlant.transform.position);
+        }
     }
 
     public void SetGridObject(GridObject gridObject)
