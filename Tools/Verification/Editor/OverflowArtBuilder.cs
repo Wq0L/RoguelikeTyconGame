@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -15,6 +16,9 @@ public static class OverflowArtBuilder
   body=AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/LateGame/ThornSiege/ThornToon.mat");
   ink=AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/LateGame/ThornSiege/ThornInk.mat");
   art=AssetDatabase.LoadAssetAtPath<LateGameArtSO>("Assets/Resources/LateGameArt.asset");
+  // 23 Ekim 2026: Taşan Hasar moru. Aktarılan hasarın yazısıyla aynı renk (FloatingText overflowColor); kritik altınından ayrışır.
+  // Geometri eski renklerle kurulur, gölgelenmiş köşe renkleri Render/VioletCopy içinde Violet ile çevrilir
+  // (mevcut asset'ler 23 Ekim'de aynı eşlemeyle yerinde çevrildi).
   Color gold=new Color32(255,167,40,255),cream=new Color32(255,245,200,255);
   var root=Root("OverflowShard",out var c);var g=new LateGameMeshBuilder();
   g.Tube(new[]{new Vector3(0,0,-.48f),Vector3.zero,new Vector3(0,0,.3f)},new[]{0f,.19f,0f},gold,4);
@@ -24,7 +28,7 @@ public static class OverflowArtBuilder
   root=Root("OverflowContact",out c);
   var star=AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Art/LateGame/AntennaFamily/ContactDouble.prefab");
   var shared=star.GetComponentInChildren<MeshFilter>().sharedMesh;
-  var center=new GameObject("SharedAmberStar");center.transform.SetParent(c.visual,false);Draw(center,shared,body);
+  var center=new GameObject("VioletStar");center.transform.SetParent(c.visual,false);Draw(center,VioletCopy(shared,"OverflowStarMesh"),body);
   c.fragments=new Transform[3];c.fragmentVelocities=new Vector3[3];
   for(int i=0;i<3;i++){
    var chip=new LateGameMeshBuilder();chip.Tube(new[]{Vector3.zero,Vector3.up*.14f},new[]{.045f,0f},i==1?cream:gold,3);
@@ -44,11 +48,22 @@ public static class OverflowArtBuilder
  {var prefab=PrefabUtility.SaveAsPrefabAsset(root,Folder+"/"+root.name+".prefab");Object.DestroyImmediate(root);art.slots.RemoveAll(s=>s.slot==slot&&s.variant==variant);art.slots.Add(new LateGameArtSO.SlotBinding{slot=slot,variant=variant,prefab=prefab,lifetime=life});}
  static GameObject Render(LateGameMeshBuilder geo,string name,Transform parent,bool outlined=true)
  {
-  var mesh=geo.Mesh(name);string path=Folder+"/"+name+".asset";var old=AssetDatabase.LoadAssetAtPath<Mesh>(path);
+  var mesh=geo.Mesh(name);mesh.colors=mesh.colors.Select(Violet).ToArray();string path=Folder+"/"+name+".asset";var old=AssetDatabase.LoadAssetAtPath<Mesh>(path);
   if(old==null)AssetDatabase.CreateAsset(mesh,path);else{EditorUtility.CopySerialized(mesh,old);Object.DestroyImmediate(mesh);mesh=old;}
   EditorUtility.SetDirty(mesh);
   var go=new GameObject(name);go.transform.SetParent(parent,false);Draw(go,mesh,body);
   if(outlined){var hull=new GameObject("Ink");hull.transform.SetParent(go.transform,false);Draw(hull,mesh,ink);}return go;
+ }
+ // Sıcak (turuncu/amber/altın) tonlar mora; düşük doygunluklu krem ve mürekkep korunur.
+ public static Color Violet(Color c)
+ {Color.RGBToHSV(c,out float h,out float s,out float v);if(s<.25f||(h>.2f&&h<.95f))return c;var r=Color.HSVToRGB(.735f,Mathf.Min(1f,s*.85f),Mathf.Max(v,.55f));r.a=c.a;return r;}
+ // Paylaşılan amber yıldız mesh'inin mor kopyası (antenin ContactDouble'ı değişmez).
+ static Mesh VioletCopy(Mesh source,string name)
+ {
+  var mesh=Object.Instantiate(source);mesh.name=name;mesh.colors=mesh.colors.Select(Violet).ToArray();
+  string path=Folder+"/"+name+".asset";var old=AssetDatabase.LoadAssetAtPath<Mesh>(path);
+  if(old==null)AssetDatabase.CreateAsset(mesh,path);else{EditorUtility.CopySerialized(mesh,old);Object.DestroyImmediate(mesh);mesh=old;}
+  EditorUtility.SetDirty(mesh);return mesh;
  }
  static void Draw(GameObject go,Mesh mesh,Material m){go.AddComponent<MeshFilter>().sharedMesh=mesh;var r=go.AddComponent<MeshRenderer>();r.sharedMaterial=m;r.shadowCastingMode=ShadowCastingMode.Off;r.receiveShadows=false;}
 }

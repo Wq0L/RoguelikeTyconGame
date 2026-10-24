@@ -1,0 +1,100 @@
+PASS 99
+PASS add hilal_darbesi
+PASS blade pivot starts on actual radius-one cursor circumference
+PASS base range is three world units
+PASS all waves complete
+PASS base travels exactly three units from its spawn front
+PASS base stays visible for at least 1.2 seconds of motion
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS Growing Moon immediately adds one range unit
+PASS harvest does not snap visual width from one to three cells
+PASS growth is interpolated halfway
+PASS growth reaches next damage width smoothly
+PASS growth never moves cutting front backwards
+PASS nonlethal next front resets gameplay growth without visual shrink pop
+PASS shrink also interpolates
+PASS all waves complete
+PASS upgraded wave travels four units over at least 1.6 seconds
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS add dolunay
+PASS four primary waves active
+PASS four simultaneous primaries all spawn their full moon pairs
+PASS all four primaries and eight extra waves have pooled visuals
+PASS full moon pair uses distinct cardinal directions 4
+PASS full moon starts at its side of original ring 4
+PASS full moon pair uses distinct cardinal directions 6
+PASS full moon starts at its side of original ring 6
+PASS full moon pair uses distinct cardinal directions 8
+PASS full moon starts at its side of original ring 8
+PASS full moon pair uses distinct cardinal directions 10
+PASS full moon starts at its side of original ring 10
+PASS all waves complete
+PASS full moon waves do not recursively trigger pairs
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS add dolunay
+PASS all waves complete
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS add dolunay
+PASS all waves complete
+PASS real direct attack charges a ring-born wave and triggers Full Moon outside the attack circle
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS add dolunay
+PASS all waves complete
+PASS all waves complete
+PASS all waves complete
+PASS all waves complete
+PASS all waves complete
+PASS pooled presentation count stable on cycle 4
+PASS all waves complete
+PASS pooled presentation count stable on cycle 5
+PASS all waves complete
+PASS pooled presentation count stable on cycle 6
+PASS all waves complete
+PASS pooled presentation count stable on cycle 7
+PASS all waves complete
+PASS pooled presentation count stable on cycle 8
+PASS all waves complete
+PASS pooled presentation count stable on cycle 9
+PASS all waves complete
+PASS pooled presentation count stable on cycle 10
+PASS all waves complete
+PASS pooled presentation count stable on cycle 11
+PASS all waves complete
+PASS pooled presentation count stable on cycle 12
+PASS all waves complete
+PASS pooled presentation count stable on cycle 13
+PASS all waves complete
+PASS pooled presentation count stable on cycle 14
+PASS all waves complete
+PASS pooled presentation count stable on cycle 15
+PASS all waves complete
+PASS pooled presentation count stable on cycle 16
+PASS all waves complete
+PASS pooled presentation count stable on cycle 17
+PASS all waves complete
+PASS pooled presentation count stable on cycle 18
+PASS all waves complete
+PASS pooled presentation count stable on cycle 19
+PASS all waves complete
+PASS pooled presentation count stable on cycle 20
+PASS all waves complete
+PASS pooled presentation count stable on cycle 21
+PASS all waves complete
+PASS pooled presentation count stable on cycle 22
+PASS all waves complete
+PASS pooled presentation count stable on cycle 23
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS add dolunay
+PASS corner Full Moon chooses two different inward directions
+PASS all waves complete
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS round cleanup releases waves, visuals and timers
+PASS add hilal_darbesi
+PASS real scheduler completes slow route with two correctly scaled hits

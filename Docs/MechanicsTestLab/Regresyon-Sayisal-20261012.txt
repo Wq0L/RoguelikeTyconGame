@@ -1,0 +1,48 @@
+Regresyon - Mechanics Test Lab sayisal dogrulama paketi - 2026-10-12 22:14
+MechanicsNumericVerification.RunBatch | exit 0 | 0.9 min | MechanicsNumericVerification.txt: PASS: 113 tool checks · catalog: Kontrol özeti: 48 PASS · 0 FAIL · 0 İNCELENMEDİ · 1 manuel inceleme gerekli · 4 sistem henüz yok (toplam 53 / katalog 53)
+MechanicsTestLabVerification.RunBatch | exit 0 | 0.9 min | MechanicsTestLabVerification.txt: PASS: 183 checks
+MechanicsTestLabVerification.RunStartPlayBatch | exit 0 | 0.3 min | MechanicsTestLabStartPlay.txt: PASS: 9 checks
+GecOyunV1Verification.RunBatch | exit 1 | 0.4 min | GecOyunV1Verification.txt: FAIL: System.Exception: Crescent: starts at the attacked cell (2, 5), travels toward the middle of the field (+x), one cell per step for 4 steps — (3,5) (4,5) (5,5) (6,5) on later frames — 80 (= 100 × 0,80) each as reward damage; its hits do not count as attac
+GecOyunV1Verification.RunLegacyCrescentBatch | exit 0 | 0.5 min | GecOyunV1Verification.txt: PASS: 97 checks
+MoonCursorVerification.RunBatch | exit 1 | 0.3 min | MoonCursorVerification.txt: FAIL System.Reflection.TargetParameterCountException: Number of parameters specified does not match the expected number.
+MoonVerification.RunBatch | exit 1 | 0.3 min | MoonVerification.txt: FAIL System.Exception: full row hits mismatch
+ZincirV1Verification.RunBatch | exit 0 | 1 min | ZincirV1Verification.txt: PASS: 39 checks
+TakvimV1Verification.RunBatch | exit 0 | 1 min | TakvimV1Verification.txt: PASS: 162 checks
+AlanGeriBildirimiVerification.RunBatch | exit 0 | 0.7 min | AlanGeriBildirimiVerification.txt: PASS: 23 checks
+BedelliOdullerV1Verification.RunBatch | exit 0 | 1.4 min | BedelliOdullerV1Verification.txt: PASS: 94 checks
+XPV1Verification.RunBatch | exit 0 | 0.4 min | XPV1Verification.txt: PASS: 39 checks
+SayisalGuvenlikVerification.RunBatch | exit 0 | 0.5 min | SayisalGuvenlikVerification.txt: PASS: 33 checks
+KirilmaErisimiV1Verification.RunBatch | exit 0 | 0.8 min | KirilmaErisimiV1Verification.txt: PASS: 35 checks
+HarvestBehaviorVerification.RunBatch | exit 0 | 0.4 min | HarvestBehaviorVerification.txt: PASS: 114 checks
+SimpleResonanceVerification.RunBatch | exit 0 | 0.3 min | SimpleResonanceVerification.txt: PASS: 294 checks
+MechanicsVerification.RunBatch | exit 0 | 0.5 min | MechanicsVerification.txt: PASS: 88 checks
+ElectricRevertVerification.RunBatch | exit 0 | 0.7 min | ElectricRevertVerification.txt: PASS: 40 checks
+OverloadArtVerification.RunBatch | exit 0 | 0.4 min | OverloadArtVerification.txt: PASS 77 checks
+CritBurstArtVerification.RunBatch | exit 0 | 0.3 min | CritBurstArtVerification.txt: PASS 25 checks
+ReactorArtVerification.RunBatch | exit 0 | 0.3 min | ReactorArtVerification.txt: PASS 14 checks
+GreedArtVerification.RunBatch | exit 0 | 0.3 min | GreedArtVerification.txt: PASS 27 checks
+HarvestEchoArtVerification.RunBatch | exit 0 | 0.4 min | HarvestEchoArtVerification.txt: PASS 15 checks
+CritArcArtVerification.RunBatch | exit 0 | 0.4 min | CritArcArtVerification.txt: PASS 11 checks
+OverflowArtVerification.RunBatch | exit 0 | 0.4 min | OverflowArtVerification.txt: PASS 17 checks
+AntennaArtVerification.RunBatch | exit 0 | 0.5 min | AntennaArtVerification.txt: PASS 45 checks
+BountyArtVerification.RunBatch | exit 0 | 0.4 min | BountyBuffVerification.txt: PASS 42 checks
+DemoVerification.RunBatch | exit 0 | 0.6 min | DemoVerification.txt: PASS lines 65 / FAIL lines 0 (first line is the Unity search index note)
+CaptureToolsVerification.RunBatch | exit 0 | 0.3 min | CaptureToolsVerification.txt: PASS 16 checks
+BossBuffWindowVerification.RunBatch | exit 0 | 0.3 min | BossBuffWindowVerification.txt: PASS 13 checks
+bitti 22:30
+MoonCursorVerification.RunBatch (yansima cagrisi guncellendikten sonra) | exit 0 | 0.4 min | MoonCursorVerification.txt: PASS 21 checks
+
+Notlar:
+- GecOyunV1Verification.RunBatch: BEKLENEN dusus. Hilalin eski "saldirilan hucreden dort hucre" beklentisi; profilde 10 Ekim'den beri imlec rotasi acik.
+  Bu paket hilal koduna dokunmadi; beklenti degistirilmedi. Takimin genel 97 kontrolu RunLegacyCrescentBatch ile kosulur (yukarida PASS).
+- MoonCursorVerification.RunBatch (ilk satir): testin kendi yansima cagrisi eskimisti. DirectAttackReport.Record, commitli kodda (f499880)
+  istege bagli altinci parametre (Vector3? point = null) tasiyor; test bes arguman geciyordu (TargetParameterCountException). Oyun kodu ve
+  bu paket ile ilgisi yok. Cagriya yalniz eksik varsayilan arguman (null) eklendi; hicbir beklenti degismedi -> PASS 21.
+- MoonVerification.RunBatch: 9 Ekim "tam satir" davranisinin TARIHSEL testi (Docs/CrescentFamily/CursorRoute.md: guncel fare kurali icin
+  calistirilmaz). Yanlislikla listeye alindi; dususu beklenen, gecerli bir regresyon girisi degil.
+
+Ucuncu paket (stat ve buff kaynaklari: tile, rezonans, kart, skill, baslangic secimi) - 2026-10-12 23:02
+Bu pakette oyun kodu degismedi (yalniz test araci dosyalari); bu yuzden yalniz aracin iki dogrulamasi yeniden kosuldu.
+MechanicsNumericVerification.RunBatch | exit 1 | 1 min | 113 arac kontrolu gecti; katalog 81: 67 PASS, 6 UYARI, 2 FAIL, 0 INCELENMEDI, 1 manuel, 5 sistem henuz yok
+  exit 1 BEKLENEN: iki FAIL (T00, T03) ayni veri hatasi - Tornado-Rare asset'inin nadirlik alani Common. Veri duzeltilince gecer.
+MechanicsTestLabVerification.RunBatch | exit 0 | 0.8 min | PASS: 183 checks

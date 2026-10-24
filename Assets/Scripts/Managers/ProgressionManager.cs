@@ -188,6 +188,22 @@ public class ProgressionManager : MonoBehaviour
         ProcessLevels();
     }
 
+#if UNITY_EDITOR
+    // Yalnız Editor (Mechanics Test Lab): level'ı doğrudan atar. Level kazanma akışı ÇALIŞMAZ (OnLevelUp yok, kart seçim hakkı
+    // yok); saklı XP sıfırlanır ve sonraki level'ın maliyeti aktif XP tablosundan okunur. Normal akış için AddXP kullanılır.
+    // Bu blok build'e girmez.
+    public bool EditorSetLevel(int level)
+    {
+        if (progressionData == null || LevelProcessingHalted || level < 1) return false;
+        CurrentLevel = level;
+        xp = 0d;
+        XPToNextLevel = progressionData.GetXPForLevel(CurrentLevel);
+        if (!CostUsable()) return false;
+        OnXPChanged?.Invoke();
+        return true;
+    }
+#endif
+
     // Bu karenin bütçesinden kalan kadar level işler; işlenen sayıyı döner.
     private int ProcessLevels()
     {

@@ -32,6 +32,10 @@ public sealed class BoomerangScythe : MonoBehaviour
         if (planter != null) damage = planter.GetBehaviorDamage(damage, DamageType.Boomerang);
         // Zincir neslinin çarpanı normal bumerang hasarının üzerine bir kez.
         damage = HarvestChain.Scale(damage, damageFactor);
+#if UNITY_EDITOR
+        if (EditorNumericTrace.Listening)
+            EditorNumericTrace.Report(new EditorNumericTrace.BehaviorDamage(planter, DamageType.Boomerang, harvestLink, baseDamage, damageMultiplier, damageFactor, false, damage));
+#endif
         link = harvestLink;
         heldRoot = HarvestChain.Hold(link.Root) ? link.Root : 0;
         hitThisLeg.Clear(); transform.position = from; transform.rotation = Quaternion.identity;

@@ -4,7 +4,7 @@ using UnityEngine;
 public sealed class LateGameAudio
 {
     private const int Capacity = 8;
-    private readonly AudioSource[] sources = new AudioSource[Capacity];
+    private readonly SoundManager.Voice[] sources = new SoundManager.Voice[Capacity];
     private readonly float[] remaining = new float[Capacity];
     private readonly float[] cooldown = new float[1024];
     private readonly GameObject owner;
@@ -17,23 +17,20 @@ public sealed class LateGameAudio
     {
         if (binding.clip == null || Time.timeScale <= 0f) return;
         int key = (int)binding.variant * 32 + (int)binding.sound;
-        if (key >= cooldown.Length || cooldown[key] > 0f) { Skipped++; return; }
+        if (key < 0 || key >= cooldown.Length || cooldown[key] > 0f) { Skipped++; return; }
         int count = 0, free = -1;
         for (int i = 0; i < Capacity; i++)
         {
             if (remaining[i] <= 0f) { if (free < 0) free = i; }
-            else if (sources[i].clip == binding.clip) count++;
+            else if (sources[i].Clip == binding.clip) count++;
         }
         if (free < 0 || count >= Mathf.Clamp(binding.voices == 0 ? 2 : binding.voices, 1, Capacity)) { Skipped++; return; }
         if (sources[free] == null)
         {
-            sources[free] = owner.AddComponent<AudioSource>();
-            sources[free].playOnAwake = false;
-            sources[free].spatialBlend = 0f;
+            sources[free] = SoundManager.Ensure().CreateVoice(SoundChannel.Gameplay, owner);
         }
-        sources[free].clip = binding.clip;
-        sources[free].volume = Mathf.Clamp01(binding.volume);
-        sources[free].Play();
+        sources[free].Play(binding.clip, binding.volume);
+        if (paused) sources[free].Pause();
         remaining[free] = binding.clip.length;
         cooldown[key] = binding.repeatSeconds > 0f ? binding.repeatSeconds : .06f;
         ActiveVoices++;

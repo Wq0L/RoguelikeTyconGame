@@ -24,8 +24,15 @@ public class HarvestScoreManager : MonoBehaviour
         );
         
         // Başlangıç seçiminin skor çarpanı (Tüccar ×0,9) en sonda, kesirli kalan taşınarak: Common'ın 1 puanı da bedeli öder.
-        int final = StartLoadoutManager.ScaleScore(CalculateAward(rarity, multiplier, planter != null ? planter.GetHarvestScore(rarity) : 1f));
+        float planterMultiplier = planter != null ? planter.GetHarvestScore(rarity) : 1f;
+        int award = CalculateAward(rarity, multiplier, planterMultiplier);
+        int final = StartLoadoutManager.ScaleScore(award);
         totalScore = totalScore > long.MaxValue - final ? long.MaxValue : totalScore + final;
+#if UNITY_EDITOR
+        // Sayısal iz (yalnız gözlem): skor hesabının gerçek ara değerleri.
+        if (EditorNumericTrace.Listening)
+            EditorNumericTrace.Report(new EditorNumericTrace.HarvestScore(rarity, multiplier, planterMultiplier, award, final, totalScore));
+#endif
 
         // Debug.Log($"Score +{final} ({rarity}) | Toplam: {totalScore}");
     }

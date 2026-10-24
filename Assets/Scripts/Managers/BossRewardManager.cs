@@ -34,6 +34,10 @@ public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
     private readonly List<BossRewardSO> offer = new();
     private readonly List<BossRewardSO> taken = new();
     public int MovingBehaviorLimitBonus { get; private set; }
+    public int MusicPower { get; private set; }
+    public int MusicPowerFor(BossRewardSO reward) => reward == null ? 0 :
+        reward.musicPowerOverride > 0 ? reward.musicPowerOverride :
+        Mathf.Max(1, (Pool != null ? Pool.StageIndexOf(reward) : -1) + 1);
     private readonly Dictionary<BossRewardSO, int> stacks = new();
     private readonly List<StatModifier> owned = new();
     private float direct = 1f;
@@ -484,6 +488,10 @@ public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
     public void EditorDiscardPendingOffer()
     { IsPending=false; PlacementReward=null; offer.Clear(); offerPrepared=false; Version++; }
 
+    // Mechanics Test Lab: aynı boss round'u bu oturumda yeniden oynanınca teklif yeniden açılabilsin diye "bu round ödüllendirildi"
+    // kaydını siler. Teklifin kendisi yine normal yoldan (round sonu → BuildOffer) hazırlanır.
+    public void EditorAllowOfferAgain() => rewardedRound = 0;
+
     // Yalnız Editor (Bölüm 3.7.6.2; ChainDebugMenu'nün karşılaştırma yolu): boss teklifi olmadan bir ödülü bu run'a verir. Ayrı bir
     // uygulama yolu yoktur: alınabilirlik oyunun kendi denetimiyle (BlockOf: stack sınırı, çakışan ödül, seçim hakkı aralığı, koşul)
     // ve uygulama oyunun tek işlemli yoluyla (TryApply: geçersiz veride hiçbir şey değişmez) yapılır. Bekleyen bir boss teklifi
@@ -579,6 +587,8 @@ public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
         if (reward.chain) { chain = chainConfig; hasChain = true; }
         if (!taken.Contains(reward)) taken.Add(reward);
         stacks[reward] = Stacks(reward) + 1;
+        // Only committed rewards count: previews, cancelled placements and rejected choices do not.
+        MusicPower = (int)System.Math.Min(int.MaxValue, (long)MusicPower + MusicPowerFor(reward));
         return true;
     }
 
@@ -612,6 +622,7 @@ public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
         behavior = 1f;
         levelChoices = 0;
         MovingBehaviorLimitBonus = 0;
+        MusicPower = 0;
         for (int i = 0; i < rareDirect.Length; i++) rareDirect[i] = 1f;
         hasExplosionEcho = hasElectricEcho = hasRhythm = hasChain = false;
         explosionEcho = electricEcho = default;

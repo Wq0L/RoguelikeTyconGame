@@ -362,9 +362,13 @@ public static class GecOyunV1Verification
         AddWait(1.2);
         Add("dolunay: ikinci dalga ve duraklama", FullMoonResult);
         Add("kritik ark", CritArc);
-        Add("hasat yankısı: güçlü hasat", EchoCase);
-        AddWait(.3);
-        Add("hasat yankısı: sonuç", EchoResult);
+        Add("hasat yankısı: meteor ve bekleme", EchoCase);
+        AddWait(.7);   // meteor düşüşü 0,55 sn
+        Add("hasat yankısı: sonuç, merkez, tek hasat", EchoResult);
+        AddWait(.7);
+        Add("hasat yankısı: tek hücre sonucu, 6 hücre sınırı", EchoCap);
+        AddWait(.7);
+        Add("hasat yankısı: 6 hücre sonucu", EchoCapResult);
         Add("taşan hasar", Overflow);
         Add("nadir reaktör: çalış", ReactorCase);
         AddWait(4.2);
@@ -451,7 +455,7 @@ public static class GecOyunV1Verification
     // ---------------------------------------------------------------- veri
     static readonly string[] NewIds =
     {
-        "elektrik_anteni", "hilal_darbesi", "iletken_hat", "buyuyen_ay", "kritik_ark", "hasat_yankisi", "tasan_hasar", "nadir_reaktor", "kritik_patlama",
+        "elektrik_anteni", "hilal_darbesi", "iletken_hat", "buyuyen_ay", "kritik_ark", "hasat_yankisi", "tasan_hasar", "nadir_reaktor",
         "acgozlu_hasat", "kapali_devre", "dolunay", "asiri_yukleme",
     };
     static readonly (string id, string stage)[] Protected =
@@ -478,18 +482,18 @@ public static class GecOyunV1Verification
                 Enumerable.Range(0, 3).All(i => gp.stages[i].firstRound == ap.stages[i].firstRound && gp.stages[i].id == ap.stages[i].id &&
                     gp.stages[i].rewards.Take(ap.stages[i].rewards.Count).Select(e => (e.reward, e.note)).SequenceEqual(ap.stages[i].rewards.Select(e => (e.reward, e.note)))),
             "Pool: valid; the same stages, slot and weight policy; every Alpha reward is the SAME asset in the same order with the same note at the start of its stage");
-        Require(aAll.Count == 19 && gAll.Count == 32 && Protected.All(p => { var r = gAll.FirstOrDefault(x => x.id == p.id); return r != null && aAll.Contains(r) && gp.stages[gp.StageIndexOf(r)].id == p.stage; }),
+        Require(aAll.Count == 19 && gAll.Count == 31 && Protected.All(p => { var r = gAll.FirstOrDefault(x => x.id == p.id); return r != null && aAll.Contains(r) && gp.stages[gp.StageIndexOf(r)].id == p.stage; }),
             "Pool: all 19 existing rewards kept in their stages — the 13 listed (Keskin Bıçak, Kritik Göz, Ağır Darbe, Hızlı Bilek, Fırtına Bileği, Geniş Savuruş, Altın Hedef, Nadir Tohum, Bilgi Filizi, Bereketli Toprak, Kıvılcım, Yıkım Gücü, Canavar Kesimi) plus Artçı Patlama, Çifte Akım, Hasat Ritmi, Bereketli Öğrenim, Davranışa Adanış, Zincir Hasat");
         var added = gAll.Where(r => !aAll.Contains(r)).ToList();
-        Require(added.Count == 13 && added.Select(r => r.id).OrderBy(s => s).SequenceEqual(NewIds.OrderBy(s => s)) &&
+        Require(added.Count == 12 && added.Select(r => r.id).OrderBy(s => s).SequenceEqual(NewIds.OrderBy(s => s)) &&
                 added.All(r => r.effect != null && r.maxStacks == 1 && r.weight == 1f && !r.HasCost && !r.IsBreakthrough && r.modifiersPerStack.Count == 0 && r.directDamageMultiplier == 1f &&
                                r.behaviorDamageMultiplier == 1f && r.levelChoiceDelta == 0 && string.IsNullOrEmpty(r.exclusiveGroup) && r.movingBehaviorLimitBonus == 0),
-            "Pool: exactly 13 new rewards, each with a runtime effect, taken once, weight 1, no stat or multiplier side effect");
+            "Pool: exactly 12 new rewards, each with a runtime effect, taken once, weight 1, no stat or multiplier side effect");
         string Stage(string id) => gp.stages[gp.StageIndexOf(Find(id))].id;
         Require(Stage("elektrik_anteni") == "erken" && Stage("hilal_darbesi") == "erken" &&
-                new[] { "iletken_hat", "buyuyen_ay", "kritik_ark", "hasat_yankisi", "tasan_hasar", "nadir_reaktor", "kritik_patlama", "acgozlu_hasat" }.All(id => Stage(id) == "orta") &&
+                new[] { "iletken_hat", "buyuyen_ay", "kritik_ark", "hasat_yankisi", "tasan_hasar", "nadir_reaktor", "acgozlu_hasat" }.All(id => Stage(id) == "orta") &&
                 new[] { "kapali_devre", "dolunay", "asiri_yukleme" }.All(id => Stage(id) == "guclu"),
-            "Stages: early = Elektrik Anteni, Hilal Darbesi; middle = İletken Hat, Büyüyen Ay, Kritik Ark, Hasat Yankısı, Taşan Hasar, Nadir Reaktör, Kritik Patlama, Açgözlü Hasat; strong = Kapalı Devre, Dolunay, Aşırı Yükleme");
+            "Stages: early = Elektrik Anteni, Hilal Darbesi; middle = İletken Hat, Büyüyen Ay, Kritik Ark, Hasat Yankısı, Taşan Hasar, Nadir Reaktör, Açgözlü Hasat; strong = Kapalı Devre, Dolunay, Aşırı Yükleme");
         Require(Find("iletken_hat").requires == Find("elektrik_anteni") && Find("kapali_devre").requires == Find("iletken_hat") &&
                 Find("buyuyen_ay").requires == Find("hilal_darbesi") && Find("dolunay").requires == Find("buyuyen_ay") &&
                 added.Count(r => r.requires != null) == 4 &&
@@ -984,9 +988,9 @@ public static class GecOyunV1Verification
         Require(new[] { "nadir_reaktor", "asiri_yukleme" }.All(id => Boss.BlockOf(Find(id), true) == BossRewardBlock.Condition && !EverOffered(id) && !Forced(id)),
             "Behavior-dependent rewards (Nadir Reaktör, Aşırı Yükleme) are neither offered nor takeable on a field without a behavior planter");
         Strike(100f, .4f, 0f);
-        bool noCrit = new[] { "kritik_ark", "kritik_patlama" }.All(id => Boss.BlockOf(Find(id), true) == BossRewardBlock.Condition && !EverOffered(id) && !Forced(id));
+        bool noCrit = new[] { "kritik_ark" }.All(id => Boss.BlockOf(Find(id), true) == BossRewardBlock.Condition && !EverOffered(id) && !Forced(id));
         Strike(100f, .4f, .5f);
-        Require(noCrit && new[] { "kritik_ark", "kritik_patlama", "elektrik_anteni", "hilal_darbesi", "hasat_yankisi", "tasan_hasar", "acgozlu_hasat" }.All(EverOffered),
+        Require(noCrit && new[] { "kritik_ark", "elektrik_anteni", "hilal_darbesi", "hasat_yankisi", "tasan_hasar", "acgozlu_hasat" }.All(EverOffered),
             "Crit rewards are not offered with 0 crit chance; with crit chance they and the unconditional rewards appear in normal offers");
         return 0;
     }
@@ -1040,14 +1044,14 @@ public static class GecOyunV1Verification
         var reward = Find("iletken_hat");
         var slots = new List<int>(); reward.effect.CollectPlacements(Fx, slots);
         int west5 = AntennaSlots.Id(AntennaSlots.West, 5);
-        Require(Boss.BlockOf(reward, true) == BossRewardBlock.None && EverOffered("iletken_hat") && !slots.Contains(west5) && !slots.Contains(AntennaSlots.Id(AntennaSlots.West, 4)) &&
-                !slots.Contains(AntennaSlots.Id(AntennaSlots.West, 6)) && slots.Contains(AntennaSlots.Id(AntennaSlots.West, 3)) && slots.Contains(AntennaSlots.Id(AntennaSlots.East, 5)) &&
-                !reward.effect.IsValidPlacement(Fx, west5),
-            "İletken Hat becomes available once Elektrik Anteni is taken; positions that cannot form a line are not selectable (the first antenna's own position, and positions giving a line shorter than 3 cells)");
+        Require(Boss.BlockOf(reward, true) == BossRewardBlock.None && EverOffered("iletken_hat") &&
+                !reward.effect.NeedsPlacement && slots.Count == 1 && slots[0] == AntennaSlots.Id(AntennaSlots.East, 5) &&
+                reward.effect.IsValidPlacement(Fx, RunEffectSO.NoPlacement) && !reward.effect.IsValidPlacement(Fx, west5),
+            "İletken Hat automatically uses only the opposite edge in the first antenna's selected row");
         Must(Offered("iletken_hat", out var offer, out int round), "line offer");
         bool invalid = Inject(offer, round, reward, AntennaSlots.Id(AntennaSlots.West, 4));
         Must(!invalid && Boss.Stacks(reward) == 0 && antenna.Count == 1 && Fx.Active.Count == 1, "an unselectable position must not apply anything");
-        Must(Inject(offer, round, reward, AntennaSlots.Id(AntennaSlots.East, 5)), "line should be taken");
+        Must(Inject(offer, round, reward, RunEffectSO.NoPlacement), "line should be taken without a second placement");
         line = Fx.Find<ConductiveLineEffect>();
         var cells = new List<GridPosition>(); line.LineCells(cells);
         Require(antenna.Count == 2 && cells.Count == 11 && cells.All(c => c.z == 5) && Boss.Stacks(reward) == 1, "İletken Hat taken: second antenna on the east edge of the same row; the line is the 11 cells between the two antennas");
@@ -1217,14 +1221,16 @@ public static class GecOyunV1Verification
         Strike(100f, 1.2f);
         Take("hasat_yankisi");
         echo = Fx.Find<HarvestEchoEffect>();
-        // İki hasat: güçlü hasat değil.
-        SetHealth(1, 7, 1); SetHealth(2, 7, 1);
-        AttackAt(PosAt(1, 7));
-        Must(echo.StrongHarvests == 0 && Fx.PendingTimers == 0, "two harvests are not a strong harvest");
+        // 23 Ekim 2026 meteor düzeni: tek meteor, kesilen hücrelerin simetriğine; eşik 1 hasat, en çok 6 hücre, 6 sn bekleme.
         SetHealth(1, 1, 1); SetHealth(2, 1, 1); SetHealth(1, 2, 1);
         ResetLogs();
         AttackAt(PosAt(1, 1));
-        Must(harvests.Count == 3 && echo.StrongHarvests == 1 && echo.Scheduled == 3 && Of(RewardSource.HarvestEcho).Count == 0, "three direct harvests schedule three delayed echoes");
+        Must(harvests.Count == 3 && echo.Meteors == 1 && echo.Scheduled == 3 && Fx.PendingTimers == 1 && Of(RewardSource.HarvestEcho).Count == 0,
+            "three direct harvests schedule ONE delayed meteor over their three mirrored cells");
+        // Bekleme: meteor planlandıktan hemen sonraki hasat yeni meteor doğurmaz.
+        SetHealth(1, 7, 1); SetHealth(2, 7, 1);
+        AttackAt(PosAt(1, 7));
+        Must(echo.Meteors == 1 && echo.CooldownBlocks == 1 && Fx.PendingTimers == 1, "cooldown: a harvest right after the meteor does not schedule another");
         return 0;
     }
 
@@ -1232,13 +1238,48 @@ public static class GecOyunV1Verification
     {
         var hitsEcho = Of(RewardSource.HarvestEcho);
         Require(hitsEcho.Count == 3 && hitsEcho.All(h => h.Damage == 50) && hitsEcho.Select(h => (h.X, h.Z)).OrderBy(c => c).SequenceEqual(new[] { (8, 9), (9, 8), (9, 9) }) && echo.Empty == 0,
-            "Hasat Yankısı: a strong direct harvest (3 in one attack) hits the cells mirrored through the centre of the open field — (1,1)→(9,9), (1,2)→(9,8), (2,1)→(8,9) — for 50 (= 100 × 0,50) after the delay");
-        // Yansıma saldırının kendi alanındaysa atlanır: tarlanın ortasına vuruş.
+            "Hasat Yankısı: one meteor hits the cells mirrored through the centre of the open field — (1,1)→(9,9), (1,2)→(9,8), (2,1)→(8,9) — for 50 (= 100 × 0,50) each after the delay; the cooldown blocked the second harvest");
+        // Yansıma saldırının kendi alanındaysa atlanır: tarlanın ortasına vuruş meteor doğurmaz, bekleme de başlamaz.
+        echo.OnRoundStarted();
         Refill();
         SetHealth(5, 5, 1); SetHealth(4, 5, 1); SetHealth(6, 5, 1);
-        int scheduled = echo.Scheduled;
+        int meteors = echo.Meteors, scheduled = echo.Scheduled;
         AttackAt(PosAt(5, 5));
-        Require(echo.StrongHarvests == 2 && echo.Scheduled == scheduled, "A mirror cell inside the attack's own area is skipped (an attack on the centre mirrors onto itself)");
+        Require(echo.Meteors == meteors && echo.Scheduled == scheduled && Fx.PendingTimers == 0,
+            "A mirror cell inside the attack's own area is skipped: an attack on the centre mirrors onto itself and drops no meteor");
+        // Eşik 1: tek doğrudan hasat da meteor düşürür (tek hücre).
+        Refill();
+        SetHealth(1, 1, 1);
+        ResetLogs();
+        AttackAt(PosAt(1, 1));
+        Require(harvests.Count == 1 && echo.Meteors == meteors + 1 && echo.Scheduled == scheduled + 1 && Fx.PendingTimers == 1,
+            "Threshold 1: a single direct harvest drops a one-cell meteor");
+        return 0;
+    }
+
+    static double EchoCap()
+    {
+        var hitsEcho = Of(RewardSource.HarvestEcho);
+        Require(hitsEcho.Count == 1 && (hitsEcho[0].X, hitsEcho[0].Z) == (9, 9) && hitsEcho[0].Damage == 50, "The one-cell meteor hits the single mirrored cell (1,1)→(9,9)");
+        // 6 hücre sınırı: tek saldırıda 9 hasat → yalnız ilk 6 yansıma, tek meteor.
+        echo.OnRoundStarted();
+        Refill();
+        for (int x = 1; x <= 3; x++) for (int z = 1; z <= 3; z++) SetHealth(x, z, 1);
+        Strike(100f, 2.6f);
+        int meteors = echo.Meteors, scheduled = echo.Scheduled;
+        ResetLogs();
+        AttackAt(PosAt(2, 2));
+        Strike(100f, 1.2f);
+        Require(harvests.Count == 9 && echo.Meteors == meteors + 1 && echo.Scheduled == scheduled + 6 && Fx.PendingTimers == 1,
+            "Cap: nine harvests in one attack give one meteor over the first six mirrored cells");
+        return 0;
+    }
+
+    static double EchoCapResult()
+    {
+        var hitsEcho = Of(RewardSource.HarvestEcho);
+        Require(hitsEcho.Count == 6 && hitsEcho.All(h => h.Damage == 50 && h.X >= 7 && h.Z >= 7) && hitsEcho.Select(h => (h.X, h.Z)).Distinct().Count() == 6 && echo.Empty == 0,
+            "The six-cell meteor hits six distinct mirrored cells (inside 7–9) for 50 each, at the same moment");
         return 0;
     }
 
@@ -1310,28 +1351,12 @@ public static class GecOyunV1Verification
 
     static double CritBurst()
     {
-        ResetRewards();
-        Refill();
-        Strike(100f, 2f, 1f);
-        Take("kritik_patlama");
-        var burst = Fx.Find<CritBurstEffect>();
-        float critMultiplier = Stats.GetFinalStat(StatType.CritMultiplier, StatTarget.Player);
-        int expected = NumericSafety.ToInt(100d * (.5f * critMultiplier), 1, NumericSite.RewardDamage);
-        ResetLogs();
-        AttackAt(PosAt(5, 5));
-        var area = Of(RewardSource.CritBurst); var direct = hits.Where(h => h.Type == DamageType.Direct).ToList();
-        Require(burst.Bursts == 1 && direct.Count == 9 && area.Count == 9 && area.All(h => h.Damage == expected) && area.Select(h => (h.X, h.Z)).OrderBy(c => c).SequenceEqual(direct.Select(h => (h.X, h.Z)).OrderBy(c => c)),
-            $"Kritik Patlama: 9 different plants crit in one attack (≥ 3) → one extra area hit on the same 9 cells for {expected} (= 100 × crit multiplier {critMultiplier:0.##} × 0,50), with no direct multiplier and no crit of its own");
-        Strike(100f, 1.2f, 1f);
-        ResetLogs();
-        AttackAt(PosAt(0, 0));
-        Require(hits.Count(h => h.Type == DamageType.Direct) == 3 && burst.Bursts == 2, "Exactly at the threshold (3 crits in a corner) it fires once more");
-        Strike(100f, .4f, 1f);
-        Attack(8, 8);
-        Require(burst.Bursts == 2, "One crit is below the threshold: no burst");
+        var retired = AssetDatabase.LoadAssetAtPath<CritBurstEffectSO>("Assets/ScriptableObjects/RunEffects/GecOyunV1/KritikPatlamaEffect_G1.asset");
+        Require(retired != null && !retired.CanTake(Fx) && !Fx.TryAdd(retired, RunEffectSO.NoPlacement) &&
+                !RewardOfferLab.All(G1.bossRewards).Any(r => r.id == "kritik_patlama"),
+            "Retired Kritik Patlama is absent from the pool and cannot be granted");
         return 0;
     }
-
     static List<int> DirectDamages(Action attack, int randomSeed)
     {
         UnityEngine.Random.InitState(randomSeed);
@@ -1488,7 +1513,7 @@ public static class GecOyunV1Verification
         Strike(100f, 2f, 1f);
         Take("elektrik_anteni", AntennaSlots.Id(AntennaSlots.West, 5));
         Take("iletken_hat", AntennaSlots.Id(AntennaSlots.East, 5));
-        foreach (string id in new[] { "hilal_darbesi", "buyuyen_ay", "kritik_ark", "hasat_yankisi", "tasan_hasar", "nadir_reaktor", "kritik_patlama", "acgozlu_hasat", "kapali_devre", "dolunay", "asiri_yukleme" }) Take(id);
+        foreach (string id in new[] { "hilal_darbesi", "buyuyen_ay", "kritik_ark", "hasat_yankisi", "tasan_hasar", "nadir_reaktor", "acgozlu_hasat", "kapali_devre", "dolunay", "asiri_yukleme" }) Take(id);
         Require(Fx.Active.Count == 13 && Boss.Taken.Count == 13 && NewIds.All(id => Boss.Stacks(Find(id)) == 1),
             "All 13 new rewards taken in one run, each from an offer produced by the game's offer builder and through Choose");
         allAttacks = 0;
@@ -1518,8 +1543,8 @@ public static class GecOyunV1Verification
     {
         int total = Enumerable.Range(1, 9).Sum(i => Since((RewardSource)i));
         Require(allAttacks == 24 && Fx.PendingTimers == 0 && Fx.DroppedTimers == droppedBase && total > 0 && Since(RewardSource.CritArc) <= 3 * allAttacks && Since(RewardSource.Overflow) <= 8 * allAttacks &&
-                Since(RewardSource.HarvestEcho) <= 3 * allAttacks && Fx.Find<CritBurstEffect>().Bursts <= allAttacks && Fx.Find<CrescentEffect>().ActiveWaves == 0 && errors == 0,
-            $"All 13 together on a dense, low-health field, 24 wide crit attacks: every loop ended ({total} reward hits; arcs {Since(RewardSource.CritArc)}, overflow {Since(RewardSource.Overflow)}, echo {Since(RewardSource.HarvestEcho)}, burst {Since(RewardSource.CritBurst)}, crescent {Since(RewardSource.Crescent) + Since(RewardSource.CrescentReturn)}, line {Since(RewardSource.Line) + Since(RewardSource.LineExtra)}, antenna {Since(RewardSource.Antenna)}); per-attack caps held, the delayed queue drained, nothing was dropped and no error was logged");
+                Since(RewardSource.HarvestEcho) <= 3 * allAttacks && Fx.Find<CritBurstEffect>() == null && Fx.Find<CrescentEffect>().ActiveWaves == 0 && errors == 0,
+            $"All 12 together on a dense, low-health field, 24 wide crit attacks: every loop ended ({total} reward hits; arcs {Since(RewardSource.CritArc)}, overflow {Since(RewardSource.Overflow)}, echo {Since(RewardSource.HarvestEcho)}, burst {Since(RewardSource.CritBurst)}, crescent {Since(RewardSource.Crescent) + Since(RewardSource.CrescentReturn)}, line {Since(RewardSource.Line) + Since(RewardSource.LineExtra)}, antenna {Since(RewardSource.Antenna)}); per-attack caps held, the delayed queue drained, nothing was dropped and no error was logged");
         return 0;
     }
 
@@ -1532,7 +1557,7 @@ public static class GecOyunV1Verification
         {
             Tile(5, 5, "Explosive", 1f); Tile(3, 3, "Electric", 1f);
             Take("elektrik_anteni", AntennaSlots.Id(AntennaSlots.West, 5)); Take("iletken_hat", AntennaSlots.Id(AntennaSlots.East, 5));
-            foreach (string id in new[] { "hilal_darbesi", "buyuyen_ay", "kritik_ark", "hasat_yankisi", "tasan_hasar", "nadir_reaktor", "kritik_patlama", "acgozlu_hasat", "kapali_devre", "dolunay", "asiri_yukleme" }) Take(id);
+            foreach (string id in new[] { "hilal_darbesi", "buyuyen_ay", "kritik_ark", "hasat_yankisi", "tasan_hasar", "nadir_reaktor", "acgozlu_hasat", "kapali_devre", "dolunay", "asiri_yukleme" }) Take(id);
             Must(Events.StartNow(FieldEventKind.InvasiveSprout, 0f, 5, FastPlan()), "event for the measurement");
         }
         Refill(true);

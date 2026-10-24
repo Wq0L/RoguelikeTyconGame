@@ -77,6 +77,10 @@ public class Tornado : MonoBehaviour
         damage = NumericSafety.ToInt(damage * (double)resonanceMultiplier, 0, NumericSite.BehaviorDamage);
         // Zincir neslinin çarpanı normal kasırga hasarının üzerine bir kez.
         damage = HarvestChain.Scale(damage, damageFactor);
+#if UNITY_EDITOR
+        if (EditorNumericTrace.Listening)
+            EditorNumericTrace.Report(new EditorNumericTrace.BehaviorDamage(startCell.Planter, DamageType.Tornado, harvestLink, baseDamage, damageMultiplier, damageFactor, false, damage));
+#endif
         link = harvestLink;
         pathRandom = pathSeed;
         heldRoot = HarvestChain.Hold(link.Root) ? link.Root : 0;

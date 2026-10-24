@@ -108,7 +108,7 @@ public sealed class HarvestBehaviorManager : MonoBehaviour
     // Çifte Akım'ın ikinci dalgası: aynı saksıdan, aynı çapraz yönlerde, HESAPLANMIŞ hasarla (katsayılar yeniden uygulanmaz).
     // reach: ışın başına hücre (0: ilk dalgayla aynı). Yeni hedefe yönelme, sıçrayış ya da zincir yoktur: yalnız ışınlar uzar.
     // Hedefler dalga anında değerlendirilir. Görsel havuzu doluysa yalnız çizim atlanır, hasar uygulanır. Hedef hücre yoksa false.
-    public bool TryElectricEcho(PlanterBrain source, int finalDamage, int reach, out int struck, out int killed, out int cells)
+    public bool TryElectricEcho(PlanterBrain source, int finalDamage, int reach, out int struck, out int killed, out int cells, bool yellowEcho = false)
     {
         struck = killed = cells = 0;
         if (!isActiveAndEnabled || source == null ||
@@ -125,7 +125,7 @@ public sealed class HarvestBehaviorManager : MonoBehaviour
         if (effect != null) electricity.Add(effect);
         else SkippedElectricVisuals++;
         // İkinci dalganın vuruşları zincire katılmaz (HarvestLink.Aftershock).
-        ElectricBurst.Strike(this, effect, source, GridManager.Instance.GetGridSystem(), targets, origins, finalDamage, true, HarvestLink.Aftershock, out struck, out killed, out cells);
+        ElectricBurst.Strike(this, effect, source, GridManager.Instance.GetGridSystem(), targets, origins, finalDamage, true, HarvestLink.Aftershock, out struck, out killed, out cells, yellowEcho);
         return true;
     }
     public int SkippedElectricVisuals { get; private set; }

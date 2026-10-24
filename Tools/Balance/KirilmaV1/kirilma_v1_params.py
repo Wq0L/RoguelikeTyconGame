@@ -18,8 +18,8 @@ FIRST_BEHAVIOR_OFFER = [4, 9]
 BREAKTHROUGH_MIN_ROUND = 10
 BREAKTHROUGHS = [
     dict(file='ArtciPatlama_K1', id='artci_patlama', name='Artçı Patlama', label='Artçı patlama:',
-         note='Şansı tutan her normal patlamadan sonra aynı yerde ikinci bir patlama. Artçı yeni artçı ya da zincir başlatmaz; '
-              'öldürdükleri davranış hasadıdır.',
+         note='Patlamanın dış sınırından üç adım yayılır. Aynı hücreye bir kez vurur; kilitli hücrelerden geçmez. '
+              'Artçı yeni artçı veya zincir başlatmaz.',
          echo=1, delay=0.20, damage=1.00, radius=1.25, condition_stat=20),
     dict(file='CifteAkim_K1', id='cifte_akim', name='Çifte Akım', label='İkinci elektrik dalgası:',
          note='Şansı tutan her normal elektrikten sonra aynı saksıdan ikinci bir dalga. Yeni şans atılmaz; ikinci dalga zincir başlatmaz.',

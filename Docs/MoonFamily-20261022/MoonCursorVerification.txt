@@ -1,0 +1,110 @@
+PASS 109 checks
+PASS isolated memory-only GameScene
+PASS one real direct swing damaging four plants charges four
+PASS second four-target swing launches once and retains 2/6
+PASS wave begins at exact attack/cursor point
+PASS wave damage does not refill direct counter
+PASS empty swing does not charge
+PASS 121 real plant hits produce 20 threshold attempts, capacity four, remainder one
+PASS four critical hits count four plants, not extra crit charges
+PASS behavior damage never charges cursor wave
+PASS blocked/non-damaging recorded hits do not charge
+PASS bounded straight route without cursor snap 0
+PASS bounded straight route without cursor snap 1
+PASS bounded straight route without cursor snap 2
+PASS bounded straight route without cursor snap 3
+PASS bounded straight route without cursor snap 4
+PASS bounded straight route without cursor snap 5
+PASS bounded straight route without cursor snap 6
+PASS bounded straight route without cursor snap 7
+PASS bounded straight route without cursor snap 8
+PASS bounded straight route without cursor snap 9
+PASS bounded straight route without cursor snap 10
+PASS bounded straight route without cursor snap 11
+PASS bounded straight route without cursor snap 12
+PASS bounded straight route without cursor snap 13
+PASS bounded straight route without cursor snap 14
+PASS bounded straight route without cursor snap 15
+PASS bounded straight route without cursor snap 16
+PASS bounded straight route without cursor snap 17
+PASS bounded straight route without cursor snap 18
+PASS bounded straight route without cursor snap 19
+PASS bounded straight route without cursor snap 20
+PASS bounded straight route without cursor snap 21
+PASS bounded straight route without cursor snap 22
+PASS bounded straight route without cursor snap 23
+PASS bounded straight route without cursor snap 24
+PASS bounded straight route without cursor snap 25
+PASS bounded straight route without cursor snap 26
+PASS bounded straight route without cursor snap 27
+PASS bounded straight route without cursor snap 28
+PASS bounded straight route without cursor snap 29
+PASS bounded straight route without cursor snap 30
+PASS bounded straight route without cursor snap 31
+PASS bounded straight route without cursor snap 32
+PASS bounded straight route without cursor snap 33
+PASS bounded straight route without cursor snap 34
+PASS bounded straight route without cursor snap 35
+PASS bounded straight route without cursor snap 36
+PASS bounded straight route without cursor snap 37
+PASS bounded straight route without cursor snap 38
+PASS bounded straight route without cursor snap 39
+PASS all four cardinal directions selected from the cursor cell
+PASS private direction RNG leaves reward RNG untouched
+PASS base moon deals configured 80 damage
+PASS cursor-cell harvest grows remaining wave
+PASS grown front applies 100 damage to three cells
+PASS full moon creates two distinct cardinal directions at original cursor
+PASS both full moon waves retain configured 56 damage
+PASS pair cannot recursively create full moons
+PASS distinct pair on trigger 0
+PASS distinct pair on trigger 1
+PASS distinct pair on trigger 2
+PASS distinct pair on trigger 3
+PASS distinct pair on trigger 4
+PASS distinct pair on trigger 5
+PASS distinct pair on trigger 6
+PASS distinct pair on trigger 7
+PASS distinct pair on trigger 8
+PASS distinct pair on trigger 9
+PASS distinct pair on trigger 10
+PASS distinct pair on trigger 11
+PASS distinct pair on trigger 12
+PASS distinct pair on trigger 13
+PASS distinct pair on trigger 14
+PASS distinct pair on trigger 15
+PASS distinct pair on trigger 16
+PASS distinct pair on trigger 17
+PASS distinct pair on trigger 18
+PASS distinct pair on trigger 19
+PASS distinct pair on trigger 20
+PASS distinct pair on trigger 21
+PASS distinct pair on trigger 22
+PASS distinct pair on trigger 23
+PASS distinct pair on trigger 24
+PASS distinct pair on trigger 25
+PASS distinct pair on trigger 26
+PASS distinct pair on trigger 27
+PASS distinct pair on trigger 28
+PASS distinct pair on trigger 29
+PASS distinct pair on trigger 30
+PASS distinct pair on trigger 31
+PASS distinct pair on trigger 32
+PASS distinct pair on trigger 33
+PASS distinct pair on trigger 34
+PASS distinct pair on trigger 35
+PASS distinct pair on trigger 36
+PASS distinct pair on trigger 37
+PASS distinct pair on trigger 38
+PASS distinct pair on trigger 39
+PASS all six distinct unordered cardinal pairs exercised
+PASS harvest grows and next nonlethal step resets growth
+PASS real direct attack naturally charges crescent, grows it and triggers full moon pair (launched=1, growth=2, full=1, counter=3)
+PASS 3x3 cursor routes choose all directions, stay inside open field and hit two cells
+PASS expansion does not extend born route
+PASS one pooled visual per wave
+PASS pause freezes cursor wave
+PASS round cleanup removes waves and timers
+PASS restart clears cursor effects
+PASS real scheduler applies hits at slowed 0.3 second cadence
+PASS real scheduler completes trailing movement and releases jobs

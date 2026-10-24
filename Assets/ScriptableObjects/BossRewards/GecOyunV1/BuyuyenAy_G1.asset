@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: "B\xFCy\xFCyen Ay"
   effectLabel: "B\xFCy\xFCme:"
   inverseLabel: 
-  note: "B\xFCy\xFCme yaln\u0131z ayn\u0131 dalgan\u0131n kalan ad\u0131mlar\u0131na uygulan\u0131r; sonraki dalga ba\u015Ftan ba\u015Flar."
+  note: "Hilal menzili 1 birim artar: 3 → 4. Ana hilal doğduğu andan yok olana kadar ilerlediği mesafeyle orantılı büyür; ilk hasadı beklemez. Hasar büyümesi gerçek hasatlara bağlıdır. Dolunay baştan büyük ve sabittir."
   modifiersPerStack: []
   directDamageMultiplier: 1
   rareDirectMultiplier: 1

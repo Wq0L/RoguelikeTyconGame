@@ -1,0 +1,16 @@
+PASS 15 checks
+PASS existing threshold test and only successful schedules show preparation
+PASS planned targets are exact centre mirrors
+PASS preparation uses harvested source coordinates
+PASS preparation has no impact or sound
+PASS pause freezes real delayed hits
+PASS pause freezes preparation age across frames
+PASS three actual delayed hit cues
+PASS impact positions match planned mirrored targets
+PASS three simultaneous hits limited to one soft voice
+PASS existing 50 damage and covered mirror exclusion regression
+PASS targets emptied after scheduling: no false impact or sound; preparation expires
+PASS pending echoes before round restart
+PASS round restart clears timers visuals and audio
+PASS 12 preparation and impact reuse cycles keep pool count stable
+PASS no stale presentation after reuse

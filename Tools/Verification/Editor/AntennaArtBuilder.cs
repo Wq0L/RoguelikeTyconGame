@@ -10,6 +10,24 @@ public static class AntennaArtBuilder
 {
  const string Folder="Assets/Art/LateGame/AntennaFamily";
  static Material body,ink;static LateGameArtSO art;
+ static readonly Color CircuitRed=new Color32(255,40,48,255),CircuitCore=new Color32(255,148,148,255);
+ public static void RecolorCircuitAndRunBatch()
+ {
+  if(!Application.dataPath.Contains("VerificationProject"))throw new Exception("Use isolated verification project");
+  foreach(var name in new[]{"CircuitDoubleMesh","ContactDoubleMesh"})
+  {
+   var mesh=AssetDatabase.LoadAssetAtPath<Mesh>(Folder+"/"+name+".asset");
+   var colors=mesh.colors;
+   for(int i=0;i<colors.Length;i++)
+   {
+    var original=colors[i].gamma;
+    var color=(original.b>.5f?CircuitCore:CircuitRed)*original.r;
+    color.a=1;colors[i]=color.linear;
+   }
+   mesh.colors=colors;EditorUtility.SetDirty(mesh);
+  }
+  AssetDatabase.SaveAssets();AntennaArtVerification.RunBatch();
+ }
  static readonly Color Stone=new Color32(76,101,94,255),Dark=new Color32(54,42,60,255),Gold=new Color32(255,192,68,255),Copper=new Color32(186,100,67,255),Leaf=new Color32(121,164,63,255),Cyan=new Color32(112,238,248,255),Cream=new Color32(255,245,186,255);
  public static void BuildAndRunBatch(){Build();AntennaArtVerification.RunBatch();}
  public static void Build()
@@ -87,8 +105,8 @@ public static class AntennaArtBuilder
    {
     var p=new Vector3[7];var widths=new float[7];
     for(int i=0;i<7;i++){p[i]=new Vector3((i==0||i==6?0:(i%2==0?-.13f:.13f))+(s==0?0:.12f),s*.13f,i/6f);widths[i]=mode==0?.033f:.044f;}
-    g.Tube(p,widths,mode==2?Gold:Cyan,4);
-    for(int i=0;i<7;i++){p[i]+=Vector3.up*.018f;widths[i]*=.4f;}g.Tube(p,widths, Cream,3);
+    g.Tube(p,widths,mode==2?CircuitRed:Cyan,4);
+    for(int i=0;i<7;i++){p[i]+=Vector3.up*.018f;widths[i]*=.4f;}g.Tube(p,widths,mode==2?CircuitCore:Cream,3);
    }
   }
   var mesh=Render(g,name+"Mesh",c.visual,false);
@@ -99,7 +117,7 @@ public static class AntennaArtBuilder
  {
   var root=Root(name,out var c);var g=new LateGameMeshBuilder();
   int count=variant==LateGameVariant.Circuit?6:4;
-  for(int i=0;i<count;i++){float a=i*Mathf.PI*2/count;var d=new Vector3(Mathf.Cos(a),.6f,Mathf.Sin(a));g.Tube(new[]{d*.08f,d*.35f,d*.50f},new[]{.06f,.035f,0f},i%2==0?Cream:variant==LateGameVariant.Circuit?Gold:Cyan,3);}
+  for(int i=0;i<count;i++){float a=i*Mathf.PI*2/count;var d=new Vector3(Mathf.Cos(a),.6f,Mathf.Sin(a));g.Tube(new[]{d*.08f,d*.35f,d*.50f},new[]{.06f,.035f,0f},variant==LateGameVariant.Circuit?(i%2==0?CircuitCore:CircuitRed):(i%2==0?Cream:Cyan),3);}
   Render(g,name+"Mesh",c.visual,false);Save(root,LateGameSlot.AntennaContact,variant,.20f);
  }
  static void Marker(string name,LateGameSlot slot,Color col,bool selected)

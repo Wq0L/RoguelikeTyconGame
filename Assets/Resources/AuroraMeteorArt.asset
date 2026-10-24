@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 960545c93e364bdd897dc8b4a79b8b41, type: 3}
+  m_Name: AuroraMeteorArt
+  m_EditorClassIdentifier: Assembly-CSharp::AuroraMeteorArtSO
+  lit: {fileID: 2100000, guid: 9a8e09dcd306a9d4c970dd995c16cf10, type: 2}
+  ink: {fileID: 2100000, guid: 0c14e229229ec554ab86f0b7fd8b56d1, type: 2}
+  rock: {fileID: 4300000, guid: 078d5dfc0d6c5dc4890709062f1b2de3, type: 2}
+  stones:
+  - {fileID: 4300000, guid: 0ca0c9a40de55ff4ea4cc972113cfcf3, type: 2}
+  - {fileID: 4300000, guid: 057977ce77071f84baf312737be6a620, type: 2}
+  - {fileID: 4300000, guid: 4ef40185e3ea9f64ba9163126687f9f3, type: 2}
+  rims:
+  - {fileID: 4300000, guid: f6643e7b9c5987045b89eeb7cdc2dcd9, type: 2}
+  - {fileID: 4300000, guid: a8e17a2d22a1fd84da94e6df85d89d65, type: 2}
+  - {fileID: 4300000, guid: 5f1bbee77b664694e861228a4cd532d5, type: 2}
+  - {fileID: 4300000, guid: ff3313be7fa28824db6e623e5d5607f1, type: 2}
+  - {fileID: 4300000, guid: 9d4d2daa8bfe93647b126dea13494b0b, type: 2}
+  - {fileID: 4300000, guid: 688154d156025d745902d69dbb5e4ea4, type: 2}
+  - {fileID: 4300000, guid: a8dde25d3c9eee749b054f441bb520d4, type: 2}
+  - {fileID: 4300000, guid: 5886b93fa7c129b42b7c5af202045f55, type: 2}
+  - {fileID: 4300000, guid: 5c54b4af0defcc64eaa66f20c6f5888f, type: 2}
+  rimPositions:
+  - {x: 0.6615, y: 0.02, z: -0.1044}
+  - {x: 0.7762, y: 0.02, z: 0.4785}
+  - {x: 0.1137, y: 0.02, z: 0.8421}
+  - {x: -0.3289, y: 0.02, z: 0.8378}
+  - {x: -0.7079, y: 0.02, z: 0.2773}
+  - {x: -0.8377, y: 0.02, z: -0.1229}
+  - {x: -0.4085, y: 0.02, z: -0.7506}
+  - {x: 0.1652, y: 0.02, z: -0.6874}
+  - {x: 0.5826, y: 0.02, z: -0.5704}
+  rockCracks: {fileID: 4300000, guid: 11793683979746145af706a08fa5cf47, type: 2}
+  trail: {fileID: 4300000, guid: 2176c242d61e4054fa59948d53b1f49f, type: 2}
+  crown: {fileID: 4300000, guid: 7e277aa1bd3154e4bbab875aa45a915a, type: 2}
+  craterGround: {fileID: 4300000, guid: 2952beeca5dea2e449389ecfe1d9e4dd, type: 2}
+  clouds:
+  - {fileID: 4300000, guid: c0be0c7a6d4ad1946803aa278225d455, type: 2}
+  - {fileID: 4300000, guid: c3cadf180130b164697dfd5f3bdb4b12, type: 2}
+  cell: 2
+  rockRadius: 0.6

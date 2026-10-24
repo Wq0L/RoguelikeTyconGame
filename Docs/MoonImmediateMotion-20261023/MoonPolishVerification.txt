@@ -1,0 +1,245 @@
+PASS 244
+PASS add hilal_darbesi
+PASS blade pivot starts on actual radius-one cursor circumference
+PASS base range is three world units
+PASS all waves complete
+PASS base travels exactly three units from its spawn front
+PASS base motion lasts about 0.375 seconds at 8 units/sec
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS Growing Moon immediately adds one range unit
+PASS upgraded visual begins growing from spawn before any hit or harvest
+PASS first harvest does not restart or jump spawn growth
+PASS growth stays gradual during early travel
+PASS nonlethal next front resets gameplay growth without restarting visual growth
+PASS growth still has room at eighty percent of travel
+PASS moving wave fades during final travel
+PASS renderer receives moving fade opacity
+PASS renderer receives moving fade opacity
+PASS renderer receives moving fade opacity
+PASS growth follows forward world travel
+PASS growth continues through final tenth of world travel
+PASS all waves complete
+PASS upgraded wave travels four units in about 0.50 seconds
+PASS wave reaches zero opacity at route end
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS add dolunay
+PASS four primary waves plus four extras active at launch
+PASS four primaries each spawn exactly one extra moon
+PASS four primaries plus four extras have exactly eight visuals
+PASS one extra starts large in a different direction 1
+PASS full moon starts at its side of original ring 1
+PASS one extra starts large in a different direction 3
+PASS full moon starts at its side of original ring 3
+PASS one extra starts large in a different direction 5
+PASS full moon starts at its side of original ring 5
+PASS one extra starts large in a different direction 7
+PASS full moon starts at its side of original ring 7
+PASS all waves complete
+PASS full moon waves do not recursively trigger pairs
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS add dolunay
+PASS single trigger leaves one primary and one large extra, not three waves
+PASS Full Moon has no stationary spawn delay
+PASS Full Moon moves at eight units per second immediately after spawn
+PASS extra stays large and applies configured 56 damage
+PASS all waves complete
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS add dolunay
+PASS all waves complete
+PASS real direct attack charges a ring-born wave and triggers Full Moon outside the attack circle
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS add dolunay
+PASS Full Moon triggers without harvest on launch 1
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 2
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 3
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 4
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 5
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 6
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 7
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 8
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 9
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 10
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 11
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 12
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 13
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 14
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 15
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 16
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 17
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 18
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 19
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 20
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 21
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 22
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 23
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 24
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 25
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 26
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 27
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 28
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 29
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 30
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 31
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 32
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 33
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 34
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 35
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 36
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 37
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 38
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 39
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 40
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 41
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 42
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 43
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 44
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 45
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 46
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 47
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 48
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 49
+PASS all waves complete
+PASS Full Moon triggers without harvest on launch 50
+PASS all waves complete
+PASS fifty nonlethal primary waves produce fifty extras without kill prerequisites
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS add dolunay
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS pooled presentation count stable on cycle 4
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS pooled presentation count stable on cycle 5
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS pooled presentation count stable on cycle 6
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS pooled presentation count stable on cycle 7
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS pooled presentation count stable on cycle 8
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS pooled presentation count stable on cycle 9
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS pooled presentation count stable on cycle 10
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS pooled presentation count stable on cycle 11
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS pooled presentation count stable on cycle 12
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS pooled presentation count stable on cycle 13
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS pooled presentation count stable on cycle 14
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS pooled presentation count stable on cycle 15
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS pooled presentation count stable on cycle 16
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS pooled presentation count stable on cycle 17
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS pooled presentation count stable on cycle 18
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS pooled presentation count stable on cycle 19
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS pooled presentation count stable on cycle 20
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS pooled presentation count stable on cycle 21
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS pooled presentation count stable on cycle 22
+PASS all waves complete
+PASS moon fade material cache remains bounded
+PASS pooled presentation count stable on cycle 23
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS add dolunay
+PASS outward corner wave starts beyond field boundary
+PASS outward wave survives invalid grid cell without damage
+PASS corner extra keeps full size and different direction
+PASS all waves complete
+PASS corner wave completes four world units without visual clipping
+PASS add hilal_darbesi
+PASS crossing locked cells preserves motion and skips damage
+PASS all waves complete
+PASS small field does not shorten three-unit world travel
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS round cleanup releases waves, visuals and timers
+PASS add hilal_darbesi
+PASS real scheduler completes slow route with two correctly scaled hits

@@ -184,6 +184,20 @@ public sealed class FieldEventDirector : MonoBehaviour
         return TryStart(kind, plan, new System.Random(seed), delay);
     }
 
+#if UNITY_EDITOR
+    // Yalnız Editor (Mechanics Test Lab): verilen seed'le kurulacak olayın bölgelerini ve hedeflerini, olayı BAŞLATMADAN hesaplar.
+    // Aynı seçim kodu çalışır (FieldEvent.TryPrepare); aktif olaya, üretim etkilerine, bildirimlere ve sayaçlara dokunmaz. Dönen
+    // nesne yalnız okunur (ZoneCount / Zone / Targets); uygun bölge yoksa null. Bu blok build'e girmez.
+    public FieldEvent EditorPreview(FieldEventKind kind, int seed, FieldEventPlanSO plan = null)
+    {
+        plan ??= Plan;
+        var field = new FieldSnapshot();
+        if (plan == null || GridManager.Instance == null || !field.Read()) return null;
+        FieldEvent preview = Create(kind, plan);
+        return preview.Begin(this, new System.Random(seed), 0f, field) ? preview : null;
+    }
+#endif
+
     private bool RoundRunning => rounds != null && rounds.IsRoundActive && GameManager.Instance != null && GameManager.Instance.CurrentState == GameStates.Round;
 
     private void Update()

@@ -1,0 +1,21 @@
+Regresyon - Mechanics Test Lab paketi - 2026-10-12 16:46
+GecOyunV1Verification (RunBatch) | exit 1 | 0.5 min | BEKLENEN: bu giris 10 Ekim hilal fare rotasindan beri eski dort hucre beklentisinde duser; genel takim RunLegacyCrescentBatch ile kosulur (asagida).
+ZincirV1Verification | exit 0 | 1 min | PASS: 39 checks
+TakvimV1Verification | exit 0 | 1 min | PASS: 162 checks
+AlanGeriBildirimiVerification | exit 0 | 0.6 min | PASS: 23 checks
+BedelliOdullerV1Verification | exit 0 | 1.4 min | PASS: 94 checks
+XPV1Verification | exit 0 | 0.4 min | PASS: 39 checks
+SayisalGuvenlikVerification | exit 0 | 0.5 min | PASS: 33 checks
+HarvestBehaviorVerification | exit 0 | 0.4 min | PASS: 114 checks
+SimpleResonanceVerification | exit 0 | 0.3 min | PASS: 294 checks
+MechanicsVerification | exit 0 | 0.5 min | PASS: 88 checks
+CaptureToolsVerification | exit 0 | 0.3 min | PASS 16 checks
+BossBuffWindowVerification | exit 0 | 0.3 min | PASS 13 checks
+DemoVerification | exit 0 | 0.6 min | PASS lines 65 / FAIL lines 0 (first line is the Unity search index note)
+OverloadArtVerification | exit 0 | 0.4 min | PASS 77 checks
+CritBurstArtVerification | exit 0 | 0.3 min | PASS 25 checks
+MechanicsTestLabVerification | exit 0 | 0.7 min | PASS: 183 checks
+GecOyunV1Verification (RunLegacyCrescentBatch) | exit 0 | 0.6 min | PASS: 97 checks
+MechanicsTestLabVerification (RunStartPlayBatch) | exit 0 | 0.3 min | PASS: 9 checks
+MechanicsTestLabVerification (RunBatch, son kod) | exit 0 | 0.7 min | PASS: 183 checks
+bitti 16:58 - 17 kosu; ilk satirdaki beklenen dusus disinda FAIL yok.

@@ -1,0 +1,190 @@
+PASS: 183 checks
+ok: Play, MechanicsTestScene'den girilince test oturumu kendiliğinden açıldı
+ok: oturum gerçek GameScene'i yükledi (kopya sahne yok)
+ok: run, profilin çalışma zamanı kopyasıyla çalışıyor (kopya bir asset değil)
+ok: kaynak profil Run50_GecOyunV1
+ok: ödül havuzu, denge seti, boss havuzu ve tarla olayı planı oyunun gerçek asset'leri (paylaşılıyor)
+ok: profil yalnız bu oturum için geçersiz kılındı
+ok: seçili run profili (seçim dosyası) değişmedi
+ok: kayıt bu oturumda yalnız bellekte: yazma isteği reddediliyor
+ok: oturum aktif bir round'la başlıyor (R1, oyunun normal başlangıç yolu)
+ok: gerçek oynanış ve arayüz bileşenleri sahnede (oyuncu, ödül, olay, davranış, VFX, zincir, yerleşim, UI)
+ok: varsayılan senaryo eksiksiz kuruldu
+ok: varsayılan düzen: 5 × 5 açık alan, 9 saksı
+ok: test sahnesi Build Settings'te değil
+ok: test aracının bütün kodu Editor derlemesinde
+ok: oyuncu derlemesi: OK: 29 player assemblies compiled without UNITY_EDITOR; none of 20 test entry points present
+ok: round sayacı dondurulmuş, olay kaydı açık
+ok: round sayacı dondurulmuşken 20 karede ilerlemedi
+ok: sayaç serbest bırakılınca round süresi oyunun saatiyle akıyor
+ok: üretim duraklatılmışken 45 karede (1,5 sn) hiçbir üretim noktası bitki çıkarmadı
+ok: üretim noktaları kayıtlı kaldı (duraklatma bileşeni kapatmıyor: tarla olayları bölge bulabilir)
+ok: grid 7 × 7 açıldı (oyunun açma yolu)
+ok: canlı küçültme reddedildi (oyunda hücre kilitleme yok)
+ok: desteklenmeyen boyut reddedildi
+ok: tile atandı: Explosive-Legendary
+ok: hücrenin gerçek tile durumu: tür, Sv 2 ve değer 1.35 (aralığın üst ucu × 1,5)
+ok: saksının tile toplamı oyunun yeniden hesabından geldi
+ok: saksının patlama şansı = tile değeri (sınırla): 1
+ok: komşu saksı tile'dan etkilenmedi (etki ilgisiz saksıya sızmıyor)
+ok: kilitli hücreye tile reddedildi
+ok: tile temizlenince saksının toplamı da temizlendi
+ok: dolu hücreye saksı reddedildi (çakışma)
+ok: kilitli hücreye saksı reddedildi
+ok: tarla dışına saksı reddedildi
+ok: açık alandan taşan 2 × 2 saksı reddedildi, yarım yerleşim kalmadı
+ok: 2 × 2 saksı (2, 2) köşesine kuruldu
+ok: saksı–hücre bağı: dört hücrenin sahibi aynı saksı
+ok: saksının görseli, mantıksal hücrelerinin ortasında
+ok: üretim noktaları saksının kendi hücrelerinde
+ok: 1 × 3 saksı 90° döndürülerek kuruldu
+ok: döndürülmüş saksının hücreleri ve görsel yönü aynı: (6,2) (7,2) (8,2), 90°
+ok: döndürülünce açık alandan taşan saksı reddedildi
+ok: saksı kaldırıldı: üç hücre de boşaldı
+ok: test kaldırması iade vermedi (kaynak değişmedi)
+ok: saksı aynı köşede başka türle değiştirildi
+ok: sığmayan değiştirme reddedildi ve eski saksı geri kuruldu
+ok: belirli bitki kondu: Carrot
+ok: bitki oyunun durumunda: tür, hücre kaydı ve sahibi saksı
+ok: bitkinin görseli kendi hücresinde
+ok: bitkinin azami canı oyunun can eğrisinden (normal doğuş yolu)
+ok: mevcut can 1 yapıldı
+ok: can azami canın üstüne çıkmadı
+ok: saksısız hücreye bitki reddedildi (geçersiz yuva)
+ok: bitki kaldırıldı: hücre boş, hasat sayılmadı (XP yok)
+ok: yerleşim korunarak bütün bitkiler yenilendi (10 nokta)
+ok: 2 × 2 saksı (2, 6) köşesine kuruldu
+ok: saksının altındaki dört tile oyunun sayımında
+ok: inceleme, oyunun etkin rezonanslarını (1) aynen gösteriyor
+   resonance view: Rezonans: /    [ETKİN] Odak · Damage 4/4 → Hasar ×3 /    [değil] Güçlendirilmiş Hasat · Damage 4/1 · davranış tile'ı gerekir ✗ / 
+ok: test katkısı (hasar ×2) sonuca yansıdı: 10 → 20
+ok: "test'siz" değer katkıdan önceki değerle aynı
+ok: doğrudan hasar katkısı davranış şansına sızmadı
+ok: stat veren bir boss ödülü kuruldu (Kritik Göz)
+ok: ikinci test katkısı eklendi
+ok: stat dökümü test katkısını ve boss ödülünü ayrı kaynak olarak gösteriyor
+ok: "test katkısını sıfırla" yalnız test katkılarını kaldırdı (boss ödülünün modifier'ları yerinde)
+ok: oyuncu kapsamlı her stat için inceleme sonucu = StatManager'ın çözülmüş değeri
+ok: saksı kapsamlı her stat için inceleme sonucu = saksının çözülmüş değeri; tile ve test katkısı ayrı kaynak
+ok: şans çarpanı katkısı, şansı olmayan saksıya şans vermedi
+ok: uç test değerlerinde taban ve tavan korunuyor (saldırı aralığı 0,1 sn, kritik şansı %100)
+ok: XP önizlemesi: 1221 XP → 3 level → 9 kart seçim hakkı
+ok: XP normal akıştan verildi: kazanılan level ve seçim hakkı önizlemeyle aynı
+ok: level ataması kart hakkı doğurmadı (ayrı işlem)
+ok: kaynak miktarı artırıldı ve azaltıldı
+ok: ödül kataloğu gerçek havuzdan okundu: 32 ödül, üç aşama
+ok: kontrollü kurulum: Hasat Ritmi kuruldu ve oyunda etkin
+ok: stack sınırı aşılmadı: Hasat Ritmi kurulmadı — stack sınırı dolu (1).
+ok: karşılıklı dışlama aşılmadı: Zincir Hasat kurulmadı — dışlayan ödül alınmış: Hasat Ritmi.
+ok: ön koşulsuz ödül reddedildi: İletken Hat kurulmadı — ön koşul yok: önce Elektrik Anteni.
+ok: geçersiz yerleşim konumu reddedildi, başka konuma taşınmadı
+ok: ön koşul zinciri sırayla kuruldu (anten → hat → devre): oyunun üç etkisi aktif
+ok: bedelli ödül kazancı ve bedeliyle birlikte uygulandı: seçim hakkı 3 → 4, doğrudan vuruş ×0.8
+ok: dışlanan bedelli ödül reddedildi; seçim hakkı değişmedi: Davranışa Adanış kurulmadı — dışlayan ödül alınmış: Bereketli Öğrenim.
+ok: ödül dökümü bedeli ve dışlama grubunu yazıyor
+ok: boss round'u olmayan round için teklif açılmadı: R4 bir boss round'u değil. Boss round'ları: 3, 6, 10, 13, 16, 20, 23, 26, 30, 33, 36, 40, 43, 46, 50.
+ok: R3 oyunun round sonu akışıyla bitti: önce 8 kart seçimi, boss teklifi sırada bekliyor
+ok: oyunun kart ekranından 8 kart alındı: her biri oyunun rastgele yerleşim kuralıyla yeni bir tile oldu
+ok: kartlardan sonra oyun boss ödülü seçimine geçti
+ok: oyunun teklif üreticisi 3 tekrarsız aday çıkardı
+ok: teklifteki her aday R3 aşamasında ve alınabilir (aşama, stack, dışlama, koşul kuralları)
+   R3 offer: Nadir Tohum, Hızlı Bilek, Keskin Bıçak
+ok: ödül oyunun normal edinme yolundan alındı: Nadir Tohum
+ok: kapanan teklif ikinci kez seçilemedi
+ok: senaryo Assets dışındaki bir dosyaya kaydedildi
+ok: yakalanan düzen: 11 saksı, 13 tile, 10 bitki, 7 ödül, 1 test katkısı, R3
+ok: tarla temizlendi
+ok: dosyadan okunan senaryo kaydedilenle aynı
+ok: boss round'unda bitmiş boss "boss yok" olarak yakalandı ve öyle geri kuruldu
+ok: kaydet → temizle → yükle: temiz oturumda aynı başlangıç düzeni kuruldu (tile, saksı, bitki, stat, ödül, round, level, kaynak)
+ok: çakışan ödül listeden çıkarılıp temiz oturumda yeniden kuruldu: Zincir Hasat var, Hasat Ritmi yok, diğer ödüller aynı
+ok: "02 Patlama": patlama şansı yalnız tile'ı olan merkez saksıda %100 (görünür test çarpanıyla)
+ok: merkez bitkinin canı 1, otomatik saldırı kapalı, nişan merkezde sabit
+ok: bekleme dolmadan tek saldırı reddedildi ve nedeni yazıldı: Saldırı yapılmadı: saldırı beklemesi dolmadı (2.93 sn kaldı).
+ok: bekleme ayrı test komutuyla dolduruldu
+ok: tek gerçek doğrudan saldırı yapıldı
+ok: merkez bitki gerçekten hasat edildi (ödül ve XP oyunun yolundan)
+ok: hasat, saksının patlamasını oyunun normal tetiğiyle başlattı
+ok: dört yan komşu, saksı incelemesindeki patlama hasarını aldı (10)
+ok: çapraz komşu hasar almadı
+ok: olay kaydı: 1 saldırı, 1 doğrudan vuruş, 1 hasat, 1 başlayan davranış, 4 patlama vuruşu
+ok: saldırının bütün olayları aynı saldırı kimliğine kesin bağlı
+ok: hemen ardından ikinci saldırı reddedildi (normal saldırı kuralı atlanmıyor)
+ok: otomatik saldırı kapalıyken 120 karede (4 sn) saldırı olmadı; bekleme oyun zamanıyla doldu
+ok: duraklatılmışken oyun zamanı 10 karede hiç ilerlemedi
+ok: tek adım istendi (50 ms)
+ok: tek adım tam bir kare ilerletti: +50 ms, sonra yeniden durdu
+ok: adımdan sonra zaman yine duruyor
+ok: duraklatılmamışken tek adım reddedildi
+ok: yarı hızda kare başına oyun süresi yarıya indi (16.67 ms)
+ok: "08": gerçek patlama, Artçı Patlama'yı oyunun kuyruğuna planladı
+ok: duraklatılmışken artçı 10 kare boyunca beklemede kaldı
+ok: artçı, tek adımlarla tam gecikmesinde uygulandı: 6 adım × 33.3 ms = 0.2 sn (ödül verisi 0.2 sn)
+ok: olay kaydı artçının planlanmasını ve uygulanmasını yazdı
+ok: "04": hasat, oyunun kasırgasını başlattı (aktif 1)
+ok: kasırga oyunun zamanıyla hareket ediyor
+ok: duraklatılmışken kasırga 10 kare boyunca yerinde durdu
+ok: kasırga kendi ömrüyle bitti; aktif sayı 0
+   tornado hits in log: 8
+ok: "18": R27 (boss round'u değil), 7 × 7 dolu tarla, kendiliğinden olay ve boss yok
+ok: geçersiz konum: olay başlatılmadı, bölge başka yere taşınmadı — (0, 0) açık bir tarla hücresi değil; olay başlatılmadı.
+ok: Diken Kuşatması oyunun yürütücüsüyle kuruldu; bölge seçilen hücreyi içeriyor — Diken Kuşatması kuruldu (seed 1; hazırlık 0.5 sn sonra) · bölge 0: (3, 3)–(5, 5) · hedef 0: (3, 3) · hedef 1: (5, 5).
+ok: hazırlıkta üretim etkisi yok
+ok: duraklatılmışken olayın fazı ve faz süresi ilerlemedi
+ok: aktif fazda bölgenin 9 hücresinde üretim kapalı (oyunun plan süreleriyle)
+ok: iki kök vurulabilir; dayanıklılık plan verisinden
+ok: kökler yalnız gerçek doğrudan saldırılarla kırıldı (6 saldırı / kök): bölge hemen açıldı (başarı)
+ok: olay kaydı iki kökün kırılmasını yazdı
+ok: olay temizlendikten sonra yeniden başlatıldı
+ok: hiç vurulmadan beklenince olay süre dolunca kendiliğinden çözüldü (başarısızlık yolu)
+ok: olay oyunun temizlik yoluyla kapatıldı
+ok: İstilacı Filiz, Aşılı Kabuk ve Gezgin Bereket ayrı ayrı kuruldu; her yeni olay öncekini kapattı (aynı anda tek olay)
+ok: İstilacı Filiz'in ana filizi seçilen üretim noktasında
+ok: olay temizlendi: üretim etkisi kalmadı
+ok: boss round'u olmayan round'da boss başlatılmadı: R25 bir boss round'u değil. Boss round'ları: 3, 6, 10, 13, 16, 20, 23, 26, 30, 33, 36, 40, 43, 46, 50.
+ok: 3 boss (DON CEPHESİ, SERT KABUK, SİS) aynı tarlada sırayla oyunun boss akışıyla etkinleşti
+ok: boss ataması yalnız çalışma zamanı kopyasında: kaynak profilin takvimi değişmedi
+ok: boss etkisi oyunun temizlik yoluyla kaldırıldı
+ok: "07 Zincir Hasat" kuruldu: 25 patlama saksısı, zincir ödülü
+   before rebuild: chain pending 3, explosions triggered 3, log 26
+   before rebuild: chain pending 3, explosions triggered 4, log 25
+   before rebuild: chain pending 3, explosions triggered 5, log 25
+ok: üç yeniden kurmadan sonra stat modifier, ödül stack, etki, saksı ve tile sayıları aynı (birikme yok)
+ok: yeni oturuma eski zincir, artçı, davranış, zamanlayıcı, olay, boss ya da alan çizgisi taşınmadı
+ok: gözlem ve saldırı dinleyicisi sayısı aynı (abonelik çoğalmadı)
+ok: yeniden kurma olay kaydını temizledi
+ok: tek saldırı kayıtta bir kez görünüyor (çift abonelik yok)
+ok: zincir gerçek patlama hasatlarıyla çalıştı ve kayda geçti: 11 deneme, 5 tetik
+ok: zincir kayıtları kök saldırının kimliğine kesin bağlı
+ok: senaryo "00 · Boş başlangıç (3 × 3 saksı)" açıldı — kuruldu
+ok: senaryo "01 · Temel doğrudan vuruş ve kritik" açıldı — kuruldu
+ok: senaryo "02 · Patlama" açıldı — merkez saksı patlama %100
+ok: senaryo "03 · Elektrik" açıldı — merkez saksı elektrik %100
+ok: senaryo "04 · Kasırga" açıldı — merkez saksı kasırga %100
+ok: senaryo "05 · Bumerang" açıldı — merkez saksı bumerang %100
+ok: senaryo "06 · Hasat Ritmi" açıldı — Hasat Ritmi etkin, eşik 5
+ok: senaryo "07 · Zincir Hasat" açıldı — zincir etkin, 25 patlama saksısı
+ok: senaryo "08 · Artçı Patlama ve Çifte Akım" açıldı — artçı ve ikinci dalga etkin
+ok: senaryo "09 · Anten / İletken Hat / Kapalı Devre" açıldı — anten, hat ve devre etkileri aktif
+ok: senaryo "10 · Hilal / Büyüyen Ay / Dolunay" açıldı — hilal, büyüyen ay ve dolunay etkileri aktif
+ok: senaryo "11 · Kritik Ark" açıldı — kritik şansı %100, etki aktif
+ok: senaryo "12 · Taşan Hasar" açıldı — ödülün etkisi aktif
+ok: senaryo "13 · Hasat Yankısı" açıldı — ödülün etkisi aktif
+ok: senaryo "14 · Nadir Reaktör" açıldı — merkezde nadir bitki, çevrede davranışlı saksılar
+ok: senaryo "15 · Açgözlü Hasat" açıldı — ödülün etkisi aktif
+ok: senaryo "16 · Kritik Patlama" açıldı — kritik şansı %100, etki aktif
+ok: senaryo "17 · Aşırı Yükleme" açıldı — ödülün etkisi aktif
+ok: senaryo "18 · Tarla olayı: Diken Kuşatması" açıldı — R27, olay planı hazır, olay elle başlatılacak
+ok: senaryo "19 · Tarla olayı: Aşılı Kabuk" açıldı — R27, olay planı hazır, olay elle başlatılacak
+ok: senaryo "20 · Tarla olayı: İstilacı Filiz" açıldı — R27, olay planı hazır, olay elle başlatılacak
+ok: senaryo "21 · Tarla olayı: Gezgin Bereket" açıldı — R27, olay planı hazır, olay elle başlatılacak
+ok: senaryo "22 · Rezonans ve stat kaynağı incelemesi" açıldı — 2 × 2 saksı altında 2 Damage + 2 Explosive, Sv 3 tile
+ok: senaryo "23 · Bedelli ödül, dışlama ve seçim hakkı" açıldı — seçim hakkı +1, Davranışa Adanış dışlanmış
+ok: senaryo "24 · Kasırga / bumerang kapasitesi ve yoğun efekt" açıldı — 49 kasırga / bumerang saksısı; sınır 12
+ok: 25 hazır senaryonun hepsi temiz oturumda açıldı ve temel koşulunu kurdu
+ok: panelin sekiz sekmesi canlı oturumda hata vermeden çizildi (olay gönderilerek)
+ok: oturum kapandı: profil geçersiz kılması kaldırıldı
+ok: zaman ölçeği, saldırı / üretim / sayaç bayrakları ve test görünümleri geri yüklendi
+ok: Play başlangıç sahnesi ayarı bırakılmadı
+ok: gerçek oyuncu kayıt dosyası değişmedi (639264681050345157:252)
+ok: 445 asset ve sahne dosyası ile Build Settings sahne listesi değişmedi (profil seçimi, profiller, ödüller, tile'lar, GameScene, DemoScene dahil)

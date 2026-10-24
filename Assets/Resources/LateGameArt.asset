@@ -269,6 +269,42 @@ MonoBehaviour:
     prefab: {fileID: 5756894846131312721, guid: c432f9583b7d3b74484508354e8eb4e1, type: 3}
     variant: 11
     lifetime: 0.12
+  - slot: 28
+    prefab: {fileID: 8422790985098498597, guid: 2fb2adcfed8371247881007176a3011f, type: 3}
+    variant: 5
+    lifetime: 0.12
+  - slot: 15
+    prefab: {fileID: 5112335628031572578, guid: eb9aacb03a8f29e499c57f64ba686081, type: 3}
+    variant: 5
+    lifetime: 0.16
+  - slot: 29
+    prefab: {fileID: 5036838573171210055, guid: 9401850ee7580fe4f89411fbb2f48153, type: 3}
+    variant: 7
+    lifetime: 0
+  - slot: 15
+    prefab: {fileID: 2001882342916087784, guid: 5b2009d74357fc647bb40e2ed518a19b, type: 3}
+    variant: 7
+    lifetime: 0.24
+  - slot: 30
+    prefab: {fileID: 7079700820135515979, guid: bb52821be8dec304ebf61d9deee26143, type: 3}
+    variant: 8
+    lifetime: 0
+  - slot: 15
+    prefab: {fileID: 7079700820135515979, guid: bb52821be8dec304ebf61d9deee26143, type: 3}
+    variant: 8
+    lifetime: 0.16
+  - slot: 15
+    prefab: {fileID: 1956394204202056476, guid: ab774c4f8c598c540bea24ea032bb50c, type: 3}
+    variant: 6
+    lifetime: 0.32
+  - slot: 31
+    prefab: {fileID: 1195335700025502282, guid: 741e8c802ccae424dad0af77adf6a11e, type: 3}
+    variant: 9
+    lifetime: 0
+  - slot: 15
+    prefab: {fileID: 5862373051088424746, guid: bfe4e01ff5e2e71408eb52c0409a9d00, type: 3}
+    variant: 9
+    lifetime: 0.16
   sounds:
   - sound: 0
     clip: {fileID: 8300000, guid: 5e3453b8a643a174e851deb827c52b3a, type: 3}
@@ -479,4 +515,46 @@ MonoBehaviour:
     volume: 0.32
     variant: 11
     repeatSeconds: 0.12
+    voices: 1
+  - sound: 23
+    clip: {fileID: 8300000, guid: 44e28fa7432bcb84ba791e204db7ec66, type: 3}
+    volume: 0.28
+    variant: 5
+    repeatSeconds: 0.12
+    voices: 1
+  - sound: 24
+    clip: {fileID: 8300000, guid: 808f693e72ee4254382fa9343214df04, type: 3}
+    volume: 0.26
+    variant: 7
+    repeatSeconds: 0.3
+    voices: 1
+  - sound: 13
+    clip: {fileID: 8300000, guid: 2032259fba3b73445966998f6c5cd76d, type: 3}
+    volume: 0.25
+    variant: 8
+    repeatSeconds: 0.18
+    voices: 1
+  - sound: 25
+    clip: {fileID: 8300000, guid: ffa0e14ab09b15f4c8b8d60eabeca744, type: 3}
+    volume: 0.25
+    variant: 8
+    repeatSeconds: 0.18
+    voices: 1
+  - sound: 11
+    clip: {fileID: 8300000, guid: 386b70fd45b43504cb3d5813a2621988, type: 3}
+    volume: 0.28
+    variant: 6
+    repeatSeconds: 0.16
+    voices: 1
+  - sound: 26
+    clip: {fileID: 8300000, guid: 065da2a0a4da9e0489feb46f21c05b8a, type: 3}
+    volume: 0.16
+    variant: 9
+    repeatSeconds: 0.25
+    voices: 1
+  - sound: 12
+    clip: {fileID: 8300000, guid: ed7e20bc4fd5908408f2fd10e86561ee, type: 3}
+    volume: 0.18
+    variant: 9
+    repeatSeconds: 0.16
     voices: 1

@@ -1,5 +1,29 @@
 # Kritik Ark — 12 Ekim 2026
 
+## 23 Ekim 2026 güncellemesi: altın kavis
+
+Camgöbeği ışın + krem/altın temas yıldızı (0,12 sn) oyuncu testinde okunmadı ve elektrik gibi göründü.
+Yerine `LateGamePresenter.CritArc.cs` geldi:
+
+- Kritik yiyen bitkiden hedefe zıplayan, mürekkep çizgili altın kavis. Kritik sayısıyla aynı altın,
+  böylece "kritik sıçradı" diye okunur. Hedefe doğru kalınlaşır; üstünde ince krem ışık çizgisi var.
+- Hedefte 8 köşeli altın iniş yıldızı; kameraya döner.
+- Yay bir anda tam belirir, 0,3 saniyede `(1 - t)^0,7` ile incelerek söner. Hasar cue gelmeden
+  uygulanmıştır, görsel hasarı geciktirmez. Yükseklik `(0,55 + 0,25 × mesafe) × 0,75`.
+- Havuzlu, en çok 24 yay aynı anda; fazlası çizilmez, `CritArcsSkipped` sayılır. Pause'da yaş
+  ilerlemez; round dışında, restart'ta ve presenter kapanınca temizlenir.
+- Malzeme `Resources/ParticleVertexColor` shader'ından çalışma anında üretilir. Dış varlık yok.
+- Mekanik ve ses değişmedi. Taşan Hasar kendi ArcBolt yolunu korur. Katalogdaki eski CritArc
+  varyant bağları (ArcBolt / AntennaContact) artık kullanılmıyor, silinmedi.
+
+Seçim süreci: izole kopyada mevcut hal, altın zikzak ve altın kavis karşılaştırıldı; kullanıcı
+kavisi seçti. Ardından yay %25 alçaltıldı, kalınlık %8 azaltıldı.
+
+Kontrol: `CritArcArtVerification` 15/15 PASS (yeni görsele göre güncellendi),
+`OverflowArtVerification` 17/17 PASS. İnsan Play testi kullanıcıda.
+
+---
+
 Üretim tamamlandı; ayrıntılı görsel/işitsel kabul sonraya bırakıldı.
 
 Gerçek doğrudan kritik saldırının sonunda, doğrudan vurulmamış ve aynı saldırıda ark

@@ -1,0 +1,78 @@
+PASS 77 checks
+PASS accepted normal explosion creates exactly one preparation
+PASS pause freezes actual job and preparation pose
+PASS existing .3 second / half-damage / cooldown / no self-rearm regression
+PASS existing moving capacity and chain-exclusion regression
+PASS accepted preparation scenario 0
+PASS one visible preparation scenario 0
+PASS actual success/cancellation only scenario 0
+PASS resolved preparation released scenario 0
+PASS accepted preparation scenario 1
+PASS one visible preparation scenario 1
+PASS actual success/cancellation only scenario 1
+PASS resolved preparation released scenario 1
+PASS accepted preparation scenario 2
+PASS one visible preparation scenario 2
+PASS actual success/cancellation only scenario 2
+PASS resolved preparation released scenario 2
+PASS accepted preparation scenario 3
+PASS one visible preparation scenario 3
+PASS actual success/cancellation only scenario 3
+PASS resolved preparation released scenario 3
+PASS fill tornado slot 0
+PASS fill tornado slot 1
+PASS fill tornado slot 2
+PASS fill tornado slot 3
+PASS fill tornado slot 4
+PASS fill tornado slot 5
+PASS fill tornado slot 6
+PASS fill tornado slot 7
+PASS fill tornado slot 8
+PASS fill tornado slot 9
+PASS fill tornado slot 10
+PASS accepted preparation scenario 4
+PASS one visible preparation scenario 4
+PASS actual success/cancellation only scenario 4
+PASS resolved preparation released scenario 4
+PASS fill boomerang slot 0
+PASS fill boomerang slot 1
+PASS fill boomerang slot 2
+PASS fill boomerang slot 3
+PASS fill boomerang slot 4
+PASS fill boomerang slot 5
+PASS fill boomerang slot 6
+PASS fill boomerang slot 7
+PASS fill boomerang slot 8
+PASS fill boomerang slot 9
+PASS fill boomerang slot 10
+PASS accepted preparation scenario 5
+PASS one visible preparation scenario 5
+PASS actual success/cancellation only scenario 5
+PASS resolved preparation released scenario 5
+PASS four real normal behaviors in one root accept only three preparations
+PASS actual success/cancellation only scenario 6
+PASS resolved preparation released scenario 6
+PASS accepted preparation scenario 7
+PASS visual pool full skips preparation without rejecting job
+PASS actual success/cancellation only scenario 7
+PASS resolved preparation released scenario 7
+PASS full visual pool does not prevent actual extra behavior
+PASS round clears preparation and real job 0
+PASS round clears preparation and real job 1
+PASS round clears preparation and real job 2
+PASS round clears preparation and real job 3
+PASS round clears preparation and real job 4
+PASS round clears preparation and real job 5
+PASS round clears preparation and real job 6
+PASS round clears preparation and real job 7
+PASS round clears preparation and real job 8
+PASS round clears preparation and real job 9
+PASS round clears preparation and real job 10
+PASS round clears preparation and real job 11
+PASS 12 round/reuse cycles stable pooled object count
+PASS re-enable reconstructs only real pending work
+PASS accepted preparation scenario 8
+PASS one visible preparation scenario 8
+PASS selling source immediately detaches preparation without following replacement
+PASS actual success/cancellation only scenario 8
+PASS resolved preparation released scenario 8

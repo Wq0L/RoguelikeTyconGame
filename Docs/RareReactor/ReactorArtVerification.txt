@@ -1,0 +1,15 @@
+PASS 14 checks
+PASS existing direct Rare+ trigger, invalid Common/behavior rejection and non-stacking refresh regression
+PASS opening snapshot at actual harvested source
+PASS grant existing Harvest Rhythm for coexistence: 
+PASS single reactor marker coexists with golden ready ring
+PASS refresh reuses one marker, adds no modifier or opening sound cue
+PASS reactor does not mutate radius or ready ring colors
+PASS pause freezes actual timer and indicator pose across frames
+PASS last interval shrinks: remaining=0.3 active=True scale=(0.32, 0.32, 0.32) dt=0.03333334
+PASS real four-second expiry removes only owned modifiers
+PASS expiry retires indicator with quiet tail
+PASS 12 activation/restart cycles retain stable pooled objects
+PASS restart immediately clears indicator and bonus
+PASS disable releases marker
+PASS re-enable reads actual active state

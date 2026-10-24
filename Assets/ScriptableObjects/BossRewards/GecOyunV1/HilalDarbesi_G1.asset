@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: Hilal Darbesi
   effectLabel: "Hilal:"
   inverseLabel: 
-  note: "Bo\u015F savuru\u015F say\u0131lmaz. Hilal vurdu\u011Fun yerden tarlan\u0131n ortas\u0131na do\u011Fru ilerler; senin vuru\u015Fun say\u0131lmaz."
+  note: "Hilal mouse halkasının kenarından rastgele bir ana yönde çıkar. Hız 8 birim/sn; temel menzil 3, Büyüyen Ay ile 4 birimdir."
   modifiersPerStack: []
   directDamageMultiplier: 1
   rareDirectMultiplier: 1

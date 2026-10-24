@@ -1,0 +1,346 @@
+[
+  {
+    "Hash": "72AAB3D1352A923C9EB01492A79DD2E2C52839849A198A7497232C6B77E6F612",
+    "Path": "Assets/Resources/RunProfileSelection.asset"
+  },
+  {
+    "Hash": "6F360FCB691037CBB23F287F72CDDD408C013F5383281A6C63E08F36ECA51E64",
+    "Path": "Assets/Scripts/Player/HarvestCursorVisual.cs"
+  },
+  {
+    "Hash": "56598365045D5E4F1D383D41AD2EC0DA04B7DE640F5E0A71A8B227AB4D60C141",
+    "Path": "Assets/Scripts/Player/PlayerController.cs"
+  },
+  {
+    "Hash": "1720F395508B60906967A43450BE33D19B515940755D54194495573B3AD6CD9A",
+    "Path": "Assets/Scripts/Planters/PlanterBrain.cs"
+  },
+  {
+    "Hash": "F2B1695F804F1ECD54EC8633C4B411E7DB078BB1A8E2B6C0DCA71D0F96D00249",
+    "Path": "Assets/Scripts/Managers/HarvestBehaviorManager.cs"
+  },
+  {
+    "Hash": "44D231B1E87FD80AA664A19C4C602CB8855D6392EE4C13D55CD5D40E00915DDE",
+    "Path": "Assets/Scripts/Managers/TornadoManager.cs"
+  },
+  {
+    "Hash": "CF1777E05E23A00907828BC23B6C26E6E74C242525B26606E1734BC0F86D9C1A",
+    "Path": "Assets/ScriptableObjects/RunEffects/GecOyunV1/AsiriYuklemeEffect_G1.asset"
+  },
+  {
+    "Hash": "047DF85EB353A458742504064D6CCDF4A4C5A2D1101343931E3BFB7F9D2455E3",
+    "Path": "Assets/ScriptableObjects/BossRewards/GecOyunV1/AsiriYukleme_G1.asset"
+  },
+  {
+    "Hash": "CA3639642B00C0FD50CD28F33B78242D3E877B8886D0DAB67CA910DDBEE5FA26",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritArc\\CritArcClick.wav"
+  },
+  {
+    "Hash": "0F7316043D032FB72D10144B3C57D88274DE88507C22324319524402A6C1A1F5",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritArc\\CritArcClick.wav.meta"
+  },
+  {
+    "Hash": "3985ECC793D2B6656FFBF958A56A10F095030E38EA2FBB91D7D61C1F852EB5C2",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\Overflow\\Chip0.asset"
+  },
+  {
+    "Hash": "892E5EBDC18B5DC55A05DB1FE3E40E7ACE3CF1E8403433845C025943F181B0DC",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\Overflow\\Chip0.asset.meta"
+  },
+  {
+    "Hash": "B8D9A4119CCFBF891DE6AC64E037C15EB2F6590A91F498C785F24F5DE7A3AE0D",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\Overflow\\Chip1.asset"
+  },
+  {
+    "Hash": "37EA4A31F079CB43D5F613E71B732FF413DE11A70DDA7ADE0BEBE30FC73FE0C7",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\Overflow\\Chip1.asset.meta"
+  },
+  {
+    "Hash": "5464C873AA5774A1FD6F63D913E369575E95A116060B3EE45035CC9AFABEF445",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\Overflow\\Chip2.asset"
+  },
+  {
+    "Hash": "1097D28B0EA76551BC3342AA7728DC28AA1443AC9602FF3ADE26AC26F493D991",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\Overflow\\Chip2.asset.meta"
+  },
+  {
+    "Hash": "31AF1B1704ED2D67009DDE8D8E64ABBF119C4A0208EF0E79DE7DC91BE1F8DD97",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\Overflow\\OverflowContact.prefab"
+  },
+  {
+    "Hash": "AEE272D3CFE5F5E8349F673BFD6D95C8B30EC9DAF51DE4815A97B76FD7D67D71",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\Overflow\\OverflowContact.prefab.meta"
+  },
+  {
+    "Hash": "BF552296637A308C4C511E234F26164BAE42CA463F2300B0049D3D05EB8B6476",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\Overflow\\OverflowFup.wav"
+  },
+  {
+    "Hash": "360E99CFEEDA7FA955FBA365E16C20008EB1E801FDC35BCA3DF5BEE385A5818E",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\Overflow\\OverflowFup.wav.meta"
+  },
+  {
+    "Hash": "C8B658BDB5B15C3515345E212C73E19D04857A63D1924517073C572BEB9A77B5",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\Overflow\\OverflowShard.prefab"
+  },
+  {
+    "Hash": "4375AC0D686FC3023FF1E6DDFBDE8AEA1F1B9D558149E223A11784D1A0007D5D",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\Overflow\\OverflowShard.prefab.meta"
+  },
+  {
+    "Hash": "7AAD7F75AD9FEA0539C2E0E7AF896F1AF35656F42E04F464556C303FDFD12A8B",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\Overflow\\OverflowShardMesh.asset"
+  },
+  {
+    "Hash": "A0942F97B5F374623FB35F11C838C992ED91A3A75648D98A64029A4172682633",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\Overflow\\OverflowShardMesh.asset.meta"
+  },
+  {
+    "Hash": "1C320ED77887D473484311FB59BEBF69B9203E86A76C99526F5A4CAA242BD887",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\HarvestEcho\\EchoChip0.asset"
+  },
+  {
+    "Hash": "162236935DBCFDA7266C7D71F5C06B6F50BA4C78DE30877D82685C27AFBC646E",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\HarvestEcho\\EchoChip0.asset.meta"
+  },
+  {
+    "Hash": "23BD3FC5003AABBA8329C642A2D6F2235CF5B49B9B4195FA955BF7DAE4B9494F",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\HarvestEcho\\EchoChip1.asset"
+  },
+  {
+    "Hash": "65D03469FEAC807AA513BC5D93DED5521D017ADECDF8BE758799243BD07333DC",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\HarvestEcho\\EchoChip1.asset.meta"
+  },
+  {
+    "Hash": "69285597FF1A3D7A6A9BF5D60424FD33A57CC930566ABC6683BE1BA26E6ED3B7",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\HarvestEcho\\EchoChip2.asset"
+  },
+  {
+    "Hash": "650DA3AB2682A9E47F2FAEB74107226C3DDE80CD1384B3B24B6596C3C35146D4",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\HarvestEcho\\EchoChip2.asset.meta"
+  },
+  {
+    "Hash": "F18FE29E69064CE0767BD4CFDA9F58886C9F3593D5DC254F9BE359D6FFED0C03",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\HarvestEcho\\EchoImpact.prefab"
+  },
+  {
+    "Hash": "5EE3338B1B37F27DABD6C0E8634192B05AF750BB28E0065BF28FF64E89544D8C",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\HarvestEcho\\EchoImpact.prefab.meta"
+  },
+  {
+    "Hash": "F99BCE82224C5FD88633D63F7492D44E00B8076FC0123B038950CCEF68E0BE27",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\HarvestEcho\\EchoImpactMotif.asset"
+  },
+  {
+    "Hash": "A1C26ABB7E89AC25B928763AB4FA822BB7124133445FDAA1DDD532CE93D3340E",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\HarvestEcho\\EchoImpactMotif.asset.meta"
+  },
+  {
+    "Hash": "774C056779A5C475F7B562CD07E71BA0BEE8ABCBE66B11FF90FDC6DA144AC6A1",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\HarvestEcho\\EchoPreparation.prefab"
+  },
+  {
+    "Hash": "3A0A8A5EAB16A2248F07335AEB90618AFC9164333C31FC69650F540C26970324",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\HarvestEcho\\EchoPreparation.prefab.meta"
+  },
+  {
+    "Hash": "3B4C46C38B256237D8FC4FE409AA98B46C9FBBBA8471BA7C6AC6FDC671F8151A",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\HarvestEcho\\EchoPreparationMotif.asset"
+  },
+  {
+    "Hash": "EF1D5AD511F8699FA1C200B3202EBB27AED16B5AC9BDCF1453778B6A778A77B7",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\HarvestEcho\\EchoPreparationMotif.asset.meta"
+  },
+  {
+    "Hash": "DC31A5D9120E456004CE438272989E00975B1ED5DDEF56B1F34F13E34046B248",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\HarvestEcho\\EchoStar.asset"
+  },
+  {
+    "Hash": "B2B112F8FA59CED22B54CCDC24C8DF3B5520519AB38EDD3FF0FC346552DBA99D",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\HarvestEcho\\EchoStar.asset.meta"
+  },
+  {
+    "Hash": "863E3EC4B6FA23C4405FF410F1CEC0A70D3DFC66F707DE6D7EE0D2A0258CC05B",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\HarvestEcho\\EchoTok.wav"
+  },
+  {
+    "Hash": "E67B748F937496FC330765C630FE50DC70100A101661619782AE8D31C1A790D0",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\HarvestEcho\\EchoTok.wav.meta"
+  },
+  {
+    "Hash": "4E2CF2051AAD23E965E310A6A2D07F0FCCD98371479238D4EBFF8F96A017B5E3",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\RareReactor\\ReactorCharge.wav"
+  },
+  {
+    "Hash": "FEC55279B4B63991B2A4B1E55291CD4656108B7D84D18755791ECF74B5805609",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\RareReactor\\ReactorCharge.wav.meta"
+  },
+  {
+    "Hash": "483EB7E64E151FF75C387257FA9DA0C3D420F0151E17F13E9F93323C9F271D5C",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\RareReactor\\ReactorCore.prefab"
+  },
+  {
+    "Hash": "BA0425E5FB380659061AAAD677698F2470891C94C9EF3B68C3FD53FE93E9F8E0",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\RareReactor\\ReactorCore.prefab.meta"
+  },
+  {
+    "Hash": "E1951CAE51184B0ECAC17399B93A3270449EEE8CB3A64F8671A12FF06BE223EE",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\RareReactor\\ReactorCoreMesh.asset"
+  },
+  {
+    "Hash": "E36165AC8FF950194D57D45D02DE43912AF65FFF5938E69FC1B77CE67EEF3DFD",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\RareReactor\\ReactorCoreMesh.asset.meta"
+  },
+  {
+    "Hash": "0A8D4B41678E18B5792017C7DE2950AC8B1B63D13278DCC160E72E65F38190C3",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\RareReactor\\ReactorOpening.prefab"
+  },
+  {
+    "Hash": "322B33D9DA34A10179EE347AB88D05A7E435D76411212D2EEB3F525DCD0946FD",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\RareReactor\\ReactorOpening.prefab.meta"
+  },
+  {
+    "Hash": "A4542E445D5D37A87AE6D10D663DFEC920EDF7F3E5B8990705AF8681A23FB2F8",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\RareReactor\\ReactorSpark0.asset"
+  },
+  {
+    "Hash": "00E1ECB3DEC87DD453A7D0B7B7F3664A027FFA1830630349D621EEEB37EFE1FE",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\RareReactor\\ReactorSpark0.asset.meta"
+  },
+  {
+    "Hash": "018720A7786E258D0DF5B1381DE1AF5F95A6859BF46B437E35241E165F384F73",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\RareReactor\\ReactorSpark1.asset"
+  },
+  {
+    "Hash": "1C0A316C655EBA2C6C3055112E2A24D9BD38EA8611EB0D6F8BCE6E838C341FAF",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\RareReactor\\ReactorSpark1.asset.meta"
+  },
+  {
+    "Hash": "48DD33DA3100C5F580A72D207D9BBB4A2DFD439C2A2726209041DCE5719B2898",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\RareReactor\\ReactorSpark2.asset"
+  },
+  {
+    "Hash": "221F2752CB69A97E479DECD1DDCFD9C45A2A4FA56234A27DF3D800D156186A86",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\RareReactor\\ReactorSpark2.asset.meta"
+  },
+  {
+    "Hash": "D6C0AD2E95DA7340010E0A69E2729BFF5B89075B5FC90B9B630E6484526C71D1",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\RareReactor\\ReactorSpark3.asset"
+  },
+  {
+    "Hash": "6E7752B8D3DB39508BFBDBF1D8463E7F7461BD658E1DD0E6175888C18892201B",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\RareReactor\\ReactorSpark3.asset.meta"
+  },
+  {
+    "Hash": "13B252DC9ABBA0014E7C8EAD906C73F50445FD04A196D7F56C56287666401867",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\GreedyHarvest\\GreedReady.wav"
+  },
+  {
+    "Hash": "275B2A4BC5EBE89A4CBF4203CEDF306F08AB5E9ADFC27EEDD89198F1576FE1A8",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\GreedyHarvest\\GreedReady.wav.meta"
+  },
+  {
+    "Hash": "8595B5BFA43AB8CB5645AA797FE29F08C8CB7ECBBF85FBED178B678BB7A52DAD",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\GreedyHarvest\\GreedSpent.wav"
+  },
+  {
+    "Hash": "2F38A9823C60D549286F4AD4573129610FD54B573F47CC5E6FBBEE620E22B734",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\GreedyHarvest\\GreedSpent.wav.meta"
+  },
+  {
+    "Hash": "87D48545CB830C4BDA4A3ACA2841799693CA33D277255342C00738783BCF130F",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\GreedyHarvest\\GreedTeeth.prefab"
+  },
+  {
+    "Hash": "8E83BFEA4A2636E8C319B4121148AD2A4EFE287EA8C58099E7CDDEDEDC57ABDB",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\GreedyHarvest\\GreedTeeth.prefab.meta"
+  },
+  {
+    "Hash": "2B0F88FEC8C7E6A6CDFBA273DDBEF60DD8084B5BC150E0BEAF1E8C59B21B7BA6",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\GreedyHarvest\\GreedTeethMesh.asset"
+  },
+  {
+    "Hash": "3EBB8656690B35A751B54DA319E28EB88C9108A49CE0CACF2E942F4204A63BAA",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\GreedyHarvest\\GreedTeethMesh.asset.meta"
+  },
+  {
+    "Hash": "E8241BC6DF010C2DD2960D22FE717A50560FB121F46B373E498DC27AED566E36",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritBurst\\CritBurstChip0.asset"
+  },
+  {
+    "Hash": "4E8151C3890CB7BA7CD8D136CB04FF97844EE0B5BB84218F7830D69425ADD759",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritBurst\\CritBurstChip0.asset.meta"
+  },
+  {
+    "Hash": "6C7A13E15FB9F088FC4F68DEB5438DAFF7481E78176B3BC86B1B8B92F91F9F79",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritBurst\\CritBurstChip1.asset"
+  },
+  {
+    "Hash": "2866B41AC6E5C7AF67BB1BDB01925715A4A5AF15B5E954FB8D6D018EB5029EC3",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritBurst\\CritBurstChip1.asset.meta"
+  },
+  {
+    "Hash": "92C5B26BD755D67AAA902FD5BDEA1E542BE22D719B3110A4C5417AA7140D3188",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritBurst\\CritBurstChip2.asset"
+  },
+  {
+    "Hash": "7B6BE2AF9682702D356966BE2A7F02C9612AFDA9592907D5ECDBAC07C67450F0",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritBurst\\CritBurstChip2.asset.meta"
+  },
+  {
+    "Hash": "1A39EAE81042F2B66D2A9668D2AE9DF6ED46665C397122F900824C373F7F9EB0",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritBurst\\CritBurstChip3.asset"
+  },
+  {
+    "Hash": "0DD28D3A70A3305DF919BF68D291C0F050591FC16FAF2F2EDCB37C57B2DD9B1B",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritBurst\\CritBurstChip3.asset.meta"
+  },
+  {
+    "Hash": "2554500BD38EBAA1D41AA325313DB17EBCFF510EF9C7FB3EDA383F08D64F06F4",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritBurst\\CritBurstChip4.asset"
+  },
+  {
+    "Hash": "F398DA960604B60E603878C291F86DF1C55CDF9377619DBA13C04F05B1A65BBB",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritBurst\\CritBurstChip4.asset.meta"
+  },
+  {
+    "Hash": "AAE0E819E30933E5B88D19779DAC7C57F2B3B772AE7D67477CB8BA7DB65C435D",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritBurst\\CritBurstChip5.asset"
+  },
+  {
+    "Hash": "361CCD9174970937507438834470F28FD6A0333C6FD6CD6423A1D406EB5EECAD",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritBurst\\CritBurstChip5.asset.meta"
+  },
+  {
+    "Hash": "7F815186F4B912C2376BA3346B04035C0430AA8FFC3B8B3BA4B7C53F1ED03EF4",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritBurst\\CritBurstCore.asset"
+  },
+  {
+    "Hash": "66F2722D814CE3DBF833DA5E563684DFD729E378D115CD2D5EDE2018ED5D1958",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritBurst\\CritBurstCore.asset.meta"
+  },
+  {
+    "Hash": "6FFEA5ED33B280C2D33A6FAEAF4E2B52B78B87A15E3C8D50FF1D4420FC6ACCB7",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritBurst\\CritBurstImpact.prefab"
+  },
+  {
+    "Hash": "83375C34FC7CAAAAC8BABA7D942A81765EFF52CC244EF9CD3E4C1FF415DCD86A",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritBurst\\CritBurstImpact.prefab.meta"
+  },
+  {
+    "Hash": "0693F7359972BB63B62E4AC11BAE7DDE9F1CE552703A0C1EACBA0B11067FA994",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritBurst\\CritBurstStar.asset"
+  },
+  {
+    "Hash": "66FBB23E734132498EA2E8B4F9E841BE116F76FB2EE14AF1D17360CB3D5FCE0D",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritBurst\\CritBurstStar.asset.meta"
+  },
+  {
+    "Hash": "61DFE0878B51DE2343CDD52D2396254E4B6CBC39F234012330E8699D769A3627",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritBurst\\CritBurstThump.wav"
+  },
+  {
+    "Hash": "F10A5318F54DB355629AF704B419B4C5E6DF3A2CDEE00509995E3DF04575F2AD",
+    "Path": "C:\\Users\\User\\Desktop\\Games\\Github\\ClickerGame\\Assets\\Art\\LateGame\\CritBurst\\CritBurstThump.wav.meta"
+  }
+]

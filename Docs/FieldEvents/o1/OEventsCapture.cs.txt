@@ -1,0 +1,187 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using UnityEditor;
+using UnityEngine;
+using Object = UnityEngine.Object;
+
+// Geçici, yalnız izole kopyada (repo değişmez): O1 hizalama teşhisi (24 Ekim 2026).
+// Dört tarla olayı × iki tarla düzeni (saksılı / karışık = dama tahtası saksısız). Hücre çizgileri (DebugOutlines) açık.
+// Her biri için: aktif an, ve hedefler kırıldıktan sonra (çözülme + bitiş; kalan çember / görsel var mı).
+[InitializeOnLoad]
+public static class OEventsCapture
+{
+    const string Key = "OEventsCapture", Out = "Logs/OEvents/";
+    const int TW = 760, TH = 470;
+    const BindingFlags F = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
+    static readonly FieldEventKind[] Kinds = { FieldEventKind.ThornSiege, FieldEventKind.InvasiveSprout, FieldEventKind.GraftedShell, FieldEventKind.WanderingBounty };
+    static readonly string[] Layouts = { "saksili", "karisik" };
+    static int step, kind, layout, hits; static double next, waitUntil;
+    static readonly List<string> notes = new();
+    static readonly List<Texture2D> tiles = new();
+    static Vector3 focus;
+    static object Lab(string n, params object[] a) { var m = typeof(GecOyunV1Verification).GetMethod(n, BindingFlags.Static | BindingFlags.NonPublic); return m.Invoke(null, m.GetParameters().Select((p, i) => i < a.Length ? a[i] : p.DefaultValue).ToArray()); }
+    static OEventsCapture() { EditorApplication.update += Tick; }
+    public static void RunBatch()
+    {
+        if (!Application.dataPath.Contains("VerificationProject")) throw new Exception("isolated only");
+        GecOyunV1Verification.RunBatch(); SessionState.SetBool("GecOyunV1Verification", false); SessionState.SetBool(Key, true);
+    }
+    static FieldEventDirector Events => FieldEventDirector.Instance;
+    static GridSystem Grid => GridManager.Instance.GetGridSystem();
+    static string Name => $"{Kinds[kind]}_{Layouts[layout]}";
+    static Vector3 Focus(FieldEvent e)
+    {
+        var points = new List<Vector3>();
+        for (int z = 0; z < e.ZoneCount; z++) foreach (var c in e.Zone(z)) points.Add(FieldCells.World(Grid, c));
+        foreach (var t in e.Targets) points.Add(t.Position);
+        if (points.Count == 0) return FieldCells.World(Grid, new GridPosition(5, 5));
+        var sum = Vector3.zero; foreach (var p in points) sum += p; return sum / points.Count;
+    }
+    static void Describe(FieldEvent e, string moment)
+    {
+        var zones = string.Join(" | ", Enumerable.Range(0, e.ZoneCount).Select(z => string.Join(",", e.Zone(z).Select(c => $"({c.x},{c.z}){(HasPot(c) ? "S" : "-")}"))));
+        var targets = string.Join(" ", e.Targets.Select(t => $"[{t.Cell.x},{t.Cell.z}{(HasPot(t.Cell) ? "S" : "-")} pos-cell {(t.Position - FieldCells.World(Grid, t.Cell)).ToString("0.00")} {t.Remaining}/{t.Durability}]"));
+        notes.Add($"{Name} {moment}: phase {e.Phase} t {e.PhaseTime:0.00} zones {zones} targets {targets}");
+    }
+    static bool HasPot(GridPosition c) { var go = Grid.GetGridObject(c); return go != null && go.GetPlanterBrain() != null; }
+
+    static void Tick()
+    {
+        if (!SessionState.GetBool(Key, false) || !EditorApplication.isPlaying || EditorApplication.isCompiling) return;
+        if (next == 0) { next = EditorApplication.timeSinceStartup + 2; return; }
+        if (EditorApplication.timeSinceStartup < next) { EditorApplication.QueuePlayerLoopUpdate(); return; }
+        try
+        {
+            switch (step)
+            {
+                case 0:
+                    if (double.IsNaN((double)Lab("Lab"))) return;
+                    Directory.CreateDirectory(Out);
+                    LateGamePresenter.DebugOutlines = true;
+                    step = 1; break;
+                case 1:   // düzen + olay başlat
+                    if (Events.Current != null) Events.End();
+                    Lab("ResetRewards"); Lab("ClearTiles"); Lab("Strike", 100f, .4f);
+                    if (layout == 1)
+                        foreach (var b in Object.FindObjectsByType<PlanterBrain>(FindObjectsSortMode.None).Where(b => b.IsPlaced).ToList())
+                        {
+                            var cell = b.OccupiedGrids.Count > 0 ? b.OccupiedGrids[0].GetGridPosition() : default;
+                            if ((cell.x + cell.z) % 2 == 1) b.RemoveSelf();
+                        }
+                    Lab("Refill", true);
+                    var plan = (FieldEventPlanSO)Lab("FastPlan");
+                    bool started = Events.StartNow(Kinds[kind], 0f, 101 + kind * 7 + layout, plan);
+                    notes.Add($"{Name}: started {started}");
+                    if (!started) { Advance(); return; }
+                    step = 2; break;
+                case 2:   // aktif olana kadar bekle
+                {
+                    var e = Events.Current;
+                    if (e == null) { notes.Add($"{Name}: ended before active"); Advance(); return; }
+                    if (e.Phase != FieldEventPhase.Active || e.PhaseTime < .4f) { EditorApplication.QueuePlayerLoopUpdate(); return; }
+                    Time.timeScale = 0f;
+                    focus = Focus(e);
+                    Describe(e, "aktif");
+                    tiles.Add(Shot($"{Name}_1_aktif"));
+                    Outlines(false); Shot($"{Name}_1_aktif_cizgisiz", false); Outlines(true);
+                    Time.timeScale = 1f;
+                    hits = 0; step = 3; break;
+                }
+                case 3:   // hedefleri kır (her saldırı yeni seri: hedef başına bir darbe)
+                {
+                    var e = Events.Current;
+                    if (e == null || e.Phase != FieldEventPhase.Active || e.Targets.Count == 0 || e.Targets.All(t => t.Broken) || hits > 60)
+                    {
+                        if (e != null) Describe(e, "kirildi");
+                        waitUntil = EditorApplication.timeSinceStartup + .05; step = 4; break;
+                    }
+                    foreach (var t in e.Targets) if (!t.Broken) { Lab("AttackAt", t.Position); hits++; }
+                    break;
+                }
+                case 4:   // çözülme ortası
+                {
+                    var e = Events.Current;
+                    if (e != null && e.Phase == FieldEventPhase.Active && e.Targets.Count == 0) { notes.Add($"{Name}: no targets (time-limited)"); }
+                    Time.timeScale = 0f;
+                    tiles.Add(Shot($"{Name}_2_cozulme"));
+                    Time.timeScale = 1f;
+                    waitUntil = EditorApplication.timeSinceStartup + 1.5; step = 5; break;
+                }
+                case 5:   // bitti mi; kalan görsel var mı
+                {
+                    var e = Events.Current;
+                    if (e != null && EditorApplication.timeSinceStartup < waitUntil) { EditorApplication.QueuePlayerLoopUpdate(); return; }
+                    Time.timeScale = 0f;
+                    var p = Object.FindFirstObjectByType<LateGamePresenter>();
+                    notes.Add($"{Name} sonra: current {(e == null ? "none" : e.Phase.ToString())}, eventItems {p.EventItems}, decorations {p.ActiveDecorations}, flashes {p.Flashes}");
+                    tiles.Add(Shot($"{Name}_3_sonra"));
+                    Time.timeScale = 1f;
+                    Advance(); return;
+                }
+            }
+        }
+        catch (Exception ex) { Finish(ex.InnerException ?? ex); return; }
+        EditorApplication.QueuePlayerLoopUpdate();
+    }
+    static void Advance()
+    {
+        if (Events.Current != null) Events.End();
+        kind++;
+        if (kind >= Kinds.Length) { kind = 0; layout++; }
+        if (layout >= Layouts.Length) { Sheet(); Finish(null); return; }
+        step = 1; next = EditorApplication.timeSinceStartup + .3;
+    }
+    static void Outlines(bool on)
+    {
+        var p = Object.FindFirstObjectByType<LateGamePresenter>();
+        var r = (MeshRenderer)typeof(LateGamePresenter).GetField("outlineRenderer", F).GetValue(p);
+        if (r != null) r.enabled = on;
+    }
+    static Texture2D Shot(string name, bool keep = true)
+    {
+        var cam = Camera.main; var tr = cam.transform;
+        Vector3 pos = tr.position; float size = cam.orthographicSize;
+        Vector3 v = focus + Vector3.up * .6f - pos, fw = tr.forward;
+        tr.position = pos + (v - fw * Vector3.Dot(v, fw));
+        if (cam.orthographic) cam.orthographicSize = size * .5f;
+        var canvases = Object.FindObjectsByType<Canvas>(FindObjectsSortMode.None).Where(c => c.isRootCanvas && c.renderMode == RenderMode.ScreenSpaceOverlay).ToArray();
+        foreach (var canvas in canvases) canvas.enabled = false;
+        var target = new RenderTexture(1600, 900, 24); target.Create(); cam.targetTexture = target;
+        UnityEngine.Rendering.RenderPipeline.SubmitRenderRequest(cam, new UnityEngine.Rendering.Universal.UniversalRenderPipeline.SingleCameraRequest { destination = target });
+        var previous = RenderTexture.active; RenderTexture.active = target;
+        var image = new Texture2D(1600, 900, TextureFormat.RGB24, false);
+        image.ReadPixels(new Rect(0, 0, 1600, 900), 0, 0); image.Apply();
+        Vector3 sp = cam.WorldToScreenPoint(focus + Vector3.up * .6f);
+        cam.targetTexture = null; RenderTexture.active = previous;
+        foreach (var canvas in canvases) canvas.enabled = true;
+        tr.position = pos; cam.orthographicSize = size;
+        int x = Mathf.Clamp(Mathf.RoundToInt(sp.x - TW / 2f), 0, 1600 - TW), y = Mathf.Clamp(Mathf.RoundToInt(sp.y - TH / 2f), 0, 900 - TH);
+        var crop = new Texture2D(TW, TH, TextureFormat.RGB24, false);
+        crop.SetPixels(image.GetPixels(x, y, TW, TH)); crop.Apply();
+        File.WriteAllBytes(Out + name + ".png", crop.EncodeToPNG());
+        Object.Destroy(image); Object.Destroy(target);
+        if (keep) return crop;
+        Object.Destroy(crop); return null;
+    }
+    static void Sheet()
+    {
+        if (tiles.Count == 0) return;
+        int gap = 8, cols = 3, rows = (tiles.Count + cols - 1) / cols;
+        var sheet = new Texture2D(TW * cols + gap * (cols + 1), TH * rows + gap * (rows + 1), TextureFormat.RGB24, false);
+        sheet.SetPixels(Enumerable.Repeat(new Color(.1f, .075f, .14f), sheet.width * sheet.height).ToArray());
+        for (int i = 0; i < tiles.Count; i++) { int r = i / cols, c = i % cols; sheet.SetPixels(gap + c * (TW + gap), sheet.height - (r + 1) * (TH + gap), TW, TH, tiles[i].GetPixels()); }
+        sheet.Apply(); File.WriteAllBytes(Out + "O1_Teshis.png", sheet.EncodeToPNG());
+    }
+    static void Finish(Exception e)
+    {
+        LateGamePresenter.DebugOutlines = false;
+        Time.timeScale = 1f;
+        SessionState.SetBool(Key, false);
+        Directory.CreateDirectory(Out);
+        File.WriteAllLines(Out + "OEventsCapture.txt", new[] { e == null ? "PASS" : "FAIL " + e }.Concat(notes));
+        EditorApplication.Exit(e == null ? 0 : 1);
+    }
+}

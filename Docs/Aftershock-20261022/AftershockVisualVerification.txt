@@ -1,0 +1,28 @@
+PASS
+PASS normal explosion returned after lifetime
+PASS real aftershock scheduled
+PASS only one Battle_Effect_White; no normal explosion duplicates
+PASS real damage invokes normal plant OnDamaged response
+PASS no red aftershock outline
+PASS aftershock scale smaller than normal explosion
+PASS aftershock naturally returned to pool
+PASS pool cap 32; excess visuals skipped
+PASS all saturated effects returned
+PASS all saturated effects returned
+PASS stable warmed object/material/mesh counts, cycle 1
+PASS all saturated effects returned
+PASS stable warmed object/material/mesh counts, cycle 2
+PASS all saturated effects returned
+PASS stable warmed object/material/mesh counts, cycle 3
+PASS all saturated effects returned
+PASS stable warmed object/material/mesh counts, cycle 4
+PASS all saturated effects returned
+PASS stable warmed object/material/mesh counts, cycle 5
+PASS all saturated effects returned
+PASS stable warmed object/material/mesh counts, cycle 6
+PASS all saturated effects returned
+PASS stable warmed object/material/mesh counts, cycle 7
+PASS all saturated effects returned
+PASS stable warmed object/material/mesh counts, cycle 8
+PASS disable returns all leases
+PASS pool reuses cleanly after disable

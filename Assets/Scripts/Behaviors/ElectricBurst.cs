@@ -44,10 +44,17 @@ public sealed class ElectricBurst : MonoBehaviour
     // cells: dalganın eriştiği tarla hücresi sayısı (canlı bitki olsun olmasın).
     public static void Strike(HarvestBehaviorManager manager, ElectricBurst visual, PlanterBrain planter, GridSystem grid,
         IReadOnlyList<GridPosition> targets, IReadOnlyList<GridPosition> origins, int damage, bool precomputed, HarvestLink link,
-        out int struck, out int killed, out int cells)
+        out int struck, out int killed, out int cells, bool yellowEcho = false)
     {
         struck = killed = cells = 0;
+#if UNITY_EDITOR
+        int editorBaseDamage = damage;
+#endif
         if (!precomputed) damage = planter != null ? planter.GetBehaviorDamage(damage, DamageType.Electric) : damage;
+#if UNITY_EDITOR
+        if (EditorNumericTrace.Listening)
+            EditorNumericTrace.Report(new EditorNumericTrace.BehaviorDamage(planter, DamageType.Electric, link, editorBaseDamage, 1f, 1f, precomputed, damage));
+#endif
         float xp = planter != null ? ResonanceManager.ElectricXP(planter.ActiveResonances) : 1f;
         int count = 0, undrawn = 0;
         for (int i = 0; i < targets.Count; i++)
@@ -73,13 +80,18 @@ public sealed class ElectricBurst : MonoBehaviour
                 VFXManager.Instance?.PlayHit(point, damage, false);
             }
         }
-        if (visual != null) visual.Show(manager, planter, count);
+        if (visual != null) visual.Show(manager, planter, count, yellowEcho);
         if (undrawn > 0 && manager != null) manager.CountSkippedBolts(undrawn);
     }
 
-    void Show(HarvestBehaviorManager manager, PlanterBrain planter, int boltCount)
+    void Show(HarvestBehaviorManager manager, PlanterBrain planter, int boltCount, bool yellowEcho)
     {
         owner = manager; source = planter; age = 0; count = boltCount;
+        // Reset on every pool checkout: only Çifte Akım's second wave gets the warm palette.
+        Color rim = yellowEcho ? new Color(1f, .78f, .12f) : new Color(.08f, .7f, 1f);
+        Color core = yellowEcho ? new Color(1f, .98f, .76f) : new Color(.88f, 1f, 1f);
+        for (int i = 0; i < bolts.Length; i++)
+            bolts[i].startColor = bolts[i].endColor = i % 2 == 0 ? rim : core;
         for (int b = 0; b < count; b++) bolts[b * 2].enabled = bolts[b * 2 + 1].enabled = true;
         Draw();
     }

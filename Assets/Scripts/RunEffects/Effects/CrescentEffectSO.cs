@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Full-game cursor route: charge per actually damaged direct target; choose one of four
-// cardinal grid directions independently of reward RNG. Snapshot route to the open edge.
+// cardinal grid directions independently of reward RNG. Snapshot a bounded world-distance route.
 // Legacy profiles retain attack-count charging and the original four-cell centreward route.
 // Damage, growth, return timing and bounded scheduling remain on the shared reward path.
 [CreateAssetMenu(menuName = "ClickerGame/Run Effects/Hilal Darbesi", fileName = "CrescentEffect")]
@@ -15,12 +15,16 @@ public sealed class CrescentEffectSO : RunEffectSO
     [Range(1, 10)] public int steps = 4;
     [Tooltip("İki adım arası (sn, oyun zamanı).")]
     [Min(0.01f)] public float stepSeconds = 0.07f;
+    [Tooltip("Fareden çıkan dalganın en fazla ilerlediği dünya mesafesi.")]
+    [Min(0.1f)] public float maxDistance = 3f;
+    [Tooltip("Fare halkasından çıkan hilalin hızı, dünya birimi/sn.")]
+    [Min(0.1f)] public float moveSpeed = 8f;
     [Tooltip("Adım hasarı: hasat hasarı stat'ına oran.")]
     [Min(0f)] public float damage = 0.8f;
 
     public override string Summary =>
         RoundManager.Instance!=null&&RoundManager.Instance.Profile!=null&&RoundManager.Instance.Profile.crescentFullRows
-        ? $"her {everyAttacks} doğrudan bitki isabetinde fareden hilal · rastgele dört yönden birinde açık alan kenarına gider · hasat hasarının %{Percent(damage)}'i"
+        ? $"her {everyAttacks} doğrudan bitki isabetinde fareden hilal · rastgele ana yönde en fazla {Number(maxDistance)} birim · hasat hasarının %{Percent(damage)}'i"
         : $"her {everyAttacks} geçerli vuruşta bir hilal · {steps} hücre ilerler · hasat hasarının %{Percent(damage)}'i";
 
     public override RunEffect Create() => new CrescentEffect();
@@ -28,7 +32,9 @@ public sealed class CrescentEffectSO : RunEffectSO
 
 public sealed partial class CrescentEffect : RunEffect
 {
-    public const int MaxWaves = 4;
+    public const int MaxPrimaryWaves = 4;
+    public const int MaxWaves = MaxPrimaryWaves * 2;
+    public const float BladeLength = 2f, BladeTip = .48f * BladeLength;
     // Dolunay'ın saldırı duraklaması kaynağı ('DOLU').
     public const int PauseSource = 0x444F4C55;
     private const int StepTimer = 0;
@@ -37,7 +43,12 @@ public sealed partial class CrescentEffect : RunEffect
     {
         public bool active, isReturn, fullMoonDone;
         public int x, z, dx, dz, step, steps, growth, halfWidth, damage;
-        public bool fullRow, cursorStart;
+        public bool fullRow, cursorStart, finishing;
+        public float travelDistance;
+        public Vector3 cursorCenter;
+        public float ringRadius, firstDistance, legFrom, legTo, startDelay, speed, distanceLimit;
+        public float spawnVisualHalf;
+        public double bornAt;
         public Vector3 birth;
         public FieldBounds bounds;
         public int serial;
@@ -49,7 +60,13 @@ public sealed partial class CrescentEffect : RunEffect
     private CrescentEffectSO Config => (CrescentEffectSO)Data;
     private uint routeRandom;
     private int nextSerial;
-    private readonly HashSet<PlantHealth>[] struck = {new(128),new(128),new(128),new(128)};
+    private readonly HashSet<PlantHealth>[] struck = CreateHitSets();
+    private static HashSet<PlantHealth>[] CreateHitSets()
+    {
+        var sets=new HashSet<PlantHealth>[MaxWaves];
+        for(int i=0;i<sets.Length;i++)sets[i]=new HashSet<PlantHealth>(32);
+        return sets;
+    }
     public bool FullRows {get;private set;}
     public override bool OnAdded(int placement)
     {
@@ -104,7 +121,7 @@ public sealed partial class CrescentEffect : RunEffect
             if(!duplicate)Counter++;
         }
         int threshold=Mathf.Max(1,Config.everyAttacks);
-        while(Counter>=threshold){Counter-=threshold;Launch(attack.Center);}
+        while(Counter>=threshold){Counter-=threshold;LaunchAt(attack.Center,attack.Radius);}
     }
 
     private int FreeWave()
@@ -114,7 +131,11 @@ public sealed partial class CrescentEffect : RunEffect
     }
 
     private void Launch(Vector3 center)
+        => LaunchAt(center,StatManager.Instance.GetFinalStat(StatType.AreaRadius,StatTarget.Player));
+
+    private void LaunchAt(Vector3 center,float radius)
     {
+        if(FullRows){LaunchCursor(center,radius);return;}
         int index = FreeWave();
         GridSystem grid = Host.Grid;
         if (index < 0 || grid == null || !Host.TryBounds(out FieldBounds bounds)) { Skipped++; return; }
@@ -125,20 +146,13 @@ public sealed partial class CrescentEffect : RunEffect
         if (Mathf.Abs(towardX) >= Mathf.Abs(towardZ)) dx = towardX < 0 ? -1 : 1;
         else dz = towardZ < 0 ? -1 : 1;
         int length=Config.steps;
-        if(FullRows)
-        {
-            int direction=Mathf.Min(3,(int)(ChainRandom.Value(ref routeRandom)*4));
-            dx=direction==0?1:direction==1?-1:0;dz=direction==2?1:direction==3?-1:0;
-            length=1+(dx>0?bounds.MaxX-origin.x:dx<0?origin.x-bounds.MinX:dz>0?bounds.MaxZ-origin.z:origin.z-bounds.MinZ);
-            // Virtual previous cell makes the first timed hit include the cursor cell.
-            origin=new GridPosition(origin.x-dx,origin.z-dz);
-        }
         struck[index].Clear();
         waves[index] = new Wave { active = true, x = origin.x, z = origin.z, dx = dx, dz = dz, steps = length, damage = Host.StatDamage(Config.damage),
-            fullRow=FullRows,cursorStart=FullRows,birth=center,bounds=bounds,serial=++nextSerial,legStart=Host.Clock,legSeconds=Config.stepSeconds };
+            birth=center,bounds=bounds,serial=++nextSerial,legStart=Host.Clock,legSeconds=Config.stepSeconds,
+            travelDistance=0 };
         if (!Host.Schedule(this, Config.stepSeconds, StepTimer, index)) { waves[index].active = false; Skipped++; return; }
         Launched++;
-        Vector3 from = FullRows?center:FieldCells.World(grid, origin);
+        Vector3 from = FieldCells.World(grid, origin);
         Host.Emit(new RewardCue(RewardCueKind.CrescentLaunch, from, FieldCells.World(grid,new GridPosition(origin.x+dx*length,origin.z+dz*length)), length));
     }
 
@@ -150,12 +164,14 @@ public sealed partial class CrescentEffect : RunEffect
     private void Step(int index)
     {
         Wave wave = waves[index];
+        if(wave.cursorStart){StepCursor(index);return;}
         if (!wave.active || !Host.TryBounds(out FieldBounds bounds)) { waves[index].active = false;struck[index].Clear(); return; }
+        if(wave.finishing){waves[index].active=false;struck[index].Clear();return;}
         if(wave.fullRow)bounds=wave.bounds;
         wave.step++;
         int cx = wave.x + wave.dx * wave.step, cz = wave.z + wave.dz * wave.step;
         // Tarlanın kenarı: dalga burada biter (kilitli ve tarla dışı hücreye vurulmaz).
-        if (!bounds.Contains(cx, cz)) { waves[index].active = false;struck[index].Clear(); return; }
+        if (!bounds.Contains(cx, cz)||!FieldCells.IsOpen(Host.Grid,new GridPosition(cx,cz))) { waves[index].active = false;struck[index].Clear(); return; }
 
         int half = wave.isReturn ? wave.halfWidth : Growth != null ? Mathf.Min(wave.growth, Growth.maxHalfWidth) : 0;
         int damage = wave.isReturn || Growth == null || wave.growth == 0
@@ -200,13 +216,20 @@ public sealed partial class CrescentEffect : RunEffect
             }
         }
 
-        if (wave.step >= wave.steps || !Host.Schedule(this, Config.stepSeconds, StepTimer, index)) wave.active = false;
         wave.legStart=Host.Clock;wave.legSeconds=Config.stepSeconds;
+        if(wave.fullRow&&wave.step>=wave.steps)
+        {
+            float tail=wave.travelDistance-(wave.step-1)*FieldCells.CellSize;
+            wave.finishing=tail>.001f;
+            wave.legSeconds=Config.stepSeconds*tail/FieldCells.CellSize;
+            if(!wave.finishing||!Host.Schedule(this,wave.legSeconds,StepTimer,index))wave.active=false;
+        }
+        else if(wave.step>=wave.steps||!Host.Schedule(this,Config.stepSeconds,StepTimer,index))wave.active=false;
         if(!wave.active)struck[index].Clear();
         waves[index] = wave;
     }
 
-    // Karşı yönden ikinci dalga: ilk dalganın varacağı son hücreden başlayıp başlangıç hücresine doğru geri gelir. Büyümez, yeni
+    // Tam sürümde faredeki doğum noktasından farklı rastgele yönlerde iki dalga. Eski profilde karşı uçtan dönüş korunur. Büyümez, yeni
     // Dolunay başlatamaz. Bedel: kısa, üst sınırı olan doğrudan saldırı duraklaması (DirectAttackPause).
     private void TriggerFullMoon(Wave forward, FieldBounds bounds, Vector3 at)
     {

@@ -1,0 +1,36 @@
+PASS
+PASS isolated scene uses no real saves
+PASS automatic opposite pair retains lane 4, side 0, grid 3
+PASS exactly two visible antenna models
+PASS model is at current outer edge
+PASS model is at current outer edge
+PASS automatic opposite pair retains lane 4, side 0, grid 7
+PASS exactly two visible antenna models
+PASS model is at current outer edge
+PASS model is at current outer edge
+PASS automatic opposite pair retains lane 4, side 0, grid 11
+PASS exactly two visible antenna models
+PASS model is at current outer edge
+PASS model is at current outer edge
+PASS automatic opposite pair retains lane 4, side 2, grid 3
+PASS exactly two visible antenna models
+PASS model is at current outer edge
+PASS model is at current outer edge
+PASS automatic opposite pair retains lane 4, side 2, grid 11
+PASS exactly two visible antenna models
+PASS model is at current outer edge
+PASS model is at current outer edge
+PASS active test menu catalog excludes Kritik Patlama
+PASS visible scenario list excludes Kritik Patlama
+PASS first electric wave runs
+PASS electric lines visible: Electric_First
+PASS electric palette: Electric_First
+PASS real second wave scheduled
+PASS electric lines visible: Electric_Second
+PASS electric palette: Electric_Second
+PASS normal wave runs after warm wave returned to pool
+PASS electric lines visible: Electric_ReusedNormal
+PASS electric palette: Electric_ReusedNormal
+PASS overload shared path runs
+PASS electric lines visible: Electric_OverloadPath
+PASS electric palette: Electric_OverloadPath

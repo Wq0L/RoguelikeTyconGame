@@ -18,6 +18,8 @@ public static class AttackFeed
     public static bool InAttack { get; private set; }
     // Son başlayan saldırının sıra numarası (dinleyici varken artar): "aynı kök saldırı" kimliği, zincir ödülünden bağımsız.
     public static int Serial => report.Serial;
+    // Sunum için salt okunur: son başlayan doğrudan saldırının merkezi (ör. vurulan hedefin geri tepme yönü).
+    public static Vector3 LastCenter => report.Center;
 
     // Şansı tutan ve gerçekten başlayan NORMAL davranış tetiği (nesil 0): saksı, davranış, kaynak hücre, bitkinin konumu.
     // Zincirden, artçıdan ya da ödül etkisinden doğan davranışlar bildirilmez.

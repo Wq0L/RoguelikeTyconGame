@@ -62,8 +62,6 @@ MonoBehaviour:
       note: 
     - reward: {fileID: 11400000, guid: d42896da230af62d404150939c5713bd, type: 2}
       note: 
-    - reward: {fileID: 11400000, guid: d22d3b5c2e8c5af91a77e1200be98836, type: 2}
-      note: 
     - reward: {fileID: 11400000, guid: 0e1098613800ec31e696c1214073994a, type: 2}
       note: 
   - id: guclu

@@ -86,6 +86,7 @@ MonoBehaviour:
   shell: {fileID: 0}
   bounty: {fileID: 0}
   antenna: {fileID: 0}
+  critBurst: {fileID: 0}
   onShow: []
   onHit: []
   onHide: []
@@ -387,7 +388,7 @@ GameObject:
   - component: {fileID: 7514029547351418137}
   - component: {fileID: 3494992703419089637}
   m_Layer: 0
-  m_Name: SharedAmberStar
+  m_Name: VioletStar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -415,7 +416,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7482094798397663217}
-  m_Mesh: {fileID: 4300000, guid: 9312e4518f192f345ac6e9e0dfa217f8, type: 2}
+  m_Mesh: {fileID: 4300000, guid: 14bd48e98f836e547803e7afaddef276, type: 2}
 --- !u!23 &3494992703419089637
 MeshRenderer:
   m_ObjectHideFlags: 0

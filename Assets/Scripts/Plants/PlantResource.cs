@@ -39,10 +39,19 @@ public class PlantResource : MonoBehaviour
         double xpAmount = System.Math.Round(float.IsPositiveInfinity(xpProduct)
             ? plantData.xpAmount * (double)xpMultiplier * RunBalanceSO.ActiveXpMultiplier(plantData.rarity)
             : xpProduct);
+#if UNITY_EDITOR
+        // Sayısal iz (yalnız gözlem): ödül hesabının gerçek ara değerleri.
+        int editorRounded = reward;
+        double editorXpRounded = xpAmount;
+        float editorDuplicateChance = 0f;
+#endif
 
         if (planterBrain != null)
         {
             float dupChance = planterBrain.GetFinalStat(StatType.DuplicateChance);
+#if UNITY_EDITOR
+            editorDuplicateChance = dupChance;
+#endif
             if (dupChance > 0f && Random.value <= dupChance)
             {
                 reward = NumericSafety.Add(reward, reward, NumericSite.Resource);
@@ -50,8 +59,14 @@ public class PlantResource : MonoBehaviour
             }
         }
 
+#if UNITY_EDITOR
+        int editorAfterDuplicate = reward;
+#endif
         // Uzmanlaşma hasat kaynağı çarpanı: duplicate dahil ödüle bir kez, kesirli kalan kaynak başına taşınır. XP ve skor etkilenmez.
         reward = SpecializationManager.ScaleHarvestResource(plantData.resourceType, reward);
+#if UNITY_EDITOR
+        int editorAfterSpecialization = reward;
+#endif
 
         // Resolve at harvest time, not birth: moving/expired regions never leave a permanent pooled buff.
         GridPosition bountyCell=FieldCells.Grid!=null?FieldCells.Grid.GetGridPosition(transform.position):default;
@@ -61,6 +76,12 @@ public class PlantResource : MonoBehaviour
             reward=NumericSafety.Add(reward,reward,NumericSite.Resource);
             xpAmount*=2d;
         }
+#if UNITY_EDITOR
+        if (EditorNumericTrace.Listening)
+            EditorNumericTrace.Report(new EditorNumericTrace.HarvestReward(plantData, planterBrain, bountyCell, resourceMultiplier, editorRounded,
+                editorDuplicateChance, editorAfterDuplicate != editorRounded, editorAfterDuplicate, editorAfterSpecialization, bounty != null, reward,
+                xpMultiplier, RunBalanceSO.ActiveXpMultiplier(plantData.rarity), editorXpRounded, xpAmount));
+#endif
         ResourceManager.Instance.AddResource(plantData.resourceType, reward, transform.position);
         ProgressionManager.Instance.AddXP(xpAmount);
         bounty?.RecordHarvest(bountyCell);

@@ -2,6 +2,42 @@ using UnityEngine;
 
 public sealed partial class LateGamePresenter
 {
+    private readonly System.Collections.Generic.Dictionary<Material,Material> moonFadeMaterials=new();
+    private MaterialPropertyBlock moonFadeBlock;
+    private static readonly int MoonOpacityId=Shader.PropertyToID("_Opacity");
+    private void SetMoonOpacity(Item item,float opacity)
+    {
+        moonFadeBlock ??= new MaterialPropertyBlock();
+        if(item.moonRenderers==null)
+        {
+            item.moonRenderers=item.root.GetComponentsInChildren<Renderer>(true);
+            foreach(var renderer in item.moonRenderers)
+            {
+                var materials=renderer.sharedMaterials;
+                for(int i=0;i<materials.Length;i++)
+                {
+                    var original=materials[i];
+                    if(original==null||!original.HasProperty(MoonOpacityId))continue;
+                    if(!moonFadeMaterials.TryGetValue(original,out var fade))
+                    {
+                        fade=new Material(original){name=original.name+" Moon Fade",renderQueue=3000};
+                        fade.SetFloat("_SrcBlend",(float)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                        fade.SetFloat("_DstBlend",(float)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                        fade.SetFloat("_ZWrite",0);
+                        fade.SetOverrideTag("RenderType","Transparent");
+                        moonFadeMaterials.Add(original,fade);
+                    }
+                    materials[i]=fade;
+                }
+                renderer.sharedMaterials=materials;
+            }
+        }
+        foreach(var renderer in item.moonRenderers)
+        {
+            moonFadeBlock.Clear();renderer.GetPropertyBlock(moonFadeBlock);
+            moonFadeBlock.SetFloat(MoonOpacityId,opacity);renderer.SetPropertyBlock(moonFadeBlock);
+        }
+    }
     private readonly Item[] moonItems=new Item[CrescentEffect.MaxWaves];
     private CrescentEffect moonOwner;
     public int MoonItems {get {int count=0;foreach(var item in moonItems)if(item!=null)count++;return count;}}
@@ -26,17 +62,19 @@ public sealed partial class LateGamePresenter
                 item.root.transform.SetPositionAndRotation(view.Position,Quaternion.LookRotation(view.Direction));
                 item.content?.Show();moonItems[i]=item;
             }
-            float length=1.6f+view.HalfWidth*.7f;
+            float length=CrescentEffect.BladeLength;
             // Mesh tip is +.48 local Z: align that cutting front with the authoritative cell clock.
-            var position=view.Position-view.Direction*(.48f*length);position.y=Top(grid,bounds.Clamp(grid.GetGridPosition(position))).y+1.05f;
+            var position=view.Position-view.Direction*CrescentEffect.BladeTip;
+            // Keep the blade above planter rims instead of intersecting the soil/walls.
+            position.y=Mathf.Max(view.Position.y,Top(grid,bounds.Clamp(grid.GetGridPosition(position))).y)+.65f;
             item.root.transform.SetPositionAndRotation(position,Quaternion.LookRotation(view.Direction));
-            // Width changes with the real next damage front, never the picture's decorative width.
-            float width=FieldCells.CellSize*view.WidthCells;
+            // Visual growth follows travel while damage retains its own harvest rules.
+            float width=FieldCells.CellSize*(view.WidthCells+.2f);
             item.age+=Time.deltaTime;
-            float entry=Mathf.Clamp01(item.age/.06f);
-            item.scale=new Vector3(width,entry,length);
+            item.scale=new Vector3(width,1f,length);
             if(item.visual!=null)item.visual.localScale=item.scale;
-            if(!view.Active){Retire(item);moonItems[i]=null;}
+            SetMoonOpacity(item,view.Opacity);
+            if(!view.Active){Release(item);moonItems[i]=null;}
         }
     }
 }

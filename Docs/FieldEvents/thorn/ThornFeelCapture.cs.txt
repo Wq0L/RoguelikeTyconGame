@@ -1,0 +1,119 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using UnityEditor;
+using UnityEngine;
+using Object = UnityEngine.Object;
+
+// Geçici, yalnız izole kopyada (repo değişmez): Diken Kuşatması his çekimi (24 Ekim 2026), GERÇEK oyun koduyla.
+// Hazırlığın son 0,8 sn'si → çıkış (kök tümsekten) → aktif → kökün yanından 6 gerçek vuruş (0,2 sn arayla) → kırılma.
+// Oyun duraklatılır, EditorApplication.Step ile kare kare ilerler (oyun saati .02 sn/kare); her kare çekilir.
+[InitializeOnLoad]
+public static class ThornFeelCapture
+{
+    const string Key = "ThornFeelCapture", Out = "Logs/ThornFeel/";
+    const int TW = 760, TH = 470, HitEvery = 10, Hits = 6;
+    static int step, frame, hits, afterBreak = -1;
+    static double next;
+    static readonly List<string> notes = new();
+    static Vector3 focus, rootAt;
+    static object Lab(string n, params object[] a) { var m = typeof(GecOyunV1Verification).GetMethod(n, BindingFlags.Static | BindingFlags.NonPublic); return m.Invoke(null, m.GetParameters().Select((p, i) => i < a.Length ? a[i] : p.DefaultValue).ToArray()); }
+    static ThornFeelCapture() { EditorApplication.update += Tick; }
+    public static void RunBatch()
+    {
+        if (!Application.dataPath.Contains("VerificationProject")) throw new Exception("isolated only");
+        GecOyunV1Verification.RunBatch(); SessionState.SetBool("GecOyunV1Verification", false); SessionState.SetBool(Key, true);
+    }
+    static FieldEventDirector Events => FieldEventDirector.Instance;
+    static void Tick()
+    {
+        if (!SessionState.GetBool(Key, false) || !EditorApplication.isPlaying || EditorApplication.isCompiling) return;
+        if (next == 0) { next = EditorApplication.timeSinceStartup + 2; return; }
+        if (EditorApplication.timeSinceStartup < next) { EditorApplication.QueuePlayerLoopUpdate(); return; }
+        try
+        {
+            switch (step)
+            {
+                case 0:
+                    if (double.IsNaN((double)Lab("Lab"))) return;
+                    Directory.CreateDirectory(Out + "kare");
+                    GameSettings.ScreenShake = 1f;
+                    if (CameraFeel.Instance == null) Camera.main.gameObject.AddComponent<CameraFeel>();
+                    Lab("Strike", 100f, .4f); Lab("Refill", true);
+                    if (!Events.StartNow(FieldEventKind.ThornSiege, 0f, 12)) throw new Exception("thorn did not start");
+                    step = 1; break;
+                case 1:   // hazırlığın sonuna kadar gerçek zamanla
+                {
+                    var e = Events.Current;
+                    if (e == null) throw new Exception("event vanished");
+                    if (e.Phase == FieldEventPhase.Waiting || (e.Phase == FieldEventPhase.Preparing && e.PhaseTime < 4.2f)) { EditorApplication.QueuePlayerLoopUpdate(); return; }
+                    var grid = GridManager.Instance.GetGridSystem();
+                    rootAt = FieldCells.World(grid, e.Targets[0].Cell);
+                    Vector3 other = FieldCells.World(grid, e.Targets[1].Cell);
+                    focus = Vector3.Lerp(rootAt, other, .25f);
+                    notes.Add($"capture from phase {e.Phase} t {e.PhaseTime:0.00}; root {e.Targets[0].Cell.x},{e.Targets[0].Cell.z}");
+                    Time.captureDeltaTime = 1f / 30f;
+                    EditorApplication.isPaused = true;
+                    step = 2; break;
+                }
+                case 2:   // kare kare
+                {
+                    var e = Events.Current;
+                    Shot($"kare/{frame:000}");
+                    if (e != null && e.Phase == FieldEventPhase.Active && e.PhaseTime > .8f && hits < Hits && afterBreak < 0)
+                    {
+                        if (hits == 0 || (frame % HitEvery == 0))
+                        {
+                            // İmleç kökün sol önünde: geri tepme sağ arkaya.
+                            Lab("AttackAt", rootAt + new Vector3(-.55f, 0f, -.35f));
+                            hits++;
+                            notes.Add($"hit {hits} at frame {frame}: remaining {e.Targets[0].Remaining}");
+                            if (e.Targets[0].Broken) afterBreak = 0;
+                        }
+                    }
+                    if (afterBreak >= 0) afterBreak++;
+                    frame++;
+                    if (afterBreak > 30 || frame > 400) { EditorApplication.isPaused = false; Time.captureDeltaTime = 0; Finish(null); return; }
+                    EditorApplication.Step();
+                    return;
+                }
+            }
+        }
+        catch (Exception ex) { Finish(ex.InnerException ?? ex); return; }
+        EditorApplication.QueuePlayerLoopUpdate();
+    }
+    static void Shot(string name)
+    {
+        var cam = Camera.main; var tr = cam.transform;
+        Vector3 pos = tr.position; float size = cam.orthographicSize;
+        Vector3 v = focus + Vector3.up * .8f - pos, fw = tr.forward;
+        tr.position = pos + (v - fw * Vector3.Dot(v, fw));
+        if (cam.orthographic) cam.orthographicSize = size * .42f;
+        var canvases = Object.FindObjectsByType<Canvas>(FindObjectsSortMode.None).Where(c => c.isRootCanvas && c.renderMode == RenderMode.ScreenSpaceOverlay).ToArray();
+        foreach (var canvas in canvases) canvas.enabled = false;
+        var target = new RenderTexture(1600, 900, 24); target.Create(); cam.targetTexture = target;
+        UnityEngine.Rendering.RenderPipeline.SubmitRenderRequest(cam, new UnityEngine.Rendering.Universal.UniversalRenderPipeline.SingleCameraRequest { destination = target });
+        var previous = RenderTexture.active; RenderTexture.active = target;
+        var image = new Texture2D(1600, 900, TextureFormat.RGB24, false);
+        image.ReadPixels(new Rect(0, 0, 1600, 900), 0, 0); image.Apply();
+        Vector3 sp = cam.WorldToScreenPoint(focus + Vector3.up * .8f);
+        cam.targetTexture = null; RenderTexture.active = previous;
+        foreach (var canvas in canvases) canvas.enabled = true;
+        tr.position = pos; cam.orthographicSize = size;
+        int x = Mathf.Clamp(Mathf.RoundToInt(sp.x - TW / 2f), 0, 1600 - TW), y = Mathf.Clamp(Mathf.RoundToInt(sp.y - TH / 2f), 0, 900 - TH);
+        var crop = new Texture2D(TW, TH, TextureFormat.RGB24, false);
+        crop.SetPixels(image.GetPixels(x, y, TW, TH)); crop.Apply();
+        File.WriteAllBytes(Out + name + ".png", crop.EncodeToPNG());
+        Object.Destroy(image); Object.Destroy(target); Object.Destroy(crop);
+    }
+    static void Finish(Exception e)
+    {
+        SessionState.SetBool(Key, false);
+        Time.captureDeltaTime = 0;
+        Directory.CreateDirectory(Out);
+        File.WriteAllLines(Out + "ThornFeelCapture.txt", new[] { e == null ? "PASS" : "FAIL " + e }.Concat(notes));
+        EditorApplication.Exit(e == null ? 0 : 1);
+    }
+}

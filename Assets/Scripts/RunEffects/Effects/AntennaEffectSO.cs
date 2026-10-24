@@ -168,6 +168,8 @@ public static class AntennaSlots
     public static int Id(int side, int lane) => side * 100 + lane;
     public static int Side(int id) => id / 100;
     public static int Lane(int id) => id % 100;
+    // Karşı kenar, aynı mutlak satır/sütun: alan büyürken hiza değişmez.
+    public static int Opposite(int id) => Id(Side(id) ^ 1, Lane(id));
 
     public static bool IsValid(FieldBounds bounds, int id)
     {

@@ -50,6 +50,8 @@ public abstract class FieldEvent
     public bool ResolvedByPlayer { get; private set; }
     public readonly List<InterventionTarget> Targets = new(2);
     public float ActiveRemaining => Phase == FieldEventPhase.Active ? Mathf.Max(0f, ActiveSeconds - PhaseTime) : 0f;
+    // Sunum için salt okunur: hazırlığın bitmesine kalan süre (ör. çıkıştan hemen önceki bekleme animasyonu).
+    public float PrepareRemaining => Phase == FieldEventPhase.Preparing ? Mathf.Max(0f, Timing.prepareSeconds - PhaseTime) : 0f;
 
     // Sunum ve test: olayın bölgeleri (hücre listeleri). Çoğu olayda tek bölge; Aşılı Kabuk'ta iki.
     public abstract int ZoneCount { get; }

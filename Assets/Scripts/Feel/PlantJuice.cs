@@ -76,6 +76,17 @@ public sealed class PlantJuice : MonoBehaviour
         enabled = true;
     }
 
+    // Görsel şok (ör. yakına düşen meteor): hasar yok. 'delay' sonra aynı sönümlü yayla ezilir; uzaktakiler geç ve az esner,
+    // böylece halka çizmeden yayılan bir dalga okunur. Devam eden daha güçlü bir esnemeyi bastırmaz.
+    public void Shock(float strength, float delay)
+    {
+        if (strength <= 0f || (hitting && hitStrength >= strength && Time.time >= hitStart)) return;
+        hitting = true;
+        hitStart = Time.time + Mathf.Max(0f, delay);
+        hitStrength = strength;
+        enabled = true;
+    }
+
     private void Update()
     {
         float vertical = 1f, horizontal = 1f;
@@ -95,7 +106,8 @@ public sealed class PlantJuice : MonoBehaviour
         if (hitting)
         {
             float t = (Time.time - hitStart) / HitDuration;
-            if (t >= 1f) hitting = false;
+            if (t < 0f) { }   // gecikmeli şok henüz başlamadı
+            else if (t >= 1f) hitting = false;
             else
             {
                 // Sönümlü yay: ezilir (alçalıp genişler), sonra hafifçe uzayarak durulur.

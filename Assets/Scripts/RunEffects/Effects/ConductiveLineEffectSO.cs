@@ -2,10 +2,9 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-// İletken Hat (Bölüm 3.8, orta aşama; ön koşul: Elektrik Anteni). Ödül alınırken ikinci antenin konumu seçilir; iki antenin kenar
+// İletken Hat (Bölüm 3.8, orta aşama; ön koşul: Elektrik Anteni). İkinci anten aynı hizada karşı kenara otomatik yerleşir; iki antenin kenar
 // hücreleri arasındaki doğru üzerindeki hücreler "hat"tır (AntennaSlots.Line: iki uç dahil, tam sayı adımlı doğru).
-// - Hat kurulamayan konum seçilemez: hat en az 'minCells' hücre olmalıdır (iki anten aynı köşe hücresine bağlanıyorsa hat tek
-//   hücredir: geçersiz). İlk antenin konumu da seçilemez.
+// - Hat en az 'minCells' hücre olmalıdır. Başka kenar veya şerit kabul edilmez; ilk antenin hizası korunur.
 // - Her 'interval' saniyede bir hat üzerindeki canlı bitkilere vurur: hasat hasarı stat'ı × 'damage'. Doğrudan vuruş değildir
 //   (DamageType.Reward); antenlerin kendi vuruşundan ayrı bir sayaçtır.
 // - İkinci anten de bir antendir: 'secondAntennaPulses' açıksa kendi üç hücresine vurur.
@@ -22,10 +21,10 @@ public sealed class ConductiveLineEffectSO : RunEffectSO
     [Tooltip("İkinci anten kendi üç hücrelik vuruşunu da yapar mı.")]
     public bool secondAntennaPulses = true;
 
-    public override bool NeedsPlacement => true;
-    public override string PlacementPrompt => "İKİNCİ ANTENİ YERLEŞTİR\n<size=70%>İki anten arasındaki hücreler hat olur · hat en az " + minCells + " hücre olmalı</size>";
+    public override bool NeedsPlacement => false;
+    public override string PlacementPrompt => "İKİNCİ ANTEN\n<size=70%>İlk antenle aynı hizada, karşı kenara yerleşir</size>";
     public override string Summary =>
-        $"ikinci anten · iki anten arasındaki hücrelere {Number(interval)} sn'de bir hat vuruşu · hasat hasarının %{Percent(damage)}'i";
+        $"aynı hizada karşı kenara ikinci anten · iki anten arasındaki hücrelere {Number(interval)} sn'de bir hat vuruşu · hasat hasarının %{Percent(damage)}'i";
 
     public override RunEffect Create() => new ConductiveLineEffect();
 
@@ -43,20 +42,21 @@ public sealed class ConductiveLineEffectSO : RunEffectSO
         into.Clear();
         AntennaEffect antennas = host.Find<AntennaEffect>();
         if (antennas == null || antennas.Count != 1 || !host.TryBounds(out FieldBounds bounds)) return;
-        AntennaSlots.All(bounds, into);
-        for (int i = into.Count - 1; i >= 0; i--)
-            if (!Forms(bounds, antennas.Slot(0), into[i])) into.RemoveAt(i);
+        int opposite = AntennaSlots.Opposite(antennas.Slot(0));
+        if (Forms(bounds, antennas.Slot(0), opposite)) into.Add(opposite);
     }
 
     public override bool IsValidPlacement(RunEffects host, int placement)
     {
         AntennaEffect antennas = host.Find<AntennaEffect>();
-        return antennas != null && antennas.Count == 1 && host.TryBounds(out FieldBounds bounds) && Forms(bounds, antennas.Slot(0), placement);
+        if (antennas == null || antennas.Count != 1 || !host.TryBounds(out FieldBounds bounds)) return false;
+        int opposite = AntennaSlots.Opposite(antennas.Slot(0));
+        return (placement == NoPlacement || placement == opposite) && Forms(bounds, antennas.Slot(0), opposite);
     }
 
     private bool Forms(FieldBounds bounds, int first, int second)
     {
-        if (first == second || !AntennaSlots.IsValid(bounds, first) || !AntennaSlots.IsValid(bounds, second)) return false;
+        if (second != AntennaSlots.Opposite(first) || !AntennaSlots.IsValid(bounds, first) || !AntennaSlots.IsValid(bounds, second)) return false;
         AntennaSlots.Line(AntennaSlots.Anchor(bounds, first), AntennaSlots.Anchor(bounds, second), scratchCells);
         return scratchCells.Count >= minCells;
     }
@@ -99,6 +99,7 @@ public sealed class ConductiveLineEffect : RunEffect
         antennas = Host.Find<AntennaEffect>();
         if (antennas == null || antennas.Count != 1 || !Config.IsValidPlacement(Host, placement)) return false;
         first = antennas.Slot(0);
+        placement = AntennaSlots.Opposite(first);
         if (!antennas.AddAntenna(placement, Config.secondAntennaPulses)) return false;
         second = placement;
         return true;

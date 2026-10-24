@@ -39,6 +39,19 @@ public static class OverflowArtVerification
   Check(cues.Count==2&&cues[0].From==from&&cues[0].To==middle&&cues[1].From==middle&&cues[1].To==to,"actual harvested source and both real targets captured");
   Check(cues[0].TransferStep==0&&cues[1].TransferStep==1,"zero-based presentation steps");
   Check(flashes.Count==4,"each transfer creates only shard and true-hit contact");
+  // 23 Ekim 2026: Taşan Hasar moru. Aktarılan hasar ayrı (birleşmeyen) mor yazı; parça ve yıldızda turuncu/amber kalmaz.
+  var texts=UnityEngine.Object.FindObjectsByType<FloatingText>(FindObjectsSortMode.None).Where(t=>t.IsLeased).ToArray();
+  var moved=texts.Where(t=>t.Kind==DamageTextKind.Overflow).ToArray();
+  Check(moved.Length==2&&texts.Any(t=>t.Kind==DamageTextKind.Default),"two separate overflow popups beside the direct kill popup");
+  Check(moved.All(t=>{var c=t.GetComponentInChildren<TMPro.TextMeshPro>(true).color;return c.b>.9f&&c.r>.5f&&c.r<.75f&&c.g<.6f;}),"overflow popups are violet");
+  bool Warm(Color c){Color.RGBToHSV(c,out float h,out float s,out _);return s>=.25f&&(h<=.2f||h>=.95f);}
+  bool Violetish(Color c){Color.RGBToHSV(c,out float h,out float s,out _);return s>=.25f&&Mathf.Abs(h-.735f)<.03f;}
+  foreach(int k in new[]{0,1})
+  {
+   var part=(GameObject)flashes[k].GetType().GetField("root").GetValue(flashes[k]);
+   var colors=part.GetComponentsInChildren<MeshFilter>(true).SelectMany(m=>m.sharedMesh.colors).ToArray();
+   Check(colors.Length>0&&!colors.Any(Warm)&&colors.Any(Violetish),(k==0?"shard":"contact star")+" mesh colours violet, no orange/amber left");
+  }
   var it=flashes[0].GetType();object first=flashes[0],second=flashes[2];
   float life=(float)it.GetField("life").GetValue(first);
   Check(Mathf.Approximately(life,.14f)&&(float)it.GetField("life").GetValue(second)<life,"second hop shorter lifetime");

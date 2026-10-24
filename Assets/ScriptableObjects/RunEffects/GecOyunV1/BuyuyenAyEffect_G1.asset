@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: BuyuyenAyEffect_G1
   m_EditorClassIdentifier: Assembly-CSharp::GrowingMoonEffectSO
   maxGrowth: 3
+  extraDistance: 1
   damagePerGrowth: 0.25
   maxHalfWidth: 1

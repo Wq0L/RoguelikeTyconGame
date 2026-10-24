@@ -101,6 +101,17 @@ public class PlantHealth : MonoBehaviour, IDamageable
         return true;
     }
 
+#if UNITY_EDITOR
+    // Yalnız Editor (Mechanics Test Lab): yaşayan bitkinin mevcut canını geçerli aralıkta (1 … azami) ayarlar. Azami can, bitki
+    // verisi ve hasar yolu değişmez; bitki bu yolla ölmez. Bu blok build'e girmez.
+    public bool EditorSetHealth(int value)
+    {
+        if (isDead) return false;
+        currentHealth = Mathf.Clamp(value, 1, maxHealth);
+        return true;
+    }
+#endif
+
     public void TakeDamage(int damage, DamageType type = DamageType.Direct)
         => TakeDamage(damage, type, false);
 
@@ -116,6 +127,7 @@ public class PlantHealth : MonoBehaviour, IDamageable
         LastHitLink = link;
         ObserverEvents.Raise(damageObservers, this, damage, type);
         currentHealth -= damage;
+        if (damage > 0) SoundManager.Ensure().Play(GameSound.PlantDamage, isCrit);
 
         // Hit flash
         VFXManager.Instance?.PlayHitFlash(plantRenderer, plantData.hitFlashColor);

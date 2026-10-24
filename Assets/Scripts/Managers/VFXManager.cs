@@ -222,6 +222,7 @@ public class VFXManager : MonoBehaviour
         public float spawnTime, lastHitTime;
         public long total;
         public bool crit;
+        public DamageTextKind kind;
     }
     private readonly List<RecentText> recentTexts = new(24);
     private float textLogAverage = float.NaN;
@@ -235,11 +236,6 @@ public class VFXManager : MonoBehaviour
 
     [Header("Hit Feedback")]
     [SerializeField, Min(1)] private int hitParticleCount = 15;
-    [SerializeField] private AudioClip hitSound;
-    private readonly AudioSource[] hitVoices = new AudioSource[8];
-    private int nextHitVoice;
-    private int lastSoundFrame = -1;
-    private bool criticalSoundPlayed;
 
     [Header("Camera Shake (trauma 0-1, CameraFeel)")]
     [SerializeField, Range(0f, 1f)] private float critShake = 0.22f;
@@ -264,6 +260,13 @@ public class VFXManager : MonoBehaviour
     [SerializeField, Min(0.01f)] private float explosionGrowDuration = 0.12f;
     [SerializeField, Min(0.01f)] private float explosionEmissionDuration = 0.2f;
     private VFXPool<Transform> explosionPool;
+    [Header("Aftershock VFX")]
+    [SerializeField] private Transform aftershockVfxPrefab;
+    [SerializeField, Range(0.05f, 0.95f)] private float aftershockScaleRatio = 0.6f;
+    private VFXPool<Transform> aftershockPool;
+    public int AftershockCreated => aftershockPool?.CreatedCount ?? 0;
+    public int AftershockLeased => aftershockPool?.LeasedCount ?? 0;
+    public int AftershockVisualsSkipped { get; private set; }
     private readonly Dictionary<Transform, ParticleSystem[]> explosionSystems = new();
 
     // Pool'lar
@@ -306,16 +309,6 @@ public class VFXManager : MonoBehaviour
         if (floatingTextPrefab != null)
             textPool = new VFXPool<FloatingText>(floatingTextPrefab, textPoolSize, transform, 121);
         InitializeAttackRings();
-        for (int i = 0; i < hitVoices.Length; i++)
-        {
-            var voice = new GameObject("Pooled Hit Voice " + i);
-            voice.transform.SetParent(transform, false);
-            var source = voice.AddComponent<AudioSource>();
-            source.playOnAwake = false;
-            source.spatialBlend = 0f;
-            source.clip = hitSound;
-            hitVoices[i] = source;
-        }
 
         if (hitParticlePrefab != null)
             hitPool = new VFXPool<ParticleSystem>(hitParticlePrefab, hitPoolSize, transform, 121);
@@ -325,14 +318,21 @@ public class VFXManager : MonoBehaviour
 
         if (explosionVfxPrefab != null)
             explosionPool = new VFXPool<Transform>(explosionVfxPrefab, explosionPoolSize, transform, 121);
+        if (aftershockVfxPrefab != null)
+            aftershockPool = new VFXPool<Transform>(aftershockVfxPrefab, 4, transform, 128);
     }
 
     // ========== DIŞ ARAYÜZ (facade) ==========
 
     public void PlayHit(Vector3 position, int damage, bool isCrit)
     {
-        SpawnDamageText(position, damage, isCrit);
-        PlayHitSound(isCrit);
+        SpawnDamageText(position, damage, isCrit, DamageTextKind.Default);
+    }
+
+    // Kaynağa göre renkli hasar yazısı (ör. Taşan Hasar mor). Farklı türden vuruşlar aynı hedefte birleşmez.
+    public void PlayHit(Vector3 position, int damage, bool isCrit, DamageTextKind kind)
+    {
+        SpawnDamageText(position, damage, isCrit, kind);
     }
 
     // Vuruş parçacığı bitkinin rarity renginde (aura ve hasat patlamasıyla aynı palet).
@@ -405,8 +405,17 @@ public class VFXManager : MonoBehaviour
 
     public void PlayExplosion(Vector3 position, bool isSource = true)
     {
-        if (explosionPool == null) return;
-        Transform effect = explosionPool.Get();
+        PlayExplosionVisual(position, isSource, false);
+    }
+
+    public void PlayAftershock(Vector3 position) => PlayExplosionVisual(position, true, true);
+
+    private void PlayExplosionVisual(Vector3 position, bool isSource, bool aftershock)
+    {
+        var pool = aftershock ? aftershockPool : explosionPool;
+        if (pool == null) return;
+        Transform effect = pool.Get();
+        if (effect == null && aftershock) { AftershockVisualsSkipped++; return; }
         if (effect == null) { ExplosionVisualsSkipped++; return; }   // havuz sınırı: yalnız görsel atlanır, hasar ayrı uygulanır
         if (!explosionSystems.TryGetValue(effect, out var systems))
         {
@@ -414,6 +423,7 @@ public class VFXManager : MonoBehaviour
             explosionSystems.Add(effect, systems);
         }
         float targetScale = isSource ? explosionMainScale : explosionSecondaryScale;
+        if (aftershock) targetScale *= Mathf.Clamp(aftershockScaleRatio, .05f, .95f);
         effect.SetPositionAndRotation(position, Quaternion.identity);
         effect.localScale = Vector3.one * (targetScale * explosionStartScaleRatio);
         foreach (var particle in systems)
@@ -426,14 +436,15 @@ public class VFXManager : MonoBehaviour
             main.prewarm = false;
             particle.Play(false);
         }
-        explosionPlayback.Add(new ExplosionPlayback { effect = effect, systems = systems, targetScale = targetScale, startedFrame = Time.frameCount });
+        explosionPlayback.Add(new ExplosionPlayback { effect = effect, pool = pool, systems = systems, targetScale = targetScale, startedFrame = Time.frameCount });
         // Zincirleme patlamalarda sadece kaynak sarsar; cap birikmeyi sınırlar.
-        if (isSource) ShakeCamera(explosionShake, 0.42f);
+        if (isSource && !aftershock) ShakeCamera(explosionShake, 0.42f);
     }
 
     private struct ExplosionPlayback
     {
         public Transform effect;
+        public VFXPool<Transform> pool;
         public ParticleSystem[] systems;
         public float elapsed, targetScale;
         public bool stopped;
@@ -468,32 +479,32 @@ public class VFXManager : MonoBehaviour
             if (alive) { explosionPlayback[i] = entry; continue; }
             foreach (var particle in entry.systems) particle.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
             entry.effect.localScale = Vector3.one;
-            explosionPool.Return(entry.effect);
+            entry.pool.Return(entry.effect);
             explosionPlayback.RemoveAt(i);
         }
     }
 
-    private void SpawnDamageText(Vector3 position, int damage, bool isCrit)
+    private void SpawnDamageText(Vector3 position, int damage, bool isCrit, DamageTextKind kind)
     {
         if (textPool == null) return;
         // Kapalıyken de aynı Random çağrıları yapılır: oyunun RNG dizisi ayardan etkilenmez.
         if (!GameSettings.DamageNumbers) { FloatingText.SkipVisual(isCrit); return; }
-        if (TryMergeText(position, damage, isCrit)) return;
+        if (TryMergeText(position, damage, isCrit, kind)) return;
         FloatingText text = textPool.Get();
         if (text == null) { FloatingText.SkipVisual(isCrit); return; }
         text.transform.position = position + Vector3.up;
-        text.Show(damage, isCrit, TextScaleFor(damage, isCrit));
+        text.Show(damage, isCrit, TextScaleFor(damage, isCrit), kind);
         TrackTextDamage(damage);
         recentTexts.Add(new RecentText
         {
             text = text, leaseId = text.LeaseId, source = position,
-            spawnTime = Time.time, lastHitTime = Time.time, total = damage, crit = isCrit
+            spawnTime = Time.time, lastHitTime = Time.time, total = damage, crit = isCrit, kind = kind
         });
     }
 
     // Aynı hedefe art arda gelen vuruşları tek, büyüyen sayıda toplar. Görsel yeni yazı açmasa da
     // SkipVisual ile aynı Random çağrıları yapılır: oyunun RNG dizisi değişmez.
-    private bool TryMergeText(Vector3 position, int damage, bool isCrit)
+    private bool TryMergeText(Vector3 position, int damage, bool isCrit, DamageTextKind kind)
     {
         float now = Time.time;
         for (int i = recentTexts.Count - 1; i >= 0; i--)
@@ -502,7 +513,7 @@ public class VFXManager : MonoBehaviour
             bool stale = recent.text == null || !recent.text.IsLeased || recent.text.LeaseId != recent.leaseId
                 || now - recent.lastHitTime > textMergeWindow || now - recent.spawnTime > textMergeMaxAge;
             if (stale) { recentTexts.RemoveAt(i); continue; }
-            if ((recent.source - position).sqrMagnitude > 0.01f) continue;
+            if ((recent.source - position).sqrMagnitude > 0.01f || recent.kind != kind) continue;
 
             FloatingText.SkipVisual(isCrit);
             recent.total = System.Math.Min(int.MaxValue, recent.total + damage);
@@ -554,23 +565,6 @@ public class VFXManager : MonoBehaviour
         p.Play();
         p.Emit(hitParticleCount * (isCrit ? 3 : 1));
         hitPlayback.Add(p);
-    }
-
-    private void PlayHitSound(bool isCrit)
-    {
-        if (hitSound == null) return;
-        if (lastSoundFrame != Time.frameCount)
-        {
-            lastSoundFrame = Time.frameCount;
-            criticalSoundPlayed = false;
-        }
-        else if (!isCrit || criticalSoundPlayed) return;
-        criticalSoundPlayed |= isCrit;
-        var voice = hitVoices[nextHitVoice++ % hitVoices.Length];
-        voice.Stop();
-        voice.pitch = isCrit ? Random.Range(0.72f, 0.8f) : Random.Range(1.2f, 1.35f);
-        voice.volume = (isCrit ? 0.55f : 0.22f) * GameSettings.EffectsVolume;
-        voice.Play();
     }
 
     private IEnumerator ReturnParticleAfter(
@@ -688,7 +682,7 @@ public class VFXManager : MonoBehaviour
             foreach (var particle in entry.systems)
                 if (particle != null) particle.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
             entry.effect.localScale = Vector3.one;
-            explosionPool.Return(entry.effect);
+            entry.pool.Return(entry.effect);
         }
         explosionPlayback.Clear();
         for (int i = flashes.Count - 1; i >= 0; i--) ReleaseFlash(i);

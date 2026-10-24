@@ -4,7 +4,7 @@
 # BU DOSYADAKİ BÜTÜN SAYILAR İLK PROTOTİP DEĞERİDİR: muhafazakâr ve sonlu seçildi, ölçülmedi, dengelenmedi. Nihai tasarım kararı
 # değildir. Her sayının anlamı ve kuralı: Docs/Bolum3-8-GecOyunOlaylariVeBossOdulleri.md (tetik ve stat sözleşmesi tablosu).
 #
-# Bu profile ait olanlar: yeni 13 ödül ve etkileri, ödüllerin havuzdaki aşaması ve ön koşulu, tarla olayı planı, profil adı.
+# Bu profile ait olanlar: yeni 12 ödül ve etkileri, ödüllerin havuzdaki aşaması ve ön koşulu, tarla olayı planı, profil adı.
 # Run50_AlphaDengeV1'den AYNEN gelenler (burada yazılmaz, buradan değiştirilemez): takvim (15 boss), süre tablosu, kota ve boss
 # hedefleri, denge seti (can eğrisi, XP, ağaç, fiyatlar, temel güç kartları, kasırga / bumerang sınırı 12), boss havuzu ve mevcut
 # 19 ödülün tamamı (asset'leri, aşamaları, ağırlıkları, stack sınırları, dışlama grupları).
@@ -28,11 +28,13 @@ REWARDS = [
                      interval=2.5,     # iki vuruş arası, sn
                      damage=0.6)),     # hasat hasarı stat'ına oran
     dict(id='hilal_darbesi', asset='HilalDarbesi', name='Hilal Darbesi', label='Hilal:', stage='erken', requires=None, condition=ALWAYS,
-         note='Boş savuruş sayılmaz. Hilal vurduğun yerden tarlanın ortasına doğru ilerler; senin vuruşun sayılmaz.',
+         note='Boş savuruş sayılmaz. Hilal mouse halkasının kenarından çıkar; 8 birim/sn hızla tarla kenarında durmadan 3 dünya birimi ilerler. Büyüyen Ay menzili 4 yapar.',
          effect='CrescentEffectSO',
          fields=dict(everyAttacks=6,   # kaç geçerli doğrudan saldırıda bir
                      steps=4,          # ilerlediği hücre
-                     stepSeconds=0.07, # adım aralığı, sn
+                     stepSeconds=0.3, # adım aralığı, sn
+                     maxDistance=3.0, # dünya birimi
+                     moveSpeed=8,   # dünya birimi/sn
                      damage=0.8)),     # hasat hasarı stat'ına oran
     # ---- ORTA
     dict(id='iletken_hat', asset='IletkenHat', name='İletken Hat', label='Hat:', stage='orta', requires='elektrik_anteni', condition=ALWAYS,
@@ -43,9 +45,10 @@ REWARDS = [
                      minCells=3,             # hattın kurulabilmesi için en az hücre
                      secondAntennaPulses=1)),  # ikinci anten de kendi üç hücresine vurur
     dict(id='buyuyen_ay', asset='BuyuyenAy', name='Büyüyen Ay', label='Büyüme:', stage='orta', requires='hilal_darbesi', condition=ALWAYS,
-         note='Büyüme yalnız aynı dalganın kalan adımlarına uygulanır; sonraki dalga baştan başlar.',
+         note='Ana hilal doğduğu andan yok olana kadar ilerlediği mesafeyle orantılı büyür; ilk hasadı beklemez. Hasar büyümesi gerçek hasatlara bağlıdır. Dolunay baştan büyük ve sabittir.',
          effect='GrowingMoonEffectSO',
          fields=dict(maxGrowth=3,            # en yüksek büyüme düzeyi
+                     extraDistance=1.0,     # menzile ek dünya birimi
                      damagePerGrowth=0.25,   # düzey başına hasar artışı
                      maxHalfWidth=1)),       # cephenin en büyük yarı genişliği (1: üç hücre)
     dict(id='kritik_ark', asset='KritikArk', name='Kritik Ark', label='Ark:', stage='orta', requires=None, condition=ALWAYS,
@@ -57,10 +60,12 @@ REWARDS = [
     dict(id='hasat_yankisi', asset='HasatYankisi', name='Hasat Yankısı', label='Yankı:', stage='orta', requires=None, condition=ALWAYS,
          note='Yalnız kendi vuruşunla yaptığın hasatlar sayılır. Yankı yeni yankı doğurmaz.',
          effect='HarvestEchoEffectSO',
-         fields=dict(minHarvests=3,          # "güçlü hasat": tek saldırıda en az bu kadar doğrudan hasat
-                     damage=0.5,             # hasat hasarı stat'ına oran
-                     maxCells=3,             # bir saldırıda en çok yankı hücresi
-                     delay=0.12)),           # sn
+         # 23 Ekim 2026 meteor düzeni (kullanıcı kararı): tek meteor, kesilen hücrelerin simetriğine; boyutu hücre sayısıyla büyür.
+         fields=dict(minHarvests=1,          # tetik: tek saldırıda en az bu kadar doğrudan hasat
+                     damage=0.5,             # hasat hasarı stat'ına oran (hücre başına)
+                     maxCells=6,             # meteorun en çok vurduğu hücre
+                     delay=0.5,              # sn; meteorun düşüş süresi = vuruş gecikmesi (23 Ekim: 0,2 çok hızlı, 0,55 biraz yavaş)
+                     cooldown=6)),           # sn (round saati); meteor planlanınca yeni meteor için bekleme
     dict(id='tasan_hasar', asset='TasanHasar', name='Taşan Hasar', label='Taşma:', stage='orta', requires=None, condition=ALWAYS,
          note='Yalnız kendi vuruşunun öldürdüğü bitkiden başlar. Aktarım kritik atmaz.',
          effect='OverflowEffectSO',
@@ -74,12 +79,6 @@ REWARDS = [
          fields=dict(minRarity=2,            # PlantRarity: 2 = Rare
                      chanceBonus=0.25,       # davranış şansı çarpanı: ×(1 + bu)
                      seconds=4.0)),          # süre, sn
-    dict(id='kritik_patlama', asset='KritikPatlama', name='Kritik Patlama', label='Patlama:', stage='orta', requires=None, condition=ALWAYS,
-         note='Kritik zarı eskisi gibi bitki başına atılır. Patlama senin vuruşun sayılmaz.',
-         effect='CritBurstEffectSO',
-         fields=dict(minCrits=3,             # tek saldırıda kritik yiyen farklı bitki
-                     damage=0.5,             # hasat hasarı × kritik çarpanı stat'larına oran
-                     radiusFactor=1.0)),     # saldırının temas yarıçapına oran
     dict(id='acgozlu_hasat', asset='AcgozluHasat', name='Açgözlü Hasat', label='Açgözlülük:', stage='orta', requires=None, condition=ALWAYS,
          note='Boş savuruş hakkı harcamaz. Güçlenen vuruş yeni hak kazandırmaz. Davranışlara geçmez.',
          effect='GreedyHarvestEffectSO',
@@ -94,7 +93,7 @@ REWARDS = [
                      cooldown=3.0,           # iki ek vuruş arası en kısa süre, sn
                      chanceFactor=1.0)),     # zar: saksının en yüksek davranış şansı × bu
     dict(id='dolunay', asset='Dolunay', name='Dolunay', label='Dolunay:', stage='guclu', requires='buyuyen_ay', condition=ALWAYS,
-         note='Duraklama yalnız kendi vuruşunu bekletir; imleç ve oyun durmaz. İkinci dalga büyümez.',
+         note='Her ana hilalin yanında yalnız bir büyük ek hilal çıkar; hasat koşulu yoktur. Mouse halkasından doğduğu anda, ana hilalden farklı rastgele yönde ilerler. Baştan büyüktür ve yeniden Dolunay üretmez.',
          effect='FullMoonEffectSO',
          fields=dict(growthThreshold=2,      # ikinci dalgayı başlatan büyüme düzeyi
                      returnDamage=0.7,       # hilalin taban hasarına oran

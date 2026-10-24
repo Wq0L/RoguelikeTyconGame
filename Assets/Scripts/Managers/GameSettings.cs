@@ -41,7 +41,6 @@ public static class GameSettings
     private static void ResetStatics()
     {
         Changed = null;
-        Application.focusChanged -= OnFocusChanged;
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -56,8 +55,6 @@ public static class GameSettings
         Load();
         ApplyDisplay();
         ApplyAudio();
-        Application.focusChanged -= OnFocusChanged;
-        Application.focusChanged += OnFocusChanged;
     }
 
     public static void SetDefaults()
@@ -164,12 +161,7 @@ public static class GameSettings
 
     public static void ApplyAudio()
     {
-        AudioListener.volume = Mathf.Clamp01(MasterVolume);
-    }
-
-    private static void OnFocusChanged(bool focused)
-    {
-        AudioListener.pause = MuteInBackground && !focused;
+        SoundManager.Ensure().ApplySettings();
     }
 
     // Tekrarsız çözünürlükler (en yüksek tazeleme hızıyla), küçükten büyüğe.

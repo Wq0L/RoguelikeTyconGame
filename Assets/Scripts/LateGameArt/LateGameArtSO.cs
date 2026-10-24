@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -103,7 +103,7 @@ public enum LateGameSlot
     GroundBurst = 20,
     BountyProgress = 21, BountyFlow = 22, BountyCurtain = 23,
     AntennaContact = 24, CircuitReturn = 25, PlacementSelected = 26,
-    MoonContact = 27,
+    MoonContact = 27, HarvestEchoPreparation = 28, ReactorIndicator = 29, GreedIndicator = 30, OverloadPreparation = 31,
 }
 
 public enum LateGameVariant
@@ -114,7 +114,7 @@ public enum LateGameVariant
 public enum LateGameSound
 {
     AntennaPlaced = 19, CircuitPulse = 20,
-    MoonGrowth = 21, Overflow = 22,
+    MoonGrowth = 21, Overflow = 22, HarvestEcho = 23, ReactorOn = 24, GreedSpent = 25, OverloadPrepared = 26,
     EventPrepared = 0, EventActivated = 1, TargetHit = 2, TargetBroken = 3, EventResolved = 4, Bloom = 5,
     AntennaPulse = 6, LinePulse = 7, CrescentLaunch = 8, FullMoon = 9, CritArc = 10, CritBurst = 11, Overload = 12, GreedReady = 13, Spread = 14, ShellChoice = 15, ShellClose = 16, ShellOpen = 17, BountyProgress = 18,
 }

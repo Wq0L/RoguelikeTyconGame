@@ -42,9 +42,11 @@ public sealed class OverloadEffect : RunEffect
         public GridObject cell;
         public Vector3 position;
         public bool used;
+        public double preparedAt; // Presentation reads the real host clock; never schedules work.
     }
 
     private const int JobCapacity = 16;
+    public const int PresentationCapacity = JobCapacity;
     private readonly Job[] jobs = new Job[JobCapacity];
     private readonly Dictionary<long, double> readyAt = new();
     private int attackSerial = -1, attackCount;
@@ -68,10 +70,11 @@ public sealed class OverloadEffect : RunEffect
         int slot = -1;
         for (int i = 0; i < JobCapacity && slot < 0; i++) if (!jobs[i].used) slot = i;
         if (slot < 0 || !Host.Schedule(this, Config.delay, 0, slot)) { Dropped++; return; }
-        jobs[slot] = new Job { planter = planter, type = type, cell = cell, position = position, used = true };
+        jobs[slot] = new Job { planter = planter, type = type, cell = cell, position = position, used = true, preparedAt = Host.Clock };
         readyAt[key] = Host.Clock + Config.cooldown;
         attackCount++;
         Granted++;
+        Host.Emit(new RewardCue(RewardCueKind.OverloadPrepared, position, slot));
     }
 
     public override void OnTimer(int kind, int a, int b, int c)
@@ -80,7 +83,20 @@ public sealed class OverloadEffect : RunEffect
         Job job = jobs[a];
         jobs[a] = default;
         if (Execute(job)) { Fired++; Host.Emit(new RewardCue(RewardCueKind.Overload, job.position, (int)job.type)); }
-        else Dropped++;
+        else { Dropped++; Host.Emit(new RewardCue(RewardCueKind.OverloadCancelled, job.position, a)); }
+    }
+
+    // Read-only view of accepted work. The position is captured, never followed on a pooled object.
+    public bool TryPreparation(int slot, out Vector3 position, out float progress)
+    {
+        position = default; progress = 0f;
+        if (slot < 0 || slot >= JobCapacity) return false;
+        Job job = jobs[slot];
+        if (!job.used || job.planter == null || !job.planter.IsPlaced || job.cell == null ||
+            job.cell.GetPlanterBrain() != job.planter) return false;
+        position = job.position;
+        progress = Config.delay > 0f ? Mathf.Clamp01((float)((Host.Clock - job.preparedAt) / Config.delay)) : 1f;
+        return true;
     }
 
     // Davranışın mevcut yolu, zincir dışı bağlamla ve hasar çarpanıyla. Kaynak saksı hâlâ yerinde ve hücrenin sahibi olmalı.

@@ -1,0 +1,28 @@
+PASS 27 checks
+PASS existing mechanics regression: x1.5, 3 direct harvests, empty retention, single loss, no empowered rearm
+PASS real three-harvest attack creates one ready marker
+PASS repeated sync retains one instance
+PASS empty attack preserves same marker without spend or sound cue
+PASS multi-target spend emits exactly one closing effect
+PASS spent effect snapshots actual attack center
+PASS single target silently retires marker without spend effect
+PASS grant existing Rhythm: 
+PASS Greed teeth, Reactor and golden Rhythm ring coexist
+PASS pause freezes ready opening and retains real charge
+PASS disable clears marker immediately
+PASS re-enable restores only actual ready state
+PASS round cleanup cycle 0
+PASS round cleanup cycle 1
+PASS round cleanup cycle 2
+PASS round cleanup cycle 3
+PASS round cleanup cycle 4
+PASS round cleanup cycle 5
+PASS round cleanup cycle 6
+PASS round cleanup cycle 7
+PASS round cleanup cycle 8
+PASS round cleanup cycle 9
+PASS round cleanup cycle 10
+PASS round cleanup cycle 11
+PASS 12 round/pool cycles retain stable object count
+PASS existing cross-round charge rule preserved; indicator returns in active round
+PASS reward removal clears marker

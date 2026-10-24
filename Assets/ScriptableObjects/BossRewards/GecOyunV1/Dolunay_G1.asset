@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: Dolunay
   effectLabel: "Dolunay:"
   inverseLabel: 
-  note: "Duraklama yaln\u0131z kendi vuru\u015Funu bekletir; imle\xE7 ve oyun durmaz. \u0130kinci dalga b\xFCy\xFCmez."
+  note: "Her ana hilalin yanında yalnız bir büyük ek hilal çıkar; hasat koşulu yoktur. Mouse halkasından doğduğu anda, ana hilalden farklı rastgele yönde ilerler. Baştan büyüktür ve yeniden Dolunay üretmez."
   modifiersPerStack: []
   directDamageMultiplier: 1
   rareDirectMultiplier: 1

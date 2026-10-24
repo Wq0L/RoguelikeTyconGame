@@ -20,6 +20,9 @@ public sealed class BossRewardSO : ScriptableObject
     [Tooltip("Sabit kimlik (log ve test için).")]
     public string id;
     public string displayName;
+    [Header("Müzik gücü")]
+    [Tooltip("0: havuzdaki kendi aşamasına göre +1 / +2 / +3… (aşamasız ödül +1). Pozitif değer: her başarılı alışta eklenecek özel puan.")]
+    [Min(0)] public int musicPowerOverride;
     [Tooltip("Etkinin adı (değer veriden yazılır): \"Saldırı aralığı\" → \"Saldırı aralığı ×0,90\".")]
     public string effectLabel;
     [Tooltip("Aralık küçülten etkilerde karşılığı (boş bırakılabilir): \"saldırı sıklığı\" → \"(saldırı sıklığı ×1,11)\".")]
@@ -39,11 +42,11 @@ public sealed class BossRewardSO : ScriptableObject
     [Header("Kırılma etkisi (Bölüm 3.6) — boşsa sıradan stat ödülü")]
     [Tooltip("Hangi davranışın şansı tutan normal tetiğinden sonra ikinci bir darbe gelir.")]
     public BossRewardEcho echo;
-    [Tooltip("İkinci darbenin gecikmesi (sn).")]
+    [Tooltip("Çifte Akım gecikmesi (sn). Artçı Patlama sabit 0,2 sn arayla üç adım yayılır.")]
     [Min(0f)] public float echoDelay = 0.2f;
     [Tooltip("İkinci darbenin hasarı: ilk darbenin HESAPLANMIŞ hasarına oran. Katsayılar ikinci kez uygulanmaz.")]
     [Range(0f, 2f)] public float echoDamage = 0.7f;
-    [Tooltip("Yalnız patlama: ikinci darbenin yarıçapı, ilk patlamanın yarıçapına oran.")]
+    [Tooltip("Eski kayıt uyumluluğu için korunur. Artçı Patlama artık bu yarıçapı kullanmaz; üç hücre yayılır.")]
     [Min(0f)] public float echoRadius = 1.25f;
     [Tooltip("Hasat Ritmi: kaç doğrudan bitki hasadında bir hak hazırlanır. 0: yok.")]
     [Min(0)] public int rhythmHarvests;
@@ -83,7 +86,7 @@ public sealed class BossRewardSO : ScriptableObject
 
     [Header("Kırılma erişimi (Bölüm 3.7.5) — varsayılan etkisizdir")]
     [Tooltip("Yalnız elektrik yankısı (Çifte Akım): ikinci dalganın dört çapraz yöndeki erişimi, hücre. 0: ilk dalgayla aynı (2). " +
-             "İlk dalga değişmez; ikinci dalga yakın çapraz hücreleri de kapsar. Patlama yankısının erişimi echoRadius'tur.")]
+             "İlk dalga değişmez; ikinci dalga yakın çapraz hücreleri de kapsar. Artçı Patlama üç hücre yayılır.")]
     [Range(0, 6)] public int echoReach;
 
     [Header("Davranış zinciri (Bölüm 3.7.6) — varsayılan etkisizdir")]

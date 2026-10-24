@@ -13,6 +13,15 @@ public static class AntennaArtVerification
  const string Key="AntennaArtVerification";
  static int step=-1,cycles,objects,materials,meshes;static double next;
  static readonly List<string> notes=new();static readonly List<RewardCue> cues=new();
+ static readonly List<int> circuitDamage=new();
+ static void Damage(PlantHealth plant,int amount,DamageType type){if(type==DamageType.Reward)circuitDamage.Add(amount);}
+ static void Colors(string name,bool red)
+ {
+  var content=P.GetComponentsInChildren<LateGameContent>().Where(c=>c.name.StartsWith(name)).ToArray();
+  Check(content.Length>0,name+" is visible");
+  var colors=content.SelectMany(c=>c.GetComponentsInChildren<MeshFilter>()).SelectMany(m=>m.sharedMesh.colors).Select(c=>c.gamma).ToArray();
+  Check(colors.Length>0&&(red?colors.All(c=>c.r>.85f&&c.r>c.g*1.5f&&c.r>c.b*1.5f):colors.Any(c=>c.b>.85f&&c.g>.8f&&c.r<.5f)),name+(red?" uses red palette":" preserves cyan palette"));
+ }
  static HashSet<int> warmMaterials,warmMeshes;
  static Vector3 pausePosition;static Quaternion pauseRotation;static float clock;
  static RunEffects Fx=>RunEffects.Instance;
@@ -68,7 +77,7 @@ public static class AntennaArtVerification
      A.Tick(2.25f);Call(P,"Update");Check(Models().All(m=>m.antenna.Charge>0),"both models charge from real read-only countdown before firing");
      A.Tick(.25f);ClearVisuals();cues.Clear();var before=Fx.Hits(RewardSource.Line);L.Tick(4);
      Check(Fx.Hits(RewardSource.Line)-before==11&&cues.Count(c=>c.Kind==RewardCueKind.LineContact)==11,"full line contacts match eleven actual hits");
-     Check(P.GetComponentsInChildren<LateGameContent>().Count(c=>c.name.StartsWith("ConductiveFlash"))==12,"line follows cell path plus antenna tips");Capture("Line");
+     Check(P.GetComponentsInChildren<LateGameContent>().Count(c=>c.name.StartsWith("ConductiveFlash"))==12,"line follows cell path plus antenna tips");Colors("ConductiveFlash",false);Capture("Line");
      // An empty slot still belongs to the path, but must not emit a false contact.
      Lab("SetHealth",5,5,1);FieldCells.LivingPlant(FieldCells.Grid,new GridPosition(5,5)).TakeDamage(999999,DamageType.Reward);cues.Clear();L.Pulse(false,1);
      Check(cues.Count(c=>c.Kind==RewardCueKind.LineContact)==10,"empty line cell emits no contact");
@@ -78,8 +87,14 @@ public static class AntennaArtVerification
      Add("kapali_devre");Lab("Tile",1,5,"Explosive",1f);Lab("SetHealth",1,5,1);ClearVisuals();cues.Clear();L.Pulse(false,1);
      Check(cues.Count(c=>c.Kind==RewardCueKind.CircuitReturn)==1&&Fx.PendingTimers==1,"successful real circuit schedule emits one return cue");Capture("Return");
      // Execute the scheduled effect's real callback; general regression separately tests its .35 s timer.
-     Fx.Find<ClosedCircuitEffect>().OnTimer(0,0,0,0);Check(cues.Count(c=>c.Kind==RewardCueKind.LineExtraPulse)==1,"real circuit callback emits one additional line pulse");
+     ClearVisuals();circuitDamage.Clear();PlantHealth.AnyDamaged+=Damage;
+     int extraHits=Fx.Hits(RewardSource.LineExtra);
+     Fx.Find<ClosedCircuitEffect>().OnTimer(0,0,0,0);PlantHealth.AnyDamaged-=Damage;
+     Check(cues.Count(c=>c.Kind==RewardCueKind.LineExtraPulse)==1,"real circuit callback emits one additional line pulse");
+     Check(Fx.Hits(RewardSource.LineExtra)-extraHits==10&&circuitDamage.Count==10&&circuitDamage.All(d=>d==27),"extra pulse applies 27 damage to ten living line cells");
+     Colors("CircuitDouble",true);Colors("ContactDouble",true);
      Check(P.GetComponentsInChildren<LateGameContent>().Any(c=>c.name.StartsWith("CircuitDouble")&&c.antenna.doubleStrike),"extra line uses split shape and double-beat animation");Capture("Circuit");
+     ClearVisuals();L.Pulse(false,1);Colors("ConductiveFlash",false);Capture("NormalAfterCircuit");
      Fx.ClearAll();Add("elektrik_anteni",5);Add("iletken_hat",105);A.Tick(2.35f);Call(P,"Update");
      Time.timeScale=0;pausePosition=Models()[0].antenna.mast.localPosition;pauseRotation=Models()[0].antenna.mast.localRotation;clock=A.SecondsUntilPulse(0);break;
     case 3:
@@ -124,15 +139,11 @@ public static class AntennaArtVerification
   typeof(BossRewardManager).GetField("offerRound",BindingFlags.Instance|BindingFlags.NonPublic).SetValue(boss,23);
   typeof(BossRewardManager).GetField("offerPrepared",BindingFlags.Instance|BindingFlags.NonPublic).SetValue(boss,true);
   typeof(BossRewardManager).GetProperty("IsPending").GetSetMethod(true).Invoke(boss,new object[]{true});
-  Check(boss.BeginPlacement(reward),"real second-antenna placement begins from a valid offer");
-  var ui=Object.FindAnyObjectByType<RewardPlacementUI>(FindObjectsInactive.Include);ui.gameObject.SetActive(true);Call(ui,"Refresh");ui.SetHovered(105);
-  Check(ui.PreviewCells==11&&ui.Hovered==105,"second-antenna preview uses real eleven-cell line");Capture("Placement");
-  ui.SetHovered(5);Check(ui.Hovered==RunEffectSO.NoPlacement&&ui.PreviewCells==0,"occupied first antenna is not a selectable second position");
-  ui.SetHovered(105);ui.Cancel();ui.gameObject.SetActive(false);
-  var world=(Transform)typeof(RewardPlacementUI).GetField("world",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(ui);
-  Check(world.GetComponentsInChildren<Renderer>().Length==0,"cancel hides sockets model line and reach previews");
-  Check(boss.BeginPlacement(reward),"same placement can reopen after cancel");ui.gameObject.SetActive(true);Call(ui,"Refresh");ui.SetHovered(105);
-  Check(ui.PreviewCells==11,"reopened preview has current line without stale cells");ui.Cancel();ui.gameObject.SetActive(false);boss.ClearAll();Fx.ClearAll();ClearVisuals();
+  Check(!boss.NeedsPlacement(reward)&&!boss.BeginPlacement(reward),"second antenna requires no separate placement");
+  Check(boss.Choose(reward,RunEffectSO.NoPlacement),"line reward automatically places the second antenna");Call(P,"Update");
+  Check(A.Count==2&&A.Slot(0)==5&&A.Slot(1)==105,"automatic second antenna preserves the selected row");
+  Check(Models().Length==2,"automatic placement presents both antennas");Capture("Placement");
+  boss.ClearAll();Fx.ClearAll();ClearVisuals();
  }
  static void ModelPortrait()
  {

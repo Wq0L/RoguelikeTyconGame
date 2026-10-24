@@ -16,24 +16,17 @@ public enum FeelSound
 public static class FeelAudio
 {
     private const int SampleRate = 44100;
-    private const int VoiceCount = 8;
 
     public static float MasterVolume = 0.7f;
 
     private static readonly AudioClip[] clips = new AudioClip[5];
     private static readonly AudioClip[] overrides = new AudioClip[5];
-    private static AudioSource[] voices;
-    private static GameObject host;
-    private static int nextVoice;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void ResetStatics()
     {
         System.Array.Clear(clips, 0, clips.Length);
         System.Array.Clear(overrides, 0, overrides.Length);
-        voices = null;
-        host = null;
-        nextVoice = 0;
         MasterVolume = 0.7f;
     }
 
@@ -42,25 +35,8 @@ public static class FeelAudio
     public static void Play(FeelSound sound, float volume = 1f, float pitch = 1f)
     {
         if (volume <= 0f || Application.isBatchMode) return;
-        EnsureHost();
         AudioClip clip = overrides[(int)sound] != null ? overrides[(int)sound] : GetClip(sound);
-        AudioSource voice = voices[nextVoice++ % VoiceCount];
-        voice.pitch = pitch;
-        voice.PlayOneShot(clip, volume * MasterVolume * GameSettings.EffectsVolume);
-    }
-
-    private static void EnsureHost()
-    {
-        if (host != null) return;
-        host = new GameObject("Feel Audio");
-        voices = new AudioSource[VoiceCount];
-        for (int i = 0; i < VoiceCount; i++)
-        {
-            var source = host.AddComponent<AudioSource>();
-            source.playOnAwake = false;
-            source.spatialBlend = 0f;
-            voices[i] = source;
-        }
+        SoundEvents.PlayEffect(clip, volume * MasterVolume, pitch);
     }
 
     private static AudioClip GetClip(FeelSound sound)

@@ -1,0 +1,206 @@
+FAIL: 2 catalog check(s) reported FAIL · Kontrol özeti: 67 PASS · 6 UYARI · 2 FAIL · 0 İNCELENMEDİ · 1 manuel inceleme gerekli · 5 sistem henüz yok (toplam 81 / katalog 81)
+ok: temel düzen: saksılar ve bitki kuruldu
+ok: "önce" görüntüsü gerçek değerleri taşıyor (hasat hasarı 10, patlama şansı 0.44)
+ok: ham taban ile çözülmüş değer ayrı satırlarda
+ok: oyun değişti: hasat hasarı gerçekten ×1,5 oldu
+ok: "önce" görüntüsü oyun değişince DEĞİŞMEDİ (canlı referans yok: sayı ve metin kopyası)
+ok: "sonra" ayrı bir kopya; ortak satır nesnesi yok
+ok: fark tablosu: hasat hasarı oranı ×1.5 (+50%) · kaynak "+ TEST KATKISI: test katkısı"
+ok: şans farkı yüzde puanı olarak (+44 yüzde puanı), oran ayrı (×2 (+100%))
+ok: çarpan satırı çarpan olarak: ×1 → ×1.25 (+0.25 (çarpan farkı))
+ok: türetilmiş satır bağlamını ve kaynağını yazıyor: + TEST KATKISI: test katkısı; + boss ödülü: Keskin Bıçak
+ok: yalnız değişen satırlar listelendi (9 / 72)
+ok: önce 0 olan şans: oran "hesaplanamaz (önce 0)", fark "+20 yüzde puanı"
+ok: fark tablosu CSV'ye çevrildi
+ok: oyuncu hasat hasarı: taban + tek test katkısı (çarpımsal)
+ok: tile'lı saksının patlama şansı: tile + şans test katkısı; doğrudan hasar katkısı davranış şansına sızmadı
+ok: tile'sız saksı: tile kaynağı yok (tile yalnız üstündeki saksıya), global test katkısı var
+ok: tile'sız saksının patlama şansı 0 kaldı (çarpan 0'ı büyütmez)
+ok: Damage tile'ı yalnız kendi saksısının kaynağı
+ok: doğrudan vuruş çarpanı kaynağı: boss ödülü Keskin Bıçak (stat dışı çarpan)
+ok: doğrudan vuruş ödülü davranış hasarı kaynaklarında yok
+ok: kaynak listesi hesap sırası olmadığını açıkça yazıyor
+ok: Keskin Bıçak makbuzu: başarılı, stack 0 → 1, ölçülen değişim doğrudan vuruş çarpanı; davranış hasarı değişmedi
+ok: makbuz oyunun kart metnindeki kazanç satırını taşıyor: Doğrudan vuruş hasarı ×1,25
+ok: koşulu sağlanmayan ödül: makbuz ret nedenini yazıyor, hiçbir değer değişmedi — Bereketli Toprak kurulmadı — koşul tutmuyor: son round'da tarla doluluğu eşiğin (0.65) altında değil.
+ok: koşullu ödül: "koşullu etki, henüz tetiklenmedi" — vuruş hasarı hemen değişmedi ve bu hata sayılmadı
+ok: dışlama grubuna etkisi: Zincir Hasat
+ok: bedelli ödül: seçim hakkı 3 → 4, bedel satırı: Doğrudan vuruş hasarı ×0,80
+ok: makbuz metni bütün bölümleri içeriyor
+ok: etki ödülü: oyundaki çalışma zamanı kaydı makbuzda (ad listesi değil, gerçek kayıt)
+ok: iz kuruldu: gözlem noktaları dinleniyor
+ok: iz tamamlandı (kesilmedi, karışma uyarısı yok)
+ok: izdeki vuruş sayısı = oyunun bildirdiği gerçek vuruş sayısı (17)
+ok: her vuruşta: hesaplanan darbe, önceki can, gerçek can azalması ve taşan hasar bağımsız gözlemle aynı
+ok: 12 sağ kalan bitkinin gerçek canı = önceki can − izdeki toplam can azalması
+ok: iz doğrudan → davranış → artçı zincirini türleriyle ayırdı: direct, davranış, artçı
+ok: her hasar türü kendi gerçek hesap yolunu yazıyor (doğrudan: sapma ve yuvarlama; davranış: taban ve çarpanlar; artçı: ilk darbenin oranı)
+ok: 1 canlı bitkiye 21 hasar: gerçek can azalması 1, taşan 20
+ok: izdeki hasat sayısı = gerçek hasat sayısı (1)
+ok: her hasadın kaynak, XP ve skor hesabı kayıtta
+ok: kayıtlı kaynak toplamı = gerçek bakiye farkı (altın 2, demir 0, taş 0)
+ok: kayıtlı XP ve Harvest Score = gerçek artış (XP 20, skor 1)
+ok: izdeki önce / sonra bakiyeleri gerçek bakiyelerle aynı
+ok: iz metni: tamamlandı, bakiyeler eşleşiyor, kazanılan ve saklı XP ayrı
+ok: hareketli davranış sürerken iz AÇIK kaldı (bekleyen: kasırga)
+ok: kasırga bitince iz tamamlandı (4.13 sn)
+ok: durdurulan kayıt "kesildi, sonuç eksik" diye işaretlendi: kullanıcı durdurdu
+ok: durdurunca iz boşta
+ok: kayıt kapalı ve iz boşta: Editor gözlem noktalarında dinleyici yok (çağıran yer hiçbir şey kurmaz)
+ok: kapalıyken saldırı ve komut kayda yazılmadı
+ok: işlem özeti: saldırı özeti yazıldı
+ok: işlem özeti: vuruşun hesap satırı yok, sayısal gözlem noktası dinlenmiyor
+ok: ayrıntılı sayısal iz: doğrudan vuruşun hesap satırı yazıldı
+ok: tamponlar sınırlı (olay 2000, iz 400 olay × 20, makbuz 30)
+ok: buff kaydı: Nadir Reaktör EKLENDİ (bir kez)
+ok: aktifken dört şans çarpanı var; tile'lı saksının şansı ×(1 + bonus)
+ok: kaynak dökümü: geçici etki, kalan süresiyle
+ok: buff kaydı: süre YENİLENDİ, çarpan katlanmadı (ikinci kez "eklendi" yazılmadı)
+ok: buff kaydı: süresi BİTTİ; şans eski değerinde, geride çarpan yok
+ok: buff kaydı: Hasat Ritmi koşullu etkisi KURULDU (bir kez); henüz hak yok
+ok: buff kaydı: Hasat Ritmi hakkı HAZIRLANDI → HARCANDI
+ok: test katkısı sıfırlandı: stat geri döndü, boss ödülü yerinde
+ok: şart bozulunca rezonans (Odak,Güçlendirilmiş Hasat) kalktı ve kayda yazıldı
+ok: aktif etki özeti artık test katkısı göstermiyor
+ok: başlangıçta HUD nesnesinde ek Canvas yok
+ok: kota HUD'u gizlendi: yalnız çizim kapalı; GameObject ve script etkin — Kota ve boss ödülleri listesi: 1 öğe gizlendi
+   HUD · göstergeler: HUD gizlendi (yalnız çizim; script'ler ve yöneticiler çalışıyor) — Round / XP / kaynak göstergeleri: 6 öğe gizlendi
+   HUD · tarla olayı: HUD gizlendi (yalnız çizim; script'ler ve yöneticiler çalışıyor) — Tarla olayı açıklaması: 1 öğe gizlendi
+ok: HUD gizliyken round, skor ve VFX yöneticileri çalışıyor (kök nesne kapatılmadı)
+ok: gizli öğe sayısı 8
+ok: yeniden kurulumda (yeni sahne, yeni HUD nesneleri) gizleme yeniden uygulandı
+ok: "göster": gizli öğe kaydı kalmadı
+ok: "göster" eklenen Canvas'ları kaldırdı: HUD nesneleri eski hâlinde
+ok: kota HUD'unun çizimi yeniden oyunun kendi Canvas'ında ve açık
+ok: koşul sağlanmadan örnekleme yapılmadı: Bu saksının Elektrik şansı 0: fırsat doğmaz (davranış tile'ı yok). Koşul sağlanmadan örnekleme yapılmaz.
+ok: 400 deneme = 400 gerçek fırsat (her denemede gerçek doğrudan hasat)
+ok: beklenen şans gerçek hesabın kullandığı değer: 44% (test şans katkısı yok)
+ok: patlama: başarılı zar 186 = başlatılan 186 (kapasite sınırı yok)
+ok: gözlenen oran 46.5% · %95 aralık 41.7–51.4%
+   şans örneği: beklenen 44% aralığın içinde · Gerçek hesabın kullandığı şans, gözlenen oranın %95 güven aralığının İÇİNDE (çelişki yok).
+ok: aynı seed, aynı koşul → aynı sonuç (186 = 186): seed gerçekten zar akışını belirliyor
+ok: örnek metni istenen sayıları ayrı ayrı yazıyor
+ok: küçük örnek ayrıca işaretlenir (kesin PASS / FAIL gibi sunulmaz)
+ok: kasırga: fırsat 300 · başarılı zar 300 · başlatılan 36 · kapasite reddi 264
+ok: örnek boyunca aktif kasırga sınırı aşılmadı
+   kasırga örneğinde kapasite reddi gözlendi: "zar başarılı" ≠ "davranış başlatıldı"
+ok: örnek bitince otomatik saldırı ve üretim ayarı önceki hâline döndü
+   gözlemli koşu: izlenen vuruş 99 (0 kapanmış iz + 1 açık iz), 409 kayıt satırı, 8 makbuz
+   parmak izi A: xp 1900/240 lvl 5 pend 12 gold 306 iron 0 stone 0 score 95 | Explosion 3000 Electric 6000 Tornado 7000 Boomerang 3000 | -,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,3,-, | effects 0/0 0/0 0/0 0/0 0/0 0/0 10/10 0/0 10/8 0/0 0/0 | rng {"s0":-1909111699,"s1":-705432616,"s2":1692608844,"s3":1305499263}
+ok: senaryo gerçekten oynandı (skor kazanıldı, zar akışı okundu)
+ok: taban: kayıt kapalı iki koşu birebir aynı (seed'li senaryo tekrarlanabilir)
+ok: kayıt kapalı ile ayrıntılı iz + saldırı izi + görüntü açıkken OYNANIŞ SONUCU AYNI: bakiyeler, bitki canları, davranış sayaçları, ödül vuruşları ve oyunun rastgele akışının son durumu (kayıt ek zar atmıyor)
+ok: kataloğun 81 kontrolünün hepsi işlendi
+ok: yarım kalan kontrol yok
+ok: final / endless gibi olmayan sistemler "sistem henüz yok" olarak işaretli (PASS değil)
+ok: PASS yalnız en az bir karşılaştırması geçen ve FAIL / İNCELENMEDİ satırı olmayan kontrollere verildi
+ok: kontrol matrisi ödül kataloğunun tamamını kapsıyor (32 ödül)
+   [PASS] D01 · Doğrudan vuruş · Temel doğrudan vuruş ve gerçek can azalması (otomatik doğrulanan)
+   [PASS] D02 · Doğrudan vuruş · Kritik vuruş (ikinci yuvarlama) (otomatik doğrulanan)
+   [PASS] D03 · Doğrudan vuruş · Keskin Bıçak ×1 ve ×2 stack (otomatik doğrulanan)
+   [PASS] D04 · Doğrudan vuruş · Canavar Kesimi (otomatik doğrulanan)
+   [PASS] D05 · Doğrudan vuruş · Altın Hedef: Rare+ hedefe çarpan, Common hedefe yok (otomatik doğrulanan)
+   [PASS] D06 · Doğrudan vuruş · Bereketli Öğrenim: doğrudan vuruş bedeli ve seçim hakkı (otomatik doğrulanan)
+   [PASS] D07 · Doğrudan vuruş · Saksı hasar çarpanı (Damage tile) yalnız doğrudan vuruşa (otomatik doğrulanan)
+   [PASS] S01 · Stat ödülleri · Hızlı Bilek: stat ve ölçülen saldırı aralığı (otomatik doğrulanan)
+   [PASS] S02 · Stat ödülleri · Fırtına Bileği: stat ve ölçülen saldırı aralığı (otomatik doğrulanan)
+   [PASS] S03 · Stat ödülleri · Geniş Savuruş: stat ve gerçek temas yarıçapı (otomatik doğrulanan)
+   [PASS] S04 · Stat ödülleri · Bilgi Filizi: stat ve gerçek hasat XP'si (otomatik doğrulanan)
+   [PASS] S05 · Stat ödülleri · Ağır Darbe: kritik çarpanı ve gerçek kritik vuruş (otomatik doğrulanan)
+   [PASS] S06 · Stat ödülleri · Kritik Göz: kritik şansı (gerçek saldırının kullandığı değer) (otomatik doğrulanan)
+   [PASS] S07 · Stat ödülleri · Kıvılcım: davranış şansları; şansı olmayan saksı şans kazanmaz (otomatik doğrulanan)
+   [PASS] S08 · Stat ödülleri · Nadir Tohum: nadirlik bonusu (otomatik doğrulanan)
+   [PASS] S09 · Stat ödülleri · Bereketli Toprak: koşul ve gerçek üretim aralığı (otomatik doğrulanan)
+   [PASS] B01 · Davranış hasarı · Patlama: dört yan komşu, çapraz yok, gerçek can azalması (otomatik doğrulanan)
+   [PASS] B02 · Davranış hasarı · Yıkım Gücü ×1 ve ×2 stack: davranış hasarı; doğrudan vuruş değişmez (otomatik doğrulanan)
+   [PASS] B03 · Davranış hasarı · Davranışa Adanış: davranış hasarı ve seçim hakkı bedeli (otomatik doğrulanan)
+   [PASS] B04 · Davranış hasarı · Elektrik hasarı (otomatik doğrulanan)
+   [PASS] B05 · Davranış hasarı · Kasırga hasarı (davranışın kendi katsayısıyla) (otomatik doğrulanan)
+   [PASS] B06 · Davranış hasarı · Bumerang hasarı (davranışın kendi katsayısıyla) (otomatik doğrulanan)
+   [PASS] K01 · Kırılma ödülleri · Artçı Patlama: gecikme, hasar oranı, yeni zar yok (otomatik doğrulanan)
+   [PASS] K02 · Kırılma ödülleri · Çifte Akım: gecikme, hasar oranı, yeni zar yok (otomatik doğrulanan)
+   [PASS] K03 · Kırılma ödülleri · Hasat Ritmi: hak hazırlanır, harcanır, birikmez (otomatik doğrulanan)
+   [PASS] K04 · Kırılma ödülleri · Zincir Hasat: nesil hasar çarpanı ve nesil sınırı (otomatik doğrulanan)
+   [PASS] E01 · Etki ödülleri · Kritik Ark (otomatik doğrulanan)
+   [PASS] E02 · Etki ödülleri · Taşan Hasar (otomatik doğrulanan)
+   [PASS] E03 · Etki ödülleri · Hasat Yankısı: simetrik hücreler (otomatik doğrulanan)
+   [PASS] E04 · Etki ödülleri · Nadir Reaktör: eklenme, yenilenme (birikmez), süre sonu (otomatik doğrulanan)
+   [PASS] E05 · Etki ödülleri · Açgözlü Hasat: hak ve saldırı çarpanı (otomatik doğrulanan)
+   [PASS] E06 · Etki ödülleri · Kritik Patlama (otomatik doğrulanan)
+   [PASS] E07 · Etki ödülleri · Aşırı Yükleme: gecikme ve hasar oranı (otomatik doğrulanan)
+   [PASS] A01 · Anten ailesi · Elektrik Anteni: aralık ve hasar (otomatik doğrulanan)
+   [PASS] A02 · Anten ailesi · İletken Hat: aralık ve hasar (otomatik doğrulanan)
+   [PASS] A03 · Anten ailesi · Kapalı Devre: ek hat vuruşu, hasar ve gecikme (otomatik doğrulanan)
+   [PASS] H01 · Hilal ailesi · Hilal Darbesi: eşik ve hasar (otomatik doğrulanan)
+   [PASS] H02 · Hilal ailesi · Büyüyen Ay: büyüyen adım hasarı (yalnız gözlemlenebilen)
+   [PASS] H03 · Hilal ailesi · Dolunay: dönüş dalgası ve vuruş duraklaması (yalnız gözlemlenebilen)
+   [manuel inceleme gerekli] H04 · Hilal ailesi · Hilal imleç rotası (güncel kural) (yalnız gözlemlenebilen)
+   [PASS] F01 · Tarla olayları · Diken Kuşatması: kapalı hücreler ve kök dayanıklılığı (otomatik doğrulanan)
+   [PASS] F02 · Tarla olayları · İstilacı Filiz: yavaşlatma çarpanı gerçek üretim aralığında (otomatik doğrulanan)
+   [PASS] F03 · Tarla olayları · Aşılı Kabuk: seçim yapılmazsa bölge kapanır (yalnız gözlemlenebilen)
+   [PASS] F04 · Tarla olayları · Gezgin Bereket: kaynak ×2, XP ×2, bölge dışında bonus yok (otomatik doğrulanan)
+   [PASS] G01 · Boss kuralları · Don Cephesi: bantta üretim aralığı çarpanı, kalkınca eski değer (otomatik doğrulanan)
+   [PASS] G02 · Boss kuralları · Sert Kabuk: bantta bitki canı çarpanı, kalkınca eski değer (otomatik doğrulanan)
+   [PASS] G03 · Boss kuralları · Sis: saldırı yarıçapı çarpanı, kalkınca eski değer (otomatik doğrulanan)
+   [PASS] X01 · XP / kaynak / skor · Kontrollü tek hasat: kaynak, XP ve skor kaydı = gerçek bakiye farkı (otomatik doğrulanan)
+   [PASS] X02 · XP / kaynak / skor · Level kazanımı: kazanılan XP ≠ saklı XP, yeni seçim hakkı (otomatik doğrulanan)
+   [sistem henüz yok] M01 · Henüz olmayan sistemler · Final boss / run sonu sistemi (eksik)
+   [sistem henüz yok] M02 · Henüz olmayan sistemler · Endless (sonsuz) mod (eksik)
+   [sistem henüz yok] M03 · Henüz olmayan sistemler · Rezonans Çöküşü / Rezonans Darbesi (eksik)
+   [sistem henüz yok] M04 · Henüz olmayan sistemler · Hilal – rezonans etkileşim kuralı (eksik)
+   [FAIL] T00 · Tile'lar · Tile verisi: ad, nadirlik alanı ve değer aralıkları tutarlı mı (otomatik doğrulanan)
+         [FAIL] dosya adındaki nadirlik = asset'in nadirlik alanı | beklenen uyumsuz yok | gerçekleşen Tornado-Rare → nadirlik alanı Common | tolerans tam
+         [FAIL] her tür + nadirlik için tek asset | beklenen çift yok | gerçekleşen Tornado/Common: Tornado-Rare ve Tornado-Common | tolerans tam
+   [UYARI] T01 · Tile'lar · Patlama tile'ı: şans — yazan = uygulanan = gerçek tetik oranı (otomatik doğrulanan)
+   [UYARI] T02 · Tile'lar · Elektrik tile'ı: şans — yazan = uygulanan = gerçek tetik oranı (otomatik doğrulanan)
+   [FAIL] T03 · Tile'lar · Kasırga tile'ı: şans — yazan = uygulanan = gerçek tetik oranı (otomatik doğrulanan)
+         [FAIL] Rare: asset | beklenen var | gerçekleşen bu tür + nadirlik için asset bulunamadı (nadirlik alanı yanlış olabilir: T00) | tolerans tam
+   [UYARI] T04 · Tile'lar · Bumerang tile'ı: şans — yazan = uygulanan = gerçek tetik oranı (otomatik doğrulanan)
+   [UYARI] T05 · Tile'lar · Çift ödül tile'ı: şans — yazan = uygulanan = gerçek çift ödül oranı (otomatik doğrulanan)
+   [PASS] T06 · Tile'lar · Hasar tile'ı: saksı hasar çarpanı — yazan = uygulanan = gerçek doğrudan vuruş (otomatik doğrulanan)
+   [UYARI] T07 · Tile'lar · Kristal tile'ı: nadirlik bonusu — yazan = uygulanan = gerçek bitki zarı dağılımı (otomatik doğrulanan)
+   [PASS] T08 · Tile'lar · Enerji tile'ı: Harvest Score — yazan = uygulanan = gerçek hasat skoru (otomatik doğrulanan)
+   [PASS] T09 · Tile'lar · Verimli tile: üretim süresi — yazan = uygulanan = ölçülen gerçek doğuş süresi (otomatik doğrulanan)
+   [PASS] T10 · Tile'lar · Su tile'ı: XP kazancı — yazan = uygulanan = gerçek hasat XP'si (otomatik doğrulanan)
+   [PASS] R01 · Rezonanslar · Odak: kademeler, yazan etki, uygulanan etki, gerçek kullanım (otomatik doğrulanan)
+   [PASS] R02 · Rezonanslar · Şöhret: kademeler, yazan etki, uygulanan etki, gerçek kullanım (otomatik doğrulanan)
+   [PASS] R03 · Rezonanslar · Bolluk: kademeler, yazan etki, uygulanan etki, gerçek kullanım (otomatik doğrulanan)
+   [PASS] R04 · Rezonanslar · Bilgelik: kademeler, yazan etki, uygulanan etki, gerçek kullanım (otomatik doğrulanan)
+   [PASS] R05 · Rezonanslar · Kristal Bahçe: kademeler, yazan etki, uygulanan etki, gerçek kullanım (otomatik doğrulanan)
+   [PASS] R06 · Rezonanslar · Güçlendirilmiş Hasat: kademeler, yazan etki, uygulanan etki, gerçek kullanım (otomatik doğrulanan)
+   [UYARI] R07 · Rezonanslar · Değerli Hasat: kademeler, yazan etki, uygulanan etki, gerçek kullanım (otomatik doğrulanan)
+   [PASS] R08 · Rezonanslar · Verimli Toprak: kademeler, yazan etki, uygulanan etki, gerçek kullanım (otomatik doğrulanan)
+   [PASS] R09 · Rezonanslar · Elektrik Bilgisi: kademeler, yazan etki, uygulanan etki, gerçek kullanım (otomatik doğrulanan)
+   [PASS] R10 · Rezonanslar · Nadir Fidanlık: kademeler, yazan etki, uygulanan etki, gerçek kullanım (otomatik doğrulanan)
+   [PASS] C01 · Kartlar · Tile kartı: kartta yazan değer tarlaya aynen gelir (otomatik doğrulanan)
+   [PASS] C02 · Kartlar · Yükseltme kartı: seviye kazancı ve değer çarpanı (otomatik doğrulanan)
+   [PASS] C03 · Kartlar · Temel güç kartları: beş kart × dört nadirlik, toplanan ve çarpılan gruplar (otomatik doğrulanan)
+   [PASS] SK01 · Skill ağacı · Skill ağacı: her satın alımda bedel ve stat etkisi (otomatik doğrulanan)
+   [PASS] L01 · Başlangıç seçimi · Çiftçi ve tırpan: stat, doğrudan vuruş, kaynak ve skor çarpanı (otomatik doğrulanan)
+   [PASS] U01 · Başlangıç seçimi · Uzmanlaşma (yalnız gözlemlenebilen)
+   [sistem henüz yok] M05 · Henüz olmayan sistemler · Okunmayan statlar: StartingGoldBonus, StartingPlanterCount, ExtraCardChoice, RerollCard (eksik)
+   Kontrol özeti: 67 PASS · 6 UYARI · 2 FAIL · 0 İNCELENMEDİ · 1 manuel inceleme gerekli · 5 sistem henüz yok (toplam 81 / katalog 81)
+ok: kontroller bitince önceki senaryo temiz oturuma geri kuruldu (kontrolün ödülü / statı kalmadı)
+ok: gerçek oyuncu kaydının klasörüne ve Assets'e rapor yazılmadı: Rapor yazılmadı: gerçek oyuncu kaydının klasörü; rapor oraya yazılmaz.
+ok: Oturum raporu yazıldı (rapor.txt, rapor.json ve 5 CSV): C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Logs\MechanicsNumericExport\rapor-20261012-230302
+ok: rapor klasöründe yedi dosya var: rapor.txt, rapor.json, once-sonra.csv, saldiri-izi-vuruslar.csv, saldiri-izi-hasatlar.csv, kontroller.csv, sans.csv
+ok: rapor başlığı: senaryo, profil + seed, round, aktif ödüller, test katkıları, başlangıç koşulları, kesilme bilgisi
+ok: okunabilir rapor bütün bölümleri içeriyor
+ok: JSON raporu okunabiliyor ve aynı bölümleri taşıyor
+ok: kontrol tablosu CSV'de
+ok: dışa aktarım gerçek kayıt dosyasına dokunmadı
+ok: "Son işlemi Console'a yaz" çalıştı: Önce / sonra karşılaştırması
+ok: yeniden kurulumda açık izler "kesildi" diye kapandı; yeni oturuma açık iz taşınmadı
+ok: önceki oturumun görüntüsü yeni oturuma taşınmadı
+ok: makbuz ve test katkısı yalnız yeni senaryonunkiler
+ok: önceki oturumların ödül / buff etkisi kalmadı
+ok: üç yeniden kurulumdan sonra tek saldırı tek hesap satırı yazdı (1): abonelik çoğalmadı
+ok: kayıt ve iz kapatılınca Editor gözlem noktalarında dinleyici kalmadı
+ok: panelin sekiz sekmesi ve 'H · Sayısal'ın altı alt sekmesi canlı oturumda, gerçek içerikle hata vermeden çizildi
+   panel PNG'leri yazıldı (Logs/MechanicsNumericPanel): alt sekmeler 0 1 2 3 4 5
+ok: oturum kapandı: profil geçersiz kılması kaldırıldı
+ok: oturum bitince kayıt, iz, yürütücü ve HUD gizlemesi kapandı; gözlem noktalarında dinleyici yok
+ok: zaman ölçeği ve saldırı / üretim / sayaç bayrakları geri yüklendi
+ok: seçili run profili değişmedi: Run50_GecOyunV1
+ok: gerçek oyuncu kayıt dosyası değişmedi (639264681050345157:252)
+ok: 445 asset ve sahne dosyası ile Build Settings sahne listesi değişmedi (kaynak ScriptableObject'ler, GameScene, DemoScene dahil)

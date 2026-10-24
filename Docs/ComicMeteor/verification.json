@@ -1,0 +1,11 @@
+{
+  "scene": "Comic Meteor - Fall and Impact",
+  "objects": 100,
+  "fps": 24,
+  "frames": [
+    1,
+    120
+  ],
+  "impact_frame": 44,
+  "external_assets": false
+}

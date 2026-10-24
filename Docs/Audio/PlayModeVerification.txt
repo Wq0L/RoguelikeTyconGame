@@ -1,0 +1,3 @@
+PASS: Menu StartRun -> GameScene; exactly one scene SoundManager; all four cue clips routed; effects mute; round music loop; shop pause preserves position; resume; music mute preserves playback.
+PASS: reward stage points; committed stacks add power; rejected reward adds nothing; clear resets power; inclusive music ranges; unlimited range; weighted selection; invalid and empty pools.
+Not an audible quality test or full placement input test.

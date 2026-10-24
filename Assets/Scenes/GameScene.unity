@@ -757,12 +757,13 @@ MonoBehaviour:
   hitParticlePrefab: {fileID: 4624796208017404597, guid: 2af164964eb08a944ac8264aa8bc7250, type: 3}
   hitPoolSize: 15
   hitParticleCount: 15
-  hitSound: {fileID: 8300000, guid: 01753f0612c21d08ca066ca4238f4e97, type: 3}
   critShake: 0.22
   explosionShake: 0.3
   resonanceShake: 0.4
   explosionVfxPrefab: {fileID: 7207109987891872098, guid: abf3ecc1629d47d797077030e6502ca9, type: 3}
   explosionPoolSize: 16
+  aftershockVfxPrefab: {fileID: 4250298743439401463, guid: 184c47b8b8e4c814d8241a901f177515, type: 3}
+  aftershockScaleRatio: 0.6
   explosionMainScale: 1
   explosionSecondaryScale: 0.5
   explosionStartScaleRatio: 0.5
@@ -3795,6 +3796,73 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 345342802}
   m_CullTransparentMesh: 1
+--- !u!1 &349604995
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 349604997}
+  - component: {fileID: 349604996}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &349604996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349604995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82c11d8bc49620a4c8c1ddbdca9113d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundManager
+  placeItem:
+    clip: {fileID: 8300000, guid: 22abba933d891c140b8128e295de9ddb, type: 3}
+    volume: 0.7
+    pitch: 1
+  plantDamage:
+    clip: {fileID: 8300000, guid: 77e6325c7529a5a419b4beed1d72abbd, type: 3}
+    volume: 0.3
+    pitch: 1
+  invalidPlacement:
+    clip: {fileID: 8300000, guid: 7c73a855b60b0ac41a923549e4df0186, type: 3}
+    volume: 0.65
+    pitch: 1
+  cancelPlacement:
+    clip: {fileID: 8300000, guid: db02d6713e66cd343a7c1b5d842bf2ad, type: 3}
+    volume: 0.65
+    pitch: 1
+  entries:
+  - resourcePath: Music/RoundMusic
+    weight: 1
+    clip: {fileID: 8300000, guid: 17b49bd3b4a2d4d47b9ce0fb14ca3b0e, type: 3}
+    minPower: 0
+    maxPower: 0
+  volume: 0.2
+--- !u!4 &349604997
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349604995}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1967322490}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &356778259
 GameObject:
   m_ObjectHideFlags: 0
@@ -15823,6 +15891,9 @@ MonoBehaviour:
   maxRounds: 130
   endSlowdownWindow: 0.3
   endSlowdownFloor: 0.45
+  quotaSegmentRounds: 5
+  quotaStart: 10
+  quotaGrowth: 1.45
 --- !u!1001 &1576945877
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19114,6 +19185,7 @@ Transform:
   - {fileID: 895153375}
   - {fileID: 1781058625}
   - {fileID: 2045438565}
+  - {fileID: 349604997}
   - {fileID: 39481034}
   - {fileID: 1624728364}
   - {fileID: 1788624027}
@@ -20549,6 +20621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RunComplateUI
   scoreText: {fileID: 504600235}
+  menuSceneName: MenuScene
 --- !u!1 &2087146468
 GameObject:
   m_ObjectHideFlags: 0

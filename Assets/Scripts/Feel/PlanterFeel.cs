@@ -41,7 +41,7 @@ public static class PlanterFeel
     private static void Land(Vector3 center, float radius)
     {
         VFXManager.Instance?.PlayLandingDust(center, radius);
-        FeelAudio.Play(FeelSound.Thump, 0.7f);
+        SoundManager.Ensure().Play(GameSound.PlaceItem);
         CameraFeel.Shake(0.26f, 0.35f);
     }
 

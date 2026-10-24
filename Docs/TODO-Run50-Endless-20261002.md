@@ -6,6 +6,13 @@ Bu liste önceki inceleme belgelerinin önerilerinden önceliklidir: özellikle 
 
 ## A. Sabit kararlar
 
+### 22 Ekim — Artçı Patlama kabulü ve sonraki denge işi
+
+- [x] Artçı Patlama'nın normal patlama sınırından üç adımlı yayılması ve küçük beyaz efektleri tamamlandı; kullanıcı onayladı.
+- [ ] Dengeleme sonraya bırakıldı: güçlü kart sınıfında konumlandır; artçı hasarını törpüleme ve/veya oyuncuya artçı hasarını artırma imkânı verme seçeneklerini değerlendir. Katsayı, geliştirme yolu ve teklif aşaması henüz kesinleşmedi; bu kayıt oyun değerlerini değiştirmez. Önceki aynı merkezli artçı ölçümleri yeni yayılmanın denge onayı sayılmaz.
+
+### Ana kararlar
+
 - Ana run 50 round; aktif hasat süresi 50–60 dakika. Mağaza, seçim, duraklatma ve yükleme bu hesaba dahil değil.
 - Boss takvimi: **3, 6, 10, 13, 16, 20, 23, 26, 30, 33, 36, 40, 43, 46, 50**.
 - Erken ödüller: R3/6/10. Orta: R13/16/20. Güçlü: R23/26/30/33/36/40/43/46/50.
@@ -291,16 +298,22 @@ Ayrıntı: [Bolum3-8-GecOyunOlaylariVeBossOdulleri.md](Bolum3-8-GecOyunOlaylariV
 
 Karar (4 Ekim): Sistemler ve içerik tamamlandıktan sonra kullanıcı, ayrı bir test sahnesinde mekanikleri ve statların doğru hedefe uygulanmasını elle doğrulayacak. Bu paket şimdi sahne oluşturma işi değildir; P12 sonrasında, polish öncesinde uygulanır.
 
-- [ ] Ayrı, tek adımla açılıp oynanabilen bir test sahnesi oluştur; gerçek oyun kodunu ve içerik asset'lerini kullansın, kopya mekanik/hasar hesapları kurmasın. Gerçek oyuncu kaydı, görev kilitleri ve seçili run profili etkilenmesin.
-- [ ] Tekrarlanabilir seed, hazır tarla/build düzenleri, round/level senaryoları ve senaryoyu sıfırla kontrolleri sağla. Test kurulum araçları normal oyuncu akışına taşınmasın.
-- [ ] Çiftçi, tırpan, skill, tile, rezonans, boss ödülü ve bedelleri tek tek açıp karşılaştırabilsin. Stat paneli tabanı, kaynakları, işlemleri ve nihai değeri; hedefin oyuncu/saksı/tile/davranış olduğunu açık göstersin.
-- [ ] Önceden belirlenmiş örnek beklentilerle gerçek vuruş ve hasat sonuçlarını karşılaştır: doğrudan/kritik hasar, dört davranış, artçı/ikinci dalga, zincir nesilleri, Hasat Ritmi, saldırı/üretim aralığı, nadirlik ve tetik şansı, XP, kaynak, skor ve seçim hakkı. Beklenen sonuç yalnız uygulamadaki aynı hesabı yeniden çağırarak üretilmesin.
-- [ ] Etkinin istenen hedefte uygulanması kadar diğer hedefe sızmamasını ve bir kez uygulanmasını da göster: doğrudan hasar bonusu davranışa sızmaz, saksı etkisi ilgisiz saksıya geçmez, çarpan iki kez uygulanmaz. Ödül/etki kapalı-açık karşılaştırması olsun.
-- [ ] Rastgele şanslarda tek tetik üzerinden PASS verme; gerçek şansı ve çoklu denemenin tetik sayısını ayrı göster. Ölçülmeyen sonuç "test edilmedi" olarak kalsın.
-- [ ] Don/Sert Kabuk/Sis önizleme-aktif-bitiş, havuz doluluğu, kart/ödül sırası, final ve R50→endless geçişi için hazır senaryolar sun. Henüz uygulanmamış mekanikler çalışıyor gibi gösterilmesin.
-- [ ] Round sonu, yeni run, tekrar başlatma ve sahneden çıkışta stat/efekt/kuyruk temizliğini elle ve otomatik kontrollerle doğrula. Test sahnesinin kontrolleri de çalıştırılmış olsun.
-- [ ] Türkçe kısa kullanım listesi ve senaryo bazında beklenen/gerçek sonuç sun; kullanıcının geçti/kaldı/test edilmedi notlarını alabileceği kontrol listesi hazırla. İnsan onayı otomatik test sonucu yerine yazılmasın.
-- [ ] Kullanıcı sahneyi oynayıp mekanik ve stat uygulamasını doğrulasın; bulunan hatalar giderilip ilgili senaryolar tekrar denensin. Ardından polish aşamasına geçilsin.
+Sıra değişikliği (12 Ekim, kullanıcı isteği): yeni içerik durduruldu; test sahnesi ve aracı P12 beklenmeden kuruldu (**Mechanics Test Lab**). P12 kapanmış değildir; bu araç onun yerine geçmez. Bir kutunun işaretli olması "araç var ve otomatik araç doğrulamasından geçti" demektir; insan kontrolü aşağıda ayrı ve açıktır. Kullanım: [MechanicsTestLab.md](MechanicsTestLab.md).
+
+İkinci paket (12 Ekim, kullanıcı isteği): aynı araca **sayısal doğrulama** eklendi (panelde `H · Sayısal`): önce / sonra stat karşılaştırması, gerçek katkı kaynakları, "bir sonraki saldırıyı kaydet" izi, XP / kaynak / skor kaydı, buff yaşam döngüsü, ödül makbuzu, 53 kontrollük beklenen / gerçekleşen kataloğu, şans istatistiği, kayıt seviyeleri ve dışa aktarım, oyun HUD'unu gizleme. Yeni sahne, ikinci stat sistemi ya da yeni mekanik eklenmedi; `GameScene` / `DemoScene`, seçili profil, gerçek kayıt ve kaynak asset'ler değişmedi.
+
+- [x] Ayrı, tek adımla açılıp oynanabilen bir test sahnesi oluştur; gerçek oyun kodunu ve içerik asset'lerini kullansın, kopya mekanik/hasar hesapları kurmasın. Gerçek oyuncu kaydı, görev kilitleri ve seçili run profili etkilenmesin. (12 Ekim: `MechanicsTestScene` bir başlatıcıdır ve Play'de gerçek `GameScene`'i yükler; profil çalışma zamanında kopyalanır, kayıt yalnız bellekte tutulur. Panel: Tools > Mechanics Test Lab.)
+- [x] Tekrarlanabilir seed, hazır tarla/build düzenleri, round/level senaryoları ve senaryoyu sıfırla kontrolleri sağla. Test kurulum araçları normal oyuncu akışına taşınmasın. (12 Ekim: senaryo verisi + 25 hazır senaryo, kaydet / yükle, temiz oturumdan yeniden kurma; sahne Build Settings'te değil, araç Editor derlemesinde, oyun kodundaki girişler `#if UNITY_EDITOR`.)
+- [ ] Çiftçi, tırpan, skill, tile, rezonans, boss ödülü ve bedelleri tek tek açıp karşılaştırabilsin. Stat paneli tabanı, kaynakları, işlemleri ve nihai değeri; hedefin oyuncu/saksı/tile/davranış olduğunu açık göstersin. (Kısmi, 12 Ekim: tile, rezonans, boss ödülü, bedel, çiftçi ve tırpan panelden kurulur; stat dökümü taban / global / tile / rezonans ve oyuncu–saksı kapsamını ayırır. İkinci paket: **önce / sonra karşılaştırma tablosu** (mutlak fark, oran, değişen kaynak, birim) ve kaynak dökümü artık başlangıç seçimini, satın alınmış skill seviyelerini, toplanan temel güç kartlarını, boss ödülünü, boss kuralını, geçici etkiyi ve test katkısını ayırıyor; eşleşmeyen "kaynağı kayıtlı değil" kalıyor. Üçüncü paket: tile (10 tür × 4 nadirlik), rezonans (10 kural), kart, skill ağacı (219 satın alım) ve çiftçi / tırpan için "yazan = uygulanan = gerçekte kullanılan" kontrolleri eklendi ve koşuldu. Açık: skill tree panelden yönetilmiyor; uzmanlaşma bu profilde kapalı olduğu için ölçülmedi.)
+- [ ] Önceden belirlenmiş örnek beklentilerle gerçek vuruş ve hasat sonuçlarını karşılaştır: doğrudan/kritik hasar, dört davranış, artçı/ikinci dalga, zincir nesilleri, Hasat Ritmi, saldırı/üretim aralığı, nadirlik ve tetik şansı, XP, kaynak, skor ve seçim hakkı. Beklenen sonuç yalnız uygulamadaki aynı hesabı yeniden çağırarak üretilmesin. (Büyük ölçüde yapıldı, 12 Ekim ikinci paket: 53 kontrollük katalog — beklenen bağımsız aritmetikle (asset değeri + işlemden önce ölçülen değer), gerçekleşen oyundan ölçülerek; doğrudan / kritik, dört davranış, artçı ve ikinci dalga, zincir nesilleri, Hasat Ritmi, saldırı ve üretim aralığı, XP, kaynak, skor, seçim hakkı, 32 boss ödülünün hepsi, dört tarla olayı, üç boss kuralı. İzole koşu: 48 PASS · 0 FAIL · 1 manuel · 4 "sistem henüz yok". Üçüncü paketle katalog 81 kontrol oldu: tile'lar, rezonanslar, kartlar, skill ağacı, başlangıç seçimi; tetik şansı, çift ödül ve nadirlik zarı gerçek örneklemeyle (240 / 600 deneme, ±4σ) karşılaştırılıyor. Son koşu: 67 PASS · 6 UYARI · 2 FAIL · 1 manuel · 5 "sistem henüz yok". Açık: uzmanlaşma (profilde kapalı), skill'lerin meta statlarının oyundaki etkisi, elektrik öldürmesi XP'sinin gerçek hasada yansıması.)
+- [x] Etkinin istenen hedefte uygulanması kadar diğer hedefe sızmamasını ve bir kez uygulanmasını da göster: doğrudan hasar bonusu davranışa sızmaz, saksı etkisi ilgisiz saksıya geçmez, çarpan iki kez uygulanmaz. Ödül/etki kapalı-açık karşılaştırması olsun. (12 Ekim ikinci paket: önce / sonra karşılaştırması ve ödül makbuzu kapalı–açık farkını gösterir; kontrollerde doğrudan çarpanın davranışa (D03), davranış çarpanının doğrudan vuruşa (B02), saksı hasar çarpanının davranışa (D07), şans çarpanının tile'sız saksıya (S07, E04) sızmadığı ve stack'in tam bir kez uygulandığı (×1 / ×2) karşılaştırılır. Sızma denetimi ödül türüne göredir; her ödül için ayrı sızma satırı yoktur.)
+- [x] Rastgele şanslarda tek tetik üzerinden PASS verme; gerçek şansı ve çoklu denemenin tetik sayısını ayrı göster. Ölçülmeyen sonuç "test edilmedi" olarak kalsın. (12 Ekim ikinci paket: `H · Sayısal > Şans` — seed, deneme, gerçek fırsat, başarılı zar, gerçekten başlatılan, kapasite reddi, gözlenen oran, gerçek hesabın şansı, %95 aralık; "zar başarılı" ≠ "davranış başlatıldı"; küçük örnek işaretlenir, PASS verilmez. Kontrollerde gerçekleşmeyen olay "İNCELENMEDİ", otomatik bakılamayan kısım "manuel inceleme gerekli" kalır.)
+- [ ] Don/Sert Kabuk/Sis önizleme-aktif-bitiş, havuz doluluğu, kart/ödül sırası, final ve R50→endless geçişi için hazır senaryolar sun. Henüz uygulanmamış mekanikler çalışıyor gibi gösterilmesin. (Kısmi: üç boss panelden seçilen boss round'unda başlatılır ve temizlenir; kart → boss ödülü sırası oyunun akışıyla denenir; kasırga / bumerang kapasite senaryosu var. İkinci paket: üç boss kuralının aktif–bitiş sayıları kontrol kataloğunda (G01–G03); final, endless ve hilal–rezonans kuralı katalogda "sistem henüz yok" olarak işaretli. Boss'lar için hazır senaryo yok. 13 Ekim belge düzeltmesi: Rezonans Çöküşü / Darbesi kullanıcı kararıyla kapsamdan çıkarılmıştır; bu maddenin eksik sistemi veya senaryo hedefi değildir. Katalogdaki M03 sınıflandırması ayrı araç güncellemesinde düzeltilmeli; eski ham koşu çıktıları ve sayıları tarihsel kanıt olarak korunmuştur.)
+- [ ] Round sonu, yeni run, tekrar başlatma ve sahneden çıkışta stat/efekt/kuyruk temizliğini elle ve otomatik kontrollerle doğrula. Test sahnesinin kontrolleri de çalıştırılmış olsun. (Kısmi: otomatik — üç ardışık yeniden kurmada birikme ve çift abonelik yok, Play'den çıkışta zaman ve bayraklar geri alınıyor. İkinci paket: geçici etkilerin eklendi / yenilendi / bitti / temizlendi kaydı, rezonansın şart bozulunca kalkması, test katkısının sıfırlanması ve açık saldırı iziyle yeniden kurulumda kalıntı kalmaması otomatik doğrulandı. Elle kontrol açık.)
+- [x] Türkçe kısa kullanım listesi ve senaryo bazında beklenen/gerçek sonuç sun; kullanıcının geçti/kaldı/test edilmedi notlarını alabileceği kontrol listesi hazırla. İnsan onayı otomatik test sonucu yerine yazılmasın. (12 Ekim: [MechanicsTestLab.md](MechanicsTestLab.md) — 5 dakikalık rehber, senaryo tablosu, boş insan kontrol listesi. İkinci paket: sayısal doğrulama bölümü, dört adım adım örnek, kapsam matrisi (otomatik / yalnız gözlem / eksik), kontrol başına beklenen–gerçekleşen dökümü. Liste doldurulmadı.)
+- [ ] Kullanıcı sahneyi oynayıp mekanik ve stat uygulamasını doğrulasın; bulunan hatalar giderilip ilgili senaryolar tekrar denensin. Ardından polish aşamasına geçilsin. (Açık: insan testi yapılmadı.)
+
+Araç doğrulaması (12 Ekim): `MechanicsTestLabVerification` 183 kontrol PASS — sahne ve güvenlik, tarla = oyun durumu, stat incelemesi = gerçek sonuç, normal ve kontrollü ödül yolları, manuel saldırı zinciri, zaman kontrolünde gecikmeli etki / hareketli davranış / tarla olayı, senaryo kaydet–yükle, yeniden kurma kararlılığı, 25 hazır senaryo, oyuncu derlemesinde test girişi olmaması. İkinci paket: `MechanicsNumericVerification` 113 araç kontrolü PASS — görüntüler canlı referans değil, katkılar doğru kapsamda, saldırı izi gerçek can değişimi ve bakiye farkıyla aynı, buff yaşam döngüsü, yeniden kurulumda sızıntı yok, kayıt açık / kapalı oynanış sonucu aynı (oyunun rastgele akışının son durumu dahil), asset / profil seçimi / oyuncu kaydı değişmedi. Bunlar araç doğrulamasıdır: denge, görsel kabul ve insan Play testi **değildir**. Panelin görünüşü batch koşusunda alınan gerçek pencere görüntülerinden incelendi ve bulunan kusurlar düzeltildi; açık editörde elle kullanım denenmedi.
 
 Kabul: Kullanıcı uzun run beklemeden her eklenen mekanizmayı gerçek oyun yoluyla deneyebilir, statın nereye ve ne kadar uygulandığını görebilir. Bu sahne P12'deki gerçek run, denge ve performans doğrulamasının yerine geçmez. P13 insan kontrolü tamamlanmadan polish öncesi kabul tamamlandı denmez.
 
@@ -377,3 +390,64 @@ Kanıtlar ve geometri bütçesi Docs/GraftedShell/. Commit yok; Gezgin Bereket s
 - [x] Mevcut Taşan Hasar görsel/ses üretimi ve Overflow katalog bağlantısı tamamlandı.
 - [ ] Ayrıntılı görsel/işitsel insan Play kabulü. Temsilci görüntü nihai kabul değildir.
   Docs/Overflow/README.md. Kazanç/bedel ve ana build dışlama eşleşmeleri bu görevde uygulanmadı.
+
+### Hasat Yankısı sunumu — 2026-10-12
+- [x] Mevcut Hasat Yankısı görsel/ses üretimi ve katalog bağlantısı tamamlandı.
+  Gerçek planlamada kaynak izi, gerçek isabette lila/krem yankı ve sınırlı tok sesi.
+- [ ] Ayrıntılı görsel/işitsel insan Play kabulü; farklı kamera/ekran oranları.
+  15 hedefli kontrol ve temsilci görüntü nihai kabul değildir. Docs/HarvestEcho/README.md.
+
+### Nadir Reaktör sunumu
+- [x] Mevcut Nadir Reaktör görsel/ses üretimi ve Reactor katalog bağlantısı tamamlandı.
+  Gerçek kalan süreden beslenen tek imleç işareti; ilk aktivasyonda küçük kıvılcım/ses.
+- [ ] Ayrıntılı görsel/işitsel insan Play kabulü. 14 hedefli kontrol ve temsilci kamera
+  görüntüsü nihai kabul değildir. Docs/RareReactor/README.md. Diğer ödüllere geçilmedi.
+
+### Açgözlü Hasat sunumu
+- [x] Üç amber biçme dişi, gerçek hazır/kullanıldı/kaybedildi bağı, iki özgün kısa ses
+  ve Greed katalog bağlantısı tamamlandı. Mekanik ve denge değerleri değiştirilmedi.
+- [ ] Ayrıntılı görsel/işitsel insan Play kabulü: hazır/harcama/kayıp, boş saldırı,
+  Hasat Ritmi ve Nadir Reaktör birlikteliği. Temsilci görüntü nihai onay değildir.
+  Docs/GreedyHarvest/README.md. Kritik Patlama veya diğer ödüllere geçilmedi.
+
+### Kritik Patlama sunumu
+- [x] Krem çekirdek, sarı-turuncu comic yıldız, altı parça ve özgün kısa darbe sesi;
+  mevcut CritBurst varyantı, gerçek merkez/yarıçap ve merkezi havuza bağlı üretim tamamlandı.
+  25 hedefli kontrol geçti. Mekanik/denge değişmedi. Docs/CritBurst/README.md.
+- [ ] Ayrıntılı görsel/işitsel doğrulama ve insan Play kabulü. Normal kamera örneği
+  nihai onay değildir; diğer ödüllere geçilmedi.
+
+### Aşırı Yükleme sunumu
+- [x] Gerçek iş kabulünde iki vuruşlu amber hazırlık, gerçek başarıda kısa boşalma,
+  iptalde sessiz çıkış; iki özgün hafif ses ve Overload katalog bağlantısı tamamlandı.
+  Mekanik değerler/kapasite/RNG değişmedi. Docs/Overload/README.md.
+- [ ] Ayrıntılı görsel/işitsel doğrulama ve insan Play kabulü. Temsilci görüntü nihai onay
+  değildir. Artçı Patlama veya başka ödüle geçilmedi.
+
+### Mechanics Test Lab (P13 aracı) — 2026-10-12
+- [x] Ayrı test sahnesi (`Assets/Scenes/MechanicsTestScene.unity`, yalnız başlatıcı: Play'de gerçek GameScene yüklenir) ve
+  Editor paneli (Tools > Mechanics Test Lab): serbest tile / saksı / bitki ataması, test stat katkıları, normal ve kontrollü
+  ödül yolları, boss ve dört tarla olayı, zaman ve saldırı kontrolü, inceleme, olay kaydı, 25 hazır senaryo, kaydet / yükle.
+  Araç doğrulaması 183 kontrol PASS. Serbest atama yalnız test aracındadır; oyundaki rastgele tile kuralı değişmedi.
+  Seçili profil, gerçek kayıt, kaynak asset'ler, GameScene ve DemoScene değişmedi. Docs/MechanicsTestLab.md.
+- [x] Sayısal doğrulama katmanı (ikinci paket, aynı gün): panelde `H · Sayısal` — önce / sonra karşılaştırması, gerçek katkı
+  kaynakları, saldırı izi (hesaplanan darbe / gerçek can azalması / taşan ayrı), XP–kaynak–skor kaydı, buff yaşam döngüsü,
+  ödül makbuzu, 53 kontrollük beklenen / gerçekleşen kataloğu (32 ödülün hepsi, dört tarla olayı, üç boss kuralı), şans
+  istatistiği, kayıt seviyeleri (Kapalı / İşlem özeti / Ayrıntılı sayısal iz), Console ve TXT + JSON + CSV dışa aktarımı, oyun
+  HUD'unu gizleme. Oyun kodunda yalnız Editor gözlem noktaları (`EditorNumericTrace`); hesap taşınmadı. İzole koşu:
+  113 araç kontrolü PASS; katalog (o gün, 53 kontrol) 48 PASS · 0 FAIL · 0 İNCELENMEDİ · 1 manuel (hilal rotası) · 4 "sistem
+  henüz yok". Oyun kodunda hata bulunmadı. Regresyon: Docs/MechanicsTestLab/Regresyon-Sayisal-20261012.txt.
+- [x] Stat ve buff kaynaklarının sayısal doğrulaması (üçüncü paket, aynı gün, kullanıcı sorusu: "tile'ın yazdığı şans gerçekten
+  uygulanıyor mu?"): 27 yeni kontrol — tile verisi ve on tile türü, on rezonans kuralı, üç kart türü, skill ağacı, çiftçi /
+  tırpan, uzmanlaşma. Her kaynak için: oyunun yazdığı değer = veri; doğru hedefe uygulanıyor, sızmıyor; oyun gerçekten
+  kullanıyor (gerçek vuruş, hasat, ölçülen süre, örneklenen oran). Sonuç 19 PASS · 6 UYARI · 2 FAIL. Hesaplarda hata yok.
+- [ ] **Karar bekleyen bulgular** (Docs/MechanicsTestLab.md "Stat ve buff kaynakları: bulgular"): (1) VERİ HATASI —
+  `Tornado-Rare` asset'inin nadirlik alanı Common; Rare kasırga tile'ı yok, iki Common var. (2) Şans tile'ları seviye alınca
+  metin %100'ü aşıyor (Legendary Sv 3: %157,5), fazlası boşa gidiyor. (3) "Nadirlik bonusu +N% puan" Rare+ olasılığına eklenen
+  puan değil (+70 yazan tile gerçekte +8,7 puan). (4) Değerli Hasat ×3 ile Şöhret ×1,5 çarpılmıyor. Ayrıca gözlemler: temel
+  güç kartları %0,02–0,1; dört stat hiçbir yerde okunmuyor; uzmanlaşma bu profilde kapalı. Hiçbiri düzeltilmedi (kaynak
+  asset ve tasarım kararı).
+- [ ] İnsan testi: kullanıcı senaryoları oynayıp Docs/MechanicsTestLab.md sonundaki kontrol listesini doldursun. Panelin
+  kullanım rahatlığı da bu testte değerlendirilecek (görünüş batch görüntülerinden incelendi; açık editörde elle
+  kullanılmadı). Sayısal kontrollerin kullanıcının kendi editöründe de çalıştırılması bu testin parçasıdır. Bu paketten sonra
+  yeni içerik, denge ya da polish işine geçilmedi.

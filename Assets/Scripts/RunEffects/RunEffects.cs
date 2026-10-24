@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -299,7 +299,7 @@ public sealed class RunEffects : MonoBehaviour
         hits[(int)source]++;
         bool killed = plant.IsDead;
         if (killed) kills[(int)source]++;
-        VFXManager.Instance?.PlayHit(point, damage, false);
+        VFXManager.Instance?.PlayHit(point, damage, false, source == RewardSource.Overflow ? DamageTextKind.Overflow : DamageTextKind.Default);
         return new StrikeResult(true, killed, killed ? plant.Overkill : 0, owner, point);
     }
 
@@ -344,6 +344,8 @@ public enum RewardCueKind
     ReactorOn, ReactorOff, GreedReady, GreedSpent, GreedLost, Overload,
     AntennaContact, LineContact, LineExtraContact, CircuitReturn,
     MoonContact, MoonReturnContact,
+    HarvestEchoPrepared,
+    OverloadPrepared, OverloadCancelled,
 }
 
 // From / To: dünya konumları (tek noktalı olayda ikisi aynı). Value: olaya göre (büyüme düzeyi, hücre sayısı, konum kimliği …).
@@ -352,7 +354,8 @@ public readonly struct RewardCue
     public readonly RewardCueKind Kind;
     public readonly Vector3 From, To;
     public readonly int Value;
+    public readonly float Radius; // Snapshot of the actual CritBurst damage radius; zero for other cues.
     public readonly int TransferStep; // Overflow presentation only, zero-based; damage stays in Value.
-    public RewardCue(RewardCueKind kind, Vector3 from, Vector3 to, int value = 0, int transferStep = 0) { Kind = kind; From = from; To = to; Value = value; TransferStep = transferStep; }
-    public RewardCue(RewardCueKind kind, Vector3 at, int value = 0) : this(kind, at, at, value) { }
+    public RewardCue(RewardCueKind kind, Vector3 from, Vector3 to, int value = 0, int transferStep = 0, float radius = 0f) { Radius = radius; Kind = kind; From = from; To = to; Value = value; TransferStep = transferStep; }
+    public RewardCue(RewardCueKind kind, Vector3 at, int value = 0, float radius = 0f) : this(kind, at, at, value, radius: radius) { }
 }

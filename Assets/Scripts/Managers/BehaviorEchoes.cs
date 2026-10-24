@@ -39,10 +39,8 @@ public sealed class BehaviorEchoes : MonoBehaviour
         public DamageType type;
         public PlanterBrain source;
         public int damage;
-        public float radiusCells;
+        public AftershockWave wave;
         public int reach;
-        public Vector3 center;
-        public List<GridPosition> footprint;
         public int id, frame;
         public float delay;
     }
@@ -51,8 +49,8 @@ public sealed class BehaviorEchoes : MonoBehaviour
     private const float DelayTolerance = 1e-4f;
 
     private readonly List<Job> jobs = new();
-    private readonly Stack<List<GridPosition>> spare = new();
-    private readonly List<GridPosition> targets = new();
+    private readonly Stack<AftershockWave> spare = new();
+
     private readonly int[] scheduled = new int[8], executed = new int[8], dropped = new int[8], hits = new int[8], kills = new int[8], cells = new int[8];
     private RoundManager rounds;
     private GameManager game;
@@ -79,7 +77,7 @@ public sealed class BehaviorEchoes : MonoBehaviour
         if (rounds == null) return;
         rounds.OnRunStarted += HandleRunStarted;
         rounds.OnRoundEnded += DropAll;
-        rounds.OnRoundChanged += HandleRoundChanged;
+
     }
 
     private void OnDisable()
@@ -89,7 +87,7 @@ public sealed class BehaviorEchoes : MonoBehaviour
         {
             rounds.OnRunStarted -= HandleRunStarted;
             rounds.OnRoundEnded -= DropAll;
-            rounds.OnRoundChanged -= HandleRoundChanged;
+
         }
         if (game != null) game.OnGameStateChanged -= HandleStateChanged;
         game = null;
@@ -117,12 +115,6 @@ public sealed class BehaviorEchoes : MonoBehaviour
         if (state != GameStates.Round) DropAll();
     }
 
-    // Artçı varken alan çizgisinin havuzu round başında kurulur: ilk artçıda tek seferlik takılma olmasın (yalnız görsel).
-    private void HandleRoundChanged(int round)
-    {
-        if (RunPower.TryGetEcho(DamageType.Explosion, out _)) AreaOutlineFeedback.Prewarm();
-    }
-
     // Bekleyen bütün işleri uygulamadan düşürür.
     public void DropAll()
     {
@@ -130,36 +122,69 @@ public sealed class BehaviorEchoes : MonoBehaviour
         {
             dropped[(int)jobs[i].type]++;
             Emit("dus", jobs[i].type, jobs[i].id, jobs[i].delay, Time.frameCount - jobs[i].frame);
-            Recycle(jobs[i].footprint);
+            Recycle(jobs[i].wave);
         }
         jobs.Clear();
     }
 
     private bool CanSchedule => !IsExecuting && isActiveAndEnabled && rounds != null && rounds.IsRoundActive;
 
-    // Artçı Patlama: aynı ayak izinin çevresinde, gecikmeyle. firstDamage ilk patlamanın hesaplanmış hasarıdır.
-    public bool ScheduleExplosion(PlanterBrain source, IReadOnlyList<GridObject> footprint, Vector3 center, int firstDamage, BehaviorEcho echo)
+    public const int AftershockSteps = 3;
+    public const float AftershockInterval = .2f;
+    public int WaveStatesCreated { get; private set; }
+
+    // One state per original explosion, reused between steps. No per-cell timers or scene searches.
+    private sealed class AftershockWave
     {
-        if (!CanSchedule || source == null || footprint == null) return false;
-        List<GridPosition> cells = spare.Count > 0 ? spare.Pop() : new List<GridPosition>();
-        cells.Clear();
-        foreach (GridObject grid in footprint)
+        public List<GridPosition> frontier = new(32), next = new(32);
+        public readonly HashSet<long> visited = new();
+        public int step;
+        public void Clear() { frontier.Clear(); next.Clear(); visited.Clear(); step = 0; }
+    }
+    private static readonly Vector2Int[] Directions = { new(0,1), new(0,-1), new(1,0), new(-1,0) };
+
+    private static void Expand(GridSystem grid, AftershockWave wave)
+    {
+        wave.next.Clear();
+        foreach (var cell in wave.frontier)
         {
-            GroundCell ground = grid?.GetGroundCellCached();
-            if (ground != null) cells.Add(ground.GetGridPosition());
+            if (!FieldCells.IsOpen(grid, cell)) continue;
+            foreach (var direction in Directions)
+            {
+                var next = new GridPosition(cell.x + direction.x, cell.z + direction.y);
+                if (FieldCells.IsOpen(grid, next) && wave.visited.Add(FieldCells.Key(next))) wave.next.Add(next);
+            }
         }
-        if (cells.Count == 0) { spare.Push(cells); return false; }
-        jobs.Add(new Job
-        {
-            remaining = Mathf.Max(0f, echo.Delay), run = runSerial, round = rounds.CurrentRound, type = DamageType.Explosion, source = source,
-            damage = ScaleDamage(firstDamage, echo.Damage), radiusCells = HarvestBehaviorGeometry.ExplosionRadiusCells * Mathf.Max(0f, echo.Radius),
-            center = center, footprint = cells, id = ++jobSerial, frame = Time.frameCount, delay = Mathf.Max(0f, echo.Delay),
-        });
-        scheduled[(int)DamageType.Explosion]++;
-        Emit("plan", DamageType.Explosion, jobSerial, Mathf.Max(0f, echo.Delay), 0);
-        return true;
+        var old = wave.frontier; wave.frontier = wave.next; wave.next = old;
     }
 
+    // Seed the normal explosion's four-neighbour region; it and the planter footprint never take aftershock damage.
+    // center remains in the API for existing callers, but visuals now use the actual hit cells.
+    public bool ScheduleExplosion(PlanterBrain source, IReadOnlyList<GridObject> footprint, Vector3 center, int firstDamage, BehaviorEcho echo)
+    {
+        var grid = FieldCells.Grid;
+        if (!CanSchedule || source == null || footprint == null || grid == null) return false;
+        var wave = spare.Count > 0 ? spare.Pop() : CreateWave();
+        foreach (var entry in footprint)
+        {
+            var ground = entry?.GetGroundCellCached();
+            if (ground == null) continue;
+            var cell = ground.GetGridPosition();
+            if (wave.visited.Add(FieldCells.Key(cell))) wave.frontier.Add(cell);
+        }
+        Expand(grid, wave); // Normal explosion region, not the first aftershock step.
+        if (wave.frontier.Count == 0) { Recycle(wave); return false; }
+        jobs.Add(new Job
+        {
+            remaining = AftershockInterval, run = runSerial, round = rounds.CurrentRound, type = DamageType.Explosion, source = source,
+            damage = ScaleDamage(firstDamage, echo.Damage), wave = wave,
+            id = ++jobSerial, frame = Time.frameCount, delay = AftershockInterval,
+        });
+        scheduled[(int)DamageType.Explosion]++;
+        Emit("plan", DamageType.Explosion, jobSerial, AftershockInterval, 0);
+        return true;
+    }
+    private AftershockWave CreateWave() { WaveStatesCreated++; return new AftershockWave(); }
     // Çifte Akım: aynı saksıdan, gecikmeyle, mevcut çapraz geometriyle. firstDamage ilk dalganın hesaplanmış hasarıdır.
     public bool ScheduleElectric(PlanterBrain source, int firstDamage, BehaviorEcho echo)
     {
@@ -193,8 +218,12 @@ public sealed class BehaviorEchoes : MonoBehaviour
             DropAll();
             return;
         }
-        float delta = Time.deltaTime;
-        int frame = Time.frameCount;
+        Advance(Time.deltaTime, Time.frameCount);
+    }
+
+    private void Advance(float delta, int frame)
+    {
+
         for (int i = 0; i < jobs.Count;)
         {
             Job job = jobs[i];
@@ -207,19 +236,30 @@ public sealed class BehaviorEchoes : MonoBehaviour
                 dropped[(int)job.type]++;
                 Emit("dus", job.type, job.id, job.delay, Time.frameCount - job.frame);
             }
-            else Execute(job);
-            Recycle(job.footprint);
+            else
+            {
+                bool done = Execute(job);
+                if (done && job.wave != null && job.wave.step < AftershockSteps && job.wave.frontier.Count > 0 &&
+                    isActiveAndEnabled && rounds.IsRoundActive && GameManager.Instance.CurrentState == GameStates.Round)
+                {
+                    // Keep separate beats even after a slow frame; never hit three rings in one frame.
+                    job.remaining = AftershockInterval; job.frame = frame;
+                    jobs.Insert(i, job); i++;
+                    continue;
+                }
+            }
+            Recycle(job.wave);
         }
     }
 
-    private void Recycle(List<GridPosition> cells)
+    private void Recycle(AftershockWave wave)
     {
-        if (cells == null) return;
-        cells.Clear();
-        spare.Push(cells);
+        if (wave == null) return;
+        wave.Clear();
+        // Retain only a bounded warm cache; simultaneous gameplay waves are not silently dropped.
+        if (spare.Count < 128) spare.Push(wave);
     }
-
-    private void Execute(Job job)
+    private bool Execute(Job job)
     {
         int index = (int)job.type;
         bool done = false;
@@ -233,24 +273,24 @@ public sealed class BehaviorEchoes : MonoBehaviour
         finally { IsExecuting = false; ExecutingSource = null; }
         if (done) executed[index]++; else dropped[index]++;
         Emit(done ? "uygula" : "dus", job.type, job.id, job.delay, Time.frameCount - job.frame);
+        return done;
     }
 
     private bool Explode(Job job)
     {
         GridSystem grid = GridManager.Instance != null ? GridManager.Instance.GetGridSystem() : null;
         if (grid == null) return false;
-        HarvestBehaviorGeometry.ExplosionCells(job.footprint, job.radiusCells, targets);
-        VFXManager.Instance?.PlayExplosion(job.center, true);
-        // Alan geri bildirimi (Bölüm 3.7.5.1): bu darbenin gerçek hedef hücreleri ve saksının ayak izi. Yalnız görsel; hasar aşağıda.
-        AreaOutlineFeedback.PlayAftershock(grid, job.footprint, targets);
-        foreach (GridPosition cell in targets)
+        Expand(grid, job.wave);
+        job.wave.step++;
+        foreach (GridPosition cell in job.wave.frontier)
         {
             GridObject entry = grid.GetGridObject(cell);
             GroundCell ground = entry?.GetGroundCellCached();
-            if (ground != null && !ground.IsLocked) cells[(int)DamageType.Explosion]++;
+            if (ground == null || ground.IsLocked) continue;
+            cells[(int)DamageType.Explosion]++;
+            VFXManager.Instance?.PlayAftershock(ground.transform.position);
             GameObject plant = entry?.GetPlantObject();
             if (plant == null || !plant.TryGetComponent(out PlantHealth health) || health.IsDead) continue;
-            VFXManager.Instance?.PlayExplosion(plant.transform.position, false);
             hits[(int)DamageType.Explosion]++;
             // Artçının öldürdüğü bitki zincir başlatmaz (Bölüm 3.7.6).
             health.TakeDamage(job.damage, DamageType.Explosion, false, 1f, HarvestLink.Aftershock);
@@ -264,7 +304,7 @@ public sealed class BehaviorEchoes : MonoBehaviour
         HarvestBehaviorManager manager = HarvestBehaviorManager.Instance;
         if (manager == null || job.source == null || job.source.OccupiedGrids.Count == 0) return false;
         // Hedef hücre kalmadıysa (struck 0) dalga yine atılmış sayılır; görsel havuzu doluysa hasar yine uygulanır.
-        manager.TryElectricEcho(job.source, job.damage, job.reach, out int struck, out int killed, out int reached);
+        manager.TryElectricEcho(job.source, job.damage, job.reach, out int struck, out int killed, out int reached, yellowEcho: true);
         cells[(int)DamageType.Electric] += reached;
         hits[(int)DamageType.Electric] += struck;
         kills[(int)DamageType.Electric] += killed;

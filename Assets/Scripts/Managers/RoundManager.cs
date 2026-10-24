@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 public enum RunOutcome { None, Victory, QuotaFailed, BossFailed }
@@ -216,6 +216,10 @@ public class RoundManager : MonoBehaviour
 
     private void TickRound()
     {
+#if UNITY_EDITOR
+        // Test aracı: round sayacı ilerlemez (round kendiliğinden bitmez); oyunun geri kalanı kendi saatleriyle sürer.
+        if (EditorFreezeTimer) return;
+#endif
         float before = RemainingTime;
         RemainingTime -= Time.deltaTime;
         RemainingTime = Mathf.Max(RemainingTime, 0f);
@@ -480,6 +484,27 @@ public class RoundManager : MonoBehaviour
         StartRound();
         return true;
     }
+    // Mechanics Test Lab: round sayacını dondurur (TickRound). Play başında sıfırlanır.
+    public static bool EditorFreezeTimer;
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void EditorResetTestTimer() => EditorFreezeTimer = false;
+
+    // Mechanics Test Lab: round'u süreyi beklemeden, oyunun normal round sonu akışıyla bitirir (temizlik olayları, bekleyen level
+    // işi, kart seçimleri, boss ödülü teklifi, round özeti). evaluateTargets false: kota ve boss hasadı değerlendirilmez, yani
+    // run bu yüzden bitmez ve boss round'unda teklif "hedefler geçilmiş" gibi açılır. true: gerçek değerlendirme (tutmazsa run biter).
+    public bool EditorEndRound(bool evaluateTargets)
+    {
+        if(!Application.isPlaying || !IsRoundActive || GameManager.Instance==null || GameManager.Instance.CurrentState!=GameStates.Round) return false;
+        MetaSave.EditorProtectTestSession();
+        IsRoundActive=false;
+        RemainingTime=0f;
+        if(evaluateTargets) EvaluateQuota();
+        OnRoundEnded?.Invoke();
+        awaitingLevels=true;
+        ContinueRoundEnd();
+        return true;
+    }
+
     public void EditorAddRoundTime(float seconds)
     {
         if(!Application.isPlaying || !IsRoundActive || seconds<=0 || float.IsNaN(seconds) || float.IsInfinity(seconds)) return;

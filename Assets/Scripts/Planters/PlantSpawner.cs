@@ -56,6 +56,39 @@ public class PlantSpawner : MonoBehaviour
         timer = Random.Range(0f, GetEffectiveSpawnInterval());
     }
 
+#if UNITY_EDITOR
+    // ---- Yalnız Editor (Mechanics Test Lab). Bitki yine normal doğuş yoluyla çıkar (Spawn: aynı havuz, can ve ödül kurulumu);
+    // burada yalnız "hangi bitki ve ne zaman" test aracına bırakılır. Bu blok build'e girmez.
+    // true: üretim noktaları yeni bitki çıkarmaz ve beklerken süre biriktirmez (tarla olayı kapatmasıyla aynı bekleme).
+    public static bool EditorPauseProduction;
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void EditorResetTestProduction() => EditorPauseProduction = false;
+
+    public PlanterBrain EditorPlanter => planterBrain;
+    public PlanterSO EditorData => planterData;
+    // Oyunun kullandığı çözülmüş üretim aralığı (taban, tempo, boss ve tarla olayı çarpanları dahil) ve geçen süre.
+    public float EditorInterval => GetEffectiveSpawnInterval();
+    public float EditorTimer => timer;
+
+    // Üretim noktasındaki bitkiyi kaldırır ve yerine verilen bitkiyi koyar (plant null: saksının normal bitki zarı).
+    public bool EditorRespawn(PlantSO plant)
+    {
+        EditorClearPlant();
+        if (plant != null) Spawn(plant);
+        else TrySpawnPlant();
+        return spawnedPlant != null;
+    }
+
+    // Bitkiyi hasat sayılmadan kaldırır (ödül, XP, davranış yok); üretim noktası çalışmaya devam eder.
+    public void EditorClearPlant()
+    {
+        bool wasEnabled = enabled;
+        RemoveSpawnedPlant();
+        enabled = wasEnabled;
+        timer = 0f;
+    }
+#endif
+
     private void Update()
     {
         if (GameManager.Instance.CurrentState != GameStates.Round)
@@ -63,6 +96,10 @@ public class PlantSpawner : MonoBehaviour
 
         if (spawnedPlant != null)
             return;
+
+#if UNITY_EDITOR
+        if (EditorPauseProduction) return;
+#endif
 
         // Tarla olayı (Bölüm 3.8: Diken Kuşatması, Aşılı Kabuk): kapalı bölgedeki üretim noktası bekler. Süre birikmez; bölge
         // açılınca sayaç kaldığı yerden sürer (üretim borcu ya da toplu geri ödeme yok).
@@ -109,7 +146,11 @@ public class PlantSpawner : MonoBehaviour
     {
         PlantSO selectedPlant = RollPlant();
         if (selectedPlant == null) return;
+        Spawn(selectedPlant);
+    }
 
+    private void Spawn(PlantSO selectedPlant)
+    {
         GameObject plantObj = PlantPool.ForScene(gameObject.scene).Rent(
             selectedPlant.prefab,
             transform.position,

@@ -1,0 +1,185 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using TMPro;
+using UnityEditor;
+using UnityEngine;
+using Object = UnityEngine.Object;
+
+// Geçici, yalnız izole kopyada (repo değişmez): B5 Aşırı Yükleme önerisi prototipi (24 Ekim 2026).
+// Gerçek mekanik: Patlayıcı saksı + gerçek saldırı → gerçek patlama → gerçek Aşırı Yükleme hazırlığı → gerçek tekrar.
+// Oyun duraklatılır ve EditorApplication.Step ile 1/30 sn'lik karelerle ilerletilir; her kare çekilir.
+// Çekim betiği yalnız ÜSTÜNE görsel koyar: "oneri" koşusunda saksı hıçkırığı (saksının ölçeği çekim anında pozlanıp geri alınır),
+// zikzak işaret gizlenir, tekrarın hasar yazısı aday renge boyanır. "mevcut" koşusu oyunun bugünkü hâli.
+[InitializeOnLoad]
+public static class OverloadProtoCapture
+{
+    const string Key = "OverloadProtoCapture", Out = "Logs/OverloadProto/";
+    const int TW = 620, TH = 400, Frames = 34;
+    const BindingFlags F = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
+    static readonly Color[] Candidates = { new(1f, .37f, .69f), new(.2f, .88f, .82f), new(.83f, .94f, .24f) };   // pembe, turkuaz, limon
+    static readonly string[] CandidateNames = { "pembe", "turkuaz", "limon" };
+    static int step, frame, run, echoFrame = -1, lastFrameCount;
+    static double next;
+    static readonly List<string> notes = new();
+    static readonly HashSet<FloatingText> seen = new();
+    static readonly List<FloatingText> echoTexts = new();
+    static Vector3 focus;
+    static object Lab(string n, params object[] a) { var m = typeof(GecOyunV1Verification).GetMethod(n, BindingFlags.Static | BindingFlags.NonPublic); return m.Invoke(null, m.GetParameters().Select((p, i) => i < a.Length ? a[i] : p.DefaultValue).ToArray()); }
+    static OverloadProtoCapture() { EditorApplication.update += Tick; }
+    public static void RunBatch()
+    {
+        if (!Application.dataPath.Contains("VerificationProject")) throw new Exception("isolated only");
+        GecOyunV1Verification.RunBatch(); SessionState.SetBool("GecOyunV1Verification", false); SessionState.SetBool(Key, true);
+    }
+    // Koşular: (saksı davranışı, öneri katmanı). Patlamanın hasar yazısı yok; elektrikte yazı rengi (B) görülür.
+    static readonly (string type, bool proposal)[] Runs = { ("Explosive", false), ("Explosive", true), ("Electric", false), ("Electric", true) };
+    static bool Proposal => Runs[run].proposal;
+    static string RunName => (Proposal ? "oneri_" : "mevcut_") + Runs[run].type;
+    static void Setup()
+    {
+        var p = Object.FindFirstObjectByType<LateGamePresenter>();
+        Lab("ResetRewards"); Lab("ClearTiles"); Lab("Tile", 5, 5, Runs[run].type, 1f);
+        Lab("Refill"); Lab("Strike", 100f, .4f);   // Refill varsayılan canı çok yüksek: komşular ilk patlamadan sağ çıkar
+        // Ödül doğrudan verilir (normal teklif rastgeleliğe bağlı).
+        var reward = BossRewardManager.Instance.Pool.stages.SelectMany(x => x.rewards).Select(x => x.reward).First(x => x.id == "asiri_yukleme");
+        if (RunEffects.Instance.Find<OverloadEffect>() == null && !BossRewardManager.Instance.EditorGrant(reward, out string refusal)) throw new Exception("grant: " + refusal);
+        p.enabled = false; p.enabled = true;
+        focus = (Vector3)Lab("PosAt", 5, 5);
+        seen.Clear(); echoTexts.Clear(); echoFrame = -1; frame = 0;
+        Directory.CreateDirectory(Out + RunName);
+    }
+    static void Cue(RewardCue c)
+    {
+        if (c.Kind != RewardCueKind.Overload) return;
+        echoFrame = frame;
+        foreach (var t in Object.FindObjectsByType<FloatingText>(FindObjectsSortMode.None))
+            if (t.isActiveAndEnabled && !seen.Contains(t)) echoTexts.Add(t);
+        notes.Add($"{RunName}: echo at frame {frame}, new popups {echoTexts.Count}");
+        if (Proposal) Paint(Candidates[0]);
+    }
+    static void Paint(Color color)
+    {
+        foreach (var t in echoTexts) { var mesh = (TextMeshPro)typeof(FloatingText).GetField("textMesh", F).GetValue(t); if (mesh != null) mesh.color = color; }
+    }
+    // Saksı hıçkırığı (öneri A): hazırlık ilerlemesinde iki basılma-uzama, tekrar anında bir tekme.
+    static float Hiccup(float progress, int sinceEcho)
+    {
+        float Pulse(float u, float a) => u <= 0f || u >= 1f ? 0f : a * Mathf.Sin(2f * Mathf.PI * u) * (1f - u);
+        if (sinceEcho >= 0) return -Pulse(sinceEcho / 7f, .22f);   // tekme: önce uzar
+        return Pulse(progress / .42f, .2f) + Pulse((progress - .46f) / .44f, .26f);
+    }
+    static void Tick()
+    {
+        if (!SessionState.GetBool(Key, false) || !EditorApplication.isPlaying || EditorApplication.isCompiling) return;
+        if (next == 0) { next = EditorApplication.timeSinceStartup + 2; return; }
+        if (EditorApplication.timeSinceStartup < next) { EditorApplication.QueuePlayerLoopUpdate(); return; }
+        try
+        {
+            if (step == 0)
+            {
+                if (double.IsNaN((double)Lab("Lab"))) return;
+                RunEffects.Cued += Cue;
+                step = 1;
+            }
+            if (step == 1)
+            {
+                Setup();
+                Time.captureDeltaTime = 1f / 30f;
+                EditorApplication.isPaused = true;
+                Lab("SetHealth", 5, 5, 1); Lab("Attack", 5, 5);
+                notes.Add($"{RunName}: prepared {RunEffects.Instance.Find<OverloadEffect>().Granted}");
+                lastFrameCount = Time.frameCount;
+                step = 2;
+            }
+            if (step == 2)
+            {
+                if (frame > 0) notes.Add($"{RunName} frame {frame}: frameCount +{Time.frameCount - lastFrameCount}, clock {RunEffects.Instance.Clock:0.000}");
+                lastFrameCount = Time.frameCount;
+                if (echoFrame >= 0 && frame - echoFrame <= 10)
+                    foreach (var t in Object.FindObjectsByType<FloatingText>(FindObjectsSortMode.None))
+                        if (t.isActiveAndEnabled && !seen.Contains(t) && !echoTexts.Contains(t)) { echoTexts.Add(t); notes.Add($"{RunName}: echo popup at frame {frame}"); }
+                if (Proposal) Paint(Candidates[0]);
+                Capture();
+                foreach (var t in Object.FindObjectsByType<FloatingText>(FindObjectsSortMode.None)) if (t.isActiveAndEnabled) seen.Add(t);
+                frame++;
+                if (frame >= Frames)
+                {
+                    if (run == Runs.Length - 1 && echoTexts.Count > 0)
+                        for (int i = 0; i < Candidates.Length; i++) { Paint(Candidates[i]); Shot($"renk_{CandidateNames[i]}", false); }
+                    run++;
+                    if (run >= Runs.Length) { EditorApplication.isPaused = false; Time.captureDeltaTime = 0; Finish(null); return; }
+                    EditorApplication.isPaused = false; step = 1; next = EditorApplication.timeSinceStartup + .5; return;
+                }
+                EditorApplication.Step();
+                return;
+            }
+        }
+        catch (Exception e) { Finish(e.InnerException ?? e); }
+        EditorApplication.QueuePlayerLoopUpdate();
+    }
+    static void Capture()
+    {
+        if (!Proposal) { Shot($"{RunName}/{frame:000}", false); return; }
+        // Öneri A': mevcut hazırlık işareti ve boşalma nabzı bulutun ÜSTÜNDE (bakış ekseninde kameraya doğru), daha yukarıda,
+        // 2 kat büyük ve aday renge boyanmış (toon parlama rengi). Çekimden sonra hepsi geri alınır.
+        var p = Object.FindFirstObjectByType<LateGamePresenter>();
+        var roots = new List<GameObject>();
+        foreach (var item in (Array)typeof(LateGamePresenter).GetField("overloadPreparations", F).GetValue(p))
+            if (item != null) roots.Add((GameObject)item.GetType().GetField("root", F).GetValue(item));
+        foreach (var item in (System.Collections.IList)typeof(LateGamePresenter).GetField("flashes", F).GetValue(p))
+        {
+            var root = (GameObject)item.GetType().GetField("root", F).GetValue(item);
+            Vector3 d = root.transform.position - (focus + Vector3.up * .8f); d.y = 0f; if (d.sqrMagnitude < 1f && root.activeSelf) roots.Add(root);
+        }
+        var cam = Camera.main.transform;
+        var saved = new List<(Transform, Vector3, Vector3)>();
+        var block = new MaterialPropertyBlock();
+        block.SetFloat("_ToonFlash", .75f); block.SetColor("_ToonFlashColor", Candidates[0]);
+        foreach (var root in roots)
+        {
+            var tr = root.transform; saved.Add((tr, tr.position, tr.localScale));
+            tr.position += Vector3.up * .7f - cam.forward * 4f;
+            tr.localScale *= 2f;
+            foreach (var r in root.GetComponentsInChildren<Renderer>()) r.SetPropertyBlock(block);
+        }
+        Shot($"{RunName}/{frame:000}", false);
+        foreach (var (tr, position, scale) in saved) { tr.position = position; tr.localScale = scale; foreach (var r in tr.GetComponentsInChildren<Renderer>()) r.SetPropertyBlock(null); }
+        if (frame % 4 == 0) notes.Add($"oneri frame {frame}: markers {roots.Count}");
+    }
+    static void Shot(string name, bool unused)
+    {
+        var cam = Camera.main; var tr = cam.transform;
+        Vector3 pos = tr.position; float size = cam.orthographicSize;
+        Vector3 v = focus + Vector3.up * .6f - pos, fw = tr.forward;
+        tr.position = pos + (v - fw * Vector3.Dot(v, fw));
+        if (cam.orthographic) cam.orthographicSize = size * .42f;
+        var canvases = Object.FindObjectsByType<Canvas>(FindObjectsSortMode.None).Where(c => c.isRootCanvas && c.renderMode == RenderMode.ScreenSpaceOverlay).ToArray();
+        foreach (var canvas in canvases) canvas.enabled = false;
+        var target = new RenderTexture(1600, 900, 24); target.Create(); cam.targetTexture = target;
+        UnityEngine.Rendering.RenderPipeline.SubmitRenderRequest(cam, new UnityEngine.Rendering.Universal.UniversalRenderPipeline.SingleCameraRequest { destination = target });
+        var previous = RenderTexture.active; RenderTexture.active = target;
+        var image = new Texture2D(1600, 900, TextureFormat.RGB24, false);
+        image.ReadPixels(new Rect(0, 0, 1600, 900), 0, 0); image.Apply();
+        Vector3 sp = cam.WorldToScreenPoint(focus + Vector3.up * .6f);
+        cam.targetTexture = null; RenderTexture.active = previous;
+        foreach (var canvas in canvases) canvas.enabled = true;
+        tr.position = pos; cam.orthographicSize = size;
+        int x = Mathf.Clamp(Mathf.RoundToInt(sp.x - TW / 2f), 0, 1600 - TW), y = Mathf.Clamp(Mathf.RoundToInt(sp.y - TH / 2f), 0, 900 - TH);
+        var crop = new Texture2D(TW, TH, TextureFormat.RGB24, false);
+        crop.SetPixels(image.GetPixels(x, y, TW, TH)); crop.Apply();
+        File.WriteAllBytes(Out + name + ".png", crop.EncodeToPNG());
+        Object.Destroy(image); Object.Destroy(target); Object.Destroy(crop);
+    }
+    static void Finish(Exception e)
+    {
+        RunEffects.Cued -= Cue;
+        SessionState.SetBool(Key, false);
+        Time.captureDeltaTime = 0;
+        Directory.CreateDirectory(Out);
+        File.WriteAllLines(Out + "OverloadProtoCapture.txt", new[] { e == null ? "PASS" : "FAIL " + e }.Concat(notes));
+        EditorApplication.Exit(e == null ? 0 : 1);
+    }
+}

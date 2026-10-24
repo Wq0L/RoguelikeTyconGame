@@ -1,0 +1,33 @@
+// Geçici, yalnız izole kopyada (B5 prototipi): köşe rengini derinliğe bakmadan çizen unlit shader.
+// Sıra: bulutlar (Transparent) → bu (Transparent+50, ZTest Always, ZWrite Off) → hasar yazıları (prototipte 3100).
+// Üçgenler ağdaki sırayla çizilir: rozet katmanları arkadan öne üretildiği için ressam sırası doğru kalır.
+Shader "Hidden/ProtoOverlayVertexColor"
+{
+    SubShader
+    {
+        Tags { "RenderType" = "Transparent" "Queue" = "Transparent+50" "RenderPipeline" = "UniversalPipeline" "IgnoreProjector" = "True" }
+        Pass
+        {
+            Name "Unlit"
+            Cull Off
+            ZWrite Off
+            ZTest Always
+            Blend One Zero
+            HLSLPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            struct Attributes { float4 positionOS : POSITION; half4 color : COLOR; };
+            struct Varyings { float4 positionCS : SV_POSITION; half4 color : COLOR; };
+            Varyings vert(Attributes input)
+            {
+                Varyings output;
+                output.positionCS = TransformObjectToHClip(input.positionOS.xyz);
+                output.color = input.color;
+                return output;
+            }
+            half4 frag(Varyings input) : SV_Target { return input.color; }
+            ENDHLSL
+        }
+    }
+}

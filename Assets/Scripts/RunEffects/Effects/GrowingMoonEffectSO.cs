@@ -10,6 +10,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ClickerGame/Run Effects/Büyüyen Ay", fileName = "GrowingMoonEffect")]
 public sealed class GrowingMoonEffectSO : RunEffectSO
 {
+    [Tooltip("Hilalin çıkıştan sonraki menziline eklenen dünya mesafesi.")]
+    [Min(0f)] public float extraDistance = 1f;
     [Tooltip("En yüksek büyüme düzeyi.")]
     [Range(1, 6)] public int maxGrowth = 3;
     [Tooltip("Düzey başına hasar artışı (0,25: düzey 2'de ×1,50).")]
@@ -18,7 +20,7 @@ public sealed class GrowingMoonEffectSO : RunEffectSO
     [Range(0, 3)] public int maxHalfWidth = 1;
 
     public override string Summary =>
-        $"hilalin hasat ettiği her adım kalan adımları büyütür: hasar +%{Percent(damagePerGrowth)} (en çok {maxGrowth} kez), cephe {maxHalfWidth * 2 + 1} hücre · hasatsız adım sıfırlar";
+        $"hilal menzili +{Number(extraDistance)} birim · hasatla büyür: hasar +%{Percent(damagePerGrowth)} (en çok {maxGrowth} kez), cephe {maxHalfWidth * 2 + 1} hücre · hasatsız adım sıfırlar";
 
     public override RunEffect Create() => new GrowingMoonEffect();
 

@@ -1,0 +1,22 @@
+PASS 21 checks
+PASS isolated memory-only GameScene
+PASS one real direct swing damaging four plants charges four
+PASS second four-target swing launches once and retains 2/6
+PASS wave begins at exact attack/cursor point
+PASS wave damage does not refill direct counter
+PASS empty swing does not charge
+PASS 121 real plant hits produce 20 threshold attempts, capacity four, remainder one
+PASS four critical hits count four plants, not extra crit charges
+PASS behavior damage never charges cursor wave
+PASS blocked/non-damaging recorded hits do not charge
+PASS all four cardinal directions selected from the cursor cell
+PASS private direction RNG leaves reward RNG untouched
+PASS cursor-cell harvest grows remaining wave
+PASS full moon retraces cursor route in reverse in both axes
+PASS one return only
+PASS 3x3 cursor routes choose all directions, stay inside open field and hit two cells
+PASS expansion does not extend born route
+PASS one pooled visual per wave
+PASS pause freezes cursor wave
+PASS round cleanup removes waves and timers
+PASS restart clears cursor effects

@@ -1,0 +1,35 @@
+PASS
+ThornSiege_saksili: started True
+ThornSiege_saksili aktif: phase Active t 0.40 zones (4,3)S,(4,4)S,(4,5)S,(5,3)S,(5,4)S,(5,5)S,(6,3)S,(6,4)S,(6,5)S targets [4,3S pos-cell (0.00, 0.00, 0.00) 3/3] [6,5S pos-cell (0.00, 0.00, 0.00) 3/3]
+ThornSiege_saksili kirildi: phase Resolving t 0.03 zones (4,3)S,(4,4)S,(4,5)S,(5,3)S,(5,4)S,(5,5)S,(6,3)S,(6,4)S,(6,5)S targets [4,3S pos-cell (0.00, 0.00, 0.00) 0/3] [6,5S pos-cell (0.00, 0.00, 0.00) 0/3]
+ThornSiege_saksili sonra: current none, eventItems 0, decorations 0, flashes 0
+InvasiveSprout_saksili: started True
+InvasiveSprout_saksili aktif: phase Active t 0.40 zones (1,6)S,(1,7)S,(0,6)S targets [1,6S pos-cell (0.00, 0.00, 0.00) 3/3]
+InvasiveSprout_saksili kirildi: phase Resolving t 0.03 zones (1,6)S,(1,7)S,(0,6)S targets [1,6S pos-cell (0.00, 0.00, 0.00) 0/3]
+InvasiveSprout_saksili sonra: current none, eventItems 0, decorations 0, flashes 0
+GraftedShell_saksili: started True
+GraftedShell_saksili aktif: phase Active t 0.40 zones (6,0)S,(6,1)S,(6,2)S,(7,0)S,(7,1)S,(7,2)S | (1,2)S,(1,3)S,(1,4)S,(2,2)S,(2,3)S,(2,4)S targets [6,1S pos-cell (0.00, 0.00, 0.00) 2/2] [1,3S pos-cell (0.00, 0.00, 0.00) 2/2]
+GraftedShell_saksili kirildi: phase Resolving t 0.00 zones (6,0)S,(6,1)S,(6,2)S,(7,0)S,(7,1)S,(7,2)S | (1,2)S,(1,3)S,(1,4)S,(2,2)S,(2,3)S,(2,4)S targets [6,1S pos-cell (0.00, 0.00, 0.00) 0/2] [1,3S pos-cell (0.00, 0.00, 0.00) 1/2]
+GraftedShell_saksili sonra: current none, eventItems 0, decorations 0, flashes 0
+WanderingBounty_saksili: started True
+WanderingBounty_saksili aktif: phase Active t 0.40 zones (4,1)S,(4,2)S,(4,3)S,(5,1)S,(5,2)S,(5,3)S,(6,1)S,(6,2)S,(6,3)S targets 
+WanderingBounty_saksili kirildi: phase Active t 0.43 zones (4,1)S,(4,2)S,(4,3)S,(5,1)S,(5,2)S,(5,3)S,(6,1)S,(6,2)S,(6,3)S targets 
+WanderingBounty_saksili: no targets (time-limited)
+WanderingBounty_saksili sonra: current Active, eventItems 10, decorations 10, flashes 0
+ThornSiege_karisik: started True
+ThornSiege_karisik aktif: phase Active t 0.40 zones (0,1)-,(0,2)S,(0,3)-,(1,1)S,(1,2)-,(1,3)S,(2,1)-,(2,2)S,(2,3)- targets [0,1- pos-cell (0.00, 0.00, 0.00) 3/3] [2,3- pos-cell (0.00, 0.00, 0.00) 3/3]
+ThornSiege_karisik kirildi: phase Resolving t 0.03 zones (0,1)-,(0,2)S,(0,3)-,(1,1)S,(1,2)-,(1,3)S,(2,1)-,(2,2)S,(2,3)- targets [0,1- pos-cell (0.00, 0.00, 0.00) 0/3] [2,3- pos-cell (0.00, 0.00, 0.00) 0/3]
+ThornSiege_karisik sonra: current none, eventItems 0, decorations 0, flashes 0
+InvasiveSprout_karisik: started True
+InvasiveSprout_karisik aktif: phase Active t 0.40 zones (7,3)S,(7,2)-,(7,1)S targets [7,3S pos-cell (0.00, 0.00, 0.00) 3/3]
+InvasiveSprout_karisik kirildi: phase Resolving t 0.03 zones (7,3)S,(7,2)-,(7,1)S targets [7,3S pos-cell (0.00, 0.00, 0.00) 0/3]
+InvasiveSprout_karisik sonra: current none, eventItems 0, decorations 0, flashes 0
+GraftedShell_karisik: started True
+GraftedShell_karisik aktif: phase Active t 0.40 zones (5,8)-,(5,9)S,(6,8)S,(6,9)-,(7,8)-,(7,9)S | (7,1)S,(7,2)-,(7,3)S,(8,1)-,(8,2)S,(8,3)- targets [6,8S pos-cell (0.00, 0.00, 0.00) 2/2] [7,2- pos-cell (0.00, 0.00, 0.00) 2/2]
+GraftedShell_karisik kirildi: phase Resolving t 0.00 zones (5,8)-,(5,9)S,(6,8)S,(6,9)-,(7,8)-,(7,9)S | (7,1)S,(7,2)-,(7,3)S,(8,1)-,(8,2)S,(8,3)- targets [6,8S pos-cell (0.00, 0.00, 0.00) 0/2] [7,2- pos-cell (0.00, 0.00, 0.00) 1/2]
+GraftedShell_karisik sonra: current none, eventItems 0, decorations 0, flashes 0
+WanderingBounty_karisik: started True
+WanderingBounty_karisik aktif: phase Active t 0.40 zones (8,7)-,(8,8)S,(8,9)-,(9,7)S,(9,8)-,(9,9)S,(10,7)-,(10,8)S,(10,9)- targets 
+WanderingBounty_karisik kirildi: phase Active t 0.43 zones (8,7)-,(8,8)S,(8,9)-,(9,7)S,(9,8)-,(9,9)S,(10,7)-,(10,8)S,(10,9)- targets 
+WanderingBounty_karisik: no targets (time-limited)
+WanderingBounty_karisik sonra: current Active, eventItems 10, decorations 10, flashes 0

@@ -217,16 +217,13 @@ public class PlacementManager : MonoBehaviour
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
 
         GridObject gridObject = GetMouseGridObject();
-        if (gridObject == null) return;
-
-        if (!gridObject.HasGroundObject()) return;
+        if (gridObject == null || !gridObject.HasGroundObject())
+        { SoundManager.Ensure().Play(GameSound.InvalidPlacement); return; }
 
         GroundCell groundCell = gridObject.GetGroundCellCached();
-        if (groundCell == null) return;
-
-        if (!IsPlacementValid(groundCell.GetGridPosition()))
+        if (groundCell == null || !IsPlacementValid(groundCell.GetGridPosition()))
         {
-            // Debug.Log("Yeterli boş alan yok.");
+            SoundManager.Ensure().Play(GameSound.InvalidPlacement);
             return;
         }
 
@@ -235,8 +232,15 @@ public class PlacementManager : MonoBehaviour
 
     private void PlacePlanter(GridObject originGridObject)
     {
+        if (CommitPlacement(originGridObject)) EndPlacement();
+        else SoundManager.Ensure().Play(GameSound.InvalidPlacement);
+    }
+
+    // Hayalet saksıyı tarlaya bağlar (hücre sahipliği, üretim noktaları, tile bonusları). true: yerleşti.
+    private bool CommitPlacement(GridObject originGridObject)
+    {
         GroundCell groundCell = originGridObject.GetGroundCellCached();
-        if (groundCell == null) return;
+        if (groundCell == null) return false;
 
         GridPosition origin = groundCell.GetGridPosition();
 
@@ -258,7 +262,7 @@ public class PlacementManager : MonoBehaviour
                 if (gridObj == null || gridObj.HasPlanterObject())
                 {
                     // Debug.Log("Yeterli boş alan yok.");
-                    return;
+                    return false;
                 }
 
                 occupiedGrids.Add(gridObj);
@@ -270,7 +274,7 @@ public class PlacementManager : MonoBehaviour
         {
             Debug.LogError(error, planterBrain);
             ghostObject.GetComponent<GhostController>()?.SetColor(false);
-            return;
+            return false;
         }
 
         GhostController ghost = ghostObject.GetComponent<GhostController>();
@@ -285,6 +289,9 @@ public class PlacementManager : MonoBehaviour
         if (planterBrain != null)
         {
             planterBrain.Initialize(selectedPlanter, occupiedGrids);
+#if UNITY_EDITOR
+            planterBrain.EditorRecordPlacement(origin, currentRotation);
+#endif
 
             foreach (GridObject gridObj in occupiedGrids)
             {
@@ -300,8 +307,53 @@ public class PlacementManager : MonoBehaviour
 
         PlanterFeel.PlayLanding(ghostObject, occupiedGrids);
         ghostObject = null;
-        EndPlacement();
+        return true;
     }
+
+#if UNITY_EDITOR
+    // Yalnız Editor (Mechanics Test Lab): fare, bedel ve kilit olmadan bir saksıyı verilen hücreye kurar. Geometri kuralları
+    // oyununkidir: aynı doğrulama (IsPlacementValid: tarla dışı, kilitli hücre, çakışma) ve aynı bağlama (CommitPlacement).
+    // Oyun durumu değişmez (mağaza açılmaz). rotation: 0 / 90 / 180 / 270. Bu blok build'e girmez.
+    public PlanterBrain EditorPlace(PlanterSO planter, GridPosition origin, int rotation, out string error)
+    {
+        error = null;
+        if (planter == null || planter.prefab == null) { error = "saksı verisi ya da prefabı yok"; return null; }
+        if (gridSystem == null) { error = "grid hazır değil"; return null; }
+        if (ghostObject != null || selectedPlanter != null) { error = "devam eden bir yerleştirme var"; return null; }
+        rotation = ((rotation % 360) + 360) % 360;
+        if (rotation % 90 != 0) { error = "yön 0 / 90 / 180 / 270 olmalı"; return null; }
+        GridObject originObject = gridSystem.GetGridObject(origin);
+        GroundCell originCell = originObject?.GetGroundCellCached();
+        if (originCell == null) { error = $"({origin.x}, {origin.z}) tarlanın dışında"; return null; }
+        selectedPlanter = planter;
+        currentRotation = rotation;
+        try
+        {
+            if (!IsPlacementValid(origin))
+            {
+                error = $"({origin.x}, {origin.z}) konumuna {planter.sizeX}×{planter.sizeZ} saksı {rotation}° ile sığmıyor " +
+                        "(tarla dışı, kilitli hücre ya da dolu hücre)";
+                return null;
+            }
+            ghostObject = Instantiate(planter.prefab);
+            ghostObject.transform.SetPositionAndRotation(originCell.transform.position + GetGhostCenterOffset(), Quaternion.Euler(0, rotation, 0));
+            PlanterBrain brain = ghostObject.GetComponent<PlanterBrain>();
+            if (!CommitPlacement(originObject))
+            {
+                error = "saksının üretim noktaları hücrelere oturmuyor (ayrıntı Console'da)";
+                Destroy(ghostObject);
+                return null;
+            }
+            return brain;
+        }
+        finally
+        {
+            ghostObject = null;
+            selectedPlanter = null;
+            currentRotation = 0;
+        }
+    }
+#endif
 
     private void HandleCancel()
     {
@@ -311,6 +363,8 @@ public class PlacementManager : MonoBehaviour
 
     public void CancelPlacement()
     {
+        if (selectedPlanter == null || ghostObject == null) return;
+        SoundManager.Ensure().Play(GameSound.CancelPlacement);
         if (ghostObject != null)
         {
             Destroy(ghostObject);

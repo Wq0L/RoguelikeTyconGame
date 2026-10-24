@@ -1,0 +1,1145 @@
+Kontrol özeti: 67 PASS · 6 UYARI · 2 FAIL · 0 İNCELENMEDİ · 1 manuel inceleme gerekli · 5 sistem henüz yok (toplam 81 / katalog 81)
+
+[PASS] D01 · Doğrudan vuruş · Temel doğrudan vuruş ve gerçek can azalması (otomatik doğrulanan)
+   Ön koşul: tek saksılık temiz düzen, hasat hasarı test katkısıyla 1000, kritik şansı 0, üretim duraklatılmış
+   İşlem: tek gerçek saldırı
+   [PASS] vuruşun tabanı = test katkısı (Set 1000) | beklenen: 1000 | gerçekleşen: 1000 | tolerans: tam
+   [PASS] sapma aralığı | beklenen: 0,85 – 1,15 | gerçekleşen: 1.1063 | tolerans: tam
+   [PASS] tek yuvarlama = yuvarla(taban × sapma) | beklenen: 1106 | gerçekleşen: 1106 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] kritik değil (şans 0) | beklenen: kritik yok | gerçekleşen: kritik yok | tolerans: tam
+   [PASS] uygulanan darbe = yuvarla(yuvarlanan × saksı tabanı çarpanı) | beklenen: 1106 | gerçekleşen: 1106 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] izdeki önceki can = saldırıdan önce okunan gerçek can | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] gerçek can azalması = min(önceki can, darbe) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] taşan hasar = darbe − önceki can | beklenen: 1086 | gerçekleşen: 1086 | tolerans: tam
+   [PASS] tek hedef: vuruş sayısı | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] bitki gerçekten hasat edildi | beklenen: ölü | gerçekleşen: ölü | tolerans: tam
+[PASS] D02 · Doğrudan vuruş · Kritik vuruş (ikinci yuvarlama) (otomatik doğrulanan)
+   Ön koşul: tek saksılık temiz düzen, hasat hasarı test katkısıyla 1000, kritik şansı 0, üretim duraklatılmış; kritik şansı 1
+   İşlem: tek gerçek saldırı
+   [PASS] kritik (şans 1) | beklenen: kritik | gerçekleşen: kritik | tolerans: tam
+   [PASS] vuruşun kullandığı kritik çarpanı = ham taban (katkı yok) | beklenen: 2 | gerçekleşen: 2 | tolerans: tam
+   [PASS] birinci yuvarlama = yuvarla(taban × sapma) | beklenen: 980 | gerçekleşen: 980 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] ikinci yuvarlama = yuvarla(birinci × kritik çarpanı) | beklenen: 1960 | gerçekleşen: 1960 | tolerans: ±1 (float çarpımının ,5 sınırı)
+[PASS] D03 · Doğrudan vuruş · Keskin Bıçak ×1 ve ×2 stack (otomatik doğrulanan)
+   Ön koşul: tek saksılık temiz düzen, hasat hasarı test katkısıyla 1000, kritik şansı 0, üretim duraklatılmış
+   İşlem: aynı seed'le önce / sonra saldırı
+   [PASS] ödülsüz vuruş = yuvarla(taban × sapma) | beklenen: 1059 | gerçekleşen: 1059 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] 1 stack · aynı seed aynı sapma | beklenen: 1.0595 | gerçekleşen: 1.0595 | tolerans: tam
+   [PASS] 1 stack · vuruş = yuvarla(taban × sapma × 1.25^1) | beklenen: 1324 | gerçekleşen: 1324 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] 1 stack · oyunun doğrudan çarpanı | beklenen: 1.25 | gerçekleşen: 1.25 | tolerans: ±0.0001 (float çarpım)
+   [PASS] 2 stack · aynı seed aynı sapma | beklenen: 1.0595 | gerçekleşen: 1.0595 | tolerans: tam
+   [PASS] 2 stack · vuruş = yuvarla(taban × sapma × 1.25^2) | beklenen: 1655 | gerçekleşen: 1655 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] 2 stack · oyunun doğrudan çarpanı | beklenen: 1.5625 | gerçekleşen: 1.5625 | tolerans: ±0.0001 (float çarpım)
+   [PASS] davranış hasarı çarpanı değişmedi (doğrudan çarpan davranışa sızmaz) | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+[PASS] D04 · Doğrudan vuruş · Canavar Kesimi (otomatik doğrulanan)
+   Ön koşul: tek saksılık temiz düzen, hasat hasarı test katkısıyla 1000, kritik şansı 0, üretim duraklatılmış
+   İşlem: aynı seed'le önce / sonra saldırı
+   [PASS] ödülsüz vuruş = yuvarla(taban × sapma) | beklenen: 1059 | gerçekleşen: 1059 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] 1 stack · aynı seed aynı sapma | beklenen: 1.0595 | gerçekleşen: 1.0595 | tolerans: tam
+   [PASS] 1 stack · vuruş = yuvarla(taban × sapma × 1.6^1) | beklenen: 1695 | gerçekleşen: 1695 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] 1 stack · oyunun doğrudan çarpanı | beklenen: 1.6 | gerçekleşen: 1.6 | tolerans: ±0.0001 (float çarpım)
+   [PASS] davranış hasarı çarpanı değişmedi (doğrudan çarpan davranışa sızmaz) | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+[PASS] D05 · Doğrudan vuruş · Altın Hedef: Rare+ hedefe çarpan, Common hedefe yok (otomatik doğrulanan)
+   Ön koşul: tek saksılık temiz düzen, hasat hasarı test katkısıyla 1000, kritik şansı 0, üretim duraklatılmış; bir Rare bitki
+   İşlem: Common ve Rare hedefe saldırı
+   [PASS] hedeflerin nadirliği | beklenen: Common ve Rare+ | gerçekleşen: Common ve Rare | tolerans: tam
+   [PASS] Common hedef: çarpan yok | beklenen: 1015 | gerçekleşen: 1015 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] Rare hedef: × 1.5 | beklenen: 1522 | gerçekleşen: 1522 | tolerans: ±1 (float çarpımının ,5 sınırı)
+[PASS] D06 · Doğrudan vuruş · Bereketli Öğrenim: doğrudan vuruş bedeli ve seçim hakkı (otomatik doğrulanan)
+   Ön koşul: tek saksılık temiz düzen, hasat hasarı test katkısıyla 1000, kritik şansı 0, üretim duraklatılmış
+   İşlem: önce / sonra saldırı, sonra normal akışla bir level
+   [PASS] doğrudan vuruş = yuvarla(taban × sapma × 0.8) | beklenen: 775 | gerçekleşen: 775 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] level başına seçim hakkı = önceki 3 +1 | beklenen: 4 | gerçekleşen: 4 | tolerans: tam
+   [PASS] bekleyen seçimler yeniden hesaplanmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] normal akışla tam bir level | beklenen: 2 | gerçekleşen: 2 | tolerans: tam
+   [PASS] yeni level'ın verdiği seçim hakkı = yeni hak | beklenen: 4 | gerçekleşen: 4 | tolerans: tam
+[PASS] D07 · Doğrudan vuruş · Saksı hasar çarpanı (Damage tile) yalnız doğrudan vuruşa (otomatik doğrulanan)
+   Ön koşul: tek saksılık temiz düzen, hasat hasarı test katkısıyla 1000, kritik şansı 0, üretim duraklatılmış; merkezde Damage tile
+   İşlem: tek gerçek saldırı
+   [PASS] saksının çözülmüş hasar çarpanı = stat kuralı(ham taban, tile değerleri) | beklenen: 1.3 | gerçekleşen: 1.3 | tolerans: ±0.0001 (float)
+   [PASS] çarpan gerçekten bonus veriyor | beklenen: > 1 | gerçekleşen: 1.3 | tolerans: tam
+   [PASS] doğrudan vuruş: uygulanan = yuvarla(yuvarlanan × saksı çarpanı) | beklenen: 1206 | gerçekleşen: 1206 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] patlama vuruşu saksı bonusu almadı = yuvarla(hasat hasarı) | beklenen: 1000 | gerçekleşen: 1000 | tolerans: ±1 (float çarpımının ,5 sınırı)
+[PASS] S01 · Stat ödülleri · Hızlı Bilek: stat ve ölçülen saldırı aralığı (otomatik doğrulanan)
+   Ön koşul: temiz düzen, otomatik saldırı ölçüm sırasında açık
+   İşlem: iki otomatik saldırının arası, önce / sonra
+   [PASS] AttackSpeed [Player]: önceki 3 → AttackSpeed ×0.85 (ayrı çarpan) · Player | beklenen: 2.55 | gerçekleşen: 2.55 | tolerans: ±0.0003 (float)
+   [PASS] ölçülen saldırı aralığı (iki otomatik saldırının arası): önceki 3 sn × 0.85 | beklenen: 2.55 | gerçekleşen: 2.5333 | tolerans: ±0.0833 (kare süresi: saldırı kare sınırında atılır)
+[PASS] S02 · Stat ödülleri · Fırtına Bileği: stat ve ölçülen saldırı aralığı (otomatik doğrulanan)
+   Ön koşul: temiz düzen
+   İşlem: iki otomatik saldırının arası, önce / sonra
+   [PASS] AttackSpeed [Player]: önceki 3 → AttackSpeed ×0.7 (ayrı çarpan) · Player | beklenen: 2.1 | gerçekleşen: 2.1 | tolerans: ±0.0002 (float)
+   [PASS] ölçülen saldırı aralığı (iki otomatik saldırının arası): önceki 3 sn × 0.7 | beklenen: 2.1 | gerçekleşen: 2.1 | tolerans: ±0.0833 (kare süresi: saldırı kare sınırında atılır)
+[PASS] S03 · Stat ödülleri · Geniş Savuruş: stat ve gerçek temas yarıçapı (otomatik doğrulanan)
+   Ön koşul: temiz düzen
+   İşlem: önce / sonra saldırı
+   [PASS] AreaRadius [Player]: önceki 0.5 → AreaRadius ×1.32 (ayrı çarpan) · Player | beklenen: 0.66 | gerçekleşen: 0.66 | tolerans: ±0.0001 (float)
+   [PASS] gerçek temas yarıçapı: önceki 0.5 × 1.32 | beklenen: 0.66 | gerçekleşen: 0.66 | tolerans: ±0.0001 (float)
+[PASS] S04 · Stat ödülleri · Bilgi Filizi: stat ve gerçek hasat XP'si (otomatik doğrulanan)
+   Ön koşul: temiz düzen
+   İşlem: önce / sonra tek hasat
+   [PASS] XPGainMultiplier [Planter]: önceki 1 → XPGainMultiplier ×1.25 (ayrı çarpan) · Planter | beklenen: 1.25 | gerçekleşen: 1.25 | tolerans: ±0.0001 (float)
+   [PASS] hasat XP'si = yuvarla(taban 20 × önceki çarpan 1 × 1.25 × nadirlik çarpanı) | beklenen: 25 | gerçekleşen: 25 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] kazanılan toplam XP'nin gerçek artışı = kayıttaki hasat XP'si | beklenen: 25 | gerçekleşen: 25 | tolerans: ±0.01 (double)
+[PASS] S05 · Stat ödülleri · Ağır Darbe: kritik çarpanı ve gerçek kritik vuruş (otomatik doğrulanan)
+   Ön koşul: temiz düzen, kritik şansı 1
+   İşlem: önce / sonra kritik vuruş
+   [PASS] CritMultiplier [Player]: önceki 2 → CritMultiplier +0.75 (düz) · Player | beklenen: 2.75 | gerçekleşen: 2.75 | tolerans: ±0.0003 (float)
+   [PASS] gerçek vuruşun kullandığı kritik çarpanı | beklenen: 2.75 | gerçekleşen: 2.75 | tolerans: ±0.0001 (float)
+   [PASS] kritik vuruş = yuvarla(birinci yuvarlama × yeni çarpan) | beklenen: 2417 | gerçekleşen: 2417 | tolerans: ±1 (float çarpımının ,5 sınırı)
+[PASS] S06 · Stat ödülleri · Kritik Göz: kritik şansı (gerçek saldırının kullandığı değer) (otomatik doğrulanan)
+   Ön koşul: temiz düzen
+   İşlem: önce / sonra saldırı
+   [PASS] CritChance [Player]: önceki 0.3 → CritChance +0.12 (düz) · Player | beklenen: 0.42 | gerçekleşen: 0.42 | tolerans: ±0.0001 (float)
+   [PASS] gerçek vuruşun kullandığı kritik şansı | beklenen: 0.42 | gerçekleşen: 0.42 | tolerans: ±0.0001 (float)
+   [manuel inceleme gerekli] kritik zarının dağılımı | beklenen: manuel inceleme gerekli | gerçekleşen: tek vuruş dağılımı kanıtlamaz; şans mekanikleri için 'Şans' sekmesindeki örneklemeyi kullan | tolerans: —
+[PASS] S07 · Stat ödülleri · Kıvılcım: davranış şansları; şansı olmayan saksı şans kazanmaz (otomatik doğrulanan)
+   Ön koşul: biri patlama tile'lı iki saksı
+   İşlem: ödül öncesi / sonrası saksı değerleri
+   [PASS] ExplosionChance [Planter]: önceki 0.44 → ExplosionChance ×1.35 (ayrı çarpan) · Planter | beklenen: 0.594 | gerçekleşen: 0.594 | tolerans: ±0.0001 (float)
+   [PASS] TornadoChance [Planter]: önceki 0 → TornadoChance ×1.35 (ayrı çarpan) · Planter | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0.0001 (float)
+   [PASS] BoomerangChance [Planter]: önceki 0 → BoomerangChance ×1.35 (ayrı çarpan) · Planter | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0.0001 (float)
+   [PASS] ElectricChance [Planter]: önceki 0 → ElectricChance ×1.35 (ayrı çarpan) · Planter | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0.0001 (float)
+   [PASS] tile'ı olmayan saksının patlama şansı 0 kaldı (0 × çarpan = 0) | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] tile'sız saksı ödülden önce de 0'dı | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [manuel inceleme gerekli] şansın gerçek tetik oranı | beklenen: manuel inceleme gerekli | gerçekleşen: istatistiksel: 'Şans' sekmesindeki örneklemeyle bakılır | tolerans: —
+[PASS] S08 · Stat ödülleri · Nadir Tohum: nadirlik bonusu (otomatik doğrulanan)
+   Ön koşul: temiz düzen
+   İşlem: ödül öncesi / sonrası saksı değeri
+   [PASS] RareSpawnChance [Planter]: önceki 0 → RareSpawnChance +10 (düz) · Planter | beklenen: 10 | gerçekleşen: 10 | tolerans: ±0.001 (float)
+   Not: Bitki nadirlik zarının dağılımı otomatik doğrulanmıyor (yalnız stat).
+[PASS] S09 · Stat ödülleri · Bereketli Toprak: koşul ve gerçek üretim aralığı (otomatik doğrulanan)
+   Ön koşul: biten round'da tarla boş (doluluk < eşik)
+   İşlem: boş round oyunun round sonu akışıyla bitirilir, ödül round sonunda kurulur
+   [PASS] koşul sağlanmadan ödül reddedilir (tarla dolu sayılır: doluluk 1) | beklenen: reddedildi | gerçekleşen: reddedildi | tolerans: tam
+   [PASS] biten round'un doluluğu eşiğin altında | beklenen: < 0.65 | gerçekleşen: 0 | tolerans: tam
+   [PASS] koşul sağlanınca ödül kuruldu | beklenen: kuruldu | gerçekleşen: kuruldu | tolerans: tam
+   [PASS] üretim aralığı stat'ı: önceki 8 sn → PlantSpawnRate ×0.85 (ayrı çarpan) · Planter (taban 0.5 sn) | beklenen: 6.8 | gerçekleşen: 6.8 | tolerans: ±0.0001 (float)
+   [PASS] yuvanın gerçek üretim aralığı aynı oranda değişti | beklenen: 6.8 | gerçekleşen: 6.8 | tolerans: ±0.001 (float)
+[PASS] B01 · Davranış hasarı · Patlama: dört yan komşu, çapraz yok, gerçek can azalması (otomatik doğrulanan)
+   Ön koşul: R21, bitki canının onda biri kadar hasat hasarı (test katkısı): komşular vuruştan sağ çıkar
+   İşlem: merkez saksıyı hasat et
+   [PASS] ön koşul: hasat hasarı stat'ı = test katkısı (Set) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] patlama vuruşu sayısı (dört yan komşu) | beklenen: 4 | gerçekleşen: 4 | tolerans: tam
+   [PASS] yan komşuya vuruş | beklenen: 4 | gerçekleşen: 4 | tolerans: tam
+   [PASS] çapraz komşuya vuruş | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] vuruş hasarı = yuvarla(hasat hasarı × 1) — çarpan yok (4 vuruş, en uzak değer) | beklenen: 20 | gerçekleşen: 20 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] izdeki can azalması = bitkilerin gerçek can azalması | beklenen: hepsi eşit | gerçekleşen: hepsi eşit | tolerans: tam
+   [PASS] doğrudan vuruş davranış sayılmadı; davranış vuruşu kritik değil | beklenen: direct 1, kritik davranış 0 | gerçekleşen: direct 1 | tolerans: tam
+[PASS] B02 · Davranış hasarı · Yıkım Gücü ×1 ve ×2 stack: davranış hasarı; doğrudan vuruş değişmez (otomatik doğrulanan)
+   Ön koşul: R21, bitki canının onda biri kadar hasat hasarı (test katkısı): komşular vuruştan sağ çıkar
+   İşlem: önce / sonra patlama
+   [PASS] ön koşul: hasat hasarı stat'ı = test katkısı (Set) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] 1 stack · patlama vuruşu = yuvarla(hasat hasarı × 1.3^1) (4 vuruş, en uzak değer) | beklenen: 26 | gerçekleşen: 26 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] 1 stack · doğrudan vuruş davranış çarpanını almadı | beklenen: 20 | gerçekleşen: 20 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] 2 stack · patlama vuruşu = yuvarla(hasat hasarı × 1.3^2) (4 vuruş, en uzak değer) | beklenen: 34 | gerçekleşen: 34 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] 2 stack · doğrudan vuruş davranış çarpanını almadı | beklenen: 20 | gerçekleşen: 20 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] doğrudan vuruş çarpanı değişmedi | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+[PASS] B03 · Davranış hasarı · Davranışa Adanış: davranış hasarı ve seçim hakkı bedeli (otomatik doğrulanan)
+   Ön koşul: R21, bitki canının onda biri kadar hasat hasarı (test katkısı): komşular vuruştan sağ çıkar
+   İşlem: önce / sonra patlama, sonra normal akışla bir level
+   [PASS] ön koşul: hasat hasarı stat'ı = test katkısı (Set) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] 1 stack · patlama vuruşu = yuvarla(hasat hasarı × 1.5^1) (4 vuruş, en uzak değer) | beklenen: 30 | gerçekleşen: 30 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] 1 stack · doğrudan vuruş davranış çarpanını almadı | beklenen: 20 | gerçekleşen: 20 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] doğrudan vuruş çarpanı değişmedi | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] level başına seçim hakkı = önceki 3 -1 | beklenen: 2 | gerçekleşen: 2 | tolerans: tam
+   [PASS] bekleyen seçimler yeniden hesaplanmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] normal akışla tam bir level | beklenen: 2 | gerçekleşen: 2 | tolerans: tam
+   [PASS] yeni level'ın verdiği seçim hakkı = yeni hak | beklenen: 2 | gerçekleşen: 2 | tolerans: tam
+[PASS] B04 · Davranış hasarı · Elektrik hasarı (otomatik doğrulanan)
+   Ön koşul: R21, bitki canının onda biri kadar hasat hasarı (test katkısı): komşular vuruştan sağ çıkar
+   İşlem: merkez saksıyı hasat et
+   [PASS] ön koşul: hasat hasarı stat'ı = test katkısı (Set) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] normal tetik sayısı (oyunun sayacı) | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] davranışın tabanı = hasat hasarı stat'ı (tam sayı) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] vuruş hasarı = yuvarla(hasat hasarı × davranış katsayısı 1) (8 vuruş, en uzak değer) | beklenen: 20 | gerçekleşen: 20 | tolerans: ±1 (float çarpımının ,5 sınırı)
+[PASS] B05 · Davranış hasarı · Kasırga hasarı (davranışın kendi katsayısıyla) (otomatik doğrulanan)
+   Ön koşul: R21, bitki canının onda biri kadar hasat hasarı (test katkısı): komşular vuruştan sağ çıkar
+   İşlem: merkez saksıyı hasat et
+   [PASS] ön koşul: hasat hasarı stat'ı = test katkısı (Set) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] normal tetik sayısı (oyunun sayacı) | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] davranışın tabanı = hasat hasarı stat'ı (tam sayı) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] vuruş hasarı = yuvarla(hasat hasarı × davranış katsayısı 0.5) (8 vuruş, en uzak değer) | beklenen: 10 | gerçekleşen: 10 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [manuel inceleme gerekli] katsayının prefab verisiyle aynı olduğu | beklenen: manuel inceleme gerekli | gerçekleşen: katsayı oyunun bildirdiği değerdir; prefab alanı bu kontrolde ayrıca okunmuyor | tolerans: —
+[PASS] B06 · Davranış hasarı · Bumerang hasarı (davranışın kendi katsayısıyla) (otomatik doğrulanan)
+   Ön koşul: R21, bitki canının onda biri kadar hasat hasarı (test katkısı): komşular vuruştan sağ çıkar
+   İşlem: merkez saksıyı hasat et
+   [PASS] ön koşul: hasat hasarı stat'ı = test katkısı (Set) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] normal tetik sayısı (oyunun sayacı) | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] davranışın tabanı = hasat hasarı stat'ı (tam sayı) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] vuruş hasarı = yuvarla(hasat hasarı × davranış katsayısı 0.65) (4 vuruş, en uzak değer) | beklenen: 13 | gerçekleşen: 13 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [manuel inceleme gerekli] katsayının prefab verisiyle aynı olduğu | beklenen: manuel inceleme gerekli | gerçekleşen: katsayı oyunun bildirdiği değerdir; prefab alanı bu kontrolde ayrıca okunmuyor | tolerans: —
+[PASS] K01 · Kırılma ödülleri · Artçı Patlama: gecikme, hasar oranı, yeni zar yok (otomatik doğrulanan)
+   Ön koşul: R21, bitki canının onda biri kadar hasat hasarı (test katkısı): komşular vuruştan sağ çıkar
+   İşlem: merkez saksıyı hasat et
+   [PASS] ön koşul: hasat hasarı stat'ı = test katkısı (Set) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] ilk darbe = yuvarla(hasat hasarı) | beklenen: 20 | gerçekleşen: 20 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] ikinci darbe = yuvarla(ilk darbenin hesaplanmış hasarı × 1) (12 vuruş, en uzak değer) | beklenen: 20 | gerçekleşen: 20 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] gecikme = ödül verisi (0.2 sn) | beklenen: 0.2 | gerçekleşen: 0.2 | tolerans: ±0.0833 (kare süresi)
+   [PASS] şans zarı bir kez atıldı (ikinci darbe yeni zar atmaz) | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] ikinci darbe kaynağı: ilk darbenin saksısı | beklenen: bu saldırıya bağlı | gerçekleşen: bu saldırıya bağlı | tolerans: tam
+[PASS] K02 · Kırılma ödülleri · Çifte Akım: gecikme, hasar oranı, yeni zar yok (otomatik doğrulanan)
+   Ön koşul: R21, bitki canının onda biri kadar hasat hasarı (test katkısı): komşular vuruştan sağ çıkar
+   İşlem: merkez saksıyı hasat et
+   [PASS] ön koşul: hasat hasarı stat'ı = test katkısı (Set) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] ilk darbe = yuvarla(hasat hasarı) | beklenen: 20 | gerçekleşen: 20 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] ikinci darbe = yuvarla(ilk darbenin hesaplanmış hasarı × 1) (8 vuruş, en uzak değer) | beklenen: 20 | gerçekleşen: 20 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] gecikme = ödül verisi (0.15 sn) | beklenen: 0.15 | gerçekleşen: 0.1667 | tolerans: ±0.0833 (kare süresi)
+   [PASS] şans zarı bir kez atıldı (ikinci darbe yeni zar atmaz) | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] ikinci darbe kaynağı: ilk darbenin saksısı | beklenen: bu saldırıya bağlı | gerçekleşen: bu saldırıya bağlı | tolerans: tam
+[PASS] K03 · Kırılma ödülleri · Hasat Ritmi: hak hazırlanır, harcanır, birikmez (otomatik doğrulanan)
+   Ön koşul: 3 × 3 saldırı, bütün bitkiler 1 can
+   İşlem: iki saldırı
+   [PASS] kurulunca koşullu etki hazır değil | beklenen: hak yok | gerçekleşen: hak yok | tolerans: tam
+   [PASS] eşik (5 doğrudan hasat) aşıldı | beklenen: ≥ 5 | gerçekleşen: 9 | tolerans: tam
+   [PASS] hak hazırlandı | beklenen: hak hazır | gerçekleşen: hak hazır | tolerans: tam
+   [PASS] aynı vuruştaki fazla hasat ikinci hak biriktirmedi | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] hakkı hazırlayan saldırı güçlenmedi (çarpan 1) | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] güçlenen saldırının gerçek yarıçapı = normal 1.5 × 1.6 | beklenen: 2.4 | gerçekleşen: 2.4 | tolerans: ±0.001 (float)
+   [PASS] güçlenen vuruşun çarpanı = ödül verisi | beklenen: 1.75 | gerçekleşen: 1.75 | tolerans: ±0.0001 (float)
+   [PASS] güçlenen vuruş = yuvarla(taban × sapma × 1.75) | beklenen: 2012 | gerçekleşen: 2012 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] hak harcandı | beklenen: hak yok | gerçekleşen: hak yok | tolerans: tam
+   [PASS] güçlenen saldırı sayısı | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] güçlenen saldırının hasatları yeni hak biriktirmedi | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+[PASS] K04 · Kırılma ödülleri · Zincir Hasat: nesil hasar çarpanı ve nesil sınırı (otomatik doğrulanan)
+   Ön koşul: 5 × 5 patlama tile'ı (şans testte %100), bütün bitkiler 1 can
+   İşlem: tek saldırı
+   [PASS] nesil sınırı (2 ek nesil) | beklenen: ≤ 2 | gerçekleşen: 2 | tolerans: tam
+   [PASS] normal tetik (nesil 0) = yuvarla(hasat hasarı) (4 vuruş, en uzak değer) | beklenen: 1000 | gerçekleşen: 1000 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] nesil 1 = yuvarla(normal hasar × 0.75) — önceki nesille birikmez (7 vuruş, en uzak değer) | beklenen: 750 | gerçekleşen: 750 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] nesil 2 = yuvarla(normal hasar × 0.5) — önceki nesille birikmez (4 vuruş, en uzak değer) | beklenen: 500 | gerçekleşen: 500 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] zincir vuruşları bu saldırının köküne bağlı | beklenen: hepsi aynı kök | gerçekleşen: hepsi aynı kök | tolerans: tam
+   [manuel inceleme gerekli] aynı saksı + davranış aynı kökte bir kez denenir | beklenen: manuel inceleme gerekli | gerçekleşen: izdeki 'zincir zarı' / 'zincir reddi' satırlarından okunur | tolerans: —
+[PASS] E01 · Etki ödülleri · Kritik Ark (otomatik doğrulanan)
+   Ön koşul: R21, bitki canının onda biri kadar hasat hasarı (test katkısı): komşular vuruştan sağ çıkar; kritik şansı 1
+   İşlem: tek kritik vuruş
+   [PASS] ön koşul: hasat hasarı stat'ı = test katkısı (Set) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] vuruş kritik | beklenen: kritik | gerçekleşen: kritik | tolerans: tam
+   [PASS] ark sayısı (tek kritik → tek ark; sınır 3) | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] ark hasarı = yuvarla(kritik vuruşun hesaplanmış hasarı × 0.3) | beklenen: 13 | gerçekleşen: 13 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] ark başka bir bitkiye, 2 hücre içinde | beklenen: 1 – 2 | gerçekleşen: 1 | tolerans: tam
+   [PASS] ark kritik atmadı | beklenen: kritik değil | gerçekleşen: kritik değil | tolerans: tam
+[PASS] E02 · Etki ödülleri · Taşan Hasar (otomatik doğrulanan)
+   Ön koşul: R21, bitki canının onda biri kadar hasat hasarı (test katkısı): komşular vuruştan sağ çıkar; merkez bitki 1 can
+   İşlem: tek saldırı
+   [PASS] ön koşul: hasat hasarı stat'ı = test katkısı (Set) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] taşan hasar = darbe − 1 can | beklenen: 17 | gerçekleşen: 17 | tolerans: tam
+   [PASS] aktarım sayısı (hedef sağ kaldı: tek aktarım) | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] aktarılan = yuvarla(taşan × 0.5) | beklenen: 8 | gerçekleşen: 8 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] hedef 1 hücre içinde | beklenen: 1 – 1 | gerçekleşen: 1 | tolerans: tam
+[PASS] E03 · Etki ödülleri · Hasat Yankısı: simetrik hücreler (otomatik doğrulanan)
+   Ön koşul: R21, bitki canının onda biri kadar hasat hasarı (test katkısı): komşular vuruştan sağ çıkar; 3 × 3 alanda bitkiler 1 can
+   İşlem: tek saldırı
+   [PASS] ön koşul: hasat hasarı stat'ı = test katkısı (Set) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] eşik (3 doğrudan hasat) | beklenen: ≥ 3 | gerçekleşen: 9 | tolerans: tam
+   [PASS] yankı sayısı sınırı (en çok 3) | beklenen: 1 – 3 | gerçekleşen: 3 | tolerans: tam
+   [PASS] yankı hasarı = yuvarla(hasat hasarı × 0.5) (3 vuruş, en uzak değer) | beklenen: 10 | gerçekleşen: 10 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] her yankı, hasat edilen bir hücrenin simetriğinde | beklenen: hepsi simetrik | gerçekleşen: hepsi simetrik | tolerans: tam
+   [PASS] gecikme en az ödül verisi kadar (0.12 sn) | beklenen: ≥ 0.12 | gerçekleşen: 0.133 | tolerans: tam
+[PASS] E04 · Etki ödülleri · Nadir Reaktör: eklenme, yenilenme (birikmez), süre sonu (otomatik doğrulanan)
+   Ön koşul: bir patlama tile'lı saksı, bir tile'sız saksı, merkezde Rare bitki
+   İşlem: iki nadir hasat, sonra süreyi bekle
+   [PASS] tile'lı saksının şansı var, tile'sızın yok | beklenen: > 0 ve 0 | gerçekleşen: 0.29 ve 0 | tolerans: tam
+   [PASS] kurulunca koşullu etki beklemede | beklenen: aktif değil, çarpan 0 | gerçekleşen: aktif değil, çarpan 0 | tolerans: tam
+   [PASS] doğrudan nadir hasat reaktörü çalıştırdı | beklenen: aktif | gerçekleşen: aktif | tolerans: tam
+   [PASS] tile'lı saksının şansı = önceki 0.29 × 1.25 | beklenen: 0.3625 | gerçekleşen: 0.3625 | tolerans: ±0.0001 (float)
+   [PASS] tile'sız saksı şans kazanmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] eklenen şans çarpanı sayısı (dört davranış şansı için birer tane) | beklenen: 4 | gerçekleşen: 4 | tolerans: tam
+   [PASS] kalan süre = ödül verisi − geçen süre | beklenen: 3.7333 | gerçekleşen: 3.7333 | tolerans: ±0.1 (kare süresi)
+   [PASS] süre içindeki ikinci nadir hasat: yenileme sayısı | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] yenilemede çarpan sayısı aynı kaldı (birikmedi) | beklenen: 4 | gerçekleşen: 4 | tolerans: tam
+   [PASS] yenilemede şans aynı kaldı (çarpan katlanmadı) | beklenen: 0.3625 | gerçekleşen: 0.3625 | tolerans: ±0.0001 (float)
+   [PASS] süre baştan başladı (uzamadı, sıfırlandı) | beklenen: 3.7333 | gerçekleşen: 3.7333 | tolerans: ±0.1 (kare süresi)
+   [PASS] süre bitince reaktör kapandı | beklenen: aktif değil | gerçekleşen: aktif değil | tolerans: tam
+   [PASS] şans eski değerine döndü | beklenen: 0.29 | gerçekleşen: 0.29 | tolerans: ±0 (float)
+   [PASS] geride şans çarpanı kalmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+[PASS] E05 · Etki ödülleri · Açgözlü Hasat: hak ve saldırı çarpanı (otomatik doğrulanan)
+   Ön koşul: 3 × 3 saldırı, bütün bitkiler 1 can
+   İşlem: iki saldırı
+   [PASS] kurulunca koşullu etki tetiklenmemiş | beklenen: hak yok | gerçekleşen: hak yok | tolerans: tam
+   [PASS] eşik (3 doğrudan hasat) aşıldı ve hak hazırlandı | beklenen: hak hazır | gerçekleşen: 9 hasat, hak hazır | tolerans: tam
+   [PASS] hakkı hazırlayan saldırı güçlenmedi | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] ödül saldırı çarpanı = ödül verisi | beklenen: 1.5 | gerçekleşen: 1.5 | tolerans: ±0.0001 (float)
+   [PASS] güçlenen vuruş = yuvarla(taban × sapma × 1.5) | beklenen: 1355 | gerçekleşen: 1355 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] hak harcandı | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+[PASS] E06 · Etki ödülleri · Kritik Patlama (otomatik doğrulanan)
+   Ön koşul: R21, bitki canının onda biri kadar hasat hasarı (test katkısı): komşular vuruştan sağ çıkar; 3 × 3 saldırı, kritik şansı 1
+   İşlem: tek saldırı
+   [PASS] ön koşul: hasat hasarı stat'ı = test katkısı (Set) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] eşik (3 kritik) aşıldı | beklenen: ≥ 3 | gerçekleşen: 9 | tolerans: tam
+   [PASS] patlama hasarı = yuvarla(hasat hasarı × 0.5 × kritik çarpanı 2) (9 vuruş, en uzak değer) | beklenen: 20 | gerçekleşen: 20 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] saldırı başına tek patlama (bildirim sayısı) | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] patlama kritik saymadı | beklenen: kritik değil | gerçekleşen: kritik değil | tolerans: tam
+[PASS] E07 · Etki ödülleri · Aşırı Yükleme: gecikme ve hasar oranı (otomatik doğrulanan)
+   Ön koşul: R21, bitki canının onda biri kadar hasat hasarı (test katkısı): komşular vuruştan sağ çıkar
+   İşlem: merkez saksıyı hasat et
+   [PASS] ön koşul: hasat hasarı stat'ı = test katkısı (Set) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] ek proc = yuvarla(patlamanın hesaplanmış hasarı × 0.5) (4 vuruş, en uzak değer) | beklenen: 10 | gerçekleşen: 10 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] gecikme = ödül verisi (0.3 sn) | beklenen: 0.3 | gerçekleşen: 0.3 | tolerans: ±0.0833 (kare süresi)
+   [PASS] ek proc aynı patlamanın tekrarı: aynı sayıda hedef (komşular sağ kaldı) | beklenen: 4 | gerçekleşen: 4 | tolerans: tam
+   [PASS] ek proc zincir dışı (kök taşımaz) ve kritik değil | beklenen: kök 0, kritik yok | gerçekleşen: kök 0, kritik yok | tolerans: tam
+   [PASS] ek proc yeni Aşırı Yükleme hakkı doğurmadı (verilen hak sayısı) | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [manuel inceleme gerekli] bekleme süresi ve saldırı başına sınır | beklenen: manuel inceleme gerekli | gerçekleşen: aynı saksı + davranış 2.5 sn içinde yeniden hak doğurmaz; ardışık saldırıyla elle bakılır | tolerans: —
+[PASS] A01 · Anten ailesi · Elektrik Anteni: aralık ve hasar (otomatik doğrulanan)
+   Ön koşul: R21, bitki canının onda biri kadar hasat hasarı (test katkısı): komşular vuruştan sağ çıkar
+   İşlem: saldırmadan iki anten vuruşunu bekle
+   [PASS] ön koşul: hasat hasarı stat'ı = test katkısı (Set) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] iki vuruş arası = ödül verisi (2.5 sn) | beklenen: 2.5 | gerçekleşen: 2.5 | tolerans: ±0.0833 (kare süresi)
+   [PASS] vuruş hasarı = yuvarla(hasat hasarı × 0.6) (6 vuruş, en uzak değer) | beklenen: 12 | gerçekleşen: 12 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] ödül darbesi doğrudan vuruş değil | beklenen: DamageType.Reward | gerçekleşen: Reward | tolerans: tam
+[PASS] A02 · Anten ailesi · İletken Hat: aralık ve hasar (otomatik doğrulanan)
+   Ön koşul: R21, bitki canının onda biri kadar hasat hasarı (test katkısı): komşular vuruştan sağ çıkar
+   İşlem: saldırmadan iki hat vuruşunu bekle
+   [PASS] ön koşul: hasat hasarı stat'ı = test katkısı (Set) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] iki vuruş arası = ödül verisi (4 sn) | beklenen: 4 | gerçekleşen: 4 | tolerans: ±0.0833 (kare süresi)
+   [PASS] vuruş hasarı = yuvarla(hasat hasarı × 0.45) (9 vuruş, en uzak değer) | beklenen: 9 | gerçekleşen: 9 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] ödül darbesi doğrudan vuruş değil | beklenen: DamageType.Reward | gerçekleşen: Reward | tolerans: tam
+[PASS] A03 · Anten ailesi · Kapalı Devre: ek hat vuruşu, hasar ve gecikme (otomatik doğrulanan)
+   Ön koşul: R21, bitki canının onda biri kadar hasat hasarı (test katkısı): komşular vuruştan sağ çıkar; saksıların patlama şansı testte %100
+   İşlem: hat vuruşundan hemen önce bir hat hücresinin bitkisini 1 cana çek
+   [PASS] ön koşul: hasat hasarı stat'ı = test katkısı (Set) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] hat en az iki bitkiye vurdu (biri hasat edilecek, diğeri ek vuruşu alacak) | beklenen: ≥ 2 | gerçekleşen: 5 | tolerans: tam
+   [PASS] hat, davranışlı saksının bitkisini hasat edince zar atıldı (oyunun sayacı) | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] ek hat vuruşu sayısı (oyunun sayacı; şans testte %100) | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] ek vuruş hasarı = yuvarla(hat hasarı × 0.6) | beklenen: 5 | gerçekleşen: 5 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] ek vuruşun gecikmesi = ödül verisi (0.35 sn) | beklenen: 0.35 | gerçekleşen: 0.3667 | tolerans: ±0.0833 (kare süresi)
+   [manuel inceleme gerekli] bekleme süresi | beklenen: manuel inceleme gerekli | gerçekleşen: ek vuruştan sonra 3 sn yeni ek vuruş doğmaz; elle bakılır | tolerans: —
+   Not: Hat ve anten kendi aralıklarıyla çalışır; bitki hat vuruşundan hemen önce 1 cana çekilir. Araya anten vuruşu girerse sonraki hat vuruşu denenir; yakalanamazsa İNCELENMEDİ kalır.
+[PASS] H01 · Hilal ailesi · Hilal Darbesi: eşik ve hasar (otomatik doğrulanan)
+   Ön koşul: R21, bitki canının onda biri kadar hasat hasarı (test katkısı): komşular vuruştan sağ çıkar; 3 × 3 saldırı
+   İşlem: tek saldırı
+   [PASS] ön koşul: hasat hasarı stat'ı = test katkısı (Set) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] eşik (6 gerçek bitki isabeti) | beklenen: ≥ 6 | gerçekleşen: 9 | tolerans: tam
+   [PASS] hilal hasarı = yuvarla(hasat hasarı × 0.8) (4 vuruş, en uzak değer) | beklenen: 16 | gerçekleşen: 16 | tolerans: ±1 (float çarpımının ,5 sınırı)
+[PASS] H02 · Hilal ailesi · Büyüyen Ay: büyüyen adım hasarı (yalnız gözlemlenebilen)
+   Ön koşul: R21, bitki canının onda biri kadar hasat hasarı (test katkısı): komşular vuruştan sağ çıkar; 3 × 3 saldırı
+   İşlem: tek saldırı
+   [PASS] ön koşul: hasat hasarı stat'ı = test katkısı (Set) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] eşik (6 gerçek bitki isabeti) | beklenen: ≥ 6 | gerçekleşen: 9 | tolerans: tam
+   [PASS] her hilal vuruşu izinli büyüme basamaklarından biri (16 / 20 / 24 / 28) | beklenen: hepsi basamakta | gerçekleşen: hepsi basamakta | tolerans: tam
+   [PASS] en az bir adım büyüdü | beklenen: tabandan büyük vuruş | gerçekleşen: gözlendi | tolerans: tam
+   [manuel inceleme gerekli] cephe genişliği | beklenen: manuel inceleme gerekli | gerçekleşen: büyüdükçe cephe en çok 3 hücre olur; gözle bakılır | tolerans: —
+   Not: Büyüme hilalin kendi hasatlarına bağlıdır; gözlenen her vuruşun izinli büyüme basamaklarından birine uyduğu karşılaştırılır. Cephe genişliği gözle bakılır.
+[PASS] H03 · Hilal ailesi · Dolunay: dönüş dalgası ve vuruş duraklaması (yalnız gözlemlenebilen)
+   Ön koşul: R21, bitki canının onda biri kadar hasat hasarı (test katkısı): komşular vuruştan sağ çıkar; 3 × 3 saldırı
+   İşlem: tek saldırı
+   [PASS] ön koşul: hasat hasarı stat'ı = test katkısı (Set) | beklenen: 20 | gerçekleşen: 20 | tolerans: tam
+   [PASS] eşik (6 gerçek bitki isabeti) | beklenen: ≥ 6 | gerçekleşen: 9 | tolerans: tam
+   [PASS] her hilal vuruşu izinli büyüme basamaklarından biri (16 / 20 / 24 / 28) | beklenen: hepsi basamakta | gerçekleşen: hepsi basamakta | tolerans: tam
+   [PASS] en az bir adım büyüdü | beklenen: tabandan büyük vuruş | gerçekleşen: gözlendi | tolerans: tam
+   [manuel inceleme gerekli] cephe genişliği | beklenen: manuel inceleme gerekli | gerçekleşen: büyüdükçe cephe en çok 3 hücre olur; gözle bakılır | tolerans: —
+   [PASS] dönüş dalgası = yuvarla(hilalin TABAN hasarı × 0.7) (8 vuruş, en uzak değer) | beklenen: 11 | gerçekleşen: 11 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] doğrudan saldırı duraklaması gözlendi | beklenen: aktif oldu | gerçekleşen: aktif oldu | tolerans: tam
+   [PASS] duraklama ödül verisini aşmadı (0.35 sn) | beklenen: ≤ 0.35 | gerçekleşen: 0.35 | tolerans: tam
+   Not: Dönüş dalgası hilalin eşik kadar büyümesine bağlıdır; gözlenirse hasarı ve duraklama süresi karşılaştırılır.
+[manuel inceleme gerekli] H04 · Hilal ailesi · Hilal imleç rotası (güncel kural) (yalnız gözlemlenebilen)
+   Not: Rotanın imleçten açık kenara gitmesi bu araçta sayısal doğrulanmıyor: MoonCursorVerification.RunBatch ve gözle inceleme.
+[PASS] F01 · Tarla olayları · Diken Kuşatması: kapalı hücreler ve kök dayanıklılığı (otomatik doğrulanan)
+   Ön koşul: R27, 7 × 7 dolu tarla
+   İşlem: olayı başlat, kökleri gerçek saldırıyla kır
+   [PASS] olaydan önce kapalı hücre | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] bölge boyutu = plan verisi (3 × 3) | beklenen: 9 | gerçekleşen: 9 | tolerans: tam
+   [PASS] aktif fazda kapalı hücre sayısı = bölge | beklenen: 9 | gerçekleşen: 9 | tolerans: tam
+   [PASS] kapalı hücrede üretim süresi ilerlemedi | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0.0001 (float)
+   [PASS] bölge dışında üretim süresi ilerledi | beklenen: > önceki | gerçekleşen: 0 → 0.5 | tolerans: tam
+   [PASS] kök sayısı | beklenen: 2 | gerçekleşen: 2 | tolerans: tam
+   [PASS] kök dayanıklılığı = plan verisi | beklenen: 6 | gerçekleşen: 6 | tolerans: tam
+   [PASS] kökü kıran gerçek doğrudan saldırı sayısı | beklenen: 6 | gerçekleşen: 6 | tolerans: tam
+   [PASS] kök dayanıklılığı = plan verisi | beklenen: 6 | gerçekleşen: 6 | tolerans: tam
+   [PASS] kökü kıran gerçek doğrudan saldırı sayısı | beklenen: 6 | gerçekleşen: 6 | tolerans: tam
+   [PASS] kökler kırılınca kapalı hücre kalmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] olay oyuncu tarafından çözüldü | beklenen: çözüldü | gerçekleşen: çözüldü | tolerans: tam
+[PASS] F02 · Tarla olayları · İstilacı Filiz: yavaşlatma çarpanı gerçek üretim aralığında (otomatik doğrulanan)
+   Ön koşul: R27, 7 × 7 dolu tarla
+   İşlem: olayı başlat, sonra ana filizi kır
+   [PASS] ana filiz seçilen üretim noktasında | beklenen: (5, 5) | gerçekleşen: (5, 5) | tolerans: tam
+   [PASS] yavaşlamış yuvanın gerçek üretim aralığı = normal 8 sn × 1.6 | beklenen: 12.8 | gerçekleşen: 12.8 | tolerans: ±0.001 (float)
+   [PASS] ana filiz dayanıklılığı = plan verisi | beklenen: 8 | gerçekleşen: 8 | tolerans: tam
+   [PASS] ana filizi kıran gerçek doğrudan saldırı sayısı | beklenen: 8 | gerçekleşen: 8 | tolerans: tam
+   [PASS] ana filiz kırılınca yavaş hücre kalmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] üretim aralığı eski değerine döndü | beklenen: 8 | gerçekleşen: 8 | tolerans: ±0.001 (float)
+[PASS] F03 · Tarla olayları · Aşılı Kabuk: seçim yapılmazsa bölge kapanır (yalnız gözlemlenebilen)
+   Ön koşul: R27, 7 × 7 dolu tarla
+   İşlem: olayı başlat, vurmadan bekle
+   [PASS] bölge sayısı | beklenen: 2 | gerçekleşen: 2 | tolerans: tam
+   [PASS] seçim öncesi kapalı hücre | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] düğüm dayanıklılığı = plan verisi | beklenen: 4 | gerçekleşen: 4 | tolerans: tam
+   [PASS] seçim yapılmayınca A bölgesi kapandı | beklenen: A kapalı, B açık | gerçekleşen: A kapalı, B açık | tolerans: tam
+   [PASS] kapalı hücre sayısı = A bölgesi | beklenen: 6 | gerçekleşen: 6 | tolerans: tam
+   [manuel inceleme gerekli] düğüm kırma yolu | beklenen: manuel inceleme gerekli | gerçekleşen: A ya da B düğümü kırılınca diğer bölgenin kapanması elle denenir | tolerans: —
+   [PASS] olay temizlenince kapalı hücre kalmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   Not: Yalnız 'seçim yapılmadı' yolu otomatik izlenir; düğüm kırma yolu (A / B) elle denenmeli.
+[PASS] F04 · Tarla olayları · Gezgin Bereket: kaynak ×2, XP ×2, bölge dışında bonus yok (otomatik doğrulanan)
+   Ön koşul: R27, 7 × 7 dolu tarla
+   İşlem: bölge içinde ve dışında birer hasat
+   [manuel inceleme gerekli] bölgede boş yuvalar hızlı dolar | beklenen: manuel inceleme gerekli | gerçekleşen: oyun sabiti ×2; üretim hızlanması bu kontrolde ölçülmüyor (hızlanan doğuş sayısı olay durumunda yazılır) | tolerans: —
+   [PASS] bölge dışında bonus yok | beklenen: bereket hayır | gerçekleşen: bereket hayır | tolerans: tam
+   [PASS] bölge dışı: eklenen kaynak = ölçekten sonraki | beklenen: 2 | gerçekleşen: 2 | tolerans: tam
+   [PASS] bölge içi: eklenen kaynak = 2 × ölçekten sonraki | beklenen: 4 | gerçekleşen: 4 | tolerans: tam
+   [PASS] bölge içi: eklenen XP = 2 × yuvarlanan | beklenen: 40 | gerçekleşen: 40 | tolerans: ±0.01 (double)
+   [PASS] gerçek kaynak bakiyesi kayıt kadar arttı | beklenen: 4 | gerçekleşen: 4 | tolerans: tam
+   [PASS] gerçek kazanılan XP kayıt kadar arttı | beklenen: 40 | gerçekleşen: 40 | tolerans: ±0.01 (double)
+[PASS] G01 · Boss kuralları · Don Cephesi: bantta üretim aralığı çarpanı, kalkınca eski değer (otomatik doğrulanan)
+   Ön koşul: boss round'u, 7 × 7 dolu tarla
+   İşlem: boss'u başlat, sonra etkisini temizle
+   [PASS] bantta ve bant dışında üretim noktası var | beklenen: ikisi de > 0 | gerçekleşen: bant 28, dış 21 | tolerans: tam
+   [PASS] banttaki yuvalar: gerçek aralık = önceki × 2.5 (uymayan sayısı) | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] bant dışındaki yuvalar: aralık değişmedi (uymayan sayısı) | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] boss etkisi oyunun temizlik yoluyla kalktı | beklenen: aktif boss yok | gerçekleşen: aktif boss yok | tolerans: tam
+   [PASS] kalkınca bütün yuvalar eski aralığına döndü (uymayan sayısı) | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+[PASS] G02 · Boss kuralları · Sert Kabuk: bantta bitki canı çarpanı, kalkınca eski değer (otomatik doğrulanan)
+   Ön koşul: boss round'u, 7 × 7 dolu tarla
+   İşlem: boss'u başlat, sonra etkisini temizle
+   [PASS] bantta ve bant dışında bitki var | beklenen: ikisi de > 0 | gerçekleşen: bant 21, dış 28 | tolerans: tam
+   [PASS] banttaki bitkiler: azami can = yuvarla(önceki × 1.5) (uymayan sayısı) | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] bant dışındaki bitkiler: can değişmedi (uymayan sayısı) | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] boss etkisi oyunun temizlik yoluyla kalktı | beklenen: aktif boss yok | gerçekleşen: aktif boss yok | tolerans: tam
+   [PASS] kalkınca bütün bitkiler eski azami canına döndü (uymayan sayısı) | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+[PASS] G03 · Boss kuralları · Sis: saldırı yarıçapı çarpanı, kalkınca eski değer (otomatik doğrulanan)
+   Ön koşul: boss round'u, 7 × 7 dolu tarla
+   İşlem: boss'u başlat, saldır, temizle
+   [manuel inceleme gerekli] Sis kademeli modda | beklenen: manuel inceleme gerekli | gerçekleşen: bu profilde Sis kademeli (stepDown) çalışıyor; tek çarpanlı beklenti geçerli değil | tolerans: —
+   [PASS] boss etkisi oyunun temizlik yoluyla kalktı | beklenen: aktif boss yok | gerçekleşen: aktif boss yok | tolerans: tam
+   [PASS] kalkınca saldırı yarıçapı eski değerine döndü | beklenen: 3 | gerçekleşen: 3 | tolerans: ±0.0001 (float)
+[PASS] X01 · XP / kaynak / skor · Kontrollü tek hasat: kaynak, XP ve skor kaydı = gerçek bakiye farkı (otomatik doğrulanan)
+   Ön koşul: tek saksı, üretim duraklatılmış, otomatik saldırı kapalı
+   İşlem: tek hasat
+   [PASS] hasat sayısı | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] bitki türü ve nadirliği | beklenen: Grass [Common] | gerçekleşen: Grass [Common] | tolerans: tam
+   [PASS] gerçek taban ödül = bitki verisi | beklenen: 2 | gerçekleşen: 2 | tolerans: tam
+   [PASS] yuvarlanan kaynak = yuvarla(taban ödül × saksı kaynak çarpanı) | beklenen: 2 | gerçekleşen: 2 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] yuvarlanan XP = yuvarla(taban XP × saksı XP çarpanı × nadirlik çarpanı) | beklenen: 20 | gerçekleşen: 20 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] Gold bakiyesinin gerçek artışı = kayıttaki eklenen kaynak | beklenen: 2 | gerçekleşen: 2 | tolerans: tam
+   [PASS] Iron bakiyesi değişmedi | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] Stone bakiyesi değişmedi | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] kazanılan toplam XP'nin gerçek artışı = kayıttaki eklenen XP | beklenen: 20 | gerçekleşen: 20 | tolerans: ±0.01 (double)
+   [PASS] Harvest Score kaydı var | beklenen: var | gerçekleşen: var | tolerans: tam
+   [PASS] Harvest Score'un gerçek artışı = kayıttaki eklenen skor | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] karışma uyarısı yok (otomatik saldırı kapalı, üretim duraklatılmış) | beklenen: uyarı yok | gerçekleşen: uyarı yok | tolerans: tam
+[PASS] X02 · XP / kaynak / skor · Level kazanımı: kazanılan XP ≠ saklı XP, yeni seçim hakkı (otomatik doğrulanan)
+   Ön koşul: temiz düzen
+   İşlem: normal akışla bir level'lık XP ver
+   [PASS] kazanılan toplam XP verilen kadar arttı | beklenen: 487 | gerçekleşen: 487 | tolerans: ±0.01 (double)
+   [PASS] level bir arttı | beklenen: 2 | gerçekleşen: 2 | tolerans: tam
+   [PASS] saklı (kalan) XP = level maliyetinden artan — kazanılan XP'den farklı | beklenen: 97 | gerçekleşen: 97 | tolerans: ±0.01 (double)
+   [PASS] yeni kart seçim hakkı = level başına hak | beklenen: 3 | gerçekleşen: 3 | tolerans: tam
+   [PASS] bu run'da verilen toplam seçim hakkı aynı kadar arttı | beklenen: 3 | gerçekleşen: 3 | tolerans: tam
+[sistem henüz yok] M01 · Henüz olmayan sistemler · Final boss / run sonu sistemi (eksik)
+   Not: sistem henüz yok: R50 akışı geçicidir.
+[sistem henüz yok] M02 · Henüz olmayan sistemler · Endless (sonsuz) mod (eksik)
+   Not: sistem henüz yok.
+[sistem henüz yok] M03 · Henüz olmayan sistemler · Rezonans Çöküşü / Rezonans Darbesi (eksik)
+   Not: sistem henüz yok: kapsam dışı bırakıldı, eklenmeyecek.
+[sistem henüz yok] M04 · Henüz olmayan sistemler · Hilal – rezonans etkileşim kuralı (eksik)
+   Not: sistem henüz yok: kural kullanıcı onayı bekliyor.
+[FAIL] T00 · Tile'lar · Tile verisi: ad, nadirlik alanı ve değer aralıkları tutarlı mı (otomatik doğrulanan)
+   Ön koşul: oyunun 40 tile asset'i
+   İşlem: veri okunur
+   [PASS] tile asset sayısı (10 tür × 4 nadirlik) | beklenen: 40 | gerçekleşen: 40 | tolerans: tam
+   [FAIL] dosya adındaki nadirlik = asset'in nadirlik alanı | beklenen: uyumsuz yok | gerçekleşen: Tornado-Rare → nadirlik alanı Common | tolerans: tam
+   [FAIL] her tür + nadirlik için tek asset | beklenen: çift yok | gerçekleşen: Tornado/Common: Tornado-Rare ve Tornado-Common | tolerans: tam
+   [PASS] değer aralıkları: en büyük zar en küçükten güçlü, işaret aynı | beklenen: bozuk aralık yok | gerçekleşen: bozuk aralık yok | tolerans: tam
+   [PASS] nadirlikler arası aralıklar üst üste binmiyor | beklenen: binme yok | gerçekleşen: binme yok | tolerans: tam
+[UYARI] T01 · Tile'lar · Patlama tile'ı: şans — yazan = uygulanan = gerçek tetik oranı (otomatik doğrulanan)
+   Ön koşul: iki eş saksı: biri tile'ın üstünde, diğeri tile'sız; hasat hasarı test katkısıyla 1000
+   İşlem: dört nadirlik, en yüksek zar; sonra seviye 3; sonra tile'ı kaldır
+   [PASS] Common: tile değeri = asset'in en yüksek zarı | beklenen: 0.29 | gerçekleşen: 0.29 | tolerans: ±0.0001 (float)
+   [PASS] Common: oyunun yazdığı "Patlama şansı +29% puan" = uygulanan değer | beklenen: 29 | gerçekleşen: 29 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Common: tile'lı saksının ExplosionChance değeri (tile'sız eş saksı 0) | beklenen: 0.29 | gerçekleşen: 0.29 | tolerans: ±0.0001 (float)
+   [PASS] Common: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Common: GERÇEK tetik oranı (68/240 fırsat; başlatılan 68, kapasite reddi 0) | beklenen: 0.29 | gerçekleşen: 0.283 | tolerans: ±0.1192 (istatistik: ±4σ, n = 240)
+   [PASS] Rare: tile değeri = asset'in en yüksek zarı | beklenen: 0.44 | gerçekleşen: 0.44 | tolerans: ±0.0001 (float)
+   [PASS] Rare: oyunun yazdığı "Patlama şansı +44% puan" = uygulanan değer | beklenen: 44 | gerçekleşen: 44 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Rare: tile'lı saksının ExplosionChance değeri (tile'sız eş saksı 0) | beklenen: 0.44 | gerçekleşen: 0.44 | tolerans: ±0.0001 (float)
+   [PASS] Rare: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Rare: GERÇEK tetik oranı (115/240 fırsat; başlatılan 115, kapasite reddi 0) | beklenen: 0.44 | gerçekleşen: 0.479 | tolerans: ±0.1302 (istatistik: ±4σ, n = 240)
+   [PASS] Epic: tile değeri = asset'in en yüksek zarı | beklenen: 0.6 | gerçekleşen: 0.6 | tolerans: ±0.0001 (float)
+   [PASS] Epic: oyunun yazdığı "Patlama şansı +60% puan" = uygulanan değer | beklenen: 60 | gerçekleşen: 60 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Epic: tile'lı saksının ExplosionChance değeri (tile'sız eş saksı 0) | beklenen: 0.6 | gerçekleşen: 0.6 | tolerans: ±0.0001 (float)
+   [PASS] Epic: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Epic: GERÇEK tetik oranı (146/240 fırsat; başlatılan 146, kapasite reddi 0) | beklenen: 0.6 | gerçekleşen: 0.608 | tolerans: ±0.1286 (istatistik: ±4σ, n = 240)
+   [PASS] Legendary: tile değeri = asset'in en yüksek zarı | beklenen: 0.9 | gerçekleşen: 0.9 | tolerans: ±0.0001 (float)
+   [PASS] Legendary: oyunun yazdığı "Patlama şansı +90% puan" = uygulanan değer | beklenen: 90 | gerçekleşen: 90 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Legendary: tile'lı saksının ExplosionChance değeri (tile'sız eş saksı 0) | beklenen: 0.9 | gerçekleşen: 0.9 | tolerans: ±0.0001 (float)
+   [PASS] Legendary: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Legendary: GERÇEK tetik oranı (202/240 fırsat; başlatılan 202, kapasite reddi 0) | beklenen: 0.9 | gerçekleşen: 0.842 | tolerans: ±0.0795 (istatistik: ±4σ, n = 240)
+   [PASS] seviye 3'e çıktı | beklenen: 3 | gerçekleşen: 3 | tolerans: tam
+   [PASS] seviye 3: tile değeri = en yüksek zar × (1 + 0.25 × 3) | beklenen: 1.575 | gerçekleşen: 1.575 | tolerans: ±0.0002 (float)
+   [PASS] seviye 3: oyunun yazdığı "Patlama şansı +157.5% puan" = uygulanan değer | beklenen: 157.5 | gerçekleşen: 157.5 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] seviye 3: saksının ExplosionChance değeri | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] tile kalkınca saksı tile'sız değerine döndü | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [UYARI] yazan değer uygulanabilen sınırı aşıyor (tek tile, en yüksek zar) | beklenen: yazan değerin tamamı kullanılır (sınır 100%) | gerçekleşen: Epic (Sv 3: yazan 105) · Legendary (Sv 1: yazan 112.5, Sv 2: yazan 135, Sv 3: yazan 157.5) — sınırın üstü hiçbir şeye dönüşmüyor | tolerans: —
+[UYARI] T02 · Tile'lar · Elektrik tile'ı: şans — yazan = uygulanan = gerçek tetik oranı (otomatik doğrulanan)
+   Ön koşul: iki eş saksı: biri tile'ın üstünde, diğeri tile'sız; hasat hasarı test katkısıyla 1000
+   İşlem: dört nadirlik, en yüksek zar; sonra seviye 3; sonra tile'ı kaldır
+   [PASS] Common: tile değeri = asset'in en yüksek zarı | beklenen: 0.18 | gerçekleşen: 0.18 | tolerans: ±0.0001 (float)
+   [PASS] Common: oyunun yazdığı "Çapraz elektrik şansı +18% puan" = uygulanan değer | beklenen: 18 | gerçekleşen: 18 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Common: tile'lı saksının ElectricChance değeri (tile'sız eş saksı 0) | beklenen: 0.18 | gerçekleşen: 0.18 | tolerans: ±0.0001 (float)
+   [PASS] Common: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Common: GERÇEK tetik oranı (46/240 fırsat; başlatılan 46, kapasite reddi 0) | beklenen: 0.18 | gerçekleşen: 0.192 | tolerans: ±0.1013 (istatistik: ±4σ, n = 240)
+   [PASS] Rare: tile değeri = asset'in en yüksek zarı | beklenen: 0.28 | gerçekleşen: 0.28 | tolerans: ±0.0001 (float)
+   [PASS] Rare: oyunun yazdığı "Çapraz elektrik şansı +28% puan" = uygulanan değer | beklenen: 28 | gerçekleşen: 28 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Rare: tile'lı saksının ElectricChance değeri (tile'sız eş saksı 0) | beklenen: 0.28 | gerçekleşen: 0.28 | tolerans: ±0.0001 (float)
+   [PASS] Rare: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Rare: GERÇEK tetik oranı (63/240 fırsat; başlatılan 63, kapasite reddi 0) | beklenen: 0.28 | gerçekleşen: 0.263 | tolerans: ±0.118 (istatistik: ±4σ, n = 240)
+   [PASS] Epic: tile değeri = asset'in en yüksek zarı | beklenen: 0.4 | gerçekleşen: 0.4 | tolerans: ±0.0001 (float)
+   [PASS] Epic: oyunun yazdığı "Çapraz elektrik şansı +40% puan" = uygulanan değer | beklenen: 40 | gerçekleşen: 40 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Epic: tile'lı saksının ElectricChance değeri (tile'sız eş saksı 0) | beklenen: 0.4 | gerçekleşen: 0.4 | tolerans: ±0.0001 (float)
+   [PASS] Epic: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Epic: GERÇEK tetik oranı (96/240 fırsat; başlatılan 96, kapasite reddi 0) | beklenen: 0.4 | gerçekleşen: 0.4 | tolerans: ±0.1286 (istatistik: ±4σ, n = 240)
+   [PASS] Legendary: tile değeri = asset'in en yüksek zarı | beklenen: 0.6 | gerçekleşen: 0.6 | tolerans: ±0.0001 (float)
+   [PASS] Legendary: oyunun yazdığı "Çapraz elektrik şansı +60% puan" = uygulanan değer | beklenen: 60 | gerçekleşen: 60 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Legendary: tile'lı saksının ElectricChance değeri (tile'sız eş saksı 0) | beklenen: 0.6 | gerçekleşen: 0.6 | tolerans: ±0.0001 (float)
+   [PASS] Legendary: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Legendary: GERÇEK tetik oranı (153/240 fırsat; başlatılan 153, kapasite reddi 0) | beklenen: 0.6 | gerçekleşen: 0.638 | tolerans: ±0.1286 (istatistik: ±4σ, n = 240)
+   [PASS] seviye 3'e çıktı | beklenen: 3 | gerçekleşen: 3 | tolerans: tam
+   [PASS] seviye 3: tile değeri = en yüksek zar × (1 + 0.25 × 3) | beklenen: 1.05 | gerçekleşen: 1.05 | tolerans: ±0.0001 (float)
+   [PASS] seviye 3: oyunun yazdığı "Çapraz elektrik şansı +105% puan" = uygulanan değer | beklenen: 105 | gerçekleşen: 105 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] seviye 3: saksının ElectricChance değeri | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] tile kalkınca saksı tile'sız değerine döndü | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [UYARI] yazan değer uygulanabilen sınırı aşıyor (tek tile, en yüksek zar) | beklenen: yazan değerin tamamı kullanılır (sınır 100%) | gerçekleşen: Legendary (Sv 3: yazan 105) — sınırın üstü hiçbir şeye dönüşmüyor | tolerans: —
+[FAIL] T03 · Tile'lar · Kasırga tile'ı: şans — yazan = uygulanan = gerçek tetik oranı (otomatik doğrulanan)
+   Ön koşul: iki eş saksı: biri tile'ın üstünde, diğeri tile'sız; hasat hasarı test katkısıyla 1000
+   İşlem: dört nadirlik, en yüksek zar; sonra seviye 3; sonra tile'ı kaldır
+   [PASS] Common: tile değeri = asset'in en yüksek zarı | beklenen: 0.59 | gerçekleşen: 0.59 | tolerans: ±0.0001 (float)
+   [PASS] Common: oyunun yazdığı "Tornado şansı +59% puan" = uygulanan değer | beklenen: 59 | gerçekleşen: 59 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Common: tile'lı saksının TornadoChance değeri (tile'sız eş saksı 0) | beklenen: 0.59 | gerçekleşen: 0.59 | tolerans: ±0.0001 (float)
+   [PASS] Common: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Common: GERÇEK tetik oranı (136/240 fırsat; başlatılan 24, kapasite reddi 112) | beklenen: 0.59 | gerçekleşen: 0.567 | tolerans: ±0.1291 (istatistik: ±4σ, n = 240)
+   [FAIL] Rare: asset | beklenen: var | gerçekleşen: bu tür + nadirlik için asset bulunamadı (nadirlik alanı yanlış olabilir: T00) | tolerans: tam
+   [PASS] Epic: tile değeri = asset'in en yüksek zarı | beklenen: 0.84 | gerçekleşen: 0.84 | tolerans: ±0.0001 (float)
+   [PASS] Epic: oyunun yazdığı "Tornado şansı +84% puan" = uygulanan değer | beklenen: 84 | gerçekleşen: 84 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Epic: tile'lı saksının TornadoChance değeri (tile'sız eş saksı 0) | beklenen: 0.84 | gerçekleşen: 0.84 | tolerans: ±0.0001 (float)
+   [PASS] Epic: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Epic: GERÇEK tetik oranı (199/240 fırsat; başlatılan 24, kapasite reddi 175) | beklenen: 0.84 | gerçekleşen: 0.829 | tolerans: ±0.0967 (istatistik: ±4σ, n = 240)
+   [PASS] Legendary: tile değeri = asset'in en yüksek zarı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] Legendary: oyunun yazdığı "Tornado şansı +100% puan" = uygulanan değer | beklenen: 100 | gerçekleşen: 100 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Legendary: tile'lı saksının TornadoChance değeri (tile'sız eş saksı 0) | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] Legendary: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Legendary: GERÇEK tetik oranı (240/240 fırsat; başlatılan 24, kapasite reddi 216) | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0021 (istatistik: ±4σ, n = 240)
+   [PASS] seviye 3'e çıktı | beklenen: 3 | gerçekleşen: 3 | tolerans: tam
+   [PASS] seviye 3: tile değeri = en yüksek zar × (1 + 0.25 × 3) | beklenen: 1.75 | gerçekleşen: 1.75 | tolerans: ±0.0002 (float)
+   [PASS] seviye 3: oyunun yazdığı "Tornado şansı +175% puan" = uygulanan değer | beklenen: 175 | gerçekleşen: 175 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] seviye 3: saksının TornadoChance değeri | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] tile kalkınca saksı tile'sız değerine döndü | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [UYARI] yazan değer uygulanabilen sınırı aşıyor (tek tile, en yüksek zar) | beklenen: yazan değerin tamamı kullanılır (sınır 100%) | gerçekleşen: Common (Sv 3: yazan 103.2) · Epic (Sv 1: yazan 105, Sv 2: yazan 126, Sv 3: yazan 147) · Legendary (Sv 1: yazan 125, Sv 2: yazan 150, Sv 3: yazan 175) — sınırın üstü hiçbir şeye dönüşmüyor | tolerans: —
+[UYARI] T04 · Tile'lar · Bumerang tile'ı: şans — yazan = uygulanan = gerçek tetik oranı (otomatik doğrulanan)
+   Ön koşul: iki eş saksı: biri tile'ın üstünde, diğeri tile'sız; hasat hasarı test katkısıyla 1000
+   İşlem: dört nadirlik, en yüksek zar; sonra seviye 3; sonra tile'ı kaldır
+   [PASS] Common: tile değeri = asset'in en yüksek zarı | beklenen: 0.18 | gerçekleşen: 0.18 | tolerans: ±0.0001 (float)
+   [PASS] Common: oyunun yazdığı "Bumerang orak şansı +18% puan" = uygulanan değer | beklenen: 18 | gerçekleşen: 18 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Common: tile'lı saksının BoomerangChance değeri (tile'sız eş saksı 0) | beklenen: 0.18 | gerçekleşen: 0.18 | tolerans: ±0.0001 (float)
+   [PASS] Common: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Common: GERÇEK tetik oranı (35/240 fırsat; başlatılan 35, kapasite reddi 0) | beklenen: 0.18 | gerçekleşen: 0.146 | tolerans: ±0.1013 (istatistik: ±4σ, n = 240)
+   [PASS] Rare: tile değeri = asset'in en yüksek zarı | beklenen: 0.28 | gerçekleşen: 0.28 | tolerans: ±0.0001 (float)
+   [PASS] Rare: oyunun yazdığı "Bumerang orak şansı +28% puan" = uygulanan değer | beklenen: 28 | gerçekleşen: 28 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Rare: tile'lı saksının BoomerangChance değeri (tile'sız eş saksı 0) | beklenen: 0.28 | gerçekleşen: 0.28 | tolerans: ±0.0001 (float)
+   [PASS] Rare: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Rare: GERÇEK tetik oranı (52/240 fırsat; başlatılan 52, kapasite reddi 0) | beklenen: 0.28 | gerçekleşen: 0.217 | tolerans: ±0.118 (istatistik: ±4σ, n = 240)
+   [PASS] Epic: tile değeri = asset'in en yüksek zarı | beklenen: 0.4 | gerçekleşen: 0.4 | tolerans: ±0.0001 (float)
+   [PASS] Epic: oyunun yazdığı "Bumerang orak şansı +40% puan" = uygulanan değer | beklenen: 40 | gerçekleşen: 40 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Epic: tile'lı saksının BoomerangChance değeri (tile'sız eş saksı 0) | beklenen: 0.4 | gerçekleşen: 0.4 | tolerans: ±0.0001 (float)
+   [PASS] Epic: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Epic: GERÇEK tetik oranı (90/240 fırsat; başlatılan 83, kapasite reddi 7) | beklenen: 0.4 | gerçekleşen: 0.375 | tolerans: ±0.1286 (istatistik: ±4σ, n = 240)
+   [PASS] Legendary: tile değeri = asset'in en yüksek zarı | beklenen: 0.6 | gerçekleşen: 0.6 | tolerans: ±0.0001 (float)
+   [PASS] Legendary: oyunun yazdığı "Bumerang orak şansı +60% puan" = uygulanan değer | beklenen: 60 | gerçekleşen: 60 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Legendary: tile'lı saksının BoomerangChance değeri (tile'sız eş saksı 0) | beklenen: 0.6 | gerçekleşen: 0.6 | tolerans: ±0.0001 (float)
+   [PASS] Legendary: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Legendary: GERÇEK tetik oranı (135/240 fırsat; başlatılan 101, kapasite reddi 34) | beklenen: 0.6 | gerçekleşen: 0.563 | tolerans: ±0.1286 (istatistik: ±4σ, n = 240)
+   [PASS] seviye 3'e çıktı | beklenen: 3 | gerçekleşen: 3 | tolerans: tam
+   [PASS] seviye 3: tile değeri = en yüksek zar × (1 + 0.25 × 3) | beklenen: 1.05 | gerçekleşen: 1.05 | tolerans: ±0.0001 (float)
+   [PASS] seviye 3: oyunun yazdığı "Bumerang orak şansı +105% puan" = uygulanan değer | beklenen: 105 | gerçekleşen: 105 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] seviye 3: saksının BoomerangChance değeri | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] tile kalkınca saksı tile'sız değerine döndü | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [UYARI] yazan değer uygulanabilen sınırı aşıyor (tek tile, en yüksek zar) | beklenen: yazan değerin tamamı kullanılır (sınır 100%) | gerçekleşen: Legendary (Sv 3: yazan 105) — sınırın üstü hiçbir şeye dönüşmüyor | tolerans: —
+[UYARI] T05 · Tile'lar · Çift ödül tile'ı: şans — yazan = uygulanan = gerçek çift ödül oranı (otomatik doğrulanan)
+   Ön koşul: iki eş saksı: biri tile'ın üstünde, diğeri tile'sız; hasat hasarı test katkısıyla 1000
+   İşlem: dört nadirlik, en yüksek zar; sonra seviye 3; sonra tile'ı kaldır
+   [PASS] Common: tile değeri = asset'in en yüksek zarı | beklenen: 0.25 | gerçekleşen: 0.25 | tolerans: ±0.0001 (float)
+   [PASS] Common: oyunun yazdığı "Çift ödül şansı +25% puan" = uygulanan değer | beklenen: 25 | gerçekleşen: 25 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Common: tile'lı saksının DuplicateChance değeri (tile'sız eş saksı 0) | beklenen: 0.25 | gerçekleşen: 0.25 | tolerans: ±0.0001 (float)
+   [PASS] Common: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Common: GERÇEK çift ödül oranı (55/240 hasat) | beklenen: 0.25 | gerçekleşen: 0.229 | tolerans: ±0.1139 (istatistik: ±4σ, n = 240)
+   [PASS] Common: çift ödülde eklenen = 2 × yuvarlanan (uymayan hasat sayısı) | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] Rare: tile değeri = asset'in en yüksek zarı | beklenen: 0.4 | gerçekleşen: 0.4 | tolerans: ±0.0001 (float)
+   [PASS] Rare: oyunun yazdığı "Çift ödül şansı +40% puan" = uygulanan değer | beklenen: 40 | gerçekleşen: 40 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Rare: tile'lı saksının DuplicateChance değeri (tile'sız eş saksı 0) | beklenen: 0.4 | gerçekleşen: 0.4 | tolerans: ±0.0001 (float)
+   [PASS] Rare: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Rare: GERÇEK çift ödül oranı (85/240 hasat) | beklenen: 0.4 | gerçekleşen: 0.354 | tolerans: ±0.1286 (istatistik: ±4σ, n = 240)
+   [PASS] Rare: çift ödülde eklenen = 2 × yuvarlanan (uymayan hasat sayısı) | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] Epic: tile değeri = asset'in en yüksek zarı | beklenen: 0.6 | gerçekleşen: 0.6 | tolerans: ±0.0001 (float)
+   [PASS] Epic: oyunun yazdığı "Çift ödül şansı +60% puan" = uygulanan değer | beklenen: 60 | gerçekleşen: 60 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Epic: tile'lı saksının DuplicateChance değeri (tile'sız eş saksı 0) | beklenen: 0.6 | gerçekleşen: 0.6 | tolerans: ±0.0001 (float)
+   [PASS] Epic: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Epic: GERÇEK çift ödül oranı (149/240 hasat) | beklenen: 0.6 | gerçekleşen: 0.621 | tolerans: ±0.1286 (istatistik: ±4σ, n = 240)
+   [PASS] Epic: çift ödülde eklenen = 2 × yuvarlanan (uymayan hasat sayısı) | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] Legendary: tile değeri = asset'in en yüksek zarı | beklenen: 0.9 | gerçekleşen: 0.9 | tolerans: ±0.0001 (float)
+   [PASS] Legendary: oyunun yazdığı "Çift ödül şansı +90% puan" = uygulanan değer | beklenen: 90 | gerçekleşen: 90 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Legendary: tile'lı saksının DuplicateChance değeri (tile'sız eş saksı 0) | beklenen: 0.9 | gerçekleşen: 0.9 | tolerans: ±0.0001 (float)
+   [PASS] Legendary: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Legendary: GERÇEK çift ödül oranı (217/240 hasat) | beklenen: 0.9 | gerçekleşen: 0.904 | tolerans: ±0.0795 (istatistik: ±4σ, n = 240)
+   [PASS] Legendary: çift ödülde eklenen = 2 × yuvarlanan (uymayan hasat sayısı) | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] seviye 3'e çıktı | beklenen: 3 | gerçekleşen: 3 | tolerans: tam
+   [PASS] seviye 3: tile değeri = en yüksek zar × (1 + 0.25 × 3) | beklenen: 1.575 | gerçekleşen: 1.575 | tolerans: ±0.0002 (float)
+   [PASS] seviye 3: oyunun yazdığı "Çift ödül şansı +157.5% puan" = uygulanan değer | beklenen: 157.5 | gerçekleşen: 157.5 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] seviye 3: saksının DuplicateChance değeri | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] tile kalkınca saksı tile'sız değerine döndü | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [UYARI] yazan değer uygulanabilen sınırı aşıyor (tek tile, en yüksek zar) | beklenen: yazan değerin tamamı kullanılır (sınır 100%) | gerçekleşen: Epic (Sv 3: yazan 105) · Legendary (Sv 1: yazan 112.5, Sv 2: yazan 135, Sv 3: yazan 157.5) — sınırın üstü hiçbir şeye dönüşmüyor | tolerans: —
+[PASS] T06 · Tile'lar · Hasar tile'ı: saksı hasar çarpanı — yazan = uygulanan = gerçek doğrudan vuruş (otomatik doğrulanan)
+   Ön koşul: iki eş saksı: biri tile'ın üstünde, diğeri tile'sız; hasat hasarı test katkısıyla 1000
+   İşlem: dört nadirlik, en yüksek zar; sonra seviye 3; sonra tile'ı kaldır
+   [PASS] Common: tile değeri = asset'in en yüksek zarı | beklenen: 0.1 | gerçekleşen: 0.1 | tolerans: ±0.0001 (float)
+   [PASS] Common: oyunun yazdığı "Hasar +10%" = uygulanan değer | beklenen: 10 | gerçekleşen: 10 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Common: tile'lı saksının PlanterDamageMultiplier değeri (tile'sız eş saksı 1) | beklenen: 1.1 | gerçekleşen: 1.1 | tolerans: ±0.0001 (float)
+   [PASS] Common: komşu saksıya sızmadı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0 (float)
+   [PASS] Common: gerçek doğrudan vuruş = yuvarla(yuvarlanan 909 × saksı çarpanı 1.1) | beklenen: 1000 | gerçekleşen: 1000 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] Rare: tile değeri = asset'in en yüksek zarı | beklenen: 0.15 | gerçekleşen: 0.15 | tolerans: ±0.0001 (float)
+   [PASS] Rare: oyunun yazdığı "Hasar +15%" = uygulanan değer | beklenen: 15 | gerçekleşen: 15 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Rare: tile'lı saksının PlanterDamageMultiplier değeri (tile'sız eş saksı 1) | beklenen: 1.15 | gerçekleşen: 1.15 | tolerans: ±0.0001 (float)
+   [PASS] Rare: komşu saksıya sızmadı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0 (float)
+   [PASS] Rare: gerçek doğrudan vuruş = yuvarla(yuvarlanan 1005 × saksı çarpanı 1.15) | beklenen: 1156 | gerçekleşen: 1156 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] Epic: tile değeri = asset'in en yüksek zarı | beklenen: 0.2 | gerçekleşen: 0.2 | tolerans: ±0.0001 (float)
+   [PASS] Epic: oyunun yazdığı "Hasar +20%" = uygulanan değer | beklenen: 20 | gerçekleşen: 20 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Epic: tile'lı saksının PlanterDamageMultiplier değeri (tile'sız eş saksı 1) | beklenen: 1.2 | gerçekleşen: 1.2 | tolerans: ±0.0001 (float)
+   [PASS] Epic: komşu saksıya sızmadı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0 (float)
+   [PASS] Epic: gerçek doğrudan vuruş = yuvarla(yuvarlanan 885 × saksı çarpanı 1.2) | beklenen: 1062 | gerçekleşen: 1062 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] Legendary: tile değeri = asset'in en yüksek zarı | beklenen: 0.3 | gerçekleşen: 0.3 | tolerans: ±0.0001 (float)
+   [PASS] Legendary: oyunun yazdığı "Hasar +30%" = uygulanan değer | beklenen: 30 | gerçekleşen: 30 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Legendary: tile'lı saksının PlanterDamageMultiplier değeri (tile'sız eş saksı 1) | beklenen: 1.3 | gerçekleşen: 1.3 | tolerans: ±0.0001 (float)
+   [PASS] Legendary: komşu saksıya sızmadı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0 (float)
+   [PASS] Legendary: gerçek doğrudan vuruş = yuvarla(yuvarlanan 1133 × saksı çarpanı 1.3) | beklenen: 1473 | gerçekleşen: 1473 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] seviye 3'e çıktı | beklenen: 3 | gerçekleşen: 3 | tolerans: tam
+   [PASS] seviye 3: tile değeri = en yüksek zar × (1 + 0.25 × 3) | beklenen: 0.525 | gerçekleşen: 0.525 | tolerans: ±0.0001 (float)
+   [PASS] seviye 3: oyunun yazdığı "Hasar +52.5%" = uygulanan değer | beklenen: 52.5 | gerçekleşen: 52.5 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] seviye 3: saksının PlanterDamageMultiplier değeri | beklenen: 1.525 | gerçekleşen: 1.525 | tolerans: ±0.0002 (float)
+   [PASS] tile kalkınca saksı tile'sız değerine döndü | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0 (float)
+[UYARI] T07 · Tile'lar · Kristal tile'ı: nadirlik bonusu — yazan = uygulanan = gerçek bitki zarı dağılımı (otomatik doğrulanan)
+   Ön koşul: iki eş saksı: biri tile'ın üstünde, diğeri tile'sız; hasat hasarı test katkısıyla 1000
+   İşlem: dört nadirlik, en yüksek zar; sonra seviye 3; sonra tile'ı kaldır
+   [PASS] Common: tile değeri = asset'in en yüksek zarı | beklenen: 15 | gerçekleşen: 15 | tolerans: ±0.0015 (float)
+   [PASS] Common: oyunun yazdığı "Nadirlik bonusu +15% puan" = uygulanan değer | beklenen: 15 | gerçekleşen: 15 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Common: tile'lı saksının RareSpawnChance değeri (tile'sız eş saksı 0) | beklenen: 15 | gerçekleşen: 15 | tolerans: ±0.0015 (float)
+   [PASS] Common: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Common: GERÇEK Rare+ bitki oranı (86/600 doğuş; bonus 15 puan) | beklenen: 0.173 | gerçekleşen: 0.143 | tolerans: ±0.0626 (istatistik: ±4σ, n = 600)
+   [PASS] Rare: tile değeri = asset'in en yüksek zarı | beklenen: 28 | gerçekleşen: 28 | tolerans: ±0.0028 (float)
+   [PASS] Rare: oyunun yazdığı "Nadirlik bonusu +28% puan" = uygulanan değer | beklenen: 28 | gerçekleşen: 28 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Rare: tile'lı saksının RareSpawnChance değeri (tile'sız eş saksı 0) | beklenen: 28 | gerçekleşen: 28 | tolerans: ±0.0028 (float)
+   [PASS] Rare: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Rare: GERÇEK Rare+ bitki oranı (100/600 doğuş; bonus 28 puan) | beklenen: 0.191 | gerçekleşen: 0.167 | tolerans: ±0.065 (istatistik: ±4σ, n = 600)
+   [PASS] Epic: tile değeri = asset'in en yüksek zarı | beklenen: 45 | gerçekleşen: 45 | tolerans: ±0.0045 (float)
+   [PASS] Epic: oyunun yazdığı "Nadirlik bonusu +45% puan" = uygulanan değer | beklenen: 45 | gerçekleşen: 45 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Epic: tile'lı saksının RareSpawnChance değeri (tile'sız eş saksı 0) | beklenen: 45 | gerçekleşen: 45 | tolerans: ±0.0045 (float)
+   [PASS] Epic: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Epic: GERÇEK Rare+ bitki oranı (126/600 doğuş; bonus 45 puan) | beklenen: 0.211 | gerçekleşen: 0.21 | tolerans: ±0.0675 (istatistik: ±4σ, n = 600)
+   [PASS] Legendary: tile değeri = asset'in en yüksek zarı | beklenen: 70 | gerçekleşen: 70 | tolerans: ±0.007 (float)
+   [PASS] Legendary: oyunun yazdığı "Nadirlik bonusu +70% puan" = uygulanan değer | beklenen: 70 | gerçekleşen: 70 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Legendary: tile'lı saksının RareSpawnChance değeri (tile'sız eş saksı 0) | beklenen: 70 | gerçekleşen: 70 | tolerans: ±0.007 (float)
+   [PASS] Legendary: komşu saksıya sızmadı | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [PASS] Legendary: GERÇEK Rare+ bitki oranı (138/600 doğuş; bonus 70 puan) | beklenen: 0.237 | gerçekleşen: 0.23 | tolerans: ±0.0703 (istatistik: ±4σ, n = 600)
+   [UYARI] "Nadirlik bonusu +N% puan" yazımı Rare+ olasılığına eklenen puan değildir | beklenen: yazan +70% puan | gerçekleşen: bu saksıda Rare+ bitki olasılığı %15 → %23.7 (+8.7 yüzde puanı). Bonus bitki ağırlığını çarpar (Uncommon ×1.7, Rare ×2.05, Epic ×2.4, Legendary ×3.1); olasılığa doğrudan eklenmez | tolerans: —
+   [PASS] seviye 3'e çıktı | beklenen: 3 | gerçekleşen: 3 | tolerans: tam
+   [PASS] seviye 3: tile değeri = en yüksek zar × (1 + 0.25 × 3) | beklenen: 122.5 | gerçekleşen: 122.5 | tolerans: ±0.0123 (float)
+   [PASS] seviye 3: oyunun yazdığı "Nadirlik bonusu +122.5% puan" = uygulanan değer | beklenen: 122.5 | gerçekleşen: 122.5 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] seviye 3: saksının RareSpawnChance değeri | beklenen: 95 | gerçekleşen: 95 | tolerans: ±0.0095 (float)
+   [PASS] tile kalkınca saksı tile'sız değerine döndü | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0 (float)
+   [UYARI] yazan değer uygulanabilen sınırı aşıyor (tek tile, en yüksek zar) | beklenen: yazan değerin tamamı kullanılır (sınır 95 puan) | gerçekleşen: Legendary (Sv 2: yazan 105, Sv 3: yazan 122.5) — sınırın üstü hiçbir şeye dönüşmüyor | tolerans: —
+[PASS] T08 · Tile'lar · Enerji tile'ı: Harvest Score — yazan = uygulanan = gerçek hasat skoru (otomatik doğrulanan)
+   Ön koşul: iki eş saksı: biri tile'ın üstünde, diğeri tile'sız; hasat hasarı test katkısıyla 1000
+   İşlem: dört nadirlik, en yüksek zar; sonra seviye 3; sonra tile'ı kaldır
+   [PASS] Common: tile değeri = asset'in en yüksek zarı | beklenen: 0.3 | gerçekleşen: 0.3 | tolerans: ±0.0001 (float)
+   [PASS] Common: oyunun yazdığı "Harvest Score +30%" = uygulanan değer | beklenen: 30 | gerçekleşen: 30 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Common: tile'lı saksının HarvestScoreMultiplier değeri (tile'sız eş saksı 1) | beklenen: 1.3 | gerçekleşen: 1.3 | tolerans: ±0.0001 (float)
+   [PASS] Common: komşu saksıya sızmadı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0 (float)
+   [PASS] Common: gerçek hasadın kullandığı saksı skor çarpanı | beklenen: 1.3 | gerçekleşen: 1.3 | tolerans: ±0.0001 (float)
+   [PASS] Common: gerçek hasat skoru = yuvarla(tile'sız skor 1 × 1.3) | beklenen: 1 | gerçekleşen: 1 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] Rare: tile değeri = asset'in en yüksek zarı | beklenen: 0.55 | gerçekleşen: 0.55 | tolerans: ±0.0001 (float)
+   [PASS] Rare: oyunun yazdığı "Harvest Score +55%" = uygulanan değer | beklenen: 55 | gerçekleşen: 55 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Rare: tile'lı saksının HarvestScoreMultiplier değeri (tile'sız eş saksı 1) | beklenen: 1.55 | gerçekleşen: 1.55 | tolerans: ±0.0002 (float)
+   [PASS] Rare: komşu saksıya sızmadı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0 (float)
+   [PASS] Rare: gerçek hasadın kullandığı saksı skor çarpanı | beklenen: 1.55 | gerçekleşen: 1.55 | tolerans: ±0.0002 (float)
+   [PASS] Rare: gerçek hasat skoru = yuvarla(tile'sız skor 1 × 1.55) | beklenen: 2 | gerçekleşen: 2 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] Epic: tile değeri = asset'in en yüksek zarı | beklenen: 0.85 | gerçekleşen: 0.85 | tolerans: ±0.0001 (float)
+   [PASS] Epic: oyunun yazdığı "Harvest Score +85%" = uygulanan değer | beklenen: 85 | gerçekleşen: 85 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Epic: tile'lı saksının HarvestScoreMultiplier değeri (tile'sız eş saksı 1) | beklenen: 1.85 | gerçekleşen: 1.85 | tolerans: ±0.0002 (float)
+   [PASS] Epic: komşu saksıya sızmadı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0 (float)
+   [PASS] Epic: gerçek hasadın kullandığı saksı skor çarpanı | beklenen: 1.85 | gerçekleşen: 1.85 | tolerans: ±0.0002 (float)
+   [PASS] Epic: gerçek hasat skoru = yuvarla(tile'sız skor 1 × 1.85) | beklenen: 2 | gerçekleşen: 2 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] Legendary: tile değeri = asset'in en yüksek zarı | beklenen: 1.5 | gerçekleşen: 1.5 | tolerans: ±0.0002 (float)
+   [PASS] Legendary: oyunun yazdığı "Harvest Score +150%" = uygulanan değer | beklenen: 150 | gerçekleşen: 150 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Legendary: tile'lı saksının HarvestScoreMultiplier değeri (tile'sız eş saksı 1) | beklenen: 2.5 | gerçekleşen: 2.5 | tolerans: ±0.0003 (float)
+   [PASS] Legendary: komşu saksıya sızmadı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0 (float)
+   [PASS] Legendary: gerçek hasadın kullandığı saksı skor çarpanı | beklenen: 2.5 | gerçekleşen: 2.5 | tolerans: ±0.0003 (float)
+   [PASS] Legendary: gerçek hasat skoru = yuvarla(tile'sız skor 1 × 2.5) | beklenen: 2 | gerçekleşen: 2 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] seviye 3'e çıktı | beklenen: 3 | gerçekleşen: 3 | tolerans: tam
+   [PASS] seviye 3: tile değeri = en yüksek zar × (1 + 0.25 × 3) | beklenen: 2.625 | gerçekleşen: 2.625 | tolerans: ±0.0003 (float)
+   [PASS] seviye 3: oyunun yazdığı "Harvest Score +262.5%" = uygulanan değer | beklenen: 262.5 | gerçekleşen: 262.5 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] seviye 3: saksının HarvestScoreMultiplier değeri | beklenen: 3.625 | gerçekleşen: 3.625 | tolerans: ±0.0004 (float)
+   [PASS] tile kalkınca saksı tile'sız değerine döndü | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0 (float)
+[PASS] T09 · Tile'lar · Verimli tile: üretim süresi — yazan = uygulanan = ölçülen gerçek doğuş süresi (otomatik doğrulanan)
+   Ön koşul: iki eş saksı: biri tile'ın üstünde, diğeri tile'sız; hasat hasarı test katkısıyla 1000
+   İşlem: dört nadirlik, en yüksek zar; sonra seviye 3; sonra tile'ı kaldır
+   [PASS] Common: tile değeri = asset'in en yüksek zarı | beklenen: -0.15 | gerçekleşen: -0.15 | tolerans: ±0.0001 (float)
+   [PASS] Common: oyunun yazdığı "Üretim süresi −15%" = uygulanan değer | beklenen: -15 | gerçekleşen: -15 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Common: tile'lı saksının PlantSpawnRate değeri (tile'sız eş saksı 8) | beklenen: 6.8 | gerçekleşen: 6.8 | tolerans: ±0.0007 (float)
+   [PASS] Common: komşu saksıya sızmadı | beklenen: 8 | gerçekleşen: 8 | tolerans: ±0 (float)
+   [PASS] Common: yuvanın gerçek üretim aralığı = tile'sız 8 sn × 0.85 | beklenen: 6.8 | gerçekleşen: 6.8 | tolerans: ±0.001 (float)
+   [PASS] Common: ÖLÇÜLEN doğuş süresi (boş yuvadan bitkiye) | beklenen: 6.8 | gerçekleşen: 6.8333 | tolerans: ±0.0833 (kare süresi)
+   [PASS] Rare: tile değeri = asset'in en yüksek zarı | beklenen: -0.25 | gerçekleşen: -0.25 | tolerans: ±0.0001 (float)
+   [PASS] Rare: oyunun yazdığı "Üretim süresi −25%" = uygulanan değer | beklenen: -25 | gerçekleşen: -25 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Rare: tile'lı saksının PlantSpawnRate değeri (tile'sız eş saksı 8) | beklenen: 6 | gerçekleşen: 6 | tolerans: ±0.0006 (float)
+   [PASS] Rare: komşu saksıya sızmadı | beklenen: 8 | gerçekleşen: 8 | tolerans: ±0 (float)
+   [PASS] Rare: yuvanın gerçek üretim aralığı = tile'sız 8 sn × 0.75 | beklenen: 6 | gerçekleşen: 6 | tolerans: ±0.001 (float)
+   [PASS] Rare: ÖLÇÜLEN doğuş süresi (boş yuvadan bitkiye) | beklenen: 6 | gerçekleşen: 6.0333 | tolerans: ±0.0833 (kare süresi)
+   [PASS] Epic: tile değeri = asset'in en yüksek zarı | beklenen: -0.38 | gerçekleşen: -0.38 | tolerans: ±0.0001 (float)
+   [PASS] Epic: oyunun yazdığı "Üretim süresi −38%" = uygulanan değer | beklenen: -38 | gerçekleşen: -38 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Epic: tile'lı saksının PlantSpawnRate değeri (tile'sız eş saksı 8) | beklenen: 4.96 | gerçekleşen: 4.96 | tolerans: ±0.0005 (float)
+   [PASS] Epic: komşu saksıya sızmadı | beklenen: 8 | gerçekleşen: 8 | tolerans: ±0 (float)
+   [PASS] Epic: yuvanın gerçek üretim aralığı = tile'sız 8 sn × 0.62 | beklenen: 4.96 | gerçekleşen: 4.96 | tolerans: ±0.001 (float)
+   [PASS] Epic: ÖLÇÜLEN doğuş süresi (boş yuvadan bitkiye) | beklenen: 4.96 | gerçekleşen: 4.9667 | tolerans: ±0.0833 (kare süresi)
+   [PASS] Legendary: tile değeri = asset'in en yüksek zarı | beklenen: -0.55 | gerçekleşen: -0.55 | tolerans: ±0.0001 (float)
+   [PASS] Legendary: oyunun yazdığı "Üretim süresi −55%" = uygulanan değer | beklenen: -55 | gerçekleşen: -55 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Legendary: tile'lı saksının PlantSpawnRate değeri (tile'sız eş saksı 8) | beklenen: 3.6 | gerçekleşen: 3.6 | tolerans: ±0.0004 (float)
+   [PASS] Legendary: komşu saksıya sızmadı | beklenen: 8 | gerçekleşen: 8 | tolerans: ±0 (float)
+   [PASS] Legendary: yuvanın gerçek üretim aralığı = tile'sız 8 sn × 0.45 | beklenen: 3.6 | gerçekleşen: 3.6 | tolerans: ±0.001 (float)
+   [PASS] Legendary: ÖLÇÜLEN doğuş süresi (boş yuvadan bitkiye) | beklenen: 3.6 | gerçekleşen: 3.6333 | tolerans: ±0.0833 (kare süresi)
+   [PASS] seviye 3'e çıktı | beklenen: 3 | gerçekleşen: 3 | tolerans: tam
+   [PASS] seviye 3: tile değeri = en yüksek zar × (1 + 0.25 × 3) | beklenen: -0.9625 | gerçekleşen: -0.9625 | tolerans: ±0.0001 (float)
+   [PASS] seviye 3: oyunun yazdığı "Üretim süresi −96.25%" = uygulanan değer | beklenen: -96.25 | gerçekleşen: -96.25 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] seviye 3: saksının PlantSpawnRate değeri | beklenen: 0.5 | gerçekleşen: 0.5 | tolerans: ±0.0001 (float)
+   [PASS] tile kalkınca saksı tile'sız değerine döndü | beklenen: 8 | gerçekleşen: 8 | tolerans: ±0 (float)
+[PASS] T10 · Tile'lar · Su tile'ı: XP kazancı — yazan = uygulanan = gerçek hasat XP'si (otomatik doğrulanan)
+   Ön koşul: iki eş saksı: biri tile'ın üstünde, diğeri tile'sız; hasat hasarı test katkısıyla 1000
+   İşlem: dört nadirlik, en yüksek zar; sonra seviye 3; sonra tile'ı kaldır
+   [PASS] Common: tile değeri = asset'in en yüksek zarı | beklenen: 0.25 | gerçekleşen: 0.25 | tolerans: ±0.0001 (float)
+   [PASS] Common: oyunun yazdığı "XP kazancı +25%" = uygulanan değer | beklenen: 25 | gerçekleşen: 25 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Common: tile'lı saksının XPGainMultiplier değeri (tile'sız eş saksı 1) | beklenen: 1.25 | gerçekleşen: 1.25 | tolerans: ±0.0001 (float)
+   [PASS] Common: komşu saksıya sızmadı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0 (float)
+   [PASS] Common: gerçek hasadın kullandığı XP çarpanı | beklenen: 1.25 | gerçekleşen: 1.25 | tolerans: ±0.0001 (float)
+   [PASS] Common: gerçek hasat XP'si = yuvarla(taban 20 × 1.25) (tile'sız saksıda 20) | beklenen: 25 | gerçekleşen: 25 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] Rare: tile değeri = asset'in en yüksek zarı | beklenen: 0.45 | gerçekleşen: 0.45 | tolerans: ±0.0001 (float)
+   [PASS] Rare: oyunun yazdığı "XP kazancı +45%" = uygulanan değer | beklenen: 45 | gerçekleşen: 45 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Rare: tile'lı saksının XPGainMultiplier değeri (tile'sız eş saksı 1) | beklenen: 1.45 | gerçekleşen: 1.45 | tolerans: ±0.0001 (float)
+   [PASS] Rare: komşu saksıya sızmadı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0 (float)
+   [PASS] Rare: gerçek hasadın kullandığı XP çarpanı | beklenen: 1.45 | gerçekleşen: 1.45 | tolerans: ±0.0001 (float)
+   [PASS] Rare: gerçek hasat XP'si = yuvarla(taban 20 × 1.45) (tile'sız saksıda 20) | beklenen: 29 | gerçekleşen: 29 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] Epic: tile değeri = asset'in en yüksek zarı | beklenen: 0.7 | gerçekleşen: 0.7 | tolerans: ±0.0001 (float)
+   [PASS] Epic: oyunun yazdığı "XP kazancı +70%" = uygulanan değer | beklenen: 70 | gerçekleşen: 70 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Epic: tile'lı saksının XPGainMultiplier değeri (tile'sız eş saksı 1) | beklenen: 1.7 | gerçekleşen: 1.7 | tolerans: ±0.0002 (float)
+   [PASS] Epic: komşu saksıya sızmadı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0 (float)
+   [PASS] Epic: gerçek hasadın kullandığı XP çarpanı | beklenen: 1.7 | gerçekleşen: 1.7 | tolerans: ±0.0002 (float)
+   [PASS] Epic: gerçek hasat XP'si = yuvarla(taban 20 × 1.7) (tile'sız saksıda 20) | beklenen: 34 | gerçekleşen: 34 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] Legendary: tile değeri = asset'in en yüksek zarı | beklenen: 1.2 | gerçekleşen: 1.2 | tolerans: ±0.0001 (float)
+   [PASS] Legendary: oyunun yazdığı "XP kazancı +120%" = uygulanan değer | beklenen: 120 | gerçekleşen: 120 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] Legendary: tile'lı saksının XPGainMultiplier değeri (tile'sız eş saksı 1) | beklenen: 2.2 | gerçekleşen: 2.2 | tolerans: ±0.0002 (float)
+   [PASS] Legendary: komşu saksıya sızmadı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0 (float)
+   [PASS] Legendary: gerçek hasadın kullandığı XP çarpanı | beklenen: 2.2 | gerçekleşen: 2.2 | tolerans: ±0.0002 (float)
+   [PASS] Legendary: gerçek hasat XP'si = yuvarla(taban 20 × 2.2) (tile'sız saksıda 20) | beklenen: 44 | gerçekleşen: 44 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] seviye 3'e çıktı | beklenen: 3 | gerçekleşen: 3 | tolerans: tam
+   [PASS] seviye 3: tile değeri = en yüksek zar × (1 + 0.25 × 3) | beklenen: 2.1 | gerçekleşen: 2.1 | tolerans: ±0.0002 (float)
+   [PASS] seviye 3: oyunun yazdığı "XP kazancı +210%" = uygulanan değer | beklenen: 210 | gerçekleşen: 210 | tolerans: ±0.006 (metin iki ondalığa yuvarlanır)
+   [PASS] seviye 3: saksının XPGainMultiplier değeri | beklenen: 3.1 | gerçekleşen: 3.1 | tolerans: ±0.0003 (float)
+   [PASS] tile kalkınca saksı tile'sız değerine döndü | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0 (float)
+[PASS] R01 · Rezonanslar · Odak: kademeler, yazan etki, uygulanan etki, gerçek kullanım (otomatik doğrulanan)
+   Ön koşul: tek 2 × 3 saksı; altına gereken tile'lar sırayla konur
+   İşlem: tile sayısını artır, her kademede saksıyı ve gerçek vuruş / hasadı ölç
+   [PASS] 1 tile: beklenen kademe | beklenen: etkin değil | gerçekleşen: etkin değil | tolerans: tam
+   [PASS] 2 tile: beklenen kademe | beklenen: etkin (≥ 2) | gerçekleşen: etkin (≥ 2) | tolerans: tam
+   [PASS] 2 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "×1.5" | gerçekleşen: "Hasar ×1.5" | tolerans: tam
+   [PASS] 2 tile: saksının PlanterDamageMultiplier değeri = (taban + tile'lar) üzerine en güçlü rezonans etkisi | beklenen: 1.8 | gerçekleşen: 1.8 | tolerans: ±0.0002 (float)
+   [PASS] 3 tile: beklenen kademe | beklenen: etkin (≥ 3) | gerçekleşen: etkin (≥ 3) | tolerans: tam
+   [PASS] 3 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "×2" | gerçekleşen: "Hasar ×2" | tolerans: tam
+   [PASS] 3 tile: saksının PlanterDamageMultiplier değeri = (taban + tile'lar) üzerine en güçlü rezonans etkisi | beklenen: 2.6 | gerçekleşen: 2.6 | tolerans: ±0.0003 (float)
+   [PASS] 4 tile: beklenen kademe | beklenen: etkin (≥ 4) | gerçekleşen: etkin (≥ 4) | tolerans: tam
+   [PASS] 4 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "×3" | gerçekleşen: "Hasar ×3" | tolerans: tam
+   [PASS] 4 tile: saksının PlanterDamageMultiplier değeri = (taban + tile'lar) üzerine en güçlü rezonans etkisi | beklenen: 4.2 | gerçekleşen: 4.2 | tolerans: ±0.0004 (float)
+   [PASS] gerçek doğrudan vuruş = yuvarla(yuvarlanan × saksı hasar çarpanı 4.2) | beklenen: 4595 | gerçekleşen: 4595 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] gerçek hasadın kullandığı kaynak çarpanı (GoldGainMultiplier) | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] gerçek hasadın kullandığı XP çarpanı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] gerçek hasadın kullandığı saksı skor çarpanı (Common) | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+[PASS] R02 · Rezonanslar · Şöhret: kademeler, yazan etki, uygulanan etki, gerçek kullanım (otomatik doğrulanan)
+   Ön koşul: tek 2 × 3 saksı; altına gereken tile'lar sırayla konur
+   İşlem: tile sayısını artır, her kademede saksıyı ve gerçek vuruş / hasadı ölç
+   [PASS] 1 tile: beklenen kademe | beklenen: etkin değil | gerçekleşen: etkin değil | tolerans: tam
+   [PASS] 2 tile: beklenen kademe | beklenen: etkin (≥ 2) | gerçekleşen: etkin (≥ 2) | tolerans: tam
+   [PASS] 2 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "×1.5" | gerçekleşen: "Harvest Score ×1.5" | tolerans: tam
+   [PASS] 2 tile: saksının HarvestScoreMultiplier değeri = (taban + tile'lar) üzerine en güçlü rezonans etkisi | beklenen: 2.4 | gerçekleşen: 2.4 | tolerans: ±0.0002 (float)
+   [PASS] 3 tile: beklenen kademe | beklenen: etkin (≥ 3) | gerçekleşen: etkin (≥ 3) | tolerans: tam
+   [PASS] 3 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "×2" | gerçekleşen: "Harvest Score ×2" | tolerans: tam
+   [PASS] 3 tile: saksının HarvestScoreMultiplier değeri = (taban + tile'lar) üzerine en güçlü rezonans etkisi | beklenen: 3.8 | gerçekleşen: 3.8 | tolerans: ±0.0004 (float)
+   [PASS] 4 tile: beklenen kademe | beklenen: etkin (≥ 4) | gerçekleşen: etkin (≥ 4) | tolerans: tam
+   [PASS] 4 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "×3" | gerçekleşen: "Harvest Score ×3" | tolerans: tam
+   [PASS] 4 tile: saksının HarvestScoreMultiplier değeri = (taban + tile'lar) üzerine en güçlü rezonans etkisi | beklenen: 6.6 | gerçekleşen: 6.6 | tolerans: ±0.0007 (float)
+   [PASS] gerçek doğrudan vuruş = yuvarla(yuvarlanan × saksı hasar çarpanı 1) | beklenen: 1094 | gerçekleşen: 1094 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] gerçek hasadın kullandığı kaynak çarpanı (GoldGainMultiplier) | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] gerçek hasadın kullandığı XP çarpanı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] gerçek hasadın kullandığı saksı skor çarpanı (Common) | beklenen: 6.6 | gerçekleşen: 6.6 | tolerans: ±0.0007 (float)
+[PASS] R03 · Rezonanslar · Bolluk: kademeler, yazan etki, uygulanan etki, gerçek kullanım (otomatik doğrulanan)
+   Ön koşul: tek 2 × 3 saksı; altına gereken tile'lar sırayla konur
+   İşlem: tile sayısını artır, her kademede saksıyı ve gerçek vuruş / hasadı ölç
+   [PASS] 1 tile: beklenen kademe | beklenen: etkin değil | gerçekleşen: etkin değil | tolerans: tam
+   [PASS] 2 tile: beklenen kademe | beklenen: etkin (≥ 2) | gerçekleşen: etkin (≥ 2) | tolerans: tam
+   [PASS] 2 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "×1.25" | gerçekleşen: "Gold / Iron / Stone ×1.25" | tolerans: tam
+   [PASS] 2 tile: saksının GoldGainMultiplier değeri | beklenen: 1.25 | gerçekleşen: 1.25 | tolerans: ±0.0001 (float)
+   [PASS] 2 tile: saksının IronGainMultiplier değeri | beklenen: 1.25 | gerçekleşen: 1.25 | tolerans: ±0.0001 (float)
+   [PASS] 2 tile: saksının StoneGainMultiplier değeri | beklenen: 1.25 | gerçekleşen: 1.25 | tolerans: ±0.0001 (float)
+   [PASS] 3 tile: beklenen kademe | beklenen: etkin (≥ 3) | gerçekleşen: etkin (≥ 3) | tolerans: tam
+   [PASS] 3 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "×1.5" | gerçekleşen: "Gold / Iron / Stone ×1.5" | tolerans: tam
+   [PASS] 3 tile: saksının GoldGainMultiplier değeri | beklenen: 1.5 | gerçekleşen: 1.5 | tolerans: ±0.0002 (float)
+   [PASS] 3 tile: saksının IronGainMultiplier değeri | beklenen: 1.5 | gerçekleşen: 1.5 | tolerans: ±0.0002 (float)
+   [PASS] 3 tile: saksının StoneGainMultiplier değeri | beklenen: 1.5 | gerçekleşen: 1.5 | tolerans: ±0.0002 (float)
+   [PASS] 4 tile: beklenen kademe | beklenen: etkin (≥ 4) | gerçekleşen: etkin (≥ 4) | tolerans: tam
+   [PASS] 4 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "×2" | gerçekleşen: "Gold / Iron / Stone ×2" | tolerans: tam
+   [PASS] 4 tile: saksının GoldGainMultiplier değeri | beklenen: 2 | gerçekleşen: 2 | tolerans: ±0.0002 (float)
+   [PASS] 4 tile: saksının IronGainMultiplier değeri | beklenen: 2 | gerçekleşen: 2 | tolerans: ±0.0002 (float)
+   [PASS] 4 tile: saksının StoneGainMultiplier değeri | beklenen: 2 | gerçekleşen: 2 | tolerans: ±0.0002 (float)
+   [PASS] gerçek doğrudan vuruş = yuvarla(yuvarlanan × saksı hasar çarpanı 1) | beklenen: 1094 | gerçekleşen: 1094 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] gerçek hasadın kullandığı kaynak çarpanı (GoldGainMultiplier) | beklenen: 2 | gerçekleşen: 2 | tolerans: ±0.0002 (float)
+   [PASS] gerçek hasadın kullandığı XP çarpanı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] gerçek hasadın kullandığı saksı skor çarpanı (Common) | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+[PASS] R04 · Rezonanslar · Bilgelik: kademeler, yazan etki, uygulanan etki, gerçek kullanım (otomatik doğrulanan)
+   Ön koşul: tek 2 × 3 saksı; altına gereken tile'lar sırayla konur
+   İşlem: tile sayısını artır, her kademede saksıyı ve gerçek vuruş / hasadı ölç
+   [PASS] 1 tile: beklenen kademe | beklenen: etkin değil | gerçekleşen: etkin değil | tolerans: tam
+   [PASS] 2 tile: beklenen kademe | beklenen: etkin (≥ 2) | gerçekleşen: etkin (≥ 2) | tolerans: tam
+   [PASS] 2 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "×1.5" | gerçekleşen: "XP kazancı ×1.5" | tolerans: tam
+   [PASS] 2 tile: saksının XPGainMultiplier değeri = (taban + tile'lar) üzerine en güçlü rezonans etkisi | beklenen: 2.25 | gerçekleşen: 2.25 | tolerans: ±0.0002 (float)
+   [PASS] 3 tile: beklenen kademe | beklenen: etkin (≥ 3) | gerçekleşen: etkin (≥ 3) | tolerans: tam
+   [PASS] 3 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "×2" | gerçekleşen: "XP kazancı ×2" | tolerans: tam
+   [PASS] 3 tile: saksının XPGainMultiplier değeri = (taban + tile'lar) üzerine en güçlü rezonans etkisi | beklenen: 3.5 | gerçekleşen: 3.5 | tolerans: ±0.0004 (float)
+   [PASS] 4 tile: beklenen kademe | beklenen: etkin (≥ 4) | gerçekleşen: etkin (≥ 4) | tolerans: tam
+   [PASS] 4 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "×3" | gerçekleşen: "XP kazancı ×3" | tolerans: tam
+   [PASS] 4 tile: saksının XPGainMultiplier değeri = (taban + tile'lar) üzerine en güçlü rezonans etkisi | beklenen: 6 | gerçekleşen: 6 | tolerans: ±0.0006 (float)
+   [PASS] gerçek doğrudan vuruş = yuvarla(yuvarlanan × saksı hasar çarpanı 1) | beklenen: 1094 | gerçekleşen: 1094 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] gerçek hasadın kullandığı kaynak çarpanı (GoldGainMultiplier) | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] gerçek hasadın kullandığı XP çarpanı | beklenen: 6 | gerçekleşen: 6 | tolerans: ±0.0006 (float)
+   [PASS] gerçek hasadın kullandığı saksı skor çarpanı (Common) | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+[PASS] R05 · Rezonanslar · Kristal Bahçe: kademeler, yazan etki, uygulanan etki, gerçek kullanım (otomatik doğrulanan)
+   Ön koşul: tek 2 × 3 saksı; altına gereken tile'lar sırayla konur
+   İşlem: tile sayısını artır, her kademede saksıyı ve gerçek vuruş / hasadı ölç
+   [PASS] 1 tile: beklenen kademe | beklenen: etkin değil | gerçekleşen: etkin değil | tolerans: tam
+   [PASS] 2 tile: beklenen kademe | beklenen: etkin (≥ 2) | gerçekleşen: etkin (≥ 2) | tolerans: tam
+   [PASS] 2 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "10" | gerçekleşen: "Nadirlik +10 puan" | tolerans: tam
+   [PASS] 2 tile: saksının RareSpawnChance değeri = (taban + tile'lar) üzerine en güçlü rezonans etkisi | beklenen: 40 | gerçekleşen: 40 | tolerans: ±0.004 (float)
+   [PASS] 3 tile: beklenen kademe | beklenen: etkin (≥ 3) | gerçekleşen: etkin (≥ 3) | tolerans: tam
+   [PASS] 3 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "20" | gerçekleşen: "Nadirlik +20 puan" | tolerans: tam
+   [PASS] 3 tile: saksının RareSpawnChance değeri = (taban + tile'lar) üzerine en güçlü rezonans etkisi | beklenen: 65 | gerçekleşen: 65 | tolerans: ±0.0065 (float)
+   [PASS] 4 tile: beklenen kademe | beklenen: etkin (≥ 4) | gerçekleşen: etkin (≥ 4) | tolerans: tam
+   [PASS] 4 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "35" | gerçekleşen: "Nadirlik +35 puan" | tolerans: tam
+   [PASS] 4 tile: saksının RareSpawnChance değeri = (taban + tile'lar) üzerine en güçlü rezonans etkisi | beklenen: 95 | gerçekleşen: 95 | tolerans: ±0.0095 (float)
+   [PASS] gerçek doğrudan vuruş = yuvarla(yuvarlanan × saksı hasar çarpanı 1) | beklenen: 1094 | gerçekleşen: 1094 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] gerçek hasadın kullandığı kaynak çarpanı (GoldGainMultiplier) | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] gerçek hasadın kullandığı XP çarpanı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] gerçek hasadın kullandığı saksı skor çarpanı (Common) | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+[PASS] R06 · Rezonanslar · Güçlendirilmiş Hasat: kademeler, yazan etki, uygulanan etki, gerçek kullanım (otomatik doğrulanan)
+   Ön koşul: tek 2 × 3 saksı; altına gereken tile'lar sırayla konur
+   İşlem: tile sayısını artır, her kademede saksıyı ve gerçek vuruş / hasadı ölç
+   [PASS] 1 tile: beklenen kademe | beklenen: etkin (≥ 1) | gerçekleşen: etkin (≥ 1) | tolerans: tam
+   [PASS] 1 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "×1.5" | gerçekleşen: "Patlama hasarı ×1.5" | tolerans: tam
+   [PASS] 1 tile: tile'ı olan davranışın (patlama) hasar çarpanı | beklenen: 1.5 | gerçekleşen: 1.5 | tolerans: ±0.0001 (float)
+   [PASS] 1 tile: tile'ı OLMAYAN davranışın (elektrik) hasar çarpanı değişmedi | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] 2 tile: beklenen kademe | beklenen: etkin (≥ 2) | gerçekleşen: etkin (≥ 2) | tolerans: tam
+   [PASS] 2 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "×2" | gerçekleşen: "Patlama hasarı ×2" | tolerans: tam
+   [PASS] 2 tile: tile'ı olan davranışın (patlama) hasar çarpanı | beklenen: 2 | gerçekleşen: 2 | tolerans: ±0.0001 (float)
+   [PASS] 2 tile: tile'ı OLMAYAN davranışın (elektrik) hasar çarpanı değişmedi | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] gerçek doğrudan vuruş = yuvarla(yuvarlanan × saksı hasar çarpanı 1.8) | beklenen: 1969 | gerçekleşen: 1969 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] gerçek hasadın kullandığı kaynak çarpanı (GoldGainMultiplier) | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] gerçek hasadın kullandığı XP çarpanı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] gerçek hasadın kullandığı saksı skor çarpanı (Common) | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] gerçek patlama vuruşu = yuvarla(hasat hasarı × 2) — veri: ×2 (3 vuruş, en uzak değer) | beklenen: 2000 | gerçekleşen: 2000 | tolerans: ±1 (float çarpımının ,5 sınırı)
+[UYARI] R07 · Rezonanslar · Değerli Hasat: kademeler, yazan etki, uygulanan etki, gerçek kullanım (otomatik doğrulanan)
+   Ön koşul: tek 2 × 3 saksı; altına gereken tile'lar sırayla konur
+   İşlem: tile sayısını artır, her kademede saksıyı ve gerçek vuruş / hasadı ölç
+   [PASS] 1 tile: beklenen kademe | beklenen: etkin değil | gerçekleşen: etkin değil | tolerans: tam
+   [PASS] 2 tile: beklenen kademe | beklenen: etkin (≥ 2) | gerçekleşen: etkin (≥ 2) | tolerans: tam
+   [PASS] 2 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "×3" | gerçekleşen: "Rare+ Harvest Score ×3" | tolerans: tam
+   [PASS] 2 tile: Common bitkinin skor çarpanı = (taban + tile'lar 1.6) × genel skor rezonansı 1.5 — bu rezonans Common'a uygulanmaz | beklenen: 2.4 | gerçekleşen: 2.4 | tolerans: ±0.0002 (float)
+   [PASS] 2 tile: Rare+ bitkinin skor çarpanı = (taban + tile'lar 1.6) × en güçlü etki 3 | beklenen: 4.8 | gerçekleşen: 4.8 | tolerans: ±0.0005 (float)
+   [UYARI] 2 tile: "Rare+ Harvest Score ×3" başka skor rezonansıyla ÇARPILMIYOR | beklenen: yazan ×3 kazancın tamamı | gerçekleşen: aynı anda etkin: Şöhret ×1.5. Rare+ toplam ×3 alır (×4.5 değil); Common'a göre gerçek fark ×2 | tolerans: —
+   [PASS] gerçek doğrudan vuruş = yuvarla(yuvarlanan × saksı hasar çarpanı 1) | beklenen: 1094 | gerçekleşen: 1094 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] gerçek hasadın kullandığı kaynak çarpanı (GoldGainMultiplier) | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] gerçek hasadın kullandığı XP çarpanı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] gerçek hasadın kullandığı saksı skor çarpanı (Common) | beklenen: 2.4 | gerçekleşen: 2.4 | tolerans: ±0.0002 (float)
+[PASS] R08 · Rezonanslar · Verimli Toprak: kademeler, yazan etki, uygulanan etki, gerçek kullanım (otomatik doğrulanan)
+   Ön koşul: tek 2 × 3 saksı; altına gereken tile'lar sırayla konur
+   İşlem: tile sayısını artır, her kademede saksıyı ve gerçek vuruş / hasadı ölç
+   [PASS] 1 tile: beklenen kademe | beklenen: etkin değil | gerçekleşen: etkin değil | tolerans: tam
+   [PASS] 2 tile: beklenen kademe | beklenen: etkin (≥ 2) | gerçekleşen: etkin (≥ 2) | tolerans: tam
+   [PASS] 2 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "×2" | gerçekleşen: "Gold / Iron / Stone ×2" | tolerans: tam
+   [PASS] 2 tile: saksının GoldGainMultiplier değeri | beklenen: 2 | gerçekleşen: 2 | tolerans: ±0.0002 (float)
+   [PASS] 2 tile: saksının IronGainMultiplier değeri | beklenen: 2 | gerçekleşen: 2 | tolerans: ±0.0002 (float)
+   [PASS] 2 tile: saksının StoneGainMultiplier değeri | beklenen: 2 | gerçekleşen: 2 | tolerans: ±0.0002 (float)
+   [PASS] gerçek doğrudan vuruş = yuvarla(yuvarlanan × saksı hasar çarpanı 1) | beklenen: 1094 | gerçekleşen: 1094 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] gerçek hasadın kullandığı kaynak çarpanı (GoldGainMultiplier) | beklenen: 2 | gerçekleşen: 2 | tolerans: ±0.0002 (float)
+   [PASS] gerçek hasadın kullandığı XP çarpanı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] gerçek hasadın kullandığı saksı skor çarpanı (Common) | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+[PASS] R09 · Rezonanslar · Elektrik Bilgisi: kademeler, yazan etki, uygulanan etki, gerçek kullanım (otomatik doğrulanan)
+   Ön koşul: tek 2 × 3 saksı; altına gereken tile'lar sırayla konur
+   İşlem: tile sayısını artır, her kademede saksıyı ve gerçek vuruş / hasadı ölç
+   [PASS] 1 tile: beklenen kademe | beklenen: etkin değil | gerçekleşen: etkin değil | tolerans: tam
+   [PASS] 2 tile: beklenen kademe | beklenen: etkin (≥ 2) | gerçekleşen: etkin (≥ 2) | tolerans: tam
+   [PASS] 2 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "×10" | gerçekleşen: "Elektrik öldürmesi XP ×10" | tolerans: tam
+   [PASS] 2 tile: elektrik öldürmesi XP çarpanı (oyunun okuduğu değer) | beklenen: 10 | gerçekleşen: 10 | tolerans: ±0.0001 (float)
+   [manuel inceleme gerekli] elektrik öldürmesi XP'sinin gerçek hasada yansıması | beklenen: manuel inceleme gerekli | gerçekleşen: elektriğin öldürdüğü başka saksının bitkisinde XP ×çarpan; bu kontrolde ölçülmüyor | tolerans: —
+   [PASS] gerçek doğrudan vuruş = yuvarla(yuvarlanan × saksı hasar çarpanı 1) | beklenen: 1094 | gerçekleşen: 1094 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] gerçek hasadın kullandığı kaynak çarpanı (GoldGainMultiplier) | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] gerçek hasadın kullandığı XP çarpanı | beklenen: 2.25 | gerçekleşen: 2.25 | tolerans: ±0.0002 (float)
+   [PASS] gerçek hasadın kullandığı saksı skor çarpanı (Common) | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+[PASS] R10 · Rezonanslar · Nadir Fidanlık: kademeler, yazan etki, uygulanan etki, gerçek kullanım (otomatik doğrulanan)
+   Ön koşul: tek 2 × 3 saksı; altına gereken tile'lar sırayla konur
+   İşlem: tile sayısını artır, her kademede saksıyı ve gerçek vuruş / hasadı ölç
+   [PASS] 1 tile: beklenen kademe | beklenen: etkin değil | gerçekleşen: etkin değil | tolerans: tam
+   [PASS] 2 tile: beklenen kademe | beklenen: etkin (≥ 2) | gerçekleşen: etkin (≥ 2) | tolerans: tam
+   [PASS] 2 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "25" | gerçekleşen: "Nadirlik +25 puan · Üretim süresi −15%" | tolerans: tam
+   [PASS] 2 tile: saksının RareSpawnChance değeri = (taban + tile'lar) üzerine en güçlü rezonans etkisi | beklenen: 55 | gerçekleşen: 55 | tolerans: ±0.0055 (float)
+   [PASS] 2 tile: oyunun yazdığı etki veriyle aynı | beklenen: metinde "15%" | gerçekleşen: "Nadirlik +25 puan · Üretim süresi −15%" | tolerans: tam
+   [PASS] 2 tile: saksının PlantSpawnRate değeri = (taban + tile'lar) üzerine en güçlü rezonans etkisi | beklenen: 5.78 | gerçekleşen: 5.78 | tolerans: ±0.0006 (float)
+   [PASS] gerçek doğrudan vuruş = yuvarla(yuvarlanan × saksı hasar çarpanı 1) | beklenen: 1094 | gerçekleşen: 1094 | tolerans: ±1 (float çarpımının ,5 sınırı)
+   [PASS] gerçek hasadın kullandığı kaynak çarpanı (GoldGainMultiplier) | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] gerçek hasadın kullandığı XP çarpanı | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] gerçek hasadın kullandığı saksı skor çarpanı (Common) | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+[PASS] C01 · Kartlar · Tile kartı: kartta yazan değer tarlaya aynen gelir (otomatik doğrulanan)
+   Ön koşul: boş açık hücreler
+   İşlem: oyunun kart uygulama yoluyla üç tile kartı
+   [PASS] Explosive-Rare: kartta yazan "Patlama şansı +31.06% puan" tarladaki tile'da aynen duruyor | beklenen: aynı değer | gerçekleşen: aynı değer | tolerans: tam
+   [PASS] Explosive-Rare: zar asset aralığında (0.3 … 0.44) | beklenen: aralıkta | gerçekleşen: 0.3106 | tolerans: tam
+   [PASS] Explosive-Rare: tile açık ve seviye 0 bir hücreye geldi | beklenen: açık, Sv 0 | gerçekleşen: açık, Sv 0 | tolerans: tam
+   [PASS] Fertile-Epic: kartta yazan "Üretim süresi −34.5%" tarladaki tile'da aynen duruyor | beklenen: aynı değer | gerçekleşen: aynı değer | tolerans: tam
+   [PASS] Fertile-Epic: zar asset aralığında (-0.38 … -0.28) | beklenen: aralıkta | gerçekleşen: -0.345 | tolerans: tam
+   [PASS] Fertile-Epic: tile açık ve seviye 0 bir hücreye geldi | beklenen: açık, Sv 0 | gerçekleşen: açık, Sv 0 | tolerans: tam
+   [PASS] Water-Common: kartta yazan "XP kazancı +20.14%" tarladaki tile'da aynen duruyor | beklenen: aynı değer | gerçekleşen: aynı değer | tolerans: tam
+   [PASS] Water-Common: zar asset aralığında (0.15 … 0.25) | beklenen: aralıkta | gerçekleşen: 0.2014 | tolerans: tam
+   [PASS] Water-Common: tile açık ve seviye 0 bir hücreye geldi | beklenen: açık, Sv 0 | gerçekleşen: açık, Sv 0 | tolerans: tam
+[PASS] C02 · Kartlar · Yükseltme kartı: seviye kazancı ve değer çarpanı (otomatik doğrulanan)
+   Ön koşul: seviye 0 bir tile
+   İşlem: Common / Epic / Legendary yükseltme kartı
+   [PASS] Common yükseltme kartı: yazdığı seviye kazancı | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] Common: kart uygulandı | beklenen: uygulandı | gerçekleşen: uygulandı | tolerans: tam
+   [PASS] Common: tile seviyesi | beklenen: 1 | gerçekleşen: 1 | tolerans: tam
+   [PASS] Common: tile değeri = önceki 0.29 × (1 + 0.25 × 1) | beklenen: 0.3625 | gerçekleşen: 0.3625 | tolerans: ±0.0001 (float)
+   [PASS] Common: üstündeki saksının ExplosionChance değeri yeni tile değerini kullanıyor | beklenen: 0.3625 | gerçekleşen: 0.3625 | tolerans: ±0.0001 (float)
+   [PASS] Epic yükseltme kartı: yazdığı seviye kazancı | beklenen: 2 | gerçekleşen: 2 | tolerans: tam
+   [PASS] Epic: kart uygulandı | beklenen: uygulandı | gerçekleşen: uygulandı | tolerans: tam
+   [PASS] Epic: tile seviyesi | beklenen: 2 | gerçekleşen: 2 | tolerans: tam
+   [PASS] Epic: tile değeri = önceki 0.25 × (1 + 0.25 × 2) | beklenen: 0.375 | gerçekleşen: 0.375 | tolerans: ±0.0001 (float)
+   [PASS] Epic: üstündeki saksının XPGainMultiplier değeri yeni tile değerini kullanıyor | beklenen: 1.375 | gerçekleşen: 1.375 | tolerans: ±0.0001 (float)
+   [PASS] Legendary yükseltme kartı: yazdığı seviye kazancı | beklenen: 3 | gerçekleşen: 3 | tolerans: tam
+   [PASS] Legendary: kart uygulandı | beklenen: uygulandı | gerçekleşen: uygulandı | tolerans: tam
+   [PASS] Legendary: tile seviyesi | beklenen: 3 | gerçekleşen: 3 | tolerans: tam
+   [PASS] Legendary: tile değeri = önceki 0.1 × (1 + 0.25 × 3) | beklenen: 0.175 | gerçekleşen: 0.175 | tolerans: ±0.0001 (float)
+   [PASS] Legendary: üstündeki saksının PlanterDamageMultiplier değeri yeni tile değerini kullanıyor | beklenen: 1.175 | gerçekleşen: 1.175 | tolerans: ±0.0001 (float)
+   [PASS] seviye 3'teki tile yeniden yükseltilemez | beklenen: reddedildi, Sv 3 | gerçekleşen: reddedildi, Sv 3 | tolerans: tam
+[PASS] C03 · Kartlar · Temel güç kartları: beş kart × dört nadirlik, toplanan ve çarpılan gruplar (otomatik doğrulanan)
+   Ön koşul: temiz düzen
+   İşlem: oyunun temel güç kartı yoluyla ikişer kart
+   [PASS] profilin kart miktarı verisi | beklenen: geçerli | gerçekleşen: küçük temel güç kartları: 0.02% / 0.04% / 0.07% / 0.1% | tolerans: tam
+   [PASS] Hasat hasarı · Common · 1. kart (toplanan, +0.02%): HarvestDamage [Player] | beklenen: 10.002 | gerçekleşen: 10.0020008 | tolerans: ±0.0001 (float)
+   [PASS] Hasat hasarı · Common · 2. kart (toplanan, +0.02%): HarvestDamage [Player] | beklenen: 10.0040008 | gerçekleşen: 10.0039997 | tolerans: ±0.0001 (float)
+   [PASS] Hasat hasarı · Rare · 1. kart (toplanan, +0.04%): HarvestDamage [Player] | beklenen: 10.0079997 | gerçekleşen: 10.0080004 | tolerans: ±0.0001 (float)
+   [PASS] Hasat hasarı · Rare · 2. kart (toplanan, +0.04%): HarvestDamage [Player] | beklenen: 10.0120004 | gerçekleşen: 10.0119991 | tolerans: ±0.0001 (float)
+   [PASS] Hasat hasarı · Epic · 1. kart (toplanan, +0.07%): HarvestDamage [Player] | beklenen: 10.0189991 | gerçekleşen: 10.0189991 | tolerans: ±0.0001 (float)
+   [PASS] Hasat hasarı · Epic · 2. kart (toplanan, +0.07%): HarvestDamage [Player] | beklenen: 10.0259991 | gerçekleşen: 10.0259991 | tolerans: ±0.0001 (float)
+   [PASS] Hasat hasarı · Legendary · 1. kart (toplanan, +0.1%): HarvestDamage [Player] | beklenen: 10.0359991 | gerçekleşen: 10.0360003 | tolerans: ±0.0001 (float)
+   [PASS] Hasat hasarı · Legendary · 2. kart (toplanan, +0.1%): HarvestDamage [Player] | beklenen: 10.0460003 | gerçekleşen: 10.0460005 | tolerans: ±0.0001 (float)
+   [PASS] Atak aralığı · Common · 1. kart (çarpılan, −0.02%): AttackSpeed [Player] | beklenen: 2.9994 | gerçekleşen: 2.9994001 | tolerans: ±0 (float)
+   [PASS] Atak aralığı · Common · 2. kart (çarpılan, −0.02%): AttackSpeed [Player] | beklenen: 2.9988003 | gerçekleşen: 2.9988003 | tolerans: ±0 (float)
+   [PASS] Atak aralığı · Rare · 1. kart (çarpılan, −0.04%): AttackSpeed [Player] | beklenen: 2.9976008 | gerçekleşen: 2.9976006 | tolerans: ±0 (float)
+   [PASS] Atak aralığı · Rare · 2. kart (çarpılan, −0.04%): AttackSpeed [Player] | beklenen: 2.9964015 | gerçekleşen: 2.9964015 | tolerans: ±0 (float)
+   [PASS] Atak aralığı · Epic · 1. kart (çarpılan, −0.07%): AttackSpeed [Player] | beklenen: 2.9943041 | gerçekleşen: 2.9943042 | tolerans: ±0 (float)
+   [PASS] Atak aralığı · Epic · 2. kart (çarpılan, −0.07%): AttackSpeed [Player] | beklenen: 2.9922082 | gerçekleşen: 2.992208 | tolerans: ±0 (float)
+   [PASS] Atak aralığı · Legendary · 1. kart (çarpılan, −0.1%): AttackSpeed [Player] | beklenen: 2.9892158 | gerçekleşen: 2.9892159 | tolerans: ±0 (float)
+   [PASS] Atak aralığı · Legendary · 2. kart (çarpılan, −0.1%): AttackSpeed [Player] | beklenen: 2.9862266 | gerçekleşen: 2.9862266 | tolerans: ±0 (float)
+   [PASS] Üretim süresi · Common · 1. kart (çarpılan, −0.02%): PlantSpawnRate [Planter] | beklenen: 7.9984 | gerçekleşen: 7.9984002 | tolerans: ±0.0001 (float)
+   [PASS] Üretim süresi · Common · 2. kart (çarpılan, −0.02%): PlantSpawnRate [Planter] | beklenen: 7.9968005 | gerçekleşen: 7.9968004 | tolerans: ±0.0001 (float)
+   [PASS] Üretim süresi · Rare · 1. kart (çarpılan, −0.04%): PlantSpawnRate [Planter] | beklenen: 7.9936017 | gerçekleşen: 7.9936018 | tolerans: ±0.0001 (float)
+   [PASS] Üretim süresi · Rare · 2. kart (çarpılan, −0.04%): PlantSpawnRate [Planter] | beklenen: 7.9904044 | gerçekleşen: 7.9904041 | tolerans: ±0.0001 (float)
+   [PASS] Üretim süresi · Epic · 1. kart (çarpılan, −0.07%): PlantSpawnRate [Planter] | beklenen: 7.9848108 | gerçekleşen: 7.9848108 | tolerans: ±0.0001 (float)
+   [PASS] Üretim süresi · Epic · 2. kart (çarpılan, −0.07%): PlantSpawnRate [Planter] | beklenen: 7.9792215 | gerçekleşen: 7.9792213 | tolerans: ±0.0001 (float)
+   [PASS] Üretim süresi · Legendary · 1. kart (çarpılan, −0.1%): PlantSpawnRate [Planter] | beklenen: 7.9712421 | gerçekleşen: 7.971242 | tolerans: ±0.0001 (float)
+   [PASS] Üretim süresi · Legendary · 2. kart (çarpılan, −0.1%): PlantSpawnRate [Planter] | beklenen: 7.9632707 | gerçekleşen: 7.9632707 | tolerans: ±0.0001 (float)
+   [PASS] Tüm kaynaklar · Common · 1. kart (toplanan, +0.02%): GoldGainMultiplier [Planter] | beklenen: 1.0002 | gerçekleşen: 1.0002 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Common · 1. kart (toplanan, +0.02%): IronGainMultiplier [Planter] | beklenen: 1.0002 | gerçekleşen: 1.0002 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Common · 1. kart (toplanan, +0.02%): StoneGainMultiplier [Planter] | beklenen: 1.0002 | gerçekleşen: 1.0002 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Common · 2. kart (toplanan, +0.02%): GoldGainMultiplier [Planter] | beklenen: 1.0004 | gerçekleşen: 1.0003999 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Common · 2. kart (toplanan, +0.02%): IronGainMultiplier [Planter] | beklenen: 1.0004 | gerçekleşen: 1.0003999 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Common · 2. kart (toplanan, +0.02%): StoneGainMultiplier [Planter] | beklenen: 1.0004 | gerçekleşen: 1.0003999 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Rare · 1. kart (toplanan, +0.04%): GoldGainMultiplier [Planter] | beklenen: 1.0007999 | gerçekleşen: 1.0008 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Rare · 1. kart (toplanan, +0.04%): IronGainMultiplier [Planter] | beklenen: 1.0007999 | gerçekleşen: 1.0008 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Rare · 1. kart (toplanan, +0.04%): StoneGainMultiplier [Planter] | beklenen: 1.0007999 | gerçekleşen: 1.0008 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Rare · 2. kart (toplanan, +0.04%): GoldGainMultiplier [Planter] | beklenen: 1.0012 | gerçekleşen: 1.0012 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Rare · 2. kart (toplanan, +0.04%): IronGainMultiplier [Planter] | beklenen: 1.0012 | gerçekleşen: 1.0012 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Rare · 2. kart (toplanan, +0.04%): StoneGainMultiplier [Planter] | beklenen: 1.0012 | gerçekleşen: 1.0012 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Epic · 1. kart (toplanan, +0.07%): GoldGainMultiplier [Planter] | beklenen: 1.0019 | gerçekleşen: 1.0019 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Epic · 1. kart (toplanan, +0.07%): IronGainMultiplier [Planter] | beklenen: 1.0019 | gerçekleşen: 1.0019 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Epic · 1. kart (toplanan, +0.07%): StoneGainMultiplier [Planter] | beklenen: 1.0019 | gerçekleşen: 1.0019 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Epic · 2. kart (toplanan, +0.07%): GoldGainMultiplier [Planter] | beklenen: 1.0026 | gerçekleşen: 1.0026 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Epic · 2. kart (toplanan, +0.07%): IronGainMultiplier [Planter] | beklenen: 1.0026 | gerçekleşen: 1.0026 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Epic · 2. kart (toplanan, +0.07%): StoneGainMultiplier [Planter] | beklenen: 1.0026 | gerçekleşen: 1.0026 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Legendary · 1. kart (toplanan, +0.1%): GoldGainMultiplier [Planter] | beklenen: 1.0036 | gerçekleşen: 1.0036 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Legendary · 1. kart (toplanan, +0.1%): IronGainMultiplier [Planter] | beklenen: 1.0036 | gerçekleşen: 1.0036 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Legendary · 1. kart (toplanan, +0.1%): StoneGainMultiplier [Planter] | beklenen: 1.0036 | gerçekleşen: 1.0036 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Legendary · 2. kart (toplanan, +0.1%): GoldGainMultiplier [Planter] | beklenen: 1.0046 | gerçekleşen: 1.0046 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Legendary · 2. kart (toplanan, +0.1%): IronGainMultiplier [Planter] | beklenen: 1.0046 | gerçekleşen: 1.0046 | tolerans: ±0 (float)
+   [PASS] Tüm kaynaklar · Legendary · 2. kart (toplanan, +0.1%): StoneGainMultiplier [Planter] | beklenen: 1.0046 | gerçekleşen: 1.0046 | tolerans: ±0 (float)
+   [PASS] XP kazancı · Common · 1. kart (toplanan, +0.02%): XPGainMultiplier [Planter] | beklenen: 1.0002 | gerçekleşen: 1.0002 | tolerans: ±0 (float)
+   [PASS] XP kazancı · Common · 2. kart (toplanan, +0.02%): XPGainMultiplier [Planter] | beklenen: 1.0004 | gerçekleşen: 1.0003999 | tolerans: ±0 (float)
+   [PASS] XP kazancı · Rare · 1. kart (toplanan, +0.04%): XPGainMultiplier [Planter] | beklenen: 1.0007999 | gerçekleşen: 1.0008 | tolerans: ±0 (float)
+   [PASS] XP kazancı · Rare · 2. kart (toplanan, +0.04%): XPGainMultiplier [Planter] | beklenen: 1.0012 | gerçekleşen: 1.0012 | tolerans: ±0 (float)
+   [PASS] XP kazancı · Epic · 1. kart (toplanan, +0.07%): XPGainMultiplier [Planter] | beklenen: 1.0019 | gerçekleşen: 1.0019 | tolerans: ±0 (float)
+   [PASS] XP kazancı · Epic · 2. kart (toplanan, +0.07%): XPGainMultiplier [Planter] | beklenen: 1.0026 | gerçekleşen: 1.0026 | tolerans: ±0 (float)
+   [PASS] XP kazancı · Legendary · 1. kart (toplanan, +0.1%): XPGainMultiplier [Planter] | beklenen: 1.0036 | gerçekleşen: 1.0036 | tolerans: ±0 (float)
+   [PASS] XP kazancı · Legendary · 2. kart (toplanan, +0.1%): XPGainMultiplier [Planter] | beklenen: 1.0046 | gerçekleşen: 1.0046 | tolerans: ±0 (float)
+   [PASS] oyuncu kartı saksı statına, saksı kartı oyuncu statına sızmadı: kritik şansı değişmedi | beklenen: 0.3 | gerçekleşen: 0.3 | tolerans: ±0 (float)
+[PASS] SK01 · Skill ağacı · Skill ağacı: her satın alımda bedel ve stat etkisi (otomatik doğrulanan)
+   Ön koşul: bol kaynak
+   İşlem: satın alınabilen her düğüm, her seviye, oyunun satın alma yoluyla
+   [PASS] satın alım yapıldı | beklenen: > 0 | gerçekleşen: 219 satın alım, 222 stat etkisi, 104 düğüm | tolerans: tam
+   [PASS] bedeli yanlış düşen satın alım | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] modifier listesi yanlış değişen satın alım (eski seviye kalkmalı, yenisi girmeli) | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] stat değeri bağımsız hesapla uyuşmayan etki | beklenen: 0 | gerçekleşen: 0 | tolerans: tam
+   [PASS] sonuna kadar alınamayan düğüm | beklenen: 0 (profilin kapattıkları hariç) | gerçekleşen: 0 alınamadı, 2 profilde kapalı | tolerans: tam
+   [manuel inceleme gerekli] skill'lerin verdiği statlar | beklenen: manuel inceleme gerekli | gerçekleşen: AreaRadius, AttackSpeed, CardSkip, CritChance, CritMultiplier, GoldGainMultiplier, GridUnlockSize, HarvestDamage, HarvestScoreMultiplier, IronGainMultiplier, MutationLuck, PlantSpawnRate, RareSpawnChance, StoneGainMultiplier, XPGainMultiplier — değerleri doğrulandı; GridUnlockSize, RoundDuration, CardSkip ve MutationLuck'ın oyundaki etkisi bu kontrolde ölçülmüyor | tolerans: —
+[PASS] L01 · Başlangıç seçimi · Çiftçi ve tırpan: stat, doğrudan vuruş, kaynak ve skor çarpanı (otomatik doğrulanan)
+   Ön koşul: her seçenek için temiz oturum
+   İşlem: varsayılan seçimle ölç, sonra her seçenekle yeniden kur ve ölç
+   [PASS] varsayılan seçim nötr | beklenen: nötr | gerçekleşen: Bahçıvan + Standart | tolerans: tam
+   [PASS] varsayılan seçimde doğrudan vuruş çarpanı 1 | beklenen: 1 | gerçekleşen: 1.0003 | tolerans: ±0.002 (tek vuruşun yuvarlaması (hasat hasarı 1000))
+   [PASS] Tüccar: oyuncu HarvestDamage | beklenen: 1000 | gerçekleşen: 1000 | tolerans: ±0.1 (float)
+   [PASS] Tüccar: oyuncu AreaRadius | beklenen: 0.9 | gerçekleşen: 0.9 | tolerans: ±0.0001 (float)
+   [PASS] Tüccar: oyuncu AttackSpeed | beklenen: 3 | gerçekleşen: 3 | tolerans: ±0.0003 (float)
+   [PASS] Tüccar: oyuncu CritChance | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0.0001 (float)
+   [PASS] Tüccar: oyuncu CritMultiplier | beklenen: 2 | gerçekleşen: 2 | tolerans: ±0.0002 (float)
+   [PASS] Tüccar: saksı PlantSpawnRate | beklenen: 8 | gerçekleşen: 8 | tolerans: ±0.0008 (float)
+   [PASS] Tüccar: saksı RareSpawnChance | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0.0001 (float)
+   [PASS] Tüccar: saksı XPGainMultiplier | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] Tüccar: saksı GoldGainMultiplier | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] Tüccar: saksı HarvestScoreMultiplier | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] Tüccar: saksı PlanterDamageMultiplier | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] Tüccar: gerçek saldırının temas yarıçapı | beklenen: 0.9 | gerçekleşen: 0.9 | tolerans: ±0.001 (float)
+   [PASS] Tüccar: gerçek vuruşun doğrudan çarpanı (yuvarlanan ÷ taban × sapma) = veri ×1 | beklenen: 1 | gerçekleşen: 1.0003 | tolerans: ±0.002 (tek vuruşun yuvarlaması (hasat hasarı 1000))
+   [PASS] Tüccar: sekiz gerçek hasadın kaynağı = yuvarla(varsayılan 16 × 1.25) (kesir sonraki hasada taşınır) | beklenen: 20 | gerçekleşen: 20 | tolerans: ±1 (taşınan kesir)
+   [PASS] Tüccar: sekiz gerçek hasadın skoru = yuvarla(varsayılan 8 × 0.9) | beklenen: 7 | gerçekleşen: 7 | tolerans: ±1 (taşınan kesir)
+   [PASS] Seçici Yetiştirici: oyuncu HarvestDamage | beklenen: 1000 | gerçekleşen: 1000 | tolerans: ±0.1 (float)
+   [PASS] Seçici Yetiştirici: oyuncu AreaRadius | beklenen: 0.9 | gerçekleşen: 0.9 | tolerans: ±0.0001 (float)
+   [PASS] Seçici Yetiştirici: oyuncu AttackSpeed | beklenen: 3 | gerçekleşen: 3 | tolerans: ±0.0003 (float)
+   [PASS] Seçici Yetiştirici: oyuncu CritChance | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0.0001 (float)
+   [PASS] Seçici Yetiştirici: oyuncu CritMultiplier | beklenen: 2 | gerçekleşen: 2 | tolerans: ±0.0002 (float)
+   [PASS] Seçici Yetiştirici: saksı PlantSpawnRate | beklenen: 9.2 | gerçekleşen: 9.2 | tolerans: ±0.0009 (float)
+   [PASS] Seçici Yetiştirici: saksı RareSpawnChance | beklenen: 15 | gerçekleşen: 15 | tolerans: ±0.0015 (float)
+   [PASS] Seçici Yetiştirici: saksı XPGainMultiplier | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] Seçici Yetiştirici: saksı GoldGainMultiplier | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] Seçici Yetiştirici: saksı HarvestScoreMultiplier | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] Seçici Yetiştirici: saksı PlanterDamageMultiplier | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] Seçici Yetiştirici: gerçek saldırının temas yarıçapı | beklenen: 0.9 | gerçekleşen: 0.9 | tolerans: ±0.001 (float)
+   [PASS] Seçici Yetiştirici: gerçek vuruşun doğrudan çarpanı (yuvarlanan ÷ taban × sapma) = veri ×1 | beklenen: 1 | gerçekleşen: 1.0003 | tolerans: ±0.002 (tek vuruşun yuvarlaması (hasat hasarı 1000))
+   [PASS] Seçici Yetiştirici: sekiz gerçek hasadın kaynağı = yuvarla(varsayılan 16 × 1) (kesir sonraki hasada taşınır) | beklenen: 16 | gerçekleşen: 16 | tolerans: ±1 (taşınan kesir)
+   [PASS] Seçici Yetiştirici: sekiz gerçek hasadın skoru = yuvarla(varsayılan 8 × 1) | beklenen: 8 | gerçekleşen: 8 | tolerans: ±1 (taşınan kesir)
+   [PASS] Dar Kesim: oyuncu HarvestDamage | beklenen: 1000 | gerçekleşen: 1000 | tolerans: ±0.1 (float)
+   [PASS] Dar Kesim: oyuncu AreaRadius | beklenen: 0.675 | gerçekleşen: 0.675 | tolerans: ±0.0001 (float)
+   [PASS] Dar Kesim: oyuncu AttackSpeed | beklenen: 3 | gerçekleşen: 3 | tolerans: ±0.0003 (float)
+   [PASS] Dar Kesim: oyuncu CritChance | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0.0001 (float)
+   [PASS] Dar Kesim: oyuncu CritMultiplier | beklenen: 2 | gerçekleşen: 2 | tolerans: ±0.0002 (float)
+   [PASS] Dar Kesim: saksı PlantSpawnRate | beklenen: 8 | gerçekleşen: 8 | tolerans: ±0.0008 (float)
+   [PASS] Dar Kesim: saksı RareSpawnChance | beklenen: 0 | gerçekleşen: 0 | tolerans: ±0.0001 (float)
+   [PASS] Dar Kesim: saksı XPGainMultiplier | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] Dar Kesim: saksı GoldGainMultiplier | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] Dar Kesim: saksı HarvestScoreMultiplier | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] Dar Kesim: saksı PlanterDamageMultiplier | beklenen: 1 | gerçekleşen: 1 | tolerans: ±0.0001 (float)
+   [PASS] Dar Kesim: gerçek saldırının temas yarıçapı | beklenen: 0.675 | gerçekleşen: 0.675 | tolerans: ±0.001 (float)
+   [PASS] Dar Kesim: gerçek vuruşun doğrudan çarpanı (yuvarlanan ÷ taban × sapma) = veri ×1.4 | beklenen: 1.4 | gerçekleşen: 1.3999 | tolerans: ±0.002 (tek vuruşun yuvarlaması (hasat hasarı 1000))
+   [PASS] Dar Kesim: sekiz gerçek hasadın kaynağı = yuvarla(varsayılan 16 × 1) (kesir sonraki hasada taşınır) | beklenen: 16 | gerçekleşen: 16 | tolerans: ±1 (taşınan kesir)
+   [PASS] Dar Kesim: sekiz gerçek hasadın skoru = yuvarla(varsayılan 8 × 1) | beklenen: 8 | gerçekleşen: 8 | tolerans: ±1 (taşınan kesir)
+[PASS] U01 · Başlangıç seçimi · Uzmanlaşma (yalnız gözlemlenebilen)
+   [PASS] seçilmemişken çarpanlar nötr (doğrudan / davranış / kaynak) | beklenen: 1 / 1 / 1 | gerçekleşen: 1 / 1 / 1 | tolerans: tam
+   [manuel inceleme gerekli] uzmanlaşma seçimi | beklenen: manuel inceleme gerekli | gerçekleşen: bu profilde KAPALI (specializationAfterSegment = 0): seçim ekranı hiç açılmaz; üç uzmanlaşma asset'inin çarpanları bu run'da kullanılmaz | tolerans: —
+   Not: Bu profilde uzmanlaşma kapalıysa yalnız çarpanların nötr olduğu doğrulanır.
+[sistem henüz yok] M05 · Henüz olmayan sistemler · Okunmayan statlar: StartingGoldBonus, StartingPlanterCount, ExtraCardChoice, RerollCard (eksik)
+   Not: sistem henüz yok: bu dört stat temel sette tanımlı ama hiçbir oyun kodu okumuyor; hiçbir içerik de vermiyor (kaynak kodu taramasıyla bulundu).
+
+KAPSAM MATRİSİ
+
+OTOMATIK DOĞRULANAN
+  D01 · Doğrudan vuruş · Temel doğrudan vuruş ve gerçek can azalması → PASS
+  D02 · Doğrudan vuruş · Kritik vuruş (ikinci yuvarlama) → PASS
+  D03 · Doğrudan vuruş · Keskin Bıçak ×1 ve ×2 stack → PASS
+  D04 · Doğrudan vuruş · Canavar Kesimi → PASS
+  D05 · Doğrudan vuruş · Altın Hedef: Rare+ hedefe çarpan, Common hedefe yok → PASS
+  D06 · Doğrudan vuruş · Bereketli Öğrenim: doğrudan vuruş bedeli ve seçim hakkı → PASS
+  D07 · Doğrudan vuruş · Saksı hasar çarpanı (Damage tile) yalnız doğrudan vuruşa → PASS
+  S01 · Stat ödülleri · Hızlı Bilek: stat ve ölçülen saldırı aralığı → PASS
+  S02 · Stat ödülleri · Fırtına Bileği: stat ve ölçülen saldırı aralığı → PASS
+  S03 · Stat ödülleri · Geniş Savuruş: stat ve gerçek temas yarıçapı → PASS
+  S04 · Stat ödülleri · Bilgi Filizi: stat ve gerçek hasat XP'si → PASS
+  S05 · Stat ödülleri · Ağır Darbe: kritik çarpanı ve gerçek kritik vuruş → PASS
+  S06 · Stat ödülleri · Kritik Göz: kritik şansı (gerçek saldırının kullandığı değer) → PASS
+  S07 · Stat ödülleri · Kıvılcım: davranış şansları; şansı olmayan saksı şans kazanmaz → PASS
+  S08 · Stat ödülleri · Nadir Tohum: nadirlik bonusu → PASS
+  S09 · Stat ödülleri · Bereketli Toprak: koşul ve gerçek üretim aralığı → PASS
+  B01 · Davranış hasarı · Patlama: dört yan komşu, çapraz yok, gerçek can azalması → PASS
+  B02 · Davranış hasarı · Yıkım Gücü ×1 ve ×2 stack: davranış hasarı; doğrudan vuruş değişmez → PASS
+  B03 · Davranış hasarı · Davranışa Adanış: davranış hasarı ve seçim hakkı bedeli → PASS
+  B04 · Davranış hasarı · Elektrik hasarı → PASS
+  B05 · Davranış hasarı · Kasırga hasarı (davranışın kendi katsayısıyla) → PASS
+  B06 · Davranış hasarı · Bumerang hasarı (davranışın kendi katsayısıyla) → PASS
+  K01 · Kırılma ödülleri · Artçı Patlama: gecikme, hasar oranı, yeni zar yok → PASS
+  K02 · Kırılma ödülleri · Çifte Akım: gecikme, hasar oranı, yeni zar yok → PASS
+  K03 · Kırılma ödülleri · Hasat Ritmi: hak hazırlanır, harcanır, birikmez → PASS
+  K04 · Kırılma ödülleri · Zincir Hasat: nesil hasar çarpanı ve nesil sınırı → PASS
+  E01 · Etki ödülleri · Kritik Ark → PASS
+  E02 · Etki ödülleri · Taşan Hasar → PASS
+  E03 · Etki ödülleri · Hasat Yankısı: simetrik hücreler → PASS
+  E04 · Etki ödülleri · Nadir Reaktör: eklenme, yenilenme (birikmez), süre sonu → PASS
+  E05 · Etki ödülleri · Açgözlü Hasat: hak ve saldırı çarpanı → PASS
+  E06 · Etki ödülleri · Kritik Patlama → PASS
+  E07 · Etki ödülleri · Aşırı Yükleme: gecikme ve hasar oranı → PASS
+  A01 · Anten ailesi · Elektrik Anteni: aralık ve hasar → PASS
+  A02 · Anten ailesi · İletken Hat: aralık ve hasar → PASS
+  A03 · Anten ailesi · Kapalı Devre: ek hat vuruşu, hasar ve gecikme → PASS
+  H01 · Hilal ailesi · Hilal Darbesi: eşik ve hasar → PASS
+  F01 · Tarla olayları · Diken Kuşatması: kapalı hücreler ve kök dayanıklılığı → PASS
+  F02 · Tarla olayları · İstilacı Filiz: yavaşlatma çarpanı gerçek üretim aralığında → PASS
+  F04 · Tarla olayları · Gezgin Bereket: kaynak ×2, XP ×2, bölge dışında bonus yok → PASS
+  G01 · Boss kuralları · Don Cephesi: bantta üretim aralığı çarpanı, kalkınca eski değer → PASS
+  G02 · Boss kuralları · Sert Kabuk: bantta bitki canı çarpanı, kalkınca eski değer → PASS
+  G03 · Boss kuralları · Sis: saldırı yarıçapı çarpanı, kalkınca eski değer → PASS
+  X01 · XP / kaynak / skor · Kontrollü tek hasat: kaynak, XP ve skor kaydı = gerçek bakiye farkı → PASS
+  X02 · XP / kaynak / skor · Level kazanımı: kazanılan XP ≠ saklı XP, yeni seçim hakkı → PASS
+  T00 · Tile'lar · Tile verisi: ad, nadirlik alanı ve değer aralıkları tutarlı mı → FAIL
+  T01 · Tile'lar · Patlama tile'ı: şans — yazan = uygulanan = gerçek tetik oranı → UYARI
+  T02 · Tile'lar · Elektrik tile'ı: şans — yazan = uygulanan = gerçek tetik oranı → UYARI
+  T03 · Tile'lar · Kasırga tile'ı: şans — yazan = uygulanan = gerçek tetik oranı → FAIL
+  T04 · Tile'lar · Bumerang tile'ı: şans — yazan = uygulanan = gerçek tetik oranı → UYARI
+  T05 · Tile'lar · Çift ödül tile'ı: şans — yazan = uygulanan = gerçek çift ödül oranı → UYARI
+  T06 · Tile'lar · Hasar tile'ı: saksı hasar çarpanı — yazan = uygulanan = gerçek doğrudan vuruş → PASS
+  T07 · Tile'lar · Kristal tile'ı: nadirlik bonusu — yazan = uygulanan = gerçek bitki zarı dağılımı → UYARI
+  T08 · Tile'lar · Enerji tile'ı: Harvest Score — yazan = uygulanan = gerçek hasat skoru → PASS
+  T09 · Tile'lar · Verimli tile: üretim süresi — yazan = uygulanan = ölçülen gerçek doğuş süresi → PASS
+  T10 · Tile'lar · Su tile'ı: XP kazancı — yazan = uygulanan = gerçek hasat XP'si → PASS
+  R01 · Rezonanslar · Odak: kademeler, yazan etki, uygulanan etki, gerçek kullanım → PASS
+  R02 · Rezonanslar · Şöhret: kademeler, yazan etki, uygulanan etki, gerçek kullanım → PASS
+  R03 · Rezonanslar · Bolluk: kademeler, yazan etki, uygulanan etki, gerçek kullanım → PASS
+  R04 · Rezonanslar · Bilgelik: kademeler, yazan etki, uygulanan etki, gerçek kullanım → PASS
+  R05 · Rezonanslar · Kristal Bahçe: kademeler, yazan etki, uygulanan etki, gerçek kullanım → PASS
+  R06 · Rezonanslar · Güçlendirilmiş Hasat: kademeler, yazan etki, uygulanan etki, gerçek kullanım → PASS
+  R07 · Rezonanslar · Değerli Hasat: kademeler, yazan etki, uygulanan etki, gerçek kullanım → UYARI
+  R08 · Rezonanslar · Verimli Toprak: kademeler, yazan etki, uygulanan etki, gerçek kullanım → PASS
+  R09 · Rezonanslar · Elektrik Bilgisi: kademeler, yazan etki, uygulanan etki, gerçek kullanım → PASS
+  R10 · Rezonanslar · Nadir Fidanlık: kademeler, yazan etki, uygulanan etki, gerçek kullanım → PASS
+  C01 · Kartlar · Tile kartı: kartta yazan değer tarlaya aynen gelir → PASS
+  C02 · Kartlar · Yükseltme kartı: seviye kazancı ve değer çarpanı → PASS
+  C03 · Kartlar · Temel güç kartları: beş kart × dört nadirlik, toplanan ve çarpılan gruplar → PASS
+  SK01 · Skill ağacı · Skill ağacı: her satın alımda bedel ve stat etkisi → PASS
+  L01 · Başlangıç seçimi · Çiftçi ve tırpan: stat, doğrudan vuruş, kaynak ve skor çarpanı → PASS
+
+YALNıZ GÖZLEMLENEBILEN
+  H02 · Hilal ailesi · Büyüyen Ay: büyüyen adım hasarı → PASS
+  H03 · Hilal ailesi · Dolunay: dönüş dalgası ve vuruş duraklaması → PASS
+  H04 · Hilal ailesi · Hilal imleç rotası (güncel kural) → manuel inceleme gerekli
+  F03 · Tarla olayları · Aşılı Kabuk: seçim yapılmazsa bölge kapanır → PASS
+  U01 · Başlangıç seçimi · Uzmanlaşma → PASS
+
+EKSIK
+  M01 · Henüz olmayan sistemler · Final boss / run sonu sistemi → sistem henüz yok
+  M02 · Henüz olmayan sistemler · Endless (sonsuz) mod → sistem henüz yok
+  M03 · Henüz olmayan sistemler · Rezonans Çöküşü / Rezonans Darbesi → sistem henüz yok
+  M04 · Henüz olmayan sistemler · Hilal – rezonans etkileşim kuralı → sistem henüz yok
+  M05 · Henüz olmayan sistemler · Okunmayan statlar: StartingGoldBonus, StartingPlanterCount, ExtraCardChoice, RerollCard → sistem henüz yok

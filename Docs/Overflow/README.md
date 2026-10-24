@@ -1,5 +1,31 @@
 # Taşan Hasar — 12 Ekim 2026
 
+## 23 Ekim 2026 güncellemesi: mor aktarım
+
+Oyuncu testinde aktarılan hasar normal vuruştan ayırt edilemedi. Turuncu parça da kritik altını ve yeni
+Kritik Ark altın yayıyla aynı renk bölgesindeydi. Kullanıcı izole kopyadaki üç seçenekten "yazı + parça mor"u seçti.
+
+- **Hasar yazısı:** `DamageTextKind.Overflow` → `FloatingText.overflowColor` (0,62 / 0,45 / 1). `RunEffects.Strike`
+  yalnız `RewardSource.Overflow` için bu türü verir. `VFXManager.TryMergeText` yalnız aynı türden vuruşları
+  birleştirir: aktarılan hasar doğrudan vuruşun sayısına karışmaz. Diğer bütün yazılar değişmedi.
+- **Parça, kırıntılar ve yıldız mor:** `OverflowShardMesh` ve `Chip0–2` köşe renkleri yerinde çevrildi (aynı GUID).
+  Yıldız artık antenin paylaşılan amber `ContactDouble` mesh'ini değil, onun mor kopyası `OverflowStarMesh`'i
+  kullanıyor; antenin yıldızı değişmedi. Prefab'taki `SharedAmberStar` → `VioletStar`.
+- **Eşleme:** sıcak ton (doygunluk ≥ 0,25, ton ≤ 0,2 veya ≥ 0,95) → ton 0,735, doygunluk × 0,85, parlaklık ≥ 0,55.
+  Aynı eşleme `OverflowArtBuilder.Violet` içinde; araç yeniden çalıştırılırsa mor üretir.
+- **Değişmeyenler:** mekanik, ses, süreler.
+
+Kontrol: `OverflowArtVerification` 21/21 (4 yeni kontrol: iki ayrı mor yazı, doğrudan yazı krem,
+parça ve yıldızda turuncu/amber yok). `CritArcArtVerification` 15/15, `AntennaArtVerification` 52/52.
+
+Bellek ve performans:
+- Yeni çalışma anı nesnesi, malzeme veya mesh örneği yok. Yazı rengi mevcut havuzlu yazıda seçiliyor.
+- Birleşmeyen mor yazılar en fazla 4 kaynak × 2 adım = saldırı başına 8 ek yazı getirebilir; yazı havuzu
+  sınırı zaten var.
+- 12 yeniden kullanım döngüsünde nesne sayısı sabit.
+
+---
+
 Yalnız mevcut ödülün sunumu. Üretim tamamlandı; ayrıntılı görsel/işitsel insan Play kabulü bekliyor.
 
 ## Sunum ve mekanik

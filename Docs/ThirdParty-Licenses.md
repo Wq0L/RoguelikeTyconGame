@@ -242,3 +242,158 @@ standart kütüphanesiyle sentezdir, harici örnek yok. Önceden proje için ür
 ContactDouble yıldız mesh’i ve ThornToon/ThornInk yeniden kullanıldı (Anten ailesi kaydı).
 Yeni dış varlık/araç/paket yok. Ek ücret/royalty, ekran/jenerik kredi zorunluluğu veya yeni
 üçüncü taraf lisans/telif metni dağıtma zorunluluğu yok. Mevcut yükümlülükler korunur.
+
+### Hasat Yankısı — 2026-10-12
+EchoPreparation/EchoImpact geometrisi ve EchoTok.wav proje içinde özgün üretildi; ses
+Python standart kütüphanesiyle sentezdir, dış örnek yok. Önceden proje için üretilen
+ThornToon/ThornInk ve ortak geometri/parça altyapısı yeniden kullanıldı. Kritik Ark ve
+Taşan Hasar varlıkları değiştirilmedi. Yeni dış içerik/araç/paket yok: ek ücret/royalty,
+ekran/jenerik kredi zorunluluğu veya yeni üçüncü taraf lisans/telif metni dağıtım
+zorunluluğu doğmaz. Önceki üçüncü taraf yükümlülükleri korunur.
+
+### Nadir Reaktör — 2026-10-12
+ReactorCore/ReactorOpening ve ReactorCharge.wav proje içinde özgün üretildi; ses Python
+standart kütüphanesiyle sentezdir, harici örnek yok. Önceden proje için üretilen ThornToon /
+ThornInk, ortak mesh üretimi ve parça hareketi yeniden kullanıldı. Yeni dış içerik/araç/paket
+yok. Ek ücret/royalty, ekran/jenerik kredisi veya yeni üçüncü taraf lisans/telif metni dağıtımı
+zorunluluğu doğmaz. Mevcut üçüncü taraf yükümlülükleri korunur.
+
+### Açgözlü Hasat — 2026-10-12
+GreedTeeth mesh/prefab ve GreedReady/GreedSpent.wav proje içinde özgün üretildi.
+Sesler Tools/Art/build-greed-audio.py ile Python standart kütüphanesinde, dış örneksiz
+sentezlendi. Mevcut özgün ThornToon, mesh yazarı, havuz ve merkezi ses altyapısı paylaşıldı.
+Yeni üçüncü taraf içerik/araç/paket yok. Ek ücret/royalty, oyun ekranında veya jenerikte
+kredi ve yeni üçüncü taraf lisans/telif metni dağıtımı zorunluluğu doğmaz. Önceki
+üçüncü taraf yükümlülükleri korunur. Araçlar Tools altında, dağıtılan varlıklar Assets altında.
+
+### Kritik Patlama — 2026-10-12
+CritBurstImpact yıldız/çekirdek/parça meshleri ve CritBurstThump.wav özgün üretildi.
+Mevcut proje için özgün ThornToon ve mesh/parça/havuz altyapısı yeniden kullanıldı.
+Ses Tools/Art/build-crit-burst-audio.py ile Python standart kütüphanesinde dış örneksiz
+sentezdir. Yeni üçüncü taraf içerik, araç veya paket yok. Ek ücret/royalty, ekran/jenerik
+kredi veya yeni üçüncü taraf lisans/telif metni dağıtımı zorunluluğu doğmaz. Önceki lisans
+koşulları korunur. Tools geliştirme üreticileri, Assets oyunda kullanılan varlıklardır.
+
+### Aşırı Yükleme — 2026-10-12
+OverloadCharge/OverloadRelease prefabları, üç ortak mesh ve iki kısa mono ses proje içinde
+özgün üretildi. Sesler Tools/Art/build-overload-audio.py ile Python standart kütüphanesinde
+dış örneksiz sentezdir. Önceden proje için özgün ThornToon ve mesh/parça/havuz altyapısı
+paylaşıldı. Yeni dış içerik, araç veya paket yok: ek ücret/royalty, ekran/jenerik kredisi
+ya da yeni üçüncü taraf lisans/telif metni dağıtımı zorunluluğu doğmaz. Önceki koşullar
+korunur. Tools geliştirme üreticileri; Assets oyunda dağıtılan varlıklardır.
+
+## Blender — Comic Black Hole öğrenme örneği (15 Ekim 2026)
+
+- Kategori: mevcut yerel geliştirme aracı; yeni paket veya eklenti kurulmadı.
+- Araç: Blender 5.2.2 LTS, mevcut Steam kurulumu; resmî kaynak https://www.blender.org/.
+- Kontrol edilen belgeler: kurulumdaki copyright.txt ve license/spdx/GPL-3.0-or-later.txt; çıktıların durumu için https://www.blender.org/about/license/.
+- Lisans: ana bildirim GPL-2.0-or-later; dağıtım GPL-3.0-or-later uyumlu bileşenler içerir. Blender yazılımını yeniden dağıtmak ayrı GPL yükümlülüklerine tabidir; burada yazılım dağıtılmıyor.
+- Kullanım: özgün mesh ve animasyon üretimi, .blend kaynak dosyası ve örnek render. Haricî model, font, doku, ses veya eklenti kullanılmadı.
+- Ücret/royalty: üretilen özgün içerik için yok. Oyun ekranında/jenerikte Blender kredisi: zorunlu değil. Oyun dağıtımına sırf Blender çıktısı kullanımı nedeniyle Blender lisans/telif metni ekleme: zorunlu değil. Oyun kaynak kodunu açma şartı doğmaz.
+- Bu içerik üretiminden önce kullanıcıya konuşmada lisans bildirimi yapıldı.
+- Dosyalar: Tools/Art/ComicBlackHole/build_black_hole.py, Docs/ComicBlackHole/.
+
+### Comic meteor örneği — 15 Ekim 2026
+
+- Yukarıdaki mevcut Blender 5.2.2 LTS geliştirme aracı ve aynı çıktı lisans koşulları geçerlidir.
+- Özgün geometri ve anahtar kare animasyonu: Tools/Art/ComicBlackHole/build_comic_meteor.py; çıktı Docs/ComicMeteor/ComicMeteor.blend.
+- Yeni dış kaynak, paket, eklenti, ses, font veya doku alınmadı. Blender oyunla dağıtılmıyor.
+- Özgün çıktılar için ücret/royalty yok; oyun ekranında/jenerikte Blender kredisi yok; yalnız çıktı kullanımı nedeniyle dağıtımda Blender lisans metni zorunluluğu yok.
+
+## nene — Boss Battle #3 V1 (17 Ekim 2026)
+
+- Kategori: oyunda dağıtılan müzik; yeni geliştirme aracı veya paket eklenmedi.
+- Eser/sürüm: Boss Battle #3 [8-bit re-upload], V1 WAV; yayımlayan nene, 16 Mayıs 2018.
+- Kaynak: https://opengameart.org/content/boss-battle-3-8-bit-re-upload
+- Kontrol edilen belgeler: kaynak sayfasının CC0 lisans alanı ve https://creativecommons.org/publicdomain/zero/1.0/legalcode (17 Ekim 2026).
+- Lisans: CC0 1.0 Universal. Ticari kullanım, değiştirme, oyuna gömme ve dağıtım serbest.
+- Ücret/royalty: yok. Oyun ekranında veya jenerikte kredi zorunluluğu: yok.
+- Dağıtımda lisans/telif metni bulundurma zorunluluğu: yok. Kaynak paylaşımı veya yeniden adlandırma yükümlülüğü yok.
+- CC0 marka/patent haklarını kapsamaz ve garanti vermez; kaynakta bu parçaya özel ek kullanım koşulu belirtilmiyor.
+- Kullanım: aktif round müzik havuzunun ilk ve şimdilik tek parçası; tüm aşamalarda loop.
+- Kullanıcıya kaynağı, lisans sürümü ve koşullar dosya kopyalanmadan önce konuşmada açıklandı.
+- Kullanıcının sağladığı yerel dosya: C:/Users/User/Downloads/Boss Battle #3 V1.wav.
+- Hedef: Assets/Resources/Music/RoundMusic.wav. WAV değiştirilmedi; Unity build/import sırasında Vorbis'e kodlar.
+- Kaynak ve hedef SHA-256: 34406888886469E6012330E1C496D4818A2EB9BE131CBBD22958CCC85CC8A661.
+
+## Cozy Farm SFX — Bramble & Byte (17 Ekim 2026)
+
+- Kategori: oyunda dağıtılan dört ses; geliştirme bağımlılığı eklenmedi.
+- Kaynak: https://aquumgifts.itch.io/cozy-farm-sfx ; kullanıcıdaki cozy-farm-sfx indirmesi, sürüm numarası belirtilmemiş.
+- Kontrol edilen belge: C:/Users/User/Desktop/sesler/cozy-farm-sfx/LICENSE.txt ve resmî https://creativecommons.org/licenses/by/4.0/legalcode.
+- Lisans: CC BY 4.0 International. Ücretsiz ticari kullanım, değişiklik ve oyuna gömülü dağıtım serbest; lisans ücreti/royalty yok.
+- Atıf zorunlu; özellikle oyun ekranı/jenerik şartı yok. Uygun dağıtım kredisi içinde üretici, kaynak, lisans bağlantısı ve değişiklik bildirimi sağlanır. Tam lisans metni yerine URI yeterlidir; verilen LICENSE.txt ayrıca korunur.
+- Dağıtılan kayıtlar: Assets/StreamingAssets/ThirdParty/CozyFarm/LICENSE.txt ve CREDITS.txt. Oyun kaynak kodunu paylaşma/ad değiştirme şartı yok; lisanslı içeriğin haklarını kısıtlayan ek koşul/DRM uygulanmamalıdır.
+- Kullanımlar: place-item.wav = saksı inişi; bush-rustle.wav = bitki hasarı; ui-error.wav = geçersiz yerleştirme; ui-back.wav = yerleştirmeyi iptal.
+- Hedef: Assets/Audio/CozyFarm/. Orijinal WAV değişmedi; ses seviyesi oynatmada ayarlanır ve oyun aksiyonlarıyla senkronize edilir; Unity platform kodlaması yapabilir.
+- Masaüstündeki dört WAV ile lisanslı indirmedeki sfx dosyalarının SHA-256 eşitliği doğrulandı.
+- place-item: 12E3AC609354B5E0631BCC31D93062F76C2F58E2DD640F5F0411D53F4D627FC6
+- bush-rustle: 667A8835E88CC3AD2D3A6C21D0B004B76FC29E28841081025C1B6EBFAA2C8D18
+- ui-error: 6DC16242FDF9E0BEA09E06355820974DA00AE20C343E7AEB8C4AAC8A873E7196
+- ui-back: CA5C1A7665946BA76399D66ED62BE9093629645C7EE6EE1EB9AB25ED3FEF175B
+- Kullanıcıya lisans ve ayrı ücret/kredi/dağıtım yükümlülükleri kopyalamadan önce konuşmada bildirildi.
+# Unity Pipeline bağlantısı — 2026-10-17
+
+- Amaç: geliştirme aracı; açık Unity Editor'ı resmî CLI / MCP üzerinden yönetmek.
+- Kaynak: https://packages.unity.com/com.unity.pipeline — `com.unity.pipeline` **0.8.0-exp.1**, Unity Technologies.
+- Kontrol edilen belgeler: sürüm tarball'ındaki `LICENSE.md`, `Third Party Notices.md`, `package.json`; https://unity.com/legal/terms-of-service (30 Haziran 2026), https://unity.com/features/ai.
+- Lisans: **Unity Terms of Service**; MIT değildir. Mevcut geçerli Unity lisansı ve ilgili koşullar geçerlidir. CLI/MCP ücretsizdir; ayrı kullanım ücreti/royalty ve bu araç için ekran/jenerik kredisi yoktur. Kaynak paylaşma yükümlülüğü getirmez. Deneysel sürümdür.
+- Paket içi Roslyn Common/CSharp 3.11.0, System.Collections.Immutable / System.Reflection.Metadata 10.0.1 ve Unsafe 6.1.2: **MIT**. Unity tarafından `UnityPipeline.` ad alanı/assembly önekiyle değiştirilmiş; değişiklik tarafımızdan yapılmadı. Dağıtılan kopyalarda telif/izin metinleri korunur.
+- Yeni bağımlılık `com.unity.nuget.newtonsoft-json` **3.0.2**: Unity Companion License (resmî güncel metin **v1.4**, https://unity.com/legal/licenses/unity-companion-license); içerdiği Newtonsoft/Unity uyarlamaları MIT. Geçerli Unity lisansıyla ticari Unity projesinde ücretsiz/royalty-free kullanım; ekran/jenerik kredisi yok; dağıtılan bileşenlerin lisans ve telif metinleri korunmalı. Unity motoru lisansını değiştirmez.
+- Diğer bağımlılıklar projede zaten mevcut: Test Framework, Mono.Cecil ve Unity engine modules.
+- Geliştirme aracı kaydı ile oyunda dağıtılan varlıklar ayrıdır: Pipeline bu projeye Editor otomasyonu amacıyla eklendi; runtime bileşenleri bulunabildiği için üçüncü taraf bildirimleri `Assets/StreamingAssets/ThirdParty/UnityPipeline/` altında dağıtıma taşınır. Paket lisans kopyası `Docs/Licenses/UnityPipeline/` altındadır.
+- Kullanıcıya kurulumdan önce konuşmada kaynak/sürüm, lisans, ücret, kredi ve dağıtım yükümlülükleri bildirildi. Mevcut Unity CLI **1.0.0-beta.13** güncel olarak doğrulandı; CLI yeniden kurulmadı.
+
+# Kullanıcının AI ile ürettiği bitki hasar sesi — 2026-10-17
+
+- `plant-thwack-v6.wav`: kullanıcı dosyayı sağladı ve konuşmada AI ile ürettiklerini doğruladı. Üretim hizmeti/lisans sürümü belirtilmedi; üçüncü taraf ses paketine aitmiş veya CC0/MIT lisanslıymış gibi etiketlenmedi.
+- Kaynak: `C:/Users/User/Downloads/plant-thwack-v6.wav`; proje kopyası: `Assets/Audio/Generated/plant-thwack-v6.wav`.
+- SHA-256: `E7096EBA67469A2F359009FD22F287485E2BC5A65F38289A044F08549ADD7DF2`.
+- WAV değiştirilmeden kopyalandı. GameScene SoundManager PlantDamage klibi olarak bush-rustle yerine atandı; volume 0.3, pitch 1 korundu. Cozy Farm lisansı bu dosyaya uygulanmaz; diğer Cozy Farm sesleri için mevcut bildirimler korunur.
+
+# Kullanıcının AI ile ürettiği bitki hasar sesi v7 — 2026-10-17
+
+- `cartoon-roguelike-hit-v7.wav`: kullanıcı dosyayı sağladı ve AI ile kendilerinin ürettiğini doğruladı. Üretim hizmeti/lisans sürümü belirtilmedi; CC0/MIT veya Cozy Farm lisansı atfedilmedi.
+- Kaynak: `C:/Users/User/Downloads/cartoon-roguelike-hit-v7.wav`; proje kopyası: `Assets/Audio/Generated/cartoon-roguelike-hit-v7.wav`.
+- SHA-256: `5530E342DB82B2F80435D8B1D08B7A18785AF182668712CC979259B598047EF0`.
+- Dosya değiştirilmeden kopyalandı. GameScene SoundManager PlantDamage ataması v6 yerine v7 olarak Unity CLI ile kaydedildi; volume 0.3, pitch 1 korundu.
+
+
+## CartoonVFX9x — Comic Explosion Effect / Battle_Effect_White (22 Ekim 2026)
+- Oyunda dağıtılan mevcut üçüncü taraf varlık; yeni indirme yok. Kaynak: https://assetstore.unity.com/packages/vfx/particles/fire-explosions/comic-explosion-effect-317348
+- Resmî sürüm: 1.0 (22 Nisan 2025); yerel prefab: Assets/3D Assets/CartoonVFX9x/Comic_FX/Prefabs/Battle_Effect_White.prefab. Yerel paket sürüm etiketi yok; mağaza yalnız 1.0 gösteriyor.
+- Lisans: Standard Unity Asset Store EULA, https://unity.com/legal/as-terms (22 Ekim 2026 kontrolü), Appendix 1, 2.2–2.3. Yerel Readme/Readme.pdf incelendi; ek lisans koşulu içermiyor.
+- Kullanım: Artçı Patlama'nın ikinci darbesinde, daha küçük ölçekle ve mevcut sınırlı VFXPool üzerinden. Kaynak prefab değiştirilmez; özgün üretim olarak sunulmaz.
+- Ücret/royalty: mağazada FREE; oyunun satışına bağlı royalty yok. Ticari oyuna gömülü dağıtım ve değişiklik izinli; bağımsız asset/kaynak yeniden dağıtımı izinli değil.
+- Ekran/jenerik kredisi: ayrıca zorunluluk belirtilmiyor. Dağıtım paketine ayrı EULA/telif metni ekleme yükümlülüğü belirtilmiyor; var olan kaynak bildirimleri korunur. Kaynak kod paylaşma yükümlülüğü yok.
+- Mağaza Extension Asset etiketi taşıyor: ilgili koltuk/iki bilgisayar sınırı ve yüklenicilerin kendi lisansı koşulu dikkate alınmalı; yalnız test/build makineleri istisnası var. Yeni lisans satın alınmadı.
+
+## Hasat Yankısı kuzey ışığı meteoru — özgün içerik, Blender ile (23 Ekim 2026)
+
+- Oyunda dağıtılan varlıklar: `Assets/Art/LateGame/AuroraMeteor/` (22 ağ), `Assets/Resources/AuroraMeteorArt.asset`.
+- Üretim: Blender 5.2 LTS (mevcut Steam kurulumu; lisans kaydı yukarıdaki Blender bölümünde) komut satırından Python ile:
+  `Tools/Art/AuroraMeteor/build_aurora_meteor.py` (tasarım ve önizleme), `export_aurora_meteor.py` (dışa aktarma),
+  `Tools/Verification/Editor/AuroraMeteorArtBuilder.cs` (Unity ağları). Önizlemeler: `Docs/AuroraMeteor/`.
+- Bütün geometri ve renkler bu görev için özgün üretildi. Dış model, doku, eklenti, MCP sunucusu veya paket kullanılmadı.
+- Blender çıktıları kullanıcınındır; Blender yazılımı dağıtılmıyor. Ücret veya royalty yok, oyunda kredi zorunluluğu yok,
+  dağıtım paketine lisans metni gerekmiyor.
+- Kullanılan proje malzemeleri: `ThornToon.mat` / `ThornInk.mat` (mevcut özgün) ve `Resources/ParticleVertexColor` shader'ı.
+
+## Açgözlü Hasat “aç ağız” örneği — özgün içerik, Blender ile (24 Ekim 2026)
+
+- Oyunda dağıtılan varlıklar (24 Ekim 2026'dan beri): `Assets/Art/LateGame/GreedJaw/` (14 ağ + `GreedJawInk.mat`),
+  `Assets/Resources/GreedJawArt.asset`. Ağlar `Tools/Art/GreedJaw/export_greed_jaw.py` → `Tools/Verification/Editor/GreedJawArtBuilder.cs`
+  ile üretildi; malzeme mevcut özgün `ThornComicToon` shader'ını kullanır. Önizlemeler `Docs/GreedJaw/`.
+- Üretim: Blender 5.2 LTS (mevcut kurulum; lisans kaydı yukarıdaki Blender bölümünde), `Tools/Art/GreedJaw/build_greed_jaw.py`.
+  Çıktılar `Docs/GreedJaw/`; MP4/GIF dönüşümü mevcut FFmpeg geliştirme aracıyla (yeni kurulum yok).
+- Geometri, renkler ve animasyon bu görev için özgün üretildi; dış model, doku, font dosyası, eklenti veya paket kullanılmadı
+  (önizleme etiketleri Blender'ın yerleşik yazı tipiyle yalnız videoya yazıldı, oyuna girmez).
+- Ücret/royalty yok, oyunda kredi zorunluluğu yok, dağıtım paketine lisans metni gerekmiyor.
+
+## Diken Kuşatması çıkış patlaması — özgün içerik, Blender ile (24 Ekim 2026)
+
+- Oyunda dağıtılan varlıklar (24 Ekim 2026'dan beri): `Assets/Art/LateGame/ThornBurst/` (10 ağ), `Assets/Resources/ThornBurstArt.asset`.
+  Üretim: Blender 5.2 LTS (mevcut kurulum; lisans kaydı yukarıda), `Tools/Art/ThornBurst/build_thorn_burst.py` → `export_thorn_burst.py`
+  → `Tools/Verification/Editor/ThornBurstArtBuilder.cs`; önizlemeler `Docs/ThornBurst/`, MP4/GIF mevcut FFmpeg ile.
+- Geometri, renkler ve animasyon özgün; dış model, doku, font, eklenti veya paket yok. Ücret/royalty yok, kredi zorunluluğu yok,
+  dağıtım paketine lisans metni gerekmiyor.

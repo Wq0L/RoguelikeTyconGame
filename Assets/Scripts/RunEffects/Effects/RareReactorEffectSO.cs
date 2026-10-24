@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
@@ -46,7 +46,7 @@ public sealed class RareReactorEffect : RunEffect
         for (int i = 0; i < hits.Count; i++)
         {
             if (!hits[i].Killed || hits[i].Rarity < Config.minRarity) continue;
-            Activate(hits[i].Cell);
+            Activate(hits[i].Point);
             return;
         }
     }
@@ -54,7 +54,7 @@ public sealed class RareReactorEffect : RunEffect
     private StatModifier Modifier(StatType stat) =>
         new StatModifier { statType = stat, target = StatTarget.Planter, operation = ModifierOperation.MorePercent, value = Config.chanceBonus };
 
-    private void Activate(GridObject cell)
+    private void Activate(Vector3 point)
     {
         remaining = Config.seconds;
         if (applied) { Refreshes++; return; }
@@ -64,8 +64,7 @@ public sealed class RareReactorEffect : RunEffect
         stats.OnGlobalModifiersCleared += Forget;
         applied = true;
         Activations++;
-        GridSystem grid = Host.Grid;
-        Host.Emit(new RewardCue(RewardCueKind.ReactorOn, grid != null && cell != null ? FieldCells.World(grid, cell.GetGridPosition()) : Vector3.zero));
+        Host.Emit(new RewardCue(RewardCueKind.ReactorOn, point));
     }
 
     // Yalnız bu etkinin eklediği dört modifier kalkar (idempotent).

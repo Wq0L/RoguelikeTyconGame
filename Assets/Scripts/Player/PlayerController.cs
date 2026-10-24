@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private Color ringStart = Color.white, ringEnd = Color.white;
     private bool ringCharged;
     public bool ShowsChargedCursor => ringCharged;
+    public Vector3 CursorWorldPosition { get; private set; }
+    public float CursorRadius { get; private set; }
 
     private void Start()
     {
@@ -49,6 +51,9 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 GetMouseWorldPosition()
     {
+#if UNITY_EDITOR
+        if (EditorAim.HasValue) return EditorAim.Value;
+#endif
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundLayerMask))
@@ -75,7 +80,8 @@ public class PlayerController : MonoBehaviour
         return true;
     }
 
-    private void HandleAutoAttack(Vector3 mouseWorldPos)
+    // Bu karedeki gerçek saldırı aralığı (sn): stat, oyunun alt sınırı ve round temposu.
+    private float AttackInterval()
     {
         float attackSpeed = StatManager.Instance.GetFinalStat(
             StatType.AttackSpeed,
@@ -85,21 +91,81 @@ public class PlayerController : MonoBehaviour
         // 60 sn'yi aşan round süresi hıza dönüşür (RoundManager.TempoMultiplier). Taban önce uygulanır:
         // 60 sn'lik hızlı round, 90 sn'lik normal round'la aynı sayıda vuruş yapar.
         float tempo = RoundManager.Instance != null ? RoundManager.Instance.TempoMultiplier : 1f;
-        attackSpeed = Mathf.Max(attackSpeed, MinAttackInterval) / tempo;
+        return Mathf.Max(attackSpeed, MinAttackInterval) / tempo;
+    }
+
+    // Sunum için salt okunur saldırı ritmi (oynanışa etkisi yok): bu karenin aralığı, sıradaki saldırıya ilerleme (0–1) ve
+    // atılan saldırı sayısı. Açgözlü Hasat ağzı animasyonunu bu ritme uydurur.
+    public float AttackIntervalNow { get; private set; }
+    public float AttackProgress => AttackIntervalNow > 0f ? Mathf.Clamp01(attackTimer / AttackIntervalNow) : 0f;
+    public int AttacksPerformed { get; private set; }
+
+    private void HandleAutoAttack(Vector3 mouseWorldPos)
+    {
+        float attackSpeed = AttackInterval();
+        AttackIntervalNow = attackSpeed;
 
         // Doğrudan saldırı duraklaması (Bölüm 3.8, Dolunay): yalnız bu zamanlayıcı bekler; imleç ve oyunun geri kalanı sürer.
         if (DirectAttackPause.Tick(Time.deltaTime)) return;
 
-        if (AdvanceAttackTimer(ref attackTimer, Time.deltaTime, attackSpeed))
+#if UNITY_EDITOR
+        // Test aracı: otomatik saldırı kapalıyken bekleme yine oyun zamanıyla dolar ama vuruş yalnız EditorAttackNow ile atılır.
+        if (!EditorAutoAttack)
         {
-
-            bool anyCrit = AttackInRadius(mouseWorldPos);
-
-            // Ring and targeting share the radius this attack really used; touched cell surfaces are included.
-            VFXManager.Instance.PlayAttackRing(mouseWorldPos, gridSystem.HarvestReach(LastAttackRadius), anyCrit);
-            if (cursorVisual != null) cursorVisual.Pulse(anyCrit);
+            attackTimer = Mathf.Min(attackTimer + Time.deltaTime, attackSpeed);
+            return;
         }
+#endif
+        if (AdvanceAttackTimer(ref attackTimer, Time.deltaTime, attackSpeed)) PerformAttack(mouseWorldPos);
     }
+
+    private void PerformAttack(Vector3 center)
+    {
+        AttacksPerformed++;
+        bool anyCrit = AttackInRadius(center);
+
+        // Ring and targeting share the radius this attack really used; touched cell surfaces are included.
+        VFXManager.Instance.PlayAttackRing(center, gridSystem.HarvestReach(LastAttackRadius), anyCrit);
+        if (cursorVisual != null) cursorVisual.Pulse(anyCrit);
+    }
+
+#if UNITY_EDITOR
+    // ---- Yalnız Editor (Mechanics Test Lab). Saldırı yolu aynıdır (PerformAttack → AttackInRadius); burada yalnız "ne zaman ve
+    // nereye" sorusu test aracına bırakılır. Bu blok build'e girmez.
+    // false: otomatik saldırı zamanlayıcısı vuruş üretmez (bekleme dolmaya devam eder).
+    public static bool EditorAutoAttack = true;
+    // Dolu: fare yerine bu dünya konumu nişan alınır (imleç halkası da oraya gider). null: normal fare kontrolü.
+    public static Vector3? EditorAim;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void EditorResetTestInput()
+    {
+        EditorAutoAttack = true;
+        EditorAim = null;
+    }
+
+    public float EditorAttackInterval => AttackInterval();
+    // Bir sonraki saldırıya kalan bekleme (oyun saniyesi). 0: hazır.
+    public float EditorAttackCooldown => Mathf.Max(0f, AttackInterval() - attackTimer);
+
+    // Tek gerçek doğrudan saldırı. Normal kural atlanmaz: round aktif değilse, Dolunay duraklaması sürüyorsa ya da bekleme
+    // dolmadıysa saldırı yapılmaz ve nedeni döner.
+    public bool EditorAttackNow(Vector3 center, out string refusal)
+    {
+        refusal = null;
+        if (gridSystem == null || GameManager.Instance == null || GameManager.Instance.CurrentState != GameStates.Round ||
+            (RoundManager.Instance != null && !RoundManager.Instance.IsRoundActive)) refusal = "round aktif değil";
+        else if (DirectAttackPause.Active) refusal = $"doğrudan saldırı duraklaması sürüyor ({DirectAttackPause.Remaining:0.00} sn)";
+        else if (EditorAttackCooldown > 1e-4f) refusal = $"saldırı beklemesi dolmadı ({EditorAttackCooldown:0.00} sn kaldı)";
+        if (refusal != null) return false;
+        attackTimer = 0f;
+        PerformAttack(center);
+        return true;
+    }
+
+    // Ayrı test komutu: beklemeyi doldurur (bir sonraki saldırı hemen atılabilir).
+    public void EditorResetAttackCooldown() => attackTimer = AttackInterval();
+#endif
 
     private bool AttackInRadius(Vector3 center)
     {
@@ -134,7 +200,8 @@ public class PlayerController : MonoBehaviour
         gridSystem.GetGridObjectsInRadius(center, radius, attackTargets);
         // Boss ödülü etkileri ve tarla olayları (Bölüm 3.8, AttackFeed): dinleyici yokken çarpan 1'dir ve hiçbir şey kaydedilmez.
         // Çarpan (Açgözlü Hasat) yalnız bu saldırının doğrudan hasarına, Hasat Ritmi'yle aynı çarpımda bir kez girer.
-        float attackMultiplier = attack.DamageMultiplier * AttackFeed.Begin(center, radius, attackTargets);
+        float feedMultiplier = AttackFeed.Begin(center, radius, attackTargets);
+        float attackMultiplier = attack.DamageMultiplier * feedMultiplier;
         bool anyCrit = false;
         // Zincir kökü (Bölüm 3.7.6): bu saldırının bütün vuruşları ve doğurdukları davranışlar aynı kökü taşır. Zincir Hasat
         // alınmadıysa 0 (bağlam açılmaz). Saldırı bitince saldırının kök üzerindeki tutumu bırakılır.
@@ -157,6 +224,9 @@ public class PlayerController : MonoBehaviour
                 PlantRarity? rarity = damageable is PlantHealth target && target.Data != null ? target.Data.rarity : (PlantRarity?)null;
                 // int'e dönüşüm NumericSafety'de: int sınırını aşan hasar doyar (eskiden 1'e düşüyordu), kritik negatife taşmaz.
                 int damage = NumericSafety.ToInt(RunPower.DirectDamage(baseDamage, variance, rarity, attackMultiplier), 1, NumericSite.DirectDamage);
+#if UNITY_EDITOR
+                int editorDamageBeforeCrit = damage;
+#endif
 
                 bool isCrit = Random.value <= critChance;
                 if (isCrit)
@@ -171,6 +241,12 @@ public class PlayerController : MonoBehaviour
                     Vector3 hitPoint = hitPlant.transform.position;
                     bool damagedLivingPlant = !hitPlant.IsDead && displayedDamage > 0;
                     touchedLivingPlant = true;
+#if UNITY_EDITOR
+                    // Sayısal iz (yalnız gözlem): bu vuruşun gerçek ara değerleri, hasar uygulanmadan hemen önce.
+                    if (EditorNumericTrace.Listening)
+                        EditorNumericTrace.Report(new EditorNumericTrace.DirectHit(hitPlant, baseDamage, variance, attack.DamageMultiplier, feedMultiplier,
+                            editorDamageBeforeCrit, isCrit, critChance, critMultiplier, damage, displayedDamage));
+#endif
                     hitPlant.TakeDamage(damage, DamageType.Direct, isCrit, 1f, HarvestLink.Direct(root));
                     // Bu vuruşla ölen bitki doğrudan hasattır (ölümün tetiklediği davranış hasatları başka bitkilerdir).
                     if (hitPlant.IsDead) directHarvests++;
@@ -221,6 +297,8 @@ public class PlayerController : MonoBehaviour
             if (cursorVisual != null) cursorVisual.SetCharged(ringCharged);
         }
 
+        CursorWorldPosition = center;
+        CursorRadius = radius;
         if (cursorVisual != null) cursorVisual.Show(center, radius);
 
         for (int i = 0; i < circleSegments; i++)

@@ -13,7 +13,7 @@ bakır çatal ve ileri uzanan altın uç üretildi. Yeni dış varlık, shader v
 - İletken Hat anten uçlarını gerçek Bresenham hücre güzergâhıyla bağlar. Yalnız saldırıda
   görünür; sürekli alan dolgusu veya kalıcı grid çerçevesi yok.
 - Kapalı Devre: yalnız gerçek başarılı ek-atış planında uçtan uca geri besleme işareti;
-  mevcut gecikmeden sonra altın çift tel ve iki vuruşlu görsel/ses ritmi. Sahte davranış
+  mevcut gecikmeden sonra kırmızı çift tel ve iki vuruşlu görsel/ses ritmi (22 Ekim: ek darbe ve temas kıvılcımları kırmızı; normal hat cyan/krem kaldı). Sahte davranış
   patlaması yok; görsel zamanlaması hasarı bekletmez.
 - Temas yıldızları doğrudan StrikeResult.Hit'ten üretilir; boş veya ölü hücreye temas yok.
 - Dört özgün mono kısa ses: yerleşme, kısa atış, hat, çift ritimli devre. Ortak sekiz ses

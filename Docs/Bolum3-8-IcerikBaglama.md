@@ -143,3 +143,32 @@ Mevcut Overflow=11 varyantında ArcBolt hareketli kısa enerji parçası, Antenn
 isabet yıldızı/kırıntılarıdır. Overflow=22 sesi yalnız ilk aktarımda. Cue.TransferStep sıfır
 tabanlı sunum adımı; hasar Value içinde korunur. Detay: Overflow/README.md. Kritik Ark
 bağlantıları ve mekanik değerler korunur; ayrıntılı insan kabulü bekliyor.
+
+## Hasat Yankısı — 12 Ekim 2026
+HarvestEcho varyantı=5 korunur. HarvestEchoPreparation slot=28 ve HarvestEchoPrepared
+cue=26 sona eklenir; başarılı Schedule kaynak izini bildirir. Mevcut HarvestEcho isabet
+cue’su Pulse/HarvestEcho’yu ve yeni HarvestEcho sound=23’ü çalar. Boş hedefte temas/ses yok.
+Diğer Pulse kayıtları değişmez. Docs/HarvestEcho/README.md: üretim tamam, insan kabulü bekliyor.
+
+## Nadir Reaktör
+Reactor varyantı=7 korunur. ReactorIndicator slot=29 ve ReactorOn sound=24 sona eklenir.
+Pulse/Reactor yalnız gerçek ilk aktivasyonda; gösterge gerçek IsActive/Remaining/Refreshes
+okur. İmleç pozu salt okunur; Hasat Ritmi ve yarıçap değişmez. Docs/RareReactor/README.md.
+
+## Açgözlü Hasat
+Greed varyantı=8 korunur. GreedIndicator slot=30 ve GreedSpent sound=25 sona eklenir;
+mevcut GreedReady sound=13 kullanılır. GreedTeeth tek hazır gösterge, Pulse/Greed tek
+harcama kapanışı; diğer Pulse bağlarına dokunulmaz. Gerçek Ready ve mevcut cue'lar
+okunur; yeni sayaç veya hasar yolu yok. Docs/GreedyHarvest/README.md.
+
+## Kritik Patlama
+CritBurst varyantı=6 / Pulse=15 / CritBurst ses=11 korunur. CritBurstImpact ve kısa özgün
+ses yalnız bu varyanta bağlanır. RewardCue.Radius, hasarın kullandığı gerçek yarıçapı taşır;
+ana yıldız bu ölçektedir. .05 sn çekirdek, .22 sn yıldız, .32 sn parçalar; merkezi pose/reset.
+Docs/CritBurst/README.md: üretim tamam, ayrıntılı görsel/işitsel insan kabulü bekliyor.
+
+## Aşırı Yükleme
+Overload varyantı=9 korunur. OverloadPreparation slot=31, hazırlık ses=26 ve iki yeni
+hazırlık/iptal cue=27/28 sona eklenir. Hazırlık salt okunur gerçek iş ilerlemesini gösterir;
+Pulse/Overload yalnız Execute başarı cue'suyla .16 sn boşalır. İptal sessiz. Diğer
+Pulse ve davranış görselleri korunur. Docs/Overload/README.md.

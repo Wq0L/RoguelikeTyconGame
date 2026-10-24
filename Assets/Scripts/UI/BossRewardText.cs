@@ -56,7 +56,7 @@ public static class BossRewardText
         switch (reward.echo)
         {
             case BossRewardEcho.Explosion:
-                return $"ilk patlamanın {Percent(reward.echoDamage)} hasarı · yarıçap ×{Number(reward.echoRadius)} · {Seconds(reward.echoDelay)}";
+                return $"patlamanın dışından {BehaviorEchoes.AftershockSteps} hücre yayılan artçı · adım başına {Number(BehaviorEchoes.AftershockInterval)} sn · ilk patlamanın {Percent(reward.echoDamage)} hasarı";
             case BossRewardEcho.Electric:
                 // Erişim yalnız ödül kendi erişimini taşıyorsa yazılır (Bölüm 3.7.5); eski ödülün metni aynıdır.
                 string reach = reward.echoReach > 0 ? $" · çaprazda {reward.echoReach} hücre" : "";

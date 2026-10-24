@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: "Art\xE7\u0131 Patlama"
   effectLabel: "Art\xE7\u0131 patlama:"
   inverseLabel: ""
-  note: "\u015Eans\u0131 tutan her normal patlamadan sonra ayn\u0131 yerde ikinci bir patlama. Art\xE7\u0131 yeni art\xE7\u0131 ya da zincir ba\u015Flatmaz; \xF6ld\xFCrd\xFCkleri davran\u0131\u015F hasad\u0131d\u0131r."
+  note: "Patlamanın dış sınırından üç adım yayılır. Aynı hücreye bir kez vurur; kilitli hücrelerden geçmez. Artçı yeni artçı veya zincir başlatmaz."
   modifiersPerStack: []
   directDamageMultiplier: 1
   rareDirectMultiplier: 1

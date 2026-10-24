@@ -10,7 +10,9 @@ using UnityEngine;
 // - Aktif etkileri, bekleme sürelerini, bütçeleri ve saldırı duraklamasını gösterir; tarla olayının fazını ve hedeflerini gösterir.
 // - Hepsini oyunun tek temizlik yollarıyla kaldırır.
 // Hiçbir şey kalıcı kayda (MetaSave) ya da profil seçimine yazılmaz; verilen ödül ve başlatılan olay yalnız bu Play oturumundaki
-// run'a aittir. Bu dosya Editor derlemesindedir: oyuncu build'ine girmez. Bu pencere P13'teki kapsamlı test sahnesi değildir.
+// run'a aittir. Bu dosya Editor derlemesindedir: oyuncu build'ine girmez. Bu pencere tam oyunda (GameScene) çekim ve hızlı deneme
+// panelidir; kapsamlı mekanik testi ayrı test sahnesindedir (Tools > Mechanics Test Lab). Ödül kataloğunun gezilmesi iki araçta
+// ortaktır (MechanicsTestLab.LabCatalog).
 public sealed class LateGameTestWindow : EditorWindow
 {
     private const string DefaultPoolPath = "Assets/ScriptableObjects/BossRewards/GecOyunV1/BossRewardPool_GecOyunV1.asset";
@@ -41,27 +43,13 @@ public sealed class LateGameTestWindow : EditorWindow
         loadedPool = BossRewardManager.Instance != null ? BossRewardManager.Instance.Pool : null;
         BossRewardPoolSO pool = loadedPool != null ? loadedPool : AssetDatabase.LoadAssetAtPath<BossRewardPoolSO>(DefaultPoolPath);
         if (pool == null) return;
-        // Gerçek havuzun asset referanslarını koru: eski profil kopyaları ayrı stack yaratmasın.
-        void Add(BossRewardSO reward) { if (reward != null && !rewards.Contains(reward)) rewards.Add(reward); }
-        if (pool.IsStaged)
-            foreach (BossRewardStage stage in pool.stages)
-                foreach (BossRewardStageEntry entry in stage.rewards) Add(entry.reward);
-        else
-        {
-            foreach (BossRewardSO reward in pool.rewards) Add(reward);
-            if (pool.breakthroughs != null)
-                foreach (BossRewardSO reward in pool.breakthroughs) Add(reward);
-        }
+        // Gerçek havuzun asset referanslarını koru: eski profil kopyaları ayrı stack yaratmasın (ortak katalog okuması).
+        MechanicsTestLab.LabCatalog.Rewards(pool, rewards);
         // Ön koşulu olmayanlar önce (aynı ailenin sırası: anten → hat → devre).
         rewards.Sort((a, b) => Depth(a) != Depth(b) ? Depth(a).CompareTo(Depth(b)) : string.CompareOrdinal(a.id, b.id));
     }
 
-    private static int Depth(BossRewardSO reward)
-    {
-        int depth = 0;
-        for (BossRewardSO r = reward.requires; r != null && depth < 8; r = r.requires) depth++;
-        return depth;
-    }
+    private static int Depth(BossRewardSO reward) => MechanicsTestLab.LabCatalog.Depth(reward);
 
     private void OnGUI()
     {
@@ -81,6 +69,8 @@ public sealed class LateGameTestWindow : EditorWindow
 
         DrawCaptureTools(rounds,inRound);
         EditorGUILayout.Space(8);
+        DrawMeteorFeel();
+        EditorGUILayout.Space(8);
         DrawEvents(inRound);
         EditorGUILayout.Space(8);
         DrawRewards();
@@ -96,6 +86,16 @@ public sealed class LateGameTestWindow : EditorWindow
                 lastMessage = "Temizlendi: tarla olayı, boss ödülleri, etkiler, geçici stat'lar ve saldırı duraklaması (oyunun kendi temizlik yolları).";
             }
         EditorGUILayout.EndScrollView();
+    }
+
+    // Hasat Yankısı meteoru his katmanları (24 Ekim 2026): oynarken tek tek kapatıp eksik hissi bulmak için. Kayda yazmaz.
+    private void DrawMeteorFeel()
+    {
+        EditorGUILayout.LabelField("Meteor hissi (Hasat Yankısı)", EditorStyles.boldLabel);
+        LateGamePresenter.MeteorMotion = EditorGUILayout.Toggle("2 · Hareket (yuvarlanma, alev kaynaması)", LateGamePresenter.MeteorMotion);
+        LateGamePresenter.MeteorImpactFrame = EditorGUILayout.Toggle("3 · Darbe karesi (uzama/basılma, parlama)", LateGamePresenter.MeteorImpactFrame);
+        LateGamePresenter.MeteorFieldReaction = EditorGUILayout.Toggle("4 · Tarla tepkisi (yakın bitkiler esner)", LateGamePresenter.MeteorFieldReaction);
+        EditorGUILayout.LabelField("Birini kapatınca \"boş\" geliyorsa o katman şart; fark yoksa ya da kalabalıksa çıkarılır.", EditorStyles.miniLabel);
     }
 
     private void DrawCaptureTools(RoundManager rounds,bool inRound)

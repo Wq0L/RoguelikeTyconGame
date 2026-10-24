@@ -1,0 +1,10 @@
+PASS: 9 checks
+ok: panelden başlatma: açık sahne GameScene iken test oturumu açıldı ve GameScene'i yükledi
+ok: panelde seçilen senaryo (06 · Hasat Ritmi) Play'e taşındı ve kuruldu
+ok: aynı güvenlik: profil kopyası ve bellekte kayıt
+ok: oturum kapandı: profil geçersiz kılması kaldırıldı
+ok: zaman ölçeği, saldırı / üretim / sayaç bayrakları ve test görünümleri geri yüklendi
+ok: Play başlangıç sahnesi ayarı bırakılmadı
+ok: Play'den çıkınca açık sahne aynen geri geldi (GameScene); test sahnesi açık kalmadı
+ok: gerçek oyuncu kayıt dosyası değişmedi (639264681050345157:252)
+ok: 445 asset ve sahne dosyası ile Build Settings sahne listesi değişmedi (profil seçimi, profiller, ödüller, tile'lar, GameScene, DemoScene dahil)

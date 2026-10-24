@@ -2,6 +2,10 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 
+// Hasar yazısının kaynağa göre rengi. Yalnız aynı türden vuruşlar tek sayıda birleşir (VFXManager.TryMergeText).
+// Overflow: Taşan Hasar'ın aktardığı hasar; aktarım parçasıyla aynı mor (sebep ve sonuç aynı renkte okunur).
+public enum DamageTextKind { Default, Overflow }
+
 public class FloatingText : MonoBehaviour
 {
     [SerializeField] private TextMeshPro textMesh;
@@ -10,6 +14,8 @@ public class FloatingText : MonoBehaviour
     [SerializeField] private float criticalFontSize = 8f;
     [SerializeField] private Color normalColor = new Color(1f, 0.96f, 0.8f);
     [SerializeField] private Color criticalColor = new Color(1f, 0.65f, 0.12f);
+    [SerializeField] private Color overflowColor = new Color(0.62f, 0.45f, 1f);
+    private DamageTextKind kind;
     private Sequence animationSequence;
     // Birleştirme vuruşu tween'siz: DOTween recycling kapalı, her birleşmede yeni tween çöp üretirdi.
     private const float MergePunchDuration = 0.18f;
@@ -62,7 +68,9 @@ public class FloatingText : MonoBehaviour
     public bool IsLeased => leased;
 
     // sizeScale: 1 = normal. Ortalamaya göre büyük vuruşlar max'a kadar büyür, küçükler daha hızlı kaybolur.
-    public void Show(int damage, bool isCrit, float sizeScale = 1f)
+    public DamageTextKind Kind => kind;
+
+    public void Show(int damage, bool isCrit, float sizeScale = 1f, DamageTextKind textKind = DamageTextKind.Default)
     {
         Vector3 spawnPosition = transform.position;
         animationSequence.Rewind();
@@ -70,6 +78,7 @@ public class FloatingText : MonoBehaviour
         cam = Camera.main != null ? Camera.main.transform : null;
         leased = true;
         LeaseId++;
+        kind = textKind;
         WriteNumber(damage);
         ApplyStyle(isCrit, sizeScale);
         textMesh.fontStyle = FontStyles.Bold;
@@ -126,7 +135,7 @@ public class FloatingText : MonoBehaviour
     private void ApplyStyle(bool isCrit, float sizeScale)
     {
         textMesh.fontSize = (isCrit ? criticalFontSize : normalFontSize) * sizeScale;
-        textMesh.color = isCrit ? criticalColor : normalColor;
+        textMesh.color = isCrit ? criticalColor : kind == DamageTextKind.Overflow ? overflowColor : normalColor;
         animationSequence.timeScale = Mathf.Clamp(2f - sizeScale, 0.8f, 1.3f);
     }
 

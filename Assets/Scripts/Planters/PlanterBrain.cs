@@ -266,6 +266,29 @@ public class PlanterBrain : MonoBehaviour
 
     private void OnDestroy() => CleanupPlacement();
 
+#if UNITY_EDITOR
+    // ---- Yalnız Editor (Mechanics Test Lab): salt okunur görünüm ve satışsız kaldırma. Bu blok build'e girmez.
+    public PlanterSO EditorData => planterData;
+    public IReadOnlyList<PlantSpawner> EditorSpawners => spawners;
+    // Rezonansın hesaba giren modifier'ları (ResonanceManager.Evaluate'in çıktısı; GetFinalStat bunları kullanır).
+    public IReadOnlyList<StatModifier> EditorResonanceModifiers => resonanceModifiers;
+    public IReadOnlyDictionary<TileModifierType, int> EditorTileCounts => tileCounts;
+    // Yerleşim kaydı (PlacementManager.CommitPlacement yazar): senaryo yakalama ve inceleme için.
+    public GridPosition EditorOrigin { get; private set; }
+    public int EditorRotation { get; private set; }
+    public void EditorRecordPlacement(GridPosition origin, int rotation) { EditorOrigin = origin; EditorRotation = rotation; }
+
+    // Saksıyı tarladan kaldırır: iade, satış animasyonu ve hasat ödülü yok. Hücre sahipliği aynı karede boşalır
+    // (yerine hemen başka saksı kurulabilir).
+    public void EditorRemove()
+    {
+        if (removed) return;
+        CleanupPlacement();
+        gameObject.SetActive(false);
+        Destroy(gameObject);
+    }
+#endif
+
     private void CleanupPlacement()
     {
         if (removed) return;
@@ -344,7 +367,7 @@ public class PlanterBrain : MonoBehaviour
         int damage = Explode(sourcePlant.transform.position, HarvestLink.Behavior(root, 0), 1f);
         HarvestChain.MarkTriggered(root, this, DamageType.Explosion);
         AttackFeed.NotifyBehavior(this, DamageType.Explosion, sourceGrid, sourcePlant.transform.position);
-        // Artçı Patlama (kırılma ödülü): şansı tutan bu normal patlamadan sonra, aynı merkezde gecikmeli ikinci patlama.
+        // Artçı Patlama: normal patlamanın dış sınırından açık hücrelere üç gecikmeli adım yayılır.
         // "damage" burada ilk patlamanın hesaplanmış hasarıdır; artçı onun bir oranını kullanır, katsayılar yeniden uygulanmaz.
         // Zincirden doğan patlama Explode'u doğrudan çağırır: artçı üretmez.
         if (RunPower.TryGetEcho(DamageType.Explosion, out BehaviorEcho echo) && BehaviorEchoes.Instance != null)
@@ -359,7 +382,13 @@ public class PlanterBrain : MonoBehaviour
     public int Explode(Vector3 center, HarvestLink link, float damageFactor)
     {
         VFXManager.Instance?.PlayExplosion(center, true);
-        int damage = HarvestChain.Scale(GetBehaviorDamage(HarvestDamage, DamageType.Explosion), damageFactor);
+        int harvestDamage = HarvestDamage;
+        int damage = HarvestChain.Scale(GetBehaviorDamage(harvestDamage, DamageType.Explosion), damageFactor);
+#if UNITY_EDITOR
+        // Sayısal iz (yalnız gözlem): patlamanın vuruş başına hasarı ve tabanı.
+        if (EditorNumericTrace.Listening)
+            EditorNumericTrace.Report(new EditorNumericTrace.BehaviorDamage(this, DamageType.Explosion, link, harvestDamage, 1f, damageFactor, false, damage));
+#endif
         GridSystem gridSystem = GridManager.Instance.GetGridSystem();
         explosionTargets.Clear();
         foreach (GridObject occupiedGrid in occupiedGrids)

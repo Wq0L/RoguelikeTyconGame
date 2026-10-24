@@ -1,0 +1,139 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e69eb45bc1e04285be4c75df059312c5, type: 3}
+  m_Name: GreedJawArt
+  m_EditorClassIdentifier: Assembly-CSharp::GreedJawArtSO
+  lit: {fileID: 2100000, guid: 9a8e09dcd306a9d4c970dd995c16cf10, type: 2}
+  ink: {fileID: 2100000, guid: 1309db654586818448b5c075ede6540a, type: 2}
+  gumUpper: {fileID: 4300000, guid: ae70b2f68f19f174494a1112d394500c, type: 2}
+  gumLower: {fileID: 4300000, guid: 4619801995ea769418da98883f79b6c5, type: 2}
+  teethUpper:
+  - {fileID: 4300000, guid: 5800a2f39283c6642bd969724dc4f6d9, type: 2}
+  - {fileID: 4300000, guid: 015f119a2881b1a488b4b45fd31da9d2, type: 2}
+  - {fileID: 4300000, guid: fe3150fec8cc21c4a9218cc5401de556, type: 2}
+  teethLower:
+  - {fileID: 4300000, guid: 3ae4872672be69e409e52f8bdea7336c, type: 2}
+  - {fileID: 4300000, guid: 61a4d0a5d1eff6f408c63d63a5b974d9, type: 2}
+  - {fileID: 4300000, guid: d342dce52f4c8e041aef51bfa93b6d76, type: 2}
+  mini: {fileID: 4300000, guid: c0abd512238e1034a9afd163f87f9ea6, type: 2}
+  chips:
+  - {fileID: 4300000, guid: 02d0734562fef784694bbd2ebe415377, type: 2}
+  - {fileID: 4300000, guid: 89635a6182bf21a42afd3ba382a4b05a, type: 2}
+  - {fileID: 4300000, guid: e9eb38bcbe41e444aa5d13895e57a2a5, type: 2}
+  spike: {fileID: 4300000, guid: 56d1ff4bccb8b88478b54483e4ecc84a, type: 2}
+  puff: {fileID: 4300000, guid: 4679e8dd0845e5e4fa48fa7f026abf16, type: 2}
+  upper:
+  - kind: 1
+    position: {x: 1.03145, y: 0.04, z: 0.68826}
+    yaw: 56.2857
+    scale: 0.9991
+  - kind: 0
+    position: {x: 0.73332, y: 0.04, z: 0.95617}
+    yaw: 37.4859
+    scale: 1.0685
+  - kind: 1
+    position: {x: 0.42639, y: 0.04, z: 1.16438}
+    yaw: 20.1126
+    scale: 0.9912
+  - kind: 2
+    position: {x: 0.05166, y: 0.04, z: 1.25394}
+    yaw: 2.359
+    scale: 0.9962
+  - kind: 1
+    position: {x: -0.45362, y: 0.04, z: 1.15405}
+    yaw: -21.4581
+    scale: 0.9864
+  - kind: 0
+    position: {x: -0.7168, y: 0.04, z: 0.96862}
+    yaw: -36.5025
+    scale: 0.9313
+  - kind: 1
+    position: {x: -1.0296, y: 0.04, z: 0.69103}
+    yaw: -56.1319
+    scale: 0.932
+  lower:
+  - kind: 1
+    position: {x: 0.99615, y: 0.04, z: 0.73844}
+    yaw: 53.4508
+    scale: 0.9648
+  - kind: 0
+    position: {x: 0.70929, y: 0.04, z: 0.97413}
+    yaw: 36.0593
+    scale: 1.0576
+  - kind: 1
+    position: {x: 0.41198, y: 0.04, z: 1.16956}
+    yaw: 19.4049
+    scale: 0.9921
+  - kind: 2
+    position: {x: -0.0325, y: 0.04, z: 1.25458}
+    yaw: -1.4837
+    scale: 0.9793
+  - kind: 1
+    position: {x: -0.4151, y: 0.04, z: 1.16846}
+    yaw: -19.5576
+    scale: 1.0479
+  - kind: 0
+    position: {x: -0.69135, y: 0.04, z: 0.98694}
+    yaw: -35.0111
+    scale: 1.0503
+  - kind: 1
+    position: {x: -1.03149, y: 0.04, z: 0.68821}
+    yaw: -56.2887
+    scale: 0.9433
+  chipSlots:
+  - color: 0
+    direction: {x: 0.98394, y: 0.17851}
+    distance: 0.7443
+    rise: 0.829
+    scale: 0.913
+  - color: 1
+    direction: {x: 0.89285, y: 0.45036}
+    distance: 0.9347
+    rise: 0.7445
+    scale: 0.9881
+  - color: 2
+    direction: {x: 0.37764, y: 0.92595}
+    distance: 0.9004
+    rise: 0.8404
+    scale: 1.0653
+  - color: 0
+    direction: {x: -0.23829, y: 0.97119}
+    distance: 0.7036
+    rise: 0.8253
+    scale: 1.2286
+  - color: 1
+    direction: {x: -0.94118, y: 0.33789}
+    distance: 0.7097
+    rise: 0.6286
+    scale: 1.1678
+  - color: 2
+    direction: {x: -0.99487, y: -0.1012}
+    distance: 0.9204
+    rise: 0.582
+    scale: 1.1394
+  - color: 0
+    direction: {x: -0.65076, y: -0.75928}
+    distance: 0.7201
+    rise: 0.724
+    scale: 0.7905
+  - color: 1
+    direction: {x: 0.13669, y: -0.99061}
+    distance: 0.6458
+    rise: 0.8358
+    scale: 1.1021
+  - color: 2
+    direction: {x: 0.91757, y: -0.39758}
+    distance: 1.0459
+    rise: 0.8399
+    scale: 1.1198
+  designRadius: 1.5
+  miniRadius: 1.7

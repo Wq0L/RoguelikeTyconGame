@@ -1,0 +1,294 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using UnityEditor;
+using UnityEngine;
+using Object = UnityEngine.Object;
+
+// Geçici, yalnız izole kopyada (repo değişmez): B5 tur 4 (24 Ekim 2026). Toon "dolan tekrar oku" rozeti + KALABALIK SAHNE.
+// 12 davranışlı saksı (patlama / elektrik / kasırga / bumerang), Aşırı Yükleme alınmış, büyük alanlı gerçek saldırı 0,2 sn'de bir;
+// 2 sn boyunca EditorApplication.Step ile kare kare. Koşu 0: oyunun bugünkü hâli. Koşu 1: mevcut işaret gizli, toon rozetler.
+// Rozet çekim betiğinde çizilir (her gerçek hazırlık için bir kart; tekrar cue'sunda patlama). Hasar yazıları gerçek.
+[InitializeOnLoad]
+public static class OverloadGameCapture
+{
+    const string Key = "OverloadGameCapture", Out = "Logs/OverloadGame/";
+    const int Frames = 100, AttackEvery = 10, CW = 1280, CH = 720, ZW = 640, ZH = 400;
+    const BindingFlags F = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
+    static readonly Color Ink = new Color32(26, 19, 36, 255), Cream = new Color32(255, 244, 214, 255), CreamShade = new Color32(232, 212, 172, 255),
+        Track = new Color32(214, 200, 210, 255), Fuchsia = new Color32(179, 21, 110, 255);
+    static readonly (int x, int z, string type)[] Pots =
+    {
+        (2, 2, "Explosive"), (5, 2, "Electric"), (8, 2, "Tornado"), (2, 5, "Boomerang"), (5, 5, "Explosive"), (8, 5, "Electric"),
+        (2, 8, "Tornado"), (5, 8, "Boomerang"), (8, 8, "Explosive"), (3, 6, "Electric"), (7, 4, "Explosive"), (6, 7, "Electric"),
+    };
+    static int step, frame, run = 0;
+    static double next;
+    static readonly List<string> notes = new();
+    static readonly List<(Vector3 at, int start)> pops = new();
+    static readonly List<GameObject> cards = new();
+    static Mesh badgeMesh, popMesh;
+    static readonly Dictionary<float, Mesh> fillMeshes = new();
+    static Material material;
+    static Vector3 center;
+    static object Lab(string n, params object[] a) { var m = typeof(GecOyunV1Verification).GetMethod(n, BindingFlags.Static | BindingFlags.NonPublic); return m.Invoke(null, m.GetParameters().Select((p, i) => i < a.Length ? a[i] : p.DefaultValue).ToArray()); }
+    static OverloadGameCapture() { EditorApplication.update += Tick; }
+    public static void RunBatch()
+    {
+        if (!Application.dataPath.Contains("VerificationProject")) throw new Exception("isolated only");
+        GecOyunV1Verification.RunBatch(); SessionState.SetBool("GecOyunV1Verification", false); SessionState.SetBool(Key, true);
+    }
+    // Koşu 2: rozet üstte-çizim shader'ıyla (derinliğe bakmaz, bulutun üstünde) ve hasar yazıları rozetlerden SONRA (3100):
+    // rozet hiçbir sayıyı örtemez. Yalnız bu koşu çalıştırılır (0 ve 1 önceki çekimde var).
+    static string RunName => "oyunKodu";
+    static Material popupMaterial; static int popupQueue = -1;
+
+    static void Setup()
+    {
+        var p = Object.FindFirstObjectByType<LateGamePresenter>();
+        Lab("ResetRewards"); Lab("ClearTiles");
+        foreach (var pot in Pots) Lab("Tile", pot.x, pot.z, pot.type, 1f);
+        Lab("Refill"); Lab("Strike", 100f, 9f);
+        var reward = BossRewardManager.Instance.Pool.stages.SelectMany(x => x.rewards).Select(x => x.reward).First(x => x.id == "asiri_yukleme");
+        if (RunEffects.Instance.Find<OverloadEffect>() == null && !BossRewardManager.Instance.EditorGrant(reward, out string refusal)) throw new Exception("grant: " + refusal);
+        p.enabled = false; p.enabled = true;
+        center = (Vector3)Lab("PosAt", 5, 5);
+        pops.Clear(); frame = 0;
+        Directory.CreateDirectory(Out + RunName + "/tam"); Directory.CreateDirectory(Out + RunName + "/yakin");
+    }
+    // Davranışlı saksıların bitkileri 1 canla yeniden doğar (diğer bitkiler yüksek canlı kalır, davranışların hasar yazıları görünsün).
+    static void Rearm()
+    {
+        foreach (var pot in Pots)
+        {
+            var spawner = (PlantSpawner)Lab("SpawnerAt", pot.x, pot.z);
+            spawner.RemoveSpawnedPlant();
+            typeof(PlantSpawner).GetMethod("TrySpawnPlant", F).Invoke(spawner, null);
+            Lab("SetHealth", pot.x, pot.z, 1);
+        }
+    }
+    static void Cue(RewardCue c) { if (c.Kind == RewardCueKind.Overload) pops.Add((c.From, frame)); }
+
+    // ---- toon rozet ağları (kart uzayı: x sağ, y yukarı, z bakış; eksi z kameraya yakın) ----
+    static readonly List<Vector3> v = new(); static readonly List<Color> c = new(); static readonly List<int> t = new();
+    static void Tri(Vector2 a, Vector2 b, Vector2 d, float z, Color col) { int i = v.Count; v.Add(new Vector3(a.x, a.y, z)); v.Add(new Vector3(b.x, b.y, z)); v.Add(new Vector3(d.x, d.y, z)); c.Add(col.linear); c.Add(col.linear); c.Add(col.linear); t.Add(i); t.Add(i + 1); t.Add(i + 2); }
+    static Vector2 P(float r, float deg) => new(r * Mathf.Cos(deg * Mathf.Deg2Rad), r * Mathf.Sin(deg * Mathf.Deg2Rad));
+    // El yapımı düzensizlik: sabit tohumlu dalga (her rozet aynı; Random yok).
+    static float Wobble(float deg) => 1f + .035f * Mathf.Sin(deg * Mathf.Deg2Rad * 5f + .7f) + .02f * Mathf.Sin(deg * Mathf.Deg2Rad * 9f + 2.1f);
+    static void Blob(float r, Vector2 offset, float z, Color col, int seg = 40)
+    {
+        for (int i = 0; i < seg; i++)
+        {
+            float a0 = 360f * i / seg, a1 = 360f * (i + 1) / seg;
+            Tri(offset, offset + P(r * Wobble(a0), a0), offset + P(r * Wobble(a1), a1), z, col);
+        }
+    }
+    static void Arc(float rIn, float rOut, float a0, float a1, float z, Color col, int seg)
+    {
+        for (int i = 0; i < seg; i++)
+        {
+            float x0 = Mathf.Lerp(a0, a1, i / (float)seg), x1 = Mathf.Lerp(a0, a1, (i + 1) / (float)seg);
+            Tri(P(rIn, x0), P(rOut, x0), P(rOut, x1), z, col); Tri(P(rIn, x0), P(rOut, x1), P(rIn, x1), z, col);
+        }
+    }
+    static Mesh Build(Action draw, string name)
+    {
+        v.Clear(); c.Clear(); t.Clear(); draw();
+        var mesh = new Mesh { name = name };
+        mesh.SetVertices(v); mesh.SetColors(c); mesh.SetTriangles(t, 0); mesh.RecalculateBounds();
+        return mesh;
+    }
+    // Rozet gövdesi: sticker gölgesi, mürekkep kenar, iki tonlu krem disk, soluk yol izi.
+    static void Badge()
+    {
+        Blob(.6f, new Vector2(.05f, -.06f), .05f, Ink);
+        Blob(.58f, Vector2.zero, .04f, Ink);
+        Blob(.5f, Vector2.zero, .03f, CreamShade);
+        Blob(.45f, new Vector2(-.035f, .04f), .025f, Cream);
+        Arc(.3f, .33f, 0f, 360f, .02f, Track, 40);
+    }
+    // Dolan ok (saat yönü, 90°'den): mürekkep, renk, koyu iç şerit, krem parlama; uçta ok başı.
+    static void Arrow(float sweep)
+    {
+        const float rIn = .22f, rOut = .4f, mid = .31f;
+        sweep = Mathf.Max(sweep, 10f);
+        float a1 = 90f - sweep;
+        int seg = Mathf.Max(3, Mathf.CeilToInt(sweep / 10f));
+        void Head(float grow, float z, Color k)
+        {
+            Tri(P(rIn - .1f - grow * 1.4f, a1 + grow * 20f), P(rOut + .1f + grow * 1.4f, a1 + grow * 20f), P(mid, a1 - 32f - grow * 70f), z, k);
+        }
+        Arc(rIn - .05f, rOut + .05f, 90f + 3f, a1, 0f, Ink, seg); Head(.05f, 0f, Ink);
+        Arc(rIn, rOut, 90f, a1, -.01f, Fuchsia, seg); Head(0f, -.01f, Fuchsia);
+        Arc(rIn, mid - .02f, 90f, a1, -.02f, Fuchsia * .62f + Ink * .38f, seg);            // toon gölge şeridi (iç yarı)
+        Arc(rOut - .045f, rOut - .02f, 90f - 8f, Mathf.Max(a1, 90f - Mathf.Min(sweep, 70f)), -.03f, Cream, 6);   // parlama
+    }
+    static Mesh Fill(float sweep)
+    {
+        float key = Mathf.Round(sweep / 10f) * 10f;   // 10°'lik basamaklar: ağlar bir kez üretilir, yeniden kullanılır
+        if (!fillMeshes.TryGetValue(key, out var mesh)) fillMeshes[key] = mesh = Build(() => { Badge(); Arrow(key); }, "fill " + key);
+        return mesh;
+    }
+
+    static void EnsureAssets()
+    {
+        if (material != null) return;
+        material = new Material(run == 2 ? AssetDatabase.LoadAssetAtPath<Shader>("Assets/Editor/ProtoOverlayVertexColor.shader") : Resources.Load<Shader>("ParticleVertexColor"));
+        popMesh = Build(() =>
+        {
+            Badge(); Arrow(290f);
+            for (int i = 0; i < 8; i++) { float a = i * 45f + 10f; Tri(P(.66f, a - 6f), P(.66f, a + 6f), P(.95f, a), .06f, Ink); Tri(P(.7f, a - 3.5f), P(.7f, a + 3.5f), P(.88f, a), .055f, Cream); }
+        }, "pop");
+    }
+    static GameObject Card(int i)
+    {
+        while (cards.Count <= i)
+        {
+            var go = new GameObject("proto badge", typeof(MeshFilter), typeof(MeshRenderer));
+            var renderer = go.GetComponent<MeshRenderer>();
+            renderer.sharedMaterial = material;
+            if (run == 2) renderer.sortingOrder = 3;   // patlama parçacıkları 1–2: rozet bulutun üstünde
+            cards.Add(go);
+        }
+        return cards[i];
+    }
+    static float Back(float x, float k = 2.2f) { x = Mathf.Clamp01(x) - 1f; return 1f + x * x * ((k + 1f) * x + k); }
+    static float Smooth(float x) { x = Mathf.Clamp01(x); return x * x * (3f - 2f * x); }
+
+    static int PoseBadges()
+    {
+        EnsureAssets();
+        var cam = Camera.main.transform;
+        var overload = RunEffects.Instance.Find<OverloadEffect>();
+        int n = 0;
+        for (int i = 0; i < OverloadEffect.PresentationCapacity; i++)
+        {
+            if (!overload.TryPreparation(i, out Vector3 at, out float progress)) continue;
+            var go = Card(n++); go.SetActive(true);
+            go.GetComponent<MeshFilter>().sharedMesh = Fill(290f * Smooth(progress));
+            float scale = Back(progress / .2f) * (1f + .08f * Mathf.Sin(progress * Mathf.PI * 4f));
+            go.transform.SetPositionAndRotation(at + Vector3.up * .7f - cam.forward * (run == 2 ? 0f : 4f), cam.rotation);
+            go.transform.localScale = Vector3.one * (.8f * scale);
+        }
+        foreach (var (at, start) in pops)
+        {
+            float u = (frame - start) / 7f;
+            if (u < 0f || u > 1f) continue;
+            var go = Card(n++); go.SetActive(true);
+            go.GetComponent<MeshFilter>().sharedMesh = popMesh;
+            float scale = u < .3f ? 1f + .35f * Smooth(u / .3f) : 1.35f * (1f - Smooth((u - .3f) / .7f));
+            go.transform.SetPositionAndRotation(at + Vector3.up * .7f - cam.forward * (run == 2 ? 0f : 4f), cam.rotation * Quaternion.AngleAxis(-160f * u, Vector3.forward));
+            go.transform.localScale = Vector3.one * (.8f * scale);
+        }
+        for (int i = n; i < cards.Count; i++) cards[i].SetActive(false);
+        return n;
+    }
+    static void HideMarkers()
+    {
+        var p = Object.FindFirstObjectByType<LateGamePresenter>();
+        foreach (var item in (Array)typeof(LateGamePresenter).GetField("overloadPreparations", F).GetValue(p))
+            if (item != null) ((GameObject)item.GetType().GetField("root", F).GetValue(item)).SetActive(false);
+        foreach (var item in (System.Collections.IList)typeof(LateGamePresenter).GetField("flashes", F).GetValue(p))
+        {
+            var root = (GameObject)item.GetType().GetField("root", F).GetValue(item);
+            if (root.name.Contains("Overload") || root.name.Contains("Pulse")) root.SetActive(false);
+        }
+    }
+
+    static void Tick()
+    {
+        if (!SessionState.GetBool(Key, false) || !EditorApplication.isPlaying || EditorApplication.isCompiling) return;
+        if (next == 0) { next = EditorApplication.timeSinceStartup + 2; return; }
+        if (EditorApplication.timeSinceStartup < next) { EditorApplication.QueuePlayerLoopUpdate(); return; }
+        try
+        {
+            if (step == 0) { if (double.IsNaN((double)Lab("Lab"))) return; RunEffects.Cued += Cue; step = 1; }
+            if (step == 1)
+            {
+                Setup();
+                Time.captureDeltaTime = 1f / 30f;
+                EditorApplication.isPaused = true;
+                step = 2;
+            }
+            if (step == 2)
+            {
+                if (frame % AttackEvery == 0 && frame < Frames - 20) { Rearm(); Lab("Attack", 5, 5); }
+                int badges = 0;
+                if (run >= 1) { HideMarkers(); badges = PoseBadges(); }
+                // Hasar yazıları sıralamada rozetin de üstünde (4): rozet hiçbir sayıyı örtemez.
+                if (run == 2) foreach (var tx in Object.FindObjectsByType<FloatingText>(FindObjectsSortMode.None)) { var r = tx.GetComponentInChildren<MeshRenderer>(); if (r != null) r.sortingOrder = 4; }
+                if (run == 2 && popupMaterial == null)
+                {
+                    var text = Object.FindObjectsByType<FloatingText>(FindObjectsSortMode.None).FirstOrDefault();
+                    if (text != null)
+                    {
+                        var mesh = (TMPro.TextMeshPro)typeof(FloatingText).GetField("textMesh", F).GetValue(text);
+                        popupMaterial = mesh.fontSharedMaterial; popupQueue = popupMaterial.renderQueue; popupMaterial.renderQueue = 3100;
+                        notes.Add($"popup material {popupMaterial.name}: queue {popupQueue} → 3100");
+                    }
+                }
+                int popups = Object.FindObjectsByType<FloatingText>(FindObjectsSortMode.None).Count(x => x.isActiveAndEnabled);
+                Shot($"{RunName}/tam/{frame:000}", 1f, CW, CH);
+                Shot($"{RunName}/yakin/{frame:000}", .5f, ZW, ZH);
+                if (frame % 5 == 0) notes.Add($"{RunName} f{frame}: popups {popups}, badges {badges}, overload granted {RunEffects.Instance.Find<OverloadEffect>().Granted}, fired {RunEffects.Instance.Find<OverloadEffect>().Fired}");
+                frame++;
+                if (frame >= Frames)
+                {
+                    foreach (var card in cards) card.SetActive(false);
+                    run++;
+                    EditorApplication.isPaused = false;
+                    if (run >= 1) { Time.captureDeltaTime = 0; Finish(null); return; }
+                    step = 1; next = EditorApplication.timeSinceStartup + .5; return;
+                }
+                EditorApplication.Step();
+                return;
+            }
+        }
+        catch (Exception e) { Finish(e.InnerException ?? e); }
+        EditorApplication.QueuePlayerLoopUpdate();
+    }
+    // zoom 1: oyun kamerası (tam kare küçültülmüş); zoom < 1: merkeze yakın plan.
+    static void Shot(string name, float zoom, int w, int h)
+    {
+        var cam = Camera.main; var tr = cam.transform;
+        Vector3 pos = tr.position; float size = cam.orthographicSize;
+        if (zoom < 1f) { Vector3 vv = center + Vector3.up * .6f - pos, fw = tr.forward; tr.position = pos + (vv - fw * Vector3.Dot(vv, fw)); cam.orthographicSize = size * zoom; }
+        var canvases = Object.FindObjectsByType<Canvas>(FindObjectsSortMode.None).Where(x => x.isRootCanvas && x.renderMode == RenderMode.ScreenSpaceOverlay).ToArray();
+        foreach (var canvas in canvases) canvas.enabled = false;
+        var target = new RenderTexture(1600, 900, 24); target.Create(); cam.targetTexture = target;
+        UnityEngine.Rendering.RenderPipeline.SubmitRenderRequest(cam, new UnityEngine.Rendering.Universal.UniversalRenderPipeline.SingleCameraRequest { destination = target });
+        var previous = RenderTexture.active; RenderTexture.active = target;
+        var image = new Texture2D(1600, 900, TextureFormat.RGB24, false);
+        image.ReadPixels(new Rect(0, 0, 1600, 900), 0, 0); image.Apply();
+        cam.targetTexture = null; RenderTexture.active = previous;
+        foreach (var canvas in canvases) canvas.enabled = true;
+        tr.position = pos; cam.orthographicSize = size;
+        Texture2D output;
+        if (zoom < 1f)
+        {
+            output = new Texture2D(w, h, TextureFormat.RGB24, false);
+            output.SetPixels(image.GetPixels((1600 - w) / 2, (900 - h) / 2, w, h)); output.Apply();
+        }
+        else
+        {
+            var scaled = RenderTexture.GetTemporary(w, h); Graphics.Blit(image, scaled);
+            var prev = RenderTexture.active; RenderTexture.active = scaled;
+            output = new Texture2D(w, h, TextureFormat.RGB24, false); output.ReadPixels(new Rect(0, 0, w, h), 0, 0); output.Apply();
+            RenderTexture.active = prev; RenderTexture.ReleaseTemporary(scaled);
+        }
+        File.WriteAllBytes(Out + name + ".png", output.EncodeToPNG());
+        Object.Destroy(image); Object.Destroy(target); Object.Destroy(output);
+    }
+    static void Finish(Exception e)
+    {
+        RunEffects.Cued -= Cue;
+        if (popupMaterial != null) popupMaterial.renderQueue = popupQueue;   // paylaşılan malzeme geri alınır
+        SessionState.SetBool(Key, false);
+        Time.captureDeltaTime = 0;
+        Directory.CreateDirectory(Out);
+        File.WriteAllLines(Out + "OverloadGameCapture.txt", new[] { e == null ? "PASS" : "FAIL " + e }.Concat(notes));
+        EditorApplication.Exit(e == null ? 0 : 1);
+    }
+}

@@ -1,0 +1,109 @@
+PASS 108
+PASS add hilal_darbesi
+PASS blade pivot starts on actual radius-one cursor circumference
+PASS base range is three world units
+PASS all waves complete
+PASS base travels exactly three units from its spawn front
+PASS base motion lasts about 0.79 seconds at 3.8 units/sec
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS Growing Moon immediately adds one range unit
+PASS upgraded visual begins growing from spawn before any hit or harvest
+PASS first harvest does not restart or jump spawn growth
+PASS growth stays gradual during early travel
+PASS nonlethal next front resets gameplay growth without restarting visual growth
+PASS growth reaches full width at eighty percent of travel
+PASS growth follows forward world travel
+PASS all waves complete
+PASS upgraded wave travels four units in about 1.05 seconds
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS add dolunay
+PASS four primary waves active
+PASS four primaries each spawn exactly one extra moon
+PASS four primaries plus four extras have exactly eight visuals
+PASS one extra starts large in a different direction 4
+PASS full moon starts at its side of original ring 4
+PASS one extra starts large in a different direction 5
+PASS full moon starts at its side of original ring 5
+PASS one extra starts large in a different direction 6
+PASS full moon starts at its side of original ring 6
+PASS one extra starts large in a different direction 7
+PASS full moon starts at its side of original ring 7
+PASS all waves complete
+PASS full moon waves do not recursively trigger pairs
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS add dolunay
+PASS single trigger leaves one primary and one large extra, not three waves
+PASS extra stays large and applies configured 56 damage
+PASS all waves complete
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS add dolunay
+PASS all waves complete
+PASS real direct attack charges a ring-born wave and triggers Full Moon outside the attack circle
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS add dolunay
+PASS all waves complete
+PASS all waves complete
+PASS all waves complete
+PASS all waves complete
+PASS all waves complete
+PASS pooled presentation count stable on cycle 4
+PASS all waves complete
+PASS pooled presentation count stable on cycle 5
+PASS all waves complete
+PASS pooled presentation count stable on cycle 6
+PASS all waves complete
+PASS pooled presentation count stable on cycle 7
+PASS all waves complete
+PASS pooled presentation count stable on cycle 8
+PASS all waves complete
+PASS pooled presentation count stable on cycle 9
+PASS all waves complete
+PASS pooled presentation count stable on cycle 10
+PASS all waves complete
+PASS pooled presentation count stable on cycle 11
+PASS all waves complete
+PASS pooled presentation count stable on cycle 12
+PASS all waves complete
+PASS pooled presentation count stable on cycle 13
+PASS all waves complete
+PASS pooled presentation count stable on cycle 14
+PASS all waves complete
+PASS pooled presentation count stable on cycle 15
+PASS all waves complete
+PASS pooled presentation count stable on cycle 16
+PASS all waves complete
+PASS pooled presentation count stable on cycle 17
+PASS all waves complete
+PASS pooled presentation count stable on cycle 18
+PASS all waves complete
+PASS pooled presentation count stable on cycle 19
+PASS all waves complete
+PASS pooled presentation count stable on cycle 20
+PASS all waves complete
+PASS pooled presentation count stable on cycle 21
+PASS all waves complete
+PASS pooled presentation count stable on cycle 22
+PASS all waves complete
+PASS pooled presentation count stable on cycle 23
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS add dolunay
+PASS outward corner wave starts beyond field boundary
+PASS outward wave survives invalid grid cell without damage
+PASS corner extra keeps full size and different direction
+PASS all waves complete
+PASS corner wave completes four world units without visual clipping
+PASS add hilal_darbesi
+PASS crossing locked cells preserves motion and skips damage
+PASS all waves complete
+PASS small field does not shorten three-unit world travel
+PASS add hilal_darbesi
+PASS add buyuyen_ay
+PASS round cleanup releases waves, visuals and timers
+PASS add hilal_darbesi
+PASS real scheduler completes slow route with two correctly scaled hits

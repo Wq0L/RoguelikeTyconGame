@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80966fd399724246ab4f02a09410c135, type: 3}
+  m_Name: ThornBurstArt
+  m_EditorClassIdentifier: Assembly-CSharp::ThornBurstArtSO
+  lit: {fileID: 2100000, guid: 9a8e09dcd306a9d4c970dd995c16cf10, type: 2}
+  ink: {fileID: 2100000, guid: 1309db654586818448b5c075ede6540a, type: 2}
+  blast: {fileID: 4300000, guid: c7b06d42a6b17af43ba94377b376952b, type: 2}
+  lines: {fileID: 4300000, guid: 3713c93069a4acc4785798a6879b9670, type: 2}
+  clouds:
+  - {fileID: 4300000, guid: 37c19e54d2a2c72498a7256d01cb624e, type: 2}
+  - {fileID: 4300000, guid: aa3ac113f8c2b2c4cb372f804d642c28, type: 2}
+  - {fileID: 4300000, guid: adaa2450110d9654eb41561efbe2980c, type: 2}
+  craterScorch: {fileID: 4300000, guid: b0b801f424dad5644a5faf79a492aff6, type: 2}
+  clods:
+  - {fileID: 4300000, guid: b98ad09136a6eae4890b6f71f830bc79, type: 2}
+  - {fileID: 4300000, guid: 3a2291187dd59da41b7fbe6bfbb3550e, type: 2}
+  - {fileID: 4300000, guid: ca72faa642089ea439b552a8d8f2039e, type: 2}
+  craterLit: {fileID: 4300000, guid: 75df51a1ef65f8246aa1a1dab4eea6dd, type: 2}
+  clodFlights:
+  - variant: 2
+    direction: {x: 0.98394, y: 0.17851}
+    distance: 1.0683
+    rise: 1.858
+    spin: -3.0795
+    size: 0.913
+  - variant: 1
+    direction: {x: 0.77513, y: 0.6318}
+    distance: 1.3279
+    rise: 1.3164
+    spin: 1.0452
+    size: 1.0289
+  - variant: 0
+    direction: {x: 0.17328, y: 0.98487}
+    distance: 0.9198
+    rise: 1.9657
+    spin: -2.6186
+    size: 1.1756
+  - variant: 1
+    direction: {x: -0.65306, y: 0.75731}
+    distance: 1.485
+    rise: 1.3463
+    spin: -1.4281
+    size: 1.0037
+  - variant: 2
+    direction: {x: -0.82716, y: 0.56196}
+    distance: 1.2738
+    rise: 1.364
+    spin: -2.4665
+    size: 1.1394
+  - variant: 1
+    direction: {x: -0.99524, y: -0.09748}
+    distance: 1.2921
+    rise: 1.5501
+    spin: 1.6341
+    size: 0.8501
+  - variant: 0
+    direction: {x: -0.70173, y: -0.71245}
+    distance: 1.5875
+    rise: 1.7918
+    spin: 1.9451
+    size: 1.1697
+  - variant: 1
+    direction: {x: 0.37498, y: -0.92703}
+    distance: 1.2229
+    rise: 1.2635
+    spin: 2.2525
+    size: 0.7975
+  - variant: 2
+    direction: {x: 0.78049, y: -0.62517}
+    distance: 1.2113
+    rise: 1.8215
+    spin: 0.4164
+    size: 0.8032
+  cloudPuffs:
+  - variant: 0
+    screen: {x: 0.99938, y: 0.0123}
+    reach: 0.7768
+    rise: 0.3609
+    delay: 1.3037
+    size: 0.4085
+  - variant: 1
+    screen: {x: 0.45982, y: 0.3108}
+    reach: 0.5246
+    rise: 0.5107
+    delay: 1.2342
+    size: 0.4472
+  - variant: 2
+    screen: {x: -0.22417, y: 0.34109}
+    reach: 0.6613
+    rise: 0.4281
+    delay: 1.8871
+    size: 0.4553
+  - variant: 0
+    screen: {x: -0.9283, y: 0.13014}
+    reach: 0.5737
+    rise: 0.4484
+    delay: 0.1052
+    size: 0.3622
+  - variant: 1
+    screen: {x: -0.87634, y: -0.16859}
+    reach: 0.6205
+    rise: 0.5886
+    delay: 1.856
+    size: 0.423
+  - variant: 2
+    screen: {x: -0.19533, y: -0.34326}
+    reach: 0.4969
+    rise: 0.2724
+    delay: 1.96
+    size: 0.4154
+  - variant: 0
+    screen: {x: 0.53577, y: -0.29553}
+    reach: 0.8087
+    rise: 0.5499
+    delay: 0.2464
+    size: 0.3499

@@ -2,6 +2,10 @@ Shader "ClickerGame/ThornComicToon"
 {
     Properties
     {
+        _Opacity ("Opacity", Range(0,1)) = 1
+        [HideInInspector] _SrcBlend ("Source blend", Float) = 1
+        [HideInInspector] _DstBlend ("Destination blend", Float) = 0
+        [HideInInspector] _ZWrite ("Depth write", Float) = 1
         _ToonFlash ("Hit flash", Range(0,1)) = 0
         _ToonFlashColor ("Hit flash color", Color) = (1,1,1,1)
         _Ink ("Ink", Color) = (.10,.065,.12,1)
@@ -16,7 +20,8 @@ Shader "ClickerGame/ThornComicToon"
         {
             Tags { "LightMode"="SRPDefaultUnlit" }
             Cull [_Cull]
-            ZWrite On
+            ZWrite [_ZWrite]
+            Blend [_SrcBlend] [_DstBlend]
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -26,6 +31,7 @@ Shader "ClickerGame/ThornComicToon"
                 half4 _Ink;
                 half4 _ToonFlashColor;
                 float _ToonFlash;
+                float _Opacity;
                 float _OutlineWidth;
                 float _InkMode;
                 float _Cull;
@@ -49,7 +55,7 @@ Shader "ClickerGame/ThornComicToon"
                 half band = n > .55 ? 1.0 : n > -.12 ? .8 : .57;
                 half3 paper = i.color.rgb * band;
                 paper = lerp(paper, _ToonFlashColor.rgb, saturate(_ToonFlash));
-                return half4(lerp(paper, _Ink.rgb, _InkMode), 1);
+                return half4(lerp(paper, _Ink.rgb, _InkMode), saturate(_Opacity));
             }
             ENDHLSL
         }

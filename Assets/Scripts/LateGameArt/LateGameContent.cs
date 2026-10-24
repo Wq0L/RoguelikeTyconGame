@@ -9,6 +9,7 @@ public sealed class LateGameContent : MonoBehaviour
     public LateGameShell shell;
     public LateGameBounty bounty;
     public LateGameAntenna antenna;
+    public LateGameCritBurst critBurst;
     public ParticleSystem[] onShow, onHit, onHide;
     public Animator animator;
     public string showTrigger = "Show", hitTrigger = "Hit", hideTrigger = "Hide";
@@ -28,6 +29,12 @@ public sealed class LateGameContent : MonoBehaviour
     private Renderer[] hitRenderers;
     private float hitRemaining;
     private bool hiding;
+    // Güçlü vuruş (24 Ekim 2026, kesilecek hedefler): darbe yönünden geri tepme + eğilme, daha sert basılma, hasar arttıkça öfkeli
+    // titreme. Yalnız Hit(away, strength) ile açılır; düz Hit() eski davranıştır. Kök döndürülmez: yön dünya = yerel.
+    private Vector3 recoil;
+    private float hitStrength = 1f, damage;
+    private bool angry;
+    private Quaternion visualRotation = Quaternion.identity;
 
     public void Show()
     {
@@ -35,9 +42,11 @@ public sealed class LateGameContent : MonoBehaviour
         preparing = false;
         if (visual != null)
         {
-            if (!originCaptured) { visualOrigin = visual.localPosition; originCaptured = true; }
+            if (!originCaptured) { visualOrigin = visual.localPosition; visualRotation = visual.localRotation; originCaptured = true; }
             visual.localPosition = visualOrigin;
+            visual.localRotation = visualRotation;
         }
+        recoil = Vector3.zero; hitStrength = 1f; damage = 0f; angry = false;
         ClearHitFlash();
         hitRemaining = 0f;
         Stop(onShow); Stop(onHit); Stop(onHide);
@@ -59,14 +68,25 @@ public sealed class LateGameContent : MonoBehaviour
         shell?.ResetPose();
         bounty?.ResetPose();
         antenna?.ResetPose();
+        critBurst?.ResetPose();
         Play(onShow, showTrigger);
     }
 
     public void SetDamage(float fraction)
     {
+        damage = Mathf.Clamp01(fraction);
         if (damageStages == null) return;
         for (int i = 0; i < damageStages.Length; i++) if (damageStages[i] != null)
             damageStages[i].SetActive(fraction >= (i + 1f) / (damageStages.Length + 1f));
+    }
+    // away: vuruş merkezinden hedefe (yatay); strength > 1 basılmayı büyütür ve öfkeli titremeyi açar.
+    public void Hit(Vector3 away, float strength)
+    {
+        away.y = 0f;
+        recoil = away.sqrMagnitude > 1e-6f ? away.normalized : Vector3.zero;
+        hitStrength = Mathf.Max(1f, strength);
+        angry = strength > 1f;
+        Hit();
     }
     public void Hit()
     {
@@ -90,11 +110,13 @@ public sealed class LateGameContent : MonoBehaviour
     {
         ClearHitFlash();
         Stop(onShow); Stop(onHit); Stop(onHide); hiding = preparing = false; hitRemaining = 0f;
-        if (visual != null && originCaptured) visual.localPosition = visualOrigin;
+        recoil = Vector3.zero; hitStrength = 1f; damage = 0f; angry = false;
+        if (visual != null && originCaptured) { visual.localPosition = visualOrigin; visual.localRotation = visualRotation; }
         petals?.ResetPose();
         shell?.ResetPose();
         bounty?.ResetPose();
         antenna?.ResetPose();
+        critBurst?.ResetPose();
     }
 
     // Called once by presenter; child-only squash and deterministic debris (no physics or per-piece Update).
@@ -113,21 +135,38 @@ public sealed class LateGameContent : MonoBehaviour
                 visual.localScale = Vector3.Scale(visual.localScale,
                     new Vector3(1f, 1f + strength * .45f * Mathf.Abs(Mathf.Sin(age * 14f + phase)), 1f));
             }
+            // Öfkeli titreme: güçlü hedef yarı hasardan sonra sabit desenle (Random yok) giderek sertleşen titreme.
+            if (angry && damage > .3f && !hiding)
+            {
+                float phase = transform.position.x * 1.3f + transform.position.z * 2.1f;
+                offset += new Vector3(Mathf.Sin(age * 61f + phase), 0f, Mathf.Cos(age * 53f + phase)) * (.06f * Mathf.InverseLerp(.3f, 1f, damage));
+            }
+            // Geri tepme: darbe yönünden hızla savrulur, yaylanarak döner; tepe darbeden uzağa eğilir.
+            Quaternion tilt = Quaternion.identity;
+            if (hitRemaining > 0f && !hiding && recoil != Vector3.zero)
+            {
+                float e = HitSeconds - hitRemaining;
+                float kick = e < .05f ? e / .05f : Mathf.Exp(-(e - .05f) * 11f) * Mathf.Cos((e - .05f) * 24f);
+                offset += recoil * (.22f * hitStrength * kick);
+                tilt = Quaternion.AngleAxis(14f * hitStrength * kick, Vector3.Cross(Vector3.up, recoil));
+            }
             visual.localPosition = visualOrigin + offset;
+            if (originCaptured) visual.localRotation = tilt * visualRotation;
         }
         if (visual != null && hitRemaining > 0f && !hiding)
         {
             hitRemaining = Mathf.Max(0f, hitRemaining - delta);
             float elapsed = HitSeconds - hitRemaining;
-            // Firm compression followed by a smaller rebound, like PlantJuice.
+            // Firm compression followed by a smaller rebound, like PlantJuice. Güçlü vuruşta daha derin (en çok %55).
             float squash = elapsed < .20f ? Mathf.Sin(elapsed / .20f * Mathf.PI)
                 : -.25f * Mathf.Sin((elapsed - .20f) / .12f * Mathf.PI);
-            visual.localScale = Vector3.Scale(visual.localScale, new Vector3(1f + squash * .22f, 1f - squash * .32f, 1f + squash * .22f));
+            visual.localScale = Vector3.Scale(visual.localScale, new Vector3(1f + squash * .22f * hitStrength, Mathf.Max(.45f, 1f - squash * .32f * hitStrength), 1f + squash * .22f * hitStrength));
         }
         petals?.Pose(age, hitRemaining / HitSeconds, exitProgress);
         shell?.Step(delta, age);
         bounty?.Step(age);
         antenna?.Step(delta,age);
+        critBurst?.Pose(age);
         if (fragments == null || fragmentOrigins == null) return;
         for (int i = 0; i < fragments.Length; i++)
         {

@@ -29,6 +29,10 @@ public static class SproutArtVerification
     static LateGameContent[] Content(string name)=>P.GetComponentsInChildren<LateGameContent>().Where(c=>c.name.StartsWith(name)).ToArray();
     static void Capture(string name)=>Lab("Capture","Sprout_"+name);
     static void Hit(){var c=D.Current.Targets[0].Cell;Lab("Attack",c.x,c.z);}
+    // 24 Ekim 2026 (Diken kuralları Filiz'e): tümsek yalnız ana filizde, ana filizin altında sürünen dal yok, patlayarak çıkış +
+    // toprak patlaması, güçlü vuruş, saksısız hücrede parça zemine iner.
+    static int LiveBlasts()=>((Array)typeof(LateGamePresenter).GetField("thornBlasts",BindingFlags.NonPublic|BindingFlags.Instance).GetValue(P)).Cast<object>().Count(s=>s!=null&&(bool)s.GetType().GetField("live").GetValue(s));
+    static bool OnMain(LateGameContent c){var m=FieldCells.World(GridManager.Instance.GetGridSystem(),D.Current.Targets[0].Cell);return new Vector2(c.transform.position.x-m.x,c.transform.position.z-m.z).magnitude<.05f;}
     static void Tick()
     {
         if(!SessionState.GetBool(Key,false)||!EditorApplication.isPlaying||EditorApplication.isCompiling)return;
@@ -47,34 +51,39 @@ public static class SproutArtVerification
                 case 1:
                     if(D.Current.Phase!=FieldEventPhase.Preparing||D.Current.PhaseTime<.3f)return;
                     Check(D.Zones.SlowedCells==0 && Content("SproutMain").Length==0,"preparation has no slowdown or target art");
-                    Check(Content("GroundHeave").Length==1,"shared ground preparation reused");Capture("01_Prepare");break;
+                    Check(Content("GroundHeave").Length==1&&OnMain(Content("GroundHeave")[0]),"one birth mound, centred on the main sprout cell");Capture("01_Prepare");break;
                 case 2:
                     if(D.Current.Phase!=FieldEventPhase.Emerging||D.Current.PhaseTime<.13f)return;
                     main=Content("SproutMain").Single();leaf=main.petals.leaves[0].localRotation;targetPosition=main.transform.position;
-                    Check(main.visual.localPosition.y<0,"bud rises from soil");Check(main.petals.leaves.Length==4,"main silhouette has four hinged crown leaves");Capture("02_Unfurl");break;
+                    Check(main.visual.localPosition.y<0,"bud rises from soil");
+                    Check(LiveBlasts()==1,"main sprout bursts out with one soil blast");
+                    {var items=((System.Collections.IList)typeof(LateGamePresenter).GetField("eventItems",BindingFlags.NonPublic|BindingFlags.Instance).GetValue(P)).Cast<object>();
+                     Check(items.Any(i=>(int)i.GetType().GetField("identity").GetValue(i)==10000&&(bool)i.GetType().GetField("burst").GetValue(i)),"main sprout uses the burst emergence curve");}Check(main.petals.leaves.Length==4,"main silhouette has four hinged crown leaves");Capture("02_Unfurl");break;
                 case 3:
                     if(D.Current.Phase!=FieldEventPhase.Active)return;
                     Check(Quaternion.Angle(leaf,main.petals.leaves[0].localRotation)>15f,"crown unfolds from bud pose");
-                    Check(D.Zones.SlowedCells==1 && Content("SproutPiece").Length==1,"main slowed cell has a footprint before first spread");
+                    Check(D.Zones.SlowedCells==1 && Content("SproutPiece").Length==0,"no runner under the main sprout (slowed main cell, no footprint)");
+                    Check(Content("GroundHeave").Length==0,"birth mound gone once the main sprout is out");
                     Check(main.transform.position==targetPosition&&main.transform.localScale==Vector3.one,"root and logical target stay fixed");
-                    Check(P.GetComponentsInChildren<Renderer>().All(r=>r.sharedMaterial.shader.name=="ClickerGame/ThornComicToon"),"all event renderers share approved toon shader");Capture("03_Main");break;
+                    Check(P.GetComponentsInChildren<LateGameContent>().SelectMany(c=>c.GetComponentsInChildren<Renderer>()).All(r=>r.sharedMaterial.shader.name=="ClickerGame/ThornComicToon"),"all event models share approved toon shader (soil blast cards are unlit vertex-colour by design)");Capture("03_Main");break;
                 case 4:
                     if(((InvasiveSproutEvent)D.Current).Pieces<2)return;
-                    Check(Content("SproutPiece").Length==2 && D.Zones.SlowedCells==2,"real first spread creates one small piece and one slowdown");
+                    Check(Content("SproutPiece").Length==1 && D.Zones.SlowedCells==2&&!OnMain(Content("SproutPiece")[0]),"real first spread creates one small piece (on the new cell) and one slowdown");
                     Check(Content("SproutMain").Single()==main,"spread preserves main instance");
                     Check(Content("ThornSoilBurst").Length>0,"spread reuses pooled soil burst");Capture("04_Spread");
                     for(int i=0;i<6;i++)Call(D.Current,"Tick",2.5f);at=Time.time;break;
                 case 5:
                     if(Time.time-at<.75f)return;
-                    small=Content("SproutPiece");Check(small.Length==8 && D.Zones.SlowedCells==8,"eight affected cells have eight footprints");
+                    small=Content("SproutPiece");Check(small.Length==7 && D.Zones.SlowedCells==8&&!small.Any(OnMain),"eight affected cells: seven footprints, none under the main sprout");
                     Check(small.All(c=>c.petals.leaves.Length==2),"small silhouette has two low leaves, distinct from main");
                     Check(small.All(c=>c.GetComponentsInChildren<Renderer>().Max(r=>r.bounds.max.y)-c.transform.position.y<.8f),"small pieces remain below .8 world units");
                     Check(main.GetComponentsInChildren<Renderer>().Max(r=>r.bounds.max.y)-main.transform.position.y>1.5f,"main crown clearly taller than small pieces");
                     Check(main.GetComponentsInChildren<MeshRenderer>().Count(r=>r.name=="AttentionRim")==5,"main has shared red rim on body and four leaves"); Check(main.petals.leaves.All(l=>l.GetComponent<MeshFilter>().sharedMesh.bounds.size.z>.95f),"broad crown mesh retained"); Capture("05_FullSpread");break;
                 case 6:Hit();at=Time.time;Check(D.Current.Targets[0].Remaining==7,"one real direct hit consumes one durability"); Check(EventHitChecks.HasFlash(main),"real hit uses plant white flash"); Time.timeScale=0;step=60;break;
                 case 61: Check(EventHitChecks.HasFlash(main),"pause retains hit flash");
-                    main.visual.localScale=Vector3.one;main.Step(.07f,.6f);
-                    Check(main.visual.localScale.y<.95f,"direct hit visibly squashes main");Capture("06_Hit");
+                    main.visual.localScale=Vector3.one;Vector3 rest=main.visual.localPosition;main.Step(.07f,.6f);
+                    Check(main.visual.localScale.y<.8f,"direct hit squashes main hard (strong hit)");main.Step(0f,.6f);
+                    Check(new Vector2(main.visual.localPosition.x-rest.x,main.visual.localPosition.z-rest.z).magnitude>.1f,"strong hit recoils the main sprout away from the blow");Capture("06_Hit");
                     Time.timeScale=1;Hit();Hit();Hit();Check(main.damageStages.Any(c=>c.activeSelf),"damage reveals scars");step=7;break;
                 case 8:
                     Capture("07_Damaged");Time.timeScale=0;phase=D.Current.PhaseTime;leaf=main.petals.leaves[0].localRotation;break;

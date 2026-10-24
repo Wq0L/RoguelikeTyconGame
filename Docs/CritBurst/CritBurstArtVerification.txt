@@ -1,0 +1,26 @@
+PASS 25 checks
+PASS existing 9 crits: one burst, exact targets and stat damage; exactly 3 crits once, one crit rejected
+PASS two distinct critical targets do not emit burst, visual or sound cue
+PASS three surviving critical targets: one real burst and one effect
+PASS cue and prefab scale use same actual damage radius and center
+PASS catalog binds authored CritBurst prefab
+PASS white core ends at .05 s, main impact remains
+PASS main silhouette ends at .22 s
+PASS more than three critical targets still emits one effect
+PASS pause freezes effect age across frames
+PASS full decoration pool skips visuals but all nine actual reward hits still apply
+PASS pooled stage reset 0
+PASS pooled stage reset 1
+PASS pooled stage reset 2
+PASS pooled stage reset 3
+PASS pooled stage reset 4
+PASS pooled stage reset 5
+PASS pooled stage reset 6
+PASS pooled stage reset 7
+PASS pooled stage reset 8
+PASS pooled stage reset 9
+PASS pooled stage reset 10
+PASS pooled stage reset 11
+PASS 12 reuse cycles stable object count
+PASS round/restart immediately clears effects
+PASS normal frame lifecycle releases all pieces by .32 seconds

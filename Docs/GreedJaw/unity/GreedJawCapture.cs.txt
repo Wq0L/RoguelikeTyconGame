@@ -1,0 +1,160 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using UnityEditor;
+using UnityEngine;
+using Object = UnityEngine.Object;
+
+// Geçici, yalnız izole kopyada: Açgözlü Hasat ağzının gerçek oyun sahnesinde pozlanmış çekimleri (24 Ekim 2026).
+// Pozlar gerçek PoseGreedJaw yolundan: yaş / eğim alanları ayarlanır, SyncGreed timeScale 0 iken çağrılır (yaş ilerlemez).
+[InitializeOnLoad]
+public static class GreedJawCapture
+{
+    const string Key = "GreedJawCapture", Out = "Logs/GreedJaw/";
+    const int TW = 620, TH = 400;
+    const BindingFlags F = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
+    static int step, seq; static double next;
+    static readonly List<string> notes = new();
+    static readonly List<Texture2D> tiles = new();
+    static readonly Color Ink = new(.10f, .075f, .14f);
+    static object Lab(string n, params object[] a) { var m = typeof(GecOyunV1Verification).GetMethod(n, BindingFlags.Static | BindingFlags.NonPublic); return m.Invoke(null, m.GetParameters().Select((p, i) => i < a.Length ? a[i] : p.DefaultValue).ToArray()); }
+    static GreedJawCapture() { EditorApplication.update += Tick; }
+    public static void RunBatch()
+    {
+        if (!Application.dataPath.Contains("VerificationProject")) throw new Exception("isolated only");
+        GecOyunV1Verification.RunBatch(); SessionState.SetBool("GecOyunV1Verification", false); SessionState.SetBool(Key, true);
+    }
+    static LateGamePresenter P => Object.FindFirstObjectByType<LateGamePresenter>();
+    static PlayerController Player => Object.FindFirstObjectByType<PlayerController>();
+    static void Ring(int x, int z)
+    {
+        typeof(PlayerController).GetMethod("UpdateRadiusVisual", F).Invoke(Player, new object[] { Lab("PosAt", x, z) });
+        ((LineRenderer)typeof(PlayerController).GetField("radiusIndicator", F).GetValue(Player)).enabled = true;
+    }
+    static void Sync() => typeof(LateGamePresenter).GetMethod("SyncGreed", F).Invoke(P, null);
+    static object Jaw(bool live) => live ? typeof(LateGamePresenter).GetField("greedLive", F).GetValue(P) : ((System.Collections.IList)typeof(LateGamePresenter).GetField("greedJaws", F).GetValue(P))[0];
+    static void SetF(object o, string n, object v) => o.GetType().GetField(n, F).SetValue(o, v);
+    static void Arm() { Lab("Refill"); Lab("Strike", 100f, 1.2f); Lab("SetHealth", 1, 1, 1); Lab("SetHealth", 2, 1, 1); Lab("SetHealth", 1, 2, 1); Lab("Attack", 1, 1); }
+    static void Pose(object jaw, string name, float age, Vector3 lean = default, float speed = 0f, Vector3 lag = default, bool tile = true, float clack = -1f)
+    {
+        Time.timeScale = 0f;
+        SetF(jaw, "age", age); SetF(jaw, "lean", lean); SetF(jaw, "speed", speed);
+        if (clack >= 0f) SetF(jaw, "clack", clack);
+        Vector3 center = (Vector3)jaw.GetType().GetField("center", F).GetValue(jaw);
+        SetF(jaw, "lag", center + lag);
+        Sync();
+        Shot(name, center, tile);
+    }
+    static void Tick()
+    {
+        if (!SessionState.GetBool(Key, false) || !EditorApplication.isPlaying || EditorApplication.isCompiling) return;
+        if (next == 0) { next = EditorApplication.timeSinceStartup + 2; return; }
+        if (EditorApplication.timeSinceStartup < next) { EditorApplication.QueuePlayerLoopUpdate(); return; }
+        try
+        {
+            switch (step)
+            {
+                case 0:
+                    if (double.IsNaN((double)Lab("Lab"))) return;
+                    Directory.CreateDirectory(Out + "seq");
+                    Lab("ResetRewards"); Lab("Take", "acgozlu_hasat"); Arm(); Lab("Refill");
+                    Ring(5, 5); Sync();
+                    if (Jaw(true) == null) throw new Exception("no ready jaw");
+                    for (int f = 0; f <= 26; f++) Seq(Jaw(true), f / 30f);
+                    for (int f = 0; f < 6; f++) Seq(Jaw(true), .9f + f / 30f);
+                    for (int f = 0; f <= 8; f++) Seq(Jaw(true), 1.2f + f / 30f, f / 30f);
+                    for (int f = 0; f < 4; f++) Seq(Jaw(true), 1.5f + f / 30f, .24f);
+                    Pose(Jaw(true), "1_hazir", 1f, clack: .24f);
+                    Pose(Jaw(true), "1b_giris_yukselme", .2f);
+                    Pose(Jaw(true), "1c_giris_dalga", .3f);
+                    Pose(Jaw(true), "1d_giris_esneme", .48f);
+                    Pose(Jaw(true), "2_hareket_saga", 1f, new Vector3(-.32f, 0f, .12f), 7f, new Vector3(-.26f, 0f, .1f));
+                    Pose(Jaw(true), "3b_cat_cat", 1.2f, clack: .045f);
+                    Time.timeScale = 1f; Lab("Strike", 100f, 2.2f); Ring(5, 5); Sync();
+                    Pose(Jaw(true), "4_buyuk_halka", 1f, clack: .24f);
+                    notes.Add($"radius big {Player.CursorRadius}");
+                    Time.timeScale = 1f;
+                    break;
+                case 1:
+                    RoundManager.Instance.EditorJumpToRound(3);
+                    Lab("Refill"); Lab("Strike", 100f, 1.2f); Ring(5, 5); Sync();
+                    SetF(Jaw(true), "age", 1f); SetF(Jaw(true), "clack", .24f);
+                    Lab("Attack", 5, 5); Sync();
+                    if (P.GreedChomps < 1) throw new Exception("no chomp");
+                    for (int f = 0; f <= 16; f++) Seq(Jaw(false), f / 30f);
+                    foreach (var age in new[] { .04f, .1f, .17f, .3f }) Pose(Jaw(false), $"5_hap_{age:0.00}", age);
+                    Time.timeScale = 1f;
+                    break;
+                case 2:
+                    RoundManager.Instance.EditorJumpToRound(3);
+                    Arm(); Lab("Refill"); Ring(5, 5); Sync();
+                    for (int x = 3; x <= 7; x++) for (int z = 3; z <= 7; z++) if (x != 5 || z != 5) ((PlantSpawner)Lab("SpawnerAt", x, z)).RemoveSpawnedPlant();
+                    Lab("Strike", 100f, 1.2f); Ring(5, 5); Sync(); SetF(Jaw(true), "age", 1f); SetF(Jaw(true), "clack", .24f);
+                    for (int f = 0; f < 6; f++) Seq(Jaw(true), 1f + f / 30f, .24f);
+                    Lab("Attack", 5, 5); Sync();
+                    if (P.GreedLosses < 1) throw new Exception("no loss");
+                    for (int f = 0; f <= 23; f++) Seq(Jaw(false), f / 30f);
+                    foreach (var age in new[] { .15f, .3f, .45f, .55f }) Pose(Jaw(false), $"6_kayip_{age:0.00}", age);
+                    Time.timeScale = 1f;
+                    break;
+                case 3:
+                    RoundManager.Instance.EditorJumpToRound(3);
+                    Arm(); Lab("Refill"); Lab("Strike", 100f, 1.6f); Ring(5, 5); Sync();
+                    Time.timeScale = 0f; SetF(Jaw(true), "age", 1f); SetF(Jaw(true), "clack", .24f); Sync();
+                    Lab("Capture", "GreedJaw_NormalCamera");
+                    Time.timeScale = 1f;
+                    Sheet(); Finish(null); return;
+            }
+            step++; next = EditorApplication.timeSinceStartup + 1.0;
+        }
+        catch (Exception e) { Finish(e.InnerException ?? e); }
+        EditorApplication.QueuePlayerLoopUpdate();
+    }
+    static void Seq(object jaw, float age, float clack = -1f) => Pose(jaw, $"seq/{seq++:000}", age, tile: false, clack: clack);
+    static void Shot(string name, Vector3 focus, bool tile = true)
+    {
+        var cam = Camera.main; var tr = cam.transform;
+        Vector3 pos = tr.position; float size = cam.orthographicSize;
+        Vector3 v = focus + Vector3.up * .5f - pos, fw = tr.forward;
+        tr.position = pos + (v - fw * Vector3.Dot(v, fw));
+        if (cam.orthographic) cam.orthographicSize = size * .42f;
+        var canvases = Object.FindObjectsByType<Canvas>(FindObjectsSortMode.None).Where(c => c.isRootCanvas && c.renderMode == RenderMode.ScreenSpaceOverlay).ToArray();
+        foreach (var canvas in canvases) canvas.enabled = false;
+        // Kamera kaydı ortografik kaydırmayı da değiştirir: poz yeni kamera konumuyla yeniden kurulur.
+        Sync();
+        var target = new RenderTexture(1600, 900, 24); target.Create(); cam.targetTexture = target;
+        UnityEngine.Rendering.RenderPipeline.SubmitRenderRequest(cam, new UnityEngine.Rendering.Universal.UniversalRenderPipeline.SingleCameraRequest { destination = target });
+        var previous = RenderTexture.active; RenderTexture.active = target;
+        var image = new Texture2D(1600, 900, TextureFormat.RGB24, false);
+        image.ReadPixels(new Rect(0, 0, 1600, 900), 0, 0); image.Apply();
+        Vector3 sp = cam.WorldToScreenPoint(focus + Vector3.up * .5f);
+        cam.targetTexture = null; RenderTexture.active = previous;
+        foreach (var canvas in canvases) canvas.enabled = true;
+        tr.position = pos; cam.orthographicSize = size;
+        int x = Mathf.Clamp(Mathf.RoundToInt(sp.x - TW / 2f), 0, 1600 - TW), y = Mathf.Clamp(Mathf.RoundToInt(sp.y - TH / 2f), 0, 900 - TH);
+        var crop = new Texture2D(TW, TH, TextureFormat.RGB24, false);
+        crop.SetPixels(image.GetPixels(x, y, TW, TH)); crop.Apply();
+        File.WriteAllBytes(Out + name + ".png", crop.EncodeToPNG());
+        if (tile) tiles.Add(crop); else Object.Destroy(crop);
+        notes.Add("shot " + name);
+        Object.Destroy(image); Object.Destroy(target);
+    }
+    static void Sheet()
+    {
+        int gap = 8, cols = 4, rows = (tiles.Count + cols - 1) / cols;
+        var sheet = new Texture2D(TW * cols + gap * (cols + 1), TH * rows + gap * (rows + 1), TextureFormat.RGB24, false);
+        sheet.SetPixels(Enumerable.Repeat(Ink, sheet.width * sheet.height).ToArray());
+        for (int i = 0; i < tiles.Count; i++) { int r = i / cols, c = i % cols; sheet.SetPixels(gap + c * (TW + gap), sheet.height - (r + 1) * (TH + gap), TW, TH, tiles[i].GetPixels()); }
+        sheet.Apply(); File.WriteAllBytes(Out + "GreedJaw_Sheet.png", sheet.EncodeToPNG());
+    }
+    static void Finish(Exception e)
+    {
+        Time.timeScale = 1f;
+        SessionState.SetBool(Key, false);
+        Directory.CreateDirectory(Out);
+        File.WriteAllLines(Out + "GreedJawCapture.txt", new[] { e == null ? "PASS" : "FAIL " + e }.Concat(notes));
+        EditorApplication.Exit(e == null ? 0 : 1);
+    }
+}

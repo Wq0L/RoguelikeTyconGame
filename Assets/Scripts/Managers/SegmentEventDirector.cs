@@ -174,6 +174,26 @@ public sealed class SegmentEventDirector : MonoBehaviour
         Version++;
     }
 
+#if UNITY_EDITOR
+    // Yalnız Editor (Mechanics Test Lab): bütün boss olaylarını oyunun temizlik yoluyla kaldırır (aktif boss'un etkisi dahil) ve
+    // boss ritmini aynı seed'le baştan kurar. Boss'lar bir sonraki round geçişinde takvimden normal yolla yeniden seçilir
+    // (tarihe atanmış boss varsa o). Eski (boss havuzsuz) profillerde yalnız temizler. Bu blok build'e girmez.
+    public void EditorRestartBossRhythm()
+    {
+        int seed = RunSeed;
+        ClearAll();
+        RunProfileSO profile = rounds != null ? rounds.Profile : null;
+        if (profile == null || profile.bossPool == null) return;
+        bossPool = profile.bossPool;
+        RunSeed = seed;
+        nextBossSegment = 1;
+        Version++;
+    }
+
+    // Boss, şu anki tarla ve oyuncu durumunda havuzun uygunluk kuralını geçiyor mu (havuz seçimiyle aynı bağlam).
+    public bool EditorIsEligible(SegmentEventSO boss) => boss != null && BuildContext() && boss.IsEligible(context);
+#endif
+
     private void LateUpdate()
     {
         if (game == null && GameManager.Instance != null)

@@ -1,0 +1,291 @@
+PASS
+PASS wave scheduled
+PASS no early first ring
+PASS pause preserves timer
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS ring 1 has 8 targets
+PASS ring 1 starts beyond normal explosion
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS ring 2 has 12 targets
+PASS ring 2 starts beyond normal explosion
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS ring 3 has 16 targets
+PASS ring 3 starts beyond normal explosion
+PASS 36 unique cells, exactly three rings, no center/repeats
+PASS no fourth ring
+PASS wave scheduled
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS long frame does not collapse three beats
+PASS cancellation stops remaining rings
+PASS wave scheduled
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS all 36 cell visuals fit simultaneously without skips
+PASS wave scheduled
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS corner wave remains within grid
+PASS wave scheduled
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS closed wall cannot be hit or crossed
+PASS wave scheduled
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS aftershock preserves configured damage
+PASS multi-cell footprint excludes initial area and deduplicates fronts
+PASS wave scheduled
+PASS disable clears wave jobs
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS wave scheduled
+PASS 100 waves reuse warmed state and VFX pools
+PASS no active jobs or visual leases after cleanup

@@ -763,6 +763,8 @@ MonoBehaviour:
   resonanceShake: 0.4
   explosionVfxPrefab: {fileID: 7207109987891872098, guid: abf3ecc1629d47d797077030e6502ca9, type: 3}
   explosionPoolSize: 16
+  aftershockVfxPrefab: {fileID: 4250298743439401463, guid: 184c47b8b8e4c814d8241a901f177515, type: 3}
+  aftershockScaleRatio: 0.6
   explosionMainScale: 1
   explosionSecondaryScale: 0.5
   explosionStartScaleRatio: 0.5
