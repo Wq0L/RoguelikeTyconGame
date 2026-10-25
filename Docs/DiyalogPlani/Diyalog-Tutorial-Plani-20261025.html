@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Diyalog ve Tutorial Altyapısı — Plan</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+  :root { --ink:#241a2b; --muted:#5d5466; --line:#d9d2df; --accent:#8a3f8f; --ok:#2f7d4f; --warn:#b5661b; --no:#a33a3a; --bg:#faf8fb; }
+  body { font-family: "Segoe UI", Arial, sans-serif; color: var(--ink); font-size: 10.6pt; line-height: 1.45; }
+  h1 { font-size: 21pt; margin: 0 0 4pt; }
+  h2 { font-size: 15pt; margin: 20pt 0 6pt; padding-bottom: 3pt; border-bottom: 2px solid var(--ink); page-break-after: avoid; }
+  h3 { font-size: 12pt; margin: 14pt 0 4pt; page-break-after: avoid; }
+  p { margin: 4pt 0 6pt; }
+  ul, ol { margin: 3pt 0 6pt 16pt; padding: 0; }
+  li { margin: 1.5pt 0; }
+  table { width: 100%; border-collapse: collapse; margin: 6pt 0 10pt; font-size: 9.6pt; page-break-inside: auto; }
+  tr { page-break-inside: avoid; }
+  th, td { border: 1px solid var(--line); padding: 4pt 5pt; vertical-align: top; text-align: left; }
+  th { background: #efe9f2; }
+  code { font-family: Consolas, monospace; font-size: 9.2pt; background: #f1edf4; padding: 0 2pt; border-radius: 2pt; }
+  .sub { color: var(--muted); font-size: 10pt; }
+  .tag { display: inline-block; font-size: 8pt; font-weight: 700; padding: 0 4pt; border-radius: 3pt; color: #fff; vertical-align: 1px; }
+  .ok { background: var(--ok); } .warn { background: var(--warn); } .no { background: var(--no); } .acc { background: var(--accent); }
+  .box { border: 1.5px solid var(--ink); border-radius: 4pt; padding: 6pt 9pt; margin: 8pt 0; background: var(--bg); page-break-inside: avoid; }
+  .part { page-break-before: always; }
+  .flow { display: flex; flex-wrap: wrap; align-items: center; gap: 4pt; margin: 6pt 0 8pt; }
+  .flow span.s { border: 1.5px solid var(--ink); border-radius: 3pt; padding: 3pt 6pt; background: #fff; font-size: 9.4pt; }
+  .flow span.a { color: var(--muted); }
+  .cover-meta { margin: 8pt 0 14pt; color: var(--muted); }
+  .small { font-size: 9pt; color: var(--muted); }
+  svg text { font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+</head>
+<body>
+
+<h1>Diyalog ve Tutorial Altyapısı — Plan</h1>
+<div class="cover-meta">Erigone (ClickerGame) · 25 Ekim 2026 · <b>Sürüm 2</b> · Durum: <b>yalnız araştırma ve plan; kodda hiçbir şey yapılmadı</b></div>
+
+<div class="box">
+<b>Sürüm 2'de değişenler</b> (değerlendirme sonrası, kullanıcı onayıyla):
+<ol>
+  <li><b>Öncelik:</b> ilk karşılaşmanın gerekli öğretimi hikâyeden önce gelir; hikâye sonraki sakin ana ertelenir. Bekleyen satır gösterilmeden önce hâlâ geçerli mi diye kontrol edilir (A6).</li>
+  <li><b>Tıklama:</b> ekranın herhangi bir yerine tıklamak konuşmayı ilerletmez. Büyük kutu yalnız kutuya tıklayınca ya da Boşluk/Enter ile ilerler. Küçük kutu yazı bitince kendiliğinden kapanır ya da Boşluk ile geçilir; tıklamayla ilerlemez (A5, B4).</li>
+  <li><b>Sözleşme:</b> "ilk run" yok. Görülmemiş öğretim, ilgili olayla ilk uygun karşılaşmada çıkar; run sayısına bakılmaz (A3).</li>
+  <li><b>Pause ile menü ayrı:</b> menü ekranlarında zaman durmuşken yazı akar. Oyuncu pause açtığında ya da pencere arka plandayken yazı ve kapanma sayacı durur (A6, B4, B6).</li>
+  <li><b>Küçük kutu süresi:</b> ~6 sn, yazı tamamlandıktan sonra sayılır.</li>
+  <li><b>Hikâye aşamaları 0–3:</b> zafer son round bitince geliyor; son round boss ise "ilk zafer" ile "son Sınama" aynı olay. İki aşama birleştirildi. Demo profilinde hikâye en çok aşama 2'ye çıkar (A4).</li>
+</ol>
+</div>
+
+<div class="box">
+<b>Bu belge nasıl okunur.</b> İki bölüm var: <b>Bölüm A · Genel işleyiş ve uygulanış</b> (oyuncu ne görür, ne zaman, hangi durumda ne olur) ve
+<b>Bölüm B · Kod mimarisi</b> (hangi parça neyi yapar, kayıt nasıl tutulur, performans ve test). Her bilginin yanında etiket var:
+<span class="tag ok">DOĞRULANDI</span> koddan okunarak kontrol edildi ·
+<span class="tag warn">DOĞRULANMADI</span> araştırmada kesinleşmedi, uygulamadan önce bakılacak ·
+<span class="tag acc">ÖNERİ</span> benim önerim, senin kararın ·
+<span class="tag ok">KARAR</span> senin verdiğin karar.
+</div>
+
+<h3>Özet</h3>
+<ul>
+  <li>Tutorial satırları ile hikâye satırları <b>aynı altyapıyı</b> kullanır: tek veri tablosu, tek seçici, tek konuşma kutusu, tek kayıt.</li>
+  <li>Her öğretim ve hikâye adımı <b>bir olaya bağlıdır, run'a değil</b> <span class="tag ok">KARAR</span>. Erken ölen, hiç ölmeyen ya da oyunu ortada kapatan oyuncu kaldığı yerden devam eder.</li>
+  <li>Kalıcı ilerleme mevcut <code>MetaSave</code> (meta.json) dosyasına eklenir; sistem zaten sürümlü, atomik yazan, yedek tutan ve bozuk dosyayı karantinaya alan yapıda <span class="tag ok">DOĞRULANDI</span>.</li>
+  <li>Ekranın herhangi bir yerine tıklamak konuşmayı ilerletmez <span class="tag ok">KARAR</span>. Büyük kutu kutunun kendisine tıklayınca ya da Boşluk/Enter ile; küçük kutu yazı bitince kendiliğinden ya da Boşluk ile kapanır.</li>
+  <li>Eri sağ üstteki gezegende yürümeye devam eder ve <b>yalnız kısa tepkiler</b> verir. Konuşma, tutorial ve hikâye <b>soldaki kutuda</b> yazılır <span class="tag ok">KARAR</span>.</li>
+</ul>
+
+<!-- ===================================================================================== -->
+<div class="part"></div>
+<h2>Bölüm A · Genel işleyiş ve uygulanış</h2>
+
+<h3>A1. Amaç ve sınırlar</h3>
+<ul>
+  <li>Hikâye "yemeğe atılan tuz": mekaniklerin kılıfı ve akılda kalan tek bir yüz (Eri). Ağır hikâye yok. Toplam yaklaşık 40 satır <span class="tag ok">KARAR</span>.</li>
+  <li>Basit temeller öğretilir, gerisi keşfedilir. Fiiller öğretilir (yerleştirme, vurma/hasat, kart seçme, Adak, Sınama, kapris); isimler keşfedilir (sinerjiler, davranışlar, efektler).</li>
+  <li>Roguelike kuralları: rehber satırı bir kez çıkar; tekrar eden satır seyrek ve kısadır; hiçbir satır oyuncuyu kilitlemez; her şey atlanabilir.</li>
+  <li>Bugünkü "her round başı ve sonu Eri konuşur" davranışı kaldırılır. Tekrarın en çok can sıkacağı yer orası <span class="tag acc">ÖNERİ</span>.</li>
+</ul>
+
+<h3>A2. İlk açılış sırası</h3>
+<div class="flow">
+  <span class="s">Ana menü · "Oyna"</span><span class="a">→</span>
+  <span class="s">Giriş (yalnız ilk sefer, ~10 sn, atlanabilir)</span><span class="a">→</span>
+  <span class="s">Çiftçi / tırpan seçimi · Eri ilk kez konuşur</span><span class="a">→</span>
+  <span class="s">Oyun sahnesi · hazırlık</span><span class="a">→</span>
+  <span class="s">İlk run: temeller anında öğretilir</span>
+</div>
+<ul>
+  <li>Akış koddan: "Oyna" → <code>StartSelectionPanelUI</code> (ana menü sahnesinde) → <code>StartRun</code> → <code>RunSetup</code> ve oyun sahnesi yüklenir <span class="tag ok">DOĞRULANDI</span>.
+      Seçim ekranı ana menü sahnesinde olduğu için diyalog sistemi <b>iki sahnede de</b> çalışmalı (Bölüm B3).</li>
+  <li>Giriş videosu seçimden önce: önce insanlar iner, sonra Eri onları seçim ekranında karşılar. Tutorial seçimde başlar <span class="tag ok">KARAR</span>.</li>
+  <li>Giriş videosunun içeriği (Dünya'nın içten çatlaması, geminin kaçışı, yakıtın bitmesi, rotanın bükülüp gezegene çekilmesi, iniş) ayrı bir iştir; bu planda yalnız "bir kez oynar, atlanabilir, menüden tekrar izlenir" kuralları var.</li>
+</ul>
+
+<h3>A3. Ne, ne zaman öğretilir</h3>
+<div class="box"><b>Sözleşme</b> <span class="tag ok">KARAR</span>: görülmemiş öğretim, ilgili olayla <b>ilk uygun karşılaşmada</b> çıkar. Run sayısına bakılmaz;
+"ilk run" diye bir koşul yoktur. Erken ölen oyuncu kalan adımları sonraki run'larda aynı kuralla görür.</div>
+<table>
+<tr><th>#</th><th>Ne zaman (oyundaki gerçek an)</th><th>Kim görür</th><th>Öğretilen</th><th>Kutu</th></tr>
+<tr><td>T1</td><td>Seçim ekranı açıldığında</td><td>görmeyen herkes</td><td>Eri ile tanışma + "birini seç"</td><td>büyük</td></tr>
+<tr><td>T2</td><td>Oyun sahnesinde hazırlık ekranı (RunSetup)</td><td>görmeyen herkes</td><td>round'u başlatma, saksı alma/yerleştirme</td><td>büyük</td></tr>
+<tr><td>T3</td><td>Yerleştirme modu (Placing)</td><td>görmeyen herkes</td><td>saksıyı tarlaya koymak</td><td>büyük (tarlaya tık saksı koyar, kutuyu ilerletmez)</td></tr>
+<tr><td>T4</td><td>Bir round başlar başlamaz</td><td>görmeyen herkes</td><td>imleci tut: otomatik vurur, olgunlaşınca hasat</td><td>küçük</td></tr>
+<tr><td>T5</td><td>Round içinde, T4 görüldükten sonra</td><td>görmeyen herkes</td><td>Adak paneli: "Bu benim payım, dönem sonunda dolu olmalı"</td><td>küçük</td></tr>
+<tr><td>T6</td><td>Level-up (kart seçimi)</td><td>görmeyen herkes</td><td>birini seç</td><td>büyük</td></tr>
+<tr><td>T7</td><td>Bir Adak döneminin son round'unda Adak geride kalırsa</td><td>görmeyen, geride kalan</td><td>uyarı: "Payım eksik kalıyor…"</td><td>küçük</td></tr>
+<tr><td>T8</td><td>Bir Adak döneminin sonu</td><td>görmeyen herkes</td><td>sonuç: doydu / az kaldı</td><td>büyük</td></tr>
+<tr><td>T9</td><td>Bir Sınama'nın önizlemesi</td><td>görmeyen, o round'a gelen</td><td>boss ve farkı</td><td>büyük</td></tr>
+<tr><td>T10</td><td>Bir kapris (R15/20 sonrası, %60–65)</td><td>görmeyen; çoğu oyuncuda 2.–3. run</td><td>neyin vurulacağı</td><td>küçük</td></tr>
+<tr><td>T11</td><td>Run sonu: Adak tutmadı / Sınama kaybedildi / zafer (her neden ayrı satır)</td><td>o sonu ilk kez yaşayan</td><td>neden bitti, ne öğrendin</td><td>büyük</td></tr>
+</table>
+<p class="small">Ek: keşif sonrası adlandırma satırları (ilk elektrik zıplaması, ilk patlama vb.) aynı kurala bağlanır; kapsamı satır tablosunda seçilir.
+Run sonu nedenleri koddaki <code>RunOutcome</code> değerlerinden gelir: <code>QuotaFailed</code>, <code>BossFailed</code>, <code>Victory</code> <span class="tag ok">DOĞRULANDI</span>.
+Kapris takvimi senin tasarım hedefin (R15/20+, %60–65); bugünkü profilde kaprisler R26'dan sonra. Tetik olaya bağlı olduğu için takvim değişse de bu tablo değişmez.</p>
+
+<h3>A4. Hikâye ilerleyişi</h3>
+<ul>
+  <li><b>Hikâye aşaması</b> 0–3 arasıdır ve kayıtta tutulur. Tutorial satırları da hikâye satırları da bu aşamayı okur.</li>
+  <li>Aşama <b>yalnız run sonunda</b> artar (ölüm ya da zafer fark etmez); run içinde Eri'nin tonu değişmez <span class="tag ok">KARAR</span>.</li>
+  <li>Kilometre taşları <span class="tag ok">KARAR</span>:
+    <table>
+      <tr><th>Aşama</th><th>Ne zaman açılır</th></tr>
+      <tr><td>0</td><td>Başlangıç</td></tr>
+      <tr><td>1</td><td>İlk Sınama geçildi</td></tr>
+      <tr><td>2</td><td>R25'e ulaşıldı</td></tr>
+      <tr><td>3</td><td>İlk zafer = açılma (twist). Sonraki run'larda Eri'nin maskesi düşmüş tonda konuşur.</td></tr>
+    </table>
+  </li>
+  <li><b>Neden 4 değil 3 aşama:</b> zafer, son round bitince geliyor <span class="tag ok">DOĞRULANDI</span>. Takvimde son round bir boss round'uysa "ilk zafer" ile "son Sınama" aynı olaydır; ayrı aşamaya gerek yok.</li>
+  <li><b>Demo:</b> demo profilinde hikâye en çok aşama 2'ye çıkar. Demoyu 20 round'da bitiren oyuncu açılmayı görmez; demo yalnız ipucu verir <span class="tag acc">ÖNERİ</span>.</li>
+  <li><b>Ölmeyen de ilerler:</b> ilerleme ölüme değil, run bitişine ve kilometre taşlarına bağlı. İlk run'ı hiç ölmeden bitiren aynı anda birden çok aşama kazanırsa, görmediği hikâye satırları sıraya girer ve sonraki run başlarında, her seferinde en çok iki satır olarak gösterilir.</li>
+  <li>Her run sonunda, görülmemiş satır kaldıysa en az bir hikâye satırı gelir. Bitince sessiz kalınır; satır tekrar etmez.</li>
+</ul>
+
+<h3>A5. Konuşma kutusu</h3>
+<table>
+<tr><th></th><th>Büyük kutu</th><th>Küçük kutu</th></tr>
+<tr><td>Nerede</td><td>Seçim, hazırlık, round arası, kart seçimi, run sonu</td><td>Round içi</td></tr>
+<tr><td>Görünüş</td><td>Sol alt; solda Eri portresi (16 yüzden biri), "Eri" etiketi, 2–3 satır metin</td><td>Aynı stil, küçük; tek satır, küçük portre, HUD'u örtmez</td></tr>
+<tr><td>Yazı</td><td colspan="2">Harfler tek tek dizilir; virgül ve noktada kısa duraklama</td></tr>
+<tr><td>İlerletme</td><td><b>Kutunun kendisine</b> sol tık, Boşluk ya da Enter: yazı diziliyorsa tamamlar; tamamsa sonraki satıra geçer; son satırsa kapatır</td><td><b>Boşluk</b>: yazıyı tamamlar / kapatır. Tıklamayla ilerlemez</td></tr>
+<tr><td>Oyun bekler mi</td><td>Bu ekranlarda zaman zaten durmuş (timeScale 0) <span class="tag ok">DOĞRULANDI</span></td><td>Hayır; round akmaya devam eder</td></tr>
+<tr><td>Kendiliğinden kapanma</td><td>Hayır</td><td>Yazı tamamlandıktan ~6 sn sonra <span class="tag ok">KARAR</span></td></tr>
+<tr><td>Atla</td><td>"Atla" düğmesi bütün konuşmayı geçer</td><td>—</td></tr>
+</table>
+<ul>
+  <li><b>Ekranın başka yerine tıklamak konuşmayı ilerletmez</b> <span class="tag ok">KARAR</span>. Kart seçmek, "round'u başlat"a basmak, mağaza düğmeleri ya da yerleştirmede tarlaya tıklamak yalnız kendi işini yapar; aynı tık konuşmayı geçirmez.</li>
+  <li><b>Saldırı otomatik</b> (imleç durduğu yere aralıkla vurur) <span class="tag ok">DOĞRULANDI</span>; round içindeki küçük kutu bu yüzden tıklama istemeden, oyuncunun dikkatini tarladan almadan çalışır.</li>
+  <li><b>Kapris vuruşu:</b> imleç bir arayüz öğesinin üstündeyken kaprise vuruş sayılmıyor (<code>EventSystem.IsPointerOverGameObject</code>) <span class="tag ok">DOĞRULANDI</span>. Küçük kutu bu kontrolü tetiklememeli; Bölüm B4'te nasıl önlendiği var.</li>
+  <li><b>Gezegendeki Eri:</b> yürümeye devam eder; arada kısa tepki verir (zıplama, ifade, "!" ya da tek kelimelik ünlem). Soldaki kutu konuşurken gezegendeki Eri "konuşuyor" hareketi yapar; oyuncu ikisinin aynı karakter olduğunu böyle anlar.</li>
+</ul>
+
+<h3>A6. Oyuncuya bağlı durumlar</h3>
+<table>
+<tr><th>Durum</th><th>Ne olur</th></tr>
+<tr><td>İlk run'da erken ölür (T5–T9'u görmeden)</td><td>Görmediği adımlar sonraki run'larda o şeyle ilk karşılaştığı an çıkar. Ölüm satırı (T11) nedenini anlatır.</td></tr>
+<tr><td>İlk run'ı hiç ölmeden bitirir</td><td>Zafer satırı gelir; kazandığı aşamaların satırları sonraki run başlarında sırayla gelir.</td></tr>
+<tr><td>Oyunu ortada kapatır</td><td>Görülen her satır kayıtlı; kaldığı yerden devam eder. Yazım round sonlarında, menüye dönüşte, çıkışta ve pencere arka plana alındığında yapılır <span class="tag ok">DOĞRULANDI</span> (mevcut düzen).</td></tr>
+<tr><td>Satırları hızlı geçer ya da "Atla"ya basar</td><td>Satır "görüldü" sayılır, tekrar gelmez.</td></tr>
+<tr><td>Rehber istemez</td><td>Ayarlarda "Rehber satırları: kapalı" → tutorial ve adlandırma satırları susar; hikâye satırları (run başı/sonu) atlanabilir olarak kalır.</td></tr>
+<tr><td>Rehberi baştan görmek ister</td><td>Ayarlarda "Rehberi sıfırla" yalnız rehber satırlarının "görüldü" kaydını siler; hikâye aşaması korunur.</td></tr>
+<tr><td>Oyunu duraklatır (pause) ya da pencere arka plana geçer</td><td>Yazı ve kendiliğinden kapanma sayacı durur. Bu, menü ekranlarındaki "zaman durmuş" hâlinden ayrı bir durumdur: orada yazı akar.</td></tr>
+<tr><td>Aynı anda birden çok satır tetiklenir (ör. Sınama + kapris)</td><td>
+  Öncelik: <b>ilk karşılaşmanın gerekli öğretimi</b> &gt; hikâye &gt; adlandırma &gt; tepki.
+  Hikâye satırı öğretimle çakışırsa atılmaz, bir sonraki sakin ana (round dışı ekran) ertelenir.
+  Aynı anda tek kutu; en çok bir satır sırada bekler.
+  <b>Bekleyen satır gösterilmeden önce hâlâ geçerli mi diye kontrol edilir</b> (ör. kapris bittiyse "şu köke vur" satırı gösterilmez, "görülmedi" kalır ve bir sonraki kaprisle yeniden aday olur).</td></tr>
+</table>
+
+<h3>A7. Ayarlar</h3>
+<ul>
+  <li>Metin hızı: normal / hızlı / anında.</li>
+  <li>Rehber satırları: açık / kapalı. Round içi satırlar: açık / kapalı.</li>
+  <li>Rehberi sıfırla. Giriş videosunu tekrar izle (ana menü).</li>
+  <li>Ayarlar mevcut <code>GameSettings</code> + <code>PlayerPrefs</code> düzenine eklenir <span class="tag ok">DOĞRULANDI</span>.</li>
+</ul>
+
+<h3>A8. Uygulama sırası ve "bitti" ölçütleri</h3>
+<table>
+<tr><th>Faz</th><th>İçerik</th><th>Bitti sayılması için</th></tr>
+<tr><td>1</td><td>Altyapı: veri tablosu, seçici, kayıt alanları, büyük/küçük kutu, gezegen tepki kancası; birkaç deneme satırı</td><td>İzole kopyada test geçer (B6); kutunun ekran görüntüleri senin onayından geçer</td></tr>
+<tr><td>2</td><td>Tutorial satırları (T1–T11) bağlanır</td><td>Simüle edilen ilk run'da satırlar doğru sırada çıkar; Play'de senin onayın</td></tr>
+<tr><td>3</td><td>Hikâye aşamaları ve run başı/sonu satırları</td><td>Aşama geçişleri testte doğru; Play onayın</td></tr>
+<tr><td>4</td><td>Ayarlar ve cila (metin hızı, sıfırlama, ses)</td><td>Ayar menüsünde çalışır; Play onayın</td></tr>
+<tr><td>5</td><td>Giriş videosu (ayrı iş)</td><td>Ayrı planla</td></tr>
+</table>
+<p class="small">Satır metinleri Faz 1'e paralel olarak birlikte yazılır; altyapı metinden bağımsız çalışır.</p>
+
+<!-- ===================================================================================== -->
+<div class="part"></div>
+<h2>Bölüm B · Kod mimarisi</h2>
+
+<h3>B1. Genel bakış</h3>
+<svg viewBox="0 0 700 250" width="100%" role="img" aria-label="Mimari şeması">
+  <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#241a2b"/></marker></defs>
+  <g font-size="12" fill="#241a2b">
+    <rect x="10" y="20" width="150" height="70" rx="5" fill="#fff" stroke="#241a2b" stroke-width="1.5"/>
+    <text x="85" y="44" text-anchor="middle" font-weight="700">Oyun olayları</text>
+    <text x="85" y="62" text-anchor="middle" font-size="10.5">durum değişimi, round,</text>
+    <text x="85" y="76" text-anchor="middle" font-size="10.5">level-up, kapris, run sonu</text>
+
+    <rect x="200" y="20" width="140" height="70" rx="5" fill="#fff" stroke="#241a2b" stroke-width="1.5"/>
+    <text x="270" y="44" text-anchor="middle" font-weight="700">Tetik adaptörü</text>
+    <text x="270" y="62" text-anchor="middle" font-size="10.5">olayları diyalog</text>
+    <text x="270" y="76" text-anchor="middle" font-size="10.5">tetiklerine çevirir</text>
+
+    <rect x="380" y="20" width="150" height="70" rx="5" fill="#efe9f2" stroke="#241a2b" stroke-width="2"/>
+    <text x="455" y="44" text-anchor="middle" font-weight="700">DialogueDirector</text>
+    <text x="455" y="62" text-anchor="middle" font-size="10.5">süzer, seçer, sıraya alır,</text>
+    <text x="455" y="76" text-anchor="middle" font-size="10.5">kaydı günceller</text>
+
+    <rect x="570" y="8" width="120" height="44" rx="5" fill="#fff" stroke="#241a2b" stroke-width="1.5"/>
+    <text x="630" y="28" text-anchor="middle" font-weight="700">DialogueBoxUI</text>
+    <text x="630" y="43" text-anchor="middle" font-size="10.5">büyük / küçük kutu</text>
+    <rect x="570" y="62" width="120" height="44" rx="5" fill="#fff" stroke="#241a2b" stroke-width="1.5"/>
+    <text x="630" y="82" text-anchor="middle" font-weight="700">Gezegen Eri</text>
+    <text x="630" y="97" text-anchor="middle" font-size="10.5">tepkiler</text>
+
+    <rect x="300" y="150" width="140" height="70" rx="5" fill="#fff" stroke="#241a2b" stroke-width="1.5"/>
+    <text x="370" y="174" text-anchor="middle" font-weight="700">Satır kataloğu</text>
+    <text x="370" y="192" text-anchor="middle" font-size="10.5">ScriptableObject</text>
+    <text x="370" y="206" text-anchor="middle" font-size="10.5">+ metin tablosu (CSV)</text>
+
+    <rect x="480" y="150" width="150" height="70" rx="5" fill="#fff" stroke="#241a2b" stroke-width="1.5"/>
+    <text x="555" y="174" text-anchor="middle" font-weight="700">Kalıcı ilerleme</text>
+    <text x="555" y="192" text-anchor="middle" font-size="10.5">MetaSave · meta.json</text>
+    <text x="555" y="206" text-anchor="middle" font-size="10.5">görüldü, aşama, bayraklar</text>
+  </g>
+  <g stroke="#241a2b" stroke-width="1.5" fill="none" marker-end="url(#ar)">
+    <line x1="160" y1="55" x2="198" y2="55"/>
+    <line x1="340" y1="55" x2="378" y2="55"/>
+    <line x1="530" y1="45" x2="568" y2="32"/>
+    <line x1="530" y1="65" x2="568" y2="82"/>
+    <line x1="440" y1="92" x2="400" y2="148"/>
+    <line x1="470" y1="92" x2="530" y2="148"/>
+  </g>
+</svg>
+<p>Oyun kodu diyalogdan haberdar olmaz. Diyalog, oyunun zaten yaydığı olayları dinler. Olayı olmayan iki an için küçük bir olay eklenir (B3).</p>
+
+<h3>B2. Veri modeli</h3>
+<p><b>Satır kataloğu</b> (<code>DialogueCatalogSO</code>, ScriptableObject, Inspector'dan düzenlenir) <span class="tag acc">ÖNERİ</span>. Her kayıt bir "konuşma"dır:</p>
+<table>
+<tr><th>Alan</th><th>Anlamı</th></tr>
+<tr><td><code>id</code></td><td>Sabit kimlik (ör. <code>tut.adak</code>); kayıtta "görüldü" bununla tutulur. Bir kez yayınlandıktan sonra değiştirilmez.</td></tr>
+<tr><td><code>category</code></td><td>Rehber / Adlandırma / Hikâye / Tepki (öncelik ve ayarlar buna göre)</td></tr>
+<tr><td><code>trigger</code></td><td>Hangi an (enum: SelectionOpened, RunSetupFirst, PlacingEntered, RoundStarted, LevelUp, BossPreview, FieldEventPrepared, RunEnded …)</td></tr>
+<tr><td><code>conditions</code></td><td>Hikâye aşaması aralığı, run sayısı, run sonu nedeni, gereken bayrak, round aralığı</td></tr>
+<tr><td><code>frequency</code></td><td>Bir kez / run başına bir / tekrar (bekleme süresiyle)</td></tr>
+<tr><td><code>priority</code></td><td>Aynı anda çakışınca hangisi</td></tr>
+<tr><td><code>lines[]</code></td><td>Satırlar: metin anahtarı + yüz karesi (0–15); hikâye aşamasına göre farklı anahtar seçilebilir</td></tr>
+<tr><td><code>size</code></td><td>Büyük / küçük kutu ya da yalnız gezegen tepkisi</td></tr>
+</table>
+<p><b>Metin tablosu</b> (CSV: <code>anahtar, tr, en, …</code>) bir kez yüklenip sözlüğe alınır. Ayrı bir çeviri sistemi henüz yok <span class="tag ok">DOĞRULANDI</span>;
+tablo, ileride yapılacak çeviri altyapısının (M1) kullanacağı biçimde tasarlanır. Eksik anahtar geliştirmede uyarı verir, oyunda Türkçe'ye düşer <span class="tag acc">ÖNERİ</span>.</p>
+
+<h3>B3. Çalışma zamanı parçaları</h3>
+<table>
+<tr><th>Parça</th><th>Görev</th><th>Not</th></tr>
+<tr><td><code>DialogueDirector</code></td><td>Tetikleri dinler, uygun satırı seçer, sıraya alır, kutuya verir, kaydı günceller</td><td>Sahneler arası yaşar (ana menü + oyun sahnesi). <code>GameManager</code> da böyle yaşıyor <span class="tag ok">DOĞRULANDI</span>; <code>RoundManager</code> yalnız oyun sahnesinde, sahne yüklenince yeniden bağlanılır <span class="tag ok">DOĞRULANDI</span></td></tr>
+<tr><td>Tetik adaptörü</td><td>Mevcut olayları diyalog tetiğine çevirir</td><td>Kullanılacak olaylar: <code>GameManager.OnGameStateChanged</code>, <code>RoundManager.OnRunStarted / OnRoundChanged / OnRoundEnded</code>, <code>ProgressionManager.OnLevelUp</code>, <code>FieldEventDirector.Cued</code>, <code>RunEffects.Cued</code>, run sonu <code>RunOutcome</code> <span class="tag ok">DOĞRULANDI</span></td></tr>
+<tr><td>Eksik iki olay</td><td>Boss önizlemesinin açılması; seçim ekranının açılması</td><td><code>RoundPreviewUI</code> yalnız <code>IsOpen</code> bayrağı tutuyor, olay yaymıyor <span class="tag ok">DOĞRULANDI</span>. Bu iki ekrana tek satırlık birer olay eklenir; yoklama (her kare kontrol) yapılmaz</td></tr>
+<tr><td><code>DialogueBoxUI</code></td><td>Büyük ve küçük kutu</td><td>Mevcut UI'lar gibi kodla kurulur (<code>FeelOverlay.CreateCanvas</code>, <code>ComicUITheme</code> fontları) <span class="tag ok">DOĞRULANDI</span>; <code>Docs/UI-Art-Direction.md</code> çizgisinde</td></tr>
+<tr><td>Gezegen Eri</td><td>Tepkiler ve "konuşuyor" hareketi</td><td><code>GreenhouseMascot</code>'un kendi round başı/sonu konuşmaları kaldırılır; dışarıya küçük bir <code>React(…)</code> açılır. Portre kareleri aynı görselden (<code>GreenhouseMascotFrames</code>) tek kez yüklenip iki tarafça paylaşılır</td></tr>
+</table>
+
+<h3>B4. Konuşma kutusunun teknik ayrıntıları</h3>
+<ul>
+  <li><b>Yazı efekti:</b> TextMeshPro'nun görünür karakter sayısı artırılır (<code>maxVisibleCharacters</code>); her karede yeni metin üretilmez, bellek ayrılmaz.</li>
+  <li><b>Zaman — iki ayrı durum:</b>
+    <ul>
+      <li>Round dışındaki ekranlarda zaman durmuş (<code>Time.timeScale = 0</code>) <span class="tag ok">DOĞRULANDI</span>. Bu "menü zamanı"dır; yazı akmaya devam etmeli.</li>
+      <li>Pause ya da pencere arka planda: yazı da kapanma sayacı da durmalı.</li>
+      <li>Bu yüzden kutu kendi saatini kullanır: ölçeksiz zamanla ilerler ama "duraklatıldı" bayrağı açıkken ya da pencere odakta değilken (<code>Application.isFocused</code>) hiç ilerlemez.
+          Şu an round içinde bir pause menüsü yok; Esc round'da bir şey yapmıyor <span class="tag ok">DOĞRULANDI</span>. Bayrak, ileride eklenecek pause menüsünün tek satırla bağlanacağı yer olarak hazırlanır.</li>
+      <li>Küçük kutunun ~6 sn'lik sayacı yazı tamamlandıktan sonra başlar ve aynı saatle ilerler.</li>
+    </ul>
+  </li>
+  <li><b>Giriş:</b> genel bir tık dinlenmez. Büyük kutu yalnız kendi dikdörtgeni içindeki tıkı (Unity'nin arayüz olay sistemiyle, kutunun kendi düğmesi olarak) ve Boşluk/Enter'ı kabul eder; bu yüzden kart, düğme ya da tarla tıkları kutuya ulaşmaz. Küçük kutu yalnız Boşluk'u dinler.</li>
+  <li><b>Kapris vuruşlarını bozmamak:</b> küçük kutunun canvas'ında arayüz ışını (GraphicRaycaster) olmaz. Böylece imleç kutunun üstündeyken bile "imleç arayüzde" sayılmaz ve kapris vuruşu düşmez. Büyük kutu yalnız round dışında açıldığı için bu sorunu taşımaz.</li>
+  <li><b>Kutular bir kez kurulur</b> ve yeniden kullanılır; kapalıyken güncelleme döngüsü çalışmaz.</li>
+  <li><b>Yer:</b> sol alt. HUD düzeninde (H1–H9) kota paneli sol üste taşınacak; çakışmaz. Kesin konum HUD işinde birlikte ayarlanır.</li>
+</ul>
+
+<h3>B5. Kalıcı ilerleme (kayıt)</h3>
+<p>Mevcut <code>MetaSave</code> <span class="tag ok">DOĞRULANDI</span>:</p>
+<ul>
+  <li>Dosya <code>persistentDataPath/meta.json</code>, sürüm alanı var (şu an 1).</li>
+  <li>Önce <code>.tmp</code>'ye yazar, sonra yerine koyar; önceki sürüm <code>.bak</code> olarak kalır.</li>
+  <li>Bozuk dosyayı silmez, karantinaya alır; yedekten döner.</li>
+  <li>Daha yeni sürümün kaydını okur ama üzerine yazmaz.</li>
+  <li>Otomatik testlerde diske hiç dokunmaz.</li>
+  <li>Yazım round sonlarında, menüye dönüşte, çıkışta ve arka plana alınınca yapılıyor (<code>QuestTracker</code>).</li>
+</ul>
+<p><b>Eklenecek alanlar</b> <span class="tag acc">ÖNERİ</span>:</p>
+<table>
+<tr><th>Alan</th><th>Tür</th><th>Anlamı</th></tr>
+<tr><td><code>seenDialogue</code></td><td>metin listesi</td><td>Görülen konuşma kimlikleri (oyun içinde hızlı arama için kümeye çevrilir)</td></tr>
+<tr><td><code>storyStage</code></td><td>sayı</td><td>Hikâye aşaması 0–4</td></tr>
+<tr><td><code>milestones</code></td><td>metin listesi</td><td>Kazanılmış kilometre taşları (ilk Sınama, R25, ilk zafer …)</td></tr>
+<tr><td><code>pendingStory</code></td><td>metin listesi</td><td>Gösterilmeyi bekleyen hikâye konuşmaları (A4'teki sıra)</td></tr>
+<tr><td><code>runsStarted</code>, <code>runsFinished</code></td><td>sayı</td><td>Koşullar için</td></tr>
+<tr><td><code>introSeen</code></td><td>evet/hayır</td><td>Giriş videosu</td></tr>
+</table>
+<ul>
+  <li><b>Eski kayıtlarla uyum:</b> eski bir kayıtta yeni alanlar yoktur. Okunurken boş gelirler ve mevcut <code>Normalize</code> adımı boş listeleri doldurur
+      (bu adımın var olduğu ve boş listeleri doldurduğu <span class="tag ok">DOĞRULANDI</span>; yeni alanlar da buraya eklenir).
+      Eski bir kaydın yeni sürümde açılması ayrıca testte denenecek.</li>
+  <li><b>Sürüm</b> 1 → 2'ye çıkarılır <span class="tag acc">ÖNERİ</span>. Böylece eski bir oyun sürümü yeni kaydı açarsa yeni alanları silmez; okur ama yazmaz.</li>
+  <li><b>Yazım sıklığı:</b> satır görüldüğünde diske hemen yazılmaz; "bekleyen değişiklik" işaretlenir ve mevcut yazım anlarında toplu yazılır. Hikâye aşaması artışı ve giriş videosu gibi önemli anlar hemen yazılır.</li>
+</ul>
+
+<h3>B6. Performans, kalite ve test</h3>
+<ul>
+  <li><b>Performans:</b>
+    <ul>
+      <li>Karede bellek ayırma yok; yazı efekti dahil.</li>
+      <li>Olay tabanlı; her karede kontrol yok. Kutu kapalıyken güncelleme çalışmaz.</li>
+      <li>Metin tablosu ve katalog bir kez yüklenir. Arama sözlük/küme ile yapılır.</li>
+    </ul>
+  </li>
+  <li><b>Kalite:</b>
+    <ul>
+      <li>Rastgelelik yok; tekrar eden satırlar sırayla döner.</li>
+      <li>Sahne değişiminde olay bağları çözülür. Statik alanlar mevcut <code>SubsystemRegistration</code> düzeniyle sıfırlanır.</li>
+    </ul>
+  </li>
+  <li><b>Test</b> (izole kopyada, kullanıcı kaydına dokunmadan):
+    <ul>
+      <li><b>Kayıt:</b> yaz → yeniden yükle → görülenler ve aşama korunuyor. Eski biçim kayıt açılıyor. Bozuk dosyada yedeğe dönülüyor.</li>
+      <li><b>Kurallar:</b> bir kezlik satır ikinci run'da çıkmıyor. Aşama koşulları doğru. Öncelik ve sıra doğru.</li>
+      <li><b>Öncelik:</b> ilk karşılaşma öğretimi aynı anda gelen hikâye satırının önüne geçiyor; hikâye sonraki sakin ana erteleniyor. Geçersizleşen bekleyen satır (bitmiş kapris) gösterilmiyor ve "görülmedi" kalıyor.</li>
+      <li><b>Sözleşme:</b> run sayısına bakılmıyor. Run 1'de görmediği adımı run 3'te ilk uygun anda görüyor.</li>
+      <li><b>Akış:</b> simüle edilen oyunda T1–T11 doğru sırada. Erken ölümde kalanlar sonraki run'da. Ölmeden zaferde aşama artıyor. Demo profilinde aşama 2'yi geçmiyor.</li>
+      <li><b>Kutu:</b> kutuya tık ya da Boşluk yazıyı tamamlıyor, ikinci basış geçiyor. Kart, düğme ve tarla tıkları kutuyu ilerletmiyor. Küçük kutu tıkla değil Boşluk'la ve süreyle kapanıyor; süre yazı bittikten sonra başlıyor.</li>
+      <li><b>Zaman:</b> menü ekranında (zaman durmuş) yazı akıyor; "duraklatıldı" bayrağı açıkken ve pencere odakta değilken yazı da sayaç da duruyor.</li>
+      <li><b>Kapris:</b> küçük kutu açıkken imleç kutunun üstündeyken kapris vuruşu sayılıyor.</li>
+      <li><b>Performans:</b> yazı efekti ve boşta beklerken karede 0 bayt.</li>
+      <li><b>Görsel:</b> büyük/küçük kutunun ekran görüntüleri senin onayına.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>B7. Planlanan dosyalar</h3>
+<table>
+<tr><th>Yeni</th><th>Değişecek</th></tr>
+<tr><td>
+<code>Assets/Scripts/Dialogue/DialogueDirector.cs</code><br>
+<code>Assets/Scripts/Dialogue/DialogueCatalogSO.cs</code><br>
+<code>Assets/Scripts/Dialogue/DialogueText.cs</code> (CSV okuyucu)<br>
+<code>Assets/Scripts/Dialogue/DialogueBoxUI.cs</code><br>
+<code>Assets/Resources/Dialogue/DialogueCatalog.asset</code><br>
+<code>Assets/Resources/Dialogue/dialogue_text.csv</code><br>
+<code>Tools/Verification/Editor/DialogueVerification.cs</code>
+</td><td>
+<code>MetaSave.cs</code> (yeni alanlar, sürüm 2)<br>
+<code>GreenhouseMascot.cs</code> (eski konuşmalar → tepkiler)<br>
+<code>RoundPreviewUI.cs</code>, <code>StartSelectionPanelUI.cs</code> (birer olay)<br>
+<code>GameSettings.cs</code> + ayar menüsü (A7)
+</td></tr>
+</table>
+
+<h3>B8. Doğrulanmayanlar ve riskler</h3>
+<table>
+<tr><th>Konu</th><th>Durum</th><th>Ne yapılacak</th></tr>
+<tr><td>İlk saksının tam olarak hangi ekranda ve nasıl yerleştirildiği (başlangıç saksı sayısı <code>StartingPlanterCount</code> ile geliyor)</td><td><span class="tag warn">DOĞRULANMADI</span></td><td>Faz 2'den önce oynayarak T2/T3'ün yeri kesinleşecek</td></tr>
+<tr><td>Hazırlık ekranında "round'u başlat" düğmesinin ve mağazanın tam yeri</td><td><span class="tag warn">DOĞRULANMADI</span></td><td>Aynı kontrol</td></tr>
+<tr><td>Mevcut TMP fontlarının bütün Türkçe karakterleri (ğ, ş, İ, ı) taşıdığı</td><td><span class="tag warn">DOĞRULANMADI</span></td><td>Oyunda Türkçe metin zaten görünüyor; kutu testinde ayrıca bakılacak</td></tr>
+<tr><td>Yazı sesi (harf "tık"ı)</td><td><span class="tag warn">AÇIK</span></td><td>Yeni ses gerekirse önce lisans bildirimi; kendi sentezimiz lisans gerektirmez</td></tr>
+<tr><td>Kapris takviminin R15/20+ ve %60–65'e çekilmesi</td><td><span class="tag warn">AÇIK</span></td><td>Diyalog işinin parçası değil; tetik bundan etkilenmez</td></tr>
+<tr><td>Giriş videosunun yapımı</td><td><span class="tag warn">AÇIK</span></td><td>Ayrı plan (Faz 5)</td></tr>
+</table>
+
+<h3>B9. Kararlar (25 Ekim, kullanıcı)</h3>
+<ul>
+  <li><span class="tag ok">KARAR</span> Kilometre taşları 0–3 (A4).</li>
+  <li><span class="tag ok">KARAR</span> Ekrana genel tık konuşmayı ilerletmez; büyük kutu kutuya tık / Boşluk / Enter; küçük kutu yazı bitince ~6 sn ya da Boşluk (A5).</li>
+  <li><span class="tag ok">KARAR</span> Öncelik: ilk karşılaşma öğretimi &gt; hikâye; bekleyen satır geçerlilik kontrolü (A6).</li>
+  <li><span class="tag ok">KARAR</span> Pause / arka plan ≠ menü zamanı (B4).</li>
+  <li><span class="tag ok">KARAR</span> Kayıt sürümü 2 ve eski kayıt testi (B5).</li>
+  <li><span class="tag ok">KARAR</span> Faz sırası (A8). Faz 1: yalnız altyapı ve birkaç gerçek deneme satırı.</li>
+  <li><span class="tag acc">ÖNERİ</span> Demo profilinde hikâye en çok aşama 2 (A4) — onayın bekleniyor.</li>
+</ul>
+
+<div class="box"><b>Durum:</b> Bu belgedeki hiçbir şey henüz uygulanmadı. Yapılan iş: kodun ilgili kısımlarının okunması ve bu planın yazılması.
+"<span class="tag ok">DOĞRULANDI</span>" etiketleri yalnız kodun okunarak kontrol edildiği anlamına gelir; çalıştırılarak test edilmedi.</div>
+
+</body>
+</html>
