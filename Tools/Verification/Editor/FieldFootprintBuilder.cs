@@ -12,6 +12,8 @@ public static class FieldFootprintBuilder
  static Material body,ink;
  static Vector3 Rad(float a,float r,float y)=>new Vector3(Mathf.Cos(a)*r,y,Mathf.Sin(a)*r);
  public static void BuildThornAndRun(){Build();ThornArtVerification.RunBatch();}
+ // Yalnız izole kopyada: hücre izlerini yeniden kurar ve çıkar (25 Ekim 2026, Filiz pembe halka).
+ public static void BuildBatch(){if(!Application.dataPath.Contains("VerificationProject"))throw new System.Exception("isolated only");Build();EditorApplication.Exit(0);}
  [MenuItem("Tools/Art/Build Event Cell Footprints")]
  public static void Build()
  {
@@ -32,19 +34,21 @@ public static class FieldFootprintBuilder
     content.hideSeconds=.65f;content.emergeDepth=.28f;
    }
    var geo=new LateGameMeshBuilder();
-   Color stem=sprout?new Color32(39,112,105,255):new Color32(151,76,48,255);
-   Color tip=sprout?new Color32(103,222,196,255):new Color32(255,207,122,255);
+   // 25 Ekim 2026 (kullanıcı: turkuaz halka yeşil bitkilerin arasında kayboluyor): Filiz'in hücre işareti pembe — mürdüm gövde,
+   // pembe yapraklar; Filiz'in imza rengi, yeşil bitki ve gri saksı arasında net ayrışır. Diken halkası değişmedi.
+   Color stem=sprout?new Color32(142,36,87,255):new Color32(151,76,48,255);
+   Color tip=sprout?new Color32(242,92,154,255):new Color32(255,207,122,255);
    for(int arc=0;arc<2;arc++)
    {
     var p=new Vector3[7];var r=new float[7];
-    for(int j=0;j<7;j++){float a=arc*Mathf.PI+j*.43f;p[j]=Rad(a,.78f+.025f*Mathf.Sin(j*1.9f),.18f+j*.018f);r[j]=Mathf.Lerp(sprout?.058f:.09f,.022f,j/6f);}
+    for(int j=0;j<7;j++){float a=arc*Mathf.PI+j*.43f;p[j]=Rad(a,.78f+.025f*Mathf.Sin(j*1.9f),.18f+j*.018f);r[j]=Mathf.Lerp(sprout?.075f:.09f,.022f,j/6f);}
     geo.Tube(p,r,stem,5);
     for(int j=1;j<7;j+=2)
     {
      float a=arc*Mathf.PI+j*.43f;
      if(sprout)
      {
-      var leaf=new LateGameMeshBuilder();leaf.Leaf(.32f,.13f,tip,new Color32(55,142,119,255));
+      var leaf=new LateGameMeshBuilder();leaf.Leaf(.36f,.15f,tip,new Color32(184,52,110,255));
       geo.Append(leaf,Matrix4x4.TRS(p[j],Quaternion.Euler(-14,-90-a*Mathf.Rad2Deg,0),Vector3.one));
      }
      else

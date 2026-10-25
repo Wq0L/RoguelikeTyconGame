@@ -1,0 +1,80 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using UnityEditor;
+using UnityEngine;
+using Object = UnityEngine.Object;
+
+// Geçici, yalnız izole kopyada: tarla olayı yerleşimi gerçekten rastgele mi (25 Ekim 2026, kullanıcı: "hep aynı yerde çıkıyor").
+// 1) Oyunun gerçek yolu: SegmentEventDirector.RunSeed farklı değerler, FieldEventDirector.HandleRoundStarted(round) → olay + bölge.
+// 2) Test penceresi yolu: StartNow(kind, 0, seed 1) art arda → hep aynı mı.
+[InitializeOnLoad]
+public static class EventPlacementProbe
+{
+    const string Key = "EventPlacementProbe";
+    const BindingFlags F = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
+    static double next; static int step;
+    static readonly List<string> notes = new();
+    static object Lab(string n, params object[] a) { var m = typeof(GecOyunV1Verification).GetMethod(n, BindingFlags.Static | BindingFlags.NonPublic); return m.Invoke(null, m.GetParameters().Select((p, i) => i < a.Length ? a[i] : p.DefaultValue).ToArray()); }
+    static EventPlacementProbe() { EditorApplication.update += Tick; }
+    public static void RunBatch()
+    {
+        if (!Application.dataPath.Contains("VerificationProject")) throw new Exception("isolated only");
+        GecOyunV1Verification.RunBatch(); SessionState.SetBool("GecOyunV1Verification", false); SessionState.SetBool(Key, true);
+    }
+    static string Describe(FieldEvent e) => e == null ? "yok" :
+        $"{e.Kind}: hedef {string.Join(" ", e.Targets.Select(t => $"({t.Cell.x},{t.Cell.z})"))} bölge {string.Join(",", Enumerable.Range(0, e.ZoneCount).SelectMany(z => e.Zone(z)).Take(3).Select(c => $"({c.x},{c.z})"))}…";
+    static void Tick()
+    {
+        if (!SessionState.GetBool(Key, false) || !EditorApplication.isPlaying || EditorApplication.isCompiling) return;
+        if (next == 0) { next = EditorApplication.timeSinceStartup + 2; return; }
+        if (EditorApplication.timeSinceStartup < next) { EditorApplication.QueuePlayerLoopUpdate(); return; }
+        try
+        {
+            if (step == 0) { if (double.IsNaN((double)Lab("Lab"))) return; step = 1; next = EditorApplication.timeSinceStartup + .5; return; }
+            if (step == 1) { Lab("Refill", true); step = 2; next = EditorApplication.timeSinceStartup + .5; return; }
+            var events = FieldEventDirector.Instance;
+            var segments = SegmentEventDirector.Instance;
+            var seedProp = typeof(SegmentEventDirector).GetProperty("RunSeed");
+            var roundStarted = typeof(FieldEventDirector).GetMethod("HandleRoundStarted", F);
+            notes.Add($"Plan {(events.Plan != null ? events.Plan.name : "yok")}, hata {events.PlanError ?? "yok"}");
+            notes.Add("Aktif profil: " + (RoundManager.Instance.Profile != null ? RoundManager.Instance.Profile.name : "yok") + $", şu anki RunSeed {segments.RunSeed}");
+            notes.Add($"round running {GameManager.Instance.CurrentState}, skipped so far {events.Skipped}");
+            int[] bossRounds = Enumerable.Range(26, 25).Where(r => RoundManager.Instance.IsBossRound(r)).Take(3).ToArray();   // plan firstRound 26
+            notes.Add("Boss round'ları (ilk 3): " + string.Join(",", bossRounds));
+            foreach (int round in bossRounds.Concat(new[] { 27, 28 }))
+            {
+                var seen = new HashSet<string>();
+                for (int k = 0; k < 6; k++)
+                {
+                    int runSeed = 1000 + k * 7919;
+                    seedProp.SetValue(segments, runSeed);
+                    typeof(FieldEventDirector).GetField("previous", F)?.SetValue(events, null);
+                    roundStarted.Invoke(events, new object[] { round });
+                    string d = Describe(events.Current);
+                    seen.Add(d);
+                    notes.Add($"round {round} · RunSeed {runSeed}: {d}");
+                    events.End();
+                }
+                notes.Add($"round {round}: 6 run seed → {seen.Count} farklı yerleşim (skipped {events.Skipped})");
+            }
+            foreach (var kind in new[] { FieldEventKind.ThornSiege, FieldEventKind.InvasiveSprout })
+            {
+                var seen = new HashSet<string>();
+                for (int k = 0; k < 4; k++) { events.StartNow(kind, 0f, 1, (FieldEventPlanSO)Lab("FastPlan")); seen.Add(Describe(events.Current)); events.End(); }
+                notes.Add($"Test penceresi yolu (seed 1, 4 kez) {kind}: {seen.Count} farklı yerleşim → {seen.First()}");
+            }
+            Finish(null);
+        }
+        catch (Exception e) { Finish(e.InnerException ?? e); }
+    }
+    static void Finish(Exception e)
+    {
+        SessionState.SetBool(Key, false);
+        Directory.CreateDirectory("Logs");
+        File.WriteAllLines("Logs/EventPlacementProbe.txt", new[] { e == null ? "PASS" : "FAIL " + e }.Concat(notes));
+        EditorApplication.Exit(e == null ? 0 : 1);
+    }
+}

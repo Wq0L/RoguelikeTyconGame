@@ -1,0 +1,146 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using UnityEditor;
+using UnityEngine;
+using Object = UnityEngine.Object;
+
+// Geçici, yalnız izole kopyada (repo değişmez): Aşılı Kabuk'un BUGÜNKÜ hâli (25 Ekim 2026), gerçek oyun koduyla, karışık tarla
+// (dama tahtası saksısız). Bölümler: hazırlığın ilk ,8 sn'si → (atlama) hazırlığın son ,8 sn'si + çıkış + seçim → A düğümüne
+// 4 gerçek vuruş → kırılma, B kapanır → (atlama) kapanma bitişi + açılma. Kare kare (oyun saati .02 sn/kare).
+[InitializeOnLoad]
+public static class ShellFeelCapture
+{
+    const string Key = "ShellFeelCapture", Out = "Logs/ShellFeel/";
+    const int W = 1280, H = 720, HitEvery = 9;
+    static int step, frame, segment, segmentFrame, afterBreak = -1, hits;
+    static double next;
+    static readonly List<string> notes = new();
+    static Vector3 focus;
+    static float zoom = .62f;
+    static object Lab(string n, params object[] a) { var m = typeof(GecOyunV1Verification).GetMethod(n, BindingFlags.Static | BindingFlags.NonPublic); return m.Invoke(null, m.GetParameters().Select((p, i) => i < a.Length ? a[i] : p.DefaultValue).ToArray()); }
+    static void Tick(FieldEvent e, float dt) => typeof(FieldEvent).GetMethod("Tick", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(e, new object[] { dt });
+    static ShellFeelCapture() { EditorApplication.update += Update; }
+    public static void RunBatch()
+    {
+        if (!Application.dataPath.Contains("VerificationProject")) throw new Exception("isolated only");
+        GecOyunV1Verification.RunBatch(); SessionState.SetBool("GecOyunV1Verification", false); SessionState.SetBool(Key, true);
+    }
+    static FieldEventDirector Events => FieldEventDirector.Instance;
+    static void Update()
+    {
+        if (!SessionState.GetBool(Key, false) || !EditorApplication.isPlaying || EditorApplication.isCompiling) return;
+        if (next == 0) { next = EditorApplication.timeSinceStartup + 2; return; }
+        if (EditorApplication.timeSinceStartup < next) { EditorApplication.QueuePlayerLoopUpdate(); return; }
+        try
+        {
+            switch (step)
+            {
+                case 0:
+                    if (double.IsNaN((double)Lab("Lab"))) return;
+                    Directory.CreateDirectory(Out + "kare");
+                    GameSettings.ScreenShake = 1f;
+                    if (CameraFeel.Instance == null) Camera.main.gameObject.AddComponent<CameraFeel>();
+                    Lab("Strike", 100f, .4f);
+                    foreach (var b in Object.FindObjectsByType<PlanterBrain>(FindObjectsSortMode.None).Where(b => b.IsPlaced).ToList())
+                    { var c = b.OccupiedGrids[0].GetGridPosition(); if ((c.x + c.z) % 2 == 1) b.RemoveSelf(); }
+                    Lab("Refill", true);
+                    if (!Events.StartNow(FieldEventKind.GraftedShell, 0f, 31)) throw new Exception("shell did not start");
+                    step = 1; break;
+                case 1:
+                {
+                    var e = Events.Current;
+                    if (e == null) throw new Exception("event vanished");
+                    if (e.Phase == FieldEventPhase.Waiting) { EditorApplication.QueuePlayerLoopUpdate(); return; }
+                    var grid = GridManager.Instance.GetGridSystem();
+                    Vector3 a = FieldCells.World(grid, e.Targets[0].Cell), b = FieldCells.World(grid, e.Targets[1].Cell);
+                    focus = (a + b) * .5f;
+                    zoom = Mathf.Clamp(Vector3.Distance(a, b) / 9f, .42f, .8f);
+                    notes.Add($"A node {e.Targets[0].Cell.x},{e.Targets[0].Cell.z} · B node {e.Targets[1].Cell.x},{e.Targets[1].Cell.z} · zoom {zoom:0.00}");
+                    notes.Add($"segment 0 (prepare start) from frame {frame}, phase {e.Phase} t {e.PhaseTime:0.00}");
+                    Time.captureDeltaTime = 1f / 30f;
+                    EditorApplication.isPaused = true;
+                    step = 2; break;
+                }
+                case 2:
+                {
+                    var e = Events.Current as GraftedShellEvent;
+                    if (e == null && segment == 2) { EditorApplication.isPaused = false; Time.captureDeltaTime = 0; Finish(null); return; }
+                    if (e == null) throw new Exception("event vanished");
+                    Shot($"kare/{frame:000}");
+                    frame++; segmentFrame++;
+                    if (segment == 0 && segmentFrame >= 40)
+                    {
+                        // Hazırlığın ortasını atla: son ,8 sn'ye.
+                        float skip = e.PrepareRemaining - .8f;
+                        if (skip > 0f) Tick(e, skip);
+                        segment = 1; segmentFrame = 0;
+                        notes.Add($"segment 1 (prepare end → emerge → choice → hits) from frame {frame}, phase {e.Phase} t {e.PhaseTime:0.00}");
+                    }
+                    else if (segment == 1 && e.Phase == FieldEventPhase.Active && afterBreak < 0)
+                    {
+                        if (e.PhaseTime > .9f && segmentFrame % HitEvery == 0 && !e.Targets[0].Broken)
+                        {
+                            Lab("AttackAt", e.Targets[0].Position);
+                            hits++;
+                            notes.Add($"hit {hits} at frame {frame}: A remaining {e.Targets[0].Remaining}, B remaining {e.Targets[1].Remaining}");
+                            if (e.Targets[0].Broken) { afterBreak = 0; notes.Add($"break at frame {frame}: closed zone {e.ClosedZone}"); }
+                        }
+                    }
+                    if (afterBreak >= 0) afterBreak++;
+                    if (segment == 1 && afterBreak > 90) { segment = 2; segmentFrame = 0; }
+                    if (segment == 2 && segmentFrame == 0)
+                    {
+                        // Kapanma bitişine kadar olayın kendi Tick'iyle ilerle (aktif süre seçim + kapalı).
+                        float left = ActiveLeft(e) - .6f;
+                        if (left > 0f) Tick(e, left);
+                        notes.Add($"segment 2 (closed end → open → resolve) from frame {frame}, phase {e.Phase} t {e.PhaseTime:0.00}");
+                        segmentFrame = 1;
+                    }
+                    if ((segment == 2 && (e.Phase == FieldEventPhase.Done || segmentFrame > 150)) || frame > 600)
+                    { EditorApplication.isPaused = false; Time.captureDeltaTime = 0; Finish(null); return; }
+                    EditorApplication.Step();
+                    return;
+                }
+            }
+        }
+        catch (Exception ex) { Finish(ex.InnerException ?? ex); return; }
+        EditorApplication.QueuePlayerLoopUpdate();
+    }
+    // Kapanma sayacı: closedTime özel alan; kalan = closedSeconds - closedTime.
+    static float ActiveLeft(GraftedShellEvent e)
+    {
+        float closed = (float)typeof(GraftedShellEvent).GetField("closedTime", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(e);
+        return 20f - closed;
+    }
+    static void Shot(string name)
+    {
+        var cam = Camera.main; var tr = cam.transform;
+        Vector3 pos = tr.position; float size = cam.orthographicSize;
+        Vector3 v = focus + Vector3.up * .6f - pos, fw = tr.forward;
+        tr.position = pos + (v - fw * Vector3.Dot(v, fw));
+        if (cam.orthographic) cam.orthographicSize = size * zoom;
+        var canvases = Object.FindObjectsByType<Canvas>(FindObjectsSortMode.None).Where(c => c.isRootCanvas && c.renderMode == RenderMode.ScreenSpaceOverlay).ToArray();
+        foreach (var canvas in canvases) canvas.enabled = false;
+        var target = new RenderTexture(W, H, 24); target.Create(); cam.targetTexture = target;
+        UnityEngine.Rendering.RenderPipeline.SubmitRenderRequest(cam, new UnityEngine.Rendering.Universal.UniversalRenderPipeline.SingleCameraRequest { destination = target });
+        var previous = RenderTexture.active; RenderTexture.active = target;
+        var image = new Texture2D(W, H, TextureFormat.RGB24, false);
+        image.ReadPixels(new Rect(0, 0, W, H), 0, 0); image.Apply();
+        cam.targetTexture = null; RenderTexture.active = previous;
+        foreach (var canvas in canvases) canvas.enabled = true;
+        tr.position = pos; cam.orthographicSize = size;
+        File.WriteAllBytes(Out + name + ".png", image.EncodeToPNG());
+        Object.Destroy(image); Object.Destroy(target);
+    }
+    static void Finish(Exception e)
+    {
+        SessionState.SetBool(Key, false);
+        Time.captureDeltaTime = 0;
+        Directory.CreateDirectory(Out);
+        File.WriteAllLines(Out + "ShellFeelCapture.txt", new[] { e == null ? "PASS" : "FAIL " + e }.Concat(notes));
+        EditorApplication.Exit(e == null ? 0 : 1);
+    }
+}

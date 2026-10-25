@@ -397,3 +397,22 @@ korunur. Tools geliştirme üreticileri; Assets oyunda dağıtılan varlıklard�
   → `Tools/Verification/Editor/ThornBurstArtBuilder.cs`; önizlemeler `Docs/ThornBurst/`, MP4/GIF mevcut FFmpeg ile.
 - Geometri, renkler ve animasyon özgün; dış model, doku, font, eklenti veya paket yok. Ücret/royalty yok, kredi zorunluluğu yok,
   dağıtım paketine lisans metni gerekmiyor.
+
+## İstilacı Filiz kişiliği — özgün içerik, Blender ile (24 Ekim 2026)
+
+- Oyunda dağıtılan varlıklar (25 Ekim 2026'dan beri): `Assets/Art/LateGame/SproutBurst/` (61 ağ), `Assets/Resources/SproutBurstArt.asset`.
+  Üretim: Blender 5.2 LTS (mevcut kurulum; lisans kaydı yukarıda), `Tools/Art/SproutBurst/build_sprout_burst.py` → `export_sprout_burst.py`
+  → `Tools/Verification/Editor/SproutBurstArtBuilder.cs`; önizlemeler `Docs/SproutBurst/`, MP4/GIF mevcut FFmpeg ile.
+- Geometri, renkler ve animasyon özgün; dış model, doku, font, eklenti veya paket yok. Ücret/royalty yok, kredi zorunluluğu yok,
+  dağıtım paketine lisans metni gerekmiyor.
+
+## Aşılı Kabuk kişiliği — özgün içerik, Blender ile (25 Ekim 2026)
+
+- Oyunda dağıtılan varlıklar (25 Ekim 2026'dan beri): `Assets/Art/LateGame/ShellBurst/` (66 ağ), `Assets/Resources/ShellBurstArt.asset`.
+  Üretim: Blender 5.2 LTS (mevcut kurulum), `Tools/Art/ShellBurst/build_shell_burst.py` → `export_shell_burst.py`
+  → `Tools/Verification/Editor/ShellBurstArtBuilder.cs`; önizlemeler `Docs/ShellBurst/`, MP4/GIF mevcut FFmpeg ile.
+  Diken çalışmasının özgün toon yardımcıları yeniden kullanılır.
+- Aynı gün oyundaki Kabuk B rengi maviden mora çevrildi: `Assets/Editor/ShellArtBuilder.cs` (proje içi özgün builder) ile
+  yeniden üretilen B ağları `Assets/Art/LateGame/GraftedShell/` altında; dış kaynak yok.
+- Geometri, renkler ve animasyon özgün; dış model, doku, font, eklenti veya paket yok. Ücret/royalty yok, kredi zorunluluğu yok,
+  dağıtım paketine lisans metni gerekmiyor.

@@ -35,6 +35,36 @@ public sealed class LateGameContent : MonoBehaviour
     private float hitStrength = 1f, damage;
     private bool angry;
     private Quaternion visualRotation = Quaternion.identity;
+    // Kuruma (25 Ekim 2026, İstilacı Filiz ölüm dalgası): toon gövde renkleri kuru kahverengi-griye karışır (shader'ın _ToonFlash
+    // karışımı; mürekkep kabuk değişmez). Paylaşılan tek property block; renderer listesi önbellekli; değer değişmedikçe yazılmaz.
+    public static readonly Color WitherColor = new Color32(107, 90, 74, 255);
+    private static readonly int ToonFlashId = Shader.PropertyToID("_ToonFlash"), ToonFlashColorId = Shader.PropertyToID("_ToonFlashColor"), InkModeId = Shader.PropertyToID("_InkMode");
+    private static MaterialPropertyBlock witherBlock;
+    private float withered;
+    public float Withered => withered;
+    public void SetWither(float amount)
+    {
+        amount = Mathf.Clamp01(amount);
+        if (Mathf.Abs(amount - withered) < .01f) return;
+        if (withered == 0f) ClearHitFlash();
+        withered = amount;
+        if (hitRenderers == null) hitRenderers = GetComponentsInChildren<Renderer>(true);
+        witherBlock ??= new MaterialPropertyBlock();
+        foreach (var renderer in hitRenderers)
+        {
+            if (renderer == null || renderer.sharedMaterial == null || !renderer.sharedMaterial.HasProperty(ToonFlashId) || renderer.sharedMaterial.GetFloat(InkModeId) >= .5f) continue;
+            witherBlock.Clear();
+            witherBlock.SetFloat(ToonFlashId, amount);
+            witherBlock.SetColor(ToonFlashColorId, WitherColor);
+            renderer.SetPropertyBlock(witherBlock);
+        }
+    }
+    private void ClearWither()
+    {
+        if (withered == 0f || hitRenderers == null) { withered = 0f; return; }
+        withered = 0f;
+        foreach (var renderer in hitRenderers) if (renderer != null) renderer.SetPropertyBlock(null);
+    }
 
     public void Show()
     {
@@ -48,6 +78,7 @@ public sealed class LateGameContent : MonoBehaviour
         }
         recoil = Vector3.zero; hitStrength = 1f; damage = 0f; angry = false;
         ClearHitFlash();
+        ClearWither();
         hitRemaining = 0f;
         Stop(onShow); Stop(onHit); Stop(onHide);
         if (animator != null) { animator.Rebind(); animator.Update(0f); }
@@ -109,6 +140,7 @@ public sealed class LateGameContent : MonoBehaviour
     public void ResetForPool()
     {
         ClearHitFlash();
+        ClearWither();
         Stop(onShow); Stop(onHit); Stop(onHide); hiding = preparing = false; hitRemaining = 0f;
         recoil = Vector3.zero; hitStrength = 1f; damage = 0f; angry = false;
         if (visual != null && originCaptured) { visual.localPosition = visualOrigin; visual.localRotation = visualRotation; }

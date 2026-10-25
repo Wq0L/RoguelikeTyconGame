@@ -54,7 +54,7 @@ public static class SproutFeelCapture
                     if (e.Phase == FieldEventPhase.Waiting || (e.Phase == FieldEventPhase.Preparing && e.PrepareRemaining > .8f)) { EditorApplication.QueuePlayerLoopUpdate(); return; }
                     var grid = GridManager.Instance.GetGridSystem();
                     mainAt = FieldCells.World(grid, e.Targets[0].Cell);
-                    focus = mainAt;
+                    focus = mainAt + Vector3.up * .45f;   // gonca ve pof kadrajda
                     notes.Add($"capture from phase {e.Phase} t {e.PhaseTime:0.00}; main {e.Targets[0].Cell.x},{e.Targets[0].Cell.z}");
                     Time.captureDeltaTime = 1f / 30f;
                     EditorApplication.isPaused = true;
@@ -83,7 +83,7 @@ public static class SproutFeelCapture
                     }
                     if (afterBreak >= 0) afterBreak++;
                     frame++;
-                    if (afterBreak > 40 || frame > 500) { EditorApplication.isPaused = false; Time.captureDeltaTime = 0; Finish(null); return; }
+                    if (afterBreak > 105 || frame > 520) { EditorApplication.isPaused = false; Time.captureDeltaTime = 0; Finish(null); return; }
                     EditorApplication.Step();
                     return;
                 }

@@ -1,0 +1,11 @@
+FAIL System.Exception: event vanished
+  at ShellFeelCapture.Update () [0x00364] in C:\Users\User\Desktop\Games\Github\ClickerGame\Library\VerificationProject\Assets\Editor\ShellFeelCapture.cs:70 
+A node 8,4 · B node 6,8 · zoom 0.80
+segment 0 (prepare start) from frame 0, phase Preparing t 0.00
+segment 1 (prepare end → emerge → choice → hits) from frame 40, phase Preparing t 5.20
+hit 1 at frame 193: A remaining 3, B remaining 4
+hit 2 at frame 202: A remaining 2, B remaining 4
+hit 3 at frame 211: A remaining 1, B remaining 4
+hit 4 at frame 220: A remaining 0, B remaining 4
+break at frame 220: closed zone 1
+segment 2 (closed end → open → resolve) from frame 310, phase Active t 20.96

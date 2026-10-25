@@ -12,6 +12,8 @@ namespace MechanicsTestLab
         private bool ignoreEligibility;
         private float eventDelay = 1f;
         private int eventSeed = 1;
+        // 25 Ekim 2026: sabit seed her basışta aynı bölgeyi seçiyordu; açıkken her basış yeni seed (kutuda görünür, tekrar için kapat).
+        private bool eventRandomSeed = true;
         private bool eventAtSelection;
 
         private void DrawEvents()
@@ -53,7 +55,9 @@ namespace MechanicsTestLab
             if (director == null) { EditorGUILayout.LabelField("Tarla olayı yürütücüsü yok."); return; }
             if (director.Plan == null) { EditorGUILayout.HelpBox("Bu profilin tarla olayı planı yok: olaylar bu profilde kapalı.", MessageType.Info); return; }
             eventDelay = EditorGUILayout.Slider("Başlangıç gecikmesi (sn)", eventDelay, 0f, 6f);
-            eventSeed = EditorGUILayout.IntField("Bölge seed'i", eventSeed);
+            eventRandomSeed = EditorGUILayout.ToggleLeft("Rastgele yer (her basışta yeni seed)", eventRandomSeed);
+            using (new EditorGUI.DisabledScope(eventRandomSeed))
+                eventSeed = EditorGUILayout.IntField(eventRandomSeed ? "Son kullanılan seed" : "Bölge seed'i", eventSeed);
             using (new EditorGUI.DisabledScope(!hasSelection))
                 eventAtSelection = EditorGUILayout.ToggleLeft(hasSelection
                     ? $"Bölge seçili hücreyi içersin: ({anchor.x}, {anchor.z}) — geçerli değilse olay başlamaz, bölge başka yere taşınmaz"
@@ -63,7 +67,10 @@ namespace MechanicsTestLab
                 EditorGUILayout.BeginHorizontal();
                 for (int i = 0; i < TestEvents.EventNames.Length; i++)
                     if (GUILayout.Button(TestEvents.EventNames[i], GUILayout.Height(24f)))
+                    {
+                        if (eventRandomSeed) eventSeed = (System.Environment.TickCount ^ System.DateTime.Now.Millisecond * 7919) & 0x7FFFFFFF | 1;
                         Say(TestEvents.StartEvent((FieldEventKind)i, eventDelay, eventSeed, eventAtSelection && hasSelection ? anchor : (GridPosition?)null));
+                    }
                 EditorGUILayout.EndHorizontal();
             }
             if (rounds.CurrentRound < director.Plan.firstRound)

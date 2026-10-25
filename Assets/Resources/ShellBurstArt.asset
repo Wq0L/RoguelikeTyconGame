@@ -1,0 +1,171 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52942529c5ae4d2d96afe22b5f31df39, type: 3}
+  m_Name: ShellBurstArt
+  m_EditorClassIdentifier: Assembly-CSharp::ShellBurstArtSO
+  lit: {fileID: 2100000, guid: 9a8e09dcd306a9d4c970dd995c16cf10, type: 2}
+  ink: {fileID: 2100000, guid: 1309db654586818448b5c075ede6540a, type: 2}
+  nodeBody:
+  - {fileID: 4300000, guid: 961ff934906129a4d992d540eb503a73, type: 2}
+  - {fileID: 4300000, guid: b486a6d88da73e74aa99dda5d39801f7, type: 2}
+  nodeCore:
+  - {fileID: 4300000, guid: a7ab05f6ffbb07c45aed01dec51c40af, type: 2}
+  - {fileID: 4300000, guid: f323f779c88e98643af0e279673dd0ef, type: 2}
+  nodeMotif:
+  - {fileID: 4300000, guid: 67955cc3d9598da4b8a5ea3a4eb0afb3, type: 2}
+  - {fileID: 4300000, guid: 628074ee89b6cde469ec953db2b409aa, type: 2}
+  nodeCracks:
+  - {fileID: 4300000, guid: 9eb0f5c5b9af81942be51782706ca841, type: 2}
+  - {fileID: 4300000, guid: cafd7de8711899043b1b1322607bab47, type: 2}
+  - {fileID: 4300000, guid: f17bc401644e24048941077845dbf5ab, type: 2}
+  - {fileID: 4300000, guid: 2a120f7953bb3304cb8f126244826c90, type: 2}
+  - {fileID: 4300000, guid: cf172364f421a5247821a5503cc533ad, type: 2}
+  - {fileID: 4300000, guid: 30ae8187fd941e14bab6d523a45c008e, type: 2}
+  nodePlates:
+  - {fileID: 4300000, guid: 923d346fba43eb9408b5da68ab086f7d, type: 2}
+  - {fileID: 4300000, guid: 7fadd0fc5778fc746becefc65fbaf734, type: 2}
+  - {fileID: 4300000, guid: 1ae9fcd237621eb439162e9b0925952a, type: 2}
+  - {fileID: 4300000, guid: 6bdfc1779397bf649ab26cd6ce1607ec, type: 2}
+  - {fileID: 4300000, guid: df7aab6096c31bb448c2086244c3a4bd, type: 2}
+  - {fileID: 4300000, guid: 180e9696eaa526d4d9207701852bbe58, type: 2}
+  - {fileID: 4300000, guid: 49b6847109df895469857563e13e75c6, type: 2}
+  - {fileID: 4300000, guid: c0e5999c3efabdf4d981bfb588c310d0, type: 2}
+  - {fileID: 4300000, guid: 50ac7db7edfe6ab4396f0968e07ce436, type: 2}
+  - {fileID: 4300000, guid: 58effb87b8842914bb54136587874bcb, type: 2}
+  plateHinges:
+  - {x: 0.38133, y: 0.07314, z: -0.38133}
+  - {x: 0.4805, y: 0.07314, z: 0.24483}
+  - {x: -0.08436, y: 0.07314, z: 0.53264}
+  - {x: -0.53264, y: 0.07314, z: 0.08436}
+  - {x: -0.24483, y: 0.07314, z: -0.4805}
+  - {x: 0.33048, y: 0.0893, z: -0.33048}
+  - {x: 0.41643, y: 0.0893, z: 0.21218}
+  - {x: -0.07311, y: 0.0893, z: 0.46162}
+  - {x: -0.46162, y: 0.0893, z: 0.07311}
+  - {x: -0.21218, y: 0.0893, z: -0.41643}
+  plateDirections:
+  - {x: 0.70711, y: 0, z: -0.70711}
+  - {x: 0.89101, y: 0, z: 0.45399}
+  - {x: -0.15643, y: 0, z: 0.98769}
+  - {x: -0.98769, y: 0, z: 0.15643}
+  - {x: -0.45399, y: 0, z: -0.89101}
+  - {x: 0.70711, y: 0, z: -0.70711}
+  - {x: 0.89101, y: 0, z: 0.45399}
+  - {x: -0.15643, y: 0, z: 0.98769}
+  - {x: -0.98769, y: 0, z: 0.15643}
+  - {x: -0.45399, y: 0, z: -0.89101}
+  nodeKnob:
+  - {fileID: 4300000, guid: 43444ce1dea91a04fb069fe61d8039f0, type: 2}
+  - {fileID: 4300000, guid: a48f2c36610cb504cb7946309adc4236, type: 2}
+  knobRest:
+  - {x: 0, y: 1.03206, z: 0}
+  - {x: 0, y: 1.1895, z: 0}
+  nodeSize:
+  - {x: 0.6, y: 0.7, z: 0.38}
+  - {x: 0.52, y: 0.8, z: 0.44}
+  birthGlow:
+  - {fileID: 4300000, guid: 43e005c28da32a540ba36bfa6d4c6508, type: 2}
+  - {fileID: 4300000, guid: c1fca7fef5c4f194db96c9ebea028a44, type: 2}
+  birthCenter: {fileID: 4300000, guid: a2ef14acdc49f6b4592d6de8ce5c87d0, type: 2}
+  birthSlabs:
+  - {fileID: 4300000, guid: 0c6ab535021155941ad2a2ee37b1261c, type: 2}
+  - {fileID: 4300000, guid: 2f5ec74f4dcc26c4cb5e09eadc9a8da5, type: 2}
+  - {fileID: 4300000, guid: 1a0c9e68bdf846a4991f5ade413eb78c, type: 2}
+  - {fileID: 4300000, guid: 6a0c449d8b2900645b73042646a47175, type: 2}
+  - {fileID: 4300000, guid: 37ea22c70af85e6478580b41590ee49c, type: 2}
+  - {fileID: 4300000, guid: f33453bddc4abcd478d41b5aff910e7c, type: 2}
+  slabHinges:
+  - {x: 0.466, y: 0, z: 0.33982}
+  - {x: -0.0926, y: 0, z: 0.60397}
+  - {x: -0.53078, y: 0, z: 0.22563}
+  - {x: -0.48755, y: 0, z: -0.3756}
+  - {x: 0.0752, y: 0, z: -0.60982}
+  - {x: 0.54526, y: 0, z: -0.19235}
+  slabDirections:
+  - {x: 0.80799, y: 0, z: 0.5892}
+  - {x: -0.15155, y: 0, z: 0.98845}
+  - {x: -0.9203, y: 0, z: 0.39122}
+  - {x: -0.79219, y: 0, z: -0.61028}
+  - {x: 0.12238, y: 0, z: -0.99248}
+  - {x: 0.94304, y: 0, z: -0.33268}
+  veinSegment:
+  - {fileID: 4300000, guid: 1bed87dcc622d1e47acf19561e048396, type: 2}
+  - {fileID: 4300000, guid: 8d2aefdeacb178d439eddec81afa5ad3, type: 2}
+  clamp:
+  - {fileID: 4300000, guid: 62d5f8bdf363bc1478098400b6dda87c, type: 2}
+  - {fileID: 4300000, guid: 42d7fd6b1cc05a448b73ee98c3ba596c, type: 2}
+  bead:
+  - {fileID: 4300000, guid: c3aa143b9effbed4284f6b8ce02ffeb1, type: 2}
+  - {fileID: 4300000, guid: 242136cb1947d0442b9a1b2c9400e3c6, type: 2}
+  clampCenter: {x: 0.8, y: 0, z: 0}
+  collarPlates:
+  - {fileID: 4300000, guid: 701dab18628cb4341a547fef868f5736, type: 2}
+  - {fileID: 4300000, guid: 96743986542742c4989c9477ddd23aee, type: 2}
+  - {fileID: 4300000, guid: 298574eefa2302c4ab40c05c19ede668, type: 2}
+  - {fileID: 4300000, guid: 3ec3c816146311041807db40615603be, type: 2}
+  - {fileID: 4300000, guid: 5d2279d96a7558746a70eef613c0dfa4, type: 2}
+  - {fileID: 4300000, guid: 5199f2a58e3a25b47ae725ac72425ca5, type: 2}
+  collarHinges:
+  - {x: 0.54367, y: 0, z: 0.58688}
+  - {x: -0.23642, y: 0, z: 0.76427}
+  - {x: -0.78008, y: 0, z: 0.17739}
+  - {x: -0.54367, y: 0, z: -0.58688}
+  - {x: 0.23642, y: 0, z: -0.76427}
+  - {x: 0.78008, y: 0, z: -0.17739}
+  collarDirections:
+  - {x: 0.67959, y: 0, z: 0.7336}
+  - {x: -0.29552, y: 0, z: 0.95534}
+  - {x: -0.97511, y: 0, z: 0.22174}
+  - {x: -0.67959, y: 0, z: -0.7336}
+  - {x: 0.29552, y: 0, z: -0.95534}
+  - {x: 0.97511, y: 0, z: -0.22174}
+  collarCracks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 4300000, guid: 9e92c7e36db5b3e4bbbb94261d55d97a, type: 2}
+  - {fileID: 4300000, guid: 6446b7a90ea7a3f478c37457f2a877e1, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 4300000, guid: f379d7f88a5011640bef93d3adfe38db, type: 2}
+  - {fileID: 4300000, guid: c784c014de39f7a448734042dd89cab2, type: 2}
+  collarBand:
+  - {fileID: 4300000, guid: 27a7ddbf32231fd4aad48bd467bdd700, type: 2}
+  - {fileID: 4300000, guid: 614a82c4e27beb14e99edc88b90e2e90, type: 2}
+  crust:
+  - {fileID: 4300000, guid: f2f27466bb971cc4e9d14e289c7075e8, type: 2}
+  - {fileID: 4300000, guid: d9bb4254f6c15244e8304d34b3ffec08, type: 2}
+  - {fileID: 4300000, guid: b8950401d15ab8b43b7dda24147ab889, type: 2}
+  - {fileID: 4300000, guid: df1a122bccc3e60439b8d84a634ce7a3, type: 2}
+  - {fileID: 4300000, guid: 5f4be2f012d3b6445a1314c9d801e89f, type: 2}
+  crustCenters:
+  - {x: 0.22145, y: 0.05, z: 0.33256}
+  - {x: -0.24785, y: 0.05, z: 0.31338}
+  - {x: -0.37463, y: 0.05, z: -0.13888}
+  - {x: 0.01631, y: 0.05, z: -0.39921}
+  - {x: 0.38471, y: 0.05, z: -0.10785}
+  chip: {fileID: 4300000, guid: f9bff5166eb20f34f98cf9cef69630c5, type: 2}
+  shock: {fileID: 4300000, guid: a47094d3a7095f14888d0fd2a4b62fce, type: 2}
+  dust:
+  - {fileID: 4300000, guid: db6865b1005134742a8b2c16d72e84ac, type: 2}
+  - {fileID: 4300000, guid: fd3adb2bbb57f7543bd56795370207b2, type: 2}
+  - {fileID: 4300000, guid: 9746a77ba984ad246bcd936821488449, type: 2}
+  tink:
+  - {fileID: 4300000, guid: 2b251ba94937d564aa5800189b09459f, type: 2}
+  - {fileID: 4300000, guid: a17242e95ed3c6543a26d044482dcae4, type: 2}
+  spark:
+  - {fileID: 4300000, guid: 66f6951463e66d34192f67a3f0a4e6c0, type: 2}
+  - {fileID: 4300000, guid: ed16f309c6c049046ab8209327d613c5, type: 2}
+  sparkCream: {fileID: 4300000, guid: 6172046a67411204f9c44784ca72c8ac, type: 2}

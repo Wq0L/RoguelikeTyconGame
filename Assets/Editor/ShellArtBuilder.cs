@@ -33,8 +33,10 @@ public static class ShellArtBuilder
         AssetDatabase.SaveAssets();
     }
     // Original mesh construction inspired by the user's warm husk / cold cocoon reference.
-    static Color Tone(int z)=>z==0?new Color32(255,183,35,255):new Color32(83,220,255,255);
-    static Color Wood(int z)=>z==0?new Color32(161,95,35,255):new Color32(76,62,142,255);
+    // B, 25 Ekim 2026: camgöbeği / lacivert yerine mor / erik (kullanıcı kuralı: mavi yalnız elektrik). A değişmedi.
+    static Color Tone(int z)=>z==0?new Color32(255,183,35,255):new Color32(170,95,235,255);
+    static Color Wood(int z)=>z==0?new Color32(161,95,35,255):new Color32(96,42,110,255);
+    static readonly Color PaleB=new Color32(228,206,250,255);
     static Vector3 Rad(float a,float radius,float height)=>new Vector3(Mathf.Cos(a)*radius,height,Mathf.Sin(a)*radius);
     static void Leaf(LateGameMeshBuilder into,Vector3 at,float yaw,float tilt,float length,float width,Color face,Color back)
     {
@@ -120,7 +122,7 @@ public static class ShellArtBuilder
         for(int i=0;i<count;i++)
         {
             var geo=new LateGameMeshBuilder();
-            if(i%3==0)geo.Tube(new[]{Vector3.down*.08f,Vector3.zero,Vector3.up*.09f},new[]{.05f,.14f,.04f},zone==0?Pale:new Color32(175,234,245,255),5);
+            if(i%3==0)geo.Tube(new[]{Vector3.down*.08f,Vector3.zero,Vector3.up*.09f},new[]{.05f,.14f,.04f},zone==0?Pale:PaleB,5);
             else if(i%3==1)Leaf(geo,Vector3.zero,0,0,.30f,.10f,Tone(zone),Wood(zone));
             else geo.Tube(new[]{Vector3.zero,new Vector3(.04f,.13f,0),new Vector3(.12f,.24f,0)},new[]{.035f,.045f,.01f},Wood(zone),4);
             var piece=Render(geo,name+"Fragment"+(i%3),visual.transform,i%3!=0,false);float a=i*2.39996f;

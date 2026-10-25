@@ -76,12 +76,17 @@ Hepsi 1.0'da kalacak; amaç görsel olarak sorunsuz ve net anlaşılır olmalar�
 
 ### Tarla olayları ve vurulabilir hedefler
 
-- [ ] **O1 · Ortak hizalama:** modeller ve bölge görselleri saksılıyken ve saksısızken doğru
+- [x] **O1 · Ortak hizalama:** modeller ve bölge görselleri saksılıyken ve saksısızken doğru
   hücre merkezinde. Hedef gittikten sonra kalan çemberler de kontrol edilir.
-- [ ] **O2 · Ortak vurulma hissi:** geçerli darbe hareket, parlama ve sesle belirginleşir;
+  - **25 Ekim: kullanıcı kapattı.** Diken, Filiz ve Kabuk'ta saksılı / saksısız yerleşim yapıldı; Gezgin Bereket şu hâliyle iyi.
+- [x] **O2 · Ortak vurulma hissi:** geçerli darbe hareket, parlama ve sesle belirginleşir;
   normal vuruş ile son kırılma ayrışır.
-- [ ] **O3 · Kalan vuruş göstergesi:** küçük can barı veya bölmeli gösterge. Yalnız kabul
+  - **25 Ekim: kullanıcı kapattı.** Ortak his yerine her kaprisin kendine özgü vuruşu daha iyi oldu (Diken yıldız + geri tepme,
+    Filiz özsu, Kabuk çatlak + ağır sallanma).
+- [x] **O3 · Kalan vuruş göstergesi:** küçük can barı veya bölmeli gösterge. Yalnız kabul
   edilen darbelerde azalır.
+  - **25 Ekim: kullanıcı şimdilik kapattı; ileride tasarım kararı olarak ele alınacak (not).** Şu an yalnız Kabuk'ta net
+    (çatlak aşamaları); Diken ve Filiz'de vuruşa tepki var ama kalan vuruş sayısı okunmuyor.
 - [x] **O4 · Diken Kuşatması:** olaya ait kalabalık ek toprak kalkar, saksı toprağı kalır.
   Ağız ve dikenler ortalanır; darbe hissi ve bitiş temizliği kontrol edilir.
   - 24 Ekim (kullanıcı yönü: tümsek = ana bitkinin doğduğu yer; kapan yalnız etkilenen hücrelerde; daha agresif vurulma):
@@ -99,16 +104,31 @@ Hepsi 1.0'da kalacak; amaç görsel olarak sorunsuz ve net anlaşılır olmalar�
     - Saksısız hücrede kapan halkası havada duruyordu (model saksı kenarını saracak yükseklikte): saksısızda zemine iner
       ve %12 daralır; saksılıda değişmez. Kök / tümsek her iki durumda hücre merkezinde (saksılıda saksının içinden çıkar).
     O1 teşhisi `Docs/FieldEvents/o1/`: hedefler ve halkalar hücre merkezinde (0,00); olay bitince kalan görsel yok.
-- [ ] **O5 · İstilacı Filiz:** toprak çıkış hücresine ortalanır, çiçek çıkınca toprak kalkar.
+- [x] **O5 · İstilacı Filiz:** toprak çıkış hücresine ortalanır, çiçek çıkınca toprak kalkar.
   İkisi aynı noktaya hizalanır.
   - 24 Ekim: Diken kuralları uygulandı (CutTargetEvent): tümsek yalnız ana filizde ortada (1,5), ana filiz patlama eğrisi +
     toprak patlamasıyla çıkar, ana filizin altında sürünen dal yok, yayılma parçaları yeni hücrede fırlar (saksısızda zemine
     iner), yayılma toprağı ortada, güçlü vuruş + yıldız + büyük kırılma. SproutArtVerification 41/41. Video `Docs/FieldEvents/sprout/`.
-    Kullanıcı bakışı bekleniyor; sırada Kabuk (O6).
-- [ ] **O6 · Aşılı Kabuk:** hizalama, darbe hissi, kalan vuruş göstergesi. A/B ayrımı korunur,
+    - 25 Ekim: kullanıcı "hepsi aynı gibi" dedi → Filiz'in kendi kişiliği (Blender çalışması `Docs/SproutBurst/`, pof düzeltmesi):
+      kırbaç dallar, dönerek yükselen tomurcuk, pof + polen, sürünen dal, özsu, spor bulutu; hücre işareti pembe halka.
+      Oyunda; kullanıcı "iyi olmuş" dedi. Ölüm dalgası eklendi (ana filiz kurur ve devrilir, halkalar yakından uzağa kurur ve
+      ufalanır); SproutArtVerification 50/50, dalga sırasında 0 bayt. Kullanıcı "olmuş, bir tık hızlı" dedi → ölüm ~%30
+      yavaşlatıldı (test 50/50). **25 Ekim: kullanıcı onayladı ("gayet kafi"); sırada Kabuk (O6).**
+    - Yer seçimi "hata"sı (25 Ekim): oyunun akışı rastgele (3 boss round × 6 run seed = 6/6 farklı, `Docs/FieldEvents/o1/EventPlacementProbe.txt`);
+      test pencerelerindeki sabit seed 1 hep aynı yeri seçiyordu → iki pencereye "Rastgele yer" (varsayılan açık, seed kutuda görünür).
+- [x] **O6 · Aşılı Kabuk:** hizalama, darbe hissi, kalan vuruş göstergesi. A/B ayrımı korunur,
   kalan çemberler ortalanır.
-- [ ] **O7 · Olayların bitiş kontrolü:** görsellerin, hedeflerin ve kalan efektlerin temizliği.
+  - 25 Ekim, kurallar (Diken'de onaylanan): hazırlıkta düğüm yok, düğüm hücresinde doğum tümseği; düğüm çıkışta tümsekten
+    yükselir. Karar verilene kadar düğümün altında kabuk halkası yok. Düğüme güçlü vuruş (sıkışma + geri tepme). B rengi maviden
+    mora (#AA5FEB; mavi = elektrik). ShellArtVerification 113/113. Önce/sonra: `Docs/FieldEvents/shell/Kabuk_Bugun_*`, `Kabuk_Kural_*`.
+  - Kişilik önerisi "aşı damarlı zırh tohumu" (ağır, kalın, inatçı) kullanıcı onayıyla Blender çalışmasında: `Docs/ShellBurst/`.
+  - 25 Ekim: kullanıcı çalışmayı beğendi → oyunda (`LateGamePresenter.ShellBurst.cs`): doğum plakaları, damar + kelepçe, ağır çıkış
+    + "TOK", çatlak aşamaları (kalan vuruş göstergesi), ceviz gibi açılış, kapanan düğüm toprağa çekilir, kabuk yakalar (A ya da B),
+    açılış. ShellArtVerification 164/164, karede 0 bayt. **25 Ekim: kullanıcı onayladı ("bu da hoş olmuş, tamam").**
+- [x] **O7 · Olayların bitiş kontrolü:** görsellerin, hedeflerin ve kalan efektlerin temizliği.
   Gezgin Bereket'in tüm çalışma ve bitiş durumlarına henüz toplu kabul verilmedi.
+  - **25 Ekim: kullanıcı kapattı.** Bitiş temizliği Diken / Filiz / Kabuk testlerinde doğrulandı; Gezgin Bereket'in zaten kendi
+    kişiliği var, şu hâliyle iyi.
 
 ### Boss atmosferleri
 

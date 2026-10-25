@@ -25,7 +25,7 @@ public sealed partial class LateGamePresenter : MonoBehaviour
     private const float ThornTrapFloorDrop = .085f, ThornTrapFloorWidth = .88f;
     // İstilacı Filiz (24 Ekim, Diken kuralları): ana filizin doğum tümseği, saksısız hücrede yayılma parçasının inişi (sürünen dal
     // halkası da saksı kenarını saracak yükseklikte modellendi, taban ~.125), yayılmada küçük toprak sıçraması.
-    private const float SproutMoundScale = 1.5f, SproutPieceFloorDrop = .115f, SproutPieceFloorWidth = .88f, SproutSpreadSoil = .75f;
+    private const float SproutMoundScale = 1.5f, SproutPieceFloorDrop = .115f, SproutPieceFloorWidth = .88f;
 
     // Test görünümü: aktif tarla olayının bölgelerini kesin hücre çizgisiyle de çizer. Normal oyunda kapalıdır.
     public static bool DebugOutlines;
@@ -48,7 +48,11 @@ public sealed partial class LateGamePresenter : MonoBehaviour
         public float wiltDelay;
         public bool overflowTravel;
         // Diken çıkışı (24 Ekim): doğrusal yükseliş yerine baskı → patlama → iniş → oturma; riseDelay ile dalga hâlinde.
-        public bool burst;
+        public bool burst, spiral;
+        // İstilacı Filiz ölüm dalgası: wither = çıkıştan önce kurur (renk + kıvranma), crumbled = ufalanma bir kez;
+        // topple = ana filizin devrilme ekseni (sıfır değilse).
+        public bool wither, crumbled;
+        public Vector3 topple;   // spiral: İstilacı Filiz ana filizi dönerek yükselir (LateGamePresenter.SproutBurst.cs)
         public float riseDelay;
         public Vector3 travelFrom, travelTo;
     }
@@ -56,7 +60,8 @@ public sealed partial class LateGamePresenter : MonoBehaviour
     private static readonly int ColorId = Shader.PropertyToID("_Color"), ActiveId = Shader.PropertyToID("_Active"), PulseId = Shader.PropertyToID("_Pulse");
     // Yer tutucu renkleri: bitki yeşilinden ve zemin grisinden ayrışan doygun tonlar (olay kimliği renkle okunur).
     private static readonly Color Thorn = new(1f, 0.45f, 0.1f), ThornDark = new(0.5f, 0.22f, 0.08f), Sprout = new(0.2f, 0.85f, 0.8f),
-        ShellA = new(1f, 0.9f, 0.3f), ShellB = new(.325f, .863f, 1f), Bounty = new(1f, 0.8f, 0.25f), Spark = new(0.45f, 0.9f, 1f),
+        // Kabuk B (25 Ekim): mavi yerine mor — mavi yalnız elektrik efektlerinin rengi.
+        ShellA = new(1f, 0.9f, 0.3f), ShellB = new(.667f, .373f, .922f), Bounty = new(1f, 0.8f, 0.25f), Spark = new(0.45f, 0.9f, 1f),
         Moon = new(0.92f, 0.94f, 1f), Hot = new(1f, 0.55f, 0.25f), Metal = new(0.55f, 0.6f, 0.68f);
 
     // Bir olay bölgesinin yer tutucu rengi: tarladaki belirti, bölgeye bağlı hedef ve durum plakasındaki açıklama aynı rengi okur.
@@ -118,6 +123,8 @@ public sealed partial class LateGamePresenter : MonoBehaviour
         ClearMeteors();
         ClearEventStars();
         ClearThornBlasts();
+        ClearSproutFx();
+        ClearShellFx();
         soundPlayer?.Clear();
         placementSound=false;
         shownEvent = null;
@@ -173,7 +180,8 @@ public sealed partial class LateGamePresenter : MonoBehaviour
         item.life = 0f;
         item.pulse = 0f;
         item.rise = false;
-        item.burst = false;
+        item.burst = item.spiral = item.wither = item.crumbled = false;
+        item.topple = Vector3.zero;
         item.riseDelay = 0f;
         item.scale = Vector3.one;
         item.root.transform.localScale = Vector3.one;
@@ -227,8 +235,9 @@ public sealed partial class LateGamePresenter : MonoBehaviour
         if (item.content == null || item.content.hideSeconds <= 0f) { Release(item); return; }
         item.content.Hide();
         item.exitAge = 0f;
-        item.exitDelay = Mathf.Clamp(delay, 0f, .5f);
-        item.exitLife = Mathf.Clamp(item.content.hideSeconds, 0f, 2f);
+        item.exitDelay = Mathf.Clamp(delay, 0f, 1.6f);   // Filiz ölüm dalgası: uzak hücreler ~1,3 sn sonra
+        item.exitLife = item.topple != Vector3.zero ? SproutDeathFall
+            : Mathf.Clamp(item.content.hideSeconds * (item.wither ? SproutRingFall : 1f), 0f, 2f);
         // Snapshot the current visual scale; gameplay already removed this item.
         if (item.visual != null) item.scale = item.visual.localScale;
         exiting.Add(item);
@@ -309,18 +318,26 @@ public sealed partial class LateGamePresenter : MonoBehaviour
         if (source == null || grid == null) return;
         if (cue.Kind == FieldEventCueKind.Cleaned)
         {
-            if (shownEvent == source) { CameraFeel.Instance?.SetFrameShake(Vector2.zero); Release(eventItems); Release(exiting); Release(flashes); ClearThornBlasts(); soundPlayer?.Clear(); shownEvent = null; outlineDirty = true; }
+            if (shownEvent == source) { CameraFeel.Instance?.SetFrameShake(Vector2.zero); Release(eventItems); Release(exiting); Release(flashes); ClearThornBlasts(); ClearSproutFx(); ClearShellFx(); soundPlayer?.Clear(); shownEvent = null; outlineDirty = true; }
             return;
         }
         if (shownEvent != source) { Release(eventItems); Release(exiting); }
         Vector3 impact = Top(grid, cue.Cell) + Vector3.up * .6f;
         // Hit the existing instance before reconciliation (the final hit also removes the target).
         bool thornEvent = source.Kind == FieldEventKind.ThornSiege, cutEvent = CutTargetEvent(source.Kind);
+        bool shellEvent = source.Kind == FieldEventKind.GraftedShell;
+        // Kabuk düğümü öğe değil efekttir: vuruşu kendi sunumunda (ağır sallanma + çatlak; beyaz flaş yok).
+        if (shellEvent && (cue.Kind == FieldEventCueKind.TargetHit || cue.Kind == FieldEventCueKind.TargetBroken))
+            ShellNodeHit((GraftedShellEvent)source, cue.Index, cue.Kind == FieldEventCueKind.TargetBroken);
         if (cue.Kind == FieldEventCueKind.TargetHit || cue.Kind == FieldEventCueKind.TargetBroken)
             foreach (Item item in eventItems) if (item.identity == 10000 + cue.Index)
             {
                 if (item.content != null && item.content.topPoint != null) impact = item.content.topPoint.position;
                 if (cutEvent && item.content != null) item.content.Hit(RecoilFrom(item.root.transform.position), ThornHitStrength);
+                // Filiz ölüm dalgasının başı: kırılan ana filiz kurur ve darbeden uzağa devrilir (uzlaştırmadan ÖNCE işaretlenir:
+                // Retire düşüş süresini buna göre seçer).
+                if (cue.Kind == FieldEventCueKind.TargetBroken && source.Kind == FieldEventKind.InvasiveSprout)
+                { item.wither = true; item.topple = Vector3.Cross(Vector3.up, RecoilFrom(item.root.transform.position).normalized); }
                 else item.content?.Hit();
             }
         shownEvent = source;
@@ -329,49 +346,59 @@ public sealed partial class LateGamePresenter : MonoBehaviour
         outlineDirty = true;
         switch (cue.Kind)
         {
-            case FieldEventCueKind.Prepared: Play(LateGameSound.EventPrepared, variant); if (cutEvent) PrewarmThornBlasts(); break;
+            case FieldEventCueKind.Prepared:
+                Play(LateGameSound.EventPrepared, variant);
+                if (thornEvent) PrewarmThornBlasts(); else if (source.Kind == FieldEventKind.InvasiveSprout) PrewarmSproutFx(); else if (shellEvent) PrewarmShellFx();
+                break;
             case FieldEventCueKind.Emerged:
+                if (shellEvent) ShellEmerge((GraftedShellEvent)source, grid);   // ağır çıkış + "TOK" (ShellBurst.cs)
                 if (source.Kind == FieldEventKind.ThornSiege || source.Kind == FieldEventKind.InvasiveSprout)
                 {
                     Play(LateGameSound.EventActivated, variant);
-                    // Ana bitkinin fırladığı an Blender'da tasarlanan toprak patlaması (LateGamePresenter.ThornBurst.cs; Diken ve Filiz).
+                    // Her kaprisin kendi çıkışı: Diken toprak patlaması (ThornBurst.cs), Filiz kamçı dallar + pof (SproutBurst.cs).
                     for (int i = 0; i < source.Targets.Count; i++)
-                        ThornBlastBurst(source.Targets[i].Cell, SoilTop(grid, source.Targets[i].Cell));
+                        if (thornEvent) ThornBlastBurst(source.Targets[i].Cell, SoilTop(grid, source.Targets[i].Cell));
+                        else SproutBloomStart(source.Targets[i].Cell, SoilTop(grid, source.Targets[i].Cell));
                 }
                 break;
             case FieldEventCueKind.Activated:
                 if (source.Kind != FieldEventKind.ThornSiege && source.Kind != FieldEventKind.InvasiveSprout) Play(LateGameSound.EventActivated, variant);
                 break;
             case FieldEventCueKind.TargetHit:
-                Flash(source.Kind == FieldEventKind.ThornSiege || source.Kind == FieldEventKind.InvasiveSprout || source.Kind == FieldEventKind.GraftedShell ? LateGameSlot.HitBurst : LateGameSlot.BreakBurst, Hot, impact - Vector3.up * .6f,
-                    thornEvent ? ThornHitBurst : source.Kind == FieldEventKind.InvasiveSprout ? 1f : .5f, variant);
-                if (cutEvent) EventStarAt(impact, .7f, .07f);
+                if (!shellEvent)
+                    Flash(source.Kind == FieldEventKind.ThornSiege || source.Kind == FieldEventKind.InvasiveSprout ? LateGameSlot.HitBurst : LateGameSlot.BreakBurst, Hot, impact - Vector3.up * .6f,
+                        thornEvent ? ThornHitBurst : source.Kind == FieldEventKind.InvasiveSprout ? 1f : .5f, variant);
+                if (thornEvent) EventStarAt(impact, .7f, .07f);
+                else if (source.Kind == FieldEventKind.InvasiveSprout) SproutSap(impact - Vector3.up * .25f, RecoilFrom(impact), 1f);
                 Play(LateGameSound.TargetHit, variant);
                 break;
             case FieldEventCueKind.TargetBroken:
-                Flash(LateGameSlot.BreakBurst, Hot, impact - Vector3.up * .6f, cutEvent ? ThornBreakBurst : 1.1f, variant);
-                if (cutEvent) EventStarAt(impact, 1.25f, .11f);
+                if (!shellEvent) Flash(LateGameSlot.BreakBurst, Hot, impact - Vector3.up * .6f, cutEvent ? ThornBreakBurst : 1.1f, variant);
+                if (thornEvent) EventStarAt(impact, 1.25f, .11f);
+                else if (source.Kind == FieldEventKind.InvasiveSprout)
+                {
+                    SproutSap(impact - Vector3.up * .25f, RecoilFrom(impact), 1.4f); SproutWilt(impact);
+                }
                 Play(LateGameSound.TargetBroken, variant);
                 break;
             case FieldEventCueKind.Spread:
-                // Yayılma: yeni parçanın hücresinde, ortada küçük toprak sıçraması (parça patlama eğrisiyle fırlar).
-                Flash(LateGameSlot.GroundBurst, Sprout, Top(grid, cue.Cell) - Vector3.up * .48f, SproutSpreadSoil, variant);
+                // Yayılma: kaynak hücreden yerde sürünen dal + küçük pof; pembe halka dal ulaşınca açılır.
+                SproutSpread(source, grid, cue.Cell);
                 Play(LateGameSound.Spread, variant);
                 break;
             case FieldEventCueKind.ZoneClosed:
                 if(source.Kind==FieldEventKind.GraftedShell)
                 {
                     Play(LateGameSound.ShellChoice,variant);Play(LateGameSound.ShellClose,variant);
-                    var saved=source.Zone(1-cue.Index);
-                    foreach(var cell in source.Zone(cue.Index))Flash(LateGameSlot.GroundBurst,ZoneColor(source.Kind,cue.Index),Top(grid,cell)-Vector3.up*.48f,.8f,variant);
-                    foreach(var cell in saved)Flash(LateGameSlot.GroundBurst,ShellB,Top(grid,cell)+new Vector3(-.36f*FieldCells.CellSize,-.48f,-.36f*FieldCells.CellSize),.45f,Variant(source.Kind,1-cue.Index));
+                    // Kurtulan düğüm açılır, kapanan toprağa çekilir; damar boncukları hücrelere koşar (yaka / serbest kalma).
+                    ShellDecide((GraftedShellEvent)source,grid,cue.Index);
                 }
                 break;
             case FieldEventCueKind.ZoneOpened:
                 if(source.Kind==FieldEventKind.GraftedShell)
                 {
                     Play(LateGameSound.ShellOpen,variant);
-                    foreach(var cell in source.Zone(cue.Index))Flash(LateGameSlot.GroundBurst,ZoneColor(source.Kind,cue.Index),Top(grid,cell)-Vector3.up*.48f,.6f,variant);
+                    ShellOpenZone(cue.Index);   // yakalar çatlar, plakalar dışa devrilip düşer
                 }
                 break;
             case FieldEventCueKind.Progress:
@@ -482,8 +509,10 @@ public sealed partial class LateGamePresenter : MonoBehaviour
                     Item runner = EventItem(id + 2, LateGameSlot.SproutPiece, color, pieceAt, new Vector3(pieceWidth, 1f, pieceWidth), .035f, true, variant, true);
                     if (runner != null)
                     {
-                        runner.wiltDelay = Mathf.Min(i * .045f, .32f);
-                        if (runner.rise && runner.age == 0f) runner.burst = true;
+                        // Ölüm dalgası: ana filize yakın hücre önce kurur (Manhattan uzaklığı; yayılma bitişik olduğundan yol uzunluğuna denk).
+                        runner.wiltDelay = SproutDeathStart + SproutDeathStep * ManhattanFromTarget(source, cells[i]);
+                        runner.wither = true;
+                        if (runner.rise && runner.age == 0f) { runner.burst = true; runner.riseDelay = SproutVineSeconds; }
                     }
                     continue;
                 }
@@ -516,7 +545,16 @@ public sealed partial class LateGamePresenter : MonoBehaviour
             float health = Mathf.Lerp(.55f, 1f, target.Remaining / (float)target.Durability);
             Item item = EventItem(10000 + i, slot, ZoneColor(source.Kind, i), Top(grid, target.Cell),
                 authored ? Vector3.one : new Vector3(2f, 1.5f * health, 2f), target.Hittable ? .035f : 0f, false, variant, rise);
-            if (item != null && item.rise && item.age == 0f && CutTargetEvent(source.Kind)) item.burst = true;
+            if (item != null && item.rise && item.age == 0f)
+            {
+                if (source.Kind == FieldEventKind.ThornSiege) item.burst = true;
+                else if (source.Kind == FieldEventKind.InvasiveSprout)
+                {
+                    item.spiral = true;
+                    if (item.content != null && item.content.petals != null)
+                    { item.content.petals.openDelay = SproutPopAt; item.content.petals.openSeconds = .12f; item.content.petals.snap = true; }
+                }
+            }
             item?.content?.SetDamage(1f - target.Remaining / (float)target.Durability);
         }
         for (int i = eventItems.Count - 1; i >= 0; i--) if (!eventItems[i].seen)
@@ -526,6 +564,15 @@ public sealed partial class LateGamePresenter : MonoBehaviour
     // Kesilecek ana bitkisi olan olaylar (Diken, Filiz): tümsek = ana bitkinin doğum yeri, altında kapan / parça yok, güçlü vuruş,
     // patlayarak çıkış ve toprak patlaması (24 Ekim, kullanıcının Diken'de onayladığı kurallar).
     private static bool CutTargetEvent(FieldEventKind kind) => kind == FieldEventKind.ThornSiege || kind == FieldEventKind.InvasiveSprout;
+
+    // Ana hedefe Manhattan uzaklığı (Filiz ölüm dalgasının sırası).
+    private static int ManhattanFromTarget(FieldEvent source, GridPosition cell)
+    {
+        int best = int.MaxValue;
+        for (int i = 0; i < source.Targets.Count; i++)
+            best = Mathf.Min(best, Mathf.Abs(source.Targets[i].Cell.x - cell.x) + Mathf.Abs(source.Targets[i].Cell.z - cell.z));
+        return best == int.MaxValue ? 0 : best;
+    }
 
     // En yakın köke uzaklık (hücre, Chebyshev): kapan dalgası kökten dışarı yayılır.
     private static int CellsFromTarget(FieldEvent source, GridPosition cell)
@@ -603,36 +650,13 @@ public sealed partial class LateGamePresenter : MonoBehaviour
         }
     }
 
+    // Aşılı Kabuk (25 Ekim 2026, "aşı damarlı zırh tohumu"): tüm tarla görseli havuzlu efektlerdedir (LateGamePresenter.ShellBurst.cs):
+    // doğum plakaları (tümsek yerine, düğümün doğduğu yer), damar + kelepçe (bölge işareti; düğümün altında yok), düğüm, yaka.
+    // Eski kabuk halkası / düğüm öğeleri (ShellCover / ShellNode) kurulmaz; önceki olaydan kalan öğe varsa kaldırılır.
     private void SyncShell(GraftedShellEvent source,GridSystem grid,bool rise)
     {
-        foreach(var item in eventItems)item.seen=false;
-        bool visible=source.Phase!=FieldEventPhase.Waiting&&source.Phase!=FieldEventPhase.Done&&source.Phase!=FieldEventPhase.Resolving;
-        if(visible)for(int z=0;z<2;z++)
-        {
-            var variant=Variant(source.Kind,z);var color=ZoneColor(source.Kind,z);
-            // Saved side leaves immediately through a visual opening tail; gameplay was already released.
-            if(source.Decided&&source.SavedZone==z)continue;
-            var cells=source.Zone(z);
-            for(int i=0;i<cells.Count;i++)
-            {
-                var cell=cells[i];int id=z*100000+(cell.x*256+cell.z)*4+2;
-                var item=EventItem(id,LateGameSlot.ShellCover,color,Top(grid,cell),new Vector3(FieldCells.CellSize*.5f,1f,FieldCells.CellSize*.5f),0f,true,variant,true);
-                item?.content?.shell?.SetState(source.ZoneClosed(z)?1:0);
-            }
-            if(!source.Decided)
-            {
-                var target=source.Targets[z];
-                if(target.Broken)continue;
-                var item=EventItem(10000+z,LateGameSlot.ShellNode,color,Top(grid,target.Cell),Vector3.one,source.Phase==FieldEventPhase.Preparing?.018f:.03f,false,variant,true);
-                if(item!=null)
-                {
-                    item.content?.shell?.SetState(0);item.content?.SetDamage(1f-target.Remaining/(float)target.Durability);
-                    if(rise){item.rise=true;item.age=0;}
-                }
-            }
-        }
-        for(int i=eventItems.Count-1;i>=0;i--)if(!eventItems[i].seen)
-        {Retire(eventItems[i]);eventItems.RemoveAt(i);}
+        for(int i=eventItems.Count-1;i>=0;i--){Retire(eventItems[i]);eventItems.RemoveAt(i);}
+        EnsureShellFx(source,grid);
     }
     // ---------------------------------------------------------------- boss ödülleri
     private void OnRewardCue(RewardCue cue)
@@ -742,7 +766,7 @@ public sealed partial class LateGamePresenter : MonoBehaviour
         bool running = GameManager.Instance != null && GameManager.Instance.CurrentState == GameStates.Round;
         bool placementState=GameManager.Instance!=null&&(GameManager.Instance.CurrentState==GameStates.RoundChoice||GameManager.Instance.CurrentState==GameStates.RoundEnd);
         if(!placementState)placementSound=false;
-        if (RoundManager.Instance == null || !RoundManager.Instance.IsRoundActive) { Release(flashes); Release(exiting); ClearEventStars(); ClearThornBlasts(); if(!placementSound)soundPlayer?.Clear(); }
+        if (RoundManager.Instance == null || !RoundManager.Instance.IsRoundActive) { Release(flashes); Release(exiting); ClearEventStars(); ClearThornBlasts(); ClearSproutFx(); ClearShellFx(); if(!placementSound)soundPlayer?.Clear(); }
         float delta = running ? Time.deltaTime : 0f;
         StepAntennas(running||placementState?Time.deltaTime:0f,running);
         soundPlayer?.Step(running||placementSound?Time.deltaTime:0f, (running||placementSound) && Time.timeScale > 0f);
@@ -751,10 +775,34 @@ public sealed partial class LateGamePresenter : MonoBehaviour
         {
             Item item = exiting[i];
             item.exitAge += delta;
+            if (item.wither && item.content != null)
+            {
+                // Dalga hücreye ulaşır: SproutWitherLead sn boyunca kurur ve bir kez kıvranır; çıkış anında ufalanır (kuru yaprak + toz).
+                // Ana filiz (topple): çıkışın ilk SproutMainWither sn'sinde kurur, darbeden uzağa devrilir.
+                float lead = item.exitDelay - item.exitAge;
+                float w = item.topple != Vector3.zero ? Mathf.Clamp01(item.exitAge / SproutMainWither) : Mathf.Clamp01(1f - lead / SproutWitherLead);
+                item.content.SetWither(w * SproutWitherAmount);
+                if (lead > 0f && w > 0f && item.visual != null)
+                {
+                    float spasm = Mathf.Sin(w * Mathf.PI);
+                    item.visual.localScale = Vector3.Scale(item.scale, new Vector3(1f + .12f * spasm, 1f - .25f * spasm, 1f + .12f * spasm));
+                }
+                if (!item.crumbled && lead <= 0f && item.topple == Vector3.zero) { item.crumbled = true; SproutCrumble(item.root.transform.position); }
+            }
             if (item.exitAge < item.exitDelay) continue;
             float exitTime = item.exitAge - item.exitDelay;
             if (exitTime >= item.exitLife) { Release(item); exiting.RemoveAt(i); continue; }
             float t = 1f - exitTime / item.exitLife;
+            if (item.topple != Vector3.zero)
+            {
+                // Devrilme: ilk yarıda yere yatar, ikinci yarıda toprağa çöker.
+                float fall = GreedSmooth(exitTime / (item.exitLife * .55f));
+                item.root.transform.rotation = Quaternion.AngleAxis(SproutToppleDegrees * fall, item.topple);
+                float sink = GreedSmooth((exitTime - item.exitLife * .5f) / (item.exitLife * .5f));
+                if (item.visual != null) item.visual.localScale = Vector3.Scale(item.scale, new Vector3(1f - .3f * sink, 1f - .9f * sink, 1f - .3f * sink));
+                item.content?.Step(delta, item.age + exitTime, 1f, 1f - t);
+                continue;
+            }
             if (item.visual != null) item.visual.localScale = Vector3.Scale(item.scale, new Vector3(Mathf.Sqrt(t), t * t, Mathf.Sqrt(t)));
             item.content?.Step(delta, item.age + exitTime, 1f, 1f - t);
         }
@@ -777,6 +825,9 @@ public sealed partial class LateGamePresenter : MonoBehaviour
         SyncEventStars(delta);
         ThornBlastLeadIn(shownEvent, FieldCells.Grid);
         SyncThornBlasts(delta);
+        SproutBloomLeadIn(shownEvent, FieldCells.Grid);
+        SyncSproutFx(delta);
+        SyncShellFx(delta);
         float emergeShake = 0f;
         if (eventItems.Count > 0)
         {
@@ -792,14 +843,22 @@ public sealed partial class LateGamePresenter : MonoBehaviour
                 {
                     float t = item.age - item.riseDelay;
                     if (item.burst) { ThornBurst(t, out height, out across, out lift); if (t >= ThornBurstSeconds) item.rise = false; }
+                    else if (item.spiral)
+                    {
+                        SproutRise(t, out height, out across, out lift, out float spin);
+                        bool done = t >= SproutRiseSeconds;
+                        item.root.transform.rotation = done ? Quaternion.identity : Quaternion.Euler(0f, spin, 0f);
+                        if (done) { item.rise = false; height = across = lift = 1f; }
+                    }
                     else { height = lift = Mathf.Clamp01(t / RiseSeconds); if (height >= 1f) item.rise = false; }
-                    if (shownEvent != null && CutTargetEvent(shownEvent.Kind) && (!item.decoration || shownEvent.Kind == FieldEventKind.ThornSiege))   // Filiz yayılması sarsmaz
+                    if (shownEvent != null && shownEvent.Kind == FieldEventKind.ThornSiege)   // Filiz sinsi: çıkışı ekranı sarsmaz
                         emergeShake = Mathf.Max(emergeShake, item.burst ? ThornBurstShake(t) : Mathf.Sin(height * Mathf.PI));
                 }
                 item.visual.localScale = new Vector3(item.scale.x * scale * across, item.scale.y * scale * height, item.scale.z * scale * across);
                 item.content?.Step(delta, item.age, lift);
             }
         }
+        emergeShake = Mathf.Max(emergeShake, shellShake);   // Kabuk "TOK" (ShellBurst.cs)
         if (delta > 0f && emergeShake > 0f)
             CameraFeel.Instance?.SetFrameShake(new Vector2(Mathf.Sin(Time.time * 53f), Mathf.Cos(Time.time * 43f)) * (.055f * emergeShake));
         UpdateDebugOutline();

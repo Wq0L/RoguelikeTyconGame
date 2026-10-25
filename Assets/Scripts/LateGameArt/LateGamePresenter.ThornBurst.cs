@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Diken Kuşatması çıkış patlaması (24 Ekim 2026; Blender çalışması Tools/Art/ThornBurst, kullanıcı onayı). Aynı kurallarla
-// İstilacı Filiz'in ana filizi de bu patlamayla çıkar (CutTargetEvent). Düz "BAM" kartının ve
+// Diken Kuşatması çıkış patlaması (24 Ekim 2026; Blender çalışması Tools/Art/ThornBurst, kullanıcı onayı). Yalnız Diken'in;
+// her kaprisin kendi çıkışı var (İstilacı Filiz: LateGamePresenter.SproutBurst.cs). Düz "BAM" kartının ve
 // eski toprak saçılmasının yerine; kökün fırlama hareketi (ThornBurst eğrisi) aynen kalır, bu dünya tepkisidir.
 // - Bekleme (hazırlığın son ThornBlastLead sn'si): kök hücresinde küçük kesekler zıplar, kenardan toz pofları çıkar.
 // - Patlama (Emerged cue anı, t = 0): çizgi roman toprak patlaması kartı (24 kare/sn basamaklı: 1 → 1,18 → 1,05 → ,62 → yok),
@@ -68,7 +68,7 @@ public sealed partial class LateGamePresenter
     // Hazırlığın son ThornBlastLead sn'sinde kök hücresinde bekleme animasyonu başlar (aynı hücre için bir kez).
     private void ThornBlastLeadIn(FieldEvent source, GridSystem grid)
     {
-        if (source == null || !CutTargetEvent(source.Kind) || source.Phase != FieldEventPhase.Preparing) return;
+        if (source == null || source.Kind != FieldEventKind.ThornSiege || source.Phase != FieldEventPhase.Preparing) return;
         float remaining = source.PrepareRemaining;
         if (remaining > ThornBlastLead) return;
         for (int i = 0; i < source.Targets.Count; i++)

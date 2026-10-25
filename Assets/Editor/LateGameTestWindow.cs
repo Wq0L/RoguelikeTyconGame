@@ -28,6 +28,9 @@ public sealed class LateGameTestWindow : EditorWindow
     private string lastMessage = "";
     private float eventDelay = 1f;
     private int eventSeed = 1;
+    // 25 Ekim 2026 (kullanıcı: "hep aynı yerde çıkıyor"): sabit seed her basışta aynı bölgeyi seçiyordu. Açıkken her basış yeni seed
+    // üretir ve kutuya yazar (aynı yeri tekrar görmek için kapatıp o seed'le başlat). Oyunun kendi akışı zaten run seed'iyle rastgele.
+    private bool eventRandomSeed = true;
     private int captureRound=1, captureAmount=10000;
     private ResourceType captureResource=ResourceType.Gold;
 
@@ -123,13 +126,17 @@ public sealed class LateGameTestWindow : EditorWindow
         if(MetaSave.EditorSessionMemoryOnly)EditorGUILayout.LabelField("Kayıt: yalnız bu Play oturumunun belleğinde",EditorStyles.miniLabel);
     }
 
+    private static int NewEventSeed() => (System.Environment.TickCount ^ System.DateTime.Now.Millisecond * 7919) & 0x7FFFFFFF | 1;
+
     private void DrawEvents(bool inRound)
     {
         EditorGUILayout.LabelField("Tarla olayları", EditorStyles.boldLabel);
         FieldEventDirector director = FieldEventDirector.Instance;
         if (director == null) { EditorGUILayout.LabelField("FieldEventDirector yok."); return; }
         eventDelay = EditorGUILayout.Slider("Başlangıç gecikmesi (sn)", eventDelay, 0f, 6f);
-        eventSeed = EditorGUILayout.IntField("Bölge seed'i", eventSeed);
+        eventRandomSeed = EditorGUILayout.Toggle("Rastgele yer (her basışta yeni seed)", eventRandomSeed);
+        using (new EditorGUI.DisabledScope(eventRandomSeed))
+            eventSeed = EditorGUILayout.IntField(eventRandomSeed ? "Son kullanılan seed" : "Bölge seed'i", eventSeed);
         LateGamePresenter.DebugOutlines = EditorGUILayout.Toggle("Kesin alan çizgisi (test görünümü)", LateGamePresenter.DebugOutlines);
         using (new EditorGUI.DisabledScope(!inRound || DemoSceneSettings.IsDemo))
         {
@@ -139,8 +146,9 @@ public sealed class LateGameTestWindow : EditorWindow
                 {
                     // Profilin planı yoksa (ör. Alpha profili seçili) Geç Oyun V1 planı yalnız bu çağrı için kullanılır.
                     FieldEventPlanSO plan = director.Plan != null ? director.Plan : AssetDatabase.LoadAssetAtPath<FieldEventPlanSO>(PlanPath);
+                    if (eventRandomSeed) eventSeed = NewEventSeed();
                     bool started = director.StartNow((FieldEventKind)i, eventDelay, eventSeed, plan);
-                    lastMessage = started ? $"{EventNames[i]} kuruldu (hazırlık {eventDelay:0.#} sn sonra başlar)." : $"{EventNames[i]} kurulamadı: uygun bölge yok ya da plan bulunamadı.";
+                    lastMessage = started ? $"{EventNames[i]} kuruldu (seed {eventSeed}; hazırlık {eventDelay:0.#} sn sonra başlar)." : $"{EventNames[i]} kurulamadı: uygun bölge yok ya da plan bulunamadı.";
                 }
             EditorGUILayout.EndHorizontal();
         }
