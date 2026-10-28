@@ -12,9 +12,11 @@ using UnityEngine.UI;
 public sealed class RoundPreviewUI : MonoBehaviour
 {
     public static bool IsOpen { get; private set; }
+    // Önizleme açıldı (diyalog: Sınama önizlemesi satırı). Yoklama yerine olay.
+    public static event System.Action Opened;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    private static void ResetStatics() => IsOpen = false;
+    private static void ResetStatics() { IsOpen = false; Opened = null; }
 
     private static readonly Color Ink = new Color32(54, 39, 54, 255);
     private const float BadgeSize = 44f;
@@ -173,6 +175,7 @@ public sealed class RoundPreviewUI : MonoBehaviour
         RefreshTags();
         RefreshChips();
         SetDetails(null);
+        Opened?.Invoke();
     }
 
     private void OnDisable()

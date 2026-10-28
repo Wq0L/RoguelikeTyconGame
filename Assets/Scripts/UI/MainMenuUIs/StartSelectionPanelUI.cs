@@ -94,7 +94,14 @@ public sealed class StartSelectionPanelUI : MonoBehaviour
         Build(farmerRow, farmerCards, Sorted(catalog.farmers), FarmerHeight);
         Build(scytheRow, scytheCards, Sorted(catalog.scythes), ScytheHeight);
         Refresh();
+        Opened?.Invoke();
     }
+
+    // Seçim ekranı açıldı (diyalog: Eri'nin ilk konuşması burada başlar).
+    public static event System.Action Opened;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetOpened() => Opened = null;
 
     public void Close() => gameObject.SetActive(false);
 

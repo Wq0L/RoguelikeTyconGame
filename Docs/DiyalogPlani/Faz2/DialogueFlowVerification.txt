@@ -1,0 +1,88 @@
+PASS 86 checks
+PASS batch keeps the save in memory (the real save is never touched)
+PASS fresh progress: nothing seen, stage 0
+PASS main menu: no box before Play
+PASS T1: Play opens the start selection and Eri introduces herself (big box)
+PASS Faz2_01_Secim: the big box is open for the input check
+PASS Faz2_01_Secim (menu; batch cannot ray-test this canvas): the curtain covers the whole screen and sorts above the 1 other UI raycasters (60 vs 0), so clicks on the 6 buttons behind land on it
+PASS box click / Space walks through the three intro lines
+PASS RUN'I BAŞLAT exists
+PASS after Eri is done, RUN'I BAŞLAT is clickable again (menu: curtain stops taking clicks at once, button active)
+PASS Start: the menu switches to RunSetup while still in the menu scene; the planter lesson does NOT fire there
+PASS T2: in the game scene, once the run is built, the planter lesson opens
+PASS run counter: 1 started
+NOTE calendar: first period ends R3, first Sınama R3, second period ends R6; quota 1 = 40, boss target 1 = 10
+PASS profile: the first Adak period ends with the first Sınama
+PASS Faz2_02_Hazirlik: the big box is open for the input check
+PASS Faz2_02_Hazirlik: while Eri speaks, clicks on all 4 buttons behind land on the box
+PASS one click after the text: the lesson is done
+PASS PLANTER SHOP exists
+PASS after Eri is done, PLANTER SHOP takes the click again (top hit: Placment Shop Button)
+PASS the planter shop opens
+PASS buy a 1x1 planter with the starting gold
+PASS T3: placement mode explains click-to-place and R to rotate
+PASS while Eri speaks, a click on the field lands on the curtain (counts as 'over UI': no planter is placed by accident; hit Blocker)
+PASS Faz2_03_Yerlestirme: the big box is open for the input check
+PASS Faz2_03_Yerlestirme: while Eri speaks, clicks on all 0 buttons behind land on the box
+PASS after the lesson the field takes clicks again (no dialogue UI over it)
+PASS placing the planter on the field ends placement
+PASS back on the preparation screen: nothing new to say
+PASS T4: round 1 starts with the hit lesson in the small box
+PASS small box takes no UI raycasts (kapris hits are never blocked)
+PASS T4 second line (the joke / first hint) follows by itself
+PASS T5: after the hit lesson closes by itself, Eri names the Adak (small box)
+PASS round 1 has nothing more to say
+PASS round 1 ends through the normal round-end path
+PASS T6: the first level-up opens the card lesson (big box)
+PASS Faz2_05_KartSecimi: the big box is open for the input check
+PASS Faz2_05_KartSecimi: while Eri speaks, clicks on all 4 buttons behind land on the box
+PASS the first card exists
+PASS after Eri is done, the first card takes the click again (top hit: Grid Mutation Card)
+PASS round 1 end: no period closed yet, no box
+PASS round 2: lessons already seen stay quiet
+PASS round 2 end: no period closed yet, no box
+PASS round 3 is the first Sınama round
+PASS T9: the Sınama lesson opens first; the 'Adak still short' warning (T7) waits in the queue
+PASS T7: then the last-round warning, because the Adak is still short
+PASS both round lessons closed by themselves
+PASS Adak and Sınama targets met: the run goes on
+PASS T8: on the round-end screen after the first Adak period is met, Eri is fed (big box)
+PASS the repeating planet reaction waits until the lesson has been seen once
+PASS Faz2_08_AdakTuttu: the big box is open for the input check
+PASS Faz2_08_AdakTuttu: while Eri speaks, clicks on all 4 buttons behind land on the box
+PASS two lines, then closed
+PASS PLANTER SHOP after the round exists
+PASS after Eri is done, PLANTER SHOP after the round takes the click again (top hit: Placment Shop Button)
+PASS coming back from a shop to the same round end does not repeat it
+PASS round 6 (Sınama + last round of period 2): both lessons were already seen, Eri stays quiet
+PASS no score this period: the Adak is short
+PASS the run ends: Adak failed
+PASS T11: Adak failure explains why the run ended
+PASS this early death never met a kapris: its lesson is still unseen
+PASS run counter: 1 finished; story stage stays 0 (milestones come in Faz 3)
+PASS Faz2_09_AdakKaybi: the big box is open for the input check
+PASS Faz2_09_AdakKaybi: while Eri speaks, clicks on all 2 buttons behind land on the box
+PASS the run-end buttons exists
+PASS after Eri is done, the run-end buttons takes the click again (top hit: Restart Round Button Text)
+PASS run 2: the end box closed with the restart; the planter lesson does not repeat, planet Eri only reacts
+PASS run counter: 2 started
+PASS first Sınama has its own harvest target (10)
+PASS round 3: Sınama again, no repeated lessons
+PASS Adak met but the Sınama target missed: the run ends
+PASS T11: the Sınama loss has its own lines
+PASS Faz2_10_SinamaKaybi: the big box is open for the input check
+PASS Faz2_10_SinamaKaybi: while Eri speaks, clicks on all 2 buttons behind land on the box
+PASS run counters: 3 started, 2 finished
+PASS run 3 jumps to round 26 through the normal round start
+PASS T10: the first kapris (WanderingBounty, R28, now Active) is announced as it prepares — unseen in the earlier runs, so it shows now
+PASS kapris lesson closed by itself
+PASS jump to the final round R50
+PASS final round targets met
+PASS T11: victory has its own lines
+PASS Faz2_12_Zafer: the big box is open for the input check
+PASS Faz2_12_Zafer: while Eri speaks, clicks on all 2 buttons behind land on the box
+PASS story stage is still 0 (victory milestone is Faz 3)
+PASS no objects created by showing lines (46 under the director, start and end)
+PASS no queued line went stale in the real flow
+PASS no error or exception logged during the whole flow (0)
+PASS every lesson T1–T11 was seen exactly through its own moment

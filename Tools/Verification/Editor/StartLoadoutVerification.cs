@@ -233,7 +233,7 @@ public static class StartLoadoutVerification
         var loaded = StartLoadoutManager.Resolve(catalog);
         Require(MetaSave.LastLoad == MetaSave.LoadResult.Loaded && loaded.farmer == Tuccar && loaded.scythe == DarKesim && !loaded.fallback, "Reload from disk: Tüccar + Dar Kesim remembered");
         string json = File.ReadAllText(MetaSave.FilePath);
-        Require(json.Contains("\"version\": 1") && json.Contains("\"farmer\": \"tuccar\"") && json.Contains("\"scythe\": \"dar_kesim\""), "File has version and stable ids");
+        Require(json.Contains("\"version\": " + MetaSave.CurrentVersion) && json.Contains("\"farmer\": \"tuccar\"") && json.Contains("\"scythe\": \"dar_kesim\""), "File has version and stable ids");
 
         MetaSave.Data.farmer = "secici_yetistirici"; MetaSave.Save(); MetaSave.UseDirectory(SaveDir);
         var locked = StartLoadoutManager.Resolve(catalog);

@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // Cosmetic only: no gameplay Random calls, input interception or time-scale changes.
+// 25 Ekim 2026 (diyalog planı): Eri artık round başı / sonu kendiliğinden konuşmaz. Konuşma, tutorial ve hikâye soldaki
+// diyalog kutusundadır (DialogueDirector); gezegendeki Eri yalnız kısa tepki verir (React) ve kutu konuşurken zıplar (Talking).
 [DefaultExecutionOrder(1100)]
 public sealed class GreenhouseMascot : MonoBehaviour
 {
@@ -12,35 +14,24 @@ public sealed class GreenhouseMascot : MonoBehaviour
     private RectTransform canvas, reveal, portrait, bubble;
     private CanvasGroup visibility;
     private TMP_Text caption;
-    private readonly Sprite[] frames = new Sprite[16];
     private Image picture;
     private int shownFrame = -1;
-    // Measured alpha bounds in the 1254px source atlas; generated sheets are not
-    // perfectly uniform grids. Keep 2px padding and a common feet pivot.
-    private static readonly Vector4[] FrameBounds = {
-        new Vector4(19,23,329,321),new Vector4(353,35,617,318),new Vector4(654,27,925,319),new Vector4(956,27,1235,319),
-        new Vector4(25,339,324,622),new Vector4(345,346,633,620),new Vector4(670,330,945,623),new Vector4(970,333,1247,625),
-        new Vector4(22,638,313,923),new Vector4(331,638,629,923),new Vector4(648,637,941,923),new Vector4(960,638,1244,925),
-        new Vector4(26,939,331,1230),new Vector4(366,938,629,1224),new Vector4(651,933,931,1230),new Vector4(947,937,1245,1227)
-    };
     private float nextPeek, elapsed, duration, speechCooldown;
     private bool active, speaking;
-    private string pendingSpeech;
-    private GameStates observedState;
-    private int lastRound = -1;
+
+    // Tek bekleyen kısa tepki (gezegen balonu); gösterilemezse (Eri görünmüyorsa) düşer.
+    private static string pendingReaction;
+    // Soldaki diyalog kutusu konuşurken gezegendeki Eri belirir ve zıplar.
+    public static bool Talking { get; set; }
+    public static void React(string text) => pendingReaction = string.IsNullOrEmpty(text) ? null : text;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetStatics() { pendingReaction = null; Talking = false; }
 
     private void Start()
     {
         space = FindAnyObjectByType<SpaceBackground>();
-        var texture = Resources.Load<Texture2D>("GreenhouseMascotFrames");
-        if (texture == null || space == null) { enabled = false; return; }
-        for(int i=0;i<frames.Length;i++){
-            Vector4 b=FrameBounds[i];
-            var rect=new Rect((b.x-2)*texture.width/1254f,(1254-b.w-2)*texture.height/1254f,
-                (b.z-b.x+4)*texture.width/1254f,(b.w-b.y+4)*texture.height/1254f);
-            frames[i]=Sprite.Create(texture,rect,new Vector2(.5f,0),100,0,SpriteMeshType.FullRect);
-            frames[i].name="Mascot frame "+i;
-        }
+        if (!MascotFrames.Available || space == null) { enabled = false; return; }
         canvas = FeelOverlay.CreateCanvas("Mascot Presentation", -1);
         visibility = canvas.gameObject.AddComponent<CanvasGroup>();
         visibility.blocksRaycasts = false;
@@ -53,7 +44,7 @@ public sealed class GreenhouseMascot : MonoBehaviour
         portrait.anchorMin = portrait.anchorMax = new Vector2(.5f, 0);
         portrait.pivot = new Vector2(.5f, 0);
         picture = portrait.gameObject.AddComponent<Image>();
-        picture.sprite = frames[8];
+        picture.sprite = MascotFrames.Get(MascotFrames.Front);
         picture.preserveAspect = false;
         picture.raycastTarget = false;
 
@@ -94,28 +85,10 @@ public sealed class GreenhouseMascot : MonoBehaviour
         || game.CurrentState == GameStates.Round || game.CurrentState == GameStates.RoundEnd)
         && !RoundPreviewUI.IsOpen && (game.CurrentState != GameStates.Round || Time.timeScale > 0);
 
-    private void ObserveState()
-    {
-        if (game == null) game = GameManager.Instance;
-        if (game == null) return;
-        if (observedState == game.CurrentState) return;
-        observedState = game.CurrentState;
-        pendingSpeech = null;
-        if (observedState == GameStates.RunSetup) pendingSpeech = "Önce biraz su. Sonra hasat.";
-        if (observedState == GameStates.Round && RoundManager.Instance != null
-            && lastRound != RoundManager.Instance.CurrentRound)
-        {
-            lastRound = RoundManager.Instance.CurrentRound;
-            pendingSpeech = random.Next(2) == 0 ? "Bir hasat daha. Dayanırız." : "Kökler hâlâ tutuyor.";
-        }
-        if (observedState == GameStates.RoundEnd)
-            pendingSpeech = random.Next(2) == 0 ? "Bir nefes... Bir de biraz su." : "Sıradaki hasada yer açalım!";
-    }
-
     private void LateUpdate()
     {
         if (canvas == null) return;
-        ObserveState();
+        if (game == null) game = GameManager.Instance;
         if (!CanShow || space == null || !Application.isFocused
             // Keep the entire supporting foot inside the disc, not balanced at its outermost pixel.
             || !space.TryGetPlanetScreenPoint(new Vector2(-.52f, .78f), out Vector2 screen)
@@ -124,7 +97,7 @@ public sealed class GreenhouseMascot : MonoBehaviour
         {
             visibility.alpha = 0;
             if (active) { active = false; SchedulePeek(); }
-            pendingSpeech = null;
+            pendingReaction = null;
             return;
         }
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, screen, null, out Vector2 point);
@@ -138,15 +111,15 @@ public sealed class GreenhouseMascot : MonoBehaviour
         if (!active)
         {
             visibility.alpha = 0;
-            if (pendingSpeech != null && Time.unscaledTime >= speechCooldown)
+            if (pendingReaction != null && Time.unscaledTime >= speechCooldown)
             {
-                caption.text = pendingSpeech;
-                pendingSpeech = null;
+                caption.text = pendingReaction;
+                pendingReaction = null;
                 speaking = true;
                 duration = 11.8f;
                 speechCooldown = Time.unscaledTime + 14;
             }
-            else if (Time.unscaledTime >= nextPeek) { speaking = false; duration = 11.8f; }
+            else if (Talking || Time.unscaledTime >= nextPeek) { speaking = false; duration = 11.8f; }
             else return;
             active = true;
             elapsed = 0;
@@ -168,9 +141,8 @@ public sealed class GreenhouseMascot : MonoBehaviour
         else if(elapsed < 7.4f) { progress=1; frame=12+Mathf.Min(3,(int)((elapsed-6.8f)/.15f)); }
         else if(elapsed < 9.8f) { progress=1-(elapsed-7.4f)/2.4f; frame=4+(int)((elapsed-7.4f)*6)%4; }
         else { progress=0; frame=4+(int)((elapsed-9.8f)*6)%4; }
-        if(shownFrame!=frame){picture.sprite=frames[frame];shownFrame=frame;}
-        Vector4 bounds=FrameBounds[frame];
-        portrait.sizeDelta=new Vector2(bounds.z-bounds.x+4,bounds.w-bounds.y+4)*(size/320f);
+        if(shownFrame!=frame){picture.sprite=MascotFrames.Get(frame);shownFrame=frame;}
+        portrait.sizeDelta=MascotFrames.Size(frame)*(size/320f);
         Vector2 foot=Vector2.Lerp(point,destination,Mathf.SmoothStep(0,1,progress));
         float scale= Mathf.Lerp(.80f,1,progress);
         // The feet pivot follows the planet. At the rim the body's up direction
@@ -197,6 +169,8 @@ public sealed class GreenhouseMascot : MonoBehaviour
         reveal.anchoredPosition=foot+surfaceUp*clipping;
         reveal.sizeDelta=new Vector2(150,Mathf.Max(0,drawnHeight+8-clipping));
         portrait.anchoredPosition=new Vector2(0,-clipping-2f*size/320f*scale);
+        // Soldaki kutu konuşurken: görünür kısımda küçük zıplama (konuşan o).
+        if(Talking&&elapsed>=1.4f&&elapsed<9.8f) portrait.anchoredPosition+=new Vector2(0,5f*size/78f*Mathf.Abs(Mathf.Sin(Time.unscaledTime*14f)));
         // Walking still uses distinct drawings; only perspective scale/exit tilt are transforms.
         portrait.localScale=Vector3.one*scale;
         portrait.localRotation=Quaternion.identity;
@@ -218,7 +192,6 @@ public sealed class GreenhouseMascot : MonoBehaviour
     }
     private void OnDestroy()
     {
-        if (canvas != null) Destroy(canvas.gameObject);
-        foreach(var frame in frames) if(frame!=null)Destroy(frame);
+        if (canvas != null) Destroy(canvas.gameObject);   // kareler MascotFrames'te ortak; burada yok edilmez
     }
 }

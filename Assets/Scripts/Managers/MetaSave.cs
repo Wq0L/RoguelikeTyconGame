@@ -12,7 +12,9 @@ using UnityEngine;
 // - Batch mod (otomatik testler): açıkça klasör verilmedikçe diske dokunmaz; bellekte varsayılanla çalışır.
 public static class MetaSave
 {
-    public const int CurrentVersion = 1;
+    // 2 (25 Ekim 2026): diyalog / hikâye ilerlemesi eklendi. Sürüm 1 kayıtlar okunurken 2'ye taşınır (alanlar boş başlar);
+    // eski bir oyun sürümü 2'lik kaydı okur ama üzerine yazmaz (yeni alanlar kaybolmasın).
+    public const int CurrentVersion = 2;
     public const string FileName = "meta.json";
     public enum LoadResult { NotLoaded, Fresh, Loaded, FromBackup, CorruptReset, MemoryOnly }
 
@@ -136,6 +138,23 @@ public static class MetaSave
         d.unlocked.RemoveAll(string.IsNullOrEmpty);
         d.quests ??= new List<QuestRecord>();
         d.quests.RemoveAll(q => q == null || string.IsNullOrEmpty(q.id));
+        d.seenDialogue ??= new List<string>();
+        d.seenDialogue.RemoveAll(string.IsNullOrEmpty);
+        d.milestones ??= new List<string>();
+        d.milestones.RemoveAll(string.IsNullOrEmpty);
+        d.pendingStory ??= new List<string>();
+        d.pendingStory.RemoveAll(string.IsNullOrEmpty);
+        if (d.storyStage < 0) d.storyStage = 0;
+        if (d.version < CurrentVersion) d.version = CurrentVersion;   // eski kayıt: yeni alanlar boş başlar
+    }
+
+    // Diske hemen yazmadan "kaydedilecek değişiklik var" işareti: mevcut yazım anlarında (round sonu, menü, çıkış,
+    // arka plan; QuestTracker) toplu yazılır, beklerse 5 sn'de bir yeniden denenir.
+    public static void MarkDirty()
+    {
+        if (!HasPendingChanges) nextRetry = Time.realtimeSinceStartup + 5f;
+        HasPendingChanges = true;
+        Changed?.Invoke();
     }
 
     private static void Quarantine(string path)
@@ -238,6 +257,15 @@ public sealed class MetaSaveData
     public string scythe = "";
     public List<string> unlocked = new();
     public List<QuestRecord> quests = new();
+    // Diyalog / hikâye (sürüm 2): görülen konuşma kimlikleri, hikâye aşaması (0–3), kazanılmış kilometre taşları,
+    // gösterilmeyi bekleyen hikâye konuşmaları, run sayaçları, giriş videosu. Okuma / yazma: DialogueProgress.
+    public List<string> seenDialogue = new();
+    public int storyStage;
+    public List<string> milestones = new();
+    public List<string> pendingStory = new();
+    public int runsStarted;
+    public int runsFinished;
+    public bool introSeen;
 }
 
 [Serializable]

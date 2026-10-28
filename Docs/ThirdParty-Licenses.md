@@ -1,5 +1,22 @@
 # Dış kaynak ve lisans kayıtları
 
+## Blender 4.5.15 LTS — ayrı açılış animasyonu demosu, 27 Ekim 2026
+
+- Kategori: yalnız geliştirme/önizleme aracı. Oyun asset'i, shader'ı veya çalışma zamanı bağımlılığı eklenmedi.
+- Kaynak: https://download.blender.org/release/Blender4.5/blender-4.5.15-windows-x64.zip
+- Resmî SHA-256 dosyası: https://download.blender.org/release/Blender4.5/blender-4.5.15.sha256
+  İndirilen arşiv doğrulandı: `52dd02fd74877fa08e74b67d7854cf32468a232c02aaa19b6844c91285574f8d`.
+- Taşınabilir araç ve demo proje deposu dışında, Codex önizleme klasöründeki `intro-25d/` altında. Sistem PATH'i değiştirilmedi.
+- Sürüm lisans belgesi: https://raw.githubusercontent.com/blender/blender/v4.5.15/release/license/license.md
+  ve çıktı koşulları: https://www.blender.org/about/license/ . Lisans dosyasının kopyası önizleme araç klasöründe korundu.
+- Blender ikili dağıtımı GPL-3.0-or-later; bileşen lisansları resmî paket içinde korunur. Kullanım ve ticari çıktı üretimi ücretsiz; royalty yok.
+- Üretilen özgün video ve .blend veri dosyaları nedeniyle oyun ekranı/jenerik kredisi veya oyun paketine Blender lisans/telif metni ekleme zorunluluğu yok. Blender yazılımı oyunla dağıtılmıyor; dağıtılırsa GPL bildirim ve karşılık gelen kaynak sağlama koşulları ayrıca uygulanır.
+- `bpy` kullanan üretici betik GPL-3.0-or-later işaretli; bu betik oyun kodu değildir. Render çıktıları Blender yazılımından türemiş kod olarak sunulmaz.
+- Kullanıcıya araç, kaynak, lisans, ücret/royalty, kredi ve dağıtım koşulları indirmeden/kullanmadan önce konuşmada bildirildi.
+- Roket/gezegen/kaya geometrileri ve efektler bu demo için kodla oluşturuldu; üçüncü taraf model, doku, font veya müzik indirilmedi. Kullanıcının banner'ı ve storyboard'u yalnız yön referansı. Bu kayıt nihai sanatsal kalite veya tüm haklar için garanti değildir.
+- MP4 kodlama: mevcut PATH kurulumu FFmpeg 9.0.2 full_build (Gyan), `--enable-gpl --enable-version3`. Yerel paket `LICENSE` (GNU GPL v3) ve derleme yapılandırması kontrol edildi. Yeni FFmpeg indirmesi yapılmadı. Yalnız üretim aracı; araç için ücret/royalty, video içinde kredi veya yalnız çıktı nedeniyle oyun paketinde GPL metni gerekmiyor. FFmpeg yazılımı oyunla dağıtılmıyor; dağıtılırsa bildirim/kaynak yükümlülükleri yeniden ele alınmalı. Bu kayıt codec patentleri için genel bir lisans garantisi değildir. Kullanım öncesi konuşmada bildirildi.
+- Wing It! (Blender Studio) ve Pixar kamera/ışık üretim yazıları yalnız araştırma referansıdır. Filmlerden görüntü, model, ses veya kod alınmadı. Lisanslı film varlığı kullanıldığı iddia edilmez.
+
 ## DejaVu Sans - AI sistem rehberi PDF'si (10 Ekim 2026)
 
 - Kullanım yalnız `output/pdf/Oyun-Sistem-Rehberi-20261010.pdf` belgesine Türkçe font gömme içindir; oyun asset'i veya runtime bağımlılığı eklenmedi.

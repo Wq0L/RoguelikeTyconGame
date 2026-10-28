@@ -1,0 +1,75 @@
+PASS 74 checks
+PASS real save disabled
+PASS fresh save in a temporary folder
+PASS seeing a line only marks pending changes (no disk write per line)
+PASS milestone does not change the stage mid-run
+PASS stage advances at run end and is written immediately
+PASS seen lines, stage and run counters survive a reload
+PASS file is written as version 2
+PASS a version-1 save opens: old fields kept, dialogue fields start empty
+PASS the migrated save is written with the new fields
+PASS a newer-version save is read but never overwritten
+PASS test returns to memory-only; the real save was never touched
+PASS director and both boxes are built once
+PASS big box is clickable; small box has no UI raycaster (cursor over it is not 'over UI', kapris hits still count)
+PASS big box is modal: a full-screen curtain under the box takes every click and advances; the small box has none
+PASS single director instance
+PASS selection screen opens Eri's first conversation in the big box and it counts as seen
+PASS text starts empty
+PASS typewriter reveals letters over time (4 after 0.1 s)
+PASS first press completes the line
+PASS second press goes to the next line
+PASS while the box is open Space/Enter cannot submit another selected button
+PASS planet Eri is flagged as talking while the box speaks
+PASS 300 typing/idle steps allocate 0 bytes
+PASS 'Atla' closes the whole conversation
+PASS UI navigation restored after close
+PASS a seen conversation does not repeat
+PASS run end counts the run; quota line does not show for another ending
+PASS Adak failure shows its own run-end lines
+PASS menu time (timeScale 0) still types (0 → 2)
+PASS pause freezes the text (distinct from menu time)
+PASS paused clock is zero
+PASS RunSetup in the menu scene (before the run exists) says nothing
+PASS run built while already in RunSetup: the planter lesson opens at once
+PASS the curtain fades in (0.00 → 0.68 → 0.90)
+PASS placement lesson
+PASS next run: planet reactions go to Eri on the planet, not to the box
+PASS round start shows the hit lesson in the small box
+PASS Space completes the small box text
+PASS small box waits ~6 s after the text is complete
+PASS after ~6 s the small box moves to its second line by itself (T4 is two lines)
+PASS small box closes by itself, then the next lesson (Adak) follows in the round
+PASS nothing else is pending
+PASS lessons are not repeated in the next round / run (event based, seen once)
+PASS test catalog: round line showing
+PASS a second line waits in the single queue slot
+PASS a queued line whose moment passed (no kapris active) is not shown and stays unseen
+PASS required lesson beats story at the same moment; the story line is deferred, not lost
+PASS deferred story shows at the next calm moment
+PASS lab session keeps the dialogue silent (test scene protected)
+PASS future lab tools can turn it on explicitly
+PASS translation table: language columns by header name (translator note skipped); an empty cell falls back to English, then Turkish
+PASS missing-translation report per language
+PASS language switched to English: button label follows; an untranslated line falls back to Turkish instead of showing a key
+PASS language change refreshes an open box's labels
+PASS per-language typing speed factor read from the table
+PASS Japanese labels; a missing name key keeps 'Eri'
+PASS half speed in Japanese (2 characters after 0.1 s, Turkish would show 4)
+PASS Japanese full stop (。) pauses the typewriter like a Latin period
+PASS typing resumes after the pause
+PASS back to the real Turkish table
+PASS motion: boxes closed earlier while the dialogue clock was paused have finished their exit (cleanup runs on real time)
+PASS motion: the big box starts below, the curtain clear
+PASS motion: entrance done, curtain at full strength
+PASS motion: on close the box stops taking clicks at once and plays its exit
+PASS motion: exit finished, box hidden
+PASS motion: the small box slides in from the left
+PASS motion: the small box slides out after its wait
+PASS motion: small exit finished
+NOTE motion frames: 169 in Logs/DialogueMotion
+PASS final look: curtain at full strength after settling
+PASS spam test: box mid-entrance, text typing
+PASS first press settles the box at once and completes the text
+PASS second press closes a one-line conversation; the screen takes clicks again at once while the box exits
+PASS exit finished

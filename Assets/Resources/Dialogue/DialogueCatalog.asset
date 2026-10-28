@@ -1,0 +1,239 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdbad9143fe4c0397342b1df2ca3927, type: 3}
+  m_Name: DialogueCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueCatalogSO
+  entries:
+  - id: intro.select
+    category: 3
+    trigger: 1
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: intro.select.0
+      face: 8
+    - textKey: intro.select.1
+      face: 9
+    - textKey: intro.select.2
+      face: 10
+  - id: tut.setup
+    category: 3
+    trigger: 2
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: tut.setup.0
+      face: 9
+  - id: tut.place
+    category: 3
+    trigger: 3
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: tut.place.0
+      face: 10
+  - id: tut.hit
+    category: 3
+    trigger: 4
+    size: 1
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: tut.hit.0
+      face: 8
+    - textKey: tut.hit.1
+      face: 8
+  - id: tut.adak
+    category: 3
+    trigger: 5
+    size: 1
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: tut.hit
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: tut.adak.0
+      face: 9
+  - id: tut.level
+    category: 3
+    trigger: 6
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: tut.level.0
+      face: 10
+  - id: tut.lastround
+    category: 3
+    trigger: 10
+    size: 1
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: tut.lastround.0
+      face: 12
+  - id: tut.period
+    category: 3
+    trigger: 11
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: tut.period.0
+      face: 11
+    - textKey: tut.period.1
+      face: 8
+  - id: tut.boss
+    category: 3
+    trigger: 12
+    size: 1
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 10
+    lines:
+    - textKey: tut.boss.0
+      face: 9
+  - id: tut.kapris
+    category: 3
+    trigger: 8
+    size: 1
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: tut.kapris.0
+      face: 12
+  - id: end.quota
+    category: 3
+    trigger: 9
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 2
+    priority: 0
+    lines:
+    - textKey: end.quota.0
+      face: 13
+    - textKey: end.quota.1
+      face: 8
+  - id: end.boss
+    category: 3
+    trigger: 9
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 3
+    priority: 0
+    lines:
+    - textKey: end.boss.0
+      face: 13
+    - textKey: end.boss.1
+      face: 8
+  - id: end.victory
+    category: 3
+    trigger: 9
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 1
+    priority: 0
+    lines:
+    - textKey: end.victory.0
+      face: 11
+    - textKey: end.victory.1
+      face: 12
+  - id: react.setup
+    category: 0
+    trigger: 2
+    size: 2
+    frequency: 1
+    cooldownSeconds: 300
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: react.setup.0
+      face: 8
+  - id: react.period
+    category: 0
+    trigger: 11
+    size: 2
+    frequency: 1
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: tut.period
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: react.period.0
+      face: 8

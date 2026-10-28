@@ -34,7 +34,7 @@
 <body>
 
 <h1>Diyalog ve Tutorial Altyapısı — Plan</h1>
-<div class="cover-meta">Erigone (ClickerGame) · 25 Ekim 2026 · <b>Sürüm 2</b> · Durum: <b>yalnız araştırma ve plan; kodda hiçbir şey yapılmadı</b></div>
+<div class="cover-meta">Erigone (ClickerGame) · 25 Ekim 2026 · <b>Sürüm 2.1</b> (26 Ekim) · Durum: <b>Faz 1 kodda ve izole testte; Faz 2 kodda, metinler taslak</b> — ayrıntı <code>Faz1-Durum.md</code>, <code>Faz2-Durum.md</code></div>
 
 <div class="box">
 <b>Sürüm 2'de değişenler</b> (değerlendirme sonrası, kullanıcı onayıyla):
@@ -44,7 +44,27 @@
   <li><b>Sözleşme:</b> "ilk run" yok. Görülmemiş öğretim, ilgili olayla ilk uygun karşılaşmada çıkar; run sayısına bakılmaz (A3).</li>
   <li><b>Pause ile menü ayrı:</b> menü ekranlarında zaman durmuşken yazı akar. Oyuncu pause açtığında ya da pencere arka plandayken yazı ve kapanma sayacı durur (A6, B4, B6).</li>
   <li><b>Küçük kutu süresi:</b> ~6 sn, yazı tamamlandıktan sonra sayılır.</li>
-  <li><b>Hikâye aşamaları 0–3:</b> zafer son round bitince geliyor; son round boss ise "ilk zafer" ile "son Sınama" aynı olay. İki aşama birleştirildi. Demo profilinde hikâye en çok aşama 2'ye çıkar (A4).</li>
+  <li><b>Hikâye aşamaları 0–3:</b> zafer son round bitince geliyor; son round boss ise "ilk zafer" ile "son Sınama" aynı olay. İki aşama birleştirildi. Aşama 3 = tam oyun zaferi; demo zaferi açmaz, demoya ayrı kural yok (A4).</li>
+</ol>
+</div>
+
+<div class="box">
+<b>Sürüm 2.1'de değişenler</b> (26 Ekim, Faz 2 araştırması ve kullanıcı kararları):
+<ol>
+  <li><b>T9 düzeltmesi:</b> oyunda ayrı bir "Sınama önizlemesi" ekranı yok. <code>RoundPreviewUI</code>, Tab ile açılan <b>round sonu tarla önizlemesi</b>dir. Sınama bilgisi hazırlık ekranındaki sol kartta ve round içinde soldaki Adak panelinde hep görünür. T9 artık <b>ilk Sınama round'u başlarken</b> küçük kutuda çıkar <span class="tag ok">DOĞRULANDI</span>.</li>
+  <li><b>T2/T3'ün yeri:</b> başlangıçta tarla boş. Saksı PLANTER SHOP'tan alınır, tarlaya tıklanarak konur, R döndürür. <code>StartingPlanterCount</code> oyunda kullanılmıyor <span class="tag ok">DOĞRULANDI</span>.</li>
+  <li><b>Menüden geçiş:</b> menü "Başla"da durumu menü sahnesindeyken RunSetup'a çevirir; oyun sahnesinde aynı durum yeniden yayınlanmaz. T2 bu yüzden run kurulunca tetiklenir <span class="tag ok">DOĞRULANDI</span>.</li>
+  <li><b>Büyük kutu</b> <span class="tag ok">KARAR</span>:
+    <ul>
+      <li>Round dışı ekranlarda büyük: alt ortada, büyük portreyle.</li>
+      <li>Açıkken arkası hafifçe kararır ve arkadaki panel tıklanmaz. Ekranın herhangi bir yerine tık, Boşluk ya da Enter ilerletir.</li>
+      <li>Konuşma geçilince arkadaki panel kullanılır.</li>
+      <li>Bu, sürüm 2'deki "ekrana tıklamak ilerletmez" kararını değiştirir. O karar tık arkadaki karta geçmesin diye alınmıştı; karartma perdesi bu riski kaldırıyor.</li>
+      <li>Küçük kutu (round içi) değişmedi.</li>
+    </ul></li>
+  <li><b>Çeviri:</b> 15–30 dil hedefi <span class="tag ok">KARAR</span> (B2'deki metin tablosu notuna bakın).</li>
+  <li><b>Ses:</b> Eri'nin sesi şimdilik yok <span class="tag ok">KARAR</span>. İleride "blablabla" türü anlamsız konuşma sesi eklenebilir (Faz 4); dış kaynaksa önce lisans bildirimi yapılır.</li>
+  <li><b>Adlandırma:</b> keşiften sonra açıklama az olacak; yalnız 1–2 ad konur: Adak (T5) ve Sınama (T9) <span class="tag ok">KARAR</span>. Kapris adı verilmez; kendi plakası ne yapılacağını söyler.</li>
 </ol>
 </div>
 
@@ -99,14 +119,14 @@
 <table>
 <tr><th>#</th><th>Ne zaman (oyundaki gerçek an)</th><th>Kim görür</th><th>Öğretilen</th><th>Kutu</th></tr>
 <tr><td>T1</td><td>Seçim ekranı açıldığında</td><td>görmeyen herkes</td><td>Eri ile tanışma + "birini seç"</td><td>büyük</td></tr>
-<tr><td>T2</td><td>Oyun sahnesinde hazırlık ekranı (RunSetup)</td><td>görmeyen herkes</td><td>round'u başlatma, saksı alma/yerleştirme</td><td>büyük</td></tr>
-<tr><td>T3</td><td>Yerleştirme modu (Placing)</td><td>görmeyen herkes</td><td>saksıyı tarlaya koymak</td><td>büyük (tarlaya tık saksı koyar, kutuyu ilerletmez)</td></tr>
+<tr><td>T2</td><td>Oyun sahnesinde hazırlık ekranı (run kurulunca)</td><td>görmeyen herkes</td><td>dükkândan saksı al, sonra round'u başlat (tek satır)</td><td>büyük (alt düğmelerin üstünde)</td></tr>
+<tr><td>T3</td><td>Yerleştirme modu (Placing)</td><td>görmeyen herkes</td><td>boş yere tıkla; R döndürür</td><td>büyük (tarlaya tık saksı koyar, kutu onunla kapanır)</td></tr>
 <tr><td>T4</td><td>Bir round başlar başlamaz</td><td>görmeyen herkes</td><td>imleci tut: otomatik vurur, olgunlaşınca hasat</td><td>küçük</td></tr>
 <tr><td>T5</td><td>Round içinde, T4 görüldükten sonra</td><td>görmeyen herkes</td><td>Adak paneli: "Bu benim payım, dönem sonunda dolu olmalı"</td><td>küçük</td></tr>
 <tr><td>T6</td><td>Level-up (kart seçimi)</td><td>görmeyen herkes</td><td>birini seç</td><td>büyük</td></tr>
-<tr><td>T7</td><td>Bir Adak döneminin son round'unda Adak geride kalırsa</td><td>görmeyen, geride kalan</td><td>uyarı: "Payım eksik kalıyor…"</td><td>küçük</td></tr>
-<tr><td>T8</td><td>Bir Adak döneminin sonu</td><td>görmeyen herkes</td><td>sonuç: doydu / az kaldı</td><td>büyük</td></tr>
-<tr><td>T9</td><td>Bir Sınama'nın önizlemesi</td><td>görmeyen, o round'a gelen</td><td>boss ve farkı</td><td>büyük</td></tr>
+<tr><td>T7</td><td>Adak döneminin son round'u başlarken Adak dolmamışsa</td><td>görmeyen, geride kalan</td><td>uyarı: "Adak'ım hâlâ eksik…"</td><td>küçük</td></tr>
+<tr><td>T8</td><td>Adak dönemi tuttuğunda (round sonu ekranı); tutmazsa run biter → T11</td><td>görmeyen herkes</td><td>doydu… şimdilik</td><td>büyük</td></tr>
+<tr><td>T9</td><td>İlk Sınama round'u başlarken (önizleme ekranı değil)</td><td>görmeyen, o round'a gelen</td><td>bu round'un kendi hedefi var; soldaki panelde</td><td>küçük</td></tr>
 <tr><td>T10</td><td>Bir kapris (R15/20 sonrası, %60–65)</td><td>görmeyen; çoğu oyuncuda 2.–3. run</td><td>neyin vurulacağı</td><td>küçük</td></tr>
 <tr><td>T11</td><td>Run sonu: Adak tutmadı / Sınama kaybedildi / zafer (her neden ayrı satır)</td><td>o sonu ilk kez yaşayan</td><td>neden bitti, ne öğrendin</td><td>büyük</td></tr>
 </table>
@@ -124,11 +144,11 @@ Kapris takvimi senin tasarım hedefin (R15/20+, %60–65); bugünkü profilde ka
       <tr><td>0</td><td>Başlangıç</td></tr>
       <tr><td>1</td><td>İlk Sınama geçildi</td></tr>
       <tr><td>2</td><td>R25'e ulaşıldı</td></tr>
-      <tr><td>3</td><td>İlk zafer = açılma (twist). Sonraki run'larda Eri'nin maskesi düşmüş tonda konuşur.</td></tr>
+      <tr><td>3</td><td><b>Tam oyunun</b> ilk zaferi = açılma (twist). Sonraki run'larda Eri'nin maskesi düşmüş tonda konuşur.</td></tr>
     </table>
   </li>
   <li><b>Neden 4 değil 3 aşama:</b> zafer, son round bitince geliyor <span class="tag ok">DOĞRULANDI</span>. Takvimde son round bir boss round'uysa "ilk zafer" ile "son Sınama" aynı olaydır; ayrı aşamaya gerek yok.</li>
-  <li><b>Demo:</b> demo profilinde hikâye en çok aşama 2'ye çıkar. Demoyu 20 round'da bitiren oyuncu açılmayı görmez; demo yalnız ipucu verir <span class="tag acc">ÖNERİ</span>.</li>
+  <li><b>Demo</b> <span class="tag ok">KARAR</span>: demoya ayrı bir hikâye ilerleme kuralı yok. Yalnız aşama 3'ün tanımı nettir: <b>tam oyun profilindeki zafer</b>. Demo R20'de zaferle bittiği için bu tanım olmasa demoyu bitiren oyuncu açılmayı görürdü; demo zaferi bu kilometre taşını açmaz. Aşama 2 (R25) demoda zaten oluşmaz. Böylece demo oyuncusu normalde aşama 1'de kalır ve yalnız ulaştığı aşamanın kısa ipuçlarını görür.</li>
   <li><b>Ölmeyen de ilerler:</b> ilerleme ölüme değil, run bitişine ve kilometre taşlarına bağlı. İlk run'ı hiç ölmeden bitiren aynı anda birden çok aşama kazanırsa, görmediği hikâye satırları sıraya girer ve sonraki run başlarında, her seferinde en çok iki satır olarak gösterilir.</li>
   <li>Her run sonunda, görülmemiş satır kaldıysa en az bir hikâye satırı gelir. Bitince sessiz kalınır; satır tekrar etmez.</li>
 </ul>
@@ -184,6 +204,7 @@ Kapris takvimi senin tasarım hedefin (R15/20+, %60–65); bugünkü profilde ka
 <tr><td>3</td><td>Hikâye aşamaları ve run başı/sonu satırları</td><td>Aşama geçişleri testte doğru; Play onayın</td></tr>
 <tr><td>4</td><td>Ayarlar ve cila (metin hızı, sıfırlama, ses)</td><td>Ayar menüsünde çalışır; Play onayın</td></tr>
 <tr><td>5</td><td>Giriş videosu (ayrı iş)</td><td>Ayrı planla</td></tr>
+<tr><td>6</td><td>Mechanics Test Lab'e tutorial ve diyalog test araçları (satır tetikleme, ilerlemeyi sıfırlama, aşama ayarlama, aç/kapa). Kullanıcı isteği; o zamana kadar lab oturumunda diyalog kapalı</td><td>Lab'de araçlar çalışır; senin onayın</td></tr>
 </table>
 <p class="small">Satır metinleri Faz 1'e paralel olarak birlikte yazılır; altyapı metinden bağımsız çalışır.</p>
 
@@ -251,15 +272,29 @@ Kapris takvimi senin tasarım hedefin (R15/20+, %60–65); bugünkü profilde ka
 <tr><td><code>lines[]</code></td><td>Satırlar: metin anahtarı + yüz karesi (0–15); hikâye aşamasına göre farklı anahtar seçilebilir</td></tr>
 <tr><td><code>size</code></td><td>Büyük / küçük kutu ya da yalnız gezegen tepkisi</td></tr>
 </table>
-<p><b>Metin tablosu</b> (CSV: <code>anahtar, tr, en, …</code>) bir kez yüklenip sözlüğe alınır. Ayrı bir çeviri sistemi henüz yok <span class="tag ok">DOĞRULANDI</span>;
-tablo, ileride yapılacak çeviri altyapısının (M1) kullanacağı biçimde tasarlanır. Eksik anahtar geliştirmede uyarı verir, oyunda Türkçe'ye düşer <span class="tag acc">ÖNERİ</span>.</p>
+<p><b>Metin tablosu</b> (CSV: <code>key, note, tr, en, de, …</code>) bir kez yüklenip sözlüğe alınır; dil değişince yeniden kurulur. Hedef 15–30 dil <span class="tag ok">KARAR</span>. Faz 2'de yapılanlar:</p>
+<ul>
+  <li>Dil sütunları başlıktan adıyla bulunur; <code>note</code> sütunu çevirmen içindir (İngilizce bağlam: kim konuşuyor, hangi ekran, kutu).</li>
+  <li>Boş hücre önce İngilizceye, o da boşsa Türkçeye düşer; oyunda anahtar görünmez.</li>
+  <li><code>meta.speed</code> satırı dil başına yazı hızıdır (Çince/Japonca/Korece için ~0,5).</li>
+  <li>Duraklama işaretleri Çince/Japonca (、。！？，), Arapça (، ؟) ve Hintçe (।) noktalamayı da kapsar.</li>
+  <li>İsim plakası ve "Atla" da tablodan gelir; plaka ve düğme yazıya göre genişler.</li>
+  <li>Metin parça parça birleştirilmez; her satır tam cümledir. Değişken gerekirse <code>{0}</code> gibi yer tutucu kullanılır.</li>
+  <li>Eksik çeviri raporu: <code>DialogueText.Missing(csv, dil)</code>.</li>
+</ul>
+<p><b>Çeviri işine kalan kararlar (M1)</b> <span class="tag warn">AÇIK</span>:</p>
+<ul>
+  <li><b>Fontlar:</b> mevcut fontlarda Çince/Japonca/Korece/Kiril harfleri yok. Yedek font gerekir (ör. Noto, SIL OFL). Eklemeden önce lisans bildirimi yapılır.</li>
+  <li><b>Sağdan sola:</b> Arapça ve İbranice için TMP'nin kendi desteği yetmez; Arapça harf birleştirmesi ek bir araç ister. Karar: bu dilleri listeye almak ya da araç eklemek.</li>
+  <li><b>Oyunun geri kalanı:</b> düğmeler ve paneller henüz kodda sabit yazı (karışık İngilizce/Türkçe). Diyalog tablosu hazır; arayüz metinleri ayrı bir çeviri işidir.</li>
+</ul>
 
 <h3>B3. Çalışma zamanı parçaları</h3>
 <table>
 <tr><th>Parça</th><th>Görev</th><th>Not</th></tr>
 <tr><td><code>DialogueDirector</code></td><td>Tetikleri dinler, uygun satırı seçer, sıraya alır, kutuya verir, kaydı günceller</td><td>Sahneler arası yaşar (ana menü + oyun sahnesi). <code>GameManager</code> da böyle yaşıyor <span class="tag ok">DOĞRULANDI</span>; <code>RoundManager</code> yalnız oyun sahnesinde, sahne yüklenince yeniden bağlanılır <span class="tag ok">DOĞRULANDI</span></td></tr>
 <tr><td>Tetik adaptörü</td><td>Mevcut olayları diyalog tetiğine çevirir</td><td>Kullanılacak olaylar: <code>GameManager.OnGameStateChanged</code>, <code>RoundManager.OnRunStarted / OnRoundChanged / OnRoundEnded</code>, <code>ProgressionManager.OnLevelUp</code>, <code>FieldEventDirector.Cued</code>, <code>RunEffects.Cued</code>, run sonu <code>RunOutcome</code> <span class="tag ok">DOĞRULANDI</span></td></tr>
-<tr><td>Eksik iki olay</td><td>Boss önizlemesinin açılması; seçim ekranının açılması</td><td><code>RoundPreviewUI</code> yalnız <code>IsOpen</code> bayrağı tutuyor, olay yaymıyor <span class="tag ok">DOĞRULANDI</span>. Bu iki ekrana tek satırlık birer olay eklenir; yoklama (her kare kontrol) yapılmaz</td></tr>
+<tr><td>Eksik iki olay</td><td>Tarla önizlemesinin (Tab) açılması; seçim ekranının açılması</td><td><code>RoundPreviewUI</code> yalnız <code>IsOpen</code> bayrağı tutuyor, olay yaymıyor <span class="tag ok">DOĞRULANDI</span>. Bu iki ekrana tek satırlık birer olay eklenir; yoklama (her kare kontrol) yapılmaz</td></tr>
 <tr><td><code>DialogueBoxUI</code></td><td>Büyük ve küçük kutu</td><td>Mevcut UI'lar gibi kodla kurulur (<code>FeelOverlay.CreateCanvas</code>, <code>ComicUITheme</code> fontları) <span class="tag ok">DOĞRULANDI</span>; <code>Docs/UI-Art-Direction.md</code> çizgisinde</td></tr>
 <tr><td>Gezegen Eri</td><td>Tepkiler ve "konuşuyor" hareketi</td><td><code>GreenhouseMascot</code>'un kendi round başı/sonu konuşmaları kaldırılır; dışarıya küçük bir <code>React(…)</code> açılır. Portre kareleri aynı görselden (<code>GreenhouseMascotFrames</code>) tek kez yüklenip iki tarafça paylaşılır</td></tr>
 </table>
@@ -296,7 +331,7 @@ tablo, ileride yapılacak çeviri altyapısının (M1) kullanacağı biçimde ta
 <table>
 <tr><th>Alan</th><th>Tür</th><th>Anlamı</th></tr>
 <tr><td><code>seenDialogue</code></td><td>metin listesi</td><td>Görülen konuşma kimlikleri (oyun içinde hızlı arama için kümeye çevrilir)</td></tr>
-<tr><td><code>storyStage</code></td><td>sayı</td><td>Hikâye aşaması 0–4</td></tr>
+<tr><td><code>storyStage</code></td><td>sayı</td><td>Hikâye aşaması 0–3</td></tr>
 <tr><td><code>milestones</code></td><td>metin listesi</td><td>Kazanılmış kilometre taşları (ilk Sınama, R25, ilk zafer …)</td></tr>
 <tr><td><code>pendingStory</code></td><td>metin listesi</td><td>Gösterilmeyi bekleyen hikâye konuşmaları (A4'teki sıra)</td></tr>
 <tr><td><code>runsStarted</code>, <code>runsFinished</code></td><td>sayı</td><td>Koşullar için</td></tr>
@@ -331,7 +366,7 @@ tablo, ileride yapılacak çeviri altyapısının (M1) kullanacağı biçimde ta
       <li><b>Kurallar:</b> bir kezlik satır ikinci run'da çıkmıyor. Aşama koşulları doğru. Öncelik ve sıra doğru.</li>
       <li><b>Öncelik:</b> ilk karşılaşma öğretimi aynı anda gelen hikâye satırının önüne geçiyor; hikâye sonraki sakin ana erteleniyor. Geçersizleşen bekleyen satır (bitmiş kapris) gösterilmiyor ve "görülmedi" kalıyor.</li>
       <li><b>Sözleşme:</b> run sayısına bakılmıyor. Run 1'de görmediği adımı run 3'te ilk uygun anda görüyor.</li>
-      <li><b>Akış:</b> simüle edilen oyunda T1–T11 doğru sırada. Erken ölümde kalanlar sonraki run'da. Ölmeden zaferde aşama artıyor. Demo profilinde aşama 2'yi geçmiyor.</li>
+      <li><b>Akış:</b> simüle edilen oyunda T1–T11 doğru sırada. Erken ölümde kalanlar sonraki run'da. Ölmeden zaferde aşama artıyor. Demo zaferi aşama 3'ü açmıyor.</li>
       <li><b>Kutu:</b> kutuya tık ya da Boşluk yazıyı tamamlıyor, ikinci basış geçiyor. Kart, düğme ve tarla tıkları kutuyu ilerletmiyor. Küçük kutu tıkla değil Boşluk'la ve süreyle kapanıyor; süre yazı bittikten sonra başlıyor.</li>
       <li><b>Zaman:</b> menü ekranında (zaman durmuş) yazı akıyor; "duraklatıldı" bayrağı açıkken ve pencere odakta değilken yazı da sayaç da duruyor.</li>
       <li><b>Kapris:</b> küçük kutu açıkken imleç kutunun üstündeyken kapris vuruşu sayılıyor.</li>
@@ -363,10 +398,10 @@ tablo, ileride yapılacak çeviri altyapısının (M1) kullanacağı biçimde ta
 <h3>B8. Doğrulanmayanlar ve riskler</h3>
 <table>
 <tr><th>Konu</th><th>Durum</th><th>Ne yapılacak</th></tr>
-<tr><td>İlk saksının tam olarak hangi ekranda ve nasıl yerleştirildiği (başlangıç saksı sayısı <code>StartingPlanterCount</code> ile geliyor)</td><td><span class="tag warn">DOĞRULANMADI</span></td><td>Faz 2'den önce oynayarak T2/T3'ün yeri kesinleşecek</td></tr>
-<tr><td>Hazırlık ekranında "round'u başlat" düğmesinin ve mağazanın tam yeri</td><td><span class="tag warn">DOĞRULANMADI</span></td><td>Aynı kontrol</td></tr>
+<tr><td>İlk saksının tam olarak hangi ekranda ve nasıl yerleştirildiği</td><td><span class="tag ok">DOĞRULANDI</span> (26 Ekim)</td><td>Tarla boş başlar. Saksı PLANTER SHOP'tan alınır, Placing'de tarlaya tıklanarak konur; <code>StartingPlanterCount</code> kullanılmıyor</td></tr>
+<tr><td>Hazırlık ekranında "round'u başlat" düğmesinin ve mağazanın tam yeri</td><td><span class="tag ok">DOĞRULANDI</span> (26 Ekim)</td><td>Alt sırada PLANTER SHOP · START ROUND · SKILL SHOP. Büyük kutu bu ekranda düğmelerin üstüne kalkar</td></tr>
 <tr><td>Mevcut TMP fontlarının bütün Türkçe karakterleri (ğ, ş, İ, ı) taşıdığı</td><td><span class="tag warn">DOĞRULANMADI</span></td><td>Oyunda Türkçe metin zaten görünüyor; kutu testinde ayrıca bakılacak</td></tr>
-<tr><td>Yazı sesi (harf "tık"ı)</td><td><span class="tag warn">AÇIK</span></td><td>Yeni ses gerekirse önce lisans bildirimi; kendi sentezimiz lisans gerektirmez</td></tr>
+<tr><td>Yazı sesi / Eri'nin sesi</td><td><span class="tag ok">KARAR</span> (26 Ekim)</td><td>Şimdilik ses yok. İleride "blablabla" türü anlamsız konuşma sesi (Faz 4): dış kaynaksa önce lisans bildirimi; kendi sentezimiz lisans gerektirmez</td></tr>
 <tr><td>Kapris takviminin R15/20+ ve %60–65'e çekilmesi</td><td><span class="tag warn">AÇIK</span></td><td>Diyalog işinin parçası değil; tetik bundan etkilenmez</td></tr>
 <tr><td>Giriş videosunun yapımı</td><td><span class="tag warn">AÇIK</span></td><td>Ayrı plan (Faz 5)</td></tr>
 </table>
@@ -379,7 +414,7 @@ tablo, ileride yapılacak çeviri altyapısının (M1) kullanacağı biçimde ta
   <li><span class="tag ok">KARAR</span> Pause / arka plan ≠ menü zamanı (B4).</li>
   <li><span class="tag ok">KARAR</span> Kayıt sürümü 2 ve eski kayıt testi (B5).</li>
   <li><span class="tag ok">KARAR</span> Faz sırası (A8). Faz 1: yalnız altyapı ve birkaç gerçek deneme satırı.</li>
-  <li><span class="tag acc">ÖNERİ</span> Demo profilinde hikâye en çok aşama 2 (A4) — onayın bekleniyor.</li>
+  <li><span class="tag ok">KARAR</span> Demoya ayrı ilerleme kuralı yok; aşama 3 = tam oyun zaferi, demo zaferi açmaz (A4).</li>
 </ul>
 
 <div class="box"><b>Durum:</b> Bu belgedeki hiçbir şey henüz uygulanmadı. Yapılan iş: kodun ilgili kısımlarının okunması ve bu planın yazılması.

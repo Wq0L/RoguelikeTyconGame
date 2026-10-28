@@ -1,0 +1,26 @@
+key,note,tr,en
+meta.speed,"Not text: typewriter speed factor for this language (1 = normal; use about 0.5 for Chinese/Japanese/Korean).",1,1
+ui.name.eri,"Name plate of the plant mascot (the speaker). Keep very short.",Eri,Eri
+ui.skip,"Button on the big box: skips the whole conversation. Keep short.",Atla,Skip
+intro.select.0,"Eri, first meeting. Start screen (pick a farmer and a scythe). Big box. Eri slips: 'crashed' then corrects to 'came'.","Oh! Bir gemi! Uzun zamandır kimse düşmemişti… yani, gelmemişti.",
+intro.select.1,"Same conversation, line 2. Friendly on the surface, possessive underneath.","Ben Eri. Bu gezegen benim; toprak benim, eller sizin.",
+intro.select.2,"Same conversation, line 3. Farmer and scythe are the two choices on this screen.","Bir çiftçi ve bir tırpan seç. Gerisini birlikte hallederiz.",
+tut.setup.0,"Preparation screen, first run. Big box. The field is still empty; the player must buy a planter (pot) in the planter shop, then start the round.","Tarla bomboş… Önce dükkândan bir saksı al, sonra round'u başlat.",
+tut.place.0,"Planter placement mode, first time. Big box. Clicking an empty field cell places it; the R key rotates it.","Boş bir yere tıkla, saksı oraya oturur. R ile döndürebilirsin.",
+tut.hit.0,"First round starts. Small box during play. Attacks are automatic while the cursor is over plants. Teasing tone (a joke).","Hasat bilmiyor musun? İmleci bitkilerin üstünde tut, tırpan kendi vurur.",
+tut.hit.1,"Same conversation, line 2. Joke AND the story's first hidden hint: Eri remembers Earth's technology (it has been to Earth). Keep it casual; do not explain or make it obvious.","Dünya'da otomatik tırpan yok muydu? Var diye hatırlıyordum…",
+tut.adak.0,"First round, after the previous line. Small box. Adak = the harvest share offered to Eri (the quota panel, top left). Game term: translate consistently.","Sol üstteki pay benim Adak'ım. Dönem bitmeden dolsun, olur mu?",
+tut.level.0,"First level-up: card choice screen. Big box. The chosen card lasts for this run.","Büyüyorsun! Birini seç; bu hasat boyunca seninle kalır.",
+tut.lastround.0,"Last round of an Adak period starts and the Adak is not full yet (first time). Small box during play.","Dönemin son round'u. Adak'ım hâlâ eksik… acele et.",
+tut.period.0,"An Adak period was met for the first time. Round end screen, big box. Satisfied, slightly unsettling.","Mmm… doydum.",
+tut.period.1,"Same conversation, line 2. Second reading: the hunger keeps growing.","Şimdilik. Bir sonraki payım biraz daha büyük olacak.",
+tut.boss.0,"First Sınama (boss) round starts. Small box during play. Sınama = boss round; its own target is shown in the left panel. Game term: translate consistently.","Bu round bir Sınama! Soldaki hedefi bu round içinde doldur.",
+tut.kapris.0,"First field event (one of Eri's wild seeds) is about to appear. Small box during play. Its plate on the left says what it does (some must be cut, some give a bonus).","Tohumlarımdan biri azdı! Ne yaptığı solda yazıyor.",
+end.quota.0,"Run ended because the Adak was not met (first time). Big box. Hungry, cold.","Adak eksik kaldı. Açlık… beklemez.",
+end.quota.1,"Same conversation, line 2.","Yeniden başlarız. Toprak hep burada.",
+end.boss.0,"Run ended because a Sınama (boss round) was failed (first time). Big box.","Sınama'yı geçemedin… Ben de bekleyemem.",
+end.boss.1,"Same conversation, line 2.","Yine geleceksin, biliyorum.",
+end.victory.0,"Run won (first time). Big box. Content, with an unsettling second reading.","Doydum. Bu sefer gerçekten.",
+end.victory.1,"Same conversation, line 2.","…Uzun sürmez ama.",
+react.setup.0,"Speech bubble of Eri on the planet, preparation screen (repeats). Very short.","Hmm…",
+react.period.0,"Speech bubble of Eri on the planet when an Adak period is met (repeats). Very short.","Mmm…",
