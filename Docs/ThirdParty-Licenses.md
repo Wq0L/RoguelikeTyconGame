@@ -1,5 +1,42 @@
 # Dış kaynak ve lisans kayıtları
 
+## Higgsfield (MCP) — açılış videosu AI düzenleme denemesi (28 Ekim 2026)
+
+- Kategori: hizmet + deneme çıktısı. Şimdilik oyunda dağıtılan varlık yok; çıktılar `Docs/AcilisVideosu/Higgsfield-Deneme/` altında. Oyuna girmesi kullanıcının karşılaştırma sonrası kararına bağlı.
+- Hizmet: Higgsfield, Inc. (https://higgsfield.ai). Bağlantı: resmî MCP sunucusu `https://mcp.higgsfield.ai/mcp`, OAuth ile. Kurulan yerel araç, paket veya CLI yok.
+- Plan: Starter (15 $/ay, 200 kredi/ay, kredi devretmez). Kullanıcı kendisi satın aldı.
+- Model: Kling 4.0 (`kling4_0`, sağlayıcı Kling), `video-edit` kipi, 1080p. Girdi: projenin kendi Blender v5.2 render'ı ve ondan alınmış iki kare. Dış görsel verilmedi.
+- Kontrol edilen belgeler (28 Ekim 2026): higgsfield.ai/pricing (karşılaştırma tablosunda Starter için "Commercial use: Included"); yardım merkezi "What is Higgsfield MCP" ve "How do I connect Higgsfield to Claude…" (MCP her üretimde kredi düşer, "Developer Terms" geçerli, hesap sahibi üretimlerden sorumlu); Kullanım Şartları özeti (çıktı kullanıcıya ait, ücretli planda ticari kullanım ve filigransız çıktı).
+- Ücret/royalty: yalnız abonelik ve kredi; satış başına ödeme yok. Oyun ekranında veya jenerikte kredi zorunluluğu yok. Dağıtım paketine lisans/telif metni koyma zorunluluğu yok.
+- Dikkat:
+  - Yüklenen kaynak videolar Higgsfield sunucularına gider. Enterprise dışı planlarda içerik model eğitiminde kullanılabilir.
+  - Steam'de önceden üretilmiş AI içeriği beyan edilmeli.
+  - Saf AI üretimi kısımların telif koruması bazı ülkelerde sınırlı olabilir.
+  - Alt model sağlayıcısına (Kling) özel ek şart Higgsfield belgelerinde görülmedi; çıktı oyuna alınırsa yeniden kontrol edilir.
+- Kullanıcıya hizmet, lisans, ücret, kredi ve dağıtım koşulları kullanımdan önce konuşmada bildirildi.
+- Ek modeller: GPT Image 2.5 (OpenAI) ve Nano Banana 2.1 (Google) ile birer stil karesi; Kling 3.0 Omni Edit (Kling) ile bir video düzenleme denemesi. Hepsi aynı Higgsfield hesabından, aynı koşullarla.
+- Türev kullanım: Blender v5.3 (`build_intro_v5.py`), GPT Image 2.5 stil karesini (`Docs/AcilisVideosu/Higgsfield-Deneme/stil/stil_gpt-image-2-5.png`) yalnız görsel hedef olarak aldı: boyalı bulutsu, fırça mürekkebi, anime alev yıldızı, gök parıltıları. AI pikseli videoya girmedi; geometri ve gölgelendirme kodla üretildi. Steam beyanında "geliştirmede AI ile üretilmiş referans görsel kullanıldı" notu düşülmesi önerilir.
+
+## Açılış videosu animatik v1 ve previs v2 — özgün içerik, Blender ile (28 Ekim 2026)
+
+- Kategori: yalnızca geliştirme/önizleme. Oyunda dağıtılan varlık yok; çıktılar `Docs/AcilisVideosu/Animatik/` altında.
+- Kullanılan araçlar:
+  - Blender 5.2.3 LTS: mevcut Steam kurulumu; lisans kaydı aşağıdaki Blender 5.2.2 bölümünde, koşullar aynı.
+  - FFmpeg 9.0.2: mevcut PATH kurulumu; kaydı yukarıdaki 27 Ekim bölümünde.
+  - Yeni indirme, eklenti, paket veya MCP sunucusu yok.
+- Üretim betikleri: `Tools/Art/IntroAnimatic/`
+  - `build_intro_animatic.py`, `build_intro_previs.py`, `make_intro_*_sound.py`, `assemble_intro_*.py`.
+  - Geometri, renkler, animasyon ve sesler bu iş için özgün üretildi. Ses yalnızca gürültü ve sinüs sentezi; kayıt, örnek veya müzik yok.
+- Etiketler:
+  - Blender'ın yerleşik yazı tipiyle yalnızca inceleme videosuna yazıldı, oyuna girmez.
+  - Blender paketi yazı tiplerini SIL OFL 1.1 altında listeliyor.
+- Kullanılan referanslar:
+  - Renk referansı: kullanıcının kendi ERIGONE bannerı.
+  - Sondaki oyun karesi: projenin kendi ekran görüntüsü (`Docs/DiyalogPlani/Faz2/Faz2_01_Secim.png`).
+- Ücret/royalty yok, oyunda kredi zorunluluğu yok, dağıtım paketine lisans metni gerekmiyor. Blender ve FFmpeg oyunla dağıtılmıyor.
+- `arjun988/blender-skills` (MIT) yalnızca incelendi, kurulmadı ve kullanılmadı.
+- v4'te çizgi için Blender'ın yerleşik Freestyle motoru kullanıldı. Bu, Blender'ın kendi parçası; ek indirme, eklenti veya fırça paketi yok.
+
 ## Blender 4.5.15 LTS — ayrı açılış animasyonu demosu, 27 Ekim 2026
 
 - Kategori: yalnız geliştirme/önizleme aracı. Oyun asset'i, shader'ı veya çalışma zamanı bağımlılığı eklenmedi.

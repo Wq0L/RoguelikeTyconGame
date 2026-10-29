@@ -1,0 +1,165 @@
+{
+ "fps": 24,
+ "frames": 240,
+ "panels": [
+  {
+   "id": "1a",
+   "file": "1a.png",
+   "f0": 0,
+   "f1": 10,
+   "label": "sakin Dünya (önce hâli)"
+  },
+  {
+   "id": "1b",
+   "file": "1b.png",
+   "f0": 10,
+   "f1": 22,
+   "label": "ilk çatlak"
+  },
+  {
+   "id": "1c",
+   "file": "1c.png",
+   "f0": 22,
+   "f1": 34,
+   "label": "ikinci çatlak, kabuk kalkar"
+  },
+  {
+   "id": "1d",
+   "file": "1d.png",
+   "f0": 34,
+   "f1": 42,
+   "label": "gemi kenardan fırlar"
+  },
+  {
+   "id": "1e",
+   "file": "1e.png",
+   "f0": 42,
+   "f1": 48,
+   "label": "kamçı dönüş (geçiş)"
+  },
+  {
+   "id": "2a",
+   "file": "2a.png",
+   "f0": 48,
+   "f1": 64,
+   "label": "kaçış, Dünya ikiye ayrılır"
+  },
+  {
+   "id": "2b",
+   "file": "2b.png",
+   "f0": 64,
+   "f1": 80,
+   "label": "kaya kıl payı sıyırır"
+  },
+  {
+   "id": "2c",
+   "file": "2c.png",
+   "f0": 80,
+   "f1": 96,
+   "label": "lomboza yaklaşma (geçiş: yuvarlak > yuvarlak)"
+  },
+  {
+   "id": "3a1",
+   "file": "3a1.png",
+   "f0": 96,
+   "f1": 104,
+   "label": "ibre boşa düşer"
+  },
+  {
+   "id": "3a2",
+   "file": "3a2.png",
+   "f0": 104,
+   "f1": 114,
+   "label": "parmak cama vurur, bip bip"
+  },
+  {
+   "id": "3b1",
+   "file": "3b1.png",
+   "f0": 114,
+   "f1": 125,
+   "label": "motor öksürür"
+  },
+  {
+   "id": "3b2",
+   "file": "3b2.png",
+   "f0": 125,
+   "f1": 132,
+   "label": "motor söner, sessizlik"
+  },
+  {
+   "id": "4a",
+   "file": "4a.png",
+   "f0": 132,
+   "f1": 148,
+   "label": "süzülüş, yeni gezegen"
+  },
+  {
+   "id": "4b",
+   "file": "4b.png",
+   "f0": 148,
+   "f1": 164,
+   "label": "rota yakalanır, mürekkep yay"
+  },
+  {
+   "id": "4c",
+   "file": "4c.png",
+   "f0": 164,
+   "f1": 176,
+   "label": "hızlanarak düşüş"
+  },
+  {
+   "id": "4d",
+   "file": "4d.png",
+   "f0": 176,
+   "f1": 180,
+   "label": "atmosfer parıltısı (geçiş)"
+  },
+  {
+   "id": "5a",
+   "file": "5a.png",
+   "f0": 180,
+   "f1": 196,
+   "label": "bulutların içinde"
+  },
+  {
+   "id": "5b",
+   "file": "5b.png",
+   "f0": 196,
+   "f1": 204,
+   "label": "sağ alttan çıkış (geçiş)"
+  },
+  {
+   "id": "6a",
+   "file": "6a.png",
+   "f0": 204,
+   "f1": 213,
+   "label": "sol üstten giriş"
+  },
+  {
+   "id": "6b",
+   "file": "6b.png",
+   "f0": 213,
+   "f1": 228,
+   "label": "çarpma, toz"
+  },
+  {
+   "id": "6c",
+   "file": "6c.png",
+   "f0": 228,
+   "f1": 240,
+   "label": "duruş, ışık yanar"
+  }
+ ],
+ "extras": [
+  {
+   "id": "4b_ipucu",
+   "file": "4b_ipucu.png",
+   "label": "İPUCU: yeşil parıltı (2 kare)"
+  },
+  {
+   "id": "6a_yapraksiz",
+   "file": "6a_yapraksiz.png",
+   "label": "yapraksız seçenek"
+  }
+ ]
+}
