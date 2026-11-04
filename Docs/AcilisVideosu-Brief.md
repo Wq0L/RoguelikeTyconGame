@@ -124,6 +124,9 @@ Kullanıcı kararı (28 Ekim): üretim **Blender'da 3D toon**, film/anime kurgus
     - Tuş ikonları: Kenney Input Prompts (CC0), oyunun renklerine boyanmış türev (`KeyPrompts.cs`, `Tools/Art/KeyPrompts/`). Aynı ikonlar tur önizlemesi (Tab/Esc), ödül yerleştirme (Esc), açılır pencere kaydırma (PgUp/PgDn) ve rezonans ayrıntısında (Alt) da kullanılıyor.
     - Doğrulama: `Tools/Verification/Editor/IntroVideoVerification.cs` (izole kopya, gerçek MenuScene; 43 kontrol). Kullanıcının kendi editöründe Play testi henüz yapılmadı.
     - Açık: diyalog planındaki "menüden tekrar izle" seçeneği eklenmedi.
+    - Kullanıcı Play testi (4 Kasım): video sorunsuz. Öğretim çıkmadı, çünkü kayıtta 28 Ekim testlerinden kalma "görüldü" işaretleri vardı; hata değil. Geçme plakası küçültüldü (360×96 → 250×64, yazı 28 → 19 pt; kullanıcı: "bar çok büyük").
+    - Sıfırlama (Play dışında, Unity üst menüsü): `Tools > Diyalog > Açılış videosunu tekrar göster (Play testi için)` yalnız videoyu; `Tools > Diyalog > Görülen konuşmaları sıfırla (Play testi için)` öğretimi, hikâyeyi ve videoyu sıfırlar. Bir kez oynama kuralı oyunda aynen kalır.
+    - Ders: izole Unity testi videoyu kullanıcının hoparlöründen çalıyordu; kullanıcı bunu kendi oyununun sesi sandı. Test artık sessiz (`EditorUtility.audioMasterMute`) ve bunu denetliyor.
   - Sırada (Bitti sayılır bölümüne göre): Unity'ye bağlama ve test. Atlanabilir; ilk run'da bir kez, seçimden önce; `MetaSaveData.introSeen`.
 
 ## Kurallar (proje genelinde)

@@ -24,7 +24,7 @@ using UnityEngine.UI;
 // Yazı harf harf dizilir (TMP maxVisibleCharacters). Bütün hareketler Step'te, kutunun kendi saatiyle (DialogueDirector.ClockDelta:
 // menü ekranlarında akar, duraklatma ya da pencere arka plandayken durur); karede bellek ayırma yok. Kapalı kutuda Update çalışmaz.
 // Çeviri (Faz 2): isim plakası ve "Atla" de metin tablosundan gelir, plaka ve düğme yazıya göre genişler; yazı hızı dilin
-// çarpanıyla (DialogueText.SpeedScale) çarpılır; duraklama işaretleri Çince/Japonca, Arapça ve Hintçe noktalamayı da kapsar.
+// çarpanıyla (GameText.SpeedScale) çarpılır; duraklama işaretleri Çince/Japonca, Arapça ve Hintçe noktalamayı da kapsar.
 // Sağdan sola yazılar (Arapça, İbranice) ve Latin dışı font yedekleri henüz yok: çeviri işiyle birlikte kararlaştırılacak.
 public sealed class DialogueBox : MonoBehaviour
 {
@@ -113,7 +113,7 @@ public sealed class DialogueBox : MonoBehaviour
         box.group = root.gameObject.AddComponent<CanvasGroup>();
         if (big) root.gameObject.AddComponent<GraphicRaycaster>();   // küçük kutuda bilerek yok (kapris vuruşları)
         box.Build(root);
-        DialogueText.LanguageChanged += box.InvalidateLabels;
+        GameText.Changed += box.InvalidateLabels;
         root.gameObject.SetActive(false);
         box.enabled = false;
         return box;
@@ -336,24 +336,33 @@ public sealed class DialogueBox : MonoBehaviour
     // Plaka ve "Atla" etiketi: dil değiştiyse yeniden yazılır, kutu yazıya göre genişler (yalnız açılışta, dil değişince).
     private void RefreshLabels()
     {
-        if (labelLanguage == DialogueText.Language) return;
-        labelLanguage = DialogueText.Language;
-        nameLabel.text = DialogueText.Has(NameKey) ? DialogueText.Get(NameKey) : "Eri";
+        if (labelLanguage == GameText.Language) return;
+        labelLanguage = GameText.Language;
+        nameLabel.text = GameText.Has(NameKey) ? GameText.Get(NameKey) : "Eri";
         namePlate.sizeDelta = new Vector2(Mathf.Max(Big ? 124f : 70f, nameLabel.preferredWidth + (Big ? 36f : 22f)), namePlate.sizeDelta.y);
         PlaceNamePlate();
         if (skipLabel == null) return;
-        skipLabel.text = DialogueText.Has(SkipKey) ? DialogueText.Get(SkipKey) : "Atla";
+        skipLabel.text = GameText.Has(SkipKey) ? GameText.Get(SkipKey) : "Atla";
         skipRect.sizeDelta = new Vector2(Mathf.Max(SkipWidth, skipLabel.preferredWidth + 32f), skipRect.sizeDelta.y);
     }
 
-    // Dil ya da tablo değişti: açıksa hemen, değilse bir sonraki açılışta yeniden yazılır.
+    // Dil ya da tablo değişti (editörde tablo kaydedilince de): açıksa plaka, "Atla" ve ekrandaki satır hemen yenilenir (yazılmış
+    // kısım korunur), değilse bir sonraki açılışta yeniden yazılır.
     private void InvalidateLabels()
     {
         labelLanguage = null;
-        if (IsOpen) RefreshLabels();
+        if (!IsOpen) return;
+        RefreshLabels();
+        if (entry == null || lineIndex >= entry.lines.Length) return;
+        text.text = GameText.Get(entry.lines[lineIndex].textKey);
+        text.ForceMeshUpdate();
+        total = text.textInfo.characterCount;
+        visible = Mathf.Min(visible, total);
+        reveal = Mathf.Min(reveal, visible);
+        text.maxVisibleCharacters = visible;
     }
 
-    private void OnDestroy() => DialogueText.LanguageChanged -= InvalidateLabels;
+    private void OnDestroy() => GameText.Changed -= InvalidateLabels;
 
     // Test / araç: etiketlerin şu anki metni.
     public string NameText => nameLabel != null ? nameLabel.text : "";
@@ -404,7 +413,7 @@ public sealed class DialogueBox : MonoBehaviour
     private void BeginLine()
     {
         DialogueLine line = entry.lines[lineIndex];
-        text.text = DialogueText.Get(line.textKey);
+        text.text = GameText.Get(line.textKey);
         text.maxVisibleCharacters = 0;
         text.ForceMeshUpdate();
         total = text.textInfo.characterCount;
@@ -431,7 +440,7 @@ public sealed class DialogueBox : MonoBehaviour
         if (visible < total)
         {
             if (pauseLeft > 0f) { pauseLeft -= delta; return; }
-            reveal += delta * CharsPerSecond * DialogueText.SpeedScale;
+            reveal += delta * CharsPerSecond * GameText.SpeedScale;
             int target = Mathf.Min(total, (int)reveal);
             if (target == visible) return;
             visible = target;

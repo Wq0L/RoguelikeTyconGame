@@ -112,6 +112,9 @@ public static class DialogueFlowVerification
         _ = MetaSave.Data;
         Check(MetaSave.LastLoad == MetaSave.LoadResult.MemoryOnly, "batch keeps the save in memory (the real save is never touched)");
         Check(!DialogueProgress.Seen("intro.select") && DialogueProgress.Stage == 0, "fresh progress: nothing seen, stage 0");
+        // İlk "Oyna" açılış videosunu oynatır (4 Kasım, ayrı testi: IntroVideoVerification). Bu test konuşma akışını sınar: video
+        // görülmüş sayılır, "Oyna" doğrudan seçim ekranını açar (kayıt bellekte kalır).
+        DialogueProgress.MarkIntroSeen();
         DialogueDirector.BatchEnabled = true;
         DialogueDirector.Ensure();
         directorObjects = D.GetComponentsInChildren<Transform>(true).Length;

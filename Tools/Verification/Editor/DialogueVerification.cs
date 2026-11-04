@@ -138,7 +138,7 @@ public static class DialogueVerification
                     d.ForceRunStarted();
                     d.ForceState(GameStates.RunSetup);
                     string reaction = (string)typeof(GreenhouseMascot).GetField("pendingReaction", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null);
-                    Check(reaction == DialogueText.Get("react.setup.0") && !big.IsOpen && !small.IsOpen, "next run: planet reactions go to Eri on the planet, not to the box");
+                    Check(reaction == GameText.Get("react.setup.0") && !big.IsOpen && !small.IsOpen, "next run: planet reactions go to Eri on the planet, not to the box");
                     // Lab round 26 bir Sınama round'u ve dönem sonu: o öğretimler akış testinde (DialogueFlowVerification) sınanır.
                     DialogueProgress.MarkSeen("tut.boss"); DialogueProgress.MarkSeen("tut.lastround");
                     d.ForceState(GameStates.Round);
@@ -254,10 +254,10 @@ a,n,Bir,One,Eins,イチ
 b,n,İki,Two,,
 c,""x, y"",Üç,,,
 ";
-        DialogueText.Load(csv, map, "de", columns);
+        GameText.Load(csv, map, "de", columns);
         Check(columns.SequenceEqual(new[] { "tr", "en", "de", "ja" }) && map["a"] == "Eins" && map["b"] == "Two" && map["c"] == "Üç",
             "translation table: language columns by header name (translator note skipped); an empty cell falls back to English, then Turkish");
-        Check(DialogueText.Missing(csv, "de").SequenceEqual(new[] { "b", "c" }) && DialogueText.Missing(csv, "fr").Count == 3, "missing-translation report per language");
+        Check(GameText.Missing(csv, "de").SequenceEqual(new[] { "b", "c" }) && GameText.Missing(csv, "fr").Count == 3, "missing-translation report per language");
 
         DialogueDirector d = D; DialogueBox big = d.BigBox;
         var cat = ScriptableObject.CreateInstance<DialogueCatalogSO>();
@@ -265,21 +265,21 @@ c,""x, y"",Üç,,,
                               E("t.cjk", DialogueCategory.Guide, DialogueTrigger.LevelUp, DialogueSize.Big, "t.cjk") };
         d.UseCatalog(cat);
         d.ForceState(GameStates.MainMenu);
-        DialogueText.Language = "en";
+        GameText.Language = "en";
         d.Raise(DialogueTrigger.SelectionOpened);
-        Check(big.IsOpen && big.SkipText == "Skip" && big.NameText == "Eri" && big.ShownText == DialogueText.Get("tut.hit.0") && DialogueText.Get("tut.hit.0").StartsWith("Hasat"),
+        Check(big.IsOpen && big.SkipText == "Skip" && big.NameText == "Eri" && big.ShownText == GameText.Get("tut.hit.0") && GameText.Get("tut.hit.0").StartsWith("Hasat"),
             "language switched to English: button label follows; an untranslated line falls back to Turkish instead of showing a key");
-        DialogueText.Language = "tr";
+        GameText.Language = "tr";
         Check(big.SkipText == "Atla", "language change refreshes an open box's labels");
         big.Close();
 
-        DialogueText.UseCsv(@"key,note,tr,ja
+        GameText.UseCsv(@"key,note,tr,ja
 meta.speed,,1,0.5
 ui.skip,,Atla,スキップ
 t.cjk,,x,はい。そうです
 ");
-        DialogueText.Language = "ja";
-        Check(Mathf.Approximately(DialogueText.SpeedScale, .5f), "per-language typing speed factor read from the table");
+        GameText.Language = "ja";
+        Check(Mathf.Approximately(GameText.SpeedScale, .5f), "per-language typing speed factor read from the table");
         d.ForceState(GameStates.CardSelection);
         d.Raise(DialogueTrigger.LevelUp);
         Check(big.IsOpen && big.SkipText == "スキップ" && big.NameText == "Eri", "Japanese labels; a missing name key keeps 'Eri'");
@@ -292,9 +292,9 @@ t.cjk,,x,はい。そうです
         big.Step(.1f); big.Step(.1f);
         Check(big.VisibleCharacters > 3, "typing resumes after the pause");
         big.Close();
-        DialogueText.UseCsv(null);
-        DialogueText.Language = "tr";
-        Check(DialogueText.Get("ui.skip") == "Atla" && DialogueText.Languages.Contains("en"), "back to the real Turkish table");
+        GameText.UseCsv(null);
+        GameText.Language = "tr";
+        Check(GameText.Get("ui.skip") == "Atla" && GameText.Languages.Contains("en"), "back to the real Turkish table");
         Object.DestroyImmediate(cat);
     }
 

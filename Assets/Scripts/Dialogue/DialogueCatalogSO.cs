@@ -3,7 +3,7 @@ using UnityEngine;
 
 // Diyalog / tutorial satır kataloğu (25 Ekim 2026, plan: Docs/DiyalogPlani). Tutorial ve hikâye aynı altyapıyı kullanır.
 // Her kayıt bir "konuşma"dır: hangi anda (tetik), hangi koşulda, kaç kez, hangi kutuda, hangi satırlarla.
-// Metinler burada değil, anahtarla metin tablosundadır (Resources/Dialogue/dialogue_text.csv, DialogueText).
+// Metinler burada değil, anahtarla metin tablosundadır (Resources/Localization/GameText.csv, GameText).
 // Kimlik (id) kayıtta "görüldü" olarak tutulur: yayınlandıktan sonra değiştirilmez.
 public enum DialogueTrigger
 {

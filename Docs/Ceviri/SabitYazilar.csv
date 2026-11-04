@@ -1,0 +1,752 @@
+﻿kategori,yer,alan,metin,onerilen_anahtar
+gelistirici,Assets/ScriptableObjects/RunProfiles/Prototip10_DebugButce.asset,displayName,Prototip · 10 round · debug bütçe,data.prototip10_debugbutce.displayname
+gelistirici,Assets/ScriptableObjects/RunProfiles/Prototip10_DebugButce.asset,victoryTitle,PROTOTİP TAMAMLANDI,data.prototip10_debugbutce.victorytitle
+gelistirici,Assets/Scripts/Managers/PerformanceTrendCapture.cs:108,büyük harf,PERF KAYIT BAŞLADI,code.performancetrendcapture.perf_kayit_basladi
+gelistirici,Assets/Scripts/Managers/PerformanceTrendCapture.cs:75,büyük harf,PERF KAYIT DURDU,code.performancetrendcapture.perf_kayit_durdu
+gelistirici,Assets/Scripts/UI/SkillNodeTestUI.cs:29,atama,{node.nodeName}\nMAX SEVİYE ({level}),code.skillnodetestui.node_nodename_nmax_sev
+gelistirici,Assets/Scripts/UI/SkillNodeTestUI.cs:37,atama,{node.nodeName}\nSeviye {level} → {level + 1}\n{tier.cost} {tier.costType},code.skillnodetestui.node_nodename_nseviye
+kod,Assets/Scripts/Feel/GameFeelDirector.cs:128,büyük harf,SON ROUND!,code.gamefeeldirector.son_round
+kod,Assets/Scripts/Feel/GameFeelDirector.cs:150,büyük harf,LEVEL UP!,code.gamefeeldirector.level_up
+kod,Assets/Scripts/Feel/RoundSummaryUI.cs:123,atama,Uzmanlaşma: ,code.roundsummaryui.uzmanlasma
+kod,Assets/Scripts/Feel/RoundSummaryUI.cs:163,büyük harf,KOTA,code.roundsummaryui.kota
+kod,Assets/Scripts/Feel/RoundSummaryUI.cs:163,büyük harf,BOSS KOTASI,code.roundsummaryui.boss_kotasi
+kod,Assets/Scripts/Feel/RoundSummaryUI.cs:85,atama,HAZIRLIK,code.roundsummaryui.hazirlik
+kod,Assets/Scripts/Feel/RoundSummaryUI.cs:90,atama,ROUND {data.Round} ÖZETİ,code.roundsummaryui.round_data_round_ozeti
+kod,Assets/Scripts/FieldEvents/GraftedShellEvent.cs:28,büyük harf,AŞILI KABUK,code.graftedshellevent.asili_kabuk
+kod,Assets/Scripts/FieldEvents/InvasiveSproutEvent.cs:30,büyük harf,İSTİLACI FİLİZ,code.invasivesproutevent.istilaci_filiz
+kod,Assets/Scripts/FieldEvents/ThornSiegeEvent.cs:23,büyük harf,DİKEN KUŞATMASI,code.thornsiegeevent.diken_kusatmasi
+kod,Assets/Scripts/FieldEvents/WanderingBountyEvent.cs:43,büyük harf,GEZGİN BEREKET,code.wanderingbountyevent.gezgin_bereket
+kod,Assets/Scripts/LateGameArt/FieldEventHud.cs:155,atama,<size=120%>{current.Title}</size>\n<size=78%>{status}</size>,code.fieldeventhud.size_120_current_titl
+kod,Assets/Scripts/LateGameArt/LateGamePresenter.cs:354,büyük harf,TOK,code.lategamepresenter.tok
+kod,Assets/Scripts/LateGameArt/LateGamePresenter.cs:861,büyük harf,TOK,code.lategamepresenter.tok
+kod,Assets/Scripts/LateGameArt/RewardPlacementUI.cs:131,atama,{shown.effect.PlacementPrompt}\n<size=60%>{shown.displayName} · tıkla: yerleştir · {KeyPrompts.Tag(KeyPrompts.Esc)}: vazgeç</size>,code.rewardplacementui.shown_effect_placementp
+kod,Assets/Scripts/LateGameArt/RewardPlacementUI.cs:81,büyük harf,VAZGEÇ,code.rewardplacementui.vazgec
+kod,Assets/Scripts/Managers/DemoSceneSettings.cs:146,büyük harf,DEMOYU OYNA,code.demoscenesettings.demoyu_oyna
+kod,Assets/Scripts/Managers/DemoSceneSettings.cs:51,büyük harf,DEMO TAMAMLANDI!,code.demoscenesettings.demo_tamamlandi
+kod,Assets/Scripts/Managers/UIManager.cs:33,büyük harf,SATIŞTAN ÇIK,code.uimanager.satistan_cik
+kod,Assets/Scripts/Managers/UIManager.cs:39,büyük harf,GERİ,code.uimanager.geri
+kod,Assets/Scripts/RunEffects/Effects/GreedyHarvestEffectSO.cs:75,büyük harf,HAK HAZIR,code.greedyharvesteffectso.hak_hazir
+kod,Assets/Scripts/ScriptableObjects/BossPoolSO.cs:55,büyük harf,KURALSIZ BOSS,code.bosspoolso.kuralsiz_boss
+kod,Assets/Scripts/ScriptableObjects/RunProfileSO.cs:93,büyük harf,RUN TAMAMLANDI,code.runprofileso.run_tamamlandi
+kod,Assets/Scripts/ScriptableObjects/SegmentEventSO.cs:8,büyük harf,OLAY,code.segmenteventso.olay
+kod,Assets/Scripts/ScriptableObjects/SpecializationSO.cs:10,büyük harf,UZMANLAŞMA,code.specializationso.uzmanlasma
+kod,Assets/Scripts/UI/BossRewardPanelUI.cs:213,büyük harf,KAZANÇ,code.bossrewardpanelui.kazanc
+kod,Assets/Scripts/UI/BossRewardPanelUI.cs:214,büyük harf,BEDEL,code.bossrewardpanelui.bedel
+kod,Assets/Scripts/UI/BossRewardPanelUI.cs:81,atama,Uygun ödül kalmadı\n<size=70%>Bütün ödüller sınırında ya da şu an bir şey değiştirmiyor</size>,code.bossrewardpanelui.uygun_odul_kalmadi_n_siz
+kod,Assets/Scripts/UI/BossRewardPanelUI.cs:83,büyük harf,DEVAM,code.bossrewardpanelui.devam
+kod,Assets/Scripts/UI/CardUI/CardSelectionUI.cs:335,büyük harf,SON SEÇİM,code.cardselectionui.son_secim
+kod,Assets/Scripts/UI/CardUI/CardUI.cs:42,atama,+{offer.LevelGain} SEVİYE · {rarityName},code.cardui.offer_levelgain_seviy
+kod,Assets/Scripts/UI/CardUI/CardUI.cs:55,atama,{cellName} · ,code.cardui.cellname
+kod,Assets/Scripts/UI/CardUI/CardUI.cs:60,atama,Temel güç,code.cardui.temel_guc
+kod,Assets/Scripts/UI/CardUI/CardUI.cs:74,atama,Üretim tabanda → Nadirlik,code.cardui.uretim_tabanda_nadirli
+kod,Assets/Scripts/UI/GoldUI.cs:107,atama,<size=60%><color=#{tint}>{resourceType}</color></size>\n{displayed:N0},code.goldui.size_60_color_tint
+kod,Assets/Scripts/UI/GridUI/FreshTileRing.cs:157,atama,YENİ,code.freshtilering.yeni
+kod,Assets/Scripts/UI/GridUI/FreshTileRing.cs:22,büyük harf,YENİ,code.freshtilering.yeni
+kod,Assets/Scripts/UI/GridUI/FreshTileRing.cs:46,büyük harf,YENİ,code.freshtilering.yeni
+kod,Assets/Scripts/UI/GridUI/GridTileToolTipContent.cs:58,büyük harf,SAKSININ REZONANSLARI,code.gridtiletooltipcontent.saksinin_rezonanslari
+kod,Assets/Scripts/UI/GridUI/RoundNewTilesUI.cs:111,atama,+{remaining} tile daha · haritada parlıyor,code.roundnewtilesui.remaining_tile_daha
+kod,Assets/Scripts/UI/GridUI/RoundPreviewUI.cs:137,atama,ÖNİZLEME,code.roundpreviewui.onizleme
+kod,Assets/Scripts/UI/GridUI/RoundPreviewUI.cs:142,atama,Tile'ın üstüne gel: detay  ·  ,code.roundpreviewui.tile_in_ustune_gel_deta
+kod,Assets/Scripts/UI/GridUI/RoundPreviewUI.cs:152,atama,Henüz aktif rezonans yok · aynı tipteki tile'ları bir saksının altında topla,code.roundpreviewui.henuz_aktif_rezonans_yok
+kod,Assets/Scripts/UI/GridUI/RoundPreviewUI.cs:154,büyük harf,GERİ DÖN,code.roundpreviewui.geri_don
+kod,Assets/Scripts/UI/GridUI/RoundPreviewUI.cs:83,büyük harf,ÖNİZLEME,code.roundpreviewui.onizleme
+kod,Assets/Scripts/UI/GridUI/TileCellUI.cs:19,büyük harf,YENİ,code.tilecellui.yeni
+kod,Assets/Scripts/UI/inGameUIs/LevelWorkStatusUI.cs:9,büyük harf,SEVİYE KAZANIMLARI HESAPLANIYOR,code.levelworkstatusui.seviye_kazanimlari_hesap
+kod,Assets/Scripts/UI/inGameUIs/LevelWorkStatusUI.cs:90,atama,{Title}\n<size=70%>Level {shownLevel}</size>,code.levelworkstatusui.title_n_size_70_level
+kod,Assets/Scripts/UI/inGameUIs/QuotaHUD.cs:193,büyük harf,SEGMENT KOTASI,code.quotahud.segment_kotasi
+kod,Assets/Scripts/UI/inGameUIs/QuotaHUD.cs:193,büyük harf,BOSS KOTASI,code.quotahud.boss_kotasi
+kod,Assets/Scripts/UI/inGameUIs/QuotaHUD.cs:240,atama,{HarvestQuota.Format(progress)} / {HarvestQuota.Format(target)},code.quotahud.harvestquota_format_pro
+kod,Assets/Scripts/UI/inGameUIs/RoundUI.cs:56,atama,Round {roundNumber} / {RoundManager.Instance.MaxRounds},code.roundui.round_roundnumber_r
+kod,Assets/Scripts/UI/inGameUIs/RoundUI.cs:61,atama,Time: {secondsLeft}s,code.roundui.time_secondsleft_s
+kod,Assets/Scripts/UI/inGameUIs/XpUI.cs:73,atama,Lv. {level},code.xpui.lv_level
+kod,Assets/Scripts/UI/MainMenuUIs/Options/OptionToggle.cs:12,büyük harf,AÇIK,code.optiontoggle.acik
+kod,Assets/Scripts/UI/MainMenuUIs/Options/OptionToggle.cs:13,büyük harf,KAPALI,code.optiontoggle.kapali
+kod,Assets/Scripts/UI/MainMenuUIs/StartSelectionPanelUI.cs:175,büyük harf,SEÇİLİ,code.startselectionpanelui.secili
+kod,Assets/Scripts/UI/MainMenuUIs/StartSelectionPanelUI.cs:183,büyük harf,KİLİTLİ,code.startselectionpanelui.kilitli
+kod,Assets/Scripts/UI/MainMenuUIs/StartSelectionPanelUI.cs:76,büyük harf,GERİ,code.startselectionpanelui.geri
+kod,Assets/Scripts/UI/MainMenuUIs/StartSelectionPanelUI.cs:79,büyük harf,RUN'I BAŞLAT,code.startselectionpanelui.run_i_baslat
+kod,Assets/Scripts/UI/PlanterShopPanelUI.cs:118,atama,PLANTERS,code.plantershoppanelui.planters
+kod,Assets/Scripts/UI/PlanterShopPanelUI.cs:119,atama,CHOOSE A PLANTER,code.plantershoppanelui.choose_a_planter
+kod,Assets/Scripts/UI/PlanterShopPanelUI.cs:120,atama,PICK IT. PLANT IT. GROW BIG.,code.plantershoppanelui.pick_it_plant_it_grow
+kod,Assets/Scripts/UI/PlanterShopPanelUI.cs:137,atama,PLANTERS,code.plantershoppanelui.planters
+kod,Assets/Scripts/UI/PlanterShopPanelUI.cs:138,atama,PICK IT. PLANT IT. GROW BIG.,code.plantershoppanelui.pick_it_plant_it_grow
+kod,Assets/Scripts/UI/PlanterShopPanelUI.cs:193,büyük harf,SKILL TREE,code.plantershoppanelui.skill_tree
+kod,Assets/Scripts/UI/PlanterShopPanelUI.cs:193,büyük harf,UNAVAILABLE,code.plantershoppanelui.unavailable
+kod,Assets/Scripts/UI/PlanterShopPanelUI.cs:205,atama,Choose an unlocked planter from the catalogue.,code.plantershoppanelui.choose_an_unlocked_plant
+kod,Assets/Scripts/UI/PlanterShopPanelUI.cs:207,atama,BUY,code.plantershoppanelui.buy
+kod,Assets/Scripts/UI/PlanterShopPanelUI.cs:214,atama,{data.sizeX}x{data.sizeZ} PLANTER,code.plantershoppanelui.data_sizex_x_data_sizez
+kod,Assets/Scripts/UI/PlanterShopPanelUI.cs:221,atama,{data.sizeX}x{data.sizeZ},code.plantershoppanelui.data_sizex_x_data_sizez
+kod,Assets/Scripts/UI/PlanterShopPanelUI.cs:222,atama,"{EffectiveStat(data, StatType.PlantSpawnRate):0.#}s",code.plantershoppanelui.effectivestat_data_sta
+kod,Assets/Scripts/UI/PlanterShopPanelUI.cs:232,atama,{cells} growing plots for {(plants.Length > 0 ? plants.ToString() : ,code.plantershoppanelui.cells_growing_plots_fo
+kod,Assets/Scripts/UI/PlanterShopPanelUI.cs:238,atama,BUY  /  {data.Price},code.plantershoppanelui.buy_data_price
+kod,Assets/Scripts/UI/RoundComplateUI/RunComplateUI.cs:51,büyük harf,KOTA VE BOSS HASADI TUTMADI,code.runcomplateui.kota_ve_boss_hasadi_tutm
+kod,Assets/Scripts/UI/RoundComplateUI/RunComplateUI.cs:53,atama,<size=125%><color=#FF8A7A>{title}</color></size>\n,code.runcomplateui.size_125_color_ff8a7
+kod,Assets/Scripts/UI/RoundComplateUI/RunComplateUI.cs:57,atama,<size=125%><color=#FF8A7A>KOTA TUTMADI</color></size>\n,code.runcomplateui.size_125_color_ff8a7
+kod,Assets/Scripts/UI/RoundComplateUI/RunComplateUI.cs:64,büyük harf,RUN TAMAMLANDI,code.runcomplateui.run_tamamlandi
+kod,Assets/Scripts/UI/RoundComplateUI/RunComplateUI.cs:66,atama,<size=125%><color=#9BEA7C>{title}</color></size>\n<size=75%>{rounds.MaxRounds} round{last}</size>\n{total},code.runcomplateui.size_125_color_9bea7
+kod,Assets/Scripts/UI/ShopUIs/NextRoundButtonUI.cs:25,büyük harf,START ROUND,code.nextroundbuttonui.start_round
+kod,Assets/Scripts/UI/ShopUIs/NextRoundButtonUI.cs:25,büyük harf,NEXT ROUND,code.nextroundbuttonui.next_round
+kod,Assets/Scripts/UI/SkillUIs/SkillNodeUI.cs:201,büyük harf,TAM SÜRÜMDE,code.skillnodeui.tam_surumde
+kod,Assets/Scripts/UI/SkillUIs/SkillNodeUI.cs:350,büyük harf,DEMO KİLİDİ,code.skillnodeui.demo_kilidi
+kod,Assets/Scripts/UI/SkillUIs/SkillNodeUI.cs:373,büyük harf,MAX,code.skillnodeui.max
+kod,Assets/Scripts/UI/SkillUIs/SkillNodeUI.cs:42,büyük harf,BAŞLANGIÇTAN AÇIK,code.skillnodeui.baslangictan_acik
+kod,Assets/Scripts/UI/SpecializationPanelUI.cs:150,büyük harf,SEÇ,code.specializationpanelui.sec
+kod,Assets/Scripts/UI/SpecializationPanelUI.cs:66,atama,BOSS GEÇİLDİ · UZMANLAŞMA SEÇ,code.specializationpanelui.boss_gecildi_uzmanlasm
+kod,Assets/Scripts/UI/SpecializationPanelUI.cs:79,atama,Yalnız biri alınır · run sonuna kadar geçerli · geri alınamaz · etkisi Round {next} ve sonrası,code.specializationpanelui.yalniz_biri_alinir_run
+kod,Assets/Scripts/UI/Tooltips/TooltipContent.cs:20,büyük harf,MAX,code.tooltipcontent.max
+kod,Assets/Scripts/UI/Tooltips/TooltipContent.cs:21,büyük harf,MAX,code.tooltipcontent.max
+kod,Assets/Scripts/UI/Tooltips/TooltipContent.cs:23,büyük harf,MAX,code.tooltipcontent.max
+prefab,Assets/Prefabs/UI/Grid Mutation Card.prefab :: Grid Mutation Card/Bonus Caption,TMP,TILE ETKİSİ,ui.grid_mutation_card.bonus_caption
+prefab,Assets/Prefabs/UI/Grid Mutation Card.prefab :: Grid Mutation Card/Buff Value,TMP,XP +20%,ui.grid_mutation_card.buff_value
+prefab,Assets/Prefabs/UI/Grid Mutation Card.prefab :: Grid Mutation Card/Card Name,TMP,More Damage,ui.grid_mutation_card.card_name
+prefab,Assets/Prefabs/UI/Grid Mutation Card.prefab :: Grid Mutation Card/Comparison Caption,TMP,TEMEL → KARTLA  ·  ÖRNEK,ui.grid_mutation_card.comparison_caption
+prefab,Assets/Prefabs/UI/Grid Mutation Card.prefab :: Grid Mutation Card/Effect Name,TMP,ETKİ,ui.grid_mutation_card.effect_name
+prefab,Assets/Prefabs/UI/Grid Mutation Card.prefab :: Grid Mutation Card/Rarity Label,TMP,More Damage,ui.grid_mutation_card.rarity_label
+prefab,Assets/Prefabs/UI/GridTileToolTip.prefab :: GridTileToolTip/NameText,TMP,Tile,ui.gridtiletooltip.nametext
+prefab,Assets/Prefabs/UI/GridTileToolTip.prefab :: GridTileToolTip/Rarity Text,TMP,Common,ui.gridtiletooltip.rarity_text
+prefab,Assets/Prefabs/UI/GridTileToolTip.prefab :: GridTileToolTip/valueText,TMP,Bu tile,ui.gridtiletooltip.valuetext
+prefab,Assets/Prefabs/UI/Skill Tree Pop Up.prefab :: Skill Tree Pop Up/costText,TMP,50 Gold,ui.skill_tree_pop_up.costtext
+prefab,Assets/Prefabs/UI/Skill Tree Pop Up.prefab :: Skill Tree Pop Up/NameText,TMP,Damage Upgrade,ui.skill_tree_pop_up.nametext
+prefab,Assets/Prefabs/UI/Skill Tree Pop Up.prefab :: Skill Tree Pop Up/valueText,TMP,HarvestDamage: <color=#283B50>1</color> → <color=#19745E>2</color>,ui.skill_tree_pop_up.valuetext
+sahne,DemoScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (1)/Bonus Caption,TMP,TILE ETKİSİ,ui.demoscene.bonus_caption
+sahne,DemoScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (1)/Buff Value,TMP,XP +20%,ui.demoscene.buff_value
+sahne,DemoScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (1)/Card Name,TMP,More Damage,ui.demoscene.card_name
+sahne,DemoScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (1)/Comparison Caption,TMP,TEMEL → KARTLA  ·  ÖRNEK,ui.demoscene.comparison_caption
+sahne,DemoScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (1)/Effect Name,TMP,ETKİ,ui.demoscene.effect_name
+sahne,DemoScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (1)/Rarity Label,TMP,More Damage,ui.demoscene.rarity_label
+sahne,DemoScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (2)/Bonus Caption,TMP,TILE ETKİSİ,ui.demoscene.bonus_caption
+sahne,DemoScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (2)/Buff Value,TMP,XP +20%,ui.demoscene.buff_value
+sahne,DemoScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (2)/Card Name,TMP,More Damage,ui.demoscene.card_name
+sahne,DemoScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (2)/Comparison Caption,TMP,TEMEL → KARTLA  ·  ÖRNEK,ui.demoscene.comparison_caption
+sahne,DemoScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (2)/Effect Name,TMP,ETKİ,ui.demoscene.effect_name
+sahne,DemoScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (2)/Rarity Label,TMP,More Damage,ui.demoscene.rarity_label
+sahne,DemoScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card/Bonus Caption,TMP,TILE ETKİSİ,ui.demoscene.bonus_caption
+sahne,DemoScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card/Buff Value,TMP,XP +20%,ui.demoscene.buff_value
+sahne,DemoScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card/Card Name,TMP,More Damage,ui.demoscene.card_name
+sahne,DemoScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card/Comparison Caption,TMP,TEMEL → KARTLA  ·  ÖRNEK,ui.demoscene.comparison_caption
+sahne,DemoScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card/Effect Name,TMP,ETKİ,ui.demoscene.effect_name
+sahne,DemoScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card/Rarity Label,TMP,More Damage,ui.demoscene.rarity_label
+sahne,DemoScene :: $UI/Canvas/[CardSelection]/Grid Mutation Card Skip/Card Skip Button Text,TMP,Skip Cards,ui.demoscene.card_skip_button_text
+sahne,DemoScene :: $UI/Canvas/[Game]/ResourcesUI/Gold/Gold Text,TMP,"<size=60%>Gold</size>
+0",ui.demoscene.gold_text
+sahne,DemoScene :: $UI/Canvas/[Game]/ResourcesUI/Iron/Iron Text,TMP,"<size=60%>Iron</size>
+0",ui.demoscene.iron_text
+sahne,DemoScene :: $UI/Canvas/[Game]/ResourcesUI/Stone/Stone Text,TMP,"<size=60%>Stone</size>
+0",ui.demoscene.stone_text
+sahne,DemoScene :: $UI/Canvas/[RunComplate]/RunComplateUI/Main Menu Button/Next Round Text,TMP,Main Menu,ui.demoscene.next_round_text
+sahne,DemoScene :: $UI/Canvas/[RunComplate]/RunComplateUI/Restart Round Button/Restart Round Button Text,TMP,"Restart Game
+",ui.demoscene.restart_round_button_text
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Sell Button/Planter Sell Text,TMP,SELL,ui.demoscene.planter_sell_text
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Back/Label,TMP,CLEAR,ui.demoscene.label
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Heading,TMP,PLANTERS,ui.demoscene.heading
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 0/Locked,TMP,LOCKED,ui.demoscene.locked
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 0/Name,TMP,1x1 PLANTER,ui.demoscene.name
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 0/Price,TMP,20 Gold,ui.demoscene.price
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 1/Locked,TMP,LOCKED,ui.demoscene.locked
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 1/Name,TMP,1x2 PLANTER,ui.demoscene.name
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 1/Price,TMP,40 Gold,ui.demoscene.price
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 2/Locked,TMP,LOCKED,ui.demoscene.locked
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 2/Name,TMP,2x2 PLANTER,ui.demoscene.name
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 2/Price,TMP,120 Iron,ui.demoscene.price
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 3/Locked,TMP,LOCKED,ui.demoscene.locked
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 3/Name,TMP,1x3 PLANTER,ui.demoscene.name
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 3/Price,TMP,90 Gold,ui.demoscene.price
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 4/Locked,TMP,LOCKED,ui.demoscene.locked
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 4/Name,TMP,2x3 PLANTER,ui.demoscene.name
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 4/Price,TMP,250 Stone,ui.demoscene.price
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Details/Buy Planter/Label,TMP,BUY,ui.demoscene.label
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Details/Detail Title,TMP,1x1 PLANTER,ui.demoscene.detail_title
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Details/GROW TIME/Caption,TMP,GROW TIME,ui.demoscene.caption
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Details/PLOTS/Caption,TMP,PLOTS,ui.demoscene.caption
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Details/SIZE/Caption,TMP,SIZE,ui.demoscene.caption
+sahne,DemoScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Summary,TMP,PICK IT. PLANT IT. GROW BIG.,ui.demoscene.summary
+sahne,DemoScene :: $UI/Canvas/[Shop]/RoundEndUI/Next Round Button/Next Round Text,TMP,START ROUND,ui.demoscene.next_round_text
+sahne,DemoScene :: $UI/Canvas/[Shop]/RoundEndUI/Placment Shop Button/Placment Shop Text,TMP,PLANTER SHOP,ui.demoscene.placment_shop_text
+sahne,DemoScene :: $UI/Canvas/[Shop]/RoundEndUI/Skill Shop Button/Skill Shop Text,TMP,SKILL SHOP,ui.demoscene.skill_shop_text
+sahne,GameScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (1)/Bonus Caption,TMP,TILE ETKİSİ,ui.gamescene.bonus_caption
+sahne,GameScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (1)/Buff Value,TMP,XP +20%,ui.gamescene.buff_value
+sahne,GameScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (1)/Card Name,TMP,More Damage,ui.gamescene.card_name
+sahne,GameScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (1)/Comparison Caption,TMP,TEMEL → KARTLA  ·  ÖRNEK,ui.gamescene.comparison_caption
+sahne,GameScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (1)/Effect Name,TMP,ETKİ,ui.gamescene.effect_name
+sahne,GameScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (1)/Rarity Label,TMP,More Damage,ui.gamescene.rarity_label
+sahne,GameScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (2)/Bonus Caption,TMP,TILE ETKİSİ,ui.gamescene.bonus_caption
+sahne,GameScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (2)/Buff Value,TMP,XP +20%,ui.gamescene.buff_value
+sahne,GameScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (2)/Card Name,TMP,More Damage,ui.gamescene.card_name
+sahne,GameScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (2)/Comparison Caption,TMP,TEMEL → KARTLA  ·  ÖRNEK,ui.gamescene.comparison_caption
+sahne,GameScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (2)/Effect Name,TMP,ETKİ,ui.gamescene.effect_name
+sahne,GameScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card (2)/Rarity Label,TMP,More Damage,ui.gamescene.rarity_label
+sahne,GameScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card/Bonus Caption,TMP,TILE ETKİSİ,ui.gamescene.bonus_caption
+sahne,GameScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card/Buff Value,TMP,XP +20%,ui.gamescene.buff_value
+sahne,GameScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card/Card Name,TMP,More Damage,ui.gamescene.card_name
+sahne,GameScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card/Comparison Caption,TMP,TEMEL → KARTLA  ·  ÖRNEK,ui.gamescene.comparison_caption
+sahne,GameScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card/Effect Name,TMP,ETKİ,ui.gamescene.effect_name
+sahne,GameScene :: $UI/Canvas/[CardSelection]/Card Selection UI/Grid Mutation Card/Rarity Label,TMP,More Damage,ui.gamescene.rarity_label
+sahne,GameScene :: $UI/Canvas/[CardSelection]/Grid Mutation Card Skip/Card Skip Button Text,TMP,Skip Cards,ui.gamescene.card_skip_button_text
+sahne,GameScene :: $UI/Canvas/[Game]/ResourcesUI/Gold/Gold Text,TMP,"<size=60%>Gold</size>
+0",ui.gamescene.gold_text
+sahne,GameScene :: $UI/Canvas/[Game]/ResourcesUI/Iron/Iron Text,TMP,"<size=60%>Iron</size>
+0",ui.gamescene.iron_text
+sahne,GameScene :: $UI/Canvas/[Game]/ResourcesUI/Stone/Stone Text,TMP,"<size=60%>Stone</size>
+0",ui.gamescene.stone_text
+sahne,GameScene :: $UI/Canvas/[RunComplate]/RunComplateUI/Main Menu Button/Next Round Text,TMP,Main Menu,ui.gamescene.next_round_text
+sahne,GameScene :: $UI/Canvas/[RunComplate]/RunComplateUI/Restart Round Button/Restart Round Button Text,TMP,"Restart Game
+",ui.gamescene.restart_round_button_text
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Sell Button/Planter Sell Text,TMP,SELL,ui.gamescene.planter_sell_text
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Back/Label,TMP,CLEAR,ui.gamescene.label
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Heading,TMP,PLANTERS,ui.gamescene.heading
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 0/Locked,TMP,LOCKED,ui.gamescene.locked
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 0/Name,TMP,1x1 PLANTER,ui.gamescene.name
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 0/Price,TMP,20 Gold,ui.gamescene.price
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 1/Locked,TMP,LOCKED,ui.gamescene.locked
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 1/Name,TMP,1x2 PLANTER,ui.gamescene.name
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 1/Price,TMP,40 Gold,ui.gamescene.price
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 2/Locked,TMP,LOCKED,ui.gamescene.locked
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 2/Name,TMP,2x2 PLANTER,ui.gamescene.name
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 2/Price,TMP,120 Iron,ui.gamescene.price
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 3/Locked,TMP,LOCKED,ui.gamescene.locked
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 3/Name,TMP,1x3 PLANTER,ui.gamescene.name
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 3/Price,TMP,90 Gold,ui.gamescene.price
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 4/Locked,TMP,LOCKED,ui.gamescene.locked
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 4/Name,TMP,2x3 PLANTER,ui.gamescene.name
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Card 4/Price,TMP,250 Stone,ui.gamescene.price
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Details/Buy Planter/Label,TMP,BUY,ui.gamescene.label
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Details/Detail Title,TMP,1x1 PLANTER,ui.gamescene.detail_title
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Details/GROW TIME/Caption,TMP,GROW TIME,ui.gamescene.caption
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Details/PLOTS/Caption,TMP,PLOTS,ui.gamescene.caption
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Planter Details/SIZE/Caption,TMP,SIZE,ui.gamescene.caption
+sahne,GameScene :: $UI/Canvas/[Shop]/Placment Shop Panel/Planter Shop UI/Summary,TMP,PICK IT. PLANT IT. GROW BIG.,ui.gamescene.summary
+sahne,GameScene :: $UI/Canvas/[Shop]/RoundEndUI/Next Round Button/Next Round Text,TMP,START ROUND,ui.gamescene.next_round_text
+sahne,GameScene :: $UI/Canvas/[Shop]/RoundEndUI/Placment Shop Button/Placment Shop Text,TMP,PLANTER SHOP,ui.gamescene.placment_shop_text
+sahne,GameScene :: $UI/Canvas/[Shop]/RoundEndUI/Skill Shop Button/Skill Shop Text,TMP,SKILL SHOP,ui.gamescene.skill_shop_text
+sahne,MenuScene :: Canvas/MenuParent/MainMenuPanel/Options Button/Text (TMP),TMP,Options,ui.menuscene.options_button
+sahne,MenuScene :: Canvas/MenuParent/MainMenuPanel/Play Button/Text (TMP),TMP,"Play
+",ui.menuscene.play_button
+sahne,MenuScene :: Canvas/MenuParent/MainMenuPanel/Quit Button/Text (TMP),TMP,Quit,ui.menuscene.quit_button
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Back Button/Text (TMP),TMP,GERİ,ui.menuscene.back_button
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Görüntü Page/Arka Plan Efektleri/Label,TMP,Arka Plan Efektleri,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Görüntü Page/Arka Plan Efektleri/Switch/Label,TMP,AÇIK,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Görüntü Page/Çözünürlük/Label,TMP,Çözünürlük,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Görüntü Page/Ekran Modu/Label,TMP,Ekran Modu,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Görüntü Page/FPS Sınırı/Label,TMP,FPS Sınırı,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Görüntü Page/Grafik Kalitesi/Label,TMP,Grafik Kalitesi,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Görüntü Page/VSync/Label,TMP,VSync,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Görüntü Page/VSync/Switch/Label,TMP,AÇIK,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Kontroller Page/Hasat/Key/Key Label,TMP,İMLEÇ,ui.menuscene.key_label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Kontroller Page/Hasat/Label,TMP,Hasat,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Kontroller Page/İptal / Geri/Key/Key Label,TMP,ESC,ui.menuscene.key_label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Kontroller Page/İptal / Geri/Label,TMP,İptal / Geri,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Kontroller Page/Performans Kaydı/Key/Key Label,TMP,F9,ui.menuscene.key_label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Kontroller Page/Performans Kaydı/Label,TMP,Performans Kaydı,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Kontroller Page/Rezonans Detayları/Key/Key Label,TMP,ALT,ui.menuscene.key_label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Kontroller Page/Rezonans Detayları/Label,TMP,Rezonans Detayları,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Kontroller Page/Saksıyı Döndür/Key/Key Label,TMP,R,ui.menuscene.key_label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Kontroller Page/Saksıyı Döndür/Label,TMP,Saksıyı Döndür,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Oynanış Page/Ekran Flaşları/Label,TMP,Ekran Flaşları,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Oynanış Page/Ekran Flaşları/Switch/Label,TMP,AÇIK,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Oynanış Page/Ekran Sarsıntısı/Label,TMP,Ekran Sarsıntısı,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Oynanış Page/Grid Koordinatları/Label,TMP,Grid Koordinatları,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Oynanış Page/Grid Koordinatları/Switch/Label,TMP,AÇIK,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Oynanış Page/Hasar Yazıları/Label,TMP,Hasar Yazıları,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Oynanış Page/Hasar Yazıları/Switch/Label,TMP,AÇIK,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Oynanış Page/Kamera Hareketi/Label,TMP,Kamera Hareketi,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Oynanış Page/Kamera Hareketi/Switch/Label,TMP,AÇIK,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Oynanış Page/Rarity Auraları/Label,TMP,Rarity Auraları,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Oynanış Page/Rarity Auraları/Switch/Label,TMP,AÇIK,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Oynanış Page/Round Sonu Yavaşlama/Label,TMP,Round Sonu Yavaşlama,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Oynanış Page/Round Sonu Yavaşlama/Switch/Label,TMP,AÇIK,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Ses Page/Ana Ses/Label,TMP,Ana Ses,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Ses Page/Arka Planda Sessiz/Label,TMP,Arka Planda Sessiz,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Ses Page/Arka Planda Sessiz/Switch/Label,TMP,AÇIK,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Ses Page/Efektler/Label,TMP,Efektler,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Pages/Ses Page/Müzik/Label,TMP,Müzik,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Reset Defaults/Label,TMP,VARSAYILANLAR,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Tab GÖRÜNTÜ/Label,TMP,GÖRÜNTÜ,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Tab KONTROLLER/Label,TMP,KONTROLLER,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Tab OYNANIŞ/Label,TMP,OYNANIŞ,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Tab SES/Label,TMP,SES,ui.menuscene.label
+sahne,MenuScene :: Canvas/MenuParent/OptionsPanel/Options Window/Title,TMP,AYARLAR,ui.menuscene.title
+veri,Assets/ScriptableObjects/BossRewards/AlphaDengeV1/BossRewardPool_AlphaDengeV1.asset,stages.Array.data[0].displayName,ERKEN,data.bossrewardpool_alphadengev1.stages_array_data_0_displayname
+veri,Assets/ScriptableObjects/BossRewards/AlphaDengeV1/BossRewardPool_AlphaDengeV1.asset,stages.Array.data[1].displayName,ORTA,data.bossrewardpool_alphadengev1.stages_array_data_1_displayname
+veri,Assets/ScriptableObjects/BossRewards/AlphaDengeV1/BossRewardPool_AlphaDengeV1.asset,stages.Array.data[2].displayName,GÜÇLÜ,data.bossrewardpool_alphadengev1.stages_array_data_2_displayname
+veri,Assets/ScriptableObjects/BossRewards/AlphaDengeV1/BossRewardPool_AlphaDengeV1.asset,endlessStage.displayName,SINIRSIZ,data.bossrewardpool_alphadengev1.endlessstage_displayname
+veri,Assets/ScriptableObjects/BossRewards/AlphaDengeV1/HasatRitmi_A1.asset,displayName,Hasat Ritmi,data.hasatritmi_a1.displayname
+veri,Assets/ScriptableObjects/BossRewards/AlphaDengeV1/HasatRitmi_A1.asset,effectLabel,Ritim:,data.hasatritmi_a1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/AlphaDengeV1/ZincirHasat_A1.asset,displayName,Zincir Hasat,data.zincirhasat_a1.displayname
+veri,Assets/ScriptableObjects/BossRewards/AlphaDengeV1/ZincirHasat_A1.asset,effectLabel,Zincir:,data.zincirhasat_a1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/BedelliOdullerV1/BereketliOgrenim_B1.asset,displayName,Bereketli Öğrenim,data.bereketliogrenim_b1.displayname
+veri,Assets/ScriptableObjects/BossRewards/BedelliOdullerV1/BossRewardPool_BedelliOdullerV1.asset,stages.Array.data[0].displayName,ERKEN,data.bossrewardpool_bedelliodullerv1.stages_array_data_0_displayname
+veri,Assets/ScriptableObjects/BossRewards/BedelliOdullerV1/BossRewardPool_BedelliOdullerV1.asset,stages.Array.data[1].displayName,ORTA,data.bossrewardpool_bedelliodullerv1.stages_array_data_1_displayname
+veri,Assets/ScriptableObjects/BossRewards/BedelliOdullerV1/BossRewardPool_BedelliOdullerV1.asset,stages.Array.data[2].displayName,GÜÇLÜ,data.bossrewardpool_bedelliodullerv1.stages_array_data_2_displayname
+veri,Assets/ScriptableObjects/BossRewards/BedelliOdullerV1/BossRewardPool_BedelliOdullerV1.asset,endlessStage.displayName,SINIRSIZ,data.bossrewardpool_bedelliodullerv1.endlessstage_displayname
+veri,Assets/ScriptableObjects/BossRewards/BedelliOdullerV1/DavranisaAdanis_B1.asset,displayName,Davranışa Adanış,data.davranisaadanis_b1.displayname
+veri,Assets/ScriptableObjects/BossRewards/BereketliToprak.asset,displayName,Bereketli Toprak,data.bereketlitoprak.displayname
+veri,Assets/ScriptableObjects/BossRewards/BereketliToprak.asset,effectLabel,Üretim aralığı,data.bereketlitoprak.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/BereketliToprak.asset,inverseLabel,üretim sıklığı,data.bereketlitoprak.inverselabel
+veri,Assets/ScriptableObjects/BossRewards/BilgiFilizi.asset,displayName,Bilgi Filizi,data.bilgifilizi.displayname
+veri,Assets/ScriptableObjects/BossRewards/BilgiFilizi.asset,effectLabel,Kazanılan XP,data.bilgifilizi.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/AgirDarbe_V1.asset,displayName,Ağır Darbe,data.agirdarbe_v1.displayname
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/AgirDarbe_V1.asset,effectLabel,Kritik hasar çarpanı,data.agirdarbe_v1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/AltinHedef_V1.asset,displayName,Altın Hedef,data.altinhedef_v1.displayname
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/AltinHedef_V1.asset,effectLabel,Rare ve üstü bitkiye doğrudan hasar,data.altinhedef_v1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/BereketliToprak_V1.asset,displayName,Bereketli Toprak,data.bereketlitoprak_v1.displayname
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/BereketliToprak_V1.asset,effectLabel,Üretim aralığı,data.bereketlitoprak_v1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/BereketliToprak_V1.asset,inverseLabel,üretim sıklığı,data.bereketlitoprak_v1.inverselabel
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/BilgiFilizi_V1.asset,displayName,Bilgi Filizi,data.bilgifilizi_v1.displayname
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/BilgiFilizi_V1.asset,effectLabel,Kazanılan XP,data.bilgifilizi_v1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/CanavarKesimi_V1.asset,displayName,Canavar Kesimi,data.canavarkesimi_v1.displayname
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/CanavarKesimi_V1.asset,effectLabel,Doğrudan vuruş hasarı,data.canavarkesimi_v1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/FirtinaBilegi_V1.asset,displayName,Fırtına Bileği,data.firtinabilegi_v1.displayname
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/FirtinaBilegi_V1.asset,effectLabel,Saldırı aralığı,data.firtinabilegi_v1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/FirtinaBilegi_V1.asset,inverseLabel,saldırı sıklığı,data.firtinabilegi_v1.inverselabel
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/GenisSavurus_V1.asset,displayName,Geniş Savuruş,data.genissavurus_v1.displayname
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/GenisSavurus_V1.asset,effectLabel,Vuruş yarıçapı,data.genissavurus_v1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/HizliBilek_V1.asset,displayName,Hızlı Bilek,data.hizlibilek_v1.displayname
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/HizliBilek_V1.asset,effectLabel,Saldırı aralığı,data.hizlibilek_v1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/HizliBilek_V1.asset,inverseLabel,saldırı sıklığı,data.hizlibilek_v1.inverselabel
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/KeskinBicak_V1.asset,displayName,Keskin Bıçak,data.keskinbicak_v1.displayname
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/KeskinBicak_V1.asset,effectLabel,Doğrudan vuruş hasarı,data.keskinbicak_v1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/Kivilcim_V1.asset,displayName,Kıvılcım,data.kivilcim_v1.displayname
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/Kivilcim_V1.asset,effectLabel,Mevcut davranış şansları,data.kivilcim_v1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/KritikGoz_V1.asset,displayName,Kritik Göz,data.kritikgoz_v1.displayname
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/KritikGoz_V1.asset,effectLabel,Kritik şansı,data.kritikgoz_v1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/NadirTohum_V1.asset,displayName,Nadir Tohum,data.nadirtohum_v1.displayname
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/NadirTohum_V1.asset,effectLabel,Nadirlik bonusu,data.nadirtohum_v1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/YikimGucu_V1.asset,displayName,Yıkım Gücü,data.yikimgucu_v1.displayname
+veri,Assets/ScriptableObjects/BossRewards/DengeV1/YikimGucu_V1.asset,effectLabel,Davranış hasarı,data.yikimgucu_v1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/AcgozluHasat_G1.asset,displayName,Açgözlü Hasat,data.acgozluhasat_g1.displayname
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/AcgozluHasat_G1.asset,effectLabel,Açgözlülük:,data.acgozluhasat_g1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/AsiriYukleme_G1.asset,displayName,Aşırı Yükleme,data.asiriyukleme_g1.displayname
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/AsiriYukleme_G1.asset,effectLabel,Yükleme:,data.asiriyukleme_g1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/BossRewardPool_GecOyunV1.asset,stages.Array.data[0].displayName,ERKEN,data.bossrewardpool_gecoyunv1.stages_array_data_0_displayname
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/BossRewardPool_GecOyunV1.asset,stages.Array.data[1].displayName,ORTA,data.bossrewardpool_gecoyunv1.stages_array_data_1_displayname
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/BossRewardPool_GecOyunV1.asset,stages.Array.data[2].displayName,GÜÇLÜ,data.bossrewardpool_gecoyunv1.stages_array_data_2_displayname
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/BossRewardPool_GecOyunV1.asset,endlessStage.displayName,SINIRSIZ,data.bossrewardpool_gecoyunv1.endlessstage_displayname
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/BuyuyenAy_G1.asset,displayName,Büyüyen Ay,data.buyuyenay_g1.displayname
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/BuyuyenAy_G1.asset,effectLabel,Büyüme:,data.buyuyenay_g1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/Dolunay_G1.asset,displayName,Dolunay,data.dolunay_g1.displayname
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/Dolunay_G1.asset,effectLabel,Dolunay:,data.dolunay_g1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/ElektrikAnteni_G1.asset,displayName,Elektrik Anteni,data.elektrikanteni_g1.displayname
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/ElektrikAnteni_G1.asset,effectLabel,Anten:,data.elektrikanteni_g1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/HasatYankisi_G1.asset,displayName,Hasat Yankısı,data.hasatyankisi_g1.displayname
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/HasatYankisi_G1.asset,effectLabel,Yankı:,data.hasatyankisi_g1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/HilalDarbesi_G1.asset,displayName,Hilal Darbesi,data.hilaldarbesi_g1.displayname
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/HilalDarbesi_G1.asset,effectLabel,Hilal:,data.hilaldarbesi_g1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/IletkenHat_G1.asset,displayName,İletken Hat,data.iletkenhat_g1.displayname
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/IletkenHat_G1.asset,effectLabel,Hat:,data.iletkenhat_g1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/KapaliDevre_G1.asset,displayName,Kapalı Devre,data.kapalidevre_g1.displayname
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/KapaliDevre_G1.asset,effectLabel,Devre:,data.kapalidevre_g1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/KritikArk_G1.asset,displayName,Kritik Ark,data.kritikark_g1.displayname
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/KritikArk_G1.asset,effectLabel,Ark:,data.kritikark_g1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/KritikPatlama_G1.asset,displayName,Kritik Patlama,data.kritikpatlama_g1.displayname
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/KritikPatlama_G1.asset,effectLabel,Patlama:,data.kritikpatlama_g1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/NadirReaktor_G1.asset,displayName,Nadir Reaktör,data.nadirreaktor_g1.displayname
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/NadirReaktor_G1.asset,effectLabel,Reaktör:,data.nadirreaktor_g1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/TasanHasar_G1.asset,displayName,Taşan Hasar,data.tasanhasar_g1.displayname
+veri,Assets/ScriptableObjects/BossRewards/GecOyunV1/TasanHasar_G1.asset,effectLabel,Taşma:,data.tasanhasar_g1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/HizliBilek.asset,displayName,Hızlı Bilek,data.hizlibilek.displayname
+veri,Assets/ScriptableObjects/BossRewards/HizliBilek.asset,effectLabel,Saldırı aralığı,data.hizlibilek.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/HizliBilek.asset,inverseLabel,saldırı sıklığı,data.hizlibilek.inverselabel
+veri,Assets/ScriptableObjects/BossRewards/KeskinBicak.asset,displayName,Keskin Bıçak,data.keskinbicak.displayname
+veri,Assets/ScriptableObjects/BossRewards/KeskinBicak.asset,effectLabel,Doğrudan vuruş hasarı,data.keskinbicak.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/KirilmaErisimiV1/ArtciPatlama_E1.asset,displayName,Artçı Patlama,data.artcipatlama_e1.displayname
+veri,Assets/ScriptableObjects/BossRewards/KirilmaErisimiV1/ArtciPatlama_E1.asset,effectLabel,Artçı patlama:,data.artcipatlama_e1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/KirilmaErisimiV1/BossRewardPool_KirilmaErisimiV1.asset,stages.Array.data[0].displayName,ERKEN,data.bossrewardpool_kirilmaerisimiv1.stages_array_data_0_displayname
+veri,Assets/ScriptableObjects/BossRewards/KirilmaErisimiV1/BossRewardPool_KirilmaErisimiV1.asset,stages.Array.data[1].displayName,ORTA,data.bossrewardpool_kirilmaerisimiv1.stages_array_data_1_displayname
+veri,Assets/ScriptableObjects/BossRewards/KirilmaErisimiV1/BossRewardPool_KirilmaErisimiV1.asset,stages.Array.data[2].displayName,GÜÇLÜ,data.bossrewardpool_kirilmaerisimiv1.stages_array_data_2_displayname
+veri,Assets/ScriptableObjects/BossRewards/KirilmaErisimiV1/BossRewardPool_KirilmaErisimiV1.asset,endlessStage.displayName,SINIRSIZ,data.bossrewardpool_kirilmaerisimiv1.endlessstage_displayname
+veri,Assets/ScriptableObjects/BossRewards/KirilmaErisimiV1/CifteAkim_E1.asset,displayName,Çifte Akım,data.cifteakim_e1.displayname
+veri,Assets/ScriptableObjects/BossRewards/KirilmaErisimiV1/CifteAkim_E1.asset,effectLabel,İkinci elektrik dalgası:,data.cifteakim_e1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/KirilmaV1/ArtciPatlama_K1.asset,displayName,Artçı Patlama,data.artcipatlama_k1.displayname
+veri,Assets/ScriptableObjects/BossRewards/KirilmaV1/ArtciPatlama_K1.asset,effectLabel,Artçı patlama:,data.artcipatlama_k1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/KirilmaV1/CifteAkim_K1.asset,displayName,Çifte Akım,data.cifteakim_k1.displayname
+veri,Assets/ScriptableObjects/BossRewards/KirilmaV1/CifteAkim_K1.asset,effectLabel,İkinci elektrik dalgası:,data.cifteakim_k1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/KirilmaV1/HasatRitmi_K1.asset,displayName,Hasat Ritmi,data.hasatritmi_k1.displayname
+veri,Assets/ScriptableObjects/BossRewards/KirilmaV1/HasatRitmi_K1.asset,effectLabel,Ritim:,data.hasatritmi_k1.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/Kivilcim.asset,displayName,Kıvılcım,data.kivilcim.displayname
+veri,Assets/ScriptableObjects/BossRewards/Kivilcim.asset,effectLabel,Mevcut davranış şansları,data.kivilcim.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/NadirTohum.asset,displayName,Nadir Tohum,data.nadirtohum.displayname
+veri,Assets/ScriptableObjects/BossRewards/NadirTohum.asset,effectLabel,Nadirlik bonusu,data.nadirtohum.effectlabel
+veri,Assets/ScriptableObjects/BossRewards/OdulAsamalariV1/BossRewardPool_OdulAsamalariV1.asset,stages.Array.data[0].displayName,ERKEN,data.bossrewardpool_odulasamalariv1.stages_array_data_0_displayname
+veri,Assets/ScriptableObjects/BossRewards/OdulAsamalariV1/BossRewardPool_OdulAsamalariV1.asset,stages.Array.data[1].displayName,ORTA,data.bossrewardpool_odulasamalariv1.stages_array_data_1_displayname
+veri,Assets/ScriptableObjects/BossRewards/OdulAsamalariV1/BossRewardPool_OdulAsamalariV1.asset,stages.Array.data[2].displayName,GÜÇLÜ,data.bossrewardpool_odulasamalariv1.stages_array_data_2_displayname
+veri,Assets/ScriptableObjects/BossRewards/OdulAsamalariV1/BossRewardPool_OdulAsamalariV1.asset,endlessStage.displayName,SINIRSIZ,data.bossrewardpool_odulasamalariv1.endlessstage_displayname
+veri,Assets/ScriptableObjects/BossRewards/ZincirV1/BossRewardPool_ZincirV1.asset,stages.Array.data[0].displayName,ERKEN,data.bossrewardpool_zincirv1.stages_array_data_0_displayname
+veri,Assets/ScriptableObjects/BossRewards/ZincirV1/BossRewardPool_ZincirV1.asset,stages.Array.data[1].displayName,ORTA,data.bossrewardpool_zincirv1.stages_array_data_1_displayname
+veri,Assets/ScriptableObjects/BossRewards/ZincirV1/BossRewardPool_ZincirV1.asset,stages.Array.data[2].displayName,GÜÇLÜ,data.bossrewardpool_zincirv1.stages_array_data_2_displayname
+veri,Assets/ScriptableObjects/BossRewards/ZincirV1/BossRewardPool_ZincirV1.asset,endlessStage.displayName,SINIRSIZ,data.bossrewardpool_zincirv1.endlessstage_displayname
+veri,Assets/ScriptableObjects/BossRewards/ZincirV1/ZincirHasat_Z1.asset,displayName,Zincir Hasat,data.zincirhasat_z1.displayname
+veri,Assets/ScriptableObjects/BossRewards/ZincirV1/ZincirHasat_Z1.asset,effectLabel,Zincir:,data.zincirhasat_z1.effectlabel
+veri,Assets/ScriptableObjects/GridModifiers/Boomerang/Boomerang-Common.asset,modifierName,Bumerang Orak,data.boomerang_common.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Boomerang/Boomerang-Epic.asset,modifierName,Bumerang Orak,data.boomerang_epic.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Boomerang/Boomerang-Legendary.asset,modifierName,Bumerang Orak,data.boomerang_legendary.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Boomerang/Boomerang-Rare.asset,modifierName,Bumerang Orak,data.boomerang_rare.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Crystal/Crystal-Common.asset,modifierName,Crystal-RareSpawnChance,data.crystal_common.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Crystal/Crystal-Epic.asset,modifierName,Crystal-RareSpawnChance,data.crystal_epic.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Crystal/Crystal-Legendary.asset,modifierName,Crystal-RareSpawnChance,data.crystal_legendary.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Crystal/Crystal-Rare.asset,modifierName,Crystal-RareSpawnChance,data.crystal_rare.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Damage/Damage-Common.asset,modifierName,Odak-Hasar,data.damage_common.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Damage/Damage-Epic.asset,modifierName,Odak-Hasar,data.damage_epic.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Damage/Damage-Legendary.asset,modifierName,Odak-Hasar,data.damage_legendary.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Damage/Damage-Rare.asset,modifierName,Odak-Hasar,data.damage_rare.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Duplicate/Duplicate-Common.asset,modifierName,Duplicate-DuplicateChance,data.duplicate_common.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Duplicate/Duplicate-Epic.asset,modifierName,Duplicate-DuplicateChance,data.duplicate_epic.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Duplicate/Duplicate-Legendary.asset,modifierName,Duplicate-DuplicateChance,data.duplicate_legendary.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Duplicate/Duplicate-Rare.asset,modifierName,Duplicate-DuplicateChance,data.duplicate_rare.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Electric/Electric-Common.asset,modifierName,Çapraz Elektrik,data.electric_common.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Electric/Electric-Epic.asset,modifierName,Çapraz Elektrik,data.electric_epic.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Electric/Electric-Legendary.asset,modifierName,Çapraz Elektrik,data.electric_legendary.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Electric/Electric-Rare.asset,modifierName,Çapraz Elektrik,data.electric_rare.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Energy/Energy-Common.asset,modifierName,Energy-HarvestScoreMultiplier,data.energy_common.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Energy/Energy-Epic.asset,modifierName,Energy-HarvestScoreMultiplier,data.energy_epic.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Energy/Energy-Legendary.asset,modifierName,Energy-HarvestScoreMultiplier,data.energy_legendary.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Energy/Energy-Rare.asset,modifierName,Energy-HarvestScoreMultiplier,data.energy_rare.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Explosive/Explosive-Common.asset,modifierName,Explosive-ExplosionChance,data.explosive_common.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Explosive/Explosive-Epic.asset,modifierName,Explosive-ExplosionChance,data.explosive_epic.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Explosive/Explosive-Legendary.asset,modifierName,Explosive-ExplosionChance,data.explosive_legendary.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Explosive/Explosive-Rare.asset,modifierName,Explosive-ExplosionChance,data.explosive_rare.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Fertile/Fertile-Common.asset,modifierName,Fertile-PlantSpawnRate,data.fertile_common.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Fertile/Fertile-Epic.asset,modifierName,Fertile-PlantSpawnRate,data.fertile_epic.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Fertile/Fertile-Legendary.asset,modifierName,Fertile-PlantSpawnRate,data.fertile_legendary.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Fertile/Fertile-Rare.asset,modifierName,Fertile-PlantSpawnRate,data.fertile_rare.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Tornado/Tornado-Common.asset,modifierName,Tornado,data.tornado_common.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Tornado/Tornado-Epic.asset,modifierName,Tornado,data.tornado_epic.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Tornado/Tornado-Legendary.asset,modifierName,Tornado,data.tornado_legendary.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Tornado/Tornado-Rare.asset,modifierName,Tornado,data.tornado_rare.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Water/Water-Common.asset,modifierName,Water-XPGain,data.water_common.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Water/Water-Epic.asset,modifierName,Water-XPGain,data.water_epic.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Water/Water-Legendary.asset,modifierName,Water-XPGain,data.water_legendary.modifiername
+veri,Assets/ScriptableObjects/GridModifiers/Water/Water-Rare.asset,modifierName,Water-XPGain,data.water_rare.modifiername
+veri,Assets/ScriptableObjects/Planters/GrassPlanter 1x1.asset,planterName,Grass Planter,data.grassplanter_1x1.plantername
+veri,Assets/ScriptableObjects/Planters/GrassPlanter 1x2.asset,planterName,Grass Planter1x2,data.grassplanter_1x2.plantername
+veri,Assets/ScriptableObjects/Planters/GrassPlanter 1x3.asset,planterName,Grass Planter 1x3,data.grassplanter_1x3.plantername
+veri,Assets/ScriptableObjects/Planters/GrassPlanter 2x2.asset,planterName,Grass Planter 2x2,data.grassplanter_2x2.plantername
+veri,Assets/ScriptableObjects/Planters/GrassPlanter 2x3.asset,planterName,Grass Planter 2x3,data.grassplanter_2x3.plantername
+veri,Assets/ScriptableObjects/Plants/Beetroot.asset,plantName,Beetroot,data.beetroot.plantname
+veri,Assets/ScriptableObjects/Plants/Carrot.asset,plantName,Carrot,data.carrot.plantname
+veri,Assets/ScriptableObjects/Plants/Corn.asset,plantName,Corn,data.corn.plantname
+veri,Assets/ScriptableObjects/Plants/Grape.asset,plantName,Grape,data.grape.plantname
+veri,Assets/ScriptableObjects/Plants/Grass.asset,plantName,Grass,data.grass.plantname
+veri,Assets/ScriptableObjects/Plants/Lettuce.asset,plantName,Lettuce,data.lettuce.plantname
+veri,Assets/ScriptableObjects/Plants/Pepper.asset,plantName,Pepper,data.pepper.plantname
+veri,Assets/ScriptableObjects/Plants/Pineapple.asset,plantName,Pineapple,data.pineapple.plantname
+veri,Assets/ScriptableObjects/Plants/Potato.asset,plantName,Potato,data.potato.plantname
+veri,Assets/ScriptableObjects/Plants/Pumpkin.asset,plantName,Pumpkin,data.pumpkin.plantname
+veri,Assets/ScriptableObjects/Plants/Strawberry.asset,plantName,Strawberry,data.strawberry.plantname
+veri,Assets/ScriptableObjects/Plants/Tomato.asset,plantName,Tomato,data.tomato.plantname
+veri,Assets/ScriptableObjects/RunProfiles/Deney22_20.asset,displayName,Deney 2.2 · 20 round,data.deney22_20.displayname
+veri,Assets/ScriptableObjects/RunProfiles/Deney22_20.asset,victoryTitle,DENEY 2.2 TAMAMLANDI,data.deney22_20.victorytitle
+veri,Assets/ScriptableObjects/RunProfiles/Prototip10.asset,displayName,Prototip · 10 round,data.prototip10.displayname
+veri,Assets/ScriptableObjects/RunProfiles/Prototip10.asset,victoryTitle,PROTOTİP TAMAMLANDI,data.prototip10.victorytitle
+veri,Assets/ScriptableObjects/RunProfiles/Run50_AlphaDengeV1.asset,displayName,Run50 Alpha Denge V1 · 50 round,data.run50_alphadengev1.displayname
+veri,Assets/ScriptableObjects/RunProfiles/Run50_AlphaDengeV1.asset,victoryTitle,RUN TAMAMLANDI · ALPHA DENGE V1,data.run50_alphadengev1.victorytitle
+veri,Assets/ScriptableObjects/RunProfiles/Run50_BedelliOdullerV1.asset,displayName,Run50 Bedelli Ödüller V1 · 50 round,data.run50_bedelliodullerv1.displayname
+veri,Assets/ScriptableObjects/RunProfiles/Run50_BedelliOdullerV1.asset,victoryTitle,RUN TAMAMLANDI · BEDELLİ ÖDÜLLER V1,data.run50_bedelliodullerv1.victorytitle
+veri,Assets/ScriptableObjects/RunProfiles/Run50_BossPrototip.asset,displayName,Run50 Boss Prototip · 50 round,data.run50_bossprototip.displayname
+veri,Assets/ScriptableObjects/RunProfiles/Run50_BossPrototip.asset,victoryTitle,BOSS PROTOTİPİ TAMAMLANDI,data.run50_bossprototip.victorytitle
+veri,Assets/ScriptableObjects/RunProfiles/Run50_DengeV1.asset,displayName,Run50 Denge V1 · 50 round,data.run50_dengev1.displayname
+veri,Assets/ScriptableObjects/RunProfiles/Run50_DengeV1.asset,victoryTitle,RUN TAMAMLANDI · DENGE V1,data.run50_dengev1.victorytitle
+veri,Assets/ScriptableObjects/RunProfiles/Run50_GecOyunV1.asset,displayName,Run50 Geç Oyun V1 · 50 round,data.run50_gecoyunv1.displayname
+veri,Assets/ScriptableObjects/RunProfiles/Run50_GecOyunV1.asset,victoryTitle,RUN TAMAMLANDI · GEÇ OYUN V1,data.run50_gecoyunv1.victorytitle
+veri,Assets/ScriptableObjects/RunProfiles/Run50_KirilmaErisimiV1.asset,displayName,Run50 Kırılma Erişimi V1 · 50 round,data.run50_kirilmaerisimiv1.displayname
+veri,Assets/ScriptableObjects/RunProfiles/Run50_KirilmaErisimiV1.asset,victoryTitle,RUN TAMAMLANDI · KIRILMA ERİŞİMİ V1,data.run50_kirilmaerisimiv1.victorytitle
+veri,Assets/ScriptableObjects/RunProfiles/Run50_KirilmaV1.asset,displayName,Run50 Kırılma V1 · 50 round,data.run50_kirilmav1.displayname
+veri,Assets/ScriptableObjects/RunProfiles/Run50_KirilmaV1.asset,victoryTitle,RUN TAMAMLANDI · KIRILMA V1,data.run50_kirilmav1.victorytitle
+veri,Assets/ScriptableObjects/RunProfiles/Run50_OdulAsamalariV1.asset,displayName,Run50 Ödül Aşamaları V1 · 50 round,data.run50_odulasamalariv1.displayname
+veri,Assets/ScriptableObjects/RunProfiles/Run50_OdulAsamalariV1.asset,victoryTitle,RUN TAMAMLANDI · ÖDÜL AŞAMALARI V1,data.run50_odulasamalariv1.victorytitle
+veri,Assets/ScriptableObjects/RunProfiles/Run50_Referans.asset,displayName,Run50 Referans · 50 round,data.run50_referans.displayname
+veri,Assets/ScriptableObjects/RunProfiles/Run50_Referans.asset,victoryTitle,REFERANS RUN TAMAMLANDI,data.run50_referans.victorytitle
+veri,Assets/ScriptableObjects/RunProfiles/Run50_TakvimV1.asset,displayName,Run50 Takvim V1 · 50 round,data.run50_takvimv1.displayname
+veri,Assets/ScriptableObjects/RunProfiles/Run50_TakvimV1.asset,victoryTitle,RUN TAMAMLANDI · TAKVİM V1,data.run50_takvimv1.victorytitle
+veri,Assets/ScriptableObjects/RunProfiles/Run50_XPV1.asset,displayName,Run50 XP V1 · 50 round,data.run50_xpv1.displayname
+veri,Assets/ScriptableObjects/RunProfiles/Run50_XPV1.asset,victoryTitle,RUN TAMAMLANDI · XP V1,data.run50_xpv1.victorytitle
+veri,Assets/ScriptableObjects/RunProfiles/Run50_ZincirV1.asset,displayName,Run50 Zincir V1 · 50 round,data.run50_zincirv1.displayname
+veri,Assets/ScriptableObjects/RunProfiles/Run50_ZincirV1.asset,victoryTitle,RUN TAMAMLANDI · ZİNCİR V1,data.run50_zincirv1.victorytitle
+veri,Assets/ScriptableObjects/RunProfiles/Uzmanlasma20.asset,displayName,Uzmanlaşma testi · 20 round,data.uzmanlasma20.displayname
+veri,Assets/ScriptableObjects/RunProfiles/Uzmanlasma20.asset,victoryTitle,UZMANLAŞMA TESTİ TAMAMLANDI,data.uzmanlasma20.victorytitle
+veri,Assets/ScriptableObjects/RunProfiles/UzunRun130.asset,displayName,Uzun run · 130 round,data.uzunrun130.displayname
+veri,Assets/ScriptableObjects/RunProfiles/UzunRun130.asset,victoryTitle,RUN TAMAMLANDI,data.uzunrun130.victorytitle
+veri,Assets/ScriptableObjects/SegmentEvents/DengeV1/DonCephesi_V1.asset,displayName,DON CEPHESİ,data.doncephesi_v1.displayname
+veri,Assets/ScriptableObjects/SegmentEvents/DengeV1/DonCephesi_V1.asset,ruleText,"Mavi şeritteki üretim noktaları daha yavaş üretir. Bitki, saksı ve tile silinmez.",data.doncephesi_v1.ruletext
+veri,Assets/ScriptableObjects/SegmentEvents/DengeV1/SertKabuk_V1.asset,displayName,SERT KABUK,data.sertkabuk_v1.displayname
+veri,Assets/ScriptableObjects/SegmentEvents/DengeV1/SertKabuk_V1.asset,ruleText,Turuncu şeritte bitkiler daha canlıdır: boss round'unda doğanlar ve o an yaşayanlar. Boss bitince normale döner.,data.sertkabuk_v1.ruletext
+veri,Assets/ScriptableObjects/SegmentEvents/DengeV1/Sis_V1.asset,displayName,SİS,data.sis_v1.displayname
+veri,Assets/ScriptableObjects/SegmentEvents/DengeV1/Sis_V1.asset,ruleText,Boss round'unda kendi vuruş alanın bir basamak daralır: en iyi nişanda daha az bitki vurursun. Davranışların alanı ve hasarı değişmez.,data.sis_v1.ruletext
+veri,Assets/ScriptableObjects/SegmentEvents/DonCephesi.asset,displayName,DON CEPHESİ,data.doncephesi.displayname
+veri,Assets/ScriptableObjects/SegmentEvents/DonCephesi.asset,ruleText,"Mavi şeritteki üretim noktaları daha yavaş üretir. Bitki, saksı ve tile silinmez.",data.doncephesi.ruletext
+veri,Assets/ScriptableObjects/SegmentEvents/SertKabuk.asset,displayName,SERT KABUK,data.sertkabuk.displayname
+veri,Assets/ScriptableObjects/SegmentEvents/SertKabuk.asset,ruleText,Turuncu şeritte bitkiler daha canlıdır: boss round'unda doğanlar ve o an yaşayanlar. Boss bitince normale döner.,data.sertkabuk.ruletext
+veri,Assets/ScriptableObjects/SegmentEvents/Sis.asset,displayName,SİS,data.sis.displayname
+veri,Assets/ScriptableObjects/SegmentEvents/Sis.asset,ruleText,Boss round'unda kendi vuruşunun yarıçapı küçülür. Davranışların alanı ve hasarı değişmez.,data.sis.ruletext
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/Attack Speed Upgrade.asset,nodeName,Attack Speed Upgrade,data.attack_speed_upgrade.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/Card Luck.asset,nodeName,Card Luck,data.card_luck.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/Critical Focus.asset,nodeName,Critical Focus,data.critical_focus.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/Critical Power.asset,nodeName,Critical Power,data.critical_power.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/Damge Upgrade.asset,nodeName,Damage Upgrade,data.damge_upgrade.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/1×3 Saksı.asset,nodeName,1×3 Saksı,data.1_3_saksi.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/2×2 Saksı.asset,nodeName,2×2 Saksı,data.2_2_saksi.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/2×3 Saksı.asset,nodeName,2×3 Saksı,data.2_3_saksi.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Ağır Kesim - 1.asset,nodeName,Ağır Kesim - 1,data.agir_kesim_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Ağır Kesim - 2.asset,nodeName,Ağır Kesim - 2,data.agir_kesim_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Ağır Kesim - 3.asset,nodeName,Ağır Kesim - 3,data.agir_kesim_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Ağır Kesim - 4.asset,nodeName,Ağır Kesim - 4,data.agir_kesim_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Akıcı Kesim - 1.asset,nodeName,Akıcı Kesim - 1,data.akici_kesim_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Akıcı Kesim - 2.asset,nodeName,Akıcı Kesim - 2,data.akici_kesim_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Akıcı Kesim - 3.asset,nodeName,Akıcı Kesim - 3,data.akici_kesim_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Akıcı Kesim - 4.asset,nodeName,Akıcı Kesim - 4,data.akici_kesim_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Altın Hasat I - 1.asset,nodeName,Altın Hasat I - 1,data.altin_hasat_i_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Altın Hasat I - 2.asset,nodeName,Altın Hasat I - 2,data.altin_hasat_i_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Altın Hasat I - 3.asset,nodeName,Altın Hasat I - 3,data.altin_hasat_i_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Altın Hasat I - 4.asset,nodeName,Altın Hasat I - 4,data.altin_hasat_i_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Altın Hasat II - 1.asset,nodeName,Altın Hasat II - 1,data.altin_hasat_ii_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Altın Hasat II - 2.asset,nodeName,Altın Hasat II - 2,data.altin_hasat_ii_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Altın Hasat II - 3.asset,nodeName,Altın Hasat II - 3,data.altin_hasat_ii_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Altın Hasat II - 4.asset,nodeName,Altın Hasat II - 4,data.altin_hasat_ii_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Bumerang Orak Kartları.asset,nodeName,Bumerang Orak Kartları,data.bumerang_orak_kartlari.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Çapraz Elektrik Kartları.asset,nodeName,Çapraz Elektrik Kartları,data.capraz_elektrik_kartlari.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Çifte Hasat Kartları.asset,nodeName,Çifte Hasat Kartları,data.cifte_hasat_kartlari.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Demir Hasat - 1.asset,nodeName,Demir Hasat - 1,data.demir_hasat_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Demir Hasat - 2.asset,nodeName,Demir Hasat - 2,data.demir_hasat_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Demir Hasat - 3.asset,nodeName,Demir Hasat - 3,data.demir_hasat_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Demir Hasat - 4.asset,nodeName,Demir Hasat - 4,data.demir_hasat_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Düzenli Üretim - 1.asset,nodeName,Düzenli Üretim - 1,data.duzenli_uretim_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Düzenli Üretim - 2.asset,nodeName,Düzenli Üretim - 2,data.duzenli_uretim_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Düzenli Üretim - 3.asset,nodeName,Düzenli Üretim - 3,data.duzenli_uretim_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Düzenli Üretim - 4.asset,nodeName,Düzenli Üretim - 4,data.duzenli_uretim_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Geniş Süpürüş - 1.asset,nodeName,Geniş Süpürüş - 1,data.genis_supurus_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Geniş Süpürüş - 2.asset,nodeName,Geniş Süpürüş - 2,data.genis_supurus_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Geniş Süpürüş - 3.asset,nodeName,Geniş Süpürüş - 3,data.genis_supurus_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Geniş Süpürüş - 4.asset,nodeName,Geniş Süpürüş - 4,data.genis_supurus_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Geniş Tarama - 1.asset,nodeName,Geniş Tarama - 1,data.genis_tarama_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Geniş Tarama - 2.asset,nodeName,Geniş Tarama - 2,data.genis_tarama_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Geniş Tarama - 3.asset,nodeName,Geniş Tarama - 3,data.genis_tarama_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Geniş Tarama - 4.asset,nodeName,Geniş Tarama - 4,data.genis_tarama_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Grid Genişleme I.asset,nodeName,Grid Genişleme I,data.grid_genisleme_i.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Grid Genişleme II.asset,nodeName,Grid Genişleme II,data.grid_genisleme_ii.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Güçlü Kesim - 1.asset,nodeName,Güçlü Kesim - 1,data.guclu_kesim_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Güçlü Kesim - 2.asset,nodeName,Güçlü Kesim - 2,data.guclu_kesim_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Güçlü Kesim - 3.asset,nodeName,Güçlü Kesim - 3,data.guclu_kesim_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Güçlü Kesim - 4.asset,nodeName,Güçlü Kesim - 4,data.guclu_kesim_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Hasat Deneyimi I - 1.asset,nodeName,Hasat Deneyimi I - 1,data.hasat_deneyimi_i_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Hasat Deneyimi I - 2.asset,nodeName,Hasat Deneyimi I - 2,data.hasat_deneyimi_i_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Hasat Deneyimi I - 3.asset,nodeName,Hasat Deneyimi I - 3,data.hasat_deneyimi_i_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Hasat Deneyimi I - 4.asset,nodeName,Hasat Deneyimi I - 4,data.hasat_deneyimi_i_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Hasat Deneyimi II - 1.asset,nodeName,Hasat Deneyimi II - 1,data.hasat_deneyimi_ii_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Hasat Deneyimi II - 2.asset,nodeName,Hasat Deneyimi II - 2,data.hasat_deneyimi_ii_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Hasat Deneyimi II - 3.asset,nodeName,Hasat Deneyimi II - 3,data.hasat_deneyimi_ii_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Hasat Deneyimi II - 4.asset,nodeName,Hasat Deneyimi II - 4,data.hasat_deneyimi_ii_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Hasat Rekoru - 1.asset,nodeName,Hasat Rekoru - 1,data.hasat_rekoru_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Hasat Rekoru - 2.asset,nodeName,Hasat Rekoru - 2,data.hasat_rekoru_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Hasat Rekoru - 3.asset,nodeName,Hasat Rekoru - 3,data.hasat_rekoru_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Hasat Rekoru - 4.asset,nodeName,Hasat Rekoru - 4,data.hasat_rekoru_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Hızlı Eller - 1.asset,nodeName,Hızlı Eller - 1,data.hizli_eller_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Hızlı Eller - 2.asset,nodeName,Hızlı Eller - 2,data.hizli_eller_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Hızlı Eller - 3.asset,nodeName,Hızlı Eller - 3,data.hizli_eller_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Hızlı Eller - 4.asset,nodeName,Hızlı Eller - 4,data.hizli_eller_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/İkinci Vazgeçiş.asset,nodeName,İkinci Vazgeçiş,data.ikinci_vazgecis.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/İlk Vazgeçiş.asset,nodeName,İlk Vazgeçiş,data.ilk_vazgecis.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Kart Sezgisi - 1.asset,nodeName,Kart Sezgisi - 1,data.kart_sezgisi_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Kart Sezgisi - 2.asset,nodeName,Kart Sezgisi - 2,data.kart_sezgisi_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Kart Sezgisi - 3.asset,nodeName,Kart Sezgisi - 3,data.kart_sezgisi_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Kart Sezgisi - 4.asset,nodeName,Kart Sezgisi - 4,data.kart_sezgisi_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Kesim Tekniği - 1.asset,nodeName,Kesim Tekniği - 1,data.kesim_teknigi_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Kesim Tekniği - 2.asset,nodeName,Kesim Tekniği - 2,data.kesim_teknigi_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Kesim Tekniği - 3.asset,nodeName,Kesim Tekniği - 3,data.kesim_teknigi_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Kesim Tekniği - 4.asset,nodeName,Kesim Tekniği - 4,data.kesim_teknigi_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Kesim Ustalığı - 1.asset,nodeName,Kesim Ustalığı - 1,data.kesim_ustaligi_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Kesim Ustalığı - 2.asset,nodeName,Kesim Ustalığı - 2,data.kesim_ustaligi_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Kesim Ustalığı - 3.asset,nodeName,Kesim Ustalığı - 3,data.kesim_ustaligi_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Kesim Ustalığı - 4.asset,nodeName,Kesim Ustalığı - 4,data.kesim_ustaligi_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Keskin Başlangıç - 1.asset,nodeName,Keskin Başlangıç - 1,data.keskin_baslangic_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Keskin Başlangıç - 2.asset,nodeName,Keskin Başlangıç - 2,data.keskin_baslangic_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Keskin Başlangıç - 3.asset,nodeName,Keskin Başlangıç - 3,data.keskin_baslangic_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Keskin Başlangıç - 4.asset,nodeName,Keskin Başlangıç - 4,data.keskin_baslangic_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Kritik Güç - 1.asset,nodeName,Kritik Güç - 1,data.kritik_guc_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Kritik Güç - 2.asset,nodeName,Kritik Güç - 2,data.kritik_guc_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Kritik Güç - 3.asset,nodeName,Kritik Güç - 3,data.kritik_guc_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Kritik Güç - 4.asset,nodeName,Kritik Güç - 4,data.kritik_guc_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Kritik Odak - 1.asset,nodeName,Kritik Odak - 1,data.kritik_odak_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Kritik Odak - 2.asset,nodeName,Kritik Odak - 2,data.kritik_odak_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Kritik Odak - 3.asset,nodeName,Kritik Odak - 3,data.kritik_odak_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Kritik Odak - 4.asset,nodeName,Kritik Odak - 4,data.kritik_odak_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Nadir Filizler - 1.asset,nodeName,Nadir Filizler - 1,data.nadir_filizler_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Nadir Filizler - 2.asset,nodeName,Nadir Filizler - 2,data.nadir_filizler_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Nadir Filizler - 3.asset,nodeName,Nadir Filizler - 3,data.nadir_filizler_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Nadir Filizler - 4.asset,nodeName,Nadir Filizler - 4,data.nadir_filizler_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Patlayıcı Kartlar.asset,nodeName,Patlayıcı Kartlar,data.patlayici_kartlar.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Taş Hasat - 1.asset,nodeName,Taş Hasat - 1,data.tas_hasat_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Taş Hasat - 2.asset,nodeName,Taş Hasat - 2,data.tas_hasat_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Taş Hasat - 3.asset,nodeName,Taş Hasat - 3,data.tas_hasat_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Taş Hasat - 4.asset,nodeName,Taş Hasat - 4,data.tas_hasat_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Tornado Kartları.asset,nodeName,Tornado Kartları,data.tornado_kartlari.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Verimli Üretim - 1.asset,nodeName,Verimli Üretim - 1,data.verimli_uretim_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Verimli Üretim - 2.asset,nodeName,Verimli Üretim - 2,data.verimli_uretim_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Verimli Üretim - 3.asset,nodeName,Verimli Üretim - 3,data.verimli_uretim_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Verimli Üretim - 4.asset,nodeName,Verimli Üretim - 4,data.verimli_uretim_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Zengin Cevher - 1.asset,nodeName,Zengin Cevher - 1,data.zengin_cevher_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Zengin Cevher - 2.asset,nodeName,Zengin Cevher - 2,data.zengin_cevher_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Zengin Cevher - 3.asset,nodeName,Zengin Cevher - 3,data.zengin_cevher_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/DengeV1/Zengin Cevher - 4.asset,nodeName,Zengin Cevher - 4,data.zengin_cevher_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/Duplicate Cards.asset,nodeName,Duplicate Cards,data.duplicate_cards.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/Explosive Cards.asset,nodeName,Explosive Cards,data.explosive_cards.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/Extra Skips.asset,nodeName,Extra Skips,data.extra_skips.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/1×3 Saksı.asset,nodeName,1×3 Saksı,data.1_3_saksi.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/2×2 Saksı.asset,nodeName,2×2 Saksı,data.2_2_saksi.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/2×3 Saksı.asset,nodeName,2×3 Saksı,data.2_3_saksi.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Ağır Kesim - 1.asset,nodeName,Ağır Kesim - 1,data.agir_kesim_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Ağır Kesim - 2.asset,nodeName,Ağır Kesim - 2,data.agir_kesim_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Ağır Kesim - 3.asset,nodeName,Ağır Kesim - 3,data.agir_kesim_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Ağır Kesim - 4.asset,nodeName,Ağır Kesim - 4,data.agir_kesim_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Akıcı Kesim - 1.asset,nodeName,Akıcı Kesim - 1,data.akici_kesim_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Akıcı Kesim - 2.asset,nodeName,Akıcı Kesim - 2,data.akici_kesim_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Akıcı Kesim - 3.asset,nodeName,Akıcı Kesim - 3,data.akici_kesim_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Akıcı Kesim - 4.asset,nodeName,Akıcı Kesim - 4,data.akici_kesim_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Altın Hasat I - 1.asset,nodeName,Altın Hasat I - 1,data.altin_hasat_i_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Altın Hasat I - 2.asset,nodeName,Altın Hasat I - 2,data.altin_hasat_i_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Altın Hasat I - 3.asset,nodeName,Altın Hasat I - 3,data.altin_hasat_i_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Altın Hasat I - 4.asset,nodeName,Altın Hasat I - 4,data.altin_hasat_i_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Altın Hasat II - 1.asset,nodeName,Altın Hasat II - 1,data.altin_hasat_ii_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Altın Hasat II - 2.asset,nodeName,Altın Hasat II - 2,data.altin_hasat_ii_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Altın Hasat II - 3.asset,nodeName,Altın Hasat II - 3,data.altin_hasat_ii_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Altın Hasat II - 4.asset,nodeName,Altın Hasat II - 4,data.altin_hasat_ii_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Aşırı Güç I.asset,nodeName,Aşırı Güç I,data.asiri_guc_i.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Aşırı Güç II.asset,nodeName,Aşırı Güç II,data.asiri_guc_ii.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Biraz Daha Zaman - 1.asset,nodeName,Biraz Daha Zaman - 1,data.biraz_daha_zaman_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Biraz Daha Zaman - 2.asset,nodeName,Biraz Daha Zaman - 2,data.biraz_daha_zaman_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Biraz Daha Zaman - 3.asset,nodeName,Biraz Daha Zaman - 3,data.biraz_daha_zaman_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Biraz Daha Zaman - 4.asset,nodeName,Biraz Daha Zaman - 4,data.biraz_daha_zaman_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Bumerang Orak Kartları.asset,nodeName,Bumerang Orak Kartları,data.bumerang_orak_kartlari.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Çapraz Elektrik Kartları.asset,nodeName,Çapraz Elektrik Kartları,data.capraz_elektrik_kartlari.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Çifte Hasat Kartları.asset,nodeName,Çifte Hasat Kartları,data.cifte_hasat_kartlari.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Demir Hasat - 1.asset,nodeName,Demir Hasat - 1,data.demir_hasat_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Demir Hasat - 2.asset,nodeName,Demir Hasat - 2,data.demir_hasat_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Demir Hasat - 3.asset,nodeName,Demir Hasat - 3,data.demir_hasat_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Demir Hasat - 4.asset,nodeName,Demir Hasat - 4,data.demir_hasat_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Düzenli Üretim - 1.asset,nodeName,Düzenli Üretim - 1,data.duzenli_uretim_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Düzenli Üretim - 2.asset,nodeName,Düzenli Üretim - 2,data.duzenli_uretim_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Düzenli Üretim - 3.asset,nodeName,Düzenli Üretim - 3,data.duzenli_uretim_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Düzenli Üretim - 4.asset,nodeName,Düzenli Üretim - 4,data.duzenli_uretim_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Geniş Süpürüş - 1.asset,nodeName,Geniş Süpürüş - 1,data.genis_supurus_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Geniş Süpürüş - 2.asset,nodeName,Geniş Süpürüş - 2,data.genis_supurus_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Geniş Süpürüş - 3.asset,nodeName,Geniş Süpürüş - 3,data.genis_supurus_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Geniş Süpürüş - 4.asset,nodeName,Geniş Süpürüş - 4,data.genis_supurus_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Geniş Tarama - 1.asset,nodeName,Geniş Tarama - 1,data.genis_tarama_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Geniş Tarama - 2.asset,nodeName,Geniş Tarama - 2,data.genis_tarama_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Geniş Tarama - 3.asset,nodeName,Geniş Tarama - 3,data.genis_tarama_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Geniş Tarama - 4.asset,nodeName,Geniş Tarama - 4,data.genis_tarama_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Grid Genişleme I.asset,nodeName,Grid Genişleme I,data.grid_genisleme_i.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Grid Genişleme II.asset,nodeName,Grid Genişleme II,data.grid_genisleme_ii.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Güçlü Kesim - 1.asset,nodeName,Güçlü Kesim - 1,data.guclu_kesim_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Güçlü Kesim - 2.asset,nodeName,Güçlü Kesim - 2,data.guclu_kesim_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Güçlü Kesim - 3.asset,nodeName,Güçlü Kesim - 3,data.guclu_kesim_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Güçlü Kesim - 4.asset,nodeName,Güçlü Kesim - 4,data.guclu_kesim_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Hasat Deneyimi I - 1.asset,nodeName,Hasat Deneyimi I - 1,data.hasat_deneyimi_i_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Hasat Deneyimi I - 2.asset,nodeName,Hasat Deneyimi I - 2,data.hasat_deneyimi_i_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Hasat Deneyimi I - 3.asset,nodeName,Hasat Deneyimi I - 3,data.hasat_deneyimi_i_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Hasat Deneyimi I - 4.asset,nodeName,Hasat Deneyimi I - 4,data.hasat_deneyimi_i_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Hasat Deneyimi II - 1.asset,nodeName,Hasat Deneyimi II - 1,data.hasat_deneyimi_ii_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Hasat Deneyimi II - 2.asset,nodeName,Hasat Deneyimi II - 2,data.hasat_deneyimi_ii_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Hasat Deneyimi II - 3.asset,nodeName,Hasat Deneyimi II - 3,data.hasat_deneyimi_ii_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Hasat Deneyimi II - 4.asset,nodeName,Hasat Deneyimi II - 4,data.hasat_deneyimi_ii_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Hasat Rekoru - 1.asset,nodeName,Hasat Rekoru - 1,data.hasat_rekoru_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Hasat Rekoru - 2.asset,nodeName,Hasat Rekoru - 2,data.hasat_rekoru_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Hasat Rekoru - 3.asset,nodeName,Hasat Rekoru - 3,data.hasat_rekoru_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Hasat Rekoru - 4.asset,nodeName,Hasat Rekoru - 4,data.hasat_rekoru_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Hasat Zirvesi - 1.asset,nodeName,Hasat Zirvesi - 1,data.hasat_zirvesi_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Hasat Zirvesi - 2.asset,nodeName,Hasat Zirvesi - 2,data.hasat_zirvesi_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Hasat Zirvesi - 3.asset,nodeName,Hasat Zirvesi - 3,data.hasat_zirvesi_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Hasat Zirvesi - 4.asset,nodeName,Hasat Zirvesi - 4,data.hasat_zirvesi_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Hızlı Eller - 1.asset,nodeName,Hızlı Eller - 1,data.hizli_eller_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Hızlı Eller - 2.asset,nodeName,Hızlı Eller - 2,data.hizli_eller_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Hızlı Eller - 3.asset,nodeName,Hızlı Eller - 3,data.hizli_eller_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Hızlı Eller - 4.asset,nodeName,Hızlı Eller - 4,data.hizli_eller_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/İkinci Vazgeçiş.asset,nodeName,İkinci Vazgeçiş,data.ikinci_vazgecis.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/İleri Ustalık - 1.asset,nodeName,İleri Ustalık - 1,data.ileri_ustalik_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/İleri Ustalık - 2.asset,nodeName,İleri Ustalık - 2,data.ileri_ustalik_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/İleri Ustalık - 3.asset,nodeName,İleri Ustalık - 3,data.ileri_ustalik_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/İleri Ustalık - 4.asset,nodeName,İleri Ustalık - 4,data.ileri_ustalik_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/İlk Vazgeçiş.asset,nodeName,İlk Vazgeçiş,data.ilk_vazgecis.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Kart Sezgisi - 1.asset,nodeName,Kart Sezgisi - 1,data.kart_sezgisi_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Kart Sezgisi - 2.asset,nodeName,Kart Sezgisi - 2,data.kart_sezgisi_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Kart Sezgisi - 3.asset,nodeName,Kart Sezgisi - 3,data.kart_sezgisi_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Kart Sezgisi - 4.asset,nodeName,Kart Sezgisi - 4,data.kart_sezgisi_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Kesim Tekniği - 1.asset,nodeName,Kesim Tekniği - 1,data.kesim_teknigi_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Kesim Tekniği - 2.asset,nodeName,Kesim Tekniği - 2,data.kesim_teknigi_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Kesim Tekniği - 3.asset,nodeName,Kesim Tekniği - 3,data.kesim_teknigi_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Kesim Tekniği - 4.asset,nodeName,Kesim Tekniği - 4,data.kesim_teknigi_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Kesim Ustalığı - 1.asset,nodeName,Kesim Ustalığı - 1,data.kesim_ustaligi_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Kesim Ustalığı - 2.asset,nodeName,Kesim Ustalığı - 2,data.kesim_ustaligi_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Kesim Ustalığı - 3.asset,nodeName,Kesim Ustalığı - 3,data.kesim_ustaligi_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Kesim Ustalığı - 4.asset,nodeName,Kesim Ustalığı - 4,data.kesim_ustaligi_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Keskin Başlangıç - 1.asset,nodeName,Keskin Başlangıç - 1,data.keskin_baslangic_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Keskin Başlangıç - 2.asset,nodeName,Keskin Başlangıç - 2,data.keskin_baslangic_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Keskin Başlangıç - 3.asset,nodeName,Keskin Başlangıç - 3,data.keskin_baslangic_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Keskin Başlangıç - 4.asset,nodeName,Keskin Başlangıç - 4,data.keskin_baslangic_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Kritik Güç - 1.asset,nodeName,Kritik Güç - 1,data.kritik_guc_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Kritik Güç - 2.asset,nodeName,Kritik Güç - 2,data.kritik_guc_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Kritik Güç - 3.asset,nodeName,Kritik Güç - 3,data.kritik_guc_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Kritik Güç - 4.asset,nodeName,Kritik Güç - 4,data.kritik_guc_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Kritik Odak - 1.asset,nodeName,Kritik Odak - 1,data.kritik_odak_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Kritik Odak - 2.asset,nodeName,Kritik Odak - 2,data.kritik_odak_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Kritik Odak - 3.asset,nodeName,Kritik Odak - 3,data.kritik_odak_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Kritik Odak - 4.asset,nodeName,Kritik Odak - 4,data.kritik_odak_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Nadir Filizler - 1.asset,nodeName,Nadir Filizler - 1,data.nadir_filizler_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Nadir Filizler - 2.asset,nodeName,Nadir Filizler - 2,data.nadir_filizler_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Nadir Filizler - 3.asset,nodeName,Nadir Filizler - 3,data.nadir_filizler_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Nadir Filizler - 4.asset,nodeName,Nadir Filizler - 4,data.nadir_filizler_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Patlayıcı Kartlar.asset,nodeName,Patlayıcı Kartlar,data.patlayici_kartlar.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Plazma Kesim - 1.asset,nodeName,Plazma Kesim - 1,data.plazma_kesim_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Plazma Kesim - 2.asset,nodeName,Plazma Kesim - 2,data.plazma_kesim_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Plazma Kesim - 3.asset,nodeName,Plazma Kesim - 3,data.plazma_kesim_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Plazma Kesim - 4.asset,nodeName,Plazma Kesim - 4,data.plazma_kesim_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Seri Üretim - 1.asset,nodeName,Seri Üretim - 1,data.seri_uretim_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Seri Üretim - 2.asset,nodeName,Seri Üretim - 2,data.seri_uretim_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Seri Üretim - 3.asset,nodeName,Seri Üretim - 3,data.seri_uretim_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Son Vardiya - 1.asset,nodeName,Son Vardiya - 1,data.son_vardiya_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Son Vardiya - 2.asset,nodeName,Son Vardiya - 2,data.son_vardiya_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Son Vardiya - 3.asset,nodeName,Son Vardiya - 3,data.son_vardiya_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Son Vardiya - 4.asset,nodeName,Son Vardiya - 4,data.son_vardiya_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Taş Hasat - 1.asset,nodeName,Taş Hasat - 1,data.tas_hasat_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Taş Hasat - 2.asset,nodeName,Taş Hasat - 2,data.tas_hasat_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Taş Hasat - 3.asset,nodeName,Taş Hasat - 3,data.tas_hasat_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Taş Hasat - 4.asset,nodeName,Taş Hasat - 4,data.tas_hasat_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Tornado Kartları.asset,nodeName,Tornado Kartları,data.tornado_kartlari.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Uzun Hasat - 1.asset,nodeName,Uzun Hasat - 1,data.uzun_hasat_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Uzun Hasat - 2.asset,nodeName,Uzun Hasat - 2,data.uzun_hasat_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Uzun Hasat - 3.asset,nodeName,Uzun Hasat - 3,data.uzun_hasat_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Uzun Hasat - 4.asset,nodeName,Uzun Hasat - 4,data.uzun_hasat_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Verimli Üretim - 1.asset,nodeName,Verimli Üretim - 1,data.verimli_uretim_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Verimli Üretim - 2.asset,nodeName,Verimli Üretim - 2,data.verimli_uretim_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Verimli Üretim - 3.asset,nodeName,Verimli Üretim - 3,data.verimli_uretim_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Verimli Üretim - 4.asset,nodeName,Verimli Üretim - 4,data.verimli_uretim_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Yıldırım Kesim - 1.asset,nodeName,Yıldırım Kesim - 1,data.yildirim_kesim_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Yıldırım Kesim - 2.asset,nodeName,Yıldırım Kesim - 2,data.yildirim_kesim_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Yıldırım Kesim - 3.asset,nodeName,Yıldırım Kesim - 3,data.yildirim_kesim_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Yıldız Kesim - 1.asset,nodeName,Yıldız Kesim - 1,data.yildiz_kesim_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Yıldız Kesim - 2.asset,nodeName,Yıldız Kesim - 2,data.yildiz_kesim_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Yıldız Kesim - 3.asset,nodeName,Yıldız Kesim - 3,data.yildiz_kesim_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Yıldız Kesim - 4.asset,nodeName,Yıldız Kesim - 4,data.yildiz_kesim_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Zengin Cevher - 1.asset,nodeName,Zengin Cevher - 1,data.zengin_cevher_1.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Zengin Cevher - 2.asset,nodeName,Zengin Cevher - 2,data.zengin_cevher_2.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Zengin Cevher - 3.asset,nodeName,Zengin Cevher - 3,data.zengin_cevher_3.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/FinalSkillTree/Zengin Cevher - 4.asset,nodeName,Zengin Cevher - 4,data.zengin_cevher_4.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/Focused Power.asset,nodeName,Focused Power,data.focused_power.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/Gold Harvest.asset,nodeName,Gold Harvest,data.gold_harvest.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/Grid Size Upgrade.asset,nodeName,Grid Size Upgrade,data.grid_size_upgrade.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/Harvest Experience.asset,nodeName,Harvest Experience,data.harvest_experience.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/Harvest Prestige.asset,nodeName,Harvest Prestige,data.harvest_prestige.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/Heavy Harvest.asset,nodeName,Heavy Harvest,data.heavy_harvest.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/Iron Harvest.asset,nodeName,Iron Harvest,data.iron_harvest.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/Lucky Frontier.asset,nodeName,Lucky Frontier,data.lucky_frontier.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/Mutation Insight.asset,nodeName,Mutation Insight,data.mutation_insight.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/Overdrive.asset,nodeName,Overdrive,data.overdrive.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/Stone Harvest.asset,nodeName,Stone Harvest,data.stone_harvest.nodename
+veri,Assets/ScriptableObjects/Skill Tree Upgrades/Wide Harvest.asset,nodeName,Wide Harvest,data.wide_harvest.nodename
+veri,Assets/ScriptableObjects/Specializations/DavranisUstasi.asset,displayName,DAVRANIŞ USTASI,data.davranisustasi.displayname
+veri,Assets/ScriptableObjects/Specializations/MevcutDuzeniKoru.asset,displayName,MEVCUT DÜZENİ KORU,data.mevcutduzenikoru.displayname
+veri,Assets/ScriptableObjects/Specializations/UstaBicici.asset,displayName,USTA BİÇİCİ,data.ustabicici.displayname
+veri,Assets/ScriptableObjects/StartOptions/Farmers/Bahcivan.asset,displayName,Bahçıvan,data.bahcivan.displayname
+veri,Assets/ScriptableObjects/StartOptions/Farmers/SeciciYetistirici.asset,displayName,Seçici Yetiştirici,data.seciciyetistirici.displayname
+veri,Assets/ScriptableObjects/StartOptions/Farmers/Tuccar.asset,displayName,Tüccar,data.tuccar.displayname
+veri,Assets/ScriptableObjects/StartOptions/Quests/Legendary5.asset,description,Tek run'da 5 Legendary bitki hasat et,data.legendary5.description
+veri,Assets/ScriptableObjects/StartOptions/Scythes/DarKesim.asset,displayName,Dar Kesim,data.darkesim.displayname
+veri,Assets/ScriptableObjects/StartOptions/Scythes/Standart.asset,displayName,Standart,data.standart.displayname

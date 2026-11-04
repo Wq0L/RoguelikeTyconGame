@@ -1,5 +1,31 @@
 # Dış kaynak ve lisans kayıtları
 
+## Unity Localization 1.5.13 (+ Addressables 2.9.1) — yerelleştirme paketi (5 Kasım 2026)
+
+- **Kategori:** paket bağımlılığı. Çalışma zamanı kodu oyunla dağıtılır; eklentilerin bir kısmı yalnız editörde kalır.
+- **Kaynak ve kurulum:** Unity Registry'den `com.unity.localization` 1.5.13. Kullanıcı Package Manager'dan kendisi kurdu (5 Kasım).
+  - Getirdiği bağımlılıklar: `com.unity.addressables` 2.9.1, `com.unity.scriptablebuildpipeline` 2.6.1, `com.unity.nuget.newtonsoft-json` 3.0.2, `com.unity.profiling.core` 1.0.3.
+- **Kontrol edilen belgeler:**
+  - paketin `LICENSE.md` ve `Third Party Notices.md` dosyaları (Library/PackageCache);
+  - Addressables ve Newtonsoft-json `LICENSE.md` dosyaları;
+  - Unity Companion License v1.4 (10.29.2024), https://unity.com/legal/licenses/unity-companion-license.
+- **Lisans:** Unity Companion License v1.4 (Localization, Addressables, Unity'nin Newtonsoft paketi).
+  - Ücretsiz ve royalty'siz. Unity motoru lisansıyla, uygulama yapmak ve dağıtmak için kullanılabilir.
+  - Oyunun kendisi paketin türevi sayılmaz (madde 3.1).
+  - Paketin kendi kodu değiştirilirse o türevin hakları Unity'ye geçer. Paket kodu değiştirilmeyecek.
+- **İçindeki üçüncü taraf bileşenler:**
+  - **SmartFormat:** MIT, © axuno gGmbH, Scott Rippey, Bernhard Millauer ve katkıcılar. Paketin çalışma zamanında (`Runtime/Smart Format`), yani oyunla dağıtılır.
+  - **CsvHelper** (Apache 2.0 / MS-PL) ve **Google.Apis.Sheets.v4** (Apache 2.0): yalnız `Editor/Plugins`. Oyunla dağıtılmaz.
+- **Yükümlülükler:**
+  - Ücret ve royalty yok.
+  - Oyunda veya jenerikte görünür kredi zorunlu değil.
+  - Dağıtım paketinde lisans / telif metni GEREKLİ:
+    - SmartFormat'ın MIT telif ve izin bildirimi;
+    - Unity Companion License bildirimi.
+    - İkisi oyunla birlikte giden bir üçüncü taraf bildirimleri dosyasında (ör. `ThirdPartyNotices.txt`) bulunmalı.
+  - Unity, Addressables ile derlenen içerik için oyuncu derlemesinden önce bir "Addressables build" adımı ister. Bu adım otomatik ayarlanabilir.
+- **Durum:** kullanıcı "yardımcı olur mu" diye sordu. Projede kurulu, kod henüz kullanmıyor. Kullanım kararı bekleniyor (öneri: GameText bunun üstüne taşınır).
+
 ## Kenney "Input Prompts" 1.5A — oyundaki tuş ikonları (4 Kasım 2026)
 
 - Kategori: oyunda dağıtılan içerik (türev). Geliştirme aracı veya paket bağımlılığı eklenmedi.

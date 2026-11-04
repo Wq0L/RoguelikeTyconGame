@@ -149,6 +149,13 @@ Hepsi 1.0'da kalacak; amaç görsel olarak sorunsuz ve net anlaşılır olmalar�
 - [ ] **H7 ·** Hover'da hafif büyüme, çıkışta normale dönüş.
 - [ ] **H8 ·** Kota, olay ve diğer HUD panelleri çakışmaz.
 - [ ] **H9 ·** En büyük gridde de paneller tarlayı ve koordinatları örtmez.
+- [ ] **H10 ·** Eri yüksek çözünürlükte bulanık (4 Kasım; 2K monitörde oynayan bir oyuncu bildirdi).
+  - Neden (ölçüldü): `Resources/GreenhouseMascotFrames.png` 1254 px ve 16 kareden oluşuyor; bir kare yaklaşık 300 px boyunda. Diyalog kutusunda Eri yaklaşık 333 birim boyunda çiziliyor (`DialogueBox.BigEri` 350 × 0,95).
+  - Ekranda gerilme: 1080p'de 1,1 kat (hafif yumuşak), 1440p'de 1,47 kat (bulanık), 4K'da 2,2 kat. Yazılar keskin kalıyor, çünkü TextMeshPro ölçeklenince bulanıklaşmıyor.
+  - İçe aktarma ayarı sorun değil: sıkıştırmasız, bilinear, en büyük boyut 2048.
+  - Çözüm: kareler en az 2 kat çözünürlükte olmalı (kare başına yaklaşık 660 px, 4K'ya kadar yeter). `MascotFrames.Bounds` 1254 px'e göre ölçülü; yeni görsel aynı yerleşimde olursa kod oranla ölçekler.
+  - Kaynak: kullanıcıda daha büyük bir asıl varsa o kullanılır; yoksa büyütme yolu seçilir (lisansı ve maliyeti kullanımdan önce bildirilir).
+  - Aynı kaynağı kullanan `GreenhouseMascot*.png` görselleri de 1254 px; gezegendeki Eri de aynı bakışla kontrol edilir.
 
 ### Renk kararları (22 Ekim palet prototipi, izole kopyada çekildi)
 

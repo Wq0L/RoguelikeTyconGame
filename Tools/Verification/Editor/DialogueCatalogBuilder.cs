@@ -7,7 +7,7 @@ using UnityEngine;
 // Diyalog kataloğu asset'i (Faz 1 deneme satırları; Faz 2 öğretim satırları T1–T11, 26 Ekim 2026). Yalnız izole kopyada çalışır:
 //   Tools/run-isolated-verification.ps1 -Method DialogueCatalogBuilder.BuildBatch -Full
 // Çıktı: Assets/Resources/Dialogue/DialogueCatalog.asset; ana projeye kopyalanır. Sonraki düzenlemeler Inspector'dan yapılabilir.
-// Metinler Resources/Dialogue/dialogue_text.csv'de; burada yalnız anahtarlar.
+// Metinler Resources/Localization/GameText.csv'de; burada yalnız anahtarlar.
 public static class DialogueCatalogBuilder
 {
     const string AssetPath = "Assets/Resources/Dialogue/DialogueCatalog.asset";
@@ -45,11 +45,11 @@ public static class DialogueCatalogBuilder
             AssetDatabase.SaveAssets();
             foreach (DialogueEntry e in catalog.entries)
                 foreach (DialogueLine l in e.lines)
-                    if (!DialogueText.Has(l.textKey)) throw new Exception("missing text " + l.textKey);
+                    if (!GameText.Has(l.textKey)) throw new Exception("missing text " + l.textKey);
             log.Add("PASS");
-            log.Add($"{catalog.entries.Length} entries, {DialogueText.Count} text keys");
-            string csv = Resources.Load<TextAsset>(DialogueText.ResourcePath).text;
-            log.Add("missing en: " + string.Join(", ", DialogueText.Missing(csv, "en")));
+            log.Add($"{catalog.entries.Length} entries, {GameText.Count} text keys");
+            string csv = Resources.Load<TextAsset>(GameText.ResourcePath).text;
+            log.Add("missing en: " + string.Join(", ", GameText.Missing(csv, "en")));
         }
         catch (Exception e) { log.Insert(0, "FAIL " + e); }
         Directory.CreateDirectory("Logs");

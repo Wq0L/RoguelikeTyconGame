@@ -241,7 +241,7 @@ public sealed class DialogueDirector : MonoBehaviour
     {
         if (e.size == DialogueSize.Planet)
         {
-            GreenhouseMascot.React(DialogueText.Get(e.lines[0].textKey));
+            GreenhouseMascot.React(GameText.Get(e.lines[0].textKey));
             MarkShown(e);
             return;
         }

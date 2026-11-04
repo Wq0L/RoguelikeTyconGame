@@ -31,6 +31,8 @@ public static class IntroVideoVerification
     public static void RunBatch()
     {
         if (!Application.dataPath.Contains("VerificationProject")) throw new Exception("isolated only");
+        // Sessiz: batch Unity videoyu kullanıcının hoparlöründen çalıyordu (4 Kasım, kullanıcı kendi Play testinde duydu).
+        EditorUtility.audioMasterMute = true;
         SessionState.SetBool(Key, true);
         var pipeline = AssetDatabase.LoadAssetAtPath<UnityEngine.Rendering.RenderPipelineAsset>("Assets/Settings/PC_RPAsset.asset");
         UnityEngine.Rendering.GraphicsSettings.defaultRenderPipeline = pipeline; QualitySettings.renderPipeline = pipeline;
@@ -45,6 +47,8 @@ public static class IntroVideoVerification
         try
         {
             double now = EditorApplication.timeSinceStartup;
+            EditorUtility.audioMasterMute = true;
+            AudioListener.volume = 0f;   // ayarlar değişince SoundManager geri yazar; her karede sıfırlanır
             if (nextAt == 0) { nextAt = now + 2; stepSince = now; Application.logMessageReceived += CountLogs; Plan(); return; }
             if (now < nextAt) { EditorApplication.QueuePlayerLoopUpdate(); return; }
             if (steps.Count == 0) { Finish(null); return; }
@@ -66,6 +70,9 @@ public static class IntroVideoVerification
         {
             menu = Object.FindFirstObjectByType<MainMenuUI>();
             Require(menu != null, "MenuScene has MainMenuUI");
+            Require(EditorUtility.audioMasterMute && AudioListener.volume == 0f, "test is silent (no sound on the user's speakers)");
+            Require(Object.FindObjectsByType<VideoPlayer>(FindObjectsSortMode.None).Length == 0 && !IntroVideoPlayer.IsPlaying,
+                "nothing plays on the menu before Play is clicked");
             mainPanel = (GameObject)F(menu, "mainMenuPanel");
             start = (StartSelectionPanelUI)F(menu, "startPanel");
             bool seen = DialogueProgress.IntroSeen;   // kaydı yükler
@@ -111,7 +118,7 @@ public static class IntroVideoVerification
             float p = player.SkipProgress;
             Require(p > .4f && p < .75f, $"hold bar fills ({p:0.00}) and drains when released");
             var fill = (RectTransform)F(player, "fill"); var track = (RectTransform)F(player, "track");
-            Require(Mathf.Abs(fill.rect.width - (track.rect.width - 6f) * p) < 1f, "bar width follows the hold");
+            Require(Mathf.Abs(fill.rect.width - (track.rect.width - 2f * IntroVideoPlayer.FillInset) * p) < 1f, "bar width follows the hold");
             Capture("02_Intro_hold");
             player.Skip();
             return .6;
@@ -204,7 +211,7 @@ public static class IntroVideoVerification
             "ANTENİ YERLEŞTİR · tıkla: yerleştir · " + KeyPrompts.Tag(KeyPrompts.Esc) + ": vazgeç",
             KeyPrompts.Tag(KeyPrompts.Space) + "  basılı tut: geç",
         };
-        float[] sizes = { 19, 19, 28, 28 };
+        float[] sizes = { 19, 19, 28, 19 };
         for (int i = 0; i < lines.Length; i++)
         {
             var t = new GameObject("Line " + i, typeof(RectTransform), typeof(CanvasRenderer), typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();

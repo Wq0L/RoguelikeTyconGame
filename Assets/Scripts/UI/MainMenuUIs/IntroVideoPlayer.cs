@@ -14,7 +14,7 @@ using UnityEngine.Video;
 public sealed class IntroVideoPlayer : MonoBehaviour
 {
     public const string FileName = "Intro/ErigoneIntro.webm";
-    public const float HoldToSkipSeconds = 1f;
+    public const float HoldToSkipSeconds = 1f, FillInset = 2f;
     private const double RevealTime = 354 / 24.0;                 // son kare mürekkebe karardı: seçim ekranı açılır
     private const float RevealFade = .25f, SkipFade = .2f, AudioFadeOnSkip = .35f, PrepareTimeout = 8f, HintDelay = .8f;
     private static readonly Color Ink = new Color32(54, 39, 54, 255), InkDark = new Color32(40, 29, 43, 220);
@@ -88,33 +88,34 @@ public sealed class IntroVideoPlayer : MonoBehaviour
     }
 
     // Sağ alt: comic plaka, Space tuşu ikonu + "basılı tut: geç", altında dolan kehribar çubuk.
+    // Küçük ve köşede (kullanıcı, 4 Kasım: "bar çok büyük"): videonun önüne geçmez.
     private void BuildHint(RectTransform root)
     {
         var plate = new GameObject("Skip Hint", typeof(RectTransform)).GetComponent<RectTransform>();
         plate.SetParent(root, false);
         plate.anchorMin = plate.anchorMax = plate.pivot = new Vector2(1f, 0f);
-        plate.anchoredPosition = new Vector2(-56f, 52f); plate.sizeDelta = new Vector2(360f, 96f);
+        plate.anchoredPosition = new Vector2(-40f, 36f); plate.sizeDelta = new Vector2(250f, 64f);
         plate.localRotation = Quaternion.Euler(0f, 0f, 1.2f);   // kesik kâğıt: hafif eğik
         hint = plate.gameObject.AddComponent<CanvasGroup>(); hint.alpha = 0f;
         hint.blocksRaycasts = false; hint.interactable = false;
-        Plate(plate, "Shadow", InkDark, new Vector2(7f, -8f), new Vector2(7f, -8f));
+        Plate(plate, "Shadow", InkDark, new Vector2(5f, -6f), new Vector2(5f, -6f));
         Plate(plate, "Ink", Ink, Vector2.zero, Vector2.zero);
-        Plate(plate, "Paper", Paper, new Vector2(5f, 5f), new Vector2(-5f, -5f));
+        Plate(plate, "Paper", Paper, new Vector2(4f, 4f), new Vector2(-4f, -4f));
 
         var label = Child<TextMeshProUGUI>(plate, "Label");
         FeelOverlay.Theme?.StylePopupText(label);
         KeyPrompts.Apply(label);
-        label.color = Ink; label.fontSize = 28f; label.alignment = TextAlignmentOptions.Center;
+        label.color = Ink; label.fontSize = 19f; label.alignment = TextAlignmentOptions.Center;
         label.textWrappingMode = TextWrappingModes.NoWrap; label.raycastTarget = false;
         label.text = KeyPrompts.Tag(KeyPrompts.Space) + "  basılı tut: geç";
         var lr = label.rectTransform; lr.anchorMin = new Vector2(0f, 1f); lr.anchorMax = Vector2.one; lr.pivot = new Vector2(.5f, 1f);
-        lr.anchoredPosition = new Vector2(0f, -12f); lr.sizeDelta = new Vector2(-28f, 52f);
+        lr.anchoredPosition = new Vector2(0f, -7f); lr.sizeDelta = new Vector2(-18f, 34f);
 
-        track = Plate(plate, "Track", Ink, new Vector2(22f, 16f), new Vector2(-22f, 0f)).rectTransform;
-        track.anchorMax = new Vector2(1f, 0f); track.offsetMax = new Vector2(-22f, 32f);
+        track = Plate(plate, "Track", Ink, new Vector2(15f, 10f), new Vector2(-15f, 0f)).rectTransform;
+        track.anchorMax = new Vector2(1f, 0f); track.offsetMax = new Vector2(-15f, 20f);
         fill = Plate(track, "Fill", Amber, Vector2.zero, Vector2.zero).rectTransform;
         fill.anchorMin = Vector2.zero; fill.anchorMax = new Vector2(0f, 1f); fill.pivot = new Vector2(0f, .5f);
-        fill.offsetMin = new Vector2(3f, 3f); fill.offsetMax = new Vector2(3f, -3f);
+        fill.offsetMin = new Vector2(FillInset, FillInset); fill.offsetMax = new Vector2(FillInset, -FillInset);
     }
 
     private void OnPrepared(VideoPlayer source)
@@ -157,7 +158,7 @@ public sealed class IntroVideoPlayer : MonoBehaviour
             if (hold >= HoldToSkipSeconds) Skip();
         }
         if (!screen.enabled && prepared && video.frame > 0) screen.enabled = true;
-        fill.sizeDelta = new Vector2(Mathf.Max(0f, track.rect.width - 6f) * SkipProgress, fill.sizeDelta.y);
+        fill.sizeDelta = new Vector2(Mathf.Max(0f, track.rect.width - 2f * FillInset) * SkipProgress, fill.sizeDelta.y);
         if (hint != null && !revealed && !skipping) hint.alpha = Mathf.Clamp01((age - HintDelay) / .35f) * (hold > 0f ? 1f : .9f);
 
         if (!revealed && prepared && video.time >= RevealTime) Reveal(markSeen: true);

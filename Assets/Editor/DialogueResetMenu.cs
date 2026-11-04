@@ -35,4 +35,24 @@ public static class DialogueResetMenu
 
     [MenuItem("Tools/Diyalog/Görülen konuşmaları sıfırla (Play testi için)", true)]
     private static bool CanReset() => !EditorApplication.isPlayingOrWillChangePlaymode;
+
+    // Yalnız açılış videosu: bir sonraki "Oyna"da yeniden oynar. Konuşmalar ve diğer her şey korunur.
+    [MenuItem("Tools/Diyalog/Açılış videosunu tekrar göster (Play testi için)")]
+    private static void ResetIntro()
+    {
+        MetaSave.Load();
+        if (!File.Exists(MetaSave.FilePath) || !MetaSave.Data.introSeen)
+        {
+            EditorUtility.DisplayDialog("Açılış videosu", "Video zaten görülmemiş sayılıyor: bir sonraki \"Oyna\"da oynar.", "Tamam");
+            return;
+        }
+        MetaSave.Data.introSeen = false;
+        bool saved = MetaSave.Save();
+        Debug.Log(saved ? "Açılış videosu sıfırlandı: bir sonraki \"Oyna\"da yeniden oynar."
+                        : "Açılış videosu sıfırlanamadı (kayıt yazılamadı; daha yeni sürüm kaydı olabilir).");
+        MetaSave.Load();
+    }
+
+    [MenuItem("Tools/Diyalog/Açılış videosunu tekrar göster (Play testi için)", true)]
+    private static bool CanResetIntro() => !EditorApplication.isPlayingOrWillChangePlaymode;
 }
