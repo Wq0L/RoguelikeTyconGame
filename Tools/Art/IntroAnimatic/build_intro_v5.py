@@ -27,7 +27,9 @@ OUT = ROOT / 'Docs' / 'AcilisVideosu' / 'Animatik' / ('v5_1080' if HD else 'v5')
 FR, FR_GLINT = OUT / 'kareler', OUT / 'kareler_ipucu'
 for d in (FR, FR_GLINT): d.mkdir(parents=True, exist_ok=True)
 FPS, END, IMPACT, GLINT_F = 24, 354, 316, 234
-SHOCK, T3A, T3C, TDIVE = 140, 154, 184, 282   # şok çarpar; camdan kokpite; camdan dışarı; bulutun içinde iniş seti
+SHOCK, T3A, T3C, TDIVE = 140, 154, 172, 282   # şok çarpar; camdan kokpite; camdan dışarı; bulutun içinde iniş seti
+# v5.5: kokpit 30 → 18 kare, el yok (kullanıcı: "el olmasın, daha kısa, yalnız yakıtın bittiği görünsün");
+# kazanılan 12 kare dışarıdaki teklemeye gitti: önce bir duman, sonra tık tık tık. Kokpitten sonrası aynı karelerde.
 # Üç kesintisiz bölüm + kokpit: A (yüzey → kaçış → lomboz), B (kokpit), C (camdan çıkış → gezegen → bulut), D (iniş)
 SHOTS = [('A', 0), ('B', T3A), ('C', T3C), ('D', TDIVE)]
 
@@ -422,7 +424,17 @@ for a in range(0, 360, 30):
         sphere(.018, Matrix.Translation((x + .03, .455 * math.cos(math.radians(a)), .455 * math.sin(math.radians(a)))), 6, 4, bm)
 obj('Perçinler', bm, glow(NOZZLE), 0, SHIP)
 nose = obj('Burun', cone(.45, .07, 1.0, Matrix.Translation((1.6, 0, 0)) @ ROT_Z_TO_X, 32), toon(NOSE, NOSE_SH), .028, SHIP, toggle=True)
-nose_hot = obj('Burun (ısınmış)', cone(.46, .08, 1.02, Matrix.Translation((1.6, 0, 0)) @ ROT_Z_TO_X, 32), toon(HOT, RED_HI, '#FFF6D8'), .028, SHIP, toggle=True)
+NOSE_HEAT = []   # v5.12: kızgın burun çarpmaya kadar sarı kalır, sonra yavaşça kendi kırmızısına soğur (takeD anahtarlar)
+
+
+def _nose_heat_tex(nt):
+    v = node(nt, 'ShaderNodeValue'); v.outputs[0].default_value = 1.0; NOSE_HEAT.append(v)
+    # sarı → kızgın turuncu → kendi kırmızısı (doğrudan karışım arada bulanık, kahvemsi bir turuncu veriyordu; görüldü)
+    hot_half = mix(nt, op(nt, 'SUBTRACT', op(nt, 'MULTIPLY', v.outputs[0], 2.0), 1.0), C(RED_HI), C(HOT))
+    return mix(nt, op(nt, 'MULTIPLY', v.outputs[0], 2.0), C(NOSE), hot_half), None
+
+
+nose_hot = obj('Burun (ısınmış)', cone(.46, .08, 1.02, Matrix.Translation((1.6, 0, 0)) @ ROT_Z_TO_X, 32), toon(HOT, tex=_nose_heat_tex), .028, SHIP, toggle=True)
 obj('Anten', between((2.0, 0, .05), (2.45, 0, .18), .012, .008, 6), glow(INK), 0, SHIP)
 obj('Motor ağzı', cone(.38, .26, .35, Matrix.Translation((-1.275, 0, 0)) @ ROT_Z_TO_X, 32), toon(NOZZLE, NOZZLE_SH), .028, SHIP)
 bm = bmesh.new()
@@ -669,16 +681,11 @@ def cloud_bm(rng, size):
 # Gezegen ve bulut tabakası yalnız C'de görünür: kalkışta uzakta küçük bir top olarak ikinci bir ay gibi okunuyordu
 planet = obj("Eri'nin gezegeni", wobble(ico(PLR, sub=4), .9, .06, 5, (0, 0, 0)), toon(RUST, tex=rust_tex(.05), name='Gezegen'), .25, at=PL, toggle=True)
 NIN = (E_IN - PL).normalized(); T1_ = NIN.cross(Vector((0, 0, 1))).normalized(); T2_ = NIN.cross(T1_)
-rd = random.Random(81); DECK = []
-# Bulutlar gezegenin bütün yüzünde bantlar halinde (yalnız giriş noktasında bulut olunca "neden sadece orada?" dediriyordu)
-BAND_AX = (NIN + T2_ * .6).normalized()
-for i in range(150):   # v5.3: tomurcuklar artık kurulmuyor (kenarda karnabahar saçağı gibi duruyordu, kullanıcı);
-    zf = 1 - 2 * (i + .5) / 150; th = i * 2.399963   # rastgele sayılar aynı sırayla tüketilir: giriş tabakası v5.2'deki yerinde kalır
-    d_ = Vector((math.sqrt(1 - zf * zf) * math.cos(th), math.sqrt(1 - zf * zf) * math.sin(th), zf))
-    lat = d_.dot(BAND_AX)
-    if mnoise.noise(d_ * 2.2 + Vector((3, 1, 0))) + .55 * math.cos(lat * 9) < .15 or d_.dot(NIN) > .93: continue
-    sz_ = rd.uniform(1.6, 2.8); cloud_bm(rd, sz_).free(); rd.uniform(0, 1.0)
-
+DECK = []
+# Bulutlar gezegenin bütün yüzünde, kabuğa boyanmış bantlar halinde (yalnız giriş noktasında bulut olunca "neden sadece
+# orada?" dediriyordu). Üstüne oturan 3D bulut topakları kaldırıldı: v5.3'te gezegen kenarında karnabahar saçağı,
+# v5.4'te giriş noktasında dışarı taşan bir yığın gibi duruyordu (kullanıcı: "girmeden gezegenin dışında görünen bulut").
+# Roket artık düz bulut bandına dalar; hacimli bulutlar düşüşte (D) başlar.
 
 # Bant ekseni bakış yönüne dik: bantlar diskin üstünden eğik şeritler halinde geçer (kameraya bakan eksen halka veriyordu)
 _vd = (P232 - PL).normalized(); _pu = UPV + SIDE * .35
@@ -719,16 +726,11 @@ def cloud_shell_mat():
 # kabuğu deler, bulutların arasından ada gibi görünür
 cloud_shell = obj('Gezegen bulut kabuğu', sphere(PLR + .45, u=96, v=48), cloud_shell_mat(), 0, smooth=True, at=PL, toggle=True)
 DECK.append(cloud_shell)
-for i in range(26):   # gezegenin bulut tabakası, giriş noktasının çevresinde (daha yoğun: roket buraya dalar)
-    a_, r_ = rd.uniform(0, 2 * math.pi), rd.uniform(0, 16)
-    o = obj(f'Bulut tabakası {i}', cloud_bm(rd, rd.uniform(2.2, 3.4)), CLOUD_M, .1, toggle=True,
-            at=PL + (NIN * (PLR + .6 + rd.uniform(0, 1.8)) + (T1_ * math.cos(a_) + T2_ * math.sin(a_)) * r_).normalized() * (PLR + .3 + .45 * rd.uniform(0, 1.8)))
-    o.rotation_mode = 'QUATERNION'; o.rotation_quaternion = (o.location - PL).normalized().to_track_quat('Z', 'Y')
-    o.scale = (1.2, 1.2, .62); DECK.append(o)   # v5.3: alçak ve yassı; uzaktan kabuğun bulut bandına karışır, yığın gibi durmaz
 glint = obj('İpucu parıltısı', star(2.2, .3, 4), glow(GLINT), 0, toggle=True)
 glint.location = PL + (P232 - PL).normalized() * (PLR + 1.6); glint.rotation_mode = 'QUATERNION'   # bulut kabuğunun üstünde
 glint.rotation_quaternion = (P232 - PL).normalized().to_track_quat('Z', 'Y')
-engulf = obj('Kamerayı saran bulut', cloud_bm(random.Random(5), 1.0), CLOUD_M, .03, cam, toggle=True)   # bulutun içine giriş/çıkış
+# Bulutun içine giriş/çıkış. Mürekkep kabuğu yok: içinden bakınca kalın siyah şeritler gibi görünüyordu (v5.5)
+engulf = obj('Kamerayı saran bulut', cloud_bm(random.Random(5), 1.0), CLOUD_M, 0, cam, toggle=True)
 PORT_C, PORT_FRONT = Vector((.35, -.45, .06)), Vector((.35, -1.12, .06))   # lombozun merkezi ve önündeki kamera noktası
 CAM2B_LOCAL, TGT2B_LOCAL = Vector((1.15, -1.3, .5)), Vector((-7.0, .2, -1.25))   # gövdeye yapışık, arkaya bakar
 TAIL_LOCAL, TAIL_TGT = Vector((-4.2, -3.2, -1.3)), Vector((-.7, 0, .25))         # arka üç çeyrek
@@ -778,29 +780,7 @@ lamp_on = obj('Uyarı lambası (yanık)', sphere(.16, Matrix.Translation(LAMP_AT
 lamp_ring = obj('Uyarı halkası', torus(1.0, .06, FACE, 32, 4), glow(LAMP_ON), 0, at=LAMP_AT + Vector((0, -.05, 0)), toggle=True)
 
 
-def glove_bm():
-    """Eldiven: işaret parmağı uzanmış (uç orijinde, +X boyunca ele doğru), öteki parmaklar kıvrık, başparmak."""
-    bm = bmesh.new()
-    sphere(.13, Matrix(), 16, 8, bm)
-    for (a, b, r0, r1) in (((0, 0, 0), (.4, 0, 0), .13, .14), ((.4, 0, 0), (.8, 0, .02), .14, .15), ((.8, 0, .02), (1.18, 0, .05), .15, .16)):
-        between(a, b, r0, r1, 14, bm); sphere(r1 * 1.02, Matrix.Translation(b), 14, 7, bm)
-    sphere(1.0, TRS((1.55, .05, -.05), scale=(.5, .38, .26)), 20, 10, bm)
-    for k in range(3):
-        y = .14 - k * .17
-        between((1.3, y, -.12), (1.12, y, -.34), .12, .11, 12, bm); sphere(.115, Matrix.Translation((1.12, y, -.34)), 12, 6, bm)
-    between((1.35, -.3, .05), (1.0, -.42, .12), .13, .12, 12, bm); sphere(.125, Matrix.Translation((1.0, -.42, .12)), 12, 6, bm)
-    return bm
-
-
-finger = obj('Eldiven', glove_bm(), toon(GLOVE, GLOVE_SH), .035, toggle=True)
-cuff = obj('Eldiven bileği', cone(.36, .4, .5, Matrix.Translation((2.1, .05, -.05)) @ ROT_Z_TO_X, 20), toon(CUFF, NOZZLE_SH), .035, finger, toggle=True)
-finger.rotation_mode = 'QUATERNION'
-FINGER_Q = Vector((1.0, -.5, -1.0)).normalized().to_track_quat('X', 'Z')
-bm = bmesh.new()
-for k in range(3):
-    a = math.radians(95 + k * 38); d = Vector((math.cos(a), 0, math.sin(a)))
-    between(d * .26, d * .44, .017, .017, 6, bm)
-taps = obj('Vuruş izleri', bm, glow(INK), 0, toggle=True)
+# v5.5: göstergeye vuran eldiven kaldırıldı (kullanıcı); yakıtın bittiğini ibre, lamba ve dışarıdaki tekleme anlatır
 
 
 # ---------------------------------------------------------------- D — iniş: bulut katmanları yerin üstünde, kamera içinden iner
@@ -812,8 +792,10 @@ CAM_FALL = Vector((-3.0, -7.5, 4.2))
 
 def path_d(f):
     """İniş yolu: bulutun içinden alçak kameranın önüne (f306), oradan yere; hız iki parçada da yakın (kopmaz)."""
-    if f < DLOW: x = clamp((f - TDIVE) / (DLOW - TDIVE)); return D0.lerp(DMID, .7 * x + .3 * x * x)
-    x = clamp((f - DLOW) / (IMPACT - DLOW)); return DMID.lerp(D1END, .8 * x + .2 * x * x)
+    # v5.7: tek ikinci derece eğri (DMID kontrol noktası), hızlanarak. Önce iki düz parça DLOW'da birleşiyordu:
+    # roket o karede yön kırıyor, ekranda iki karede 78° dönüyordu (ölçüldü, kullanıcı: "roket yönü bir anda değişmiş")
+    x = clamp((f - TDIVE) / (IMPACT - TDIVE)); t = .65 * x + .35 * x * x
+    return D0 * (1 - t) ** 2 + DMID * (2 * t * (1 - t)) + D1END * t * t
 
 
 obj('Zemin', box((300, 300, .2), Matrix.Translation(O6 + Vector((0, 100, -.1)))), toon(RUST, tex=rust_tex(.35), rim=0, name='Zemin'), 0)
@@ -945,16 +927,23 @@ def screen(p):
     v = world_to_camera_view(s, cam, Vector(p)); return Vector(((v.x - .5) * 2, (v.y - .5) * 1.125))
 
 
-def ship(f, at, q, scale=1.0, thrust=0.0, hot=False, lit=False, stretch=1.0, force=True):
+def ship(f, at, q, scale=1.0, thrust=0.0, hot=False, lit=False, stretch=1.0, force=True, smear=0.0, traces=None):
     """Roket kahraman nesne: her karede (kamera onu izliyor; ikişer karede ölçümde ±10–40 px titriyordu).
-    İkincil nesneler (kıymık, plaka, duman, bulut) ikişer karede kalır."""
+    İkincil nesneler (kıymık, plaka, duman, bulut) ikişer karede kalır.
+    smear: anime smear karesi (v5.6). Gövde ekrandaki hareketin tersine uzar, öndeki uç yerinde kalır: > 0 burun önde
+    gidiyor (gövde kuyruğa doğru uzar), < 0 ekranda kuyruk önde gidiyor (burna doğru uzar). Kalınlık hacim korunarak incelir.
+    Roketin matrisine bağlı kamera bağı (rig_mount, rig_out) olan karelerde kullanılmaz: kamera da uzardı."""
+    if smear:
+        stretch = 1 + abs(smear)
+        anchor = Vector((2.1 if smear > 0 else -1.6, 0, 0)) * scale
+        at = at + q @ (anchor * (1 - stretch))
     SHIP.location, SHIP.rotation_quaternion = at, q
     side = scale / math.sqrt(stretch); SHIP.scale = (scale * stretch, side, side)
     if thrust > .01:
         fl = thrust * (1 + .08 * math.sin(f * 2.3))
         flame.scale = (fl, min(1.2, .55 + .55 * thrust), min(1.2, .55 + .55 * thrust)); on(*FLAMES[(f // 2) % 4])
     on(nose_hot if hot else nose); on(glass_lit if lit else glass)
-    if hot: on(heat)
+    if hot if traces is None else traces: on(heat)
     K(SHIP, f, force); K(flame, f, force)
     bpy.context.view_layer.update()
 
@@ -985,49 +974,30 @@ def puff_life(o, f, born, at, drift, r0, r1, life, squash=1.0):
 
 # ---------------- Ç1: yakından yok oluş, hazırlık, patlama, bir şey fırlar
 def earth_events(f):
-    """Ç1'in yüzey olayları (çatlak, plakalar, kıymık, duman, patlama). Kamera ve ışık takeA'da."""
+    """Ç1 (v5.8): Dünya roket kaçarken aşağıdan yukarı çatlar; büyük patlama burada YOK, geriye bakışta (EXPLODE).
+    Kullanıcı: "Dünya roket kaçarken çatlar, aşağıdan yukarı yavaşça; roketin arkasından bakınca patlama olur".
+    Merdiven gibi plaka kenarları ve yeşil altıgen kıymıklar "AI slop" gibi duruyordu: çatlaklar artık tasarlanmış
+    mürekkep + lav şeritleri (Build ile büyür), fırlayış noktasında üç kabuk parçası kalkar, roket ateş içinde fırlar."""
     zc = D1 * R1
-    if f < 14: on(earth_whole)
-    elif f < SWAP: on(earth, *(p['obj'] for p in zone_plates))
-    sep = .13 * ease((f - 14) / 2) if f >= 14 else 0
-    lift2 = ease((f - 28) / 5) if f >= 28 else 0
-    sink = -.06 * ease((f - 36) / 5) if 36 <= f < 42 else 0         # hazırlık: plakalar içe çöker, titrer
-    lift3 = ease_out((f - 42) / 15) if f >= 42 else 0
-    for k, p in enumerate(zone_plates):
-        tang = (p['cen'] - zc); tang = tang - p['n'] * tang.dot(p['n'])
-        tang = tang.normalized() if tang.length > 1e-6 else Vector((1, 0, 0))
-        w = clamp(1 - (p['seed'].angle(D1) / ZONE_ANG), .15, 1)
-        away = .2 if tang.dot((CAM1 - zc).normalized()) > .2 else 1.0
-        tremble = .018 * math.sin(f * 5 + k * 2) if 34 <= f < 42 else 0
-        off = p['n'] * (sep * .3 + lift2 * .35 * w + sink + tremble + lift3 * (1.4 * w + .3) * away) + tang * (sep + lift2 * .12 + lift3 * 2.6 * w * away)
-        p['pivot'].location = p['cen'] + off
-        p['pivot'].rotation_euler = Quaternion(p['n'].cross(tang).normalized(), (lift2 * .28 + lift3 * 1.1 * away) * w).to_euler()
-        K(p['pivot'], f)
-    for when, scale, at in ((14, .32, CRACK_SPARK[0]), (28, .5, CRACK_SPARK[1])):
-        if when <= f < when + 3:
-            crack_flash.location = at
-            crack_flash.rotation_euler = ((CAM1 - at).to_track_quat('Z', 'Y') @ Quaternion((0, 0, 1), when)).to_euler()
-            crack_flash.scale = (scale * (1 - (f - when) / 3) + .05,) * 3; K(crack_flash, f, True); on(crack_flash)
-    if 42 <= f < 52:
-        a = (f - 42) / 10
-        burst_core.location = zc + D1 * .5; burst_core.scale = (.2 + .45 * ease_out(a * 2) * (1 - ease_in((a - .5) * 2)),) * 3
-        burst_star.location = zc + D1 * .6
-        burst_star.rotation_euler = ((CAM1 - burst_star.location).to_track_quat('Z', 'Y') @ Quaternion((0, 0, 1), f * .12)).to_euler()
-        burst_star.scale = (.4 + 1.3 * ease_out(a * 1.6) * (1 - ease_in((a - .6) / .4)),) * 3
-        K(burst_core, f, True); K(burst_star, f, True); on(burst_core, burst_star)
-    rng = random.Random(1)
-    for i, o in enumerate(shards1):
-        born = 28 if i < 6 else 42
-        v = D1 * rng.uniform(2, 5) + Vector((rng.choice((-1, 1)) * rng.uniform(1.5, 4), rng.uniform(-3.5, -1), rng.uniform(0, 2)))
-        start = zc + Vector((rng.uniform(-1, 1), rng.uniform(-1, 1), 0))
-        if f >= born:
-            a = (f - born) / FPS
-            o.location = start + v * a; o.rotation_euler = (a * 6 + i, a * 4, a * 3 + i * .5); K(o, f); on(o)
-    for o, (off, rise, size) in zip(plume1, PLUME1):   # patlamanın dumanı yükselir: Ç2a'daki bulut bu
-        if f >= 43:
-            a = (f - 43) / FPS
-            o.location = zc + D1 * (.3 + rise * (1 - math.exp(-a * 2.6))) + off * (1 + a)
-            o.scale = (size * (.25 + .9 * ease_out(a / .5)),) * 3; o.rotation_euler = (a, a * .6, 0); K(o, f); on(o)
+    if f < SWAP: on(earth_whole)
+    for objs, f0 in CRACKS:
+        if f0 <= f < SWAP: on(*objs)
+    for o, p, tb, life, w0_, drift in CRACK_EMBERS:   # çatlaktan yükselen kıvılcımlar (ikişer karede)
+        if not tb <= f < SWAP: continue
+        a = ((f - tb) % life) / life
+        o.location = p.normalized() * (R1 + .02 + w0_ * 3.5 * ease_out(a)) + drift * w0_ * 1.2 * a
+        o.scale = ((1 - ease_in(a)) * (.8 + .3 * math.sin(f * 1.3 + tb)),) * 3; K(o, f); on(o)
+    for pivot, piece, base, hinge, t0, ang, rise in CHUNKS:   # kabuk parçaları: yavaşça kalkar, fırlayışta bir kez daha sarsılır
+        a = ease((f - t0) / 16) if f >= t0 else 0
+        a += .6 * ease_out((f - 44) / 6) if f >= 44 else 0
+        pivot.rotation_quaternion = Quaternion(hinge, ang * a); pivot.location = base + base.normalized() * rise * a
+        K(pivot, f)
+        if t0 <= f < SWAP: on(piece)   # kalkmaya başlayınca belirir (önceden konturu ufukta hazır çizilmiş gibi duruyordu)
+    for o, (off, rise, size) in list(zip(plume1, PLUME1))[:5]:   # fırlayışın dumanı: çatlaktan kısa bir sütun (patlama değil)
+        if 44 <= f < SWAP:   # 64'teki kesmede kalkar (geriye bakışta Dünya'ya yapışık gri topak gibi duruyordu)
+            a = (f - 44) / FPS
+            o.location = zc + D1 * (.3 + rise * .6 * (1 - math.exp(-a * 2.6))) + off * .5 * (1 + a)
+            o.scale = (size * .5 * (.25 + .9 * ease_out(a / .5)),) * 3; o.rotation_euler = (a, a * .6, 0); K(o, f); on(o)
     if 44 <= f < REVEAL1:   # alev topu = ateşe sarılı roket, kaçış yolunun başında
         head = path(f)
         fire_head.location = head; fire_tail.location = head
@@ -1047,8 +1017,8 @@ def rig_surface(f):
     return loc, tgt, 22
 
 
-# ---------------- Ç3a: sarsıntı içeride sürer, ibre düşer, parmak vurur
-TAPS = (168, 169, 174, 175)
+# ---------------- Ç3a: sarsıntı içeride sürer, ibre boşa düşer, uyarı lambası yanıp söner (el yok, v5.5)
+LAMP_PULSES = (162, 168)
 
 
 def shot3a(f):
@@ -1056,31 +1026,20 @@ def shot3a(f):
     else: deg = {156: 122, 158: 150, 160: 163, 162: 147, 164: 154}.get(f - f % 2, 152)
     needle.rotation_euler = (0, -math.radians(deg), 0); K(needle, f)
     if 156 <= f < 162: on(needle_arcs)
-    lamp = f >= 168
+    lamp = f >= LAMP_PULSES[0] and not (165 <= f < 168)   # ibre boşa oturunca yanar, bir kez söner, yeniden yanar
     on(lamp_on if lamp else lamp_off)
-    for t0 in (168, 174):
-        if t0 <= f < t0 + 6:
-            lamp_ring.scale = (.25 + .5 * ease_out((f - t0) / 6),) * 3; K(lamp_ring, f, True); on(lamp_ring)
-    tip_far, tip_hover, tip_back, tip_tap = (O3 + Vector((2.8, -1.6, -2.0)), O3 + Vector((.62, -.55, .16)),
-                                             O3 + Vector((.8, -.8, .1)), O3 + Vector((.42, -.28, .18)))
-    if f >= 162:
-        squash = 1.0
-        if f < 166: tip = tip_far.lerp(tip_hover, ease_out((f - 162) / 4))
-        elif f in (166, 167, 172, 173): tip = tip_back                  # hazırlık: parmak geri çekilir
-        elif f in TAPS: tip = tip_tap; squash = .9                       # vuruş: ezilir
-        else: tip = tip_hover
-        finger.location = tip; finger.rotation_quaternion = FINGER_Q; finger.scale = (squash, 1 / math.sqrt(squash), 1 / math.sqrt(squash))
-        K(finger, f); on(finger, cuff)
-        if f in TAPS: taps.location = tip_tap + Vector((0, -.05, 0)); K(taps, f, True); on(taps)
-    pulse = f in TAPS
-    u = (f - T3A) / 30
-    camera(f, O3 + Vector((-1.3, -4.7 + .45 * ease(u), -.75)), O3 + Vector((.3, 0, .05)), 40, -.09, .45)
+    for t0 in LAMP_PULSES:
+        if t0 <= f < t0 + 5:
+            lamp_ring.scale = (.25 + .5 * ease_out((f - t0) / 5),) * 3; K(lamp_ring, f, True); on(lamp_ring)
+    pulse = f in (162, 163, 168, 169)
+    u = (f - T3A) / (T3C - T3A)
+    camera(f, O3 + Vector((-1.3, -4.7 + .55 * ease(u), -.75)), O3 + Vector((.3, 0, .05)), 40, -.09, .45)
     light(f, (-.5, -.6, .6), (.75, -.25, .6), LAMP_ON, 1.0 if lamp else 0, (1, .74, .7) if pulse else (1, 1, 1), sky=PANEL_BG, neb=0.0)
 
 
 # ================================================================ v5 — kesintisiz kamera: bağlar ve harmanlar
-IMPULSES = [(14, 1.2), (28, 2.0), (42, 3.8), (REVEAL0 + 2, 1.0), (104, 1.2), (SHOCK, 4.2), (T3A, 1.4), (168, .45), (174, .45),
-            (T3C, .6), (190, .4), (194, .7), (202, .8), (232, .5), (276, 1.0), (IMPACT, 5.0)]
+IMPULSES = [(14, 1.2), (28, 2.0), (42, 2.2), (REVEAL0 + 2, 1.0), (104, 1.2), (114, 2.6), (SHOCK, 4.2), (T3A, 1.4), (162, .35),
+            (T3C, .6), (186, .8), (190, .35), (194, .4), (200, .45), (232, .5), (276, 1.0), (IMPACT, 5.0)]   # boğulma + üç tık
 
 
 def shake(f, hand, vib):
@@ -1124,9 +1083,8 @@ def rig_chase(f):   # roketin yanında, aynı taraftan (−Y), biraz geriden
     return loc, P + LDIR * 1.8, 30
 
 
-def rig_mount(f):   # gövdeye yapışık, arkaya bakar; şoktan sonra lomboza döner ve camın önüne gelir
-    k = ease((f - SHOCK - 1) / (T3A - SHOCK - 2)) if f > SHOCK else 0
-    return on_ship(CAM2B_LOCAL.lerp(PORT_FRONT, k), TGT2B_LOCAL.lerp(PORT_C, ease(k * 1.4)), 24)
+def rig_mount(f):   # gövdeye yapışık, arkaya bakar (v5.7: sabit; lomboza dönüp camdan girmez, kokpite kesilir)
+    return on_ship(CAM2B_LOCAL, TGT2B_LOCAL, 24)
 
 
 def rig_out(f):     # camdan dışarı çıkar, gövde boyunca kuyruğa kayar
@@ -1155,22 +1113,221 @@ def put_cam(f, c, hand=.2, vib=0.0, roll=0.0):
     camera(f, c[0], c[1], c[2], roll, hand, vib)
 
 
+# ================================================================ v5.7 — sabit açılar, olay üstünde kesme
+# Kullanıcı (4 Kasım): "kamera habire ileri geri hareket ediyor gibi, sıkıntı bu; sabit farklı açılara geçen kamera olabilir".
+# Her çekimde kamera ya dünyada durur ya da rokete göre sabit bir açıda kalır (roketle birlikte taşınır, kendi içinde
+# itip çekmez). Çekimler olayın üstünde kesilir; roketin ekrandaki yönü kesmeden kesmeye korunur: kaçarken sağa/yukarı,
+# düşerken aşağı. Sarsıntı (darbe/uğultu) ve hafif el titremesi sürer: o kamera hareketi değil, hissin kendisi.
+SHOT1 = (CAM1 + Vector((0, .25, -.07)), D1 * R1 + Vector((.1, .4, .15)), 22)               # 0–41 yüzey: Dünya çatlar
+SHOT2 = (CAM1 + Vector((0, -2.6, 1.5)), (D1 * R1).lerp(ZL + LDIR * 5.5, .4), 22)            # 42–63 geniş: ateş fırlar
+
+
+# ================================================================ v5.8 — Dünya'nın çatlaması (ekranda tasarlanır)
+def _cam(c):
+    loc, tgt = Vector(c[0]), Vector(c[1]); q = (tgt - loc).to_track_quat('-Z', 'Y')
+    return loc, q @ Vector((0, 0, -1)), q @ Vector((1, 0, 0)), q @ Vector((0, 1, 0)), 18 / c[2]
+
+
+def surf(c, x, y, R=R1):
+    """Kameranın ekranındaki (x, y ∈ [−1, 1]) noktanın Dünya yüzeyindeki yeri (ufkun üstündeyse None)."""
+    loc, fw, rt, up, th = _cam(c); d = (fw + rt * x * th + up * y * th * 9 / 16).normalized()
+    b = loc.dot(d); disc = b * b - (loc.dot(loc) - R * R)
+    if disc < 0: return None
+    t = -b - math.sqrt(disc); return loc + d * t if t > 0 else None
+
+
+def ribbon(name, pts, w0, w1, h, mat, seed, i0, n_all, wb, shift=0.0, eye=None):
+    """Yüzeye yapışık şerit; yüzleri yol boyunca sıralı (Build bu sırayla açar). Genişlik ve kıvrım gürültüsü bütün
+    çatlak boyunca süreklidir (i0), katmanlar aynı kıvrımı izler (wb: mürekkep katmanının uç genişlikleri).
+    shift: şeridi kameradan UZAK kenara (+) ya da yakın kenara (−) kaydırır, mürekkep genişliği cinsinden (çukur yanılsaması)."""
+    bm = bmesh.new(); L = []; n = len(pts)
+    for i, p in enumerate(pts):
+        nrm = p.normalized(); sd = (pts[min(i + 1, n - 1)] - pts[max(i - 1, 0)]).cross(nrm).normalized()
+        if eye is not None and sd.dot(p - eye) < 0: sd = -sd   # sd hep kameradan uzak kenara baksın
+        u = (i0 + i) / max(n_all - 1, 1); g = mnoise.noise(Vector(((i0 + i) * .4, seed, 0)))
+        w = (w0 + (w1 - w0) * u ** .7) * (1 + .3 * g); wr = wb[0] + (wb[1] - wb[0]) * u ** .7
+        c = nrm * (R1 + h) + sd * (mnoise.noise(Vector(((i0 + i) * .23, seed * 1.7, 3))) * .45 + shift) * wr
+        L.append((bm.verts.new(c - sd * w / 2), bm.verts.new(c + sd * w / 2)))
+    for (a0, b0), (a1, b1) in zip(L, L[1:]): bm.faces.new((a0, b0, b1, a1))
+    return obj(name, bm, mat, 0, smooth=False, toggle=True)
+
+
+# v5.9 çukur yanılsaması ("paint çizimi gibi" bulundu): mürekkep ağız; kameradan UZAK kenarda lavın aydınlattığı kaya duvarı
+# (çukurun görünen yüzü), lav ve sarı çekirdek YAKIN kenara kayar (yakın duvar onları kısmen örtüyormuş gibi).
+CRACK_LAYERS = ((1.0, .014, glow(INK), 0.0), (.55, .016, glow('#B5653A'), .2),
+                (.36, .018, glow('#FF6A2A'), -.12), (.14, .022, glow('#FFD86A'), -.14))   # ağız, duvar, lav, çekirdek
+CRACKS = []
+CRACK_PATHS = []   # kıvılcımlar için: (yol, başlangıç, bitiş)
+
+
+def add_crack(name, c, pts, t0, t1, w0, w1, seed, splits=1):
+    """Ekranda çizilen çatlak; splits parçada, her parça kendi zaman aralığında büyür (sarsıntı vuruşlarıyla adım adım)."""
+    world = [p for p in (surf(c, x, y) for x, y in pts) if p is not None]
+    path = [p.normalized() * R1 for p in resample(world, .03)]
+    n = len(path); cuts = [round(n * k / splits) for k in range(splits + 1)]
+    CRACK_PATHS.append((path, t0, t1, w0))
+    for s in range(splits):
+        a, b = max(cuts[s] - 1, 0), cuts[s + 1]; seg = path[a:b]
+        if len(seg) < 2: continue
+        fs, fe = t0 + (t1 - t0) * s / splits, t0 + (t1 - t0) * (s + 1) / splits
+        objs = []
+        for m, h, mat, sh in CRACK_LAYERS:
+            o = ribbon(f'{name} {s} {h}', seg, w0 * m, w1 * m, h, mat, seed, a, n, (w0, w1), sh, Vector(c[0]))
+            md = o.modifiers.new('Büyüme', 'BUILD'); md.frame_start, md.frame_duration = fs + 1, max(1.0, fe - fs)
+            objs.append(o)
+        CRACKS.append((objs, int(fs)))
+
+
+# Yüzey çekimi (0–41): fırlayış noktası ufukta (ekran ≈ −0,07, −0,02). Çatlaklar kadrajın altından ufka doğru büyür.
+add_crack('Çatlak ana', SHOT1, [(.08, -1.12), (0, -.82), (.07, -.6), (-.04, -.4), (.02, -.24), (-.06, -.12), (-.074, -.035)],
+          2, 41, .17, .05, 3.1, splits=3)
+add_crack('Çatlak sol alt', SHOT1, [(0, -.82), (-.2, -.9), (-.42, -.86), (-.62, -1.08)], 8, 18, .1, .03, 5.3)
+add_crack('Çatlak sağ', SHOT1, [(.07, -.6), (.3, -.52), (.52, -.45), (.76, -.41), (1.06, -.46)], 14, 27, .11, .03, 7.7)
+add_crack('Çatlak sol', SHOT1, [(-.04, -.4), (-.25, -.33), (-.46, -.36), (-.68, -.27), (-.98, -.25)], 22, 34, .1, .03, 9.2)
+add_crack('Çatlak sağ ufuk', SHOT1, [(.02, -.24), (.22, -.18), (.42, -.16), (.6, -.2)], 30, 42, .08, .025, 11.6)
+add_crack('Çatlak sol ufuk', SHOT1, [(-.06, -.12), (-.28, -.09), (-.5, -.08)], 34, 44, .07, .02, 13.4)
+# Geniş çekim (42–63): Dünya kadrajın altında ince bir yay; yeni çatlaklar alttan ufka doğru yayılmayı sürdürür
+add_crack('Çatlak geniş 1', SHOT2, [(-.92, -1.08), (-.76, -.96), (-.6, -.85), (-.5, -.72), (-.44, -.62)], 44, 57, .3, .06, 15.5)
+add_crack('Çatlak geniş 2', SHOT2, [(.2, -1.08), (.1, -.9), (0, -.78), (-.1, -.68), (-.2, -.61)], 46, 59, .3, .06, 17.9)
+add_crack('Çatlak geniş 3', SHOT2, [(.62, -1.08), (.47, -.96), (.36, -.85), (.26, -.73)], 49, 61, .26, .05, 19.3)
+add_crack('Çatlak geniş 4', SHOT2, [(-.28, -1.08), (-.34, -.86), (-.31, -.7)], 52, 63, .22, .05, 21.1)
+
+CHUNKS = []   # fırlayış noktasının çevresinde üç kabuk parçası: üstü Dünya, yanı kaya, mürekkepli
+
+
+def chunk(name, x, y, r, t0, ang, rise, seed):
+    rr = random.Random(seed); cen = surf(SHOT1, x, y).normalized(); t1_ = cen.cross(Vector((0, 0, 1))).normalized(); t2_ = cen.cross(t1_)
+    bm = bmesh.new(); vs = []
+    for k in range(6):
+        a = k / 6 * 2 * math.pi + rr.uniform(-.25, .25)
+        vs.append(bm.verts.new((cen * R1 + (t1_ * math.cos(a) + t2_ * math.sin(a)) * r * rr.uniform(.75, 1.15)).normalized() * (R1 + .012)))
+    fc = bm.faces.new(vs); bm.normal_update()
+    if fc.normal.dot(cen) < 0: fc.normal_flip()
+    base = cen * (R1 + .012); pivot = empty(f'{name} eksen', at=base); pivot.rotation_mode = 'QUATERNION'
+    o = thick_plate(name, bm, EARTH_M1, .35, .03); o.parent = pivot; o.location = -base; TOGGLE.append(o)
+    hinge = (cen.cross(Vector((rr.uniform(-1, 1), rr.uniform(-1, 1), rr.uniform(-1, 1))))).normalized()
+    CHUNKS.append((pivot, o, base, hinge, t0, ang, rise))
+
+
+# Çatlaklardan yükselen kıvılcımlar (v5.9 derinlik): o nokta açıldıktan sonra doğar, yükselir, söner, yeniden doğar.
+# Boyları çatlağın genişliğine bağlı; kameraya yakın olanlar büyük, uzaktakiler küçük görünür.
+re_ = random.Random(57); CRACK_EMBERS = []
+for i in range(32):
+    path_, t0_, t1_, w0_ = CRACK_PATHS[i % len(CRACK_PATHS)]
+    q = re_.uniform(.05, .95)
+    o = obj(f'Çatlak kıvılcımı {i}', ico(w0_ * re_.uniform(.12, .22), sub=1), glow((HOT, FLAME, FLAME_IN)[i % 3]), 0, toggle=True)
+    CRACK_EMBERS.append((o, path_[int(q * (len(path_) - 1))], t0_ + (t1_ - t0_) * q + re_.uniform(1, 8), re_.uniform(14, 24), w0_,
+                         Vector((re_.gauss(0, 1), re_.gauss(0, 1), re_.gauss(0, 1)))))
+chunk('Kabuk parçası 1', -.22, -.05, .42, 28, .34, .08, 1)
+chunk('Kabuk parçası 2', .1, -.065, .36, 32, .3, .06, 2)
+chunk('Kabuk parçası 3', -.02, -.16, .3, 36, .26, .05, 3)
+
+
+def rig_follow(f):   # 202–261: roketin arkasında ve üstünde, yola göre sabit; aşağıda önde gezegen, yol kıvrılınca kamera da kıvrılır
+    P, T = path(f), tangent(f)
+    sd = T.cross(Vector((0, 0, 1))).normalized(); up = sd.cross(T)
+    return P - T * 8.5 + sd * 3 + up * 2.6, P + T * 20 - up * 7, 28
+
+
+# 262–281 sabit yan: atmosfere giriş. Aşağıda gezegenin bulutlu yüzeyi; ateş içindeki roket soldan sağa, aşağı doğru
+# bulut bandına dalar (yolun gerisine bakınca gezegen kadrajda yoktu, 280'de kadraj boş kalıyordu)
+_D8 = (E_IN - path(262)).normalized(); _S8 = _D8.cross(NIN).normalized(); _M8 = path(268).lerp(E_IN, .5)
+SHOT8 = (_M8 + _S8 * (E_IN - path(262)).length * .85 + NIN * 2.0, _M8 - NIN * 2.5, 30)
+
+
+def roll_to(c, up_w):
+    """Kamerayı bakış ekseninde döndürüp up_w'yi ekranın yukarısı yapan açı (camera()'nın roll'u)."""
+    q0 = (c[1] - c[0]).to_track_quat('-Z', 'Y'); vz = q0 @ Vector((0, 0, 1)); u0 = q0 @ Vector((0, 1, 0))
+    w = (up_w - vz * up_w.dot(vz)).normalized()
+    return math.atan2(u0.cross(w).dot(vz), u0.dot(w))
+
+
+ROLL8 = roll_to(SHOT8, NIN)   # gezegenin yüzeyi kadrajın altında yatay: roket aşağı doğru dalar (dikey ufukta sağa gidiyordu)
+CUT10 = 302   # roket bu karede yerden çekimin üst kenarına girer (300'de kadraj dört kare boş kalıyordu)
+SHOT10 = (O6 + Vector((0, -10.5, .85)), O6 + Vector((-1.2, -.6, 3.2)), 28)                # 302–327 yerden: roket yukarıdan gelir, çakılır
+SHOT11 = (O6 + Vector((1.1, -7.6, .7)), LAND + Vector((0, 0, .7)), 24)                     # 328–353 yakın: gemi, lombozun ışığı
+
+
+EXPLODE = 114   # v5.8: Dünya geriye bakışta patlar (kullanıcı: "roketin arkasından bakınca patlama olur")
+
+
 def explode_earth(f):
-    """Bütün Dünya plakalara ayrılır; kırmızı-turuncu çekirdek görünür (kamera arkaya baktığında)."""
-    t = (f - SWAP) / FPS
+    """v5.8: Dünya önce aşağıdan yukarı çatlar (plaka dikişleri açılır, içeriden çekirdeğin ışığı sızar), EXPLODE'da
+    plakalar savrulur; alev yıldızı ve kıvılcımlar da o anda başlar."""
+    t = max(0.0, (f - EXPLODE) / FPS)
     for p in plates_full:
-        p['pivot'].location = p['cen'] + p['n'] * (.3 + 15 * ease_out(t / 3.0)) * p['w']
+        ta = 98 + 12 * (p['n'].dot(UPV) + 1) / 2   # roketten bakınca alttaki plakalar önce, üsttekiler sonra
+        crack = .6 * ease((f - ta) / 6) if f >= ta else 0.0   # uzaktan seçilsin: dikişler açılır, çekirdeğin kızıllığı görünür
+        p['pivot'].location = p['cen'] + p['n'] * (crack + 15 * ease_out(t / 3.0) * p['w'])
         p['pivot'].rotation_euler = Quaternion(p['axis'], .7 * t * p['w']).to_euler(); K(p['pivot'], f); on(p['obj'])
     core_full.scale = (1 + .08 * t,) * 3; K(core_full, f); on(core_full, core_glow)
+    if f < EXPLODE: return
     look = cam.location.normalized() if cam.location.length > 1e-6 else Vector((0, -1, 0))
     for o, back, spin in ((core_burst, .5, .35), (core_burst_in, .2, -.5)):   # ikişer karede hafif titrer, yavaş döner
         o.location = -look * back
         o.rotation_euler = (look.to_track_quat('Z', 'Y') @ Quaternion((0, 0, 1), t * spin)).to_euler()
-        o.scale = ((.55 + .45 * ease_out(t / .5)) * (1 + .07 * math.sin(f * 1.9 + spin * 5)),) * 3
+        o.scale = ((.35 + .65 * ease_out(t / .3)) * (1 + .07 * math.sin(f * 1.9 + spin * 5)),) * 3
         K(o, f); on(o)
     for o, d_, sp in EMBERS:   # parçalanan Dünya'dan dışarı savrulan kıvılcımlar (ikişer karede, yanıp söner)
         o.location = d_ * (R1 * .9 + (4 + 9 * sp) * ease_out(t / 2.5)); o.scale = ((.6 + .5 * math.sin(f * .9 + sp * 7)) * (1.6 if sp > 1 else 1),) * 3
         K(o, f); on(o)
+
+
+# v5.9 enerji perdesi. v5.8'deki kameraya düz bakan halka "paint çizimi gibi" bulundu (kullanıcı: derinlik hissi olmalı,
+# mor yerine turuncu). Artık Dünya'nın çevresinde YÜKSEKLİĞİ olan bir çember duvar: kamera düzlemin biraz üstünde,
+# halka Satürn halkası gibi yandan görünür; arka yay Dünya'nın arkasından, ön yay önünden geçer; ön yüz turuncu, arka yüz
+# (içi) sarı-krem; üst kenarda düzensiz sivri ışık perdeleri; mürekkep kontur. Dört çeşit ikişer karede kaynar.
+def energy_mat(front, back, name):
+    key = ('enerji', front, back)
+    if key in MATS: return MATS[key]
+    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; nt.nodes.clear()
+    g = node(nt, 'ShaderNodeGroup'); g.node_tree = LG
+    geo = node(nt, 'ShaderNodeNewGeometry')
+    finish(nt, mix(nt, geo.outputs['Backfacing'], C(front), C(back)), g); MATS[key] = m; return m
+
+
+HOOP_MATS = (energy_mat('#FF6A1E', '#FFB347', 'Enerji perdesi alt'), energy_mat('#FFC24A', '#FFF1C9', 'Enerji perdesi üst'))
+
+
+def hoop_variant(seed):
+    """Yerel XY'de yarıçapı ~1 olan çember duvar; yükseklik yerel Z (alt bant + sivri üst perde)."""
+    rr = random.Random(seed); N = 160; ph = [rr.uniform(0, 6.3) for _ in range(3)]
+    def nz_(a, s, k): return mnoise.noise(Vector((math.cos(a) * k + seed, math.sin(a) * k, s)))
+    bm = bmesh.new(); rows = []
+    for i in range(N + 1):
+        a = i / N * 2 * math.pi; d = Vector((math.cos(a), math.sin(a), 0)); r = 1 + .035 * nz_(a, 2.0, 3)
+        h1 = .03 + .012 * nz_(a, 5.0, 2)
+        spike = max(0.0, math.sin(a * 13 + ph[0]) * .6 + math.sin(a * 7 + ph[1]) * .5) ** 4
+        h2 = h1 + .025 + .015 * nz_(a, 8.0, 4) + .1 * spike
+        rows.append([bm.verts.new(d * r + Vector((0, 0, z))) for z in (-.02, h1, h2)])
+    for i in range(N):
+        for k in (0, 1):
+            fc = bm.faces.new((rows[i][k], rows[i + 1][k], rows[i + 1][k + 1], rows[i][k + 1])); fc.material_index = k
+    o = obj(f'Enerji perdesi {seed}', bm, list(HOOP_MATS), .006, smooth=False, toggle=True); o.rotation_mode = 'QUATERNION'
+    return o
+
+
+HOOPS = [hoop_variant(s) for s in (41, 43, 47, 53)]
+# Perdenin düzlemi: Dünya'dan SHOCK anındaki kameraya giden doğrultuya göre kamera 8° üstte kalır; düzlem 14° yatık
+# (dutch) durur. Yakın yay tam SHOCK'ta kameranın altından geçer, yalnız sivri perdeler kadrajı süpürür.
+# (4°'de neredeyse tam yandan görünüyordu: düz bir şerit gibi duruyor, 138'de kadrajı turuncuyla dolduruyordu — flaş gibi)
+HOOP_TILT = math.radians(8)
+_CAM_HIT = path(SHOCK) + look_q(LDIR, .25 * clamp((SHOCK - 60) / 90)) @ CAM2B_LOCAL
+_E1 = _CAM_HIT.normalized(); _Z0 = (Vector((0, 0, 1)) - _E1 * _E1.z).normalized()
+_Z0 = Quaternion(_E1, math.radians(14)) @ _Z0
+HOOP_N = (_Z0 * math.cos(HOOP_TILT) + _E1 * math.sin(HOOP_TILT)).normalized()
+_EX = (_E1 - HOOP_N * _E1.dot(HOOP_N)).normalized()
+HOOP_Q = Matrix((_EX, HOOP_N.cross(_EX), HOOP_N)).transposed().to_quaternion()
+HOOP_REND = _CAM_HIT.length * math.cos(HOOP_TILT) + 1.0
+# Perdenin taşıdığı parçalar: kaya kıymıkları ve kıvılcımlar; yarısı kameranın önünden geçer (yakındakiler hızlı: derinlik)
+rw = random.Random(91); WAVE_BITS = []
+for i in range(22):
+    near = i % 2 == 0
+    a = rw.uniform(-.45, .45) if near else rw.uniform(0, 2 * math.pi)
+    hf = rw.uniform(.005, .06) if near else rw.uniform(0, .08)
+    if i < 14: o = obj(f'Dalga kıymığı {i}', shard_bm(200 + i, .25, .9), ROCK_M if i % 3 else toon(RED), .03, toggle=True)
+    else: o = obj(f'Dalga kıvılcımı {i}', ico(rw.uniform(.25, .6), sub=1), glow((HOT, FLAME, RED_HI)[i % 3]), 0, toggle=True)
+    WAVE_BITS.append((o, a, hf, rw.uniform(.93, 1.03), Vector((rw.random() * 4, rw.random() * 4, rw.random() * 4))))
 
 
 def sky_sparkles(f):
@@ -1179,6 +1336,7 @@ def sky_sparkles(f):
 
 def escape_trail(f):
     """Motorun arkasında kalan duman: doğduğu yerde kalır, büyür, söner (kaçış boyunca süreklilik)."""
+    if 104 <= f < T3A: return   # geriye bakışta yol boyunca dizilen duman Dünya'nın önüne topak gibi oturuyordu (v5.9)
     for k, o in enumerate(trail_a):
         born = 64 + 4 * k
         if born <= min(f, 200): puff_life(o, f, born, path(born) - LDIR * 2.6, -LDIR * .8 + UPV * .2, .4, 1.3 + .04 * k, 2.4)
@@ -1197,25 +1355,39 @@ def takeA(f):
             g = 1.15 * (1 - ease((f - REVEAL0) / (REVEAL1 + 6 - REVEAL0)))
             for o in PLASMA[(f // 2) % 4]:
                 o.scale = (g, g, g); K(o, f, True); on(o)
-    if 104 <= f <= SHOCK + 1:   # şok dalgası Dünya'dan çıkar, rokete arkadan yetişir
-        dr = path(SHOCK).normalized(); w = (path(SHOCK).length + 1.5) * ease_in((f - 104) / (SHOCK - 104))
-        shock.location = dr * w; shock.rotation_quaternion = dr.to_track_quat('Z', 'Y')
-        shock.scale = (10 + .5 * w,) * 3; K(shock, f, True); on(shock)
-    for o, at, spin in STREAM:
-        if f >= 64 and (at - path(f)).length < 70: o.location = at; o.rotation_euler = Euler(spin * f / FPS); K(o, f); on(o)
-    if f < 56: c = rig_surface(f)
-    elif f < 80: c = blend(rig_surface(f), rig_chase(f), ease((f - 56) / 24))
-    elif f < 88: c = rig_chase(f)
-    elif f < 104: c = blend(rig_chase(f), rig_mount(f), ease((f - 88) / 16))
+    if EXPLODE <= f <= SHOCK + 2:   # v5.9: enerji perdesi Dünya'nın çevresinde açılır, yakın yayı tam SHOCK'ta kameradan geçer
+        u = (f - EXPLODE) / (SHOCK - EXPLODE)
+        R = R1 * 1.15 + (HOOP_REND - R1 * 1.15) * (.3 * u + .7 * u ** 2.2)   # önce hızlı açılır, sonra rokete doğru ivmelenir
+        o = HOOPS[(f // 2) % 4]
+        o.location = (0, 0, 0); o.rotation_quaternion = HOOP_Q @ Quaternion((0, 0, 1), f * .01); o.scale = (R,) * 3
+        K(o, f, True)
+        # Son ~3 karede yakın yay kameranın dibinden geçer: kadrajı düz turuncu bir levha gibi kaplıyordu (flaş gibi).
+        # Orada perde gizlenir; darbeyi sarsıntı, gövdeye vuran turuncu ışık ve yanımızdan geçen parçalar anlatır.
+        if HOOP_REND - R > 45: on(o)
+        ex, ey = HOOP_Q @ Vector((1, 0, 0)), HOOP_Q @ Vector((0, 1, 0))
+        for b, a, hf, rk, spin in WAVE_BITS:   # perdenin taşıdığı parçalar
+            p = (ex * math.cos(a) + ey * math.sin(a)) * R * rk + HOOP_N * R * hf
+            if (p - cam.location).length > 3: b.location = p; b.rotation_euler = Euler(spin * f / FPS); K(b, f, True); on(b)
+    for o, at, spin in STREAM:   # Dünya'nın parçaları: patlamadan sonra rokete yetişir
+        if f >= EXPLODE + 4 and (at - path(f)).length < 70: o.location = at; o.rotation_euler = Euler(spin * f / FPS); K(o, f); on(o)
+    # v5.7 sabit açılar: yüzey → (42) geniş → (64, Dünya'nın görünmez değişimi kesmenin altında) yan → (104) geriye bakış
+    if f < 42: c = SHOT1
+    elif f < SWAP: c = SHOT2
+    elif f < 104: c = rig_chase(f)
     else: c = rig_mount(f)
-    mount = ease((f - 88) / 16) if f >= 88 else 0
-    put_cam(f, c, .2, .12 * mount * (1 - ease((f - SHOCK) / 8)), .06 * ease((f - 14) / 26) * (1 - ease((f - 56) / 24)))
+    mount = 1.0 if f >= 104 else 0.0
+    put_cam(f, c, .12, .12 * mount * (1 - ease((f - SHOCK) / 8)))
     if 64 <= f < 100: speed_lines(f, .87, ease((f - 64) / 10) * (1 - ease((f - 92) / 8)))
     if 100 <= f < SHOCK + 6: radial_lines(f, screen((0, 0, 0)), 1.0 + .02 * (f - 100), ease((f - 100) / 8) * (1 - ease((f - SHOCK) / 5)))
     dist = path(f).length
     rim_amt = clamp(1.1 - dist / 260) if 42 <= f else 0      # yanan Dünya'nın ışığı roketi turuncu boyar, uzaklaştıkça söner
     tint = (1, .93, .86) if 42 <= f < 50 else ((.86, .86, .95) if 38 <= f < 42 else (1, 1, 1))
-    light(f, (-.55, -.45, .7), tuple(-path(f).normalized()), RED_HI, rim_amt, tint, edge=.6 + .26 * mount)
+    rim_col = RED_HI
+    if f >= EXPLODE:   # v5.9: patlamanın ışığı gövdeye vurur, perde yaklaştıkça turuncu ışık büyür (derinlik: ışık uzaktan gelir)
+        rim_amt = max(rim_amt, .75 * ease((f - EXPLODE) / 4), ease((f - 128) / 12)); rim_col = FLAME
+        if 134 <= f <= SHOCK + 1: tint = (1, .9, .8)
+    light(f, (-.55, -.45, .7), tuple(-path(f).normalized()), rim_col, rim_amt, tint,
+          edge=.6 + .26 * mount * (1 - ease((f - EXPLODE) / 6) if f >= EXPLODE else 1))   # patlamada kenar ışığı genişler
     escape_trail(f); sky_sparkles(f)
 
 
@@ -1226,10 +1398,18 @@ def takeA(f):
 OUT3B = 202
 
 
+CHOKE, TICKS = 186, (190, 194, 200)   # v5.5: önce boğulur (bir duman), sonra tık tık tık (her tıkta kısa alev + duman), susar
+# Hepsi çift kare: duman ikişer karede anahtarlanır, tek karede doğarsa bir kare eski yerinde görünürdü; aralık açılır (ölüyor)
+
+
 def flame_level(f):
-    if f < 190: return 1.0
+    if f < CHOKE: return 1.0
     if f >= OUT3B: return 0.0
-    return {190: .25, 192: .3, 194: 1.2, 196: .2, 198: .35, 200: .08}.get(f - f % 2, 0.0)
+    if f - CHOKE < 2: return .3                       # boğulma: alev çöker, kara duman çıkar
+    for t, a in zip(TICKS, (.7, .5, .32)):            # tık: tek kare parlar, bir kare söner (her tık bir öncekinden zayıf)
+        if f == t: return a
+        if f == t + 1: return a * .35
+    return 0.0
 
 
 def takeC(f):
@@ -1238,30 +1418,41 @@ def takeC(f):
     P = path(f); fl = flame_level(f)
     drift = look_q(LDIR, .25 + .3 * ease((f - OUT3B) / 30))
     q = drift.slerp(look_q(tangent(f)), ease((f - 232) / 14)) if f >= 232 else drift
-    ship(f, P, q, 1.0, fl, hot=f >= 250)
-    for o, born, r1 in zip(puffs3, (191, 195, 199, OUT3B), (.4, .34, .28, .2)):   # öksürük dumanı doğduğu yerde kalır
-        puff_life(o, f, born, path(born) - LDIR * 2.2, -LDIR * 1.5 + UPV * .3, .1, r1, 1.1)
+    ship(f, P, q, 1.0, fl, hot=f >= 250, smear=SMEAR_C.get(f, 0.0))
+    for o, born, r1, life in zip(puffs3, (CHOKE, *TICKS), (.42, .24, .21, .18), (1.1, .75, .75, .8)):
+        # Duman roketle birlikte uçar, geriye doğru yavaşça açılır (uzayda hava yok). Doğduğu yerde kalınca roket karede
+        # 5 birim ilerlediği için iki karede kadrajdan çıkıyordu (ölçüldü); rokete bağlı olduğu için her karede anahtarlanır.
+        a = (f - born) / FPS
+        if 0 <= a <= life:
+            o.location = path(f) - LDIR * (2.2 + 3.2 * a) + UPV * .35 * a
+            sc = .12 + (r1 - .12) * ease_out(a / (life * .5)); sc *= 1 - ease_in((a - life * .7) / (life * .3))
+            o.scale = (sc,) * 3; o.rotation_euler = (a * 1.5 + born, a * .7 + born * .3, 0); K(o, f, True); on(o)
     # Kesik krem yörünge izi kaldırıldı (kullanıcı: düşüşteki "tık tık" çizgiler); kıvrılmayı geminin dönüşü anlatır
     if f >= 262:   # atmosfer: burnu ateş sarar
         g = .3 + .7 * ease((f - 262) / 8)
         for o in PLASMA[(f // 2) % 4]:
             o.scale = (g, g, g); K(o, f, True); on(o)
         speed_lines(f, -.95, .5 + .5 * ease((f - 262) / 10))
-    if f < OUT3B: c = rig_out(f)
-    elif f < 228: c = blend(rig_out(f), rig_wide(f), ease((f - OUT3B) / 26))
-    elif f < 244: c = blend(rig_wide(f), rig_capture(f), ease((f - 228) / 16))
-    elif f < 262: c = rig_capture(f)
-    else: c = blend(rig_capture(f), rig_dive(f), ease((f - 262) / 12))
-    put_cam(f, c, .2, .1 if f < OUT3B else 0)
-    if f >= 274:   # kamera bulut tabakasının içine girer: görünmez kesme (iniş seti bulutun içinde açılır)
-        k = ease_in((f - 274) / 7)
-        engulf.location = (0, -.4 + .4 * k, -3.0 + 1.6 * k); engulf.scale = (.5 + 1.8 * k,) * 3; K(engulf, f, True); on(engulf)
+    # v5.7 sabit açılar: arka üç çeyrek (tekleme) → (202, motor susar) arkadan-yukarıdan → (262, atmosfer) sabit yan
+    if f < OUT3B: c = on_ship(TAIL_LOCAL, TAIL_TGT, 30)
+    elif f < 262: c = rig_follow(f)
+    else: c = SHOT8
+    put_cam(f, c, .12, .1 if f < OUT3B else 0, ROLL8 if f >= 262 else 0.0)
     cold = OUT3B <= f < 232
     light(f, (-.55, -.45, .7), (0, 1, 0), FLAME, 0, (.84, .88, 1.0) if cold else (1, 1, 1), sky=SPACE_COLD if cold else SPACE)
     escape_trail(f); sky_sparkles(f)
 
 
 # ---------------- D: bulutun içinden iner, bulut tabanından çıkar, kamera yere yaklaşıp alçalır; çakılma, sağ kalma
+# Anime smear kareleri (v5.6): yalnız roketin ekranda ölçülen hızının kendi boyuyla kıyaslanır olduğu karelerde.
+# Ölçüm (kare: hız/boy, hareket–gövde hizası): 306–309 savrulma 0,6–1,1 (kuyruk önde, −1), 312–316 dalış 0,4–0,7 (burun önde, +1).
+# Kalkış (≈0,3) ve gezegene dalış (≈0,1) yavaş kaldı: orada smear hata gibi dururdu.
+# v5.7 ölçümü (sabit açılar): atmosfere girişte 266–281 roket karede boyunun 0,7–1,0'ı kadar, yerden çekimde 303–316
+# 0,35–0,5'i kadar yol alıyor, burun önde (hiza +1). Ölçülen hız kareden kareye titrediği için düzgün bir rampa kullanılır.
+SMEAR_C = {f: .35 + .2 * (f - 266) / 15 for f in range(266, 282)}
+SMEAR_D = {**{f: .25 + .2 * (f - 303) / 12 for f in range(303, 316)}, 316: .55}
+
+
 def rocket_d(f):
     if f < IMPACT: return path_d(f), look_q(path_d(f + 1) - path_d(f - 1))
     u = ease_out((f - IMPACT - 2) / 16) if f >= IMPACT + 2 else 0
@@ -1289,7 +1480,18 @@ def takeD(f):
         gust = .12 * math.exp(-(f - IMPACT) / 6) * math.sin(f * 1.3) if f >= IMPACT else 0
         o.rotation_euler = (base.x + .03 * math.sin(f * .2) + gust, base.y, base.z); K(o, f)
     pos, q = rocket_d(f)
-    ship(f, pos, q, 1.0, 0, hot=f < 292, lit=f >= 338 and not 342 <= f < 345)   # ışık yanar, bir kez göz kırpar: içeride hayat var
+    # v5.12 (kullanıcı): burun yere düşene kadar sarı, düştükten sonra rengi yavaşça kendine gelsin; kesmede (302) bir anda
+    # kırmızıya dönmesi rahatsız ediyordu. Isı izleri düşüşte yok: hareketsiz sarı çizgiler gövdede ve burnun dışında duruyordu.
+    ship(f, pos, q, 1.0, 0, hot=True, traces=False, lit=f >= 338 and not 342 <= f < 345,   # ışık yanar, bir kez göz kırpar: içeride hayat var
+         smear=SMEAR_D.get(f, 0.0))
+    NOSE_HEAT[0].outputs[0].default_value = 1 - ease((f - IMPACT - 2) / 30)   # 318 → 348 sarı → turuncu → kendi kırmızısı
+    NOSE_HEAT[0].outputs[0].keyframe_insert('default_value', frame=f + 1)
+    if f < CUT10:   # v5.7: burun ateşi bulutların içinde sürer, düşüşte yavaşça küçülüp söner
+        g = .95 * (1 - ease((f - TDIVE) / 17))          # (v5.6'da bulut kesmesinde bir anda kayboluyordu)
+        gi = g * clamp((g - .35) / .35)                 # v5.12: iç katman önce söner; küçülünce burunda kırmızı leke gibi kalıyordu
+        o, o2 = PLASMA[(f // 2) % 4]
+        for ob, s in ((o, g), (o2, gi)):
+            if s > .12: ob.scale = (s, s, s); K(ob, f, True); on(ob)   # en sonda burun ucunda küçük topak kalmasın
     for k, o in enumerate(smoke_d):   # duman izi: doğduğu yerde kalır
         born = TDIVE + 2 * k
         if born < IMPACT: puff_life(o, f, born, path_d(born) - (path_d(born + 1) - path_d(born)).normalized() * 1.8, Vector((0, 0, .3)), .25, .6, 1.3)
@@ -1324,9 +1526,10 @@ def takeD(f):
     if 338 <= f < 346:
         port_ring.scale = (.3 + 1.4 * ease_out((f - 338) / 8),) * 3; K(port_ring, f, True); on(port_ring)
     if f in (IMPACT, IMPACT + 1): on(impact_lines)
-    # kamera roketle düşer, f292–306 arasında aşağı süzülüp alçak noktaya iner; roket sol üstten önünden geçip çakılır
-    c = rig_fall(f) if f < 292 else (blend(rig_fall(f), rig_low(f), ease((f - 292) / (DLOW - 292))) if f < DLOW else rig_low(f))
-    put_cam(f, c, .2)
+    # v5.7 sabit açılar: rokete göre sabit düşüş (bulutların içinden) → (300) yerden sabit, roket yukarıdan gelip çakılır →
+    # (328) yakın sabit. v5.6'daki süzülüş (292–306) roketi ekranda iki karede 74° döndürüyordu (ölçüldü)
+    c = rig_fall(f) if f < CUT10 else (SHOT10 if f < 328 else SHOT11)
+    put_cam(f, c, .12)
     if f < TDIVE + 6:   # bulutun içinden çıkış: saran bulut kameranın arkasına geçer
         k = ease_out((f - TDIVE) / 6)
         engulf.location = (0, .3 * k, -1.4 + 4.0 * k); engulf.scale = (2.3 - 1.0 * k,) * 3; K(engulf, f, True); on(engulf)
@@ -1376,7 +1579,18 @@ def render_frames(frames, folder, prefix=''):
 
 
 if ARGS == ['all']:
-    s.render.filepath = str(FR) + '/'; bpy.ops.render.render(animation=True)
+    # Boş yeni klasöre çizilir, bitince eskisinin yerine geçer: üstüne yazılan kareleri bir önizleyici/tarayıcı ara ara
+    # kilitliyordu ("cannot save", 4 Kasım) ve render yarıda kalınca eski ve yeni kareler karışıyordu.
+    import shutil
+    TMP = OUT / 'kareler_yeni'
+    shutil.rmtree(TMP, ignore_errors=True); TMP.mkdir()
+    s.render.filepath = str(TMP) + '/'; bpy.ops.render.render(animation=True)
+    if len(list(TMP.glob('[0-9][0-9][0-9][0-9].png'))) != END: raise SystemExit(f'EKSIK KARE: {TMP}')
+    shutil.rmtree(FR, ignore_errors=True)
+    if FR.exists():   # silinemeyen (kilitli) kare kaldıysa yenileri tek tek üstüne kopyala
+        for p in TMP.glob('*.png'): shutil.copy2(p, FR / p.name)
+        shutil.rmtree(TMP, ignore_errors=True)
+    else: TMP.rename(FR)
     glint.animation_data_clear()   # ipucu çeşidi: yalnız iki kare (Ç4, yakalanma anı) yeşil parıltıyla
     for F in (GLINT_F + 1, GLINT_F + 2): glint.hide_render = False; glint.keyframe_insert('hide_render', frame=F)
     render_frames((GLINT_F + 1, GLINT_F + 2), FR_GLINT)

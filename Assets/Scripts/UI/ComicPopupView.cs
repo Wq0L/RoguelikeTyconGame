@@ -16,6 +16,8 @@ public sealed class ComicPopupView : MonoBehaviour
     int used;
     float contentHeight, scrollOffset;
     string hint = "";
+    static string scrollHint;   // tuş ikonlu sabit yazı: bir kez kurulur
+    static string ScrollHint => scrollHint ??= KeyPrompts.Tag(KeyPrompts.PageUp) + " / " + KeyPrompts.Tag(KeyPrompts.PageDown) + ": kaydır";
     Rect fittedBounds;
     float fittedScale;
     bool dirty = true;
@@ -71,7 +73,7 @@ public sealed class ComicPopupView : MonoBehaviour
         skillPortrait = badgeRect.gameObject.AddComponent<ResonanceBadgeGraphic>(); skillPortrait.raycastTarget = false; skillPortrait.gameObject.SetActive(false);
         viewport = Rect("Viewport", root); viewport.gameObject.AddComponent<UnityEngine.UI.RectMask2D>();
         content = Rect("Content", viewport);
-        footer = Text("Footer", root, 19);
+        footer = Text("Footer", root, 19); KeyPrompts.Apply(footer);
     }
     public void Begin(string title, string caption = "", Sprite icon = null, string footerHint = "", string skillIcon = null)
     {
@@ -139,7 +141,7 @@ public sealed class ComicPopupView : MonoBehaviour
         viewport.anchoredPosition = new Vector2(20,-top); viewport.sizeDelta = new Vector2(width-40,Mathf.Max(20,height-top-38));
         content.sizeDelta = new Vector2(width-40,contentHeight);
         footer.rectTransform.anchoredPosition = new Vector2(22,-height+29); footer.rectTransform.sizeDelta = new Vector2(width-44,24);
-        footer.text = hint + (CanScroll ? (hint.Length > 0 ? "  ·  " : "") + "PgUp / PgDn: kaydır" : "");
+        footer.text = hint + (CanScroll ? (hint.Length > 0 ? "  ·  " : "") + ScrollHint : "");
         Scroll(0);
     }
     public void Scroll(float amount)

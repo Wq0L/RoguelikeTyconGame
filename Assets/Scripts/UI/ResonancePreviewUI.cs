@@ -99,7 +99,7 @@ public sealed class ResonancePreviewUI : MonoBehaviour
         if (changed || previousDetails != signature)
         {
             previousDetails = signature;
-            details.Begin("BU KONUMDA AÇILACAK", footprint.Count + " tile · " + active.Count + " rezonans", footerHint: "ALT: aç / kapat");
+            details.Begin("BU KONUMDA AÇILACAK", footprint.Count + " tile · " + active.Count + " rezonans", footerHint: KeyPrompts.Tag(KeyPrompts.Alt) + ": aç / kapat");
             if (active.Count == 0) details.Add("Bu konumda rezonans oluşmuyor.");
             foreach (var resonance in active)
                 details.Add("<b>" + resonance.resonanceName + "</b>\n" + TileBuffText.Resonance(resonance), ResonanceManager.Identity(resonance));

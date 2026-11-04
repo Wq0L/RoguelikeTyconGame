@@ -138,7 +138,8 @@ public sealed class RoundPreviewUI : MonoBehaviour
         TextMeshProUGUI hint = Text(header, "Hint", 19f, TextAlignmentOptions.Bottom);
         hint.rectTransform.offsetMin = new Vector2(16f, 8f);
         hint.rectTransform.offsetMax = new Vector2(-16f, -48f);
-        hint.text = "Tile'ın üstüne gel: detay  ·  TAB / ESC: geri dön";
+        KeyPrompts.Apply(hint);
+        hint.text = "Tile'ın üstüne gel: detay  ·  " + KeyPrompts.Tag(KeyPrompts.Tab) + " / " + KeyPrompts.Tag(KeyPrompts.Esc) + ": geri dön";
 
         chipLayer = Layer("Resonance Chips");
         chipLayer.anchorMin = chipLayer.anchorMax = new Vector2(0.5f, 1f);

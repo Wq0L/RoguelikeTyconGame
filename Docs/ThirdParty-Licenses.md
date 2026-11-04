@@ -1,5 +1,65 @@
 # Dış kaynak ve lisans kayıtları
 
+## Kenney "Input Prompts" 1.5A — oyundaki tuş ikonları (4 Kasım 2026)
+
+- Kategori: oyunda dağıtılan içerik (türev). Geliştirme aracı veya paket bağımlılığı eklenmedi.
+- Kaynak: https://kenney.nl/assets/input-prompts, Kenney Vleugels. Sitenin kendi indirme bağlantısı kullanıldı. İndirilen dosya `kenney_input-prompts_1.5.zip` (5 070 075 bayt, SHA-256 `ac2fcf599080b0f3ba2d174c9474db6df1a0e96ff0662580e2da79a122ab78a1`). Paketin içindeki `License.txt` sürümü 1.5A, tarihi 11-07-2026.
+- Kontrol edilen belgeler: sayfadaki lisans alanı ("Creative Commons CC0"), paketteki `License.txt` ("kişisel, eğitim ve ticari amaçla kullanılabilir"; Kenney'yi anmak isteğe bağlı), https://creativecommons.org/publicdomain/zero/1.0/.
+- Lisans: Creative Commons CC0 1.0.
+- Yükümlülükler:
+  - Ücret ve royalty yok.
+  - Oyunda veya jenerikte kredi zorunluluğu yok.
+  - Dağıtım paketinde lisans metni zorunluluğu yok. Yine de `License.txt` ve bir teşekkür notu `Assets/StreamingAssets/ThirdParty/KenneyInputPrompts/` altında dağıtıma gider.
+- Projeye alınanlar: yalnız kullanılan 14 kalıp ("Keyboard & Mouse/Double": space, enter, r ve harf/ok kalıpları a, b, c, e, g, l, p, s, t, arrow_up, arrow_down) ve özgün `License.txt` → `Tools/Art/KeyPrompts/kenney-input-prompts-1.5a/`. Bunlar oyunla dağıtılmaz.
+- Türev: `Tools/Art/KeyPrompts/build_key_prompts.py` beyaz kalıpları oyunun renklerine boyar (krem tuş yüzü, kehribar tuş yanı, mürdüm harf ve kalın mürekkep kontur) ve tek atlasa toplar: `Assets/Resources/UI/KeyPrompts/KeyPromptsAtlas.png` + `KeyPromptsLayout.json`. Kaynağı Kenney'dir; sıfırdan özgün çizim olarak sunulmaz.
+  - Space, Esc, Tab, Alt, PgUp ve PgDn tuşları birleştirmedir: Kenney'nin harf ve ok kalıplarındaki şekiller, Space tuşunun ölçüsündeki geniş bir tuş yüzüne tek satır ve kalın yerleştirildi ("SPACE", "ESC", "TAB", "ALT", "PG↑", "PG↓"). Kenney'nin kare ESC, iki satırlı "PAGE UP" ve ince yazılı tuşları oyundaki küçük ipucu boyunda (19 pt) okunmuyordu.
+- Kullanım: `KeyPrompts.cs`, TextMeshPro yazılarında tuş adlarının yerine ikon koyar. Yerleri: açılış videosunu geçme ipucu (Space), tur önizlemesi (Tab/Esc), ödül yerleştirme (Esc), açılır pencere kaydırma (PgUp/PgDn), rezonans ayrıntısı (Alt).
+- Kullanıcıya kaynak, lisans, ücret, kredi ve dağıtım koşulları kullanımdan önce konuşmada bildirildi.
+
+## Açılış videosu — oyuna giren dosya (4 Kasım 2026)
+
+- Kategori: oyunda dağıtılan içerik. Dosya: `Assets/StreamingAssets/Intro/ErigoneIntro.webm` (1920×1080, 24 fps, 16,25 sn, 14,4 MB).
+- Görüntü: kendi Blender render'ımız (`Tools/Art/IntroAnimatic/build_intro_v5.py`, v5.12). İçinde AI ile üretilmiş piksel yok; Higgsfield kareleri yalnız görsel hedef olarak kullanıldı (aşağıdaki Higgsfield kaydı).
+- Ses: Kenney ses paketleri (CC0) + OpenGameArt "Siberian Intro" (CC0) + özgün sentez (aşağıdaki kayıtlar). Ücret/royalty, oyunda kredi ve lisans metni zorunluluğu yok.
+- Kodlama: VP8 görüntü + Vorbis ses, WebM kabı (`Tools/Art/IntroAnimatic/export_intro_unity.py`; mevcut FFmpeg 9.0.2, libvpx BSD, libvorbis BSD). İkisi de telifsiz codec. H.264/AAC patent havuzu meselesine girmemek için seçildi. FFmpeg oyunla dağıtılmaz.
+- Unity tarafı: yerleşik Video modülü (`com.unity.modules.video`), Unity lisansı kapsamında; ek paket yok.
+
+## OpenGameArt müzikleri — açılış videosunun müziği (4 Kasım 2026)
+
+- Kategori: oyunda dağıtılacak içerik. Seçilen parçanın bir bölümü açılış videosunun ses izine karışır.
+- Kaynak: OpenGameArt.org, "CC0 - Cinematic Music" koleksiyonu (https://opengameart.org/content/cc0-cinematic-music).
+- Beş aday indirildi ve kullanıcıya dinletildi. Kullanıcı 1 ve 2'yi beğendi; yalnız bu ikisi projeye kopyalandı (`Docs/AcilisVideosu/Ses/OpenGameArt/`, `KAYNAK.md` ile):
+  - **Siberian Intro**, Vehicle — https://opengameart.org/content/siberian-intro. Sayfada lisans CC0, notta "CC0.". Final karışımda kullanılan bu.
+  - **Epic Endgame Cinematic**, cynicmusic — https://opengameart.org/content/epic-endgame-cinematic. Sayfada lisans CC0. Yalnız deneme karışımında.
+  - Denenip projeye alınmayanlar: Unexplored (short ver.) / TAD, A Legend Will Rise / CodeManu, The Hope / TAD (hepsi CC0).
+- Lisans: Creative Commons CC0 1.0.
+- Yükümlülükler:
+  - Ücret ve royalty yok.
+  - Oyunda veya jenerikte kredi zorunluluğu yok; sayfalar atfın isteğe bağlı olduğunu söylüyor.
+  - Dağıtım paketinde lisans metni zorunluluğu yok.
+- Kullanım: `Tools/Art/IntroAnimatic/mix_intro_v5_music.py` parçadan 16,25 sn'lik bir bölüm alır, sıkıştırır ve kullanıcının çizdiği düzey eğrisini uygular.
+- Kullanıcıya kaynak, lisans, ücret, kredi ve dağıtım koşulları kullanımdan önce konuşmada bildirildi.
+
+## Kenney ses paketleri — açılış videosunun sesi (4 Kasım 2026)
+
+- Kategori: oyunda dağıtılacak içerik. Açılış videosunun ses izine karışır, video oyuna girerse onunla dağıtılır.
+- Kaynak: kenney.nl, Kenney Vleugels. İndirilen paketler (sitenin kendi indirme bağlantısıyla):
+  - Sci-Fi Sounds 1.0 (`kenney_sci-fi-sounds.zip`, 5,9 MB)
+  - Impact Sounds 1.0 (`kenney_impact-sounds.zip`, 0,8 MB)
+  - Interface Sounds 1.0 (`kenney_interface-sounds.zip`, 0,8 MB)
+- Projeye yalnız kullanılan OGG'ler kopyalandı: `Docs/AcilisVideosu/Ses/Kenney/` (sci-fi-sounds, impact-sounds, interface-sounds). Her pakette `License.txt` aynen korundu.
+  - İlk 19 dosya v5.7'de geldi.
+  - v5.8'de sondaki "içeride biri var" sesleri için 10 dosya daha eklendi: doorOpen, computerNoise, impactMetal, impactMetal_light, impactPlate_light, impactSoft_medium, footstep_concrete.
+- Lisans: Creative Commons CC0 1.0 (kamu malı). Paketlerin `License.txt` dosyaları kontrol edildi: "kişisel, eğitim ve ticari projelerde kullanmak serbest". Kenney'yi anmak isteğe bağlı, zorunlu değil.
+- Yükümlülükler:
+  - Ücret ve royalty yok.
+  - Oyun ekranında veya jenerikte kredi zorunluluğu yok.
+  - Dağıtım paketinde lisans metni zorunluluğu yok.
+- Kullanım: `Tools/Art/IntroAnimatic/make_intro_v5_sound.py` örnekleri FFmpeg ile çözüp yerleştirir; kesme, alçak geçiren süzgeç ve zarf uygular.
+  - Kullanılanlar: patlamalar (lowFrequency_explosion, explosionCrunch), motor (spaceEngineLarge, spaceEngineLow), itici ateşi (thrusterFire), gövde ve kaya çarpmaları (impactMetal_heavy, impactPlate_heavy, impactMining), uyarı bibi ve tık (error, tick, click, confirmation).
+  - Rüzgâr, hışırtı, yükselen uğultu ve yakalanma uğultusu özgün sentez.
+- Kullanıcıya kaynak, lisans, ücret, kredi ve dağıtım koşulları kullanımdan önce konuşmada bildirildi.
+
 ## Higgsfield (MCP) — açılış videosu AI düzenleme denemesi (28 Ekim 2026)
 
 - Kategori: hizmet + deneme çıktısı. Şimdilik oyunda dağıtılan varlık yok; çıktılar `Docs/AcilisVideosu/Higgsfield-Deneme/` altında. Oyuna girmesi kullanıcının karşılaştırma sonrası kararına bağlı.

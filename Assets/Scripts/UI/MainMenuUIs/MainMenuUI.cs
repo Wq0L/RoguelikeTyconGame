@@ -57,17 +57,22 @@ public class MainMenuUI : MonoBehaviour
         startPanel.BackRequested -= OnStartBack;
     }
 
+    // İlk "Oyna": önce açılış videosu (bir kez, Space basılı tutularak geçilir), video karardığında seçim ekranı.
     private void OnPlayClicked()
     {
-        if (startPanel != null && startPanel.HasCatalog)
+        if (IntroVideoPlayer.IsPlaying) return;
+        bool panel = startPanel != null && startPanel.HasCatalog;
+        if (panel)
         {
             mainMenuPanel.SetActive(false);
             optionsPanel.SetActive(false);
-            startPanel.Open();
-            return;
         }
-        StartRun();
+        System.Action next = panel ? OpenStartPanel : StartRun;
+        if (!DialogueProgress.IntroSeen && IntroVideoPlayer.Play(next)) return;
+        next();
     }
+
+    private void OpenStartPanel() => startPanel.Open();
 
     private void StartRun()
     {

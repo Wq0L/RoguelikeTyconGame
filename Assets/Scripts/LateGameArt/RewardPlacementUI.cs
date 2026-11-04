@@ -71,6 +71,7 @@ public sealed class RewardPlacementUI : MonoBehaviour
         prompt.rectTransform.offsetMin = new Vector2(20f, 8f);
         prompt.rectTransform.offsetMax = new Vector2(-20f, -8f);
         theme?.StylePopupText(prompt);
+        KeyPrompts.Apply(prompt);
         prompt.color = new Color32(54, 39, 54, 255);
         prompt.alignment = TextAlignmentOptions.Center;
         prompt.enableAutoSizing = true;
@@ -127,7 +128,7 @@ public sealed class RewardPlacementUI : MonoBehaviour
         cells.Clear();
         HideMarkers();
         if (shown == null || shown.effect == null || effects == null) return;
-        if (prompt != null) prompt.text = $"{shown.effect.PlacementPrompt}\n<size=60%>{shown.displayName} · tıkla: yerleştir · Esc: vazgeç</size>";
+        if (prompt != null) prompt.text = $"{shown.effect.PlacementPrompt}\n<size=60%>{shown.displayName} · tıkla: yerleştir · {KeyPrompts.Tag(KeyPrompts.Esc)}: vazgeç</size>";
         shown.effect.CollectPlacements(effects, slots);
         if (world == null) world = new GameObject("Reward Placement Markers").transform;
         for (int i = 0; i < slots.Count; i++)

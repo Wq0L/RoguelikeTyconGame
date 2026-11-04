@@ -10,7 +10,7 @@
 Son 8 kare mürekkep siyahına kararır; ardından 1,5 sn seçim ekranı (kendi ekran görüntümüz) açılır.
 Mevcut FFmpeg geliştirme aracıyla; dış içerik yok.
 """
-import shutil, subprocess, sys, tempfile
+import os, shutil, subprocess, sys, tempfile, time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -19,7 +19,7 @@ V2 = ROOT / 'Docs' / 'AcilisVideosu' / 'Animatik' / VER
 FR, FR_GLINT = V2 / 'kareler', V2 / 'kareler_ipucu'
 FPS, END, INK = 24, {'v2': 252, 'v3': 354, 'v4': 354, 'v5': 354, 'v5_1080': 354}[VER], '0x1A1324'
 SOUND = V2.parent / {'v2': 'v2/gecici-ses-v2.wav', 'v3': 'v3/gecici-ses-v3.wav', 'v4': 'v4/gecici-ses-v4.wav', 'v5': 'v5/gecici-ses-v5.wav',
-                     'v5_1080': 'v5/gecici-ses-v5.wav'}[VER]   # 1080p çıktı v5'in sesini kullanır
+                     'v5_1080': 'v5_1080/ses-karisim.wav'}[VER]   # 1080p: efekt + müzik karışımı (mix_intro_v5_music.py)
 SIZE = '1920:1080' if VER.endswith('1080') else '960:540'
 TAIL, TAIL_FRAMES, FADE_OUT, FADE_IN = ROOT / 'Docs' / 'DiyalogPlani' / 'Faz2' / 'Faz2_01_Secim.png', 36, 8, 6
 
@@ -34,8 +34,18 @@ def build(seq_dir, name):
                     '-loop', '1', '-framerate', str(FPS), '-t', f'{(TAIL_FRAMES + 1) / FPS:.6f}', '-i', str(TAIL),
                     '-i', str(SOUND), '-filter_complex', graph, '-map', '[v]', '-map', '[s]', '-r', str(FPS),
                     '-c:v', 'libx264', '-crf', '18', '-preset', 'medium', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '160k',
-                    '-movflags', '+faststart', str(V2 / name)], check=True)
+                    '-movflags', '+faststart', str(V2 / ('yazim-' + name))], check=True)
+    publish(V2 / ('yazim-' + name), V2 / name)
     print(name, f'{total:.2f} sn')
+
+
+def publish(tmp, dst):
+    """Geçici dosyayı yerine koyar. Açık bir oynatıcı/önizleme hedefi ara ara kilitliyordu (4 Kasım): birkaç kez dener,
+    olmazsa geçici dosyayı bırakıp söyler."""
+    for _ in range(8):
+        try: os.replace(tmp, dst); return
+        except PermissionError: time.sleep(1.5)
+    print('KILITLI, yeni video burada kaldi:', tmp)
 
 
 build(FR, f'Acilis-Previs-{VER}.mp4')
@@ -45,5 +55,6 @@ with tempfile.TemporaryDirectory() as tmp:   # ipuçlu çeşit: iki kare değiş
     for p in FR_GLINT.glob('*.png'): shutil.copy2(p, seq / p.name)
     build(seq, f'Acilis-Previs-{VER}-ipuclu.mp4')
 subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(V2 / f'Acilis-Previs-{VER}.mp4'), '-vf', 'fps=4,scale=320:-1,tile=8x6:padding=3',
-                '-frames:v', '1', str(V2 / f'Acilis-Previs-{VER}-pano.png')], check=True)
+                '-frames:v', '1', str(V2 / f'yazim-Acilis-Previs-{VER}-pano.png')], check=True)
+publish(V2 / f'yazim-Acilis-Previs-{VER}-pano.png', V2 / f'Acilis-Previs-{VER}-pano.png')
 print('PREVIS TAMAM')

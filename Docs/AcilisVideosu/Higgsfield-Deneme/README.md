@@ -75,5 +75,13 @@ Stil referansı: aynı render'dan seçilmiş kareler (dış görsel yok).
   - Lombozun sarı ışığı kararmış.
 - Ders: video düzenleme modelleri kendi "doğal" alanlarına (gerçekçilik) kolayca çeviriyor. Zaten stilize olan girdiyi başka bir stilize görünüme çevirmiyorlar.
 
+## Konsept kareler: Dünya'nın kırılması (4 Kasım 2026)
+- Neden: Dünya'nın kırılma bölümünün "AI slop gibi" durduğu yorumu geldi. İnceleme dört neden buldu: basamaklı çatlak kenarları, rastgele saçılmış yeşil altıgen parçalar, siluetsiz duman yığını patlaması, parçalanan Dünya'da göze odak bırakmayan kalabalık.
+- Üretim: GPT Image 2.5, high, 2k, 16:9. Referans olarak v5.7'nin kendi kareleri kullanıldı (0029 çatlak, 0047 patlama). İstem: tasarlanmış az sayıda çatlak, büyük plakalar, evreli anime patlaması, rastgele parçacık yok.
+  - `stil/konsept_dunya_catlak.png`: fırça gibi incelip kalınlaşan çatlaklar, içlerinde turuncu-sarı lav, birkaç kalkan plaka (üstü mavi, yanı kahverengi kaya), tek bir odak.
+  - `stil/konsept_dunya_patlama.png`: krem-beyaz sivri çekirdek, yüzey boyunca açılan düz halka, iki tonlu büyük duman sütunu (gri ve mürdüm gölge), sivri anime alevleri, savrulan birkaç büyük plaka.
+  - `stil/Konsept_dunya_karsilastirma.png`: solda bugünkü kare, sağda konsept.
+- Bu kareler yalnız Blender için görsel hedef; videoya AI pikseli girmez.
+
 ## Lisans notu
 Higgsfield çıktıları Higgsfield Kullanım Şartları'na bağlı: ücretli planda ticari kullanım açık, atıf zorunlu değil, filigran yok. Yüklenen videolar Enterprise dışı planlarda model eğitiminde kullanılabilir. MCP kullanımı "Developer Terms" kapsamında. Steam'de önceden üretilmiş AI içeriği beyan edilmeli. Kayıt: `Docs/ThirdParty-Licenses.md`.

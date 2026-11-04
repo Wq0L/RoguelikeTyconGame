@@ -64,7 +64,67 @@ Kullanıcı kararı (28 Ekim): üretim **Blender'da 3D toon**, film/anime kurgus
     - Kamera artık roketin arkasına ve yukarısına çekiliyor, roketle gezegeni birlikte kadraja alıyor. Roket orta boyda kalıyor, gezegen 208'den itibaren görünüyor.
     - Gezegeni kaplayan 150 bulut topağı kaldırıldı. Yerlerine ince bir kabuğa boyanmış, mürekkep kenarlı, diskin üzerinden eğik geçen bantlar geldi. Giriş tabakası alçak ve yassı.
     - Yan kazanç: yeşil ipucu parıltısı artık bulutların üstünde, ipuçlu çeşit çalışıyor. Önceden bulut topaklarının altında kalıyordu.
-    - Kullanıcı onayı bekliyor.
+  - v5.5 (4 Kasım): kullanıcı istekleri.
+    - Kokpit 18 kare, el yok; ibre boşa düşer, uyarı lambası iki kez yanar.
+    - Dışarıda tekleme: f186'da boğulma ve büyük duman, ardından f190/194/200'de giderek zayıflayan üç tık, f202'de susma. Dumanlar roketle birlikte uçar, geriye açılır. Geçici ses de bu zamanlamaya uyduruldu.
+    - Giriş noktasında dışarı taşan 3D bulut yığını kaldırıldı. Roket düz bulut bandına dalar, geçiş bulutu yalnız son 5 karede ekranı sarar ve içinden mürekkep çizgisi görünmez.
+    - Kokpitten sonraki bütün olaylar aynı karelerde kaldı.
+  - v5.6 (4 Kasım): anime smear. Roketin ekran hızı kendi boyuyla ölçülerek yalnız gerçekten hızlı karelere kondu.
+    - Savrulma 306–309: gövde burna doğru uzar.
+    - Son dalış 312–316: gövde kuyruğa doğru uzar, çarpma karesinin siluetinde de görülür.
+    - Kalkış (≈0,3 boy/kare) ve gezegene dalış (≈0,1) yavaş kaldığı için oraya konmadı.
+  - v5.7 (4 Kasım): kullanıcı üç şikâyet getirdi:
+    - Roketin yönü bir anda değişiyor (ölçüldü: 282'deki kesmede 98°, düşüş yolunun kırığında iki karede 78°).
+    - Burun ateşi düşüşte birden kayboluyor.
+    - Kamera sürekli ileri geri kayıyor.
+  - v5.7'de yapılanlar:
+    - Kamera sabit açılara ve rokete göre sabit açılara geçti, olay üstünde kesiliyor; 11 çekim.
+    - Düşüş yolu tek, kırıksız bir eğri oldu.
+    - Atmosfere giriş çekiminde gezegen yüzeyi altta yatay duruyor.
+    - Kesmelerde yön değişimi 7° ve 23°'ye indi; çekim içinde ani dönüş yok.
+    - Burun ateşi bulutlarda sürüp yavaşça sönüyor.
+    - Smear yeni hızlara göre yeniden yerleştirildi.
+    - Ses: Kenney CC0 örnekleri ve özgün sentez.
+  - v5.8 (4 Kasım): kullanıcı "şu anki hali kabul edilebilir, biraz daha cila" dedi.
+    - Müzik: Siberian Intro (CC0). Kullanıcının çizdiği düzey eğrisi uygulandı: kısık başlar, ortada tepe, yavaşça iner. Motor susunca kısılma kaldırıldı.
+    - Efektler stereo ve yankılı; alçak uğultu kısıldı.
+    - Sonda "içeride biri var" sesleri: gövde oturur, ışık vızıltısı, kemer tokası, kask kilitleri, basınç tıslaması, kask çıkar, seçim ekranında kapak açılır.
+    - Çıktı: `Animatik/v5_1080/Acilis-Previs-v5_1080-v58.mp4`.
+  - v5.9 (4 Kasım): Dünya'nın kırılımı için "AI slop gibi" yorumu geldi. İki konsept kare üretildi (GPT Image, 5,5 kredi). Kullanıcı kendi fikrini seçti:
+    - Dünya roket kaçarken aşağıdan yukarı çatlıyor. Çatlaklar, ekranda tasarlanıp yüzeye indirilen mürekkep + lav + sarı çekirdek şeritleri; Build ile sarsıntı vuruşlarında adım adım büyüyorlar. Merdiven kenarlar ve yeşil altıgen kıymıklar kalktı.
+    - f42'deki büyük patlama kalktı: roket ateş içinde çatlaktan fırlıyor, üç kabuk parçası kalkıyor.
+    - Patlama geriye bakışta: Dünya'nın dikişleri alttan üste kızarıyor, f114'te plakalar savruluyor.
+    - Kuzey ışığı gibi düzensiz enerji halkası (krem, macenta, mor; mürekkep kenarlı, dört çeşit ikişer karede kaynıyor). Ekranda büyüklüğü tasarlanmış; f134'e kadar Dünya'nın çevresinde büyüyor, 136–139'da gövdeyi süpürüp geçiyor, darbe f140.
+    - Ses: f42'de fırlayış, f114'te patlama, 114–140 arası parıltılı enerji uğultusu.
+  - v5.10 (4 Kasım): kullanıcı "çok paint çizimi gibi, derinlik hissettirmeli; patlama mor yerine turuncu" dedi.
+    - Enerji halkası turuncu, 3B bir çember perde oldu: yüksekliği var, ön yüzü turuncu, içi sarı-krem, üst kenarı sivri perdeli, mürekkep konturlu.
+    - Kamera perde düzleminin 8° üstünde; perde Satürn halkası gibi yandan görünüyor, Dünya'nın önünden ve arkasından geçiyor. Kaya parçaları ve kıvılcımlar perdeyle birlikte taşınıyor; yakındakiler hızlı geçiyor.
+    - Yakın yay kameraya çok yaklaştığı son 3 karede gizli; orada kadrajı düz bir levha gibi kaplıyordu.
+    - Gövde patlamadan itibaren turuncu ışık alıyor, perde yaklaştıkça ışık büyüyor.
+    - Çatlaklar çukur gibi: uzak kenarda lavın aydınlattığı kaya duvarı, lav yakın kenara kayık; çatlaklardan kıvılcımlar yükseliyor.
+    - **Kullanıcı onayladı (4 Kasım 2026): "Oturdu".** Güncel açılış: `Animatik/v5_1080/Acilis-Previs-v5_1080-v510.mp4`.
+  - v5.11 (4 Kasım, yalnız ses): baştaki çatlama sesi "demir dövme gibi" geliyordu (Kenney `impactMining`, kazma).
+    - Yerine her çatlak büyümesinde (kare 2, 15, 28) alçak geçiren filtreli `explosionCrunch_000`, 38 Hz gümbürtü ve 4–12 ms'lik kaya çatırtıları; geniş planda (44–62) daha seyrek çatırtı. Görüntü değişmedi.
+    - Karışımda alimiter varsayılanı çıkışı 0 dBFS'e büyütüyordu; patlamada (5,05 sn) bir örnek kırpılıyordu (v5.10'da da vardı). `level=0` ile tepe −1 dB, genel ses yaklaşık 1 dB kısıldı (−15,4 LUFS).
+    - Çıktı: `Acilis-Previs-v5_1080-v511.mp4`; eski/yeni dinleme: `Karsilastirma_catlama_sesi.mp4` (eski taraf seviye eşitlendi).
+    - **Kullanıcı onayladı (4 Kasım 2026): "Yeni kalsın".** Güncel açılış: `Animatik/v5_1080/Acilis-Previs-v5_1080-v511.mp4`.
+    - Açık not: sondaki düşen taşlar (kare 320/325/331) hâlâ `impactMining` kullanıyor; metal gibi gelirse aynı yöntemle değiştirilir.
+  - v5.12 (4 Kasım, düşüş): kullanıcı "burun yere düşene kadar sarı, düşünce rengi yavaşça kendine gelsin; renk geçişi rahatsız ediyor" ve "sarı çizgi kötü duruyor" dedi.
+    - Kızgın burun yerden çekime kesmede (302) bir anda kırmızıya dönüyordu. Artık çarpmaya (316) kadar sarı; 318–348 arasında sarı → kızgın turuncu → kendi kırmızısı (`NOSE_HEAT`, malzemede anahtarlı değer).
+    - Düşüşte gövdedeki ısı izleri (hareketsiz sarı çizgiler, biri burnun dışına taşıyordu) kaldırıldı. Atmosfere girişte (250–281) duruyorlar.
+    - Sönen burun ateşinin iç katmanı önce söner; küçülünce burunda kırmızı leke gibi kalıyordu. En sondaki küçük topak gösterilmez.
+    - Çıktı: `Acilis-Previs-v5_1080-v512.mp4`.
+    - **Kullanıcı onayladı (4 Kasım 2026): "Oturdu".** Güncel açılış: `Animatik/v5_1080/Acilis-Previs-v5_1080-v512.mp4`.
+  - Unity'ye bağlama (4 Kasım). Kullanıcının isteği: oyun ilk açılışta videoyu oynatır; Space basılı tutulunca geçilir, "Space" yazılı bir geçme çubuğu dolar. Koşul: kullanılan her şey ücretsiz ve lisansı uygun olmalı. Commit'i kullanıcı kendisi yapacak.
+    - Dosya: `Assets/StreamingAssets/Intro/ErigoneIntro.webm` (VP8 + Vorbis, 14,4 MB; `Tools/Art/IntroAnimatic/export_intro_unity.py`). Görüntü doğrudan render karelerinden; son 8 kare mürekkebe kararır, ardından 1,5 sn düz mürekkep ve ses kuyruğu.
+    - Akış (`MainMenuUI.OnPlayClicked` → `IntroVideoPlayer`): ilk "Oyna"da, seçim ekranından önce. Diyalog planındaki karar bu ("önce insanlar iner, sonra Eri seçim ekranında karşılar"). Video karardığında (14,75 sn) seçim ekranı açılır, kask/kapak sesleri onun üstünde biter. `MetaSaveData.introSeen` hem geçişte hem bitişte yazılır; sonraki "Oyna"lar doğrudan seçime gider.
+    - Geçme: Space 1 sn basılı tutulur; sağ altta comic plakada Space tuşu ikonu, "basılı tut: geç" ve dolan kehribar çubuk. Bırakılınca çubuk iki kat hızla boşalır. Video sürerken menü tıklanmaz, Space seçili düğmeye "gönder" olmaz.
+    - Ses: müzik ses düzeyiyle (`GameSettings.MusicVolume`, ana ses `AudioListener` üzerinden). Arka planda sessize alma açıksa görüntü de bekler.
+    - Hata yolu: dosya yoksa ya da oynatılamazsa (8 sn hazırlık sınırı) doğrudan seçim ekranı açılır, video "görüldü" sayılmaz, aynı oturumda tekrar denenmez.
+    - Tuş ikonları: Kenney Input Prompts (CC0), oyunun renklerine boyanmış türev (`KeyPrompts.cs`, `Tools/Art/KeyPrompts/`). Aynı ikonlar tur önizlemesi (Tab/Esc), ödül yerleştirme (Esc), açılır pencere kaydırma (PgUp/PgDn) ve rezonans ayrıntısında (Alt) da kullanılıyor.
+    - Doğrulama: `Tools/Verification/Editor/IntroVideoVerification.cs` (izole kopya, gerçek MenuScene; 43 kontrol). Kullanıcının kendi editöründe Play testi henüz yapılmadı.
+    - Açık: diyalog planındaki "menüden tekrar izle" seçeneği eklenmedi.
+  - Sırada (Bitti sayılır bölümüne göre): Unity'ye bağlama ve test. Atlanabilir; ilk run'da bir kez, seçimden önce; `MetaSaveData.introSeen`.
 
 ## Kurallar (proje genelinde)
 - **Yanıt dili:** Türkçe.
