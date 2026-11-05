@@ -23,6 +23,10 @@ public static class GameSettings
     public static float EffectsVolume;
     public static bool MuteInBackground;
 
+    // ---------- Dil ----------
+    // Oyuncunun seçtiği dil kodu (en, tr …). Boş: seçilmedi, oyun bilgisayarın diliyle açılır (tabloda yoksa İngilizce). GameText okur.
+    public static string Language;
+
     // ---------- Oynanış ----------
     public static float ScreenShake;
     public static bool CameraMotion;
@@ -71,6 +75,8 @@ public static class GameSettings
         EffectsVolume = 1f;
         MuteInBackground = true;
 
+        Language = "";
+
         ScreenShake = 1f;
         CameraMotion = true;
         DamageNumbers = true;
@@ -96,6 +102,8 @@ public static class GameSettings
         EffectsVolume = PlayerPrefs.GetFloat(Prefix + "effectsVolume", EffectsVolume);
         MuteInBackground = GetBool("muteInBackground", MuteInBackground);
 
+        Language = PlayerPrefs.GetString(Prefix + "language", Language);
+
         ScreenShake = PlayerPrefs.GetFloat(Prefix + "screenShake", ScreenShake);
         CameraMotion = GetBool("cameraMotion", CameraMotion);
         DamageNumbers = GetBool("damageNumbers", DamageNumbers);
@@ -107,6 +115,9 @@ public static class GameSettings
 
     public static void Save()
     {
+        // Otomatik testler (batch) oyuncu tercihlerini okumadığı gibi yazmaz da: izole test kopyası aynı şirket / ürün adıyla
+        // aynı PlayerPrefs'i paylaşır, testin varsayılanları geliştiricinin ayarlarının üstüne yazılmasın (5 Kasım 2026).
+        if (Application.isBatchMode) return;
         PlayerPrefs.SetInt(Prefix + "resolutionWidth", ResolutionWidth);
         PlayerPrefs.SetInt(Prefix + "resolutionHeight", ResolutionHeight);
         PlayerPrefs.SetInt(Prefix + "windowMode", (int)WindowMode);
@@ -119,6 +130,8 @@ public static class GameSettings
         PlayerPrefs.SetFloat(Prefix + "musicVolume", MusicVolume);
         PlayerPrefs.SetFloat(Prefix + "effectsVolume", EffectsVolume);
         SetBool("muteInBackground", MuteInBackground);
+
+        PlayerPrefs.SetString(Prefix + "language", Language ?? "");
 
         PlayerPrefs.SetFloat(Prefix + "screenShake", ScreenShake);
         SetBool("cameraMotion", CameraMotion);

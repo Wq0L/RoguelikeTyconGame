@@ -65,8 +65,9 @@ Güvenlik:
 | F · İnceleme | Hücre / saksı / bitki incelemesi; stat kaynağı; oturum durumu; olay kaydı (**seviye: Kapalı / İşlem özeti / Ayrıntılı sayısal iz**; tür, metin ve saldırı kimliği süzgeci, temizle, dışarı aktar). |
 | G · Senaryolar | Hazır senaryolar; profil ve seed; mevcut düzeni yakala ve kaydet; kayıtlı senaryoyu kur. |
 | H · Sayısal | Sayısal doğrulama, altı alt sekme: Önce / Sonra · Saldırı izi · Makbuz ve buff · Kontroller · Şans · Rapor. |
+| I · Diyalog | Öğretim, hikâye ve tepki konuşmalarını tam run oynamadan dene: yöneticiyi aç / kapa, oyunun tetiğini yayınla, konuşmayı ya da tek satırı oynat, hikâye aşaması (Eri'nin hâli ve kutu grisi), taşlar, Taş 1 cevabı, sıfırlama. Ayrıntı: aşağıda "Diyalog araçları". |
 
-Pencere dar olduğunda (900 pikselin altı) sekiz sekme iki satıra bölünür; sayısal tabloların sütunları pencere genişliğine
+Pencere dar olduğunda (1000 pikselin altı) dokuz sekme iki satıra bölünür; sayısal tabloların sütunları pencere genişliğine
 göre ölçeklenir.
 
 ## Hangi müdahale normal kuralı izler, hangisi test kolaylığıdır
@@ -161,6 +162,30 @@ Kapasite retleri oyunun sayaçlarından kare sonunda okunur ("Kasırga tetiği r
 reddedildiği yazılır, hangi saksıdan geldiği değil. Kayıt en çok 2 000 satır tutar; kapalıyken hiçbir olaya abone değildir.
 Vuruş, kritik, zincir zarı ve stat değişikliği satırları yalnız "Ayrıntılı sayısal iz" seviyesinde yazılır; "İşlem özeti"nde
 saldırı özeti, hasat, davranış, ödül, buff ve olay satırları kalır.
+
+## Diyalog araçları (`I · Diyalog`, Faz 6, 5 Kasım 2026)
+
+Lab oturumunda diyalog yöneticisi **kendiliğinden konuşmaz** (test sahnesi korunur). Bu sekme onu açar ve konuşmaları elle oynatır.
+Oyun kodundaki girişler yalnız editörde derlenir (`#if UNITY_EDITOR`: `DialogueDirector.EditorPlay / EditorCloseAll`,
+`DialogueProgress.EditorSetStage / EditorSetMilestone / EditorSetSeen / EditorSetChoice / EditorResetSeen / EditorResetStory`).
+Komutlar `Assets/Editor/MechanicsTestLab/TestDialogue.cs`, sekme `LabWindow.Dialogue.cs`.
+
+- **Yönetici aç / kapa:** açıkken öğretimler ve hikâye oyundaki tetiklerle çıkar (oyunun kuralları aynen). Kapalıyken (başlangıç)
+  konuşmalar yalnız ▶ düğmeleriyle oynar.
+- **Oyunun tetiğini yayınla** (yönetici açıkken): seçilen tetik (RoundStarted, LevelUp, PlacingEntered…) oyundaki gibi uygun
+  konuşmayı seçer. Aşama, görüldü ve ekran kuralları geçerli: büyük kutu round dışında, küçük kutu round içinde açılır.
+- **Konuşma / satır oynat (▶):** koşullara bakmaz, konuşmanın kendi kutusunda (büyük / küçük / gezegen balonu) açılır.
+  "Görüldü say" kapalıyken kayıt değişmez. Tek satır oynatmada kayıtlı cevaba bağlı koşul yok sayılır. Liste kategoriye ve
+  metne göre süzülür; satırların aşama geçişi, şık ve koşul işaretleri yazılır.
+- **Hikâye:** aşama 0–3 (Eri'nin kutudaki ve gezegendeki tablosu ile konuşma kutusunun grisi hemen değişir; lab'de geri de alınır),
+  sıradaki taşı kazan, sıradaki hikâyeyi oyundaki yoldan oynat (Taş 1 → aşama 1, R25 → aşama 2, görüldü sayılır), 14 taşın
+  durumu ve tek tek kazan / sil, Taş 1 cevabı A / B / sil.
+- **Sıfırla:** görülenler (öğretimler ve tepkiler yeniden çıkar) ya da hikâye (taşlar, cevaplar, aşama 0).
+- **Kayıt:** oturum gerçek kaydı okur ama hiç yazmaz. Kayıt değiştiren komutlar kayıt bellekte değilse reddedilir. Değişiklikler
+  Play bitince gider; senaryoyu yeniden kurmak bellekteki ilerlemeyi silmez.
+
+Tipik kullanım: öğretimi yeniden görmek için "Görülenleri sıfırla" → yöneticiyi aç → oyunda ilgili anı oluştur (ör. dükkânı aç)
+ya da tetiği yayınla. Hikâye satırını okumak için listeden ▶ (kayıt değişmez). Eri'nin üzgün hâlini görmek için aşama 2.
 
 ## Sayısal doğrulama (`H · Sayısal`)
 
@@ -448,6 +473,17 @@ Dış kaynak, paket ya da üçüncü taraf içerik kullanılmadı.
 
 `Tools/run-isolated-verification.ps1 -Method MechanicsTestLabVerification.RunBatch -Full` — izole proje kopyasında; açık editöre
 dokunmaz. Sonuç: [MechanicsTestLab/MechanicsTestLabVerification.txt](MechanicsTestLab/MechanicsTestLabVerification.txt).
+
+5 Kasım 2026 (Faz 6, `I · Diyalog`): `MechanicsTestLabVerification.RunDialogueBatch` (yalnız oturum + diyalog araçları + panel)
+**PASS, 31 kontrol** (`Logs/MechanicsTestLabDialogue.txt`).
+- Kapsam: yönetici kendiliğinden susar; konuşma / tek satır / küçük kutu oynar; kayıt değişmez ya da istenince görüldü yazılır.
+- Aşama 2 / 3 / 0: Eri tablosu ve kutu grisi doğru, aşama geri alınır.
+- Taş 1 cevabı; taş kazan / sil; sıradaki hikâye oyundaki yoldan; sıfırlamalar; yönetici açıkken oyunun tetiği.
+- Dokuz sekme hatasız çizildi; gerçek kayıt ve asset'ler değişmedi.
+
+Aynı gün tam koşu (`RunBatch`) 118 kontrolden sonra **diyalogla ilgisi olmayan** bir adımda düştü: "gecikmeli etki: adım adım
+ilerlet". Artçı Patlama ödül verisinde 0,2 sn ama tek adımlarla 0,6 sn sonra uygulandı. İncelenmedi; oyun değiştirilmedi
+(kullanıcı kuralı: yeteneklere dokunulmaz). Oyuncu derlemesi kontrolü (editör girişleri oyuna girmiyor) o koşuda geçti.
 
 12 Ekim 2026: **PASS, 183 kontrol.** Oturum, kullanıcının yaptığı gibi `MechanicsTestScene` açılıp Play'e girilerek başlatıldı;
 müdahaleler panelin kullandığı aynı komutlardan geçti; zaman sabit kare adımıyla (1 / 30 sn) ilerletildi.

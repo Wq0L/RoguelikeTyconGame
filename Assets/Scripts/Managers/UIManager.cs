@@ -30,13 +30,13 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        exitSellButton = CreateExitButton("Exit Sell Mode", "SATIŞTAN ÇIK");
+        exitSellButton = CreateExitButton("Exit Sell Mode", "ui.game.exit_sell");
         exitSellButton.onClick.AddListener(() =>
         {
             if (GameManager.Instance.CurrentState == GameStates.Selling)
                 PlacementManager.Instance.ExitSellMode();
         });
-        exitSkillButton = CreateExitButton("Exit Shop", "GERİ");
+        exitSkillButton = CreateExitButton("Exit Shop", "ui.game.exit_shop");
         exitSkillButton.onClick.AddListener(() =>
         {
             if (GameManager.Instance.CurrentState == GameStates.Shop &&
@@ -334,7 +334,8 @@ public class UIManager : MonoBehaviour
         resourcesHome = null;
     }
 
-    private Button CreateExitButton(string objectName, string caption)
+    // captionKey: düğme yazısının çeviri anahtarı (LocalizedText; dil değişince kendiliğinden yenilenir).
+    private Button CreateExitButton(string objectName, string captionKey)
     {
         // Separate from the movable skill-tree content and the hidden shop panel.
         var obj = new GameObject(objectName, typeof(RectTransform), typeof(Image), typeof(Button));
@@ -372,7 +373,7 @@ public class UIManager : MonoBehaviour
         TMP_Text referenceLabel = reference != null ? reference.GetComponentInChildren<TMP_Text>(true) : null;
         label.font = TMP_Settings.defaultFontAsset;
         label.color = referenceLabel != null ? referenceLabel.color : Color.white;
-        label.text = caption;
+        LocalizedText.Bind(label, captionKey);
         label.alignment = TextAlignmentOptions.Center;
         label.enableAutoSizing = true;
         label.fontSizeMin = 16;

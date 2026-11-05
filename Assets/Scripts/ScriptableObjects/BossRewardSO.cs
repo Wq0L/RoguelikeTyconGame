@@ -30,6 +30,18 @@ public sealed class BossRewardSO : ScriptableObject
     [Tooltip("Kartta etkinin altındaki kısa açıklama.")]
     [TextArea] public string note;
 
+    // Oyuncuya görünen yazılar: çeviri tablosundan (data.reward.<id>.name / .effect / .inverse); anahtar yoksa asset'teki yazı.
+    // Not sürümden sürüme farklı olabildiği için yazısının özetiyle anahtarlanır (NoteKey).
+    public string DisplayName => GameText.Data(Key("name"), displayName);
+    public string EffectLabel => GameText.Data(Key("effect"), effectLabel);
+    public string InverseLabel => GameText.Data(Key("inverse"), inverseLabel);
+    public string NameKey => Key("name");
+    public string EffectKey => Key("effect");
+    public string InverseKey => Key("inverse");
+    private string Key(string field) => string.IsNullOrEmpty(id) ? null : "data.reward." + id + "." + field;
+    public string NoteKey(string text) => string.IsNullOrEmpty(id) || string.IsNullOrEmpty(text) ? null : "data.reward." + id + ".note_" + GameText.ShortHash(text);
+    public string TranslateNote(string text) => GameText.Data(NoteKey(text), text);
+
     [Header("Etki (her alışta bir kez daha eklenir)")]
     public List<StatModifier> modifiersPerStack = new();
     [Min(0.01f)] public float directDamageMultiplier = 1f;

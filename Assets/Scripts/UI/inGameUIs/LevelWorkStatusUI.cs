@@ -6,7 +6,7 @@ using UnityEngine;
 // iş olmaz ve yazı hiç görünmez. Yalnız gösterir: beklemeyi RoundManager, işi ProgressionManager yönetir.
 public sealed class LevelWorkStatusUI : MonoBehaviour
 {
-    public const string Title = "SEVİYE KAZANIMLARI HESAPLANIYOR";
+    public static string Title => GameText.Get("ui.hud.level_work");
 
     private GameObject plate;
     private TextMeshProUGUI label;
@@ -87,6 +87,6 @@ public sealed class LevelWorkStatusUI : MonoBehaviour
         }
         if (progression.CurrentLevel == shownLevel) return;
         shownLevel = progression.CurrentLevel;
-        label.text = $"{Title}\n<size=70%>Level {shownLevel}</size>";
+        label.text = $"{Title}\n<size=70%>{GameText.Format("ui.hud.level_work.level", shownLevel)}</size>";
     }
 }

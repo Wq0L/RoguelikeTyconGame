@@ -19,7 +19,7 @@ public sealed class FreshTileRing : MaskableGraphic
 
     // Bu round'un kartı: yeni yerleşen tile "YENİ", seviye atlayan tile "+SV".
     public static string LabelFor(GroundCell cell) =>
-        ProgressionManager.Instance != null && ProgressionManager.Instance.WasUpgradedThisRound(cell) ? "+SV" : "YENİ";
+        GameText.Get(ProgressionManager.Instance != null && ProgressionManager.Instance.WasUpgradedThisRound(cell) ? "ui.tile.level_up_tag" : "ui.tile.new");
 
     public static FreshTileRing Create(Transform cell)
     {
@@ -43,8 +43,10 @@ public sealed class FreshTileRing : MaskableGraphic
         return ring;
     }
 
-    public void Show(float startDelay, string text = "YENİ")
+    // text null: "YENİ" (çeviri tablosundan).
+    public void Show(float startDelay, string text = null)
     {
+        text ??= GameText.Get("ui.tile.new");
         gameObject.SetActive(true);
         if (label != null) label.text = text;
         delay = startDelay;
@@ -154,7 +156,7 @@ public sealed class FreshTileRing : MaskableGraphic
         label.rectTransform.offsetMax = new Vector2(-7f, -3f);
         ComicUITheme theme = FeelOverlay.Theme;
         if (theme != null) theme.StylePopupText(label);
-        label.text = "YENİ";
+        label.text = GameText.Get("ui.tile.new");
         label.alignment = TextAlignmentOptions.Center;
         label.textWrappingMode = TextWrappingModes.NoWrap;
         label.enableAutoSizing = true;

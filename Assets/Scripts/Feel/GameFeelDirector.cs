@@ -125,10 +125,10 @@ public class GameFeelDirector : MonoBehaviour
         Color bossColor = BossTheme.Bright(SegmentEventText.IntroSubject(events, rounds));
         if (eventIntro != null) { subtitle = eventIntro; color = bossColor; }
         else if (quota != null) { subtitle = quota; color = quotaColor; }
-        else if (last) { subtitle = "SON ROUND!"; color = roundColor; }
+        else if (last) { subtitle = GameText.Get("ui.stamp.last_round"); color = roundColor; }
         else if (SegmentEventText.HeadsUp(events, rounds) is string headsUp) { subtitle = headsUp; color = bossColor; }
-        else { subtitle = $"{Mathf.RoundToInt(rounds.RemainingTime)} SANİYE"; color = roundColor; }
-        ScreenStamp.Show("round", $"ROUND {rounds.CurrentRound}", subtitle, color, roundStampY, 0.55f);
+        else { subtitle = GameText.Format("ui.stamp.seconds", Mathf.RoundToInt(rounds.RemainingTime)); color = roundColor; }
+        ScreenStamp.Show("round", GameText.Format("ui.stamp.round", rounds.CurrentRound), subtitle, color, roundStampY, 0.55f);
         FeelAudio.Play(FeelSound.Whoosh, 0.55f);
         pendingThumpTime = Time.unscaledTime + 0.2f;
     }
@@ -140,14 +140,14 @@ public class GameFeelDirector : MonoBehaviour
         if (rounds == null || !rounds.QuotaEnabled) return null;
         int round = rounds.CurrentRound;
         if (rounds.Calendar.IsPeriodStart(round))
-            return $"KOTA {HarvestQuota.Format(rounds.QuotaTarget)} · {rounds.Calendar.PeriodLength(rounds.QuotaSegment)} ROUND";
+            return GameText.Format("ui.stamp.quota", HarvestQuota.Format(rounds.QuotaTarget), rounds.Calendar.PeriodLength(rounds.QuotaSegment));
         long missing = rounds.QuotaTarget - rounds.QuotaProgress;
-        return rounds.IsQuotaSegmentEnd(round) && missing > 0 ? $"SON ROUND · KOTAYA {HarvestQuota.Format(missing)} KALDI" : null;
+        return rounds.IsQuotaSegmentEnd(round) && missing > 0 ? GameText.Format("ui.stamp.quota_missing", HarvestQuota.Format(missing)) : null;
     }
 
     private void HandleLevelUp(int level)
     {
-        ScreenStamp.Show("level", "LEVEL UP!", $"Lv. {level}", levelColor, levelStampY, 0.5f);
+        ScreenStamp.Show("level", GameText.Get("ui.stamp.level_up"), GameText.Format("ui.stamp.level", level), levelColor, levelStampY, 0.5f);
         float now = Time.unscaledTime;
         if (now < nextLevelEffectTime) return;
         nextLevelEffectTime = now + levelEffectCooldown;

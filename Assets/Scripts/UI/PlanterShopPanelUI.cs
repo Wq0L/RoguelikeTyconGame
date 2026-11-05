@@ -70,6 +70,10 @@ public class PlanterShopPanelUI : MonoBehaviour
                 selectedSprite = selectedCard,
                 pressedSprite = pressedCard
             };
+            // Kilit yazısı sahnede kurucunun yazdığı "LOCKED": çeviri tablosuna buradan bağlanır (sahneye dokunmadan).
+            if (card.lockedOverlay != null)
+                foreach (TMP_Text label in card.lockedOverlay.GetComponentsInChildren<TMP_Text>(true))
+                    LocalizedText.Bind(label, "ui.shop.locked_badge");
         }
         buyButton.onClick.AddListener(Buy);
         backButton.onClick.AddListener(ShowList);
@@ -115,9 +119,9 @@ public class PlanterShopPanelUI : MonoBehaviour
         ((RectTransform)details.transform).anchoredPosition = detailsHome;
         details.interactable = details.blocksRaycasts = false;
         backButton.gameObject.SetActive(false);
-        heading.text = "PLANTERS";
-        if (detailTitle != null) detailTitle.text = "CHOOSE A PLANTER";
-        summary.text = "PICK IT. PLANT IT. GROW BIG.";
+        heading.text = GameText.Get("ui.shop.heading");
+        if (detailTitle != null) detailTitle.text = GameText.Get("ui.shop.choose");
+        summary.text = GameText.Get("ui.shop.tagline");
         for (int i = 0; i < cards.Count; i++)
         {
             cards[i].rect.anchoredPosition = homePositions[i];
@@ -134,8 +138,8 @@ public class PlanterShopPanelUI : MonoBehaviour
         if (animating || index < 0 || index >= cards.Count || cards[index].data == null || !cards[index].data.IsUnlocked) return;
         selectedIndex = index;
         cards[index].background.sprite = selectedCard;
-        heading.text = "PLANTERS";
-        summary.text = "PICK IT. PLANT IT. GROW BIG.";
+        heading.text = GameText.Get("ui.shop.heading");
+        summary.text = GameText.Get("ui.shop.tagline");
         backButton.gameObject.SetActive(true);
         Refresh();
         transition = StartCoroutine(Animate(true));
@@ -190,7 +194,8 @@ public class PlanterShopPanelUI : MonoBehaviour
         {
             bool configured = card.data != null && card.data.prefab != null;
             card.button.interactable = configured && card.data.IsUnlocked;
-            card.price.text = configured ? card.data.IsUnlocked ? $"{card.data.Price} {card.data.PriceType}" : "SKILL TREE" : "UNAVAILABLE";
+            card.price.text = configured ? card.data.IsUnlocked ? $"{card.data.Price} {TileBuffText.ResourceName(card.data.PriceType)}"
+                : GameText.Get("ui.shop.skill_tree") : GameText.Get("ui.shop.unavailable");
             if (card.lockedOverlay != null) card.lockedOverlay.SetActive(!card.button.interactable);
             if (card.preview != null) card.preview.color = card.button.interactable ? Color.white : new Color(.45f,.47f,.46f);
             card.background.color = card.button.interactable ? Color.white : new Color(.6f,.62f,.61f);
@@ -202,16 +207,16 @@ public class PlanterShopPanelUI : MonoBehaviour
             if (plotsLabel != null) plotsLabel.text = "-";
             if (sizeLabel != null) sizeLabel.text = "-";
             if (timeLabel != null) timeLabel.text = "-";
-            description.text = "Choose an unlocked planter from the catalogue.";
+            description.text = GameText.Get("ui.shop.choose_hint");
             status.text = "";
-            buyLabel.text = "BUY";
+            buyLabel.text = GameText.Get("ui.shop.buy");
             if (buyResourceIcon != null) buyResourceIcon.enabled = false;
             return;
         }
         PlanterSO data = cards[selectedIndex].data;
         if (data == null) return;
         int cells = data.sizeX * data.sizeZ;
-        if (detailTitle != null) detailTitle.text = $"{data.sizeX}x{data.sizeZ} PLANTER";
+        if (detailTitle != null) detailTitle.text = GameText.Format("ui.shop.planter_title", data.sizeX, data.sizeZ);
         if (detailPreview != null && cards[selectedIndex].preview != null)
         {
             detailPreview.enabled = true;
@@ -219,7 +224,7 @@ public class PlanterShopPanelUI : MonoBehaviour
         }
         if (plotsLabel != null) plotsLabel.text = cells.ToString();
         if (sizeLabel != null) sizeLabel.text = $"{data.sizeX}x{data.sizeZ}";
-        if (timeLabel != null) timeLabel.text = $"{EffectiveStat(data, StatType.PlantSpawnRate):0.#}s";
+        if (timeLabel != null) timeLabel.text = GameText.Format("ui.shop.seconds", GameText.Number(EffectiveStat(data, StatType.PlantSpawnRate), "0.#"));
 
         StringBuilder plants = new StringBuilder();
         if (data.spawnTable != null)
@@ -227,24 +232,26 @@ public class PlanterShopPanelUI : MonoBehaviour
                 if (entry != null && entry.plant != null && entry.baseChance > 0f)
                 {
                     if (plants.Length > 0) plants.Append(", ");
-                    plants.Append(entry.plant.plantName);
+                    plants.Append(entry.plant.DisplayName);
                 }
-        description.text = $"{cells} growing plots for {(plants.Length > 0 ? plants.ToString() : "your next crop")}.\nNeeds {cells} empty, unlocked cells. R rotates during placement.";
+        description.text = GameText.Format("ui.shop.description", cells, plants.Length > 0 ? plants.ToString() : GameText.Get("ui.shop.next_crop")) +
+                           "\n" + GameText.Format("ui.shop.description2", cells);
         int balance = resources != null ? resources.GetResourceAmount(data.PriceType) : 0;
         bool valid = data.prefab != null && data.sizeX > 0 && data.sizeZ > 0 && data.Price >= 0
             && data.prefab.GetComponent<PlanterBrain>() != null;
         bool affordable = resources != null && balance >= data.Price;
         buyButton.interactable = valid && data.IsUnlocked && affordable && !animating;
-        buyLabel.text = $"BUY  /  {data.Price}";
+        buyLabel.text = GameText.Format("ui.shop.buy_price", data.Price);
         if (buyResourceIcon != null && theme != null)
         {
             buyResourceIcon.sprite = theme.ResourceIcon(data.PriceType);
             buyResourceIcon.enabled = buyResourceIcon.sprite != null;
         }
-        status.text = !valid ? "Planter setup is incomplete."
-            : !data.IsUnlocked ? "Unlock this planter in the skill tree."
-            : affordable ? $"Available: {balance} {data.PriceType}"
-            : $"Need {data.Price - balance} more {data.PriceType}  /  Available: {balance}";
+        string resource = TileBuffText.ResourceName(data.PriceType);
+        status.text = !valid ? GameText.Get("ui.shop.incomplete")
+            : !data.IsUnlocked ? GameText.Get("ui.shop.locked")
+            : affordable ? GameText.Format("ui.shop.available", balance, resource)
+            : GameText.Format("ui.shop.need", data.Price - balance, resource, balance);
         status.color = valid && affordable ? new Color(0.05f, 0.33f, 0.25f) : new Color(0.7f, 0.12f, 0.08f);
     }
 

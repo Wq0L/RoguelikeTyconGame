@@ -8,20 +8,28 @@ public static class DialogueArt
     public const float VignetteCenterY = .26f, VignetteInner = .3f, VignetteOuter = 1.15f, VignetteFloor = .45f;
     private static Texture2D vignette, halftone, halftoneFine;
     private static Sprite eriSilhouette;
-    private static bool eriSilhouetteLoaded;
+    private static Texture2D eriSilhouetteTexture;
+    private static int eriSilhouetteMood = -1;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    private static void ResetStatics() { vignette = null; halftone = null; halftoneFine = null; eriSilhouette = null; eriSilhouetteLoaded = false; }
+    private static void ResetStatics() { vignette = null; halftone = null; halftoneFine = null; eriSilhouette = null; eriSilhouetteTexture = null; eriSilhouetteMood = -1; }
 
-    // Eri'nin konuşma karesinin (DialogueBox.EriFrame) beyaz silüeti: Resources/Dialogue/EriSilhouette.png, GreenhouseMascotFrames'in
-    // 0. karesinden türetildi (renk beyaz, saydamlık ×3: camın yarı saydam yerleri dolu). Kontur ve kâğıt rengi altlık için; bir kez kurulur.
+    // Eri'nin konuşma karesinin (DialogueBox.EriFrame) beyaz silüeti, Eri'nin o anki hâline göre: Resources/Dialogue/EriSilhouette_<Hâl>.png
+    // (hâl tablosunun 0. karesinden türetildi: renk beyaz, saydamlık ×3, camın yarı saydam yerleri dolu; Tools/Art/EriMoods/eri_frames.ps1).
+    // Yoksa eski EriSilhouette.png. Kontur ve kâğıt rengi altlık için; hâl değişince eskisi bırakılır (bellekte tek silüet).
     public static Sprite EriSilhouette
     {
         get
         {
-            if (eriSilhouetteLoaded) return eriSilhouette;
-            eriSilhouetteLoaded = true;
-            var texture = Resources.Load<Texture2D>("Dialogue/EriSilhouette");
+            int mood = MascotFrames.Mood;
+            if (eriSilhouetteMood == mood) return eriSilhouette;
+            if (eriSilhouette != null) Object.DestroyImmediate(eriSilhouette);   // çalışma anında üretildi: hemen (doku hemen bırakılsın)
+            if (eriSilhouetteTexture != null) Resources.UnloadAsset(eriSilhouetteTexture);
+            eriSilhouette = null;
+            eriSilhouetteMood = mood;
+            var texture = Resources.Load<Texture2D>("Dialogue/EriSilhouette_" + MascotFrames.MoodNames[mood]);
+            if (texture == null) texture = Resources.Load<Texture2D>("Dialogue/EriSilhouette");
+            eriSilhouetteTexture = texture;
             if (texture != null)
                 eriSilhouette = Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), new Vector2(.5f, 0f), 100f, 0, SpriteMeshType.FullRect);
             return eriSilhouette;

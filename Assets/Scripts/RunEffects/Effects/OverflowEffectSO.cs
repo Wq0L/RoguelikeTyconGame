@@ -22,7 +22,7 @@ public sealed class OverflowEffectSO : RunEffectSO
     [Range(1, 12)] public int maxSourcesPerAttack = 4;
 
     public override string Summary =>
-        $"öldüren vuruşun artan hasarının %{Percent(ratio)}'i yandaki bitkiye geçer · en çok {maxTransfers} aktarım · her aktarımda %{Percent(1f - ratio)} kayıp";
+        GameText.Format("ui.effect.overflow", Percent(ratio), maxTransfers, Percent(1f - ratio));
 
     public override RunEffect Create() => new OverflowEffect();
 }

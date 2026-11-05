@@ -6,7 +6,10 @@ using UnityEngine;
 // Bölgenin içi boyanmaz: tile'ın kendi dolgu rengi (kart türü) aynen okunur, saksı ve bitkinin üstüne boss dolgusu gelmez.
 // Çizgi zemindedir; saksının arkasında kalan kısmı ikinci, soluk bir kopya gösterir (tarla saksıyla doluyken de sınır okunur).
 // Olayın sakladığı bölgeyi okur (önizleme ile uygulama aynı hücreler); yalnız açık hücreleri sayar, oynanışa dokunmaz.
-// Ekran hava efekti (BossWeatherOverlay) bundan ayrıdır. UIManager kurar. Unscaled time kullanır.
+// Ekran hava efekti (BossWeatherOverlay) bundan ayrıdır. UIManager kurar. Çizgi nabzı unscaled time kullanır.
+// Perde (A1, 5 Kasım 2026; referans Gezgin Bereket perdesi): boss AKTİFKEN bölgenin çevre kenarlarından yükselen, yukarıda solan
+// ışık duvarı (yalnız kenarlarda: bölgenin içi, bitkiler ve darbeler örtülmez). Boss başlayınca yerden yükselir, sonra hafifçe
+// nefes alır; oyun zamanıyla akar (duraklatınca durur). Ağ bölge değişince bir kez kurulur; karede yalnız boyu ayarlanır.
 public sealed class FrostZoneMarkers : MonoBehaviour
 {
     private static readonly int ActiveId = Shader.PropertyToID("_Active");
@@ -21,6 +24,12 @@ public sealed class FrostZoneMarkers : MonoBehaviour
     // Bir nesnenin (saksı, bitki) arkasında kalan çizginin opaklığı.
     public const float OccludedAlpha = 0.5f;
     private const float Lift = 0.02f;
+    // Perde: yükseklik (dünya birimi; Gezgin Bereket perdesiyle aynı), alttaki opaklık, yükselme süresi.
+    public const float CurtainHeight = 1.35f;
+    public const float CurtainAlpha = 0.32f;
+    public const float CurtainRiseSeconds = 0.45f;
+    // Kameraya bakan (ön) duvarların opaklık çarpanı: öndeki bitkiler ve darbeler perdenin arkasında kalmaz.
+    public const float CurtainFrontFactor = 0.4f;
 
     private readonly List<GridPosition> shownCells = new();
     private readonly HashSet<long> shownSet = new();
@@ -33,6 +42,13 @@ public sealed class FrostZoneMarkers : MonoBehaviour
     private Mesh mesh;
     private MeshRenderer outline, occluded;
     private bool unavailable;
+    private readonly List<Vector3> curtainVertices = new();
+    private readonly List<Color> curtainColors = new();
+    private readonly List<int> curtainTriangles = new();
+    private Mesh curtainMesh;
+    private Material curtainMaterial;
+    private MeshRenderer curtain;
+    private float curtainAge;
     private GridUnlockManager unlocks;
     private int gridVersion;
 
@@ -45,6 +61,23 @@ public sealed class FrostZoneMarkers : MonoBehaviour
     public Renderer OutlineRenderer => outline;
     // Saksı / bitki arkasında kalan kısmı soluk çizen kopya.
     public Renderer OccludedRenderer => occluded;
+    public Renderer CurtainRenderer => curtain;
+    public bool ShowsCurtain => curtain != null && curtain.enabled;
+    public int CurtainWalls { get; private set; }
+    // Perdesi olan boss'lar ve renkleri (A1: Don Cephesi buz mavisi; A2: Sert Kabuk kahverengi). Alt renk CurtainAlpha ile, üst renk
+    // saydam çizilir.
+    public static bool HasCurtain(SegmentEventSO boss) => boss is FrostFrontSO || boss is HardShellSO;
+    public static void CurtainColors(SegmentEventSO boss, out Color bottom, out Color top)
+    {
+        if (boss is HardShellSO)
+        {
+            bottom = new Color(0.62f, 0.38f, 0.16f, CurtainAlpha);
+            top = new Color(0.93f, 0.72f, 0.42f, 0f);
+            return;
+        }
+        bottom = new Color(0.27f, 0.64f, 0.97f, CurtainAlpha);
+        top = new Color(0.62f, 0.88f, 1f, 0f);
+    }
 
     public static FrostZoneMarkers Ensure()
     {
@@ -72,6 +105,13 @@ public sealed class FrostZoneMarkers : MonoBehaviour
             material.SetFloat(PulseId, pulse);
             occludedMaterial.SetFloat(PulseId, pulse);
         }
+        if (ShowsCurtain)
+        {
+            curtainAge += Time.deltaTime;
+            float rise = Mathf.Clamp01(curtainAge / CurtainRiseSeconds);
+            rise = rise * rise * (3f - 2f * rise);
+            curtain.transform.localScale = new Vector3(1f, Mathf.Max(0.001f, rise * (0.92f + 0.08f * Mathf.Sin(curtainAge * 0.9f))), 1f);
+        }
     }
 
     // Grid büyüyünce şeridin yeni açılan hücreleri de bölgeye girer: çevre yeniden çizilir.
@@ -81,6 +121,7 @@ public sealed class FrostZoneMarkers : MonoBehaviour
 
     private void Sync(SegmentEventRuntime shown, int version)
     {
+        if (shown.IsActive && !shownActive) curtainAge = 0f;   // boss başladı: perde yerden yükselir
         shownVersion = version;
         shownActive = shown.IsActive;
         shownCells.Clear();
@@ -130,12 +171,82 @@ public sealed class FrostZoneMarkers : MonoBehaviour
             mesh.RecalculateBounds();
         }
         outline.enabled = occluded.enabled = vertices.Count > 0;
+        BuildCurtain(shown, system, grid);
+    }
+
+    // Çevre kenarlarına dikilen duvarlar: altta boss renginin açık tonu (CurtainAlpha), üstte saydam. Üst kenar konuma bağlı hafifçe
+    // dalgalanır (komşu duvarlar aynı köşede birleşir: kesintisiz). Yükseklik transform'un ölçeğiyle (zemin hizasından) değişir.
+    private void BuildCurtain(SegmentEventRuntime shown, GridSystem system, GridManager grid)
+    {
+        curtainVertices.Clear(); curtainColors.Clear(); curtainTriangles.Clear();
+        CurtainWalls = 0;
+        bool wanted = shown.IsActive && HasCurtain(shown.Data) && system != null && shownCells.Count > 0 && EnsureCurtain();
+        if (!wanted) { if (curtain != null) curtain.enabled = false; return; }
+        float half = grid.GetCellSize() * 0.5f, edgeAt = half - LineInset;
+        CurtainColors(shown.Data, out Color bottom, out Color top);
+        Color frontBottom = bottom;
+        frontBottom.a *= CurtainFrontFactor;
+        Camera view = Camera.main;
+        Vector3 toCamera = view != null ? -view.transform.forward : Vector3.back;
+        float baseY = float.MaxValue;
+        foreach (GridPosition cell in shownCells)
+        {
+            GroundCell ground = system.GetGridObject(cell).GetGroundCellCached();
+            Renderer groundRenderer = ground.GroundRenderer;
+            float y = groundRenderer != null ? groundRenderer.bounds.max.y : ground.transform.position.y;
+            if (y < baseY) baseY = y;
+        }
+        foreach (GridPosition cell in shownCells)
+        {
+            Vector3 c = system.GetGridObject(cell).GetGroundCellCached().transform.position;
+            foreach (Vector2Int side in CellOutlineMesh.Sides)
+            {
+                if (shownSet.Contains(Key(cell.x + side.x, cell.z + side.y))) continue;
+                Vector3 a, b;
+                if (side.x != 0) { float x = c.x + side.x * edgeAt; a = new Vector3(x, 0f, c.z - half); b = new Vector3(x, 0f, c.z + half); }
+                else { float z = c.z + side.y * edgeAt; a = new Vector3(c.x - half, 0f, z); b = new Vector3(c.x + half, 0f, z); }
+                int start = curtainVertices.Count;
+                curtainVertices.Add(a); curtainVertices.Add(b);
+                curtainVertices.Add(a + Vector3.up * WallHeight(a)); curtainVertices.Add(b + Vector3.up * WallHeight(b));
+                // Dış yüzü kameraya bakan duvar öndedir: daha saydam.
+                Color low = side.x * toCamera.x + side.y * toCamera.z > 0f ? frontBottom : bottom;
+                curtainColors.Add(low); curtainColors.Add(low); curtainColors.Add(top); curtainColors.Add(top);
+                curtainTriangles.Add(start); curtainTriangles.Add(start + 2); curtainTriangles.Add(start + 1);
+                curtainTriangles.Add(start + 1); curtainTriangles.Add(start + 2); curtainTriangles.Add(start + 3);
+                CurtainWalls++;
+            }
+        }
+        curtainMesh.Clear();
+        curtainMesh.SetVertices(curtainVertices);
+        curtainMesh.SetColors(curtainColors);
+        curtainMesh.SetTriangles(curtainTriangles, 0);
+        curtainMesh.RecalculateBounds();
+        curtain.transform.position = new Vector3(0f, baseY + Lift, 0f);
+        curtain.enabled = CurtainWalls > 0;
+    }
+
+    private static float WallHeight(Vector3 at) => CurtainHeight * (1f + 0.16f * Mathf.Sin(at.x * 1.7f + at.z * 1.3f));
+
+    private bool EnsureCurtain()
+    {
+        if (curtainMaterial != null) return true;
+        Shader shader = Resources.Load<Shader>("BountyAuroraToon");
+        if (shader == null || !shader.isSupported) return false;
+        curtainMaterial = new Material(shader) { name = "Boss Zone Curtain (runtime)" };
+        curtainMesh = new Mesh { name = "Boss Zone Curtain" };
+        curtainMesh.MarkDynamic();
+        curtain = CreateRenderer("Curtain", curtainMaterial);
+        curtain.GetComponent<MeshFilter>().sharedMesh = curtainMesh;
+        return true;
     }
 
     private void Hide()
     {
         if (outline != null) outline.enabled = false;
         if (occluded != null) occluded.enabled = false;
+        if (curtain != null) curtain.enabled = false;
+        shownActive = false;
+        CurtainWalls = 0;
         shownCells.Clear();
         shownSet.Clear();
         edgeCount = 0;
@@ -185,5 +296,7 @@ public sealed class FrostZoneMarkers : MonoBehaviour
         if (material != null) Destroy(material);
         if (occludedMaterial != null) Destroy(occludedMaterial);
         if (mesh != null) Destroy(mesh);
+        if (curtainMaterial != null) Destroy(curtainMaterial);
+        if (curtainMesh != null) Destroy(curtainMesh);
     }
 }

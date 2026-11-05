@@ -12,7 +12,7 @@ public sealed class CritBurstEffectSO : RunEffectSO
     [Range(0.25f, 2f)] public float radiusFactor = 1f;
 
     public override string Summary =>
-        $"tek vuruşta {minCrits}+ bitkiye kritik: merkezde ek alan vuruşu · hasat hasarı × kritik çarpanının %{Percent(damage)}'i";
+        GameText.Format("ui.effect.crit_burst", minCrits, Percent(damage));
 
     public override RunEffect Create() => new CritBurstEffect();
 

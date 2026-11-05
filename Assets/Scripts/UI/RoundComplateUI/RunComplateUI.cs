@@ -15,27 +15,27 @@ public class RunCompleteUI : MonoBehaviour
             (GetComponent<RunResultLayout>() ?? gameObject.AddComponent<RunResultLayout>()).Prepare(scoreText);
         // Run'ın nasıl bittiği skorun üstünde yazar: kota tutmadı (ulaşılan skor / gereken kota) ya da run kazanıldı.
         RoundManager rounds = RoundManager.Instance;
-        string total = $"Harvest Score: {HarvestQuota.Format(HarvestScoreManager.Instance.TotalScore)}";
+        string total = GameText.Format("ui.runend.score", HarvestQuota.Format(HarvestScoreManager.Instance.TotalScore));
         if (rounds == null) { scoreText.text = total; return; }
 
         string quota = $"{HarvestQuota.Format(rounds.LastQuotaScore)} / {HarvestQuota.Format(rounds.LastQuotaTarget)}";
         string spec = SpecializationManager.Instance != null ? SpecializationPanelUI.Describe(SpecializationManager.Instance.Chosen) : null;
-        total = (spec != null ? $"<size=70%>Uzmanlaşma: {spec}</size>\n" : "") + total;
+        total = (spec != null ? $"<size=70%>{GameText.Format("ui.summary.specialization", spec)}</size>\n" : "") + total;
         // Başlangıç seçimi ve bu run'da kalıcı olarak açılan içerik (görev).
         StartLoadoutManager loadout = StartLoadoutManager.Instance;
         if (loadout != null && loadout.Farmer != null && loadout.Scythe != null)
-            total = $"<size=70%>Başlangıç: {loadout.Farmer.displayName} · {loadout.Scythe.displayName}</size>\n" + total;
+            total = $"<size=70%>{GameText.Format("ui.runend.loadout", loadout.Farmer.DisplayName, loadout.Scythe.DisplayName)}</size>\n" + total;
         if (QuestTracker.Instance != null && QuestTracker.Instance.UnlockedThisRun.Count > 0)
         {
             var names = new System.Collections.Generic.List<string>();
-            foreach (StartOptionSO option in QuestTracker.Instance.UnlockedThisRun) names.Add(option.displayName);
-            total += $"\n<size=80%><color=#9BEA7C>Kalıcı olarak açıldı: {string.Join(", ", names)}</color></size>";
+            foreach (StartOptionSO option in QuestTracker.Instance.UnlockedThisRun) names.Add(option.DisplayName);
+            total += $"\n<size=80%><color=#9BEA7C>{GameText.Format("ui.runend.unlocked", string.Join(", ", names))}</color></size>";
         }
         // Bu run'da alınan boss ödülleri.
         string rewards = BossRewardText.Summary(BossRewardManager.Instance);
         if (rewards != null) total += fullGame
-            ? $"\n\n<b>BOSS ÖDÜLLERİ</b>\n<size=85%>• {rewards.Replace(", ", "\n• ")}</size>"
-            : $"\n<size=70%>Boss ödülleri: {rewards}</size>";
+            ? $"\n\n<b>{GameText.Get("ui.runend.boss_rewards")}</b>\n<size=85%>• {rewards.Replace(", ", "\n• ")}</size>"
+            : $"\n<size=70%>{GameText.Format("ui.runend.boss_rewards_line", rewards)}</size>";
         // Bedelli ödüller (Bölüm 3.7.4): kazanç ve bedel ayrı yazılır; seçim hakkı değiştiyse run sonundaki değer de.
         string trades = BossRewardText.TradeSummary(BossRewardManager.Instance);
         if (trades != null) total += $"\n<size=70%>{trades}</size>";
@@ -48,22 +48,22 @@ public class RunCompleteUI : MonoBehaviour
         {
             // Boss round'unda iki koşul aranır; hangisinin eksik kaldığı ayrı ayrı yazılır.
             string boss = $"{HarvestQuota.Format(rounds.LastBossScore)} / {HarvestQuota.Format(rounds.LastBossTarget)}";
-            string title = rounds.EndedByQuota ? "KOTA VE BOSS HASADI TUTMADI" : "BOSS HASADI TUTMADI";
-            string quotaLine = rounds.EndedByQuota ? $"segment kotası {quota} (eksik)" : $"segment kotası {quota} (tamam)";
+            string title = GameText.Get(rounds.EndedByQuota ? "ui.runend.fail_both" : "ui.runend.fail_boss");
+            string quotaLine = GameText.Format(rounds.EndedByQuota ? "ui.runend.segment_quota_short" : "ui.runend.segment_quota_met", quota);
             scoreText.text = $"<size=125%><color=#FF8A7A>{title}</color></size>\n" +
-                             $"<size=75%>Round {rounds.LastBossRound} · boss hasadı {boss} (eksik) · {quotaLine}</size>\n{total}";
+                             $"<size=75%>{GameText.Format("ui.runend.boss_line", rounds.LastBossRound, boss, quotaLine)}</size>\n{total}";
         }
         else if (rounds.EndedByQuota)
-            scoreText.text = $"<size=125%><color=#FF8A7A>KOTA TUTMADI</color></size>\n" +
-                             $"<size=75%>Round {rounds.LastQuotaRound} · segment skoru {quota} (gereken kota)" +
+            scoreText.text = $"<size=125%><color=#FF8A7A>{GameText.Get("ui.runend.fail_quota")}</color></size>\n" +
+                             $"<size=75%>{GameText.Format("ui.runend.quota_line", rounds.LastQuotaRound, quota)}" +
                              (rounds.LastBossRound == rounds.LastQuotaRound && rounds.LastBossTarget > 0
-                                 ? $" · boss hasadı {HarvestQuota.Format(rounds.LastBossScore)} / {HarvestQuota.Format(rounds.LastBossTarget)} (tamam)" : "") +
+                                 ? " · " + GameText.Format("ui.runend.boss_met", HarvestQuota.Format(rounds.LastBossScore), HarvestQuota.Format(rounds.LastBossTarget)) : "") +
                              $"</size>\n{total}";
         else if (rounds.Outcome == RunOutcome.Victory)
         {
-            string title = rounds.Profile != null && !string.IsNullOrEmpty(rounds.Profile.victoryTitle) ? rounds.Profile.victoryTitle : "RUN TAMAMLANDI";
-            string last = rounds.LastQuotaRound > 0 ? $" · son kota {quota}" : "";
-            scoreText.text = $"<size=125%><color=#9BEA7C>{title}</color></size>\n<size=75%>{rounds.MaxRounds} round{last}</size>\n{total}";
+            string title = rounds.Profile != null && !string.IsNullOrEmpty(rounds.Profile.victoryTitle) ? rounds.Profile.VictoryTitle : GameText.Get("ui.runend.victory");
+            string last = rounds.LastQuotaRound > 0 ? " · " + GameText.Format("ui.runend.last_quota", quota) : "";
+            scoreText.text = $"<size=125%><color=#9BEA7C>{title}</color></size>\n<size=75%>{GameText.Format("ui.runend.rounds", rounds.MaxRounds)}{last}</size>\n{total}";
         }
         else scoreText.text = total;
     }
@@ -72,10 +72,10 @@ public class RunCompleteUI : MonoBehaviour
     public static string TimeLine(RunClock clock)
     {
         if (clock == null || clock.RoundsTimed <= 0) return null;
-        string line = $"Aktif oynanış {RunClock.Format(clock.ActiveGameSeconds)} · seçimler {RunClock.Format(clock.ChoiceSeconds)} · " +
-                      $"mağaza ve hazırlık {RunClock.Format(clock.ShopSeconds + clock.PreparationSeconds)}";
-        if (clock.LevelWorkSeconds >= 1d) line += $" · seviye hesaplama {RunClock.Format(clock.LevelWorkSeconds)}";
-        if (clock.PausedSeconds >= 1d) line += $" · duraklama {RunClock.Format(clock.PausedSeconds)}";
+        string line = GameText.Format("ui.runend.times", RunClock.Format(clock.ActiveGameSeconds), RunClock.Format(clock.ChoiceSeconds),
+                                      RunClock.Format(clock.ShopSeconds + clock.PreparationSeconds));
+        if (clock.LevelWorkSeconds >= 1d) line += " · " + GameText.Format("ui.runend.times.level_work", RunClock.Format(clock.LevelWorkSeconds));
+        if (clock.PausedSeconds >= 1d) line += " · " + GameText.Format("ui.runend.times.paused", RunClock.Format(clock.PausedSeconds));
         return line;
     }
 

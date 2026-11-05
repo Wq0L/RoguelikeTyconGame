@@ -65,8 +65,8 @@ public class CardSelectionUI : MonoBehaviour
         bool gridFull = progression != null && !progression.HasEligibleCell();
         List<GroundCell> upgrades = gridFull ? progression.GetUpgradeCandidates(cardSlots.Count) : null;
         SetBanner(!gridFull ? null : upgrades.Count > 0
-            ? "GRİD DOLU · kart, seçtiğin tile'ı seviye atlatır"
-            : "TÜM TILE'LAR MAX · kart kalıcı Temel güç verir");
+            ? GameText.Get("ui.card.grid_full")
+            : GameText.Get("ui.card.all_max"));
         SetRemaining(RoundManager.Instance != null ? RoundManager.Instance.PendingCardSelections : 0);
         int upgradeIndex = 0;
         // Erken davranış teklifi (Bölüm 3.6): bir slot davranış adaylarından gelir; hangi slot olduğu ve kartın kendisi rastgeledir.
@@ -210,14 +210,14 @@ public class CardSelectionUI : MonoBehaviour
         return TileRarity.Legendary;
     }
 
-    // Yükseltilecek tile kalmadığında: kalıcı, küçük global güç. Nadirlik miktarı büyütür.
-    private static readonly (string name, StatType[] stats, StatTarget target, float sign)[] BaseStats =
+    // Yükseltilecek tile kalmadığında: kalıcı, küçük global güç. Nadirlik miktarı büyütür. Ad çeviri anahtarıdır (kartta yazı).
+    private static readonly (string nameKey, StatType[] stats, StatTarget target, float sign)[] BaseStats =
     {
-        ("Hasat hasarı", new[] { StatType.HarvestDamage }, StatTarget.Player, 1f),
-        ("Atak aralığı", new[] { StatType.AttackSpeed }, StatTarget.Player, -1f),
-        ("Üretim süresi", new[] { StatType.PlantSpawnRate }, StatTarget.Planter, -1f),
-        ("Tüm kaynaklar", new[] { StatType.GoldGainMultiplier, StatType.IronGainMultiplier, StatType.StoneGainMultiplier }, StatTarget.Planter, 1f),
-        ("XP kazancı", new[] { StatType.XPGainMultiplier }, StatTarget.Planter, 1f),
+        ("ui.card.base.harvest_damage", new[] { StatType.HarvestDamage }, StatTarget.Player, 1f),
+        ("ui.card.base.attack_interval", new[] { StatType.AttackSpeed }, StatTarget.Player, -1f),
+        ("ui.card.base.spawn_time", new[] { StatType.PlantSpawnRate }, StatTarget.Planter, -1f),
+        ("ui.card.base.all_resources", new[] { StatType.GoldGainMultiplier, StatType.IronGainMultiplier, StatType.StoneGainMultiplier }, StatTarget.Planter, 1f),
+        ("ui.card.base.xp_gain", new[] { StatType.XPGainMultiplier }, StatTarget.Planter, 1f),
     };
 
     // Temel güç "XP kazancı" kartı: profil istiyorsa (RunBalanceSO.additiveBaseXpCards) birikim grubuna eklenir (toplanır).
@@ -243,7 +243,7 @@ public class CardSelectionUI : MonoBehaviour
         var modifiers = new List<StatModifier>();
         foreach (StatType stat in pick.stats)
             modifiers.Add(new StatModifier { statType = stat, target = pick.target, operation = ModifierOperation.MorePercent, value = amount * pick.sign });
-        return TileCardOffer.BaseStat(pick.name, rarity, modifiers, IsSummedBaseStat(pick.stats[0]));
+        return TileCardOffer.BaseStat(GameText.Get(pick.nameKey), rarity, modifiers, IsSummedBaseStat(pick.stats[0]));
     }
 
     private TextMeshProUGUI banner;
@@ -332,7 +332,7 @@ public class CardSelectionUI : MonoBehaviour
             label.raycastTarget = false;
             remaining = label;
         }
-        remaining.text = count == 1 ? "SON SEÇİM" : $"KALAN SEÇİM: {count}";
+        remaining.text = count == 1 ? GameText.Get("ui.card.last_choice") : GameText.Format("ui.card.choices_left", count);
         remaining.transform.parent.gameObject.SetActive(true);
         remaining.transform.parent.SetAsLastSibling();
     }

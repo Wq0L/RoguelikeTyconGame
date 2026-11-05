@@ -17,12 +17,22 @@ $ErrorActionPreference = 'Stop'
 $repo = Split-Path $PSScriptRoot -Parent
 $root = Join-Path $repo 'Library\VerificationProject'
 
-$dirs = @('Scripts', 'ScriptableObjects', 'Resources', 'Editor', 'Plugins', 'LeanTween', 'TextMesh Pro', 'Art\UI\ComicToon')
+# Paketler (5 Kasım 2026, Unity Localization + Addressables): kopya gerçek projeyle aynı paketleri kullansın.
+New-Item -ItemType Directory -Force -Path (Join-Path $root 'Packages') | Out-Null
+foreach ($f in @('manifest.json', 'packages-lock.json')) {
+    $src = Join-Path "$repo\Packages" $f
+    if (Test-Path $src) { Copy-Item -Path $src -Destination (Join-Path $root "Packages\$f") -Force }
+}
+
+$dirs = @('Scripts', 'ScriptableObjects', 'Resources', 'Editor', 'Plugins', 'LeanTween', 'TextMesh Pro', 'Art\UI\ComicToon', 'Localization', 'AddressableAssetsData')
 if ($Full) { $dirs += @('Scenes', 'Prefabs', 'Materials', '3D Assets', 'Settings', 'ProjectSettings', 'Art', 'Shaders') }
 foreach ($d in $dirs) {
     $src = Join-Path "$repo\Assets" $d
     if (!(Test-Path $src)) { continue }
-    & robocopy $src (Join-Path "$root\Assets" $d) /E /R:1 /W:1 /NFL /NDL /NJH /NJS /NP | Out-Null
+    # Çeviri tabloları (5 Kasım): kopya listeyi kendi içe aktarır (kurulum / CSV değişince). Ana projedeki tablolar editör listeyi
+    # henüz aktarmadıysa eskidir; kopyadaki daha yeni tablonun üstüne yazılmasın (/XO: kaynakta daha eski dosya atlanır).
+    $extra = @(); if ($d -eq 'Localization') { $extra = @('/XO') }
+    & robocopy $src (Join-Path "$root\Assets" $d) /E /R:1 /W:1 /NFL /NDL /NJH /NJS /NP @extra | Out-Null
     if ($LASTEXITCODE -gt 7) { throw "Copy failed: $d" }
 }
 Copy-Item -Path (Join-Path $repo 'Tools\Verification\Editor\*.cs') -Destination (Join-Path $root 'Assets\Editor') -Force

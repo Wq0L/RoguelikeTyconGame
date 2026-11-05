@@ -31,15 +31,6 @@ Shader "ClickerGame/BossWeather"
                 float2 i=floor(p), f=frac(p); f=f*f*(3-2*f);
                 return lerp(lerp(hash(i),hash(i+float2(1,0)),f.x),lerp(hash(i+float2(0,1)),hash(i+1),f.x),f.y);
             }
-            float flakes(float2 uv, float scale, float speed)
-            {
-                float2 p=uv*scale+float2(_WeatherTime*.15,_WeatherTime*speed);
-                float2 cell=floor(p), f=frac(p);
-                float seed=hash(cell);
-                float2 centre=float2(.2+.6*seed,.2+.6*hash(cell+37));
-                centre.x+=sin(_WeatherTime*.8+seed*6.28)*.08;
-                return (1-smoothstep(.025,.075,length(f-centre)))*step(.55,seed);
-            }
             fixed4 frag(output i) : SV_Target
             {
                 float2 uv=i.uv, p=uv*float2(_Aspect,1);
@@ -57,23 +48,41 @@ Shader "ClickerGame/BossWeather"
                 }
                 if (_Weather < 2.5)
                 {
-                    float snow=flakes(p,14,.65)+flakes(p+19,23,1.05)*.55;
+                    // Tipi (A1, 5 Kasım 2026, kullanıcı: kar taneleri yıldızlarla karışıyor, kum fırtınası gibi olsun). Nokta yok:
+                    // rüzgâr yönünde (sağdan sola, hafif aşağı) uzun ince kar çizgileri + dalga dalga geçen kar pusu; rüzgâr hamlelerle
+                    // güçlenip zayıflar. Tarlanın ortası açık kalır: bitkiler ve darbeler örtülmez.
+                    float2 w=float2(p.x*.94+p.y*.34, p.y*.94-p.x*.34);
+                    float gust=.65+.35*noise(float2(t*.35,3.7));
+                    float drift=noise(float2(w.x*2.2+t*.55,w.y*7+t*.05))*.6+noise(float2(w.x*5+t*.9,w.y*16))*.4;
+                    float streakA=pow(noise(float2(w.x*9+t*3.4,w.y*110)),9);
+                    float streakB=pow(noise(float2(w.x*15+t*5.2,w.y*190+11)),11);
+                    float clearField=lerp(.25,1,smoothstep(.12,.5,length(uv-.5)));
+                    float snowA=saturate((.03+drift*.11*gust+streakA*.30*gust+streakB*.22)*clearField);
+                    float3 snowColor=lerp(float3(.74,.86,.95),float3(.95,.98,1),saturate((streakA+streakB)*2));
+                    float flakeAlpha=snowA;
+                    float3 flakeColor=snowColor;
                     // Cool perimeter, clear central field. Noise breaks up the frost softly.
                     float rim=smoothstep(.28,.68,length(uv-.5));
                     float frost=noise(p*9+float2(t*.018,0));
                     float ice=rim*(.36+.12*frost);
-                    float flakeAlpha=saturate(snow*.65);
                     float alpha=flakeAlpha+ice*(1-flakeAlpha);
-                    float3 tint=(float3(.88,.96,1)*flakeAlpha+float3(.24,.65,.92)*ice*(1-flakeAlpha))/max(alpha,.0001);
+                    float3 tint=(flakeColor*flakeAlpha+float3(.24,.65,.92)*ice*(1-flakeAlpha))/max(alpha,.0001);
                     return float4(tint, alpha*_Strength);
                 }
-                float dust=noise(float2(p.x*3-t*.32,p.y*14+t*.08));
-                float streak=noise(float2(p.x*12-t*2,p.y*160));
+                // Kum fırtınası (A2, 5 Kasım 2026: Don tipisiyle aynı yapı, kullanıcı onaylı). Rüzgâr soldan sağa, hafif aşağı:
+                // uzun kum çizgileri iki hızda + hamlelerle dalgalanan toz pusu. Tarlanın ortası açık: bitkiler ve darbeler örtülmez.
+                float2 w=float2(p.x*.97-p.y*.24, p.y*.97+p.x*.24);
+                float gust=.65+.35*noise(float2(t*.32,8.1));
+                float dust=noise(float2(w.x*2-t*.6,w.y*6+t*.04))*.6+noise(float2(w.x*4.5-t,w.y*15))*.4;
+                float streakA=pow(noise(float2(w.x*8-t*3,w.y*100)),8);
+                float streakB=pow(noise(float2(w.x*13-t*4.6,w.y*170+5)),10);
+                float clearField=lerp(.25,1,smoothstep(.12,.5,length(uv-.5)));
+                float sand=saturate((.03+dust*.11*gust+streakA*.28*gust+streakB*.2)*clearField);
+                float3 sandColor=lerp(float3(.77,.59,.35),float3(.95,.82,.6),saturate((streakA+streakB)*2));
                 float rim=smoothstep(.28,.68,length(uv-.5));
-                float sand=.025+dust*.09+pow(streak,8)*.16;
                 float border=rim*(.34+.12*dust);
                 float alpha=sand+border*(1-sand);
-                float3 tint=(float3(.77,.59,.35)*sand+float3(.76,.40,.12)*border*(1-sand))/max(alpha,.0001);
+                float3 tint=(sandColor*sand+float3(.76,.40,.12)*border*(1-sand))/max(alpha,.0001);
                 return float4(tint, alpha*_Strength);
             }
             ENDCG

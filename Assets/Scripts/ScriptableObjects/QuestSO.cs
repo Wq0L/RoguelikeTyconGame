@@ -11,6 +11,10 @@ public sealed class QuestSO : ScriptableObject
     public string description;
     public QuestCounter counter;
     [Min(1)] public int target = 1;
+
+    // Oyuncuya görünen görev metni: çeviri tablosundan (data.quest.<id>); anahtar yoksa asset'teki yazı.
+    public string Description => GameText.Data(DescriptionKey, description);
+    public string DescriptionKey => string.IsNullOrEmpty(id) ? null : "data.quest." + id;
 }
 
 public enum QuestCounter

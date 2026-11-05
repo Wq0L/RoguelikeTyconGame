@@ -149,8 +149,11 @@ public sealed class FieldEventHud : MonoBehaviour
         if(current is GraftedShellEvent shell)
         {
             if(!shell.Decided)
-                status=$"Kırdığın düğümün bölgesi kurtulur\nA düğümü {shell.Targets[0].Remaining}/{shell.Targets[0].Durability} · B düğümü {shell.Targets[1].Remaining}/{shell.Targets[1].Durability}\n"+
-                    (current.Phase==FieldEventPhase.Active?$"{Mathf.CeilToInt(Mathf.Max(0,director.Plan.graftedShell.choiceSeconds-current.PhaseTime))} sn sonra A kapanır":"Seçmezsen A kapanır!");
+                status=GameText.Get("ui.field.shell.hud")+"\n"+
+                    GameText.Format("ui.field.shell.hud.nodes",shell.Targets[0].Remaining,shell.Targets[0].Durability,shell.Targets[1].Remaining,shell.Targets[1].Durability)+"\n"+
+                    (current.Phase==FieldEventPhase.Active
+                        ?GameText.Format("ui.field.shell.hud.timer",Mathf.CeilToInt(Mathf.Max(0,director.Plan.graftedShell.choiceSeconds-current.PhaseTime)))
+                        :GameText.Get("ui.field.shell.hud.warn"));
         }
         label.text = $"<size=120%>{current.Title}</size>\n<size=78%>{status}</size>";
     }

@@ -170,6 +170,9 @@ public sealed class BossRewardStage
     public string id;
     [Tooltip("Arayüzdeki ad: \"ERKEN\" → ödül ekranında \"ERKEN AŞAMA · BOSS ÖDÜLÜ\", kartta \"ERKEN AŞAMA\".")]
     public string displayName;
+    // Oyuncuya görünen ad: çeviri tablosundan (data.reward_stage.<id>.name); anahtar yoksa verideki yazı.
+    public string DisplayName => GameText.Data(NameKey, displayName);
+    public string NameKey => string.IsNullOrEmpty(id) ? null : "data.reward_stage." + id + ".name";
     [Tooltip("Aşamanın ilk round'u. Son round'u, sıradaki aşamanın ilk round'undan bir öncekidir.")]
     [Min(1)] public int firstRound = 1;
     [Tooltip("Aşama etiketinin rengi (sunum). Nadirlik renkleriyle aynı anlamı taşımaz.")]

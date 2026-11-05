@@ -24,7 +24,9 @@ public static class MechanicsTestLabVerification
     const string Key = "MechanicsTestLabVerification";
     // İki koşu: tam doğrulama (sahne açılıp Play) ve panelin başlatma yolu (açık sahne değişmeden Play).
     static bool StartPlayMode => SessionState.GetString(Key + ".mode", "") == "startplay";
-    static string LogFile => StartPlayMode ? "Logs/MechanicsTestLabStartPlay.txt" : "Logs/MechanicsTestLabVerification.txt";
+    // Yalnız oturum + diyalog araçları + panel (Faz 6): tam koşu daha önceki bir adımda düşerse diyalog adımları yine sınanır.
+    static bool DialogueMode => SessionState.GetString(Key + ".mode", "") == "dialogue";
+    static string LogFile => StartPlayMode ? "Logs/MechanicsTestLabStartPlay.txt" : DialogueMode ? "Logs/MechanicsTestLabDialogue.txt" : "Logs/MechanicsTestLabVerification.txt";
     const string HashFile = "Logs/MechanicsTestLabVerification.hashes.txt";
     const string SelectionPath = "Assets/Resources/RunProfileSelection.asset";
     const string PlayerScripts = "Temp/MechanicsTestLabPlayerScripts";
@@ -57,6 +59,12 @@ public static class MechanicsTestLabVerification
         EditorSceneManager.OpenScene(Lab.ScenePath);
         SessionState.SetBool(Key, true);
         EditorApplication.EnterPlaymode();
+    }
+
+    public static void RunDialogueBatch()
+    {
+        RunBatch();
+        SessionState.SetString(Key + ".mode", "dialogue");
     }
 
     // Panelin "Test oturumunu başlat" yolu: açık sahne GameScene iken, sahne değiştirilmeden, seçilen senaryoyla Play başlatılır.
@@ -233,6 +241,15 @@ public static class MechanicsTestLabVerification
             Add("panelden başlatma", StartPlayChecks);
             return;
         }
+        if (DialogueMode)
+        {
+            Add("oturum hazır", () => TestSession.Ready ? 0 : Again);
+            Add("diyalog: lab araçları", DialogueTools);
+            AddFrames(20);
+            Add("diyalog: yönetici açıkken oyunun tetiği", DialogueRaise);
+            Add("panel: sekmeler çiziliyor", PanelSmoke);
+            return;
+        }
         Add("oturum hazır", () => TestSession.Ready ? 0 : Again);
         Add("oturum: güvenlik ve gerçek sistemler", Session);
         AddFrames(20);
@@ -311,7 +328,74 @@ public static class MechanicsTestLabVerification
         AddFrames(45);
         Add("yeniden kurma: zincir kaydı", ChainLogged);
         Add("hazır senaryolar", Presets);
+        Add("diyalog: lab araçları", DialogueTools);
+        AddFrames(20);
+        Add("diyalog: yönetici açıkken oyunun tetiği", DialogueRaise);
         Add("panel: sekmeler çiziliyor", PanelSmoke);
+    }
+
+    // ---------------------------------------------------------------- diyalog (Faz 6, 'I · Diyalog')
+    static double DialogueTools()
+    {
+        DialogueDirector.BatchEnabled = true;   // batch'te yönetici kendiliğinden kurulmaz
+        DialogueDirector d = DialogueDirector.Ensure();
+        Ok(DialogueDirector.LabSession && DialogueDirector.Suspended && !TestDialogue.Enabled, "lab oturumunda diyalog yöneticisi kendiliğinden susar (aç / kapa kapalı başlar)");
+        Ok(!TestDialogue.Raise(DialogueTrigger.RoundStarted).Ok, "yönetici kapalıyken oyunun tetiği yayınlanmaz");
+        Ok(MetaSave.EditorSessionMemoryOnly, "kayıt bellekte: diyalog kayıt komutları gerçek kayda yazamaz");
+
+        DialogueEntry guide = d.EditorEntries.First(e => e != null && e.category == DialogueCategory.Guide && e.size == DialogueSize.Big && e.lines.Length >= 2);
+        bool seenBefore = DialogueProgress.Seen(guide.id);
+        Result played = TestDialogue.Play(guide, -1, false);
+        Ok(played.Ok && d.Current == guide && d.BigBox.IsOpen && DialogueProgress.Seen(guide.id) == seenBefore && d.BigBox.ShownText == GameText.Get(guide.lines[0].textKey),
+            $"konuşma koşulsuz oynar ('{guide.id}', büyük kutu, 1. satır), 'görüldü say' kapalıyken kayıt değişmez");
+        Result line = TestDialogue.Play(guide, 1, false);
+        Ok(line.Ok && d.BigBox.IsOpen && d.Current != null && d.Current.id == guide.id && d.Current.lines.Length == 1 && d.BigBox.ShownText == GameText.Get(guide.lines[1].textKey),
+            "tek satır oynar (2. satır, önceki kutu kapanıp yeniden açıldı)");
+        d.BigBox.Advance(); d.BigBox.Advance(); d.BigBox.Advance();
+        Ok(!d.BigBox.IsOpen && d.Current == null && !d.SmallBox.IsOpen, "tek satır bitince kutu kapanır, sıradaki konuşma kendiliğinden açılmaz");
+        DialogueEntry small = d.EditorEntries.FirstOrDefault(e => e != null && e.size == DialogueSize.Small && e.lines.Length > 0);
+        if (small != null)
+        {
+            Ok(TestDialogue.Play(small, -1, true).Ok && d.SmallBox.IsOpen && DialogueProgress.Seen(small.id), $"küçük kutu konuşması oynar ve 'görüldü say' açıkken görüldü yazılır ('{small.id}')");
+            Ok(TestDialogue.CloseAll().Ok && !d.SmallBox.IsOpen && !d.BigBox.IsOpen && d.Current == null && d.Queued == null, "açık kutuları kapat");
+        }
+
+        Ok(TestDialogue.SetStage(2).Ok && DialogueProgress.Stage == 2 && MascotFrames.Mood == 1 && Mathf.Abs(UiMood.Applied - UiMood.SadGrey) < .001f,
+            "aşama 2: Eri üzgün tablo, konuşma kutusu grisi 0,8");
+        Ok(TestDialogue.SetStage(3).Ok && MascotFrames.Mood == 2 && UiMood.Applied == 0f, "aşama 3: Eri şeytani tablo, gri yok");
+        Ok(TestDialogue.SetStage(0).Ok && DialogueProgress.Stage == 0 && MascotFrames.Mood == 0 && UiMood.Applied == 0f && MascotFrames.LoadedMood == 0,
+            "aşama lab'de geri alınır (0: mutlu tablo yeniden yüklendi)");
+
+        Ok(TestDialogue.SetTrialChoice("B").Ok && DialogueProgress.Choice(DialogueProgress.TrialPassed) == "B" &&
+           TestDialogue.SetTrialChoice("A").Ok && DialogueProgress.Choice(DialogueProgress.TrialPassed) == "A" &&
+           TestDialogue.SetTrialChoice(null).Ok && DialogueProgress.Choice(DialogueProgress.TrialPassed) == null, "Taş 1 cevabı B → A → silindi");
+
+        Ok(TestDialogue.ResetStory().Ok && DialogueProgress.StoryReach == -1 && DialogueProgress.NextStory() == null, "hikâye baştan: hiç taş yok");
+        Ok(TestDialogue.WinNextStone().Ok && DialogueProgress.HasMilestone(DialogueProgress.TrialPassed) && DialogueProgress.NextStory() == DialogueProgress.TrialPassed,
+            "sıradaki taş kazanılır (Taş 1), yönetici kapalıyken konuşma kendiliğinden açılmaz");
+        Ok(d.Current == null, "yönetici kapalı: taş kazanınca kutu açılmadı");
+        Ok(TestDialogue.PlayNextStory().Ok && d.Current != null && d.Current.id == DialogueProgress.TrialPassed && DialogueProgress.Seen(DialogueProgress.TrialPassed) &&
+           DialogueProgress.Stage == 1 && d.BigBox.IsOpen, "sıradaki hikâye oyundaki gibi oynar: Taş 1, aşama 1, görüldü");
+        Ok(TestDialogue.SetStone("story.r25", true).Ok && DialogueProgress.NextStory() == DialogueProgress.FirstReward, "ileri taş kazanılınca sıradaki konuşma atlamaz (ilk ödül)");
+        Ok(TestDialogue.SetStone(DialogueProgress.TrialPassed, false).Ok && !DialogueProgress.HasMilestone(DialogueProgress.TrialPassed) && !DialogueProgress.Seen(DialogueProgress.TrialPassed),
+            "taş silinince konuşmasının görülmesi de silinir");
+        Ok(TestDialogue.ResetStory().Ok && DialogueProgress.Stage == 0 && DialogueProgress.StoryReach == -1 && DialogueProgress.Choice(DialogueProgress.TrialPassed) == null &&
+           !DialogueProgress.Seen(DialogueProgress.TrialPassed), "hikâye baştan: taşlar, cevaplar, görülme ve aşama sıfır");
+        DialogueProgress.MarkSeen(guide.id);
+        Ok(TestDialogue.ResetSeen().Ok && !DialogueProgress.Seen(guide.id) && TestDialogue.SeenCount(d.EditorEntries) == 0, "görülenler sıfırlandı");
+        Ok(TestDialogue.CloseAll().Ok && !MetaSave.Save(), "kayıt hâlâ yalnız bellekte (yazma isteği reddediliyor)");
+        Ok(TestDialogue.SetEnabled(true).Ok && !DialogueDirector.Suspended, "yönetici açılınca lab oturumunda oyundaki gibi çalışır");
+        return 0;
+    }
+
+    static double DialogueRaise()
+    {
+        DialogueDirector d = DialogueDirector.Instance;
+        Result r = TestDialogue.Raise(DialogueTrigger.RoundStarted);
+        Ok(r.Ok, "oyunun tetiği yayınlandı: " + r.Message);
+        Note("diyalog: ekran " + d.State + " · açık " + (d.Current != null ? d.Current.id : "yok"));
+        Ok(TestDialogue.CloseAll().Ok && TestDialogue.SetEnabled(false).Ok && DialogueDirector.Suspended, "yönetici yeniden kapatıldı");
+        return 0;
     }
 
     // ---------------------------------------------------------------- oturum
@@ -1092,7 +1176,7 @@ public static class MechanicsTestLabVerification
         string drawn = "";
         try
         {
-            for (int tab = 0; tab < 8; tab++)
+            for (int tab = 0; tab < 9; tab++)
             {
                 typeof(LabWindow).GetField("tab", flags).SetValue(window, tab);
                 window.Repaint();
@@ -1102,7 +1186,7 @@ public static class MechanicsTestLabVerification
         }
         catch (Exception e) { Note("panel smoke could not send events in batch mode: " + e.GetType().Name + " " + e.Message); }
         window.Close();
-        if (drawn.Trim().Split(' ').Length == 8 && errors == before) Ok(true, "panelin sekiz sekmesi canlı oturumda hata vermeden çizildi (olay gönderilerek)");
+        if (drawn.Trim().Split(' ').Length == 9 && errors == before) Ok(true, "panelin dokuz sekmesi canlı oturumda hata vermeden çizildi (olay gönderilerek)");
         else Note($"panel smoke incomplete: tabs drawn [{drawn.Trim()}], new errors {errors - before} — panel drawing is NOT verified by this run");
         return 0;
     }
@@ -1114,6 +1198,7 @@ public static class MechanicsTestLabVerification
         Ok(Time.timeScale == 1f && PlayerController.EditorAutoAttack && PlayerController.EditorAim == null && !PlantSpawner.EditorPauseProduction && !RoundManager.EditorFreezeTimer &&
            !LateGamePresenter.DebugOutlines && !TestLog.Enabled, "zaman ölçeği, saldırı / üretim / sayaç bayrakları ve test görünümleri geri yüklendi");
         Ok(EditorSceneManager.playModeStartScene == null, "Play başlangıç sahnesi ayarı bırakılmadı");
+        Ok(!DialogueDirector.LabSession && !DialogueDirector.LabEnabled, "diyalog lab bayrakları kapandı");
         if (StartPlayMode)
             Ok(SceneManager.GetActiveScene().path == Lab.GameScenePath && SceneManager.sceneCount == 1, "Play'den çıkınca açık sahne aynen geri geldi (GameScene); test sahnesi açık kalmadı");
         Ok(SaveStamp() == SessionState.GetString(Key + ".save", "?"), "gerçek oyuncu kayıt dosyası değişmedi (" + SaveStamp() + ")");

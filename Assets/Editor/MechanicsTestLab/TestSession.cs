@@ -107,8 +107,9 @@ namespace MechanicsTestLab
         private static void Begin()
         {
             Active = true;
-            // Diyalog / tutorial lab oturumunda kendiliğinden konuşmaz (test sahnesi korunur; ileride lab araçları açar).
+            // Diyalog / tutorial lab oturumunda kendiliğinden konuşmaz (test sahnesi korunur); 'I · Diyalog' sekmesi açabilir.
             DialogueDirector.LabSession = true;
+            DialogueDirector.LabEnabled = false;
             Rebuilds = 0;
             Scenario scenario = Pending;
             SceneManager.sceneLoaded += OnSceneLoaded;
@@ -266,6 +267,7 @@ namespace MechanicsTestLab
             if (!Active) return;
             Active = Ready = false;
             DialogueDirector.LabSession = false;
+            DialogueDirector.LabEnabled = false;
             waitingForScene = pendingSetup = false;
             SceneManager.sceneLoaded -= OnSceneLoaded;
             LabRoutine.Stop();

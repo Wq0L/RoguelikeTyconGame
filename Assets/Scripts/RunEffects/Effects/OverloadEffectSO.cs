@@ -28,7 +28,7 @@ public sealed class OverloadEffectSO : RunEffectSO
     [Range(1, 8)] public int maxPerAttack = 3;
 
     public override string Summary =>
-        $"tetiklenen saksı davranışı {Number(delay)} sn sonra bir kez daha çalışır · hasarın %{Percent(damageFactor)}'i · saksı + davranış başına {Number(cooldown)} sn bekleme";
+        GameText.Format("ui.effect.overload", Number(delay), Percent(damageFactor), Number(cooldown));
 
     public override RunEffect Create() => new OverloadEffect();
 }

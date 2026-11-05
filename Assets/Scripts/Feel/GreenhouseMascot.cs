@@ -47,6 +47,8 @@ public sealed class GreenhouseMascot : MonoBehaviour
         picture.sprite = MascotFrames.Get(MascotFrames.Front);
         picture.preserveAspect = false;
         picture.raycastTarget = false;
+        // Eri'nin hâli değişince (R25'te üzgün, zaferde kırmızı) yeni tablonun karesi gösterilir.
+        MascotFrames.Changed += OnFramesChanged;
 
         bubble = Rect("Speech", canvas, new Vector2(260, 78));
         var paper = bubble.gameObject.AddComponent<Image>();
@@ -192,6 +194,14 @@ public sealed class GreenhouseMascot : MonoBehaviour
     }
     private void OnDestroy()
     {
+        MascotFrames.Changed -= OnFramesChanged;
         if (canvas != null) Destroy(canvas.gameObject);   // kareler MascotFrames'te ortak; burada yok edilmez
+    }
+
+    // Tablo değişti: eski sprite'lar yok edildi; gösterilen kare bir sonraki güncellemede yeni tablodan alınır.
+    private void OnFramesChanged()
+    {
+        shownFrame = -1;
+        if (picture != null) picture.sprite = MascotFrames.Get(MascotFrames.Front);
     }
 }

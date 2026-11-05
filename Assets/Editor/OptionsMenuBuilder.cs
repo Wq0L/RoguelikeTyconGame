@@ -78,13 +78,18 @@ public static class OptionsMenuBuilder
         frame.color = new Color(.1f, .12f, .14f, .97f);
         frame.raycastTarget = true;
         Pic("Header", window, theme.buttonSprite, new Vector2(0, 395), new Vector2(1320, 100));
-        Text("Title", window, "AYARLAR", new Vector2(0, 402), new Vector2(900, 70), 56, true);
+        Loc(Text("Title", window, GameText.Get("ui.options.title"), new Vector2(0, 402), new Vector2(900, 70), 56, true), "ui.options.title");
 
         // ---------- Sekmeler ----------
+        // Nesne adları sabit (sahne yolları değişmesin); yazılar çeviri anahtarından (LocalizedText).
         string[] tabNames = { "GÖRÜNTÜ", "SES", "OYNANIŞ", "KONTROLLER" };
+        string[] tabKeys = { "ui.options.tab.display", "ui.options.tab.audio", "ui.options.tab.gameplay", "ui.options.tab.controls" };
         var tabButtons = new Button[tabNames.Length];
         for (int i = 0; i < tabNames.Length; i++)
-            tabButtons[i] = Button("Tab " + tabNames[i], window, tabNames[i], new Vector2(-480 + i * 320, 298), new Vector2(300, 76), "blue", 30);
+        {
+            tabButtons[i] = Button("Tab " + tabNames[i], window, GameText.Get(tabKeys[i]), new Vector2(-480 + i * 320, 298), new Vector2(300, 76), "blue", 30);
+            Loc(tabButtons[i].GetComponentInChildren<TMP_Text>(true), tabKeys[i]);
+        }
 
         var pages = Rect("Pages", window, new Vector2(0, -28), new Vector2(RowWidth, 560));
         var display = Page(pages, "Görüntü Page");
@@ -92,40 +97,42 @@ public static class OptionsMenuBuilder
         var gameplay = Page(pages, "Oynanış Page");
         var controls = Page(pages, "Kontroller Page");
 
-        // ---------- Görüntü ----------
-        var resolution = Stepper(display, "Çözünürlük", "Oyunun çalıştığı ekran çözünürlüğü.");
-        var windowMode = Stepper(display, "Ekran Modu", "Tam ekran, kenarlıksız pencere ya da normal pencere.");
-        var vSync = Toggle(display, "VSync", "Görüntü yırtılmasını önler ve FPS'i monitörün tazeleme hızına sabitler.");
-        var fpsLimit = Stepper(display, "FPS Sınırı", "VSync kapalıyken geçerli. Düşük sınır ekran kartını ve pili rahatlatır.");
-        var quality = Stepper(display, "Grafik Kalitesi", "Düşük: zayıf bilgisayarlar için daha hafif görüntü ayarları.");
-        var backgroundEffects = Toggle(display, "Arka Plan Efektleri", "Hareketli uzay arka planı. Kapatınca düz renk kullanılır; zayıf ekran kartlarında FPS artırır.");
+        // ---------- Görüntü (en üstte dil: her dilden oyuncu bulabilsin diye iki dilde) ----------
+        var language = Stepper(display, "ui.options.language");
+        var resolution = Stepper(display, "ui.options.resolution");
+        var windowMode = Stepper(display, "ui.options.window_mode");
+        var vSync = Toggle(display, "ui.options.vsync");
+        var fpsLimit = Stepper(display, "ui.options.fps_limit");
+        var quality = Stepper(display, "ui.options.quality");
+        var backgroundEffects = Toggle(display, "ui.options.background_effects");
 
         // ---------- Ses ----------
-        var masterVolume = Slider(audio, "Ana Ses", "Oyundaki tüm seslerin genel seviyesi.");
-        var musicVolume = Slider(audio, "Müzik", "Müzik seviyesi.");
-        var effectsVolume = Slider(audio, "Efektler", "Hasat, vuruş ve arayüz efekt sesleri.");
-        var muteInBackground = Toggle(audio, "Arka Planda Sessiz", "Başka bir pencereye geçince oyunun sesini kapatır.");
+        var masterVolume = Slider(audio, "ui.options.master_volume");
+        var musicVolume = Slider(audio, "ui.options.music");
+        var effectsVolume = Slider(audio, "ui.options.effects");
+        var muteInBackground = Toggle(audio, "ui.options.mute_background");
 
         // ---------- Oynanış ----------
-        var screenShake = Slider(gameplay, "Ekran Sarsıntısı", "Patlama, crit ve round sonu sarsıntılarının gücü.");
-        var cameraMotion = Toggle(gameplay, "Kamera Hareketi", "Kameranın hafif nefes alma hareketi.");
-        var damageNumbers = Toggle(gameplay, "Hasar Yazıları", "Vuruşlarda çıkan hasar sayıları.");
-        var gridCoordinates = Toggle(gameplay, "Grid Koordinatları", "Grid kenarındaki A-K / 1-11 etiketleri; haritadaki koordinatlarla aynı.");
-        var rarityAuras = Toggle(gameplay, "Rarity Auraları", "Bitkilerin altındaki, rarity'sini gösteren renkli halka.");
-        var roundEndSlowMotion = Toggle(gameplay, "Round Sonu Yavaşlama", "Süre biterken zamanın kısa bir an yavaşlaması.");
-        var screenFlashes = Toggle(gameplay, "Ekran Flaşları", "Round sonundaki beyaz ekran flaşı. Işığa hassassan kapat.");
+        var screenShake = Slider(gameplay, "ui.options.screen_shake");
+        var cameraMotion = Toggle(gameplay, "ui.options.camera_motion");
+        var damageNumbers = Toggle(gameplay, "ui.options.damage_numbers");
+        var gridCoordinates = Toggle(gameplay, "ui.options.grid_coordinates");
+        var rarityAuras = Toggle(gameplay, "ui.options.rarity_auras");
+        var roundEndSlowMotion = Toggle(gameplay, "ui.options.round_end_slowmo");
+        var screenFlashes = Toggle(gameplay, "ui.options.screen_flashes");
 
         // ---------- Kontroller ----------
-        Info(controls, "Hasat", "İMLEÇ", "İmleci bitkilerin üzerinde gezdir; tırpan otomatik keser.");
-        Info(controls, "Saksıyı Döndür", "R", "Yerleştirme sırasında saksıyı döndürür.");
-        Info(controls, "İptal / Geri", "ESC", "Yerleştirmeyi iptal eder, shop'tan ve satış modundan çıkar.");
-        Info(controls, "Rezonans Detayları", "ALT", "Yerleştirirken rezonans detay panelini açar / kapatır.");
-        Info(controls, "Performans Kaydı", "F9", "Performans kaydını başlatır / durdurur (oyun sahnesinde).");
+        Info(controls, "ui.options.ctrl.harvest", "ui.options.key.cursor");
+        Info(controls, "ui.options.ctrl.rotate", "R");
+        Info(controls, "ui.options.ctrl.cancel", "ESC");
+        Info(controls, "ui.options.ctrl.resonance", "ALT");
+        Info(controls, "ui.options.ctrl.perf", "F9");
 
         // ---------- Alt kısım ----------
         var description = Text("Description", window, "", new Vector2(0, -345), new Vector2(1100, 56), 26);
         description.color = new Color(.85f, .9f, .85f);
-        var reset = Button("Reset Defaults", window, "VARSAYILANLAR", new Vector2(430, -405), new Vector2(330, 72), "gold", 30);
+        var reset = Button("Reset Defaults", window, GameText.Get("ui.options.defaults"), new Vector2(430, -405), new Vector2(330, 72), "gold", 30);
+        Loc(reset.GetComponentInChildren<TMP_Text>(true), "ui.options.defaults");
         if (back != null)
         {
             back.transform.SetParent(window, false);
@@ -137,7 +144,8 @@ public static class OptionsMenuBuilder
             var label = back.GetComponentInChildren<TMP_Text>(true);
             if (label != null)
             {
-                label.text = "GERİ";
+                label.text = GameText.Get("ui.options.back");
+                Loc(label, "ui.options.back");
                 label.alignment = TextAlignmentOptions.Center;
                 label.margin = Vector4.zero;
                 label.rectTransform.anchorMin = Vector2.zero;
@@ -160,7 +168,9 @@ public static class OptionsMenuBuilder
             tab.FindPropertyRelative("page").objectReferenceValue = pageRoots[i].gameObject;
         }
         Set(so, "description", description);
+        so.FindProperty("defaultDescription").stringValue = "ui.options.hint";
         Set(so, "resetButton", reset);
+        Set(so, "language", language);
         Set(so, "resolution", resolution); Set(so, "windowMode", windowMode); Set(so, "vSync", vSync);
         Set(so, "fpsLimit", fpsLimit); Set(so, "quality", quality); Set(so, "backgroundEffects", backgroundEffects);
         Set(so, "masterVolume", masterVolume); Set(so, "musicVolume", musicVolume); Set(so, "effectsVolume", effectsVolume);
@@ -190,25 +200,26 @@ public static class OptionsMenuBuilder
         return page;
     }
 
-    static T Row<T>(RectTransform page, string title, string description) where T : OptionRow
+    // key: satır başlığının çeviri anahtarı; açıklama "<key>.desc". Nesne adı anahtardır (editörün diline göre değişmesin).
+    static T Row<T>(RectTransform page, string key) where T : OptionRow
     {
-        var background = Pic(title, page, theme.cardSprite, Vector2.zero, new Vector2(RowWidth, RowHeight));
+        var background = Pic(key, page, theme.cardSprite, Vector2.zero, new Vector2(RowWidth, RowHeight));
         background.raycastTarget = true;
-        var label = Text("Label", background.transform, title, Vector2.zero, new Vector2(560, 56), 32);
+        var label = Loc(Text("Label", background.transform, GameText.Get(key), Vector2.zero, new Vector2(560, 56), 32), key);
         label.font = theme.headingFont;
         label.alignment = TextAlignmentOptions.MidlineLeft;
         AnchorSide(label.rectTransform, 0f, 36f);
         var row = background.gameObject.AddComponent<T>();
         var so = new SerializedObject(row);
         Set(so, "label", label);
-        so.FindProperty("description").stringValue = description;
+        so.FindProperty("description").stringValue = key + ".desc";
         so.ApplyModifiedPropertiesWithoutUndo();
         return row;
     }
 
-    static OptionStepper Stepper(RectTransform page, string title, string description)
+    static OptionStepper Stepper(RectTransform page, string key)
     {
-        var row = Row<OptionStepper>(page, title, description);
+        var row = Row<OptionStepper>(page, key);
         var next = Button("Next", row.transform, ">", Vector2.zero, new Vector2(64, 54), "blue", 36);
         AnchorSide((RectTransform)next.transform, 1f, -30f);
         var value = Text("Value", row.transform, "-", Vector2.zero, new Vector2(320, 54), 30);
@@ -222,22 +233,24 @@ public static class OptionsMenuBuilder
         return row;
     }
 
-    static OptionToggle Toggle(RectTransform page, string title, string description)
+    static OptionToggle Toggle(RectTransform page, string key)
     {
-        var row = Row<OptionToggle>(page, title, description);
-        var button = Button("Switch", row.transform, "AÇIK", Vector2.zero, new Vector2(240, 54), "green", 30);
+        var row = Row<OptionToggle>(page, key);
+        var button = Button("Switch", row.transform, GameText.Get("ui.options.on"), Vector2.zero, new Vector2(240, 54), "green", 30);
         AnchorSide((RectTransform)button.transform, 1f, -30f);
         var so = new SerializedObject(row);
         Set(so, "button", button);
         Set(so, "state", button.GetComponentInChildren<TMP_Text>(true));
         Set(so, "theme", theme);
+        so.FindProperty("onText").stringValue = "ui.options.on";
+        so.FindProperty("offText").stringValue = "ui.options.off";
         so.ApplyModifiedPropertiesWithoutUndo();
         return row;
     }
 
-    static OptionSlider Slider(RectTransform page, string title, string description)
+    static OptionSlider Slider(RectTransform page, string key)
     {
-        var row = Row<OptionSlider>(page, title, description);
+        var row = Row<OptionSlider>(page, key);
         var value = Text("Value", row.transform, "100%", Vector2.zero, new Vector2(110, 54), 30);
         value.font = theme.headingFont;
         value.alignment = TextAlignmentOptions.MidlineRight;
@@ -273,13 +286,16 @@ public static class OptionsMenuBuilder
         return row;
     }
 
-    static void Info(RectTransform page, string title, string key, string description)
+    // badgeText: tuş adı (R, ESC …; çevrilmez) ya da çeviri anahtarı ("ui." ile başlar: İMLEÇ gibi).
+    static void Info(RectTransform page, string key, string badgeText)
     {
-        var row = Row<OptionInfo>(page, title, description);
+        var row = Row<OptionInfo>(page, key);
         var badge = Pic("Key", row.transform, theme.buttonSprite, Vector2.zero, new Vector2(240, 54));
         badge.material = theme.blue != null && theme.blue.Length > 0 ? theme.blue[0] : null;
         AnchorSide(badge.rectTransform, 1f, -30f);
-        Text("Key Label", badge.transform, key, new Vector2(0, 3), new Vector2(210, 40), 30, true);
+        bool localized = badgeText.StartsWith("ui.");
+        var keyLabel = Text("Key Label", badge.transform, localized ? GameText.Get(badgeText) : badgeText, new Vector2(0, 3), new Vector2(210, 40), 30, true);
+        if (localized) Loc(keyLabel, badgeText);
     }
 
     // ---------- Yardımcılar (ComicUIBuilder ile aynı stil) ----------
@@ -305,6 +321,18 @@ public static class OptionsMenuBuilder
             image.pixelsPerUnitMultiplier = 4;
         }
         return image;
+    }
+
+    // Yazıyı çeviri anahtarına bağlar (oyunda dil değişince kendiliğinden yenilenir); sahnedeki metin editörde yer tutucudur.
+    static TMP_Text Loc(TMP_Text label, string key)
+    {
+        if (label == null) return null;
+        var loc = label.GetComponent<LocalizedText>();
+        if (loc == null) loc = label.gameObject.AddComponent<LocalizedText>();
+        var so = new SerializedObject(loc);
+        so.FindProperty("key").stringValue = key;
+        so.ApplyModifiedPropertiesWithoutUndo();
+        return label;
     }
 
     static TMP_Text Text(string name, Transform parent, string text, Vector2 position, Vector2 size, float fontSize, bool title = false)

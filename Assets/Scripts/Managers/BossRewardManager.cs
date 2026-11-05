@@ -83,7 +83,9 @@ public sealed class BossRewardManager : MonoBehaviour, IRoundChoice
     // Aşamanın ödüllerinin ilk sunulabildiği boss round'u: aşamanın ilk round'undan itibaren ilk boss (run takviminden).
     public int FirstOfferRound(BossRewardStage stage) => stage != null && rounds != null ? rounds.Calendar.NextBossRound(stage.firstRound) : 0;
     // Kartta gösterilen açıklama: aşamalı havuzun kendi metni varsa o, yoksa ödül asset'indeki.
-    public string NoteFor(BossRewardSO reward) => Pool != null ? Pool.NoteFor(reward) : reward != null ? reward.note : "";
+    // Kart notu, etkin dilde (çeviri tablosundan; satırı yoksa verideki yazı).
+    public string NoteFor(BossRewardSO reward) =>
+        reward == null ? "" : reward.TranslateNote(Pool != null ? Pool.NoteFor(reward) : reward.note);
     public IReadOnlyList<StatModifier> OwnedModifiers => owned;
     public int Stacks(BossRewardSO reward) => reward != null && stacks.TryGetValue(reward, out int n) ? n : 0;
 

@@ -19,9 +19,10 @@ public class NextRoundButtonUI : MonoBehaviour
 
     private void OnEnable()
     {
+        // Yazı çeviri tablosundan; sahnedeki LocalizedText'in anahtarı burada seçilir (ikisi aynı yazıyı yarıştırmaz).
         TMP_Text label = button.GetComponentInChildren<TMP_Text>(true);
         if (label != null)
-            label.text = RoundManager.Instance != null && RoundManager.Instance.IsPreparingFirstRound
-                ? "START ROUND" : "NEXT ROUND";
+            LocalizedText.Bind(label, RoundManager.Instance != null && RoundManager.Instance.IsPreparingFirstRound
+                ? "ui.game.start_round" : "ui.game.next_round");
     }
 }

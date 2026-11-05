@@ -9,10 +9,11 @@ namespace MechanicsTestLab
     // gösterir: müdahaleler test komutlarında (TestField / TestStats / TestRewards / TestEvents / TestAttack), okuma
     // TestInspector'da, kayıt TestLog'da, tekrar kurulabilir düzen Scenario'dadır. Sekmeler ayrı dosyalardadır (LabWindow.*.cs).
     // Sayısal doğrulama (önce / sonra, saldırı izi, makbuz, kontroller, şans, rapor) 'H · Sayısal' sekmesindedir.
+    // Diyalog / öğretim / hikâye araçları (Faz 6) 'I · Diyalog' sekmesindedir.
     // Komutlar yalnız MechanicsTestScene'den başlatılan oturumda çalışır; başka sahnedeki Play'e hiçbir komut gönderilmez.
     public sealed partial class LabWindow : EditorWindow
     {
-        private static readonly string[] Tabs = { "A · Oturum", "B · Tarla", "C · Statlar", "D · Ödüller", "E · Boss ve olaylar", "F · İnceleme", "G · Senaryolar", "H · Sayısal" };
+        private static readonly string[] Tabs = { "A · Oturum", "B · Tarla", "C · Statlar", "D · Ödüller", "E · Boss ve olaylar", "F · İnceleme", "G · Senaryolar", "H · Sayısal", "I · Diyalog" };
 
         private int tab;
         private Vector2 scroll;
@@ -74,8 +75,8 @@ namespace MechanicsTestLab
                 OnSessionRebuilt();
             }
             DrawHeader();
-            // Dar pencerede sekiz sekme tek satıra sığmaz (adlar kırpılır): iki satıra bölünür.
-            tab = position.width < 900f ? GUILayout.SelectionGrid(tab, Tabs, 4) : GUILayout.Toolbar(tab, Tabs);
+            // Dar pencerede dokuz sekme tek satıra sığmaz (adlar kırpılır): iki satıra bölünür.
+            tab = position.width < 1000f ? GUILayout.SelectionGrid(tab, Tabs, 5) : GUILayout.Toolbar(tab, Tabs);
             scroll = EditorGUILayout.BeginScrollView(scroll);
             // Senaryolar sekmesi Play dışında da kullanılır (hangi senaryoyla başlanacağı); diğerleri canlı oturum ister.
             if (tab == 6) DrawScenarios();
@@ -90,6 +91,7 @@ namespace MechanicsTestLab
                     case 4: DrawEvents(); break;
                     case 5: DrawInspect(); break;
                     case 7: DrawNumeric(); break;
+                    case 8: DrawDialogue(); break;
                 }
             EditorGUILayout.EndScrollView();
         }

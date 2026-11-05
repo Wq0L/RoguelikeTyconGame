@@ -16,8 +16,16 @@ public sealed class ComicPopupView : MonoBehaviour
     int used;
     float contentHeight, scrollOffset;
     string hint = "";
-    static string scrollHint;   // tuş ikonlu sabit yazı: bir kez kurulur
-    static string ScrollHint => scrollHint ??= KeyPrompts.Tag(KeyPrompts.PageUp) + " / " + KeyPrompts.Tag(KeyPrompts.PageDown) + ": kaydır";
+    static string scrollHint, scrollHintLanguage;   // tuş ikonlu yazı: dil başına bir kez kurulur
+    static string ScrollHint
+    {
+        get
+        {
+            if (scrollHint != null && scrollHintLanguage == GameText.Language) return scrollHint;
+            scrollHintLanguage = GameText.Language;
+            return scrollHint = GameText.Format("ui.popup.scroll_hint", KeyPrompts.Tag(KeyPrompts.PageUp), KeyPrompts.Tag(KeyPrompts.PageDown));
+        }
+    }
     Rect fittedBounds;
     float fittedScale;
     bool dirty = true;

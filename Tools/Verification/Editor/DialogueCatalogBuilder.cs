@@ -7,7 +7,7 @@ using UnityEngine;
 // Diyalog kataloğu asset'i (Faz 1 deneme satırları; Faz 2 öğretim satırları T1–T11, 26 Ekim 2026). Yalnız izole kopyada çalışır:
 //   Tools/run-isolated-verification.ps1 -Method DialogueCatalogBuilder.BuildBatch -Full
 // Çıktı: Assets/Resources/Dialogue/DialogueCatalog.asset; ana projeye kopyalanır. Sonraki düzenlemeler Inspector'dan yapılabilir.
-// Metinler Resources/Localization/GameText.csv'de; burada yalnız anahtarlar.
+// Metinler Assets/Localization/GameText.csv'de; burada yalnız anahtarlar.
 public static class DialogueCatalogBuilder
 {
     const string AssetPath = "Assets/Resources/Dialogue/DialogueCatalog.asset";
@@ -18,6 +18,9 @@ public static class DialogueCatalogBuilder
         try
         {
             if (!Application.dataPath.Contains("VerificationProject")) throw new Exception("isolated only");
+            // Kopyadaki çeviri tabloları listeyle aynı olsun (satır denetimi tablodan okur).
+            LocalizationSetup.Run();
+            GameText.Reload();
             if (!AssetDatabase.IsValidFolder("Assets/Resources/Dialogue")) AssetDatabase.CreateFolder("Assets/Resources", "Dialogue");
             var catalog = AssetDatabase.LoadAssetAtPath<DialogueCatalogSO>(AssetPath);
             if (catalog == null) { catalog = ScriptableObject.CreateInstance<DialogueCatalogSO>(); AssetDatabase.CreateAsset(catalog, AssetPath); }
@@ -36,19 +39,43 @@ public static class DialogueCatalogBuilder
                 Entry("tut.kapris", DialogueCategory.Guide, DialogueTrigger.FieldEventPrepared, DialogueSize.Small, Line("tut.kapris.0", 12)),
                 Outcome(Entry("end.quota", DialogueCategory.Guide, DialogueTrigger.RunEnded, DialogueSize.Big, Line("end.quota.0", 13), Line("end.quota.1", 8)), RunOutcome.QuotaFailed),
                 Outcome(Entry("end.boss", DialogueCategory.Guide, DialogueTrigger.RunEnded, DialogueSize.Big, Line("end.boss.0", 13), Line("end.boss.1", 8)), RunOutcome.BossFailed),
-                Outcome(Entry("end.victory", DialogueCategory.Guide, DialogueTrigger.RunEnded, DialogueSize.Big, Line("end.victory.0", 11), Line("end.victory.1", 12)), RunOutcome.Victory),
+                // İlk tam zaferde hikâyenin itirafı (story.victory) oynar; bu kısa konuşma sonraki zaferde (kırmızı Eri'nin açlığı).
+                Require(Outcome(Entry("end.victory", DialogueCategory.Guide, DialogueTrigger.RunEnded, DialogueSize.Big, Line("end.victory.0", 11), Line("end.victory.1", 12)), RunOutcome.Victory), "story.victory"),
                 // Gezegendeki Eri'nin kısa tepkileri (tekrar eder).
                 Repeat(Entry("react.setup", DialogueCategory.Reaction, DialogueTrigger.RunSetupOpened, DialogueSize.Planet, Line("react.setup.0", 8)), 300f),
                 Require(Repeat(Entry("react.period", DialogueCategory.Reaction, DialogueTrigger.PeriodClosed, DialogueSize.Planet, Line("react.period.0", 8)), 120f), "tut.period"),
+                // Hikâye (Faz 3, kesin plan v3: Docs/DiyalogPlani/Faz3-KilometreTaslari-Taslak.md). 14 taş, sırası DialogueProgress.StoryOrder;
+                // her biri bir kez. Kimlikler kayıtta tutulur: değiştirilmez.
+                Story("story.trial1", Line("story.trial1.0"),
+                    Choice(Line("story.trial1.1"), "story.trial1.choice.a", "story.trial1.reply.a", "story.trial1.choice.b", "story.trial1.reply.b", save: true),
+                    Line("story.trial1.2")),
+                Story("story.reward1", Line("story.reward1.0"), Line("story.reward1.1")),
+                Story("story.r5", Line("story.r5.0"), Line("story.r5.1")),
+                Story("story.r10", Line("story.r10.0"), Line("story.r10.1")),
+                Story("story.r15", Line("story.r15.0"), Line("story.r15.1")),
+                Story("story.r20", Line("story.r20.0"), Line("story.r20.1")),
+                Story("story.r25", Line("story.r25.0"), Line("story.r25.1"),
+                    Choice(Line("story.r25.2"), "story.r25.choice.a", "story.r25.reply.a", "story.r25.choice.b", "story.r25.reply.b", save: false)),
+                Story("story.r30", Line("story.r30.0"), Line("story.r30.1")),
+                Story("story.r35", Line("story.r35.0"), Line("story.r35.1")),
+                Story("story.r40", Line("story.r40.0"), Line("story.r40.1")),
+                Story("story.r45", Line("story.r45.0"), Line("story.r45.1")),
+                Story("story.r50", Line("story.r50.0"), Line("story.r50.1")),
+                // Zafer itirafı: 1. satır üzgün, 2. satırda maske düşer (aşama 3, kırmızı); 4. satır Taş 1'in seçimine göre.
+                Story("story.victory", Line("story.victory.0"), Stage(Line("story.victory.1"), 3), Line("story.victory.2"),
+                    OnlyIf(Line("story.victory.3a"), "story.trial1:A"), OnlyIf(Line("story.victory.3b"), "story.trial1:B"),
+                    Line("story.victory.4"), Line("story.victory.5")),
+                Story("story.after", Line("story.after.0"), Line("story.after.1")),
             };
             EditorUtility.SetDirty(catalog);
             AssetDatabase.SaveAssets();
             foreach (DialogueEntry e in catalog.entries)
                 foreach (DialogueLine l in e.lines)
-                    if (!GameText.Has(l.textKey)) throw new Exception("missing text " + l.textKey);
+                    foreach (string key in new[] { l.textKey, l.choiceA, l.choiceB, l.replyA, l.replyB })
+                        if (!string.IsNullOrEmpty(key) && !GameText.Has(key)) throw new Exception("missing text " + key);
             log.Add("PASS");
             log.Add($"{catalog.entries.Length} entries, {GameText.Count} text keys");
-            string csv = Resources.Load<TextAsset>(GameText.ResourcePath).text;
+            string csv = GameText.SourceCsv;
             log.Add("missing en: " + string.Join(", ", GameText.Missing(csv, "en")));
         }
         catch (Exception e) { log.Insert(0, "FAIL " + e); }
@@ -58,6 +85,16 @@ public static class DialogueCatalogBuilder
     }
 
     static DialogueLine Line(string key, int face) => new DialogueLine { textKey = key, face = face };
+    static DialogueLine Line(string key) => Line(key, 8);
+    static DialogueLine Stage(DialogueLine l, int stage) { l.setStage = stage; return l; }
+    static DialogueLine OnlyIf(DialogueLine l, string choice) { l.onlyIfChoice = choice; return l; }
+    static DialogueLine Choice(DialogueLine l, string a, string replyA, string b, string replyB, bool save)
+    {
+        l.choiceA = a; l.replyA = replyA; l.choiceB = b; l.replyB = replyB; l.saveChoice = save;
+        return l;
+    }
+    static DialogueEntry Story(string id, params DialogueLine[] lines) =>
+        Entry(id, DialogueCategory.Story, DialogueTrigger.StoryBeat, DialogueSize.Big, lines);
 
     static DialogueEntry Entry(string id, DialogueCategory category, DialogueTrigger trigger, DialogueSize size, params DialogueLine[] lines) =>
         new DialogueEntry { id = id, category = category, trigger = trigger, size = size, lines = lines };

@@ -19,12 +19,13 @@ public static class DialogueResetMenu
         MetaSaveData data = MetaSave.Data;
         int seen = data.seenDialogue.Count;
         if (!EditorUtility.DisplayDialog("Diyalog",
-                $"Görülen {seen} konuşma, bekleyen hikâye, kilometre taşları ve hikâye aşaması ({data.storyStage}) sıfırlanacak.\n" +
+                $"Görülen {seen} konuşma, bekleyen hikâye, kilometre taşları, cevap seçimleri ve hikâye aşaması ({data.storyStage}) sıfırlanacak.\n" +
                 "Çiftçi / tırpan, açılan kartlar ve görevler korunur. Önce yedek alınır.", "Sıfırla", "Vazgeç")) return;
         File.Copy(MetaSave.FilePath, MetaSave.FilePath + ".before-dialogue-reset", true);
         data.seenDialogue.Clear();
         data.pendingStory.Clear();
         data.milestones.Clear();
+        data.storyChoices.Clear();
         data.storyStage = 0;
         data.introSeen = false;
         bool saved = MetaSave.Save();

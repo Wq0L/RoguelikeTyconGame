@@ -22,9 +22,9 @@ public sealed class ConductiveLineEffectSO : RunEffectSO
     public bool secondAntennaPulses = true;
 
     public override bool NeedsPlacement => false;
-    public override string PlacementPrompt => "İKİNCİ ANTEN\n<size=70%>İlk antenle aynı hizada, karşı kenara yerleşir</size>";
+    public override string PlacementPrompt => $"{GameText.Get("ui.effect.line.place")}\n<size=70%>{GameText.Get("ui.effect.line.place.detail")}</size>";
     public override string Summary =>
-        $"aynı hizada karşı kenara ikinci anten · iki anten arasındaki hücrelere {Number(interval)} sn'de bir hat vuruşu · hasat hasarının %{Percent(damage)}'i";
+        GameText.Format("ui.effect.line", Number(interval), Percent(damage));
 
     public override RunEffect Create() => new ConductiveLineEffect();
 

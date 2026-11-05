@@ -17,18 +17,22 @@ public class TooltipContent : MonoBehaviour
     public void SetCost(string value)
     {
         var view = ComicPopupView.Attach(gameObject); view.IsHoverTooltip = true;
-        view.Begin(title, level == "MAX" ? "TAMAMLANDI  ·  MAX" : "KADEME  " + level, icon, skillIcon: skillIcon);
-        view.Add(level == "MAX" ? "<b>MEVCUT ETKİ</b>" : "<b>SONRAKİ KADEME</b>");
+        // "MAX" seviye işaretidir (SkillNodeUI); başlık ve bölüm adları çeviri tablosundan.
+        bool max = level == MaxLevel;
+        view.Begin(title, max ? GameText.Get("ui.skill.completed_max") : GameText.Format("ui.skill.tier", level), icon, skillIcon: skillIcon);
+        view.Add($"<b>{GameText.Get(max ? "ui.skill.current_effect" : "ui.skill.next_tier")}</b>");
         view.Add(values.TrimEnd());
-        if (level != "MAX") { view.Add("<b>YÜKSELTME MALİYETİ</b>"); view.Add(value); }
+        if (!max) { view.Add($"<b>{GameText.Get("ui.skill.upgrade_cost")}</b>"); view.Add(value); }
         view.End();
     }
+
+    public const string MaxLevel = "MAX";
     // Profilin run başında verdiği erişim: satın alma değildir, bu yüzden kademe ve maliyet bölümü yazılmaz.
     public void ShowStartingAccess(string caption, string description)
     {
         var view = ComicPopupView.Attach(gameObject); view.IsHoverTooltip = true;
         view.Begin(title, caption, icon, skillIcon: skillIcon);
-        view.Add("<b>ERİŞİM</b>");
+        view.Add($"<b>{GameText.Get("ui.skill.access")}</b>");
         view.Add(description.TrimEnd());
         view.End();
     }

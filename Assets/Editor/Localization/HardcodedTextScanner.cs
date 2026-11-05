@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,6 +18,9 @@ using UnityEngine.SceneManagement;
 //   kod     : koddaki yazı atamaları (.text = "…", SetText("…")) ve büyük harfli etiket sabitleri
 // Sayı, tek simge, boşluk ve özel kullanım ikon karakterleri yazı sayılmaz. TextMesh Pro örnekleri ve kurtarma sahnesi taranmaz;
 // geliştirici araçları (Mechanics Test Lab, test sahnesi) "gelistirici" kategorisine ayrılır (çevrilmesi gerekmez).
+// Oyuna girmeyen dosyalar "kullanilmiyor" kategorisine ayrılır (5 Kasım): Unity'nin kuralıyla oyuna yalnız derleme listesindeki
+// sahnelerin (ve demo sahnesinin) kullandığı dosyalar ile Resources klasörlerindekiler girer. Eski denge sürümlerinin profilleri,
+// ödülleri ve yetenek ağaçları buna takılır; çevrilmeleri gerekmez.
 // Kod taraması sezgiseldir: kesin liste değil, bakılacak yerler listesidir.
 public static class HardcodedTextScanner
 {
@@ -29,12 +33,29 @@ public static class HardcodedTextScanner
     private static readonly Regex HexColor = new(@"^#?[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$");
     private static readonly Regex CodeAssign = new(@"(?:\.text\s*=\s*|SetText\(\s*)(\$?""(?:[^""\\]|\\.)*"")");
     private static readonly Regex CodeCaps = new(@"""([A-ZÇĞİÖŞÜ][A-ZÇĞİÖŞÜ0-9]{2,}(?:[ .!?:'][A-ZÇĞİÖŞÜ0-9!?.']+)*)""");
-    private static readonly string[] FieldHints = { "name", "label", "text", "title", "description", "rule", "prompt", "tooltip", "subtitle" };
+    private static readonly string[] FieldHints = { "name", "label", "text", "title", "description", "rule", "prompt", "tooltip", "subtitle", "style" };
     private static readonly string[] FieldSkips = { "m_name", "id", "key", "guid", "path", "resource", "sound", "clip", "trigger", "sprite", "icon" };
+
+    public const string DemoScene = "Assets/Scenes/DemoScene.unity";
+    private static HashSet<string> shipped;
+
+    // Oyuna giren dosyalar: derleme listesindeki sahneler + demo sahnesi + Resources klasörlerindekiler ve hepsinin kullandıkları.
+    public static HashSet<string> ShippedAssets()
+    {
+        var roots = new List<string>();
+        foreach (EditorBuildSettingsScene s in EditorBuildSettings.scenes)
+            if (s.enabled) roots.Add(s.path);
+        if (File.Exists(DemoScene)) roots.Add(DemoScene);
+        foreach (string path in AssetDatabase.GetAllAssetPaths())
+            if (path.StartsWith("Assets/", StringComparison.Ordinal) && path.Contains("/Resources/") && !path.Contains("/Editor/") && !Directory.Exists(path))
+                roots.Add(path);
+        return new HashSet<string>(AssetDatabase.GetDependencies(roots.ToArray(), true));
+    }
 
     public static List<Item> Scan()
     {
         var items = new List<Item>();
+        shipped = ShippedAssets();
         ScanScenes(items);
         ScanPrefabs(items);
         ScanData(items);
@@ -70,7 +91,7 @@ public static class HardcodedTextScanner
             if (opened) scene = EditorSceneManager.OpenScene(path, OpenSceneMode.Additive);
             string sceneName = Path.GetFileNameWithoutExtension(path);
             foreach (GameObject root in scene.GetRootGameObjects())
-                AddLabels(items, root, DeveloperOnly(path) ? "gelistirici" : "sahne", sceneName, "ui." + Slug(sceneName));
+                AddLabels(items, root, DeveloperOnly(path) ? "gelistirici" : !shipped.Contains(path) ? "kullanilmiyor" : "sahne", sceneName, "ui." + Slug(sceneName));
             if (opened) EditorSceneManager.CloseScene(scene, true);
         }
     }
@@ -84,7 +105,7 @@ public static class HardcodedTextScanner
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
             if (prefab == null || prefab.GetComponentInChildren<TMP_Text>(true) == null) continue;
             string name = Path.GetFileNameWithoutExtension(path);
-            AddLabels(items, prefab, DeveloperOnly(path) ? "gelistirici" : "prefab", path, "ui." + Slug(name));
+            AddLabels(items, prefab, DeveloperOnly(path) ? "gelistirici" : !shipped.Contains(path) ? "kullanilmiyor" : "prefab", path, "ui." + Slug(name));
         }
     }
 
@@ -111,7 +132,7 @@ public static class HardcodedTextScanner
 
     private static void ScanData(List<Item> items)
     {
-        foreach (string guid in AssetDatabase.FindAssets("t:ScriptableObject", new[] { "Assets/ScriptableObjects" }))
+        foreach (string guid in AssetDatabase.FindAssets("t:ScriptableObject", new[] { "Assets/ScriptableObjects", "Assets/Resources" }))
         {
             string path = AssetDatabase.GUIDToAssetPath(guid);
             var asset = AssetDatabase.LoadAssetAtPath<ScriptableObject>(path);
@@ -125,9 +146,13 @@ public static class HardcodedTextScanner
                 if (FieldSkips.Any(s => field == s || field.EndsWith(s))) continue;
                 if (!FieldHints.Any(h => field.Contains(h))) continue;
                 if (!IsText(p.stringValue)) continue;
+                // Çeviri tablosuna bağlanmış alan (asset türünün DisplayName kuralı, anahtar listede): artık sabit yazı değildir.
+                string bound = BoundDataKey(asset, p.propertyPath, p.stringValue);
+                if (bound != null && GameText.Has(bound)) continue;
+                if (bound == NotShown) continue;
                 items.Add(new Item
                 {
-                    Category = DeveloperOnly(path) ? "gelistirici" : "veri",
+                    Category = DeveloperOnly(path) ? "gelistirici" : !shipped.Contains(path) ? "kullanilmiyor" : "veri",
                     Location = path,
                     Field = p.propertyPath,
                     Text = p.stringValue,
@@ -135,6 +160,44 @@ public static class HardcodedTextScanner
                 });
             }
         }
+    }
+
+    public const string NotShown = "-";
+
+    // Veri alanının çeviri anahtarı (oyunun okuduğu yol: StartOptionSO.DisplayName vb.); bağlanmamış alan null.
+    // Oyunda gösterilmeyen alan NotShown (taranmaz): SegmentEventSO.ruleText yalnız editörde not.
+    public static string BoundDataKey(ScriptableObject asset, string propertyPath, string value = null) => asset switch
+    {
+        ResonanceRulesSO when propertyPath.EndsWith(".resonanceName") => ResonanceRule.NameKey(value),
+        StartOptionSO o when propertyPath == "displayName" => o.NameKey,
+        StartOptionSO o when propertyPath == "playstyle" => o.StyleKey,
+        QuestSO q when propertyPath == "description" => q.DescriptionKey,
+        SkillNodeSO n when propertyPath == "nodeName" => n.DisplayNameKey,
+        TileModifierSO t when propertyPath == "modifierName" => t.NameKey,
+        SegmentEventSO e when propertyPath == "displayName" => e.NameKey,
+        SegmentEventSO when propertyPath == "ruleText" => NotShown,
+        BossRewardSO r when propertyPath == "displayName" => r.NameKey,
+        BossRewardSO r when propertyPath == "effectLabel" => r.EffectKey,
+        BossRewardSO r when propertyPath == "inverseLabel" => r.InverseKey,
+        PlantSO p when propertyPath == "plantName" => p.NameKey,
+        SpecializationSO s when propertyPath == "displayName" => s.NameKey,
+        RunProfileSO p when propertyPath == "victoryTitle" => p.VictoryKey,
+        BossRewardPoolSO pool when propertyPath.EndsWith(".displayName") && (propertyPath.StartsWith("stages") || propertyPath.StartsWith("endlessStage")) =>
+            StageKey(pool, value),
+        // Oyunda gösterilmeyen adlar: profil adı yalnız log ve test aracında, saksı adı hiçbir yerde okunmuyor.
+        RunProfileSO when propertyPath == "displayName" => NotShown,
+        PlanterSO when propertyPath == "planterName" => NotShown,
+        _ => null
+    };
+
+    // Havuzdaki aşamanın anahtarı (aşama kimliğinden): adı verilen yazı olan aşama.
+    private static string StageKey(BossRewardPoolSO pool, string displayName)
+    {
+        if (pool.endlessStage != null && pool.endlessStage.displayName == displayName) return pool.endlessStage.NameKey;
+        if (pool.stages != null)
+            foreach (BossRewardStage stage in pool.stages)
+                if (stage != null && stage.displayName == displayName) return stage.NameKey;
+        return null;
     }
 
     private static void ScanCode(List<Item> items)

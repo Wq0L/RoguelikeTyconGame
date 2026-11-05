@@ -20,7 +20,7 @@ public sealed class GrowingMoonEffectSO : RunEffectSO
     [Range(0, 3)] public int maxHalfWidth = 1;
 
     public override string Summary =>
-        $"hilal menzili +{Number(extraDistance)} birim · hasatla büyür: hasar +%{Percent(damagePerGrowth)} (en çok {maxGrowth} kez), cephe {maxHalfWidth * 2 + 1} hücre · hasatsız adım sıfırlar";
+        GameText.Format("ui.effect.growing_moon", Number(extraDistance), Percent(damagePerGrowth), maxGrowth, maxHalfWidth * 2 + 1);
 
     public override RunEffect Create() => new GrowingMoonEffect();
 

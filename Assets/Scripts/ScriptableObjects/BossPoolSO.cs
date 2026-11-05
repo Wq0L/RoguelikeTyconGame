@@ -68,8 +68,8 @@ public sealed class NoRuleBossEvent : SegmentEventRuntime
     public NoRuleBossEvent(SegmentEventSO data, SegmentEventTiming timing) : base(data, timing) { }
 
     public override IReadOnlyList<GridPosition> ZoneCells => NoCells;
-    public override string RuleSummary => "kural yok";
-    public override string EndedText => "Boss round'u bitti";
+    public override string RuleSummary => GameText.Get("ui.event.no_rule");
+    public override string EndedText => GameText.Get("ui.event.no_rule.ended");
     public override bool Covers(GridPosition cell) => false;
 
     public override bool TryPrepare(SegmentEventContext context)

@@ -25,7 +25,8 @@ public abstract class RunEffectSO : ScriptableObject
     public virtual Vector3 PlacementPosition(RunEffects host, int placement) => Vector3.zero;
     public virtual void PlacementCells(RunEffects host, int placement, List<GridPosition> into) => into.Clear();
 
-    protected static string Number(float value) => value.ToString("0.##", CultureInfo.InvariantCulture).Replace('.', ',');
+    // Sayı etkin dilin ondalığıyla (tr "0,25", en "0.25"); kural metinleri çeviri tablosundan (ui.effect.*).
+    protected static string Number(float value) => GameText.Number(value, "0.##");
     protected static string Percent(float ratio) => Mathf.RoundToInt(ratio * 100f).ToString(CultureInfo.InvariantCulture);
 }
 

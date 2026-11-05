@@ -54,7 +54,7 @@ public static class MoonVerification
      Check(AssetDatabase.FindAssets("t:RunProfileSO").Select(AssetDatabase.GUIDToAssetPath).Where(p=>!p.EndsWith("Run50_GecOyunV1.asset")).All(p=>!AssetDatabase.LoadAssetAtPath<RunProfileSO>(p).crescentFullRows),"other profiles retain legacy default");
      break;
     case 0:
-     Fresh();var cfg=(CrescentEffectSO)C.Data;Check(cfg.everyAttacks==6&&cfg.steps==4&&cfg.damage==.8f&&cfg.stepSeconds==.07f&&CrescentEffect.MaxWaves==4,"original trigger damage cadence and capacity data unchanged");
+     Fresh();var cfg=(CrescentEffectSO)C.Data;Check(cfg.everyAttacks==6&&cfg.steps==4&&cfg.damage==.8f&&cfg.stepSeconds==.3f&&CrescentEffect.MaxPrimaryWaves==4&&CrescentEffect.MaxWaves==8,"trigger, damage, cadence (0,3 s step since the 24 Oct tuning) and capacity (4 primary + 4 return waves) unchanged");
      for(int i=0;i<5;i++)Lab("Attack",2,5);
      ((PlantSpawner)Lab("SpawnerAt",0,0)).RemoveSpawnedPlant();Lab("Attack",0,0);
      Check(C.Counter==5&&C.Launched==0,"five valid attacks count; empty swing does not");Lab("Attack",2,5);Check(C.Counter==0&&C.Launched==1,"sixth genuine direct attack launches full row");Drain();

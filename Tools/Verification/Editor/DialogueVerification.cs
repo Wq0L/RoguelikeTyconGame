@@ -50,6 +50,9 @@ public static class DialogueVerification
                     break;
                 case 0:
                 {
+                    // Hikâye konuşmaları (Faz 3) bu testin öğretim akışına karışmasın: görülmüş sayılır (ayrı testi: StoryVerification).
+                    // Bu sahnede (GecOyunV1 kurulumu) boss ödülü zaten alınmış olduğundan "ilk ödül" taşı hemen kazanılmış görünür.
+                    foreach (string id in DialogueProgress.StoryOrder) DialogueProgress.MarkSeen(id);
                     DialogueDirector.BatchEnabled = true;
                     DialogueDirector.Paused = true;   // elle sürülen saat
                     DialogueDirector d = DialogueDirector.Ensure();
@@ -255,8 +258,8 @@ b,n,İki,Two,,
 c,""x, y"",Üç,,,
 ";
         GameText.Load(csv, map, "de", columns);
-        Check(columns.SequenceEqual(new[] { "tr", "en", "de", "ja" }) && map["a"] == "Eins" && map["b"] == "Two" && map["c"] == "Üç",
-            "translation table: language columns by header name (translator note skipped); an empty cell falls back to English, then Turkish");
+        Check(columns.SequenceEqual(new[] { "tr", "en", "de", "ja" }) && map["a"] == "Eins" && map["b"] == "Two" && !map.ContainsKey("c"),
+            "translation table: language columns by header name (translator note skipped); an empty cell falls back to English (one-way); a row without English is missing (the audit blocks it)");
         Check(GameText.Missing(csv, "de").SequenceEqual(new[] { "b", "c" }) && GameText.Missing(csv, "fr").Count == 3, "missing-translation report per language");
 
         DialogueDirector d = D; DialogueBox big = d.BigBox;
@@ -267,10 +270,10 @@ c,""x, y"",Üç,,,
         d.ForceState(GameStates.MainMenu);
         GameText.Language = "en";
         d.Raise(DialogueTrigger.SelectionOpened);
-        Check(big.IsOpen && big.SkipText == "Skip" && big.NameText == "Eri" && big.ShownText == GameText.Get("tut.hit.0") && GameText.Get("tut.hit.0").StartsWith("Hasat"),
-            "language switched to English: button label follows; an untranslated line falls back to Turkish instead of showing a key");
+        Check(big.IsOpen && big.SkipText == "Skip" && big.NameText == "Eri" && big.ShownText == GameText.Get("tut.hit.0") && GameText.Get("tut.hit.0").StartsWith("Don't"),
+            "language switched to English: button label and the line follow (English is the source language)");
         GameText.Language = "tr";
-        Check(big.SkipText == "Atla", "language change refreshes an open box's labels");
+        Check(big.SkipText == "Atla" && big.ShownText.StartsWith("Hasat"), "language change refreshes an open box's labels and its current line");
         big.Close();
 
         GameText.UseCsv(@"key,note,tr,ja
@@ -384,12 +387,22 @@ t.cjk,,x,はい。そうです
             DialogueProgress.MarkSeen("p.a");
             Check(!File.Exists(MetaSave.FilePath) && MetaSave.HasPendingChanges, "seeing a line only marks pending changes (no disk write per line)");
             DialogueProgress.RunStarted();
-            DialogueProgress.AddMilestone(DialogueProgress.FirstBoss);
-            Check(DialogueProgress.Stage == 0, "milestone does not change the stage mid-run");
-            Check(DialogueProgress.RunFinished() && DialogueProgress.Stage == 1 && File.Exists(MetaSave.FilePath), "stage advances at run end and is written immediately");
+            // Faz 3 (kesin plan v3): taş hemen yazılır; aşama taşın anında değişir (AdvanceStage), yalnız ileri gider; seçim kalıcı.
+            Check(DialogueProgress.AddMilestone(DialogueProgress.TrialPassed) && !DialogueProgress.AddMilestone(DialogueProgress.TrialPassed) &&
+                  File.Exists(MetaSave.FilePath) && DialogueProgress.Stage == 0, "a milestone is recorded once and written immediately; it does not change the stage by itself");
+            // Run sayacı yalnız "kaydedilecek" işaretlenir (bir sonraki yazımda diske gider); aşama ve cevap hemen yazılır.
+            DialogueProgress.RunFinished();
+            DialogueProgress.AdvanceStage(DialogueProgress.Sad);
+            DialogueProgress.AdvanceStage(1);
+            DialogueProgress.SaveChoice(DialogueProgress.TrialPassed, "B");
+            DialogueProgress.SaveChoice(DialogueProgress.TrialPassed, "A");
+            Check(DialogueProgress.Stage == DialogueProgress.Sad && DialogueProgress.Choice(DialogueProgress.TrialPassed) == "B" &&
+                  DialogueProgress.ChoiceMatches("story.trial1:B") && !DialogueProgress.ChoiceMatches("story.trial1:A") && DialogueProgress.ChoiceMatches(""),
+                "the stage changes at once and only moves forward; the first answer is kept (a second answer does not overwrite it)");
             MetaSave.UseDirectory(a);
-            Check(DialogueProgress.Seen("p.a") && DialogueProgress.Stage == 1 && MetaSave.Data.runsStarted == 1 && MetaSave.Data.runsFinished == 1 && MetaSave.LastLoad == MetaSave.LoadResult.Loaded,
-                "seen lines, stage and run counters survive a reload");
+            Check(DialogueProgress.Seen("p.a") && DialogueProgress.Stage == DialogueProgress.Sad && DialogueProgress.HasMilestone(DialogueProgress.TrialPassed) &&
+                  DialogueProgress.Choice(DialogueProgress.TrialPassed) == "B" && MetaSave.Data.runsStarted == 1 && MetaSave.Data.runsFinished == 1 && MetaSave.LastLoad == MetaSave.LoadResult.Loaded,
+                "seen lines, milestones, the answer, the stage and run counters survive a reload");
             Check(File.ReadAllText(MetaSave.FilePath).Contains("\"version\": 2"), "file is written as version 2");
 
             File.WriteAllText(Path.Combine(v1, MetaSave.FileName), "{\"version\":1,\"farmer\":\"f1\",\"scythe\":\"s1\",\"unlocked\":[\"u1\"],\"quests\":[]}");

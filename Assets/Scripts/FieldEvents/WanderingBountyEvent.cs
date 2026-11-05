@@ -40,16 +40,17 @@ public sealed class WanderingBountyEvent : FieldEvent
     public WanderingBountyEvent(WanderingBountyConfig config) => this.config = config;
 
     public override FieldEventKind Kind => FieldEventKind.WanderingBounty;
-    public override string Title => "GEZGİN BEREKET";
+    public override string Title => GameText.Get("ui.field.bounty.title");
     protected override FieldEventTiming Timing => config.timing;
     public override int ZoneCount => 1;
     public override IReadOnlyList<GridPosition> Zone(int index) => zone;
     public int Moves { get; private set; }
     public override string Status => Phase switch
     {
-        FieldEventPhase.Preparing or FieldEventPhase.Emerging => "Bereket geliyor: kaynak ve XP ×2 · üretim ×2 hızlı",
-        FieldEventPhase.Active => $"Kaynak ×2 · XP ×2\nBoş yuvalar ×2 hızlı dolar · round boyunca\n{BonusHarvests} bereketli hasat · {AcceleratedSpawns} hızlı doğuş",
-        FieldEventPhase.Resolving => $"Bereket bitti · {BonusHarvests} bonuslu hasat\n{AcceleratedSpawns} hızlı doğuş",
+        FieldEventPhase.Preparing or FieldEventPhase.Emerging => GameText.Get("ui.field.bounty.prep"),
+        FieldEventPhase.Active => GameText.Get("ui.field.bounty.active") + "\n" + GameText.Get("ui.field.bounty.active2") + "\n" +
+                                  GameText.Format("ui.field.bounty.counts", BonusHarvests, AcceleratedSpawns),
+        FieldEventPhase.Resolving => GameText.Format("ui.field.bounty.ended", BonusHarvests) + "\n" + GameText.Format("ui.field.bounty.spawns", AcceleratedSpawns),
         _ => "",
     };
 

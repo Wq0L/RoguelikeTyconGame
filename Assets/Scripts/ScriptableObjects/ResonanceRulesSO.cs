@@ -26,6 +26,10 @@ public class ResonanceEffect
 public class ResonanceRule
 {
     public string resonanceName;
+
+    // Oyuncuya görünen rezonans adı: çeviri tablosundan (data.resonance.<ad>.name, ad Türkçe yazıdan); anahtar yoksa verideki yazı.
+    public static string DisplayName(string resonanceName) => GameText.Data(NameKey(resonanceName), resonanceName);
+    public static string NameKey(string resonanceName) => "data.resonance." + GameText.Slug(resonanceName) + ".name";
     public string id;
     public TileModifierType tileType;
     public StatType statType;

@@ -5,6 +5,9 @@ public class PlantSO : ScriptableObject
 {
     [Header("Bilgi")]
     public string plantName;
+    // Oyuncuya görünen ad: çeviri tablosundan (data.plant.<ad>.name); anahtar yoksa asset'teki yazı.
+    public string DisplayName => GameText.Data(NameKey, plantName);
+    public string NameKey => "data.plant." + GameText.Slug(plantName) + ".name";
     public PlantRarity rarity;
 
     [Header("Görsel")]

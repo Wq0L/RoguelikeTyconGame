@@ -132,9 +132,29 @@ Hepsi 1.0'da kalacak; amaç görsel olarak sorunsuz ve net anlaşılır olmalar�
 
 ### Boss atmosferleri
 
-- [ ] **A1 · Don Cephesi:** kar taneleri arka plan yıldızlarından ayrışır. Etkilenen bölgeden
+- [x] **A1 · Don Cephesi:** kar taneleri arka plan yıldızlarından ayrışır. Etkilenen bölgeden
   yükselen, yukarıda solan mavi perde eklenir.
+  - **5 Kasım: yapıldı, test edildi, kullanıcı onayladı** ("gayet güzel"; perde "kuzey ışığı gibi"). Görüntüler `Docs/A1-DonCephesi/`.
+    - Kar → **tipi** (`Assets/Resources/BossWeather.shader`). Kullanıcı: kar taneleri yıldızlarla karışıyor, kum fırtınası gibi olsun.
+      - Nokta yok: rüzgâr yönünde (sağdan sola, hafif aşağı) uzun ince kar çizgileri, iki hızda.
+      - Dalga dalga geçen kar pusu; rüzgâr hamlelerle güçlenip zayıflıyor. Tarlanın ortası açık.
+      - Denenip bırakılanlar: konturlu yuvarlak taneler (kabarcık gibi) ve küçük gölgeli taneler + kristal (yıldızlarla karışıyordu).
+      - Görüntüler: `04_tipi.png`, `05_tipi_0-7sn_sonra.png`.
+    - Perde (`FrostZoneMarkers`): boss aktifken bölgenin çevre kenarlarından yükselen, yukarıda solan buz mavisi duvar
+      (Gezgin Bereket perdesiyle aynı gölgelendirici, aynı yükseklik). Boss başlayınca 0,45 sn'de yerden yükselir, sonra hafifçe
+      nefes alır. Kameraya bakan ön duvarlar ×0,4 opaklıkta: öndeki bitkiler ve darbeler örtülmez. Duyuruda ve run sonunda yok.
+    - Bedel: ağ yalnız bölge değişince kurulur; karede yalnız boy ayarı yapılır, bellek ayırma yok. Bir materyal ve bir ağ var,
+      ikisi de yok edilirken bırakılır. Tipi tam ekran gölgelendiricide 5 gürültü örneği (eski kar: 2 katman).
+    - Testler: RunPrototypeVerification 72/72 (üç perde kontrolü dahil), TakvimV1Verification 162/162,
+      BossWeatherVerification 22/22.
 - [ ] **A2 · Sert Kabuk:** aynı mantıkta kahverengi yükselen ve solan perde.
+  - **5 Kasım: yapıldı ve test edildi, kullanıcının bakması bekleniyor.** Görüntüler `Docs/A2-SertKabuk/` (önce / sonra / 0,7 sn sonra).
+    - Kullanıcı isteği: kum fırtınası da Don tipisi gibi olsun.
+    - Kum: rüzgâr soldan sağa, hafif aşağı. Uzun kum çizgileri iki hızda, hamlelerle dalgalanan toz pusu, tarlanın ortası açık.
+      Kenar kuşağı eskisi gibi.
+    - Perde: Don perdesinin aynısı, kahverengi (`FrostZoneMarkers.CurtainColors`).
+    - Testler: TakvimV1Verification 162/162; R50 takviminin her round'unda perde durumu denetlendi (15 boss: Don, Sert Kabuk, Sis).
+      RunPrototypeVerification 72/72, BossWeatherVerification 22/22.
 - Her iki perdede referans Gezgin Bereket perdesi; bitkiler ve darbeler örtülmemeli.
 - Sis: yeni değişiklik talebi yok.
 

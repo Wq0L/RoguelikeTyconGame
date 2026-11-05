@@ -24,8 +24,8 @@ public sealed class CrescentEffectSO : RunEffectSO
 
     public override string Summary =>
         RoundManager.Instance!=null&&RoundManager.Instance.Profile!=null&&RoundManager.Instance.Profile.crescentFullRows
-        ? $"her {everyAttacks} doğrudan bitki isabetinde fareden hilal · rastgele ana yönde en fazla {Number(maxDistance)} birim · hasat hasarının %{Percent(damage)}'i"
-        : $"her {everyAttacks} geçerli vuruşta bir hilal · {steps} hücre ilerler · hasat hasarının %{Percent(damage)}'i";
+        ? GameText.Format("ui.effect.crescent.full", everyAttacks, Number(maxDistance), Percent(damage))
+        : GameText.Format("ui.effect.crescent", everyAttacks, steps, Percent(damage));
 
     public override RunEffect Create() => new CrescentEffect();
 }

@@ -24,7 +24,12 @@
     - Unity Companion License bildirimi.
     - İkisi oyunla birlikte giden bir üçüncü taraf bildirimleri dosyasında (ör. `ThirdPartyNotices.txt`) bulunmalı.
   - Unity, Addressables ile derlenen içerik için oyuncu derlemesinden önce bir "Addressables build" adımı ister. Bu adım otomatik ayarlanabilir.
-- **Durum:** kullanıcı "yardımcı olur mu" diye sordu. Projede kurulu, kod henüz kullanmıyor. Kullanım kararı bekleniyor (öneri: GameText bunun üstüne taşınır).
+- **Durum (5 Kasım):** kullanıcının onayıyla kullanılıyor.
+  - `GameText` yazıları Unity Localization'ın "GameText" tablosundan okuyor.
+  - Tablo `Assets/Localization/GameText.csv` ana listesinden üretiliyor (`LocalizationSetup`).
+  - Addressables oyuncu derlemesiyle kendiliğinden paketleniyor.
+  - Paket kodu değiştirilmedi.
+  - Yapılacak: oyun dağıtılırken `ThirdPartyNotices.txt`'ye SmartFormat MIT ve Unity Companion License bildirimi eklenecek.
 
 ## Kenney "Input Prompts" 1.5A — oyundaki tuş ikonları (4 Kasım 2026)
 
@@ -85,6 +90,31 @@
   - Kullanılanlar: patlamalar (lowFrequency_explosion, explosionCrunch), motor (spaceEngineLarge, spaceEngineLow), itici ateşi (thrusterFire), gövde ve kaya çarpmaları (impactMetal_heavy, impactPlate_heavy, impactMining), uyarı bibi ve tık (error, tick, click, confirmation).
   - Rüzgâr, hışırtı, yükselen uğultu ve yakalanma uğultusu özgün sentez.
 - Kullanıcıya kaynak, lisans, ücret, kredi ve dağıtım koşulları kullanımdan önce konuşmada bildirildi.
+
+## Eri'nin üç hâl tablosu — Higgsfield / GPT Image 2.5 çıktısı, OYUNDA DAĞITILIR (5 Kasım 2026)
+
+- **Kategori:** oyunda dağıtılan varlık. Oyunun içinde dağıtılan ilk AI görseli.
+- **Dosyalar:**
+  - `Assets/Resources/GreenhouseMascotFrames_Mutlu.png`, `_Uzgun.png`, `_Seytani.png` (2880², 4×4 kare; kaynakları `Docs/EriHalleri/Son/`).
+  - Bunlardan türetilen konuşma kutusu silüetleri: `Assets/Resources/Dialogue/EriSilhouette_<Hâl>.png`.
+- **Üretim:** kullanıcının Higgsfield hesabından, GPT Image 2.5 (OpenAI) modeli, yüksek kalite 4K (4 Kasım 2026).
+  - Referans: oyunun bugünkü Eri tablosu (`Assets/Resources/GreenhouseMascotFrames.png`).
+  - Üzgün tablonun arka karelerindeki yüzler ve cam çizgileri yerel araçla, kredisiz düzeltildi (`Tools/Art/EriMoods/`).
+- **Kullanım amacı:** Eri'nin hikâye aşamasına göre görünüşü (gezegendeki Eri ve konuşma kutusu).
+  - Mutlu: aşama 0–1. Üzgün: aşama 2. Şeytani: aşama 3.
+  - Kare sınırları ve silüetler `Tools/Art/EriMoods/eri_frames.ps1` ile üretildi (Windows'un .NET System.Drawing'i; ek araç kurulmadı).
+- **Lisans:** Higgsfield Kullanım Şartları; koşullar aşağıdaki Higgsfield kaydında (28 Ekim kontrolü).
+  - Çıktı kullanıcıya ait; ücretli planda (Starter) ticari kullanım dahil.
+  - Alt model sağlayıcısı (OpenAI) için Higgsfield belgelerinde ek şart görülmedi.
+  - 5 Kasım'da yeniden kontrol edilmedi; yayından önce güncel şartlar bir kez daha okunmalı.
+- **Ücret / royalty:** yalnız abonelik ve kredi (bu turda ~14,75 kredi); satış başına ödeme yok.
+- **Kredi:** oyun ekranında veya jenerikte kredi zorunluluğu yok.
+- **Dağıtım:** dağıtım paketine lisans/telif metni koyma zorunluluğu yok.
+- **Dikkat:**
+  - **Steam'de "önceden üretilmiş AI içeriği" beyanı ZORUNLU.** Karakter görselleri AI ile üretildi ve oyunda gösteriliyor.
+  - Saf AI çıktısının telif koruması bazı ülkelerde sınırlı olabilir.
+  - Bugünkü `GreenhouseMascotFrames.png` artık yalnız yedek: hâl tablosu bulunamazsa kullanılır.
+- **Bildirim:** kullanıcıya kullanımdan önce konuşmada bildirildi (5 Kasım 2026).
 
 ## Higgsfield (MCP) — açılış videosu AI düzenleme denemesi (28 Ekim 2026)
 

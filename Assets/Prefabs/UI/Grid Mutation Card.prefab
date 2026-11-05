@@ -487,6 +487,7 @@ GameObject:
   - component: {fileID: 695448424297996232}
   - component: {fileID: 7037147063193771384}
   - component: {fileID: 690900745671856436}
+  - component: {fileID: 5564987338326810480}
   m_Layer: 0
   m_Name: Bonus Caption
   m_TagString: Untagged
@@ -613,6 +614,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5564987338326810480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4139708587771061222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b19a2e638df6579468f7fc1d0f1c0766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LocalizedText
+  key: ui.card.tile_effect
 --- !u!1 &4267851252199250101
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,6 +1466,7 @@ GameObject:
   - component: {fileID: 3896479502021046257}
   - component: {fileID: 1863204860573830923}
   - component: {fileID: 6696565226103289692}
+  - component: {fileID: 1499664643478326070}
   m_Layer: 0
   m_Name: Comparison Caption
   m_TagString: Untagged
@@ -1578,3 +1593,16 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1499664643478326070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8530939063151889032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b19a2e638df6579468f7fc1d0f1c0766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LocalizedText
+  key: ui.card.comparison

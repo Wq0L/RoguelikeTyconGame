@@ -13,7 +13,7 @@ using UnityEngine.SceneManagement;
 //   değişince kendi durumuna ait olmayan kutu kapanır.
 // - Saat: menü ekranlarında (timeScale 0) akar; Paused ya da pencere arka plandayken durur.
 // - Mechanics Test Lab'de kendiliğinden çalışmaz: test sahnesinde ve lab oturumunda (GameScene'i lab yükler; TestSession bayrağı
-//   açar). LabEnabled ileride lab araçlarıyla açılır. Otomatik testlerde (batch) yalnız test açarsa (BatchEnabled) kurulur.
+//   açar). Lab'in 'I · Diyalog' sekmesi LabEnabled ile açar (Faz 6). Otomatik testlerde (batch) yalnız test açarsa (BatchEnabled) kurulur.
 // - Olay tabanlı: her karede kontrol yok; kutular kapalıyken güncelleme çalışmaz.
 // - Faz 2 tetikleri: round başında Sınama round'u ve "Adak dönemin son round'unda hâlâ dolmadı"; round sonu ekranında "Adak tuttu".
 //   Sınama öğretimi tarla önizlemesine (Tab) bağlı değildir; Sınama bilgisi soldaki Adak panelinde hep görünür.
@@ -26,7 +26,7 @@ public sealed class DialogueDirector : MonoBehaviour
     public static bool Paused;
     public static bool BatchEnabled;
     // Mechanics Test Lab: oturum GameScene'i yükleyerek çalışır; lab oturumu bu bayrağı açar (TestSession), diyalog susar.
-    // LabEnabled ileride lab'in diyalog/tutorial test araçları içindir (o zaman lab oturumunda da çalışır).
+    // LabEnabled: lab'in 'I · Diyalog' sekmesi açar (Faz 6); o zaman lab oturumunda da oyundaki gibi çalışır.
     public static bool LabSession;
     public static bool LabEnabled;
 
@@ -140,10 +140,14 @@ public sealed class DialogueDirector : MonoBehaviour
         if (state == GameStates.RunSetup) RaiseSetup();
     }
 
+    // Run kuruldu (hazırlık ekranı). Oyunun ilk run'ında durum menü sahnesinde RunSetup'a geçtiği için oyun sahnesinde durum
+    // haberi gelmez: hikâye taşı (zaferden sonraki ilk run başı) burada da yoklanır.
     private void RaiseSetup()
     {
         setupPending = false;
         Raise(DialogueTrigger.RunSetupOpened);
+        CheckStoryBeats();
+        TryStory();
     }
     private void OnSelectionOpened() => Raise(DialogueTrigger.SelectionOpened);
     private void OnPreviewOpened() => Raise(DialogueTrigger.FieldPreview);
@@ -170,7 +174,67 @@ public sealed class DialogueDirector : MonoBehaviour
                 Raise(DialogueTrigger.RunEnded);
                 break;
         }
-        if (Calm(next)) TryDeferredStory();
+        if (Calm(next))
+        {
+            CheckStoryBeats();
+            TryStory();
+            TryDeferredStory();
+        }
+    }
+
+    // ---- hikâye taşları (Faz 3, kesin plan v3) ----
+    // Taşlar sakin anlarda (hazırlık, round sonu, run sonu) oyunun durumundan okunur: ayrı olay dinleyicisi yok, karede iş yok.
+    private void CheckStoryBeats()
+    {
+        RoundManager rounds = RoundManager.Instance;
+        if (rounds == null) return;
+        if (state == GameStates.RoundEnd && !rounds.RunFailed)
+        {
+            // Sınama round'u bitti ve run sürüyor: Sınama geçildi (ödül paneli RoundChoice'ta, bu ana ondan sonra gelinir).
+            if (rounds.IsBossRound(rounds.CurrentRound)) DialogueProgress.AddMilestone(DialogueProgress.TrialPassed);
+            // Round taşı: sıradaki round'un hazırlık ekranı (R10 taşı = R10'dan önceki ekran).
+            int next = rounds.CurrentRound + 1;
+            if (rounds.CurrentRound < rounds.MaxRounds)
+                foreach ((string id, int round) in DialogueProgress.RoundBeats)
+                    if (next >= round) DialogueProgress.AddMilestone(id);
+        }
+        BossRewardManager rewards = BossRewardManager.Instance;
+        if (rewards != null && rewards.Taken.Count > 0) DialogueProgress.AddMilestone(DialogueProgress.FirstReward);
+        // Tam oyunun zaferi (demo zaferi saymaz).
+        if (state == GameStates.RunComplete && outcome == RunOutcome.Victory && !DemoSceneSettings.IsDemo)
+            DialogueProgress.AddMilestone(DialogueProgress.Victory);
+        // Zaferden sonraki ilk run başı.
+        if (state == GameStates.RunSetup && DialogueProgress.Seen(DialogueProgress.Victory))
+            DialogueProgress.AddMilestone(DialogueProgress.AfterVictory);
+    }
+
+    // Bir sakin anda en çok bir hikâye konuşması: aynı ana iki taş düşerse ikincisi sonraki hazırlık ekranına kayar (dükkândan
+    // dönüş aynı an sayılır). Anahtar: run sayısı + round + ekran.
+    private int storyVisitShown = -1;
+    private int StoryVisit()
+    {
+        int round = RoundManager.Instance != null ? RoundManager.Instance.CurrentRound : 0;
+        int screen = state == GameStates.RunSetup ? 0 : state == GameStates.RoundEnd ? 1 : 2;
+        return DialogueProgress.RunsStarted * 1000 + round * 3 + screen;
+    }
+
+    // Sıradaki hikâye konuşması (DialogueProgress.NextStory): kutular boşken, sakin anda. Run sonu ekranında yalnız zaferde;
+    // zafer sonrası konuşması yalnız run başında. R25 konuşması açılırken Eri griye döner (aşama 2).
+    private void TryStory()
+    {
+        if (catalog == null || Suspended || !Calm(state) || BigBox.IsOpen || SmallBox.IsOpen || queued != null) return;
+        // Yalnız oyun sahnesinde: menüde "Başla"ya basınca durum oyun sahnesi yüklenmeden RunSetup'a geçer, o anda kutu açılmaz.
+        if (RoundManager.Instance == null) return;
+        int visit = StoryVisit();
+        if (visit == storyVisitShown) return;
+        string id = DialogueProgress.NextStory();
+        if (id == null || !byId.TryGetValue(id, out DialogueEntry e) || e.lines == null || e.lines.Length == 0) return;
+        if (state == GameStates.RunComplete && outcome != RunOutcome.Victory) return;
+        if (id == DialogueProgress.AfterVictory && state != GameStates.RunSetup) return;
+        storyVisitShown = visit;
+        if (id == DialogueProgress.TrialPassed) DialogueProgress.AdvanceStage(1);
+        if (id == DialogueProgress.SadBeat) DialogueProgress.AdvanceStage(DialogueProgress.Sad);
+        Show(e);
     }
 
     // Round başı: genel round satırı, sonra Sınama round'u ve geride kalan Adak (aynı anda uygunsa biri bekler, sırayla çıkar).
@@ -275,6 +339,9 @@ public sealed class DialogueDirector : MonoBehaviour
     {
         current = null;
         GreenhouseMascot.Talking = false;
+#if UNITY_EDITOR
+        if (editorClosing) return;   // lab kapatıyor: sıradaki konuşma kendiliğinden açılmaz
+#endif
         if (queued != null)
         {
             DialogueEntry next = queued;
@@ -286,7 +353,7 @@ public sealed class DialogueDirector : MonoBehaviour
         }
         if (Suspended) return;
         if (state == GameStates.Round) Raise(DialogueTrigger.RoundIdle);
-        else if (Calm(state)) TryDeferredStory();
+        else if (Calm(state)) { TryStory(); TryDeferredStory(); }
     }
 
     // Bekleyen konuşma hâlâ yerinde mi: tetiğin anı geçtiyse gösterilmez ("şimdi şu köke vur" olay bitince denmez).
@@ -345,6 +412,46 @@ public sealed class DialogueDirector : MonoBehaviour
 
     // Test / araç: durum bilgisi ve durum değişimini olay yoluyla taklit etme.
     public GameStates State => state;
+    public void ForceStoryCheck() { CheckStoryBeats(); TryStory(); }
+    // Test aracı (Tools > Diyalog): "bu sakin anda hikâye gösterildi" işaretini sıfırlar.
+    public void ResetStoryMoment() => storyVisitShown = -1;
     public void ForceState(GameStates s) => OnState(s);
     public void ForceRunStarted() => OnRunStarted();
+
+#if UNITY_EDITOR
+    // ---- Mechanics Test Lab (Faz 6, 5 Kasım 2026): yalnız editörde ----
+    public IReadOnlyList<DialogueEntry> EditorEntries => catalog != null ? catalog.entries : System.Array.Empty<DialogueEntry>();
+    public bool EditorTryGet(string id, out DialogueEntry e) => byId.TryGetValue(id ?? "", out e);
+    private bool editorClosing;
+
+    // Konuşmayı koşullara bakmadan kendi kutusunda (Big / Small / Planet) gösterir. markSeen false: "görüldü" yazılmaz.
+    // Açık kutular ve bekleyen konuşma kapanır; kapanış zincir başlatmaz (sıradaki konuşma kendiliğinden açılmaz).
+    public void EditorPlay(DialogueEntry e, bool markSeen)
+    {
+        if (e == null || e.lines == null || e.lines.Length == 0) return;
+        EditorCloseAll();
+        if (markSeen) MarkShown(e);
+        if (e.size == DialogueSize.Planet)
+        {
+            GreenhouseMascot.React(GameText.Get(e.lines[0].textKey));
+            return;
+        }
+        current = e;
+        DialogueBox box = e.size == DialogueSize.Small ? SmallBox : BigBox;
+        if (box.Big) bigState = state;
+        GreenhouseMascot.Talking = true;
+        box.Show(e);
+    }
+
+    public void EditorCloseAll()
+    {
+        queued = null;
+        editorClosing = true;
+        try { BigBox.Close(); SmallBox.Close(); }
+        finally { editorClosing = false; }
+        current = null;
+        GreenhouseMascot.Talking = false;
+    }
+
+#endif
 }

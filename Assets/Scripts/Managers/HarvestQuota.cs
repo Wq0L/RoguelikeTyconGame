@@ -32,7 +32,7 @@ public static class HarvestQuota
         return (long)(Math.Round(value / step, MidpointRounding.AwayFromZero) * step);
     }
 
-    // "12.345": kültüre bağlı değil (round özetiyle aynı biçim).
+    // "12.345" (tr) / "12,345" (en): binlik ayırıcı etkin dilden (GameText.GroupSeparator; round özetiyle aynı biçim).
     public static string Format(long value)
     {
         if (value < 0) value = 0;
@@ -40,7 +40,7 @@ public static class HarvestQuota
         int position = buffer.Length, digits = 0;
         do
         {
-            if (digits > 0 && digits % 3 == 0) buffer[--position] = '.';
+            if (digits > 0 && digits % 3 == 0) buffer[--position] = GameText.GroupSeparator;
             buffer[--position] = (char)('0' + value % 10);
             value /= 10;
             digits++;

@@ -16,7 +16,7 @@ public class TileCellUI : MonoBehaviour, ITooltipProvider
     }
 
     // Bu round'un kart seçimi bu tile'a düştüyse parlar. Hücre round'lar arasında tekrar kullanılır.
-    public void SetFresh(bool fresh, float delay, string label = "YENİ")
+    public void SetFresh(bool fresh, float delay, string label = null)
     {
         if (!fresh)
         {
@@ -83,8 +83,8 @@ public class TileCellUI : MonoBehaviour, ITooltipProvider
 
         TileModifierSO modifier = groundCell.CurrentModifier;
 
-        content.SetName(modifier.modifierName);
-        content.SetRarity(modifier.rarity.ToString());
+        content.SetName(modifier.DisplayName);
+        content.SetRarity(TileBuffText.RarityName(modifier.rarity));
         content.SetCell(groundCell);
     }
 

@@ -104,7 +104,7 @@ public class GoldUI : MonoBehaviour
         long displayed = System.Math.Max(0L, (long)balance - pendingAmount);
         if (displayed == lastRenderedAmount) return;
         lastRenderedAmount = displayed;
-        amountText.text = $"<size=60%><color=#{tint}>{resourceType}</color></size>\n{displayed:N0}";
+        amountText.text = $"<size=60%><color=#{tint}>{TileBuffText.ResourceName(resourceType)}</color></size>\n{displayed.ToString("N0", GameText.Culture)}";
     }
 
     private bool ToCanvas(Vector2 screen, out Vector2 point)

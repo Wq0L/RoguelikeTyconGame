@@ -20,7 +20,7 @@ public sealed class CritArcEffectSO : RunEffectSO
     [Range(1, 8)] public int maxArcsPerAttack = 3;
 
     public override string Summary =>
-        $"kritik vuruş, {rangeCells} hücre içindeki başka bir bitkiye ark sıçratır · kritik hasarın %{Percent(damageRatio)}'i · vuruş başına en çok {maxArcsPerAttack}";
+        GameText.Format("ui.effect.crit_arc", rangeCells, Percent(damageRatio), maxArcsPerAttack);
 
     public override RunEffect Create() => new CritArcEffect();
 

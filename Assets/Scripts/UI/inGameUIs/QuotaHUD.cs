@@ -139,13 +139,25 @@ public sealed class QuotaHUD : MonoBehaviour
     {
         nextRefresh = 0f;
         shownState = -1;
+        GameText.Changed += OnLanguageChanged;
         Refresh();
     }
 
     private void OnDisable()
     {
+        GameText.Changed -= OnLanguageChanged;
         card.DOKill();
         card.localScale = Vector3.one;
+    }
+
+    // Dil değişti: önbellekteki satırlar atılır, kutu bir sonraki yoklamada yeni dille yazılır.
+    private void OnLanguageChanged()
+    {
+        rhythmCached = null;
+        choiceShown = -1;
+        cachedRewardVersion = -2;
+        shownState = -1;
+        nextRefresh = 0f;
     }
 
     private void Update()
@@ -190,8 +202,9 @@ public sealed class QuotaHUD : MonoBehaviour
         shownBoss = boss; shownBossIdentity = identity; shownEvent = eventText; shownSpec = specText; shownBossLine = bossText; shownRewards = rewards; shownRhythm = rhythmText; shownChoices = choiceText;
 
         // Boss ritminde kota hep "segment kotası"dır; boss'un kendi hedefi alt satırda ayrı yazılır.
-        string name = bossMode ? "SEGMENT KOTASI" : boss ? "BOSS KOTASI" : "KOTA";
-        label.text = done ? $"{name} TAMAM" : left <= 1 ? $"{name} · SON ROUND" : $"{name} · {left} ROUND";
+        string name = GameText.Get(bossMode ? "ui.hud.quota.segment" : boss ? "ui.hud.quota.boss" : "ui.hud.quota");
+        label.text = done ? GameText.Format("ui.hud.quota.done", name) : left <= 1 ? GameText.Format("ui.hud.quota.last_round", name)
+            : GameText.Format("ui.hud.quota.rounds_left", name, left);
         paper.color = boss ? BossTheme.Paper(events.Active.Data) : Paper;
         eventLine.color = BossTheme.Ink(identity);
         float y = -40f;
@@ -208,7 +221,7 @@ public sealed class QuotaHUD : MonoBehaviour
         if (eventText != null) y -= EventLineHeight;
         // Seçilen uzmanlaşma run boyunca görünür (olay satırının altında).
         specLine.gameObject.SetActive(specText != null);
-        specLine.text = specText != null ? "Uzmanlaşma: " + specText : "";
+        specLine.text = specText != null ? GameText.Format("ui.summary.specialization", specText) : "";
         specLine.rectTransform.anchoredPosition = new Vector2(16f, y);
         if (specText != null) y -= 24f;
         // Hasat Ritmi (kırılma ödülü): sayaç ya da hazır hak.
@@ -260,11 +273,13 @@ public sealed class QuotaHUD : MonoBehaviour
         long target = rounds.BossTargetFor(segment);
         bool bossRound = rounds.IsBossRound(rounds.CurrentRound) && (rounds.IsRoundActive || closed);
         if (!bossRound)
-            return target > 0 ? $"Boss hasadı hedefi (Round {rounds.QuotaSegmentEnd}): {HarvestQuota.Format(target)}" : $"Boss round'u: Round {rounds.QuotaSegmentEnd}";
-        if (target <= 0) return "BOSS HASADI: hedef yok";
+            return target > 0 ? GameText.Format("ui.hud.boss.target", rounds.QuotaSegmentEnd, HarvestQuota.Format(target))
+                : GameText.Format("ui.hud.boss.round", rounds.QuotaSegmentEnd);
+        if (target <= 0) return GameText.Get("ui.hud.boss.no_target");
         long progress = closed ? rounds.LastBossScore : rounds.BossProgress;
         bool done = progress >= target;
-        return $"<color={(done ? "#2E7D32" : "#B4530A")}>BOSS HASADI: {HarvestQuota.Format(progress)} / {HarvestQuota.Format(target)}{(done ? " · TAMAM" : "")}</color>";
+        string line = GameText.Format("ui.hud.boss.progress", HarvestQuota.Format(progress), HarvestQuota.Format(target));
+        return $"<color={(done ? "#2E7D32" : "#B4530A")}>{line}{(done ? " · " + GameText.Get("ui.hud.done") : "")}</color>";
     }
 
     // "Hasat Ritmi 4 / 6" ya da hak hazırken "HASAT RİTMİ HAZIR · sıradaki vuruş güçlü". Ödül alınmadıysa satır yok.
@@ -281,8 +296,8 @@ public sealed class QuotaHUD : MonoBehaviour
         rhythmVersion = rhythm.Version;
         rhythmThreshold = threshold;
         return rhythmCached = rhythm.Ready
-            ? "<color=#B26A00>HASAT RİTMİ HAZIR · sıradaki vuruş güçlü</color>"
-            : $"<color=#5B4A2E>Hasat Ritmi {rhythm.Count} / {threshold}</color>";
+            ? $"<color=#B26A00>{GameText.Get("ui.hud.rhythm.ready")}</color>"
+            : $"<color=#5B4A2E>{GameText.Format("ui.hud.rhythm.count", rhythm.Count, threshold)}</color>";
     }
 
     // "Level başına seçim: 4 (temel 3) · yeni kazanılan level'lar". Hak temel değerdeyse satır yok.
@@ -309,7 +324,7 @@ public sealed class QuotaHUD : MonoBehaviour
         lines = cachedRewardLines = 0;
         cachedRewardText = null;
         if (manager == null || manager.Taken.Count == 0) return null;
-        var text = new System.Text.StringBuilder("Boss ödülleri");
+        var text = new System.Text.StringBuilder(GameText.Get("ui.hud.boss_rewards"));
         lines = 1;
         foreach (BossRewardSO reward in manager.Taken)
         {

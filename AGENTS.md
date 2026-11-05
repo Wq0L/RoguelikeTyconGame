@@ -30,6 +30,40 @@ Bu kural kullanıcının açık talebidir ve proje genelinde geçerlidir.
 - Bu kural bildirim zorunluluğudur; kullanıcı ayrıca istemedikçe her uygun
   lisanslı içerik için tekrarlanan onay talebi oluşturmaz. Bildirim atlanamaz.
 
+## Zorunlu oyun yazısı (çeviri listesi) kuralı
+
+Bu kural kullanıcının açık talebidir (5 Kasım 2026) ve proje genelinde geçerlidir.
+Ayrıntılar: `Docs/Ceviri/Yerellestirme.md`.
+
+- **Oyuncunun gördüğü her yeni yazı** ana listeye eklenir:
+  `Assets/Localization/GameText.csv`. Kapsam: düğme, başlık, ipucu, tooltip,
+  bildirim, kart, diyalog, veri adı ve açıklaması.
+- Yazı koda, sahneye, prefab'a ya da asset alanına **düz metin olarak bırakılmaz**.
+  - Koddaki yazı `GameText.Get` / `GameText.Format` ile okunur.
+  - Sahnedeki ya da koddan kurulan etiket `LocalizedText` (veya `LocalizedText.Bind`)
+    ile bağlanır.
+  - Veri adları asset'in çeviri özelliğinden okunur: `DisplayName` benzeri,
+    `GameText.Data` kullanır.
+- Her satırda üç alan doldurulur:
+  - `en`: kaynak dil, boş kalamaz;
+  - `tr`;
+  - `note`: çevirmen notu. Yazının nerede göründüğünü ve her yer tutucunun ne
+    olduğunu söyler.
+- Cümle parça parça birleştirilmez. Değişken yer tutucuyla (`{0}`) tek anahtarda
+  yazılır. Sayıya göre değişen İngilizce çoğul `{0:plural:{} round|{} rounds}`
+  biçimiyle yazılır.
+- Hücrede satır sonu kullanılmaz; gerekirse `<br>` kullanılır. Renk ve boyut
+  etiketleri mümkünse kodda kalır.
+- Sayılar dile göre biçimlenir: `GameText.Number` ve `GameText.Culture`. Binlik
+  ayırıcı için `GameText.GroupSeparator` kullanılır.
+- Dil değişince yazı yenilenmeli: `LocalizedText` ya da `GameText.Changed`.
+  Karede yazı kurulmaz.
+- Yeni yazı ekleyen iş bitince `LocalizationVerification` çalıştırılır. Kapsam
+  kontrolü koddaki her anahtarın ve oyuna giren her veri adının listede olduğunu,
+  İngilizce sütunda Türkçe harf kalmadığını denetler. Sonuç kullanıcıya bildirilir.
+- Yalnız geliştiriciye görünen yazılar (log, doğrulama mesajı, test penceresi,
+  Mechanics Test Lab) bu kurala tabi değildir.
+
 ## Görsel tasarım
 
 UI çalışmaları için `Docs/UI-Art-Direction.md` esas alınır. Ortak comic dil,

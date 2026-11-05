@@ -47,4 +47,44 @@ public class SkillNodeSO : ScriptableObject
 
     [Header("Mekanik Açma (opsiyonel, max seviyede tetiklenir)")]
     public UnlockType unlockType = UnlockType.None;
+
+    // Oyuncuya görünen ad: çeviri tablosundan. Sondaki sıra eki (" – 1", " - 2") çevrilmez; adın gövdesi anahtarı verir
+    // ("Keskin Başlangıç – 1" → data.skill.keskin_baslangic.name + " – 1"). İki denge sürümündeki aynı adlı düğüm tek satırdır.
+    // Anahtar yoksa asset'teki yazı.
+    public string DisplayName
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(nodeName)) return nodeName;
+            int cut = OrderSuffixStart(nodeName);
+            string stem = cut < 0 ? nodeName : nodeName.Substring(0, cut);
+            string name = GameText.Data(NameKey(stem), stem);
+            return cut < 0 ? name : name + nodeName.Substring(cut);
+        }
+    }
+
+    public string DisplayNameKey
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(nodeName)) return null;
+            int cut = OrderSuffixStart(nodeName);
+            return NameKey(cut < 0 ? nodeName : nodeName.Substring(0, cut));
+        }
+    }
+
+    public static string NameKey(string stem) => "data.skill." + GameText.Slug(stem) + ".name";
+
+    // Sıra ekinin başladığı yer ("Akıcı Kesim - 2" → 11); ek yoksa -1.
+    public static int OrderSuffixStart(string name)
+    {
+        int i = name.Length - 1, digits = 0;
+        while (i >= 0 && char.IsDigit(name[i])) { i--; digits++; }
+        if (digits == 0) return -1;
+        while (i >= 0 && name[i] == ' ') i--;
+        if (i < 0 || name[i] != '-' && name[i] != '–') return -1;
+        i--;
+        while (i >= 0 && name[i] == ' ') i--;
+        return i < 0 ? -1 : i + 1;
+    }
 }

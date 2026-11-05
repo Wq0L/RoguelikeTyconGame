@@ -90,6 +90,11 @@ public sealed class DialogueBox : MonoBehaviour
 
     private DialogueEntry entry;
     private int lineIndex, visible, total;
+    // Cevap seçimi (Faz 3): şıklar açık mı, Eri seçilen şıkkın cevabını mı söylüyor; ekrandaki yazının anahtarı (dil değişince).
+    private bool choicePending, replying;
+    private string shownKey;
+    private RectTransform[] choiceRects;
+    private TMP_Text[] choiceLabels;
     private float reveal, pauseLeft, idle, enterTime, exitTime;
     private bool exiting, posed;
     private CanvasGroup cornerDots;
@@ -151,7 +156,7 @@ public sealed class DialogueBox : MonoBehaviour
         rim.offsetMax = new Vector2(-6f, Big ? -8f : -4f);   // kutunun üstünden başlar, solarak belirir
         rim.gameObject.AddComponent<RectMask2D>().softness = new Vector2Int(0, RimFade);
         Silhouette(EriRect("Rim Color", rim, new Vector2(RimGap + RimWidth, -rimFloor)), Polish);
-        Silhouette(EriRect("Rim Knockout", rim, new Vector2(RimGap, -rimFloor)), Paper);
+        Silhouette(EriRect("Rim Knockout", rim, new Vector2(RimGap, -rimFloor)), Paper, paper: true);
         RimTaper(rim, rimFloor);
 
         // Eri: kutunun sol ucunda, önünde; sabit kare; ayakları kutunun alt kenarı hizasında (sprite'ların ortak ayak hizası).
@@ -161,6 +166,8 @@ public sealed class DialogueBox : MonoBehaviour
         portrait.raycastTarget = false;
         portrait.sprite = MascotFrames.Get(EriFrame);
         portrait.enabled = portrait.sprite != null;
+        // Eri'nin hâli değişince (R25'te üzgün, zafer itirafında kırmızı) portre ve kontur silüeti yeni tablodan.
+        MascotFrames.Changed += RefreshEri;
 
         // İsim plakası.
         namePlate = Rect("Name", panel, Big ? new Vector2(124f, 50f) : new Vector2(70f, 30f));
@@ -218,6 +225,33 @@ public sealed class DialogueBox : MonoBehaviour
         skipButton.navigation = new Navigation { mode = Navigation.Mode.None };
         skipButton.targetGraphic = skipInk;
         skipButton.onClick.AddListener(Skip);
+
+        // Cevap şıkları (Faz 3): kutunun üstünde, sağda, alt alta. Yalnız seçimli satır yazılınca görünür; 1 / 2 tuşu da seçer.
+        choiceRects = new RectTransform[2];
+        choiceLabels = new TMP_Text[2];
+        for (int i = 0; i < 2; i++)
+        {
+            int index = i;
+            RectTransform rect = Rect("Choice " + (i + 1), panel, new Vector2(360f, 58f));
+            rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(1f, 1f);
+            rect.anchoredPosition = new Vector2(-34f, 84f + (1 - i) * 68f);
+            rect.localRotation = Quaternion.Euler(0f, 0f, i == 0 ? 1.2f : -.8f);
+            Plate("Shadow", rect, ShadowColor, new Vector2(5f, -5f), Vector2.zero, SkipCuts);
+            DialoguePlateGraphic ink = Plate("Ink", rect, Ink, Vector2.zero, Vector2.zero, SkipCuts);
+            ink.raycastTarget = true;
+            Plate("Paper", rect, Paper, Vector2.zero, new Vector2(3f, 3f), Inner(SkipCuts, 1.5f));
+            TMP_Text label = Label("Label", rect, theme != null && theme.bodyFont != null ? theme.bodyFont : null, 28f);
+            label.alignment = TextAlignmentOptions.Center;
+            label.textWrappingMode = TextWrappingModes.NoWrap;
+            var button = rect.gameObject.AddComponent<Button>();
+            button.transition = Selectable.Transition.None;
+            button.navigation = new Navigation { mode = Navigation.Mode.None };
+            button.targetGraphic = ink;
+            button.onClick.AddListener(() => Choose(index));
+            rect.gameObject.SetActive(false);
+            choiceRects[i] = rect;
+            choiceLabels[i] = label;
+        }
     }
 
     // Tam ekran perde: vinyet (kenarlar koyu, kutunun çevresi açık), üst köşelerde tram deseni. Arkadaki paneli kapatır, her tık
@@ -288,9 +322,20 @@ public sealed class DialogueBox : MonoBehaviour
         cover.raycastTarget = false;
     }
 
-    private static void Silhouette(RectTransform rect, Color color)
+    private readonly System.Collections.Generic.List<Image> silhouettes = new();
+
+    private void RefreshEri()
+    {
+        if (portrait != null) { portrait.sprite = MascotFrames.Get(EriFrame); portrait.enabled = portrait.sprite != null; }
+        foreach (Image image in silhouettes) { image.sprite = DialogueArt.EriSilhouette; image.enabled = image.sprite != null; }
+    }
+
+    private void Silhouette(RectTransform rect, Color color, bool paper = false)
     {
         var image = rect.gameObject.AddComponent<Image>();
+        silhouettes.Add(image);
+        // Kâğıt renginde altlık kâğıdın parçası: üzgün aşamada kâğıtla birlikte solar (UiMood). Mavi kontur rengini korur.
+        if (paper && UiMood.Material != null) image.material = UiMood.Material;
         image.sprite = DialogueArt.EriSilhouette;
         image.enabled = image.sprite != null;
         image.preserveAspect = false;
@@ -321,6 +366,9 @@ public sealed class DialogueBox : MonoBehaviour
         group.blocksRaycasts = true;
         SuspendNavigation();
         RefreshLabels();
+        choicePending = replying = false;
+        HideChoices();
+        if (!SkipUnmatched()) { Close(); return; }
         BeginLine();
         Animate();
     }
@@ -353,8 +401,9 @@ public sealed class DialogueBox : MonoBehaviour
         labelLanguage = null;
         if (!IsOpen) return;
         RefreshLabels();
-        if (entry == null || lineIndex >= entry.lines.Length) return;
-        text.text = GameText.Get(entry.lines[lineIndex].textKey);
+        if (entry == null || lineIndex >= entry.lines.Length || string.IsNullOrEmpty(shownKey)) return;
+        if (choicePending) FillChoices();
+        text.text = GameText.Get(shownKey);
         text.ForceMeshUpdate();
         total = text.textInfo.characterCount;
         visible = Mathf.Min(visible, total);
@@ -362,7 +411,11 @@ public sealed class DialogueBox : MonoBehaviour
         text.maxVisibleCharacters = visible;
     }
 
-    private void OnDestroy() => GameText.Changed -= InvalidateLabels;
+    private void OnDestroy()
+    {
+        GameText.Changed -= InvalidateLabels;
+        MascotFrames.Changed -= RefreshEri;
+    }
 
     // Test / araç: etiketlerin şu anki metni.
     public string NameText => nameLabel != null ? nameLabel.text : "";
@@ -379,11 +432,71 @@ public sealed class DialogueBox : MonoBehaviour
             visible = total;
             text.maxVisibleCharacters = total;
             pauseLeft = 0f;
+            OfferChoices();
             return;
         }
         if (settling) return;
+        // Seçimli satır: şık seçilmeden geçilmez (Atla yine bütün konuşmayı kapatır; seçim yazılmaz).
+        if (choicePending) return;
+        if (!replying && OfferChoices()) return;
+        replying = false;
         lineIndex++;
-        if (entry != null && lineIndex < entry.lines.Length) BeginLine();
+        if (entry != null && SkipUnmatched()) BeginLine();
+        else Close();
+    }
+
+    // ---- cevap seçimi (Faz 3) ----
+    public bool ChoicePending => choicePending;
+    public string ChoiceText(int index) => choiceLabels != null && index >= 0 && index < 2 ? choiceLabels[index].text : "";
+
+    // Kayıtlı seçime bağlı satırlar (onlyIfChoice) uymuyorsa atlanır. Döndürür: gösterilecek satır kaldı mı.
+    private bool SkipUnmatched()
+    {
+        while (entry != null && lineIndex < entry.lines.Length && !DialogueProgress.ChoiceMatches(entry.lines[lineIndex].onlyIfChoice)) lineIndex++;
+        return entry != null && lineIndex < entry.lines.Length;
+    }
+
+    // Satır yazıldıysa ve seçimliyse şıklar açılır. Döndürür: şıklar açık mı.
+    private bool OfferChoices()
+    {
+        if (choicePending) return true;
+        if (replying || entry == null || lineIndex >= entry.lines.Length || !entry.lines[lineIndex].HasChoice || choiceRects == null) return false;
+        if (visible < total) return false;
+        choicePending = true;
+        FillChoices();
+        for (int i = 0; i < 2; i++) choiceRects[i].gameObject.SetActive(true);
+        if (indicator != null) indicator.gameObject.SetActive(false);
+        return true;
+    }
+
+    private void FillChoices()
+    {
+        DialogueLine line = entry.lines[lineIndex];
+        for (int i = 0; i < 2; i++)
+        {
+            choiceLabels[i].text = (i + 1) + ". " + GameText.Get(i == 0 ? line.choiceA : line.choiceB);
+            choiceRects[i].sizeDelta = new Vector2(Mathf.Max(220f, choiceLabels[i].preferredWidth + 48f), choiceRects[i].sizeDelta.y);
+        }
+    }
+
+    private void HideChoices()
+    {
+        if (choiceRects == null) return;
+        for (int i = 0; i < 2; i++) choiceRects[i].gameObject.SetActive(false);
+    }
+
+    // Şık seçildi: kayda yazılır (saveChoice), Eri seçilen şıkkın cevabını söyler; sonra konuşma kaldığı yerden sürer.
+    public void Choose(int index)
+    {
+        if (!IsOpen || !choicePending || index < 0 || index > 1) return;
+        choicePending = false;
+        HideChoices();
+        DialogueLine line = entry.lines[lineIndex];
+        if (line.saveChoice) DialogueProgress.SaveChoice(entry.id, index == 0 ? "A" : "B");
+        string reply = index == 0 ? line.replyA : line.replyB;
+        if (!string.IsNullOrEmpty(reply)) { replying = true; BeginText(reply); return; }
+        lineIndex++;
+        if (SkipUnmatched()) BeginLine();
         else Close();
     }
 
@@ -395,6 +508,8 @@ public sealed class DialogueBox : MonoBehaviour
         if (!IsOpen) return;
         IsOpen = false;
         entry = null;
+        choicePending = replying = false;
+        HideChoices();
         RestoreNavigation();
         group.blocksRaycasts = false;
         exiting = gameObject.activeInHierarchy;
@@ -413,7 +528,15 @@ public sealed class DialogueBox : MonoBehaviour
     private void BeginLine()
     {
         DialogueLine line = entry.lines[lineIndex];
-        text.text = GameText.Get(line.textKey);
+        // Eri'nin hâli bu satırla değişir (zafer itirafında maske düşer): satır yazılmaya başlamadan.
+        if (line.setStage >= 0) DialogueProgress.AdvanceStage(line.setStage);
+        BeginText(line.textKey);
+    }
+
+    private void BeginText(string key)
+    {
+        shownKey = key;
+        text.text = GameText.Get(key);
         text.maxVisibleCharacters = 0;
         text.ForceMeshUpdate();
         total = text.textInfo.characterCount;
@@ -445,6 +568,7 @@ public sealed class DialogueBox : MonoBehaviour
             if (target == visible) return;
             visible = target;
             text.maxVisibleCharacters = visible;
+            if (visible >= total) { OfferChoices(); return; }
             // Kaynak metindeki karakter: fontta karşılığı olmayan harf (henüz yedek fontu olmayan dil) kutu işaretine dönse de
             // noktalama doğru tanınır; zengin metin etiketleri sayılmaz.
             TMP_CharacterInfo info = text.textInfo.characterInfo[visible - 1];
@@ -458,6 +582,7 @@ public sealed class DialogueBox : MonoBehaviour
             return;
         }
         idle += delta;
+        if (choicePending) return;   // şık beklerken "devam" işareti yok, küçük kutu kendiliğinden kapanmaz
         if (indicator != null)
         {
             if (!indicator.gameObject.activeSelf) indicator.gameObject.SetActive(true);
@@ -523,7 +648,12 @@ public sealed class DialogueBox : MonoBehaviour
         if (!DialogueDirector.Paused)
         {
             bool key = Input.GetKeyDown(KeyCode.Space) || (Big && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)));
-            if (key) Advance();
+            if (choicePending)
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)) Choose(0);
+                else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)) Choose(1);
+            }
+            else if (key) Advance();
         }
         Step(DialogueDirector.ClockDelta);
     }

@@ -2,33 +2,54 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
+// Stat, tile ve rezonans yazıları (kart, tooltip, liste). Adlar ve birimler çeviri tablosundan (stat.*, rarity.*, resource.*,
+// ui.unit.*, ui.resonance.*). Sayılar her dilde nokta ondalıklı (eski biçim korunur: "+16.25%").
 public static class TileBuffText
 {
-    public static string Name(StatType stat) => stat switch
+    // Stat adı anahtarı: "stat." + enum adı küçük harf ve alt çizgiyle (HarvestDamage → stat.harvest_damage). Bir kez kurulur.
+    private static readonly Dictionary<StatType, string> statKeys = BuildKeys<StatType>("stat.");
+    private static readonly Dictionary<TileRarity, string> tileRarityKeys = BuildKeys<TileRarity>("rarity.");
+    private static readonly Dictionary<PlantRarity, string> plantRarityKeys = BuildKeys<PlantRarity>("rarity.");
+    private static readonly Dictionary<ResourceType, string> resourceKeys = BuildKeys<ResourceType>("resource.");
+
+    public static string StatKey(StatType stat) => statKeys.TryGetValue(stat, out string key) ? key : "stat." + Snake(stat.ToString());
+    public static string Name(StatType stat) => GameText.Get(StatKey(stat));
+    public static string RarityName(TileRarity rarity) => GameText.Get(tileRarityKeys[rarity]);
+    public static string RarityName(PlantRarity rarity) => GameText.Get(plantRarityKeys[rarity]);
+    public static string ResourceName(ResourceType resource) => GameText.Get(resourceKeys[resource]);
+
+    // "Sv 3" (tr) / "Lv 3" (en).
+    public static string Level(int level) => GameText.Format("ui.unit.level_n", level);
+
+    private static Dictionary<T, string> BuildKeys<T>(string prefix) where T : System.Enum
     {
-        StatType.PlanterDamageMultiplier => "Hasar",
-        StatType.HarvestDamage => "Saksı hasar statı",
-        StatType.XPGainMultiplier => "XP kazancı",
-        StatType.HarvestScoreMultiplier => "Harvest Score",
-        StatType.PlantSpawnRate => "Üretim süresi",
-        StatType.RareSpawnChance => "Nadirlik bonusu",
-        StatType.GoldGainMultiplier => "Gold kazancı",
-        StatType.IronGainMultiplier => "Iron kazancı",
-        StatType.StoneGainMultiplier => "Stone kazancı",
-        StatType.ExplosionChance => "Patlama şansı",
-        StatType.TornadoChance => "Tornado şansı",
-        StatType.BoomerangChance => "Bumerang orak şansı",
-        StatType.ElectricChance => "Çapraz elektrik şansı",
-        StatType.DuplicateChance => "Çift ödül şansı",
-        StatType.CritChance => "Kritik şansı",
-        StatType.MutationLuck => "Kart nadirliği",
-        _ => stat.ToString()
-    };
+        var keys = new Dictionary<T, string>();
+        foreach (T value in System.Enum.GetValues(typeof(T))) keys[value] = prefix + Snake(value.ToString());
+        return keys;
+    }
+
+    // "HarvestDamage" → "harvest_damage", "XPGainMultiplier" → "xp_gain_multiplier".
+    public static string Snake(string name)
+    {
+        var sb = new StringBuilder(name.Length + 8);
+        for (int i = 0; i < name.Length; i++)
+        {
+            char c = name[i];
+            bool upper = char.IsUpper(c);
+            if (upper && i > 0 && (char.IsLower(name[i - 1]) || i + 1 < name.Length && char.IsLower(name[i + 1]) && char.IsUpper(name[i - 1])))
+                sb.Append('_');
+            sb.Append(char.ToLowerInvariant(c));
+        }
+        return sb.ToString();
+    }
 
     public static string Signed(float value) => (value >= 0f ? "+" : "−") +
         System.Math.Abs(value).ToString("0.##", CultureInfo.InvariantCulture);
 
     public static string Modifier(StatModifier mod) => Name(mod.statType) + " " + Amount(mod);
+
+    private static string PointsUnit => " " + GameText.Get("ui.unit.points");
+    private static string RateUnit => " (" + GameText.Get("ui.unit.rate") + ")";
 
     public static string Amount(StatModifier mod)
     {
@@ -37,9 +58,9 @@ public static class TileBuffText
             mod.statType == StatType.TornadoChance || mod.statType == StatType.BoomerangChance || mod.statType == StatType.ElectricChance;
         string amount = percent || chance ? Signed(mod.value * 100f) + "%" : Signed(mod.value);
         // Crystal is already expressed in percentage points; never multiply its flat value by 100.
-        if (!percent && mod.statType == StatType.RareSpawnChance) amount += "% puan";
-        if (mod.operation == ModifierOperation.Flat && chance) amount += " puan";
-        if (mod.operation == ModifierOperation.Set) amount = mod.value.ToString("0.##", CultureInfo.InvariantCulture) + (chance ? " (oran)" : "");
+        if (!percent && mod.statType == StatType.RareSpawnChance) amount += "%" + PointsUnit;
+        if (mod.operation == ModifierOperation.Flat && chance) amount += PointsUnit;
+        if (mod.operation == ModifierOperation.Set) amount = mod.value.ToString("0.##", CultureInfo.InvariantCulture) + (chance ? RateUnit : "");
         return amount;
     }
 
@@ -71,20 +92,21 @@ public static class TileBuffText
 
     public static string Points(float value) => "+" + value.ToString("0.#", CultureInfo.InvariantCulture);
 
-    // "Sv 0 → Sv 1"; kısa hali "Sv 0 → 1".
-    public static string LevelChange(int from, int to, ChangeColors colors = default, bool shortForm = false) =>
-        "Sv " + colors.Old(from.ToString()) + " → " + colors.New((shortForm ? "" : "Sv ") + to);
+    // "Sv 0 → Sv 1"; kısa hali "Sv 0 → 1" (İngilizcede "Lv").
+    public static string LevelChange(int from, int to, ChangeColors colors = default, bool shortForm = false)
+    {
+        string prefix = GameText.Get("ui.unit.level") + " ";
+        return prefix + colors.Old(from.ToString()) + " → " + colors.New((shortForm ? "" : prefix) + to);
+    }
 
     // Seviye atlayan tile: eski ve yeni değer, "+13% → +16.25% puan". Ortak birim sonda bir kez yazılır.
     public static string AmountChange(StatModifier before, StatModifier after, ChangeColors colors = default)
     {
         string from = Amount(before), to = Amount(after);
-        foreach (string unit in SharedUnits)
+        foreach (string unit in new[] { PointsUnit, RateUnit })
             if (from.EndsWith(unit) && to.EndsWith(unit)) { from = from.Substring(0, from.Length - unit.Length); break; }
         return colors.Old(from) + " → " + colors.New(to);
     }
-
-    private static readonly string[] SharedUnits = { " puan", " (oran)" };
 
     public static string ModifierChanges(IReadOnlyList<StatModifier> before, IReadOnlyList<StatModifier> after, ChangeColors colors = default)
     {
@@ -110,6 +132,16 @@ public static class TileBuffText
         return text.ToString();
     }
 
+    // Davranış adı (rezonans, kart): Patlama / Tornado / Orak / Elektrik.
+    public static string BehaviorName(DamageType type) => type switch
+    {
+        DamageType.Explosion => GameText.Get("ui.behavior.explosion"),
+        DamageType.Tornado => GameText.Get("ui.behavior.tornado"),
+        DamageType.Boomerang => GameText.Get("ui.behavior.boomerang"),
+        DamageType.Electric => GameText.Get("ui.behavior.electric"),
+        _ => type.ToString()
+    };
+
     public static string Resonance(ActiveResonance resonance)
     {
         if (resonance.effects == null || resonance.effects.Count == 0)
@@ -120,19 +152,20 @@ public static class TileBuffText
             string multiplier = "×" + (1f + effect.value).ToString("0.##", CultureInfo.InvariantCulture);
             switch (effect.kind)
             {
-                case ResonanceEffectKind.Resources: lines.Add("Gold / Iron / Stone " + multiplier); break;
-                case ResonanceEffectKind.RareScore: lines.Add("Rare+ Harvest Score " + multiplier); break;
-                case ResonanceEffectKind.ElectricXP: lines.Add("Elektrik öldürmesi XP " + multiplier); break;
+                case ResonanceEffectKind.Resources: lines.Add(GameText.Format("ui.resonance.resources", multiplier)); break;
+                case ResonanceEffectKind.RareScore: lines.Add(GameText.Format("ui.resonance.rare_score", multiplier)); break;
+                case ResonanceEffectKind.ElectricXP: lines.Add(GameText.Format("ui.resonance.electric_xp", multiplier)); break;
                 case ResonanceEffectKind.BehaviorDamage:
                     var names = new List<string>();
-                    if ((resonance.behaviorMask & (1 << (int)DamageType.Explosion)) != 0) names.Add("Patlama");
-                    if ((resonance.behaviorMask & (1 << (int)DamageType.Tornado)) != 0) names.Add("Tornado");
-                    if ((resonance.behaviorMask & (1 << (int)DamageType.Boomerang)) != 0) names.Add("Orak");
-                    if ((resonance.behaviorMask & (1 << (int)DamageType.Electric)) != 0) names.Add("Elektrik");
-                    lines.Add(string.Join(" / ", names) + " hasarı " + multiplier); break;
+                    if ((resonance.behaviorMask & (1 << (int)DamageType.Explosion)) != 0) names.Add(BehaviorName(DamageType.Explosion));
+                    if ((resonance.behaviorMask & (1 << (int)DamageType.Tornado)) != 0) names.Add(BehaviorName(DamageType.Tornado));
+                    if ((resonance.behaviorMask & (1 << (int)DamageType.Boomerang)) != 0) names.Add(BehaviorName(DamageType.Boomerang));
+                    if ((resonance.behaviorMask & (1 << (int)DamageType.Electric)) != 0) names.Add(BehaviorName(DamageType.Electric));
+                    lines.Add(GameText.Format("ui.resonance.behavior_damage", string.Join(" / ", names), multiplier)); break;
                 default:
-                    lines.Add(effect.statType == StatType.RareSpawnChance ? "Nadirlik +" + effect.value.ToString("0.##", CultureInfo.InvariantCulture) + " puan" :
-                        Name(effect.statType) + " " + (effect.statType == StatType.PlantSpawnRate ? Signed(effect.value * 100f) + "%" : multiplier)); break;
+                    lines.Add(effect.statType == StatType.RareSpawnChance
+                        ? GameText.Format("ui.resonance.rarity", effect.value.ToString("0.##", CultureInfo.InvariantCulture))
+                        : Name(effect.statType) + " " + (effect.statType == StatType.PlantSpawnRate ? Signed(effect.value * 100f) + "%" : multiplier)); break;
             }
         }
         return string.Join(" · ", lines);

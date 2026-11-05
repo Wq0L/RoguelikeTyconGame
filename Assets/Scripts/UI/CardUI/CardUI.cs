@@ -33,13 +33,13 @@ public class CardUI : MonoBehaviour
         if(tilePreview)tilePreview.color=new Color(tint.r,tint.g,tint.b,1);
         onSelected = callback;
         EnsureBuffText();
-        string rarityName = rarityType.ToString().ToUpperInvariant();
+        string rarityName = TileBuffText.RarityName(rarityType).ToUpperInvariant();
         if (offer.IsUpgrade)
         {
             // Grid dolu: kart, üç rastgele adaydan birini seviye atlatır.
             GroundCell cell = offer.UpgradeTarget;
-            nameText.text = mod.modifierName;
-            rarityText.text = $"+{offer.LevelGain} SEVİYE · {rarityName}";
+            nameText.text = mod.DisplayName;
+            rarityText.text = GameText.Format("ui.card.level_gain", offer.LevelGain, rarityName);
             // Eski değer → yeni değer: oyuncu seviyenin neyi ne kadar artırdığını görür.
             var now = cell.RolledModifiers;
             var colors = TileBuffText.OnCard;
@@ -49,34 +49,34 @@ public class CardUI : MonoBehaviour
             bool floor = factor < 1f && cell.Planter != null &&
                 cell.Planter.GetRawSpawnInterval() / factor <= StatCalculator.MinimumSpawnInterval + 1e-3f;
             string change = floor
-                ? colors.Old(TileBuffText.Points(TileBuffText.SpawnRarityAtFloor(now))) + " → " + colors.New(TileBuffText.Points(TileBuffText.SpawnRarityAtFloor(offer.Modifiers)) + " nadirlik")
+                ? colors.Old(TileBuffText.Points(TileBuffText.SpawnRarityAtFloor(now))) + " → " + colors.New(TileBuffText.Points(TileBuffText.SpawnRarityAtFloor(offer.Modifiers)) + " " + GameText.Get("ui.card.rarity_word"))
                 : offer.Modifiers.Count == 1 && now.Count == 1 ? TileBuffText.AmountChange(now[0], offer.Modifiers[0], colors) : TileBuffText.ModifierChanges(now, offer.Modifiers, colors);
             buffText.text = TileBuffText.LevelChange(cell.Level, cell.Level + offer.LevelGain, colors) + "\n" + change;
-            if(effectNameText) effectNameText.text=$"{cellName} · " + (floor ? "Üretim tabanda → Nadirlik" : offer.Modifiers.Count>0?TileBuffText.Name(offer.Modifiers[0].statType):"Özel etki");
+            if(effectNameText) effectNameText.text=$"{cellName} · " + (floor ? GameText.Get("ui.card.spawn_floor") : offer.Modifiers.Count>0?TileBuffText.Name(offer.Modifiers[0].statType):GameText.Get("ui.card.special_effect"));
         }
         else if (offer.IsBaseStat)
         {
             // Yükseltilecek tile kalmadı: kalıcı temel güç.
-            nameText.text = "Temel güç";
+            nameText.text = GameText.Get("ui.card.base_power");
             rarityText.text = rarityName;
             buffText.text = offer.IsSummed ? SummedText(offer) : TileBuffText.Modifiers(offer.Modifiers);
             if(effectNameText) effectNameText.text=offer.BaseStatName;
         }
         else
         {
-            nameText.text = mod.modifierName;
+            nameText.text = mod.DisplayName;
             rarityText.text = rarityName;
             // Bütün saksılar üretim tabanındaysa Fertile kartı hız yerine nadirlik verir.
             float floorRarity = TileBuffText.SpawnRarityAtFloor(offer.Modifiers);
             if (floorRarity > 0f && ProgressionManager.Instance != null && ProgressionManager.Instance.AllPlantersAtSpawnFloor())
             {
-                buffText.text = TileBuffText.Points(floorRarity) + " nadirlik";
-                if(effectNameText) effectNameText.text="Üretim tabanda → Nadirlik";
+                buffText.text = TileBuffText.Points(floorRarity) + " " + GameText.Get("ui.card.rarity_word");
+                if(effectNameText) effectNameText.text=GameText.Get("ui.card.spawn_floor");
             }
             else
             {
                 buffText.text = offer.Modifiers.Count == 1 ? TileBuffText.Amount(offer.Modifiers[0]) : TileBuffText.Modifiers(offer.Modifiers);
-                if(effectNameText) effectNameText.text=offer.Modifiers.Count>0?TileBuffText.Name(offer.Modifiers[0].statType):"Özel etki";
+                if(effectNameText) effectNameText.text=offer.Modifiers.Count>0?TileBuffText.Name(offer.Modifiers[0].statType):GameText.Get("ui.card.special_effect");
             }
         }
         int rarity=(int)rarityType;
@@ -115,7 +115,7 @@ public class CardUI : MonoBehaviour
             var before = mod; before.value = now;
             var after = mod; after.value = now + mod.value;
             text.Append(TileBuffText.Modifier(mod)).AppendLine();
-            text.Append("Toplanır: ").Append(TileBuffText.AmountChange(before, after, colors));
+            text.Append(GameText.Format("ui.card.summed", TileBuffText.AmountChange(before, after, colors)));
         }
         return text.ToString();
     }

@@ -64,19 +64,19 @@ public sealed class StartSelectionPanelUI : MonoBehaviour
     {
         theme = FeelOverlay.Theme;
         var root = (RectTransform)transform;
-        Place(Text(root, "Title", 50f, Color.white, "YENİ RUN · BAŞLANGIÇ"), new Vector2(0f, 492f), new Vector2(1600f, 70f));
-        Place(Text(root, "Subtitle", 24f, new Color(1f, 0.93f, 0.78f),
-            "Bir çiftçi ve bir tırpan seç · etkiler bu run boyunca geçerli · yeni run'da yeniden uygulanır"), new Vector2(0f, 448f), new Vector2(1600f, 36f));
-        Place(Text(root, "Farmer Label", 30f, Amber, "ÇİFTÇİ · genel yaklaşım"), new Vector2(0f, 406f), new Vector2(1200f, 44f));
+        // Sabit yazılar çeviri tablosuna bağlı (LocalizedText): dil değişince kendiliğinden yenilenir.
+        Place(Localized(Text(root, "Title", 50f, Color.white, ""), "ui.start.title"), new Vector2(0f, 492f), new Vector2(1600f, 70f));
+        Place(Localized(Text(root, "Subtitle", 24f, new Color(1f, 0.93f, 0.78f), ""), "ui.start.subtitle"), new Vector2(0f, 448f), new Vector2(1600f, 36f));
+        Place(Localized(Text(root, "Farmer Label", 30f, Amber, ""), "ui.start.farmer_row"), new Vector2(0f, 406f), new Vector2(1200f, 44f));
         farmerRow = Row(root, "Farmers", new Vector2(0f, 200f), FarmerHeight);
-        Place(Text(root, "Scythe Label", 30f, Amber, "TIRPAN · hasat biçimi"), new Vector2(0f, -4f), new Vector2(1200f, 44f));
+        Place(Localized(Text(root, "Scythe Label", 30f, Amber, ""), "ui.start.scythe_row"), new Vector2(0f, -4f), new Vector2(1200f, 44f));
         scytheRow = Row(root, "Scythes", new Vector2(0f, -180f), ScytheHeight);
         summary = Text(root, "Summary", 30f, Color.white, "");
         Place(summary, new Vector2(0f, -368f), new Vector2(1600f, 44f));
-        Button back = CreateButton(root, "Back", "GERİ", "blue", new Vector2(240f, 80f));
+        Button back = CreateButton(root, "Back", "ui.start.back", "blue", new Vector2(240f, 80f));
         Place((RectTransform)back.transform, new Vector2(-260f, -458f), new Vector2(240f, 80f));
         back.onClick.AddListener(() => BackRequested?.Invoke());
-        Button start = CreateButton(root, "Start", "RUN'I BAŞLAT", "green", new Vector2(340f, 86f));
+        Button start = CreateButton(root, "Start", "ui.start.begin", "green", new Vector2(340f, 86f));
         Place((RectTransform)start.transform, new Vector2(220f, -458f), new Vector2(340f, 86f));
         start.onClick.AddListener(RequestStart);
     }
@@ -104,6 +104,10 @@ public sealed class StartSelectionPanelUI : MonoBehaviour
     private static void ResetOpened() => Opened = null;
 
     public void Close() => gameObject.SetActive(false);
+
+    // Kart yazıları (ad, tarz, etkiler, alt satır, kilit) koddan yazılır: dil değişince yeniden doldurulur.
+    private void OnEnable() => GameText.Changed += Refresh;
+    private void OnDisable() => GameText.Changed -= Refresh;
 
     // Kilitli ya da katalogda olmayan içerik seçilemez.
     public bool Select(StartOptionSO option)
@@ -155,7 +159,7 @@ public sealed class StartSelectionPanelUI : MonoBehaviour
         foreach (Card card in farmerCards) Fill(card, card.option == SelectedFarmer);
         foreach (Card card in scytheCards) Fill(card, card.option == SelectedScythe);
         summary.text = SelectedFarmer != null && SelectedScythe != null
-            ? $"Seçim: <color=#F7C05D>{SelectedFarmer.displayName}</color> + <color=#F7C05D>{SelectedScythe.displayName}</color>"
+            ? GameText.Format("ui.start.summary", $"<color=#F7C05D>{SelectedFarmer.DisplayName}</color>", $"<color=#F7C05D>{SelectedScythe.DisplayName}</color>")
             : "";
     }
 
@@ -164,23 +168,24 @@ public sealed class StartSelectionPanelUI : MonoBehaviour
         if (!card.root.gameObject.activeSelf || card.option == null) return;
         StartOptionSO option = card.option;
         bool open = MetaSave.IsUnlocked(option);
-        card.title.text = option.displayName;
-        card.style.text = option.playstyle;
+        card.title.text = option.DisplayName;
+        card.style.text = option.Playstyle;
         card.effects.text = StartOptionText.Effects(option);
         card.button.interactable = open;
         card.lockCover.SetActive(!open);
         card.paper.color = open ? Paper : LockedPaper;
         card.outline.color = selected ? Chosen : Ink;
         card.header.color = selected ? new Color32(150, 214, 120, 255) : Amber;
-        card.footer.text = !open ? "" : selected ? "SEÇİLİ" : "Seçmek için tıkla";
+        card.footer.text = !open ? "" : GameText.Get(selected ? "ui.start.selected" : "ui.start.click_to_select");
         card.footer.color = selected ? Chosen : Muted;
         if (!open)
         {
             QuestSO quest = option.unlockQuest;
             int best = MetaSave.BestProgress(quest);
             card.lockText.text = quest != null
-                ? $"KİLİTLİ · GÖREV\n<size=72%>{quest.description}\n<color=#F7C05D>En iyi run: {Mathf.Min(best, quest.target)} / {quest.target}</color></size>"
-                : "KİLİTLİ";
+                ? $"{GameText.Get("ui.start.locked_quest")}\n<size=72%>{quest.Description}\n<color=#F7C05D>" +
+                  $"{GameText.Format("ui.start.best_run", Mathf.Min(best, quest.target), quest.target)}</color></size>"
+                : GameText.Get("ui.start.locked");
         }
     }
 
@@ -245,14 +250,26 @@ public sealed class StartSelectionPanelUI : MonoBehaviour
         return row;
     }
 
-    private Button CreateButton(RectTransform parent, string name, string caption, string palette, Vector2 size)
+    // Düğme yazısı çeviri anahtarından (LocalizedText).
+    private Button CreateButton(RectTransform parent, string name, string captionKey, string palette, Vector2 size)
     {
-        if (theme != null) return theme.CreateButton(parent, name, caption, palette, size);
+        if (theme != null)
+        {
+            Button themed = theme.CreateButton(parent, name, "", palette, size);
+            Localized(themed.GetComponentInChildren<TMP_Text>(true), captionKey);
+            return themed;
+        }
         var go = new GameObject(name, typeof(RectTransform), typeof(Image), typeof(Button));
         go.transform.SetParent(parent, false);
-        var label = Text((RectTransform)go.transform, "Label", 30f, Ink, caption);
+        var label = Localized(Text((RectTransform)go.transform, "Label", 30f, Ink, ""), captionKey);
         FeelOverlay.Stretch(label.rectTransform);
         return go.GetComponent<Button>();
+    }
+
+    private static T Localized<T>(T label, string key) where T : TMP_Text
+    {
+        LocalizedText.Bind(label, key);
+        return label;
     }
 
     private static void Place(Component component, Vector2 position, Vector2 size)
@@ -297,7 +314,8 @@ public sealed class StartSelectionPanelUI : MonoBehaviour
 }
 
 // Başlangıç içeriği kart metni: yalnız asset'teki etkiler, kazanç (yeşil) ve bedel (kırmızı) ayrı.
-// Yüzde bonusu "×", yüzde puanı "puan" diye yazılır.
+// Yüzde bonusu "×", yüzde puanı "puan" diye yazılır. Yazılar çeviri tablosundan (ui.start.effect.*); ondalık ayırıcı etkin dile göre
+// (tr "1,25", en "1.25"). Renk ve boyut etiketleri kodda kalır: çevirmen yalnız cümleyi görür.
 public static class StartOptionText
 {
     private const string Plus = "#2E7D32", Minus = "#B42318";
@@ -305,12 +323,12 @@ public static class StartOptionText
     public static string Effects(StartOptionSO option)
     {
         if (option == null) return "";
-        if (option.IsNeutral) return "<color=#6E606E>Nötr · avantaj ve bedel yok\n<size=80%>oyunun kendi dengesi</size></color>";
+        if (option.IsNeutral) return $"<color=#6E606E>{GameText.Get("ui.start.neutral")}\n<size=80%>{GameText.Get("ui.start.neutral.detail")}</size></color>";
         var gains = new List<string>();
         var costs = new List<string>();
-        Add(option.directDamageMultiplier, true, "Doğrudan vuruş hasarı", "davranış hasarı değişmez", gains, costs);
-        Add(option.harvestResourceMultiplier, true, "Hasat kaynağı", "yalnız hasattan gelen Gold · Iron · Stone", gains, costs);
-        Add(option.harvestScoreMultiplier, true, "Hasat skoru", "kota ilerlemesi de bununla sayılır", gains, costs);
+        Add(option.directDamageMultiplier, true, "ui.start.effect.direct_damage", gains, costs);
+        Add(option.harvestResourceMultiplier, true, "ui.start.effect.harvest_resources", gains, costs);
+        Add(option.harvestScoreMultiplier, true, "ui.start.effect.harvest_score", gains, costs);
         foreach (StatModifier m in option.modifiers)
         {
             (string line, bool better) = Describe(m);
@@ -322,30 +340,37 @@ public static class StartOptionText
         return string.Join("\n", text);
     }
 
-    private static void Add(float multiplier, bool higherIsBetter, string label, string detail, List<string> gains, List<string> costs)
+    // key: "… ×{0}" (çarpan); key + ".detail": küçük alt satır.
+    private static void Add(float multiplier, bool higherIsBetter, string key, List<string> gains, List<string> costs)
     {
         if (Mathf.Approximately(multiplier, 1f)) return;
         bool better = higherIsBetter ? multiplier > 1f : multiplier < 1f;
-        (better ? gains : costs).Add($"{label} ×{Number(multiplier)}\n<size=78%>{detail}</size>");
+        (better ? gains : costs).Add(Line(GameText.Format(key, Number(multiplier)), key + ".detail"));
     }
+
+    private static string Line(string head, string detailKey) => $"{head}\n<size=78%>{GameText.Get(detailKey)}</size>";
 
     public static (string line, bool better) Describe(StatModifier m)
     {
         switch (m.statType)
         {
             case StatType.AreaRadius when m.operation == ModifierOperation.MorePercent:
-                return ($"Vuruş yarıçapı ×{Number(1f + m.value)}\n<size=78%>imleç halkası {(m.value < 0 ? "küçülür" : "büyür")}</size>", m.value > 0f);
+                return (Line(GameText.Format("ui.start.effect.radius", Number(1f + m.value)),
+                    m.value < 0 ? "ui.start.effect.radius.smaller" : "ui.start.effect.radius.larger"), m.value > 0f);
             case StatType.RareSpawnChance when m.operation == ModifierOperation.Flat:
-                return ($"Nadirlik bonusu {Signed(m.value)} puan\n<size=78%>nadir bitkiler {(m.value > 0 ? "daha sık" : "daha seyrek")} çıkar</size>", m.value > 0f);
+                return (Line(GameText.Format("ui.start.effect.rarity", Signed(m.value)),
+                    m.value > 0 ? "ui.start.effect.rarity.more" : "ui.start.effect.rarity.less"), m.value > 0f);
             case StatType.PlantSpawnRate when m.operation == ModifierOperation.MorePercent:
-                return ($"Üretim aralığı ×{Number(1f + m.value)}\n<size=78%>bitkiler daha {(m.value > 0 ? "seyrek" : "sık")} çıkar</size>", m.value < 0f);
+                return (Line(GameText.Format("ui.start.effect.spawn_interval", Number(1f + m.value)),
+                    m.value > 0 ? "ui.start.effect.spawn_interval.slower" : "ui.start.effect.spawn_interval.faster"), m.value < 0f);
             case StatType.AttackSpeed when m.operation == ModifierOperation.MorePercent:
-                return ($"Saldırı aralığı ×{Number(1f + m.value)}", m.value < 0f);
+                return (GameText.Format("ui.start.effect.attack_interval", Number(1f + m.value)), m.value < 0f);
             default:
                 string value = m.operation switch
                 {
                     ModifierOperation.MorePercent => "×" + Number(1f + m.value),
-                    ModifierOperation.AddPercent => $"{(m.value >= 0 ? "+" : "−")}%{Mathf.Abs(m.value * 100f):0.#}",
+                    ModifierOperation.AddPercent => (m.value >= 0 ? "+" : "−") +
+                        GameText.Format("ui.format.percent", Mathf.Abs(m.value * 100f).ToString("0.#", GameText.Culture)),
                     ModifierOperation.Set => "= " + Number(m.value),
                     _ => Signed(m.value)
                 };
@@ -355,6 +380,6 @@ public static class StartOptionText
         }
     }
 
-    public static string Number(float value) => value.ToString("0.00", CultureInfo.InvariantCulture).Replace('.', ',');
-    private static string Signed(float value) => (value >= 0 ? "+" : "−") + Mathf.Abs(value).ToString("0.##", CultureInfo.InvariantCulture).Replace('.', ',');
+    public static string Number(float value) => value.ToString("0.00", GameText.Culture);
+    private static string Signed(float value) => (value >= 0 ? "+" : "−") + Mathf.Abs(value).ToString("0.##", GameText.Culture);
 }

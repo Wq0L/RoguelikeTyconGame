@@ -19,9 +19,9 @@ public sealed class HardShellEvent : SegmentEventRuntime
 
     public override IReadOnlyList<GridPosition> ZoneCells => zone.Cells;
     public override string RuleSummary =>
-        $"{zone.Name} bitki canı ×{data.healthMultiplier.ToString("0.##", CultureInfo.InvariantCulture).Replace('.', ',')}";
-    public override string ZoneHint => "turuncu şerit";
-    public override string EndedText => "Şeritteki bitkiler normal cana döndü";
+        GameText.Format("ui.event.shell.rule", zone.Name, GameText.Number(data.healthMultiplier, "0.##"));
+    public override string ZoneHint => GameText.Get("ui.event.shell.zone");
+    public override string EndedText => GameText.Get("ui.event.shell.ended");
 
     public override bool Covers(GridPosition cell) => IsPrepared && zone.Covers(cell);
     public override float SpawnHealthMultiplier(GridPosition cell) => IsActive && Covers(cell) ? data.healthMultiplier : 1f;

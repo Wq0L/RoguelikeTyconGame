@@ -67,6 +67,7 @@ public sealed class RoundSummaryUI : MonoBehaviour
         GameFeelDirector director = GameFeelDirector.Instance;
         RoundSummaryData data = director != null ? director.LastRound : null;
         animating = false;
+        GameText.Changed += OnLanguageChanged;
         Fill(data);
         if (data == null) { ShowFinal(); return; }
 
@@ -76,26 +77,36 @@ public sealed class RoundSummaryUI : MonoBehaviour
         else ShowFinal();
     }
 
+    private void OnDisable() => GameText.Changed -= OnLanguageChanged;
+
+    // Dil değişti: kart yeni dille yeniden yazılır (sayma animasyonu atlanır).
+    private void OnLanguageChanged()
+    {
+        animating = false;
+        Fill(filled);
+        ShowFinal();
+    }
+
     private void Fill(RoundSummaryData data)
     {
         filled = data;
         activeRows = 0;
         if (data == null)
         {
-            title.text = "HAZIRLIK";
+            title.text = GameText.Get("ui.summary.preparation");
             for (int i = 0; i < rows.Count; i++) rows[i].root.gameObject.SetActive(false);
             RefreshNotices();
             return;
         }
-        title.text = $"ROUND {data.Round} ÖZETİ";
-        SetRow("Hasat", data.Harvests, false, theme != null ? theme.sproutSprite : null, new Color32(70, 130, 60, 255), true);
-        SetRow("Altın", data.Gold, true, theme != null ? theme.coinSprite : null, new Color32(196, 128, 20, 255), false);
-        SetRow("Demir", data.Iron, true, theme != null ? theme.ironSprite : null, new Color32(80, 104, 140, 255), false);
-        SetRow("Taş", data.Stone, true, theme != null ? theme.stoneSprite : null, new Color32(112, 96, 88, 255), false);
+        title.text = GameText.Format("ui.summary.title", data.Round);
+        SetRow("ui.summary.harvest", data.Harvests, false, theme != null ? theme.sproutSprite : null, new Color32(70, 130, 60, 255), true);
+        SetRow("ui.summary.gold", data.Gold, true, theme != null ? theme.coinSprite : null, new Color32(196, 128, 20, 255), false);
+        SetRow("ui.summary.iron", data.Iron, true, theme != null ? theme.ironSprite : null, new Color32(80, 104, 140, 255), false);
+        SetRow("ui.summary.stone", data.Stone, true, theme != null ? theme.stoneSprite : null, new Color32(112, 96, 88, 255), false);
         // Round'da kazanılan XP: level eğrisini gerçek oyuna göre ayarlamak için de okunur.
-        SetRow("XP", data.Xp, true, null, new Color32(36, 128, 150, 255), false);
-        SetRow("Level", data.Levels, true, null, new Color32(214, 110, 40, 255), false);
-        SetRow("Skor", data.Score, true, null, new Color32(128, 64, 170, 255), true);
+        SetRow("ui.summary.xp", data.Xp, true, null, new Color32(36, 128, 150, 255), false);
+        SetRow("ui.summary.level", data.Levels, true, null, new Color32(214, 110, 40, 255), false);
+        SetRow("ui.summary.score", data.Score, true, null, new Color32(128, 64, 170, 255), true);
         for (int i = activeRows; i < rows.Count; i++) rows[i].root.gameObject.SetActive(false);
         RefreshNotices();
     }
@@ -120,7 +131,7 @@ public sealed class RoundSummaryUI : MonoBehaviour
         string spec = SpecializationManager.Instance != null ? SpecializationPanelUI.Describe(SpecializationManager.Instance.Chosen) : null;
         float specSpace = spec != null ? 34f : 0f;
         specNotice.gameObject.SetActive(spec != null);
-        if (spec != null) specNotice.text = "Uzmanlaşma: " + spec;
+        if (spec != null) specNotice.text = GameText.Format("ui.summary.specialization", spec);
         eventNotice.gameObject.SetActive(eventText != null);
         if (eventText != null)
         {
@@ -150,46 +161,48 @@ public sealed class RoundSummaryUI : MonoBehaviour
         // Dönemler run takviminden: eşit segmentlerde hep aynı uzunluk, açık boss takviminde dönemden döneme değişir.
         RunCalendar calendar = rounds.Calendar;
         SegmentEventDirector events = SegmentEventDirector.Instance;
-        string Name(int s, string plain, string boss) => SegmentEventText.IsEventSegment(events, s) ? boss : plain;
+        // Yazılar çeviri tablosundan (ui.quota.*); olaylı segmentin kotası "boss kotası" anahtarlarıyla (… .boss).
+        string Key(int s, string key) => SegmentEventText.IsEventSegment(events, s) ? key + ".boss" : key;
         if (finishedRound <= 0)
-            return $"{Name(1, "İlk kota", "İlk boss kotası")}: {HarvestQuota.Format(rounds.QuotaTargetFor(1))} · {calendar.PeriodLength(1)} round\n" +
-                   (calendar.IsExplicit
-                       ? "<size=72%>Kota her boss round'unun sonunda kontrol edilir; tutmazsa run biter</size>"
-                       : $"<size=72%>Kota her {calendar.UniformRounds} round'da kontrol edilir; tutmazsa run biter</size>");
+            return GameText.Format(Key(1, "ui.quota.first"), HarvestQuota.Format(rounds.QuotaTargetFor(1)), calendar.PeriodLength(1)) + "\n<size=72%>" +
+                   (calendar.IsExplicit ? GameText.Get("ui.quota.rule_boss_round") : GameText.Format("ui.quota.rule_every", calendar.UniformRounds)) +
+                   "</size>";
         if (rounds.LastQuotaRound == finishedRound)
         {
             tone = QuotaTone.Done;
             int closed = calendar.PeriodOf(finishedRound), next = closed + 1;
-            string passed = $"{Name(closed, "KOTA", "BOSS KOTASI")} TAMAM · {HarvestQuota.Format(rounds.LastQuotaScore)} / {HarvestQuota.Format(rounds.LastQuotaTarget)}";
+            string passed = GameText.Format(Key(closed, "ui.quota.passed"), HarvestQuota.Format(rounds.LastQuotaScore), HarvestQuota.Format(rounds.LastQuotaTarget));
             if (finishedRound >= rounds.MaxRounds) return passed;
-            return passed + $"\n<size=72%>{Name(next, "Sıradaki kota", "Sıradaki boss kotası")}: {HarvestQuota.Format(rounds.QuotaTargetFor(next))} · {calendar.PeriodLength(next)} round</size>";
+            return passed + "\n<size=72%>" +
+                   GameText.Format(Key(next, "ui.quota.next"), HarvestQuota.Format(rounds.QuotaTargetFor(next)), calendar.PeriodLength(next)) + "</size>";
         }
         int segment = calendar.PeriodOf(finishedRound);
         int end = calendar.PeriodEnd(segment), left = end - finishedRound;
         long target = rounds.QuotaTargetFor(segment), progress = rounds.QuotaProgress;
         string score = $"{HarvestQuota.Format(progress)} / {HarvestQuota.Format(target)}";
-        string kota = Name(segment, "Kota", "Boss kotası");
+        string kota = GameText.Get(Key(segment, "ui.quota.name"));
         if (progress >= target)
         {
             tone = QuotaTone.Done;
-            return $"{kota} tamam · {score}\n<size=72%>Segment {end}. round sonunda kapanır</size>";
+            return GameText.Format("ui.quota.met", kota, score) + "\n<size=72%>" + GameText.Format("ui.quota.segment_closes", end) + "</size>";
         }
         if (left <= 1)
         {
             tone = QuotaTone.Danger;
-            return $"SON ROUND · kotaya {HarvestQuota.Format(target - progress)} kaldı\n<size=72%>{kota} {score} · tutmazsa run biter</size>";
+            return GameText.Format("ui.quota.last_round", HarvestQuota.Format(target - progress)) + "\n<size=72%>" +
+                   GameText.Format("ui.quota.last_round.detail", kota, score) + "</size>";
         }
-        return $"{kota} {score} · {left} round kaldı\n<size=72%>Tutmazsa run {end}. round sonunda biter</size>";
+        return GameText.Format("ui.quota.progress", kota, score, left) + "\n<size=72%>" + GameText.Format("ui.quota.progress.detail", end) + "</size>";
     }
 
-    private void SetRow(string label, int value, bool plus, Sprite icon, Color color, bool always)
+    private void SetRow(string labelKey, int value, bool plus, Sprite icon, Color color, bool always)
     {
         if (!always && value <= 0) return;
         if (activeRows == rows.Count) rows.Add(CreateRow(rows.Count));
         Row row = rows[activeRows];
         row.root.gameObject.SetActive(true);
         row.root.anchoredPosition = new Vector2(20f, -(HeaderHeight + 12f + RowHeight * 0.5f) - activeRows * RowHeight);
-        row.label.text = label;
+        row.label.text = GameText.Get(labelKey);
         row.value.color = color;
         row.icon.sprite = icon;
         row.icon.enabled = icon != null;
@@ -286,7 +299,7 @@ public sealed class RoundSummaryUI : MonoBehaviour
     }
 
     // "+12.345": dizinin sonundan geriye doğru yazar, başlangıç indeksini döner.
-    // Kültür verisine bağlı değil; IL2CPP build'lerinde de aynı.
+    // Binlik ayırıcı etkin dilden (GameText.GroupSeparator, önbellekte): karede ayırma yok.
     private static int FormatNumber(char[] buffer, bool plus, int value)
     {
         value = Mathf.Max(0, value);
@@ -294,7 +307,7 @@ public sealed class RoundSummaryUI : MonoBehaviour
         int digits = 0;
         do
         {
-            if (digits > 0 && digits % 3 == 0) buffer[--position] = '.';
+            if (digits > 0 && digits % 3 == 0) buffer[--position] = GameText.GroupSeparator;
             buffer[--position] = (char)('0' + value % 10);
             value /= 10;
             digits++;

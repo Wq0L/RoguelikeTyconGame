@@ -35,15 +35,11 @@ public static class GecOyunV1Verification
 
     // Yalnız derleme denetimi: izole kopya derleniyorsa 0 ile çıkar.
     public static void CompileOnly() => EditorApplication.Exit(0);
-    // Retain every original four-cell assertion, explicitly on the legacy profile rule.
-    public static void RunLegacyCrescentBatch()
-    {
-        if(!Application.dataPath.Contains("VerificationProject"))throw new Exception("isolated only");
-        RunBatch();
-        var profile=AssetDatabase.LoadAssetAtPath<RunProfileSO>(Profiles+"Run50_GecOyunV1.asset");
-        profile.crescentFullRows=false;EditorUtility.SetDirty(profile);AssetDatabase.SaveAssets();
-    }
+    // Eski ad: aynı iş (eski hilal kuralı artık RunBatch'in kendi oturumunda, Plan'da seçilir).
+    public static void RunLegacyCrescentBatch() => RunBatch();
 
+    // Sahne ve profil kurulumu. Başka testler de bunu ortak kurulum olarak çağırır (oturum anahtarını kapatıp kendi adımlarını
+    // yürütür); onlar profilin kendi hilal kuralını kullanır.
     public static void RunBatch()
     {
         SessionState.SetBool(Key, true);
@@ -286,6 +282,10 @@ public static class GecOyunV1Verification
     // ---------------------------------------------------------------- plan
     static void Plan()
     {
+        // Hilal / büyüyen ay / dolunay adımları eski (hücre hücre, dört hücrelik) hilal kuralını sınar. Profil artık fareden çıkan
+        // tam satır hilali kullanıyor (crescentFullRows; yeni kural MoonVerification'da). Eski kural yalnız bu testin kendi
+        // oturumunda seçilir (izole kopya; ödül alınınca okunur). Bu kurulumu paylaşan testlerde Plan çalışmaz.
+        AssetDatabase.LoadAssetAtPath<RunProfileSO>(Profiles + "Run50_GecOyunV1.asset").crescentFullRows = false;
         Add("sahne: R26 boss round'u, gerçek takvim", Lab);
         Add("veri: profil, havuz, plan", Data);
         Add("veri: eski içerik korunuyor", Legacy);
@@ -359,8 +359,8 @@ public static class GecOyunV1Verification
         AddWait(.5);
         Add("büyüyen ay: büyüme ve sıfırlanma", GrowingResult);
         Add("dolunay: al", FullMoonTake);
-        AddWait(1.2);
-        Add("dolunay: ikinci dalga ve duraklama", FullMoonResult);
+        Add("dolunay: duraklama (bedel)", FullMoonPause);
+        Add("dolunay: ikinci dalga", FullMoonResult);
         Add("kritik ark", CritArc);
         Add("hasat yankısı: meteor ve bekleme", EchoCase);
         AddWait(.7);   // meteor düşüşü 0,55 sn
@@ -1116,6 +1116,8 @@ public static class GecOyunV1Verification
 
     static double CrescentResult()
     {
+        // Dalgalar zamana değil sonuca göre beklenir: hilal adım süresi veriden (24 Ekim'den beri 0,3 sn).
+        if (crescent.ActiveWaves > 0) return Again;
         var wave = Of(RewardSource.Crescent);
         Require(wave.Count == 4 && wave.All(h => h.Damage == 80 && h.Z == 5) && wave.Select(h => h.X).SequenceEqual(new[] { 3, 4, 5, 6 }) &&
                 Enumerable.Range(1, 3).All(i => wave[i].Frame > wave[i - 1].Frame) && crescent.Counter == 0 && crescent.Steps == 4 && crescent.ActiveWaves == 0,
@@ -1137,6 +1139,8 @@ public static class GecOyunV1Verification
 
     static double GrowingResult()
     {
+        // Dalgalar zamana değil sonuca göre beklenir: hilal adım süresi veriden (24 Ekim'den beri 0,3 sn).
+        if (crescent.ActiveWaves > 0) return Again;
         var wave = Of(RewardSource.Crescent);
         var step2 = wave.Where(h => h.X == 4).ToList(); var step3 = wave.Where(h => h.X == 5).ToList(); var step4 = wave.Where(h => h.X == 6).ToList();
         Require(wave.Count(h => h.X == 3) == 1 && wave.First(h => h.X == 3).Damage == 80 && step2.Count == 3 && step2.All(h => h.Damage == 100) && step2.Select(h => h.Z).OrderBy(z => z).SequenceEqual(new[] { 4, 5, 6 }) &&
@@ -1156,22 +1160,18 @@ public static class GecOyunV1Verification
         return 0;
     }
 
-    static double FullMoonResult()
+    // Dolunay'ın bedeli, duraklamanın istendiği an denetlenir (ikinci dalga planlanınca). 0,35 sn'lik duraklama dalgalardan önce
+    // biter (adım 0,3 sn): ikisi aynı anda denetlenemez.
+    static double FullMoonPause()
     {
-        var forward = Of(RewardSource.Crescent); var back = Of(RewardSource.CrescentReturn);
-        var step3 = forward.Where(h => h.X == 5).ToList();
-        Require(crescent.FullMoons == 1 && step3.Count == 3 && step3.All(h => h.Damage == 120) && forward.Count(h => h.X == 6) == 1 && forward.First(h => h.X == 6).Damage == 80,
-            "Dolunay trigger: growth reached 2 on step 2; the forward wave goes on (step 3 at growth 2: 3 cells at 120 = 80 × 1,5; then a failed step resets it)");
-        Require(back.Count > 0 && back.All(h => h.Damage == 56 && h.Z >= 4 && h.Z <= 6 && h.X >= 2 && h.X <= 6) && back.Any(h => h.X == 6) && back.Any(h => h.X == 2 && h.Z == 5) &&
-                back.Min(h => h.Frame) > forward.Where(h => h.X == 4).Min(h => h.Frame) && crescent.GrowthGains == 3 && crescent.ActiveWaves == 0 && crescent.FullMoons == 1,
-            "Second wave from the opposite side: starts at the first wave's last cell (6,5) and comes back to the start cell (2,5), a 3-cell front at 56 (= 80 × 0,70); it does not grow and does not start another Dolunay");
+        if (crescent.FullMoons == 0) return Again;
         // Bedel: yalnız oyuncunun saldırı zamanlayıcısı bekler.
         float remaining = DirectAttackPause.RemainingFor(CrescentEffect.PauseSource);
         float timerBefore = F<float>(Player, "attackTimer"); int serial = AttackFeed.Serial;
         Call(Player, "HandleAutoAttack", PosAt(8, 8));
         bool held = F<float>(Player, "attackTimer") == timerBefore && AttackFeed.Serial == serial;
         float left = DirectAttackPause.RemainingFor(CrescentEffect.PauseSource);
-        Require(DirectAttackPause.Requests == 1 && remaining > 0f && remaining <= .35f + 1e-4f && left > 0f && left < remaining && held && Time.timeScale == 1f && RM.IsRoundActive && Fx.PendingTimers == 0,
+        Require(DirectAttackPause.Requests == 1 && remaining > 0f && remaining <= .35f + 1e-4f && left > 0f && left < remaining && held && Time.timeScale == 1f && RM.IsRoundActive,
             $"Cost: a direct-attack pause of at most 0,35 s was requested once ({remaining:0.00} s left); while it lasts the player's attack timer does not advance and no attack happens, but the game, the round clock and the effects keep running");
         // Çoklu kaynak ve sert üst sınır.
         DirectAttackPause.Request(77, 5f);
@@ -1184,6 +1184,20 @@ public static class GecOyunV1Verification
         Require(capped && otherKept && stillPaused && over && !DirectAttackPause.Active && F<float>(Player, "attackTimer") > timerBefore,
             "Pause rules: a request is clipped to the hard limit (0,6 s); releasing one source does not release another; the pause ends by game time and the attack timer runs again — it never waits for a visual");
         SetF(Player, "attackTimer", 0f);
+        return 0;
+    }
+
+    static double FullMoonResult()
+    {
+        // Dalgalar zamana değil sonuca göre beklenir: hilal adım süresi veriden (24 Ekim'den beri 0,3 sn).
+        if (crescent.ActiveWaves > 0) return Again;
+        var forward = Of(RewardSource.Crescent); var back = Of(RewardSource.CrescentReturn);
+        var step3 = forward.Where(h => h.X == 5).ToList();
+        Require(crescent.FullMoons == 1 && step3.Count == 3 && step3.All(h => h.Damage == 120) && forward.Count(h => h.X == 6) == 1 && forward.First(h => h.X == 6).Damage == 80,
+            "Dolunay trigger: growth reached 2 on step 2; the forward wave goes on (step 3 at growth 2: 3 cells at 120 = 80 × 1,5; then a failed step resets it)");
+        Require(back.Count > 0 && back.All(h => h.Damage == 56 && h.Z >= 4 && h.Z <= 6 && h.X >= 2 && h.X <= 6) && back.Any(h => h.X == 6) && back.Any(h => h.X == 2 && h.Z == 5) &&
+                back.Min(h => h.Frame) > forward.Where(h => h.X == 4).Min(h => h.Frame) && crescent.GrowthGains == 3 && crescent.ActiveWaves == 0 && crescent.FullMoons == 1 && Fx.PendingTimers == 0,
+            "Second wave from the opposite side: starts at the first wave's last cell (6,5) and comes back to the start cell (2,5), a 3-cell front at 56 (= 80 × 0,70); it does not grow and does not start another Dolunay");
         return 0;
     }
 
@@ -1514,8 +1528,9 @@ public static class GecOyunV1Verification
         Take("elektrik_anteni", AntennaSlots.Id(AntennaSlots.West, 5));
         Take("iletken_hat", AntennaSlots.Id(AntennaSlots.East, 5));
         foreach (string id in new[] { "hilal_darbesi", "buyuyen_ay", "kritik_ark", "hasat_yankisi", "tasan_hasar", "nadir_reaktor", "acgozlu_hasat", "kapali_devre", "dolunay", "asiri_yukleme" }) Take(id);
-        Require(Fx.Active.Count == 13 && Boss.Taken.Count == 13 && NewIds.All(id => Boss.Stacks(Find(id)) == 1),
-            "All 13 new rewards taken in one run, each from an offer produced by the game's offer builder and through Choose");
+        // Kritik Patlama oyundan çıkarıldı (24 Ekim): yeni ödül sayısı listeden (NewIds, 12).
+        Require(Fx.Active.Count == NewIds.Length && Boss.Taken.Count == NewIds.Length && NewIds.All(id => Boss.Stacks(Find(id)) == 1),
+            $"All {NewIds.Length} new rewards taken in one run, each from an offer produced by the game's offer builder and through Choose");
         allAttacks = 0;
         for (int i = 0; i < hitBase.Length; i++) hitBase[i] = Fx.Hits((RewardSource)i);
         droppedBase = Fx.DroppedTimers;
@@ -1539,8 +1554,16 @@ public static class GecOyunV1Verification
         return .02;
     }
 
+    static double allWaitStart = -1;
     static double AllResult()
     {
+        // Döngüler bitene kadar beklenir (en çok 8 sn oyun süresi): hilal adımı 24 Ekim'den beri 0,3 sn, son dalgalar sabit
+        // 1,5 sn'de bitmeyebilir. Süre dolarsa aşağıdaki denetim "bitmeyen döngü" olarak düşer.
+        if (Fx.PendingTimers > 0 || Fx.Find<CrescentEffect>().ActiveWaves > 0)
+        {
+            if (allWaitStart < 0) allWaitStart = Time.timeAsDouble;
+            if (Time.timeAsDouble - allWaitStart < 8) return Again;
+        }
         int total = Enumerable.Range(1, 9).Sum(i => Since((RewardSource)i));
         Require(allAttacks == 24 && Fx.PendingTimers == 0 && Fx.DroppedTimers == droppedBase && total > 0 && Since(RewardSource.CritArc) <= 3 * allAttacks && Since(RewardSource.Overflow) <= 8 * allAttacks &&
                 Since(RewardSource.HarvestEcho) <= 3 * allAttacks && Fx.Find<CritBurstEffect>() == null && Fx.Find<CrescentEffect>().ActiveWaves == 0 && errors == 0,

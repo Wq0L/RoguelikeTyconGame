@@ -53,12 +53,12 @@ public class RoundUI : MonoBehaviour
 
     private void UpdateRoundText(int roundNumber)
     {
-        roundText.text = $"Round {roundNumber} / {RoundManager.Instance.MaxRounds}";
+        roundText.text = GameText.Format("ui.hud.round", roundNumber, RoundManager.Instance.MaxRounds);
     }
 
     private void UpdateTimerText(int secondsLeft)
     {
-        timerText.text = $"Time: {secondsLeft}s";
+        timerText.text = GameText.Format("ui.hud.time", secondsLeft);
 
         // Son saniyeler: her saniye kırmızı nabız.
         bool warning = secondsLeft > 0 && secondsLeft <= warningSeconds;

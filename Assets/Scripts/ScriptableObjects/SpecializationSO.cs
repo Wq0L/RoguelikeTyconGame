@@ -8,6 +8,9 @@ using UnityEngine;
 public class SpecializationSO : ScriptableObject
 {
     public string displayName = "UZMANLAŞMA";
+    // Oyuncuya görünen ad: çeviri tablosundan (data.spec.<ad>.name, ad Türkçe yazıdan); anahtar yoksa asset'teki yazı.
+    public string DisplayName => GameText.Data(NameKey, displayName);
+    public string NameKey => "data.spec." + GameText.Slug(displayName) + ".name";
     [Tooltip("İsteğe bağlı kısa not. Kazanç/bedel satırları katsayılardan otomatik yazılır.")]
     public string note = "";
     [Tooltip("Doğrudan saldırı hasarı çarpanı.")]

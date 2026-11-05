@@ -29,35 +29,36 @@ public class GridTileToolTipContent : MonoBehaviour
     {
         var modifier = cell.CurrentModifier;
         bool fresh = ProgressionManager.Instance != null && ProgressionManager.Instance.WasAppliedThisRound(cell);
-        string caption = modifier != null ? modifier.rarity.ToString() : "";
+        string caption = modifier != null ? TileBuffText.RarityName(modifier.rarity) : "";
         if (!string.IsNullOrEmpty(coordinate)) caption = caption.Length > 0 ? coordinate + " · " + caption : coordinate;
-        if (modifier != null) caption += $" · Sv {cell.Level}/{GroundCell.MaxLevel}";
+        if (modifier != null) caption += " · " + GameText.Format("ui.tile.level_of", cell.Level, GroundCell.MaxLevel);
         ProgressionManager.TileUpgrade upgrade = null;
         bool upgraded = ProgressionManager.Instance != null && ProgressionManager.Instance.TryGetRoundUpgrade(cell, out upgrade);
-        if (fresh) caption += upgraded ? " · +SV" : " · YENİ";
-        view.Begin(modifier != null ? modifier.modifierName : "Boş tile", caption);
+        if (fresh) caption += " · " + GameText.Get(upgraded ? "ui.tile.level_up_tag" : "ui.tile.new");
+        view.Begin(modifier != null ? modifier.DisplayName : GameText.Get("ui.tile.empty"), caption);
         var colors = TileBuffText.OnPaper;
-        if (fresh) view.Add(colors.New(upgraded ? "<b>Bu round'un kartı bu tile'ı yükseltti.</b>" : "<b>Bu round'un kartı buraya geldi.</b>"));
+        if (fresh) view.Add(colors.New($"<b>{GameText.Get(upgraded ? "ui.tile.upgraded_this_round" : "ui.tile.placed_this_round")}</b>"));
         if (modifier != null && upgraded)
         {
             // Başlık aynı zamanda renk anahtarı: önce kırmızı, şimdi yeşil.
-            view.Add(Section("BU TILE · ") + $"<b>{colors.Old("önce")} → {colors.New("şimdi")}</b>");
-            view.Add(TileBuffText.LevelChange(upgrade.FromLevel, upgrade.ToLevel, colors) + $" · +{upgrade.ToLevel - upgrade.FromLevel} seviye");
+            view.Add(Section(GameText.Get("ui.tile.this_tile") + " · ") + $"<b>{colors.Old(GameText.Get("ui.tile.before"))} → {colors.New(GameText.Get("ui.tile.now"))}</b>");
+            view.Add(TileBuffText.LevelChange(upgrade.FromLevel, upgrade.ToLevel, colors) + " · " + GameText.Format("ui.tile.levels_gained", upgrade.ToLevel - upgrade.FromLevel));
             view.Add(TileBuffText.ModifierChanges(upgrade.Before, cell.RolledModifiers, colors));
         }
-        else if (modifier != null) { view.Add(Section("BU TILE")); view.Add(TileBuffText.Modifiers(cell.RolledModifiers)); }
+        else if (modifier != null) { view.Add(Section(GameText.Get("ui.tile.this_tile"))); view.Add(TileBuffText.Modifiers(cell.RolledModifiers)); }
         // Üretim tabanda: bu saksıda fazla hız nadir bitki şansına dönüştü.
         if (modifier != null && cell.Planter != null && TileBuffText.SpawnFactor(cell.RolledModifiers) < 1f)
         {
             float overflow = cell.Planter.GetSpawnOverflowRarity();
             if (overflow >= 0.05f)
-                view.Add(colors.New($"Üretim tabanda ({StatCalculator.MinimumSpawnInterval.ToString("0.#", System.Globalization.CultureInfo.InvariantCulture)} sn): fazlası nadirliğe · saksıya {TileBuffText.Points(overflow)} nadirlik"));
+                view.Add(colors.New(GameText.Format("ui.tile.spawn_floor",
+                    StatCalculator.MinimumSpawnInterval.ToString("0.#", System.Globalization.CultureInfo.InvariantCulture), TileBuffText.Points(overflow))));
         }
         if (cell.Planter != null && cell.Planter.ActiveResonances.Count > 0)
         {
-            view.Add(Section("SAKSININ REZONANSLARI"));
+            view.Add(Section(GameText.Get("ui.tile.planter_resonances")));
             foreach (var resonance in cell.Planter.ActiveResonances)
-                view.Add("<b>" + resonance.resonanceName + "</b>\n" + $"<color=#{EffectColor}>" + TileBuffText.Resonance(resonance) + "</color>", ResonanceManager.Identity(resonance));
+                view.Add("<b>" + ResonanceRule.DisplayName(resonance.resonanceName) + "</b>\n" + $"<color=#{EffectColor}>" + TileBuffText.Resonance(resonance) + "</color>", ResonanceManager.Identity(resonance));
         }
         view.End();
     }

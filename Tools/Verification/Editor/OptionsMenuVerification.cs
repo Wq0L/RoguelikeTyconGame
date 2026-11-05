@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using TMPro;
 using UnityEditor;
@@ -97,8 +98,9 @@ public static class OptionsMenuVerification
             step++;
             if (step < 8) { nextAt = EditorApplication.timeSinceStartup + 0.4; return; }
 
+            string language = LanguageChecks();
             SessionState.SetBool(Key, false);
-            File.WriteAllText("Logs/OptionsMenuVerification.txt", "PASS " + options.GetComponentsInChildren<OptionRow>(true).Length + " rows");
+            File.WriteAllText("Logs/OptionsMenuVerification.txt", "PASS " + options.GetComponentsInChildren<OptionRow>(true).Length + " rows; " + language);
             EditorApplication.Exit(0);
         }
         catch (Exception exception)
@@ -116,6 +118,45 @@ public static class OptionsMenuVerification
         var tab = tabs[index];
         var button = (Button)tab.GetType().GetField("button").GetValue(tab);
         button.onClick.Invoke();
+    }
+
+    // Dil satırı (5 Kasım 2026): Görüntü sekmesinin en üstünde; diller kendi adıyla; seçim hemen uygulanır ve ayara yazılır.
+    static string LanguageChecks()
+    {
+        ClickTab(0);
+        var row = (OptionStepper)typeof(OptionsUI).GetField("language", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(options);
+        if (row == null) throw new Exception("language row missing");
+        Transform page = row.transform.parent;
+        if (row.transform.GetSiblingIndex() != 0 || !page.name.StartsWith("Görüntü")) throw new Exception("language row is not the first row of the display tab");
+        TMP_Text value = (TMP_Text)typeof(OptionStepper).GetField("value", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(row);
+        Button next = (Button)typeof(OptionStepper).GetField("next", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(row);
+        string start = value.text;
+        if (start != "Türkçe" || GameText.Language != "tr") throw new Exception($"batch starts in Turkish, row shows '{start}' ({GameText.Language})");
+        string Labels() => string.Join(" | ", options.GetComponentsInChildren<TMP_Text>(true).Select(t => t.text));
+        TMP_Text Title() => options.GetComponentsInChildren<TMP_Text>(true).First(t => t.name == "Title");
+        TMP_Text Tab(string name) => options.GetComponentsInChildren<Button>(true).First(b => b.name == name).GetComponentInChildren<TMP_Text>(true);
+        TMP_Text Help() => (TMP_Text)typeof(OptionsUI).GetField("description", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(options);
+        var windowRow = (OptionStepper)typeof(OptionsUI).GetField("windowMode", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(options);
+        TMP_Text windowValue = (TMP_Text)typeof(OptionStepper).GetField("value", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(windowRow);
+        var vsyncRow = (OptionToggle)typeof(OptionsUI).GetField("vSync", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(options);
+        TMP_Text vsyncState = (TMP_Text)typeof(OptionToggle).GetField("state", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(vsyncRow);
+        if (Title().text != "AYARLAR" || Tab("Tab GÖRÜNTÜ").text != "GÖRÜNTÜ" || vsyncState.text is not ("AÇIK" or "KAPALI")
+            || !new[] { "Tam Ekran", "Kenarlıksız", "Pencere" }.Contains(windowValue.text) || !Help().text.StartsWith("Bir ayarın"))
+            throw new Exception($"Turkish panel texts wrong: {Title().text} / {Tab("Tab GÖRÜNTÜ").text} / {vsyncState.text} / {windowValue.text} / {Help().text}");
+        if (options.GetComponentsInChildren<TMP_Text>(true).Any(t => t.text.StartsWith("ui.options"))) throw new Exception("a raw key is visible: " + Labels());
+
+        next.onClick.Invoke();
+        if (value.text != "English" || GameText.Language != "en" || GameSettings.Language != "en" || GameText.Get("ui.skip") != "Skip")
+            throw new Exception($"choosing English: row '{value.text}', game '{GameText.Language}', setting '{GameSettings.Language}'");
+        if (Title().text != "SETTINGS" || Tab("Tab GÖRÜNTÜ").text != "DISPLAY" || Tab("Tab KONTROLLER").text != "CONTROLS"
+            || vsyncState.text is not ("ON" or "OFF") || !new[] { "Fullscreen", "Borderless", "Windowed" }.Contains(windowValue.text)
+            || !Help().text.StartsWith("Hover over") || options.GetComponentsInChildren<TMP_Text>(true).Any(t => t.text.StartsWith("ui.options")))
+            throw new Exception($"the panel did not switch to English at once: {Title().text} / {Tab("Tab GÖRÜNTÜ").text} / {vsyncState.text} / {windowValue.text} / {Help().text}");
+        Capture(10);
+        next.onClick.Invoke();
+        if (value.text != "Türkçe" || GameText.Language != "tr" || GameText.Get("ui.skip") != "Atla" || Title().text != "AYARLAR" || vsyncState.text is not ("AÇIK" or "KAPALI"))
+            throw new Exception("back to Turkish failed");
+        return "language row: Türkçe → English → Türkçe; title, tabs, values, toggles and help line follow at once, no raw keys";
     }
 
     static void ClickFirstToggle()

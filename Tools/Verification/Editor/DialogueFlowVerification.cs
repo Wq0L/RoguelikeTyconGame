@@ -115,6 +115,8 @@ public static class DialogueFlowVerification
         // İlk "Oyna" açılış videosunu oynatır (4 Kasım, ayrı testi: IntroVideoVerification). Bu test konuşma akışını sınar: video
         // görülmüş sayılır, "Oyna" doğrudan seçim ekranını açar (kayıt bellekte kalır).
         DialogueProgress.MarkIntroSeen();
+        // Hikâye konuşmaları (Faz 3, 14 taş) bu testin öğretici akışına karışmasın: görülmüş sayılır (ayrı testi: StoryVerification).
+        foreach (string id in DialogueProgress.StoryOrder) DialogueProgress.MarkSeen(id);
         DialogueDirector.BatchEnabled = true;
         DialogueDirector.Ensure();
         directorObjects = D.GetComponentsInChildren<Transform>(true).Length;
@@ -377,7 +379,7 @@ public static class DialogueFlowVerification
         Check(State == GameStates.RunComplete && RM.Outcome == RunOutcome.QuotaFailed, "the run ends: Adak failed");
         Check(Big.IsOpen && Current == "end.quota", "T11: Adak failure explains why the run ended");
         Check(!DialogueProgress.Seen("tut.kapris"), "this early death never met a kapris: its lesson is still unseen");
-        Check(MetaSave.Data.runsFinished == 1 && DialogueProgress.Stage == 0, "run counter: 1 finished; story stage stays 0 (milestones come in Faz 3)");
+        Check(MetaSave.Data.runsFinished == 1 && DialogueProgress.Stage == 0, "run counter: 1 finished; story stage stays 0 (story conversations are marked seen in this test)");
         Complete(Big);
         return 1.2;   // run sonu paneli belirsin
     }
@@ -489,7 +491,7 @@ public static class DialogueFlowVerification
     {
         Capture("Faz2_12_Zafer", true);
         Big.Skip();
-        Check(DialogueProgress.Stage == 0, "story stage is still 0 (victory milestone is Faz 3)");
+        Check(DialogueProgress.Stage == 0, "story stage is still 0 (story conversations are marked seen in this test; the victory talk is end.victory)");
         Check(D.GetComponentsInChildren<Transform>(true).Length == directorObjects, $"no objects created by showing lines ({directorObjects} under the director, start and end)");
         Check(D.DroppedStale == 0, "no queued line went stale in the real flow");
         Check(errors == 0, $"no error or exception logged during the whole flow ({errors})");

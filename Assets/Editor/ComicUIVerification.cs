@@ -73,7 +73,7 @@ public static class ComicUIVerification
                 Debug.Log("COMIC_LOCKED_CARDS_CHECKED="+locked);
                 Require(locked==3,"Exactly three real planters require skill unlocks");
                 Require(array.arraySize==5 && shop.transform.Find("Planter Card 5")==null,"No fake catalogue card");
-                Require(Field<TMP_Text>("buyLabel").text.StartsWith("BUY"),"Purchase caption");
+                Require(Field<TMP_Text>("buyLabel").text.StartsWith(GameText.Get("ui.shop.buy")),"Purchase caption");
                 Require(Field<Image>("buyResourceIcon").sprite==Resources.Load<ComicUITheme>("ComicUITheme").coinSprite,"Gold price icon");
                 var buy=Field<Button>("buyButton");Require(buy.interactable,"Affordable planter can be selected");
                 var v=buy.GetComponent<ComicButtonVisual>();var img=buy.GetComponent<Image>();

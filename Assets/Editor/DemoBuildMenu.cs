@@ -32,6 +32,11 @@ public static class DemoBuildMenu
             EditorUtility.DisplayDialog("WebGL Demo", "Unity Hub üzerinden bu Unity sürümüne WebGL Build Support ekleyin.", "Tamam");
             return;
         }
+        // 5 Kasım 2026 (kullanıcı kararı: hedef yalnız Windows / Steam): yerelleştirme WebGL'e uyarlanmadı. Unity Localization
+        // WebGL'de tabloları beklemeli yükleyemez; GameText beklemeli okur, bu derlemede yazılar anahtar olarak görünebilir.
+        if (!EditorUtility.DisplayDialog("WebGL Demo",
+                "Uyarı: yerelleştirme WebGL'e uyarlanmadı (hedef yalnız Windows / Steam). Bu derlemede yazılar yerine anahtarlar " +
+                "(ör. ui.skip) görünebilir. Yine de derlensin mi?", "Derle", "Vazgeç")) return;
         string destination = EditorUtility.SaveFolderPanel("WebGL demo çıktı klasörü", "Builds", "WebGLDemo");
         if (string.IsNullOrEmpty(destination)) return;
         if (!UnityEditor.SceneManagement.EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;

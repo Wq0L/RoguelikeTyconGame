@@ -27,7 +27,7 @@ public sealed class InvasiveSproutEvent : FieldEvent
     public InvasiveSproutEvent(InvasiveSproutConfig config) => this.config = config;
 
     public override FieldEventKind Kind => FieldEventKind.InvasiveSprout;
-    public override string Title => "İSTİLACI FİLİZ";
+    public override string Title => GameText.Get("ui.field.sprout.title");
     protected override FieldEventTiming Timing => config.timing;
     public override int ZoneCount => 1;
     public override IReadOnlyList<GridPosition> Zone(int index) => pieces;
@@ -36,9 +36,9 @@ public sealed class InvasiveSproutEvent : FieldEvent
 
     public override string Status => Phase switch
     {
-        FieldEventPhase.Preparing or FieldEventPhase.Emerging => "Filiz çıkıyor · yayıldığı hücrelerde üretim yavaşlar · ana filizi kendi vuruşunla kır",
-        FieldEventPhase.Active => $"Üretim yavaş: {pieces.Count} hücre · ana filiz {Targets[0].Remaining}/{Targets[0].Durability} · {Mathf.CeilToInt(ActiveRemaining)} sn",
-        FieldEventPhase.Resolving => ResolvedByPlayer ? "Ana filiz kırıldı · üretim normale döndü" : "Filiz kurudu · üretim normale döndü",
+        FieldEventPhase.Preparing or FieldEventPhase.Emerging => GameText.Get("ui.field.sprout.prep"),
+        FieldEventPhase.Active => GameText.Format("ui.field.sprout.active", pieces.Count, Targets[0].Remaining, Targets[0].Durability, Mathf.CeilToInt(ActiveRemaining)),
+        FieldEventPhase.Resolving => GameText.Get(ResolvedByPlayer ? "ui.field.sprout.broken" : "ui.field.sprout.withered"),
         _ => "",
     };
 

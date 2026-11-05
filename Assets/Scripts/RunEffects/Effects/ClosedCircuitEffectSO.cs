@@ -23,7 +23,7 @@ public sealed class ClosedCircuitEffectSO : RunEffectSO
     [Range(0f, 1f)] public float chanceFactor = 1f;
 
     public override string Summary =>
-        $"hat, davranışlı saksının bitkisini hasat ederse o saksının davranış şansıyla ek hat vuruşu · hasarın %{Percent(extraDamage)}'i · bekleme {Number(cooldown)} sn";
+        GameText.Format("ui.effect.closed_circuit", Percent(extraDamage), Number(cooldown));
 
     public override RunEffect Create() => new ClosedCircuitEffect();
 

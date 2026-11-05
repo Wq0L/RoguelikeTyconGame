@@ -1,0 +1,3140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: GameText_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 8b2906cf59e79cc4c9072b57e0d27f17, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 221144893936370180
+  m_TableData:
+  - m_Id: 936136704
+    m_Localized: 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 965496832
+    m_Localized: Eri
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691136
+    m_Localized: Skip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691137
+    m_Localized: "Oh! A ship! Nobody has crashed here in ages\u2026 I mean, come
+      here."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691138
+    m_Localized: 'I''m Eri. This planet is mine: the soil is mine, the hands are
+      yours.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691139
+    m_Localized: Pick a farmer and a scythe. We'll handle the rest together.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691140
+    m_Localized: "The field is empty\u2026 Buy a planter from the shop first, then
+      start the round."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691141
+    m_Localized: Click an empty spot and the planter settles in. Press R to rotate
+      it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691142
+    m_Localized: Don't know how to harvest? Keep the cursor over the plants; the
+      scythe swings by itself.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691143
+    m_Localized: "Didn't Earth have automatic scythes? I could have sworn it did\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691144
+    m_Localized: That share at the top left is my Offering. Fill it before the period
+      ends, okay?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691145
+    m_Localized: You're growing! Pick one; it stays with you for this harvest.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691146
+    m_Localized: "Last round of the period. My Offering is still short\u2026 hurry."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691147
+    m_Localized: "Mmm\u2026 I'm full."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691148
+    m_Localized: For now. My next share will be a little bigger.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691149
+    m_Localized: This round is a Trial! Reach the target on the left within this
+      round.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691150
+    m_Localized: One of my seeds has gone wild! What it does is written on the left.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691151
+    m_Localized: "The Offering fell short. Hunger\u2026 doesn't wait."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691152
+    m_Localized: We'll start again. The soil is always here.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691153
+    m_Localized: "You didn't pass the Trial\u2026 And I can't wait either."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691154
+    m_Localized: You'll be back. I know it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691155
+    m_Localized: I'm full. Really, this time.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691156
+    m_Localized: "\u2026It won't last, though."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691157
+    m_Localized: "Hmm\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691158
+    m_Localized: "Mmm\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337693839360
+    m_Localized: "BASE \u2192 WITH CARD  \xB7  EXAMPLE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393792
+    m_Localized: TILE EFFECT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393793
+    m_Localized: Main Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393794
+    m_Localized: 1x1 PLANTER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393795
+    m_Localized: 1x2 PLANTER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393796
+    m_Localized: 1x3 PLANTER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393797
+    m_Localized: 2x2 PLANTER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393798
+    m_Localized: 2x3 PLANTER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393799
+    m_Localized: CLEAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393800
+    m_Localized: GROW TIME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393801
+    m_Localized: PLOTS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393802
+    m_Localized: SELL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393803
+    m_Localized: SIZE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393804
+    m_Localized: PLANTER SHOP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393805
+    m_Localized: Restart Game<br>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393806
+    m_Localized: SKILL SHOP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393807
+    m_Localized: Skip Cards
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393808
+    m_Localized: START ROUND
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393809
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393810
+    m_Localized: Play<br>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393811
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479529525248
+    m_Localized: SETTINGS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479529525249
+    m_Localized: DISPLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719552
+    m_Localized: AUDIO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719553
+    m_Localized: GAMEPLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719554
+    m_Localized: CONTROLS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719555
+    m_Localized: DEFAULTS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719556
+    m_Localized: BACK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719557
+    m_Localized: ON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719558
+    m_Localized: OFF
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719559
+    m_Localized: Hover over a setting to see what it does here.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719560
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719561
+    m_Localized: Game language. On first start the computer's language is used; English
+      if it is not available.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719562
+    m_Localized: Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719563
+    m_Localized: The screen resolution the game runs at.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719564
+    m_Localized: Window Mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719565
+    m_Localized: Fullscreen, borderless window or a normal window.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719566
+    m_Localized: Fullscreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719567
+    m_Localized: Borderless
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719568
+    m_Localized: Windowed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719569
+    m_Localized: VSync
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719570
+    m_Localized: Prevents screen tearing and locks the FPS to the monitor's refresh
+      rate.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719571
+    m_Localized: FPS Limit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719572
+    m_Localized: Only when VSync is off. A lower limit eases the graphics card and
+      the battery.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719573
+    m_Localized: '{0} FPS'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719574
+    m_Localized: Unlimited
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719575
+    m_Localized: Graphics Quality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719576
+    m_Localized: 'Low: lighter graphics settings for weaker computers.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719577
+    m_Localized: Low
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719578
+    m_Localized: High
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719579
+    m_Localized: Background Effects
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719580
+    m_Localized: Animated space background. When off, a plain colour is used; raises
+      the FPS on weak graphics cards.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719581
+    m_Localized: Master Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719582
+    m_Localized: Overall level of all game sounds.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719583
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719584
+    m_Localized: Music level.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719585
+    m_Localized: Effects
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719586
+    m_Localized: Harvest, hit and interface sounds.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719587
+    m_Localized: Mute in Background
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719588
+    m_Localized: Mutes the game when you switch to another window.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719589
+    m_Localized: Screen Shake
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719590
+    m_Localized: Strength of the explosion, crit and round-end shakes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719591
+    m_Localized: Camera Motion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719592
+    m_Localized: The camera's gentle breathing motion.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719593
+    m_Localized: Damage Numbers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719594
+    m_Localized: Damage numbers that pop up on hits.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719595
+    m_Localized: Grid Coordinates
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719596
+    m_Localized: "A\u2013K / 1\u201311 labels on the grid edge; the same as on the
+      map."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719597
+    m_Localized: Rarity Auras
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719598
+    m_Localized: The coloured ring under plants that shows their rarity.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719599
+    m_Localized: Round End Slow Motion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719600
+    m_Localized: A brief slow-down of time as the timer runs out.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719601
+    m_Localized: Screen Flashes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719602
+    m_Localized: The white screen flash at the end of a round. Turn it off if you
+      are sensitive to light.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719603
+    m_Localized: Harvest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719604
+    m_Localized: Move the cursor over the plants; the scythe cuts by itself.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719605
+    m_Localized: CURSOR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719606
+    m_Localized: Rotate Planter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719607
+    m_Localized: Rotates the planter while placing it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719608
+    m_Localized: Cancel / Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719609
+    m_Localized: Cancels placing, leaves the shop and the sell mode.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719610
+    m_Localized: Resonance Details
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719611
+    m_Localized: Opens / closes the resonance detail panel while placing.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719612
+    m_Localized: Performance Capture
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719613
+    m_Localized: Starts / stops the performance capture (in the game scene).
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100892700672
+    m_Localized: '{0}%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866496
+    m_Localized: "NEW RUN \xB7 LOADOUT"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866497
+    m_Localized: "Pick a farmer and a scythe \xB7 effects last for this run \xB7
+      applied again in each new run"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866498
+    m_Localized: "FARMER \xB7 overall approach"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866499
+    m_Localized: "SCYTHE \xB7 harvest style"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866500
+    m_Localized: BACK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866501
+    m_Localized: START RUN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866502
+    m_Localized: 'Choice: {0} + {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866503
+    m_Localized: SELECTED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866504
+    m_Localized: Click to select
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866505
+    m_Localized: LOCKED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866506
+    m_Localized: "LOCKED \xB7 QUEST"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866507
+    m_Localized: 'Best run: {0} / {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866508
+    m_Localized: "Neutral \xB7 no advantage, no cost"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866509
+    m_Localized: the game's own balance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866510
+    m_Localized: "Direct hit damage \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060800
+    m_Localized: behavior damage unchanged
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060801
+    m_Localized: "Harvest resources \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060802
+    m_Localized: "only Gold \xB7 Iron \xB7 Stone from harvests"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060803
+    m_Localized: "Harvest Score \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060804
+    m_Localized: quota progress counts this too
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060805
+    m_Localized: "Hit radius \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060806
+    m_Localized: cursor ring shrinks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060807
+    m_Localized: cursor ring grows
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060808
+    m_Localized: Rarity bonus {0} pts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060809
+    m_Localized: rare plants appear more often
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060810
+    m_Localized: rare plants appear less often
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060811
+    m_Localized: "Spawn interval \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060812
+    m_Localized: plants appear less often
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060813
+    m_Localized: plants appear more often
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060814
+    m_Localized: "Attack interval \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060815
+    m_Localized: Gardener
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060816
+    m_Localized: 'Reference farmer: the game''s own balance.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060817
+    m_Localized: Merchant
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060818
+    m_Localized: Use the economy to reach the skill tree early; score trails a little.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060819
+    m_Localized: Selective Breeder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060820
+    m_Localized: Read the aura and pick the valuable plant.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060821
+    m_Localized: Standard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060822
+    m_Localized: 'Default hit: damage and radius as they are.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060823
+    m_Localized: Narrow Cut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060824
+    m_Localized: 'Narrow but heavy hit: aim for valuable, tough plants.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060825
+    m_Localized: Harvest 5 Legendary plants in a single run
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690688442368
+    m_Localized: PREPARATION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690696830976
+    m_Localized: ROUND {0} SUMMARY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690696830977
+    m_Localized: Harvest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690696830978
+    m_Localized: Gold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690696830979
+    m_Localized: Iron
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690696830980
+    m_Localized: Stone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690696830981
+    m_Localized: XP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690696830982
+    m_Localized: Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690696830983
+    m_Localized: Score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690696830984
+    m_Localized: 'Specialization: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690696830985
+    m_Localized: "First quota: {0} \xB7 {1:plural:{} round|{} rounds}"
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 161690701025280
+    m_Localized: "First boss quota: {0} \xB7 {1:plural:{} round|{} rounds}"
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 161690705219584
+    m_Localized: The quota is checked at the end of every boss round; miss it and
+      the run ends
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219585
+    m_Localized: The quota is checked every {0:plural:round|{} rounds}; miss it and
+      the run ends
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 161690705219586
+    m_Localized: "QUOTA MET \xB7 {0} / {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219587
+    m_Localized: "BOSS QUOTA MET \xB7 {0} / {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219588
+    m_Localized: "Next quota: {0} \xB7 {1:plural:{} round|{} rounds}"
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 161690705219589
+    m_Localized: "Next boss quota: {0} \xB7 {1:plural:{} round|{} rounds}"
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 161690705219590
+    m_Localized: Quota
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219591
+    m_Localized: Boss quota
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219592
+    m_Localized: "{0} met \xB7 {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219593
+    m_Localized: The segment closes at the end of round {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219594
+    m_Localized: "LAST ROUND \xB7 {0} to go for the quota"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219595
+    m_Localized: "{0} {1} \xB7 miss it and the run ends"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219596
+    m_Localized: "{0} {1} \xB7 {2:plural:{} round|{} rounds} left"
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 161690705219597
+    m_Localized: Miss it and the run ends after round {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219598
+    m_Localized: boss harvest target {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219599
+    m_Localized: no boss harvest target
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219600
+    m_Localized: "Upcoming boss: {0} \xB7 Round {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219601
+    m_Localized: "Upcoming: {0} \xB7 Round {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219602
+    m_Localized: "{0} ACTIVE \xB7 {1:plural:{} round|{} rounds} left"
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 161690705219603
+    m_Localized: '{0} CLEARED'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219604
+    m_Localized: "FINAL PREP \xB7 {0} next round"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219605
+    m_Localized: "Rounds {0}\u2013{1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219606
+    m_Localized: "Upcoming: {0} \xB7 Rounds {1}\u2013{2}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219607
+    m_Localized: '{0:plural:{} round|{} rounds} to prepare'
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 161690705219608
+    m_Localized: boss harvest {0} / {1}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219609
+    m_Localized: 'Next boss: {0} (Round {1})'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219610
+    m_Localized: "FINAL PREP \xB7 boss {0} next round"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219611
+    m_Localized: QUOTA {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219612
+    m_Localized: '{0} BEGINS'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219613
+    m_Localized: "BOSS: {0} \xB7 HARVEST TARGET {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219614
+    m_Localized: 'BOSS: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219615
+    m_Localized: '{0} NEXT ROUND'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219616
+    m_Localized: Rule lifted
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219617
+    m_Localized: in the band
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219618
+    m_Localized: in column {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219619
+    m_Localized: "in columns {0}\u2013{1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219620
+    m_Localized: in row {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219621
+    m_Localized: "in rows {0}\u2013{1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219622
+    m_Localized: "hit radius \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219623
+    m_Localized: "hit area one step smaller: {0} \u2192 {1} plants on the best aim"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219624
+    m_Localized: hit area shrinks by one step
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219625
+    m_Localized: "hit area shrinks by one step: {0} \u2192 {1} plants on the best
+      aim"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219626
+    m_Localized: Hit area back to normal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219627
+    m_Localized: Hit radius back to normal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219628
+    m_Localized: "production \xD7{1} slower {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219629
+    m_Localized: blue band
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219630
+    m_Localized: Production in the band back to normal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219631
+    m_Localized: "plant health \xD7{1} {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219632
+    m_Localized: orange band
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219633
+    m_Localized: Plants in the band back to normal health
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219634
+    m_Localized: no rule
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219635
+    m_Localized: Boss round over
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219636
+    m_Localized: QUOTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219637
+    m_Localized: SEGMENT QUOTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219638
+    m_Localized: BOSS QUOTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219639
+    m_Localized: '{0} MET'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219640
+    m_Localized: "{0} \xB7 LAST ROUND"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219641
+    m_Localized: "{0} \xB7 {1:plural:{} ROUND|{} ROUNDS}"
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 161690705219642
+    m_Localized: 'Boss harvest target (Round {0}): {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219643
+    m_Localized: 'Boss round: Round {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219644
+    m_Localized: 'BOSS HARVEST: no target'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219645
+    m_Localized: 'BOSS HARVEST: {0} / {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219646
+    m_Localized: MET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219647
+    m_Localized: "HARVEST RHYTHM READY \xB7 next hit is strong"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219648
+    m_Localized: Harvest Rhythm {0} / {1}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219649
+    m_Localized: Boss rewards
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219650
+    m_Localized: Round {0} / {1}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219651
+    m_Localized: 'Time: {0}s'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219652
+    m_Localized: CALCULATING LEVEL REWARDS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219653
+    m_Localized: Level {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219654
+    m_Localized: NEXT ROUND
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219655
+    m_Localized: PREVIEW
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219656
+    m_Localized: PREVIEW
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219657
+    m_Localized: "Hover a tile: details  \xB7  {0} / {1}: back"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219658
+    m_Localized: "No active resonance yet \xB7 gather same-type tiles under one planter"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219659
+    m_Localized: BACK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219660
+    m_Localized: THIS ROUND'S CARD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219661
+    m_Localized: THIS ROUND'S CARDS ({0})
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219662
+    m_Localized: "+{0} more tiles \xB7 glowing on the map"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219663
+    m_Localized: pts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219664
+    m_Localized: rate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219665
+    m_Localized: Lv
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219666
+    m_Localized: Lv {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219667
+    m_Localized: '{0} s'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219668
+    m_Localized: Gold / Iron / Stone {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219669
+    m_Localized: Rare+ Harvest Score {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219670
+    m_Localized: Electric kill XP {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219671
+    m_Localized: '{0} damage {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219672
+    m_Localized: Rarity +{0} pts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219673
+    m_Localized: Explosion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219674
+    m_Localized: Tornado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219675
+    m_Localized: Scythe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219676
+    m_Localized: Electric
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219677
+    m_Localized: Common
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219678
+    m_Localized: Uncommon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219679
+    m_Localized: Rare
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219680
+    m_Localized: Epic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219681
+    m_Localized: Legendary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219682
+    m_Localized: Gold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219683
+    m_Localized: Iron
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219684
+    m_Localized: Stone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219685
+    m_Localized: Planter damage stat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219686
+    m_Localized: Hit radius
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219687
+    m_Localized: Attack interval
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219688
+    m_Localized: Crit chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219689
+    m_Localized: Crit multiplier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219690
+    m_Localized: Spawn time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219691
+    m_Localized: Rarity bonus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219692
+    m_Localized: Gold gain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219693
+    m_Localized: Iron gain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219694
+    m_Localized: Stone gain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219695
+    m_Localized: XP gain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219696
+    m_Localized: Harvest Score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219697
+    m_Localized: Card rarity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219698
+    m_Localized: Grid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219699
+    m_Localized: Round time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219700
+    m_Localized: Starting Gold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219701
+    m_Localized: Starting planters
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219702
+    m_Localized: Extra card choice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219703
+    m_Localized: Card reroll
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219704
+    m_Localized: Card skip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219705
+    m_Localized: Explosion chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219706
+    m_Localized: Double reward chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219707
+    m_Localized: Damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219708
+    m_Localized: Tornado chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219709
+    m_Localized: Boomerang scythe chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219710
+    m_Localized: Cross electric chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219711
+    m_Localized: "COMPLETED  \xB7  MAX"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219712
+    m_Localized: TIER  {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219713
+    m_Localized: CURRENT EFFECT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219714
+    m_Localized: NEXT TIER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219715
+    m_Localized: UPGRADE COST
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219716
+    m_Localized: ACCESS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219717
+    m_Localized: OPEN FROM THE START
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219718
+    m_Localized: IN THE FULL GAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219719
+    m_Localized: DEMO LOCK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219720
+    m_Localized: This unlocks in the full game. It can't be bought in the demo.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219721
+    m_Localized: This node wasn't bought; this profile charges nothing for it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219722
+    m_Localized: Round time is fixed in this experiment ({0} s).
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219723
+    m_Localized: This node has no effect and can't be bought.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219724
+    m_Localized: Damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219725
+    m_Localized: "{0} \xB7 +{1} speed"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219726
+    m_Localized: "{0} (floor \xB7 the rest becomes rarity)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219727
+    m_Localized: "Epic+ {0} \xB7 Leg {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219728
+    m_Localized: '{0} planter open from the start (in the shop).'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219729
+    m_Localized: '{0} planter is open in the shop.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219730
+    m_Localized: Unlocks the {0} planter in the shop.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219731
+    m_Localized: Explosion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219732
+    m_Localized: Duplicate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219733
+    m_Localized: Tornado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219734
+    m_Localized: Boomerang Scythe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219735
+    m_Localized: Cross Electric
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219736
+    m_Localized: '{0} cards open from the start: in the choice pool since the run
+      began.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219737
+    m_Localized: '{0} cards added to the choice pool.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219738
+    m_Localized: At max level, adds {0} cards to the choice pool.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219739
+    m_Localized: FROST FRONT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219740
+    m_Localized: HARD SHELL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219741
+    m_Localized: FOG
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219742
+    m_Localized: RULELESS BOSS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219743
+    m_Localized: Boomerang Scythe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219744
+    m_Localized: Crystal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219745
+    m_Localized: Focus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219746
+    m_Localized: Duplicate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219747
+    m_Localized: Cross Electric
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219748
+    m_Localized: Energy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219749
+    m_Localized: Explosive
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219750
+    m_Localized: Fertile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219751
+    m_Localized: Tornado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219752
+    m_Localized: Water
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219753
+    m_Localized: Damage Upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219754
+    m_Localized: "1\xD73 Planter"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219755
+    m_Localized: "2\xD72 Planter"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219756
+    m_Localized: "2\xD73 Planter"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219757
+    m_Localized: Heavy Cut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219758
+    m_Localized: Fluid Cut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219759
+    m_Localized: Gold Harvest I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219760
+    m_Localized: Gold Harvest II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219761
+    m_Localized: Boomerang Scythe Cards
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219762
+    m_Localized: Cross Electric Cards
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219763
+    m_Localized: Double Harvest Cards
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219764
+    m_Localized: Iron Harvest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219765
+    m_Localized: Steady Production
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219766
+    m_Localized: Wide Sweep
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219767
+    m_Localized: Wide Scan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219768
+    m_Localized: Grid Expansion I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219769
+    m_Localized: Grid Expansion II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219770
+    m_Localized: Strong Cut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219771
+    m_Localized: Harvest Experience I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219772
+    m_Localized: Harvest Experience II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219773
+    m_Localized: Harvest Record
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219774
+    m_Localized: Quick Hands
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219775
+    m_Localized: Second Skip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219776
+    m_Localized: First Skip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219777
+    m_Localized: Card Intuition
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219778
+    m_Localized: Cutting Technique
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219779
+    m_Localized: Cutting Mastery
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219780
+    m_Localized: Sharp Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219781
+    m_Localized: Critical Power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219782
+    m_Localized: Critical Focus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219783
+    m_Localized: Rare Sprouts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219784
+    m_Localized: Explosive Cards
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219785
+    m_Localized: Stone Harvest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219786
+    m_Localized: Tornado Cards
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219787
+    m_Localized: Fruitful Production
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219788
+    m_Localized: Rich Ore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219789
+    m_Localized: Overpower I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219790
+    m_Localized: Overpower II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219791
+    m_Localized: A Little More Time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219792
+    m_Localized: Harvest Peak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219793
+    m_Localized: Advanced Mastery
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219794
+    m_Localized: Plasma Cut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219795
+    m_Localized: Mass Production
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219796
+    m_Localized: Last Shift
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219797
+    m_Localized: Long Harvest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219798
+    m_Localized: Lightning Cut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219799
+    m_Localized: Star Cut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219800
+    m_Localized: "+{0:plural:{} LEVEL|{} LEVELS} \xB7 {1}"
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 161690705219801
+    m_Localized: rarity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219802
+    m_Localized: "Spawn at floor \u2192 Rarity"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219803
+    m_Localized: Special effect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219804
+    m_Localized: Base power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219805
+    m_Localized: 'Adds up: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219806
+    m_Localized: "GRID FULL \xB7 the card levels up the tile you pick"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219807
+    m_Localized: "ALL TILES MAX \xB7 the card gives permanent Base power"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219808
+    m_Localized: Harvest damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219809
+    m_Localized: Attack interval
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219810
+    m_Localized: Spawn time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219811
+    m_Localized: All resources
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219812
+    m_Localized: XP gain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219813
+    m_Localized: LAST CHOICE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219814
+    m_Localized: 'CHOICES LEFT: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219815
+    m_Localized: Lv {0}/{1}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219816
+    m_Localized: +LV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219817
+    m_Localized: NEW
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219818
+    m_Localized: Empty tile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219819
+    m_Localized: This round's card upgraded this tile.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219820
+    m_Localized: This round's card landed here.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219821
+    m_Localized: THIS TILE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219822
+    m_Localized: before
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219823
+    m_Localized: now
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219824
+    m_Localized: +{0:plural:{} level|{} levels}
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 161690705219825
+    m_Localized: "Spawn at its floor ({0} s): extra speed turns into rarity \xB7
+      {1} rarity to the planter"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219826
+    m_Localized: PLANTER'S RESONANCES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219827
+    m_Localized: OPENS AT THIS SPOT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219828
+    m_Localized: "{0:plural:{} tile|{} tiles} \xB7 {1:plural:{} resonance|{} resonances}"
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 161690705219829
+    m_Localized: '{0}: show / hide'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219830
+    m_Localized: No resonance forms at this spot.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219831
+    m_Localized: TILES UNDER THE PLANTER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219832
+    m_Localized: '{0} / {1}: scroll'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219833
+    m_Localized: RESONANCE!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219834
+    m_Localized: Focus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219835
+    m_Localized: Fame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219836
+    m_Localized: Abundance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219837
+    m_Localized: Wisdom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219838
+    m_Localized: Crystal Garden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219839
+    m_Localized: Empowered Harvest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219840
+    m_Localized: Precious Harvest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219841
+    m_Localized: Fertile Soil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219842
+    m_Localized: Electric Lore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219843
+    m_Localized: Rare Nursery
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725701566464
+    m_Localized: no effect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725747703808
+    m_Localized: Direct hit damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725747703809
+    m_Localized: Direct
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725747703810
+    m_Localized: direct hit damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725747703811
+    m_Localized: Direct hit on {0}+ plants
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725747703812
+    m_Localized: '{0}+ direct'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725747703813
+    m_Localized: direct hit on {0}+ plants
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725747703814
+    m_Localized: Behavior damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898112
+    m_Localized: Behavior
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898113
+    m_Localized: behavior damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898114
+    m_Localized: "aftershock spreading {0:plural:{} cell|{} cells} beyond the explosion
+      \xB7 {1} s per step \xB7 {2} of the first explosion's damage"
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 227725751898115
+    m_Localized: '{0} of the first wave''s damage'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898116
+    m_Localized: '{0:plural:{} cell|{} cells} diagonally'
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 227725751898117
+    m_Localized: '{0} s later'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898118
+    m_Localized: "once every {0} direct harvests: damage \xD7{1} \xB7 radius \xD7{2}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898119
+    m_Localized: chance and damage {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898120
+    m_Localized: "chance {0} \xB7 damage {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898121
+    m_Localized: "behavior harvests trigger other planters' behaviors \xB7 up to
+      {0:plural:{} extra generation|{} extra generations} \xB7 {1}"
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 227725751898122
+    m_Localized: Taken once
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898123
+    m_Localized: 'requires: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898124
+    m_Localized: You choose where it goes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898125
+    m_Localized: Take this and {0} won't be offered again
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898126
+    m_Localized: "Tornadoes / boomerangs at once (each): {0} \u2192 {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898127
+    m_Localized: Tornado / boomerang active limit +{0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898128
+    m_Localized: "Every future level: {0} \u2192 {1} choices"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898129
+    m_Localized: Level choices {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898130
+    m_Localized: choices per level {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898131
+    m_Localized: Choices already earned don't change.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898132
+    m_Localized: 'gain: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898133
+    m_Localized: 'cost: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898134
+    m_Localized: "Choices per level: {0} (base {1}) \xB7 for newly gained levels"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898135
+    m_Localized: "{0} STAGE \xB7 BOSS REWARD"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898136
+    m_Localized: "{0} STAGE \xB7 from the Round {1} boss on"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898137
+    m_Localized: '{0} STAGE'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898138
+    m_Localized: No suitable reward left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898139
+    m_Localized: Every reward is at its limit or changes nothing right now
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898140
+    m_Localized: CONTINUE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898141
+    m_Localized: "BOSS CLEARED \xB7 PICK A REWARD"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898142
+    m_Localized: "FINAL BOSS CLEARED \xB7 PICK A REWARD"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898143
+    m_Localized: No reward can be offered for this boss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898144
+    m_Localized: "Take only one \xB7 lasts until the end of the run \xB7 applies
+      from Round {0} on"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898145
+    m_Localized: "take only one \xB7 lasts until the end of the run \xB7 applies
+      from Round {0} on"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898146
+    m_Localized: "Take only one \xB7 the run ends here \xB7 the reward goes on the
+      run end list"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898147
+    m_Localized: "take only one \xB7 the run ends here \xB7 the reward goes on the
+      run end list"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898148
+    m_Localized: "Boss cleared \xB7 {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898149
+    m_Localized: "Final boss cleared \xB7 {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898150
+    m_Localized: GAIN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898151
+    m_Localized: COST
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898152
+    m_Localized: Now {0}/{1}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898153
+    m_Localized: 'Now {0}/{1}: total {2}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898154
+    m_Localized: 'Now 0/{0}: none'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898155
+    m_Localized: 'If picked {0}/{1}: total {2}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898156
+    m_Localized: Boss rewards taken
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898157
+    m_Localized: PLACE THE ANTENNA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898158
+    m_Localized: "Pick a spot on the field edge \xB7 the antenna faces inward"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898159
+    m_Localized: "the edge antenna hits the first {0:plural:{} cell|{} cells} it
+      faces every {1} s \xB7 {2}% of harvest damage"
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 227725751898160
+    m_Localized: "if the line harvests a plant of a planter with a behavior, an extra
+      line hit at that planter's behavior chance \xB7 {0}% of the damage \xB7 cooldown
+      {1} s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898161
+    m_Localized: SECOND ANTENNA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898162
+    m_Localized: Goes on the opposite edge, in line with the first antenna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898163
+    m_Localized: "a second antenna on the opposite edge, in line \xB7 line hits on
+      the cells between the antennas every {0} s \xB7 {1}% of harvest damage"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898164
+    m_Localized: "every {0} direct plant hits, a crescent from the cursor \xB7 random
+      main direction, up to {1} units \xB7 {2}% of harvest damage"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898165
+    m_Localized: "a crescent every {0} valid hits \xB7 travels {1:plural:{} cell|{}
+      cells} \xB7 {2}% of harvest damage"
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 227725751898166
+    m_Localized: "a crit arcs to another plant within {0:plural:{} cell|{} cells}
+      \xB7 {1}% of crit damage \xB7 up to {2} per hit"
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 227725751898167
+    m_Localized: "crit on {0}+ plants in one hit: extra area hit at the center \xB7
+      {1}% of harvest damage \xD7 crit multiplier"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898168
+    m_Localized: "each main crescent sends a big extra crescent from the cursor ring
+      \xB7 random direction, not the main one \xB7 {0}% of base damage \xB7 cost:
+      {1} s hit pause"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898169
+    m_Localized: "{0}+ harvests in one hit: next hit's damage \xD7{1} \xB7 hit a
+      single target and the charge is lost"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898170
+    m_Localized: "crescent range +{0} units \xB7 grows with harvests: damage +{1}%
+      (up to {2} times), front {3} cells \xB7 a step without a harvest resets it"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898171
+    m_Localized: "{0}+ harvests in one hit: meteors on the cells mirrored across
+      the field center (up to {1}) \xB7 {2}% of harvest damage \xB7 cooldown {3}
+      s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898172
+    m_Localized: "{0}% of a killing hit's leftover damage passes to the next plant
+      \xB7 up to {1} transfers \xB7 {2}% lost per transfer"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898173
+    m_Localized: "a triggered planter behavior runs once more {0} s later \xB7 {1}%
+      of the damage \xB7 {2} s cooldown per planter + behavior"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898174
+    m_Localized: "harvest a {0}-or-better plant with your own hit: current behavior
+      chances \xD7{2} for {1} s \xB7 doesn't stack, the timer refreshes"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898175
+    m_Localized: "{0} \xB7 click: place \xB7 {1}: cancel"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898176
+    m_Localized: CANCEL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898177
+    m_Localized: ENDLESS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898178
+    m_Localized: XP from harvests.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898179
+    m_Localized: Only your own hit. Taken once.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898180
+    m_Localized: Taken once. Floor 0.10 s.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898181
+    m_Localized: Each planter and behavior is tried once per attack chain. Aftershocks
+      and second waves don't join the chain.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898182
+    m_Localized: Harvest Rhythm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898183
+    m_Localized: 'Rhythm:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898184
+    m_Localized: Only harvests from your own hits count. When the charge is ready
+      your next hit is stronger (the cursor ring grows). No extra attacks; doesn't
+      carry over to behaviors.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898185
+    m_Localized: Chain Harvest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898186
+    m_Localized: 'Chain:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898187
+    m_Localized: Fruitful Learning
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898188
+    m_Localized: Behavior damage unchanged.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898189
+    m_Localized: Devoted to Behaviors
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898190
+    m_Localized: "Explosion \xB7 electric \xB7 tornado \xB7 boomerang. Your own hit
+      is unchanged."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898191
+    m_Localized: Heavy Blow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898192
+    m_Localized: Crit damage multiplier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898193
+    m_Localized: Only crits of your own hit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898194
+    m_Localized: Golden Target
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898195
+    m_Localized: Direct damage to Rare+ plants
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898196
+    m_Localized: Only your own hit; Common and Uncommon unchanged. Behavior damage
+      unchanged.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898197
+    m_Localized: Fertile Ground
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898198
+    m_Localized: Spawn interval
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898199
+    m_Localized: spawn rate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898200
+    m_Localized: All planters. Offered only if your field is emptying (last round's
+      average fill below 65%). Floor 0.50 s.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898201
+    m_Localized: Sprout of Knowledge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898202
+    m_Localized: XP gained
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898203
+    m_Localized: XP from harvests. Not offered after the Round 30 boss.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898204
+    m_Localized: Monster Cut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898205
+    m_Localized: Direct hit damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898206
+    m_Localized: Only your own hit. Offered after the Round 25 boss; taken once.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898207
+    m_Localized: Storm Wrist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898208
+    m_Localized: Attack interval
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898209
+    m_Localized: attack rate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092416
+    m_Localized: Offered after the Round 25 boss; taken once. Floor 0.10 s.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092417
+    m_Localized: Wide Swing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092418
+    m_Localized: Hit radius
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092419
+    m_Localized: Only your own hit. The cursor ring grows; behavior area unchanged.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092420
+    m_Localized: Quick Wrist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092421
+    m_Localized: Attack interval
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092422
+    m_Localized: attack rate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092423
+    m_Localized: Shorter time between hits. Floor 0.10 s.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092424
+    m_Localized: Sharp Blade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092425
+    m_Localized: Direct hit damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092426
+    m_Localized: Only your own hit. Behavior damage unchanged.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092427
+    m_Localized: Spark
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092428
+    m_Localized: Current behavior chances
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092429
+    m_Localized: "Explosion \xB7 tornado \xB7 boomerang \xB7 electric. Gives no chance
+      to a planter that has none; up to 100%."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092430
+    m_Localized: Critical Eye
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092431
+    m_Localized: Crit chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092432
+    m_Localized: Only your own hit. Added as percentage points.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092433
+    m_Localized: Rare Seed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092434
+    m_Localized: Rarity bonus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092435
+    m_Localized: All planters. Added as percentage points; up to 95 points.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092436
+    m_Localized: Destructive Force
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092437
+    m_Localized: Behavior damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092438
+    m_Localized: "Explosion \xB7 tornado \xB7 boomerang \xB7 electric. Your own hit
+      is unchanged."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092439
+    m_Localized: Greedy Harvest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092440
+    m_Localized: 'Greed:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092441
+    m_Localized: An empty swing doesn't spend the charge. The powered hit doesn't
+      earn a new charge. Doesn't carry over to behaviors.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092442
+    m_Localized: Overload
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092443
+    m_Localized: 'Load:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092444
+    m_Localized: The extra proc doesn't join the chain or roll again. The tornado
+      / boomerang active limit isn't exceeded.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092445
+    m_Localized: Growing Moon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092446
+    m_Localized: 'Growth:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092447
+    m_Localized: "Crescent range +1 unit: 3 \u2192 4. The main crescent grows with
+      the distance it travels, from birth until it fades; it doesn't wait for the
+      first harvest. Damage growth depends on real harvests. Full Moon is big from
+      the start and stays that size."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092448
+    m_Localized: Full Moon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092449
+    m_Localized: 'Full Moon:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092450
+    m_Localized: Each main crescent comes with exactly one big extra crescent; no
+      harvest needed. It starts from the cursor ring and moves in a random direction
+      other than the main one. It is big from the start and makes no further Full
+      Moons.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092451
+    m_Localized: Electric Antenna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092452
+    m_Localized: 'Antenna:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092453
+    m_Localized: 'The antenna stands on the field edge; it takes no planter or tile
+      space. Its hit doesn''t count as yours: no crits, no behavior triggers.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092454
+    m_Localized: Harvest Echo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092455
+    m_Localized: 'Echo:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092456
+    m_Localized: Only harvests from your own hits count. An echo makes no new echo.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092457
+    m_Localized: Crescent Strike
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092458
+    m_Localized: 'Crescent:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092459
+    m_Localized: The crescent leaves the cursor ring's edge in a random main direction.
+      Speed 8 units/s; base range 3, 4 with Growing Moon.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092460
+    m_Localized: Conductive Line
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092461
+    m_Localized: 'Line:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092462
+    m_Localized: You choose where the second antenna goes; spots where no line can
+      form can't be chosen. Line hits don't count as yours.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092463
+    m_Localized: Closed Circuit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092464
+    m_Localized: 'Circuit:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092465
+    m_Localized: The extra hit can't restart itself. Does nothing without a planter
+      that has a behavior.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092466
+    m_Localized: Critical Arc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092467
+    m_Localized: 'Arc:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092468
+    m_Localized: The arc goes to a plant your hit didn't touch. It doesn't crit or
+      make new arcs.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092469
+    m_Localized: Rare Reactor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092470
+    m_Localized: 'Reactor:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092471
+    m_Localized: "Explosion \xB7 tornado \xB7 boomerang \xB7 electric. Gives no chance
+      to a planter that has none; up to 100%."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092472
+    m_Localized: Overflow Damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092473
+    m_Localized: 'Overflow:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092474
+    m_Localized: Starts only from a plant killed by your own hit. Transfers don't
+      crit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092475
+    m_Localized: Aftershock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092476
+    m_Localized: 'Aftershock:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092477
+    m_Localized: Spreads three steps from the explosion's outer edge. Hits each cell
+      once; doesn't pass locked cells. An aftershock starts no new aftershock or
+      chain.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092478
+    m_Localized: Double Current
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092479
+    m_Localized: 'Second electric wave:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092480
+    m_Localized: After every normal electric that procs, a second wave from the same
+      planter. No new roll; the second wave starts no chain.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092481
+    m_Localized: LAST ROUND!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092482
+    m_Localized: '{0} SECONDS'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092483
+    m_Localized: ROUND {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092484
+    m_Localized: "QUOTA {0} \xB7 {1:plural:{} ROUND|{} ROUNDS}"
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 227725756092485
+    m_Localized: "LAST ROUND \xB7 {0} TO GO FOR THE QUOTA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092486
+    m_Localized: LEVEL UP!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092487
+    m_Localized: Lv. {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092488
+    m_Localized: no change
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092489
+    m_Localized: "direct \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092490
+    m_Localized: "behavior \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092491
+    m_Localized: "harvest resources \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092492
+    m_Localized: "BOSS CLEARED \xB7 PICK A SPECIALIZATION"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092493
+    m_Localized: "Take only one \xB7 lasts until the end of the run \xB7 can't be
+      undone \xB7 applies from Round {0} on"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092494
+    m_Localized: No bonus, no penalty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092495
+    m_Localized: Damage and harvest income stay as they are
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092496
+    m_Localized: "Direct damage \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092497
+    m_Localized: "Behavior damage \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092498
+    m_Localized: "explosion \xB7 tornado \xB7 boomerang \xB7 electric"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092499
+    m_Localized: "Harvest resources \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092500
+    m_Localized: "Gold \xB7 Iron \xB7 Stone from harvests"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092501
+    m_Localized: CHOOSE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092502
+    m_Localized: BEHAVIOR MASTER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092503
+    m_Localized: KEEP THE CURRENT ORDER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092504
+    m_Localized: MASTER REAPER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092505
+    m_Localized: PLANTERS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092506
+    m_Localized: CHOOSE A PLANTER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092507
+    m_Localized: PICK IT. PLANT IT. GROW BIG.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092508
+    m_Localized: SKILL TREE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092509
+    m_Localized: UNAVAILABLE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092510
+    m_Localized: Choose an unlocked planter from the catalogue.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092511
+    m_Localized: BUY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092512
+    m_Localized: '{0}x{1} PLANTER'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092513
+    m_Localized: '{0}s'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092514
+    m_Localized: '{0} growing plots for {1}.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092515
+    m_Localized: Needs {0} empty, unlocked cells. R rotates during placement.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092516
+    m_Localized: your next crop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092517
+    m_Localized: BUY  /  {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092518
+    m_Localized: Planter setup is incomplete.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092519
+    m_Localized: Unlock this planter in the skill tree.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092520
+    m_Localized: 'Available: {0} {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092521
+    m_Localized: 'Need {0} more {1}  /  Available: {2}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092522
+    m_Localized: Beetroot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092523
+    m_Localized: Carrot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092524
+    m_Localized: Corn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092525
+    m_Localized: Grape
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092526
+    m_Localized: Grass
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092527
+    m_Localized: Lettuce
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092528
+    m_Localized: Pepper
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092529
+    m_Localized: Pineapple
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092530
+    m_Localized: Potato
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092531
+    m_Localized: Pumpkin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092532
+    m_Localized: Strawberry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092533
+    m_Localized: Tomato
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092534
+    m_Localized: 'Harvest Score: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092535
+    m_Localized: "Loadout: {0} \xB7 {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092536
+    m_Localized: 'Unlocked for good: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286720
+    m_Localized: BOSS REWARDS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286721
+    m_Localized: 'Boss rewards: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286722
+    m_Localized: "Active play {0} \xB7 choices {1} \xB7 shop and preparation {2}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286723
+    m_Localized: level calculation {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286724
+    m_Localized: paused {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286725
+    m_Localized: QUOTA AND BOSS HARVEST MISSED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286726
+    m_Localized: BOSS HARVEST MISSED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286727
+    m_Localized: segment quota {0} (short)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286728
+    m_Localized: segment quota {0} (met)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286729
+    m_Localized: "Round {0} \xB7 boss harvest {1} (short) \xB7 {2}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286730
+    m_Localized: QUOTA MISSED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286731
+    m_Localized: "Round {0} \xB7 segment score {1} (quota needed)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286732
+    m_Localized: boss harvest {0} / {1} (met)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286733
+    m_Localized: RUN COMPLETE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286734
+    m_Localized: last quota {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286735
+    m_Localized: '{0:plural:{} round|{} rounds}'
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 227725760286736
+    m_Localized: "RUN COMPLETE \xB7 ALPHA BALANCE V1"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286737
+    m_Localized: "RUN COMPLETE \xB7 LATE GAME V1"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286738
+    m_Localized: DEMO COMPLETE!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286739
+    m_Localized: GRAFTED SHELL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286740
+    m_Localized: "One of two zones will close \xB7 break a node: its zone is saved,
+      the other closes \xB7 choose nothing and A closes"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286741
+    m_Localized: "Choose: node A {0}/{1} \xB7 node B {2}/{3} \xB7 A closes in {4}
+      s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286742
+    m_Localized: "{0} saved \xB7 production stopped in zone {1} \xB7 {2} s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286743
+    m_Localized: Zone {0} reopened
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286744
+    m_Localized: The zone of the node you break is saved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286745
+    m_Localized: "node A {0}/{1} \xB7 node B {2}/{3}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286746
+    m_Localized: A closes in {0} s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286747
+    m_Localized: Choose nothing and A closes!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286748
+    m_Localized: INVASIVE SPROUT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286749
+    m_Localized: "A sprout is coming \xB7 production slows where it spreads \xB7
+      break the main sprout with your own hit"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286750
+    m_Localized: "Production slowed: {0:plural:{} cell|{} cells} \xB7 main sprout
+      {1}/{2} \xB7 {3} s"
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 227725760286751
+    m_Localized: "Main sprout broken \xB7 production back to normal"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286752
+    m_Localized: "The sprout withered \xB7 production back to normal"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286753
+    m_Localized: THORN SIEGE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286754
+    m_Localized: "Production will stop on {0:plural:{} marked cell|{} marked cells}
+      \xB7 break the roots with your own hit"
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 227725760286755
+    m_Localized: "Production stopped in the zone \xB7 roots left {0}/{1} \xB7 {2}
+      s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286756
+    m_Localized: "Roots broken \xB7 zone reopened"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286757
+    m_Localized: "The thorns withdrew \xB7 zone reopened"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286758
+    m_Localized: WANDERING BOUNTY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286759
+    m_Localized: "Bounty incoming: resources and XP \xD72 \xB7 production \xD72 faster"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286760
+    m_Localized: "Resources \xD72 \xB7 XP \xD72"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286761
+    m_Localized: "Empty slots fill \xD72 faster \xB7 for the whole round"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286762
+    m_Localized: "{0:plural:{} bountiful harvest|{} bountiful harvests} \xB7 {1:plural:{}
+      fast spawn|{} fast spawns}"
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 227725760286763
+    m_Localized: "Bounty over \xB7 {0:plural:{} bonus harvest|{} bonus harvests}"
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 227725760286764
+    m_Localized: '{0:plural:{} fast spawn|{} fast spawns}'
+    m_Metadata:
+      m_Items:
+      - rid: 221144893936370180
+  - m_Id: 227725760286765
+    m_Localized: EXIT SELL MODE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286766
+    m_Localized: BACK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286767
+    m_Localized: EARLY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286768
+    m_Localized: MID
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286769
+    m_Localized: STRONG
+    m_Metadata:
+      m_Items: []
+  - m_Id: 229169762684928
+    m_Localized: LOCKED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375912902656
+    m_Localized: You passed a Trial! A shiver ran all the way down to my roots.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845696
+    m_Localized: "Where did your ship come from? Earth? \u2026Never heard of it."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845697
+    m_Localized: Alright, if you say so.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845698
+    m_Localized: Thanks for trusting me.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845699
+    m_Localized: Are you sure?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845700
+    m_Localized: "Hmmm\u2026 Earth, Earth\u2026 maybe I have heard of it, who knows."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845701
+    m_Localized: "Don't get too strong, though\u2026 Strong farmers always leave
+      one day."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845702
+    m_Localized: The field gave you that reward. The field loves you.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845703
+    m_Localized: So do I. Strong hands are so precious.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845704
+    m_Localized: Five rounds already! You're not bad, farmer.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845705
+    m_Localized: The more you work, the more I grow. Fair deal, right?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845706
+    m_Localized: Why do I want the Offering? To grow.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845707
+    m_Localized: The more you give, the bigger I get. Don't you want to grow too?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845708
+    m_Localized: Other farmers came before you. They all worked so hard.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845709
+    m_Localized: "Then\u2026 they left. Yes. They left."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845710
+    m_Localized: Ever wondered why your ship crashed? You had fuel, your engine was
+      fine.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845711
+    m_Localized: "\u2026Never mind. You're happy here, aren't you?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845712
+    m_Localized: "I didn't think you'd make it this far\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845713
+    m_Localized: I've wilted a little, haven't I? The stronger you get, the more
+      scared I am.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845714
+    m_Localized: I wish I could play with you a little longer. But soon you'll start
+      asking questions.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845715
+    m_Localized: What questions?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845716
+    m_Localized: "\u2026Never mind. Harvest."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845717
+    m_Localized: I won't ask any.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845718
+    m_Localized: You all say that.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845719
+    m_Localized: I used to have a huge blue field. Its soil was warm all the way
+      to the core.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845720
+    m_Localized: I finished it. I can still taste it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845721
+    m_Localized: "The other farmers didn't leave. I\u2026 harvested them."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845722
+    m_Localized: You'll be angry with me. They all were.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845723
+    m_Localized: Ships don't just fall. I pulled yours down.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845724
+    m_Localized: I needed your hands. I still do.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845725
+    m_Localized: That blue field had a name. Your ship took off from there.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845726
+    m_Localized: You know now, don't you?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845727
+    m_Localized: The last Trial. Pass it and you've beaten me.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845728
+    m_Localized: Fail it and you're still here. Either way works for me.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845729
+    m_Localized: "You won. You reached the end\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845730
+    m_Localized: Then the game is over. No need to hide anymore.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845731
+    m_Localized: Yes. I ate Earth's core. And I brought your ship down.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845732
+    m_Localized: You trusted me. That was the sweetest part.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845733
+    m_Localized: You suspected me. You were right, and you stayed anyway.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845734
+    m_Localized: I was never sad, farmer. Not once. Just hungry.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845735
+    m_Localized: Harvest. I need to get stronger for the next planet.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845736
+    m_Localized: We know each other now. My Offering is waiting.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845737
+    m_Localized: You can't run. No ship, no Earth. There's only me.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 221144893936370180
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 161690696830985
+        - id: 161690701025280
+        - id: 161690705219585
+        - id: 161690705219588
+        - id: 161690705219589
+        - id: 161690705219596
+        - id: 161690705219602
+        - id: 161690705219607
+        - id: 161690705219641
+        - id: 161690705219800
+        - id: 161690705219824
+        - id: 161690705219828
+        - id: 227725751898114
+        - id: 227725751898116
+        - id: 227725751898121
+        - id: 227725751898159
+        - id: 227725751898165
+        - id: 227725751898166
+        - id: 227725756092484
+        - id: 227725760286735
+        - id: 227725760286750
+        - id: 227725760286754
+        - id: 227725760286762
+        - id: 227725760286763
+        - id: 227725760286764

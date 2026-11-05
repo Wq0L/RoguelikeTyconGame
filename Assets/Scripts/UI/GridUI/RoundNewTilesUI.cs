@@ -65,7 +65,7 @@ public sealed class RoundNewTilesUI : MonoBehaviour
         animating = false;
         if (count == 0) return;
 
-        title.text = count == 1 ? "BU ROUND'UN KARTI" : $"BU ROUND'UN KARTLARI ({count})";
+        title.text = count == 1 ? GameText.Get("ui.newtiles.title_one") : GameText.Format("ui.newtiles.title_many", count);
         activeRows = 0;
         int shown = count > MaxRows ? MaxRows - 1 : count;
         for (int i = 0; i < shown; i++) SetRow(cells[i]);
@@ -89,9 +89,10 @@ public sealed class RoundNewTilesUI : MonoBehaviour
         // Seviye atlayan tile: "Sv 0 → 1 · +13% → +16.25%"; yeni tile: nadirlik ve seviye.
         ProgressionManager.TileUpgrade upgrade = null;
         bool upgraded = ProgressionManager.Instance != null && ProgressionManager.Instance.TryGetRoundUpgrade(cell, out upgrade);
-        string detail = modifier == null ? "" : upgraded ? UpgradeDetail(upgrade, cell) : modifier.rarity.ToString().ToUpperInvariant() + $" · Sv {cell.Level}";
+        string detail = modifier == null ? "" : upgraded ? UpgradeDetail(upgrade, cell)
+            : TileBuffText.RarityName(modifier.rarity).ToUpper(GameText.Culture) + " · " + TileBuffText.Level(cell.Level);
         row.label.text = modifier == null ? "?" :
-            $"{modifier.modifierName}\n<size=72%><color=#{ColorUtility.ToHtmlStringRGB(upgraded ? MutedInk : RarityColor(modifier.rarity))}>{ComicPopupView.WithArrowGlyph(detail)}</color></size>";
+            $"{modifier.DisplayName}\n<size=72%><color=#{ColorUtility.ToHtmlStringRGB(upgraded ? MutedInk : RarityColor(modifier.rarity))}>{ComicPopupView.WithArrowGlyph(detail)}</color></size>";
     }
 
     // Tek etkili tile'da değer de sığar; çok etkililerde tam liste tooltip'te.
@@ -108,7 +109,7 @@ public sealed class RoundNewTilesUI : MonoBehaviour
         Row row = NextRow();
         row.swatchRoot.gameObject.SetActive(false);
         row.label.rectTransform.offsetMin = new Vector2(4f, 0f);
-        row.label.text = $"+{remaining} tile daha · haritada parlıyor";
+        row.label.text = GameText.Format("ui.newtiles.more", remaining);
     }
 
     private Row NextRow()

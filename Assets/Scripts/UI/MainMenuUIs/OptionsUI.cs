@@ -19,8 +19,12 @@ public class OptionsUI : MonoBehaviour
     [SerializeField] private ComicUITheme theme;
     [SerializeField] private List<Tab> tabs = new List<Tab>();
     [SerializeField] private TMP_Text description;
-    [SerializeField, TextArea] private string defaultDescription = "Bir ayarın üzerine gel, ne işe yaradığı burada görünsün.";
+    // Çeviri anahtarı (eski sahnelerde düz yazı da olabilir: GameText.Resolve).
+    [SerializeField, TextArea] private string defaultDescription = "ui.options.hint";
     [SerializeField] private Button resetButton;
+
+    [Header("Dil")]
+    [SerializeField] private OptionStepper language;
 
     [Header("Görüntü")]
     [SerializeField] private OptionStepper resolution;
@@ -47,9 +51,10 @@ public class OptionsUI : MonoBehaviour
 
     private static readonly FullScreenMode[] WindowModes =
         { FullScreenMode.ExclusiveFullScreen, FullScreenMode.FullScreenWindow, FullScreenMode.Windowed };
-    private static readonly string[] WindowModeNames = { "Tam Ekran", "Kenarlıksız", "Pencere" };
+    private static readonly string[] WindowModeKeys = { "ui.options.window_mode.fullscreen", "ui.options.window_mode.borderless", "ui.options.window_mode.windowed" };
 
     private List<Vector2Int> resolutions = new List<Vector2Int>();
+    private readonly List<string> languageCodes = new List<string>();
     private int selectedTab;
 
     private void Awake()
@@ -70,16 +75,37 @@ public class OptionsUI : MonoBehaviour
 
     private void OnEnable()
     {
+        GameText.Changed += OnTextChanged;
         Refresh();
         SelectTab(selectedTab);
         ShowDescription(null);
     }
 
     // Menüden çıkarken kalıcı hale getir.
-    private void OnDisable() => GameSettings.Save();
+    private void OnDisable()
+    {
+        GameText.Changed -= OnTextChanged;
+        GameSettings.Save();
+    }
+
+    // Dil değişti (bu panelden de değişebilir): değerler (ekran modu, FPS, kalite, açık / kapalı) ve açıklama hemen yeni dilde.
+    // Satır başlıkları ve sekmeler LocalizedText ile kendiliğinden yenilenir.
+    private void OnTextChanged()
+    {
+        Refresh();
+        ShowDescription(null);
+    }
 
     private void Bind()
     {
+        // Dil: seçilen dil hemen uygulanır (bütün bağlı yazılar ve açık konuşmalar yenilenir), panel kapanınca kaydedilir.
+        if (language != null) language.Changed = i =>
+        {
+            if (i < 0 || i >= languageCodes.Count) return;
+            GameSettings.Language = languageCodes[i];
+            GameText.Language = languageCodes[i];
+            GameSettings.Commit();
+        };
         if (resolution != null) resolution.Changed = i =>
         {
             if (i < 0 || i >= resolutions.Count) return;
@@ -125,6 +151,17 @@ public class OptionsUI : MonoBehaviour
     // Satırları GameSettings'teki güncel değerlerle doldurur.
     private void Refresh()
     {
+        if (language != null)
+        {
+            languageCodes.Clear();
+            languageCodes.AddRange(GameText.Languages);
+            var names = new string[languageCodes.Count];
+            for (int i = 0; i < names.Length; i++) names[i] = GameText.NativeName(languageCodes[i]);
+            // Tabloda olmayan bir dil seçiliyse (ör. bilgisayarın dili) yazılar İngilizceden gelir: İngilizce gösterilir.
+            int current = languageCodes.IndexOf(GameText.Language);
+            if (current < 0) current = Mathf.Max(0, languageCodes.IndexOf(GameText.SourceLanguage));
+            language.Setup(names, current);
+        }
         if (resolution != null)
         {
             resolutions = GameSettings.ResolutionOptions();
@@ -139,13 +176,13 @@ public class OptionsUI : MonoBehaviour
             }
             resolution.Setup(names, current);
         }
-        windowMode?.Setup(WindowModeNames, Mathf.Max(0, Array.IndexOf(WindowModes, GameSettings.WindowMode)));
+        windowMode?.Setup(Array.ConvertAll(WindowModeKeys, GameText.Get), Mathf.Max(0, Array.IndexOf(WindowModes, GameSettings.WindowMode)));
         vSync?.Setup(GameSettings.VSync);
         if (fpsLimit != null)
         {
             var names = new string[GameSettings.FpsOptions.Length];
             for (int i = 0; i < names.Length; i++)
-                names[i] = GameSettings.FpsOptions[i] > 0 ? GameSettings.FpsOptions[i] + " FPS" : "Sınırsız";
+                names[i] = GameSettings.FpsOptions[i] > 0 ? GameText.Format("ui.options.fps_value", GameSettings.FpsOptions[i]) : GameText.Get("ui.options.fps_unlimited");
             fpsLimit.Setup(names, Mathf.Max(0, Array.IndexOf(GameSettings.FpsOptions, GameSettings.FpsLimit)));
         }
         if (quality != null)
@@ -173,8 +210,8 @@ public class OptionsUI : MonoBehaviour
 
     private static string QualityName(string level) => level switch
     {
-        "Mobile" => "Düşük",
-        "PC" => "Yüksek",
+        "Mobile" => GameText.Get("ui.options.quality.low"),
+        "PC" => GameText.Get("ui.options.quality.high"),
         _ => level
     };
 
@@ -199,15 +236,18 @@ public class OptionsUI : MonoBehaviour
         visual.disabled = palette[3];
     }
 
+    // Dil seçimi varsayılanlara dönmez (oyuncu kendi dilini kaybetmesin).
     private void ResetToDefaults()
     {
+        string keepLanguage = GameSettings.Language;
         GameSettings.SetDefaults();
+        GameSettings.Language = keepLanguage;
         GameSettings.Commit();
         Refresh();
     }
 
     private void ShowDescription(string text)
     {
-        if (description != null) description.text = string.IsNullOrEmpty(text) ? defaultDescription : text;
+        if (description != null) description.text = string.IsNullOrEmpty(text) ? GameText.Resolve(defaultDescription) : text;
     }
 }

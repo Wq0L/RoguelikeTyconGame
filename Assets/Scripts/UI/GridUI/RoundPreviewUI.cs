@@ -80,7 +80,8 @@ public sealed class RoundPreviewUI : MonoBehaviour
         if (theme == null) return null;
 
         // Sağ sütun: "yeni tile'lar" kartının hemen üstünde, kartla ortalı.
-        Button open = theme.CreateButton(roundEndPanel.transform, "Preview Button", "ÖNİZLEME", "blue", new Vector2(300f, 84f));
+        Button open = theme.CreateButton(roundEndPanel.transform, "Preview Button", "", "blue", new Vector2(300f, 84f));
+        LocalizedText.Bind(open.GetComponentInChildren<TMP_Text>(true), "ui.preview.open");
         var openRect = (RectTransform)open.transform;
         openRect.anchorMin = openRect.anchorMax = new Vector2(1f, 0.5f);
         openRect.pivot = new Vector2(0.5f, 0f);
@@ -134,12 +135,12 @@ public sealed class RoundPreviewUI : MonoBehaviour
         TextMeshProUGUI title = Text(header, "Title", 36f, TextAlignmentOptions.Top);
         title.rectTransform.offsetMin = new Vector2(16f, 30f);
         title.rectTransform.offsetMax = new Vector2(-16f, -6f);
-        title.text = "ÖNİZLEME";
+        LocalizedText.Bind(title, "ui.preview.title");
         TextMeshProUGUI hint = Text(header, "Hint", 19f, TextAlignmentOptions.Bottom);
         hint.rectTransform.offsetMin = new Vector2(16f, 8f);
         hint.rectTransform.offsetMax = new Vector2(-16f, -48f);
         KeyPrompts.Apply(hint);
-        hint.text = "Tile'ın üstüne gel: detay  ·  " + KeyPrompts.Tag(KeyPrompts.Tab) + " / " + KeyPrompts.Tag(KeyPrompts.Esc) + ": geri dön";
+        LocalizedText.Bind(hint, "ui.preview.hint", KeyPrompts.Tag(KeyPrompts.Tab), KeyPrompts.Tag(KeyPrompts.Esc));
 
         chipLayer = Layer("Resonance Chips");
         chipLayer.anchorMin = chipLayer.anchorMax = new Vector2(0.5f, 1f);
@@ -149,9 +150,10 @@ public sealed class RoundPreviewUI : MonoBehaviour
         emptyHint = Text(chipLayer, "Empty", 22f, TextAlignmentOptions.Top);
         emptyHint.color = Color.white;
         if (theme.outlinedText != null) emptyHint.fontSharedMaterial = theme.outlinedText;
-        emptyHint.text = "Henüz aktif rezonans yok · aynı tipteki tile'ları bir saksının altında topla";
+        LocalizedText.Bind(emptyHint, "ui.preview.no_resonance");
 
-        Button back = theme.CreateButton(transform, "Back Button", "GERİ DÖN", "blue", new Vector2(380f, 96f));
+        Button back = theme.CreateButton(transform, "Back Button", "", "blue", new Vector2(380f, 96f));
+        LocalizedText.Bind(back.GetComponentInChildren<TMP_Text>(true), "ui.preview.back");
         var backRect = (RectTransform)back.transform;
         backRect.anchorMin = backRect.anchorMax = new Vector2(0.5f, 0f);
         backRect.pivot = new Vector2(0.5f, 0f);

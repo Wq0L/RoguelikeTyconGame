@@ -201,6 +201,7 @@ public static class RunPrototypeVerification
         previewZone = frost.ZoneCells.ToList();
         var markers = Object.FindAnyObjectByType<FrostZoneMarkers>();
         Require(markers != null && !markers.ShowsActive && markers.ShownCells.OrderBy(p => p.x * 100 + p.z).SequenceEqual(openZone.OrderBy(p => p.x * 100 + p.z)), "World preview shows exactly the open band cells (hatched)");
+        Require(!markers.ShowsCurtain, "A1: no curtain while the boss is only announced");
         var map = Object.FindFirstObjectByType<RoundMapUI>(FindObjectsInactive.Include);
         var marked = map.GetComponentsInChildren<TileCellUI>(false).Where(t => t.InEventZone).Select(t => t.name).OrderBy(n => n).ToList();
         var expectedMarks = openZone.Select(p => $"Cell_x{p.x}_z{p.z}").OrderBy(n => n).ToList();
@@ -296,6 +297,7 @@ public static class RunPrototypeVerification
         var markers = Object.FindAnyObjectByType<FrostZoneMarkers>();
         markers.SendMessage("LateUpdate");
         Require(markers.ShowsActive && markers.ShownCells.All(c => previewZone.Any(p => p.x == c.x && p.z == c.z)), "World band switches to active (same cells)");
+        Require(markers.ShowsCurtain && markers.CurtainWalls == markers.EdgeCount && markers.CurtainWalls > 0, $"A1: frost curtain rises from every outline edge ({markers.CurtainWalls} walls, {markers.EdgeCount} edges)");
         Save("ProtoBossActive");
         // Ölçüm: round 6 Don açık. Aynı seed, sıfır zamanlayıcı, her karede hasat (bitki doğunca öldürülür).
         BeginMeasure();
@@ -378,6 +380,7 @@ public static class RunPrototypeVerification
         Require(true, "Every production interval back to its pre-event value");
         var markers = Object.FindAnyObjectByType<FrostZoneMarkers>(); markers.SendMessage("LateUpdate");
         Require(markers.ShownCells.Count == 0, "World band hidden after the run");
+        Require(!markers.ShowsCurtain, "A1: curtain hidden after the run");
         var complete = F<GameObject>(Object.FindFirstObjectByType<UIManager>(), "runCompletePanel");
         var text = complete.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Harvest Score"));
         Require(text != null && Strip(text).StartsWith("PROTOTİP TAMAMLANDI") && Strip(text).Contains("10 round · son kota 260 / 200"), "Victory screen: " + Strip(text));

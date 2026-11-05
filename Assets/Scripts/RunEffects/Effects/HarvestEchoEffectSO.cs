@@ -31,7 +31,7 @@ public sealed class HarvestEchoEffectSO : RunEffectSO
     [Min(0f)] public float cooldown = 6f;
 
     public override string Summary =>
-        $"tek vuruşta {minHarvests}+ hasat: kesilen hücrelerin tarlanın ortasına göre simetriğine meteor (en çok {maxCells} hücre) · hasat hasarının %{Percent(damage)}'i · bekleme {Number(cooldown)} sn";
+        GameText.Format("ui.effect.echo", minHarvests, maxCells, Percent(damage), Number(cooldown));
 
     public override RunEffect Create() => new HarvestEchoEffect();
 }

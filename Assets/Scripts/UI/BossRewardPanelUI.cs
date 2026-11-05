@@ -78,9 +78,11 @@ public sealed class BossRewardPanelUI : MonoBehaviour
         row.SetParent(transform, false);
         Place(row, new Vector2(0f, -20f), new Vector2(3 * CardWidth + 2 * Gap, CardHeight));
         empty = CreateText(root, "Empty", 32f, TextAlignmentOptions.Center, new Color(1f, 0.93f, 0.78f));
-        empty.text = "Uygun ödül kalmadı\n<size=70%>Bütün ödüller sınırında ya da şu an bir şey değiştirmiyor</size>";
+        empty.text = $"{GameText.Get("ui.reward.panel.empty")}\n<size=70%>{GameText.Get("ui.reward.panel.empty.detail")}</size>";
         Place(empty.rectTransform, new Vector2(0f, 30f), new Vector2(1200f, 120f));
-        continueButton = CreateButton(root, "Continue", "DEVAM", "green", new Vector2(260f, 80f));
+        continueButton = CreateButton(root, "Continue", "", "green", new Vector2(260f, 80f));
+        TMP_Text continueLabel = continueButton.GetComponentInChildren<TMP_Text>(true);
+        if (continueLabel != null) LocalizedText.Bind(continueLabel, "ui.reward.panel.continue");
         Place((RectTransform)continueButton.transform, new Vector2(0f, -90f), new Vector2(260f, 80f));
         continueButton.onClick.AddListener(RequestContinue);
         takenList = CreateText(root, "Taken", 22f, TextAlignmentOptions.Top, new Color(0.82f, 0.95f, 0.74f));
@@ -112,11 +114,13 @@ public sealed class BossRewardPanelUI : MonoBehaviour
         bool last = rounds != null && rounds.CurrentRound >= rounds.MaxRounds;
         // Aşamalı havuz: başlık teklifin aşamasıdır; "boss geçildi" bilgisi alt satıra iner. Düz havuzda metinler eskisi gibi.
         BossRewardStage offerStage = manager != null ? manager.OfferStage : null;
-        string passed = offerStage == null ? "" : last ? "Son boss geçildi · " : "Boss geçildi · ";
-        title.text = offerStage != null ? BossRewardText.StageHeader(offerStage) : last ? "SON BOSS GEÇİLDİ · ÖDÜL SEÇ" : "BOSS GEÇİLDİ · ÖDÜL SEÇ";
-        subtitle.text = count == 0 ? "Bu boss için sunulabilecek ödül yok"
-            : last ? Sentence(passed + "Yalnız biri alınır · run burada biter · ödül run sonu listesine yazılır")
-            : Sentence(passed + $"Yalnız biri alınır · run sonuna kadar geçerli · etkisi Round {next} ve sonrası");
+        // Aşamalı başlıkta alt satır "Boss geçildi · yalnız biri alınır …" diye sürer (ayrı anahtarlar: dilde büyük / küçük harf).
+        string tail = last ? "ui.reward.panel.last_tail" : "ui.reward.panel.tail";
+        title.text = offerStage != null ? BossRewardText.StageHeader(offerStage)
+            : GameText.Get(last ? "ui.reward.panel.title_last" : "ui.reward.panel.title");
+        subtitle.text = count == 0 ? GameText.Get("ui.reward.panel.none")
+            : offerStage == null ? GameText.Format(tail, next)
+            : GameText.Format(last ? "ui.reward.panel.passed_last" : "ui.reward.panel.passed", GameText.Format(tail + ".lower", next));
         ShownCards = count;
         float total = count * CardWidth + Mathf.Max(0, count - 1) * Gap;
         for (int i = 0; i < count; i++)
@@ -128,7 +132,7 @@ public sealed class BossRewardPanelUI : MonoBehaviour
             card.root.gameObject.SetActive(true);
             card.root.anchoredPosition = new Vector2(-total * 0.5f + CardWidth * 0.5f + i * (CardWidth + Gap), 0f);
             int have = manager.Stacks(reward);
-            card.title.text = reward.displayName;
+            card.title.text = reward.DisplayName;
             bool trade = BossRewardText.IsTrade(reward);
             manager.ExclusiveWith(reward, exclusive);
             // Etkili ödülün kural metni uzundur: bedelli kartın geniş etki bölgesini kullanır.
@@ -210,29 +214,28 @@ public sealed class BossRewardPanelUI : MonoBehaviour
             foreach (string line in lines) text.Append('\n').Append(line);
             text.Append("</color>");
         }
-        Block("KAZANÇ", GainColor, gains);
-        Block("BEDEL", CostColor, costs);
+        Block(GameText.Get("ui.reward.panel.gain"), GainColor, gains);
+        Block(GameText.Get("ui.reward.panel.cost"), CostColor, costs);
         return text.ToString();
     }
 
     // Bedelli kartın alt satırları: kaç kez alınabildiği ve birlikte alınamayan ödül (karşılıklı dışlama).
     public static string TradeStackText(BossRewardSO reward, int have, List<BossRewardSO> exclusive)
     {
-        string count = reward.maxStacks == 1 ? "Bir kez alınır" : $"Şu an {have}/{reward.maxStacks}";
+        string count = reward.maxStacks == 1 ? GameText.Get("ui.reward.once") : GameText.Format("ui.reward.panel.have", have, reward.maxStacks);
         if (exclusive == null || exclusive.Count == 0) return $"<color=#6E606E>{count}</color>";
         var names = new List<string>();
-        foreach (BossRewardSO other in exclusive) names.Add(other.displayName);
-        return $"<color=#6E606E>{count}</color>\n<color=#8A3A12>Bunu alırsan {string.Join(", ", names)} bir daha sunulmaz</color>";
+        foreach (BossRewardSO other in exclusive) names.Add(other.DisplayName);
+        return $"<color=#6E606E>{count}</color>\n<color=#8A3A12>{GameText.Format("ui.reward.excludes", string.Join(", ", names))}</color>";
     }
-
-    // Aşamalı başlıkta cümle "Boss geçildi · yalnız biri alınır …" diye sürer: ön ek varsa ardından gelen ilk harf küçülür.
-    private static string Sentence(string text) => text.Replace(" · Yalnız", " · yalnız");
 
     // "Şu an 1/3: ×1,15" ve "Seçince 2/3: ×1,32" — art arda alışların nasıl birleştiği kartta görünür.
     public static string StackText(BossRewardSO reward, int have)
     {
-        string now = have > 0 ? $"Şu an {have}/{reward.maxStacks}: toplam {BossRewardText.Value(reward, have)}" : $"Şu an 0/{reward.maxStacks}: yok";
-        return $"<color=#6E606E>{now}</color>\n<color=#2E7D32>Seçince {have + 1}/{reward.maxStacks}: toplam {BossRewardText.Value(reward, have + 1)}</color>";
+        string now = have > 0 ? GameText.Format("ui.reward.panel.have_total", have, reward.maxStacks, BossRewardText.Value(reward, have))
+            : GameText.Format("ui.reward.panel.have_none", reward.maxStacks);
+        string after = GameText.Format("ui.reward.panel.after_total", have + 1, reward.maxStacks, BossRewardText.Value(reward, have + 1));
+        return $"<color=#6E606E>{now}</color>\n<color=#2E7D32>{after}</color>";
     }
 
     private static string TakenText(BossRewardManager manager)
@@ -240,7 +243,7 @@ public sealed class BossRewardPanelUI : MonoBehaviour
         if (manager == null || manager.Taken.Count == 0) return "";
         var lines = new List<string>();
         foreach (BossRewardSO reward in manager.Taken) lines.Add(BossRewardText.ListLine(reward, manager.Stacks(reward)));
-        return "Alınan boss ödülleri\n<size=82%>" + string.Join("   ·   ", lines) + "</size>";
+        return GameText.Get("ui.reward.panel.taken") + "\n<size=82%>" + string.Join("   ·   ", lines) + "</size>";
     }
 
     // Çift tıklamaya karşı arayüzde de tek istek; asıl koruma BossRewardManager.Choose'da.

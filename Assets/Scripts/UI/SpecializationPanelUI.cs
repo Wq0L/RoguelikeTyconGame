@@ -31,15 +31,16 @@ public sealed class SpecializationPanelUI : MonoBehaviour
     public static string Describe(SpecializationSO chosen)
     {
         if (chosen == null) return null;
-        if (chosen.ChangesNothing) return $"{chosen.displayName} · değişiklik yok";
-        string text = chosen.displayName;
-        if (!Mathf.Approximately(chosen.directDamageMultiplier, 1f)) text += $" · doğrudan ×{Number(chosen.directDamageMultiplier)}";
-        if (!Mathf.Approximately(chosen.behaviorDamageMultiplier, 1f)) text += $" · davranış ×{Number(chosen.behaviorDamageMultiplier)}";
-        if (!Mathf.Approximately(chosen.harvestResourceMultiplier, 1f)) text += $" · hasat kaynağı ×{Number(chosen.harvestResourceMultiplier)}";
+        string name = chosen.DisplayName;
+        if (chosen.ChangesNothing) return name + " · " + GameText.Get("ui.spec.no_change");
+        string text = name;
+        if (!Mathf.Approximately(chosen.directDamageMultiplier, 1f)) text += " · " + GameText.Format("ui.spec.short.direct", Number(chosen.directDamageMultiplier));
+        if (!Mathf.Approximately(chosen.behaviorDamageMultiplier, 1f)) text += " · " + GameText.Format("ui.spec.short.behavior", Number(chosen.behaviorDamageMultiplier));
+        if (!Mathf.Approximately(chosen.harvestResourceMultiplier, 1f)) text += " · " + GameText.Format("ui.spec.short.resources", Number(chosen.harvestResourceMultiplier));
         return text;
     }
 
-    private static string Number(float value) => value.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture).Replace('.', ',');
+    private static string Number(float value) => GameText.Number(value, "0.00");
 
     public static SpecializationPanelUI Attach(Transform canvasRoot)
     {
@@ -63,7 +64,7 @@ public sealed class SpecializationPanelUI : MonoBehaviour
     {
         theme = FeelOverlay.Theme;
         var title = CreateText((RectTransform)transform, "Title", 46f, TextAlignmentOptions.Center, Color.white);
-        title.text = "BOSS GEÇİLDİ · UZMANLAŞMA SEÇ";
+        LocalizedText.Bind(title, "ui.spec.title");
         Place(title.rectTransform, new Vector2(0f, 300f), new Vector2(1400f, 70f));
         subtitle = CreateText((RectTransform)transform, "Subtitle", 26f, TextAlignmentOptions.Center, new Color(1f, 0.93f, 0.78f));
         Place(subtitle.rectTransform, new Vector2(0f, 245f), new Vector2(1400f, 40f));
@@ -76,7 +77,7 @@ public sealed class SpecializationPanelUI : MonoBehaviour
     {
         requested = false;
         int next = RoundManager.Instance != null ? RoundManager.Instance.CurrentRound + 1 : 0;
-        subtitle.text = $"Yalnız biri alınır · run sonuna kadar geçerli · geri alınamaz · etkisi Round {next} ve sonrası";
+        subtitle.text = GameText.Format("ui.spec.subtitle", next);
         SpecializationManager manager = SpecializationManager.Instance;
         IReadOnlyList<SpecializationSO> options = manager != null ? manager.Options : null;
         int count = options != null ? options.Count : 0;
@@ -88,11 +89,11 @@ public sealed class SpecializationPanelUI : MonoBehaviour
             card.option = options[i];
             card.root.gameObject.SetActive(true);
             card.root.anchoredPosition = new Vector2(-total * 0.5f + CardWidth * 0.5f + i * (CardWidth + Gap), 0f);
-            card.title.text = options[i].displayName;
+            card.title.text = options[i].DisplayName;
             bool neutral = options[i].ChangesNothing;
-            card.plus.text = neutral ? "Bonus yok, ceza yok" : Lines(options[i], true);
+            card.plus.text = neutral ? GameText.Get("ui.spec.neutral") : Lines(options[i], true);
             card.plus.color = neutral ? Neutral : Plus;
-            card.minus.text = neutral ? "Hasar ve hasat geliri olduğu gibi kalır" : Lines(options[i], false);
+            card.minus.text = neutral ? GameText.Get("ui.spec.neutral.detail") : Lines(options[i], false);
             card.minus.color = neutral ? Neutral : Minus;
             card.button.interactable = manager != null && manager.IsPending;
         }
@@ -104,11 +105,13 @@ public sealed class SpecializationPanelUI : MonoBehaviour
     {
         string text = "";
         if (gains ? option.directDamageMultiplier > 1f : option.directDamageMultiplier < 1f)
-            text += $"Doğrudan hasar ×{Number(option.directDamageMultiplier)}";
+            text += GameText.Format("ui.spec.direct", Number(option.directDamageMultiplier));
         if (gains ? option.behaviorDamageMultiplier > 1f : option.behaviorDamageMultiplier < 1f)
-            text += (text.Length > 0 ? "\n" : "") + $"Davranış hasarı ×{Number(option.behaviorDamageMultiplier)}\n<size=72%>patlama · kasırga · bumerang · elektrik</size>";
+            text += (text.Length > 0 ? "\n" : "") + GameText.Format("ui.spec.behavior", Number(option.behaviorDamageMultiplier)) +
+                    $"\n<size=72%>{GameText.Get("ui.spec.behavior.detail")}</size>";
         if (gains ? option.harvestResourceMultiplier > 1f : option.harvestResourceMultiplier < 1f)
-            text += (text.Length > 0 ? "\n" : "") + $"Hasat kaynağı ×{Number(option.harvestResourceMultiplier)}\n<size=72%>hasattan gelen Gold · Iron · Stone</size>";
+            text += (text.Length > 0 ? "\n" : "") + GameText.Format("ui.spec.resources", Number(option.harvestResourceMultiplier)) +
+                    $"\n<size=72%>{GameText.Get("ui.spec.resources.detail")}</size>";
         return text;
     }
 
@@ -147,7 +150,8 @@ public sealed class SpecializationPanelUI : MonoBehaviour
         Place(card.minus.rectTransform, new Vector2(0f, -40f), new Vector2(CardWidth - 44f, 80f));
         if (theme != null)
         {
-            card.button = theme.CreateButton(root, "Choose", "SEÇ", "green", new Vector2(220f, 76f));
+            card.button = theme.CreateButton(root, "Choose", "", "green", new Vector2(220f, 76f));
+            LocalizedText.Bind(card.button.GetComponentInChildren<TMP_Text>(true), "ui.spec.choose");
             Place((RectTransform)card.button.transform, new Vector2(0f, -CardHeight * 0.5f + 58f), new Vector2(220f, 76f));
         }
         else

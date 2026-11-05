@@ -17,10 +17,10 @@ public sealed class FrostFrontEvent : SegmentEventRuntime
     public override IReadOnlyList<GridPosition> ZoneCells => zone.Cells;
 
     public override string RuleSummary =>
-        $"{BandName} üretim ×{data.spawnIntervalMultiplier.ToString("0.##", CultureInfo.InvariantCulture).Replace('.', ',')} yavaş";
+        GameText.Format("ui.event.frost.rule", BandName, GameText.Number(data.spawnIntervalMultiplier, "0.##"));
 
-    public override string ZoneHint => "mavi şerit";
-    public override string EndedText => "Şeritteki üretim normale döndü";
+    public override string ZoneHint => GameText.Get("ui.event.frost.zone");
+    public override string EndedText => GameText.Get("ui.event.frost.ended");
 
     public string BandName => zone.Name;
 

@@ -99,16 +99,18 @@ public sealed class ResonancePreviewUI : MonoBehaviour
         if (changed || previousDetails != signature)
         {
             previousDetails = signature;
-            details.Begin("BU KONUMDA AÇILACAK", footprint.Count + " tile · " + active.Count + " rezonans", footerHint: KeyPrompts.Tag(KeyPrompts.Alt) + ": aç / kapat");
-            if (active.Count == 0) details.Add("Bu konumda rezonans oluşmuyor.");
+            details.Begin(GameText.Get("ui.placement.title"), GameText.Format("ui.placement.counts", footprint.Count, active.Count),
+                footerHint: GameText.Format("ui.placement.toggle_hint", KeyPrompts.Tag(KeyPrompts.Alt)));
+            if (active.Count == 0) details.Add(GameText.Get("ui.placement.none"));
             foreach (var resonance in active)
-                details.Add("<b>" + resonance.resonanceName + "</b>\n" + TileBuffText.Resonance(resonance), ResonanceManager.Identity(resonance));
-            details.Add("<b>SAKSININ ALTINDAKİ TILE’LAR</b>");
+                details.Add("<b>" + ResonanceRule.DisplayName(resonance.resonanceName) + "</b>\n" + TileBuffText.Resonance(resonance), ResonanceManager.Identity(resonance));
+            details.Add($"<b>{GameText.Get("ui.placement.tiles_under")}</b>");
             int index = 0;
             foreach (var grid in footprint)
             {
                 var cell = grid?.GetGroundCellCached(); var tile = cell?.CurrentModifier;
-                details.Add(++index + ". " + (tile == null ? "Boş tile" : "<b>" + tile.modifierName + "</b> · " + tile.rarity + "\n" + TileBuffText.Modifiers(cell.RolledModifiers)));
+                details.Add(++index + ". " + (tile == null ? GameText.Get("ui.tile.empty")
+                    : "<b>" + tile.DisplayName + "</b> · " + TileBuffText.RarityName(tile.rarity) + "\n" + TileBuffText.Modifiers(cell.RolledModifiers)));
             }
             details.End();
         }

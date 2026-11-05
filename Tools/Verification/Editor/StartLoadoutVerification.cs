@@ -292,6 +292,9 @@ public static class StartLoadoutVerification
     {
         var menu = Object.FindFirstObjectByType<MainMenuUI>();
         Require(SceneManager.GetActiveScene().name == "MenuScene" && menu != null && State == GameStates.MainMenu, "Menu scene");
+        // İlk "Oyna" açılış videosunu oynatır (4 Kasım; ayrı testi IntroVideoVerification). Bu test seçim ekranını sınar: video
+        // görülmüş sayılır (ilerleme kaydı batch'te bellekte kalır).
+        DialogueProgress.MarkIntroSeen();
         Call(menu, "OnPlayClicked");
         var panel = Panel;
         Require(panel != null && panel.gameObject.activeInHierarchy && !F<GameObject>(menu, "mainMenuPanel").activeSelf, "Play opens the start selection (main menu panel hidden, no scene load yet)");

@@ -39,7 +39,7 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
 
     // Profilin run başında verdiği erişim satın almadan ayrı gösterilir: düğümün altında bu yazı, satılacak bir şeyi
     // yoksa ayrıca kendi yüz rengi (yeşil "tamamlandı" değil) ve kademe noktası olmadan.
-    public const string StartingAccessLabel = "BAŞLANGIÇTAN AÇIK";
+    public static string StartingAccessLabel => GameText.Get("ui.skill.starting_access");
     public static readonly Color32 StartingAccessColor = new Color32(134, 199, 232, 255);
 
     private int previousLevel = 0;
@@ -198,7 +198,7 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         bool demoLocked = DemoSceneSettings.Blocks(node);
         RefreshStartLabel(startingAccess || demoLocked, !grantedOnly);
         if (startLabel != null && startLabel.gameObject.activeSelf)
-            startLabel.GetComponentInChildren<TextMeshProUGUI>().text = demoLocked ? "TAM SÜRÜMDE" : StartingAccessLabel;
+            startLabel.GetComponentInChildren<TextMeshProUGUI>().text = demoLocked ? GameText.Get("ui.skill.full_version") : StartingAccessLabel;
 
 
         if (previousLevel == 0 && level == 1)
@@ -341,14 +341,14 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         int currentLevel = SkillTreeManager.Instance.GetCurrentLevel(node);
         bool isMax = SkillTreeManager.Instance.IsMaxLevel(node);
 
-        content.SetName(node.nodeName);
+        content.SetName(node.DisplayName);
         content.SetIcon(node.icon);
         content.SetSkillIcon(SkillIconCatalog.For(node));
 
         if (DemoSceneSettings.Blocks(node))
         {
-            content.SetLevel("DEMO KİLİDİ");
-            content.SetValues("Bu özellik tam sürümde açılır. Demoda satın alınamaz.");
+            content.SetLevel(GameText.Get("ui.skill.demo_locked"));
+            content.SetValues(GameText.Get("ui.skill.demo_locked.desc"));
             content.SetCost("—");
             return;
         }
@@ -356,21 +356,22 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         if (SkillTreeManager.IsGrantedByProfile(node))
         {
             content.ShowStartingAccess(StartingAccessLabel,
-                GetUnlockDescription(true) + "\nBu düğüm satın alınmadı; bu profilde ücret ödenmez.");
+                GetUnlockDescription(true) + "\n" + GameText.Get("ui.skill.granted.desc"));
             return;
         }
 
         if (SkillTreeManager.Instance.IsDisabledByProfile(node))
         {
             content.SetLevel("—");
-            content.SetValues($"Bu deneyde round süresi sabit ({RoundManager.Instance.RawRoundDuration:0} sn).\nBu node etkisiz ve satın alınamaz.");
+            content.SetValues(GameText.Format("ui.skill.disabled.desc", RoundManager.Instance.RawRoundDuration.ToString("0", GameText.Culture)) + "\n" +
+                              GameText.Get("ui.skill.disabled.desc2"));
             content.SetCost("-");
             return;
         }
 
         if (isMax)
         {
-            content.SetLevel("MAX");
+            content.SetLevel(TooltipContent.MaxLevel);
             content.SetValues(BuildMaxValues());
             content.SetCost("-");
             return;
@@ -380,7 +381,7 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
 
         content.SetLevel($"{currentLevel} / {node.tiers.Count}");
         content.SetValues(BuildUpgradeValues(nextTier));
-        content.SetCost($"{nextTier.cost} {nextTier.costType}");
+        content.SetCost($"{nextTier.cost} {TileBuffText.ResourceName(nextTier.costType)}");
     }
 
     private string BuildUpgradeValues(SkillNodeTier nextTier)
@@ -429,30 +430,33 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         return (result + GetUnlockDescription(true)).TrimEnd();
     }
 
-    private static string StatLabel(StatType stat) => stat switch
-    {
-        StatType.HarvestDamage => "Hasar", StatType.GridUnlockSize => "Grid",
-        StatType.RoundDuration => "Round süresi", StatType.AttackSpeed => "Atak aralığı",
-        StatType.CritMultiplier => "Kritik çarpanı", StatType.AreaRadius => "Vuruş yarıçapı",
-        _ => TileBuffText.Name(stat)
-    };
+    // Yetenek ağacında "Hasar" (saksı hasar statı) kısa adıyla yazılır; diğerleri ortak stat adı (TileBuffText).
+    private static string StatLabel(StatType stat) =>
+        stat == StatType.HarvestDamage ? GameText.Get("ui.skill.stat.damage") : TileBuffText.Name(stat);
 
+    // Sayılar etkin dilin biçimiyle (eskiden bilgisayarın kültürüyle yazılırdı); birim ve yüzde yazımı çeviri tablosundan.
     private static string FormatStat(StatType stat, float value) => stat switch
     {
         StatType.GridUnlockSize => $"{value:0}×{value:0}",
         // 60 sn'nin üstü round'u uzatmaz, saldırı ve üretim hızına dönüşür.
         StatType.RoundDuration when value > RoundManager.RoundSecondsCap =>
-            $"{RoundManager.RoundSecondsCap:0} sn · +%{(Mathf.Min(value, 90f) / RoundManager.RoundSecondsCap - 1f) * 100f:0} hız",
+            GameText.Format("ui.skill.round_overflow", Seconds(RoundManager.RoundSecondsCap, "0"),
+                Percent(((Mathf.Min(value, 90f) / RoundManager.RoundSecondsCap - 1f) * 100f).ToString("0", GameText.Culture))),
         // Taban: bundan sonraki üretim hızı saksılarda nadir bitki şansına dönüşür.
-        StatType.PlantSpawnRate when value <= StatCalculator.MinimumSpawnInterval + 1e-3f => $"{value:0.###} sn (taban · fazlası nadirliğe)",
-        StatType.RoundDuration or StatType.AttackSpeed or StatType.PlantSpawnRate => $"{value:0.###} sn",
-        StatType.CritChance => $"%{value * 100f:0.##}",
-        StatType.CritMultiplier => $"×{value:0.###}",
+        StatType.PlantSpawnRate when value <= StatCalculator.MinimumSpawnInterval + 1e-3f =>
+            GameText.Format("ui.skill.spawn_floor", Seconds(value, "0.###")),
+        StatType.RoundDuration or StatType.AttackSpeed or StatType.PlantSpawnRate => Seconds(value, "0.###"),
+        StatType.CritChance => Percent((value * 100f).ToString("0.##", GameText.Culture)),
+        StatType.CritMultiplier => "×" + value.ToString("0.###", GameText.Culture),
         // Şans değeri yerine kartta ne göreceği: tek kartta Epic+ ve Legendary olasılığı.
-        StatType.MutationLuck =>
-            $"Epic+ %{CardSelectionUI.RarityWeight(value, TileRarity.Epic) + CardSelectionUI.RarityWeight(value, TileRarity.Legendary):0} · Leg %{CardSelectionUI.RarityWeight(value, TileRarity.Legendary):0}",
-        _ => value.ToString("0.###")
+        StatType.MutationLuck => GameText.Format("ui.skill.card_rarity_odds",
+            Percent((CardSelectionUI.RarityWeight(value, TileRarity.Epic) + CardSelectionUI.RarityWeight(value, TileRarity.Legendary)).ToString("0", GameText.Culture)),
+            Percent(CardSelectionUI.RarityWeight(value, TileRarity.Legendary).ToString("0", GameText.Culture))),
+        _ => value.ToString("0.###", GameText.Culture)
     };
+
+    private static string Seconds(float value, string format) => GameText.Format("ui.unit.seconds", value.ToString(format, GameText.Culture));
+    private static string Percent(string number) => GameText.Format("ui.format.percent", number);
 
     private string GetUnlockDescription(bool completed)
     {
@@ -464,20 +468,17 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         // Kilidi profil run başında verdiyse düğüm onu "açmaz": kademeler yalnız kendi statlarını satar.
         bool fromStart = SkillTreeManager.HasStartingAccess(node);
         if (planter != null)
-            return fromStart ? $"{planter} saksı başlangıçtan açık (mağazada)." : completed ? $"{planter} saksı mağazada açık." : $"{planter} saksıyı mağazada açar.";
+            return GameText.Format(fromStart ? "ui.skill.unlock.planter_start" : completed ? "ui.skill.unlock.planter_done" : "ui.skill.unlock.planter", planter);
         string card = node.unlockType switch
         {
-            UnlockType.TileBehavior_Explosive => "Patlama",
-            UnlockType.TileBehavior_Duplicate => "Çoğaltma",
-            UnlockType.TileBehavior_Tornado => "Tornado",
-            UnlockType.TileBehavior_Boomerang => "Bumerang Orak",
-            UnlockType.TileBehavior_Electric => "Çapraz Elektrik",
+            UnlockType.TileBehavior_Explosive => GameText.Get("ui.skill.cards.explosive"),
+            UnlockType.TileBehavior_Duplicate => GameText.Get("ui.skill.cards.duplicate"),
+            UnlockType.TileBehavior_Tornado => GameText.Get("ui.skill.cards.tornado"),
+            UnlockType.TileBehavior_Boomerang => GameText.Get("ui.skill.cards.boomerang"),
+            UnlockType.TileBehavior_Electric => GameText.Get("ui.skill.cards.electric"),
             _ => null
         };
         if (card == null) return string.Empty;
-        if (fromStart) return $"{card} kartları başlangıçtan açık: run başından beri seçim havuzunda.";
-        return completed
-            ? $"{card} kartları seçim havuzuna eklendi."
-            : $"Son seviyede {card} kartlarını seçim havuzuna ekler.";
+        return GameText.Format(fromStart ? "ui.skill.unlock.cards_start" : completed ? "ui.skill.unlock.cards_done" : "ui.skill.unlock.cards", card);
     }
 }

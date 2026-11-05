@@ -1,0 +1,3125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: GameText_tr
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: tr
+  m_SharedData: {fileID: 11400000, guid: 8b2906cf59e79cc4c9072b57e0d27f17, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 936136704
+    m_Localized: 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 965496832
+    m_Localized: Eri
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691136
+    m_Localized: Atla
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691137
+    m_Localized: "Oh! Bir gemi! Uzun zamand\u0131r kimse d\xFC\u015Fmemi\u015Fti\u2026
+      yani, gelmemi\u015Fti."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691138
+    m_Localized: Ben Eri. Bu gezegen benim; toprak benim, eller sizin.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691139
+    m_Localized: "Bir \xE7ift\xE7i ve bir t\u0131rpan se\xE7. Gerisini birlikte hallederiz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691140
+    m_Localized: "Tarla bombo\u015F\u2026 \xD6nce d\xFCkk\xE2ndan bir saks\u0131
+      al, sonra round'u ba\u015Flat."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691141
+    m_Localized: "Bo\u015F bir yere t\u0131kla, saks\u0131 oraya oturur. R ile d\xF6nd\xFCrebilirsin."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691142
+    m_Localized: "Hasat bilmiyor musun? \u0130mleci bitkilerin \xFCst\xFCnde tut,
+      t\u0131rpan kendi vurur."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691143
+    m_Localized: "D\xFCnya'da otomatik t\u0131rpan yok muydu? Var diye hat\u0131rl\u0131yordum\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691144
+    m_Localized: "Sol \xFCstteki pay benim Adak'\u0131m. D\xF6nem bitmeden dolsun,
+      olur mu?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691145
+    m_Localized: "B\xFCy\xFCyorsun! Birini se\xE7; bu hasat boyunca seninle kal\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691146
+    m_Localized: "D\xF6nemin son round'u. Adak'\u0131m h\xE2l\xE2 eksik\u2026 acele
+      et."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691147
+    m_Localized: "Mmm\u2026 doydum."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691148
+    m_Localized: "\u015Eimdilik. Bir sonraki pay\u0131m biraz daha b\xFCy\xFCk olacak."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691149
+    m_Localized: "Bu round bir S\u0131nama! Soldaki hedefi bu round i\xE7inde doldur."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691150
+    m_Localized: "Tohumlar\u0131mdan biri azd\u0131! Ne yapt\u0131\u011F\u0131 solda
+      yaz\u0131yor."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691151
+    m_Localized: "Adak eksik kald\u0131. A\xE7l\u0131k\u2026 beklemez."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691152
+    m_Localized: "Yeniden ba\u015Flar\u0131z. Toprak hep burada."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691153
+    m_Localized: "S\u0131nama'y\u0131 ge\xE7emedin\u2026 Ben de bekleyemem."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691154
+    m_Localized: Yine geleceksin, biliyorum.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691155
+    m_Localized: "Doydum. Bu sefer ger\xE7ekten."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691156
+    m_Localized: "\u2026Uzun s\xFCrmez ama."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691157
+    m_Localized: "Hmm\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969691158
+    m_Localized: "Mmm\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337693839360
+    m_Localized: "TEMEL \u2192 KARTLA  \xB7  \xD6RNEK"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393792
+    m_Localized: "TILE ETK\u0130S\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393793
+    m_Localized: "Ana Men\xFC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393794
+    m_Localized: 1x1 SAKSI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393795
+    m_Localized: 1x2 SAKSI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393796
+    m_Localized: 1x3 SAKSI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393797
+    m_Localized: 2x2 SAKSI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393798
+    m_Localized: 2x3 SAKSI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393799
+    m_Localized: "TEM\u0130ZLE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393800
+    m_Localized: "B\xDCY\xDCME S\xDCRES\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393801
+    m_Localized: "EK\u0130M YER\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393802
+    m_Localized: SAT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393803
+    m_Localized: BOYUT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393804
+    m_Localized: "SAKSI D\xDCKK\xC2NI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393805
+    m_Localized: "Yeniden Ba\u015Fla<br>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393806
+    m_Localized: "YETENEK D\xDCKK\xC2NI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393807
+    m_Localized: "Kartlar\u0131 Ge\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393808
+    m_Localized: "ROUND'U BA\u015ELAT"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393809
+    m_Localized: Ayarlar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393810
+    m_Localized: Oyna<br>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148337727393811
+    m_Localized: "\xC7\u0131k\u0131\u015F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479529525248
+    m_Localized: AYARLAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479529525249
+    m_Localized: "G\xD6R\xDCNT\xDC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719552
+    m_Localized: SES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719553
+    m_Localized: "OYNANI\u015E"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719554
+    m_Localized: KONTROLLER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719555
+    m_Localized: VARSAYILANLAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719556
+    m_Localized: "GER\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719557
+    m_Localized: "A\xC7IK"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719558
+    m_Localized: KAPALI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719559
+    m_Localized: "Bir ayar\u0131n \xFCzerine gel, ne i\u015Fe yarad\u0131\u011F\u0131
+      burada g\xF6r\xFCns\xFCn."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719560
+    m_Localized: Dil / Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719561
+    m_Localized: "Oyunun dili. \u0130lk a\xE7\u0131l\u0131\u015Fta bilgisayar\u0131n
+      dili se\xE7ilir; o dil yoksa \u0130ngilizce."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719562
+    m_Localized: "\xC7\xF6z\xFCn\xFCrl\xFCk"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719563
+    m_Localized: "Oyunun \xE7al\u0131\u015Ft\u0131\u011F\u0131 ekran \xE7\xF6z\xFCn\xFCrl\xFC\u011F\xFC."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719564
+    m_Localized: Ekran Modu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719565
+    m_Localized: "Tam ekran, kenarl\u0131ks\u0131z pencere ya da normal pencere."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719566
+    m_Localized: Tam Ekran
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719567
+    m_Localized: "Kenarl\u0131ks\u0131z"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719568
+    m_Localized: Pencere
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719569
+    m_Localized: VSync
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719570
+    m_Localized: "G\xF6r\xFCnt\xFC y\u0131rt\u0131lmas\u0131n\u0131 \xF6nler ve FPS'i
+      monit\xF6r\xFCn tazeleme h\u0131z\u0131na sabitler."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719571
+    m_Localized: "FPS S\u0131n\u0131r\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719572
+    m_Localized: "VSync kapal\u0131yken ge\xE7erli. D\xFC\u015F\xFCk s\u0131n\u0131r
+      ekran kart\u0131n\u0131 ve pili rahatlat\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719573
+    m_Localized: '{0} FPS'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719574
+    m_Localized: "S\u0131n\u0131rs\u0131z"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719575
+    m_Localized: Grafik Kalitesi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719576
+    m_Localized: "D\xFC\u015F\xFCk: zay\u0131f bilgisayarlar i\xE7in daha hafif g\xF6r\xFCnt\xFC
+      ayarlar\u0131."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719577
+    m_Localized: "D\xFC\u015F\xFCk"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719578
+    m_Localized: "Y\xFCksek"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719579
+    m_Localized: Arka Plan Efektleri
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719580
+    m_Localized: "Hareketli uzay arka plan\u0131. Kapat\u0131nca d\xFCz renk kullan\u0131l\u0131r;
+      zay\u0131f ekran kartlar\u0131nda FPS art\u0131r\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719581
+    m_Localized: Ana Ses
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719582
+    m_Localized: "Oyundaki t\xFCm seslerin genel seviyesi."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719583
+    m_Localized: "M\xFCzik"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719584
+    m_Localized: "M\xFCzik seviyesi."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719585
+    m_Localized: Efektler
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719586
+    m_Localized: "Hasat, vuru\u015F ve aray\xFCz efekt sesleri."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719587
+    m_Localized: Arka Planda Sessiz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719588
+    m_Localized: "Ba\u015Fka bir pencereye ge\xE7ince oyunun sesini kapat\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719589
+    m_Localized: "Ekran Sars\u0131nt\u0131s\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719590
+    m_Localized: "Patlama, crit ve round sonu sars\u0131nt\u0131lar\u0131n\u0131n
+      g\xFCc\xFC."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719591
+    m_Localized: Kamera Hareketi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719592
+    m_Localized: "Kameran\u0131n hafif nefes alma hareketi."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719593
+    m_Localized: "Hasar Yaz\u0131lar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719594
+    m_Localized: "Vuru\u015Flarda \xE7\u0131kan hasar say\u0131lar\u0131."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719595
+    m_Localized: "Grid Koordinatlar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719596
+    m_Localized: "Grid kenar\u0131ndaki A-K / 1-11 etiketleri; haritadaki koordinatlarla
+      ayn\u0131."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719597
+    m_Localized: "Rarity Auralar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719598
+    m_Localized: "Bitkilerin alt\u0131ndaki, rarity'sini g\xF6steren renkli halka."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719599
+    m_Localized: "Round Sonu Yava\u015Flama"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719600
+    m_Localized: "S\xFCre biterken zaman\u0131n k\u0131sa bir an yava\u015Flamas\u0131."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719601
+    m_Localized: "Ekran Fla\u015Flar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719602
+    m_Localized: "Round sonundaki beyaz ekran fla\u015F\u0131. I\u015F\u0131\u011Fa
+      hassassan kapat."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719603
+    m_Localized: Hasat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719604
+    m_Localized: "\u0130mleci bitkilerin \xFCzerinde gezdir; t\u0131rpan otomatik
+      keser."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719605
+    m_Localized: "\u0130MLE\xC7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719606
+    m_Localized: "Saks\u0131y\u0131 D\xF6nd\xFCr"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719607
+    m_Localized: "Yerle\u015Ftirme s\u0131ras\u0131nda saks\u0131y\u0131 d\xF6nd\xFCr\xFCr."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719608
+    m_Localized: "\u0130ptal / Geri"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719609
+    m_Localized: "Yerle\u015Ftirmeyi iptal eder, shop'tan ve sat\u0131\u015F modundan
+      \xE7\u0131kar."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719610
+    m_Localized: "Rezonans Detaylar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719611
+    m_Localized: "Yerle\u015Ftirirken rezonans detay panelini a\xE7ar / kapat\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719612
+    m_Localized: "Performans Kayd\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151479533719613
+    m_Localized: "Performans kayd\u0131n\u0131 ba\u015Flat\u0131r / durdurur (oyun
+      sahnesinde)."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100892700672
+    m_Localized: '%{0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866496
+    m_Localized: "YEN\u0130 RUN \xB7 BA\u015ELANGI\xC7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866497
+    m_Localized: "Bir \xE7ift\xE7i ve bir t\u0131rpan se\xE7 \xB7 etkiler bu run
+      boyunca ge\xE7erli \xB7 yeni run'da yeniden uygulan\u0131r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866498
+    m_Localized: "\xC7\u0130FT\xC7\u0130 \xB7 genel yakla\u015F\u0131m"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866499
+    m_Localized: "TIRPAN \xB7 hasat bi\xE7imi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866500
+    m_Localized: "GER\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866501
+    m_Localized: "RUN'I BA\u015ELAT"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866502
+    m_Localized: "Se\xE7im: {0} + {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866503
+    m_Localized: "SE\xC7\u0130L\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866504
+    m_Localized: "Se\xE7mek i\xE7in t\u0131kla"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866505
+    m_Localized: "K\u0130L\u0130TL\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866506
+    m_Localized: "K\u0130L\u0130TL\u0130 \xB7 G\xD6REV"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866507
+    m_Localized: 'En iyi run: {0} / {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866508
+    m_Localized: "N\xF6tr \xB7 avantaj ve bedel yok"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866509
+    m_Localized: oyunun kendi dengesi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100917866510
+    m_Localized: "Do\u011Frudan vuru\u015F hasar\u0131 \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060800
+    m_Localized: "davran\u0131\u015F hasar\u0131 de\u011Fi\u015Fmez"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060801
+    m_Localized: "Hasat kayna\u011F\u0131 \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060802
+    m_Localized: "yaln\u0131z hasattan gelen Gold \xB7 Iron \xB7 Stone"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060803
+    m_Localized: "Hasat skoru \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060804
+    m_Localized: "kota ilerlemesi de bununla say\u0131l\u0131r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060805
+    m_Localized: "Vuru\u015F yar\u0131\xE7ap\u0131 \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060806
+    m_Localized: "imle\xE7 halkas\u0131 k\xFC\xE7\xFCl\xFCr"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060807
+    m_Localized: "imle\xE7 halkas\u0131 b\xFCy\xFCr"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060808
+    m_Localized: Nadirlik bonusu {0} puan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060809
+    m_Localized: "nadir bitkiler daha s\u0131k \xE7\u0131kar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060810
+    m_Localized: "nadir bitkiler daha seyrek \xE7\u0131kar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060811
+    m_Localized: "\xDCretim aral\u0131\u011F\u0131 \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060812
+    m_Localized: "bitkiler daha seyrek \xE7\u0131kar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060813
+    m_Localized: "bitkiler daha s\u0131k \xE7\u0131kar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060814
+    m_Localized: "Sald\u0131r\u0131 aral\u0131\u011F\u0131 \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060815
+    m_Localized: "Bah\xE7\u0131van"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060816
+    m_Localized: "Referans \xE7ift\xE7i: oyunun kendi dengesi."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060817
+    m_Localized: "T\xFCccar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060818
+    m_Localized: "Ekonomiyle a\u011Faca erken ula\u015F; skor biraz geride kal\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060819
+    m_Localized: "Se\xE7ici Yeti\u015Ftirici"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060820
+    m_Localized: "Aura'ya bak\u0131p de\u011Ferli bitkiyi se\xE7."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060821
+    m_Localized: Standart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060822
+    m_Localized: "Mevcut vuru\u015F: hasar ve yar\u0131\xE7ap oldu\u011Fu gibi."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060823
+    m_Localized: Dar Kesim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060824
+    m_Localized: "Dar ama a\u011F\u0131r vuru\u015F: de\u011Ferli ve sert bitkiyi
+      hedefle."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158100922060825
+    m_Localized: Tek run'da 5 Legendary bitki hasat et
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690688442368
+    m_Localized: HAZIRLIK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690696830976
+    m_Localized: "ROUND {0} \xD6ZET\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690696830977
+    m_Localized: Hasat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690696830978
+    m_Localized: "Alt\u0131n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690696830979
+    m_Localized: Demir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690696830980
+    m_Localized: "Ta\u015F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690696830981
+    m_Localized: XP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690696830982
+    m_Localized: Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690696830983
+    m_Localized: Skor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690696830984
+    m_Localized: "Uzmanla\u015Fma: {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690696830985
+    m_Localized: "\u0130lk kota: {0} \xB7 {1} round"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690701025280
+    m_Localized: "\u0130lk boss kotas\u0131: {0} \xB7 {1} round"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219584
+    m_Localized: Kota her boss round'unun sonunda kontrol edilir; tutmazsa run biter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219585
+    m_Localized: Kota her {0} round'da kontrol edilir; tutmazsa run biter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219586
+    m_Localized: "KOTA TAMAM \xB7 {0} / {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219587
+    m_Localized: "BOSS KOTASI TAMAM \xB7 {0} / {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219588
+    m_Localized: "S\u0131radaki kota: {0} \xB7 {1} round"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219589
+    m_Localized: "S\u0131radaki boss kotas\u0131: {0} \xB7 {1} round"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219590
+    m_Localized: Kota
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219591
+    m_Localized: "Boss kotas\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219592
+    m_Localized: "{0} tamam \xB7 {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219593
+    m_Localized: "Segment {0}. round sonunda kapan\u0131r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219594
+    m_Localized: "SON ROUND \xB7 kotaya {0} kald\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219595
+    m_Localized: "{0} {1} \xB7 tutmazsa run biter"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219596
+    m_Localized: "{0} {1} \xB7 {2} round kald\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219597
+    m_Localized: Tutmazsa run {0}. round sonunda biter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219598
+    m_Localized: "boss hasad\u0131 hedefi {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219599
+    m_Localized: "boss hasad\u0131 hedefi yok"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219600
+    m_Localized: "Yakla\u015Fan boss: {0} \xB7 Round {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219601
+    m_Localized: "Yakla\u015Fan: {0} \xB7 Round {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219602
+    m_Localized: "{0} AKT\u0130F \xB7 {1} round kald\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219603
+    m_Localized: "{0} GE\xC7T\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219604
+    m_Localized: "SON HAZIRLIK \xB7 {0} sonraki round"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219605
+    m_Localized: "Round {0}\u2013{1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219606
+    m_Localized: "Yakla\u015Fan: {0} \xB7 Round {1}\u2013{2}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219607
+    m_Localized: "{0} round haz\u0131rl\u0131k"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219608
+    m_Localized: "boss hasad\u0131 {0} / {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219609
+    m_Localized: "S\u0131radaki boss: {0} (Round {1})"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219610
+    m_Localized: "SON HAZIRLIK \xB7 boss {0} sonraki round"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219611
+    m_Localized: KOTA {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219612
+    m_Localized: "{0} BA\u015ELADI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219613
+    m_Localized: "BOSS: {0} \xB7 HASAT HEDEF\u0130 {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219614
+    m_Localized: 'BOSS: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219615
+    m_Localized: "{0} SONRAK\u0130 ROUND"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219616
+    m_Localized: "Kural kalkt\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219617
+    m_Localized: "\u015Feritte"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219618
+    m_Localized: "{0} s\xFCtununda"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219619
+    m_Localized: "{0}\u2013{1} s\xFCtunlar\u0131nda"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219620
+    m_Localized: "{0}. sat\u0131rda"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219621
+    m_Localized: "{0}\u2013{1}. sat\u0131rlarda"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219622
+    m_Localized: "vuru\u015F yar\u0131\xE7ap\u0131 \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219623
+    m_Localized: "vuru\u015F alan\u0131 bir basamak dar: en iyi ni\u015Fanda {0}
+      \u2192 {1} bitki"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219624
+    m_Localized: "vuru\u015F alan\u0131 bir basamak daral\u0131r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219625
+    m_Localized: "vuru\u015F alan\u0131 bir basamak daral\u0131r: en iyi ni\u015Fanda
+      {0} \u2192 {1} bitki"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219626
+    m_Localized: "Vuru\u015F alan\u0131 normale d\xF6nd\xFC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219627
+    m_Localized: "Vuru\u015F yar\u0131\xE7ap\u0131 normale d\xF6nd\xFC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219628
+    m_Localized: "{0} \xFCretim \xD7{1} yava\u015F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219629
+    m_Localized: "mavi \u015Ferit"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219630
+    m_Localized: "\u015Eeritteki \xFCretim normale d\xF6nd\xFC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219631
+    m_Localized: "{0} bitki can\u0131 \xD7{1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219632
+    m_Localized: "turuncu \u015Ferit"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219633
+    m_Localized: "\u015Eeritteki bitkiler normal cana d\xF6nd\xFC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219634
+    m_Localized: kural yok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219635
+    m_Localized: Boss round'u bitti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219636
+    m_Localized: KOTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219637
+    m_Localized: SEGMENT KOTASI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219638
+    m_Localized: BOSS KOTASI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219639
+    m_Localized: '{0} TAMAM'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219640
+    m_Localized: "{0} \xB7 SON ROUND"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219641
+    m_Localized: "{0} \xB7 {1} ROUND"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219642
+    m_Localized: "Boss hasad\u0131 hedefi (Round {0}): {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219643
+    m_Localized: 'Boss round''u: Round {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219644
+    m_Localized: 'BOSS HASADI: hedef yok'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219645
+    m_Localized: 'BOSS HASADI: {0} / {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219646
+    m_Localized: TAMAM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219647
+    m_Localized: "HASAT R\u0130TM\u0130 HAZIR \xB7 s\u0131radaki vuru\u015F g\xFC\xE7l\xFC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219648
+    m_Localized: Hasat Ritmi {0} / {1}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219649
+    m_Localized: "Boss \xF6d\xFClleri"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219650
+    m_Localized: Round {0} / {1}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219651
+    m_Localized: 'Time: {0}s'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219652
+    m_Localized: "SEV\u0130YE KAZANIMLARI HESAPLANIYOR"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219653
+    m_Localized: Level {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219654
+    m_Localized: "SONRAK\u0130 ROUND"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219655
+    m_Localized: "\xD6N\u0130ZLEME"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219656
+    m_Localized: "\xD6N\u0130ZLEME"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219657
+    m_Localized: "Tile'\u0131n \xFCst\xFCne gel: detay  \xB7  {0} / {1}: geri d\xF6n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219658
+    m_Localized: "Hen\xFCz aktif rezonans yok \xB7 ayn\u0131 tipteki tile'lar\u0131
+      bir saks\u0131n\u0131n alt\u0131nda topla"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219659
+    m_Localized: "GER\u0130 D\xD6N"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219660
+    m_Localized: BU ROUND'UN KARTI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219661
+    m_Localized: BU ROUND'UN KARTLARI ({0})
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219662
+    m_Localized: "+{0} tile daha \xB7 haritada parl\u0131yor"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219663
+    m_Localized: puan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219664
+    m_Localized: oran
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219665
+    m_Localized: Sv
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219666
+    m_Localized: Sv {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219667
+    m_Localized: '{0} sn'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219668
+    m_Localized: Gold / Iron / Stone {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219669
+    m_Localized: Rare+ Harvest Score {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219670
+    m_Localized: "Elektrik \xF6ld\xFCrmesi XP {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219671
+    m_Localized: "{0} hasar\u0131 {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219672
+    m_Localized: Nadirlik +{0} puan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219673
+    m_Localized: Patlama
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219674
+    m_Localized: Tornado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219675
+    m_Localized: Orak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219676
+    m_Localized: Elektrik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219677
+    m_Localized: Common
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219678
+    m_Localized: Uncommon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219679
+    m_Localized: Rare
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219680
+    m_Localized: Epic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219681
+    m_Localized: Legendary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219682
+    m_Localized: Gold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219683
+    m_Localized: Iron
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219684
+    m_Localized: Stone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219685
+    m_Localized: "Saks\u0131 hasar stat\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219686
+    m_Localized: "Vuru\u015F yar\u0131\xE7ap\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219687
+    m_Localized: "Atak aral\u0131\u011F\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219688
+    m_Localized: "Kritik \u015Fans\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219689
+    m_Localized: "Kritik \xE7arpan\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219690
+    m_Localized: "\xDCretim s\xFCresi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219691
+    m_Localized: Nadirlik bonusu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219692
+    m_Localized: "Gold kazanc\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219693
+    m_Localized: "Iron kazanc\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219694
+    m_Localized: "Stone kazanc\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219695
+    m_Localized: "XP kazanc\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219696
+    m_Localized: Harvest Score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219697
+    m_Localized: "Kart nadirli\u011Fi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219698
+    m_Localized: Grid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219699
+    m_Localized: "Round s\xFCresi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219700
+    m_Localized: "Ba\u015Flang\u0131\xE7 Gold'u"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219701
+    m_Localized: "Ba\u015Flang\u0131\xE7 saks\u0131s\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219702
+    m_Localized: "Ek kart se\xE7ene\u011Fi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219703
+    m_Localized: Kart yenileme
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219704
+    m_Localized: Kart atlama
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219705
+    m_Localized: "Patlama \u015Fans\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219706
+    m_Localized: "\xC7ift \xF6d\xFCl \u015Fans\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219707
+    m_Localized: Hasar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219708
+    m_Localized: "Tornado \u015Fans\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219709
+    m_Localized: "Bumerang orak \u015Fans\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219710
+    m_Localized: "\xC7apraz elektrik \u015Fans\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219711
+    m_Localized: "TAMAMLANDI  \xB7  MAX"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219712
+    m_Localized: KADEME  {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219713
+    m_Localized: "MEVCUT ETK\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219714
+    m_Localized: "SONRAK\u0130 KADEME"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219715
+    m_Localized: "Y\xDCKSELTME MAL\u0130YET\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219716
+    m_Localized: "ER\u0130\u015E\u0130M"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219717
+    m_Localized: "BA\u015ELANGI\xC7TAN A\xC7IK"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219718
+    m_Localized: "TAM S\xDCR\xDCMDE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219719
+    m_Localized: "DEMO K\u0130L\u0130D\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219720
+    m_Localized: "Bu \xF6zellik tam s\xFCr\xFCmde a\xE7\u0131l\u0131r. Demoda sat\u0131n
+      al\u0131namaz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219721
+    m_Localized: "Bu d\xFC\u011F\xFCm sat\u0131n al\u0131nmad\u0131; bu profilde
+      \xFCcret \xF6denmez."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219722
+    m_Localized: "Bu deneyde round s\xFCresi sabit ({0} sn)."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219723
+    m_Localized: "Bu node etkisiz ve sat\u0131n al\u0131namaz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219724
+    m_Localized: Hasar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219725
+    m_Localized: "{0} \xB7 +{1} h\u0131z"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219726
+    m_Localized: "{0} (taban \xB7 fazlas\u0131 nadirli\u011Fe)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219727
+    m_Localized: "Epic+ {0} \xB7 Leg {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219728
+    m_Localized: "{0} saks\u0131 ba\u015Flang\u0131\xE7tan a\xE7\u0131k (ma\u011Fazada)."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219729
+    m_Localized: "{0} saks\u0131 ma\u011Fazada a\xE7\u0131k."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219730
+    m_Localized: "{0} saks\u0131y\u0131 ma\u011Fazada a\xE7ar."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219731
+    m_Localized: Patlama
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219732
+    m_Localized: "\xC7o\u011Faltma"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219733
+    m_Localized: Tornado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219734
+    m_Localized: Bumerang Orak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219735
+    m_Localized: "\xC7apraz Elektrik"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219736
+    m_Localized: "{0} kartlar\u0131 ba\u015Flang\u0131\xE7tan a\xE7\u0131k: run ba\u015F\u0131ndan
+      beri se\xE7im havuzunda."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219737
+    m_Localized: "{0} kartlar\u0131 se\xE7im havuzuna eklendi."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219738
+    m_Localized: "Son seviyede {0} kartlar\u0131n\u0131 se\xE7im havuzuna ekler."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219739
+    m_Localized: "DON CEPHES\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219740
+    m_Localized: SERT KABUK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219741
+    m_Localized: "S\u0130S"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219742
+    m_Localized: KURALSIZ BOSS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219743
+    m_Localized: Bumerang Orak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219744
+    m_Localized: Crystal-RareSpawnChance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219745
+    m_Localized: Odak-Hasar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219746
+    m_Localized: Duplicate-DuplicateChance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219747
+    m_Localized: "\xC7apraz Elektrik"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219748
+    m_Localized: Energy-HarvestScoreMultiplier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219749
+    m_Localized: Explosive-ExplosionChance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219750
+    m_Localized: Fertile-PlantSpawnRate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219751
+    m_Localized: Tornado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219752
+    m_Localized: Water-XPGain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219753
+    m_Localized: Damage Upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219754
+    m_Localized: "1\xD73 Saks\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219755
+    m_Localized: "2\xD72 Saks\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219756
+    m_Localized: "2\xD73 Saks\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219757
+    m_Localized: "A\u011F\u0131r Kesim"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219758
+    m_Localized: "Ak\u0131c\u0131 Kesim"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219759
+    m_Localized: "Alt\u0131n Hasat I"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219760
+    m_Localized: "Alt\u0131n Hasat II"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219761
+    m_Localized: "Bumerang Orak Kartlar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219762
+    m_Localized: "\xC7apraz Elektrik Kartlar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219763
+    m_Localized: "\xC7ifte Hasat Kartlar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219764
+    m_Localized: Demir Hasat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219765
+    m_Localized: "D\xFCzenli \xDCretim"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219766
+    m_Localized: "Geni\u015F S\xFCp\xFCr\xFC\u015F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219767
+    m_Localized: "Geni\u015F Tarama"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219768
+    m_Localized: "Grid Geni\u015Fleme I"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219769
+    m_Localized: "Grid Geni\u015Fleme II"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219770
+    m_Localized: "G\xFC\xE7l\xFC Kesim"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219771
+    m_Localized: Hasat Deneyimi I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219772
+    m_Localized: Hasat Deneyimi II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219773
+    m_Localized: Hasat Rekoru
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219774
+    m_Localized: "H\u0131zl\u0131 Eller"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219775
+    m_Localized: "\u0130kinci Vazge\xE7i\u015F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219776
+    m_Localized: "\u0130lk Vazge\xE7i\u015F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219777
+    m_Localized: Kart Sezgisi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219778
+    m_Localized: "Kesim Tekni\u011Fi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219779
+    m_Localized: "Kesim Ustal\u0131\u011F\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219780
+    m_Localized: "Keskin Ba\u015Flang\u0131\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219781
+    m_Localized: "Kritik G\xFC\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219782
+    m_Localized: Kritik Odak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219783
+    m_Localized: Nadir Filizler
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219784
+    m_Localized: "Patlay\u0131c\u0131 Kartlar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219785
+    m_Localized: "Ta\u015F Hasat"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219786
+    m_Localized: "Tornado Kartlar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219787
+    m_Localized: "Verimli \xDCretim"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219788
+    m_Localized: Zengin Cevher
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219789
+    m_Localized: "A\u015F\u0131r\u0131 G\xFC\xE7 I"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219790
+    m_Localized: "A\u015F\u0131r\u0131 G\xFC\xE7 II"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219791
+    m_Localized: Biraz Daha Zaman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219792
+    m_Localized: Hasat Zirvesi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219793
+    m_Localized: "\u0130leri Ustal\u0131k"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219794
+    m_Localized: Plazma Kesim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219795
+    m_Localized: "Seri \xDCretim"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219796
+    m_Localized: Son Vardiya
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219797
+    m_Localized: Uzun Hasat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219798
+    m_Localized: "Y\u0131ld\u0131r\u0131m Kesim"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219799
+    m_Localized: "Y\u0131ld\u0131z Kesim"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219800
+    m_Localized: "+{0} SEV\u0130YE \xB7 {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219801
+    m_Localized: nadirlik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219802
+    m_Localized: "\xDCretim tabanda \u2192 Nadirlik"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219803
+    m_Localized: "\xD6zel etki"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219804
+    m_Localized: "Temel g\xFC\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219805
+    m_Localized: "Toplan\u0131r: {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219806
+    m_Localized: "GR\u0130D DOLU \xB7 kart, se\xE7ti\u011Fin tile'\u0131 seviye atlat\u0131r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219807
+    m_Localized: "T\xDCM TILE'LAR MAX \xB7 kart kal\u0131c\u0131 Temel g\xFC\xE7
+      verir"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219808
+    m_Localized: "Hasat hasar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219809
+    m_Localized: "Atak aral\u0131\u011F\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219810
+    m_Localized: "\xDCretim s\xFCresi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219811
+    m_Localized: "T\xFCm kaynaklar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219812
+    m_Localized: "XP kazanc\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219813
+    m_Localized: "SON SE\xC7\u0130M"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219814
+    m_Localized: "KALAN SE\xC7\u0130M: {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219815
+    m_Localized: Sv {0}/{1}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219816
+    m_Localized: +SV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219817
+    m_Localized: "YEN\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219818
+    m_Localized: "Bo\u015F tile"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219819
+    m_Localized: "Bu round'un kart\u0131 bu tile'\u0131 y\xFCkseltti."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219820
+    m_Localized: "Bu round'un kart\u0131 buraya geldi."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219821
+    m_Localized: BU TILE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219822
+    m_Localized: "\xF6nce"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219823
+    m_Localized: "\u015Fimdi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219824
+    m_Localized: +{0} seviye
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219825
+    m_Localized: "\xDCretim tabanda ({0} sn): fazlas\u0131 nadirli\u011Fe \xB7 saks\u0131ya
+      {1} nadirlik"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219826
+    m_Localized: SAKSININ REZONANSLARI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219827
+    m_Localized: "BU KONUMDA A\xC7ILACAK"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219828
+    m_Localized: "{0} tile \xB7 {1} rezonans"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219829
+    m_Localized: "{0}: a\xE7 / kapat"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219830
+    m_Localized: "Bu konumda rezonans olu\u015Fmuyor."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219831
+    m_Localized: "SAKSININ ALTINDAK\u0130 TILE\u2019LAR"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219832
+    m_Localized: "{0} / {1}: kayd\u0131r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219833
+    m_Localized: REZONANS!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219834
+    m_Localized: Odak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219835
+    m_Localized: "\u015E\xF6hret"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219836
+    m_Localized: Bolluk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219837
+    m_Localized: Bilgelik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219838
+    m_Localized: "Kristal Bah\xE7e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219839
+    m_Localized: "G\xFC\xE7lendirilmi\u015F Hasat"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219840
+    m_Localized: "De\u011Ferli Hasat"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219841
+    m_Localized: Verimli Toprak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219842
+    m_Localized: Elektrik Bilgisi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161690705219843
+    m_Localized: "Nadir Fidanl\u0131k"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725701566464
+    m_Localized: etki yok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725747703808
+    m_Localized: "Do\u011Frudan vuru\u015F hasar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725747703809
+    m_Localized: "Do\u011Frudan"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725747703810
+    m_Localized: "do\u011Frudan vuru\u015F hasar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725747703811
+    m_Localized: "{0}+ bitkiye do\u011Frudan vuru\u015F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725747703812
+    m_Localized: "{0}+ do\u011Frudan"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725747703813
+    m_Localized: "{0}+ bitkiye do\u011Frudan vuru\u015F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725747703814
+    m_Localized: "Davran\u0131\u015F hasar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898112
+    m_Localized: "Davran\u0131\u015F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898113
+    m_Localized: "davran\u0131\u015F hasar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898114
+    m_Localized: "patlaman\u0131n d\u0131\u015F\u0131ndan {0} h\xFCcre yay\u0131lan
+      art\xE7\u0131 \xB7 ad\u0131m ba\u015F\u0131na {1} sn \xB7 ilk patlaman\u0131n
+      {2} hasar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898115
+    m_Localized: "ilk dalgan\u0131n {0} hasar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898116
+    m_Localized: "\xE7aprazda {0} h\xFCcre"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898117
+    m_Localized: '{0} sn sonra'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898118
+    m_Localized: "her {0} do\u011Frudan hasatta bir: hasar \xD7{1} \xB7 yar\u0131\xE7ap
+      \xD7{2}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898119
+    m_Localized: "\u015Fans ve hasar {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898120
+    m_Localized: "\u015Fans {0} \xB7 hasar {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898121
+    m_Localized: "davran\u0131\u015F hasatlar\u0131 ba\u015Fka saks\u0131lar\u0131n
+      davran\u0131\u015Flar\u0131n\u0131 tetikler \xB7 en \xE7ok {0} ek nesil \xB7
+      {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898122
+    m_Localized: "Bir kez al\u0131n\u0131r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898123
+    m_Localized: "\xF6n ko\u015Ful: {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898124
+    m_Localized: "Se\xE7ince konumunu sen belirlersin"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898125
+    m_Localized: "Bunu al\u0131rsan {0} bir daha sunulmaz"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898126
+    m_Localized: "Ayn\u0131 anda kas\u0131rga / bumerang (her biri): {0} \u2192 {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898127
+    m_Localized: "Kas\u0131rga / bumerang aktif s\u0131n\u0131r\u0131 +{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898128
+    m_Localized: "Gelecekteki her level: {0} \u2192 {1} se\xE7im"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898129
+    m_Localized: "Level se\xE7imi {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898130
+    m_Localized: "level ba\u015F\u0131na se\xE7im {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898131
+    m_Localized: "\xD6nceden kazan\u0131lm\u0131\u015F se\xE7imler de\u011Fi\u015Fmez."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898132
+    m_Localized: "kazan\xE7: {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898133
+    m_Localized: 'bedel: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898134
+    m_Localized: "Level ba\u015F\u0131na se\xE7im: {0} (temel {1}) \xB7 yeni kazan\u0131lan
+      level'lar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898135
+    m_Localized: "{0} A\u015EAMA \xB7 BOSS \xD6D\xDCL\xDC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898136
+    m_Localized: "{0} A\u015EAMA \xB7 Round {1} boss'undan itibaren"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898137
+    m_Localized: "{0} A\u015EAMA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898138
+    m_Localized: "Uygun \xF6d\xFCl kalmad\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898139
+    m_Localized: "B\xFCt\xFCn \xF6d\xFCller s\u0131n\u0131r\u0131nda ya da \u015Fu
+      an bir \u015Fey de\u011Fi\u015Ftirmiyor"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898140
+    m_Localized: DEVAM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898141
+    m_Localized: "BOSS GE\xC7\u0130LD\u0130 \xB7 \xD6D\xDCL SE\xC7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898142
+    m_Localized: "SON BOSS GE\xC7\u0130LD\u0130 \xB7 \xD6D\xDCL SE\xC7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898143
+    m_Localized: "Bu boss i\xE7in sunulabilecek \xF6d\xFCl yok"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898144
+    m_Localized: "Yaln\u0131z biri al\u0131n\u0131r \xB7 run sonuna kadar ge\xE7erli
+      \xB7 etkisi Round {0} ve sonras\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898145
+    m_Localized: "yaln\u0131z biri al\u0131n\u0131r \xB7 run sonuna kadar ge\xE7erli
+      \xB7 etkisi Round {0} ve sonras\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898146
+    m_Localized: "Yaln\u0131z biri al\u0131n\u0131r \xB7 run burada biter \xB7 \xF6d\xFCl
+      run sonu listesine yaz\u0131l\u0131r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898147
+    m_Localized: "yaln\u0131z biri al\u0131n\u0131r \xB7 run burada biter \xB7 \xF6d\xFCl
+      run sonu listesine yaz\u0131l\u0131r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898148
+    m_Localized: "Boss ge\xE7ildi \xB7 {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898149
+    m_Localized: "Son boss ge\xE7ildi \xB7 {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898150
+    m_Localized: "KAZAN\xC7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898151
+    m_Localized: BEDEL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898152
+    m_Localized: "\u015Eu an {0}/{1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898153
+    m_Localized: "\u015Eu an {0}/{1}: toplam {2}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898154
+    m_Localized: "\u015Eu an 0/{0}: yok"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898155
+    m_Localized: "Se\xE7ince {0}/{1}: toplam {2}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898156
+    m_Localized: "Al\u0131nan boss \xF6d\xFClleri"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898157
+    m_Localized: "ANTEN\u0130 YERLE\u015ET\u0130R"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898158
+    m_Localized: "Tarlan\u0131n kenar\u0131nda bir konum se\xE7 \xB7 anten i\xE7eri
+      bakar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898159
+    m_Localized: "kenardaki anten, bakt\u0131\u011F\u0131 y\xF6ndeki ilk {0} h\xFCcreye
+      {1} sn'de bir vurur \xB7 hasat hasar\u0131n\u0131n %{2}'i"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898160
+    m_Localized: "hat, davran\u0131\u015Fl\u0131 saks\u0131n\u0131n bitkisini hasat
+      ederse o saks\u0131n\u0131n davran\u0131\u015F \u015Fans\u0131yla ek hat vuru\u015Fu
+      \xB7 hasar\u0131n %{0}'i \xB7 bekleme {1} sn"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898161
+    m_Localized: "\u0130K\u0130NC\u0130 ANTEN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898162
+    m_Localized: "\u0130lk antenle ayn\u0131 hizada, kar\u015F\u0131 kenara yerle\u015Fir"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898163
+    m_Localized: "ayn\u0131 hizada kar\u015F\u0131 kenara ikinci anten \xB7 iki anten
+      aras\u0131ndaki h\xFCcrelere {0} sn'de bir hat vuru\u015Fu \xB7 hasat hasar\u0131n\u0131n
+      %{1}'i"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898164
+    m_Localized: "her {0} do\u011Frudan bitki isabetinde fareden hilal \xB7 rastgele
+      ana y\xF6nde en fazla {1} birim \xB7 hasat hasar\u0131n\u0131n %{2}'i"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898165
+    m_Localized: "her {0} ge\xE7erli vuru\u015Fta bir hilal \xB7 {1} h\xFCcre ilerler
+      \xB7 hasat hasar\u0131n\u0131n %{2}'i"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898166
+    m_Localized: "kritik vuru\u015F, {0} h\xFCcre i\xE7indeki ba\u015Fka bir bitkiye
+      ark s\u0131\xE7rat\u0131r \xB7 kritik hasar\u0131n %{1}'i \xB7 vuru\u015F ba\u015F\u0131na
+      en \xE7ok {2}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898167
+    m_Localized: "tek vuru\u015Fta {0}+ bitkiye kritik: merkezde ek alan vuru\u015Fu
+      \xB7 hasat hasar\u0131 \xD7 kritik \xE7arpan\u0131n\u0131n %{1}'i"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898168
+    m_Localized: "her ana hilalle mouse halkas\u0131ndan bir b\xFCy\xFCk ek hilal
+      \xB7 ana hilalden farkl\u0131 rastgele y\xF6n \xB7 taban hasar\u0131n %{0}'i
+      \xB7 bedel: {1} sn vuru\u015F duraklamas\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898169
+    m_Localized: "tek vuru\u015Fta {0}+ hasat: s\u0131radaki vuru\u015Fun hasar\u0131
+      \xD7{1} \xB7 tek hedefe vurursan hak kaybolur"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898170
+    m_Localized: "hilal menzili +{0} birim \xB7 hasatla b\xFCy\xFCr: hasar +%{1}
+      (en \xE7ok {2} kez), cephe {3} h\xFCcre \xB7 hasats\u0131z ad\u0131m s\u0131f\u0131rlar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898171
+    m_Localized: "tek vuru\u015Fta {0}+ hasat: kesilen h\xFCcrelerin tarlan\u0131n
+      ortas\u0131na g\xF6re simetri\u011Fine meteor (en \xE7ok {1} h\xFCcre) \xB7
+      hasat hasar\u0131n\u0131n %{2}'i \xB7 bekleme {3} sn"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898172
+    m_Localized: "\xF6ld\xFCren vuru\u015Fun artan hasar\u0131n\u0131n %{0}'i yandaki
+      bitkiye ge\xE7er \xB7 en \xE7ok {1} aktar\u0131m \xB7 her aktar\u0131mda %{2}
+      kay\u0131p"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898173
+    m_Localized: "tetiklenen saks\u0131 davran\u0131\u015F\u0131 {0} sn sonra bir
+      kez daha \xE7al\u0131\u015F\u0131r \xB7 hasar\u0131n %{1}'i \xB7 saks\u0131
+      + davran\u0131\u015F ba\u015F\u0131na {2} sn bekleme"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898174
+    m_Localized: "{0} ve \xFCst\xFC bitkiyi kendi vuru\u015Funla hasat edince {1}
+      sn mevcut davran\u0131\u015F \u015Fanslar\u0131 \xD7{2} \xB7 birikmez, s\xFCre
+      yenilenir"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898175
+    m_Localized: "{0} \xB7 t\u0131kla: yerle\u015Ftir \xB7 {1}: vazge\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898176
+    m_Localized: "VAZGE\xC7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898177
+    m_Localized: SINIRSIZ
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898178
+    m_Localized: Hasattan gelen XP.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898179
+    m_Localized: "Yaln\u0131z kendi vuru\u015Fun. Bir kez al\u0131n\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898180
+    m_Localized: "Bir kez al\u0131n\u0131r. Taban 0,10 sn."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898181
+    m_Localized: "Her saks\u0131 ve davran\u0131\u015F\u0131 bir sald\u0131r\u0131n\u0131n
+      zincirinde bir kez denenir. Art\xE7\u0131 ve ikinci dalga zincire kat\u0131lmaz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898182
+    m_Localized: Hasat Ritmi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898183
+    m_Localized: 'Ritim:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898184
+    m_Localized: "Yaln\u0131z kendi vuru\u015Funla yapt\u0131\u011F\u0131n hasatlar
+      say\u0131l\u0131r. Hak haz\u0131r olunca s\u0131radaki vuru\u015Fun g\xFC\xE7lenir
+      (imle\xE7 halkas\u0131 b\xFCy\xFCr). Ek sald\u0131r\u0131 \xFCretmez; davran\u0131\u015Flara
+      ge\xE7mez."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898185
+    m_Localized: Zincir Hasat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898186
+    m_Localized: 'Zincir:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898187
+    m_Localized: "Bereketli \xD6\u011Frenim"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898188
+    m_Localized: "Davran\u0131\u015F hasar\u0131 de\u011Fi\u015Fmez."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898189
+    m_Localized: "Davran\u0131\u015Fa Adan\u0131\u015F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898190
+    m_Localized: "Patlama \xB7 elektrik \xB7 kas\u0131rga \xB7 bumerang. Kendi vuru\u015Fun
+      de\u011Fi\u015Fmez."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898191
+    m_Localized: "A\u011F\u0131r Darbe"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898192
+    m_Localized: "Kritik hasar \xE7arpan\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898193
+    m_Localized: "Yaln\u0131z kendi vuru\u015Fun kriti\u011Fi."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898194
+    m_Localized: "Alt\u0131n Hedef"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898195
+    m_Localized: "Rare ve \xFCst\xFC bitkiye do\u011Frudan hasar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898196
+    m_Localized: "Yaln\u0131z kendi vuru\u015Fun; Common ve Uncommon de\u011Fi\u015Fmez.
+      Davran\u0131\u015F hasar\u0131 de\u011Fi\u015Fmez."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898197
+    m_Localized: Bereketli Toprak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898198
+    m_Localized: "\xDCretim aral\u0131\u011F\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898199
+    m_Localized: "\xFCretim s\u0131kl\u0131\u011F\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898200
+    m_Localized: "B\xFCt\xFCn saks\u0131lar. Yaln\u0131z tarlan bo\u015Fal\u0131yorsa
+      \xE7\u0131kar (son round ortalama doluluk %65'in alt\u0131nda). Taban 0,50
+      sn."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898201
+    m_Localized: Bilgi Filizi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898202
+    m_Localized: "Kazan\u0131lan XP"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898203
+    m_Localized: "Hasattan gelen XP. Round 30 boss'undan sonra \xE7\u0131kmaz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898204
+    m_Localized: Canavar Kesimi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898205
+    m_Localized: "Do\u011Frudan vuru\u015F hasar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898206
+    m_Localized: "Yaln\u0131z kendi vuru\u015Fun. Round 25 boss'undan sonra \xE7\u0131kar;
+      bir kez al\u0131n\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898207
+    m_Localized: "F\u0131rt\u0131na Bile\u011Fi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898208
+    m_Localized: "Sald\u0131r\u0131 aral\u0131\u011F\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725751898209
+    m_Localized: "sald\u0131r\u0131 s\u0131kl\u0131\u011F\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092416
+    m_Localized: "Round 25 boss'undan sonra \xE7\u0131kar; bir kez al\u0131n\u0131r.
+      Taban 0,10 sn."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092417
+    m_Localized: "Geni\u015F Savuru\u015F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092418
+    m_Localized: "Vuru\u015F yar\u0131\xE7ap\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092419
+    m_Localized: "Yaln\u0131z kendi vuru\u015Fun. \u0130mle\xE7 halkas\u0131 b\xFCy\xFCr;
+      davran\u0131\u015F alan\u0131 de\u011Fi\u015Fmez."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092420
+    m_Localized: "H\u0131zl\u0131 Bilek"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092421
+    m_Localized: "Sald\u0131r\u0131 aral\u0131\u011F\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092422
+    m_Localized: "sald\u0131r\u0131 s\u0131kl\u0131\u011F\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092423
+    m_Localized: "Vuru\u015Flar aras\u0131 s\xFCre k\u0131sal\u0131r. Taban 0,10
+      sn."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092424
+    m_Localized: "Keskin B\u0131\xE7ak"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092425
+    m_Localized: "Do\u011Frudan vuru\u015F hasar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092426
+    m_Localized: "Yaln\u0131z kendi vuru\u015Fun. Davran\u0131\u015F hasar\u0131
+      de\u011Fi\u015Fmez."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092427
+    m_Localized: "K\u0131v\u0131lc\u0131m"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092428
+    m_Localized: "Mevcut davran\u0131\u015F \u015Fanslar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092429
+    m_Localized: "Patlama \xB7 kas\u0131rga \xB7 bumerang \xB7 elektrik. \u015Eans\u0131
+      olmayan saks\u0131ya \u015Fans vermez; en \xE7ok %100."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092430
+    m_Localized: "Kritik G\xF6z"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092431
+    m_Localized: "Kritik \u015Fans\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092432
+    m_Localized: "Yaln\u0131z kendi vuru\u015Fun. Y\xFCzde puan\u0131 olarak eklenir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092433
+    m_Localized: Nadir Tohum
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092434
+    m_Localized: Nadirlik bonusu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092435
+    m_Localized: "B\xFCt\xFCn saks\u0131lar. Y\xFCzde puan\u0131 olarak eklenir;
+      en \xE7ok 95 puan."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092436
+    m_Localized: "Y\u0131k\u0131m G\xFCc\xFC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092437
+    m_Localized: "Davran\u0131\u015F hasar\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092438
+    m_Localized: "Patlama \xB7 kas\u0131rga \xB7 bumerang \xB7 elektrik. Kendi vuru\u015Fun
+      de\u011Fi\u015Fmez."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092439
+    m_Localized: "A\xE7g\xF6zl\xFC Hasat"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092440
+    m_Localized: "A\xE7g\xF6zl\xFCl\xFCk:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092441
+    m_Localized: "Bo\u015F savuru\u015F hakk\u0131 harcamaz. G\xFC\xE7lenen vuru\u015F
+      yeni hak kazand\u0131rmaz. Davran\u0131\u015Flara ge\xE7mez."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092442
+    m_Localized: "A\u015F\u0131r\u0131 Y\xFCkleme"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092443
+    m_Localized: "Y\xFCkleme:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092444
+    m_Localized: "Ek proc zincire kat\u0131lmaz ve yeni zar atmaz. Kas\u0131rga /
+      bumerang aktif s\u0131n\u0131r\u0131 a\u015F\u0131lmaz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092445
+    m_Localized: "B\xFCy\xFCyen Ay"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092446
+    m_Localized: "B\xFCy\xFCme:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092447
+    m_Localized: "Hilal menzili 1 birim artar: 3 \u2192 4. Ana hilal do\u011Fdu\u011Fu
+      andan yok olana kadar ilerledi\u011Fi mesafeyle orant\u0131l\u0131 b\xFCy\xFCr;
+      ilk hasad\u0131 beklemez. Hasar b\xFCy\xFCmesi ger\xE7ek hasatlara ba\u011Fl\u0131d\u0131r.
+      Dolunay ba\u015Ftan b\xFCy\xFCk ve sabittir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092448
+    m_Localized: Dolunay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092449
+    m_Localized: 'Dolunay:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092450
+    m_Localized: "Her ana hilalin yan\u0131nda yaln\u0131z bir b\xFCy\xFCk ek hilal
+      \xE7\u0131kar; hasat ko\u015Fulu yoktur. Mouse halkas\u0131ndan do\u011Fdu\u011Fu
+      anda, ana hilalden farkl\u0131 rastgele y\xF6nde ilerler. Ba\u015Ftan b\xFCy\xFCkt\xFCr
+      ve yeniden Dolunay \xFCretmez."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092451
+    m_Localized: Elektrik Anteni
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092452
+    m_Localized: 'Anten:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092453
+    m_Localized: "Anten tarlan\u0131n kenar\u0131nda durur; saks\u0131 ve tile yeri
+      kaplamaz. Vuru\u015Fu senin vuru\u015Fun say\u0131lmaz: kritik atmaz, davran\u0131\u015F
+      tetiklemez."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092454
+    m_Localized: "Hasat Yank\u0131s\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092455
+    m_Localized: "Yank\u0131:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092456
+    m_Localized: "Yaln\u0131z kendi vuru\u015Funla yapt\u0131\u011F\u0131n hasatlar
+      say\u0131l\u0131r. Yank\u0131 yeni yank\u0131 do\u011Furmaz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092457
+    m_Localized: Hilal Darbesi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092458
+    m_Localized: 'Hilal:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092459
+    m_Localized: "Hilal mouse halkas\u0131n\u0131n kenar\u0131ndan rastgele bir ana
+      y\xF6nde \xE7\u0131kar. H\u0131z 8 birim/sn; temel menzil 3, B\xFCy\xFCyen
+      Ay ile 4 birimdir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092460
+    m_Localized: "\u0130letken Hat"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092461
+    m_Localized: 'Hat:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092462
+    m_Localized: "\u0130kinci antenin yerini sen se\xE7ersin; hat kurulamayan konum
+      se\xE7ilemez. Hat vuru\u015Fu senin vuru\u015Fun say\u0131lmaz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092463
+    m_Localized: "Kapal\u0131 Devre"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092464
+    m_Localized: 'Devre:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092465
+    m_Localized: "Ek vuru\u015F kendini yeniden ba\u015Flatamaz. Davran\u0131\u015F\u0131
+      olan saks\u0131 yoksa \xE7al\u0131\u015Fmaz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092466
+    m_Localized: Kritik Ark
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092467
+    m_Localized: 'Ark:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092468
+    m_Localized: "Ark, vuru\u015Funun de\u011Fmedi\u011Fi bir bitkiye gider. Kritik
+      atmaz, yeni ark do\u011Furmaz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092469
+    m_Localized: "Nadir Reakt\xF6r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092470
+    m_Localized: "Reakt\xF6r:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092471
+    m_Localized: "Patlama \xB7 kas\u0131rga \xB7 bumerang \xB7 elektrik. \u015Eans\u0131
+      olmayan saks\u0131ya \u015Fans vermez; en \xE7ok %100."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092472
+    m_Localized: "Ta\u015Fan Hasar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092473
+    m_Localized: "Ta\u015Fma:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092474
+    m_Localized: "Yaln\u0131z kendi vuru\u015Funun \xF6ld\xFCrd\xFC\u011F\xFC bitkiden
+      ba\u015Flar. Aktar\u0131m kritik atmaz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092475
+    m_Localized: "Art\xE7\u0131 Patlama"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092476
+    m_Localized: "Art\xE7\u0131 patlama:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092477
+    m_Localized: "Patlaman\u0131n d\u0131\u015F s\u0131n\u0131r\u0131ndan \xFC\xE7
+      ad\u0131m yay\u0131l\u0131r. Ayn\u0131 h\xFCcreye bir kez vurur; kilitli h\xFCcrelerden
+      ge\xE7mez. Art\xE7\u0131 yeni art\xE7\u0131 veya zincir ba\u015Flatmaz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092478
+    m_Localized: "\xC7ifte Ak\u0131m"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092479
+    m_Localized: "\u0130kinci elektrik dalgas\u0131:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092480
+    m_Localized: "\u015Eans\u0131 tutan her normal elektrikten sonra ayn\u0131 saks\u0131dan
+      ikinci bir dalga. Yeni \u015Fans at\u0131lmaz; ikinci dalga zincir ba\u015Flatmaz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092481
+    m_Localized: SON ROUND!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092482
+    m_Localized: "{0} SAN\u0130YE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092483
+    m_Localized: ROUND {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092484
+    m_Localized: "KOTA {0} \xB7 {1} ROUND"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092485
+    m_Localized: "SON ROUND \xB7 KOTAYA {0} KALDI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092486
+    m_Localized: LEVEL UP!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092487
+    m_Localized: Lv. {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092488
+    m_Localized: "de\u011Fi\u015Fiklik yok"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092489
+    m_Localized: "do\u011Frudan \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092490
+    m_Localized: "davran\u0131\u015F \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092491
+    m_Localized: "hasat kayna\u011F\u0131 \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092492
+    m_Localized: "BOSS GE\xC7\u0130LD\u0130 \xB7 UZMANLA\u015EMA SE\xC7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092493
+    m_Localized: "Yaln\u0131z biri al\u0131n\u0131r \xB7 run sonuna kadar ge\xE7erli
+      \xB7 geri al\u0131namaz \xB7 etkisi Round {0} ve sonras\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092494
+    m_Localized: Bonus yok, ceza yok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092495
+    m_Localized: "Hasar ve hasat geliri oldu\u011Fu gibi kal\u0131r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092496
+    m_Localized: "Do\u011Frudan hasar \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092497
+    m_Localized: "Davran\u0131\u015F hasar\u0131 \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092498
+    m_Localized: "patlama \xB7 kas\u0131rga \xB7 bumerang \xB7 elektrik"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092499
+    m_Localized: "Hasat kayna\u011F\u0131 \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092500
+    m_Localized: "hasattan gelen Gold \xB7 Iron \xB7 Stone"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092501
+    m_Localized: "SE\xC7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092502
+    m_Localized: "DAVRANI\u015E USTASI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092503
+    m_Localized: "MEVCUT D\xDCZEN\u0130 KORU"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092504
+    m_Localized: "USTA B\u0130\xC7\u0130C\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092505
+    m_Localized: SAKSILAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092506
+    m_Localized: "B\u0130R SAKSI SE\xC7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092507
+    m_Localized: "SE\xC7. EK. B\xDCY\xDCT."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092508
+    m_Localized: "YETENEK A\u011EACI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092509
+    m_Localized: YOK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092510
+    m_Localized: "Katalogdan a\xE7\u0131k bir saks\u0131 se\xE7."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092511
+    m_Localized: SATIN AL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092512
+    m_Localized: '{0}x{1} SAKSI'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092513
+    m_Localized: '{0} sn'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092514
+    m_Localized: "{1} i\xE7in {0} ekim yeri."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092515
+    m_Localized: "{0} bo\u015F, a\xE7\u0131k h\xFCcre gerekir. Yerle\u015Ftirirken
+      R d\xF6nd\xFCr\xFCr."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092516
+    m_Localized: "s\u0131radaki \xFCr\xFCn\xFCn"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092517
+    m_Localized: SATIN AL  /  {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092518
+    m_Localized: "Saks\u0131 ayar\u0131 eksik."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092519
+    m_Localized: "Bu saks\u0131y\u0131 yetenek a\u011Fac\u0131nda a\xE7."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092520
+    m_Localized: 'Mevcut: {0} {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092521
+    m_Localized: '{0} {1} daha gerekli  /  Mevcut: {2}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092522
+    m_Localized: Pancar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092523
+    m_Localized: "Havu\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092524
+    m_Localized: "M\u0131s\u0131r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092525
+    m_Localized: "\xDCz\xFCm"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092526
+    m_Localized: "\xC7imen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092527
+    m_Localized: Marul
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092528
+    m_Localized: Biber
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092529
+    m_Localized: Ananas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092530
+    m_Localized: Patates
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092531
+    m_Localized: "Balkaba\u011F\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092532
+    m_Localized: "\xC7ilek"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092533
+    m_Localized: Domates
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092534
+    m_Localized: 'Harvest Score: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092535
+    m_Localized: "Ba\u015Flang\u0131\xE7: {0} \xB7 {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725756092536
+    m_Localized: "Kal\u0131c\u0131 olarak a\xE7\u0131ld\u0131: {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286720
+    m_Localized: "BOSS \xD6D\xDCLLER\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286721
+    m_Localized: "Boss \xF6d\xFClleri: {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286722
+    m_Localized: "Aktif oynan\u0131\u015F {0} \xB7 se\xE7imler {1} \xB7 ma\u011Faza
+      ve haz\u0131rl\u0131k {2}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286723
+    m_Localized: seviye hesaplama {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286724
+    m_Localized: duraklama {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286725
+    m_Localized: KOTA VE BOSS HASADI TUTMADI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286726
+    m_Localized: BOSS HASADI TUTMADI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286727
+    m_Localized: "segment kotas\u0131 {0} (eksik)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286728
+    m_Localized: "segment kotas\u0131 {0} (tamam)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286729
+    m_Localized: "Round {0} \xB7 boss hasad\u0131 {1} (eksik) \xB7 {2}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286730
+    m_Localized: KOTA TUTMADI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286731
+    m_Localized: "Round {0} \xB7 segment skoru {1} (gereken kota)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286732
+    m_Localized: "boss hasad\u0131 {0} / {1} (tamam)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286733
+    m_Localized: RUN TAMAMLANDI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286734
+    m_Localized: son kota {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286735
+    m_Localized: '{0} round'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286736
+    m_Localized: "RUN TAMAMLANDI \xB7 ALPHA DENGE V1"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286737
+    m_Localized: "RUN TAMAMLANDI \xB7 GE\xC7 OYUN V1"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286738
+    m_Localized: DEMO TAMAMLANDI!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286739
+    m_Localized: "A\u015EILI KABUK"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286740
+    m_Localized: "\u0130ki b\xF6lgeden biri kapanacak \xB7 bir d\xFC\u011F\xFCm\xFC
+      k\u0131r: onun b\xF6lgesi kurtulur, di\u011Feri kapan\u0131r \xB7 se\xE7mezsen
+      A kapan\u0131r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286741
+    m_Localized: "Se\xE7: A d\xFC\u011F\xFCm\xFC {0}/{1} \xB7 B d\xFC\u011F\xFCm\xFC
+      {2}/{3} \xB7 {4} sn sonra A kapan\u0131r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286742
+    m_Localized: "{0} kurtuldu \xB7 {1} b\xF6lgesinde \xFCretim durdu \xB7 {2} sn"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286743
+    m_Localized: "{0} b\xF6lgesi a\xE7\u0131ld\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286744
+    m_Localized: "K\u0131rd\u0131\u011F\u0131n d\xFC\u011F\xFCm\xFCn b\xF6lgesi kurtulur"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286745
+    m_Localized: "A d\xFC\u011F\xFCm\xFC {0}/{1} \xB7 B d\xFC\u011F\xFCm\xFC {2}/{3}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286746
+    m_Localized: "{0} sn sonra A kapan\u0131r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286747
+    m_Localized: "Se\xE7mezsen A kapan\u0131r!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286748
+    m_Localized: "\u0130ST\u0130LACI F\u0130L\u0130Z"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286749
+    m_Localized: "Filiz \xE7\u0131k\u0131yor \xB7 yay\u0131ld\u0131\u011F\u0131 h\xFCcrelerde
+      \xFCretim yava\u015Flar \xB7 ana filizi kendi vuru\u015Funla k\u0131r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286750
+    m_Localized: "\xDCretim yava\u015F: {0} h\xFCcre \xB7 ana filiz {1}/{2} \xB7
+      {3} sn"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286751
+    m_Localized: "Ana filiz k\u0131r\u0131ld\u0131 \xB7 \xFCretim normale d\xF6nd\xFC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286752
+    m_Localized: "Filiz kurudu \xB7 \xFCretim normale d\xF6nd\xFC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286753
+    m_Localized: "D\u0130KEN KU\u015EATMASI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286754
+    m_Localized: "\u0130\u015Faretli {0} h\xFCcrede \xFCretim duracak \xB7 k\xF6kleri
+      kendi vuru\u015Funla k\u0131r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286755
+    m_Localized: "B\xF6lgede \xFCretim durdu \xB7 kalan k\xF6k {0}/{1} \xB7 {2} sn"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286756
+    m_Localized: "K\xF6kler k\u0131r\u0131ld\u0131 \xB7 b\xF6lge a\xE7\u0131ld\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286757
+    m_Localized: "Dikenler \xE7ekildi \xB7 b\xF6lge a\xE7\u0131ld\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286758
+    m_Localized: "GEZG\u0130N BEREKET"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286759
+    m_Localized: "Bereket geliyor: kaynak ve XP \xD72 \xB7 \xFCretim \xD72 h\u0131zl\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286760
+    m_Localized: "Kaynak \xD72 \xB7 XP \xD72"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286761
+    m_Localized: "Bo\u015F yuvalar \xD72 h\u0131zl\u0131 dolar \xB7 round boyunca"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286762
+    m_Localized: "{0} bereketli hasat \xB7 {1} h\u0131zl\u0131 do\u011Fu\u015F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286763
+    m_Localized: "Bereket bitti \xB7 {0} bonuslu hasat"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286764
+    m_Localized: "{0} h\u0131zl\u0131 do\u011Fu\u015F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286765
+    m_Localized: "SATI\u015ETAN \xC7IK"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286766
+    m_Localized: "GER\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286767
+    m_Localized: ERKEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286768
+    m_Localized: ORTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227725760286769
+    m_Localized: "G\xDC\xC7L\xDC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 229169762684928
+    m_Localized: "K\u0130L\u0130TL\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375912902656
+    m_Localized: "Bir S\u0131nama'y\u0131 ge\xE7tin! K\xF6klerime kadar bir titreme
+      indi."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845696
+    m_Localized: "Gemin nereden geliyordu? D\xFCnya m\u0131? \u2026Hi\xE7 duymad\u0131m."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845697
+    m_Localized: "Peki, \xF6yle olsun."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845698
+    m_Localized: "Bana g\xFCvendi\u011Fin i\xE7in sa\u011F ol."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845699
+    m_Localized: Emin misin?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845700
+    m_Localized: "I\u0131\u0131mm\u2026 D\xFCnya, D\xFCnya\u2026 belki duymu\u015Fumdur,
+      bilmem ki."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845701
+    m_Localized: "\xC7ok g\xFC\xE7lenme ama\u2026 G\xFC\xE7l\xFC \xE7ift\xE7iler
+      bir g\xFCn hep gider."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845702
+    m_Localized: "O \xF6d\xFCl\xFC sana tarla verdi. Tarla seni seviyor."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845703
+    m_Localized: "Ben de seviyorum. G\xFC\xE7l\xFC eller \xE7ok k\u0131ymetli."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845704
+    m_Localized: "Be\u015F round oldu bile! Fena de\u011Filsin, \xE7ift\xE7i."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845705
+    m_Localized: "Sen \xE7al\u0131\u015Ft\u0131k\xE7a ben b\xFCy\xFCr\xFCm. Adil
+      bir anla\u015Fma, de\u011Fil mi?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845706
+    m_Localized: "Adak'\u0131 neden mi istiyorum? B\xFCy\xFCmek i\xE7in."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845707
+    m_Localized: "Ne kadar \xE7ok verirsen o kadar b\xFCy\xFCr\xFCm. Sen de b\xFCy\xFCmek
+      istemez misin?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845708
+    m_Localized: "Senden \xF6nce de \xE7ift\xE7iler geldi. Hepsi \xE7ok \xE7al\u0131\u015Fkand\u0131."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845709
+    m_Localized: "Sonra\u2026 gittiler. Evet. Gittiler."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845710
+    m_Localized: "Gemin neden d\xFC\u015Ft\xFC, hi\xE7 d\xFC\u015F\xFCnd\xFCn m\xFC?
+      Yak\u0131t\u0131n vard\u0131, motorun sa\u011Flamd\u0131."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845711
+    m_Localized: "\u2026Bo\u015F ver. Burada mutlusun, de\u011Fil mi?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845712
+    m_Localized: "Bu kadar uza\u011Fa gelece\u011Fini d\xFC\u015F\xFCnmemi\u015Ftim\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845713
+    m_Localized: "Biraz soldum, de\u011Fil mi? Sen g\xFC\xE7lendik\xE7e ben korkuyorum."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845714
+    m_Localized: "Seninle biraz daha oynamak isterdim. Ama yak\u0131nda soru sormaya
+      ba\u015Flars\u0131n."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845715
+    m_Localized: Ne sorusu?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845716
+    m_Localized: "\u2026Bo\u015F ver. Hasat et."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845717
+    m_Localized: Soru sormam.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845718
+    m_Localized: "Hep b\xF6yle dersiniz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845719
+    m_Localized: "Eskiden mavi, kocaman bir tarlam vard\u0131. Topra\u011F\u0131
+      \xE7ekirde\u011Fine kadar s\u0131cakt\u0131."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845720
+    m_Localized: "Onu bitirdim. Tad\u0131 h\xE2l\xE2 dama\u011F\u0131mda."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845721
+    m_Localized: "\xD6nceki \xE7ift\xE7iler gitmedi. Ben onlar\u0131\u2026 hasat
+      ettim."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845722
+    m_Localized: "Bana k\u0131zacaks\u0131n. Hepsi k\u0131zm\u0131\u015Ft\u0131."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845723
+    m_Localized: "Gemiler kendili\u011Finden d\xFC\u015Fmez. Senin gemini ben \xE7ektim."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845724
+    m_Localized: "Ellerine ihtiyac\u0131m vard\u0131. H\xE2l\xE2 var."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845725
+    m_Localized: "Mavi tarlan\u0131n bir ad\u0131 vard\u0131. Senin gemin oradan
+      kalkt\u0131."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845726
+    m_Localized: "Art\u0131k biliyorsun, de\u011Fil mi?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845727
+    m_Localized: "Son S\u0131nama. Ge\xE7ersen beni yenmi\u015F olursun."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845728
+    m_Localized: "Ge\xE7emezsen yine buradas\u0131n. \u0130kisi de benim i\u015Fime
+      yarar."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845729
+    m_Localized: "Kazand\u0131n. Sona geldin\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845730
+    m_Localized: "O zaman oyun bitti. Saklanmama gerek kalmad\u0131."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845731
+    m_Localized: "Evet. D\xFCnya'n\u0131n \xE7ekirde\u011Fini ben yedim. Gemini de
+      ben d\xFC\u015F\xFCrd\xFCm."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845732
+    m_Localized: "Bana g\xFCvenmi\u015Ftin. En tatl\u0131s\u0131 buydu."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845733
+    m_Localized: "Benden \u015F\xFCphelenmi\u015Ftin. Hakl\u0131yd\u0131n, ama yine
+      de kald\u0131n."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845734
+    m_Localized: "\xDCzg\xFCn de\u011Fildim, \xE7ift\xE7i. Hi\xE7 olmad\u0131m. Sadece
+      a\xE7t\u0131m."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845735
+    m_Localized: "Hasat et. Bir sonraki gezegen i\xE7in g\xFC\xE7lenmem laz\u0131m."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845736
+    m_Localized: "Art\u0131k birbirimizi tan\u0131yoruz. Adak'\u0131m bekliyor."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 298375954845737
+    m_Localized: "Ka\xE7amazs\u0131n. Gemin yok, D\xFCnya'n yok. Sadece ben var\u0131m."
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

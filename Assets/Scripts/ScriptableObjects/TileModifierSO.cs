@@ -48,6 +48,9 @@ public class TileModifierSO : ScriptableObject
 {
     [Header("Bilgi")]
     public string modifierName;
+    // Oyuncuya görünen ad: çeviri tablosundan (data.tile.<ad>.name, ad Türkçe yazıdan); anahtar yoksa asset'teki yazı.
+    public string DisplayName => GameText.Data(NameKey, modifierName);
+    public string NameKey => "data.tile." + GameText.Slug(modifierName) + ".name";
     public TileModifierType modifierType;
     public TileRarity rarity;
     public Color tileColor = Color.white;

@@ -70,7 +70,7 @@ public class XpUI : MonoBehaviour
 
     private void UpdateLevelText(int level)
     {
-        levelText.text = $"Lv. {level}";
+        levelText.text = GameText.Format("ui.stamp.level", level);
         UpdateXPBar();
     }
 }

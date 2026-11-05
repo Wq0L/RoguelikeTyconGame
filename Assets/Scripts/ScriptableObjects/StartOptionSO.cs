@@ -25,6 +25,13 @@ public abstract class StartOptionSO : ScriptableObject
     [Min(0.01f)] public float harvestResourceMultiplier = 1f;
     [Min(0.01f)] public float harvestScoreMultiplier = 1f;
 
+    // Oyuncuya görünen ad ve oyun tarzı: çeviri tablosundan (data.start.<id>.name / .style); anahtar yoksa asset'teki yazı.
+    public string DisplayName => GameText.Data(NameKey, displayName);
+    public string Playstyle => GameText.Data(StyleKey, playstyle);
+    public string NameKey => DataKey("name");
+    public string StyleKey => DataKey("style");
+    private string DataKey(string field) => string.IsNullOrEmpty(id) ? null : "data.start." + id + "." + field;
+
     public bool OpenAtStart => unlockQuest == null;
     public bool IsNeutral => modifiers.Count == 0 && Mathf.Approximately(directDamageMultiplier, 1f) &&
                              Mathf.Approximately(harvestResourceMultiplier, 1f) && Mathf.Approximately(harvestScoreMultiplier, 1f);

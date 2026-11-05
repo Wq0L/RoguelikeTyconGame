@@ -549,6 +549,10 @@ public static class TakvimV1Verification
         Markers.SendMessage("LateUpdate"); Weather.SendMessage("LateUpdate");
         Must(Markers.ShowsActive == (boss && OpenZoneCount(previewed) > 0) && Weather.CurrentWeather == BossWeatherOverlay.Resolve(Events.Active, true) &&
              (boss && !(previewData is NoRuleBossSO)) == (Weather.CurrentWeather != BossWeatherOverlay.Weather.None), $"R{r}: zone / weather state wrong ({Weather.CurrentWeather})");
+        // A1 / A2 (5 Kasım 2026): Don Cephesi ve Sert Kabuk aktifken bölgenin çevre kenarlarından perde yükselir (her kenara bir duvar).
+        bool curtainWanted = boss && OpenZoneCount(previewed) > 0 && FrostZoneMarkers.HasCurtain(previewData);
+        Must(Markers.ShowsCurtain == curtainWanted && (!curtainWanted || Markers.CurtainWalls == Markers.EdgeCount),
+            $"R{r}: curtain state wrong for {previewData.displayName} (shows {Markers.ShowsCurtain}, walls {Markers.CurtainWalls}, edges {Markers.EdgeCount})");
 
         // HUD: kalan round dönemin uzunluğuna göre, yaklaşan boss'un round'u, boss hedefi; kâğıt yalnız boss aktifken boyanır.
         var hud = HudTexts();
@@ -636,6 +640,7 @@ public static class TakvimV1Verification
              next != null && next.Segment == p + 1 && next.StartRound == D[p] && next.AnnounceRound == r + 1, $"R{r}: boss should be over and the next period's boss announced for Round {D[p]}");
         Markers.SendMessage("LateUpdate"); Weather.SendMessage("LateUpdate");
         Must(!Markers.ShowsActive && Weather.CurrentWeather == BossWeatherOverlay.Weather.None && NoBossEffect(), $"R{r}: zone / weather / boss rule still active after the boss");
+        Must(!Markers.ShowsCurtain, $"R{r}: curtain still shown after the boss");
         string notice = Strip(SegmentEventText.Notice(Events, r));
         Must(notice.Contains(previewData.displayName + " GEÇTİ") && notice.Contains($"boss hasadı {N(BT[p - 1])} / {N(BT[p - 1])}") && notice.Contains($"Sıradaki boss: {next.Data.displayName} (Round {D[p]})"),
             $"R{r}: summary after the boss: {notice}");

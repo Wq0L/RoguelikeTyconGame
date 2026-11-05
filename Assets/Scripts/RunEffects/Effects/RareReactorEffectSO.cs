@@ -22,7 +22,7 @@ public sealed class RareReactorEffectSO : RunEffectSO
     [Min(0.1f)] public float seconds = 4f;
 
     public override string Summary =>
-        $"{minRarity} ve üstü bitkiyi kendi vuruşunla hasat edince {Number(seconds)} sn mevcut davranış şansları ×{Number(1f + chanceBonus)} · birikmez, süre yenilenir";
+        GameText.Format("ui.effect.reactor", TileBuffText.RarityName(minRarity), Number(seconds), Number(1f + chanceBonus));
 
     public override RunEffect Create() => new RareReactorEffect();
 }

@@ -993,7 +993,8 @@ public static class KirilmaV1Verification
         Place(Only(Plant("Grass")), 0, 0, Tile("Explosive", "Legendary"), 1f);
         foreach (var p in new[] { (1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (-1, -1), (2, 0) })
         {
-            if (withChain && p == (1, 0)) Place(Only(Plant("Grape")), 1, 0, Tile("Explosive", "Legendary"), 1f);
+            // Zincir denemesi: patlama şansı %100 olan saksı artçının ilk halkasında (iki adım öte; patlamanın bölgesine artçı vurmaz).
+            if (withChain && p == (2, 0)) Place(Only(Plant("Grape")), 2, 0, Tile("Explosive", "Legendary"), 1f);
             else Place(Only(Plant("Grape")), p.Item1, p.Item2);
         }
         Respawn();
@@ -1026,29 +1027,32 @@ public static class KirilmaV1Verification
     {
         var artci = Break("artci_patlama");
         int echo = BehaviorEchoes.ScaleDamage(firstDamage, artci.echoDamage);
-        Require(Echoes.Pending == 0 && Echoes.Executed(DamageType.Explosion) == 1 && Lost(1, 0) == firstDamage + echo && Lost(0, 1) == firstDamage + echo && Lost(-1, 0) == firstDamage + echo && Lost(0, -1) == firstDamage + echo,
-            $"After {artci.echoDelay} s the aftershock hits the same neighbours for {echo} = {firstDamage} × {artci.echoDamage} (computed damage × ratio; the behavior multiplier is not applied a second time)");
-        Require(Lost(1, 1) == echo && Lost(-1, -1) == echo && Lost(2, 0) == 0,
-            $"Aftershock radius ×{artci.echoRadius}: the diagonal neighbours are hit too ({echo}), the cell two steps away is not");
-        Require(Echoes.Hits(DamageType.Explosion) == 6 && Echoes.Kills(DamageType.Explosion) == 0 && HarvestBehaviorStats.Triggered(DamageType.Explosion) == triggersBefore + 1 && Echoes.Scheduled(DamageType.Explosion) == 1,
-            "One trigger, one aftershock (6 plants hit); the aftershock is not a new trigger and schedules nothing");
+        // Bölüm 3.7.5'ten beri artçı normal patlamanın bölgesine (saksı + dört komşu) vurmaz: 0,2 sn arayla dışa doğru 3 halka yayılır.
+        // Halka geometrisi AftershockWaveVerification'da; burada ilk halka (çaprazlar ve iki adım ötesi) ve hasar kuralı sınanır.
+        Require(Echoes.Pending == 0 && Echoes.Executed(DamageType.Explosion) >= 1 &&
+                Lost(1, 0) == firstDamage && Lost(0, 1) == firstDamage && Lost(-1, 0) == firstDamage && Lost(0, -1) == firstDamage,
+            $"The aftershock leaves the normal explosion's own region alone: the four neighbours keep only the explosion's {firstDamage}");
+        Require(Lost(1, 1) == echo && Lost(-1, -1) == echo && Lost(2, 0) == echo,
+            $"The first ring beyond it (diagonals and two steps away) takes {echo} = {firstDamage} × {artci.echoDamage} once (computed damage × ratio; the behavior multiplier is not applied a second time)");
+        Require(Echoes.Hits(DamageType.Explosion) == 3 && Echoes.Kills(DamageType.Explosion) == 0 && HarvestBehaviorStats.Triggered(DamageType.Explosion) == triggersBefore + 1 && Echoes.Scheduled(DamageType.Explosion) == 1,
+            "One trigger, one aftershock wave (3 plants hit, each once); the aftershock is not a new trigger and schedules nothing");
         // Zincir yok: artçının öldürdüğü, patlama şansı %100 olan saksı patlamaz ve yeni artçı planlamaz.
         BuildBlastField(true);
-        SetF(PlantAt(1, 0), "currentHealth", firstDamage + 1);      // ilk patlamadan 1 canla çıkar, artçıda ölür
+        SetF(PlantAt(2, 0), "currentHealth", 1);      // patlamanın dışında, artçının ilk halkasında ölür
         SetF(PlantAt(0, 0), "currentHealth", 1);
         triggersBefore = HarvestBehaviorStats.Triggered(DamageType.Explosion);
         harvestsBefore = harvests;
         Attack(Pos(0, 0));
-        Require(!Dead(1, 0) && PlantAt(1, 0).CurrentHealth == 1 && Echoes.Pending == 1 && harvests == harvestsBefore + 1,
-            "Chain test: the neighbour (explosion chance 100 %) survives the first explosion with 1 HP");
+        Require(!Dead(2, 0) && Echoes.Pending == 1 && harvests == harvestsBefore + 1,
+            "Chain test: the planter two steps away (explosion chance 100 %) is outside the explosion and waits for the aftershock");
         return artci.echoDelay + .8;
     }
 
     static double AftershockChainResult()
     {
-        Require(Dead(1, 0) && harvests == harvestsBefore + 2 && Echoes.Kills(DamageType.Explosion) == 1 && Echoes.Pending == 0 && Echoes.Scheduled(DamageType.Explosion) == 2 &&
-                HarvestBehaviorStats.Triggered(DamageType.Explosion) == triggersBefore + 1 && Lost(2, 0) == 0,
-            "The aftershock really harvested that plant (a behavior harvest): no explosion from it, no new aftershock, the plant behind it is untouched");
+        Require(Dead(2, 0) && harvests == harvestsBefore + 2 && Echoes.Kills(DamageType.Explosion) == 1 && Echoes.Pending == 0 && Echoes.Scheduled(DamageType.Explosion) == 2 &&
+                HarvestBehaviorStats.Triggered(DamageType.Explosion) == triggersBefore + 1 && Lost(1, 0) == firstDamage,
+            "The aftershock really harvested that plant (a behavior harvest): no explosion from it (its neighbour keeps only the first explosion's damage), no new aftershock");
         return .05;
     }
 
@@ -1071,8 +1075,8 @@ public static class KirilmaV1Verification
         SetF(PlantAt(0, 0), "currentHealth", 1);
         Attack(Pos(0, 0));
         Require(Dead(0, 1) && Echoes.Pending == 1, "Pool test: the first explosion kills the neighbour at (0,1); the aftershock is pending");
-        RespawnAt(2, 0);   // artçı alanının dışındaki hücre: havuzdaki nesne burada yeniden kullanılabilir
-        RespawnAt(0, 1);   // artçı alanının içindeki hücre: yeni bir bitki
+        RespawnAt(2, 0);   // artçının ilk halkasındaki hücre: havuzdaki nesne burada yeniden kullanılabilir
+        RespawnAt(0, 1);   // patlamanın kendi bölgesindeki hücre (artçı vurmaz): yeni bir bitki
         return artci.echoDelay + .8;
     }
 
@@ -1080,8 +1084,8 @@ public static class KirilmaV1Verification
     {
         var artci = Break("artci_patlama");
         int echo = BehaviorEchoes.ScaleDamage(firstDamage, artci.echoDamage);
-        Require(Echoes.Pending == 0 && Lost(2, 0) == 0 && Lost(0, 1) == echo && Lost(1, 0) == firstDamage + echo,
-            $"Targets are evaluated at aftershock time by cell: the plant respawned outside the area is untouched, the one now standing inside the area is hit once ({echo}); no stale plant reference is used");
+        Require(Echoes.Pending == 0 && Lost(2, 0) == echo && Lost(0, 1) == 0 && Lost(1, 0) == firstDamage,
+            $"Targets are evaluated at aftershock time by cell: the plant now standing in the ring is hit once ({echo}), the new plant in the explosion's own region is untouched; no stale plant reference is used");
         ClearTestMods();
         return .05;
     }

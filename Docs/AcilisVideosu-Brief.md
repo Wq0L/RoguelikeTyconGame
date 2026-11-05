@@ -127,6 +127,10 @@ Kullanıcı kararı (28 Ekim): üretim **Blender'da 3D toon**, film/anime kurgus
     - Kullanıcı Play testi (4 Kasım): video sorunsuz. Öğretim çıkmadı, çünkü kayıtta 28 Ekim testlerinden kalma "görüldü" işaretleri vardı; hata değil. Geçme plakası küçültüldü (360×96 → 250×64, yazı 28 → 19 pt; kullanıcı: "bar çok büyük").
     - Sıfırlama (Play dışında, Unity üst menüsü): `Tools > Diyalog > Açılış videosunu tekrar göster (Play testi için)` yalnız videoyu; `Tools > Diyalog > Görülen konuşmaları sıfırla (Play testi için)` öğretimi, hikâyeyi ve videoyu sıfırlar. Bir kez oynama kuralı oyunda aynen kalır.
     - Ders: izole Unity testi videoyu kullanıcının hoparlöründen çalıyordu; kullanıcı bunu kendi oyununun sesi sandı. Test artık sessiz (`EditorUtility.audioMasterMute`) ve bunu denetliyor.
+  - **Açık düzeltme (5 Kasım, kullanıcı not aldırdı, sonra yapılacak):** roketin ucundaki anten yamuk duruyor.
+    - Neden (kodda görülen): `build_intro_v5.py` içindeki `Anten` (`between((2.0, 0, .05), (2.45, 0, .18), …)`) burnun eksenine paralel değil. Burnun ucu x = 2,1'de, eksen üstünde; anten ucun 0,1 gerisinden ve 0,05 yukarıdan başlıyor, yaklaşık 16° yukarı eğik çıkıyor. Bu yüzden uçtan değil, yandan çıkmış gibi görünüyor.
+    - Düzeltme önerisi: anteni burnun ekseni üstünde, uçtan çıkacak biçimde koymak (ör. `(2.06, 0, 0) → (2.5, 0, 0)`). Bilerek eğik istenirse eğim açıkça çizilmiş gibi okunmalı. Ekran görüntüsüyle birlikte kullanıcıya gösterilip karar alınır.
+    - Etkisi: roket bütün çekimlerde var. Düzeltmeden sonra tam render (`-- all hd`), birleştirme (`assemble_intro_previs.py v5_1080`) ve oyun videosu yeniden üretilir (`export_intro_unity.py` → `Assets/StreamingAssets/Intro/ErigoneIntro.webm`).
   - Sırada (Bitti sayılır bölümüne göre): Unity'ye bağlama ve test. Atlanabilir; ilk run'da bir kez, seçimden önce; `MetaSaveData.introSeen`.
 
 ## Kurallar (proje genelinde)

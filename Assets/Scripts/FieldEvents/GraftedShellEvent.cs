@@ -25,7 +25,7 @@ public sealed class GraftedShellEvent : FieldEvent
     public GraftedShellEvent(GraftedShellConfig config) => this.config = config;
 
     public override FieldEventKind Kind => FieldEventKind.GraftedShell;
-    public override string Title => "AŞILI KABUK";
+    public override string Title => GameText.Get("ui.field.shell.title");
     protected override FieldEventTiming Timing => config.timing;
     protected override float ActiveSeconds => config.choiceSeconds + config.closedSeconds;
     public override int ZoneCount => 2;
@@ -45,14 +45,14 @@ public sealed class GraftedShellEvent : FieldEvent
             {
                 case FieldEventPhase.Preparing:
                 case FieldEventPhase.Emerging:
-                    return "İki bölgeden biri kapanacak · bir düğümü kır: onun bölgesi kurtulur, diğeri kapanır · seçmezsen A kapanır";
+                    return GameText.Get("ui.field.shell.prep");
                 case FieldEventPhase.Active:
                     if (!Decided)
-                        return $"Seç: A düğümü {Targets[0].Remaining}/{Targets[0].Durability} · B düğümü {Targets[1].Remaining}/{Targets[1].Durability} · " +
-                               $"{Mathf.CeilToInt(Mathf.Max(0f, config.choiceSeconds - PhaseTime))} sn sonra A kapanır";
-                    return $"{Name(SavedZone)} kurtuldu · {Name(closedIndex)} bölgesinde üretim durdu · {Mathf.CeilToInt(Mathf.Max(0f, config.closedSeconds - closedTime))} sn";
+                        return GameText.Format("ui.field.shell.choose", Targets[0].Remaining, Targets[0].Durability, Targets[1].Remaining, Targets[1].Durability,
+                                               Mathf.CeilToInt(Mathf.Max(0f, config.choiceSeconds - PhaseTime)));
+                    return GameText.Format("ui.field.shell.closed", Name(SavedZone), Name(closedIndex), Mathf.CeilToInt(Mathf.Max(0f, config.closedSeconds - closedTime)));
                 case FieldEventPhase.Resolving:
-                    return $"{Name(closedIndex)} bölgesi açıldı";
+                    return GameText.Format("ui.field.shell.reopened", Name(closedIndex));
                 default:
                     return "";
             }

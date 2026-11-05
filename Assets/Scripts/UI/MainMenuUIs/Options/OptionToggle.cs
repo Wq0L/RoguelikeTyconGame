@@ -9,8 +9,9 @@ public sealed class OptionToggle : OptionRow
     [SerializeField] private Button button;
     [SerializeField] private TMP_Text state;
     [SerializeField] private ComicUITheme theme;
-    [SerializeField] private string onText = "AÇIK";
-    [SerializeField] private string offText = "KAPALI";
+    // Çeviri anahtarı (eski sahnelerde düz yazı da olabilir: GameText.Resolve).
+    [SerializeField] private string onText = "ui.options.on";
+    [SerializeField] private string offText = "ui.options.off";
 
     public Action<bool> Changed;
     private bool isOn;
@@ -32,7 +33,7 @@ public sealed class OptionToggle : OptionRow
 
     private void Refresh()
     {
-        state.text = isOn ? onText : offText;
+        state.text = GameText.Resolve(isOn ? onText : offText);
         if (theme == null || !button.TryGetComponent(out ComicButtonVisual visual)) return;
         Material[] palette = isOn ? theme.green : theme.red;
         if (palette == null || palette.Length < 4) return;

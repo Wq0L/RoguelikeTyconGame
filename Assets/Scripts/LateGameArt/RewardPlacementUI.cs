@@ -78,7 +78,11 @@ public sealed class RewardPlacementUI : MonoBehaviour
         prompt.fontSizeMin = 16f;
         prompt.fontSizeMax = 32f;
         prompt.raycastTarget = false;
-        if (theme != null) cancel = theme.CreateButton(root, "Cancel", "VAZGEÇ", "green", new Vector2(240f, 72f));
+        if (theme != null)
+        {
+            cancel = theme.CreateButton(root, "Cancel", "", "green", new Vector2(240f, 72f));
+            LocalizedText.Bind(cancel.GetComponentInChildren<TMP_Text>(true), "ui.effect.place_cancel");
+        }
         else cancel = new GameObject("Cancel", typeof(RectTransform), typeof(Image), typeof(Button)).GetComponent<Button>();
         var cancelRect = (RectTransform)cancel.transform;
         cancelRect.SetParent(root, false);
@@ -128,7 +132,7 @@ public sealed class RewardPlacementUI : MonoBehaviour
         cells.Clear();
         HideMarkers();
         if (shown == null || shown.effect == null || effects == null) return;
-        if (prompt != null) prompt.text = $"{shown.effect.PlacementPrompt}\n<size=60%>{shown.displayName} · tıkla: yerleştir · {KeyPrompts.Tag(KeyPrompts.Esc)}: vazgeç</size>";
+        if (prompt != null) prompt.text = $"{shown.effect.PlacementPrompt}\n<size=60%>{GameText.Format("ui.effect.place_hint", shown.DisplayName, KeyPrompts.Tag(KeyPrompts.Esc))}</size>";
         shown.effect.CollectPlacements(effects, slots);
         if (world == null) world = new GameObject("Reward Placement Markers").transform;
         for (int i = 0; i < slots.Count; i++)

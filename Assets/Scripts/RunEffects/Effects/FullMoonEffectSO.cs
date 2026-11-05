@@ -22,7 +22,7 @@ public sealed class FullMoonEffectSO : RunEffectSO
     [Range(0f, DirectAttackPause.MaxSeconds)] public float pauseSeconds = 0.35f;
 
     public override string Summary =>
-        $"her ana hilalle mouse halkasından bir büyük ek hilal · ana hilalden farklı rastgele yön · taban hasarın %{Percent(returnDamage)}'i · bedel: {Number(pauseSeconds)} sn vuruş duraklaması";
+        GameText.Format("ui.effect.full_moon", Percent(returnDamage), Number(pauseSeconds));
 
     public override RunEffect Create() => new FullMoonEffect();
 

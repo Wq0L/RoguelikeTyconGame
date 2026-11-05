@@ -144,6 +144,8 @@ public static class MetaSave
         d.milestones.RemoveAll(string.IsNullOrEmpty);
         d.pendingStory ??= new List<string>();
         d.pendingStory.RemoveAll(string.IsNullOrEmpty);
+        d.storyChoices ??= new List<string>();
+        d.storyChoices.RemoveAll(string.IsNullOrEmpty);
         if (d.storyStage < 0) d.storyStage = 0;
         if (d.version < CurrentVersion) d.version = CurrentVersion;   // eski kayıt: yeni alanlar boş başlar
     }
@@ -263,6 +265,8 @@ public sealed class MetaSaveData
     public int storyStage;
     public List<string> milestones = new();
     public List<string> pendingStory = new();
+    // Hikâye cevap seçimleri (Faz 3): "konuşma:A" / "konuşma:B".
+    public List<string> storyChoices = new();
     public int runsStarted;
     public int runsFinished;
     public bool introSeen;

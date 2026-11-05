@@ -20,7 +20,7 @@ public sealed class ThornSiegeEvent : FieldEvent
     public ThornSiegeEvent(ThornSiegeConfig config) => this.config = config;
 
     public override FieldEventKind Kind => FieldEventKind.ThornSiege;
-    public override string Title => "DİKEN KUŞATMASI";
+    public override string Title => GameText.Get("ui.field.thorn.title");
     protected override FieldEventTiming Timing => config.timing;
     public override int ZoneCount => 1;
     public override IReadOnlyList<GridPosition> Zone(int index) => zone;
@@ -29,9 +29,9 @@ public sealed class ThornSiegeEvent : FieldEvent
 
     public override string Status => Phase switch
     {
-        FieldEventPhase.Preparing or FieldEventPhase.Emerging => $"İşaretli {zone.Count} hücrede üretim duracak · kökleri kendi vuruşunla kır",
-        FieldEventPhase.Active => $"Bölgede üretim durdu · kalan kök {RootsLeft}/{Targets.Count} · {Mathf.CeilToInt(ActiveRemaining)} sn",
-        FieldEventPhase.Resolving => ResolvedByPlayer ? "Kökler kırıldı · bölge açıldı" : "Dikenler çekildi · bölge açıldı",
+        FieldEventPhase.Preparing or FieldEventPhase.Emerging => GameText.Format("ui.field.thorn.prep", zone.Count),
+        FieldEventPhase.Active => GameText.Format("ui.field.thorn.active", RootsLeft, Targets.Count, Mathf.CeilToInt(ActiveRemaining)),
+        FieldEventPhase.Resolving => GameText.Get(ResolvedByPlayer ? "ui.field.thorn.broken" : "ui.field.thorn.withdrew"),
         _ => "",
     };
 

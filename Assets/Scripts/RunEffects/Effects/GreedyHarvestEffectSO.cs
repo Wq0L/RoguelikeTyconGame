@@ -20,7 +20,7 @@ public sealed class GreedyHarvestEffectSO : RunEffectSO
     [Min(1f)] public float damageMultiplier = 1.5f;
 
     public override string Summary =>
-        $"tek vuruşta {minHarvests}+ hasat: sıradaki vuruşun hasarı ×{Number(damageMultiplier)} · tek hedefe vurursan hak kaybolur";
+        GameText.Format("ui.effect.greedy", minHarvests, Number(damageMultiplier));
 
     public override RunEffect Create() => new GreedyHarvestEffect();
 }

@@ -1,0 +1,746 @@
+key,note,en,tr
+meta.speed,"Not text: typewriter speed factor for this language (1 = normal; use about 0.5 for Chinese/Japanese/Korean).",1,1
+ui.name.eri,"Name plate of the plant mascot (the speaker). Keep very short.",Eri,Eri
+ui.skip,"Button on the big box: skips the whole conversation. Keep short.",Skip,Atla
+intro.select.0,"Eri, first meeting. Start screen (pick a farmer and a scythe). Big box. Eri slips: 'crashed' then corrects to 'came'.","Oh! A ship! Nobody has crashed here in ages… I mean, come here.","Oh! Bir gemi! Uzun zamandır kimse düşmemişti… yani, gelmemişti."
+intro.select.1,"Same conversation, line 2. Friendly on the surface, possessive underneath.","I'm Eri. This planet is mine: the soil is mine, the hands are yours.","Ben Eri. Bu gezegen benim; toprak benim, eller sizin."
+intro.select.2,"Same conversation, line 3. Farmer and scythe are the two choices on this screen.","Pick a farmer and a scythe. We'll handle the rest together.","Bir çiftçi ve bir tırpan seç. Gerisini birlikte hallederiz."
+tut.setup.0,"Preparation screen, first run. Big box. The field is still empty; the player must buy a planter (pot) in the planter shop, then start the round.","The field is empty… Buy a planter from the shop first, then start the round.","Tarla bomboş… Önce dükkândan bir saksı al, sonra round'u başlat."
+tut.place.0,"Planter placement mode, first time. Big box. Clicking an empty field cell places it; the R key rotates it.","Click an empty spot and the planter settles in. Press R to rotate it.","Boş bir yere tıkla, saksı oraya oturur. R ile döndürebilirsin."
+tut.hit.0,"First round starts. Small box during play. Attacks are automatic while the cursor is over plants. Teasing tone (a joke).","Don't know how to harvest? Keep the cursor over the plants; the scythe swings by itself.","Hasat bilmiyor musun? İmleci bitkilerin üstünde tut, tırpan kendi vurur."
+tut.hit.1,"Same conversation, line 2. Joke AND the story's first hidden hint: Eri remembers Earth's technology (it has been to Earth). Keep it casual; do not explain or make it obvious.","Didn't Earth have automatic scythes? I could have sworn it did…","Dünya'da otomatik tırpan yok muydu? Var diye hatırlıyordum…"
+tut.adak.0,"First round, after the previous line. Small box. Offering (TR: Adak) = the harvest share offered to Eri (the quota panel, top left). Game term: translate consistently.","That share at the top left is my Offering. Fill it before the period ends, okay?","Sol üstteki pay benim Adak'ım. Dönem bitmeden dolsun, olur mu?"
+tut.level.0,"First level-up: card choice screen. Big box. The chosen card lasts for this run.","You're growing! Pick one; it stays with you for this harvest.","Büyüyorsun! Birini seç; bu hasat boyunca seninle kalır."
+tut.lastround.0,"Last round of an Offering period starts and the Offering is not full yet (first time). Small box during play.","Last round of the period. My Offering is still short… hurry.","Dönemin son round'u. Adak'ım hâlâ eksik… acele et."
+tut.period.0,"An Offering period was met for the first time. Round end screen, big box. Satisfied, slightly unsettling.","Mmm… I'm full.","Mmm… doydum."
+tut.period.1,"Same conversation, line 2. Second reading: the hunger keeps growing.","For now. My next share will be a little bigger.","Şimdilik. Bir sonraki payım biraz daha büyük olacak."
+tut.boss.0,"First Trial (TR: Sınama; boss) round starts. Small box during play. Trial = boss round; its own target is shown in the left panel. Game term: translate consistently.","This round is a Trial! Reach the target on the left within this round.","Bu round bir Sınama! Soldaki hedefi bu round içinde doldur."
+tut.kapris.0,"First field event (one of Eri's wild seeds) is about to appear. Small box during play. Its plate on the left says what it does (some must be cut, some give a bonus).","One of my seeds has gone wild! What it does is written on the left.","Tohumlarımdan biri azdı! Ne yaptığı solda yazıyor."
+end.quota.0,"Run ended because the Offering was not met (first time). Big box. Hungry, cold.","The Offering fell short. Hunger… doesn't wait.","Adak eksik kaldı. Açlık… beklemez."
+end.quota.1,"Same conversation, line 2.","We'll start again. The soil is always here.","Yeniden başlarız. Toprak hep burada."
+end.boss.0,"Run ended because a Trial (boss round) was failed (first time). Big box.","You didn't pass the Trial… And I can't wait either.","Sınama'yı geçemedin… Ben de bekleyemem."
+end.boss.1,"Same conversation, line 2.","You'll be back. I know it.","Yine geleceksin, biliyorum."
+end.victory.0,"Run won (first time). Big box. Content, with an unsettling second reading.","I'm full. Really, this time.","Doydum. Bu sefer gerçekten."
+end.victory.1,"Same conversation, line 2.","…It won't last, though.","…Uzun sürmez ama."
+react.setup.0,"Speech bubble of Eri on the planet, preparation screen (repeats). Very short.","Hmm…","Hmm…"
+react.period.0,"Speech bubble of Eri on the planet when an Offering period is met (repeats). Very short.","Mmm…","Mmm…"
+ui.card.comparison,Card choice: caption of the before/after comparison line. Keep the arrow and the dot.,BASE → WITH CARD  ·  EXAMPLE,TEMEL → KARTLA  ·  ÖRNEK
+ui.card.tile_effect,Card choice: caption above the card's effect on a field tile.,TILE EFFECT,TILE ETKİSİ
+ui.game.main_menu,Run end screen button: back to the main menu.,Main Menu,Ana Menü
+ui.game.planter.card_1x1,Planter shop card title: a 1x1 planter (pot).,1x1 PLANTER,1x1 SAKSI
+ui.game.planter.card_1x2,Planter shop card title: a 1x2 planter (pot).,1x2 PLANTER,1x2 SAKSI
+ui.game.planter.card_1x3,Planter shop card title: a 1x3 planter (pot).,1x3 PLANTER,1x3 SAKSI
+ui.game.planter.card_2x2,Planter shop card title: a 2x2 planter (pot).,2x2 PLANTER,2x2 SAKSI
+ui.game.planter.card_2x3,Planter shop card title: a 2x3 planter (pot).,2x3 PLANTER,2x3 SAKSI
+ui.game.planter.clear,Planter shop button: clears the selection.,CLEAR,TEMİZLE
+ui.game.planter.grow_time,"Planter shop, detail caption above the seconds a plant needs to grow.",GROW TIME,BÜYÜME SÜRESİ
+ui.game.planter.plots,"Planter shop, detail caption above the number of growing plots in the planter.",PLOTS,EKİM YERİ
+ui.game.planter.sell,Planter shop button: sell mode.,SELL,SAT
+ui.game.planter.size,"Planter shop, detail caption above the planter size (e.g. 2x3).",SIZE,BOYUT
+ui.game.planter_shop,Preparation screen button: opens the planter (pot) shop.,PLANTER SHOP,SAKSI DÜKKÂNI
+ui.game.restart,Run end screen button: starts a new run. <br> is a line break used for layout; keep it.,Restart Game<br>,Yeniden Başla<br>
+ui.game.skill_shop,Preparation screen button: opens the skill tree shop.,SKILL SHOP,YETENEK DÜKKÂNI
+ui.game.skip_cards,Card choice screen button: skip the offered cards.,Skip Cards,Kartları Geç
+ui.game.start_round,"Preparation screen, main button: starts the next round. Big button, keep short.",START ROUND,ROUND'U BAŞLAT
+ui.menu.options,Main menu button: opens the settings.,Options,Ayarlar
+ui.menu.play,Main menu button. <br> is a line break used for layout; keep it.,Play<br>,Oyna<br>
+ui.menu.quit,Main menu button: quits the game.,Quit,Çıkış
+ui.options.title,Settings window title.,SETTINGS,AYARLAR
+ui.options.tab.display,Settings tab. Short.,DISPLAY,GÖRÜNTÜ
+ui.options.tab.audio,Settings tab. Short.,AUDIO,SES
+ui.options.tab.gameplay,Settings tab. Short.,GAMEPLAY,OYNANIŞ
+ui.options.tab.controls,Settings tab. Short.,CONTROLS,KONTROLLER
+ui.options.defaults,Settings button: resets every setting except the language to its default.,DEFAULTS,VARSAYILANLAR
+ui.options.back,Settings button: closes the settings.,BACK,GERİ
+ui.options.on,Toggle state (setting is on). Very short.,ON,AÇIK
+ui.options.off,Toggle state (setting is off). Very short.,OFF,KAPALI
+ui.options.hint,Settings: help line shown when no setting is hovered.,"Hover over a setting to see what it does here.","Bir ayarın üzerine gel, ne işe yaradığı burada görünsün."
+ui.options.language,"Settings row title: game language. Keep "" / Language"" after the translated word so players stuck in a language they cannot read can still find it (in English write only ""Language"").",Language,Dil / Language
+ui.options.language.desc,Settings row help text.,"Game language. On first start the computer's language is used; English if it is not available.","Oyunun dili. İlk açılışta bilgisayarın dili seçilir; o dil yoksa İngilizce."
+ui.options.resolution,Settings row title.,Resolution,Çözünürlük
+ui.options.resolution.desc,Settings row help text.,The screen resolution the game runs at.,Oyunun çalıştığı ekran çözünürlüğü.
+ui.options.window_mode,Settings row title.,Window Mode,Ekran Modu
+ui.options.window_mode.desc,Settings row help text.,"Fullscreen, borderless window or a normal window.","Tam ekran, kenarlıksız pencere ya da normal pencere."
+ui.options.window_mode.fullscreen,Window mode value.,Fullscreen,Tam Ekran
+ui.options.window_mode.borderless,Window mode value: fullscreen borderless window.,Borderless,Kenarlıksız
+ui.options.window_mode.windowed,Window mode value.,Windowed,Pencere
+ui.options.vsync,Settings row title. Technical term; usually not translated.,VSync,VSync
+ui.options.vsync.desc,Settings row help text.,Prevents screen tearing and locks the FPS to the monitor's refresh rate.,Görüntü yırtılmasını önler ve FPS'i monitörün tazeleme hızına sabitler.
+ui.options.fps_limit,Settings row title.,FPS Limit,FPS Sınırı
+ui.options.fps_limit.desc,Settings row help text.,Only when VSync is off. A lower limit eases the graphics card and the battery.,VSync kapalıyken geçerli. Düşük sınır ekran kartını ve pili rahatlatır.
+ui.options.fps_value,FPS limit value. {0} = frames per second (number).,{0} FPS,{0} FPS
+ui.options.fps_unlimited,FPS limit value: no limit.,Unlimited,Sınırsız
+ui.options.quality,Settings row title.,Graphics Quality,Grafik Kalitesi
+ui.options.quality.desc,Settings row help text.,Low: lighter graphics settings for weaker computers.,Düşük: zayıf bilgisayarlar için daha hafif görüntü ayarları.
+ui.options.quality.low,Graphics quality value.,Low,Düşük
+ui.options.quality.high,Graphics quality value.,High,Yüksek
+ui.options.background_effects,Settings row title.,Background Effects,Arka Plan Efektleri
+ui.options.background_effects.desc,Settings row help text.,"Animated space background. When off, a plain colour is used; raises the FPS on weak graphics cards.","Hareketli uzay arka planı. Kapatınca düz renk kullanılır; zayıf ekran kartlarında FPS artırır."
+ui.options.master_volume,Settings row title.,Master Volume,Ana Ses
+ui.options.master_volume.desc,Settings row help text.,Overall level of all game sounds.,Oyundaki tüm seslerin genel seviyesi.
+ui.options.music,Settings row title.,Music,Müzik
+ui.options.music.desc,Settings row help text.,Music level.,Müzik seviyesi.
+ui.options.effects,Settings row title: sound effects volume.,Effects,Efektler
+ui.options.effects.desc,Settings row help text.,"Harvest, hit and interface sounds.","Hasat, vuruş ve arayüz efekt sesleri."
+ui.options.mute_background,Settings row title.,Mute in Background,Arka Planda Sessiz
+ui.options.mute_background.desc,Settings row help text.,Mutes the game when you switch to another window.,Başka bir pencereye geçince oyunun sesini kapatır.
+ui.options.screen_shake,Settings row title.,Screen Shake,Ekran Sarsıntısı
+ui.options.screen_shake.desc,Settings row help text. Crit = critical hit.,"Strength of the explosion, crit and round-end shakes.","Patlama, crit ve round sonu sarsıntılarının gücü."
+ui.options.camera_motion,Settings row title.,Camera Motion,Kamera Hareketi
+ui.options.camera_motion.desc,Settings row help text.,The camera's gentle breathing motion.,Kameranın hafif nefes alma hareketi.
+ui.options.damage_numbers,Settings row title.,Damage Numbers,Hasar Yazıları
+ui.options.damage_numbers.desc,Settings row help text.,Damage numbers that pop up on hits.,Vuruşlarda çıkan hasar sayıları.
+ui.options.grid_coordinates,Settings row title.,Grid Coordinates,Grid Koordinatları
+ui.options.grid_coordinates.desc,Settings row help text. A–K and 1–11 are the grid's column and row labels; keep them.,"A–K / 1–11 labels on the grid edge; the same as on the map.","Grid kenarındaki A-K / 1-11 etiketleri; haritadaki koordinatlarla aynı."
+ui.options.rarity_auras,Settings row title. Rarity = how rare a plant is.,Rarity Auras,Rarity Auraları
+ui.options.rarity_auras.desc,Settings row help text.,The coloured ring under plants that shows their rarity.,"Bitkilerin altındaki, rarity'sini gösteren renkli halka."
+ui.options.round_end_slowmo,Settings row title.,Round End Slow Motion,Round Sonu Yavaşlama
+ui.options.round_end_slowmo.desc,Settings row help text.,A brief slow-down of time as the timer runs out.,Süre biterken zamanın kısa bir an yavaşlaması.
+ui.options.screen_flashes,Settings row title.,Screen Flashes,Ekran Flaşları
+ui.options.screen_flashes.desc,Settings row help text (photosensitivity).,The white screen flash at the end of a round. Turn it off if you are sensitive to light.,Round sonundaki beyaz ekran flaşı. Işığa hassassan kapat.
+ui.options.ctrl.harvest,Controls tab row title.,Harvest,Hasat
+ui.options.ctrl.harvest.desc,Controls tab help text.,Move the cursor over the plants; the scythe cuts by itself.,İmleci bitkilerin üzerinde gezdir; tırpan otomatik keser.
+ui.options.key.cursor,Controls tab key badge: the mouse cursor. Very short (badge).,CURSOR,İMLEÇ
+ui.options.ctrl.rotate,Controls tab row title. Planter = pot.,Rotate Planter,Saksıyı Döndür
+ui.options.ctrl.rotate.desc,Controls tab help text.,Rotates the planter while placing it.,Yerleştirme sırasında saksıyı döndürür.
+ui.options.ctrl.cancel,Controls tab row title.,Cancel / Back,İptal / Geri
+ui.options.ctrl.cancel.desc,Controls tab help text.,"Cancels placing, leaves the shop and the sell mode.","Yerleştirmeyi iptal eder, shop'tan ve satış modundan çıkar."
+ui.options.ctrl.resonance,Controls tab row title. Resonance = a game mechanic (game term).,Resonance Details,Rezonans Detayları
+ui.options.ctrl.resonance.desc,Controls tab help text.,Opens / closes the resonance detail panel while placing.,Yerleştirirken rezonans detay panelini açar / kapatır.
+ui.options.ctrl.perf,Controls tab row title.,Performance Capture,Performans Kaydı
+ui.options.ctrl.perf.desc,Controls tab help text.,Starts / stops the performance capture (in the game scene).,Performans kaydını başlatır / durdurur (oyun sahnesinde).
+ui.format.percent,"Percent sign format. {0} = the number. English writes 20%, Turkish %20; use your language's rule.",{0}%,%{0}
+ui.start.title,Start screen of a new run (the player picks a farmer and a scythe): title.,NEW RUN · LOADOUT,YENİ RUN · BAŞLANGIÇ
+ui.start.subtitle,"Start screen, line under the title. Keep the · separators.",Pick a farmer and a scythe · effects last for this run · applied again in each new run,Bir çiftçi ve bir tırpan seç · etkiler bu run boyunca geçerli · yeni run'da yeniden uygulanır
+ui.start.farmer_row,"Start screen, caption above the farmer cards. Farmer = the character's overall strategy.",FARMER · overall approach,ÇİFTÇİ · genel yaklaşım
+ui.start.scythe_row,"Start screen, caption above the scythe cards. Scythe = how the player's own hit harvests.",SCYTHE · harvest style,TIRPAN · hasat biçimi
+ui.start.back,Start screen button: back to the main menu.,BACK,GERİ
+ui.start.begin,Start screen main button: starts the run with the chosen farmer and scythe.,START RUN,RUN'I BAŞLAT
+ui.start.summary,"Start screen, the chosen pair. {0} = farmer name, {1} = scythe name (both already coloured).",Choice: {0} + {1},Seçim: {0} + {1}
+ui.start.selected,"Start screen, footer of the chosen card.",SELECTED,SEÇİLİ
+ui.start.click_to_select,"Start screen, footer of a card that is not chosen.",Click to select,Seçmek için tıkla
+ui.start.locked,"Start screen, banner on a locked card that has no quest.",LOCKED,KİLİTLİ
+ui.start.locked_quest,"Start screen, first line of a locked card's banner; the quest text follows on the next line.",LOCKED · QUEST,KİLİTLİ · GÖREV
+ui.start.best_run,"Start screen, locked card: quest progress of the player's best run. {0} = best value, {1} = target.",Best run: {0} / {1},En iyi run: {0} / {1}
+ui.start.neutral,Start card effect text when the option has no bonus and no cost.,"Neutral · no advantage, no cost",Nötr · avantaj ve bedel yok
+ui.start.neutral.detail,"Start card, small line under the neutral text.",the game's own balance,oyunun kendi dengesi
+ui.start.effect.direct_damage,"Start card effect. {0} = multiplier (e.g. 1.40). Keep ×. Direct hit = the player's own click, not tile behaviors.",Direct hit damage ×{0},Doğrudan vuruş hasarı ×{0}
+ui.start.effect.direct_damage.detail,"Start card, small line under the direct hit damage effect. Behaviors = tile effects such as explosion or tornado.",behavior damage unchanged,davranış hasarı değişmez
+ui.start.effect.harvest_resources,"Start card effect. {0} = multiplier. Resources = Gold, Iron, Stone.",Harvest resources ×{0},Hasat kaynağı ×{0}
+ui.start.effect.harvest_resources.detail,"Start card, small line under the harvest resources effect. Gold, Iron and Stone are resource names; keep them as in the game.",only Gold · Iron · Stone from harvests,yalnız hasattan gelen Gold · Iron · Stone
+ui.start.effect.harvest_score,Start card effect. {0} = multiplier. Harvest Score = the score that fills the quota.,Harvest Score ×{0},Hasat skoru ×{0}
+ui.start.effect.harvest_score.detail,"Start card, small line under the Harvest Score effect.",quota progress counts this too,kota ilerlemesi de bununla sayılır
+ui.start.effect.radius,Start card effect. {0} = multiplier of the player's hit radius.,Hit radius ×{0},Vuruş yarıçapı ×{0}
+ui.start.effect.radius.smaller,"Start card, small line: the ring around the cursor gets smaller.",cursor ring shrinks,imleç halkası küçülür
+ui.start.effect.radius.larger,"Start card, small line: the ring around the cursor gets larger.",cursor ring grows,imleç halkası büyür
+ui.start.effect.rarity,Start card effect. {0} = signed number of percentage points (e.g. +15).,Rarity bonus {0} pts,Nadirlik bonusu {0} puan
+ui.start.effect.rarity.more,"Start card, small line under a positive rarity bonus.",rare plants appear more often,nadir bitkiler daha sık çıkar
+ui.start.effect.rarity.less,"Start card, small line under a negative rarity bonus.",rare plants appear less often,nadir bitkiler daha seyrek çıkar
+ui.start.effect.spawn_interval,Start card effect. {0} = multiplier of the time between new plants (higher = slower).,Spawn interval ×{0},Üretim aralığı ×{0}
+ui.start.effect.spawn_interval.slower,"Start card, small line: plants appear less often.",plants appear less often,bitkiler daha seyrek çıkar
+ui.start.effect.spawn_interval.faster,"Start card, small line: plants appear more often.",plants appear more often,bitkiler daha sık çıkar
+ui.start.effect.attack_interval,Start card effect. {0} = multiplier of the time between planter attacks (higher = slower).,Attack interval ×{0},Saldırı aralığı ×{0}
+data.start.bahcivan.name,"Farmer name (start screen, run end screen). The neutral, reference farmer.",Gardener,Bahçıvan
+data.start.bahcivan.style,"Farmer card, one-line playstyle.",Reference farmer: the game's own balance.,Referans çiftçi: oyunun kendi dengesi.
+data.start.tuccar.name,"Farmer name (start screen, run end screen). An economy-focused farmer.",Merchant,Tüccar
+data.start.tuccar.style,"Farmer card, one-line playstyle. The tree = the skill tree.",Use the economy to reach the skill tree early; score trails a little.,Ekonomiyle ağaca erken ulaş; skor biraz geride kalır.
+data.start.secici_yetistirici.name,"Farmer name (start screen, run end screen). Favors rare plants.",Selective Breeder,Seçici Yetiştirici
+data.start.secici_yetistirici.style,"Farmer card, one-line playstyle. Aura = the glow that shows a plant's rarity.",Read the aura and pick the valuable plant.,Aura'ya bakıp değerli bitkiyi seç.
+data.start.standart.name,"Scythe name (start screen, run end screen). The default scythe.",Standard,Standart
+data.start.standart.style,"Scythe card, one-line playstyle.",Default hit: damage and radius as they are.,Mevcut vuruş: hasar ve yarıçap olduğu gibi.
+data.start.dar_kesim.name,"Scythe name (start screen, run end screen). Small radius, strong hit.",Narrow Cut,Dar Kesim
+data.start.dar_kesim.style,"Scythe card, one-line playstyle.","Narrow but heavy hit: aim for valuable, tough plants.",Dar ama ağır vuruş: değerli ve sert bitkiyi hedefle.
+data.quest.legendary_5_run,"Unlock quest, shown on a locked start card. Legendary = the highest plant rarity.",Harvest 5 Legendary plants in a single run,Tek run'da 5 Legendary bitki hasat et
+ui.summary.preparation,Round end card title before the first round (preparation phase).,PREPARATION,HAZIRLIK
+ui.summary.title,Round end card title. {0} = round number.,ROUND {0} SUMMARY,ROUND {0} ÖZETİ
+ui.summary.harvest,Round end card row: plants harvested this round.,Harvest,Hasat
+ui.summary.gold,Round end card row: Gold earned (resource).,Gold,Altın
+ui.summary.iron,Round end card row: Iron earned (resource).,Iron,Demir
+ui.summary.stone,Round end card row: Stone earned (resource).,Stone,Taş
+ui.summary.xp,Round end card row: experience earned.,XP,XP
+ui.summary.level,Round end card row: levels gained.,Level,Level
+ui.summary.score,Round end card row: Harvest Score earned.,Score,Skor
+ui.summary.specialization,Bottom line of the round end card and the HUD. {0} = the chosen specialization.,Specialization: {0},Uzmanlaşma: {0}
+ui.quota.first,"Preparation card, quota line. {0} = quota target, {1} = number of rounds in the period. Uses a plural form in English.",First quota: {0} · {1:plural:{} round|{} rounds},İlk kota: {0} · {1} round
+ui.quota.first.boss,"Same as ui.quota.first, for a period that ends with a boss (old profiles).",First boss quota: {0} · {1:plural:{} round|{} rounds},İlk boss kotası: {0} · {1} round
+ui.quota.rule_boss_round,"Preparation card, small line under the first quota (boss calendar).",The quota is checked at the end of every boss round; miss it and the run ends,Kota her boss round'unun sonunda kontrol edilir; tutmazsa run biter
+ui.quota.rule_every,"Preparation card, small line under the first quota. {0} = period length in rounds.",The quota is checked every {0:plural:round|{} rounds}; miss it and the run ends,Kota her {0} round'da kontrol edilir; tutmazsa run biter
+ui.quota.passed,"Round end card: quota met at the end of a period. {0} = score, {1} = target.",QUOTA MET · {0} / {1},KOTA TAMAM · {0} / {1}
+ui.quota.passed.boss,"Same as ui.quota.passed, for a boss quota (old profiles).",BOSS QUOTA MET · {0} / {1},BOSS KOTASI TAMAM · {0} / {1}
+ui.quota.next,"Round end card, small line: the next quota. {0} = target, {1} = rounds in the period.",Next quota: {0} · {1:plural:{} round|{} rounds},Sıradaki kota: {0} · {1} round
+ui.quota.next.boss,"Same as ui.quota.next, for a boss quota (old profiles).",Next boss quota: {0} · {1:plural:{} round|{} rounds},Sıradaki boss kotası: {0} · {1} round
+ui.quota.name,"The word 'Quota', used inside ui.quota.met / progress / last_round.detail as {0}.",Quota,Kota
+ui.quota.name.boss,"The words 'Boss quota', used like ui.quota.name.",Boss quota,Boss kotası
+ui.quota.met,"Round end card: quota already reached before the period ends. {0} = 'Quota' or 'Boss quota', {1} = score / target.",{0} met · {1},{0} tamam · {1}
+ui.quota.segment_closes,"Round end card, small line. {0} = round number at which the period is checked.",The segment closes at the end of round {0},Segment {0}. round sonunda kapanır
+ui.quota.last_round,Round end card warning: only one round left. {0} = score still missing.,LAST ROUND · {0} to go for the quota,SON ROUND · kotaya {0} kaldı
+ui.quota.last_round.detail,"Small line under the last round warning. {0} = 'Quota' or 'Boss quota', {1} = score / target.",{0} {1} · miss it and the run ends,{0} {1} · tutmazsa run biter
+ui.quota.progress,"Round end card: quota progress. {0} = 'Quota' or 'Boss quota', {1} = score / target, {2} = rounds left.",{0} {1} · {2:plural:{} round|{} rounds} left,{0} {1} · {2} round kaldı
+ui.quota.progress.detail,Small line under the quota progress. {0} = round number at which the run ends if the quota is missed.,Miss it and the run ends after round {0},Tutmazsa run {0}. round sonunda biter
+ui.event.boss_target,Boss notice part. {0} = harvest score the boss round needs.,boss harvest target {0},boss hasadı hedefi {0}
+ui.event.boss_target.none,Boss notice part when the boss round has no target.,no boss harvest target,boss hasadı hedefi yok
+ui.event.upcoming_boss,"HUD / round end line. {0} = boss name, {1} = round number.",Upcoming boss: {0} · Round {1},Yaklaşan boss: {0} · Round {1}
+ui.event.upcoming,"HUD line (old profiles). {0} = event name, {1} = start round.",Upcoming: {0} · Round {1},Yaklaşan: {0} · Round {1}
+ui.event.active,"Round end card (old profiles). {0} = event name, {1} = rounds left.",{0} ACTIVE · {1:plural:{} round|{} rounds} left,{0} AKTİF · {1} round kaldı
+ui.event.passed,Round end card / round intro: the boss or event is over. {0} = its name.,{0} CLEARED,{0} GEÇTİ
+ui.event.final_prep,Round end card: the event starts next round (old profiles). {0} = event name.,FINAL PREP · {0} next round,SON HAZIRLIK · {0} sonraki round
+ui.event.round_range,"Range of rounds. {0} = first, {1} = last.",Rounds {0}–{1},Round {0}–{1}
+ui.event.upcoming_range,"Round end card (old profiles). {0} = event name, {1}–{2} = round range.",Upcoming: {0} · Rounds {1}–{2},Yaklaşan: {0} · Round {1}–{2}
+ui.event.prep_rounds,Notice part. {0} = preparation rounds left before the boss.,{0:plural:{} round|{} rounds} to prepare,{0} round hazırlık
+ui.event.boss_harvest,"Notice part after a boss round. {0} = score, {1} = target.",boss harvest {0} / {1},boss hasadı {0} / {1}
+ui.event.next_boss,"Notice part. {0} = next boss name, {1} = its round.",Next boss: {0} (Round {1}),Sıradaki boss: {0} (Round {1})
+ui.event.final_prep_boss,Round end card: the boss comes next round. {0} = boss name.,FINAL PREP · boss {0} next round,SON HAZIRLIK · boss {0} sonraki round
+ui.event.intro_quota,Round intro part at the start of a new period. {0} = quota target.,QUOTA {0},KOTA {0}
+ui.event.started,Round intro (old profiles): the event begins. {0} = event name.,{0} BEGINS,{0} BAŞLADI
+ui.event.boss_intro_target,"Round intro of a boss round. {0} = boss name, {1} = harvest target.",BOSS: {0} · HARVEST TARGET {1},BOSS: {0} · HASAT HEDEFİ {1}
+ui.event.boss_intro,Round intro of a boss round without a target. {0} = boss name.,BOSS: {0},BOSS: {0}
+ui.event.next_round,Round intro: the boss comes next round. {0} = boss name.,{0} NEXT ROUND,{0} SONRAKİ ROUND
+ui.event.rule_lifted,Short sentence when a boss rule ends.,Rule lifted,Kural kalktı
+ui.event.band.any,"Where a boss band is, before it is chosen. Used as {0} in ui.event.frost.rule / shell.rule.",in the band,şeritte
+ui.event.band.column,Where a boss band is. {0} = column letter. Used as {0} in ui.event.frost.rule / shell.rule.,in column {0},{0} sütununda
+ui.event.band.columns,Where a boss band is. {0}–{1} = column letters.,in columns {0}–{1},{0}–{1} sütunlarında
+ui.event.band.row,Where a boss band is. {0} = row number.,in row {0},{0}. satırda
+ui.event.band.rows,Where a boss band is. {0}–{1} = row numbers.,in rows {0}–{1},{0}–{1}. satırlarda
+ui.event.fog.radius,Fog boss rule. {0} = multiplier of the player's hit radius.,hit radius ×{0},vuruş yarıçapı ×{0}
+ui.event.fog.applied,"Fog boss rule while active. {0} → {1} = plants hit with the best aim, before → now.",hit area one step smaller: {0} → {1} plants on the best aim,vuruş alanı bir basamak dar: en iyi nişanda {0} → {1} bitki
+ui.event.fog.step,Fog boss rule when no numbers are known.,hit area shrinks by one step,vuruş alanı bir basamak daralır
+ui.event.fog.preview,"Fog boss rule preview. {0} → {1} = plants hit with the best aim, now → during the boss.",hit area shrinks by one step: {0} → {1} plants on the best aim,vuruş alanı bir basamak daralır: en iyi nişanda {0} → {1} bitki
+ui.event.fog.ended_area,Fog boss over.,Hit area back to normal,Vuruş alanı normale döndü
+ui.event.fog.ended_radius,Fog boss over (radius version).,Hit radius back to normal,Vuruş yarıçapı normale döndü
+ui.event.frost.rule,"Frost Front boss rule. {0} = where the band is (ui.event.band.*), {1} = slow-down multiplier.",production ×{1} slower {0},{0} üretim ×{1} yavaş
+ui.event.frost.zone,Name of the Frost Front boss zone (a blue strip of the field).,blue band,mavi şerit
+ui.event.frost.ended,Frost Front boss over.,Production in the band back to normal,Şeritteki üretim normale döndü
+ui.event.shell.rule,"Hard Shell boss rule. {0} = where the band is (ui.event.band.*), {1} = plant health multiplier.",plant health ×{1} {0},{0} bitki canı ×{1}
+ui.event.shell.zone,Name of the Hard Shell boss zone (an orange strip of the field).,orange band,turuncu şerit
+ui.event.shell.ended,Hard Shell boss over.,Plants in the band back to normal health,Şeritteki bitkiler normal cana döndü
+ui.event.no_rule,Rule text of the fallback boss that has no rule.,no rule,kural yok
+ui.event.no_rule.ended,Fallback boss over.,Boss round over,Boss round'u bitti
+ui.hud.quota,HUD quota box title.,QUOTA,KOTA
+ui.hud.quota.segment,HUD quota box title in the boss calendar (quota of the current segment).,SEGMENT QUOTA,SEGMENT KOTASI
+ui.hud.quota.boss,HUD quota box title during a boss quota (old profiles).,BOSS QUOTA,BOSS KOTASI
+ui.hud.quota.done,"HUD quota box, quota reached. {0} = box title (ui.hud.quota*).",{0} MET,{0} TAMAM
+ui.hud.quota.last_round,"HUD quota box, last round of the period. {0} = box title.",{0} · LAST ROUND,{0} · SON ROUND
+ui.hud.quota.rounds_left,"HUD quota box. {0} = box title, {1} = rounds left. Capitals.",{0} · {1:plural:{} ROUND|{} ROUNDS},{0} · {1} ROUND
+ui.hud.boss.target,"HUD boss line before the boss round. {0} = boss round number, {1} = harvest target.",Boss harvest target (Round {0}): {1},Boss hasadı hedefi (Round {0}): {1}
+ui.hud.boss.round,HUD boss line when the boss has no target. {0} = boss round number.,Boss round: Round {0},Boss round'u: Round {0}
+ui.hud.boss.no_target,HUD boss line during a boss round without a target.,BOSS HARVEST: no target,BOSS HASADI: hedef yok
+ui.hud.boss.progress,"HUD boss line during the boss round. {0} = score, {1} = target.",BOSS HARVEST: {0} / {1},BOSS HASADI: {0} / {1}
+ui.hud.done,Short 'done / met' tag after a reached target.,MET,TAMAM
+ui.hud.rhythm.ready,HUD line: the Harvest Rhythm reward is charged.,HARVEST RHYTHM READY · next hit is strong,HASAT RİTMİ HAZIR · sıradaki vuruş güçlü
+ui.hud.rhythm.count,"HUD line: Harvest Rhythm counter. {0} = hits, {1} = needed.",Harvest Rhythm {0} / {1},Hasat Ritmi {0} / {1}
+ui.hud.boss_rewards,HUD heading above the list of boss rewards taken.,Boss rewards,Boss ödülleri
+ui.hud.round,"HUD round counter. {0} = current round, {1} = total rounds.",Round {0} / {1},Round {0} / {1}
+ui.hud.time,HUD timer. {0} = seconds left. Keep it short.,Time: {0}s,Time: {0}s
+ui.hud.level_work,Status shown while level-ups from this round are still being processed.,CALCULATING LEVEL REWARDS,SEVİYE KAZANIMLARI HESAPLANIYOR
+ui.hud.level_work.level,Small line under the status. {0} = current level.,Level {0},Level {0}
+ui.game.next_round,"Preparation screen main button after the first round: starts the next round. Big button, keep short.",NEXT ROUND,SONRAKİ ROUND
+ui.preview.open,Round end button: opens the field preview.,PREVIEW,ÖNİZLEME
+ui.preview.title,Title of the field preview screen.,PREVIEW,ÖNİZLEME
+ui.preview.hint,"Field preview hint. {0} and {1} are key icons (Tab, Esc).",Hover a tile: details  ·  {0} / {1}: back,Tile'ın üstüne gel: detay  ·  {0} / {1}: geri dön
+ui.preview.no_resonance,"Field preview, shown when no resonance is active. Resonance = bonus for same-type tiles under one planter.",No active resonance yet · gather same-type tiles under one planter,Henüz aktif rezonans yok · aynı tipteki tile'ları bir saksının altında topla
+ui.preview.back,Field preview button: back to the round end screen.,BACK,GERİ DÖN
+ui.newtiles.title_one,Round end card title: the one tile card placed this round.,THIS ROUND'S CARD,BU ROUND'UN KARTI
+ui.newtiles.title_many,Round end card title. {0} = number of tile cards placed this round.,THIS ROUND'S CARDS ({0}),BU ROUND'UN KARTLARI ({0})
+ui.newtiles.more,Last row of that card. {0} = tiles not listed.,+{0} more tiles · glowing on the map,+{0} tile daha · haritada parlıyor
+ui.unit.points,Unit for percentage points (e.g. +5 pts). Short.,pts,puan
+ui.unit.rate,"Tag after a value that is a fixed rate, shown in brackets.",rate,oran
+ui.unit.level,"Short word for level, before a number (Lv 3).",Lv,Sv
+ui.unit.level_n,Short level label. {0} = level.,Lv {0},Sv {0}
+ui.unit.seconds,Seconds. {0} = number.,{0} s,{0} sn
+ui.resonance.resources,"Resonance effect. {0} = multiplier (×1.2). Gold, Iron and Stone are resource names.",Gold / Iron / Stone {0},Gold / Iron / Stone {0}
+ui.resonance.rare_score,Resonance effect. {0} = multiplier. Rare+ = plants of Rare rarity or higher.,Rare+ Harvest Score {0},Rare+ Harvest Score {0}
+ui.resonance.electric_xp,Resonance effect: XP from plants killed by electricity. {0} = multiplier.,Electric kill XP {0},Elektrik öldürmesi XP {0}
+ui.resonance.behavior_damage,"Resonance effect. {0} = behavior names joined by ' / ', {1} = multiplier.",{0} damage {1},{0} hasarı {1}
+ui.resonance.rarity,Resonance effect. {0} = rarity points.,Rarity +{0} pts,Nadirlik +{0} puan
+ui.behavior.explosion,Tile behavior name: explosion.,Explosion,Patlama
+ui.behavior.tornado,Tile behavior name: tornado.,Tornado,Tornado
+ui.behavior.boomerang,Tile behavior name: the boomerang scythe (short).,Scythe,Orak
+ui.behavior.electric,Tile behavior name: electricity.,Electric,Elektrik
+rarity.common,"Rarity name (cards, tiles, plants).",Common,Common
+rarity.uncommon,Rarity name.,Uncommon,Uncommon
+rarity.rare,Rarity name.,Rare,Rare
+rarity.epic,Rarity name.,Epic,Epic
+rarity.legendary,Rarity name (highest).,Legendary,Legendary
+resource.gold,Resource name. The game keeps it as Gold in Turkish too.,Gold,Gold
+resource.iron,Resource name.,Iron,Iron
+resource.stone,Resource name.,Stone,Stone
+stat.harvest_damage,Stat name: the planter's base damage stat.,Planter damage stat,Saksı hasar statı
+stat.area_radius,Stat name: the player's hit radius.,Hit radius,Vuruş yarıçapı
+stat.attack_speed,Stat name: time between planter attacks (lower = faster).,Attack interval,Atak aralığı
+stat.crit_chance,Stat name.,Crit chance,Kritik şansı
+stat.crit_multiplier,Stat name.,Crit multiplier,Kritik çarpanı
+stat.plant_spawn_rate,Stat name: time between new plants (lower = faster).,Spawn time,Üretim süresi
+stat.rare_spawn_chance,Stat name: bonus that makes rare plants more likely.,Rarity bonus,Nadirlik bonusu
+stat.gold_gain_multiplier,Stat name.,Gold gain,Gold kazancı
+stat.iron_gain_multiplier,Stat name.,Iron gain,Iron kazancı
+stat.stone_gain_multiplier,Stat name.,Stone gain,Stone kazancı
+stat.xp_gain_multiplier,Stat name.,XP gain,XP kazancı
+stat.harvest_score_multiplier,Stat name. Harvest Score is the game's score name.,Harvest Score,Harvest Score
+stat.mutation_luck,Stat name: chance of higher-rarity cards.,Card rarity,Kart nadirliği
+stat.grid_unlock_size,Stat name: size of the field grid.,Grid,Grid
+stat.round_duration,Stat name.,Round time,Round süresi
+stat.starting_gold_bonus,Stat name.,Starting Gold,Başlangıç Gold'u
+stat.starting_planter_count,Stat name.,Starting planters,Başlangıç saksısı
+stat.extra_card_choice,Stat name: one more card offered.,Extra card choice,Ek kart seçeneği
+stat.reroll_card,Stat name.,Card reroll,Kart yenileme
+stat.card_skip,Stat name: skipping a card choice for resources.,Card skip,Kart atlama
+stat.explosion_chance,Stat name.,Explosion chance,Patlama şansı
+stat.duplicate_chance,Stat name: chance that a harvest pays twice.,Double reward chance,Çift ödül şansı
+stat.planter_damage_multiplier,Stat name: damage of direct hits on this planter's plants.,Damage,Hasar
+stat.tornado_chance,Stat name.,Tornado chance,Tornado şansı
+stat.boomerang_chance,Stat name.,Boomerang scythe chance,Bumerang orak şansı
+stat.electric_chance,Stat name.,Cross electric chance,Çapraz elektrik şansı
+ui.skill.completed_max,Skill tree tooltip caption: node fully upgraded.,COMPLETED  ·  MAX,TAMAMLANDI  ·  MAX
+ui.skill.tier,Skill tree tooltip caption. {0} = 'current / total' tiers.,TIER  {0},KADEME  {0}
+ui.skill.current_effect,Skill tree tooltip heading (fully upgraded node).,CURRENT EFFECT,MEVCUT ETKİ
+ui.skill.next_tier,Skill tree tooltip heading.,NEXT TIER,SONRAKİ KADEME
+ui.skill.upgrade_cost,Skill tree tooltip heading above the price.,UPGRADE COST,YÜKSELTME MALİYETİ
+ui.skill.access,Skill tree tooltip heading for a node the profile opens for free.,ACCESS,ERİŞİM
+ui.skill.starting_access,Label on a skill node the run profile opens from the start (not bought).,OPEN FROM THE START,BAŞLANGIÇTAN AÇIK
+ui.skill.full_version,Label on a skill node locked in the demo.,IN THE FULL GAME,TAM SÜRÜMDE
+ui.skill.demo_locked,Skill tree tooltip caption in the demo.,DEMO LOCK,DEMO KİLİDİ
+ui.skill.demo_locked.desc,Skill tree tooltip text in the demo.,This unlocks in the full game. It can't be bought in the demo.,Bu özellik tam sürümde açılır. Demoda satın alınamaz.
+ui.skill.granted.desc,"Skill tree tooltip, node opened by the profile.",This node wasn't bought; this profile charges nothing for it.,Bu düğüm satın alınmadı; bu profilde ücret ödenmez.
+ui.skill.disabled.desc,Skill tree tooltip in a test profile. {0} = fixed round seconds.,Round time is fixed in this experiment ({0} s).,Bu deneyde round süresi sabit ({0} sn).
+ui.skill.disabled.desc2,Second line of that tooltip.,This node has no effect and can't be bought.,Bu node etkisiz ve satın alınamaz.
+ui.skill.stat.damage,Skill tree stat name for the planter damage stat (short form).,Damage,Hasar
+ui.skill.round_overflow,"Skill tree value when round time is above the cap. {0} = capped seconds, {1} = speed bonus percent.",{0} · +{1} speed,{0} · +{1} hız
+ui.skill.spawn_floor,Skill tree value at the fastest possible spawn time. {0} = seconds.,{0} (floor · the rest becomes rarity),{0} (taban · fazlası nadirliğe)
+ui.skill.card_rarity_odds,"Skill tree value for card rarity. {0} = Epic-or-better chance, {1} = Legendary chance. Leg = Legendary.",Epic+ {0} · Leg {1},Epic+ {0} · Leg {1}
+ui.skill.unlock.planter_start,Skill tree unlock text. {0} = planter size (e.g. 2×3).,{0} planter open from the start (in the shop).,{0} saksı başlangıçtan açık (mağazada).
+ui.skill.unlock.planter_done,Skill tree unlock text. {0} = planter size.,{0} planter is open in the shop.,{0} saksı mağazada açık.
+ui.skill.unlock.planter,Skill tree unlock text. {0} = planter size.,Unlocks the {0} planter in the shop.,{0} saksıyı mağazada açar.
+ui.skill.cards.explosive,Card family name used in ui.skill.unlock.cards*.,Explosion,Patlama
+ui.skill.cards.duplicate,Card family name used in ui.skill.unlock.cards*.,Duplicate,Çoğaltma
+ui.skill.cards.tornado,Card family name used in ui.skill.unlock.cards*.,Tornado,Tornado
+ui.skill.cards.boomerang,Card family name used in ui.skill.unlock.cards*.,Boomerang Scythe,Bumerang Orak
+ui.skill.cards.electric,Card family name used in ui.skill.unlock.cards*.,Cross Electric,Çapraz Elektrik
+ui.skill.unlock.cards_start,Skill tree unlock text. {0} = card family name.,{0} cards open from the start: in the choice pool since the run began.,{0} kartları başlangıçtan açık: run başından beri seçim havuzunda.
+ui.skill.unlock.cards_done,Skill tree unlock text. {0} = card family name.,{0} cards added to the choice pool.,{0} kartları seçim havuzuna eklendi.
+ui.skill.unlock.cards,Skill tree unlock text. {0} = card family name.,"At max level, adds {0} cards to the choice pool.",Son seviyede {0} kartlarını seçim havuzuna ekler.
+data.boss.don_cephesi.name,"Boss name (a field rule, not an enemy): planters in a blue strip produce slower. Capitals.",FROST FRONT,DON CEPHESİ
+data.boss.sert_kabuk.name,Boss name: plants in an orange strip have more health. Capitals.,HARD SHELL,SERT KABUK
+data.boss.sis.name,Boss name: the player's hit area shrinks. Capitals.,FOG,SİS
+data.boss.kuralsiz_boss.name,"Fallback boss with no rule, only a harvest target. Capitals.",RULELESS BOSS,KURALSIZ BOSS
+data.tile.bumerang_orak.name,Tile card name (boomerang scythe behavior).,Boomerang Scythe,Bumerang Orak
+data.tile.crystal_rarespawnchance.name,Tile card name (Crystal: rarity bonus). The Turkish cell still holds the internal name.,Crystal,Crystal-RareSpawnChance
+data.tile.odak_hasar.name,Tile card name (Focus: direct hit damage). The Turkish cell still holds the internal name.,Focus,Odak-Hasar
+data.tile.duplicate_duplicatechance.name,Tile card name (Duplicate: double reward chance). The Turkish cell still holds the internal name.,Duplicate,Duplicate-DuplicateChance
+data.tile.capraz_elektrik.name,Tile card name (cross electric behavior).,Cross Electric,Çapraz Elektrik
+data.tile.energy_harvestscoremultiplier.name,Tile card name (Energy: Harvest Score). The Turkish cell still holds the internal name.,Energy,Energy-HarvestScoreMultiplier
+data.tile.explosive_explosionchance.name,Tile card name (Explosive: explosion chance). The Turkish cell still holds the internal name.,Explosive,Explosive-ExplosionChance
+data.tile.fertile_plantspawnrate.name,Tile card name (Fertile: faster spawns). The Turkish cell still holds the internal name.,Fertile,Fertile-PlantSpawnRate
+data.tile.tornado.name,Tile card name (tornado behavior).,Tornado,Tornado
+data.tile.water_xpgain.name,Tile card name (Water: XP gain). The Turkish cell still holds the internal name.,Water,Water-XPGain
+data.skill.damage_upgrade.name,Skill tree node name.,Damage Upgrade,Damage Upgrade
+data.skill.1x3_saksi.name,Skill tree node: unlocks the 1×3 planter.,1×3 Planter,1×3 Saksı
+data.skill.2x2_saksi.name,Skill tree node: unlocks the 2×2 planter.,2×2 Planter,2×2 Saksı
+data.skill.2x3_saksi.name,Skill tree node: unlocks the 2×3 planter.,2×3 Planter,2×3 Saksı
+data.skill.agir_kesim.name,Skill tree node name (cutting = the player's harvest hit). A number like ' – 2' may follow.,Heavy Cut,Ağır Kesim
+data.skill.akici_kesim.name,Skill tree node name. A number may follow.,Fluid Cut,Akıcı Kesim
+data.skill.altin_hasat_i.name,Skill tree node name (Gold resource).,Gold Harvest I,Altın Hasat I
+data.skill.altin_hasat_ii.name,Skill tree node name (Gold resource).,Gold Harvest II,Altın Hasat II
+data.skill.bumerang_orak_kartlari.name,Skill tree node: unlocks boomerang scythe cards.,Boomerang Scythe Cards,Bumerang Orak Kartları
+data.skill.capraz_elektrik_kartlari.name,Skill tree node: unlocks cross electric cards.,Cross Electric Cards,Çapraz Elektrik Kartları
+data.skill.cifte_hasat_kartlari.name,Skill tree node: unlocks double harvest (duplicate) cards.,Double Harvest Cards,Çifte Hasat Kartları
+data.skill.demir_hasat.name,Skill tree node name (Iron resource). A number may follow.,Iron Harvest,Demir Hasat
+data.skill.duzenli_uretim.name,Skill tree node name (production = plant spawning). A number may follow.,Steady Production,Düzenli Üretim
+data.skill.genis_supurus.name,Skill tree node name (wider hit). A number may follow.,Wide Sweep,Geniş Süpürüş
+data.skill.genis_tarama.name,Skill tree node name (wider hit). A number may follow.,Wide Scan,Geniş Tarama
+data.skill.grid_genisleme_i.name,Skill tree node: bigger field grid.,Grid Expansion I,Grid Genişleme I
+data.skill.grid_genisleme_ii.name,Skill tree node: bigger field grid.,Grid Expansion II,Grid Genişleme II
+data.skill.guclu_kesim.name,Skill tree node name. A number may follow.,Strong Cut,Güçlü Kesim
+data.skill.hasat_deneyimi_i.name,Skill tree node name (XP from harvests). A number may follow.,Harvest Experience I,Hasat Deneyimi I
+data.skill.hasat_deneyimi_ii.name,Skill tree node name (XP from harvests). A number may follow.,Harvest Experience II,Hasat Deneyimi II
+data.skill.hasat_rekoru.name,Skill tree node name (Harvest Score). A number may follow.,Harvest Record,Hasat Rekoru
+data.skill.hizli_eller.name,Skill tree node name (faster attacks). A number may follow.,Quick Hands,Hızlı Eller
+data.skill.ikinci_vazgecis.name,Skill tree node: a second card skip.,Second Skip,İkinci Vazgeçiş
+data.skill.ilk_vazgecis.name,Skill tree node: the first card skip.,First Skip,İlk Vazgeçiş
+data.skill.kart_sezgisi.name,Skill tree node name (better card rarity). A number may follow.,Card Intuition,Kart Sezgisi
+data.skill.kesim_teknigi.name,Skill tree node name. A number may follow.,Cutting Technique,Kesim Tekniği
+data.skill.kesim_ustaligi.name,Skill tree node name. A number may follow.,Cutting Mastery,Kesim Ustalığı
+data.skill.keskin_baslangic.name,Skill tree node name. A number may follow.,Sharp Start,Keskin Başlangıç
+data.skill.kritik_guc.name,Skill tree node name (crit damage). A number may follow.,Critical Power,Kritik Güç
+data.skill.kritik_odak.name,Skill tree node name (crit chance). A number may follow.,Critical Focus,Kritik Odak
+data.skill.nadir_filizler.name,Skill tree node name (rare plants). A number may follow.,Rare Sprouts,Nadir Filizler
+data.skill.patlayici_kartlar.name,Skill tree node: unlocks explosive cards.,Explosive Cards,Patlayıcı Kartlar
+data.skill.tas_hasat.name,Skill tree node name (Stone resource). A number may follow.,Stone Harvest,Taş Hasat
+data.skill.tornado_kartlari.name,Skill tree node: unlocks tornado cards.,Tornado Cards,Tornado Kartları
+data.skill.verimli_uretim.name,Skill tree node name (production). A number may follow.,Fruitful Production,Verimli Üretim
+data.skill.zengin_cevher.name,Skill tree node name (Iron / Stone ore). A number may follow.,Rich Ore,Zengin Cevher
+data.skill.asiri_guc_i.name,Skill tree node name.,Overpower I,Aşırı Güç I
+data.skill.asiri_guc_ii.name,Skill tree node name.,Overpower II,Aşırı Güç II
+data.skill.biraz_daha_zaman.name,Skill tree node name (longer rounds). A number may follow.,A Little More Time,Biraz Daha Zaman
+data.skill.hasat_zirvesi.name,Skill tree node name (Harvest Score). A number may follow.,Harvest Peak,Hasat Zirvesi
+data.skill.ileri_ustalik.name,Skill tree node name. A number may follow.,Advanced Mastery,İleri Ustalık
+data.skill.plazma_kesim.name,Skill tree node name. A number may follow.,Plasma Cut,Plazma Kesim
+data.skill.seri_uretim.name,Skill tree node name (production). A number may follow.,Mass Production,Seri Üretim
+data.skill.son_vardiya.name,Skill tree node name (last round). A number may follow.,Last Shift,Son Vardiya
+data.skill.uzun_hasat.name,Skill tree node name (longer rounds). A number may follow.,Long Harvest,Uzun Hasat
+data.skill.yildirim_kesim.name,Skill tree node name. A number may follow.,Lightning Cut,Yıldırım Kesim
+data.skill.yildiz_kesim.name,Skill tree node name. A number may follow.,Star Cut,Yıldız Kesim
+ui.card.level_gain,"Card choice: upgrade card subtitle. {0} = levels gained, {1} = rarity name (capitals).",+{0:plural:{} LEVEL|{} LEVELS} · {1},+{0} SEVİYE · {1}
+ui.card.rarity_word,Card value tail: '+5 rarity' (rarity points).,rarity,nadirlik
+ui.card.spawn_floor,"Card effect name when the planters already spawn at the fastest rate, so extra speed becomes rarity.",Spawn at floor → Rarity,Üretim tabanda → Nadirlik
+ui.card.special_effect,Card effect name when the card has no stat change.,Special effect,Özel etki
+ui.card.base_power,Card name: permanent small global bonus when all tiles are maxed.,Base power,Temel güç
+ui.card.summed,Base power card line: how the summed total changes. {0} = 'old → new'.,Adds up: {0},Toplanır: {0}
+ui.card.grid_full,Card choice banner when the field has no empty tile.,GRID FULL · the card levels up the tile you pick,"GRİD DOLU · kart, seçtiğin tile'ı seviye atlatır"
+ui.card.all_max,Card choice banner when every tile is at max level.,ALL TILES MAX · the card gives permanent Base power,TÜM TILE'LAR MAX · kart kalıcı Temel güç verir
+ui.card.base.harvest_damage,Base power card effect name.,Harvest damage,Hasat hasarı
+ui.card.base.attack_interval,"Base power card effect name (time between attacks, lower = faster).",Attack interval,Atak aralığı
+ui.card.base.spawn_time,"Base power card effect name (time between new plants, lower = faster).",Spawn time,Üretim süresi
+ui.card.base.all_resources,"Base power card effect name (Gold, Iron and Stone).",All resources,Tüm kaynaklar
+ui.card.base.xp_gain,Base power card effect name.,XP gain,XP kazancı
+ui.card.last_choice,Card choice counter: this is the last pick.,LAST CHOICE,SON SEÇİM
+ui.card.choices_left,Card choice counter. {0} = picks left.,CHOICES LEFT: {0},KALAN SEÇİM: {0}
+ui.tile.level_of,"Tile tooltip caption. {0} = level, {1} = max level. Lv = level.",Lv {0}/{1},Sv {0}/{1}
+ui.tile.level_up_tag,Tag on a tile that this round's card levelled up. Very short.,+LV,+SV
+ui.tile.new,Tag on a tile that this round's card placed. Very short.,NEW,YENİ
+ui.tile.empty,Name of an empty field tile.,Empty tile,Boş tile
+ui.tile.upgraded_this_round,Tile tooltip line.,This round's card upgraded this tile.,Bu round'un kartı bu tile'ı yükseltti.
+ui.tile.placed_this_round,Tile tooltip line.,This round's card landed here.,Bu round'un kartı buraya geldi.
+ui.tile.this_tile,Tile tooltip section heading.,THIS TILE,BU TILE
+ui.tile.before,Tile tooltip: label of the old value (shown red).,before,önce
+ui.tile.now,Tile tooltip: label of the new value (shown green).,now,şimdi
+ui.tile.levels_gained,Tile tooltip. {0} = levels gained.,+{0:plural:{} level|{} levels},+{0} seviye
+ui.tile.spawn_floor,"Tile tooltip. {0} = fastest spawn time in seconds, {1} = rarity points the planter gets instead.",Spawn at its floor ({0} s): extra speed turns into rarity · {1} rarity to the planter,Üretim tabanda ({0} sn): fazlası nadirliğe · saksıya {1} nadirlik
+ui.tile.planter_resonances,Tile tooltip section heading: resonances of the planter on this tile.,PLANTER'S RESONANCES,SAKSININ REZONANSLARI
+ui.placement.title,Planter placement preview title.,OPENS AT THIS SPOT,BU KONUMDA AÇILACAK
+ui.placement.counts,"Planter placement preview subtitle. {0} = tiles under the planter, {1} = resonances.",{0:plural:{} tile|{} tiles} · {1:plural:{} resonance|{} resonances},{0} tile · {1} rezonans
+ui.placement.toggle_hint,Planter placement preview footer. {0} = key icon (Alt).,{0}: show / hide,{0}: aç / kapat
+ui.placement.none,Planter placement preview when no resonance forms.,No resonance forms at this spot.,Bu konumda rezonans oluşmuyor.
+ui.placement.tiles_under,Planter placement preview section heading.,TILES UNDER THE PLANTER,SAKSININ ALTINDAKİ TILE’LAR
+ui.popup.scroll_hint,"Popup footer when the text can scroll. {0} and {1} are key icons (Page Up, Page Down).",{0} / {1}: scroll,{0} / {1}: kaydır
+ui.resonance.stamp,Big pop-up word when a planter gets a new resonance.,RESONANCE!,REZONANS!
+data.resonance.odak.name,Resonance name (bonus for same-type tiles under one planter).,Focus,Odak
+data.resonance.sohret.name,Resonance name.,Fame,Şöhret
+data.resonance.bolluk.name,Resonance name.,Abundance,Bolluk
+data.resonance.bilgelik.name,Resonance name.,Wisdom,Bilgelik
+data.resonance.kristal_bahce.name,Resonance name.,Crystal Garden,Kristal Bahçe
+data.resonance.guclendirilmis_hasat.name,Resonance name.,Empowered Harvest,Güçlendirilmiş Hasat
+data.resonance.degerli_hasat.name,Resonance name.,Precious Harvest,Değerli Hasat
+data.resonance.verimli_toprak.name,Resonance name.,Fertile Soil,Verimli Toprak
+data.resonance.elektrik_bilgisi.name,Resonance name.,Electric Lore,Elektrik Bilgisi
+data.resonance.nadir_fidanlik.name,Resonance name.,Rare Nursery,Nadir Fidanlık
+ui.reward.no_effect,Boss reward total when it was taken 0 times.,no effect,etki yok
+ui.reward.factor.direct.card,Trade card line label; the multiplier follows (×0.80). Direct hit = the player's own hit.,Direct hit damage,Doğrudan vuruş hasarı
+ui.reward.factor.direct.short,Short list label; the multiplier follows.,Direct,Doğrudan
+ui.reward.factor.direct.long,"Run end summary label, lower case; the multiplier follows.",direct hit damage,doğrudan vuruş hasarı
+ui.reward.factor.rare.card,Trade card line label. {0} = rarity name (Rare); the multiplier follows.,Direct hit on {0}+ plants,{0}+ bitkiye doğrudan vuruş
+ui.reward.factor.rare.short,Short list label. {0} = rarity name.,{0}+ direct,{0}+ doğrudan
+ui.reward.factor.rare.long,"Run end summary label, lower case. {0} = rarity name.",direct hit on {0}+ plants,{0}+ bitkiye doğrudan vuruş
+ui.reward.factor.behavior.card,"Trade card line label; the multiplier follows. Behaviors = tile effects (explosion, tornado …).",Behavior damage,Davranış hasarı
+ui.reward.factor.behavior.short,Short list label.,Behavior,Davranış
+ui.reward.factor.behavior.long,"Run end summary label, lower case.",behavior damage,davranış hasarı
+ui.reward.echo.explosion,"Aftershock reward. {0} = cells it spreads, {1} = seconds per step, {2} = percent of the first explosion's damage (already formatted, e.g. 70%).",aftershock spreading {0:plural:{} cell|{} cells} beyond the explosion · {1} s per step · {2} of the first explosion's damage,patlamanın dışından {0} hücre yayılan artçı · adım başına {1} sn · ilk patlamanın {2} hasarı
+ui.reward.echo.electric,Second-wave reward. {0} = percent of the first wave's damage (formatted).,{0} of the first wave's damage,ilk dalganın {0} hasarı
+ui.reward.echo.reach,Second-wave reward part. {0} = cells reached diagonally.,{0:plural:{} cell|{} cells} diagonally,çaprazda {0} hücre
+ui.reward.echo.delay,Second-wave reward part. {0} = seconds.,{0} s later,{0} sn sonra
+ui.reward.rhythm,"Harvest Rhythm reward. {0} = direct harvests needed, {1} = damage multiplier, {2} = radius multiplier.",once every {0} direct harvests: damage ×{1} · radius ×{2},her {0} doğrudan hasatta bir: hasar ×{1} · yarıçap ×{2}
+ui.reward.chain.same,Chain Harvest part. {0} = per-generation multipliers (×0.75 / ×0.50).,chance and damage {0},şans ve hasar {0}
+ui.reward.chain.split,"Chain Harvest part. {0} = chance multipliers, {1} = damage multipliers.",chance {0} · damage {1},şans {0} · hasar {1}
+ui.reward.chain,"Chain Harvest reward. {0} = extra generations, {1} = falloff text.",behavior harvests trigger other planters' behaviors · up to {0:plural:{} extra generation|{} extra generations} · {1},davranış hasatları başka saksıların davranışlarını tetikler · en çok {0} ek nesil · {1}
+ui.reward.once,Boss reward card: this reward can be taken only once.,Taken once,Bir kez alınır
+ui.reward.requires,Boss reward card. {0} = the reward that must be taken first.,requires: {0},ön koşul: {0}
+ui.reward.you_place,"Boss reward card: after picking, the player chooses where it goes.",You choose where it goes,Seçince konumunu sen belirlersin
+ui.reward.excludes,Boss reward card. {0} = rewards that won't be offered again (comma list).,Take this and {0} won't be offered again,Bunu alırsan {0} bir daha sunulmaz
+ui.reward.trade.moving_card,Trade card line. {0} → {1} = how many tornadoes / boomerangs can be active at once (each).,Tornadoes / boomerangs at once (each): {0} → {1},Aynı anda kasırga / bumerang (her biri): {0} → {1}
+ui.reward.trade.moving,Short / run end line. {0} = extra active limit.,Tornado / boomerang active limit +{0},Kasırga / bumerang aktif sınırı +{0}
+ui.reward.trade.choices_card,Trade card line. {0} → {1} = card choices per level from now on.,Every future level: {0} → {1} choices,Gelecekteki her level: {0} → {1} seçim
+ui.reward.trade.choices_short,Short list line. {0} = signed change (+1 / −1).,Level choices {0},Level seçimi {0}
+ui.reward.trade.choices_long,"Run end line, lower case. {0} = signed change.",choices per level {0},level başına seçim {0}
+ui.reward.pending_note,Trade card note: choices already earned stay as they are.,Choices already earned don't change.,Önceden kazanılmış seçimler değişmez.
+ui.reward.trade.gain,Run end trade summary part. {0} = gains (comma list).,gain: {0},kazanç: {0}
+ui.reward.trade.cost,Run end trade summary part. {0} = costs (comma list).,cost: {0},bedel: {0}
+ui.reward.level_choice_line,"HUD / run end line. {0} = choices per level now, {1} = base value.",Choices per level: {0} (base {1}) · for newly gained levels,Level başına seçim: {0} (temel {1}) · yeni kazanılan level'lar
+ui.reward.stage_header,Boss reward screen title. {0} = stage name in capitals (EARLY …).,{0} STAGE · BOSS REWARD,{0} AŞAMA · BOSS ÖDÜLÜ
+ui.reward.stage_tag_from,"Boss reward card tag. {0} = stage name, {1} = round of the first boss that offers it.",{0} STAGE · from the Round {1} boss on,{0} AŞAMA · Round {1} boss'undan itibaren
+ui.reward.stage_tag,Boss reward card tag. {0} = stage name.,{0} STAGE,{0} AŞAMA
+ui.reward.panel.empty,Boss reward screen when nothing can be offered.,No suitable reward left,Uygun ödül kalmadı
+ui.reward.panel.empty.detail,Small line under it.,Every reward is at its limit or changes nothing right now,Bütün ödüller sınırında ya da şu an bir şey değiştirmiyor
+ui.reward.panel.continue,Boss reward screen button.,CONTINUE,DEVAM
+ui.reward.panel.title,Boss reward screen title (old profiles without stages).,BOSS CLEARED · PICK A REWARD,BOSS GEÇİLDİ · ÖDÜL SEÇ
+ui.reward.panel.title_last,Boss reward screen title after the run's last boss.,FINAL BOSS CLEARED · PICK A REWARD,SON BOSS GEÇİLDİ · ÖDÜL SEÇ
+ui.reward.panel.none,Boss reward screen subtitle when there is nothing to offer.,No reward can be offered for this boss,Bu boss için sunulabilecek ödül yok
+ui.reward.panel.tail,Boss reward screen subtitle. {0} = first round the reward affects.,Take only one · lasts until the end of the run · applies from Round {0} on,Yalnız biri alınır · run sonuna kadar geçerli · etkisi Round {0} ve sonrası
+ui.reward.panel.tail.lower,"Same as ui.reward.panel.tail, used after 'Boss cleared · ' (lower-case start).",take only one · lasts until the end of the run · applies from Round {0} on,yalnız biri alınır · run sonuna kadar geçerli · etkisi Round {0} ve sonrası
+ui.reward.panel.last_tail,Boss reward screen subtitle after the last boss.,Take only one · the run ends here · the reward goes on the run end list,Yalnız biri alınır · run burada biter · ödül run sonu listesine yazılır
+ui.reward.panel.last_tail.lower,"Same, used after 'Final boss cleared · ' (lower-case start).",take only one · the run ends here · the reward goes on the run end list,yalnız biri alınır · run burada biter · ödül run sonu listesine yazılır
+ui.reward.panel.passed,Boss reward screen subtitle with stages. {0} = ui.reward.panel.tail.lower.,Boss cleared · {0},Boss geçildi · {0}
+ui.reward.panel.passed_last,Same after the last boss. {0} = ui.reward.panel.last_tail.lower.,Final boss cleared · {0},Son boss geçildi · {0}
+ui.reward.panel.gain,Trade card heading above the gains (small capitals).,GAIN,KAZANÇ
+ui.reward.panel.cost,Trade card heading above the costs (small capitals).,COST,BEDEL
+ui.reward.panel.have,"Boss reward card. {0} = times taken, {1} = maximum.",Now {0}/{1},Şu an {0}/{1}
+ui.reward.panel.have_total,"Boss reward card. {0}/{1} = taken / maximum, {2} = current total effect.",Now {0}/{1}: total {2},Şu an {0}/{1}: toplam {2}
+ui.reward.panel.have_none,Boss reward card before the first pick. {0} = maximum.,Now 0/{0}: none,Şu an 0/{0}: yok
+ui.reward.panel.after_total,"Boss reward card. {0}/{1} = taken / maximum after this pick, {2} = total effect after it.",If picked {0}/{1}: total {2},Seçince {0}/{1}: toplam {2}
+ui.reward.panel.taken,"Boss reward screen, heading of the list of rewards taken so far.",Boss rewards taken,Alınan boss ödülleri
+ui.effect.antenna.place,Placement screen title for the Electric Antenna reward.,PLACE THE ANTENNA,ANTENİ YERLEŞTİR
+ui.effect.antenna.place.detail,"Placement screen, small line.",Pick a spot on the field edge · the antenna faces inward,Tarlanın kenarında bir konum seç · anten içeri bakar
+ui.effect.antenna,"Electric Antenna rule. {0} = cells it reaches, {1} = seconds between hits, {2} = percent of harvest damage (number only).",the edge antenna hits the first {0:plural:{} cell|{} cells} it faces every {1} s · {2}% of harvest damage,"kenardaki anten, baktığı yöndeki ilk {0} hücreye {1} sn'de bir vurur · hasat hasarının %{2}'i"
+ui.effect.closed_circuit,"Closed Circuit rule. {0} = percent of the damage (number only), {1} = cooldown seconds.","if the line harvests a plant of a planter with a behavior, an extra line hit at that planter's behavior chance · {0}% of the damage · cooldown {1} s","hat, davranışlı saksının bitkisini hasat ederse o saksının davranış şansıyla ek hat vuruşu · hasarın %{0}'i · bekleme {1} sn"
+ui.effect.line.place,Placement screen title for the Conductive Line reward.,SECOND ANTENNA,İKİNCİ ANTEN
+ui.effect.line.place.detail,"Placement screen, small line.","Goes on the opposite edge, in line with the first antenna","İlk antenle aynı hizada, karşı kenara yerleşir"
+ui.effect.line,"Conductive Line rule. {0} = seconds between hits, {1} = percent of harvest damage (number only).","a second antenna on the opposite edge, in line · line hits on the cells between the antennas every {0} s · {1}% of harvest damage",aynı hizada karşı kenara ikinci anten · iki anten arasındaki hücrelere {0} sn'de bir hat vuruşu · hasat hasarının %{1}'i
+ui.effect.crescent.full,"Crescent Strike rule. {0} = hits needed, {1} = max distance in units, {2} = percent of harvest damage (number only).","every {0} direct plant hits, a crescent from the cursor · random main direction, up to {1} units · {2}% of harvest damage",her {0} doğrudan bitki isabetinde fareden hilal · rastgele ana yönde en fazla {1} birim · hasat hasarının %{2}'i
+ui.effect.crescent,"Crescent Strike rule (old profiles). {0} = hits needed, {1} = cells travelled, {2} = percent (number only).",a crescent every {0} valid hits · travels {1:plural:{} cell|{} cells} · {2}% of harvest damage,her {0} geçerli vuruşta bir hilal · {1} hücre ilerler · hasat hasarının %{2}'i
+ui.effect.crit_arc,"Critical Arc rule. {0} = range in cells, {1} = percent of crit damage (number only), {2} = max arcs per hit.",a crit arcs to another plant within {0:plural:{} cell|{} cells} · {1}% of crit damage · up to {2} per hit,"kritik vuruş, {0} hücre içindeki başka bir bitkiye ark sıçratır · kritik hasarın %{1}'i · vuruş başına en çok {2}"
+ui.effect.crit_burst,"Critical Burst rule. {0} = crits needed, {1} = percent (number only).",crit on {0}+ plants in one hit: extra area hit at the center · {1}% of harvest damage × crit multiplier,tek vuruşta {0}+ bitkiye kritik: merkezde ek alan vuruşu · hasat hasarı × kritik çarpanının %{1}'i
+ui.effect.full_moon,"Full Moon rule. {0} = percent of base damage (number only), {1} = pause seconds.","each main crescent sends a big extra crescent from the cursor ring · random direction, not the main one · {0}% of base damage · cost: {1} s hit pause",her ana hilalle mouse halkasından bir büyük ek hilal · ana hilalden farklı rastgele yön · taban hasarın %{0}'i · bedel: {1} sn vuruş duraklaması
+ui.effect.greedy,"Greedy Harvest rule. {0} = harvests needed in one hit, {1} = damage multiplier of the next hit.",{0}+ harvests in one hit: next hit's damage ×{1} · hit a single target and the charge is lost,tek vuruşta {0}+ hasat: sıradaki vuruşun hasarı ×{1} · tek hedefe vurursan hak kaybolur
+ui.effect.growing_moon,"Growing Moon rule. {0} = extra range units, {1} = damage percent per growth (number only), {2} = max growth count, {3} = front width in cells.","crescent range +{0} units · grows with harvests: damage +{1}% (up to {2} times), front {3} cells · a step without a harvest resets it","hilal menzili +{0} birim · hasatla büyür: hasar +%{1} (en çok {2} kez), cephe {3} hücre · hasatsız adım sıfırlar"
+ui.effect.echo,"Harvest Echo rule. {0} = harvests needed, {1} = max cells, {2} = percent (number only), {3} = cooldown seconds.",{0}+ harvests in one hit: meteors on the cells mirrored across the field center (up to {1}) · {2}% of harvest damage · cooldown {3} s,tek vuruşta {0}+ hasat: kesilen hücrelerin tarlanın ortasına göre simetriğine meteor (en çok {1} hücre) · hasat hasarının %{2}'i · bekleme {3} sn
+ui.effect.overflow,"Overflow Damage rule. {0} = percent passed on (number only), {1} = max transfers, {2} = percent lost per transfer (number only).",{0}% of a killing hit's leftover damage passes to the next plant · up to {1} transfers · {2}% lost per transfer,öldüren vuruşun artan hasarının %{0}'i yandaki bitkiye geçer · en çok {1} aktarım · her aktarımda %{2} kayıp
+ui.effect.overload,"Overload rule. {0} = delay seconds, {1} = percent of the damage (number only), {2} = cooldown seconds.",a triggered planter behavior runs once more {0} s later · {1}% of the damage · {2} s cooldown per planter + behavior,tetiklenen saksı davranışı {0} sn sonra bir kez daha çalışır · hasarın %{1}'i · saksı + davranış başına {2} sn bekleme
+ui.effect.reactor,"Rare Reactor rule. {0} = rarity name, {1} = seconds, {2} = chance multiplier.","harvest a {0}-or-better plant with your own hit: current behavior chances ×{2} for {1} s · doesn't stack, the timer refreshes","{0} ve üstü bitkiyi kendi vuruşunla hasat edince {1} sn mevcut davranış şansları ×{2} · birikmez, süre yenilenir"
+ui.effect.place_hint,"Placement screen, small line. {0} = reward name, {1} = key icon (Esc).",{0} · click: place · {1}: cancel,{0} · tıkla: yerleştir · {1}: vazgeç
+ui.effect.place_cancel,Placement screen button: cancel placing.,CANCEL,VAZGEÇ
+data.reward_stage.sinirsiz.name,"Boss reward stage name, capitals ('EARLY STAGE · BOSS REWARD').",ENDLESS,SINIRSIZ
+data.reward.bilgi_filizi.note_146338,"Boss reward card, small note under the effect.",XP from harvests.,Hasattan gelen XP.
+data.reward.canavar_kesimi.note_d88dc3,"Boss reward card, small note under the effect.",Only your own hit. Taken once.,Yalnız kendi vuruşun. Bir kez alınır.
+data.reward.firtina_bilegi.note_aa5733,"Boss reward card, small note under the effect.",Taken once. Floor 0.10 s.,"Bir kez alınır. Taban 0,10 sn."
+data.reward.zincir_hasat.note_97c0b1,"Boss reward card, small note under the effect.",Each planter and behavior is tried once per attack chain. Aftershocks and second waves don't join the chain.,Her saksı ve davranışı bir saldırının zincirinde bir kez denenir. Artçı ve ikinci dalga zincire katılmaz.
+data.reward.hasat_ritmi.name,"Boss reward name (card title, lists).",Harvest Rhythm,Hasat Ritmi
+data.reward.hasat_ritmi.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Rhythm:,Ritim:
+data.reward.hasat_ritmi.note_2a97d6,"Boss reward card, small note under the effect.",Only harvests from your own hits count. When the charge is ready your next hit is stronger (the cursor ring grows). No extra attacks; doesn't carry over to behaviors.,Yalnız kendi vuruşunla yaptığın hasatlar sayılır. Hak hazır olunca sıradaki vuruşun güçlenir (imleç halkası büyür). Ek saldırı üretmez; davranışlara geçmez.
+data.reward.zincir_hasat.name,"Boss reward name (card title, lists).",Chain Harvest,Zincir Hasat
+data.reward.zincir_hasat.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Chain:,Zincir:
+data.reward.bereketli_ogrenim.name,"Boss reward name (card title, lists).",Fruitful Learning,Bereketli Öğrenim
+data.reward.bereketli_ogrenim.note_f9c957,"Boss reward card, small note under the effect.",Behavior damage unchanged.,Davranış hasarı değişmez.
+data.reward.davranisa_adanis.name,"Boss reward name (card title, lists).",Devoted to Behaviors,Davranışa Adanış
+data.reward.davranisa_adanis.note_1db657,"Boss reward card, small note under the effect.",Explosion · electric · tornado · boomerang. Your own hit is unchanged.,Patlama · elektrik · kasırga · bumerang. Kendi vuruşun değişmez.
+data.reward.agir_darbe.name,"Boss reward name (card title, lists).",Heavy Blow,Ağır Darbe
+data.reward.agir_darbe.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Crit damage multiplier,Kritik hasar çarpanı
+data.reward.agir_darbe.note_19db3c,"Boss reward card, small note under the effect.",Only crits of your own hit.,Yalnız kendi vuruşun kritiği.
+data.reward.altin_hedef.name,"Boss reward name (card title, lists).",Golden Target,Altın Hedef
+data.reward.altin_hedef.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Direct damage to Rare+ plants,Rare ve üstü bitkiye doğrudan hasar
+data.reward.altin_hedef.note_12c404,"Boss reward card, small note under the effect.",Only your own hit; Common and Uncommon unchanged. Behavior damage unchanged.,Yalnız kendi vuruşun; Common ve Uncommon değişmez. Davranış hasarı değişmez.
+data.reward.bereketli_toprak.name,"Boss reward name (card title, lists).",Fertile Ground,Bereketli Toprak
+data.reward.bereketli_toprak.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Spawn interval,Üretim aralığı
+data.reward.bereketli_toprak.inverse,Shown in brackets after an interval value: '(attack rate ×1.11)'. Lower case.,spawn rate,üretim sıklığı
+data.reward.bereketli_toprak.note_2b5493,"Boss reward card, small note under the effect.",All planters. Offered only if your field is emptying (last round's average fill below 65%). Floor 0.50 s.,"Bütün saksılar. Yalnız tarlan boşalıyorsa çıkar (son round ortalama doluluk %65'in altında). Taban 0,50 sn."
+data.reward.bilgi_filizi.name,"Boss reward name (card title, lists).",Sprout of Knowledge,Bilgi Filizi
+data.reward.bilgi_filizi.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,XP gained,Kazanılan XP
+data.reward.bilgi_filizi.note_8592cb,"Boss reward card, small note under the effect.",XP from harvests. Not offered after the Round 30 boss.,Hasattan gelen XP. Round 30 boss'undan sonra çıkmaz.
+data.reward.canavar_kesimi.name,"Boss reward name (card title, lists).",Monster Cut,Canavar Kesimi
+data.reward.canavar_kesimi.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Direct hit damage,Doğrudan vuruş hasarı
+data.reward.canavar_kesimi.note_f6a008,"Boss reward card, small note under the effect.",Only your own hit. Offered after the Round 25 boss; taken once.,Yalnız kendi vuruşun. Round 25 boss'undan sonra çıkar; bir kez alınır.
+data.reward.firtina_bilegi.name,"Boss reward name (card title, lists).",Storm Wrist,Fırtına Bileği
+data.reward.firtina_bilegi.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Attack interval,Saldırı aralığı
+data.reward.firtina_bilegi.inverse,Shown in brackets after an interval value: '(attack rate ×1.11)'. Lower case.,attack rate,saldırı sıklığı
+data.reward.firtina_bilegi.note_4f0a36,"Boss reward card, small note under the effect.",Offered after the Round 25 boss; taken once. Floor 0.10 s.,"Round 25 boss'undan sonra çıkar; bir kez alınır. Taban 0,10 sn."
+data.reward.genis_savurus.name,"Boss reward name (card title, lists).",Wide Swing,Geniş Savuruş
+data.reward.genis_savurus.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Hit radius,Vuruş yarıçapı
+data.reward.genis_savurus.note_b211c6,"Boss reward card, small note under the effect.",Only your own hit. The cursor ring grows; behavior area unchanged.,Yalnız kendi vuruşun. İmleç halkası büyür; davranış alanı değişmez.
+data.reward.hizli_bilek.name,"Boss reward name (card title, lists).",Quick Wrist,Hızlı Bilek
+data.reward.hizli_bilek.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Attack interval,Saldırı aralığı
+data.reward.hizli_bilek.inverse,Shown in brackets after an interval value: '(attack rate ×1.11)'. Lower case.,attack rate,saldırı sıklığı
+data.reward.hizli_bilek.note_49cc2e,"Boss reward card, small note under the effect.",Shorter time between hits. Floor 0.10 s.,"Vuruşlar arası süre kısalır. Taban 0,10 sn."
+data.reward.keskin_bicak.name,"Boss reward name (card title, lists).",Sharp Blade,Keskin Bıçak
+data.reward.keskin_bicak.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Direct hit damage,Doğrudan vuruş hasarı
+data.reward.keskin_bicak.note_4f0771,"Boss reward card, small note under the effect.",Only your own hit. Behavior damage unchanged.,Yalnız kendi vuruşun. Davranış hasarı değişmez.
+data.reward.kivilcim.name,"Boss reward name (card title, lists).",Spark,Kıvılcım
+data.reward.kivilcim.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Current behavior chances,Mevcut davranış şansları
+data.reward.kivilcim.note_662644,"Boss reward card, small note under the effect.",Explosion · tornado · boomerang · electric. Gives no chance to a planter that has none; up to 100%.,Patlama · kasırga · bumerang · elektrik. Şansı olmayan saksıya şans vermez; en çok %100.
+data.reward.kritik_goz.name,"Boss reward name (card title, lists).",Critical Eye,Kritik Göz
+data.reward.kritik_goz.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Crit chance,Kritik şansı
+data.reward.kritik_goz.note_648baa,"Boss reward card, small note under the effect.",Only your own hit. Added as percentage points.,Yalnız kendi vuruşun. Yüzde puanı olarak eklenir.
+data.reward.nadir_tohum.name,"Boss reward name (card title, lists).",Rare Seed,Nadir Tohum
+data.reward.nadir_tohum.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Rarity bonus,Nadirlik bonusu
+data.reward.nadir_tohum.note_41c039,"Boss reward card, small note under the effect.",All planters. Added as percentage points; up to 95 points.,Bütün saksılar. Yüzde puanı olarak eklenir; en çok 95 puan.
+data.reward.yikim_gucu.name,"Boss reward name (card title, lists).",Destructive Force,Yıkım Gücü
+data.reward.yikim_gucu.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Behavior damage,Davranış hasarı
+data.reward.yikim_gucu.note_bf999d,"Boss reward card, small note under the effect.",Explosion · tornado · boomerang · electric. Your own hit is unchanged.,Patlama · kasırga · bumerang · elektrik. Kendi vuruşun değişmez.
+data.reward.acgozlu_hasat.name,"Boss reward name (card title, lists).",Greedy Harvest,Açgözlü Hasat
+data.reward.acgozlu_hasat.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Greed:,Açgözlülük:
+data.reward.acgozlu_hasat.note_bb7f10,"Boss reward card, small note under the effect.",An empty swing doesn't spend the charge. The powered hit doesn't earn a new charge. Doesn't carry over to behaviors.,Boş savuruş hakkı harcamaz. Güçlenen vuruş yeni hak kazandırmaz. Davranışlara geçmez.
+data.reward.asiri_yukleme.name,"Boss reward name (card title, lists).",Overload,Aşırı Yükleme
+data.reward.asiri_yukleme.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Load:,Yükleme:
+data.reward.asiri_yukleme.note_b12ea6,"Boss reward card, small note under the effect.",The extra proc doesn't join the chain or roll again. The tornado / boomerang active limit isn't exceeded.,Ek proc zincire katılmaz ve yeni zar atmaz. Kasırga / bumerang aktif sınırı aşılmaz.
+data.reward.buyuyen_ay.name,"Boss reward name (card title, lists).",Growing Moon,Büyüyen Ay
+data.reward.buyuyen_ay.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Growth:,Büyüme:
+data.reward.buyuyen_ay.note_87dce2,"Boss reward card, small note under the effect.","Crescent range +1 unit: 3 → 4. The main crescent grows with the distance it travels, from birth until it fades; it doesn't wait for the first harvest. Damage growth depends on real harvests. Full Moon is big from the start and stays that size.",Hilal menzili 1 birim artar: 3 → 4. Ana hilal doğduğu andan yok olana kadar ilerlediği mesafeyle orantılı büyür; ilk hasadı beklemez. Hasar büyümesi gerçek hasatlara bağlıdır. Dolunay baştan büyük ve sabittir.
+data.reward.dolunay.name,"Boss reward name (card title, lists).",Full Moon,Dolunay
+data.reward.dolunay.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Full Moon:,Dolunay:
+data.reward.dolunay.note_d9b83b,"Boss reward card, small note under the effect.",Each main crescent comes with exactly one big extra crescent; no harvest needed. It starts from the cursor ring and moves in a random direction other than the main one. It is big from the start and makes no further Full Moons.,"Her ana hilalin yanında yalnız bir büyük ek hilal çıkar; hasat koşulu yoktur. Mouse halkasından doğduğu anda, ana hilalden farklı rastgele yönde ilerler. Baştan büyüktür ve yeniden Dolunay üretmez."
+data.reward.elektrik_anteni.name,"Boss reward name (card title, lists).",Electric Antenna,Elektrik Anteni
+data.reward.elektrik_anteni.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Antenna:,Anten:
+data.reward.elektrik_anteni.note_f7c5c6,"Boss reward card, small note under the effect.","The antenna stands on the field edge; it takes no planter or tile space. Its hit doesn't count as yours: no crits, no behavior triggers.","Anten tarlanın kenarında durur; saksı ve tile yeri kaplamaz. Vuruşu senin vuruşun sayılmaz: kritik atmaz, davranış tetiklemez."
+data.reward.hasat_yankisi.name,"Boss reward name (card title, lists).",Harvest Echo,Hasat Yankısı
+data.reward.hasat_yankisi.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Echo:,Yankı:
+data.reward.hasat_yankisi.note_29cfee,"Boss reward card, small note under the effect.",Only harvests from your own hits count. An echo makes no new echo.,Yalnız kendi vuruşunla yaptığın hasatlar sayılır. Yankı yeni yankı doğurmaz.
+data.reward.hilal_darbesi.name,"Boss reward name (card title, lists).",Crescent Strike,Hilal Darbesi
+data.reward.hilal_darbesi.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Crescent:,Hilal:
+data.reward.hilal_darbesi.note_763e86,"Boss reward card, small note under the effect.","The crescent leaves the cursor ring's edge in a random main direction. Speed 8 units/s; base range 3, 4 with Growing Moon.","Hilal mouse halkasının kenarından rastgele bir ana yönde çıkar. Hız 8 birim/sn; temel menzil 3, Büyüyen Ay ile 4 birimdir."
+data.reward.iletken_hat.name,"Boss reward name (card title, lists).",Conductive Line,İletken Hat
+data.reward.iletken_hat.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Line:,Hat:
+data.reward.iletken_hat.note_dd726f,"Boss reward card, small note under the effect.",You choose where the second antenna goes; spots where no line can form can't be chosen. Line hits don't count as yours.,İkinci antenin yerini sen seçersin; hat kurulamayan konum seçilemez. Hat vuruşu senin vuruşun sayılmaz.
+data.reward.kapali_devre.name,"Boss reward name (card title, lists).",Closed Circuit,Kapalı Devre
+data.reward.kapali_devre.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Circuit:,Devre:
+data.reward.kapali_devre.note_ca8b75,"Boss reward card, small note under the effect.",The extra hit can't restart itself. Does nothing without a planter that has a behavior.,Ek vuruş kendini yeniden başlatamaz. Davranışı olan saksı yoksa çalışmaz.
+data.reward.kritik_ark.name,"Boss reward name (card title, lists).",Critical Arc,Kritik Ark
+data.reward.kritik_ark.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Arc:,Ark:
+data.reward.kritik_ark.note_093917,"Boss reward card, small note under the effect.",The arc goes to a plant your hit didn't touch. It doesn't crit or make new arcs.,"Ark, vuruşunun değmediği bir bitkiye gider. Kritik atmaz, yeni ark doğurmaz."
+data.reward.nadir_reaktor.name,"Boss reward name (card title, lists).",Rare Reactor,Nadir Reaktör
+data.reward.nadir_reaktor.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Reactor:,Reaktör:
+data.reward.nadir_reaktor.note_662644,"Boss reward card, small note under the effect.",Explosion · tornado · boomerang · electric. Gives no chance to a planter that has none; up to 100%.,Patlama · kasırga · bumerang · elektrik. Şansı olmayan saksıya şans vermez; en çok %100.
+data.reward.tasan_hasar.name,"Boss reward name (card title, lists).",Overflow Damage,Taşan Hasar
+data.reward.tasan_hasar.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Overflow:,Taşma:
+data.reward.tasan_hasar.note_4dda32,"Boss reward card, small note under the effect.",Starts only from a plant killed by your own hit. Transfers don't crit.,Yalnız kendi vuruşunun öldürdüğü bitkiden başlar. Aktarım kritik atmaz.
+data.reward.artci_patlama.name,"Boss reward name (card title, lists).",Aftershock,Artçı Patlama
+data.reward.artci_patlama.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Aftershock:,Artçı patlama:
+data.reward.artci_patlama.note_cb4550,"Boss reward card, small note under the effect.",Spreads three steps from the explosion's outer edge. Hits each cell once; doesn't pass locked cells. An aftershock starts no new aftershock or chain.,Patlamanın dış sınırından üç adım yayılır. Aynı hücreye bir kez vurur; kilitli hücrelerden geçmez. Artçı yeni artçı veya zincir başlatmaz.
+data.reward.cifte_akim.name,"Boss reward name (card title, lists).",Double Current,Çifte Akım
+data.reward.cifte_akim.effect,Boss reward effect label; the value follows (e.g. 'Attack interval ×0.90'). Keep a trailing colon if there is one.,Second electric wave:,İkinci elektrik dalgası:
+data.reward.cifte_akim.note_78d4d2,"Boss reward card, small note under the effect.","After every normal electric that procs, a second wave from the same planter. No new roll; the second wave starts no chain.",Şansı tutan her normal elektrikten sonra aynı saksıdan ikinci bir dalga. Yeni şans atılmaz; ikinci dalga zincir başlatmaz.
+ui.stamp.last_round,Big round intro subtitle: this is the run's last round.,LAST ROUND!,SON ROUND!
+ui.stamp.seconds,Big round intro subtitle. {0} = round length in seconds. Capitals.,{0} SECONDS,{0} SANİYE
+ui.stamp.round,Big round intro title. {0} = round number.,ROUND {0},ROUND {0}
+ui.stamp.quota,"Big round intro subtitle at the start of a quota period. {0} = quota target, {1} = rounds in the period. Capitals.",QUOTA {0} · {1:plural:{} ROUND|{} ROUNDS},KOTA {0} · {1} ROUND
+ui.stamp.quota_missing,Big round intro subtitle on the period's last round. {0} = score still missing. Capitals.,LAST ROUND · {0} TO GO FOR THE QUOTA,SON ROUND · KOTAYA {0} KALDI
+ui.stamp.level_up,Big pop-up when the player levels up.,LEVEL UP!,LEVEL UP!
+ui.stamp.level,Small line under LEVEL UP. {0} = new level.,Lv. {0},Lv. {0}
+ui.spec.no_change,Specialization summary when it changes nothing.,no change,değişiklik yok
+ui.spec.short.direct,Specialization summary part. {0} = multiplier.,direct ×{0},doğrudan ×{0}
+ui.spec.short.behavior,Specialization summary part. {0} = multiplier.,behavior ×{0},davranış ×{0}
+ui.spec.short.resources,Specialization summary part. {0} = multiplier.,harvest resources ×{0},hasat kaynağı ×{0}
+ui.spec.title,Specialization screen title.,BOSS CLEARED · PICK A SPECIALIZATION,BOSS GEÇİLDİ · UZMANLAŞMA SEÇ
+ui.spec.subtitle,Specialization screen subtitle. {0} = first round it affects.,Take only one · lasts until the end of the run · can't be undone · applies from Round {0} on,Yalnız biri alınır · run sonuna kadar geçerli · geri alınamaz · etkisi Round {0} ve sonrası
+ui.spec.neutral,Specialization card that changes nothing.,"No bonus, no penalty","Bonus yok, ceza yok"
+ui.spec.neutral.detail,Second line of that card.,Damage and harvest income stay as they are,Hasar ve hasat geliri olduğu gibi kalır
+ui.spec.direct,Specialization card line. {0} = multiplier.,Direct damage ×{0},Doğrudan hasar ×{0}
+ui.spec.behavior,Specialization card line. {0} = multiplier.,Behavior damage ×{0},Davranış hasarı ×{0}
+ui.spec.behavior.detail,Small line under behavior damage.,explosion · tornado · boomerang · electric,patlama · kasırga · bumerang · elektrik
+ui.spec.resources,Specialization card line. {0} = multiplier.,Harvest resources ×{0},Hasat kaynağı ×{0}
+ui.spec.resources.detail,Small line under harvest resources.,Gold · Iron · Stone from harvests,hasattan gelen Gold · Iron · Stone
+ui.spec.choose,Specialization card button.,CHOOSE,SEÇ
+data.spec.davranis_ustasi.name,Specialization name (capitals).,BEHAVIOR MASTER,DAVRANIŞ USTASI
+data.spec.mevcut_duzeni_koru.name,Specialization name (capitals): keep things as they are.,KEEP THE CURRENT ORDER,MEVCUT DÜZENİ KORU
+data.spec.usta_bicici.name,Specialization name (capitals): master of the player's own hit.,MASTER REAPER,USTA BİÇİCİ
+ui.shop.heading,Planter shop heading.,PLANTERS,SAKSILAR
+ui.shop.choose,Planter shop detail title before a planter is chosen.,CHOOSE A PLANTER,BİR SAKSI SEÇ
+ui.shop.tagline,Planter shop tagline under the heading.,PICK IT. PLANT IT. GROW BIG.,SEÇ. EK. BÜYÜT.
+ui.shop.skill_tree,Planter shop card price slot for a planter locked in the skill tree.,SKILL TREE,YETENEK AĞACI
+ui.shop.unavailable,Planter shop card price slot for a planter that isn't set up.,UNAVAILABLE,YOK
+ui.shop.choose_hint,Planter shop detail text before a planter is chosen.,Choose an unlocked planter from the catalogue.,Katalogdan açık bir saksı seç.
+ui.shop.buy,Planter shop buy button.,BUY,SATIN AL
+ui.shop.planter_title,Planter shop detail title. {0}x{1} = planter size.,{0}x{1} PLANTER,{0}x{1} SAKSI
+ui.shop.seconds,Planter shop grow time value. {0} = seconds.,{0}s,{0} sn
+ui.shop.description,"Planter shop detail. {0} = growing plots, {1} = plant names (comma list) or 'your next crop'.",{0} growing plots for {1}.,{1} için {0} ekim yeri.
+ui.shop.description2,"Planter shop detail, second line. {0} = cells needed. R is the rotate key.","Needs {0} empty, unlocked cells. R rotates during placement.","{0} boş, açık hücre gerekir. Yerleştirirken R döndürür."
+ui.shop.next_crop,Used as {1} in ui.shop.description when the planter has no plant list.,your next crop,sıradaki ürünün
+ui.shop.buy_price,Planter shop buy button with price. {0} = price (the resource icon follows).,BUY  /  {0},SATIN AL  /  {0}
+ui.shop.incomplete,Planter shop status: the planter's data is broken.,Planter setup is incomplete.,Saksı ayarı eksik.
+ui.shop.locked,Planter shop status.,Unlock this planter in the skill tree.,Bu saksıyı yetenek ağacında aç.
+ui.shop.available,"Planter shop status. {0} = amount owned, {1} = resource name.",Available: {0} {1},Mevcut: {0} {1}
+ui.shop.need,"Planter shop status. {0} = amount missing, {1} = resource name, {2} = amount owned.",Need {0} more {1}  /  Available: {2},{0} {1} daha gerekli  /  Mevcut: {2}
+data.plant.beetroot.name,Plant name.,Beetroot,Pancar
+data.plant.carrot.name,Plant name.,Carrot,Havuç
+data.plant.corn.name,Plant name.,Corn,Mısır
+data.plant.grape.name,Plant name.,Grape,Üzüm
+data.plant.grass.name,Plant name.,Grass,Çimen
+data.plant.lettuce.name,Plant name.,Lettuce,Marul
+data.plant.pepper.name,Plant name.,Pepper,Biber
+data.plant.pineapple.name,Plant name.,Pineapple,Ananas
+data.plant.potato.name,Plant name.,Potato,Patates
+data.plant.pumpkin.name,Plant name.,Pumpkin,Balkabağı
+data.plant.strawberry.name,Plant name.,Strawberry,Çilek
+data.plant.tomato.name,Plant name.,Tomato,Domates
+ui.runend.score,"Run end screen, total score line. {0} = score.",Harvest Score: {0},Harvest Score: {0}
+ui.runend.loadout,"Run end screen. {0} = farmer name, {1} = scythe name.",Loadout: {0} · {1},Başlangıç: {0} · {1}
+ui.runend.unlocked,Run end screen. {0} = content unlocked for good this run (comma list).,Unlocked for good: {0},Kalıcı olarak açıldı: {0}
+ui.runend.boss_rewards,Run end screen heading above the boss reward list.,BOSS REWARDS,BOSS ÖDÜLLERİ
+ui.runend.boss_rewards_line,Run end screen (short form). {0} = boss rewards (comma list).,Boss rewards: {0},Boss ödülleri: {0}
+ui.runend.times,"Run end time line. {0} = active play time, {1} = time on choices, {2} = shop and preparation time.",Active play {0} · choices {1} · shop and preparation {2},Aktif oynanış {0} · seçimler {1} · mağaza ve hazırlık {2}
+ui.runend.times.level_work,Run end time line part. {0} = time.,level calculation {0},seviye hesaplama {0}
+ui.runend.times.paused,Run end time line part. {0} = time.,paused {0},duraklama {0}
+ui.runend.fail_both,Run end title: both the quota and the boss harvest were missed.,QUOTA AND BOSS HARVEST MISSED,KOTA VE BOSS HASADI TUTMADI
+ui.runend.fail_boss,Run end title: the boss harvest was missed.,BOSS HARVEST MISSED,BOSS HASADI TUTMADI
+ui.runend.segment_quota_short,Run end part. {0} = score / target.,segment quota {0} (short),segment kotası {0} (eksik)
+ui.runend.segment_quota_met,Run end part. {0} = score / target.,segment quota {0} (met),segment kotası {0} (tamam)
+ui.runend.boss_line,"Run end detail. {0} = boss round, {1} = boss harvest score / target, {2} = segment quota part.",Round {0} · boss harvest {1} (short) · {2},Round {0} · boss hasadı {1} (eksik) · {2}
+ui.runend.fail_quota,Run end title: the quota was missed.,QUOTA MISSED,KOTA TUTMADI
+ui.runend.quota_line,"Run end detail. {0} = round, {1} = segment score / needed quota.",Round {0} · segment score {1} (quota needed),Round {0} · segment skoru {1} (gereken kota)
+ui.runend.boss_met,Run end detail part. {0} / {1} = boss harvest score / target.,boss harvest {0} / {1} (met),boss hasadı {0} / {1} (tamam)
+ui.runend.victory,Run end title when the run is won and the profile has no own title.,RUN COMPLETE,RUN TAMAMLANDI
+ui.runend.last_quota,Run end detail part. {0} = last quota score / target.,last quota {0},son kota {0}
+ui.runend.rounds,Run end detail. {0} = rounds played.,{0:plural:{} round|{} rounds},{0} round
+data.profile.run_tamamlandi_alpha_denge_v1.victory,Run end title of a balance profile (internal version name in it).,RUN COMPLETE · ALPHA BALANCE V1,RUN TAMAMLANDI · ALPHA DENGE V1
+data.profile.run_tamamlandi_gec_oyun_v1.victory,Run end title of a balance profile (internal version name in it).,RUN COMPLETE · LATE GAME V1,RUN TAMAMLANDI · GEÇ OYUN V1
+data.profile.demo_tamamlandi.victory,Run end title of the demo.,DEMO COMPLETE!,DEMO TAMAMLANDI!
+ui.field.shell.title,Field event (a whim of the field) title. Capitals.,GRAFTED SHELL,AŞILI KABUK
+ui.field.shell.prep,Grafted Shell status before it starts. A and B are the two zones / nodes.,"One of two zones will close · break a node: its zone is saved, the other closes · choose nothing and A closes","İki bölgeden biri kapanacak · bir düğümü kır: onun bölgesi kurtulur, diğeri kapanır · seçmezsen A kapanır"
+ui.field.shell.choose,"Grafted Shell status. {0}/{1} = node A hits left / durability, {2}/{3} = node B, {4} = seconds until A closes.",Choose: node A {0}/{1} · node B {2}/{3} · A closes in {4} s,Seç: A düğümü {0}/{1} · B düğümü {2}/{3} · {4} sn sonra A kapanır
+ui.field.shell.closed,"Grafted Shell status. {0} = saved zone (A/B), {1} = closed zone, {2} = seconds left.",{0} saved · production stopped in zone {1} · {2} s,{0} kurtuldu · {1} bölgesinde üretim durdu · {2} sn
+ui.field.shell.reopened,Grafted Shell over. {0} = zone letter.,Zone {0} reopened,{0} bölgesi açıldı
+ui.field.shell.hud,"Field event box, Grafted Shell first line.",The zone of the node you break is saved,Kırdığın düğümün bölgesi kurtulur
+ui.field.shell.hud.nodes,"Field event box. {0}/{1} = node A hits left / durability, {2}/{3} = node B.",node A {0}/{1} · node B {2}/{3},A düğümü {0}/{1} · B düğümü {2}/{3}
+ui.field.shell.hud.timer,Field event box. {0} = seconds until A closes.,A closes in {0} s,{0} sn sonra A kapanır
+ui.field.shell.hud.warn,Field event box before the event is active.,Choose nothing and A closes!,Seçmezsen A kapanır!
+ui.field.sprout.title,Field event title. Capitals.,INVASIVE SPROUT,İSTİLACI FİLİZ
+ui.field.sprout.prep,Invasive Sprout status before it starts.,A sprout is coming · production slows where it spreads · break the main sprout with your own hit,Filiz çıkıyor · yayıldığı hücrelerde üretim yavaşlar · ana filizi kendi vuruşunla kır
+ui.field.sprout.active,"Invasive Sprout status. {0} = slowed cells, {1}/{2} = main sprout hits left / durability, {3} = seconds left.",Production slowed: {0:plural:{} cell|{} cells} · main sprout {1}/{2} · {3} s,Üretim yavaş: {0} hücre · ana filiz {1}/{2} · {3} sn
+ui.field.sprout.broken,Invasive Sprout over (player broke it).,Main sprout broken · production back to normal,Ana filiz kırıldı · üretim normale döndü
+ui.field.sprout.withered,Invasive Sprout over (time ran out).,The sprout withered · production back to normal,Filiz kurudu · üretim normale döndü
+ui.field.thorn.title,Field event title. Capitals.,THORN SIEGE,DİKEN KUŞATMASI
+ui.field.thorn.prep,Thorn Siege status before it starts. {0} = marked cells.,Production will stop on {0:plural:{} marked cell|{} marked cells} · break the roots with your own hit,İşaretli {0} hücrede üretim duracak · kökleri kendi vuruşunla kır
+ui.field.thorn.active,"Thorn Siege status. {0}/{1} = roots left / total, {2} = seconds left.",Production stopped in the zone · roots left {0}/{1} · {2} s,Bölgede üretim durdu · kalan kök {0}/{1} · {2} sn
+ui.field.thorn.broken,Thorn Siege over (player broke the roots).,Roots broken · zone reopened,Kökler kırıldı · bölge açıldı
+ui.field.thorn.withdrew,Thorn Siege over (time ran out).,The thorns withdrew · zone reopened,Dikenler çekildi · bölge açıldı
+ui.field.bounty.title,Field event title. Capitals.,WANDERING BOUNTY,GEZGİN BEREKET
+ui.field.bounty.prep,Wandering Bounty status before it starts.,Bounty incoming: resources and XP ×2 · production ×2 faster,Bereket geliyor: kaynak ve XP ×2 · üretim ×2 hızlı
+ui.field.bounty.active,"Wandering Bounty status, first line.",Resources ×2 · XP ×2,Kaynak ×2 · XP ×2
+ui.field.bounty.active2,"Wandering Bounty status, second line.",Empty slots fill ×2 faster · for the whole round,Boş yuvalar ×2 hızlı dolar · round boyunca
+ui.field.bounty.counts,"Wandering Bounty status, third line. {0} = bountiful harvests, {1} = fast spawns.",{0:plural:{} bountiful harvest|{} bountiful harvests} · {1:plural:{} fast spawn|{} fast spawns},{0} bereketli hasat · {1} hızlı doğuş
+ui.field.bounty.ended,Wandering Bounty over. {0} = bonus harvests.,Bounty over · {0:plural:{} bonus harvest|{} bonus harvests},Bereket bitti · {0} bonuslu hasat
+ui.field.bounty.spawns,Second line after the bounty. {0} = fast spawns.,{0:plural:{} fast spawn|{} fast spawns},{0} hızlı doğuş
+ui.game.exit_sell,Button while selling planters: leave sell mode.,EXIT SELL MODE,SATIŞTAN ÇIK
+ui.game.exit_shop,Button in the skill tree shop: back to the preparation screen.,BACK,GERİ
+data.reward_stage.erken.name,"Boss reward stage name, capitals (EARLY STAGE · BOSS REWARD).",EARLY,ERKEN
+data.reward_stage.orta.name,"Boss reward stage name, capitals.",MID,ORTA
+data.reward_stage.guclu.name,"Boss reward stage name, capitals.",STRONG,GÜÇLÜ
+ui.shop.locked_badge,"Big badge over a planter shop card that the skill tree has not unlocked yet. Short, capitals.",LOCKED,KİLİTLİ
+story.trial1.0,"Story 1/14, after the first Trial (boss round) is passed. Big box. Eri happy and proud; she is secretly the villain, keep a sweet tone.",You passed a Trial! A shiver ran all the way down to my roots.,Bir Sınama'yı geçtin! Köklerime kadar bir titreme indi.
+story.trial1.1,"Story 1/14, line 2. She lies: in the very first talk she mentioned Earth. Two answer buttons follow.",Where did your ship come from? Earth? …Never heard of it.,Gemin nereden geliyordu? Dünya mı? …Hiç duymadım.
+story.trial1.choice.a,"Story 1/14, player's answer button 1 (trusting). Short. The choice is remembered for the ending.","Alright, if you say so.","Peki, öyle olsun."
+story.trial1.reply.a,"Story 1/14, Eri's reply to answer 1.",Thanks for trusting me.,Bana güvendiğin için sağ ol.
+story.trial1.choice.b,"Story 1/14, player's answer button 2 (doubting). Short. The choice is remembered for the ending.",Are you sure?,Emin misin?
+story.trial1.reply.b,"Story 1/14, Eri's reply to answer 2: flustered, covering up.","Hmmm… Earth, Earth… maybe I have heard of it, who knows.","Iıımm… Dünya, Dünya… belki duymuşumdur, bilmem ki."
+story.trial1.2,"Story 1/14, last line. A warning disguised as worry.","Don't get too strong, though… Strong farmers always leave one day.",Çok güçlenme ama… Güçlü çiftçiler bir gün hep gider.
+story.reward1.0,"Story 2/14, after the first boss reward is taken. Eri happy.",The field gave you that reward. The field loves you.,O ödülü sana tarla verdi. Tarla seni seviyor.
+story.reward1.1,"Story 2/14, line 2. 'Strong hands' = she needs workers.",So do I. Strong hands are so precious.,Ben de seviyorum. Güçlü eller çok kıymetli.
+story.r5.0,"Story 3/14, preparation screen before round 5. Eri happy.","Five rounds already! You're not bad, farmer.","Beş round oldu bile! Fena değilsin, çiftçi."
+story.r5.1,"Story 3/14, line 2. Hint: the player's work feeds her.","The more you work, the more I grow. Fair deal, right?","Sen çalıştıkça ben büyürüm. Adil bir anlaşma, değil mi?"
+story.r10.0,"Story 4/14, before round 10. Offering (Adak) = the quota the player must harvest for Eri.",Why do I want the Offering? To grow.,Adak'ı neden mi istiyorum? Büyümek için.
+story.r10.1,"Story 4/14, line 2.","The more you give, the bigger I get. Don't you want to grow too?",Ne kadar çok verirsen o kadar büyürüm. Sen de büyümek istemez misin?
+story.r15.0,"Story 5/14, before round 15. Eri happy, but a dark hint.",Other farmers came before you. They all worked so hard.,Senden önce de çiftçiler geldi. Hepsi çok çalışkandı.
+story.r15.1,"Story 5/14, line 2. She hesitates and lies (they did not leave).",Then… they left. Yes. They left.,Sonra… gittiler. Evet. Gittiler.
+story.r20.0,"Story 6/14, before round 20. Eri happy; she plants doubt about the crash.","Ever wondered why your ship crashed? You had fuel, your engine was fine.","Gemin neden düştü, hiç düşündün mü? Yakıtın vardı, motorun sağlamdı."
+story.r20.1,"Story 6/14, line 2. Changes the subject.","…Never mind. You're happy here, aren't you?","…Boş ver. Burada mutlusun, değil mi?"
+story.r25.0,"Story 7/14, before round 25. From here Eri is grey and sad: she will lose the player and her secret is about to come out.",I didn't think you'd make it this far…,Bu kadar uzağa geleceğini düşünmemiştim…
+story.r25.1,"Story 7/14, line 2. 'Wilted' = she has turned grey.","I've wilted a little, haven't I? The stronger you get, the more scared I am.","Biraz soldum, değil mi? Sen güçlendikçe ben korkuyorum."
+story.r25.2,"Story 7/14, line 3. Two answer buttons follow (not remembered).",I wish I could play with you a little longer. But soon you'll start asking questions.,Seninle biraz daha oynamak isterdim. Ama yakında soru sormaya başlarsın.
+story.r25.choice.a,"Story 7/14, player's answer button 1. Short.",What questions?,Ne sorusu?
+story.r25.reply.a,"Story 7/14, Eri's reply to answer 1.",…Never mind. Harvest.,…Boş ver. Hasat et.
+story.r25.choice.b,"Story 7/14, player's answer button 2. Short.",I won't ask any.,Soru sormam.
+story.r25.reply.b,"Story 7/14, Eri's reply to answer 2: sad, knowing.",You all say that.,Hep böyle dersiniz.
+story.r30.0,"Story 8/14, before round 30. Eri sad. The blue field is Earth (said openly later).",I used to have a huge blue field. Its soil was warm all the way to the core.,"Eskiden mavi, kocaman bir tarlam vardı. Toprağı çekirdeğine kadar sıcaktı."
+story.r30.1,"Story 8/14, line 2. She ate it.",I finished it. I can still taste it.,Onu bitirdim. Tadı hâlâ damağımda.
+story.r35.0,"Story 9/14, before round 35. Eri sad, confessing: she consumed the earlier farmers.",The other farmers didn't leave. I… harvested them.,Önceki çiftçiler gitmedi. Ben onları… hasat ettim.
+story.r35.1,"Story 9/14, line 2.",You'll be angry with me. They all were.,Bana kızacaksın. Hepsi kızmıştı.
+story.r40.0,"Story 10/14, before round 40. Eri sad, confessing: she made the player's ship crash.",Ships don't just fall. I pulled yours down.,Gemiler kendiliğinden düşmez. Senin gemini ben çektim.
+story.r40.1,"Story 10/14, line 2.",I needed your hands. I still do.,Ellerine ihtiyacım vardı. Hâlâ var.
+story.r45.0,"Story 11/14, before round 45. Eri sad. She all but names Earth.",That blue field had a name. Your ship took off from there.,Mavi tarlanın bir adı vardı. Senin gemin oradan kalktı.
+story.r45.1,"Story 11/14, line 2.","You know now, don't you?","Artık biliyorsun, değil mi?"
+story.r50.0,"Story 12/14, before the last round (the final Trial). Eri sad, but calculating.",The last Trial. Pass it and you've beaten me.,Son Sınama. Geçersen beni yenmiş olursun.
+story.r50.1,"Story 12/14, line 2. Either outcome serves her.",Fail it and you're still here. Either way works for me.,Geçemezsen yine buradasın. İkisi de benim işime yarar.
+story.victory.0,"Story 13/14, victory screen of the first full win. Line 1: Eri still grey and sad.",You won. You reached the end…,Kazandın. Sona geldin…
+story.victory.1,"Story 13/14, line 2: the mask falls, Eri turns red (her true self). Cold, triumphant.",Then the game is over. No need to hide anymore.,O zaman oyun bitti. Saklanmama gerek kalmadı.
+story.victory.2,"Story 13/14, line 3. Full confession.",Yes. I ate Earth's core. And I brought your ship down.,Evet. Dünya'nın çekirdeğini ben yedim. Gemini de ben düşürdüm.
+story.victory.3a,"Story 13/14, line 4, only if the player trusted her in story 1 ('Alright, if you say so').",You trusted me. That was the sweetest part.,Bana güvenmiştin. En tatlısı buydu.
+story.victory.3b,"Story 13/14, line 4, only if the player doubted her in story 1 ('Are you sure?').","You suspected me. You were right, and you stayed anyway.","Benden şüphelenmiştin. Haklıydın, ama yine de kaldın."
+story.victory.4,"Story 13/14, line 5. Her sadness was an act too.","I was never sad, farmer. Not once. Just hungry.","Üzgün değildim, çiftçi. Hiç olmadım. Sadece açtım."
+story.victory.5,"Story 13/14, last line. The cycle goes on.",Harvest. I need to get stronger for the next planet.,Hasat et. Bir sonraki gezegen için güçlenmem lazım.
+story.after.0,"Story 14/14, start of the first run after the first full win. Eri red, openly the villain. Offering = the quota.",We know each other now. My Offering is waiting.,Artık birbirimizi tanıyoruz. Adak'ım bekliyor.
+story.after.1,"Story 14/14, line 2.","You can't run. No ship, no Earth. There's only me.","Kaçamazsın. Gemin yok, Dünya'n yok. Sadece ben varım."

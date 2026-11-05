@@ -8,6 +8,9 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CanvasRenderer))]
 public sealed class DialoguePlateGraphic : MaskableGraphic
 {
+    // Üzgün aşamada solan ortak arayüz materyali (UiMood); yoksa Unity'nin varsayılanı.
+    public override Material defaultMaterial => UiMood.Material != null ? UiMood.Material : base.defaultMaterial;
+
     public enum Shape { CutRect, Triangle, Polygon }
 
     private Shape shape;

@@ -14,6 +14,15 @@ public sealed class LocalizedText : MonoBehaviour
 
     public string Key => key;
 
+    // Koddan kurulan yazı: bileşen yoksa eklenir, anahtar bağlanır (dil değişince kendiliğinden yenilenir).
+    public static LocalizedText Bind(TMP_Text label, string key, params object[] values)
+    {
+        if (label == null) return null;
+        if (!label.TryGetComponent(out LocalizedText localized)) localized = label.gameObject.AddComponent<LocalizedText>();
+        localized.SetKey(key, values);
+        return localized;
+    }
+
     public void SetKey(string newKey, params object[] values)
     {
         key = newKey;

@@ -91,6 +91,10 @@ public class RunProfileSO : ScriptableObject
     [Header("Bitiş")]
     [Tooltip("Son round'da kota geçilince run sonu ekranının başlığı.")]
     public string victoryTitle = "RUN TAMAMLANDI";
+    // Oyuncuya görünen zafer başlığı: çeviri tablosundan (data.profile.<başlık>.victory, başlık Türkçe yazıdan); anahtar yoksa
+    // asset'teki yazı.
+    public string VictoryTitle => GameText.Data(VictoryKey, victoryTitle);
+    public string VictoryKey => "data.profile." + GameText.Slug(victoryTitle) + ".victory";
 
     [NonSerialized] private RunCalendar calendar;
     // Kota dönemleri ve boss round'ları için tek hesap (veriyi kopyalamaz, bu profili canlı okur).

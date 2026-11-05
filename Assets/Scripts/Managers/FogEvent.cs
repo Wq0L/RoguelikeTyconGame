@@ -26,18 +26,18 @@ public sealed class FogEvent : SegmentEventRuntime
         get
         {
             if (!data.stepDown)
-                return $"vuruş yarıçapı ×{data.radiusMultiplier.ToString("0.##", CultureInfo.InvariantCulture).Replace('.', ',')}";
+                return GameText.Format("ui.event.fog.radius", GameText.Number(data.radiusMultiplier, "0.##"));
             // Aktifken uygulanan sayılar; önizlemede oyuncunun o anki yarıçapına göre beklenen sayılar.
-            if (applied) return $"vuruş alanı bir basamak dar: en iyi nişanda {cellsBefore} → {cellsDuring} bitki";
+            if (applied) return GameText.Format("ui.event.fog.applied", cellsBefore, cellsDuring);
             StatManager manager = StatManager.Instance;
             float cell = CellSize;
-            if (manager == null || cell <= 0f) return "vuruş alanı bir basamak daralır";
+            if (manager == null || cell <= 0f) return GameText.Get("ui.event.fog.step");
             float radius = manager.GetFinalStat(StatType.AreaRadius, StatTarget.Player);
             int now = HarvestArea.BestCells(radius, cell), then = HarvestArea.BestCells(HarvestArea.StepDownRadius(radius, cell), cell);
-            return $"vuruş alanı bir basamak daralır: en iyi nişanda {now} → {then} bitki";
+            return GameText.Format("ui.event.fog.preview", now, then);
         }
     }
-    public override string EndedText => data.stepDown ? "Vuruş alanı normale döndü" : "Vuruş yarıçapı normale döndü";
+    public override string EndedText => GameText.Get(data.stepDown ? "ui.event.fog.ended_area" : "ui.event.fog.ended_radius");
     public override bool Covers(GridPosition cell) => false;
 
     private static float CellSize => GridManager.Instance != null ? GridManager.Instance.GetCellSize() : 0f;

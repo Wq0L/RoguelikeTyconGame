@@ -10,6 +10,11 @@ public abstract class SegmentEventSO : ScriptableObject
     public string ruleText = "";
     public Color color = Color.white;
 
+    // Oyuncuya görünen ad: çeviri tablosundan (data.boss.<ad>.name, ad Türkçe yazıdan: "DON CEPHESİ" → don_cephesi);
+    // anahtar yoksa asset'teki yazı.
+    public string DisplayName => GameText.Data(NameKey, displayName);
+    public string NameKey => "data.boss." + GameText.Slug(displayName) + ".name";
+
     public abstract SegmentEventRuntime CreateRuntime(SegmentEventTiming timing);
 
     // Boss havuzundan seçilebilir mi (duyuru anındaki tarla ve oyuncu durumu). Eski profillerde sorulmaz.
@@ -92,7 +97,7 @@ public abstract class SegmentEventRuntime
     // Arayüzde bölgenin adı ("mavi şerit"); bölgesiz olayda null.
     public virtual string ZoneHint => null;
     // Olay bitince round özetinde yazan kısa cümle.
-    public virtual string EndedText => "Kural kalktı";
+    public virtual string EndedText => GameText.Get("ui.event.rule_lifted");
     public virtual float SpawnIntervalMultiplier(GridPosition cell) => 1f;
     // Aktifken bu hücrede doğan bitkinin can çarpanı (Sert Kabuk).
     public virtual float SpawnHealthMultiplier(GridPosition cell) => 1f;
@@ -134,11 +139,12 @@ public sealed class EdgeBandZone
     {
         get
         {
-            if (!IsChosen) return "şeritte";
+            if (!IsChosen) return GameText.Get("ui.event.band.any");
             if (byColumn)
-                return from == to ? $"{RoundMapUI.ColumnName(from)} sütununda" : $"{RoundMapUI.ColumnName(from)}–{RoundMapUI.ColumnName(to)} sütunlarında";
+                return from == to ? GameText.Format("ui.event.band.column", RoundMapUI.ColumnName(from))
+                    : GameText.Format("ui.event.band.columns", RoundMapUI.ColumnName(from), RoundMapUI.ColumnName(to));
             int top = gridHeight - to, bottom = gridHeight - from;
-            return top == bottom ? $"{top}. satırda" : $"{top}–{bottom}. satırlarda";
+            return top == bottom ? GameText.Format("ui.event.band.row", top) : GameText.Format("ui.event.band.rows", top, bottom);
         }
     }
 

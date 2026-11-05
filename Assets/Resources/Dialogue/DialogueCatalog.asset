@@ -27,10 +27,31 @@ MonoBehaviour:
     lines:
     - textKey: intro.select.0
       face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
     - textKey: intro.select.1
       face: 9
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
     - textKey: intro.select.2
       face: 10
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
   - id: tut.setup
     category: 3
     trigger: 2
@@ -45,6 +66,13 @@ MonoBehaviour:
     lines:
     - textKey: tut.setup.0
       face: 9
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
   - id: tut.place
     category: 3
     trigger: 3
@@ -59,6 +87,13 @@ MonoBehaviour:
     lines:
     - textKey: tut.place.0
       face: 10
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
   - id: tut.hit
     category: 3
     trigger: 4
@@ -73,8 +108,22 @@ MonoBehaviour:
     lines:
     - textKey: tut.hit.0
       face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
     - textKey: tut.hit.1
       face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
   - id: tut.adak
     category: 3
     trigger: 5
@@ -89,6 +138,13 @@ MonoBehaviour:
     lines:
     - textKey: tut.adak.0
       face: 9
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
   - id: tut.level
     category: 3
     trigger: 6
@@ -103,6 +159,13 @@ MonoBehaviour:
     lines:
     - textKey: tut.level.0
       face: 10
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
   - id: tut.lastround
     category: 3
     trigger: 10
@@ -117,6 +180,13 @@ MonoBehaviour:
     lines:
     - textKey: tut.lastround.0
       face: 12
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
   - id: tut.period
     category: 3
     trigger: 11
@@ -131,8 +201,22 @@ MonoBehaviour:
     lines:
     - textKey: tut.period.0
       face: 11
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
     - textKey: tut.period.1
       face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
   - id: tut.boss
     category: 3
     trigger: 12
@@ -147,6 +231,13 @@ MonoBehaviour:
     lines:
     - textKey: tut.boss.0
       face: 9
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
   - id: tut.kapris
     category: 3
     trigger: 8
@@ -161,6 +252,13 @@ MonoBehaviour:
     lines:
     - textKey: tut.kapris.0
       face: 12
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
   - id: end.quota
     category: 3
     trigger: 9
@@ -175,8 +273,22 @@ MonoBehaviour:
     lines:
     - textKey: end.quota.0
       face: 13
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
     - textKey: end.quota.1
       face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
   - id: end.boss
     category: 3
     trigger: 9
@@ -191,8 +303,22 @@ MonoBehaviour:
     lines:
     - textKey: end.boss.0
       face: 13
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
     - textKey: end.boss.1
       face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
   - id: end.victory
     category: 3
     trigger: 9
@@ -201,14 +327,28 @@ MonoBehaviour:
     cooldownSeconds: 120
     minStage: 0
     maxStage: 3
-    requiresSeen: 
+    requiresSeen: story.victory
     outcome: 1
     priority: 0
     lines:
     - textKey: end.victory.0
       face: 11
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
     - textKey: end.victory.1
       face: 12
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
   - id: react.setup
     category: 0
     trigger: 2
@@ -223,6 +363,13 @@ MonoBehaviour:
     lines:
     - textKey: react.setup.0
       face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
   - id: react.period
     category: 0
     trigger: 11
@@ -237,3 +384,493 @@ MonoBehaviour:
     lines:
     - textKey: react.period.0
       face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+  - id: story.trial1
+    category: 2
+    trigger: 13
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: story.trial1.0
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+    - textKey: story.trial1.1
+      face: 8
+      setStage: -1
+      choiceA: story.trial1.choice.a
+      choiceB: story.trial1.choice.b
+      replyA: story.trial1.reply.a
+      replyB: story.trial1.reply.b
+      saveChoice: 1
+      onlyIfChoice: 
+    - textKey: story.trial1.2
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+  - id: story.reward1
+    category: 2
+    trigger: 13
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: story.reward1.0
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+    - textKey: story.reward1.1
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+  - id: story.r5
+    category: 2
+    trigger: 13
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: story.r5.0
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+    - textKey: story.r5.1
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+  - id: story.r10
+    category: 2
+    trigger: 13
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: story.r10.0
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+    - textKey: story.r10.1
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+  - id: story.r15
+    category: 2
+    trigger: 13
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: story.r15.0
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+    - textKey: story.r15.1
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+  - id: story.r20
+    category: 2
+    trigger: 13
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: story.r20.0
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+    - textKey: story.r20.1
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+  - id: story.r25
+    category: 2
+    trigger: 13
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: story.r25.0
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+    - textKey: story.r25.1
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+    - textKey: story.r25.2
+      face: 8
+      setStage: -1
+      choiceA: story.r25.choice.a
+      choiceB: story.r25.choice.b
+      replyA: story.r25.reply.a
+      replyB: story.r25.reply.b
+      saveChoice: 0
+      onlyIfChoice: 
+  - id: story.r30
+    category: 2
+    trigger: 13
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: story.r30.0
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+    - textKey: story.r30.1
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+  - id: story.r35
+    category: 2
+    trigger: 13
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: story.r35.0
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+    - textKey: story.r35.1
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+  - id: story.r40
+    category: 2
+    trigger: 13
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: story.r40.0
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+    - textKey: story.r40.1
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+  - id: story.r45
+    category: 2
+    trigger: 13
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: story.r45.0
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+    - textKey: story.r45.1
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+  - id: story.r50
+    category: 2
+    trigger: 13
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: story.r50.0
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+    - textKey: story.r50.1
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+  - id: story.victory
+    category: 2
+    trigger: 13
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: story.victory.0
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+    - textKey: story.victory.1
+      face: 8
+      setStage: 3
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+    - textKey: story.victory.2
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+    - textKey: story.victory.3a
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: story.trial1:A
+    - textKey: story.victory.3b
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: story.trial1:B
+    - textKey: story.victory.4
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+    - textKey: story.victory.5
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+  - id: story.after
+    category: 2
+    trigger: 13
+    size: 0
+    frequency: 0
+    cooldownSeconds: 120
+    minStage: 0
+    maxStage: 3
+    requiresSeen: 
+    outcome: 0
+    priority: 0
+    lines:
+    - textKey: story.after.0
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 
+    - textKey: story.after.1
+      face: 8
+      setStage: -1
+      choiceA: 
+      choiceB: 
+      replyA: 
+      replyB: 
+      saveChoice: 0
+      onlyIfChoice: 

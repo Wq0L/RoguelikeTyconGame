@@ -22,9 +22,9 @@ public sealed class AntennaEffectSO : RunEffectSO
     [Min(0f)] public float damage = 0.6f;
 
     public override bool NeedsPlacement => true;
-    public override string PlacementPrompt => "ANTENİ YERLEŞTİR\n<size=70%>Tarlanın kenarında bir konum seç · anten içeri bakar</size>";
+    public override string PlacementPrompt => $"{GameText.Get("ui.effect.antenna.place")}\n<size=70%>{GameText.Get("ui.effect.antenna.place.detail")}</size>";
     public override string Summary =>
-        $"kenardaki anten, baktığı yöndeki ilk {reach} hücreye {Number(interval)} sn'de bir vurur · hasat hasarının %{Percent(damage)}'i";
+        GameText.Format("ui.effect.antenna", reach, Number(interval), Percent(damage));
 
     public override RunEffect Create() => new AntennaEffect();
 
