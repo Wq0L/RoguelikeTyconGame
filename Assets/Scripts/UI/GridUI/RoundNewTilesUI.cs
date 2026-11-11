@@ -25,7 +25,7 @@ public sealed class RoundNewTilesUI : MonoBehaviour
         public RectTransform root;
         public CanvasGroup group;
         public RectTransform swatchRoot;
-        public ComicPopupPlate swatch;
+        public UnityEngine.UI.Graphic swatch;
         public TextMeshProUGUI coordinate, label;
     }
 
@@ -58,6 +58,18 @@ public sealed class RoundNewTilesUI : MonoBehaviour
 
     private void OnEnable()
     {
+        GameText.Changed -= OnLanguageChanged;
+        GameText.Changed += OnLanguageChanged;
+        Fill(true);
+    }
+
+    private void OnDisable() => GameText.Changed -= OnLanguageChanged;
+
+    // Dil değişince (6 Kasım 2026, ComicKitVerification dil turu): kart yeni dilde yeniden yazılır, giriş animasyonu oynamaz.
+    private void OnLanguageChanged() => Fill(false);
+
+    private void Fill(bool animate)
+    {
         ProgressionManager progression = ProgressionManager.Instance;
         IReadOnlyList<GroundCell> cells = progression != null ? progression.RoundAppliedCells : null;
         int count = cells != null ? cells.Count : 0;
@@ -73,7 +85,7 @@ public sealed class RoundNewTilesUI : MonoBehaviour
         for (int i = activeRows; i < rows.Count; i++) rows[i].root.gameObject.SetActive(false);
         card.sizeDelta = new Vector2(Width, HeaderHeight + 10f + activeRows * RowHeight + 12f);
 
-        elapsed = 0f;
+        elapsed = animate ? 0f : 100f;
         animating = true;
         Animate();
     }
@@ -169,15 +181,21 @@ public sealed class RoundNewTilesUI : MonoBehaviour
         card.anchoredPosition = new Vector2(-48f, TopY);
         card.sizeDelta = new Vector2(Width, 200f);
 
-        // Round özeti kartıyla aynı çizgi roman kağıdı.
-        Plate(card, "Ink shadow", new Color32(40, 29, 43, 220), Vector2.zero, Vector2.one, new Vector2(6f, -7f), new Vector2(6f, -7f));
-        Plate(card, "Ink outline", Ink, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
-        Plate(card, "Cream paper", new Color32(255, 242, 210, 255), Vector2.zero, Vector2.one, new Vector2(4f, 4f), new Vector2(-4f, -4f));
-        Plate(card, "Yellow header", FreshTileRing.GlowColor, new Vector2(0f, 1f), Vector2.one, new Vector2(7f, -HeaderHeight), new Vector2(-7f, -7f));
+        // Comic kağıt kiti (6 Kasım 2026, Docs/UI-Dili.md): krem panel + yeni tile sarısına boyanmış etiket şeridi (sarı = bu round
+        // gelen tile, haritadaki parlamayla aynı renk). Kit yoksa round özeti kartıyla aynı eski kâğıt plakaları.
+        if (ComicKit.Ready) ComicKit.Card(card, HeaderHeight - 6f, "label_cream", FreshTileRing.GlowColor);
+        else
+        {
+            Plate(card, "Ink shadow", new Color32(40, 29, 43, 220), Vector2.zero, Vector2.one, new Vector2(6f, -7f), new Vector2(6f, -7f));
+            Plate(card, "Ink outline", Ink, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+            Plate(card, "Cream paper", new Color32(255, 242, 210, 255), Vector2.zero, Vector2.one, new Vector2(4f, 4f), new Vector2(-4f, -4f));
+            Plate(card, "Yellow header", FreshTileRing.GlowColor, new Vector2(0f, 1f), Vector2.one, new Vector2(7f, -HeaderHeight), new Vector2(-7f, -7f));
+        }
 
         title = CreateText(card, "Title", 28f, TextAlignmentOptions.Center);
+        bool display = ComicKit.Ready && ComicKit.Display(title, false);   // sarı şeritte koyu mürekkep yazı, Bungee
         title.enableAutoSizing = true;
-        title.fontSizeMin = 18f;
+        title.fontSizeMin = display ? 13f : 18f;   // Bungee geniş: "BU ROUND'UN KARTLARI (4)" şeride sığsın
         title.fontSizeMax = 28f;
         title.rectTransform.anchorMin = new Vector2(0f, 1f);
         title.rectTransform.anchorMax = Vector2.one;
@@ -202,8 +220,20 @@ public sealed class RoundNewTilesUI : MonoBehaviour
         swatchRoot.anchorMin = swatchRoot.anchorMax = new Vector2(0f, 0.5f);
         swatchRoot.pivot = new Vector2(0f, 0.5f);
         swatchRoot.sizeDelta = new Vector2(56f, 44f);
-        Plate(swatchRoot, "Outline", Ink, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
-        ComicPopupPlate swatch = Plate(swatchRoot, "Tile color", Color.white, Vector2.zero, Vector2.one, new Vector2(3f, 3f), new Vector2(-3f, -3f));
+        // Haritadaki hücrenin aynısı (beyaz kare, tile rengiyle boyanır); kit yoksa düz renk karesi.
+        UnityEngine.UI.Graphic swatch;
+        if (ComicKit.Ready)
+        {
+            UnityEngine.UI.Image cell = ComicKit.Sliced(swatchRoot, "Tile color", "slot_white", 256f / 44f);
+            cell.rectTransform.anchorMin = Vector2.zero; cell.rectTransform.anchorMax = Vector2.one;
+            cell.rectTransform.offsetMin = cell.rectTransform.offsetMax = Vector2.zero;
+            swatch = cell;
+        }
+        else
+        {
+            Plate(swatchRoot, "Outline", Ink, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+            swatch = Plate(swatchRoot, "Tile color", Color.white, Vector2.zero, Vector2.one, new Vector2(3f, 3f), new Vector2(-3f, -3f));
+        }
 
         TextMeshProUGUI coordinate = CreateText(swatchRoot, "Coordinate", 26f, TextAlignmentOptions.Center);
         coordinate.rectTransform.anchorMin = Vector2.zero;

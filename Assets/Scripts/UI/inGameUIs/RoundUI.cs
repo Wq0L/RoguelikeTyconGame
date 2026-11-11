@@ -34,6 +34,8 @@ public class RoundUI : MonoBehaviour
 
         RoundManager.Instance.OnRoundChanged += UpdateRoundText;
         RoundManager.Instance.OnTimeChanged += UpdateTimerText;
+        GameText.Changed -= RefreshLanguage;
+        GameText.Changed += RefreshLanguage;
 
         UpdateRoundText(RoundManager.Instance.CurrentRound);
         UpdateTimerText(Mathf.CeilToInt(RoundManager.Instance.RemainingTime));
@@ -43,6 +45,7 @@ public class RoundUI : MonoBehaviour
     {
         StopAllCoroutines();
         ResetTimerVisual();
+        GameText.Changed -= RefreshLanguage;
 
         if (RoundManager.Instance != null)
         {
@@ -51,9 +54,26 @@ public class RoundUI : MonoBehaviour
         }
     }
 
+    // Kart biçimli HUD (ComicHud): "ROUND" kartın başlığında yazar, bu alan yalnız sayıları gösterir.
+    private bool compactRound;
+    public void UseCompactRound()
+    {
+        compactRound = true;
+        if (RoundManager.Instance != null) UpdateRoundText(RoundManager.Instance.CurrentRound);
+    }
+
+    // Dil değişince (ör. duraklatıp ayarlardan) yazılar hemen yeni dilde: süre bir sonraki saniyeyi beklemez. Yalnız yazı;
+    // son saniye nabzı tekrar oynamaz (6 Kasım 2026, ComicKitVerification dil turu yakaladı).
+    private void RefreshLanguage()
+    {
+        if (RoundManager.Instance == null) return;
+        UpdateRoundText(RoundManager.Instance.CurrentRound);
+        if (timerText != null) timerText.text = GameText.Format("ui.hud.time", Mathf.CeilToInt(RoundManager.Instance.RemainingTime));
+    }
+
     private void UpdateRoundText(int roundNumber)
     {
-        roundText.text = GameText.Format("ui.hud.round", roundNumber, RoundManager.Instance.MaxRounds);
+        roundText.text = GameText.Format(compactRound ? "ui.hud.round_value" : "ui.hud.round", roundNumber, RoundManager.Instance.MaxRounds);
     }
 
     private void UpdateTimerText(int secondsLeft)
@@ -72,6 +92,14 @@ public class RoundUI : MonoBehaviour
         timer.localScale = timerRestScale;
         timer.DOPunchScale(timerRestScale * 0.28f, 0.35f, 6, 0.6f).SetUpdate(true);
         timerText.color = warningColor;
+    }
+
+    // HUD tek stil (ComicHud): süre krem plakada mürekkep rengiyle yazılır; son saniye uyarısından sonra bu renge döner.
+    public void SetTimerRestColor(Color color)
+    {
+        timerRestColor = color;
+        hasTimerRestColor = true;
+        if (timerText != null) timerText.color = color;
     }
 
     private void ResetTimerVisual()

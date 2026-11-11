@@ -21,6 +21,8 @@ MonoBehaviour:
   headingFont: {fileID: 11400000, guid: 404b2d578f83a5b4d88295a467c66f15, type: 2}
   bodyFont: {fileID: 11400000, guid: cda3c69f5f38ca7438e47be88545601d, type: 2}
   outlinedText: {fileID: 2100000, guid: 4b0eda120a7d2b04f852831033f52f50, type: 2}
+  displayFont: {fileID: 11400000, guid: fb443dcf4c9b4d24cb9b8879b4e6b919, type: 2}
+  displayOutline: {fileID: 2100000, guid: 0f613401628515c4689b7b67ca5523da, type: 2}
   green:
   - {fileID: 2100000, guid: 370e17d7149194e44b9e0c63342abc73, type: 2}
   - {fileID: 2100000, guid: aa948e2089d0c5148b1f2dab73e406b4, type: 2}

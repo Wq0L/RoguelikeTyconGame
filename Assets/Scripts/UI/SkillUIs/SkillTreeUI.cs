@@ -181,6 +181,11 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
         connectionLayer.SetAsFirstSibling();
         originMarker = CreateLine("Starting Point", connectionLayer);
         originMarker.rectTransform.sizeDelta = Vector2.one * 10f;
+        if (kitLine != null && ComicKit.Get("pip_gold") != null)
+        {
+            originMarker.sprite = ComicKit.Get("pip_gold"); originMarker.type = Image.Type.Simple;
+            originMarker.rectTransform.sizeDelta = Vector2.one * 18f;
+        }
         originMarker.gameObject.SetActive(false);
 
         var validNodes = new List<SkillNodeUI>();
@@ -211,12 +216,21 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
         }
     }
 
+    // Comic kağıt kiti (6 Kasım 2026): bağlantılar kitin krem mürekkepli çizgisi (Art'taki divider değil, Resources'taki line_cream);
+    // 9-dilim, yatayda uzar. Kit yoksa eski düz beyaz çizgi.
+    private Sprite kitLine;
+    private float LineWidth => kitLine != null ? KitLineWidth : connectionWidth;
+    public const float KitLineWidth = 9f;
+    public bool UsesKitLines => kitLine != null;
+
     private Image CreateLine(string label, Transform parent)
     {
         var obj = new GameObject(label, typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
         obj.layer = gameObject.layer;
         var img = obj.GetComponent<Image>();
         img.raycastTarget = false;
+        if (kitLine == null) kitLine = ComicKit.Ready ? ComicKit.Get("line_cream") : null;
+        if (kitLine != null) { img.sprite = kitLine; img.type = Image.Type.Sliced; img.pixelsPerUnitMultiplier = kitLine.rect.height / KitLineWidth; }
         img.rectTransform.SetParent(parent, false);
         img.rectTransform.anchorMin = img.rectTransform.anchorMax = Vector2.one * 0.5f;
         return img;
@@ -309,7 +323,7 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
     {
         Vector2 delta = end - start;
         line.rectTransform.anchoredPosition = (start + end) * 0.5f;
-        line.rectTransform.sizeDelta = new Vector2(delta.magnitude, connectionWidth);
+        line.rectTransform.sizeDelta = new Vector2(delta.magnitude, LineWidth);
         line.rectTransform.localRotation = Quaternion.Euler(0f, 0f,
             Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg);
         line.color = tint;

@@ -76,15 +76,25 @@ public static class ComicUIVerification
                 Require(Field<TMP_Text>("buyLabel").text.StartsWith(GameText.Get("ui.shop.buy")),"Purchase caption");
                 Require(Field<Image>("buyResourceIcon").sprite==Resources.Load<ComicUITheme>("ComicUITheme").coinSprite,"Gold price icon");
                 var buy=Field<Button>("buyButton");Require(buy.interactable,"Affordable planter can be selected");
+                // Comic kağıt kiti (6 Kasım 2026): hâller SpriteSwap (ComicKit.StyleButton); kit yoksa eski palet malzemeleri.
                 var v=buy.GetComponent<ComicButtonVisual>();var img=buy.GetComponent<Image>();
-                var e=new PointerEventData(EventSystem.current);
-                v.OnPointerEnter(e);Require(img.material==v.hover,"Hover appearance");
-                v.OnPointerDown(e);Require(img.material==v.pressed,"Pressed appearance");
-                v.OnPointerUp(e);v.OnPointerExit(e);
+                var e=new PointerEventData(EventSystem.current){button=PointerEventData.InputButton.Left};
+                bool kit=v==null;
+                if(kit){
+                    Require(buy.transition==Selectable.Transition.SpriteSwap&&img.sprite==ComicKit.Get("button_green_normal"),"Buy on the comic kit (sprite swap)");
+                    buy.OnPointerEnter(e);Require(img.overrideSprite==buy.spriteState.highlightedSprite,"Hover appearance");
+                    buy.OnPointerDown(e);Require(img.overrideSprite==buy.spriteState.pressedSprite,"Pressed appearance");
+                    buy.OnPointerUp(e);buy.OnPointerExit(e);
+                }else{
+                    v.OnPointerEnter(e);Require(img.material==v.hover,"Hover appearance");
+                    v.OnPointerDown(e);Require(img.material==v.pressed,"Pressed appearance");
+                    v.OnPointerUp(e);v.OnPointerExit(e);
+                }
                 balance=ResourceManager.Instance.GetResourceAmount(selected.costType);
                 ResourceManager.Instance.SpendResource(selected.costType,balance);
                 Require(!buy.interactable,"Unaffordable purchase disabled");
-                v.OnPointerEnter(e);Require(img.material==v.disabled,"Locked button appearance");
+                if(kit)Require(img.overrideSprite==buy.spriteState.disabledSprite,"Locked button appearance");
+                else{v.OnPointerEnter(e);Require(img.material==v.disabled,"Locked button appearance");}
                 ResourceManager.Instance.AddResource(selected.costType,balance);
                 buy.onClick.Invoke();Require(GameManager.Instance.CurrentState==GameStates.Placing,"Buy starts placement");
                 Require(ResourceManager.Instance.GetResourceAmount(selected.costType)==balance-selected.cost,"Buy charges once");
@@ -95,7 +105,7 @@ public static class ComicUIVerification
                 Require(GameManager.Instance.CurrentState==GameStates.Shop,"Cancel returns to shop");
                 Require(ResourceManager.Instance.GetResourceAmount(selected.costType)==balance-selected.cost+selected.cost/2,"Cancel preserves existing half-cost refund");
                 var sell=Object.FindObjectsByType<Button>(FindObjectsInactive.Include,FindObjectsSortMode.None).First(b=>b.name=="Planter Sell Button");
-                Require(sell.GetComponent<ComicButtonVisual>(),"Sell uses comic theme");sell.onClick.Invoke();
+                Require(sell.GetComponent<ComicButtonVisual>()||((Image)sell.targetGraphic).sprite==ComicKit.Get("button_red_normal"),"Sell uses comic theme");sell.onClick.Invoke();
                 Require(GameManager.Instance.CurrentState==GameStates.Selling,"Sell action preserved");
                 PlacementManager.Instance.ExitSellMode();
                 next=Time.unscaledTime+1;stage++;return;

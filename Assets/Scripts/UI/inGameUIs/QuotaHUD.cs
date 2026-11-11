@@ -75,8 +75,10 @@ public sealed class QuotaHUD : MonoBehaviour
 
         label = CreateText("Label", 23f, TextAlignmentOptions.MidlineLeft, new Vector2(16f, -8f), new Vector2(250f, 34f), new Vector2(0f, 1f));
         label.enableAutoSizing = true;
-        label.fontSizeMin = 16f;
+        label.fontSizeMin = 12f;
         label.fontSizeMax = 23f;
+        // Uzun çeviride (6 Kasım 2026, dil turu) başlık iki satıra iner, kartın dışına taşmaz.
+        label.textWrappingMode = TextWrappingModes.Normal;
         value = CreateText("Value", 26f, TextAlignmentOptions.MidlineRight, new Vector2(-16f, -8f), new Vector2(160f, 34f), new Vector2(1f, 1f));
         value.enableAutoSizing = true;
         value.fontSizeMin = 16f;

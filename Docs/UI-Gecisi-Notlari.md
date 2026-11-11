@@ -38,9 +38,102 @@ Bulgular, etkisi en büyükten:
 
 Önerilen sıra: 1 (kalıntılar), 3 (HUD tek stil), 2 (tarlaya kimlik, örneklerle), 5 (yetenek ağacı), 4 ve 6 bunlarla birlikte.
 
+### Durum: 1 · kalıntılar (6 Kasım 2026, yapıldı ve test edildi; kullanıcının Play'de bakması bekleniyor)
+Kök neden: düz haritanın (`RoundMapUI`, ekran kaplamalı tuval) arkası açıktı.
+- Hücre ve başlık aralarındaki 6 px boşluklardan arkadaki eğik tarla görünüyordu. Beyaz kırıntılar, D/E arasındaki dikey çizgi
+  ve D7'deki "turuncu tırpan parçası" boşluklardan görünen saksı / bitki parçalarıydı. Kullanıcının ekran görüntüsü yakından
+  incelenerek doğrulandı.
+- Dünyadaki koordinat rozetleri (`GridCoordinateLabels`) harita açıkken de duruyor, haritanın kenarından taşıyordu.
+
+Düzeltmeler:
+- Haritanın arkasına opak zemin konuldu: mürekkep kenarlı koyu plaka, hücreleri ve başlıkları kapsar. Bir kez kurulur, grid
+  büyüyünce yalnız ölçüsü yenilenir.
+- Harita açıkken dünya rozetleri gizlenir (`RoundMapUI.Visible`). Önizlemede ve round'da geri gelir.
+- Görüntüler: `Docs/UI-Kalintilar/01_once.png`, `02_sonra.png`. Önce görüntüsünde rozetler haritanın üstünde görünüyor: bu,
+  çekim yönteminden (tuval kameraya taşınıyor). Oyunda rozetler haritanın kenarından taşıyordu.
+- Testler: RunPrototypeVerification 73/73 (zemin 121 hücrenin hepsini kapsıyor, ilk sırada), ComicUIVerification geçti.
+- Not: zeminin üst kenarı Gold / Iron / Stone kutularının altına birkaç piksel giriyor; HUD yerleşimi (H3: kaynaklar sağ üste)
+  bunu zaten değiştirecek.
+- Batch tuzağı: `FeelBootstrap` batch'te çalışmaz (kamera, uzay, rozetler, gezegen Eri'si yok). Oyuna benzer çekim için elle
+  çağrılmalı.
+
+### Durum: karartma + grid çerçevesi + açılma efekti (6 Kasım 2026, kullanıcı isteği; yapıldı ve test edildi, Play'de bakılacak)
+Kullanıcı: "ekranın arkasına background ekleyerek UI ile oyun ekranını ayıralım; kamera 5×5 göstererek başlasın, büyüdükçe yavaş
+yavaş uzaklaşsın, o siyahlık feelde çözülsün; grid açma efekti".
+- **Karartma:** hazırlık / round sonu panelinin (RoundEndUI) ilk çocuğu tam ekran koyu katman (%60). Tarla ve gökyüzü geri planda
+  kararır. Panelle birlikte açılır / kapanır, tık almaz.
+- **Kamera çerçevesi** (`CameraFeel.SetFraming`, `GridUnlockFeel`):
+  - Görünen alan = açık alan + bir kilitli halka: 3×3 → 5×5, 5×5 → 7×7, 7×7 → 9×9, 9×9 ve 11×11 → bütün grid.
+  - Dışındaki kilitli hücreler çizilmez; tarla uzayda küçük bir ada, gökyüzü ve gezegen görünür. İlk denemede yalnız kamera
+    yaklaşıyordu, ekran koyu kilitli hücrelerle doluyordu: bu yüzden eklendi.
+  - Sarsıntı ve nefes ofsetleri çerçeveyle ölçeklenir.
+- **Koordinat rozetleri:** görünen alanın kenarında, yalnız görünen sütun / satırlarda, ekrandaki boyları sabit.
+- **Açılma efekti:**
+  - Yükseltme yetenek ağacında alınır ve tarla görünmez. Bu yüzden geri çekilme ve efekt tarlanın ilk göründüğü ana ertelenir:
+    round, yerleştirme, satış ya da önizleme. O ana kadar yeni açılan hücreler gizli kalır.
+  - Efekt: kamera 1,2 sn'de geri çekilir; yeni açılan halka, sonra yeni kilitli halka saat yönünde sırayla, yaylanarak yerden yükselir.
+  - Yalnız zemin görseli (Floor) oynar; hücre kökü ve oynanış durumu değişmez. Bitince her şey tam ilk değerine döner.
+- **Bedel:** karede bellek ayırma yok. Rozetler yalnız çerçeve değişince yerleşir; hücre listeleri olay anında kurulur.
+  `GridUnlockFeel` FeelBootstrap ile kurulur, batch testlerinde yoktur.
+- **Testler:**
+  - Yeni test GridFramingVerification 17/17: ölçekler 5/11 → 7/11 → 1; gizli hücre sayıları; efektin bekleyip round başında
+    oynaması; zemin görsellerinin tam dönüşü; rozet sayıları 10 / 14 / 22; karartma.
+  - Diğerleri: RunPrototype 73, TakvimV1 162, Story 57, ComicUI, lab diyalog 31.
+- Görüntüler: `Docs/Grid-Cerceve/`.
+- Açık: efektin sesi yok.
+
+
 ## Daha önce UI geçişine bırakılanlar
 - **Türkçe tile adları iç ad gibi:** "Crystal-RareSpawnChance", "Odak-Hasar", "Fertile-PlantSpawnRate"… Çeviri listesinde (`Assets/Localization/GameText.csv`, `data.tile.*`) Türkçe hücreden düzeltilebilir. İngilizce temiz adlarla duruyor.
 - **Türkçe oyunda kalan İngilizce parçalar:** "Time: {0}s", "Gold / Iron / Stone" adları, nadirlik adları (Common, Rare…). Bilerek eski hâliyle bırakıldı; karar UI geçişinde.
 - **HUD panel adları:** Adak / Sınama olarak (Faz 2 notu, `Docs/DiyalogPlani/Faz2-Durum.md`).
 - **Ayarlar:** metin hızı, diyalog aç / kapa, "rehberi sıfırla" (Faz 4, `Docs/DiyalogPlani/Faz1-Durum.md`).
 - **Üzgün aşamada solma (Faz 3 C, 5 Kasım):** Eri'nin üzgün aşamasında yalnız konuşma kutusunun arkası %80 griye solar (`UiMood`, `UI/ComicMood`). Kullanıcı kapsamı bilerek böyle seçti: önce tüm arayüz düşünüldü, sonra "sadece dialog arkası solsun" dedi. UI geçişinde başka öğeleri soldurma kararı kullanıcının.
+
+### Durum: HUD tek stil örneği (6 Kasım 2026; kullanıcı onayı bekliyor)
+Örnek `Assets/Scripts/UI/ComicHud.cs` henüz oyuna bağlı değil; yalnız çekim betiği kurdu. Görüntüler `Docs/HUD-Ornek/`.
+- Plaka dili: kota kartıyla aynı (ofsetli mürekkep gölge, mürekkep kenar, krem kâğıt), her parçada farklı küçük eğim.
+- Yerleşim:
+  - Round + süre üst ortada; süre sağa kayık asılı etiket, tarlanın en üst koordinat rozetiyle çakışmaz (H2).
+  - Gold / Iron / Stone sağ üstte, ikonlu, projedeki ComicUITheme ikonlarıyla (H3).
+  - Kota kartı sol üstte (H4).
+  - Level + XP sağ altta tek plaka (H1).
+- Oyunun betikleri aynı kalır; yalnız yer, ebeveyn ve görünüş değişir.
+  - Eklenen girişler: `GoldUI.UseIconLayout` (ikonlu kutuda yalnız miktar), `RoundUI.SetTimerRestColor`.
+- Çeviri: `ui.hud.time` Türkçesi "Time: {0}s" yerine "Süre: {0} sn" (İngilizce aynı).
+- Düzeltme: hazırlık ekranı karartması ana tuvalin en altına alındı. Önce panelin içindeydi ve kaynak sayaçlarını da karartıyordu.
+  Yalnız dünya ve gökyüzü kararır; panelin geçiş saydamlığını izler. GridFramingVerification bunu denetliyor, 17/17.
+- Sırada (onaydan sonra):
+  - oyuna bağlama ve testler;
+  - H5 (kota kartı sabit ve kompakt), H6 (taşan içerik fareyle kaydırılır), H7 (hover büyümesi);
+  - H8 / H9 (çakışma yok, büyük gridde tarlayı örtme yok);
+  - H10 (2K'da Eri ölçümü).
+
+### Düzeltme (6 Kasım 2026, kullanıcı geri bildirimi)
+- Haritanın arkasındaki kare zemin kaldırıldı. Kullanıcı: "arkaya kare eklemişsin, kötü; background tüm ekrana olmalıydı".
+  Tam ekran karartma %60 → %72; hücre aralarından görünen tarla zaten iyice sönük.
+- HUD örneği (düz krem plakalar) kullanıcıya göre "çok UI duruyor", "toonic yapıyla karakterize etmek lazım".
+  Üç toon yön çizildi:
+  - A · tohum etiketi ve filiz;
+  - B · Eri'nin sera makinesi;
+  - C · çizgi roman çıkartmaları.
+  Seçim bekleniyor.
+
+### HUD toon denemeleri (6 Kasım 2026, Higgsfield, kullanıcı onaylı, 3 kredi; bakiye 60,25 → 57,25)
+- GPT Image 2.6, orta kalite 2K, 16:9. Referans olarak oyunun kendi görüntüleri verildi: toon butonlar, Eri'nin kutusu, tarla.
+  Çıktılar `Docs/HUD-Toon/Deneme1/`: A tohum etiketi ve filiz · B Eri'nin sera makinesi · C çizgi roman çıkartmaları.
+- Üçü de oyunun toon dilini tutturdu: kalın mürekkep, parlama izi, tram.
+- A ve C'de öğelerin çevresinde renkli parıltı var; son parçalarda istenmez.
+- Son parçalar için: saydam arka plan, yazısız (sayılar oyunda TMP ile yazılır), ayrı ayrı. XP çubuğunun boş ve dolu hâli ayrı.
+- Denemeler oyunda dağıtılmıyor; seçilen yönün son parçaları oyuna girince `Docs/ThirdParty-Licenses.md`'ye kaydedilecek.
+
+### Sırada: yetenek ağacı kite (6 Kasım 2026, kullanıcı isteği)
+
+HUD, hazırlık ekranı, harita, koordinatlar ve saksı dükkânı comic kağıt kitine ve Bungee'ye geçti (`Docs/UI-Dili.md`). Sıradaki iş yetenek ağacı:
+- düğüm kareleri duruma göre;
+- kademe noktaları, bağlantı çizgileri, tooltip'ler;
+- dil turu testi.
+
+Eşleme ve iş listesi `Docs/UI-Envanter.md` §6'da.
+
+**Güncelleme, aynı gün:** kullanıcı "yaptın mı" diye sorunca uygulandı ve test edildi. Görüntüler: `Docs/UI-Kit-Oyunda/c9_*`. Açık kalanlar envanter §6'da.

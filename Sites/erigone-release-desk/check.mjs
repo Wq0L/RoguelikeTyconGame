@@ -1,0 +1,14 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+import {readFile} from 'node:fs/promises';
+const require=createRequire(import.meta.url),L=require('./dist/logic.js');
+const data=JSON.parse(await readFile(new URL('./dist/snapshot.json',import.meta.url),'utf8'));
+test('All seeded records and six commit snapshots form an importable backup',()=>{assert.equal(L.validate(data),data);assert.equal(data.commits.length,6);assert.equal(data.checks.length,21);assert.ok(data.checks.every(c=>c.sources.every(s=>s.exists)));});
+test('Critical queue includes untested code evidence even without an issue',()=>{let rows=L.filter(data.checks,{critical:true,noIssue:true});assert.ok(rows.some(c=>c.id==='ERI-005'));assert.ok(rows.every(c=>['P0','P1'].includes(c.priority)));assert.ok(rows.every(c=>!['Doğrulandı','Kapsam dışı'].includes(c.status)));});
+test('Closed records leave critical queue and priority sort is deterministic',()=>{let rows=structuredClone(data.checks);rows[0].status='Doğrulandı';rows[1].priority='P0';const out=L.filter(rows,{critical:true});assert.equal(out[0].priority,'P0');assert.ok(!out.some(c=>c.id===rows[0].id));});
+test('File search and combined Turkish category filters work',()=>{const rows=L.filter(data.checks,{query:'IntroVideoPlayer',category:'Animasyon & ikon',priority:'P1'});assert.ok(rows.length>=2);assert.equal(L.filter(data.checks,{query:'no-such-file-123'}).length,0);});
+test('Import rejects duplicate IDs, illegal statuses and unsafe links',()=>{for(const mutate of [d=>d.checks.push(d.checks[0]),d=>d.checks[0].status='done',d=>d.checks[0].rounds=[51],d=>d.checks[0].issue='javascript:alert(1)']){let d=structuredClone(data);mutate(d);assert.throws(()=>L.validate(d));}});
+test('User text is escaped and spreadsheet formulas neutralized',()=>{assert.equal(L.escape('<img onerror="x">'),'&lt;img onerror=&quot;x&quot;&gt;');assert.equal(L.csvCell('=HYPERLINK("x")'),'"\'=HYPERLINK(""x"")"');});
+test('JSON roundtrip preserves every field and source path',()=>{assert.deepEqual(L.validate(JSON.parse(JSON.stringify(data))),data);});
+test('Malformed snapshot metadata and executable repository URLs are rejected',()=>{for(const mutate of [d=>d.repository='javascript:alert(1)',d=>d.csvAudit.missing=null,d=>d.commits=[],d=>d.checks[0].updatedAt='invalid',d=>d.workingTree=[{}]]){const d=structuredClone(data);mutate(d);assert.throws(()=>L.validate(d));}});

@@ -1,0 +1,89 @@
+﻿<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Font adayları</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee&family=Chakra+Petch:ital,wght@0,700;1,700&family=Exo+2:ital,wght@1,800;1,900&family=Lilita+One&family=Oxanium:wght@800&family=Passion+One:wght@700;900&family=Russo+One&display=block" rel="stylesheet">
+<style>
+  :root { --ink: #16121f; --kit: file:///C:/Users/User/Desktop/Games/Github/ClickerGame/Assets/Resources/HudKit/; }
+  body { margin: 0; padding: 18px 24px 30px; background: #191632; color: #e9e4ff; font-family: Segoe UI, sans-serif; width: 1660px; }
+  h1 { font-size: 20px; margin: 0 0 4px; font-weight: 600; }
+  .hint { font-size: 13px; opacity: .75; margin-bottom: 14px; }
+  .row { display: flex; align-items: center; gap: 14px; padding: 10px 0 12px; border-top: 1px solid #ffffff1c; }
+  .meta { width: 170px; flex: none; font-size: 13px; line-height: 1.35; }
+  .meta b { font-size: 15px; display: block; }
+  .tr { display: inline-block; margin-top: 4px; padding: 1px 6px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+  .ok { background: #2f7d4a; } .bad { background: #a33a3a; }
+  .piece { position: relative; flex: none; background-size: 100% 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .out { color: #fff; text-shadow: 0 3px 0 var(--ink), 3px 0 0 var(--ink), -3px 0 0 var(--ink), 0 -3px 0 var(--ink), 2px 2px 0 var(--ink), -2px 2px 0 var(--ink), 2px -2px 0 var(--ink), -2px -2px 0 var(--ink), 0 5px 0 var(--ink); }
+  .round { width: 230px; height: 102px; background-image: url("file:///C:/Users/User/Desktop/Games/Github/ClickerGame/Assets/Resources/HudKit/hud_panel_blue.png"); }
+  .round .small { font-size: 19px; margin-top: -4px; } .round .big { font-size: 40px; line-height: 1; }
+  .btn { width: 250px; height: 92px; font-size: 27px; }
+  .btn span { margin-top: -6px; }
+  .yellow { background-image: url("file:///C:/Users/User/Desktop/Games/Github/ClickerGame/Assets/Resources/HudKit/hud_panel_yellow.png"); }
+  .blue { background-image: url("file:///C:/Users/User/Desktop/Games/Github/ClickerGame/Assets/Resources/HudKit/hud_panel_blue.png"); }
+  .card { width: 300px; height: 131px; background-image: url("file:///C:/Users/User/Desktop/Games/Github/ClickerGame/Assets/Resources/HudKit/hud_card_tab_cream.png"); align-items: flex-start; justify-content: flex-start; padding: 0; }
+  .card .head { margin: 26px 0 0 24px; font-size: 25px; color: #3a2414; }
+  .card .body { margin: 2px 0 0 24px; font-size: 16px; color: #5a3b22; line-height: 1.25; }
+  .plate { width: 170px; height: 65px; background-image: url("file:///C:/Users/User/Desktop/Games/Github/ClickerGame/Assets/Resources/HudKit/hud_plate_navy.png"); font-size: 23px; }
+  .plate span { margin-top: -4px; }
+  .glyphs { font-size: 26px; width: 190px; flex: none; line-height: 1.2; color: #fff; }
+</style>
+</head>
+<body>
+<h1>Yeni UI kiti için font adayları — Türkçe + İngilizce, ücretsiz ticari (SIL OFL 1.1)</h1>
+<div class="hint">Parçalar senin kitinden (Assets/Resources/HudKit). Yazı rengi ve mürekkep kontur oyundaki gibi. Kırmızı rozet = Türkçe harflerden biri fontta yok (tarayıcı başka fonttan çiziyor).</div>
+<div id="rows"></div>
+<script>
+const fonts = [
+  { family: 'Lilita One', css: "'Lilita One'", weight: 400, style: 'normal', note: 'BUGÜNKÜ başlık fontu (Harvest Comic TR). Yuvarlak.' },
+  { family: 'Bangers', css: "'Bangers'", weight: 400, style: 'normal', note: 'Projede zaten var (Harvest Panel TR). Eğik comic.' },
+  { family: 'Russo One', css: "'Russo One'", weight: 400, style: 'normal', note: 'Kesik köşeli, ağır. Tek kalınlık.' },
+  { family: 'Chakra Petch', css: "'Chakra Petch'", weight: 700, style: 'normal', note: 'Kesik köşeli. 5 kalınlık + italik.' },
+  { family: 'Chakra Petch', css: "'Chakra Petch'", weight: 700, style: 'italic', note: 'Aynısı, eğik (panellerin eğimine uyar).' },
+  { family: 'Oxanium', css: "'Oxanium'", weight: 800, style: 'normal', note: 'Kesik köşeli bilim-kurgu. 200–800.' },
+  { family: 'Exo 2', css: "'Exo 2'", weight: 900, style: 'italic', note: 'Eğik, köşeli. 100–900 + italik.' },
+  { family: 'Passion One', css: "'Passion One'", weight: 700, style: 'normal', note: 'Tıknaz, hafif köşeli. 400/700/900.' },
+  { family: 'Bungee', css: "'Bungee'", weight: 400, style: 'normal', note: 'Blok tabela harfi. Yalnız büyük harf görünümlü.' },
+];
+const turkish = 'ĞğÜüŞşİıÖöÇç';
+const rows = document.getElementById('rows');
+function missing(f) {
+  const c = document.createElement('canvas').getContext('2d');
+  const out = [];
+  for (const ch of turkish + 'Ââ₺') {
+    c.font = `${f.style} ${f.weight} 60px ${f.css}, monospace`; const a = c.measureText(ch).width;
+    c.font = `${f.style} ${f.weight} 60px ${f.css}, serif`; const b = c.measureText(ch).width;
+    if (Math.abs(a - b) > .01) out.push(ch);
+  }
+  return out;
+}
+(async () => {
+  await Promise.all(fonts.map(f => document.fonts.load(`${f.style} ${f.weight} 40px ${f.css}`, turkish)));
+  await document.fonts.ready;
+  const results = [];
+  for (const f of fonts) {
+    const miss = missing(f);
+    const trMiss = miss.filter(ch => turkish.includes(ch));
+    results.push(`${f.family} ${f.weight} ${f.style}: eksik=[${miss.join('')}]`);
+    const st = `font-family:${f.css};font-weight:${f.weight};font-style:${f.style};`;
+    const row = document.createElement('div'); row.className = 'row';
+    row.innerHTML = `
+      <div class="meta"><b>${f.family}${f.style === 'italic' ? ' Italic' : ''} ${f.weight}</b>${f.note}<br>
+        <span class="tr ${trMiss.length ? 'bad' : 'ok'}">${trMiss.length ? 'Türkçe eksik: ' + trMiss.join(' ') : 'Türkçe tam'}</span>
+        ${miss.filter(ch => !turkish.includes(ch)).length ? '<span class="tr bad">yok: ' + miss.filter(ch => !turkish.includes(ch)).join(' ') + '</span>' : ''}</div>
+      <div class="piece round out" style="${st}"><div class="small">ROUND</div><div class="big">12 / 50</div></div>
+      <div class="piece btn blue out" style="${st}"><span>SONRAKİ ROUND</span></div>
+      <div class="piece btn yellow out" style="${st}"><span>YETENEK DÜKKÂNI</span></div>
+      <div class="piece card" style="${st}"><div class="head">HAZIRLIK</div><div class="body">İlk kota: 40 · 3 round<br>Yaklaşan boss: SERT KABUK</div></div>
+      <div class="piece plate out" style="${st}"><span>Süre: 45 sn</span></div>
+      <div class="glyphs" style="${st}">ĞÜŞİÖÇ<br>ğüşıöç 1.250</div>`;
+    rows.appendChild(row);
+  }
+  document.body.setAttribute('data-result', results.join(' | '));
+})();
+</script>
+</body>
+</html>

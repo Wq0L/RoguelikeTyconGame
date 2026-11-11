@@ -965,7 +965,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219651
-    m_Localized: 'Time: {0}s'
+    m_Localized: "S\xFCre: {0} sn"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219652
@@ -3118,6 +3118,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 298375954845737
     m_Localized: "Ka\xE7amazs\u0131n. Gemin yok, D\xFCnya'n yok. Sadece ben var\u0131m."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 530164191350784
+    m_Localized: ROUND
+    m_Metadata:
+      m_Items: []
+  - m_Id: 530164224905216
+    m_Localized: '{0} / {1}'
     m_Metadata:
       m_Items: []
   references:

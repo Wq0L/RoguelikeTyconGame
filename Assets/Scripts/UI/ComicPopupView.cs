@@ -10,6 +10,7 @@ public sealed class ComicPopupView : MonoBehaviour
     readonly List<ResonanceBadgeGraphic> icons = new();
     RectTransform root, viewport, content;
     TMP_Text heading, subtitle, footer;
+    bool kitSkin;
     UnityEngine.UI.Image portrait;
     ResonanceBadgeGraphic skillPortrait;
     ComicUITheme theme;
@@ -56,6 +57,14 @@ public sealed class ComicPopupView : MonoBehaviour
         rect.offsetMin = low; rect.offsetMax = high;
         var graphic = rect.gameObject.AddComponent<ComicPopupPlate>(); graphic.color = color; graphic.raycastTarget = false;
     }
+    void KitBox(string label, string sprite, Color tint, float multiplier, Vector2 min, Vector2 max, Vector2 low, Vector2 high)
+    {
+        var rect = Rect(label, root); rect.anchorMin = min; rect.anchorMax = max;
+        rect.offsetMin = low; rect.offsetMax = high;
+        var image = rect.gameObject.AddComponent<UnityEngine.UI.Image>();
+        image.sprite = ComicKit.Get(sprite); image.type = UnityEngine.UI.Image.Type.Sliced;
+        image.pixelsPerUnitMultiplier = multiplier; image.color = tint; image.raycastTarget = false;
+    }
     TMP_Text Text(string label, Transform parent, float size, bool title = false)
     {
         var rect = Rect(label, parent);
@@ -70,11 +79,24 @@ public sealed class ComicPopupView : MonoBehaviour
     void Awake()
     {
         root = (RectTransform)transform; theme = Resources.Load<ComicUITheme>("ComicUITheme");
-        Box("Ink shadow", new Color32(40, 29, 43, 220), Vector2.zero, Vector2.one, new Vector2(6,-7), new Vector2(6,-7));
-        Box("Ink outline", Ink, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
-        Box("Cream paper", new Color32(255,242,210,255), Vector2.zero, Vector2.one, new Vector2(4,4), new Vector2(-4,-4));
-        Box("Amber header", new Color32(247,192,93,255), new Vector2(0,1), Vector2.one, new Vector2(7,-80), new Vector2(-7,-7));
+        // Comic kağıt kiti (6 Kasım 2026, yetenek ağacı işi; bütün tooltip'ler aynı dilde): krem panel + amber'e boyanmış etiket
+        // şeridi, başlık Bungee. Şeridin adı "Amber header" kalır (Fit onu bulur). Kit yoksa eski düz plakalar.
+        bool kit = ComicKit.Ready && ComicKit.Get("label_cream") != null;
+        kitSkin = kit;
+        if (kit)
+        {
+            KitBox("Comic Panel", "panel_cream", Color.white, 1.6f, Vector2.zero, Vector2.one, new Vector2(-4,-7), new Vector2(7,4));
+            KitBox("Amber header", "label_cream", new Color32(247,192,93,255), 2.2f, new Vector2(0,1), Vector2.one, new Vector2(7,-80), new Vector2(-7,-7));
+        }
+        else
+        {
+            Box("Ink shadow", new Color32(40, 29, 43, 220), Vector2.zero, Vector2.one, new Vector2(6,-7), new Vector2(6,-7));
+            Box("Ink outline", Ink, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+            Box("Cream paper", new Color32(255,242,210,255), Vector2.zero, Vector2.one, new Vector2(4,4), new Vector2(-4,-4));
+            Box("Amber header", new Color32(247,192,93,255), new Vector2(0,1), Vector2.one, new Vector2(7,-80), new Vector2(-7,-7));
+        }
         heading = Text("Heading", root, 28, true); subtitle = Text("Subtitle", root, 20);
+        if (kit && ComicKit.Display(heading, false, theme)) heading.fontSize = 24;
         var imageRect = Rect("Portrait", root); imageRect.anchoredPosition = new Vector2(18,-18); imageRect.sizeDelta = new Vector2(48,48);
         portrait = imageRect.gameObject.AddComponent<UnityEngine.UI.Image>(); portrait.preserveAspect = true; portrait.raycastTarget = false; portrait.enabled = false;
         var badgeRect = Rect("Skill portrait", root); badgeRect.anchoredPosition = new Vector2(16,-16); badgeRect.sizeDelta = new Vector2(54,54);
@@ -127,10 +149,11 @@ public sealed class ComicPopupView : MonoBehaviour
         heading.rectTransform.anchoredPosition = new Vector2(titleX,-15);
         heading.rectTransform.sizeDelta = new Vector2(width-titleX-20, 64);
         float headingHeight = heading.GetPreferredValues(heading.text, width-titleX-20, 0).y;
-        float top = Mathf.Max(88, headingHeight + 52);
+        // Kitin şeridinin alt kenarı (mürekkep + 3B) alt yazının altında kalsın: şerit ve içerik biraz aşağıda başlar.
+        float top = kitSkin ? Mathf.Max(98, headingHeight + 62) : Mathf.Max(88, headingHeight + 52);
         subtitle.rectTransform.anchoredPosition = new Vector2(titleX,-22-headingHeight);
         subtitle.rectTransform.sizeDelta = new Vector2(width-titleX-20,26);
-        var header = (RectTransform)transform.Find("Amber header"); header.offsetMin = new Vector2(7,-top+8);
+        var header = (RectTransform)transform.Find("Amber header"); header.offsetMin = new Vector2(7,-top+(kitSkin ? 2 : 8));
         float y = 4;
         for (int i=0;i<used;i++)
         {

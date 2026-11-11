@@ -147,8 +147,8 @@ Hepsi 1.0'da kalacak; amaç görsel olarak sorunsuz ve net anlaşılır olmalar�
       ikisi de yok edilirken bırakılır. Tipi tam ekran gölgelendiricide 5 gürültü örneği (eski kar: 2 katman).
     - Testler: RunPrototypeVerification 72/72 (üç perde kontrolü dahil), TakvimV1Verification 162/162,
       BossWeatherVerification 22/22.
-- [ ] **A2 · Sert Kabuk:** aynı mantıkta kahverengi yükselen ve solan perde.
-  - **5 Kasım: yapıldı ve test edildi, kullanıcının bakması bekleniyor.** Görüntüler `Docs/A2-SertKabuk/` (önce / sonra / 0,7 sn sonra).
+- [x] **A2 · Sert Kabuk:** aynı mantıkta kahverengi yükselen ve solan perde.
+  - **5–6 Kasım: yapıldı, test edildi, kullanıcı onayladı ("tamamdır").** Görüntüler `Docs/A2-SertKabuk/` (önce / sonra / 0,7 sn sonra).
     - Kullanıcı isteği: kum fırtınası da Don tipisi gibi olsun.
     - Kum: rüzgâr soldan sağa, hafif aşağı. Uzun kum çizgileri iki hızda, hamlelerle dalgalanan toz pusu, tarlanın ortası açık.
       Kenar kuşağı eskisi gibi.
@@ -274,6 +274,7 @@ Hepsi 1.0'da kalacak; amaç görsel olarak sorunsuz ve net anlaşılır olmalar�
   ilk level-up), twist ipuçları, demo sonu cümlesi.
 - Bitti: metinler tabloda ve senin onayından geçti.
 - Senden: metin onayı.
+- [ ] **Geri bildirim (11 Kasım):** tutorial, çiftçi ve tırpan seçiminin ne anlama geldiğini öğretmiyor. Eklenecek; ayrıntı `Docs/DiyalogPlani/Faz2-Durum.md` içinde.
 
 ### M8 · Açılış sahnesi (5–10 sn) [Şart]
 - Unity içinde oynayan 2D comic sahne; yazılar tablodan gelir, görüntüye gömülmez.

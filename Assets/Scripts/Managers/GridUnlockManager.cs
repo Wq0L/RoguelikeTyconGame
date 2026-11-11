@@ -10,6 +10,8 @@ public class GridUnlockManager : MonoBehaviour
 
     private GridSystem gridSystem;
     private int currentUnlockSize;
+    // Açık alanın kenarı (hücre; 3, 5 … 11). Start'tan önce 0.
+    public int CurrentSize => currentUnlockSize;
 
     private void Awake()
     {

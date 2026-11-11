@@ -5,6 +5,8 @@ using UnityEngine;
 // Adlandırma round haritasıyla (RoundMapUI) birebir aynı: A = x0, "1" = en üst satır (z en büyük).
 // İmlecin altındaki tile'ın harfi ve sayısı parlayıp büyür; oyuncu yeri "D4" diye hemen okur.
 // Görünüm harita başlıklarıyla aynı: mavi yuvarlak kare + beyaz konturlu yazı.
+// Comic kit (6 Kasım 2026, kullanıcı isteği): mavi kare kitin slot_blue'su, vurgu gerçek altın kare (slot_gold) yumuşak geçişle
+// (mavi × sarı çarpılmaz, UI-Art-Direction); yazı Bungee. Kit yoksa eski çalışma zamanı dokusu ve renk geçişi.
 [DefaultExecutionOrder(950)] // CameraFeel'den sonra: etiketler kamerayla aynı karede döner
 public class GridCoordinateLabels : MonoBehaviour
 {
@@ -20,19 +22,23 @@ public class GridCoordinateLabels : MonoBehaviour
     private sealed class Label
     {
         public Transform root;
-        public SpriteRenderer plate;
+        public SpriteRenderer plate, gold;   // gold: yalnız kitte (vurgu), saydamlığı geçişle artar
         public float highlight;
+        public bool inView = true;   // kameranın çerçevesindeki sütun / satır (GridUnlockFeel, 6 Kasım 2026)
     }
 
     private Label[] columns, rows;
     private Texture2D plateTexture;
-    private Sprite plateSprite;
+    private Sprite plateSprite, kitPlate, kitGold;
     private Camera cam;
     private GridManager grid;
     private int hoverX = -1, hoverZ = -1;
     private Quaternion appliedFacing;
     private bool facingApplied;
     private bool labelsVisible = true;
+    // Kamera çerçevesi (CameraFeel.FrameScale): rozetler görünen alanın kenarında durur, ekrandaki boyları sabit kalır.
+    // Yalnız ölçek değişince yeniden yerleşir.
+    private float layoutScale = -1f;
 
     private void Start()
     {
@@ -48,20 +54,58 @@ public class GridCoordinateLabels : MonoBehaviour
 
     private void Build()
     {
-        plateTexture = CreatePlateTexture(64);
-        plateSprite = Sprite.Create(plateTexture, new Rect(0f, 0f, 64f, 64f), new Vector2(0.5f, 0.5f), 64f);
-        plateSprite.name = "Coordinate Plate (runtime)";
+        kitPlate = ComicKit.Get("slot_blue");
+        kitGold = ComicKit.Get("slot_gold");
+        if (kitPlate == null || kitGold == null)
+        {
+            kitPlate = kitGold = null;
+            plateTexture = CreatePlateTexture(64);
+            plateSprite = Sprite.Create(plateTexture, new Rect(0f, 0f, 64f, 64f), new Vector2(0.5f, 0.5f), 64f);
+            plateSprite.name = "Coordinate Plate (runtime)";
+        }
 
         int width = grid.GetWidth(), height = grid.GetHeight();
-        float cell = grid.GetCellSize();
-        float offset = edgeOffset * cell;
         columns = new Label[width];
         rows = new Label[height];
-        for (int x = 0; x < width; x++)
-            columns[x] = CreateLabel(ColumnName(x), new Vector3(x * cell, this.height, (height - 1) * cell + offset));
-        for (int z = 0; z < height; z++)
-            rows[z] = CreateLabel((height - z).ToString(), new Vector3(-offset, this.height, z * cell));
+        for (int x = 0; x < width; x++) columns[x] = CreateLabel(ColumnName(x), Vector3.zero);
+        for (int z = 0; z < height; z++) rows[z] = CreateLabel((height - z).ToString(), Vector3.zero);
+        Layout(1f);
     }
+
+    // Çerçeve ölçeği s (1: bütün grid). Görünen alan grid merkezinden s × genişlik hücre; rozetler onun üst ve sol kenarında, yalnız
+    // görünen sütun / satırlar açık. Kenar payı yakın çerçevede de rozeti hücreden ayırır; boy s ile küçülür (ekranda aynı kalır).
+    private void Layout(float s)
+    {
+        layoutScale = s;
+        int width = grid.GetWidth(), height = grid.GetHeight();
+        float cell = grid.GetCellSize();
+        float offset = (0.5f + (edgeOffset - 0.5f) * s) * cell;
+        float cx = (width - 1) * 0.5f, cz = (height - 1) * 0.5f;
+        float halfX = (Mathf.Min(width, s * width) - 1f) * 0.5f, halfZ = (Mathf.Min(height, s * height) - 1f) * 0.5f;
+        for (int x = 0; x < width; x++)
+        {
+            Label label = columns[x];
+            label.root.position = new Vector3(x * cell, this.height, (cz + halfZ) * cell + offset);
+            SetInView(label, Mathf.Abs(x - cx) <= halfX + 0.01f);
+            label.root.localScale = Vector3.one * (s * Mathf.Lerp(1f, highlightScale, Eased(label.highlight)));
+        }
+        for (int z = 0; z < height; z++)
+        {
+            Label label = rows[z];
+            label.root.position = new Vector3((cx - halfX) * cell - offset, this.height, z * cell);
+            SetInView(label, Mathf.Abs(z - cz) <= halfZ + 0.01f);
+            label.root.localScale = Vector3.one * (s * Mathf.Lerp(1f, highlightScale, Eased(label.highlight)));
+        }
+    }
+
+    private void SetInView(Label label, bool inView)
+    {
+        if (label.inView == inView) return;
+        label.inView = inView;
+        label.root.gameObject.SetActive(labelsVisible && inView);
+    }
+
+    private static float Eased(float h) => h * h * (3f - 2f * h);
 
     private Label CreateLabel(string text, Vector3 position)
     {
@@ -69,15 +113,8 @@ public class GridCoordinateLabels : MonoBehaviour
         root.SetParent(transform, false);
         root.position = position;
 
-        var plateObject = new GameObject("Plate", typeof(SpriteRenderer));
-        plateObject.transform.SetParent(root, false);
-        plateObject.transform.localScale = Vector3.one * plateSize;
-        var plate = plateObject.GetComponent<SpriteRenderer>();
-        plate.sprite = plateSprite;
-        plate.color = plateColor;
-        plate.sortingOrder = 10;
-        plate.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-        plate.receiveShadows = false;
+        SpriteRenderer plate = Plate(root, "Plate", kitPlate != null ? kitPlate : plateSprite, kitPlate != null ? Color.white : plateColor, 10);
+        SpriteRenderer gold = kitGold != null ? Plate(root, "Gold", kitGold, new Color(1f, 1f, 1f, 0f), 11) : null;
 
         var textObject = new GameObject("Text", typeof(RectTransform), typeof(TextMeshPro));
         textObject.transform.SetParent(root, false);
@@ -95,12 +132,29 @@ public class GridCoordinateLabels : MonoBehaviour
         label.alignment = TextAlignmentOptions.Center;
         label.textWrappingMode = TextWrappingModes.NoWrap;
         label.rectTransform.sizeDelta = new Vector2(plateSize * 1.6f, plateSize);
-        label.sortingOrder = 11;
+        label.sortingOrder = 12;
+        if (ComicKit.Display(label, true, theme)) label.fontSize = fontSize * .85f;
         var textRenderer = label.GetComponent<Renderer>();
         textRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         textRenderer.receiveShadows = false;
 
-        return new Label { root = root, plate = plate };
+        return new Label { root = root, plate = plate, gold = gold };
+    }
+
+    // Plaka: dünya biriminde plateSize kenarlı kare (sprite'ın kendi boyundan bağımsız).
+    private SpriteRenderer Plate(Transform root, string name, Sprite sprite, Color color, int order)
+    {
+        var plateObject = new GameObject(name, typeof(SpriteRenderer));
+        plateObject.transform.SetParent(root, false);
+        float units = sprite != null ? sprite.rect.width / sprite.pixelsPerUnit : 1f;
+        plateObject.transform.localScale = Vector3.one * (plateSize / units);
+        var plate = plateObject.GetComponent<SpriteRenderer>();
+        plate.sprite = sprite;
+        plate.color = color;
+        plate.sortingOrder = order;
+        plate.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        plate.receiveShadows = false;
+        return plate;
     }
 
     // Sadece değişen şey yazılır: yön kamera tabanı değişince, ölçek/renk vurgu geçişi sürerken.
@@ -108,13 +162,17 @@ public class GridCoordinateLabels : MonoBehaviour
     {
         if (cam == null) cam = Camera.main;
         if (cam == null) return;
-        // Ayarlardan kapatılabilir; sadece değiştiğinde objeler açılıp kapanır.
-        if (GameSettings.GridCoordinates != labelsVisible)
+        // Ayarlardan kapatılabilir; düz harita (RoundMapUI) açıkken de gizlenir: haritanın kendi başlıkları var, dünyadaki rozetler
+        // haritanın kenarından taşmasın (6 Kasım 2026). Sadece değiştiğinde objeler açılıp kapanır.
+        bool wanted = GameSettings.GridCoordinates && !RoundMapUI.Visible;
+        if (wanted != labelsVisible)
         {
-            labelsVisible = GameSettings.GridCoordinates;
-            foreach (Label label in columns) label.root.gameObject.SetActive(labelsVisible);
-            foreach (Label label in rows) label.root.gameObject.SetActive(labelsVisible);
+            labelsVisible = wanted;
+            foreach (Label label in columns) label.root.gameObject.SetActive(labelsVisible && label.inView);
+            foreach (Label label in rows) label.root.gameObject.SetActive(labelsVisible && label.inView);
         }
+        float frame = CameraFeel.Instance != null ? CameraFeel.Instance.FrameScale : 1f;
+        if (frame != layoutScale) Layout(frame);
         if (!labelsVisible) return;
         UpdateHover();
 
@@ -164,9 +222,10 @@ public class GridCoordinateLabels : MonoBehaviour
             float target = i == hovered ? 1f : 0f;
             if (label.highlight == target) continue; // boşta: hiçbir şey yazılmaz
             label.highlight = Mathf.MoveTowards(label.highlight, target, step);
-            float eased = label.highlight * label.highlight * (3f - 2f * label.highlight);
-            label.root.localScale = Vector3.one * Mathf.Lerp(1f, highlightScale, eased);
-            label.plate.color = Color.Lerp(plateColor, highlightColor, eased);
+            float eased = Eased(label.highlight);
+            label.root.localScale = Vector3.one * (layoutScale * Mathf.Lerp(1f, highlightScale, eased));
+            if (label.gold != null) label.gold.color = new Color(1f, 1f, 1f, eased);
+            else label.plate.color = Color.Lerp(plateColor, highlightColor, eased);
         }
     }
 

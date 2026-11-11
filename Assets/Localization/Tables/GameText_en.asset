@@ -3105,6 +3105,14 @@ MonoBehaviour:
     m_Localized: You can't run. No ship, no Earth. There's only me.
     m_Metadata:
       m_Items: []
+  - m_Id: 530164191350784
+    m_Localized: ROUND
+    m_Metadata:
+      m_Items: []
+  - m_Id: 530164224905216
+    m_Localized: '{0} / {1}'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

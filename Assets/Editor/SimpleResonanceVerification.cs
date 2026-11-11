@@ -364,7 +364,9 @@ public static class SimpleResonanceVerification
             var character=TMPro.TMP_FontAssetUtilities.GetCharacterFromFontAsset(c,theme.headingFont,true,TMPro.FontStyles.Normal,TMPro.FontWeight.Regular,out bool alternate);
             Require(character!=null && (character.textAsset==theme.headingFont || character.textAsset==turkish),"Turkish character stays in comic face: "+c);
         }
-        Require(host.GetComponentsInChildren<TMPro.TMP_Text>().All(t=>t.font==theme.headingFont && t.fontSharedMaterial==theme.headingFont.material && t.color==ComicPopupView.Ink),"Every popup uses toon font with solid dark ink on cream paper");
+        // Comic kağıt kiti (6 Kasım 2026): tooltip başlığı kitin başlık fontu Bungee (theme.displayFont); diğer yazılar başlık fontu.
+        Require(host.GetComponentsInChildren<TMPro.TMP_Text>().All(t=>((t.font==theme.headingFont && t.fontSharedMaterial==theme.headingFont.material) ||
+            (theme.displayFont!=null && t.font==theme.displayFont && t.fontSharedMaterial==theme.displayFont.material)) && t.color==ComicPopupView.Ink),"Every popup uses toon font with solid dark ink on cream paper");
         Require(skill.transform.Find("Skill portrait").gameObject.activeSelf,"Skill category icon visible before title");
         var keys=Enum.GetValues(typeof(StatType)).Cast<StatType>().Select(SkillIconCatalog.For).Concat(new[]{"skill-unlock"}).Distinct().ToArray();
         for(int i=0;i<keys.Length;i++)
@@ -389,7 +391,9 @@ public static class SimpleResonanceVerification
         var nodeRect=(RectTransform)actualNode.transform;nodeRect.anchorMin=nodeRect.anchorMax=new Vector2(0,1);nodeRect.anchoredPosition=new Vector2(110,-890);nodeRect.localScale=Vector3.one*1.5f;
         Require(!actualNode.transform.Find("LockOverlay").gameObject.activeSelf,"Actual prefab no longer washes out its icon");
         Require(actualNode.transform.Find("IconImage").localScale==Vector3.one,"Actual prefab icon uses full scale");
-        Require(actualNode.transform.Find("Comic shadow").GetSiblingIndex()<actualNode.transform.Find("Comic face").GetSiblingIndex(),"Comic face renders in front of shadow");
+        // Comic kağıt kiti (6 Kasım 2026): gölge ayrı plaka değil, kitin karesinin kendi 3B kenarı; tek "Comic face" yeter.
+        var nodeShadow=actualNode.transform.Find("Comic shadow");var nodeFace=actualNode.transform.Find("Comic face");
+        Require(nodeFace!=null&&(nodeShadow==null||nodeShadow.GetSiblingIndex()<nodeFace.GetSiblingIndex()),"Comic face renders in front of shadow");
         Require(actualNode.GetComponent<UnityEngine.UI.Button>().transition==UnityEngine.UI.Selectable.Transition.None,"Legacy button tint cannot wash out node");
         var specimen=new GameObject("Turkish specimen",typeof(RectTransform));specimen.transform.SetParent(host.transform,false);
         var specimenRect=(RectTransform)specimen.transform;specimenRect.anchorMin=specimenRect.anchorMax=new Vector2(0,1);specimenRect.pivot=new Vector2(0,1);specimenRect.anchoredPosition=new Vector2(250,-830);specimenRect.sizeDelta=new Vector2(1200,160);

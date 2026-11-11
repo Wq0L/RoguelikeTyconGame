@@ -62,6 +62,21 @@ public class UIManager : MonoBehaviour
         RoundNewTilesUI.Attach(roundEndUI);
         roundPreview = RoundPreviewUI.Attach(roundEndUI, this);
         if (roundPreview != null) UIPanelTransition.Attach(roundPreview.gameObject, true);
+        // Comic kağıt kiti (6 Kasım 2026, Docs/UI-Dili.md): HUD (round, süre, kaynaklar, kota kartı, level) ve hazırlık
+        // ekranının dört butonu (Sonraki Round mavi, Saksı yeşil, Yetenek altın, Önizleme mor). Kart ve harita kendi kurulumunda.
+        ComicHud.Install();
+        ComicKit.StyleRoundEnd(roundEndUI);
+        // Dükkân (kartlar, paneller, Satın al / Temizle), Sat (kırmızı), çıkış butonları (mavi). Çıkış butonları kaynak
+        // sayaçlarıyla aynı köşede: sayaçların altına iner.
+        PlanterShopPanelUI planterShop = placementShopPanel != null ? placementShopPanel.GetComponentInChildren<PlanterShopPanelUI>(true) : null;
+        if (planterShop != null) planterShop.UseComicKit();
+        foreach (Button button in FindObjectsByType<Button>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            if (button.name == "Planter Sell Button") ComicKit.StyleButton(button, ComicKit.Red);
+        foreach (Button exit in new[] { exitSellButton, exitSkillButton })
+        {
+            if (!ComicKit.StyleButton(exit, ComicKit.Blue) || !ComicHud.Installed) continue;
+            ((RectTransform)exit.transform).anchoredPosition = new Vector2(-ComicHud.Margin, -88f);
+        }
         SkillTreeSpaceBackground.Attach(skillShopPanel);
         if (resourcesUI == null)
         {

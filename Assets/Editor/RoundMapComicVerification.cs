@@ -34,8 +34,11 @@ public static class RoundMapComicVerification
                     var cell=grid.GetChild(i);var ground=GridManager.Instance.GetGridSystem().GetGridObject(new GridPosition(i%w,h-1-i/w)).GetGroundCellCached();
                     Check(cell.name==$"Cell_x{i%w}_z{h-1-i/w}","Mapping "+cell.name);
                     Check(cell.GetComponent<TooltipTrigger>()&&cell.GetComponent<TileCellUI>(),"Tooltip components preserved");
-                    var expected=ground.IsLocked?new Color(.16f,.19f,.21f):ground.CurrentModifier?ground.CurrentModifier.tileColor:Color.white;
+                    // Comic kağıt kiti (6 Kasım 2026): kapalı = kömür karesi (boyanmaz), açık = beyaz kare (tile rengiyle boyanır).
+                    bool kit=ComicKit.Get("slot_white")!=null;
+                    var expected=ground.IsLocked?(kit?Color.white:new Color(.16f,.19f,.21f)):ground.CurrentModifier?ground.CurrentModifier.tileColor:Color.white;
                     Check(cell.GetComponent<Image>().color==expected,"Cell state color");
+                    if(kit)Check(cell.GetComponent<Image>().sprite==ComicKit.Get(ground.IsLocked?"slot_charcoal":"slot_white"),"Cell sprite: locked charcoal, open white");
                 }
                 int first=grid.GetChild(0).GetInstanceID();map.BuildGrid();Check(grid.childCount==w*h&&grid.GetChild(0).GetInstanceID()==first,"Cells pooled across refresh");
                 Capture("round-map.png");

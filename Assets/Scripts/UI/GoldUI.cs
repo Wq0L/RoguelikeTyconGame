@@ -57,6 +57,15 @@ public class GoldUI : MonoBehaviour
             lastBalance = resources.GetResourceAmount(resourceType);
             RenderAmount(lastBalance);
         }
+        GameText.Changed -= OnLanguageChanged;
+        GameText.Changed += OnLanguageChanged;
+    }
+
+    // Dil değişince (6 Kasım 2026, ComicKitVerification dil turu): sayı yeni dilin binlik ayırıcısıyla (tr 12.425, en 12,425), kaynak adı yeni dilde yeniden yazılır.
+    private void OnLanguageChanged()
+    {
+        lastRenderedAmount = long.MinValue;
+        RenderAmount(lastBalance);
     }
 
     private void OnDisable()
@@ -69,6 +78,7 @@ public class GoldUI : MonoBehaviour
         ClearFlights();
         resources = null;
         pulse = 0f;
+        GameText.Changed -= OnLanguageChanged;
         if (amountText != null) amountText.rectTransform.localScale = restingScale;
     }
 
@@ -96,6 +106,17 @@ public class GoldUI : MonoBehaviour
 
     private long lastRenderedAmount = long.MinValue;
 
+    // HUD tek stil (ComicHud, 6 Kasım 2026): ikonlu kutuda kaynağın adı yazılmaz, yalnız miktar.
+    private bool iconLayout;
+    public ResourceType ResourceType => resourceType;
+    public TMP_Text AmountText => amountText;
+    public void UseIconLayout()
+    {
+        iconLayout = true;
+        lastRenderedAmount = long.MinValue;
+        if (resources != null) RenderAmount(resources.GetResourceAmount(resourceType));
+    }
+
     private void RenderAmount(int balance)
     {
         if (amountText == null) return;
@@ -104,7 +125,8 @@ public class GoldUI : MonoBehaviour
         long displayed = System.Math.Max(0L, (long)balance - pendingAmount);
         if (displayed == lastRenderedAmount) return;
         lastRenderedAmount = displayed;
-        amountText.text = $"<size=60%><color=#{tint}>{TileBuffText.ResourceName(resourceType)}</color></size>\n{displayed.ToString("N0", GameText.Culture)}";
+        string amount = displayed.ToString("N0", GameText.Culture);
+        amountText.text = iconLayout ? amount : $"<size=60%><color=#{tint}>{TileBuffText.ResourceName(resourceType)}</color></size>\n{amount}";
     }
 
     private bool ToCanvas(Vector2 screen, out Vector2 point)

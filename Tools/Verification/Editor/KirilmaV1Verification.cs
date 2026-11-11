@@ -1348,10 +1348,22 @@ public static class KirilmaV1Verification
     static readonly List<Renderer> hiddenWorld = new();
     static SkillTreeUI TreeUi => Object.FindFirstObjectByType<SkillTreeUI>(FindObjectsInactive.Include);
     static SkillNodeUI Slot(SkillNodeSO node) => F<List<SkillNodeUI>>(TreeUi, "nodeUIs").First(n => n != null && n.Node == node);
-    static Color Face(SkillNodeUI slot) => F<ComicPopupPlate>(slot, "comicFace").color;
+    // Comic kağıt kiti (6 Kasım 2026): yüz artık kitin karesi; kontroller anlamını korusun diye kare eski durum rengine çevrilir
+    // (mavi = başlangıç erişimi, yeşil = tamam, altın = alınabilir, lacivert = profil kapalı, kömür / beyaz = eski bej).
+    static Color Face(SkillNodeUI slot)
+    {
+        var plate = F<ComicPopupPlate>(slot, "comicFace");
+        if (plate != null) return plate.color;
+        return slot.FaceSprite switch
+        {
+            "slot_blue" => SkillNodeUI.StartingAccessColor, "slot_green" => Bought, "slot_gold" => Buyable,
+            "slot_navy" => new Color32(150, 145, 150, 255), _ => new Color32(207, 198, 188, 255),
+        };
+    }
+    static bool Filled(Image dot) => (dot.sprite != null && dot.sprite.name == "pip_gold") || Same(dot.color, DotFilled);
     static bool Clickable(SkillNodeUI slot) => F<Button>(slot, "button").interactable;
     static int ActiveDots(SkillNodeUI slot) => F<List<Image>>(slot, "tierDots").Count(d => d.gameObject.activeSelf);
-    static int FilledDots(SkillNodeUI slot) => F<List<Image>>(slot, "tierDots").Count(d => d.gameObject.activeSelf && Same(d.color, DotFilled));
+    static int FilledDots(SkillNodeUI slot) => F<List<Image>>(slot, "tierDots").Count(d => d.gameObject.activeSelf && Filled(d));
     static int[] Amounts() => Enum.GetValues(typeof(ResourceType)).Cast<ResourceType>().Select(Bank.GetResourceAmount).ToArray();
 
     // Bağlantı çizgisi: 0 çizilmiyor, 1 ok (açık uçtan alınmamış uca), 2 düz çizgi (iki uç da açık).

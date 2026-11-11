@@ -27,6 +27,8 @@ public class XpUI : MonoBehaviour
 
         ProgressionManager.Instance.OnXPChanged += UpdateXPBar;
         ProgressionManager.Instance.OnLevelUp += HandleLevelUp;
+        GameText.Changed -= RefreshLanguage;
+        GameText.Changed += RefreshLanguage;
 
         UpdateXPBar();
         UpdateLevelText(ProgressionManager.Instance.CurrentLevel);
@@ -34,6 +36,7 @@ public class XpUI : MonoBehaviour
 
     private void OnDisable()
     {
+        GameText.Changed -= RefreshLanguage;
         StopAllCoroutines();
         if (levelText != null)
         {
@@ -56,6 +59,12 @@ public class XpUI : MonoBehaviour
         float ratio = (next > 0f) ? current / next : 0f;
 
         xpSlider.value = ratio;
+    }
+
+    // Dil değişince (6 Kasım 2026, ComicKitVerification dil turu): "Lv." yazısı hemen yeni dilde (zıplama yok).
+    private void RefreshLanguage()
+    {
+        if (ProgressionManager.Instance != null && levelText != null) levelText.text = GameText.Format("ui.stamp.level", ProgressionManager.Instance.CurrentLevel);
     }
 
     // Level atlayınca yazı zıplar (ilk açılıştaki güncellemede değil).

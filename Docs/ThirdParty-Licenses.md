@@ -91,6 +91,88 @@
   - Rüzgâr, hışırtı, yükselen uğultu ve yakalanma uğultusu özgün sentez.
 - Kullanıcıya kaynak, lisans, ücret, kredi ve dağıtım koşulları kullanımdan önce konuşmada bildirildi.
 
+## Comic Paper UI Pack v2 — kullanıcının Codex (OpenAI image_gen) ile ürettiği UI paketi, OYUNDA DAĞITILIR (6 Kasım 2026)
+
+- **Kategori:** oyunda dağıtılan varlık (UI sprite'ları).
+- **Kaynak:** kullanıcı üretti. Codex'in yerleşik görsel üreticisi kullanıldı (OpenAI; model sürümü araçta gösterilmiyor). İnternetten başka içerik indirilmedi.
+  - Paket: `output/ComicPaperUI-Pack-v2` (41 sprite + 1 referans sayfası). İstemler pakette: `prompts.json`.
+  - Kullanıcının reddettiği skill konsept sayfası paketten çıkarıldı, `output/_Cikarilan` altında.
+- **Türetilen dosyalar:**
+  - `Assets/Resources/ComicPack/*.png` (oyunda kullanılanlar) ve `Assets/Art/UI/ComicPack/*.png` (hazır, build'e girmez).
+  - Üreten betik: `Tools/Art/ComicPack/comicpack_prepare.ps1` (Windows .NET System.Drawing, ek araç yok). Envanter: `Docs/UI-Envanter.md`.
+- **Pikseller nasıl değişti:**
+  - Hepsi kırpıldı ve küçültüldü.
+  - Butonların hover / basılı / pasif hâlleri normal görselden renk işlemiyle türetildi. Mavi buton yeşilden renk döndürmeyle elde edildi.
+  - `sidebar_navy`'nin üstündeki silinmiş yazı lekesi düz lacivertle boyandı. `bar_fill`, bar zemininin iç bölgesinden üretildi.
+  - Yeni çizim eklenmedi.
+- **Lisans:** OpenAI Kullanım Şartları (ROW / Türkiye sürümü, geçerlilik 1 Ocak 2026; 6 Kasım 2026'da okundu, HUD kiti kaydıyla aynı belge).
+  - Çıktı kullanıcıya aittir; OpenAI haklarını kullanıcıya atar. Ticari kullanım engeli yok.
+  - Çıktı benzersiz olmayabilir.
+  - AI çıktısını insan yapımı gibi göstermek yasak.
+- **Ücret / royalty:** yok (yalnız kullanıcının aboneliği).
+- **Kredi:** oyun ekranında veya jenerikte kredi zorunluluğu yok.
+- **Dağıtım:** dağıtım paketine lisans/telif metni koyma zorunluluğu yok.
+- **Dikkat:** **Steam'de "önceden üretilmiş AI içeriği" beyanı ZORUNLU** (UI görselleri). Saf AI çıktısının telif koruması bazı ülkelerde sınırlı olabilir.
+- **Bildirim:** koşullar kullanıcıya konuşmada bildirildi, paketi incelerken (6 Kasım 2026). Oyuna bağlama kullanıcının isteğiyle: "elimizde olanları uygula".
+
+## Bungee 2.000 — yeni UI kitinin başlık / buton / sayı fontu (6 Kasım 2026)
+
+- **Kategori:** oyunda dağıtılan font. 6 Kasım 2026'da kullanıcı isteğiyle bağlandı ("fontumuzu da ekleyelim artık").
+  - TMP varlığı: `Assets/Art/UI/ComicToon/Fonts/Bungee-Regular SDF.asset` (90 pt SDF atlas).
+  - Konturlu malzeme: `Assets/Art/UI/ComicToon/Bungee Outline.mat`. Tema alanı: `displayFont`.
+  - Üretici: `Tools/Verification/Editor/ComicFontBuilder.cs` (izole kopyada).
+  - Font dosyası değiştirilmedi; atlas, fontun kendi glifleriyle Unity tarafından üretildi.
+- **Dosyalar:** `Assets/Art/UI/ComicToon/Fonts/Bungee-Regular.ttf` ve lisans metni `Bungee-OFL.txt`.
+  - Değiştirilmeden kopyalandı. SHA-256: `c4f5361ce120af3e6b9156d0bf379fa19cda2ea0cd18ac01fd99596c6bf66e3f`.
+- **Kaynak:** Google Fonts resmî deposu, `https://github.com/google/fonts/tree/main/ofl/bungee` (6 Kasım 2026 indirildi, 119 KB).
+  - Tasarımcı David Jonathan Ross. Font içi sürüm "Version 2.000".
+- **Telif:** "Copyright 2023 The Bungee Project Authors (https://github.com/djrrb/Bungee)". Ayrılmış font adı (RFN) yok.
+- **Lisans:** SIL Open Font License 1.1. Kontrol edilen belgeler: depodaki `OFL.txt` ve `METADATA.pb`, fontun `name` tablosu (13/14). Gömme izni (fsType 0) açık.
+- **Ücret / royalty:** yok; ticari kullanım ücretsiz.
+- **Kredi:** oyun ekranında veya jenerikte kredi zorunluluğu yok.
+- **Dağıtım:** dağıtım paketinde telif ve OFL metni bulunmalı (`Bungee-OFL.txt`). Font tek başına satılamaz. Değiştirilmiş hâli OFL altında kalır; RFN olmadığından ad değiştirme zorunluluğu yok.
+- **Dil kapsamı (ölçüldü):** 26 Latin dil grubunun özel harfleri tam. Rapor: `Docs/Font-Adaylari/bungee_diller.png`.
+  - Kapsananlar: Türkçe, İngilizce, Almanca, Fransızca, İspanyolca, Portekizce, Polonyaca, Çekçe, Romence, Vietnamca ve diğerleri.
+  - Kiril, Yunan, CJK ve Arap harfleri yok.
+- **Bağlarken dikkat:**
+  - Bungee küçük harfleri büyük harf gibi çiziyor. Küçük "i" noktasız "I" çıkar; fontta Türkçe `locl` yok (yalnız CAT, ROM). Türkçede i→İ dönüşümü kodda yapılmalı.
+  - Fontun kendisi değiştirilmeyecek.
+- **Bildirim:** kullanıcıya kullanımdan önce konuşmada bildirildi, indirme onayı alındı (6 Kasım 2026).
+- Aday karşılaştırması (Lilita One, Bangers, Russo One, Chakra Petch, Oxanium, Exo 2, Passion One, Bungee): `Docs/Font-Adaylari/font_adaylari_1.png`.
+  - Yalnız tarayıcıda web fontu olarak görüntülendi. Başka font indirilmedi.
+
+## HUD kart kiti — kullanıcının ChatGPT ile ürettiği UI kiti, OYUNDA DAĞITILACAK (6 Kasım 2026)
+
+- **Kategori:** oyunda dağıtılan varlık (HUD sprite'ları). Henüz oyuna bağlanmadı: `ComicHud` örnek olarak hazır, kullanıcı onayı bekliyor.
+- **Kaynak:** kullanıcı bu konuşmada sağladı ("gptye ben yaptırdım"). Kullanıcının kendi ChatGPT hesabıyla, OpenAI görsel üretimiyle yapıldı.
+  - Orijinal: `Docs/HUD-Toon/Kaynak/ui_kit_gpt.png` (1536×1024, saydam zemin, 4×3 parça).
+  - İnternetten başka içerik indirilmedi.
+- **Türetilen dosyalar:** `Assets/Resources/HudKit/hud_*.png` (12 parça + 3 çubuğun `_frame` / `_fill` türevleri).
+  - Kesen araç: `Tools/Art/HudKit/hudkit_slice.ps1` (Windows .NET System.Drawing; ek araç kurulmadı).
+  - Çubuk türevlerinde iç kısım düz renge boyandı. Bunun dışında pikseller değiştirilmedi; yalnız kırpıldı. 9-dilim sınırları meta dosyalarında.
+- **Kullanım amacı:** HUD'u kartların karakterine yaklaştırmak. Kullanılan parçalar: round kartı, süre, kaynaklar, kota kartı, level çubuğu.
+- **Lisans:** OpenAI Kullanım Şartları (ROW / Türkiye sürümü, geçerlilik 1 Ocak 2026). Kontrol tarihi 6 Kasım 2026, `openai.com/tr-TR/policies/row-terms-of-use/`.
+  - "İçeriğin sahipliği": Çıktı kullanıcıya aittir. OpenAI, Çıktı üzerindeki haklarını kullanıcıya atar. Ticari kullanım engeli yok.
+  - "İçerik benzerliği": Çıktı benzersiz olmayabilir; başka kullanıcılar benzer çıktı alabilir.
+  - Yasak: AI çıktısını insan yapımıymış gibi göstermek.
+- **Ücret / royalty:** yok. Kullanıcının ChatGPT aboneliği dışında ödeme yok; satış başına ödeme yok.
+- **Kredi:** oyun ekranında veya jenerikte kredi zorunluluğu yok.
+- **Dağıtım:** dağıtım paketine lisans/telif metni koyma zorunluluğu yok.
+- **Dikkat:**
+  - **Steam'de "önceden üretilmiş AI içeriği" beyanı ZORUNLU.** HUD görselleri AI ile üretildi ve oyunda gösteriliyor. Bu beyan, "insan yapımı gibi gösterme" yasağını da karşılar.
+  - Saf AI çıktısının telif koruması bazı ülkelerde sınırlı olabilir. Benzer bir kiti başkası da kullanabilir.
+- **Bildirim:** kullanıcıya kullanımdan (oyuna bağlamadan) önce konuşmada bildirildi (6 Kasım 2026).
+
+## HUD toon denemesi — Higgsfield / GPT Image 2.6, DAĞITILMAZ (6 Kasım 2026)
+
+- **Kategori:** deneme çıktısı, oyunda yok.
+  - Dosyalar: `Docs/HUD-Toon/Deneme1/` (A_tohum_etiketi, B_sera_makinesi, C_cizgi_roman).
+  - Kullanıcı reddetti ("çok ai matik").
+- **Üretim:** kullanıcının Higgsfield hesabından, GPT Image 2.6 (OpenAI), orta kalite 2K, 3 görsel, toplam 3 kredi (kullanıcı onayıyla).
+  - Referans olarak oyunun kendi ekran görüntüsü verildi.
+- **Lisans:** aşağıdaki Higgsfield kaydının koşulları (çıktı kullanıcıya ait, ücretli planda ticari kullanım dahil). Ücret: yalnız kredi. Kredi ya da lisans metni zorunluluğu yok.
+- Oyuna girmediği için Steam beyanını etkilemez.
+
 ## Eri'nin üç hâl tablosu — Higgsfield / GPT Image 2.5 çıktısı, OYUNDA DAĞITILIR (5 Kasım 2026)
 
 - **Kategori:** oyunda dağıtılan varlık. Oyunun içinde dağıtılan ilk AI görseli.

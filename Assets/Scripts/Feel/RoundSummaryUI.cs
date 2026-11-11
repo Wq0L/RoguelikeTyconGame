@@ -333,13 +333,20 @@ public sealed class RoundSummaryUI : MonoBehaviour
         card.anchoredPosition = new Vector2(48f, 40f);
         card.sizeDelta = new Vector2(Width, 300f);
 
-        // Tooltip'lerle aynı çizgi roman kağıdı görünümü.
-        Plate("Ink shadow", new Color32(40, 29, 43, 220), Vector2.zero, Vector2.one, new Vector2(6f, -7f), new Vector2(6f, -7f));
-        Plate("Ink outline", Ink, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
-        Plate("Cream paper", new Color32(255, 242, 210, 255), Vector2.zero, Vector2.one, new Vector2(4f, 4f), new Vector2(-4f, -4f));
-        Plate("Amber header", new Color32(247, 192, 93, 255), new Vector2(0f, 1f), Vector2.one, new Vector2(7f, -HeaderHeight), new Vector2(-7f, -7f));
+        // Comic kağıt kiti (6 Kasım 2026, Docs/UI-Dili.md): krem panel + lacivert başlık şeridi, başlık beyaz konturlu.
+        // Kit yoksa eski çizgi roman kağıdı plakaları (tooltip'lerle aynı).
+        bool kit = ComicKit.Ready;
+        if (kit) ComicKit.Card(card, HeaderHeight - 6f, "header_navy", Color.white);
+        else
+        {
+            Plate("Ink shadow", new Color32(40, 29, 43, 220), Vector2.zero, Vector2.one, new Vector2(6f, -7f), new Vector2(6f, -7f));
+            Plate("Ink outline", Ink, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+            Plate("Cream paper", new Color32(255, 242, 210, 255), Vector2.zero, Vector2.one, new Vector2(4f, 4f), new Vector2(-4f, -4f));
+            Plate("Amber header", new Color32(247, 192, 93, 255), new Vector2(0f, 1f), Vector2.one, new Vector2(7f, -HeaderHeight), new Vector2(-7f, -7f));
+        }
 
         title = CreateText(card, "Title", 30f, TextAlignmentOptions.Center);
+        if (kit) ComicKit.StyleHeaderText(title, theme);
         var titleRect = title.rectTransform;
         titleRect.anchorMin = new Vector2(0f, 1f);
         titleRect.anchorMax = Vector2.one;

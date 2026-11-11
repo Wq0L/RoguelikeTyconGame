@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 // Oyun sahnesinde (RoundManager olan sahne) ana kameraya CameraFeel ve SpaceBackground, sahneye de
-// GameFeelDirector, grid koordinat etiketleri ve yeni tile çerçeveleri yoksa ekler.
+// GameFeelDirector, grid koordinat etiketleri, grid çerçevesi / açılma efekti (GridUnlockFeel) ve yeni tile çerçeveleri yoksa ekler.
 // Sahneye kalıcı eklemek ve inspector'dan ayarlamak için: Tools > Feel > Sahneye Kur.
 // Batch mode doğrulamaları (performans testleri) etkilenmesin diye orada çalışmaz.
 public static class FeelBootstrap
@@ -28,6 +28,7 @@ public static class FeelBootstrap
         if (Object.FindAnyObjectByType<SpaceBackground>() == null) camera.gameObject.AddComponent<SpaceBackground>();
         if (Object.FindAnyObjectByType<GameFeelDirector>() == null) new GameObject("Game Feel Director").AddComponent<GameFeelDirector>();
         if (Object.FindAnyObjectByType<GridCoordinateLabels>() == null) new GameObject("Grid Coordinates").AddComponent<GridCoordinateLabels>();
+        if (Object.FindAnyObjectByType<GridUnlockFeel>() == null) new GameObject("Grid Unlock Feel").AddComponent<GridUnlockFeel>();
         if (Object.FindAnyObjectByType<FreshTileMarkers>() == null) new GameObject("Fresh Tile Markers").AddComponent<FreshTileMarkers>();
         if (Object.FindAnyObjectByType<GreenhouseMascot>() == null) new GameObject("Greenhouse Mascot").AddComponent<GreenhouseMascot>();
     }

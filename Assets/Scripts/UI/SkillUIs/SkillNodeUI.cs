@@ -45,6 +45,16 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
     private int previousLevel = 0;
     private ResonanceBadgeGraphic skillBadge;
     private ComicPopupPlate comicFace;
+    // Comic kağıt kiti (6 Kasım 2026, kullanıcı: "node'ların kareleri bize uygun olsun"; Docs/UI-Envanter.md §6): yüz, kitin
+    // karesi; durum yalnız sprite değişimi (karede iş yok). Kit yoksa eski düz plakalar.
+    private Image kitFace;
+    public string FaceSprite => kitFace != null && kitFace.sprite != null ? kitFace.sprite.name : null;
+
+    // Durum → kare. Altın: alınabilir (altın = yetenek). Kömür: alınamaz / kilitli (haritadaki kapalı hücre). Beyaz: kısmen
+    // alınmış, şimdi yükseltilemiyor (seviyeyi noktalar söyler). Yeşil: tamamlandı. Açık mavi: başlangıç erişimi. Lacivert:
+    // profil kapattı.
+    public static string StateSprite(bool grantedOnly, bool disabled, bool isMax, bool canUpgrade, int level) =>
+        grantedOnly ? "slot_blue" : disabled ? "slot_navy" : isMax ? "slot_green" : canUpgrade ? "slot_gold" : level > 0 ? "slot_white" : "slot_charcoal";
     private int comicLayer;
     private RectTransform startLabel;
 
@@ -98,11 +108,29 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
     private void RefreshIcon()
     {
         if (node == null || iconImage == null) return;
-        if (comicFace == null)
+        if (comicFace == null && kitFace == null)
         {
-            AddPlate("Comic shadow", new Color32(32,22,39,255), new Vector2(3,-4), 0);
-            AddPlate("Comic outline", new Color32(54,39,54,255), Vector2.zero, 0);
-            comicFace = AddPlate("Comic face", new Color32(255,238,197,255), Vector2.zero, 4);
+            bool kit = ComicKit.Ready && ComicKit.Get("slot_green") != null && ComicKit.Get("pip_gold") != null;
+            if (kit)
+            {
+                var face = new GameObject("Comic face", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+                face.layer = gameObject.layer;
+                var faceRect = (RectTransform)face.transform; faceRect.SetParent(transform, false);
+                faceRect.anchorMin = Vector2.zero; faceRect.anchorMax = Vector2.one;
+                faceRect.offsetMin = new Vector2(-4f, -5f); faceRect.offsetMax = new Vector2(4f, 3f);   // 3B alt / sağ kenar dışarı taşar
+                faceRect.SetSiblingIndex(comicLayer++);
+                kitFace = face.GetComponent<Image>();
+                kitFace.sprite = ComicKit.Get("slot_charcoal");
+                kitFace.type = Image.Type.Sliced;
+                kitFace.pixelsPerUnitMultiplier = ComicKit.Multiplier(kitFace.sprite, (RectTransform)transform, 2.5f);
+                kitFace.raycastTarget = false;
+            }
+            else
+            {
+                AddPlate("Comic shadow", new Color32(32,22,39,255), new Vector2(3,-4), 0);
+                AddPlate("Comic outline", new Color32(54,39,54,255), Vector2.zero, 0);
+                comicFace = AddPlate("Comic face", new Color32(255,238,197,255), Vector2.zero, 4);
+            }
             dotFilledColor = new Color32(255,207,87,255);
             dotEmptyColor = new Color32(103,91,112,255);
             // Keep the existing Image as the button's hit target, not as visible artwork.
@@ -111,8 +139,12 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
             iconImage.rectTransform.localScale = Vector3.one;
             iconImage.rectTransform.anchorMin = Vector2.zero;
             iconImage.rectTransform.anchorMax = Vector2.one;
-            iconImage.rectTransform.offsetMin = new Vector2(4,4);
-            iconImage.rectTransform.offsetMax = new Vector2(-4,-4);
+            // Kitin karesinde ikon mürekkep çizgisinin içinde kalır.
+            iconImage.rectTransform.offsetMin = kit ? new Vector2(12,13) : new Vector2(4,4);
+            iconImage.rectTransform.offsetMax = kit ? new Vector2(-14,-11) : new Vector2(-4,-4);
+            if (kit)
+                foreach (Image dot in tierDots)
+                    if (dot != null) { dot.sprite = ComicKit.Get("pip_empty"); dot.type = Image.Type.Simple; dot.preserveAspect = true; dot.color = Color.white; }
         }
         // This legacy white overlay covered every icon, even purchased nodes.
         if (lockOverlay != null) lockOverlay.SetActive(false);
@@ -191,7 +223,8 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         bool startingAccess = SkillTreeManager.HasStartingAccess(node);
         bool grantedOnly = SkillTreeManager.IsGrantedByProfile(node);
         bool disabled = !grantedOnly && SkillTreeManager.Instance.IsDisabledByProfile(node);
-        comicFace.color = grantedOnly ? StartingAccessColor : disabled ? new Color32(150,145,150,255) : isMax ? new Color32(125,223,162,255) : canUpgrade ? new Color32(255,213,119,255) : new Color32(207,198,188,255);
+        if (kitFace != null) kitFace.sprite = ComicKit.Get(StateSprite(grantedOnly, disabled, isMax, canUpgrade, level));
+        else comicFace.color = grantedOnly ? StartingAccessColor : disabled ? new Color32(150,145,150,255) : isMax ? new Color32(125,223,162,255) : canUpgrade ? new Color32(255,213,119,255) : new Color32(207,198,188,255);
         button.interactable = canUpgrade;
 
         UpdateTierDots(level, !grantedOnly);
@@ -251,16 +284,27 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         }
         if (startLabel == null)
         {
-            var plate = new GameObject("Starting access label", typeof(RectTransform), typeof(ComicPopupPlate));
+            // Kitte krem etiket şeridi (label_cream); yoksa eski düz krem plaka.
+            bool kit = kitFace != null && ComicKit.Get("label_cream") != null;
+            var plate = new GameObject("Starting access label", typeof(RectTransform), typeof(CanvasRenderer), kit ? typeof(Image) : typeof(ComicPopupPlate));
             plate.layer = gameObject.layer;
             startLabel = (RectTransform)plate.transform;
             startLabel.SetParent(transform, false);
             startLabel.anchorMin = startLabel.anchorMax = new Vector2(0.5f, 0f);
             startLabel.pivot = new Vector2(0.5f, 1f);
-            startLabel.sizeDelta = new Vector2(148f, 26f);
-            var paper = plate.GetComponent<ComicPopupPlate>();
-            paper.color = new Color32(255, 242, 210, 255);
-            paper.raycastTarget = false;
+            startLabel.sizeDelta = new Vector2(kit ? 156f : 148f, kit ? 30f : 26f);
+            if (kit)
+            {
+                var strip = plate.GetComponent<Image>();
+                strip.sprite = ComicKit.Get("label_cream"); strip.type = Image.Type.Sliced;
+                strip.pixelsPerUnitMultiplier = strip.sprite.rect.height / 30f; strip.raycastTarget = false;
+            }
+            else
+            {
+                var paper = plate.GetComponent<ComicPopupPlate>();
+                paper.color = new Color32(255, 242, 210, 255);
+                paper.raycastTarget = false;
+            }
 
             var textObject = new GameObject("Text", typeof(RectTransform));
             textObject.layer = gameObject.layer;
@@ -277,7 +321,9 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
             text.textWrappingMode = TextWrappingModes.NoWrap;
             // Boyut etkinleştirmeden önce verilir: verilmezse TMP ilk açılışta kendi varsayılanlarını (boyut, sarma, tıklama) yükler.
             text.fontSize = 16f;
-            text.enableAutoSizing = true; text.fontSizeMin = 9f; text.fontSizeMax = 16f;
+            if (kit) ComicKit.Display(text, false);
+            text.enableAutoSizing = true; text.fontSizeMin = 9f; text.fontSizeMax = kit ? 14f : 16f;
+            text.overflowMode = TextOverflowModes.Overflow;
             text.raycastTarget = false;
             textObject.SetActive(true);
         }
@@ -295,7 +341,8 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
             tierDots[i].gameObject.SetActive(used);
             if (!used) continue;
 
-            tierDots[i].color = i < level ? dotFilledColor : dotEmptyColor;
+            if (kitFace != null) tierDots[i].sprite = ComicKit.Get(i < level ? "pip_gold" : "pip_empty");
+            else tierDots[i].color = i < level ? dotFilledColor : dotEmptyColor;
         }
     }
 

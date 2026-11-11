@@ -1,0 +1,6 @@
+2026-11-06
+41 separate sprites + 1 reference sheet (skill concept removed 2026-11-06).
+27 preview cards loaded in browser; 8 hover and 8 pressed variants loaded.
+Group filtering and pointer click verified. All displayed images use embedded data / local Blob URLs; zero external image requests.
+Original sprite hashes preserved. Navy square alpha sample minimum: 253; samples below 245: 0.
+Native 4K output is not claimed; inspect manifest for actual dimensions.

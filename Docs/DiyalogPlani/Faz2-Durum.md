@@ -150,6 +150,33 @@ Menüde tıklamayı Play'de senin görmen gerekiyor.
 - Kapris satırı Gezgin Bereket'e uymuyordu ("istediği" yerine "yaptığı").
 - Daraltılmış kutu kart ekranında karta biniyordu. Bu artık geçersiz: kutu arkayı kapatıyor.
 
+## Geri bildirim: çiftçi ve tırpan seçimi öğretilmiyor (11 Kasım 2026) — YAPILACAK
+
+Kullanıcının aldığı geri bildirim: tutorial, çiftçi ve tırpan seçiminin **ne anlama geldiğini** anlatmıyor.
+
+**Bugünkü durum:**
+- T1'in üçüncü satırı yalnız "Bir çiftçi ve bir tırpan seç. Gerisini birlikte hallederiz." diyor (`intro.select.2`). Neyi seçtiğini söylemiyor.
+- Açıklama yalnız ekrandaki küçük yazılarda:
+  - satır başlıkları "ÇİFTÇİ · genel yaklaşım" ve "TIRPAN · hasat biçimi";
+  - alt başlık "etkiler bu run boyunca geçerli";
+  - kartlardaki etki satırları ("Hasat kaynağı ×…", "Vuruş yarıçapı ×…").
+- Seçim ilk run'dan itibaren gerçek: Bahçıvan ve Tüccar, Standart ve Dar Kesim açık. Seçici Yetiştirici görevle kilitli.
+
+**Tutorial'ın anlatması gerekenler** (henüz yazılmadı, metinler kullanıcı onayına gidecek):
+- Çiftçi = bütün run'ın genel yaklaşımı (ekonomi, skor, nadir bitki gibi).
+- Tırpan = oyuncunun kendi vuruşu (hasar ve yarıçap).
+- Seçim yalnız bu run için geçerli; her yeni run'da yeniden seçilir.
+- Kilitli kartlar görevle açılır.
+
+**Nasıl ekleneceği** (karar verilmedi):
+- T1'e bir-iki kısa satır eklemek, ya da kartın üstüne gelince / ilk seçimde ayrı kısa bir adım.
+- "Az öğret, çok keşif" kuralı geçerli: kısa kalmalı.
+
+**Eklerken:**
+- Yeni satırlar `Assets/Localization/GameText.csv` listesine girer (en + tr + not).
+- `DialogueFlowVerification` ve `LocalizationVerification` çalıştırılır.
+- Seçim ekranı kite ve Bungee'ye geçerken (UI-Envanter §4) açıklama yazılarının okunaklılığına da bakılır.
+
 ## Doğrulanmadı / yapılmadı
 
 - **Play testi (28 Ekim, sen):** menüden R6'ya kadar oynadın, sorun yaşamadın. T1–T9 ve T11 (Adak kaybı) bu yolda çıkıyor.

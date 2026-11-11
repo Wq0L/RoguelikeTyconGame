@@ -8,6 +8,10 @@ public class ComicUITheme : ScriptableObject
     public Sprite ResourceIcon(ResourceType type) => type == ResourceType.Gold ? coinSprite : type == ResourceType.Iron ? ironSprite : stoneSprite;
     public TMP_FontAsset headingFont, bodyFont;
     public Material outlinedText;
+    // Comic kağıt kitinin başlık / buton / sayı fontu (Bungee 400, 6 Kasım 2026) ve konturlu malzemesi. ComicKit.Display uygular
+    // (Türkçede küçük i → İ). Boşsa her yer headingFont'ta kalır.
+    public TMP_FontAsset displayFont;
+    public Material displayOutline;
     public Material[] green, red, blue, gold;
     public void StylePopupText(TMP_Text text)
     {

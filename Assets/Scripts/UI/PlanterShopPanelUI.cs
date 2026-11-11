@@ -79,6 +79,69 @@ public class PlanterShopPanelUI : MonoBehaviour
         backButton.onClick.AddListener(ShowList);
     }
 
+    // Comic kağıt kiti (6 Kasım 2026, kullanıcı: "shop'u da"; Docs/UI-Dili.md). UIManager.Start bir kez çağırır (panel daha
+    // açılmadan da olur; Awake kart hâllerini bu sprite'larla kurar). Sahnedeki nesneler yerinde kalır, yalnız görünüş değişir:
+    // pencere lacivert, başlıklar lacivert şerit, kartlar krem (seçili: altın kâğıt), detay kâğıdı krem, istatistikler bilgi
+    // kutusu, Satın al yeşil, Temizle mor; başlık / buton / sayı yazıları Bungee. Kit yoksa hiçbir şey değişmez.
+    private bool comicKit;
+    public bool UsesComicKit => comicKit;
+
+    public void UseComicKit()
+    {
+        Sprite normal = ComicKit.Get("card_portrait_cream");
+        if (comicKit || !ComicKit.Ready || normal == null) return;
+        comicKit = true;
+        normalCard = normal;
+        selectedCard = ComicKit.Get("card_portrait_cream_selected") ?? normal;
+        pressedCard = ComicKit.Get("card_portrait_cream_pressed") ?? normal;
+        foreach (Card card in cards)
+        {
+            if (card.background != null) Kit(card.background, normalCard, ComicKit.Multiplier(normalCard, card.background.rectTransform, 2.5f));
+            if (card.button != null)
+                card.button.spriteState = new SpriteState { highlightedSprite = selectedCard, selectedSprite = selectedCard, pressedSprite = pressedCard };
+            foreach (TMP_Text text in card.rect.GetComponentsInChildren<TMP_Text>(true))
+                ComicKit.Display(text, card.lockedOverlay != null && text.transform.IsChildOf(card.lockedOverlay.transform));
+        }
+        Kit(GetComponent<Image>(), ComicKit.Get("window_navy"), 1.2f);
+        foreach (Image image in GetComponentsInChildren<Image>(true))
+        {
+            switch (image.name)
+            {
+                case "Catalogue Header":
+                case "Detail Header": Kit(image, ComicKit.Get("header_navy"), ComicKit.Multiplier(ComicKit.Get("header_navy"), image.rectTransform, 1.5f)); break;
+                case "Paper": Kit(image, ComicKit.Get("panel_cream"), 1.4f); break;
+                case "PLOTS":
+                case "SIZE":
+                case "GROW TIME":
+                    Kit(image, ComicKit.Get("info_cream"), ComicKit.Multiplier(ComicKit.Get("info_cream"), image.rectTransform, 3f));
+                    // Bungee geniş: başlık ("BÜYÜME SÜRESİ") kutunun iç çizgisine dayanmasın, sığmazsa küçülür.
+                    foreach (TMP_Text text in image.GetComponentsInChildren<TMP_Text>(true))
+                    {
+                        if (!ComicKit.Display(text, false)) continue;
+                        text.fontSizeMax = text.fontSize * (text.name == "Caption" ? .82f : 1f);
+                        text.fontSizeMin = 12f;
+                        text.enableAutoSizing = true;
+                        text.margin = new Vector4(10f, 0f, 12f, 0f);
+                    }
+                    break;
+            }
+        }
+        ComicKit.Display(heading, true);
+        ComicKit.Display(detailTitle, true);
+        ComicKit.StyleButton(buyButton, ComicKit.Green);
+        ComicKit.StyleButton(backButton, ComicKit.Purple);
+    }
+
+    private static void Kit(Image image, Sprite sprite, float multiplier)
+    {
+        if (image == null || sprite == null) return;
+        image.sprite = sprite;
+        image.type = Image.Type.Sliced;
+        image.pixelsPerUnitMultiplier = multiplier;
+        image.material = null;
+        image.color = Color.white;
+    }
+
     private void OnEnable()
     {
         resources = ResourceManager.Instance;
@@ -87,6 +150,8 @@ public class PlanterShopPanelUI : MonoBehaviour
         if (unlocks != null) unlocks.OnChanged += Refresh;
         if (resources != null) resources.OnResourceAmountChanged += OnResourceChanged;
         if (statManager != null) statManager.OnStatChanged += OnStatChanged;
+        GameText.Changed -= OnLanguageChanged;
+        GameText.Changed += OnLanguageChanged;
         ResetView();
         if (cards.Count > 0) SelectCard(0);
     }
@@ -96,9 +161,19 @@ public class PlanterShopPanelUI : MonoBehaviour
         if (resources != null) resources.OnResourceAmountChanged -= OnResourceChanged;
         if (statManager != null) statManager.OnStatChanged -= OnStatChanged;
         if (unlocks != null) unlocks.OnChanged -= Refresh;
+        GameText.Changed -= OnLanguageChanged;
         StopTransition();
         // Always reopen on the catalogue, including after buying/cancelling placement.
         ResetView();
+    }
+
+    // Dil değişince (6 Kasım 2026, ComicKitVerification dil turu): başlıklar ve seçili saksının bütün yazıları yeni dilde (açık dükkân kapanıp açılmadan).
+    private void OnLanguageChanged()
+    {
+        heading.text = GameText.Get("ui.shop.heading");
+        summary.text = GameText.Get("ui.shop.tagline");
+        if (selectedIndex < 0 && detailTitle != null) detailTitle.text = GameText.Get("ui.shop.choose");
+        Refresh();
     }
 
     private void OnResourceChanged(ResourceType type, int amount) => Refresh();

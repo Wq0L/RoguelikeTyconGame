@@ -3740,6 +3740,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 221144903419691050
+  - m_Id: 530164191350784
+    m_Key: ui.hud.round_label
+    m_Metadata:
+      m_Items:
+      - rid: 221144915694583894
+  - m_Id: 530164224905216
+    m_Key: ui.hud.round_value
+    m_Metadata:
+      m_Items:
+      - rid: 221144915694583895
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
@@ -6968,3 +6978,13 @@ MonoBehaviour:
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
         m_CommentText: Story 14/14, line 2.
+    - rid: 221144915694583894
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: HUD round card header (card-style HUD). Short label above
+          the round numbers.
+    - rid: 221144915694583895
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: HUD round card numbers under the ROUND header. {0} = current
+          round, {1} = total rounds.

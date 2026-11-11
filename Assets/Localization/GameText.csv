@@ -230,7 +230,9 @@ ui.hud.rhythm.ready,HUD line: the Harvest Rhythm reward is charged.,HARVEST RHYT
 ui.hud.rhythm.count,"HUD line: Harvest Rhythm counter. {0} = hits, {1} = needed.",Harvest Rhythm {0} / {1},Hasat Ritmi {0} / {1}
 ui.hud.boss_rewards,HUD heading above the list of boss rewards taken.,Boss rewards,Boss ödülleri
 ui.hud.round,"HUD round counter. {0} = current round, {1} = total rounds.",Round {0} / {1},Round {0} / {1}
-ui.hud.time,HUD timer. {0} = seconds left. Keep it short.,Time: {0}s,Time: {0}s
+ui.hud.time,HUD timer. {0} = seconds left. Keep it short.,Time: {0}s,Süre: {0} sn
+ui.hud.round_label,HUD round card header (card-style HUD). Short label above the round numbers.,ROUND,ROUND
+ui.hud.round_value,"HUD round card numbers under the ROUND header. {0} = current round, {1} = total rounds.",{0} / {1},{0} / {1}
 ui.hud.level_work,Status shown while level-ups from this round are still being processed.,CALCULATING LEVEL REWARDS,SEVİYE KAZANIMLARI HESAPLANIYOR
 ui.hud.level_work.level,Small line under the status. {0} = current level.,Level {0},Level {0}
 ui.game.next_round,"Preparation screen main button after the first round: starts the next round. Big button, keep short.",NEXT ROUND,SONRAKİ ROUND

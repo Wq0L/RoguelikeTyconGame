@@ -206,6 +206,12 @@ public static class RunPrototypeVerification
         var marked = map.GetComponentsInChildren<TileCellUI>(false).Where(t => t.InEventZone).Select(t => t.name).OrderBy(n => n).ToList();
         var expectedMarks = openZone.Select(p => $"Cell_x{p.x}_z{p.z}").OrderBy(n => n).ToList();
         Require(marked.SequenceEqual(expectedMarks), "Round map marks the same band cells: " + string.Join(",", marked));
+        // UI kalıntıları (6 Kasım 2026): harita açıkken dünya koordinat rozetleri gizlenir (RoundMapUI.Visible); haritanın arkasında
+        // kare yok (kullanıcı: kötü), bütün ekranı kaplayan karartma ana tuvalin en altında.
+        var backdrop = map.Backdrop;
+        Require(RoundMapUI.Visible && backdrop != null && backdrop.gameObject.activeInHierarchy && backdrop.transform.GetSiblingIndex() == 0 &&
+                map.GetComponentsInChildren<RectTransform>(true).All(t => t.name != "Map Backing"),
+            "Map visible flag set, full-screen backdrop at the bottom of the root canvas, no backing square behind the map");
         var summary = Object.FindFirstObjectByType<RoundSummaryUI>(FindObjectsInactive.Include);
         Call(summary, "Fill", new object[] { null });
         var texts = summary.GetComponentsInChildren<TextMeshProUGUI>(true).Where(t => t.gameObject.activeInHierarchy).ToDictionary(t => t.name, t => t.text);

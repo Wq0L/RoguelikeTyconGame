@@ -1,0 +1,28 @@
+Built-in image_gen; model version not exposed.
+Reference: user's approved initial blank comic UI sheet (exec-9b64ebc3-4e6e-48d0-872c-ffe4a3a02497.png).
+Six separate blank raster sprites; no UI layout, icons or player text. Generated files copied unchanged; no Unity scenes/prefabs/import settings modified.
+
+COMMON PROMPT
+Create ONE standalone production game UI background sprite, not a sheet, not a UI mockup. Use supplied reference only for the EXACT visual language of its blank button/panel shapes. It is essential to preserve that hand-inked cut-paper style: very dark plum thick outline, crisp hard lower-right offset ink shadow, thin imperfect inset border, tiny triangular ink flicks at a few corners, very sparse localized halftone dots, matte printed color. Blank uninterrupted interior for the user to place their own icons and localized text in Unity. NO icons, NO text, NO lettering, NO digits, NO locks, NO checkmarks, NO pips, NO meter fill, NO internal compartments, NO extra attached badges, NO scene, NO additional UI. Not glossy, not a metallic frame, not rounded plastic. Front-on 2D, no perspective. Keep 80 percent of interior clean. Crisp high-resolution edges. Entire background outside sprite must be genuine alpha transparency, no opaque backdrop, no checkerboard drawing, no atmospheric glow or blurred shadows. Center the single sprite with about 6 percent transparent safety margin. Reference blue buttons and cream panel are the aesthetic target. 
+
+skill-square-blue
+A truly SQUARE blank skill icon backing, width equals height. Muted pale cyan-blue matte paper face matching top-left reference button. Mostly upright edges, asymmetrically clipped corners and one small deliberate stepped paper cut on right edge. Thick dark-plum outline, muted teal lower edge. Do not make a rectangular button; square silhouette.
+
+skill-square-gold
+A truly SQUARE blank skill icon backing for a highlighted skill. Warm golden yellow matte paper face matching top-right reference button, dark amber hard lower edge. Mostly upright edges, asymmetrically clipped corners and one small deliberate stepped paper cut on right edge. Thick dark-plum outline. Do not make a rectangular button; square silhouette.
+
+grid-square-dark
+A truly SQUARE blank dark grid tile / unavailable skill backing. Desaturated dark navy-slate blue paper face, legible thick plum-black outline and narrow muted blue inset. Mostly upright edges and modestly clipped angular corners; restrained edge ornament to remain clear in a dense grid. No lock or status symbol.
+
+card-portrait-cream
+One upright PORTRAIT card background sprite, aspect ratio width:height 2:3, generous entirely blank warm parchment-cream face. Intended for a shop item card or round summary. Straight main edges with deliberate clipped asymmetric corners and crisp offset dark-plum shadow. Sparse halftone only in lower-left corner. No header, no icon slot, no dividers, no internal boxes; all interior empty for assembly by user.
+
+panel-landscape-cream
+One wide LANDSCAPE blank panel background, aspect ratio width:height 3:2, warm ivory parchment face inspired by the reference bottom-left cream panel, but no attached tab. Angular clipped corners, subtle asymmetric outer silhouette and sparse halftone at lower-right corner. Thick dark-plum border and hard ink offset shadow. No compartments, no title section, no content, entirely blank interior.
+
+header-strip-navy
+One long narrow HORIZONTAL blank header strip, aspect ratio width:height 5:1, matching the navy reference bottom-middle banner. Muted deep blue paper face, angular asymmetrically clipped ends, dark-plum ink border, restrained blue lower edge and one or two triangular corner ink strokes. Interior blank. No symbols or text. Not a progress bar, no fill.
+
+BLUE SQUARE FINAL CORRECTION (gold sprite used as edit reference)
+Edit this SINGLE gold square game UI sprite into its cyan-blue normal-state variant. Preserve EXACTLY its silhouette, size, corner cuts, dark plum outlines, inset ink strokes, corner halftone dots and hard attached shadow. Change ONLY the gold face to muted pale cyan-blue (#91BDC5 approximately) and gold/amber lower edge to darker muted teal-blue. CRITICAL: the entire paper face, including the CENTER, must remain FULLY OPAQUE, evenly colored solid paper, alpha 255. No hole, no transparency within the face, no central darkening, no vignette, no radial fade, no gradient to transparent, no glow. Empty means no icons or text; it does NOT mean transparent. Keep only exterior background transparent as in source. No writing, no icons, no objects. Output one high quality square sprite.
+

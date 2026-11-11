@@ -18,6 +18,7 @@ public sealed class BuildFontAtlasPreparer : IPreprocessBuildWithReport
     {
         "125cb55b44b24c4393181402bc6200e6", // Bangers SDF — damage numbers
         "404b2d578f83a5b4d88295a467c66f15", // LilitaOne-Regular SDF — headings
+        "fb443dcf4c9b4d24cb9b8879b4e6b919", // Bungee-Regular SDF — comic kit headings, buttons, numbers (6 Nov 2026)
         "cda3c69f5f38ca7438e47be88545601d", // Barlow-SemiBold SDF — popup text
         "87c7276b22e4ae3449a39f465315d554", // Super Popstar SDF — TMP default font
         "2e498d1c8094910479dc3e1b768306a4", // LiberationSans SDF - Fallback

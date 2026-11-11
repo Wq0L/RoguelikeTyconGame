@@ -36,6 +36,16 @@ public class CameraFeel : MonoBehaviour
     [SerializeField] private Color roundEndFlashColor = new Color(1f, 0.96f, 0.86f);
     [SerializeField, Range(0f, 1f)] private float roundEndFlashAlpha = 0.28f;
 
+    // Çerçeve (6 Kasım 2026, kullanıcı isteği): kamera açık alanın bir halka fazlasını gösterir (3×3 açık → 5×5 görünür), grid
+    // büyüdükçe yavaşça geri çekilir. Sahnedeki kamera ayarı bütün grid'i gösteren çerçevedir (ölçek 1); daha küçük ölçekte kamera
+    // yaklaşır ve bakış noktası grid merkezine kayar. Sürücü: GridUnlockFeel. Sarsıntı / nefes ofsetleri de ölçekle küçülür
+    // (ekranda aynı büyüklükte kalır).
+    [Header("Framing")]
+    [Tooltip("Açık alanın çevresinde kaç halka daha görünür: 1 → 3×3 açıkken 5×5, 5×5 açıkken 7×7 (en çok bütün grid).")]
+    [SerializeField, Min(0)] private int framingRing = 1;
+    [Tooltip("Grid büyüyünce kameranın geri çekilme süresi (sn, gerçek zaman).")]
+    [SerializeField, Min(0.05f)] private float framingSeconds = 1.2f;
+
     private Camera cam;
     private Vector3 basePosition;
     private Quaternion baseRotation;
@@ -49,6 +59,8 @@ public class CameraFeel : MonoBehaviour
     private float seed;
     private Vector2 frameShake;
     private int frameShakeFrame = -1;
+    private float frameScale = 1f, frameFrom = 1f, frameTo = 1f, frameAge = -1f;
+    private Vector3 frameShift, frameShiftFrom, frameShiftTo;
 
     // One-frame contribution for a bounded visual sequence. No trauma tail or persistent camera owner.
     public Vector2 FrameShakeOffset => frameShakeFrame == Time.frameCount && Time.timeScale > 0f
@@ -63,7 +75,51 @@ public class CameraFeel : MonoBehaviour
     private GameStates lastState;
 
     // Arka plan paralaksı için: kamera düzlemindeki anlık ofset (dünya birimi) ve zoom oranı.
-    public Vector2 ViewOffset => shakeOffset + idleOffsetValue + FrameShakeOffset;
+    public Vector2 ViewOffset => (shakeOffset + idleOffsetValue + FrameShakeOffset) * frameScale;
+    // Çerçeve ölçeği (1: sahnedeki bütün grid çerçevesi) ve geçişte mi.
+    public float FrameScale => frameScale;
+    public bool Framing => frameAge >= 0f;
+    public float FramingSeconds => framingSeconds;
+    // Sahnedeki kameranın orthographic boyu (çerçeve ölçeği 1).
+    public float BaseSize => baseSize;
+    // Görünen hücre sayısı (bir kenar): açık alan + iki yanda framingRing; grid'den büyük olmaz.
+    public int FramedCells(int openSize, int gridSize) => Mathf.Clamp(openSize + 2 * framingRing, 1, Mathf.Max(1, gridSize));
+
+    // Sahnedeki (taban) kameranın baktığı zemin noktası.
+    public Vector3 BaseLookPoint(float groundY)
+    {
+        Vector3 position = transform.parent != null ? transform.parent.TransformPoint(basePosition) : basePosition;
+        Vector3 forward = BaseWorldRotation * Vector3.forward;
+        if (Mathf.Abs(forward.y) < 1e-4f) return position;
+        return position + forward * ((groundY - position.y) / forward.y);
+    }
+
+    // scale: 1 bütün grid, küçük değer yakın çerçeve. shift: dünyada kamera kayması (bakış noktasını merkeze getirmek için).
+    public void SetFraming(float scale, Vector3 shift, bool animate)
+    {
+        scale = Mathf.Clamp(scale, 0.2f, 1f);
+        if (!animate)
+        {
+            frameScale = frameFrom = frameTo = scale;
+            frameShift = frameShiftFrom = frameShiftTo = shift;
+            frameAge = -1f;
+            return;
+        }
+        frameFrom = frameScale; frameShiftFrom = frameShift;
+        frameTo = scale; frameShiftTo = shift;
+        frameAge = 0f;
+    }
+
+    private void StepFraming(float dt)
+    {
+        if (frameAge < 0f) return;
+        frameAge += dt;
+        float t = Mathf.Clamp01(frameAge / framingSeconds);
+        t = t * t * (3f - 2f * t);
+        frameScale = Mathf.Lerp(frameFrom, frameTo, t);
+        frameShift = Vector3.Lerp(frameShiftFrom, frameShiftTo, t);
+        if (frameAge >= framingSeconds) frameAge = -1f;
+    }
     public float ZoomOffset { get; private set; }
     public Quaternion BaseWorldRotation =>
         transform.parent != null ? transform.parent.rotation * baseRotation : baseRotation;
@@ -187,6 +243,7 @@ public class CameraFeel : MonoBehaviour
 
         UpdateZoomTarget(state);
         StepZoomSpring(dt);
+        StepFraming(Mathf.Min(Time.unscaledDeltaTime, 0.1f));
         UpdateIdle(state, time, dt);
         UpdateShake(time, dt);
         Apply();
@@ -243,10 +300,11 @@ public class CameraFeel : MonoBehaviour
         ZoomOffset = zoom + idleZoomValue;
 
         Vector2 offset = ViewOffset;
-        transform.localPosition = basePosition + baseRotation * new Vector3(offset.x, offset.y, 0f);
+        Vector3 shift = transform.parent != null ? transform.parent.InverseTransformVector(frameShift) : frameShift;
+        transform.localPosition = basePosition + shift + baseRotation * new Vector3(offset.x, offset.y, 0f);
         transform.localRotation = baseRotation * Quaternion.Euler(0f, 0f, idleRollValue + shakeRoll);
 
-        float size = baseSize * Mathf.Max(0.5f, 1f + ZoomOffset);
+        float size = baseSize * frameScale * Mathf.Max(0.5f, 1f + ZoomOffset);
         if (cam.orthographic) cam.orthographicSize = size;
         else cam.fieldOfView = size;
     }
