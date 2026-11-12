@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cdb70f3c7fc72f48b4c9391f19d1563, type: 3}
+  m_Name: SkillIconSet
+  m_EditorClassIdentifier: Assembly-CSharp::SkillIconSetSO
+  entries:
+  - id: attack
+    sprite: {fileID: 21300000, guid: 08af3798b34d1004d9e4cf8c6b1fc954, type: 3}
+  - id: speed
+    sprite: {fileID: 21300000, guid: 191b1c81e18cab74583ca528d36cc295, type: 3}
+  - id: area
+    sprite: {fileID: 21300000, guid: 4415ae889c66f194aa2bd8ff3a497144, type: 3}
+  - id: critical
+    sprite: {fileID: 21300000, guid: 8b48d57a3295afa45b6a89677ceb8bb6, type: 3}
+  - id: spawn
+    sprite: {fileID: 21300000, guid: bb39af04f7403ab4fadcc5bfcb73c516, type: 3}
+  - id: rare
+    sprite: {fileID: 21300000, guid: 383fa8fa596caec41a58b11a2c2a3763, type: 3}
+  - id: gold
+    sprite: {fileID: 21300000, guid: b274d8762a7e8b042b30df8ac589fe01, type: 3}
+  - id: iron
+    sprite: {fileID: 21300000, guid: 9c66c0ab9ddc8df439533e180e141e59, type: 3}
+  - id: stone
+    sprite: {fileID: 21300000, guid: 0e2ba0463bd5c0346b4af9bc370c61fb, type: 3}
+  - id: xp
+    sprite: {fileID: 21300000, guid: e4b037703c327804ab44eddbf37db345, type: 3}
+  - id: score
+    sprite: {fileID: 21300000, guid: 248268e0d529551428e3789ee26100ee, type: 3}
+  - id: time
+    sprite: {fileID: 0}
+  - id: grid
+    sprite: {fileID: 21300000, guid: 4d1856470d970fa48bcd0bf742e4c356, type: 3}
+  - id: planter
+    sprite: {fileID: 21300000, guid: b7c4c63246685b84c84c05e721a31f18, type: 3}
+  - id: cards
+    sprite: {fileID: 21300000, guid: 8db7bca029049a74f8aee7e1faf338e0, type: 3}
+  - id: explosion
+    sprite: {fileID: 21300000, guid: 28dac58083421de4995fc505c14df95f, type: 3}
+  - id: duplicate
+    sprite: {fileID: 21300000, guid: 1dc68d1529d03ae41853b782da1edfbc, type: 3}
+  - id: tornado
+    sprite: {fileID: 21300000, guid: b0f177c2f534a2e44aabd3753c083344, type: 3}
+  - id: scythe
+    sprite: {fileID: 21300000, guid: 40c73ff38ec90144598427551b5a9f66, type: 3}
+  - id: electric
+    sprite: {fileID: 21300000, guid: 73a6ebdb7d980af49b62459ad701a303, type: 3}
+  - id: unlock
+    sprite: {fileID: 0}

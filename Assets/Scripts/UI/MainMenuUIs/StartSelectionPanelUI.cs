@@ -9,6 +9,10 @@ using UnityEngine.UI;
 // Yalnız gösterir ve seçimi kaydeder: kilit kuralı MetaSave'de, etkiler StartLoadoutManager'da (yalnız yeni run başında uygulanır).
 // Kilitli kart seçilemez; görevi ve en iyi run ilerlemesini gösterir. Koddan kurulur, MenuScene dosyasına dokunmaz.
 // Kart metni asset değerlerinden üretilir (StartOptionText): değer değişince yazı da değişir, vaat edilmeyen etki yazılmaz.
+// Comic kağıt kiti (11 Kasım 2026, kullanıcı: "çiftçi tırpan menüsünü bu UI'lar ile yap"; Docs/UI-Dili.md): başlık lacivert şeritte,
+// kartlar krem panel + boyanan etiket şeridi (amber; seçili: yeşil şerit ve açık yeşil kâğıt; kilitli: gri kâğıt + lacivert görev
+// bandı), Geri mavi, Başlat yeşil; başlık / ad / satır başlıkları Bungee. Her yazı kutusuna sığmazsa küçülür. Kit yoksa eski düz
+// plakalar. Testlerin okuduğu alan ve nesne adları (kart alanları, "Start" butonu) aynı.
 public sealed class StartSelectionPanelUI : MonoBehaviour
 {
     private const float MaxCardWidth = 380f, Gap = 28f, RowWidth = 1760f, FarmerHeight = 360f, ScytheHeight = 300f, LockBanner = 122f;
@@ -18,12 +22,15 @@ public sealed class StartSelectionPanelUI : MonoBehaviour
     private static readonly Color Chosen = new Color32(46, 125, 50, 255);
     private static readonly Color LockedPaper = new Color32(206, 196, 178, 255);
     private static readonly Color Muted = new Color32(110, 96, 110, 255);
+    // Kit: krem panel Image rengiyle boyanır (mürekkep koyu kalır).
+    private static readonly Color SelectedPaper = new Color(0.86f, 1f, 0.82f), LockedTint = new Color(0.8f, 0.78f, 0.8f);
+    private static readonly Color SelectedHeader = new Color32(150, 214, 120, 255);
 
     private sealed class Card
     {
         public StartOptionSO option;
         public RectTransform root;
-        public ComicPopupPlate outline, paper, header;
+        public Graphic outline, paper, header;   // outline yalnız eski görünümde (kitte mürekkep sprite'ın içinde)
         public TextMeshProUGUI title, style, effects, footer;
         public GameObject lockCover;
         public TextMeshProUGUI lockText;
@@ -41,7 +48,8 @@ public sealed class StartSelectionPanelUI : MonoBehaviour
     private RectTransform farmerRow, scytheRow;
     private TextMeshProUGUI summary;
     private ComicUITheme theme;
-    private bool starting;
+    private bool starting, kit;
+    public bool UsesComicKit => kit;
 
     public static StartSelectionPanelUI Attach(Transform canvasRoot)
     {
@@ -63,22 +71,57 @@ public sealed class StartSelectionPanelUI : MonoBehaviour
     private void Awake()
     {
         theme = FeelOverlay.Theme;
+        kit = ComicKit.Ready && ComicKit.Get("label_cream") != null && ComicKit.Get("header_navy") != null && ComicKit.Get("window_navy") != null;
         var root = (RectTransform)transform;
         // Sabit yazılar çeviri tablosuna bağlı (LocalizedText): dil değişince kendiliğinden yenilenir.
-        Place(Localized(Text(root, "Title", 50f, Color.white, ""), "ui.start.title"), new Vector2(0f, 492f), new Vector2(1600f, 70f));
-        Place(Localized(Text(root, "Subtitle", 24f, new Color(1f, 0.93f, 0.78f), ""), "ui.start.subtitle"), new Vector2(0f, 448f), new Vector2(1600f, 36f));
-        Place(Localized(Text(root, "Farmer Label", 30f, Amber, ""), "ui.start.farmer_row"), new Vector2(0f, 406f), new Vector2(1200f, 44f));
+        if (kit)
+        {
+            Image strip = ComicKit.Sliced(root, "Title Strip", "header_navy", 144f / 76f);
+            Place(strip, new Vector2(0f, 494f), new Vector2(1040f, 76f));
+        }
+        TextMeshProUGUI title = Localized(Text(root, "Title", 50f, Color.white, ""), "ui.start.title");
+        Place(title, new Vector2(0f, kit ? 498f : 492f), new Vector2(kit ? 940f : 1600f, kit ? 60f : 70f));
+        if (kit && ComicKit.Display(title, true, theme)) title.fontSize = 38f;
+        Fit(title, 20f);
+        TextMeshProUGUI subtitle = Localized(Text(root, "Subtitle", 24f, new Color(1f, 0.93f, 0.78f), ""), "ui.start.subtitle");
+        Place(subtitle, new Vector2(0f, kit ? 438f : 448f), new Vector2(1600f, 36f));
+        Fit(subtitle, 14f);
+        TextMeshProUGUI farmerLabel = Localized(Text(root, "Farmer Label", 30f, Amber, ""), "ui.start.farmer_row");
+        Place(farmerLabel, new Vector2(0f, kit ? 402f : 406f), new Vector2(1200f, kit ? 38f : 44f));
         farmerRow = Row(root, "Farmers", new Vector2(0f, 200f), FarmerHeight);
-        Place(Localized(Text(root, "Scythe Label", 30f, Amber, ""), "ui.start.scythe_row"), new Vector2(0f, -4f), new Vector2(1200f, 44f));
+        TextMeshProUGUI scytheLabel = Localized(Text(root, "Scythe Label", 30f, Amber, ""), "ui.start.scythe_row");
+        Place(scytheLabel, new Vector2(0f, -4f), new Vector2(1200f, kit ? 38f : 44f));
+        foreach (TextMeshProUGUI label in new[] { farmerLabel, scytheLabel })
+        {
+            if (kit && ComicKit.Display(label, true, theme)) label.fontSize = 25f;
+            label.color = Amber;
+            Fit(label, 14f);
+        }
         scytheRow = Row(root, "Scythes", new Vector2(0f, -180f), ScytheHeight);
         summary = Text(root, "Summary", 30f, Color.white, "");
         Place(summary, new Vector2(0f, -368f), new Vector2(1600f, 44f));
+        Fit(summary, 16f);
+        // Renk görevleri (UI-Dili): Başlat = olumlu onay (yeşil), Geri = geri dön (mavi).
         Button back = CreateButton(root, "Back", "ui.start.back", "blue", new Vector2(240f, 80f));
         Place((RectTransform)back.transform, new Vector2(-260f, -458f), new Vector2(240f, 80f));
         back.onClick.AddListener(() => BackRequested?.Invoke());
         Button start = CreateButton(root, "Start", "ui.start.begin", "green", new Vector2(340f, 86f));
         Place((RectTransform)start.transform, new Vector2(220f, -458f), new Vector2(340f, 86f));
         start.onClick.AddListener(RequestStart);
+        if (kit)
+        {
+            ComicKit.StyleButton(back, ComicKit.Blue);
+            ComicKit.StyleButton(start, ComicKit.Green);
+        }
+    }
+
+    // Sabit kutudaki yazı sığmazsa küçülür, kesilmez (UI-Dili §5; uzun çeviriler). Yalnız yazı değişince çalışır.
+    private static void Fit(TMP_Text text, float minimum)
+    {
+        text.fontSizeMax = text.fontSize;
+        text.fontSizeMin = Mathf.Min(minimum, text.fontSize);
+        text.enableAutoSizing = true;
+        text.overflowMode = TextOverflowModes.Overflow;
     }
 
     // Açılışta kayıttaki seçim (geçersizse varsayılan) işaretlenir.
@@ -173,9 +216,10 @@ public sealed class StartSelectionPanelUI : MonoBehaviour
         card.effects.text = StartOptionText.Effects(option);
         card.button.interactable = open;
         card.lockCover.SetActive(!open);
-        card.paper.color = open ? Paper : LockedPaper;
-        card.outline.color = selected ? Chosen : Ink;
-        card.header.color = selected ? new Color32(150, 214, 120, 255) : Amber;
+        if (kit) card.paper.color = !open ? LockedTint : selected ? SelectedPaper : Color.white;
+        else card.paper.color = open ? Paper : LockedPaper;
+        if (card.outline != null) card.outline.color = selected ? Chosen : Ink;
+        card.header.color = selected ? SelectedHeader : Amber;
         card.footer.text = !open ? "" : GameText.Get(selected ? "ui.start.selected" : "ui.start.click_to_select");
         card.footer.color = selected ? Chosen : Muted;
         if (!open)
@@ -202,40 +246,84 @@ public sealed class StartSelectionPanelUI : MonoBehaviour
         card.button.navigation = new Navigation { mode = Navigation.Mode.None };
         card.button.onClick.AddListener(() => Select(card.option));
         root.gameObject.AddComponent<ComicHoverMotion>().hoverScale = 1.03f;
-        Plate(root, "Ink shadow", new Color32(40, 29, 43, 220), new Vector2(7f, -8f), new Vector2(7f, -8f));
-        card.outline = Plate(root, "Outline", Ink, Vector2.zero, Vector2.zero);
-        card.paper = Plate(root, "Paper", Paper, new Vector2(5f, 5f), new Vector2(-5f, -5f));
-        card.header = Plate(root, "Header", Amber, new Vector2(8f, 0f), new Vector2(-8f, -8f));
+        if (kit)
+        {
+            // Krem panel (3B kenarı kartın biraz dışına taşar) + boyanan etiket şeridi (Layout yerleştirir).
+            card.paper = KitPanel(root, "Paper", Color.white);
+            card.header = ComicKit.Sliced(root, "Header", "label_cream", 2.6f);
+        }
+        else
+        {
+            Plate(root, "Ink shadow", new Color32(40, 29, 43, 220), new Vector2(7f, -8f), new Vector2(7f, -8f));
+            card.outline = Plate(root, "Outline", Ink, Vector2.zero, Vector2.zero);
+            card.paper = Plate(root, "Paper", Paper, new Vector2(5f, 5f), new Vector2(-5f, -5f));
+            card.header = Plate(root, "Header", Amber, new Vector2(8f, 0f), new Vector2(-8f, -8f));
+        }
         card.title = Text(root, "Name", 32f, Ink, "");
+        if (kit && ComicKit.Display(card.title, false, theme)) card.title.fontSize = 27f;
+        Fit(card.title, 15f);
         card.style = Text(root, "Playstyle", 21f, Muted, "");
         card.style.textWrappingMode = TextWrappingModes.Normal;
         card.style.fontStyle = FontStyles.Italic;
+        Fit(card.style, 14f);
         card.effects = Text(root, "Effects", 22f, Ink, "");
         card.effects.textWrappingMode = TextWrappingModes.Normal;
         card.effects.alignment = TextAlignmentOptions.Top;
+        Fit(card.effects, 14f);
         card.footer = Text(root, "Footer", 22f, Muted, "");
+        Fit(card.footer, 14f);
         // Kilitli kart: etkiler okunur kalır (hafif örtü); görev ve ilerleme alttaki koyu şeritte.
-        var cover = Plate(root, "Lock cover", new Color32(40, 29, 43, 90), new Vector2(5f, 5f), new Vector2(-5f, -5f));
-        card.lockCover = cover.gameObject;
-        var banner = Plate(cover.rectTransform, "Lock banner", new Color32(40, 29, 43, 240), Vector2.zero, Vector2.zero);
-        banner.rectTransform.anchorMax = new Vector2(1f, 0f);
-        banner.rectTransform.offsetMax = new Vector2(0f, LockBanner);
-        card.lockText = Text(banner.rectTransform, "Lock", 27f, new Color32(255, 236, 196, 255), "");
+        RectTransform coverRect, bannerRect;
+        if (kit)
+        {
+            // Örtü panelin kendi silüeti (koyuya boyanmış, yarı saydam): kesik köşelerden taşmaz. Görev bandı lacivert pencere.
+            Graphic cover = KitPanel(root, "Lock cover", new Color(0.16f, 0.11f, 0.17f, 0.38f));
+            coverRect = cover.rectTransform;
+            Image banner = ComicKit.Sliced(coverRect, "Lock banner", "window_navy", 3.2f);
+            bannerRect = banner.rectTransform;
+            bannerRect.anchorMin = Vector2.zero;
+            bannerRect.anchorMax = new Vector2(1f, 0f);
+            bannerRect.offsetMin = new Vector2(14f, 16f);
+            bannerRect.offsetMax = new Vector2(-18f, LockBanner + 12f);
+        }
+        else
+        {
+            var cover = Plate(root, "Lock cover", new Color32(40, 29, 43, 90), new Vector2(5f, 5f), new Vector2(-5f, -5f));
+            coverRect = cover.rectTransform;
+            var banner = Plate(coverRect, "Lock banner", new Color32(40, 29, 43, 240), Vector2.zero, Vector2.zero);
+            bannerRect = banner.rectTransform;
+            bannerRect.anchorMax = new Vector2(1f, 0f);
+            bannerRect.offsetMax = new Vector2(0f, LockBanner);
+        }
+        card.lockCover = coverRect.gameObject;
+        card.lockText = Text(bannerRect, "Lock", 27f, new Color32(255, 236, 196, 255), "");
         card.lockText.textWrappingMode = TextWrappingModes.Normal;
-        FeelOverlay.Stretch(card.lockText.rectTransform).offsetMin = new Vector2(12f, 6f);
-        card.lockText.rectTransform.offsetMax = new Vector2(-12f, -6f);
+        FeelOverlay.Stretch(card.lockText.rectTransform).offsetMin = new Vector2(kit ? 16f : 12f, kit ? 10f : 6f);
+        card.lockText.rectTransform.offsetMax = new Vector2(kit ? -18f : -12f, kit ? -8f : -6f);
+        Fit(card.lockText, 15f);
         return card;
     }
 
-    private static void Layout(Card card, float width, float height)
+    // Kitin krem paneli: kart dikdörtgeninden biraz taşar (3B alt / sağ kenar), renkle boyanabilir.
+    private static Image KitPanel(RectTransform parent, string name, Color tint)
+    {
+        Image panel = ComicKit.Sliced(parent, name, "panel_cream", 1.9f);
+        var rect = panel.rectTransform;
+        rect.anchorMin = Vector2.zero; rect.anchorMax = Vector2.one;
+        rect.offsetMin = new Vector2(-6f, -8f); rect.offsetMax = new Vector2(8f, 6f);
+        panel.color = tint;
+        return panel;
+    }
+
+    private void Layout(Card card, float width, float height)
     {
         var header = card.header.rectTransform;
         header.anchorMin = new Vector2(0f, 1f);
         header.anchorMax = Vector2.one;
-        header.offsetMin = new Vector2(8f, -68f);
-        header.offsetMax = new Vector2(-8f, -8f);
+        header.offsetMin = kit ? new Vector2(10f, -72f) : new Vector2(8f, -68f);
+        header.offsetMax = kit ? new Vector2(-6f, -6f) : new Vector2(-8f, -8f);
         float top = height * 0.5f;
-        Place(card.title, new Vector2(0f, top - 38f), new Vector2(width - 24f, 50f));
+        Place(card.title, new Vector2(0f, top - 38f), new Vector2(width - (kit ? 56f : 24f), kit ? 44f : 50f));
         Place(card.style, new Vector2(0f, top - 100f), new Vector2(width - 36f, 56f));
         Place(card.effects, new Vector2(0f, (top - 134f + (-top + 48f)) * 0.5f), new Vector2(width - 36f, height - 182f));
         Place(card.footer, new Vector2(0f, -top + 28f), new Vector2(width - 30f, 34f));

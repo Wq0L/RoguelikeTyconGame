@@ -118,6 +118,22 @@ public static class BossRewardText
         ? $"{reward.DisplayName} · {reward.EffectLabel}".TrimEnd(' ', '·')
         : $"{reward.DisplayName} {count}/{reward.maxStacks} · {Total(reward, count)}";
 
+    // Item kartının yer tutucu ikonu (ödülün kendi görseli yoksa): ResonanceBadgeGraphic tarifi, ödülün VERİSİNDEN seçilir (ada
+    // bakılmaz). Önce stat modifier'ı (ağaçtaki ikonun aynısı), sonra özel çarpanlar ve kırılma / bedel / etki alanları.
+    public static string IconRecipe(BossRewardSO reward)
+    {
+        if (reward == null) return "skill-unlock";
+        if (reward.modifiersPerStack != null && reward.modifiersPerStack.Count > 0) return SkillIconCatalog.For(reward.modifiersPerStack[0].statType);
+        if (!Mathf.Approximately(reward.directDamageMultiplier, 1f) || !Mathf.Approximately(reward.rareDirectMultiplier, 1f)) return "skill-scythe";
+        // Yankı türü enum: Çifte Akım elektrik, Artçı Patlama patlama ikonunu alır.
+        if (reward.echo == BossRewardEcho.Electric) return "skill-electric";
+        if (reward.echo != BossRewardEcho.None) return "skill-explosion";
+        if (reward.chain) return "skill-electric";
+        if (!Mathf.Approximately(reward.behaviorDamageMultiplier, 1f)) return "skill-attack";
+        if (reward.levelChoiceDelta != 0) return "skill-cards";
+        return "skill-unlock";   // etkili ödül (effect) ve diğerleri: anahtar
+    }
+
     // Etkili ödülün kartındaki alt satırlar (Bölüm 3.8): bir kez alındığı, ön koşulu, yerleşim adımı ve birlikte alınamayan ödül.
     public static string EffectStackText(BossRewardSO reward, List<BossRewardSO> exclusive)
     {

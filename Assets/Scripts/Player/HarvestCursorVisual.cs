@@ -19,6 +19,13 @@ public sealed class HarvestCursorVisual : MonoBehaviour
     // Hazır Hasat Ritmi hakkı: rüzgar izleri altın rengine döner (küçük vurgu; ek saldırı üretmez).
     static readonly Color ChargedStart = new Color(1f, .86f, .28f, .9f);
     bool charged;
+    // Okunurluk (11 Kasım 2026: boyalı zemin + mürekkep geçişinde beyaz halka kremde kayboluyordu): beyaz halkanın altında koyu
+    // mürekkep halka ve saldırı alanında hafif koyu zemin. İkisi de prefabın kendi alt nesneleri; renk, kalınlık, yükseklik prefabda
+    // ayarlanır (Tools > Oyun > Hasat İmleci: Okunurluk). Atanmamışsa hiçbir şey yapılmaz. Yalnız yarıçap değişince yeniden
+    // yerleşir: kare başına bellek ayrılmaz.
+    [SerializeField] LineRenderer inkRing;
+    [SerializeField] Transform groundFill;
+    float inkRadius = -1f;
     public bool Charged => charged;
     public void SetCharged(bool value) => charged = value;
     void Awake()
@@ -75,9 +82,26 @@ public sealed class HarvestCursorVisual : MonoBehaviour
     // Round dışında kapalı kalır; tekrar açılınca eski konumdan çizgi çekmesin.
     void OnEnable() { if (trail != null) trail.Clear(); }
     public void Pulse(bool crit) { pulse = 1f; pulseCrit = crit; }
+
+    // Mürekkep halka ve zemin, beyaz halkayla (PlayerController) aynı yarıçapa oturur; dikey konumları prefabdaki yerel y'den gelir.
+    void LayoutInk(float radius)
+    {
+        inkRadius = radius;
+        if (inkRing != null)
+        {
+            int count = inkRing.positionCount;
+            for (int i = 0; i < count; i++)
+            {
+                float a = i * Mathf.PI * 2f / count;
+                inkRing.SetPosition(i, new Vector3(Mathf.Cos(a) * radius, 0f, Mathf.Sin(a) * radius));
+            }
+        }
+        if (groundFill != null) groundFill.localScale = new Vector3(radius * 2f, 1f, radius * 2f);
+    }
     public void Show(Vector3 center, float radius)
     {
         transform.position = center + Vector3.up * .12f;
+        if (radius != inkRadius) LayoutInk(radius);
         pulse = Mathf.Max(0f, pulse - Time.deltaTime / .18f);
         float kick = pulse * pulse;
         angle -= Time.deltaTime * 540f * (1f + 2.2f * kick);

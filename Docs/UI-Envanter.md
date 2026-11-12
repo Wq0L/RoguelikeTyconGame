@@ -107,11 +107,14 @@ HudKit `Resources` altında olduğu için kullanılmayan parçaları da build'e 
 | Hazırlık ekranı: HAZIRLIK / round özeti kartı, 4 buton, harita hücreleri, yeni tile'lar kartı | **kite geçti** |
 | Saksı dükkânı (pencere, başlıklar, kartlar, detay, istatistikler, Satın al / Temizle, Sat, GERİ) | **kite geçti** |
 | Koordinat kutuları (harita + tarla) | **kite geçti** |
-| Yetenek ağacı (düğümler, noktalar, bağlantılar, etiket, GERİ) | **kite geçti** (yerleşim / boyut eski) |
+| Yetenek ağacı (düğümler, noktalar, bağlantılar, etiket, GERİ, pano zemini, sıkı yerleşim, his) | **kite geçti** (ayrıntı §7) |
+| Ana menü (Oyna / Ayarlar / Çıkış) | **kite geçti** (ayarlar penceresi eski) |
+| Çiftçi / tırpan seçim ekranı | **kite geçti** |
+| Boss ödülü seçimi (kare item kutusu + görsel yuvası) | **kite geçti** (item görselleri yok; yer tutucu ikon) |
 | Tooltip'ler (yetenek, tile, yerleştirme — ortak ComicPopupView) | **kite geçti** |
 | Kart seçimi, boss ödülü, uzmanlaşma paneli | eski görünüm (kartların kendi ComicCard sistemi var; uyum kontrol edilmeli) |
 | Önizleme ekranı (Tab) | eski görünüm |
-| Ayarlar, duraklat, ana menü, run sonu | eski görünüm |
+| Ayarlar penceresi (sekmeler, satırlar), duraklat, run sonu | eski görünüm |
 | Diyalog kutusu | eski görünüm (kendi onaylı çizimi var; dokunulmamalı) |
 
 ## 5. Eksikler
@@ -123,10 +126,12 @@ HudKit `Resources` altında olduğu için kullanılmayan parçaları da build'e 
 | Yüksek | Açılır liste (oku, açık liste zemini) | dil seçimi, çözünürlük | pakette yok |
 | Orta | Kaydırma çubuğu (ray + tutamak) | uzun listeler (görevler, skill açıklamaları) | pakette yok |
 | Orta | Kaydırıcı tutamağı ayrı parça | ayarlar ses düzeyleri | `hud_slider_blue` tek parça; ayrılabilir ya da yeni üretim |
-| Orta | Fiyat etiketi / maliyet rozeti | saksı dükkânı, yetenek düğümü | `label_cream` küçük boyda geçici olarak kullanılabilir |
+| Orta | Fiyat etiketi / maliyet rozeti | saksı dükkânı (yetenek düğümünde istenmiyor, §7) | `label_cream` küçük boyda geçici olarak kullanılabilir |
 | Orta | İkonlar: kilit, onay işareti, ünlem, bilgi (i) | skill düğümü, uyarılar | çıkarılan skill konseptinde vardı |
 | Orta | Skill düğümü seviye noktaları + ağaç bağlantı çizgileri | yetenek ağacı | çıkarılan skill konseptinde vardı |
+| Yüksek | **Boss ödülü item görselleri** (35 ödül) | boss ödülü kutusundaki yuva | kare, saydam zemin, yaklaşık 256 px; `BossRewardSO.icon` alanına atanır. Yokken etkiden seçilen yer tutucu ikon görünür |
 | Düşük | Bildirim rozeti ("yeni!") | dükkân butonları | — |
+| Düşük | Ana menü başlığı / logo | ana menü | sahnede başlık nesnesi yok; arka plan görseli tek başına |
 | Düşük | Ana menü başlık / logo plakası | ana menü | — |
 | Düşük | Yukarı ve sola bakan tooltip | tooltip'ler | var olanlar Unity'de çevrilerek kullanılabilir |
 
@@ -200,3 +205,89 @@ Diğer parçalar:
 Eşleme tablosu: hangi durum hangi kare.
 
 Örnek görüntüler: bir düğüm grubu, tooltip açık, tr ve en.
+
+## 7. 10–11 Kasım 2026 eklemeleri
+
+### Yetenek ağacı zemini — comic pano
+
+Kullanıcı: "derinliği var ama kötü hissettiriyor".
+
+- **Teşhis:** eski zemin yumuşak, gerçekçi bir uzaydı (neredeyse siyah taban, bulanık nebula, parlamalı yıldızlar, koyu kenar). Önündeki kit düz renkli mürekkepli kâğıt; iki çizim dili üst üste biniyordu ve düğümler kara bir boşlukta yüzüyordu.
+- **Yeni zemin:** `Assets/Resources/ComicBoardBackground.shader` (özgün, dış içerik yok). Lacivert kâğıt, tram noktalı bulutlar, keskin kenarlı toon yıldızlar, düğümlere oturan ızgara (hücre = düğüm aralığı, düğüm hücrenin ortasında).
+- **Derinlik korunur:** katmanlar ağaç kaydıkça farklı hızda kayar.
+- **Geri dönüş:** `SkillTreeSpaceBackground.comicBoard = false` eski uzayı açar. Ayarlardan arka plan efektleri kapalıysa düz zemin kalır.
+
+### Yetenek ağacı yerleşimi
+
+Kullanıcı: "skiller çok uzak; iç içe girmeden yakınlaştır".
+
+- **Yetenek verisi değişmedi** (gridPosition, komşuluk, önkoşul). Yalnız ekrandaki yer değişti: `SkillTreeUI.ApplyLayout`.
+- Düğüm 60 → 84 px, aralık 150 → 112 px (ikinci istekle biraz daha yakın: "az daha yakınlaşsın").
+- Dallar arasındaki boş koridorlar (3 ve üstü boş sıra / sütun) 2 hücreye iner. 1–2'lik adımlar aynen kalır; sıra ve hizalar korunur.
+- **Ölçüm:** en uzak düğüm başlangıca 4500 → 2160 px. 104 düğümde üst üste binme yok (test).
+- **Açık:** kök düğümler başlangıca hâlâ 2 hücre (240 px); sol kök 7 hücre uzakta. Bunlar verideki konumlardan geliyor; daha fazla yaklaştırmak veri ya da daha akıllı bir yerleşim ister.
+
+### Yetenek ağacı hissi
+
+Hepsi görsel + kısa ses; oynanış ve zamanlama değişmez.
+
+- **Üstüne gelme:** düğüm 1,12'ye büyür, öne geçer, bağlantıları altın renge döner; kısa tık sesi.
+- **Alınabilir düğüm:** yüzü hafifçe nefes alır (%3,5, 2,6 sn; faz konumdan, rastgelelik yok).
+- **Satın alma:** eski zıplama ve dalga + yeni kademe noktası patlaması + alım sesi (kademeyle tizleşir).
+- **Yeni açılan düğüm:** küçükten zıplayarak belirir; bağlantı çizgisi açık uçtan hedefe uzar.
+- **Alınamayana tıklama:** kısa "olmaz" sallanması + pes ses.
+- **Gezinme:** yumuşak zoom, sürükleyip bırakınca atalet.
+- **Kademe noktaları** düğümün altında ortalandı (eskiden iki kademelide sola yaslıydı).
+- **Performans:** karede yalnız kısa düğüm ve bağlantı döngüsü; bellek ayırmaz. Tween'ler panel kapanınca öldürülür.
+- **Bilgi kutusu:** kaynak yetmiyorsa bedel kırmızı, eksik miktar yanında (`ui.skill.cost_missing`).
+
+### Reddedilen: ağaç üstüne ek süs (11 Kasım)
+
+Kullanıcı: "fiyat orda yazmasın, kötü duruyor; ilk hali temel olarak korunup juice'lanmalıydı, AI slop hissi verdi".
+
+Denenip geri alındı: düğüm köşesinde fiyat etiketi, sol üstte başlık şeridi, sol altta gezinme ipucu, satın almada "pat" yıldızı (`ComicBurst`), elmas başlangıç karesi, bilgi kutusunda "satın almak için tıkla". **Kural:** ağaçta görünüm ilk kit hâlidir; his yalnız hareket ve sesle verilir, yeni plaka / etiket / yazı eklenmez.
+
+### Ana menü
+
+- Sahnedeki üç buton çalışma anında kite geçer (`MainMenuUI.ApplyComicKit`); sahne dosyası değişmedi.
+- Oyna mavi (600×128), Ayarlar mor, Çıkış kırmızı (500×104). Yazılar Bungee; hover hareketi eklendi.
+- "Oyna<br>" yazısındaki eski satır sonu yalnız çizimde atılır (`ComicKit.SingleLineCaps`); çeviri değeri aynı.
+- Her karede malzeme yazan eski bileşen bu butonlardan kalktı.
+
+### Ana menü — canlı sahne (11 Kasım, ikinci adım)
+
+Kullanıcı: "daha canlı, sahne gibi; chill; oyunun uzay arka planı". AI ile üretilen arka planlar reddedildi (Docs/MenuArkaPlan, ThirdParty kaydı).
+
+- **Ne var:** oyunun kendi parçaları. 7 × 7 karo (içte 5 × 5 açık, dışta kapalı halka; GameScene'deki GroundCell'in mesh'i ve malzemeleri), ortada 3 × 3 `Grass Planter 1x1` ve büyümüş bitkiler (`Assets/Prefabs/Plants`), altında toprak + kaya kütlesi, sarkan kökler, süzülen taşlar. Arkada oyunun `SpaceBackground`'u (hareketli yıldız, bulutsu, gezegen). Butonlar solda, ada sağda.
+- **Editörde düzenlenir (AGENTS.md kuralı):** görünüm `Assets/Prefabs/Menu/MenuDiorama.prefab` ve MenuScene'de (Menu Camera, Menu Light). Kodda yalnız hareket: `MenuDioramaMotion` (süzülme, bitki sallanması, taşlar, kamera kayması; Inspector'dan ayarlanır).
+- **Araç:** Tools > Menü > Canlı Sahne: Oluştur - Güncelle (eksik parçaları ekler, var olana ve elle düzenlemeye dokunmaz, çoğaltmaz, Undo'lu). Tools > Menü > Canlı Sahne: Kamerayı Varsayılana Al.
+- **Işık:** menüde ışık yoktu; araç ilk kurulumda GameScene'in yönlü ışığını, ortam ışığını ve kameranın URP renderer'ını (1) kopyalar.
+- **Butonlar:** konum / boyut artık sahnede (`MainMenuUI.sceneLayout` açık); kit görünümü hâlâ çalışma anında (ertelenen taşıma listesinde).
+- **Test:** `MenuDioramaVerification` (sıfırdan kurulum, 17 kontrol) ve `RunAsIsBatch` (ana projenin hâli olduğu gibi).
+- **Başlık tabelası (aynı gün):** butonların üstünde solda yamuk lacivert şerit (header_navy, -4°), altın Bungee "ERIGONE" (`ui.menu.title`), sahnede (Menu Title Sign). Menü açılınca yukarıdan iner, tepesinden asılı gibi çok az sallanır.
+- **Butonlar:** menü açılınca soldan sırayla kayarak gelir, boşta hafifçe süzülür (`MenuUiMotion`, yalnız konum); üstüne gelince eğilir (Oyna 4,5°, öbürleri ±3°) ve nefes alır (`ComicHoverMotion.breathe`, yalnız menü butonlarında açık). Ayarlar sahnede, Inspector'dan değişir.
+- **Ekranı dolduranlar:** arkada ve sol altta süzülen iki küçük ada (aynı karolar, bir saksı ve bitki, küçültülmüş alt kütle), adanın çevresinde yükselen polen ışıkları (ParticleSystem, MenuPollen.mat). Süs plakası yok; oyunun dünyası.
+- **Lo-fi cila (aynı gün, kullanıcı: "toprağın altı bozuluyor, oran otursun; butonlar büyüsün; ERIGONE üste uzasın; arka plan chill lo-fi"):**
+  - Alt kısım v2: derinlik genişliğin ~%50'si, her dörtgen tek düz yüz (çapraz çizgi yok), yönler kütlenin içinden (ters yüz yok, testte 0). Eski mesh yerinde yenilendi (nesneler ve ayarlar korundu). Süzülen taşlar küçüldü ve yanlara alındı.
+  - Butonlar: Oyna 640×146, öbürleri 560×122. Tabela 820×196, ekranın üstüne uzanır; başlık 136 pt'ye kadar.
+  - Lo-fi: kayan yıldız seyrek, yıldız / bulutsu kısık, paralaks yumuşak; süzülme, sallanma, kamera kayması ve buton nefesi yavaşladı.
+  - Menü komutu: Tools > Menü > Canlı Sahne: Lo-fi Cila Uygula (yalnız açıkça çalıştırılınca değerleri yazar).
+- **Toon tutarlılığı (kullanıcı: "toonicliği kopuyor gibi"):** nedenler: menü kamerası perspektif ve yakın (oyunda uzaktan izometrik; ince mürekkep çizgisi burada zayıf kalıyor), yeni parçalarda çizgi yoktu, polen yumuşak ışık noktasıydı. Düzeltme yalnız menüde: karo / saksı / bitki oyunun malzemelerinin menü varyantını kullanır (`Assets/Prefabs/Menu/Toon/*_Menu.mat`, Unity material variant; renk oyunla bağlı, dış çizgi ×1,8); toprak / kaya / kök / taş aynı mürekkep çizgisini alır, mesh'leri paylaşılan köşeli (v3: çizgi kopmaz); polen sert kenarlı, mürekkep çizgili parıltı (`MenuSparkle.png`), az ve küçük. Oyunun kendi malzemeleri değişmedi.
+- **Açık:** adanın ve adacıkların yerleşimi editörde ince ayar bekliyor; gerçek logo yok (yazı tabelası).
+
+### Çiftçi / tırpan seçim ekranı
+
+- Başlık `header_navy` şeridinde. Kartlar `panel_cream` + boyanan `label_cream` şerit.
+- Seçili: yeşil şerit + açık yeşil kâğıt. Kilitli: gri kâğıt + `window_navy` görev bandı.
+- Geri mavi, Run'ı Başlat yeşil. Başlık, satır başlıkları ve adlar Bungee.
+- Bütün yazılar sığmazsa küçülür.
+
+### Boss ödülü — kare item kutusu
+
+Kullanıcı: "kart gibi olmayacak; eski küçük ödül gibi ama item seçiyormuşuz gibi kutu, kare".
+
+- **Ödül mantığı değişmedi** (`BossRewardManager`). Değişen: kutunun görünümü ve `BossRewardSO.icon` alanı.
+- Kutu 440×466 (eski kartın oranı). Sol üstte 96 px `slot_gold` item yuvası, yanında altın ad plakası; altında eski üç yazı bölgesi ve AL.
+- Görsel yokken yuvada `BossRewardText.IconRecipe` ikonu durur (ödülün etkisinden seçilir).
+- "AL" yazısı çeviri listesinde (`ui.reward.panel.choose`); kutu dil değişince yenilenir.
+- İlk deneme (uzun kart, 400×550) kullanıcı tarafından reddedildi.

@@ -68,3 +68,46 @@ Ayrıntılar: `Docs/Ceviri/Yerellestirme.md`.
 
 UI çalışmaları için `Docs/UI-Art-Direction.md` esas alınır. Ortak comic dil,
 her öğenin birebir aynı şekil ve detaylara sahip olması anlamına gelmez.
+
+## Zorunlu editörde düzenleme ve önizleme kuralı
+
+Bu kural kullanıcının açık talebidir (11 Kasım 2026). UI ve görsel yerleşim
+işlerinde, MCP ile yapılan değişiklikler dahil, proje genelinde geçerlidir.
+
+- **Görünüm Play'e basmadan editörde incelenebilmeli ve düzenlenebilmelidir.**
+  Yalnız oyun başlayınca görünen bir tasarım, editör tarafı tamamlanmadan
+  bitmiş iş olarak sunulmaz.
+- Sabit görsel iskelet, hiyerarşi, konum, boyut, anchor, boşluk, font, sprite
+  ve materyal tercihleri sahne, prefab veya uygun serileştirilmiş tasarım
+  verisinde tutulur. Bunları değiştirmek için C# kodu düzenlemek gerekmemelidir.
+- `Awake`, `Start`, `OnEnable` veya runtime bootstrap içinde, editörde
+  kaydedilmiş tasarımı sabit değerlerle yeniden yazan görünüm yamaları eklenmez.
+  Kod veri bağlama, oyun durumuna göre görünürlük ve durum değişimi, etkileşim
+  ve animasyonu yönetir. Duruma veya ekran boyutuna bağlı yerleşim gerekiyorsa
+  ayarları editörden yönetilir ve aynı kurallar önizlemede de kullanılır.
+- Dinamik kart, liste ve yetenek ağacı gibi veriden üretilen arayüzlerde
+  düzenlenebilir görsel prefab'lar kullanılır. Editörde örnek/veri tabanlı
+  önizleme veya açık bir "Oluştur / Güncelle" aracı sağlanır. Önizleme ile
+  oyun aynı tasarım verisini ve yerleşim hesabını kullanır; iki ayrı tasarım
+  sürümü oluşturulmaz. Dinamik içeriğin runtime'da üretilmesi yasak değildir.
+- Editör önizlemesi oyun manager'larının çalışmasına, aktif bir run'a veya
+  satın alma/kayıt işlemlerine ihtiyaç duymaz; oyun ilerlemesini değiştirmez.
+  `[ExecuteAlways]` mevcut oyun sınıflarına topluca eklenerek çözüm üretilmez;
+  editör işlemleri ile oyun davranışı açıkça ayrılır.
+- Oluşturma/güncelleme aracı tekrar çalıştırıldığında nesne, bileşen, materyal
+  veya olay dinleyicisi çoğaltmaz. Yalnız yönettiği öğeleri günceller; mevcut
+  referansları ve kullanıcı düzenlemelerini korur. Kalıcı editör değişiklikleri
+  Undo ve sahne/prefab kayıt akışına uygun yapılır; geçici önizlemeler temizlenir.
+- MCP ile yapılan kalıcı görsel düzenlemeler Edit Mode'da doğru sahne/prefab'a
+  uygulanıp kaydedilir. Play Mode'da yapılan geçici değişiklikler veya yalnız
+  ekran görüntüsü alınması kalıcı uygulama sayılmaz.
+- UI işi tamamlanırken hem Edit Mode görünümü hem Play Mode davranışı kontrol
+  edilir: kaydedilmiş görünüm yeniden açıldığında korunmalı, oyun başladığında
+  beklenmedik biçimde değişmemeli; panel aç/kapa ve önizleme yenilemede çoğalma
+  olmamalıdır. Dil değişimi ve ilgili ekran boyutları da kontrol edilir.
+  Yapılmayan doğrulamalar ve kalan eksikler kullanıcıya açıkça bildirilir.
+- Görsel kurulum/yerleşim, veri bağlama ve oyun kuralları ayrı sorumluluklar
+  olarak tutulur. Mevcut runtime ağırlıklı ekranlar, ilgili ekran üzerinde
+  çalışılırken bu yapıya aşamalı taşınır; bu kural tek başına tüm projeyi
+  yeniden yazma talimatı değildir. Ölçüler ve tamamlanma notları ilgili UI
+  dokümanlarında son uygulamayla tutarlı tutulur.

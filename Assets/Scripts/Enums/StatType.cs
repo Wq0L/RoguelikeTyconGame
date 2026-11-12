@@ -27,7 +27,7 @@ public enum StatType
 
     // === KART AJANSI ===
     ExtraCardChoice,
-    RerollCard,
+    RerollCard,         // eski ad: kart atlama hakkına eklenir (CardSkip ile aynı). Silinmez: enum'lar sayıyla kayıtlı.
     CardSkip,           // kartı atla, resource al
     // === DAVRANIŞ ===
     ExplosionChance,    // patlama tetikleme şansı (0-1)

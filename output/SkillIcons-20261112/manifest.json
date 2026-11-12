@@ -1,0 +1,287 @@
+[
+  {
+    "id": "attack",
+    "file": "PNG/attack.png",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "bounds": [
+      52,
+      68,
+      408,
+      376
+    ],
+    "cornerAlpha": 0,
+    "sha256": "EC3D6F13D53A4315D9B0BA7B34683885DB4FB53F0DD680DA846D29237F7D554B"
+  },
+  {
+    "id": "speed",
+    "file": "PNG/speed.png",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "bounds": [
+      80,
+      52,
+      352,
+      408
+    ],
+    "cornerAlpha": 0,
+    "sha256": "D2EC907A6859EACD7BD944D9412376213F6FC22C2EEF79A242783312FA4518AE"
+  },
+  {
+    "id": "area",
+    "file": "PNG/area.png",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "bounds": [
+      62,
+      52,
+      387,
+      408
+    ],
+    "cornerAlpha": 0,
+    "sha256": "E56B49B53DD7896E1C375C60E0D35EC93D954CE5351F690B530D598A499E7DBC"
+  },
+  {
+    "id": "critical",
+    "file": "PNG/critical.png",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "bounds": [
+      63,
+      52,
+      386,
+      408
+    ],
+    "cornerAlpha": 0,
+    "sha256": "9F16AF1C99DFAA8B40E23BCF4B71170CD494936CC1ECE6B0DA90D49739B713E8"
+  },
+  {
+    "id": "spawn",
+    "file": "PNG/spawn.png",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "bounds": [
+      60,
+      52,
+      392,
+      408
+    ],
+    "cornerAlpha": 0,
+    "sha256": "AAFE63A966B5ACD609E2CB5A2169B56A528B750B0313159E2D4BEDD0316BEE41"
+  },
+  {
+    "id": "rare",
+    "file": "PNG/rare.png",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "bounds": [
+      59,
+      52,
+      393,
+      408
+    ],
+    "cornerAlpha": 0,
+    "sha256": "804DDAD819148BDCB79651F584E6B26DE1BD7DB89C1102BE22DD563B071F99EC"
+  },
+  {
+    "id": "gold",
+    "file": "PNG/gold.png",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "bounds": [
+      102,
+      52,
+      308,
+      408
+    ],
+    "cornerAlpha": 0,
+    "sha256": "2E02A37DF4364C388E5A03CD6227B2F40CF02A086AC27D1CD2221D294F99414F"
+  },
+  {
+    "id": "iron",
+    "file": "PNG/iron.png",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "bounds": [
+      52,
+      159,
+      408,
+      194
+    ],
+    "cornerAlpha": 0,
+    "sha256": "BD4516DA81C1F8C911901880F0D8176832E2442EC5D6D0B445847DAC9CF28DE7"
+  },
+  {
+    "id": "stone",
+    "file": "PNG/stone.png",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "bounds": [
+      52,
+      89,
+      408,
+      333
+    ],
+    "cornerAlpha": 0,
+    "sha256": "11B6F9BA72C1EE8A6CD655983C47E95335337FDD7CDB5057EB81213928F2DB83"
+  },
+  {
+    "id": "xp",
+    "file": "PNG/xp.png",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "bounds": [
+      103,
+      52,
+      306,
+      408
+    ],
+    "cornerAlpha": 0,
+    "sha256": "0BB086E4A8D3DF90A4D3F55D45B281DDD3254947DD2564058DFDA85779945CAE"
+  },
+  {
+    "id": "score",
+    "file": "PNG/score.png",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "bounds": [
+      52,
+      64,
+      408,
+      384
+    ],
+    "cornerAlpha": 0,
+    "sha256": "C7DA5061D2075D964FA7804801F4BF92D75BA62BE808A23B1192C659B591767A"
+  },
+  {
+    "id": "grid",
+    "file": "PNG/grid.png",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "bounds": [
+      54,
+      52,
+      404,
+      408
+    ],
+    "cornerAlpha": 0,
+    "sha256": "97BC7001E58FE6993B755A8C53554A5B678303742F9068D43D13F5F705D2A117"
+  },
+  {
+    "id": "planter",
+    "file": "PNG/planter.png",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "bounds": [
+      52,
+      67,
+      408,
+      377
+    ],
+    "cornerAlpha": 0,
+    "sha256": "FF91CF035D43F47E789D1047C43FE8846EEA43640D45ACE99EE884A162EDEFBB"
+  },
+  {
+    "id": "cards",
+    "file": "PNG/cards.png",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "bounds": [
+      52,
+      116,
+      408,
+      280
+    ],
+    "cornerAlpha": 0,
+    "sha256": "1B9D57CC1DDF0149CF833E9FC252B0B2316051B4D24FA1FC742B2333A0450A2A"
+  },
+  {
+    "id": "explosion",
+    "file": "PNG/explosion.png",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "bounds": [
+      52,
+      56,
+      408,
+      399
+    ],
+    "cornerAlpha": 0,
+    "sha256": "1D2194A6FA0F8E5429DFD07B582052B34AE90869070B4222DDE5AB15BDDDFB6B"
+  },
+  {
+    "id": "duplicate",
+    "file": "PNG/duplicate.png",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "bounds": [
+      52,
+      99,
+      408,
+      314
+    ],
+    "cornerAlpha": 0,
+    "sha256": "80C789A7D21D0D5C45DC153DDD89C77671BFD4103B77B14E3229B44EAA5816CB"
+  },
+  {
+    "id": "tornado",
+    "file": "PNG/tornado.png",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "bounds": [
+      57,
+      52,
+      397,
+      408
+    ],
+    "cornerAlpha": 0,
+    "sha256": "786F524BAC9FC5D3B7B01D40FB03A0750AA164C40F735DC9BFEB6B91254FFA05"
+  },
+  {
+    "id": "scythe",
+    "file": "PNG/scythe.png",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "bounds": [
+      90,
+      52,
+      331,
+      408
+    ],
+    "cornerAlpha": 0,
+    "sha256": "C31B3A151375AA944B6A2F4896695218F17D0D6DF2C673A11E6BEBDB8D726D7A"
+  },
+  {
+    "id": "electric",
+    "file": "PNG/electric.png",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "bounds": [
+      102,
+      52,
+      307,
+      408
+    ],
+    "cornerAlpha": 0,
+    "sha256": "D26BD51494AEED10BF3A3959B76E4449018563314B188091043893470330BE01"
+  }
+]

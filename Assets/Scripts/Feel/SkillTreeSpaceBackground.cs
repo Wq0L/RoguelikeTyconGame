@@ -25,6 +25,24 @@ public class SkillTreeSpaceBackground : MonoBehaviour
     [Tooltip("Derinlik gücü. 0: arka plan sabit, 1: yakın katmanlar ağaçla neredeyse birlikte kayar.")]
     [SerializeField, Range(0f, 2f)] private float parallax = 1f;
 
+    // Comic kağıt panosu (10 Kasım 2026, kullanıcı: "derinliği var ama kötü hissettiriyor"): kitin diliyle basılı plan panosu
+    // (UI/ComicBoardBackground). Lacivert taban, tram noktalı bulutlar, keskin toon yıldızlar, düğümlerle birebir kayan ızgara.
+    // Kapalıysa ya da shader yoksa eski uzay (SpaceUIBackground).
+    [Header("Comic board")]
+    [SerializeField] private bool comicBoard = true;
+    [SerializeField] private Color boardCenter = new Color(0.105f, 0.2f, 0.31f);
+    [SerializeField] private Color boardEdge = new Color(0.06f, 0.105f, 0.19f);
+    [SerializeField] private Color boardGrid = new Color(0.3f, 0.46f, 0.62f);
+    [SerializeField] private Color boardDotsA = new Color(0.16f, 0.29f, 0.44f);
+    [SerializeField] private Color boardDotsB = new Color(0.2f, 0.22f, 0.42f);
+    [SerializeField] private Color boardStars = new Color(0.74f, 0.83f, 0.93f);
+    [SerializeField, Range(0f, 1f)] private float boardGridStrength = 0.5f;
+    [SerializeField, Range(0f, 1f)] private float boardDotStrength = 0.8f;
+    [SerializeField, Range(10f, 120f)] private float boardDotScale = 54f;
+    [SerializeField, Range(0f, 1f)] private float boardStarDensity = 0.2f;
+    [SerializeField, Range(0f, 1f)] private float boardVignette = 0.3f;
+    public bool UsesComicBoard { get; private set; }
+
     private static readonly int SpaceViewId = Shader.PropertyToID("_SpaceView");
     private static readonly int SpacePanId = Shader.PropertyToID("_SpacePan");
 
@@ -66,14 +84,16 @@ public class SkillTreeSpaceBackground : MonoBehaviour
             enabled = false;
             return;
         }
-        var shader = Resources.Load<Shader>("SpaceUIBackground");
+        Shader shader = comicBoard ? Resources.Load<Shader>("ComicBoardBackground") : null;
+        UsesComicBoard = shader != null && shader.isSupported;
+        if (!UsesComicBoard) shader = Resources.Load<Shader>("SpaceUIBackground");
         if (shader == null || !shader.isSupported)
         {
             Debug.LogWarning("SpaceUIBackground shader bulunamadı veya desteklenmiyor; skill tree arka planı değişmedi.", this);
             enabled = false;
             return;
         }
-        material = new Material(shader) { name = "Skill Tree Space (runtime)" };
+        material = new Material(shader) { name = UsesComicBoard ? "Skill Tree Comic Board (runtime)" : "Skill Tree Space (runtime)" };
         originalColor = graphic.color;
         originalMaterial = graphic.material;
         graphic.material = material;
@@ -99,6 +119,18 @@ public class SkillTreeSpaceBackground : MonoBehaviour
         material.SetFloat("_StarDensity", starDensity);
         material.SetFloat("_Vignette", vignette);
         material.SetFloat("_Parallax", parallax);
+        if (!UsesComicBoard) return;
+        material.SetColor("_BaseCenter", boardCenter);
+        material.SetColor("_BaseEdge", boardEdge);
+        material.SetColor("_GridColor", boardGrid);
+        material.SetColor("_DotColor", boardDotsA);
+        material.SetColor("_DotColorB", boardDotsB);
+        material.SetColor("_StarColor", boardStars);
+        material.SetFloat("_GridStrength", boardGridStrength);
+        material.SetFloat("_DotStrength", boardDotStrength);
+        material.SetFloat("_DotScale", boardDotScale);
+        material.SetFloat("_StarDensity", boardStarDensity);
+        material.SetFloat("_Vignette", boardVignette);
     }
 
     private void LateUpdate()
@@ -110,7 +142,9 @@ public class SkillTreeSpaceBackground : MonoBehaviour
         float aspect = Mathf.Max(0.01f, rect.width / height);
         Vector2 pan = tree != null ? tree.PanPosition / height : Vector2.zero;
         float zoom = tree != null ? tree.Zoom : 1f;
-        material.SetVector(SpaceViewId, new Vector4(Time.unscaledTime, aspect, zoom, 0f));
+        // w: ekran yüksekliğinde kaç düğüm aralığı var (panonun ızgarası düğümlere oturur).
+        float cells = tree != null ? height / Mathf.Max(1f, tree.NodeSpacing) : 0f;
+        material.SetVector(SpaceViewId, new Vector4(Time.unscaledTime, aspect, zoom, cells));
         material.SetVector(SpacePanId, new Vector4(pan.x, pan.y, 0f, 0f));
     }
 

@@ -20,6 +20,9 @@ public sealed class BossRewardSO : ScriptableObject
     [Tooltip("Sabit kimlik (log ve test için).")]
     public string id;
     public string displayName;
+    [Header("Item")]
+    [Tooltip("Kartın item görseli (isteğe bağlı). Boşsa kart, ödülün etkisinden çizilen ikonu gösterir (BossRewardText.IconRecipe).")]
+    public Sprite icon;
     [Header("Müzik gücü")]
     [Tooltip("0: havuzdaki kendi aşamasına göre +1 / +2 / +3… (aşamasız ödül +1). Pozitif değer: her başarılı alışta eklenecek özel puan.")]
     [Min(0)] public int musicPowerOverride;

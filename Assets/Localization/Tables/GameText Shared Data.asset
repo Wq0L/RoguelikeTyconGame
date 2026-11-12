@@ -3750,6 +3750,26 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 221144915694583895
+  - m_Id: 2315510637940736
+    m_Key: ui.reward.panel.choose
+    m_Metadata:
+      m_Items:
+      - rid: 221145029498634240
+  - m_Id: 2317584742240256
+    m_Key: ui.skill.cost_missing
+    m_Metadata:
+      m_Items:
+      - rid: 221145029498634327
+  - m_Id: 2473096205062144
+    m_Key: ui.menu.title
+    m_Metadata:
+      m_Items:
+      - rid: 221145039338471424
+  - m_Id: 2714466735902720
+    m_Key: ui.game.skip_cards_count
+    m_Metadata:
+      m_Items:
+      - rid: 221145054424334336
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
@@ -4994,7 +5014,8 @@ MonoBehaviour:
     - rid: 221144893936370039
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_CommentText: Stat name.
+        m_CommentText: Stat name. Old name of the card skip right; it now adds skips,
+          so it reads the same as card skip.
     - rid: 221144893936370040
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
@@ -6988,3 +7009,24 @@ MonoBehaviour:
       data:
         m_CommentText: HUD round card numbers under the ROUND header. {0} = current
           round, {1} = total rounds.
+    - rid: 221145029498634240
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Boss reward screen: button on each reward (item) card that
+          takes that reward. Small button, keep it very short.'
+    - rid: 221145029498634327
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Skill tree tooltip, after the price when the player cannot
+          afford it. {0} = missing amount, {1} = resource name (Gold, Iron, Stone).
+    - rid: 221145039338471424
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Main menu title on the tilted sign above the buttons: the
+          game''s name. Keep it as the name (do not translate) unless the store name
+          differs in your language.'
+    - rid: 221145054424334336
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Card choice screen button with the skips left this round,
+          e.g. Skip Cards (2). {0} = skips left.

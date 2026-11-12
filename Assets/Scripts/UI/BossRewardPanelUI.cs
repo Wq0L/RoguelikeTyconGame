@@ -10,10 +10,17 @@ using UnityEngine.UI;
 // sınıfını ve ilk sunulduğu boss'u yazar. Aşama ve round bilgisi BossRewardManager'dan okunur; burada round eşiği hesaplanmaz.
 // Bedelli ödülde (Bölüm 3.7.4) kart kazanç ve bedeli ayrı yazar: satırlar ödül verisinden, "3 → 4" gerçek seçim hakkından üretilir;
 // altında geçerlilik notu ve birlikte alınamayan ödül durur. Diğer kartların düzeni aynıdır.
+// Item kutusu (11 Kasım 2026, kullanıcı: "kart gibi olmayacak; eski küçük ödül gibi ama item seçiyormuşuz gibi kutu, kare"):
+// ödül kareye yakın bir kutudur (eski kartın oranı). Sol üstte kare item yuvası (ödülün görseli; yoksa etkisinden çizilen ikon),
+// yanında ad plakası; altında eski üç yazı bölgesi ve "AL". Yazı bölgeleri yalnız başlık satırının farkı kadar (ImageShift) aşağıda;
+// ölçüleri, puntoları ve düğmeye mesafeleri aynı. Ödül mantığı (BossRewardManager) değişmedi. Kit varsa comic kağıt görünümü.
 public sealed class BossRewardPanelUI : MonoBehaviour
 {
-    private const float CardWidth = 400f, CardHeight = 430f, Gap = 36f;
+    private const float CardWidth = 440f, CardHeight = 466f, Gap = 36f;
+    // Başlık satırı: 20 px pay + item yuvası. Eski 76 px'lik başlığa göre yazılar ImageShift kadar aşağıda başlar.
+    private const float HeaderHeight = 116f, ImageShift = 36f, ItemSize = 96f, HeaderPad = 20f;
     private static readonly Color Ink = new Color32(54, 39, 54, 255);
+    private static readonly Color RewardGold = new Color32(247, 192, 93, 255);   // altın = ödül (renk kuralı)
     private static readonly Color Plus = new Color32(46, 125, 50, 255);
     private static readonly Color Muted = new Color32(110, 96, 110, 255);
     private const string GainColor = "#2E7D32", CostColor = "#B4231A";
@@ -26,6 +33,8 @@ public sealed class BossRewardPanelUI : MonoBehaviour
         public TextMeshProUGUI title, effect, note, stack, stage;
         public Button button;
         public BossRewardSO reward;
+        public Image itemImage;
+        public ResonanceBadgeGraphic itemBadge;
     }
 
     private readonly List<Card> cards = new();
@@ -70,31 +79,38 @@ public sealed class BossRewardPanelUI : MonoBehaviour
         theme = FeelOverlay.Theme;
         var root = (RectTransform)transform;
         CardSelectionVignette.Attach(root, CardSelectionVignette.Palette.Boss);
+        bool kit = ComicKit.Ready;
         title = CreateText(root, "Title", 46f, TextAlignmentOptions.Center, Color.white);
+        if (kit) ComicKit.Display(title, true);   // karartılmış zeminde beyaz, mürekkep konturlu Bungee
         Place(title.rectTransform, new Vector2(0f, 330f), new Vector2(1500f, 70f));
         subtitle = CreateText(root, "Subtitle", 26f, TextAlignmentOptions.Center, new Color(1f, 0.93f, 0.78f));
         Place(subtitle.rectTransform, new Vector2(0f, 275f), new Vector2(1500f, 40f));
         row = new GameObject("Options", typeof(RectTransform)).GetComponent<RectTransform>();
         row.SetParent(transform, false);
         Place(row, new Vector2(0f, -20f), new Vector2(3 * CardWidth + 2 * Gap, CardHeight));
+        // Yazısı Fill'de kurulur: dil değişince yenilenir.
         empty = CreateText(root, "Empty", 32f, TextAlignmentOptions.Center, new Color(1f, 0.93f, 0.78f));
-        empty.text = $"{GameText.Get("ui.reward.panel.empty")}\n<size=70%>{GameText.Get("ui.reward.panel.empty.detail")}</size>";
         Place(empty.rectTransform, new Vector2(0f, 30f), new Vector2(1200f, 120f));
         continueButton = CreateButton(root, "Continue", "", "green", new Vector2(260f, 80f));
+        if (kit) ComicKit.StyleButton(continueButton, ComicKit.Blue);   // mavi = ilerle
         TMP_Text continueLabel = continueButton.GetComponentInChildren<TMP_Text>(true);
         if (continueLabel != null) LocalizedText.Bind(continueLabel, "ui.reward.panel.continue");
         Place((RectTransform)continueButton.transform, new Vector2(0f, -90f), new Vector2(260f, 80f));
         continueButton.onClick.AddListener(RequestContinue);
         takenList = CreateText(root, "Taken", 22f, TextAlignmentOptions.Top, new Color(0.82f, 0.95f, 0.74f));
         takenList.textWrappingMode = TextWrappingModes.Normal;
-        Place(takenList.rectTransform, new Vector2(0f, -350f), new Vector2(1500f, 150f));
+        Place(takenList.rectTransform, new Vector2(0f, -356f), new Vector2(1500f, 150f));
     }
 
     private void OnEnable()
     {
         requested = false;
+        // Dil değişince kart yazıları (veriden kurulanlar dahil) yeniden yazılır; karede yazı kurulmaz.
+        GameText.Changed += Fill;
         Fill();
     }
+
+    private void OnDisable() => GameText.Changed -= Fill;
 
     private void Update()
     {
@@ -133,6 +149,12 @@ public sealed class BossRewardPanelUI : MonoBehaviour
             card.root.anchoredPosition = new Vector2(-total * 0.5f + CardWidth * 0.5f + i * (CardWidth + Gap), 0f);
             int have = manager.Stacks(reward);
             card.title.text = reward.DisplayName;
+            // Item görseli: ödülün kendi sprite'ı; yoksa etkisinden çizilen yer tutucu ikon.
+            bool picture = reward.icon != null;
+            card.itemImage.sprite = reward.icon;
+            card.itemImage.gameObject.SetActive(picture);
+            card.itemBadge.gameObject.SetActive(!picture);
+            if (!picture) card.itemBadge.SetRecipe(BossRewardText.IconRecipe(reward));
             bool trade = BossRewardText.IsTrade(reward);
             manager.ExclusiveWith(reward, exclusive);
             // Etkili ödülün kural metni uzundur: bedelli kartın geniş etki bölgesini kullanır.
@@ -174,6 +196,7 @@ public sealed class BossRewardPanelUI : MonoBehaviour
         }
         for (int i = count; i < cards.Count; i++) cards[i].root.gameObject.SetActive(false);
         bool none = manager != null && manager.IsPending && count == 0;
+        if (none) empty.text = $"{GameText.Get("ui.reward.panel.empty")}\n<size=70%>{GameText.Get("ui.reward.panel.empty.detail")}</size>";
         empty.gameObject.SetActive(none);
         continueButton.gameObject.SetActive(none);
         takenList.text = TakenText(manager);
@@ -191,10 +214,10 @@ public sealed class BossRewardPanelUI : MonoBehaviour
     }
 
     // Bedelli kartın düzeni: kazanç + bedel dört satır tutar, o yüzden etki bölgesi büyür, açıklama ve alt bölge küçülür.
-    // Diğer kartlar 3.7.3'teki üç bölgeyi aynen kullanır.
+    // Diğer kartlar 3.7.3'teki üç bölgeyi aynen kullanır. Bölgeler item yuvasının altından başlar (ImageShift).
     private static void Arrange(Card card, bool trade)
     {
-        float top = CardHeight * 0.5f;
+        float top = CardHeight * 0.5f - ImageShift;
         Place(card.effect.rectTransform, new Vector2(0f, top - (trade ? 143f : 124f)), new Vector2(CardWidth - 36f, trade ? 122f : 70f));
         Place(card.note.rectTransform, new Vector2(0f, top - (trade ? 234f : 199f)), new Vector2(CardWidth - 40f, trade ? 56f : 76f));
         Place(card.stack.rectTransform, new Vector2(0f, top - (trade ? 298f : 286f)), new Vector2(CardWidth - 28f, trade ? 68f : 92f));
@@ -273,30 +296,56 @@ public sealed class BossRewardPanelUI : MonoBehaviour
         root.SetParent(row, false);
         root.anchorMin = root.anchorMax = new Vector2(0.5f, 0.5f);
         root.sizeDelta = new Vector2(CardWidth, CardHeight);
-        Plate(root, "Ink shadow", new Color32(40, 29, 43, 220), new Vector2(7f, -8f), new Vector2(7f, -8f));
-        Plate(root, "Ink outline", Ink, Vector2.zero, Vector2.zero);
-        Plate(root, "Cream paper", new Color32(255, 242, 210, 255), new Vector2(4f, 4f), new Vector2(-4f, -4f));
-        var header = Plate(root, "Green header", new Color32(150, 214, 120, 255), new Vector2(7f, 0f), new Vector2(-7f, -7f));
-        var headerRect = header.rectTransform;
-        headerRect.anchorMin = new Vector2(0f, 1f);
-        headerRect.offsetMin = new Vector2(7f, -76f);
+        // Comic kağıt kiti (Docs/UI-Dili.md): krem kutu; ad plakası altına boyanmış etiket şeridi (altın = ödül). Kit yoksa eski
+        // kâğıt plakaları (başlık bandı yuva satırı kadar).
+        bool kit = ComicKit.Ready && ComicKit.Get("label_cream") != null && ComicKit.Get("slot_gold") != null;
+        float top = CardHeight * 0.5f;
+        float slotX = -CardWidth * 0.5f + 28f + ItemSize * 0.5f, rowY = top - HeaderPad - ItemSize * 0.5f;
+        float nameLeft = slotX + ItemSize * 0.5f + 12f, nameRight = CardWidth * 0.5f - 22f;
+        if (kit)
+        {
+            Image box = ComicKit.Sliced(root, "Comic Panel", "panel_cream", 768f / CardWidth);
+            var boxRect = box.rectTransform;
+            boxRect.anchorMin = Vector2.zero; boxRect.anchorMax = Vector2.one;
+            boxRect.offsetMin = new Vector2(-6f, -8f); boxRect.offsetMax = new Vector2(8f, 6f);
+            Image plate = ComicKit.Sliced(root, "Name Plate", "label_cream", 176f / 66f);
+            plate.color = RewardGold;
+            Place(plate.rectTransform, new Vector2((nameLeft + nameRight) * 0.5f, rowY), new Vector2(nameRight - nameLeft, 66f));
+        }
+        else
+        {
+            Plate(root, "Ink shadow", new Color32(40, 29, 43, 220), new Vector2(7f, -8f), new Vector2(7f, -8f));
+            Plate(root, "Ink outline", Ink, Vector2.zero, Vector2.zero);
+            Plate(root, "Cream paper", new Color32(255, 242, 210, 255), new Vector2(4f, 4f), new Vector2(-4f, -4f));
+            var header = Plate(root, "Green header", new Color32(150, 214, 120, 255), new Vector2(7f, 0f), new Vector2(-7f, -7f));
+            var headerRect = header.rectTransform;
+            headerRect.anchorMin = new Vector2(0f, 1f);
+            headerRect.offsetMin = new Vector2(7f, -HeaderHeight);
+        }
 
         var card = new Card { root = root };
-        float top = CardHeight * 0.5f;
-        card.title = CreateText(root, "Name", 34f, TextAlignmentOptions.Center, Ink);
-        Place(card.title.rectTransform, new Vector2(0f, top - 42f), new Vector2(CardWidth - 30f, 56f));
-        // Üç metin bölgesi alt alta, üst üste binmeden: etki (başlığın altı), açıklama, birikim (düğmenin üstüne kadar).
+        card.title = CreateText(root, "Name", 28f, TextAlignmentOptions.Center, Ink);
+        if (kit) ComicKit.Display(card.title, false);   // altın plakada koyu mürekkep Bungee
+        // Ad plakaya sığmazsa önce iki satıra iner, sonra küçülür (yalnız yazı değişince, karede değil); kesilmez.
+        card.title.enableAutoSizing = true;
+        card.title.fontSizeMin = 14f;
+        card.title.fontSizeMax = kit ? 24f : 28f;
+        card.title.overflowMode = TextOverflowModes.Overflow;
+        card.title.textWrappingMode = TextWrappingModes.Normal;
+        Place(card.title.rectTransform, new Vector2((nameLeft + nameRight) * 0.5f - 2f, rowY + 2f), new Vector2(nameRight - nameLeft - 44f, 52f));
+        CreateItemSlot(card, new Vector2(slotX, rowY), kit);
+        // Üç metin bölgesi alt alta, üst üste binmeden: etki (item yuvasının altı), açıklama, birikim (düğmenin üstüne kadar).
         // Uzun metin satır kırar; sığmazsa bölgenin en küçük puntosuna kadar küçülür, kartın dışına taşmaz.
         card.effect = CreateText(root, "Effect", 27f, TextAlignmentOptions.Center, Plus);
         Wrap(card.effect, 20f, 27f);
-        Place(card.effect.rectTransform, new Vector2(0f, top - 124f), new Vector2(CardWidth - 36f, 70f));
+        Place(card.effect.rectTransform, new Vector2(0f, top - ImageShift - 124f), new Vector2(CardWidth - 36f, 70f));
         card.note = CreateText(root, "Note", 19f, TextAlignmentOptions.Center, Muted);
         Wrap(card.note, 15f, 19f);
-        Place(card.note.rectTransform, new Vector2(0f, top - 199f), new Vector2(CardWidth - 40f, 76f));
+        Place(card.note.rectTransform, new Vector2(0f, top - ImageShift - 199f), new Vector2(CardWidth - 40f, 76f));
         // Şu anki birikim ve seçince oluşacak toplam. Uzun etki (Hasat Ritmi) ikinci satırı kırar.
         card.stack = CreateText(root, "Stack", 21f, TextAlignmentOptions.Center, Ink);
         Wrap(card.stack, 15f, 21f);
-        Place(card.stack.rectTransform, new Vector2(0f, top - 286f), new Vector2(CardWidth - 28f, 92f));
+        Place(card.stack.rectTransform, new Vector2(0f, top - ImageShift - 286f), new Vector2(CardWidth - 28f, 92f));
         // Aşama etiketi kartın üstünde durur (yalnız aşamalı havuzda görünür).
         card.stage = CreateText(root, "Stage", 18f, TextAlignmentOptions.Center, Color.white);
         card.stage.enableAutoSizing = true;
@@ -304,10 +353,43 @@ public sealed class BossRewardPanelUI : MonoBehaviour
         card.stage.fontSizeMax = 18f;
         Place(card.stage.rectTransform, new Vector2(0f, top + 20f), new Vector2(CardWidth, 28f));
         card.stage.gameObject.SetActive(false);
-        card.button = CreateButton(root, "Choose", "AL", "green", new Vector2(220f, 76f));
+        // Düğme kartın altına göre durur: birikim yazısıyla arasındaki 6 px pay kart uzasa da aynı kalır.
+        card.button = CreateButton(root, "Choose", "", "green", new Vector2(220f, 76f));
+        if (kit) ComicKit.StyleButton(card.button, ComicKit.Gold);   // altın = ödül al
+        TMP_Text chooseLabel = card.button.GetComponentInChildren<TMP_Text>(true);
+        if (chooseLabel != null) LocalizedText.Bind(chooseLabel, "ui.reward.panel.choose");
         Place((RectTransform)card.button.transform, new Vector2(0f, -top + 54f), new Vector2(220f, 76f));
         card.button.onClick.AddListener(() => Request(card));
         return card;
+    }
+
+    // Item yuvası kutunun sol üstünde: kitin altın karesi (altın = ödül). İçinde iki görsel: ödülün sprite'ı ya da yer tutucu ikon
+    // (Fill seçer).
+    private static void CreateItemSlot(Card card, Vector2 position, bool kit)
+    {
+        Image slot = ComicKit.Sliced(card.root, "Item Slot", kit ? "slot_gold" : "slot_white", 256f / ItemSize);
+        if (slot.sprite == null) slot.color = new Color32(240, 222, 182, 255);   // kit yok: kâğıttan biraz koyu düz kare
+        Place(slot.rectTransform, position, new Vector2(ItemSize, ItemSize));
+        card.itemImage = Inset<Image>(slot.rectTransform, "Item Image", 13f);
+        card.itemImage.preserveAspect = true;
+        card.itemImage.gameObject.SetActive(false);
+        card.itemBadge = Inset<ResonanceBadgeGraphic>(slot.rectTransform, "Item Badge", 15f);
+    }
+
+    // Yuvayı her kenardan inset kadar içeriden dolduran, tıklama almayan görsel.
+    private static T Inset<T>(RectTransform parent, string name, float inset) where T : Graphic
+    {
+        var go = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(T));
+        go.layer = parent.gameObject.layer;
+        var rect = (RectTransform)go.transform;
+        rect.SetParent(parent, false);
+        rect.anchorMin = Vector2.zero;
+        rect.anchorMax = Vector2.one;
+        rect.offsetMin = new Vector2(inset, inset);
+        rect.offsetMax = new Vector2(-inset, -inset);
+        var graphic = go.GetComponent<T>();
+        graphic.raycastTarget = false;
+        return graphic;
     }
 
     private static void Wrap(TextMeshProUGUI text, float min, float max)

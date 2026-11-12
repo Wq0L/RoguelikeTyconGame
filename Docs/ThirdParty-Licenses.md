@@ -163,6 +163,62 @@
   - Saf AI çıktısının telif koruması bazı ülkelerde sınırlı olabilir. Benzer bir kiti başkası da kullanabilir.
 - **Bildirim:** kullanıcıya kullanımdan (oyuna bağlamadan) önce konuşmada bildirildi (6 Kasım 2026).
 
+## Sekizgen saksı modelleri — kullanıcının GPT ile ürettiği modeller, OYUNDA DAĞITILIR; boyalı dokuları prototipte (11 Kasım 2026)
+
+- **Kategori:** oyunda dağıtılan varlık (3B model + palet dokusu). Modeller zaten oyunda kullanılıyor; kaynakları bu tarihe kadar kayıtlı değildi.
+- **Kaynak:** kullanıcı bu konuşmada bildirdi: "gpt ile üretildi, ben yaptım". Kullanıcı OpenAI araçlarıyla üretti.
+  - Dosyalar: `Assets/3D Assets/AI/Models/Saksı 1x1.fbx`, `Saksı 1x2.fbx`, `Saksı 1x3.fbx`, `Saksı 2x2.fbx`, `Saksı 2x3.fbx`, `M_Saksı.mat`, palet dokuları `M_AIs/CAN_02_*.png`.
+  - Kaydedilmedi: hangi OpenAI aracının kullanıldığı ve hangi adımların elle yapıldığı.
+- **Türetilen dosyalar (12 Kasım 2026'dan beri OYUNDA):**
+  - `Tools/Art/HadesPrototype/paint_planter.py` (Blender + numpy) yeni bir UV açar. Özgün paletten rengi aktarır, kuralla boyar (AI kullanılmadı).
+  - Çıktılar: `Assets/Art/Painted/Meshes/Saksi_<boy>_Boyali.fbx`, `Assets/Art/Painted/Textures/T_Saksi_<boy>_Boyali.png`. Özgün FBX'ler değişmedi.
+  - Ayrıntı: `Docs/Boyali-Gorunum.md`.
+- **Lisans:** OpenAI Kullanım Şartları. Koşullar yukarıdaki "HUD kart kiti" kaydıyla aynıdır (o kayıttaki kontrol tarihi 6 Kasım 2026):
+  - Çıktı kullanıcıya aittir; ticari kullanım engeli yoktur.
+  - AI çıktısını insan yapımıymış gibi göstermek yasaktır.
+- **Ücret / royalty:** yok.
+- **Kredi:** zorunlu değil.
+- **Dağıtım:** lisans metni koyma zorunluluğu yok.
+- **Dikkat:** Steam'deki "önceden üretilmiş AI içeriği" beyanına saksı modelleri de yazılmalı. Modeller oyunda sürekli görünüyor.
+- **Bildirim:** 11 Kasım 2026, boyalı dokular oyuna girmeden önce konuşmada kaydedildi.
+- **Açık konu:** karo modeli `Assets/3D Assets/Main Assets/GroundFBX/SM_Floor_V1.fbx` (boyalı karo dokusu bunun geometrisinden üretildi). Kaynağı ve lisansı bu dosyada kayıtlı değil. Boyalı karo oyuna girmeden önce sorulmalı.
+
+## Yetenek ve kaynak ikonları (19 adet) — kullanıcının sağladığı görseller, OYUNDA DAĞITILIR (12 Kasım 2026)
+
+- **Kategori:** oyunda dağıtılan varlık (UI sprite).
+- **Dosyalar:** `Assets/Art/SkillIcons/*.png`, 512×512 saydam PNG.
+  - Yetenek ağacının 19 ikonu.
+  - `gold`, `iron` ve `stone` aynı zamanda oyunun kaynak ikonları.
+- **Kaynak:** Kullanıcı teyit etti: "gpt ile yapıldı" (12 Kasım 2026). Kullanıcı kendi ChatGPT hesabıyla, OpenAI görsel üretimiyle yaptırdı.
+  - Liste ve teknik istek `Docs/SkillTree-Ikon-Listesi.md` içinde.
+  - İnternetten başka içerik indirilmedi.
+- **Lisans:** OpenAI Kullanım Şartları. Koşullar yukarıdaki "HUD kart kiti" kaydıyla aynı (o kayıttaki kontrol tarihi 6 Kasım 2026):
+  - Çıktı kullanıcıya aittir; ticari kullanım engeli yoktur.
+  - Çıktı benzersiz olmayabilir.
+  - AI çıktısını insan yapımıymış gibi göstermek yasaktır.
+- **Ücret / royalty:** yok (kullanıcının ChatGPT aboneliği dışında).
+- **Kredi:** zorunlu değil.
+- **Dağıtım:** lisans metni koyma zorunluluğu yok.
+- **Dikkat:**
+  - Steam'deki "önceden üretilmiş AI içeriği" beyanına yetenek ve kaynak ikonları da yazılmalı.
+  - Saf AI çıktısının telif koruması bazı ülkelerde sınırlı olabilir.
+- **Değiştirme:** Pikseller değiştirilmedi; Unity içe aktarmada en çok 256 px'e küçültülür.
+- **Bildirim:** 12 Kasım 2026, konuşmada kaynak soruldu.
+
+## Ana menü canlı arka plan taslakları — Higgsfield / GPT Image 2.6 + Kling 3.0, DAĞITILMAZ (11 Kasım 2026)
+
+- **Kategori:** deneme çıktısı, oyunda yok. **Kullanıcı reddetti** ("stili AI slop duruyor, benzersiz stil korunmalı"); oyuna girmeyecek.
+  - Dosyalar: `Docs/MenuArkaPlan/Taslak1/` (3 sabit sahne + canlandırılmış döngü videoları).
+- **Üretim:** kullanıcının Higgsfield hesabından, kullanıcı onayıyla (bütçe 20 kredi).
+  - Sabit sahneler: GPT Image 2.6 (OpenAI), orta kalite 2K, 3 görsel, 3 kredi.
+  - Canlandırma: Kling 3.0 std, sessiz, başlangıç ve bitiş karesi aynı görsel (döngü). 5 sn ve 4 sn, 7,5 + 6 kredi. Kling 3.0 pro Starter planda açık değil, std kullanıldı.
+  - Referans olarak yalnız oyunun kendi comic kağıt kiti parçalarından derlenen örnek sayfa verildi (`Assets/Resources/ComicPack/` sprite'ları).
+- **Lisans:** aşağıdaki Higgsfield kaydının koşulları (çıktı kullanıcıya ait, ücretli planda ticari kullanım dahil). Ücret: yalnız kredi. Kredi ya da lisans metni zorunluluğu yok. Alt sağlayıcılar (OpenAI, Kling) için yayından önce güncel şartlar bir kez daha okunmalı.
+- **Oyuna girerse:** Steam'de "önceden üretilmiş AI içeriği" beyanı zaten zorunlu (Eri tabloları, UI kiti); menü arka planı da o beyana eklenir.
+- **İkinci tur (aynı gün, kullanıcı isteği "Blender ile Higgsfield'ı birleştir"):** kompozisyon bizim Blender iskeletimiz (`Tools/Art/MenuScene/build_menu_blockout.py`, özgün basit geometri, dış varlık yok). Higgsfield yalnız yüzeyi boyadı: GPT Image 2.6 yüksek 2K ×2 + Nano Banana Pro 2K ×1 (7,5 kredi), seçilen sürüm Kling 3.0 std ile 5 sn döngü (7,5 kredi). Dosyalar `Docs/MenuArkaPlan/Taslak2/`. Kullanıcının 30 kredi sınırı içinde, sormadan gönderme izniyle. Henüz oyunda değil; seçilirse bu kayıt "dağıtılır" olur.
+  Kullanıcı: "fena değil ama hâlâ AI slop hissi var", "öndeki objelerin basitliği sorun".
+- **Üçüncü tur (aynı gün):** temel kare oyunun kendi sahnesinden, izole kopyada çekildi (`Tools/Verification/Editor/MenuSceneCapture.cs`: GameScene + Mechanics Test Lab oturumu, arayüz gizli, perspektif kamera). İçinde oyunun kullandığı modeller var: sekizgen saksılar (`Assets/3D Assets/AI/Models/Saksı *.fbx`), mahsuller (NewLua Studios "Stylized Farm Crops", satın alınmış paket), karolar, oyunun uzay arka planı ve gezegeni. Bu kareler Higgsfield'a referans olarak gönderildi (model dosyası değil, yalnız ekran görüntüsü). GPT Image 2.6 yüksek 2K ×2 + Nano Banana Pro ×1 (7,5 kredi), seçilen sürüm Kling 3.0 std 5 sn döngü (7,5 kredi). Dosyalar `Docs/MenuArkaPlan/Taslak3/`. **Açık konu:** NewLua paketinin (Unity Asset Store) lisansı, ekran görüntüsünün bir AI hizmetine referans olarak verilmesi hakkında bir şey söylüyor mu, okunmadı; seçilen arka plan oyuna girmeden önce paket lisansı okunmalı.
+
 ## HUD toon denemesi — Higgsfield / GPT Image 2.6, DAĞITILMAZ (6 Kasım 2026)
 
 - **Kategori:** deneme çıktısı, oyunda yok.
@@ -668,3 +724,12 @@ korunur. Tools geliştirme üreticileri; Assets oyunda dağıtılan varlıklard�
   yeniden üretilen B ağları `Assets/Art/LateGame/GraftedShell/` altında; dış kaynak yok.
 - Geometri, renkler ve animasyon özgün; dış model, doku, font, eklenti veya paket yok. Ücret/royalty yok, kredi zorunluluğu yok,
   dağıtım paketine lisans metni gerekmiyor.
+
+## Skill Icons — kullanıcı onaylı AI ikonları (12 Kasım 2026)
+
+- Kaynak: Bu konuşmada yerleşik OpenAI image_gen ile üretilen 19 ikon; kullanıcı üretim setini onaylayıp Assets/Art/SkillIcons/ klasörüne taşınmasını istedi.
+- Dosyalar: attack, speed, area, critical, spawn, rare, gold, iron, stone, xp, score, grid, planter, cards, explosion, duplicate, tornado, scythe, electric (.png).
+- Üretim istemleri ve kaynaklar: output/SkillIcons-20261112/prompts.json; onay görünümü: output/SkillIcons-20261112/Review.png. Arşiv: output/SkillIcons-20261112.zip.
+- İşlem: Saydam 512×512 teslim PNG'leri onay setinden değiştirilmeden taşındı; 19 SHA-256 değeri manifest ile karşılaştırıldı. Stil referansı bu konuşmada üretilen comic UI kitidir. HUD ikon pikselleri kopyalanmadı.
+- Yeni üçüncü taraf görsel, font, paket veya araç indirilmedi. Bu kayıt özgün üretim kaydıdır; yeni üçüncü taraf lisansı beyanı değildir. Mevcut Comic Paper UI kaydındaki OpenAI çıktı koşulları kaynak bağlamıdır.
+- Durum: Varlıklar Assets altında hazır; sahneye, prefab'a veya skill verilerine bağlanmadı. Unity import ayarları ve Edit/Play görünümü bu dosya taşıma görevinde değiştirilmedi/doğrulanmadı.

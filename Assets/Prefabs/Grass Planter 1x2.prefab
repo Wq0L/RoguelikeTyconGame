@@ -280,8 +280,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 3407fdc585b3bcf41818491b1a1bdb93, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
-      value:
-      objectReference: {fileID: 2100000, guid: e7bf8654c149feb4082f5d07606ea7d5, type: 2}
+      value: 
+      objectReference: {fileID: 2100000, guid: ae7bb1181b6bcb045990b554cb01618b, type: 2}
+    - target: {fileID: -5754084199372789682, guid: 3407fdc585b3bcf41818491b1a1bdb93, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -8085799001058810822, guid: 10197479c8347e940bb4d040c1f06986, type: 3}
     - target: {fileID: 919132149155446097, guid: 3407fdc585b3bcf41818491b1a1bdb93, type: 3}
       propertyPath: m_Name
       value: "Saks\u0131 1x2"

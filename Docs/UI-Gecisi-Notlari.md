@@ -137,3 +137,32 @@ HUD, hazırlık ekranı, harita, koordinatlar ve saksı dükkânı comic kağıt
 Eşleme ve iş listesi `Docs/UI-Envanter.md` §6'da.
 
 **Güncelleme, aynı gün:** kullanıcı "yaptın mı" diye sorunca uygulandı ve test edildi. Görüntüler: `Docs/UI-Kit-Oyunda/c9_*`. Açık kalanlar envanter §6'da.
+
+### Durum: ana menü, seçim ekranı, boss item kutusu, ağaç zemini ve hissi (10–11 Kasım 2026)
+
+Kullanıcı isteğiyle yapıldı ve izole kopyada test edildi; Play'de bakılması bekleniyor. Ayrıntı `Docs/UI-Envanter.md` §7, görüntüler `Docs/UI-Kit-Oyunda/` (`d1`–`d4`, `c9_*`).
+
+- **"Yetenek ağacı boş ve küçük" maddesi:** zemin, düğüm boyu, yerleşim ve his ele alındı. Kök düğümlerin başlangıca uzaklığı verideki konumlardan geldiği için açık.
+- **Sırada:** ayarlar penceresi, kart seçimi, önizleme, run sonu; boss ödülü item görselleri (kullanıcı üretecek).
+
+## Ertelendi: editörde düzenleme kuralına taşıma (11 Kasım 2026)
+
+`AGENTS.md` "Zorunlu editörde düzenleme ve önizleme kuralı"na göre görünüm, Play'e basmadan editörde görülüp düzenlenebilmeli. 6–11 Kasım comic kit işlerinin **hiçbiri bu kurala uymuyor**: hepsi oyun başlarken kodla kuruluyor, sahne ve prefab'larda eski görünüm duruyor.
+
+Kullanıcı kararı: "sonra taşırız, şu an bitirip yetiştirmemiz gerekenler var". Taşıma, ilgili ekran üzerinde çalışılırken ekran ekran yapılacak. O zamana kadar bu ekranlar **editör tarafı eksik** sayılır.
+
+| Ekran | Şu an kim kuruyor | Hedef |
+|---|---|---|
+| HUD (round, süre, kaynaklar, Lv/XP, kota kartı), alt butonlar, GERİ butonları, round sonu | `UIManager.Start` → `ComicHud.Install`, `ComicKit.StyleRoundEnd`, `StyleButton` | sahneye kaydedilmiş hâl (tekrar çalışınca çoğaltmayan, Undo'lu "Uygula / Güncelle" aracıyla), koddaki kurulum kalkar |
+| Ana menü butonları | `MainMenuUI.ApplyComicKit` (Start): konum / boyut 11 Kasım'dan beri sahnede (`sceneLayout`), sprite ve yazı stili hâlâ çalışma anında | menü sahnesine kaydedilmiş hâl |
+| Saksı dükkânı | `PlanterShopPanelUI.UseComicKit` | sahne / prefab |
+| Round özeti, yeni tile paneli | `RoundSummaryUI`, `RoundNewTilesUI` (Awake) | sahne / prefab |
+| Çiftçi / tırpan kartları | `StartSelectionPanelUI` (Awake, kartları kod çiziyor) | kart prefab'ı + editörde örnek veriyle önizleme |
+| Boss ödülü kare item kutusu | `BossRewardPanelUI` (Awake) | kutu prefab'ı + önizleme |
+| Harita grid'i, koordinat etiketleri | `RoundMapUI`, `GridCoordinateLabels` | hücre / etiket prefab'ı + önizleme |
+| Yetenek ağacı | `SkillNodeUI` (kare, noktalar, etiket) + `SkillTreeUI.ApplyLayout` (84 / 112, koridor sıkıştırma) yalnız oyunda | düğüm prefab'ı + "Ağacı önizle / güncelle" aracı (oyunla aynı yerleşim hesabı, oyun ilerlemesine dokunmaz) |
+| Bilgi kutuları / popup'lar | `ComicPopupView` (tamamen kodla) | prefab |
+
+Kodda kalabilecekler: duruma göre sprite değişimi, animasyon ve his, verinin yazıya bağlanması. Önerilen ilk ekran: yetenek ağacı.
+
+**Ana menü arka planı (11 Kasım):** canlı sahne kurala uygun yapıldı: prefab + MenuScene, editörde görünür ve düzenlenir; kodda yalnız hareket. Ayrıntı `Docs/UI-Envanter.md` §7 "Ana menü — canlı sahne".

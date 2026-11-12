@@ -20,6 +20,12 @@ public sealed class GridUnlockFeel : MonoBehaviour
     // Üst HUD için pay (H9, 6 Kasım 2026): tarla ekran yüksekliğinin bu oranı kadar aşağıda durur; round kartı en üst koordinat
     // rozetini örtmez. Her çerçevede aynı oran (kamera kendi yukarı ekseninde kayar).
     public const float HudTopRoom = .05f;
+    // 12 Kasım 2026 (kullanıcı: "round kartı / süre bazı şeylerin üstüne çıkıyor"): yeni round kartı + süre plakası daha büyük ve
+    // geniş pencerede arayüz büyüyor; pay artık arayüzün gerçek alt kenarından hesaplanır (en az HudTopRoom). Tarlanın üst köşesi
+    // arayüzün HudGap kadar altında kalır; alt köşe ekrandan taşmaz (HudBottomGap). Pencere boyutu ya da arayüz değişince yeniden.
+    public const float HudGap = .015f, HudBottomGap = .01f;
+    private int layoutWidth, layoutHeight, layoutHud = -1;
+    private bool layoutLabels;
 
     private struct Cell
     {
@@ -47,6 +53,17 @@ public sealed class GridUnlockFeel : MonoBehaviour
         if (!initialized && !TryInitialize()) return;
         if (HasPending && FieldVisible()) Begin();
         if (playAge >= 0f) Step(Time.deltaTime);
+        else if (LayoutChanged()) ApplyFraming(shownSize, false);   // pencere boyutu / arayüz kuruldu: üst payı yeniden hesapla
+    }
+
+    // Pencere boyutu, arayüzün alt kenarı (binde bir hassasiyetle) ya da koordinat rozetleri değişince: bellek ayırmaz.
+    private bool LayoutChanged()
+    {
+        int hud = ComicHud.TryGetTopCenterBottom(out float bottom) ? Mathf.RoundToInt(bottom * 1000f) : -1;
+        bool labels = GameSettings.GridCoordinates && GridCoordinateLabels.Active != null;
+        if (Screen.width == layoutWidth && Screen.height == layoutHeight && hud == layoutHud && labels == layoutLabels) return false;
+        layoutWidth = Screen.width; layoutHeight = Screen.height; layoutHud = hud; layoutLabels = labels;
+        return true;
     }
 
     private bool TryInitialize()
@@ -170,9 +187,43 @@ public sealed class GridUnlockFeel : MonoBehaviour
         Vector3 shift = center - look;
         shift.y = 0f;
         shift *= Mathf.InverseLerp(1f, .5f, scale);
-        // Kamera yukarı kayınca tarla ekranda aşağı iner: görünen yüksekliğin HudTopRoom kadarı (2 × ortho boyu × oran).
-        if (feel.BaseSize > 0f) shift += feel.BaseWorldRotation * Vector3.up * (2f * feel.BaseSize * scale * HudTopRoom);
+        // Kamera yukarı kayınca tarla ekranda aşağı iner: görünen yüksekliğin "room" kadarı (2 × ortho boyu × oran).
+        if (feel.BaseSize > 0f) shift += feel.BaseWorldRotation * Vector3.up * (2f * feel.BaseSize * scale * HudRoom(feel, scale, shift, center));
         feel.SetFraming(scale, shift, animate);
+    }
+
+    // Tarlanın ekrandaki üst / alt köşesi (görünen alanın dört dış köşesinden) ve arayüzün alt kenarından gereken pay.
+    private float HudRoom(CameraFeel feel, float scale, Vector3 shift, Vector3 center)
+    {
+        if (!ComicHud.TryGetTopCenterBottom(out float hudBottom)) return HudTopRoom;
+        GridSystem system = grid.GetGridSystem();
+        float cell = (system.GetWorldPosition(1, 0) - system.GetWorldPosition(0, 0)).magnitude;
+        float half = (Mathf.RoundToInt(scale * grid.GetWidth()) / 2 + .5f) * cell;   // görünen alanın yarı kenarı (dünya)
+        float size = feel.BaseSize * scale;                                          // ortografik yarı yükseklik
+        Vector3 up = feel.BaseWorldRotation * Vector3.up;
+        Vector3 look = feel.BaseLookPoint(center.y) + shift;                         // ekranın ortası
+        float top = float.MinValue, bottom = float.MaxValue;
+        for (int i = 0; i < 4; i++)
+        {
+            Vector3 corner = center + new Vector3((i & 1) == 0 ? -half : half, 0f, (i & 2) == 0 ? -half : half);
+            float v = .5f + Vector3.Dot(corner - look, up) / (2f * size);             // ekranda 0 alt, 1 üst
+            top = Mathf.Max(top, v); bottom = Mathf.Min(bottom, v);
+        }
+        // Koordinat rozetleri (harfler üst kenarın, sayılar sol kenarın dışında): üst köşe yanındaki uç rozetler de arayüzün altında kalsın.
+        GridCoordinateLabels labels = GridCoordinateLabels.Active;
+        if (labels != null && GameSettings.GridCoordinates)
+        {
+            // Rozetler kameraya dönük dik levha: merkezleri yerde kenarın dışında, ekranda yarı boyları kadar yukarı uzanırlar.
+            float reach = labels.OuterReach(scale), plate = labels.PlateHalf(scale);
+            float along = half - .5f * cell;                                            // son sütun / satır merkezi
+            Vector3 lift = Vector3.up * labels.LabelHeight;
+            Vector3 columnEnd = center + new Vector3(along, 0f, half + reach) + lift;   // son sütun harfi (üst kenar dışında)
+            Vector3 rowEnd = center + new Vector3(-half - reach, 0f, along) + lift;     // en üst satır sayısı (sol kenar dışında)
+            top = Mathf.Max(top, .5f + (Vector3.Dot(columnEnd - look, up) + plate) / (2f * size));
+            top = Mathf.Max(top, .5f + (Vector3.Dot(rowEnd - look, up) + plate) / (2f * size));
+        }
+        float needed = hudBottom + HudGap - (1f - top);
+        return Mathf.Max(HudTopRoom, Mathf.Min(needed, bottom - HudBottomGap));
     }
 
     // Merkezden ring halka uzaklığındaki hücreler (Chebyshev), minRing ≤ ring ≤ maxRing, grid içinde.

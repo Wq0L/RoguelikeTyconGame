@@ -1174,7 +1174,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219703
-    m_Localized: Kart yenileme
+    m_Localized: Kart atlama
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219704
@@ -3126,6 +3126,22 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 530164224905216
     m_Localized: '{0} / {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2315510637940736
+    m_Localized: AL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2317584742240256
+    m_Localized: '{0} {1} eksik'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2473096205062144
+    m_Localized: ERIGONE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2714466735902720
+    m_Localized: "Kartlar\u0131 Ge\xE7 ({0})"
     m_Metadata:
       m_Items: []
   references:

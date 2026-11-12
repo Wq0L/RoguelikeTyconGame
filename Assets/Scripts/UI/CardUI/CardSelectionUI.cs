@@ -8,6 +8,7 @@ public class CardSelectionUI : MonoBehaviour
     [SerializeField] private List<TileModifierSO> allModifiers; // tüm SO'lar buraya
     [SerializeField] private List<CardUI> cardSlots;            // 3 kart slotu
     [SerializeField] private Button skipButton;
+    private TMP_Text skipLabel;   // düğme yazısı: kalan hak ile ("Kartları Geç (2)")
 
     // Tip ağırlıkları — sabit
     private Dictionary<TileModifierType, float> typeWeights = new()
@@ -86,10 +87,17 @@ public class CardSelectionUI : MonoBehaviour
 
         if(skipButton != null)
         {
-            bool canSkip = RoundManager.Instance.SkipUsesRemaining > 0;
+            int skipsLeft = RoundManager.Instance.SkipUsesRemaining;
+            bool canSkip = skipsLeft > 0;
             skipButton.gameObject.SetActive(canSkip);
             skipButton.onClick.RemoveAllListeners();
             skipButton.onClick.AddListener(OnSkipPressed);
+            // Kalan hak düğmede (12 Kasım 2026, kullanıcı: "kalan hak sayısı gözüksün"): "Kartları Geç (2)". Hak bitince düğme kapanır.
+            if (canSkip)
+            {
+                if (skipLabel == null) skipLabel = skipButton.GetComponentInChildren<TMP_Text>(true);
+                LocalizedText.Bind(skipLabel, "ui.game.skip_cards_count", skipsLeft);
+            }
         }
 
         DealCards();

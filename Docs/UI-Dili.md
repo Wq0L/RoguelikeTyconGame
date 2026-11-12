@@ -48,6 +48,12 @@ Kaynaklar:
 - Geçişi Unity'nin kendi **SpriteSwap**'ı yapar (`ComicKit.StyleButton`). Seçili hâl normal görseldir, tıklanınca buton parlak kalmaz.
 - Hover hareketi `ComicHoverMotion` ile yapılır (1.05 ölçek); eskisi gibi kalır.
 - AI'dan ayrı hâl görseli istenmez.
+- **His ölçüleri** (yetenek ağacı; yeni ekranlarda aynı aile kullanılır):
+  - üstüne gelme: 1,12 ölçek, 0,14 sn, geri yaylanma;
+  - dikkat çekme: yalnız hafif nefes (%3,5), yanıp sönme ya da tekrarlayan etiket yok;
+  - alınamaz: kısa sallanma + pes ses;
+  - yeni görünen şey zıplayarak belirir, çizgi uzar;
+  - hepsi unscaled time, rastgelelik yok, oynanış zamanlaması değişmez.
 
 ## 4. Yazı
 
@@ -125,6 +131,9 @@ Kullanıcının kuralı: "yazılar değişse de her şey düzgün gözüksün".
 
   - Kademe noktaları küçük altın (dolu) ve kömür (boş) karelerdir.
   - Bağlantılar krem mürekkepli çizgidir (`line_cream`).
+- **Yetenek ağacı yerleşimi:** düğüm 76 px, aralık 120 px, dallar arası koridor 2 hücre. Yetenek verisine dokunulmaz; yer `SkillTreeUI.ApplyLayout` ile verilir.
+- **Yetenek ağacı zemini:** comic pano (`ComicBoardBackground`): lacivert kâğıt, tram, düz yıldız, düğümlere oturan ızgara. Yumuşak nebula, parlama ya da gerçekçi uzay kullanılmaz.
+- **Seçilen ödül / item kutusu:** kareye yakın kutu, sol üstte kare görsel yuvası (`slot_gold`), yanında ad plakası. Uzun dikey kart kullanılmaz.
 - **Tooltip'ler** (hepsi ortak `ComicPopupView`): krem panel, amber'e boyalı etiket şeridi, başlık Bungee. Şerit ve içerik, şeridin alt kenarı alt yazıya binmesin diye biraz aşağıdan başlar.
 
 ## 7. Teknik kurallar

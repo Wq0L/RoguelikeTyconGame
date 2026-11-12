@@ -329,8 +329,11 @@ public class RoundManager : MonoBehaviour
         EndSlowdownProgress = 0f;
         lastDisplayedSecond = -1;
 
+        // Round başına atlama hakkı: 1 temel + CardSkip (İlk / İkinci Vazgeçiş). RerollCard eski, yanlış adlandırılmış ad (12 Kasım
+        // 2026, kullanıcı: "isimlendirme yanlış, skip olayına entegre edelim"): ona bağlanan etki de atlama hakkı verir.
         skipUsesRemaining = 1 + Mathf.RoundToInt(
-        StatManager.Instance.GetFinalStat(StatType.CardSkip, StatTarget.All));
+            StatManager.Instance.GetFinalStat(StatType.CardSkip, StatTarget.All) +
+            StatManager.Instance.GetFinalStat(StatType.RerollCard, StatTarget.All));
 
         OnRoundChanged?.Invoke(CurrentRound);
         GameManager.Instance.StartGame();

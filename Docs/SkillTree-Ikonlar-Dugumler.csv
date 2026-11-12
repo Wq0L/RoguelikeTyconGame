@@ -1,0 +1,105 @@
+icon,node_asset,name_tr,name_en,unlock,first_stat,tiers
+skill-area,Geniş Tarama - 4,Geniş Tarama,Wide Scan,None,AreaRadius,2
+skill-area,Geniş Tarama - 3,Geniş Tarama,Wide Scan,None,AreaRadius,2
+skill-area,Geniş Tarama - 2,Geniş Tarama,Wide Scan,None,AreaRadius,2
+skill-area,Geniş Tarama - 1,Geniş Tarama,Wide Scan,None,AreaRadius,3
+skill-area,Geniş Süpürüş - 1,Geniş Süpürüş,Wide Sweep,None,AreaRadius,3
+skill-area,Geniş Süpürüş - 2,Geniş Süpürüş,Wide Sweep,None,AreaRadius,2
+skill-area,Geniş Süpürüş - 3,Geniş Süpürüş,Wide Sweep,None,AreaRadius,2
+skill-area,Geniş Süpürüş - 4,Geniş Süpürüş,Wide Sweep,None,AreaRadius,2
+skill-attack,Keskin Başlangıç - 1,Keskin Başlangıç,Sharp Start,None,HarvestDamage,3
+skill-attack,Keskin Başlangıç - 2,Keskin Başlangıç,Sharp Start,None,HarvestDamage,2
+skill-attack,Keskin Başlangıç - 3,Keskin Başlangıç,Sharp Start,None,HarvestDamage,2
+skill-attack,Keskin Başlangıç - 4,Keskin Başlangıç,Sharp Start,None,HarvestDamage,2
+skill-attack,Kesim Tekniği - 4,Kesim Tekniği,Cutting Technique,None,HarvestDamage,2
+skill-attack,Kesim Tekniği - 3,Kesim Tekniği,Cutting Technique,None,HarvestDamage,2
+skill-attack,Kesim Tekniği - 2,Kesim Tekniği,Cutting Technique,None,HarvestDamage,2
+skill-attack,Kesim Tekniği - 1,Kesim Tekniği,Cutting Technique,None,HarvestDamage,3
+skill-attack,Güçlü Kesim - 1,Güçlü Kesim,Strong Cut,None,HarvestDamage,3
+skill-attack,Güçlü Kesim - 2,Güçlü Kesim,Strong Cut,None,HarvestDamage,2
+skill-attack,Güçlü Kesim - 3,Güçlü Kesim,Strong Cut,None,HarvestDamage,2
+skill-attack,Güçlü Kesim - 4,Güçlü Kesim,Strong Cut,None,HarvestDamage,2
+skill-attack,Kesim Ustalığı - 4,Kesim Ustalığı,Cutting Mastery,None,HarvestDamage,2
+skill-attack,Kesim Ustalığı - 3,Kesim Ustalığı,Cutting Mastery,None,HarvestDamage,2
+skill-attack,Kesim Ustalığı - 2,Kesim Ustalığı,Cutting Mastery,None,HarvestDamage,2
+skill-attack,Kesim Ustalığı - 1,Kesim Ustalığı,Cutting Mastery,None,HarvestDamage,3
+skill-attack,Ağır Kesim - 1,Ağır Kesim,Heavy Cut,None,HarvestDamage,3
+skill-attack,Ağır Kesim - 2,Ağır Kesim,Heavy Cut,None,HarvestDamage,2
+skill-attack,Ağır Kesim - 3,Ağır Kesim,Heavy Cut,None,HarvestDamage,2
+skill-attack,Ağır Kesim - 4,Ağır Kesim,Heavy Cut,None,HarvestDamage,2
+skill-cards,Kart Sezgisi - 1,Kart Sezgisi,Card Intuition,None,MutationLuck,3
+skill-cards,İkinci Vazgeçiş,İkinci Vazgeçiş,Second Skip,None,CardSkip,1
+skill-cards,İlk Vazgeçiş,İlk Vazgeçiş,First Skip,None,CardSkip,1
+skill-cards,Kart Sezgisi - 2,Kart Sezgisi,Card Intuition,None,MutationLuck,2
+skill-cards,Kart Sezgisi - 3,Kart Sezgisi,Card Intuition,None,MutationLuck,2
+skill-cards,Kart Sezgisi - 4,Kart Sezgisi,Card Intuition,None,MutationLuck,2
+skill-critical,Kritik Odak - 4,Kritik Odak,Critical Focus,None,CritChance,2
+skill-critical,Kritik Odak - 3,Kritik Odak,Critical Focus,None,CritChance,2
+skill-critical,Kritik Odak - 2,Kritik Odak,Critical Focus,None,CritChance,2
+skill-critical,Kritik Odak - 1,Kritik Odak,Critical Focus,None,CritChance,3
+skill-critical,Kritik Güç - 4,Kritik Güç,Critical Power,None,CritMultiplier,2
+skill-critical,Kritik Güç - 3,Kritik Güç,Critical Power,None,CritMultiplier,2
+skill-critical,Kritik Güç - 2,Kritik Güç,Critical Power,None,CritMultiplier,2
+skill-critical,Kritik Güç - 1,Kritik Güç,Critical Power,None,CritMultiplier,3
+skill-duplicate,Çifte Hasat Kartları,Çifte Hasat Kartları,Double Harvest Cards,TileBehavior_Duplicate,,1
+skill-electric,Çapraz Elektrik Kartları,Çapraz Elektrik Kartları,Cross Electric Cards,TileBehavior_Electric,,1
+skill-explosion,Patlayıcı Kartlar,Patlayıcı Kartlar,Explosive Cards,TileBehavior_Explosive,,1
+skill-gold,Altın Hasat II - 1,Altın Hasat II,Gold Harvest II,None,GoldGainMultiplier,3
+skill-gold,Altın Hasat II - 2,Altın Hasat II,Gold Harvest II,None,GoldGainMultiplier,2
+skill-gold,Altın Hasat II - 3,Altın Hasat II,Gold Harvest II,None,GoldGainMultiplier,2
+skill-gold,Altın Hasat II - 4,Altın Hasat II,Gold Harvest II,None,GoldGainMultiplier,2
+skill-gold,Altın Hasat I - 1,Altın Hasat I,Gold Harvest I,None,GoldGainMultiplier,3
+skill-gold,Altın Hasat I - 2,Altın Hasat I,Gold Harvest I,None,GoldGainMultiplier,2
+skill-gold,Altın Hasat I - 3,Altın Hasat I,Gold Harvest I,None,GoldGainMultiplier,2
+skill-gold,Altın Hasat I - 4,Altın Hasat I,Gold Harvest I,None,GoldGainMultiplier,2
+skill-grid,Grid Genişleme II,Grid Genişleme II,Grid Expansion II,None,GridUnlockSize,2
+skill-grid,Grid Genişleme I,Grid Genişleme I,Grid Expansion I,None,GridUnlockSize,2
+skill-iron,Zengin Cevher - 1,Zengin Cevher,Rich Ore,None,IronGainMultiplier,3
+skill-iron,Zengin Cevher - 2,Zengin Cevher,Rich Ore,None,IronGainMultiplier,2
+skill-iron,Zengin Cevher - 3,Zengin Cevher,Rich Ore,None,IronGainMultiplier,2
+skill-iron,Zengin Cevher - 4,Zengin Cevher,Rich Ore,None,IronGainMultiplier,2
+skill-iron,Demir Hasat - 1,Demir Hasat,Iron Harvest,None,IronGainMultiplier,3
+skill-iron,Demir Hasat - 2,Demir Hasat,Iron Harvest,None,IronGainMultiplier,2
+skill-iron,Demir Hasat - 3,Demir Hasat,Iron Harvest,None,IronGainMultiplier,2
+skill-iron,Demir Hasat - 4,Demir Hasat,Iron Harvest,None,IronGainMultiplier,2
+skill-planter,2×3 Saksı,2×3 Saksı,2×3 Planter,Planter_2x3,,1
+skill-planter,2×2 Saksı,2×2 Saksı,2×2 Planter,Planter_2x2,,1
+skill-planter,1×3 Saksı,1×3 Saksı,1×3 Planter,Planter_1x3,,1
+skill-rare,Nadir Filizler - 4,Nadir Filizler,Rare Sprouts,None,RareSpawnChance,2
+skill-rare,Nadir Filizler - 3,Nadir Filizler,Rare Sprouts,None,RareSpawnChance,2
+skill-rare,Nadir Filizler - 2,Nadir Filizler,Rare Sprouts,None,RareSpawnChance,2
+skill-rare,Nadir Filizler - 1,Nadir Filizler,Rare Sprouts,None,RareSpawnChance,3
+skill-score,Hasat Rekoru - 3,Hasat Rekoru,Harvest Record,None,HarvestScoreMultiplier,2
+skill-score,Hasat Rekoru - 4,Hasat Rekoru,Harvest Record,None,HarvestScoreMultiplier,2
+skill-score,Hasat Rekoru - 1,Hasat Rekoru,Harvest Record,None,HarvestScoreMultiplier,3
+skill-score,Hasat Rekoru - 2,Hasat Rekoru,Harvest Record,None,HarvestScoreMultiplier,2
+skill-scythe,Bumerang Orak Kartları,Bumerang Orak Kartları,Boomerang Scythe Cards,TileBehavior_Boomerang,,1
+skill-spawn,Verimli Üretim - 4,Verimli Üretim,Fruitful Production,None,PlantSpawnRate,2
+skill-spawn,Verimli Üretim - 3,Verimli Üretim,Fruitful Production,None,PlantSpawnRate,2
+skill-spawn,Verimli Üretim - 2,Verimli Üretim,Fruitful Production,None,PlantSpawnRate,2
+skill-spawn,Verimli Üretim - 1,Verimli Üretim,Fruitful Production,None,PlantSpawnRate,3
+skill-spawn,Düzenli Üretim - 4,Düzenli Üretim,Steady Production,None,PlantSpawnRate,2
+skill-spawn,Düzenli Üretim - 3,Düzenli Üretim,Steady Production,None,PlantSpawnRate,2
+skill-spawn,Düzenli Üretim - 2,Düzenli Üretim,Steady Production,None,PlantSpawnRate,2
+skill-spawn,Düzenli Üretim - 1,Düzenli Üretim,Steady Production,None,PlantSpawnRate,3
+skill-speed,Akıcı Kesim - 4,Akıcı Kesim,Fluid Cut,None,AttackSpeed,2
+skill-speed,Akıcı Kesim - 3,Akıcı Kesim,Fluid Cut,None,AttackSpeed,2
+skill-speed,Akıcı Kesim - 2,Akıcı Kesim,Fluid Cut,None,AttackSpeed,2
+skill-speed,Akıcı Kesim - 1,Akıcı Kesim,Fluid Cut,None,AttackSpeed,3
+skill-speed,Hızlı Eller - 1,Hızlı Eller,Quick Hands,None,AttackSpeed,3
+skill-speed,Hızlı Eller - 2,Hızlı Eller,Quick Hands,None,AttackSpeed,2
+skill-speed,Hızlı Eller - 3,Hızlı Eller,Quick Hands,None,AttackSpeed,2
+skill-speed,Hızlı Eller - 4,Hızlı Eller,Quick Hands,None,AttackSpeed,2
+skill-stone,Taş Hasat - 1,Taş Hasat,Stone Harvest,None,StoneGainMultiplier,3
+skill-stone,Taş Hasat - 2,Taş Hasat,Stone Harvest,None,StoneGainMultiplier,2
+skill-stone,Taş Hasat - 3,Taş Hasat,Stone Harvest,None,StoneGainMultiplier,2
+skill-stone,Taş Hasat - 4,Taş Hasat,Stone Harvest,None,StoneGainMultiplier,2
+skill-tornado,Tornado Kartları,Tornado Kartları,Tornado Cards,TileBehavior_Tornado,,1
+skill-xp,Hasat Deneyimi II - 4,Hasat Deneyimi II,Harvest Experience II,None,XPGainMultiplier,2
+skill-xp,Hasat Deneyimi II - 3,Hasat Deneyimi II,Harvest Experience II,None,XPGainMultiplier,2
+skill-xp,Hasat Deneyimi II - 2,Hasat Deneyimi II,Harvest Experience II,None,XPGainMultiplier,2
+skill-xp,Hasat Deneyimi II - 1,Hasat Deneyimi II,Harvest Experience II,None,XPGainMultiplier,3
+skill-xp,Hasat Deneyimi I - 4,Hasat Deneyimi I,Harvest Experience I,None,XPGainMultiplier,2
+skill-xp,Hasat Deneyimi I - 3,Hasat Deneyimi I,Harvest Experience I,None,XPGainMultiplier,2
+skill-xp,Hasat Deneyimi I - 2,Hasat Deneyimi I,Harvest Experience I,None,XPGainMultiplier,2
+skill-xp,Hasat Deneyimi I - 1,Hasat Deneyimi I,Harvest Experience I,None,XPGainMultiplier,3

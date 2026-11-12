@@ -110,8 +110,13 @@ public sealed class ComicPopupView : MonoBehaviour
         used = 0; scrollOffset = 0;
         heading.text = (title ?? "").Normalize(System.Text.NormalizationForm.FormC);
         subtitle.text = (caption ?? "").Normalize(System.Text.NormalizationForm.FormC);
-        bool hasBadge = !string.IsNullOrEmpty(skillIcon);
+        // Yetenek ikonu: çizilmiş sprite varsa (SkillIconSetSO) portre olarak, yoksa eski kodla çizilen simge.
+        Sprite skillArt = string.IsNullOrEmpty(skillIcon) ? null : SkillIconSetSO.For(skillIcon);
+        bool hasBadge = !string.IsNullOrEmpty(skillIcon) && skillArt == null;
+        if (skillArt != null) icon = skillArt;
         portrait.sprite = icon; portrait.enabled = icon != null && !hasBadge; hint = footerHint;
+        portrait.rectTransform.sizeDelta = skillArt != null ? new Vector2(54, 54) : new Vector2(48, 48);
+        portrait.rectTransform.anchoredPosition = skillArt != null ? new Vector2(16, -16) : new Vector2(18, -18);
         skillPortrait.gameObject.SetActive(hasBadge);
         if (hasBadge) skillPortrait.SetRecipe(skillIcon);
     }
@@ -166,12 +171,16 @@ public sealed class ComicPopupView : MonoBehaviour
             y += h + 14;
         }
         contentHeight = y;
-        float height = Mathf.Min(top + contentHeight + 44, Mathf.Max(top+64,(bounds.height-40)/scale));
+        // Kitin panelinde alt kenar (mürekkep + 3B) içeride kalır: alt satırda ipucu varsa kenara binmesin diye altta daha çok
+        // pay; ipucu yoksa eski pay (yetenek bilgi kutusunun altında boş şerit kalmasın).
+        bool roomyFooter = kitSkin && hint.Length > 0;
+        float bottomPad = roomyFooter ? 58 : 44, footerRise = roomyFooter ? 44 : 29;
+        float height = Mathf.Min(top + contentHeight + bottomPad, Mathf.Max(top+64,(bounds.height-40)/scale));
         root.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,width);
         root.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,height);
-        viewport.anchoredPosition = new Vector2(20,-top); viewport.sizeDelta = new Vector2(width-40,Mathf.Max(20,height-top-38));
+        viewport.anchoredPosition = new Vector2(20,-top); viewport.sizeDelta = new Vector2(width-40,Mathf.Max(20,height-top-(bottomPad-6)));
         content.sizeDelta = new Vector2(width-40,contentHeight);
-        footer.rectTransform.anchoredPosition = new Vector2(22,-height+29); footer.rectTransform.sizeDelta = new Vector2(width-44,24);
+        footer.rectTransform.anchoredPosition = new Vector2(22,-height+footerRise); footer.rectTransform.sizeDelta = new Vector2(width-44,24);
         footer.text = hint + (CanScroll ? (hint.Length > 0 ? "  ·  " : "") + ScrollHint : "");
         Scroll(0);
     }

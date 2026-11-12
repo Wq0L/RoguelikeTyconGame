@@ -31,6 +31,12 @@ using UnityEngine.UI;
 // - Yetenek ağacı: her düğüm durumuna göre kitin karesinde (altın alınabilir, kömür alınamaz, beyaz kısmen, yeşil tamam, mavi
 //   başlangıç, lacivert kapalı); bir düğüm alınınca karesi ve noktası değişir; bağlantılar krem çizgi; tooltip kitte (krem panel,
 //   amber şerit, Bungee başlık) ve üç dilde sığar. Görüntüler: c9_skill_<dil>.
+// - Ağaç yerleşimi ve hissi (11 Kasım): zemin comic pano; bütün düğümler yeni boyda, hiçbiri üst üste binmiyor, sıra ve hizalar
+//   yetenek verisindekiyle aynı (veri değişmedi), ağaç eskisinden küçük alana sığıyor; alınabilir düğüm nefes alıyor, alınamayan
+//   almıyor; üstüne gelince büyüyor ve bağlantısı parlıyor, çıkınca dönüyor; alınamayana tıklayınca sallanıp yerine dönüyor.
+//   Görüntü: c9_skill_all (bütün düğümler görünür kılınmış, yalnız çekim için).
+// - Kaynağı yetmeyen düğümün bilgi kutusunda bedel kırmızı ve eksik miktar yanında (c9_skill_short). Düğümün üstünde fiyat
+//   etiketi, ekran başlığı / ipucu ve "pat" yıldızı yok (11 Kasım, kullanıcı reddetti: "ilk hali korunup juice'lanmalı").
 // Görüntüler: Logs/ComicKit/*.png. Çalıştırma: Tools/run-isolated-verification.ps1 -Method ComicKitVerification.RunBatch -Full
 [InitializeOnLoad]
 public static class ComicKitVerification
@@ -147,6 +153,10 @@ public static class ComicKitVerification
         FontAndFit(tip.transform.Find("Heading").GetComponent<TMP_Text>(), $"[{code}] tooltip heading");
         Layout(tip.transform, "skill tooltip");
     }
+    static List<SkillNodeUI> AllNodes(SkillTreeUI tree) =>
+        ((List<SkillNodeUI>)typeof(SkillTreeUI).GetField("nodeUIs", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(tree)).Where(n => n != null && n.Node != null).ToList();
+    static PointerEventData LeftClick() => new PointerEventData(EventSystem.current) { button = PointerEventData.InputButton.Left };
+    static SkillNodeUI probeNode, deniedNode;
     static readonly string[] Tiles = { "Electric/Electric-Rare", "Water/Water-Common", "Fertile/Fertile-Epic", "Explosive/Explosive-Legendary" };
 
     static void Tick()
@@ -363,6 +373,30 @@ public static class ComicKitVerification
                     Check(tree.UsesKitLines, "skill tree connections use the kit line");
                     var lines = tree.GetComponentsInChildren<Image>(false).Where(i => i.transform.parent != null && i.transform.parent.name.StartsWith("Link")).ToList();
                     Check(lines.Count > 0 && lines.All(i => i.sprite == ComicKit.Get("line_cream")), $"{lines.Count} visible connection pieces are the cream ink line");
+                    var board = UnityEngine.Object.FindAnyObjectByType<SkillTreeSpaceBackground>();
+                    Check(board != null && board.enabled && board.UsesComicBoard, "skill tree background is the comic board");
+                    // Yerleşim: yetenek verisi değişmeden daha sıkı; üst üste binme yok, sıra ve hizalar aynı.
+                    List<SkillNodeUI> all = AllNodes(tree);
+                    float spacing = tree.NodeSpacing, size = tree.NodeSize;
+                    Check(spacing > size + 20f && all.All(n => Mathf.Abs(((RectTransform)n.transform).sizeDelta.x - size) < .5f), $"all {all.Count} nodes are {size:0} px on a {spacing:0} px grid");
+                    int overlaps = 0, disorder = 0;
+                    float oldExtent = 0f, newExtent = 0f;
+                    for (int a = 0; a < all.Count; a++)
+                    {
+                        Vector2Int ga = all[a].Node.gridPosition; Vector2 la = all[a].LayoutPosition;
+                        oldExtent = Mathf.Max(oldExtent, Mathf.Max(Mathf.Abs(ga.x), Mathf.Abs(ga.y)) * all[a].Spacing);
+                        newExtent = Mathf.Max(newExtent, Mathf.Max(Mathf.Abs(la.x), Mathf.Abs(la.y)));
+                        for (int b = a + 1; b < all.Count; b++)
+                        {
+                            Vector2Int gb = all[b].Node.gridPosition; Vector2 lb = all[b].LayoutPosition;
+                            if (Mathf.Max(Mathf.Abs(la.x - lb.x), Mathf.Abs(la.y - lb.y)) < spacing - .5f) overlaps++;
+                            if (System.Math.Sign(ga.x - gb.x) != System.Math.Sign(Mathf.RoundToInt(la.x - lb.x)) || System.Math.Sign(ga.y - gb.y) != System.Math.Sign(Mathf.RoundToInt(la.y - lb.y))) disorder++;
+                        }
+                    }
+                    Check(overlaps == 0, $"no two skill nodes share a cell or overlap ({overlaps})");
+                    Check(disorder == 0, $"layout keeps every row / column order of the skill data ({disorder})");
+                    Check(newExtent < oldExtent * .85f, $"tree is tighter: farthest node {newExtent:0} px from the start (was {oldExtent:0} px)");
+                    Check(nodes.Where(n => NodeState(n) == "slot_gold").All(n => n.Breathing) && nodes.Where(n => NodeState(n) != "slot_gold").All(n => !n.Breathing), "buyable nodes breathe, others do not");
                     Capture("c9_skill_tree_before.png");
                     // Gerçek satın alma yolu: altın düğümlerden ilki (TryUpgrade); karesi ve ilk noktası değişmeli.
                     SkillNodeUI buy = nodes.First(n => NodeState(n) == "slot_gold");
@@ -407,7 +441,56 @@ public static class ComicKitVerification
                     float oldZoom = (float)zoomField.GetValue(treeUI); Vector2 oldPan = content.anchoredPosition;
                     zoomField.SetValue(treeUI, .5f); content.localScale = Vector3.one * .5f; content.anchoredPosition = Vector2.zero;
                     Capture("c9_skill_states.png");
+                    // Bütün düğümler (yalnız çekim için görünür kılınır; sonra oyunun kendi yenilemesi geri alır).
+                    List<SkillNodeUI> every = AllNodes(treeUI);
+                    var hiddenNodes = every.Where(n => !n.gameObject.activeSelf).ToList();
+                    foreach (SkillNodeUI n in hiddenNodes) n.gameObject.SetActive(true);
+                    zoomField.SetValue(treeUI, .5f); content.localScale = Vector3.one * .5f; content.anchoredPosition = Vector2.zero;
+                    Capture("c9_skill_all.png");
+                    foreach (SkillNodeUI n in hiddenNodes) n.gameObject.SetActive(false);
                     zoomField.SetValue(treeUI, oldZoom); content.localScale = Vector3.one * oldZoom; content.anchoredPosition = oldPan;
+                    Check(nodes.Where(n => NodeState(n) == "slot_charcoal").All(n => !n.Breathing), "gallery: unaffordable nodes do not breathe");
+                    // His: üstüne gelme ve alınamayana tıklama.
+                    deniedNode = nodes.FirstOrDefault(n => NodeState(n) == "slot_charcoal");
+                    probeNode = hovered;
+                    probeNode.OnPointerEnter(LeftClick());
+                    phase = 25; next = now + .25; return;
+                }
+                case 25:
+                {
+                    var treeUI = UnityEngine.Object.FindAnyObjectByType<SkillTreeUI>();
+                    Check(probeNode.Hovered && Mathf.Abs(probeNode.transform.localScale.x - SkillNodeUI.HoverScale) < .02f, $"hovered node grows to {SkillNodeUI.HoverScale} (scale {probeNode.transform.localScale.x:0.00})");
+                    Check(probeNode.transform.GetSiblingIndex() == probeNode.transform.parent.childCount - 1, "hovered node is drawn above its neighbours");
+                    Color hoverColour = (Color)typeof(SkillTreeUI).GetField("hoverConnectionColor", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(treeUI);
+                    var lit = treeUI.GetComponentsInChildren<Image>(false).Where(i => i.name == "Line" && i.color == hoverColour).ToList();
+                    Check(lit.Count > 0, $"hovered node's connections light up ({lit.Count})");
+                    Capture("c9_skill_hover.png");
+                    probeNode.OnPointerExit(LeftClick());
+                    // Sallanma kısa (0,28 sn) ve sönerek biter: tıklamadan hemen sonra ölçülür.
+                    if (deniedNode != null) deniedNode.OnPointerClick(LeftClick());
+                    phase = 29; next = now + .07; return;
+                }
+                case 29:
+                {
+                    if (deniedNode != null) Check(Mathf.Abs(Mathf.DeltaAngle(0f, deniedNode.transform.localEulerAngles.z)) > .2f, "clicking an unaffordable node shakes it");
+                    if (deniedNode != null) Hover(deniedNode, true);   // yetmeyen düğümün bilgi kutusu
+                    phase = 26; next = now + .6; return;
+                }
+                case 26:
+                {
+                    var treeUI = UnityEngine.Object.FindAnyObjectByType<SkillTreeUI>();
+                    Color hoverColour = (Color)typeof(SkillTreeUI).GetField("hoverConnectionColor", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(treeUI);
+                    Check(!probeNode.Hovered && Mathf.Abs(probeNode.transform.localScale.x - 1f) < .02f, "pointer exit returns the node to rest");
+                    Check(!treeUI.GetComponentsInChildren<Image>(false).Any(i => i.name == "Line" && i.color == hoverColour), "connection highlight clears");
+                    if (deniedNode != null) Check(Mathf.Abs(Mathf.DeltaAngle(0f, deniedNode.transform.localEulerAngles.z)) < .05f && Mathf.Abs(deniedNode.transform.localScale.x - 1f) < .02f, "shaken node settles back exactly");
+                    if (deniedNode != null)
+                    {
+                        GameObject tip = ActiveTooltip();
+                        Check(tip != null && tip.activeInHierarchy && tip.GetComponentsInChildren<TMP_Text>(false).Any(t => t.text.Contains("#B4231A") && t.text.Contains(GameText.Format("ui.skill.cost_missing", "", "").Trim())),
+                            "unaffordable node's tooltip: price in red with the missing amount");
+                        Capture("c9_skill_short.png");
+                        Hover(deniedNode, false);
+                    }
                     foreach (var pair in spent) ResourceManager.Instance.AddResource(pair.Key, pair.Value);
                     Hover(hovered, true);
                     skillLanguage = -1;

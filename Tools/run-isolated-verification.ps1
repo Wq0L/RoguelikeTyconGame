@@ -25,7 +25,7 @@ foreach ($f in @('manifest.json', 'packages-lock.json')) {
 }
 
 $dirs = @('Scripts', 'ScriptableObjects', 'Resources', 'Editor', 'Plugins', 'LeanTween', 'TextMesh Pro', 'Art\UI\ComicToon', 'Localization', 'AddressableAssetsData')
-if ($Full) { $dirs += @('Scenes', 'Prefabs', 'Materials', '3D Assets', 'Settings', 'ProjectSettings', 'Art', 'Shaders') }
+if ($Full) { $dirs += @('Scenes', 'Prefabs', 'Materials', '3D Assets', 'Settings', 'ProjectSettings', 'Art', 'Shaders', 'ToonReference') }
 foreach ($d in $dirs) {
     $src = Join-Path "$repo\Assets" $d
     if (!(Test-Path $src)) { continue }

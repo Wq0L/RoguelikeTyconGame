@@ -117,6 +117,8 @@ MonoBehaviour:
   - {fileID: 8675073782904261184}
   - {fileID: 3794506038715758719}
   automaticSpawnHeight: 0.25
+  resonanceRules: {fileID: 0}
+  activeResonances: []
 --- !u!114 &6047225301930121196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,8 +412,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 88374a195f54f7e488159d5cf2702c36, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
-      value:
-      objectReference: {fileID: 2100000, guid: e7bf8654c149feb4082f5d07606ea7d5, type: 2}
+      value: 
+      objectReference: {fileID: 2100000, guid: 237acc3cb8b6f564bab9a3b59df84d83, type: 2}
+    - target: {fileID: -5754084199372789682, guid: 88374a195f54f7e488159d5cf2702c36, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -1619790895701374501, guid: 3cc0260df30c6584dbd71499e20b6cf4, type: 3}
     - target: {fileID: 919132149155446097, guid: 88374a195f54f7e488159d5cf2702c36, type: 3}
       propertyPath: m_Name
       value: "Saks\u0131 2x2"

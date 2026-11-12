@@ -46,11 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mine
   groundRenderer: {fileID: 6204749161181034286}
-  lockedMaterial: {fileID: 2100000, guid: 2deccfc3b62e6e04f8822af0162298c5, type: 2}
+  lockedMaterial: {fileID: 2100000, guid: 448d6b7924602c14780fc4754b003f99, type: 2}
   unlockedMaterials:
-  - {fileID: 2100000, guid: 31d6411cac8c83d4c9ac49b95f403731, type: 2}
-  - {fileID: 2100000, guid: cb0e1162e76808f4d903f7046d298b8a, type: 2}
-  - {fileID: 2100000, guid: f911f86cb3631a84eb634622b11caa55, type: 2}
+  - {fileID: 2100000, guid: da7577b3bc17b5c46aa32a338671b093, type: 2}
+  - {fileID: 2100000, guid: da7577b3bc17b5c46aa32a338671b093, type: 2}
+  - {fileID: 2100000, guid: da7577b3bc17b5c46aa32a338671b093, type: 2}
 --- !u!1 &5556120382466332411
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +92,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5556120382466332411}
-  m_Mesh: {fileID: -659655325330479722, guid: bceae80c25d1ef64fa3f436304c13b04, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 5cbd89c4521f27e409685bb370021285, type: 2}
 --- !u!23 &6204749161181034286
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -118,9 +118,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31d6411cac8c83d4c9ac49b95f403731, type: 2}
-  - {fileID: 2100000, guid: f911f86cb3631a84eb634622b11caa55, type: 2}
-  - {fileID: 2100000, guid: cb0e1162e76808f4d903f7046d298b8a, type: 2}
+  - {fileID: 2100000, guid: 448d6b7924602c14780fc4754b003f99, type: 2}
+  - {fileID: 2100000, guid: 448d6b7924602c14780fc4754b003f99, type: 2}
+  - {fileID: 2100000, guid: 448d6b7924602c14780fc4754b003f99, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

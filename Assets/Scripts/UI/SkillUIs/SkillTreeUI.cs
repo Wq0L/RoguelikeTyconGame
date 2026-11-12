@@ -31,12 +31,38 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
     [SerializeField, Min(0f)] private float rippleSpread = 0.35f;
     [SerializeField, Min(1f)] private float rippleRange = 1400f;
 
+    // Yerleşim (11 Kasım 2026, kullanıcı: "skiller çok uzak; iç içe girmeden yakınlaştır"). Yetenek verisindeki konumlar
+    // (gridPosition, komşuluk kuralları) DEĞİŞMEZ; yalnız ekrandaki yer: aralık küçülür, düğüm büyür, dallar arasındaki boş
+    // koridorlar (3 ve üstü boş sıra / sütun) kısalır. Sıra ve hizalar korunur, iki düğüm asla aynı hücreye düşmez.
+    [Header("Layout")]
+    [SerializeField, Min(40f)] private float nodeSpacing = 112f;
+    [SerializeField, Min(32f)] private float nodeSize = 84f;
+    [SerializeField, Min(1)] private int corridorCells = 2;
+
+    [Header("Feel")]
+    [SerializeField] private Color hoverConnectionColor = new Color(1f, 0.82f, 0.36f, 1f);
+    [SerializeField, Min(0.01f)] private float connectionGrowSeconds = 0.28f;
+    [SerializeField, Min(1f)] private float zoomSharpness = 16f;
+    [SerializeField, Min(0f)] private float dragFriction = 7f;
+
     private sealed class Connection
     {
         public SkillNodeUI a, b;
         public RectTransform root;
         public Image shaft, wingA, wingB;
+        // Son hesaplanan uçlar ve renk; grow < 1 iken çizgi açık uçtan hedefe doğru uzar.
+        public Vector2 start, end;
+        public Color tint;
+        public bool completed;
+        public float grow = 1f;
     }
+
+    private readonly List<int> layoutX = new List<int>(), layoutY = new List<int>();
+    private SkillNodeUI hoveredNode;
+    private float zoomTarget = 1f;
+    private Vector2 zoomPivot, dragVelocity;
+    private bool zooming, opening;
+    public float NodeSize => nodeSize;
 
     private readonly List<Connection> connections = new List<Connection>();
     private RectTransform connectionLayer;
@@ -55,12 +81,56 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     // Arka plan paralaksı için (SkillTreeSpaceBackground).
     public Vector2 PanPosition => content != null ? content.anchoredPosition : Vector2.zero;
+    // Düğüm aralığı (panonun ızgarası düğümlere oturur); düğüm yoksa prefab değeri.
+    public float NodeSpacing => nodeSpacing;
     public float Zoom => zoom;
 
     private void Awake()
     {
         ApplyTreeSet();
+        ApplyLayout();
         CreateNavigation();
+    }
+
+    // Her düğüme ekrandaki hücresini ve boyunu verir. Koordinatlar eksen eksen sıkıştırılır: 1–2'lik adımlar aynen kalır, daha
+    // büyük boşluk corridorCells hücreye iner. Başlangıç noktası (0,0) yerinde kalır.
+    private void ApplyLayout()
+    {
+        layoutX.Clear(); layoutY.Clear();
+        layoutX.Add(0); layoutY.Add(0);
+        foreach (SkillNodeUI nodeUI in nodeUIs)
+        {
+            if (nodeUI == null || nodeUI.Node == null) continue;
+            Vector2Int p = nodeUI.Node.gridPosition;
+            if (!layoutX.Contains(p.x)) layoutX.Add(p.x);
+            if (!layoutY.Contains(p.y)) layoutY.Add(p.y);
+        }
+        layoutX.Sort(); layoutY.Sort();
+        foreach (SkillNodeUI nodeUI in nodeUIs)
+        {
+            if (nodeUI == null || nodeUI.Node == null) continue;
+            Vector2Int p = nodeUI.Node.gridPosition;
+            nodeUI.SetLayout(new Vector2(Compact(layoutX, p.x), Compact(layoutY, p.y)) * nodeSpacing, nodeSize);
+        }
+    }
+
+    private int Compact(List<int> sorted, int value)
+    {
+        int zero = sorted.IndexOf(0), index = sorted.IndexOf(value), cell = 0;
+        for (int i = zero; i < index; i++) cell += Step(sorted[i + 1] - sorted[i]);
+        for (int i = zero; i > index; i--) cell -= Step(sorted[i] - sorted[i - 1]);
+        return cell;
+    }
+
+    private int Step(int gap) => gap <= 2 ? gap : corridorCells;
+
+    // Üstüne gelinen düğümün bağlantıları parlar (SkillNodeUI bildirir).
+    public void SetHovered(SkillNodeUI node, bool hovered)
+    {
+        SkillNodeUI next = hovered ? node : hoveredNode == node ? null : hoveredNode;
+        if (next == hoveredNode) return;
+        hoveredNode = next;
+        RefreshConnections();
     }
 
     // Run profilinin ağaç seti (Bölüm 3.5): her arayüz yuvası setteki karşılığını gösterir, karşılığı olmayan yuva kapanır.
@@ -76,7 +146,9 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private void OnEnable()
     {
         dragging = false;
+        opening = true;   // açılıştaki ilk yenileme "yeni yetenek açıldı" sesini çalmaz
         TrySubscribe();
+        opening = false;
         PlayOpenRipple();
     }
 
@@ -115,6 +187,9 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private void OnDisable()
     {
         dragging = false;
+        zooming = false;
+        dragVelocity = Vector2.zero;
+        hoveredNode = null;
         if (treeManager != null) treeManager.OnTreeChanged -= RefreshAll;
         if (resources != null) resources.OnResourceAmountChanged -= HandleResourceChanged;
         treeManager = null;
@@ -125,9 +200,12 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     private void RefreshAll()
     {
+        int revealed = SkillNodeUI.RevealCount;
         foreach (SkillNodeUI nodeUI in nodeUIs)
             if (nodeUI != null) nodeUI.Refresh();
         RefreshConnections();
+        // Bir alım yeni yetenek açtıysa tek kısa ses (kaç düğüm açılırsa açılsın).
+        if (!opening && isActiveAndEnabled && SkillNodeUI.RevealCount != revealed) FeelAudio.Play(FeelSound.Shimmer, 0.3f, 1.15f);
     }
 
     private void CreateNavigation()
@@ -268,6 +346,7 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
             bool aOpen = virtualOrigin ? treeManager.IsPositionUnlocked(Vector2Int.zero) : IsOpenEnd(link.a.Node);
             bool bOpen = IsOpenEnd(link.b.Node);
             visible &= aOpen || bOpen;
+            bool wasVisible = link.root.gameObject.activeSelf;
             link.root.gameObject.SetActive(visible);
             if (!visible) continue;
 
@@ -286,17 +365,14 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
                 continue;
             }
             bool completed = aOpen && bOpen;
-            Color tint = completed ? openedConnectionColor : availableConnectionColor;
-            SetLine(link.shaft, start, end, tint);
+            bool lit = hoveredNode != null && (link.a == hoveredNode || link.b == hoveredNode);
+            link.start = start; link.end = end; link.completed = completed;
+            link.tint = lit ? hoverConnectionColor : completed ? openedConnectionColor : availableConnectionColor;
+            // Yeni görünen bağlantı açık uçtan hedefe doğru uzar; ok ucuyla birlikte ilerler (ok görünürlüğü değişmez).
+            if (!wasVisible && isActiveAndEnabled) link.grow = 0f;
             link.wingA.gameObject.SetActive(!completed);
             link.wingB.gameObject.SetActive(!completed);
-            if (!completed)
-            {
-                float size = Mathf.Min(arrowSize, Vector2.Distance(start, end) * 0.4f);
-                Vector2 normal = new Vector2(-direction.y, direction.x);
-                SetLine(link.wingA, end, end - direction * size + normal * size * 0.6f, tint);
-                SetLine(link.wingB, end, end - direction * size - normal * size * 0.6f, tint);
-            }
+            ApplyLink(link);
             showOrigin |= virtualOrigin;
         }
         originMarker.gameObject.SetActive(showOrigin);
@@ -317,6 +393,55 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
         float y = Mathf.Abs(direction.y) < 0.0001f ? float.PositiveInfinity :
             (direction.y > 0 ? rect.yMax : -rect.yMin) / Mathf.Abs(direction.y);
         return Mathf.Min(x, y);
+    }
+
+    private void ApplyLink(Connection link)
+    {
+        float k = link.grow >= 1f ? 1f : 1f - Mathf.Pow(1f - Mathf.Clamp01(link.grow), 3f);
+        Vector2 tip = Vector2.LerpUnclamped(link.start, link.end, k);
+        SetLine(link.shaft, link.start, tip, link.tint);
+        if (link.completed) return;
+        Vector2 direction = (link.end - link.start).normalized;
+        float size = Mathf.Min(arrowSize, Vector2.Distance(link.start, link.end) * 0.4f);
+        Vector2 normal = new Vector2(-direction.y, direction.x);
+        SetLine(link.wingA, tip, tip - direction * size + normal * size * 0.6f, link.tint);
+        SetLine(link.wingB, tip, tip - direction * size - normal * size * 0.6f, link.tint);
+    }
+
+    // His (11 Kasım 2026): alınabilir düğümlerin nefesi, uzayan bağlantılar, yumuşak zoom, sürükleme ataleti. Unscaled time
+    // (dükkânda timeScale 0). Bellek ayırmaz; boşta yalnız kısa düğüm ve bağlantı döngüleri döner.
+    private void Animate()
+    {
+        float dt = Time.unscaledDeltaTime, time = Time.unscaledTime;
+        for (int i = 0; i < nodeUIs.Count; i++)
+        {
+            SkillNodeUI nodeUI = nodeUIs[i];
+            if (nodeUI != null && nodeUI.isActiveAndEnabled) nodeUI.Breathe(time);
+        }
+        for (int i = 0; i < connections.Count; i++)
+        {
+            Connection link = connections[i];
+            if (link.grow >= 1f || !link.root.gameObject.activeSelf) continue;
+            link.grow = Mathf.Min(1f, link.grow + dt / connectionGrowSeconds);
+            ApplyLink(link);
+        }
+        if (zooming)
+        {
+            float next = Mathf.Lerp(zoom, zoomTarget, 1f - Mathf.Exp(-dt * zoomSharpness));
+            if (Mathf.Abs(next - zoomTarget) < 0.002f) { next = zoomTarget; zooming = false; }
+            content.anchoredPosition = zoomPivot - (zoomPivot - content.anchoredPosition) * (next / zoom);
+            zoom = next;
+            content.localScale = Vector3.one * zoom;
+            ClampPosition();
+        }
+        if (dragging) dragVelocity *= Mathf.Exp(-dt * 18f);   // imleç durduysa bırakınca savrulmaz
+        else if (dragVelocity.sqrMagnitude > 1f)
+        {
+            content.anchoredPosition += dragVelocity * dt;
+            dragVelocity *= Mathf.Exp(-dt * dragFriction);
+            if (dragVelocity.sqrMagnitude < 25f) dragVelocity = Vector2.zero;
+            ClampPosition();
+        }
     }
 
     private void SetLine(Image line, Vector2 start, Vector2 end, Color tint)
@@ -347,6 +472,7 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
             ClampPosition();
             lastViewportSize = viewport.rect.size;
         }
+        if (navigationReady) Animate();
     }
 
     private void RebuildBounds()
@@ -398,6 +524,8 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
             hit.GetComponentInParent<Selectable>() != null) return;
         dragging = RectTransformUtility.ScreenPointToLocalPointInRectangle(viewport,
             eventData.position, eventData.pressEventCamera, out lastDragPosition);
+        dragVelocity = Vector2.zero;
+        zooming = false;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -405,8 +533,11 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
         if (!dragging || eventData.button != PointerEventData.InputButton.Left) return;
         if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(viewport,
             eventData.position, eventData.pressEventCamera, out Vector2 current)) return;
-        content.anchoredPosition += current - lastDragPosition;
+        Vector2 delta = current - lastDragPosition;
+        content.anchoredPosition += delta;
         lastDragPosition = current;
+        // Bırakınca ağaç biraz daha kayar ve yavaşlar (atalet); hız son hareketlerden.
+        dragVelocity = Vector2.Lerp(dragVelocity, delta / Mathf.Max(Time.unscaledDeltaTime, 0.0001f), 0.5f);
         ClampPosition();
     }
 
@@ -423,13 +554,12 @@ public class SkillTreeUI : MonoBehaviour, IBeginDragHandler, IDragHandler,
             viewport, eventData.position, eventData.enterEventCamera)) return;
         if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(viewport,
             eventData.position, eventData.enterEventCamera, out Vector2 pointer)) return;
-        float next = Mathf.Clamp(zoom * Mathf.Exp(eventData.scrollDelta.y * zoomSensitivity),
-            minZoom, maxZoom);
-        // Keep the point under the cursor stationary unless a boundary is reached.
-        content.anchoredPosition = pointer - (pointer - content.anchoredPosition) * (next / zoom);
-        zoom = next;
-        content.localScale = Vector3.one * zoom;
-        ClampPosition();
+        // Yumuşak zoom: hedef hemen belirlenir, ağaç oraya kısa sürede akar (Animate); imlecin altındaki nokta sabit kalır.
+        float from = zooming ? zoomTarget : zoom;
+        zoomTarget = Mathf.Clamp(from * Mathf.Exp(eventData.scrollDelta.y * zoomSensitivity), minZoom, maxZoom);
+        zoomPivot = pointer;
+        zooming = !Mathf.Approximately(zoomTarget, zoom);
+        dragVelocity = Vector2.zero;
         eventData.Use();
     }
 }

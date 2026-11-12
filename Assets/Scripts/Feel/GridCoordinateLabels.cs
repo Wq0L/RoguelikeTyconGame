@@ -50,6 +50,7 @@ public class GridCoordinateLabels : MonoBehaviour
             return;
         }
         Build();
+        Active = this;
     }
 
     private void Build()
@@ -74,6 +75,14 @@ public class GridCoordinateLabels : MonoBehaviour
 
     // Çerçeve ölçeği s (1: bütün grid). Görünen alan grid merkezinden s × genişlik hücre; rozetler onun üst ve sol kenarında, yalnız
     // görünen sütun / satırlar açık. Kenar payı yakın çerçevede de rozeti hücreden ayırır; boy s ile küçülür (ekranda aynı kalır).
+    // Etkin rozet nesnesi (kamera çerçevesi rozetleri de üst arayüzün altında tutar: GridUnlockFeel.HudRoom).
+    public static GridCoordinateLabels Active { get; private set; }
+    // Rozet merkezinin görünen alanın dış kenarından uzaklığı (dünya birimi; rozet kenar hücresinin merkezinden offset kadar dışarıda,
+    // hücre merkezi kenardan yarım hücre içeride) ve rozet plakasının yarı boyu (vurgulu en büyük boy), çerçeve ölçeği s için.
+    public float OuterReach(float s) => (edgeOffset - 0.5f) * s * grid.GetCellSize();
+    public float PlateHalf(float s) => plateSize * 0.5f * s * highlightScale;
+    public float LabelHeight => height;
+
     private void Layout(float s)
     {
         layoutScale = s;
@@ -266,6 +275,7 @@ public class GridCoordinateLabels : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (Active == this) Active = null;
         if (plateSprite != null) Destroy(plateSprite);
         if (plateTexture != null) Destroy(plateTexture);
     }

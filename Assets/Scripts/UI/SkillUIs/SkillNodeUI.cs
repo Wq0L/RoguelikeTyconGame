@@ -1,11 +1,26 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class SkillNodeUI : MonoBehaviour, ITooltipProvider
+public class SkillNodeUI : MonoBehaviour, ITooltipProvider, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    // His (11 Kasım 2026, kullanıcı: "skill tree'de juice ve feel artmalı"): üstüne gelince büyür ve bağlantıları parlar, alınabilir
+    // düğüm hafifçe nefes alır, alınca kademe noktası patlar, yeni açılan düğüm zıplayarak belirir, alınamayana tıklanınca "olmaz"
+    // diye sallanır. Hepsi görsel + kısa ses; oynanış ve zamanlama değişmez. Unscaled time (dükkânda timeScale 0).
+    public const float HoverScale = 1.12f, BreatheAmount = 0.035f, BreatheSpeed = 2.4f;
+    private bool hovered, breathing, levelKnown, hasLayout;
+    private Vector2 layoutPosition;
+    private float breathePhase;
+    private SkillTreeUI tree;
+    public bool Hovered => hovered;
+    public bool Breathing => breathing;
+
+    // Kaç düğüm "yeni açıldı" (ağaç bir yenilemede sayının değişip değişmediğine bakar; yalnız karşılaştırılır).
+    public static int RevealCount { get; private set; }
+
     [Header("Data")]
     [SerializeField] private SkillNodeSO node;
 
@@ -63,8 +78,20 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
     // Also available before Awake, for nodes initially hidden by the tree.
     public SkillNodeSO Node => node;
 
-    public Vector2 LayoutPosition => node == null ? Vector2.zero :
+    public float Spacing => spacing;
+
+    // Ağaç ekrandaki yeri ve boyu verir (SkillTreeUI.ApplyLayout); verilmemişse eski düz yerleşim (gridPosition × spacing).
+    public Vector2 LayoutPosition => hasLayout ? layoutPosition : node == null ? Vector2.zero :
         new Vector2(node.gridPosition.x * spacing, node.gridPosition.y * spacing);
+
+    public void SetLayout(Vector2 position, float size)
+    {
+        hasLayout = true;
+        layoutPosition = position;
+        ((RectTransform)transform).sizeDelta = new Vector2(size, size);
+        if (kitFace != null && kitFace.sprite != null) kitFace.pixelsPerUnitMultiplier = kitFace.sprite.rect.height / Mathf.Max(1f, size + 8f);
+        ApplyGridLayout();
+    }
 
     private void Awake()
     {
@@ -87,9 +114,11 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
     {
         node = boundNode;
         previousLevel = 0;
+        levelKnown = false;
+        hasLayout = false;
         if (node == null) { gameObject.SetActive(false); return; }
         ApplyGridLayout();
-        if (skillBadge != null) skillBadge.SetRecipe(SkillIconCatalog.For(node));
+        if (skillBadge != null) ApplyIcon();
     }
 
     public void ApplyGridLayout()
@@ -140,8 +169,8 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
             iconImage.rectTransform.anchorMin = Vector2.zero;
             iconImage.rectTransform.anchorMax = Vector2.one;
             // Kitin karesinde ikon mürekkep çizgisinin içinde kalır.
-            iconImage.rectTransform.offsetMin = kit ? new Vector2(12,13) : new Vector2(4,4);
-            iconImage.rectTransform.offsetMax = kit ? new Vector2(-14,-11) : new Vector2(-4,-4);
+            iconImage.rectTransform.offsetMin = kit ? new Vector2(9,10) : new Vector2(4,4);
+            iconImage.rectTransform.offsetMax = kit ? new Vector2(-11,-8) : new Vector2(-4,-4);
             if (kit)
                 foreach (Image dot in tierDots)
                     if (dot != null) { dot.sprite = ComicKit.Get("pip_empty"); dot.type = Image.Type.Simple; dot.preserveAspect = true; dot.color = Color.white; }
@@ -156,8 +185,26 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
             go.layer = iconImage.gameObject.layer;
             skillBadge = go.GetComponent<ResonanceBadgeGraphic>(); skillBadge.raycastTarget = false;
         }
-        iconImage.enabled = false;
-        skillBadge.SetRecipe(SkillIconCatalog.For(node));
+        ApplyIcon();
+    }
+
+    // Çizilmiş ikon varsa (SkillIconSetSO, 12 Kasım 2026) onu gösterir; yoksa eski kodla çizilen simge (ResonanceBadgeGraphic).
+    private void ApplyIcon()
+    {
+        string recipe = SkillIconCatalog.For(node);
+        Sprite art = SkillIconSetSO.For(recipe);
+        if (art != null)
+        {
+            iconImage.sprite = art; iconImage.preserveAspect = true; iconImage.color = Color.white; iconImage.raycastTarget = false;
+            iconImage.enabled = true;
+            skillBadge.gameObject.SetActive(false);
+        }
+        else
+        {
+            iconImage.enabled = false;
+            skillBadge.gameObject.SetActive(true);
+            skillBadge.SetRecipe(recipe);
+        }
     }
 
     private ComicPopupPlate AddPlate(string title, Color color, Vector2 offset, float inset)
@@ -187,6 +234,10 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
     private void OnDisable()
     {
         ResetNodeAnimation();
+        hovered = false;
+        if (kitFace != null) kitFace.rectTransform.localScale = Vector3.one;
+        foreach (Image dot in tierDots)
+            if (dot != null) { dot.transform.DOKill(); dot.transform.localScale = Vector3.one; }
         if (waveRing != null) waveRing.DOKill();
         if (waveRingImage != null)
         {
@@ -202,15 +253,88 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         bool success = SkillTreeManager.Instance.TryUpgrade(node);
 
         if (success)
+        {
             TooltipManager.Instance.RefreshActive();
+            // Alım sesi: her kademede biraz daha tiz.
+            FeelAudio.Play(FeelSound.Chime, 0.45f, 0.95f + 0.1f * SkillTreeManager.Instance.GetCurrentLevel(node));
+        }
+    }
+
+    private SkillTreeUI Tree => tree != null ? tree : tree = GetComponentInParent<SkillTreeUI>(true);
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        hovered = true;
+        transform.SetAsLastSibling();   // büyüyen düğüm komşularının üstünde çizilir
+        transform.DOKill();
+        transform.localRotation = Quaternion.identity;
+        transform.DOScale(HoverScale, 0.14f).SetEase(Ease.OutBack, 2.2f).SetUpdate(true);
+        FeelAudio.Play(FeelSound.Tick, 0.14f, 1.7f);
+        if (Tree != null) Tree.SetHovered(this, true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        hovered = false;
+        transform.DOKill();
+        transform.localRotation = Quaternion.identity;
+        transform.DOScale(1f, 0.12f).SetEase(Ease.OutQuad).SetUpdate(true);
+        if (Tree != null) Tree.SetHovered(this, false);
+    }
+
+    // Alınamayan düğüme tıklama (kaynak ya da önkoşul yetmiyor): kısa "olmaz" sallanması + pes ses. Tamamlanmış ya da profilin
+    // verdiği düğümde bir şey olmaz.
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button != PointerEventData.InputButton.Left || node == null || button.interactable) return;
+        SkillTreeManager manager = SkillTreeManager.Instance;
+        if (manager == null || manager.IsMaxLevel(node) || SkillTreeManager.IsGrantedByProfile(node)) return;
+        transform.DOKill();
+        transform.localRotation = Quaternion.identity;
+        transform.localScale = Vector3.one * (hovered ? HoverScale : 1f);
+        transform.DOPunchRotation(new Vector3(0f, 0f, 9f), 0.28f, 14, 0.9f).SetUpdate(true);
+        FeelAudio.Play(FeelSound.Thump, 0.3f, 0.75f);
+    }
+
+    // Alınabilir düğümün yüzü hafifçe nefes alır (ağaç her karede çağırır; yalnız yüz karesi ölçeklenir, kök ve tween'ler etkilenmez).
+    public void Breathe(float time)
+    {
+        if (!breathing || kitFace == null) return;
+        float s = 1f + BreatheAmount * Mathf.Sin(time * BreatheSpeed + breathePhase);
+        kitFace.rectTransform.localScale = new Vector3(s, s, 1f);
+    }
+
+    private void SetBreathing(bool value)
+    {
+        if (breathing == value) return;
+        breathing = value;
+        // Faz konumdan: komşular aynı anda atmaz, rastgelelik yok.
+        if (value && node != null) breathePhase = node.gridPosition.x * 0.9f + node.gridPosition.y * 1.7f;
+        if (!value && kitFace != null) kitFace.rectTransform.localScale = Vector3.one;
+    }
+
+    // Tween bitince üstünde hâlâ imleç varsa hover ölçeğine döner.
+    private void RestoreHover()
+    {
+        if (hovered && isActiveAndEnabled) transform.DOScale(HoverScale, 0.1f).SetUpdate(true);
     }
 
     public void Refresh()
     {
         if (node == null) { gameObject.SetActive(false); return; } // ağaç setinde kapalı yuva
         bool visible = SkillTreeManager.Instance.IsNodeVisible(node);
+        bool appearing = visible && !gameObject.activeSelf;
         gameObject.SetActive(visible);
         if (!visible) return;
+        // Yeni açılan düğüm küçükten zıplayarak belirir (panel açılışında ağacın kendi dalgası bunun yerine geçer).
+        if (appearing && gameObject.activeInHierarchy)
+        {
+            // Sıra: çizgi uzar (0,28 sn) → düğüm zıplayarak gelir.
+            transform.DOKill();
+            transform.localScale = Vector3.one * 0.2f;
+            transform.DOScale(1f, 0.32f).SetDelay(0.18f).SetEase(Ease.OutBack, 2f).SetUpdate(true);
+            RevealCount++;
+        }
 
         RefreshIcon();
 
@@ -226,6 +350,7 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         if (kitFace != null) kitFace.sprite = ComicKit.Get(StateSprite(grantedOnly, disabled, isMax, canUpgrade, level));
         else comicFace.color = grantedOnly ? StartingAccessColor : disabled ? new Color32(150,145,150,255) : isMax ? new Color32(125,223,162,255) : canUpgrade ? new Color32(255,213,119,255) : new Color32(207,198,188,255);
         button.interactable = canUpgrade;
+        SetBreathing(canUpgrade && kitFace != null);
 
         UpdateTierDots(level, !grantedOnly);
         bool demoLocked = DemoSceneSettings.Blocks(node);
@@ -245,6 +370,7 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         }
 
         previousLevel = level;
+        levelKnown = true;
     }
 
    private void PlayOpenEffect()
@@ -327,19 +453,37 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
             text.raycastTarget = false;
             textObject.SetActive(true);
         }
-        startLabel.anchoredPosition = new Vector2(0f, belowDots ? -24f : -7f);
+        startLabel.anchoredPosition = new Vector2(0f, belowDots ? (hasLayout ? -27f : -24f) : -7f);
         startLabel.gameObject.SetActive(true);
     }
 
     private void UpdateTierDots(int level, bool show)
     {
         int tierCount = node.tiers.Count;
+        // Yeni yerleşimde noktalar düğümün altında ortalanır (eskiden iki kademeli düğümde sola yaslı kalıyordu).
+        int shown = show ? Mathf.Min(tierCount, tierDots.Count) : 0;
+        float dotsY = -(((RectTransform)transform).sizeDelta.y * 0.5f + 13f);
 
         for (int i = 0; i < tierDots.Count; i++)
         {
             bool used = show && i < tierCount;
             tierDots[i].gameObject.SetActive(used);
             if (!used) continue;
+            if (hasLayout)
+            {
+                RectTransform dot = tierDots[i].rectTransform;
+                dot.anchorMin = dot.anchorMax = dot.pivot = new Vector2(0.5f, 0.5f);
+                dot.sizeDelta = new Vector2(17f, 17f);
+                dot.anchoredPosition = new Vector2((i - (shown - 1) * 0.5f) * 20f, dotsY);
+            }
+            // Yeni alınan kademenin noktası büyükten yerine oturur.
+            if (levelKnown && i < level && i >= previousLevel)
+            {
+                Transform pip = tierDots[i].transform;
+                pip.DOKill();
+                pip.localScale = Vector3.one * 1.9f;
+                pip.DOScale(1f, 0.28f).SetEase(Ease.OutBack, 2.5f).SetUpdate(true);
+            }
 
             if (kitFace != null) tierDots[i].sprite = ComicKit.Get(i < level ? "pip_gold" : "pip_empty");
             else tierDots[i].color = i < level ? dotFilledColor : dotEmptyColor;
@@ -351,7 +495,7 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         ResetNodeAnimation();
         // Node büyüyüp eski haline gelir
         transform.DOPunchScale(Vector3.one * 0.2f, 0.3f, 1, 0.5f)
-            .SetUpdate(true);
+            .SetUpdate(true).OnComplete(RestoreHover);
     }
 
     private void PlayShake()
@@ -359,7 +503,7 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
         ResetNodeAnimation();
         // Node sağa-sola hafif titrer
         transform.DOShakeRotation(0.3f, new Vector3(0, 0, 15f), 10, 90, true)
-            .SetUpdate(true);
+            .SetUpdate(true).OnComplete(RestoreHover);
     }
 
     // ---------- TOOLTIP ----------
@@ -428,7 +572,13 @@ public class SkillNodeUI : MonoBehaviour, ITooltipProvider
 
         content.SetLevel($"{currentLevel} / {node.tiers.Count}");
         content.SetValues(BuildUpgradeValues(nextTier));
-        content.SetCost($"{nextTier.cost} {TileBuffText.ResourceName(nextTier.costType)}");
+        // Bedel yetmiyorsa kırmızı ve eksik miktar yanında.
+        string resource = TileBuffText.ResourceName(nextTier.costType);
+        string cost = $"{nextTier.cost} {resource}";
+        int have = ResourceManager.Instance != null ? ResourceManager.Instance.GetResourceAmount(nextTier.costType) : nextTier.cost;
+        if (have < nextTier.cost)
+            cost = $"<color=#B4231A>{cost}</color>  ·  {GameText.Format("ui.skill.cost_missing", nextTier.cost - have, resource)}";
+        content.SetCost(cost);
     }
 
     private string BuildUpgradeValues(SkillNodeTier nextTier)

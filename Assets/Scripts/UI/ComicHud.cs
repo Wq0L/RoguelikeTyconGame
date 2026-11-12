@@ -20,7 +20,44 @@ public static class ComicHud
     // Kurulduğu sahnedeki RoundUI: sahne yeniden yüklenince (yeni run) nesne yok olur, HUD yeniden kurulur.
     private static RoundUI installedOn;
     public static bool Installed => installedOn != null;
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)] private static void ResetStatics() => installedOn = null;
+    // Üst orta parçalar (round kartı + süre plakası): kamera çerçevesi tarlayı bunların altına indirir (GridUnlockFeel).
+    private static RectTransform roundCard, timerPlate;
+    private static Canvas hudCanvas;
+    private static readonly Vector3[] corners = new Vector3[4];
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetStatics() { installedOn = null; roundCard = timerPlate = null; hudCanvas = null; }
+
+    // Üst orta arayüzün alt kenarı, ekranın üstünden ekran yüksekliğinin oranı olarak (0 = en üst). Kurulu değilse false.
+    // Pencere oranı değişince arayüz ölçeği değişir (CanvasScaler genişlik / yükseklik 0,5): sabit bir oran yetmez.
+    // Kart gizliyken de ölçülür (hazırlık ekranında çerçeve kurulurken round arayüzü kapalı: 12 Kasım 2026'da pay bu yüzden
+    // varsayılana düşüyordu). Bellek ayırmaz; her karede çağrılabilir.
+    public static bool TryGetTopCenterBottom(out float fromTop)
+    {
+        fromTop = 0f;
+        if (!Installed || roundCard == null) return false;
+        if (hudCanvas == null) { Canvas c = roundCard.GetComponentInParent<Canvas>(true); hudCanvas = c != null ? c.rootCanvas : null; }
+        if (hudCanvas == null) return false;
+        Camera uiCamera = hudCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : hudCanvas.worldCamera;
+        Rect pixels = hudCanvas.pixelRect;
+        float height = pixels.height > 1f ? pixels.height : Screen.height;
+        if (height <= 1f) return false;
+        float lowest = float.MaxValue, highest = float.MinValue;
+        Lowest(roundCard, uiCamera, ref lowest, ref highest);
+        if (timerPlate != null) Lowest(timerPlate, uiCamera, ref lowest, ref highest);
+        if (highest - lowest < 1f) return false;   // henüz yerleşmemiş (boyu sıfır)
+        fromTop = 1f - (lowest - pixels.y) / height;
+        return true;
+    }
+
+    private static void Lowest(RectTransform rect, Camera uiCamera, ref float lowest, ref float highest)
+    {
+        rect.GetWorldCorners(corners);
+        for (int i = 0; i < 4; i++)
+        {
+            float y = RectTransformUtility.WorldToScreenPoint(uiCamera, corners[i]).y;
+            lowest = Mathf.Min(lowest, y); highest = Mathf.Max(highest, y);
+        }
+    }
 
     public static void Install()
     {
@@ -46,20 +83,24 @@ public static class ComicHud
         QuotaHUD quota = root.GetComponentInChildren<QuotaHUD>(true) ?? QuotaHUD.Attach(root);
         if (quota != null) Quota((RectTransform)quota.transform);
 
-        RectTransform card = Piece(root, "Round Card", "panel_blue", new Vector2(.5f, 1f), new Vector2(0f, -12f), new Vector2(290f, 128f));
-        TMP_Text header = Text(card, "Round Header", theme, 22f, new Vector2(.08f, .62f), new Vector2(.9f, .9f));
+        // 12 Kasım 2026: kart 290×128 → 252×108, süre plakası 176×66 → 156×56 ve daha az sarkar (alt kenar ~%18 yukarıda):
+        // tarlanın üst köşesine ve koordinat harflerine binmesin. Round kartı süreden büyük kalır.
+        RectTransform card = Piece(root, "Round Card", "panel_blue", new Vector2(.5f, 1f), new Vector2(0f, -10f), new Vector2(252f, 108f));
+        roundCard = card;
+        TMP_Text header = Text(card, "Round Header", theme, 19f, new Vector2(.08f, .62f), new Vector2(.9f, .9f));
         LocalizedText.Bind(header, "ui.hud.round_label");
         TMP_Text rounds = Find(root, "Rounds Text");
         if (rounds != null)
         {
-            Into(rounds, card, theme, 42f, new Vector2(.06f, .16f), new Vector2(.92f, .66f));
+            Into(rounds, card, theme, 36f, new Vector2(.06f, .16f), new Vector2(.92f, .66f));
             round.UseCompactRound();
         }
         TMP_Text timer = Find(root, "Round Timer Text");
         if (timer != null)
         {
-            RectTransform band = Piece(card, "Timer Plate", "plate_navy", new Vector2(.5f, 0f), new Vector2(104f, -34f), new Vector2(176f, 66f));
-            Into(timer, band, theme, 22f, new Vector2(.12f, .16f), new Vector2(.9f, .86f));
+            RectTransform band = Piece(card, "Timer Plate", "plate_navy", new Vector2(.5f, 0f), new Vector2(92f, -22f), new Vector2(156f, 56f));
+            timerPlate = band;
+            Into(timer, band, theme, 20f, new Vector2(.12f, .16f), new Vector2(.9f, .86f));
             round.SetTimerRestColor(Color.white);
         }
     }

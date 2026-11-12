@@ -41,10 +41,12 @@ ui.game.planter_shop,Preparation screen button: opens the planter (pot) shop.,PL
 ui.game.restart,Run end screen button: starts a new run. <br> is a line break used for layout; keep it.,Restart Game<br>,Yeniden Başla<br>
 ui.game.skill_shop,Preparation screen button: opens the skill tree shop.,SKILL SHOP,YETENEK DÜKKÂNI
 ui.game.skip_cards,Card choice screen button: skip the offered cards.,Skip Cards,Kartları Geç
+ui.game.skip_cards_count,"Card choice screen button with the skips left this round, e.g. Skip Cards (2). {0} = skips left.",Skip Cards ({0}),Kartları Geç ({0})
 ui.game.start_round,"Preparation screen, main button: starts the next round. Big button, keep short.",START ROUND,ROUND'U BAŞLAT
 ui.menu.options,Main menu button: opens the settings.,Options,Ayarlar
 ui.menu.play,Main menu button. <br> is a line break used for layout; keep it.,Play<br>,Oyna<br>
 ui.menu.quit,Main menu button: quits the game.,Quit,Çıkış
+ui.menu.title,"Main menu title on the tilted sign above the buttons: the game's name. Keep it as the name (do not translate) unless the store name differs in your language.",ERIGONE,ERIGONE
 ui.options.title,Settings window title.,SETTINGS,AYARLAR
 ui.options.tab.display,Settings tab. Short.,DISPLAY,GÖRÜNTÜ
 ui.options.tab.audio,Settings tab. Short.,AUDIO,SES
@@ -284,7 +286,7 @@ stat.round_duration,Stat name.,Round time,Round süresi
 stat.starting_gold_bonus,Stat name.,Starting Gold,Başlangıç Gold'u
 stat.starting_planter_count,Stat name.,Starting planters,Başlangıç saksısı
 stat.extra_card_choice,Stat name: one more card offered.,Extra card choice,Ek kart seçeneği
-stat.reroll_card,Stat name.,Card reroll,Kart yenileme
+stat.reroll_card,"Stat name. Old name of the card skip right; it now adds skips, so it reads the same as card skip.",Card skip,Kart atlama
 stat.card_skip,Stat name: skipping a card choice for resources.,Card skip,Kart atlama
 stat.explosion_chance,Stat name.,Explosion chance,Patlama şansı
 stat.duplicate_chance,Stat name: chance that a harvest pays twice.,Double reward chance,Çift ödül şansı
@@ -297,6 +299,7 @@ ui.skill.tier,Skill tree tooltip caption. {0} = 'current / total' tiers.,TIER  {
 ui.skill.current_effect,Skill tree tooltip heading (fully upgraded node).,CURRENT EFFECT,MEVCUT ETKİ
 ui.skill.next_tier,Skill tree tooltip heading.,NEXT TIER,SONRAKİ KADEME
 ui.skill.upgrade_cost,Skill tree tooltip heading above the price.,UPGRADE COST,YÜKSELTME MALİYETİ
+ui.skill.cost_missing,"Skill tree tooltip, after the price when the player cannot afford it. {0} = missing amount, {1} = resource name (Gold, Iron, Stone).",{0} {1} short,{0} {1} eksik
 ui.skill.access,Skill tree tooltip heading for a node the profile opens for free.,ACCESS,ERİŞİM
 ui.skill.starting_access,Label on a skill node the run profile opens from the start (not bought).,OPEN FROM THE START,BAŞLANGIÇTAN AÇIK
 ui.skill.full_version,Label on a skill node locked in the demo.,IN THE FULL GAME,TAM SÜRÜMDE
@@ -462,6 +465,7 @@ ui.reward.stage_tag,Boss reward card tag. {0} = stage name.,{0} STAGE,{0} AŞAMA
 ui.reward.panel.empty,Boss reward screen when nothing can be offered.,No suitable reward left,Uygun ödül kalmadı
 ui.reward.panel.empty.detail,Small line under it.,Every reward is at its limit or changes nothing right now,Bütün ödüller sınırında ya da şu an bir şey değiştirmiyor
 ui.reward.panel.continue,Boss reward screen button.,CONTINUE,DEVAM
+ui.reward.panel.choose,"Boss reward screen: button on each reward (item) card that takes that reward. Small button, keep it very short.",TAKE,AL
 ui.reward.panel.title,Boss reward screen title (old profiles without stages).,BOSS CLEARED · PICK A REWARD,BOSS GEÇİLDİ · ÖDÜL SEÇ
 ui.reward.panel.title_last,Boss reward screen title after the run's last boss.,FINAL BOSS CLEARED · PICK A REWARD,SON BOSS GEÇİLDİ · ÖDÜL SEÇ
 ui.reward.panel.none,Boss reward screen subtitle when there is nothing to offer.,No reward can be offered for this boss,Bu boss için sunulabilecek ödül yok

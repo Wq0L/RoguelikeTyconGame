@@ -159,6 +159,20 @@ public static class ComicKit
         }
     }
 
+    // TurkishCaps + sondaki satır sonunu atar: sahnede eski yerleşim için "Oyna<br>" yazan etiketler (ana menü) kitin butonunda
+    // tek satır çizilir. Yazının kaynağı (çeviri tablosu, text alanı) değişmez.
+    public sealed class SingleLineCaps : ITextPreprocessor
+    {
+        public static readonly SingleLineCaps Instance = new();
+        private const string Break = "<br>";
+
+        public string PreprocessText(string text)
+        {
+            if (!string.IsNullOrEmpty(text) && text.EndsWith(Break, System.StringComparison.Ordinal)) text = text.Substring(0, text.Length - Break.Length);
+            return TurkishCaps.Instance.PreprocessText(text);
+        }
+    }
+
     // ------------------------------------------------------------------ yapı taşları
     public static Image Sliced(RectTransform parent, string name, string sprite, float multiplier)
     {

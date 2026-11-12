@@ -169,8 +169,10 @@ Shader "ClickerGame/SpaceBackground"
                 stars += SpaceStarLayer(LAYER(0.45) + 71.3, 22.0, 0.22 * density, 0.06, 0.45, time) * 1.3;
                 color += stars * _StarIntensity * (1.0 - mask * 0.35);
 
-                // Comic planet: stepped warm shading, painted patches, broken crater ink and cyan halo.
-                // _PlanetParams.w ile çarpılır (dallanma yok, fwidth güvenli).
+                // Boyalı gezegen (12 Kasım 2026; kullanıcı: "gezegen sırıtmış, bu işe uygun olsun"). Sahnenin boyalı diliyle aynı:
+                // 3 bant (sıcak ışık / orta / mora kayan gölge) titrek sınırla, uzun fırça lekeleri, gölgede çapraz tarama,
+                // ışık kenarında kırık parlama, sahne mürekkebiyle kalın kontur; yumuşak parlama halesi yerine iki sert bantlı
+                // atmosfer halkası. _PlanetParams.w ile çarpılır (dallanma yok, fwidth güvenli).
                 float planetOn = step(0.5, _PlanetParams.w);
                 float2 center = (_PlanetParams.xy - 0.5) * float2(aspect, 1.0);
                 float radius = max(_PlanetParams.z, 1e-3);
@@ -181,34 +183,65 @@ Shader "ClickerGame/SpaceBackground"
                 float3 lightDir = normalize(float3(-0.55, 0.45, 0.7));
                 float lambert = saturate(dot(normal, lightDir));
                 float planetAA = max(fwidth(d), 1e-4);
+                float3 ink = float3(.08, .05, .10);
                 float3 planet = _PlanetColor.rgb;
                 [branch] if (d < 1.02 && planetOn > 0.5)
                 {
                     float2 terrain = float2(q.x, q.y + z * 0.22);
+                    float wob = (SpaceNoise(terrain * 5.0 + 3.1) - 0.5) * 0.18 + (SpaceNoise(terrain * 21.0) - 0.5) * 0.04;
+                    float l = lambert + wob;
+                    float band = step(0.30, l) + step(0.72, l);                 // 0 gölge, 1 orta, 2 ışık
                     float patches = SpaceNoise(terrain * float2(5.0, 8.0) + SpaceNoise(terrain * 3.0) * 2.0);
-                    float paint = smoothstep(.36, .39, patches) * .12 + smoothstep(.65, .68, patches) * .13;
-                    float shade = .32 + .24 * smoothstep(.19, .22, lambert)
-                        + .24 * smoothstep(.46, .49, lambert) + .20 * smoothstep(.73, .76, lambert);
-                    float3 surface = lerp(_PlanetColor.rgb * float3(1.0, .72, .62), float3(1.0, .73, .48), paint);
-                    planet = surface * shade;
-                    planet += float3(1.0, .65, .37) * smoothstep(.86, .89, lambert) * .16;
+                    float paint = step(.38, patches) * .10 + step(.66, patches) * .10;
+                    float3 baseCol = lerp(_PlanetColor.rgb * float3(1.0, .74, .64), float3(1.0, .74, .50), paint);
+                    float3 litCol = lerp(baseCol, float3(1.0, .80, .58), .25);
+                    float3 midCol = baseCol * .90;
+                    float3 shadowCol = baseCol * float3(.46, .36, .64);          // mora kayan gölge
+                    planet = band > 1.5 ? litCol : (band > 0.5 ? midCol : shadowCol);
+                    float stroke = floor(SpaceNoise(float2(terrain.x * 2.6 + terrain.y * 1.1, terrain.y * 13.0) + 7.7) * 3.0) / 2.0 - 0.5;
+                    planet *= 1.0 + stroke * 0.08;                               // uzun, eğik fırça lekeleri (3 ton)
+                    // Çizgisel katman (kullanıcı: "gezegen biraz daha çizgisel olabilir"): bant sınırlarına elle çizilmiş mürekkep,
+                    // leke kenarlarına ince çizgi, kürenin kıvrımını izleyen kuru fırça çizgileri, gölgede belirgin / en koyuda çapraz tarama.
+                    float lw = max(fwidth(l), 1e-4);
+                    float terminator = 1.0 - smoothstep(lw * 1.1, lw * 2.4, abs(l - 0.30));          // gölge sınırı: kalın
+                    float litEdge = (1.0 - smoothstep(lw * .5, lw * 1.4, abs(l - 0.72)))
+                        * step(.4, SpaceNoise(terrain * 9.0 + 5.3));                                   // ışık sınırı: ince, kesik
+                    float pw = max(fwidth(patches), 1e-4);
+                    float patchLine = (1.0 - smoothstep(pw * .6, pw * 1.6, abs(patches - .38)))
+                        + (1.0 - smoothstep(pw * .6, pw * 1.6, abs(patches - .66))) * .7;
+                    float flowCoord = terrain.y * 6.0 + (SpaceNoise(terrain * 2.2 + 9.1) - .5) * 1.4;
+                    float fw = max(fwidth(flowCoord), 1e-4);
+                    float flow = (1.0 - smoothstep(fw * .5, fw * 1.5, abs(frac(flowCoord + .5) - .5)))   // en yakın çizgiye uzaklık
+                        * step(.55, SpaceNoise(float2(terrain.x * 4.0, flowCoord * .7) + 2.2)) * step(0.5, band);
+                    float hatchA = step(frac((q.x + q.y) * 13.0), 0.30) * (1.0 - step(0.5, band));
+                    float hatchB = step(frac((q.x - q.y) * 13.0), 0.30) * (1.0 - step(0.12, l));       // en koyuda çapraz
+                    planet = lerp(planet, ink, saturate(hatchA + hatchB) * .62);
+                    planet = lerp(planet, ink, saturate(patchLine) * .42 * step(0.5, band));
+                    planet = lerp(planet, ink, saturate(flow) * .38);
+                    planet = lerp(planet, ink, saturate(terminator) * .92);
+                    planet = lerp(planet, ink, saturate(litEdge) * .55);
                     float2 crater = ComicCrater(q, float2(-.61, .35), float2(.12, .055), -.7, planetAA);
                     crater += ComicCrater(q, float2(.30, .51), float2(.23, .10), -.4, planetAA);
                     crater += ComicCrater(q, float2(-.20, .80), float2(.17, .045), -.3, planetAA);
                     crater += ComicCrater(q, float2(.49, -.23), float2(.18, .08), .5, planetAA);
                     crater += ComicCrater(q, float2(-.19, -.68), float2(.25, .065), .5, planetAA);
-                    planet += float3(1.0, .67, .43) * saturate(crater.y) * .24 * shade;
-                    planet = lerp(planet, float3(.065, .032, .065), saturate(crater.x) * .86);
+                    planet = lerp(planet, litCol, saturate(crater.y) * .55 * step(0.5, band));
+                    planet = lerp(planet, ink, saturate(crater.x) * .9);
+                    // ışık tarafında kenara yakın kırık parlama (karo kenarlarındaki gibi)
+                    float rimBand = smoothstep(.845, .86, d) * (1.0 - smoothstep(.915, .93, d));
+                    float chip = step(.38, SpaceNoise(float2(atan2(q.y, q.x) * 7.0, 1.7)));
+                    planet = lerp(planet, float3(1.0, .86, .66), rimBand * step(.42, lambert) * chip * .8);
                 }
-                float rimLight = smoothstep(.88, .92, d) * (1.0 - smoothstep(.957, .973, d));
-                planet = lerp(planet, float3(1.0, .81, .57), rimLight * smoothstep(.15, .6, lambert) * .85);
-                float outline = smoothstep(.973 - planetAA, .973 + planetAA, d);
-                planet = lerp(planet, float3(.035, .018, .055), outline);
+                float outline = smoothstep(.945 - planetAA, .945 + planetAA, d);   // kalın mürekkep kontur
+                planet = lerp(planet, ink, outline);
                 float inside = (1.0 - smoothstep(1.0 - planetAA, 1.0 + planetAA, d)) * planetOn;
                 color = lerp(color, planet, inside);
+                // kademeli atmosfer: iki sert bant, ışık tarafında biraz daha geniş
                 float lit = saturate(dot(normalize(q + 1e-4), lightDir.xy) * 0.5 + 0.6);
-                color += _PlanetRim.rgb * (exp(-max(d - 1.0, 0.0) * 17.0) * .48
-                    + exp(-max(d - 1.0, 0.0) * 95.0) * .55) * (1.0 - inside) * lit * planetOn;
+                float ringIn = 1.0 - smoothstep(1.028 - planetAA, 1.028 + planetAA, d - (lit - .6) * .02);
+                float ringOut = 1.0 - smoothstep(1.062 - planetAA, 1.062 + planetAA, d - (lit - .6) * .04);
+                float atmosphere = (ringIn * .36 + (ringOut - ringIn) * .14) * (1.0 - inside) * planetOn;
+                color = lerp(color, _PlanetRim.rgb * .85, atmosphere);
 
                 color += ShootingStar(LAYER(0.1), aspect, time);
 
