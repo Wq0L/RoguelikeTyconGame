@@ -733,3 +733,20 @@ korunur. Tools geliştirme üreticileri; Assets oyunda dağıtılan varlıklard�
 - İşlem: Saydam 512×512 teslim PNG'leri onay setinden değiştirilmeden taşındı; 19 SHA-256 değeri manifest ile karşılaştırıldı. Stil referansı bu konuşmada üretilen comic UI kitidir. HUD ikon pikselleri kopyalanmadı.
 - Yeni üçüncü taraf görsel, font, paket veya araç indirilmedi. Bu kayıt özgün üretim kaydıdır; yeni üçüncü taraf lisansı beyanı değildir. Mevcut Comic Paper UI kaydındaki OpenAI çıktı koşulları kaynak bağlamıdır.
 - Durum: Varlıklar Assets altında hazır; sahneye, prefab'a veya skill verilerine bağlanmadı. Unity import ayarları ve Edit/Play görünümü bu dosya taşıma görevinde değiştirilmedi/doğrulanmadı.
+
+## Bungee Regular — Steam kapsül taslakları (13 Kasım 2026)
+
+- İkinci taslak: `output/SteamCapsules-20261113-v2/`. Aynı mevcut Bungee ile E/G konturlarına özel kırıklar işlendi; font yazılımı değiştirilmedi. Üç yeni yazısız hasat çizimi yerleşik image_gen ile üretildi, küçük kapsülün önceki yazısız kaynağı korundu. Yeni dış kaynak veya bağımlılık yok; aşağıdaki lisans koşulları aynen geçerlidir.
+- Mevcut Assets/Art/UI/ComicToon/Fonts/Bungee-Regular.ttf dosyası kullanıldı; tema displayFont referansı ve TMP kaynak font adı doğrulandı. Yeni indirme veya font değişikliği yok.
+- Amaç: output/SteamCapsules-20261113/ altındaki dört mağaza kapsül taslağına gerçek ERIGONE yazısı yerleştirme. Kullanıcı açıkça proje fontunu istedi. Çizimler kullanıcının kendi ERIGONE bannerından yerleşik image_gen ile türetildi; diğer oyunların görselleri yalnız araştırıldı ve tasarıma kopyalanmadı.
+- Kaynak: Google Fonts resmî ofl/bungee dizini (mevcut kayıttaki kaynak). Lisans: SIL OFL 1.1. Kontrol edilen belge: Assets/Art/UI/ComicToon/Fonts/Bungee-OFL.txt (13 Kasım 2026).
+- Ücret/royalty: yok. Oyun ekranı veya jenerikte kredi: zorunlu değil. Yalnız raster PNG çıktıları için lisans/telif metni dağıtma: zorunlu değil. Font yazılımı dağıtılırsa telif ve OFL metni korunur. Paket font binary dosyası içermez.
+- Kullanıcıya kullanım öncesinde bu koşullar konuşmada bildirildi. Üretim aracı mevcut Windows System.Drawing; yeni bağımlılık kurulmadı.
+- Durum: yalnız mağaza görsel taslakları ve tasarım incelemesi; Steam'e yüklenmedi ve oyuna eklenmedi. Tasarım kullanıcı onayı bekliyor.
+
+## Lilita One — küçük Steam kapsülü v3 (13 Kasım 2026)
+
+- Kullanım: `output/SteamSmall-20261113-v3/` içindeki 462×174 ve 1848×696 kapsül yazısı. Kullanıcı UI temasına daha yakın font ve orijinal açıdaki görünür zemini istedi.
+- Kaynak: projede mevcut `Assets/Art/UI/ComicToon/Fonts/LilitaOne-Regular.ttf`; ComicUITheme.headingFont bu ailenin TMP varlığına bağlıdır. Yeni indirme yok. Özgün tasarım: Juan Montoreano, 2011; saklı ad Lilita.
+- Kontrol edilen belge: aynı klasördeki `LilitaOne-OFL.txt`. Lisans SIL OFL 1.1. Ticari kullanımda ücret/royalty yok; ekran/jenerikte kredi zorunlu değil. Yalnız PNG çıktısında OFL/telif dosyası dağıtılması gerekmiyor. Font yazılımı dağıtılırsa telif ve OFL metni korunmalı; türev fontun adı saklı ad koşuluna uymalı ve OFL korunmalıdır. Font tek başına satılamaz. Bu işte font yazılımı değiştirilmedi ve teslim klasörüne konmadı.
+- Kullanıcıya koşullar kullanım öncesi konuşmada bildirildi. Çizim, kullanıcının referanslarıyla yerleşik image_gen üzerinden uyarlandı; gerçek font System.Drawing ile dizildi. Tam istem ve yerleşim `design.json` içinde. Başka oyun görselleri kullanılmadı. Unity ve Steam entegrasyonu yapılmadı.

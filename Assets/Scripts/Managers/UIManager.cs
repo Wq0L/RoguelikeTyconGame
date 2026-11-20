@@ -98,8 +98,15 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
             HandleEscape();
+        // Tab: hazırlıkta (round sonu / run başı) round önizlemesi, eskisi gibi; öteki her durumda (round, level kartları...)
+        // kota kartındaki boss ödülleri listesini açar / kapar (20 Kasım 2026).
         if (Input.GetKeyDown(KeyCode.Tab))
-            ToggleRoundPreview();
+        {
+            GameStates state = GameManager.Instance.CurrentState;
+            bool previewOpen = roundPreview != null && currentPanel == roundPreview.gameObject;
+            if (previewOpen || state == GameStates.RoundEnd || state == GameStates.RunSetup) ToggleRoundPreview();
+            else QuotaHUD.ToggleRewards();
+        }
         // Opt-in performance capture; nothing exists until the first press.
         if (Input.GetKeyDown(KeyCode.F9))
             PerformanceTrendCapture.ToggleFromHotkey();

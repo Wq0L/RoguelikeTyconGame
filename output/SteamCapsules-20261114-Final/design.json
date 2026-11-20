@@ -1,0 +1,30 @@
+[
+  {
+    "id": "header",
+    "width": 920,
+    "height": 430,
+    "prompt": "Adapt this APPROVED ERIGONE capsule to another aspect ratio. Preserve EXACT recognizable mascot: narrow teal planter body, SHORT mechanical legs and compact feet, intact tilted glass dome, two olive leaves and curled tendril, small cream seed face with ONLY > < squeezed eyes, no mouth/mole. Preserve custom illustrated stacked ERI cream / GONE orange lettering, fractured E/G, thick plum ink, hard cel shading, palette, cracked orange planet and sloping rusty rocky ground. Same illustration identity, no new props or artistic redesign, no UI/borders. Recompose without stretching or cropping any letters or feet. Right claw playfully strikes E, small cream impact and orange trail to broken G. Keep large readable title and coherent articulated arm. Full bleed, high native resolution. LANDSCAPE aspect920:430. Same composition mascot left third, two-line title right two thirds. Extend navy sky and rocky ground modestly to fill extra height. Requested1840x860.",
+    "source": "source/header.png"
+  },
+  {
+    "id": "main",
+    "width": 1232,
+    "height": 706,
+    "prompt": "Adapt this APPROVED ERIGONE capsule to another aspect ratio. Preserve EXACT recognizable mascot: narrow teal planter body, SHORT mechanical legs and compact feet, intact tilted glass dome, two olive leaves and curled tendril, small cream seed face with ONLY > < squeezed eyes, no mouth/mole. Preserve custom illustrated stacked ERI cream / GONE orange lettering, fractured E/G, thick plum ink, hard cel shading, palette, cracked orange planet and sloping rusty rocky ground. Same illustration identity, no new props or artistic redesign, no UI/borders. Recompose without stretching or cropping any letters or feet. Right claw playfully strikes E, small cream impact and orange trail to broken G. Keep large readable title and coherent articulated arm. Full bleed, high native resolution. LANDSCAPE aspect1232:706. Mascot left35%, two-line title right65%, both centered vertically. Ground bottom15%, cracked planet behind mascot. Balanced tight poster, avoid excessive empty sky. Requested2464x1412.",
+    "source": "source/main.png"
+  },
+  {
+    "id": "vertical",
+    "width": 748,
+    "height": 896,
+    "prompt": "Recompose this vertical ERIGONE capsule with the user's final art direction. Exact portrait aspect748:896. Keep same hand-inked cartoon mascot, navy/orange/cream/teal palette, cracked orange planet, rocky ground, title font identity. IMPORTANT NEW POSE: Eri SITS ON TOP OF THE LOGO, NOT pulling or shooting or holding the letters. Upper half: Eri's slender teal planter body seated naturally on upper edge of the cream ERI row, compact short legs with feet dangling in front of upper letters, small mechanical claw relaxed at his side. Face has exactly > < chevron eyes, NO mouth or mole, intact oval glass dome with olive leaves and curled tendril. Do not make him fat or long-legged. Lower half: large stacked title ERI cream over GONE orange, all letters clearly readable, original E and G genuinely fractured with a few chunky fragments. REMOVE ALL stretched lettering, connecting ribbons, impact rays and weapon-like effects. Critical physical integration: logo is a tangible thick cel-shaded sculptural object sitting on the rocky ledge INSIDE THE SAME SCENE, never a floating pasted overlay. Coherent upper-left illumination on mascot and letters. Eri's body weight rests on a broad stable letter top, with a small distinct dark plum CONTACT SHADOW directly beneath his planter, short shadows of feet onto letter faces. Sculpted letter sides have warm ochre and dark burnt orange planes. Logo casts an angular dark plum shadow ON THE ROCKY GROUND down-right; letters overlap with small consistent contact shadows. Hand-inked 2-3-tone comic shading, matte, not photorealistic render, no soft glow, no generic glossy bevel. Avoid giant drop-shadow graphic behind entire title. Composition: Eri dome occupies top8%-43%, his body sits aroundy45%, short dangling feet aroundy50%; title ERI roughlyy46%-65%, GONEy66%-85%, rocky ground bottom15%. Cracked orange planet behind Eri at top left, quiet navy negative space, no clutter. Integrate scene with convincing sit contact while keeping logo text unobscured. Full bleed, no border/UI/extra text. Requested1496x1792 or highest available same ratio.",
+    "source": "source/vertical.png"
+  },
+  {
+    "id": "small",
+    "width": 462,
+    "height": 174,
+    "prompt": "Approved v6 unchanged",
+    "source": "source/small.png"
+  }
+]

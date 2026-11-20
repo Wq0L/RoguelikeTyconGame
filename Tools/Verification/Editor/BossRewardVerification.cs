@@ -499,7 +499,10 @@ public static class BossRewardVerification
         RM.StartNextRound();
         Require(RM.CurrentRound == 6 && State == GameStates.Round && Events.Active == null, "Round 6 starts after the choice; no boss active");
         var hud = HudTexts();
-        Require(hud.ContainsKey("Rewards") && hud["Rewards"].StartsWith("Boss ödülleri/· " + chosen.displayName + " 1/3 · "), "HUD lists the taken reward: " + hud["Rewards"]);
+        // 20 Kasım 2026: başlık ayrı satırda (sayı + Tab ipucu), liste Tab ile açılır; liste yazısı kapalıyken de günceldir.
+        Require(hud.ContainsKey("Rewards Header") && hud["Rewards Header"].StartsWith("Boss ödülleri (1) · ") && hud.ContainsKey("Rewards") &&
+                hud["Rewards"].Contains("·" + chosen.displayName + " 1/3 · "),
+            "HUD lists the taken reward: " + hud.GetValueOrDefault("Rewards Header") + " | " + hud.GetValueOrDefault("Rewards"));
         Screenshot("Boss_HUD_Rewards");
         return .2;
     }

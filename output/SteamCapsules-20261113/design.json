@@ -1,0 +1,66 @@
+[
+  {
+    "id": "main",
+    "width": 1232,
+    "height": 706,
+    "box": [
+      636,
+      176,
+      535,
+      343
+    ],
+    "stacked": true,
+    "source": "C:/Users/User/.codex/generated_images/01a1af8d-e423-7ff2-b0f6-fe12d49dbfc0/exec-0110845c-e8ea-451c-8925-7666d5a1e96a.png",
+    "prompt": "Use case: precise-object-edit / marketing capsule adaptation. Produce ONE full-bleed illustrated Steam capsule BACKGROUND WITHOUT ANY TEXT. Reference defines exact Eri mascot identity and drawing style. Keep cute cream seed head, black oval eyes and O mouth, two olive-green leaves and curled tendril inside an INTACT glass dome with brown soil, teal-blue robot planter, cream trim, orange joints and chunky feet. Keep bold dark comic ink, cel shading, midnight navy sky, broken vermilion planet and sparse floating rocks, rusty rocky foreground. Preserve original hand-drawn character design, do not redesign. ABSOLUTELY NO TEXT, NO LETTERS, NO LOGO, NO SYMBOLS resembling letters; lettering will be added separately using actual project font. REMOVE all ERIGONE letters and leave clean navy background in specified reserved zone. No border or black bars. No photographic effects.  CRITICAL USER CORRECTION: Last draft looked too generic and lost character. Restore the ORIGINAL reference's lively asymmetrical hand-inked forms, dynamic diagonal stance, slightly rough thick ink contour, punchy graphic shapes, bold orange planet fractures, lively composition. Keep Eri expressive, not generic smooth mascot. Eri has NO MOLE, NO FRECKLES, NO SPOTS, NO DIRT on face. Face must have ONLY TWO EYES AND ONE MOUTH, nothing else: two clearly matching small black oval eyes, a single larger O-shaped mouth between and below them. Cream face otherwise completely spotless. No tiny dots above eyes. Keep exact characteristic leaf curl, dome and robot form.Aspect ratio 1232:706 landscape, desired 1232x706 or larger same ratio. Keep reference composition almost exactly: full Eri in left 48%, broken orange planet behind, diagonal low ground. Remove the title entirely; preserve clean quiet navy on right half, especially x=52%-95%,y=26%-70%. Feet fully visible. This is the main landscape key art.",
+    "faceCorrection": "Precise tiny retouch of provided image. Preserve ENTIRE illustration and composition pixel-faithfully, same dimensions, same background, same leaves, glass, robot, terrain. ONLY CHANGE: on the cream seed face there are THREE dark marks. The TWO LARGE BLACK OVALS are the character's EYES and must remain intact. REMOVE the SMALL isolated black/brown dot at the UPPER LEFT of the cream face, above-left of the two large oval eyes. This tiny dot is an unwanted mole. Paint that tiny dot with matching clean cream face color. The final face must have exactly TWO large oval eyes, NO MOUTH, NO third dot, NO mole, NO freckles, NO dirt. Do not add any lettering. Return the whole unchanged scene with that one speck removed.",
+    "font": "Assets/Art/UI/ComicToon/Fonts/Bungee-Regular.ttf"
+  },
+  {
+    "id": "header",
+    "width": 920,
+    "height": 430,
+    "box": [
+      440,
+      125,
+      437,
+      168
+    ],
+    "stacked": false,
+    "source": "C:/Users/User/.codex/generated_images/01a1af8d-e423-7ff2-b0f6-fe12d49dbfc0/exec-ca133f88-dc63-4c04-8b39-1b92f0c76429.png",
+    "prompt": "Use case: precise-object-edit / marketing capsule adaptation. Produce ONE full-bleed illustrated Steam capsule BACKGROUND WITHOUT ANY TEXT. Reference defines exact Eri mascot identity and drawing style. Keep cute cream seed head, black oval eyes and O mouth, two olive-green leaves and curled tendril inside an INTACT glass dome with brown soil, teal-blue robot planter, cream trim, orange joints and chunky feet. Keep bold dark comic ink, cel shading, midnight navy sky, broken vermilion planet and sparse floating rocks, rusty rocky foreground. Preserve original hand-drawn character design, do not redesign. ABSOLUTELY NO TEXT, NO LETTERS, NO LOGO, NO SYMBOLS resembling letters; lettering will be added separately using actual project font. REMOVE all ERIGONE letters and leave clean navy background in specified reserved zone. No border or black bars. No photographic effects.  CRITICAL USER CORRECTION: Last draft looked too generic and lost character. Restore the ORIGINAL reference's lively asymmetrical hand-inked forms, dynamic diagonal stance, slightly rough thick ink contour, punchy graphic shapes, bold orange planet fractures, lively composition. Keep Eri expressive, not generic smooth mascot. Eri has NO MOLE, NO FRECKLES, NO SPOTS, NO DIRT on face. Face must have ONLY TWO EYES AND ONE MOUTH, nothing else: two clearly matching small black oval eyes, a single larger O-shaped mouth between and below them. Cream face otherwise completely spotless. No tiny dots above eyes. Keep exact characteristic leaf curl, dome and robot form.Aspect ratio 920:430 wide landscape (2.14:1), desired 1840x860 or same ratio. Recompose for wide header: Eri full character on far left within x=5%-43%,y=8%-94%, broken planet left behind dome, low rocky ledge along bottom 10%. RIGHT x=46%-96%,y=18%-77% must be quiet empty deep navy for a large title. Fewer fragments; no overlap of important art with reserved text zone. Full character, readable dome face.",
+    "faceCorrection": "Precise tiny retouch of provided image. Preserve ENTIRE illustration and composition pixel-faithfully, same dimensions, same background, same leaves, glass, robot, terrain. ONLY CHANGE: on the cream seed face there are THREE dark marks. The TWO LARGE BLACK OVALS are the character's EYES and must remain intact. REMOVE the SMALL isolated black/brown dot at the UPPER LEFT of the cream face, above-left of the two large oval eyes. This tiny dot is an unwanted mole. Paint that tiny dot with matching clean cream face color. The final face must have exactly TWO large oval eyes, NO MOUTH, NO third dot, NO mole, NO freckles, NO dirt. Do not add any lettering. Return the whole unchanged scene with that one speck removed.",
+    "font": "Assets/Art/UI/ComicToon/Fonts/Bungee-Regular.ttf"
+  },
+  {
+    "id": "small",
+    "width": 462,
+    "height": 174,
+    "box": [
+      147,
+      34,
+      303,
+      109
+    ],
+    "stacked": false,
+    "source": "C:/Users/User/.codex/generated_images/01a1af8d-e423-7ff2-b0f6-fe12d49dbfc0/exec-01833831-b72d-4b53-9d50-051e6418ccf8.png",
+    "prompt": "Use case: precise-object-edit / marketing capsule adaptation. Produce ONE full-bleed illustrated Steam capsule BACKGROUND WITHOUT ANY TEXT. Reference defines exact Eri mascot identity and drawing style. Keep cute cream seed head, exactly two black oval eyes and no mouth, two olive-green leaves and curled tendril inside an INTACT glass dome with brown soil, teal-blue robot planter, cream trim, orange joints and chunky feet. Keep bold dark comic ink, cel shading, midnight navy sky, broken vermilion planet and sparse floating rocks, rusty rocky foreground. Preserve original hand-drawn character design, do not redesign. ABSOLUTELY NO TEXT, NO LETTERS, NO LOGO, NO SYMBOLS resembling letters; lettering will be added separately using actual project font. REMOVE all ERIGONE letters and leave clean navy background in specified reserved zone. No border or black bars. No photographic effects.  CRITICAL USER CORRECTION: Last draft looked too generic and lost character. Restore the ORIGINAL reference's lively asymmetrical hand-inked forms, dynamic diagonal stance, slightly rough thick ink contour, punchy graphic shapes, bold orange planet fractures, lively composition. Keep Eri expressive, not generic smooth mascot. Eri has NO MOLE, NO FRECKLES, NO SPOTS, NO DIRT on face. Face must have EXACTLY TWO BLACK OVAL EYES and NO VISIBLE MOUTH. The TWO LARGE OVALS in the reference are BOTH EYES; the third tiny upper-left dot is an UNWANTED MOLE and MUST BE OMITTED. Absolutely no third mark. Cream face otherwise completely spotless. No tiny dots above eyes. Keep exact characteristic leaf curl, dome and robot form.Aspect ratio 462:174 very wide (2.655:1), desired 1848x696 or same ratio. Minimalist small capsule background. A BIG close-up of Eri's glass dome face and olive leaves occupies ONLY LEFT 27% width, cropped robot torso at lower left. Broken orange planet crescent behind this leftmost portrait only. Remaining RIGHT 70% entirely quiet deep navy, empty reserved for very large legible title at x=29%-96%,y=12%-88%. NO terrain rocks or fragments on right. At tiny size mascot face reads immediately. No text whatsoever. The provided reference is the CORRECTED clean-faced mascot. Preserve the TWO-EYES-ONLY face exactly.",
+    "faceCorrection": "Clean face inherited from corrected main reference",
+    "font": "Assets/Art/UI/ComicToon/Fonts/Bungee-Regular.ttf"
+  },
+  {
+    "id": "vertical",
+    "width": 748,
+    "height": 896,
+    "box": [
+      89,
+      35,
+      570,
+      239
+    ],
+    "stacked": true,
+    "source": "C:/Users/User/.codex/generated_images/01a1af8d-e423-7ff2-b0f6-fe12d49dbfc0/exec-28956e42-85fb-4f00-8ada-845785e25c67.png",
+    "prompt": "Use case: precise-object-edit / marketing capsule adaptation. Produce ONE full-bleed illustrated Steam capsule BACKGROUND WITHOUT ANY TEXT. Reference defines exact Eri mascot identity and drawing style. Keep cute cream seed head, exactly two black oval eyes and no mouth, two olive-green leaves and curled tendril inside an INTACT glass dome with brown soil, teal-blue robot planter, cream trim, orange joints and chunky feet. Keep bold dark comic ink, cel shading, midnight navy sky, broken vermilion planet and sparse floating rocks, rusty rocky foreground. Preserve original hand-drawn character design, do not redesign. ABSOLUTELY NO TEXT, NO LETTERS, NO LOGO, NO SYMBOLS resembling letters; lettering will be added separately using actual project font. REMOVE all ERIGONE letters and leave clean navy background in specified reserved zone. No border or black bars. No photographic effects.  CRITICAL USER CORRECTION: Last draft looked too generic and lost character. Restore the ORIGINAL reference's lively asymmetrical hand-inked forms, dynamic diagonal stance, slightly rough thick ink contour, punchy graphic shapes, bold orange planet fractures, lively composition. Keep Eri expressive, not generic smooth mascot. Eri has NO MOLE, NO FRECKLES, NO SPOTS, NO DIRT on face. Face must have EXACTLY TWO BLACK OVAL EYES and NO VISIBLE MOUTH. The TWO LARGE OVALS in the reference are BOTH EYES; the third tiny upper-left dot is an UNWANTED MOLE and MUST BE OMITTED. Absolutely no third mark. Cream face otherwise completely spotless. No tiny dots above eyes. Keep exact characteristic leaf curl, dome and robot form.Aspect ratio 748:896 portrait (0.835:1), desired 1496x1792 or same ratio. Recompose as a dramatic vertical poster: TOP 30% is quiet uninterrupted midnight navy, fully EMPTY reserved for title. Eri fills lower middle x=12%-88%,y=34%-91%, standing on rusty rocky ledge bottom10%, full two feet visible. Broken vermilion planet behind Eri starts BELOW y=32%, surrounding dome like a halo. Very sparse rocks in lower scene only. Heroic charming mascot viewed slightly from below consistent with reference, whole glass dome intact. No letters anywhere. The provided reference is the CORRECTED clean-faced mascot. Preserve the TWO-EYES-ONLY face exactly.",
+    "faceCorrection": "Clean face inherited from corrected main reference",
+    "font": "Assets/Art/UI/ComicToon/Fonts/Bungee-Regular.ttf"
+  }
+]

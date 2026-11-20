@@ -64,10 +64,11 @@ public class PlanterShopPanelUI : MonoBehaviour
             homePositions[i] = card.rect.anchoredPosition;
             card.button.onClick.AddListener(() => SelectCard(index));
             card.button.transition = Selectable.Transition.SpriteSwap;
+            // Seçili kartı kod gösterir (arka plan altın kâğıt). Düğmenin kendi "seçili" görünüşü yok: fareyle tıklanan kart Unity'de
+            // seçili kalıyor, dükkân yeniden açılınca ikinci bir altın kart çıkıyor ve üstüne gelince tepki vermiyordu (12 Kasım 2026).
             card.button.spriteState = new SpriteState
             {
                 highlightedSprite = selectedCard,
-                selectedSprite = selectedCard,
                 pressedSprite = pressedCard
             };
             // Kilit yazısı sahnede kurucunun yazdığı "LOCKED": çeviri tablosuna buradan bağlanır (sahneye dokunmadan).
@@ -98,7 +99,7 @@ public class PlanterShopPanelUI : MonoBehaviour
         {
             if (card.background != null) Kit(card.background, normalCard, ComicKit.Multiplier(normalCard, card.background.rectTransform, 2.5f));
             if (card.button != null)
-                card.button.spriteState = new SpriteState { highlightedSprite = selectedCard, selectedSprite = selectedCard, pressedSprite = pressedCard };
+                card.button.spriteState = new SpriteState { highlightedSprite = selectedCard, pressedSprite = pressedCard };
             foreach (TMP_Text text in card.rect.GetComponentsInChildren<TMP_Text>(true))
                 ComicKit.Display(text, card.lockedOverlay != null && text.transform.IsChildOf(card.lockedOverlay.transform));
         }
@@ -152,6 +153,9 @@ public class PlanterShopPanelUI : MonoBehaviour
         if (statManager != null) statManager.OnStatChanged += OnStatChanged;
         GameText.Changed -= OnLanguageChanged;
         GameText.Changed += OnLanguageChanged;
+        // Önceki açılıştan kalan düğme seçimi taşınmasın.
+        var events = UnityEngine.EventSystems.EventSystem.current;
+        if (events != null && events.currentSelectedGameObject != null && events.currentSelectedGameObject.transform.IsChildOf(transform)) events.SetSelectedGameObject(null);
         ResetView();
         if (cards.Count > 0) SelectCard(0);
     }

@@ -1,0 +1,15 @@
+[
+  {
+    "id": "vertical",
+    "width": 748,
+    "height": 896,
+    "source": "source/vertical.png",
+    "prompt": "Edit this ERIGONE portrait cover. Preserve the entire foreground ERI / GONE logo letter shapes, scale, colors, broken E and G, and preserve Eri character EXACTLY, his face, tilted glass dome, olive foliage, narrow blue robot bowl, short legs and pose on the final orange E. Preserve framing and large close farm extending beyond both side edges behind the title. No planet.\nThe farm still looks generically polished and repetitive: visibly redraw ONLY the farm soil and crops as expressive, intentionally designed 2D cartoon art.\nSOIL: remove the entire repeating pebble/clod carpet. Mostly broad flat warm brown patches, with only a few bold tapered dark-plum furrow strokes and occasional large irregular angular shadow shapes. 2 or 3 flat color values. Leave generous untextured soil areas. Soil is EARTH, not cobblestones, not cracked desert, not rounded chocolate pieces. No tiny clod detail, no smooth gradient shading, no procedural grain. Each bed has a different sparse arrangement of graphic marks, readable when very small.\nCROPS: differentiate the two corn plants noticeably: left corn taller with one broad bent leaf and a slightly tilted cob; right corn shorter, leaning a little to the right with a different asymmetrical leaf silhouette. Simplify kernels into a handful of chunky graphic sections, no tiny perfect kernel lattice. Flat cel shadows, confident dark outlines and angular highlights, no glossy plastic. Make the broad green plants subtly different silhouettes, not cloned fan shapes. Keep crops secondary to Eri and logo.\nBACKDROP: retain very dark navy space but add just 7-9 carefully spaced small hand-drawn muted pale blue stars, mostly simple dots or tiny diamonds with only two four-point stars, plus one very subtle large flat darker-blue diagonal shape at top-left to break emptiness. No nebula, no glows, no dense starfield, no planet.\nGROUND: preserve purple floor and physical logo contact shadows, add two or three sparse angular darker-plum surface shapes near bottom corners, one short broken contour stroke, and a tiny fallen leaf beside an existing small stone at lower-left. Give floor subtle illustrated structure without clutter. Keep shadows flat comic shapes and consistent shared lighting; logo must still feel physically resting on this surface.\nThis is a controlled cartoon environment pass, not a redesign of the logo or character. Handmade graphic shapes, varied silhouettes, restrained detail, clean saturated existing palette. Portrait full bleed."
+  },
+  {
+    "id": "vertical_high",
+    "width": 1496,
+    "height": 1792,
+    "source": "source/vertical.png"
+  }
+]

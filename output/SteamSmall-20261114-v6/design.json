@@ -1,0 +1,15 @@
+{
+  "method": "built-in image_gen targeted edit",
+  "prompt": "Very small precise final revision of this approved ERIGONE Steam SMALL capsule. Keep EVERYTHING identical except shorten Eri's two long mechanical LEG STRUTS by about 30 percent. His legs currently look too long. Keep both boot sizes unchanged and both boots at their current ground contact positions; lower the entire narrow planter torso, glass dome, leaves and face together slightly to accommodate shorter legs, without widening/fattening the body. Keep same body/dome scale and tilt, same character identity, same > < squeezed eyes with no mouth/mole, same hand contacting E; adjust only shoulder-arm angle minimally to connect to unchanged claw point. Target compact balanced stance, not tall stilt legs, not a squat fat robot. All other art must remain as faithful as possible: EXACT same ERI above GONE lettering, letter proportions, ink contour, shading, fragments, contact effect, navy background, broken orange planet, ground, layout, palette. Do not redesign or resize title, feet, planet or terrain. Same wide aspect77:29 (462:174), largest native resolution. Full bleed, no borders or other text. Output the whole revised banner.",
+  "reference": "../SteamSmall-20261114-v5/source.png",
+  "outputs": [
+    {
+      "file": "small_462x174.png",
+      "purpose": "Steam small capsule"
+    },
+    {
+      "file": "small_1848x696.png",
+      "purpose": "high resolution"
+    }
+  ]
+}

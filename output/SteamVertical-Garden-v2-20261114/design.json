@@ -1,0 +1,15 @@
+[
+  {
+    "id": "vertical",
+    "width": 748,
+    "height": 896,
+    "source": "source/vertical.png",
+    "prompt": "Redesign layout of this portrait Steam capsule as user directs, preserve its character identity, palette and distinctive custom comic logo style. Exact portrait748:896, high resolution. Main focus large centered readable ERIGONE title split ERI cream above GONE vermilion. Make hand-lettering lively and deliberately a LITTLE CROOKED: individual letters lean +/-4-7degrees, subtle varying baseline and width, controlled asymmetric handmade contour, keep exact spelling and excellent readability. Avoid mechanically aligned uniformly inflated glossy lettering; matte broad2-3tone cel-shaded faces and short dark plum side shadows, retain chipped FIRST E and G. IMPORTANT POSITION: Eri must be perched/standing on TOP OF THE LAST ORANGE E IN GONE (bottom row far-right), NOT on cream ERI, not hovering behind title. To enable this, shift cream ERI row left and make it slightly narrower, with room at its right for Eri. GONE row spans width below; its last orange E provides a visible top ledge under BOTH of Eri's short feet, with clear contact shadows and stable standing pose. Eri upper-right, much smaller than whole logo (around30% image height), dome fully visible in empty area to right of cream ERI without covering letters. Exact mascot: slim petrol-blue planter body, cream trim, orange joints, very short legs, intact oval glass dome, olive leaves and curled tendril, cream seed face with2 happy arch eyes NO mouth/mole. Small relaxed claw. Background behind lettering upper-left/center: TWO subdued grey metal clipped-corner/octagonal planting beds matching game's reference shape, light rim, dark side walls, tiny orange latch, brown soil and simple small seedlings. Planters rest on the SAME dark slate platform that recedes behind the logo, not floating. Move foreground pot from previous image fully behind title; NO foreground pot obscuring logo. Title central foreground, Eri on final E, planters secondary background. Absolutely NO PLANET, no busy stars, no glitter or random particles, no bloom. Simple midnight navy backdrop and broad muted plum ground. One coherent upper-left light, hard contact shadows show logo grounded and Eri standing on orange E. Leave comfortable margins. Preserve charming cartoon character and saturated cream/orange title, no photorealistic3D or generic mobile glossy bevel. Full bleed, no other text, no border."
+  },
+  {
+    "id": "vertical_high",
+    "width": 1496,
+    "height": 1792,
+    "source": "source/vertical.png"
+  }
+]

@@ -115,7 +115,7 @@ public static class BossRewardText
     // Run sırasındaki kısa liste satırı: "Keskin Bıçak 2/3 · Doğrudan vuruş hasarı ×1,32". Etkili ödülde uzun kural metni
     // tekrarlanmaz: yalnız ad ve etiket ("Elektrik Anteni · Anten").
     public static string ListLine(BossRewardSO reward, int count) => reward.effect != null
-        ? $"{reward.DisplayName} · {reward.EffectLabel}".TrimEnd(' ', '·')
+        ? $"{reward.DisplayName} · {reward.EffectLabel}".TrimEnd(' ', '·', ':')
         : $"{reward.DisplayName} {count}/{reward.maxStacks} · {Total(reward, count)}";
 
     // Item kartının yer tutucu ikonu (ödülün kendi görseli yoksa): ResonanceBadgeGraphic tarifi, ödülün VERİSİNDEN seçilir (ada

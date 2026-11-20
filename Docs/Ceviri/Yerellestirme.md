@@ -2,6 +2,13 @@
 
 **Tarih:** 4–5 Kasım 2026.
 
+## Steam sayfası ve terim sözlüğü (13 Kasım 2026)
+
+- **Terim sözlüğü:** [`Terimler.csv`](Terimler.csv), 12 dil (en, tr, zh-Hans, zh-Hant, ja, ko, ru, de, fr, it, es-ES, pt-BR).
+  Oyun bir dile çevrilirken **önce bu sözlük kullanılır**: Offering, Trial, planter, harvest area, run, Eri'nin zamiri… Mağaza ile oyun aynı kelimeleri kullanmalı.
+  Yeni bir oyun terimi çevrilince sözlüğe de eklenir.
+- **Steam mağaza metinleri:** [`Steam/`](Steam/README.md). Her dil için uzun metin, kısa açıklama, alınan kararlar ve açık kararlar. Çeviri kuralları ve iki AI'lı çalışma yöntemi de README'de.
+
 ## TAŞIMA ADIM 3–4: koddaki yazılar ve veri adları (5 Kasım öğleden sonra)
 Liste 109 → 698 anahtar. Türkçe sütun eski Türkçe yazıyı birebir tutar (testler Türkçe çalışır), İngilizce sütun tam.
 Bilerek değiştirilen Türkçe: saksı dükkânı (eskiden İngilizceydi: "SATIN AL" …), bitki adları (Havuç …), "SONRAKİ ROUND".

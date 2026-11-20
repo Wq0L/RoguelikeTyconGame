@@ -44,6 +44,8 @@ public class ComicHoverMotion : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void OnPointerExit(PointerEventData e){over=down=false;Animate();}
     public void OnPointerDown(PointerEventData e){if(e.button==PointerEventData.InputButton.Left)down=true;Animate();}
     public void OnPointerUp(PointerEventData e){down=false;Animate();}
-    public void OnSelect(BaseEventData e){selected=true;Animate();}
+    // Yalnız klavye / gamepad seçimi "üstünde" görünüşü verir. Fareyle tıklayınca Unity düğmeyi seçili bırakır (12 Kasım 2026 hatası:
+    // level kartı yeniden dağıtılınca o yuva büyük / eğik kalıyor, fare gidince dönmüyordu): o seçim görünüşü değiştirmez.
+    public void OnSelect(BaseEventData e){selected=!(e is PointerEventData);Animate();}
     public void OnDeselect(BaseEventData e){selected=down=false;Animate();}
 }

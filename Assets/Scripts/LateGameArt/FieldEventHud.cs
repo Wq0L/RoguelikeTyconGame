@@ -131,12 +131,13 @@ public sealed class FieldEventHud : MonoBehaviour
             return;
         }
         if (!plate.activeSelf) plate.SetActive(true);
+        PlaceBelowQuota();
         ShowLegend(current.Kind == FieldEventKind.GraftedShell);
         bool bountyShown=current is WanderingBountyEvent;
         bountyProgress.gameObject.SetActive(false);
         if(!legendShown)
         {
-            ((RectTransform)plate.transform).sizeDelta=new Vector2(430,bountyShown?150:106);
+            ((RectTransform)plate.transform).sizeDelta=new Vector2(430,(bountyShown?150:106)+textExtra);
             label.rectTransform.offsetMin=new Vector2(LabelInset,6);
         }
 
@@ -156,13 +157,43 @@ public sealed class FieldEventHud : MonoBehaviour
                         :GameText.Get("ui.field.shell.hud.warn"));
         }
         label.text = $"<size=120%>{current.Title}</size>\n<size=78%>{status}</size>";
+        FitLabel(legendShown || bountyShown ? 150f : 106f);
+    }
+
+    // Uzun durum yazısı (ör. uzun çeviri) en küçük yazı boyunda da sığmazsa plaka aşağı doğru uzar; yazı plakadan taşmaz.
+    // Yalnız yazı değişince (saniyede en çok bir kez) ölçülür.
+    private float textExtra;
+    public float TextExtra => textExtra;
+    private void FitLabel(float baseHeight)
+    {
+        var rect = (RectTransform)plate.transform;
+        rect.sizeDelta = new Vector2(430f, baseHeight);
+        label.ForceMeshUpdate();
+        float over = label.textBounds.size.y - label.rectTransform.rect.height;
+        textExtra = over > .5f ? Mathf.Ceil(over) + 4f : 0f;
+        if (textExtra > 0f) rect.sizeDelta = new Vector2(430f, baseHeight + textExtra);
+    }
+
+    // Kota kartının gerçek alt kenarının altında durur (20 Kasım 2026: kart ödül listesiyle uzayınca plaka üstüne biniyordu).
+    // Kart görünmüyorsa eski sabit yer. Yalnız değer değişince yazar (bellek ayırmaz).
+    private const float DefaultTop = -250f, QuotaGap = 14f;
+    public void PlaceBelowQuota()
+    {
+        var rect = (RectTransform)plate.transform;
+        float y = DefaultTop;
+        if (QuotaHUD.TryGetBottom(out Vector3 bottom) && rect.parent is RectTransform parent)
+        {
+            Vector3 local = parent.InverseTransformPoint(bottom);
+            y = local.y - parent.rect.yMax - QuotaGap;
+        }
+        if (Mathf.Abs(rect.anchoredPosition.y - y) > .5f) rect.anchoredPosition = new Vector2(24f, y);
     }
 
     private void ShowLegend(bool show)
     {
         if (show == legendShown) return;
         legendShown = show;
-        ((RectTransform)plate.transform).sizeDelta=new Vector2(430f,show?150f:106f);
+        ((RectTransform)plate.transform).sizeDelta=new Vector2(430f,(show?150f:106f)+textExtra);
         for (int zone = 0; zone < legend.Length; zone++) legend[zone].SetActive(show);
         float inset = show ? LegendInset : LabelInset;
         label.rectTransform.offsetMin = new Vector2(inset, 6f);

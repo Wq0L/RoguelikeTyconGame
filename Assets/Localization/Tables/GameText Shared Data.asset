@@ -3770,6 +3770,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 221145054424334336
+  - m_Id: 5609442599784448
+    m_Key: ui.hud.boss_rewards.closed
+    m_Metadata:
+      m_Items:
+      - rid: 221145235358220361
+  - m_Id: 5609442645921792
+    m_Key: ui.hud.boss_rewards.open
+    m_Metadata:
+      m_Items:
+      - rid: 221145235358220362
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
@@ -7030,3 +7040,13 @@ MonoBehaviour:
       data:
         m_CommentText: Card choice screen button with the skips left this round,
           e.g. Skip Cards (2). {0} = skips left.
+    - rid: 221145235358220361
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: HUD line under the quota card while the boss reward list is
+          hidden. {0} = number of rewards taken, {1} = the Tab key icon (keep it).
+    - rid: 221145235358220362
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Same line while the list is open. {0} = number of rewards,
+          {1} = the Tab key icon (keep it).

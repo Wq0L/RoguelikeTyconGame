@@ -166,3 +166,16 @@ Kullanıcı kararı: "sonra taşırız, şu an bitirip yetiştirmemiz gerekenler
 Kodda kalabilecekler: duruma göre sprite değişimi, animasyon ve his, verinin yazıya bağlanması. Önerilen ilk ekran: yetenek ağacı.
 
 **Ana menü arka planı (11 Kasım):** canlı sahne kurala uygun yapıldı: prefab + MenuScene, editörde görünür ve düzenlenir; kodda yalnız hareket. Ayrıntı `Docs/UI-Envanter.md` §7 "Ana menü — canlı sahne".
+
+## Kota kartı: boss ödülleri listesi + kapris plakası yeri (20 Kasım 2026)
+
+Kullanıcı: "her alınan buff ekleniyor ama taşıyor; belli bir boyutu olsun, bir tuşla aç kapa, yazılar düzgün sığsın" + "kaprisler gelince soldaki plaka kota kartının üstüne biniyor". Tuş: "Tab, envanter için; orada tuşa bas gör diye yazsın".
+
+- **Liste varsayılan kapalı.** Kota kartında tek satır: "Boss ödülleri (N) · [Tab] ile göster" (`ui.hud.boss_rewards.closed` / `.open`, Tab tuş ikonu `KeyPrompts`). Açık / kapalı oturum boyunca hatırlanır (`QuotaHUD.RewardsOpen`).
+- **Tab:** hazırlık ekranında (round sonu / run başı) eskisi gibi round önizlemesi; öteki her durumda (round, level kartları…) listeyi açar / kapar (`UIManager.Update`).
+- **Açık liste:** en fazla 180 px, tam satıra yuvarlanır (altta yarım satır kalmaz); satırlar kartın içinde kırılır, devamı madde işaretinin hizasında (asılı girinti); fazlası fare tekerleğiyle kaydırılır (fare listenin üstündeyken), ince kaydırma çubuğu. Yazı 14 pt, küçülmez.
+- **Kapris plakası** (`FieldEventHud`) sabit −250 yerine kota kartının gerçek alt kenarının 14 px altına yerleşir (`QuotaHUD.TryGetBottom`; kartın "kota doldu" zıplaması hesaba katılmaz, plaka titremez). Kart görünmüyorsa eski yer.
+- Etkili ödül satırında sondaki ":" düşer ("Anten:" → "Anten").
+- **Bilinen durum:** liste açıkken kapris de varsa plaka aşağı iner ve tarlanın sol köşesindeki koordinat harflerinin (B–E) üstüne gelir; liste kapanınca geri çıkar. Oyuncunun açtığı geçici görünüm olarak bırakıldı.
+- **Editör kuralı:** kota kartı hâlâ yalnız çalışma anında kuruluyor (yukarıdaki ertelenen tablo, HUD satırı).
+- Test: `QuotaRewardsListVerification` (izole, 1920×1080 çekim, 21 ödül + Aşılı Kabuk) 23/23; görüntüler `Library/VerificationProject/Logs/QuotaRewards/`. Tab tuşunun kendisi toplu kipte basılamadı (eski Input); yönlendirme kod okumasıyla.

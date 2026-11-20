@@ -1,0 +1,15 @@
+[
+  {
+    "id": "vertical",
+    "width": 748,
+    "height": 896,
+    "source": "source/vertical.png",
+    "prompt": "Create a redesigned PORTRAIT Steam capsule748:896, highest available resolution, based on these TWO references. Reference1 controls EXACT ERIGONE custom title design, Eri mascot identity, hand-inked comic style and cream/orange/navy palette. Reference2 is the game's OWN planter icon, controls planter geometry. User now wants a SIMPLE GAME SCENE with centered prominent logo and Eri gardening BEHIND it, NO PLANET at all. Composition: large readable stacked ERI cream / GONE orange logo centered horizontally AND around image middle (roughlyy40%-76%), dominates foreground, all seven letters clearly visible, preserve distinctive irregular fractured E and G and existing cel-shaded side planes from reference1. Behind the upper edge of the title, Eri in the upper third, slightly off center left, naturally leaning toward one planting bed and gently tending one small green seedling with his mechanical claw. Do not sit Eri on lettering, do not pull lettering, no lettering stretch. Preserve Eri exactly: intact tilted glass dome, two olive leaves and familiar curled tendril, small cream face with TWO happy closed arch eyes, NO MOUTH/MOLE, narrow petrol-teal robot planter body, cream trim, orange joints and SHORT legs. Eri's head/dome/body upper parts visible above title; partial natural occlusion lower body by logo acceptable, no detached limbs. Real in-game planting beds: low rectangular/square GREY METAL troughs with clipped/octagonal corners, thick light grey/cream rim, dark slate outer side faces, brown soil, tiny orange corner latch accents, just like reference2, NOT terra-cotta pots or generic flowerpots. Show TWO beds maximum: one complete beside Eri in upper-right, with a single chunky leafy sprout he is tending; second partial bed subtly visible at lower-left foreground with soil and one seedling. Give beds consistent 3/4 perspective and coherent size, don't tile whole image with farm. Layering should communicate tiny space garden: simple dark slate platform under planters/Eri, broad muted plum/blue floor planes leading behind centered logo. Background plain deep midnight navy with ONE subtle broad darker/lighter tone plane, at most3 tiny star dots, no zigzag patchwork, NO PLANET, no giant space rocks, no decorative confetti. Text remains main focal point; props quieter and less saturated, foliage olive. Coherent upper-left lighting and hard cel-shaded contact shadows so logo, planter and mascot feel part of same scene; no photorealistic/glossy plastic rendering. Rich characterful drawing not geometric simplified mascot. Restrained purposeful indie cartoon game poster, no UI/buttons, no other words, no borders, full bleed. Preserve the appealing custom logo from reference1 rather than switching to regular typeset font."
+  },
+  {
+    "id": "vertical_high",
+    "width": 1496,
+    "height": 1792,
+    "source": "source/vertical.png"
+  }
+]

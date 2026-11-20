@@ -1,0 +1,15 @@
+[
+  {
+    "id": "vertical",
+    "width": 748,
+    "height": 896,
+    "source": "source/vertical.png",
+    "prompt": "Correct a rejected portrait Steam capsule. IMAGE1 supplies logo placement only; its mascot and isolated pots are WRONG. IMAGE2 is the APPROVED EXACT ERI IDENTITY: reproduce that character faithfully, not a generic upright round cute robot. Keep his leaning elliptical glass dome, long broad asymmetrical olive leaves and curled tendril, SMALL cream seed face, narrow sloping teal bowl with cream rim, orange joints, SHORT legs and broad TEAL feet edged in cream (NOT small cream shoes). Use happy closed arch eyes only, no mouth/mole; retain proportions and ink style of IMAGE2. Eri stands on top of FINAL ORANGE E in GONE, same position as IMAGE1, with contact shadows; character can lean slightly while balanced, no squat round redesign. Title retains handmade cream ERI over orange GONE, centered foreground, subtle uneven angles, readable, large, fractured first E and G. REPLACE BOTH isolated pots in IMAGE1 with ONE CONTINUOUS CULTIVATED FIELD extending across background behind logo in perspective: a single low slate sci-fi farming platform with a unified outer border and a compact 3-by-3 grid of adjoining brown-soil growing beds separated by low pale grey metal dividers, clipped outer corners and small amber corner tabs. Beds joined into one farm, not two big flowerpots sitting on empty ground, not tall pots. Plants grow in a few orderly rows: small broad olive greens and 2 modest corn silhouettes, variation in growth stage. Keep farm simple and lower contrast than logo, moderate hand-drawn irregularities, no mechanical perfect copy-paste rows, no busy tiny detailing. Field visible in upper-left/upper-middle background then naturally occluded by large foreground logo. Ground and field coherent perspective. No planet. Midnight navy sky calm, muted plum/slate ground. Match ORIGINAL character reference's lively comic linework, angular broad cel shadows, warm cream highlights, no glossy toy/plastic finish, no overly smooth mascot, no ornamental clutter. Exact portrait748:896, high resolution, whole finished image no comparison/extra text. First read ERIGONE, second recognizable original Eri, third contiguous productive field."
+  },
+  {
+    "id": "vertical_high",
+    "width": 1496,
+    "height": 1792,
+    "source": "source/vertical.png"
+  }
+]

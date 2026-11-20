@@ -231,6 +231,10 @@ ui.hud.done,Short 'done / met' tag after a reached target.,MET,TAMAM
 ui.hud.rhythm.ready,HUD line: the Harvest Rhythm reward is charged.,HARVEST RHYTHM READY · next hit is strong,HASAT RİTMİ HAZIR · sıradaki vuruş güçlü
 ui.hud.rhythm.count,"HUD line: Harvest Rhythm counter. {0} = hits, {1} = needed.",Harvest Rhythm {0} / {1},Hasat Ritmi {0} / {1}
 ui.hud.boss_rewards,HUD heading above the list of boss rewards taken.,Boss rewards,Boss ödülleri
+ui.hud.boss_rewards.closed,"HUD line under the quota card while the boss reward list is hidden. {0} = number of rewards taken, {1} = the Tab key icon (keep it).",Boss rewards ({0}) · {1} to show,Boss ödülleri ({0}) · {1} ile göster
+ui.hud.boss_rewards.open,"Same line while the list is open. {0} = number of rewards, {1} = the Tab key icon (keep it).",Boss rewards ({0}) · {1} to hide,Boss ödülleri ({0}) · {1} ile gizle
+ui.hud.boss_rewards.group,"Group heading inside the boss reward list (quota card). {0} = reward stage name in capitals (EARLY / MID / STRONG), {1} = rewards taken from that stage.",{0} ({1}),{0} ({1})
+ui.hud.boss_rewards.other,Group heading for boss rewards that belong to no stage (capitals).,OTHER,DİĞER
 ui.hud.round,"HUD round counter. {0} = current round, {1} = total rounds.",Round {0} / {1},Round {0} / {1}
 ui.hud.time,HUD timer. {0} = seconds left. Keep it short.,Time: {0}s,Süre: {0} sn
 ui.hud.round_label,HUD round card header (card-style HUD). Short label above the round numbers.,ROUND,ROUND

@@ -3129,6 +3129,14 @@ MonoBehaviour:
     m_Localized: Skip Cards ({0})
     m_Metadata:
       m_Items: []
+  - m_Id: 5609442599784448
+    m_Localized: "Boss rewards ({0}) \xB7 {1} to show"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5609442645921792
+    m_Localized: "Boss rewards ({0}) \xB7 {1} to hide"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

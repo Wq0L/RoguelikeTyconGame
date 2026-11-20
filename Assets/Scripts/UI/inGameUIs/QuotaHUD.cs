@@ -1,12 +1,20 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem;
+#endif
 
 // Round HUD'unda Hasat Kotası: bu segmentte kazanılan skor / kota, ilerleme çubuğu ve kalan round.
 // Segment olayı (boss) aktifken kartın kâğıdı o boss'un rengine boyanır (BossTheme: Don buz mavisi, Sert Kabuk amber, Sis gri-lila);
 // alt satırdaki kural / yaklaşan boss yazısı da aynı kimlikten renk alır.
 // Boss ritminde (Bölüm 3.4) iki koşul ayrı satırdadır: üstte "SEGMENT KOTASI", altında "BOSS HASADI" (boss round'unda sayaç,
-// hazırlık round'larında hedef). Alınan boss ödülleri en altta kısa liste olarak durur.
+// hazırlık round'larında hedef). Alınan boss ödülleri en altta: varsayılan KAPALI, tek satır "Boss ödülleri (N) · Tab ile göster";
+// Tab (hazırlık ekranı dışında) açar / kapar. Açıkken liste en fazla MaxListHeight (tam satıra yuvarlanır), satırlar kartın içinde kırılır,
+// fazlası fare tekerleğiyle kaydırılır (20 Kasım 2026, kullanıcı: "taşıyor, belli bir boyutu olsun, tuşla aç kapa, yazılar sığsın").
+// Liste aşamaya göre gruplu: en üstte GÜÇLÜ, sonra ORTA, en altta ERKEN; her grubun başlığı ve satırları aşamanın rengiyle (ödül
+// ekranındaki aşama renginin kâğıtta okunur koyu tonu), grup içinde alınış sırası. Kartın bütün satırları yazı alanına sığar:
+// uzun satır önce küçülür, en küçük boyda da sığmazsa alt satıra geçer; sağdaki kâğıt süsüne değmez (TextRight).
 // Level başına seçim hakkı bir ödülle değiştiyse (Bölüm 3.7.4) ödül listesinin üstünde tek satır yazar; değer değişmedikçe
 // yazı yeniden kurulmaz.
 // RoundUI kurar; sahneye kayıt gerekmez. Skoru saniyede 10 kez okur, değişmediyse yazıyı yeniden kurmaz.
@@ -16,6 +24,10 @@ public sealed class QuotaHUD : MonoBehaviour
     private const float Height = 76f;
     private const float EventLineHeight = 28f;
     private const float RewardLineHeight = 19f;
+    private const float MaxListHeight = 180f, RewardHeaderHeight = 22f, ListFontSize = 14f, ScrollLines = 2f, ThumbWidth = 4f;
+    // Yazı alanı: soldan 16, sağdan 36 (kartın sağ kenarındaki tram süsü yazıya değmesin).
+    private const float TextLeft = 16f, TextRight = 36f, TextWidth = Width - TextLeft - TextRight;
+    private const float ListTextWidth = TextWidth - ThumbWidth - 8f;
     private const float BarInset = 16f;
 
     private static readonly Color Ink = new Color32(54, 39, 54, 255);
@@ -31,7 +43,46 @@ public sealed class QuotaHUD : MonoBehaviour
     private string shownEvent, shownSpec, shownBossLine, shownRewards, shownRhythm, shownChoices;
     public string RhythmText => rhythmLine != null && rhythmLine.gameObject.activeSelf ? rhythmLine.text : null;
     public string ChoiceText => choiceLine != null && choiceLine.gameObject.activeSelf ? choiceLine.text : null;
-    public string RewardListText => rewardList != null && rewardList.gameObject.activeSelf ? rewardList.text : null;
+    // Alınan ödüllerin listesi (açık ya da kapalı olsun): testler ve okuma için.
+    public string RewardListText => cachedRewardText;
+    public string RewardHeaderText => rewardHeader != null && rewardHeader.gameObject.activeSelf ? rewardHeader.text : null;
+    public bool RewardListShown => rewardView != null && rewardView.gameObject.activeInHierarchy;
+    public float RewardViewHeight => listViewHeight;
+    public float RewardContentHeight => listContentHeight;
+    public RectTransform RewardView => rewardView;
+    public TextMeshProUGUI RewardListLabel => rewardList;
+
+    // Liste açık mı (oturum boyunca hatırlanır; run'lar arasında da). Tab: UIManager (round sırasında) çağırır.
+    public static bool RewardsOpen { get; private set; }
+    private static QuotaHUD active;
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetStatics() { RewardsOpen = false; active = null; }
+
+    public static void ToggleRewards() => SetRewardsOpen(!RewardsOpen);
+
+    public static void SetRewardsOpen(bool open)
+    {
+        RewardsOpen = open;
+        if (active != null) { active.shownState = -1; active.Refresh(); }
+    }
+
+    // Kartın alt kenarı (dünya noktası, sol alt köşe). Kart görünmüyorsa false. Kapris plakası bunun altına yerleşir.
+    // Kartın kendi ölçeği hesaba katılmaz: kota dolunca kart "zıplar" (DOPunchScale), altındaki plaka onunla titremesin.
+    public static bool TryGetBottom(out Vector3 bottomLeft)
+    {
+        bottomLeft = default;
+        if (active == null || !active.isActiveAndEnabled || active.group == null || active.group.alpha < .01f) return false;
+        RectTransform card = active.card;
+        Rect rect = card.rect;
+        bottomLeft = card.parent.TransformPoint(card.localPosition + new Vector3(rect.xMin, rect.yMin, 0f));
+        return true;
+    }
+
+    private TextMeshProUGUI rewardHeader;
+    private RectTransform rewardView, scrollThumb;
+    private float listContentHeight, listViewHeight, listLineHeight = 16f, scrollOffset;
+    private bool shownOpen;
+    private int rewardCount;
     private bool shownBoss;
     private SegmentEventSO shownBossIdentity;
     // Test ve doğrulama için: kartın şu anki kâğıt ve boss satırı rengi.
@@ -79,7 +130,7 @@ public sealed class QuotaHUD : MonoBehaviour
         label.fontSizeMax = 23f;
         // Uzun çeviride (6 Kasım 2026, dil turu) başlık iki satıra iner, kartın dışına taşmaz.
         label.textWrappingMode = TextWrappingModes.Normal;
-        value = CreateText("Value", 26f, TextAlignmentOptions.MidlineRight, new Vector2(-16f, -8f), new Vector2(160f, 34f), new Vector2(1f, 1f));
+        value = CreateText("Value", 26f, TextAlignmentOptions.MidlineRight, new Vector2(-28f, -8f), new Vector2(150f, 34f), new Vector2(1f, 1f));
         value.enableAutoSizing = true;
         value.fontSizeMin = 16f;
         value.fontSizeMax = 26f;
@@ -111,12 +162,29 @@ public sealed class QuotaHUD : MonoBehaviour
         choiceLine.fontSizeMin = 12f;
         choiceLine.fontSizeMax = 17f;
         choiceLine.gameObject.SetActive(false);
-        rewardList = CreateText("Rewards", 15f, TextAlignmentOptions.TopLeft, new Vector2(16f, -40f), new Vector2(Width - 32f, RewardLineHeight), new Vector2(0f, 1f));
+        rewardHeader = CreateText("Rewards Header", 15f, TextAlignmentOptions.MidlineLeft, new Vector2(16f, -40f), new Vector2(Width - 32f, RewardHeaderHeight), new Vector2(0f, 1f));
+        rewardHeader.color = new Color32(70, 92, 40, 255);
+        rewardHeader.enableAutoSizing = true;
+        rewardHeader.fontSizeMin = 11f;
+        rewardHeader.fontSizeMax = 15f;
+        KeyPrompts.Apply(rewardHeader);
+        rewardHeader.gameObject.SetActive(false);
+        // Liste: sabit yükseklikte maskeli görünüm; içerik satırları kartın genişliğinde kırılır, taşan kısım kaydırılır.
+        rewardView = new GameObject("Rewards View", typeof(RectTransform), typeof(UnityEngine.UI.RectMask2D)).GetComponent<RectTransform>();
+        rewardView.SetParent(card, false);
+        rewardView.anchorMin = rewardView.anchorMax = rewardView.pivot = new Vector2(0f, 1f);
+        rewardView.sizeDelta = new Vector2(TextWidth, MaxListHeight);
+        rewardList = CreateText("Rewards", ListFontSize, TextAlignmentOptions.TopLeft, Vector2.zero, new Vector2(ListTextWidth, RewardLineHeight), new Vector2(0f, 1f));
+        rewardList.rectTransform.SetParent(rewardView, false);
+        rewardList.rectTransform.anchoredPosition = Vector2.zero;
         rewardList.color = new Color32(70, 92, 40, 255);
-        rewardList.enableAutoSizing = true;
-        rewardList.fontSizeMin = 11f;
-        rewardList.fontSizeMax = 15f;
-        rewardList.gameObject.SetActive(false);
+        rewardList.textWrappingMode = TextWrappingModes.Normal;
+        rewardList.overflowMode = TextOverflowModes.Overflow;
+        scrollThumb = new GameObject("Scroll thumb", typeof(RectTransform), typeof(CanvasRenderer)).GetComponent<RectTransform>();
+        scrollThumb.SetParent(rewardView, false);
+        scrollThumb.anchorMin = scrollThumb.anchorMax = scrollThumb.pivot = new Vector2(1f, 1f);
+        var thumb = scrollThumb.gameObject.AddComponent<ComicPopupPlate>(); thumb.color = new Color32(70, 92, 40, 200); thumb.raycastTarget = false;
+        rewardView.gameObject.SetActive(false);
 
         var track = new GameObject("Bar", typeof(RectTransform)).GetComponent<RectTransform>();
         track.SetParent(card, false);
@@ -141,6 +209,7 @@ public sealed class QuotaHUD : MonoBehaviour
     {
         nextRefresh = 0f;
         shownState = -1;
+        active = this;
         GameText.Changed += OnLanguageChanged;
         Refresh();
     }
@@ -148,6 +217,7 @@ public sealed class QuotaHUD : MonoBehaviour
     private void OnDisable()
     {
         GameText.Changed -= OnLanguageChanged;
+        if (active == this) active = null;
         card.DOKill();
         card.localScale = Vector3.one;
     }
@@ -164,6 +234,11 @@ public sealed class QuotaHUD : MonoBehaviour
 
     private void Update()
     {
+        // Açık listede fare tekerleği: yalnız fare listenin üstündeyken, yalnız taşma varsa (bellek ayırmaz).
+        if (RewardsOpen && listContentHeight > listViewHeight + 1f && rewardView.gameObject.activeInHierarchy &&
+            ReadWheel(out float wheel, out Vector2 pointer) && wheel != 0f &&
+            RectTransformUtility.RectangleContainsScreenPoint(rewardView, pointer, UiCamera()))
+            ScrollTo(scrollOffset - wheel * ScrollLines * listLineHeight);
         if (Time.unscaledTime < nextRefresh) return;
         nextRefresh = Time.unscaledTime + 0.1f;
         Refresh();
@@ -192,13 +267,14 @@ public sealed class QuotaHUD : MonoBehaviour
         string specText = SpecializationManager.Instance != null ? SpecializationPanelUI.Describe(SpecializationManager.Instance.Chosen) : null;
         bool bossMode = events != null && events.BossMode;
         string bossText = bossMode ? BossLine(rounds, closed) : null;
-        string rewards = RewardLines(out int rewardLines);
+        string rewards = RewardLines(out _);
         string rhythmText = RhythmLine();
         string choiceText = ChoiceLine(rounds);
 
         if (progress == shownProgress && target == shownTarget && left == shownLeft && state == shownState &&
             boss == shownBoss && identity == shownBossIdentity && eventText == shownEvent && specText == shownSpec && bossText == shownBossLine && rewards == shownRewards && rhythmText == shownRhythm &&
-            choiceText == shownChoices) return;
+            choiceText == shownChoices && RewardsOpen == shownOpen) return;
+        shownOpen = RewardsOpen;
         bool reached = done && !wasDone && shownState >= 0 && rounds.IsRoundActive;
         shownProgress = progress; shownTarget = target; shownLeft = left; shownState = state; wasDone = done;
         shownBoss = boss; shownBossIdentity = identity; shownEvent = eventText; shownSpec = specText; shownBossLine = bossText; shownRewards = rewards; shownRhythm = rhythmText; shownChoices = choiceText;
@@ -210,46 +286,36 @@ public sealed class QuotaHUD : MonoBehaviour
         paper.color = boss ? BossTheme.Paper(events.Active.Data) : Paper;
         eventLine.color = BossTheme.Ink(identity);
         float y = -40f;
-        bossLine.gameObject.SetActive(bossText != null);
-        if (bossText != null)
-        {
-            bossLine.text = bossText;
-            bossLine.rectTransform.anchoredPosition = new Vector2(16f, y);
-            y -= EventLineHeight;
-        }
-        eventLine.gameObject.SetActive(eventText != null);
-        eventLine.text = eventText ?? "";
-        eventLine.rectTransform.anchoredPosition = new Vector2(16f, y);
-        if (eventText != null) y -= EventLineHeight;
+        // Her satır yazı alanına sığdırılır (Line): yükseklik satırın gerçek kapladığı kadar, sıradaki satır altına.
+        y = Line(bossLine, bossText, 20f, 14f, EventLineHeight, y);
+        y = Line(eventLine, eventText, 19f, 13f, EventLineHeight, y);
         // Seçilen uzmanlaşma run boyunca görünür (olay satırının altında).
-        specLine.gameObject.SetActive(specText != null);
-        specLine.text = specText != null ? GameText.Format("ui.summary.specialization", specText) : "";
-        specLine.rectTransform.anchoredPosition = new Vector2(16f, y);
-        if (specText != null) y -= 24f;
+        y = Line(specLine, specText != null ? GameText.Format("ui.summary.specialization", specText) : null, 17f, 12f, 24f, y);
         // Hasat Ritmi (kırılma ödülü): sayaç ya da hazır hak.
-        rhythmLine.gameObject.SetActive(rhythmText != null);
-        if (rhythmText != null)
-        {
-            rhythmLine.text = rhythmText;
-            rhythmLine.rectTransform.anchoredPosition = new Vector2(16f, y);
-            y -= 22f;
-        }
+        y = Line(rhythmLine, rhythmText, 17f, 12f, 22f, y);
         // Level başına seçim hakkı (bir ödül değiştirdiyse): yeni kazanılan level'ların getireceği seçim sayısı.
-        choiceLine.gameObject.SetActive(choiceText != null);
-        if (choiceText != null)
+        y = Line(choiceLine, choiceText, 17f, 12f, 22f, y);
+        // Alınan boss ödülleri: başlık satırı (sayı + Tab ipucu) hep; liste yalnız açıkken, sabit en fazla yükseklikte.
+        bool hasRewards = rewards != null;
+        rewardHeader.gameObject.SetActive(hasRewards);
+        rewardView.gameObject.SetActive(hasRewards && RewardsOpen);
+        listContentHeight = listViewHeight = 0f;
+        if (hasRewards)
         {
-            choiceLine.text = choiceText;
-            choiceLine.rectTransform.anchoredPosition = new Vector2(16f, y);
-            y -= 22f;
-        }
-        // Alınan boss ödülleri: ad, adet ve toplam etki.
-        rewardList.gameObject.SetActive(rewards != null);
-        if (rewards != null)
-        {
-            rewardList.text = rewards;
-            rewardList.rectTransform.anchoredPosition = new Vector2(16f, y);
-            rewardList.rectTransform.sizeDelta = new Vector2(Width - 32f, rewardLines * RewardLineHeight);
-            y -= rewardLines * RewardLineHeight + 4f;
+            y = Line(rewardHeader, GameText.Format(RewardsOpen ? "ui.hud.boss_rewards.open" : "ui.hud.boss_rewards.closed", rewardCount, KeyPrompts.Tag(KeyPrompts.Tab)),
+                15f, 11f, RewardHeaderHeight, y);
+            rewardList.text = rewards;   // kapalıyken de güncel (yalnız değişince; görünmeyen yazı çizilmez)
+            if (RewardsOpen)
+            {
+                listContentHeight = rewardList.GetPreferredValues(rewards, ListTextWidth, 0f).y;
+                rewardList.rectTransform.sizeDelta = new Vector2(ListTextWidth, listContentHeight);
+                // Görünüm bir satırın altında biter: altta yarım kesik satır kalmaz (yalnız liste değişince ölçülür).
+                listViewHeight = Mathf.Min(listContentHeight, VisibleListHeight());
+                rewardView.anchoredPosition = new Vector2(TextLeft, y);
+                rewardView.sizeDelta = new Vector2(TextWidth, listViewHeight);
+                ScrollTo(scrollOffset);
+                y -= listViewHeight + 4f;
+            }
         }
         card.sizeDelta = new Vector2(Width, Height + (-40f - y));
         value.text = $"{HarvestQuota.Format(progress)} / {HarvestQuota.Format(target)}";
@@ -315,6 +381,7 @@ public sealed class QuotaHUD : MonoBehaviour
         return choiceCached = BossRewardText.LevelChoiceLine(choices, baseChoices);
     }
 
+    // Liste içeriği (başlıksız): her ödül kendi satırında, kırılan devamı madde işaretinin hizasında (asılı girinti).
     private string RewardLines(out int lines)
     {
         BossRewardManager manager = BossRewardManager.Instance;
@@ -323,19 +390,133 @@ public sealed class QuotaHUD : MonoBehaviour
         { lines = cachedRewardLines; return cachedRewardText; }
         cachedRewardManager = manager;
         cachedRewardVersion = version;
-        lines = cachedRewardLines = 0;
+        lines = cachedRewardLines = rewardCount = 0;
         cachedRewardText = null;
         if (manager == null || manager.Taken.Count == 0) return null;
-        var text = new System.Text.StringBuilder(GameText.Get("ui.hud.boss_rewards"));
-        lines = 1;
-        foreach (BossRewardSO reward in manager.Taken)
+        var text = new System.Text.StringBuilder();
+        BossRewardPoolSO pool = manager.Pool;
+        if (pool != null && pool.IsStaged)
         {
-            text.Append("\n· ").Append(BossRewardText.ListLine(reward, manager.Stacks(reward)));
-            lines++;
+            // Güçlüden erkene; aşaması olmayan (varsa) en altta.
+            for (int stage = pool.stages.Count - 1; stage >= -1; stage--) AppendGroup(text, manager, pool, stage, ref lines);
         }
+        else
+            foreach (BossRewardSO reward in manager.Taken) AppendItem(text, reward, manager, null, ref lines);
+        rewardCount = manager.Taken.Count;
         cachedRewardLines = lines;
         return cachedRewardText = text.ToString();
     }
+
+    private static void AppendGroup(System.Text.StringBuilder text, BossRewardManager manager, BossRewardPoolSO pool, int stage, ref int lines)
+    {
+        int count = 0;
+        foreach (BossRewardSO reward in manager.Taken) if (pool.StageIndexOf(reward) == stage) count++;
+        if (count == 0) return;
+        BossRewardStage data = stage >= 0 ? pool.stages[stage] : null;
+        string color = data != null ? ReadableHex(data.color) : "5B4A2E";
+        string name = data != null ? data.DisplayName : GameText.Get("ui.hud.boss_rewards.other");
+        if (lines > 0) text.Append("\n<size=45%> </size>\n");   // gruplar arasında küçük boşluk
+        text.Append("<color=#").Append(color).Append("><cspace=0.05em>").Append(GameText.Format("ui.hud.boss_rewards.group", name, count)).Append("</cspace></color>");
+        lines++;
+        foreach (BossRewardSO reward in manager.Taken)
+            if (pool.StageIndexOf(reward) == stage) AppendItem(text, reward, manager, color, ref lines);
+    }
+
+    private static void AppendItem(System.Text.StringBuilder text, BossRewardSO reward, BossRewardManager manager, string color, ref int lines)
+    {
+        if (lines > 0) text.Append('\n');
+        if (color != null) text.Append("<color=#").Append(color).Append('>');
+        text.Append("·<indent=0.8em>").Append(BossRewardText.ListLine(reward, manager.Stacks(reward))).Append("</indent>");
+        if (color != null) text.Append("</color>");
+        lines++;
+    }
+
+    // Aşama rengi (ödül ekranında koyu zemin için açık ton) krem kâğıtta okunur koyu tona çevrilir; ton aynı kalır.
+    private static string ReadableHex(Color color)
+    {
+        Color.RGBToHSV(color, out float h, out float s, out float _);
+        return ColorUtility.ToHtmlStringRGB(Color.HSVToRGB(h, Mathf.Clamp01(Mathf.Max(s, .5f) + .2f), .5f));
+    }
+
+    // Satırı yazı alanına sığdırır ve yerleştirir; sıradaki satırın y'sini döner. content null: satır gizli.
+    // Önce yazı küçülür (en az minSize); yine sığmazsa o boyda alt satıra geçer. Yalnız kart yeniden kurulurken çağrılır.
+    private static float Line(TextMeshProUGUI text, string content, float maxSize, float minSize, float row, float y)
+    {
+        text.gameObject.SetActive(content != null);
+        if (content == null) { text.text = ""; return y; }
+        text.enableAutoSizing = false;
+        text.textWrappingMode = TextWrappingModes.NoWrap;
+        text.fontSize = maxSize;
+        text.text = content;
+        float height = row;
+        float width = text.GetPreferredValues(content, 10000f, 0f).x;
+        if (width > TextWidth)
+        {
+            text.fontSize = Mathf.Max(minSize, Mathf.Floor(maxSize * TextWidth / width * 10f) / 10f);
+            if (text.GetPreferredValues(content, 10000f, 0f).x > TextWidth)
+            {
+                text.textWrappingMode = TextWrappingModes.Normal;
+                height = Mathf.Max(row, text.GetPreferredValues(content, TextWidth, 0f).y + 4f);
+            }
+        }
+        text.rectTransform.sizeDelta = new Vector2(TextWidth, height);
+        text.rectTransform.anchoredPosition = new Vector2(TextLeft, y);
+        return y - height;
+    }
+
+    // Liste görünümünün yüksekliği: MaxListHeight'a sığan son tam satırın alt kenarı (satır boyları farklı olabilir: grup boşluğu).
+    private float VisibleListHeight()
+    {
+        rewardList.ForceMeshUpdate();
+        TMP_TextInfo info = rewardList.textInfo;
+        float bottom = 0f, top = rewardList.rectTransform.rect.yMax;
+        for (int i = 0; i < info.lineCount; i++)
+        {
+            float lineBottom = top - info.lineInfo[i].descender;
+            if (lineBottom > MaxListHeight) break;
+            bottom = lineBottom;
+        }
+        if (info.lineCount > 0) listLineHeight = Mathf.Max(8f, listContentHeight / info.lineCount);
+        return bottom > 0f ? Mathf.Ceil(bottom) : MaxListHeight;
+    }
+
+    private Canvas rootCanvas;
+    private Camera UiCamera()
+    {
+        if (rootCanvas == null) { Canvas canvas = GetComponentInParent<Canvas>(); rootCanvas = canvas != null ? canvas.rootCanvas : null; }
+        return rootCanvas == null || rootCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : rootCanvas.worldCamera;
+    }
+
+    // Tekerlek ve imleç: Input System (yeni giriş) varsa ondan, yoksa eski Input'tan. Değer çentik başına ±1.
+    private static bool ReadWheel(out float wheel, out Vector2 pointer)
+    {
+#if ENABLE_INPUT_SYSTEM
+        Mouse mouse = Mouse.current;
+        if (mouse != null) { wheel = mouse.scroll.ReadValue().y; pointer = mouse.position.ReadValue(); return true; }
+#endif
+#if ENABLE_LEGACY_INPUT_MANAGER
+        wheel = Input.mouseScrollDelta.y; pointer = Input.mousePosition; return true;
+#else
+        wheel = 0f; pointer = default; return false;
+#endif
+    }
+
+    private void ScrollTo(float offset)
+    {
+        float max = Mathf.Max(0f, listContentHeight - listViewHeight);
+        scrollOffset = Mathf.Clamp(offset, 0f, max);
+        rewardList.rectTransform.anchoredPosition = new Vector2(0f, scrollOffset);
+        bool scrollable = max > 1f;
+        scrollThumb.gameObject.SetActive(scrollable);
+        if (!scrollable) return;
+        float thumb = Mathf.Max(18f, listViewHeight * listViewHeight / listContentHeight);
+        scrollThumb.sizeDelta = new Vector2(ThumbWidth, thumb);
+        scrollThumb.anchoredPosition = new Vector2(0f, -(scrollOffset / max) * (listViewHeight - thumb));
+    }
+
+    // Test / araç: listeyi belirli bir kaydırmaya getirir.
+    public void ScrollRewards(float offset) => ScrollTo(offset);
+    public float RewardScroll => scrollOffset;
 
     private static ComicPopupPlate Plate(RectTransform parent, string name, Color color, Vector2 offsetMin, Vector2 offsetMax)
     {

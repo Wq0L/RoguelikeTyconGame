@@ -1,0 +1,34 @@
+[
+  {
+    "file": "PNG/main_1232x706.png",
+    "width": 1232,
+    "height": 706,
+    "sha256": "68E3F9E4D5653D923CF98C3974157D89B2FF63474049890B576C17201A72E82E",
+    "font": "Bungee Regular",
+    "status": "awaiting-user-approval"
+  },
+  {
+    "file": "PNG/header_920x430.png",
+    "width": 920,
+    "height": 430,
+    "sha256": "C31AFACA333CF074E8F611B2853AA5ACA5CF6176E0BCCBA8F495E8E76440003D",
+    "font": "Bungee Regular",
+    "status": "awaiting-user-approval"
+  },
+  {
+    "file": "PNG/small_462x174.png",
+    "width": 462,
+    "height": 174,
+    "sha256": "5B114577BF7FB8CECF41B44016AF8358342FAC64E0A1498FD51466CCC32815AF",
+    "font": "Bungee Regular",
+    "status": "awaiting-user-approval"
+  },
+  {
+    "file": "PNG/vertical_748x896.png",
+    "width": 748,
+    "height": 896,
+    "sha256": "33B0469E862696737D88880DD428569B05858743B11DF4B75D4E863385498C6B",
+    "font": "Bungee Regular",
+    "status": "awaiting-user-approval"
+  }
+]

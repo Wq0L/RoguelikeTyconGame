@@ -1,0 +1,16 @@
+[
+  {
+    "id": "vertical",
+    "width": 748,
+    "height": 896,
+    "source": "source/vertical.png",
+    "prompt": "Edit vertical capsule IMAGE2. IMAGE1 is the ORIGINAL true Eri character identity reference, which OVERRIDES the wrong generic mascot in IMAGE2. User requests TWO corrections only. 1) FIELD: replace small distant tray with a LARGE CLOSE CONTINUOUS FARM PLATFORM directly BEHIND LOGO. Platform spans beyond BOTH LEFT AND RIGHT image edges, visibly cropped on both sides so farm continues offscreen. Its front rim is hidden/occluded by foreground logo, NO empty gap between farm and logo. Broad brown-soil growing cells separated by low grey metal dividers in perspective, small orange hardware, 2 modest corn plants and a few broad greens. This is ONE big adjoining field, NOT a small tray, not isolated pots. Field occupies approximately upper-middle y25%-53% and recedes gently to top center, quieter than title. Leave TOP20-25% calm near-black navy sky clearly visible; do NOT fill entire background with crops. 2) ERI: reproduce IMAGE1's exact asymmetric angular character with a visibly tilted dome and slanted planter rim, charcoal petrol-blue body rather than bright cyan, two natural olive leaves and slender curled tendril, SMALL cream seed face positioned low to the right among soil. Exactly TWO BLACK OVAL EYES from original (the two LARGE marks are eyes), NO third tiny dot/mole, NO mouth, no blush. Restore original expression and original leaf shapes rather than happy generic arch eyes. Wide characteristic teal boots with cream trim and very SHORT legs, no cream shoes, no round chubby belly. Claw rests naturally to side, NOT waving. Eri stays on the final orange E of GONE, with clear weight/contact shadows, same low three-quarter tilt as original image1; no head-on symmetric mascot. Keep image2's centered cream ERI / orange GONE custom dimensional handdrawn logo and its fractures/lettering, prominent foreground, slightly uneven angles. Keep coherent hard comic shading, no photorealism or glossy plastic. NO PLANET anywhere. Composition close integrated farm behind logo, original Eri at right on last E, dark sky above, logo main focus. Exact748:896 portrait, highest native resolution, full bleed, all letters visible. Preserve current logo rather than copying horizontal original title.",
+    "cleanup": "Tiny retouch ONLY. Preserve this entire image identically. On Eri's cream face at upper-right of logo, there are two LARGE black oval eyes, one TINY black dot above-left of those eyes, and a small orange cheek spot. REMOVE ONLY the tiny black dot and the tiny orange cheek spot, paint matching cream face underneath. KEEP BOTH LARGE BLACK OVAL EYES exactly intact. Final face contains exactly two large oval eyes, no mouth, no mole/freckles/cheek dots. Do not redraw or change character pose, eyes, dome, soil, leaves, letters, field, colors, background or framing. Same full portrait and resolution."
+  },
+  {
+    "id": "vertical_high",
+    "width": 1496,
+    "height": 1792,
+    "source": "source/vertical.png"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "width": 920,
+    "height": 430,
+    "file": "PNG/header_920x430.png",
+    "sha256": "99F5C80AAC31D4E4756858450EBDD8936517E24FB9DB690A7187FF02D004B123"
+  },
+  {
+    "width": 1232,
+    "height": 706,
+    "file": "PNG/main_1232x706.png",
+    "sha256": "F6EA24486DE7BA43E8FFD495F24CF5AE7FC284A0C398C79D345B655C1D667180"
+  },
+  {
+    "width": 748,
+    "height": 896,
+    "file": "PNG/vertical_748x896.png",
+    "sha256": "B7067BD4C03B02277509B8A0ECE64F84E9EB03328F8E414941D9D418E2DB2FF7"
+  },
+  {
+    "width": 462,
+    "height": 174,
+    "file": "PNG/small_462x174.png",
+    "sha256": "6BA5B9754B2E8B465D03FA4103FF73AB717CD4CC02EE70E48DD9D5EE8FB48D15"
+  }
+]

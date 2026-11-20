@@ -1,0 +1,32 @@
+[
+  {
+    "id": "small",
+    "width": 462,
+    "height": 174,
+    "box": [
+      174,
+      29,
+      275,
+      101
+    ],
+    "stacked": false,
+    "source": "source/small-art.png",
+    "font": "Lilita One",
+    "prompt": "Edit the supplied original ERIGONE illustration into a very wide, text-free Steam small capsule background, aspect ratio 77:29 (462:174), highest available resolution. FIRST reference (original poster) controls SAME CAMERA ANGLE, SAME TILTED POSE, same low front three-quarter viewpoint, same left-to-right descending rocky ground and full feet standing on it. SECOND reference (text-free small capsule) controls exact clean TWO-EYE-ONLY Eri face and palette. Zoom OUT from second reference so BOTH FEET and the RUSTY ROCKY GROUND are clearly visible, not cropped. Preserve original Eri identity, intact glass dome, olive leaves, curled tendril, cream seed face with EXACTLY TWO LARGE BLACK OVAL EYES and absolutely NO THIRD DOT, NO MOLE, NO SPOTS, NO MOUTH. Robot petrol blue with cream trim, orange joints. Character occupies x=2%-37%, y=8%-88%; orange cracked planet behind him. In the lower 13%-20% show a clear rocky ledge sloping from upper-left to lower-right as in original, in broad rust and dark plum cel-shaded planes. Preserve original thick hand-drawn ink and angular comic shading, no new angle, not top-down, not straight symmetrical front, no crops, no new objects. RIGHT x=38%-97%, y=10%-75% remains calm dark navy, reserved for a large logo to be added with actual project font. Remove ALL LETTERING and all letter fragments from reference. NO WORDS, NO LETTERS, NO WATERMARK. Full bleed, no screenshot borders. Same original reference composition adapted wide, not reimagined. No bright lighting glows."
+  },
+  {
+    "id": "small_high",
+    "width": 1848,
+    "height": 696,
+    "box": [
+      696,
+      116,
+      1100,
+      404
+    ],
+    "stacked": false,
+    "source": "source/small-art.png",
+    "font": "Lilita One",
+    "prompt": "Edit the supplied original ERIGONE illustration into a very wide, text-free Steam small capsule background, aspect ratio 77:29 (462:174), highest available resolution. FIRST reference (original poster) controls SAME CAMERA ANGLE, SAME TILTED POSE, same low front three-quarter viewpoint, same left-to-right descending rocky ground and full feet standing on it. SECOND reference (text-free small capsule) controls exact clean TWO-EYE-ONLY Eri face and palette. Zoom OUT from second reference so BOTH FEET and the RUSTY ROCKY GROUND are clearly visible, not cropped. Preserve original Eri identity, intact glass dome, olive leaves, curled tendril, cream seed face with EXACTLY TWO LARGE BLACK OVAL EYES and absolutely NO THIRD DOT, NO MOLE, NO SPOTS, NO MOUTH. Robot petrol blue with cream trim, orange joints. Character occupies x=2%-37%, y=8%-88%; orange cracked planet behind him. In the lower 13%-20% show a clear rocky ledge sloping from upper-left to lower-right as in original, in broad rust and dark plum cel-shaded planes. Preserve original thick hand-drawn ink and angular comic shading, no new angle, not top-down, not straight symmetrical front, no crops, no new objects. RIGHT x=38%-97%, y=10%-75% remains calm dark navy, reserved for a large logo to be added with actual project font. Remove ALL LETTERING and all letter fragments from reference. NO WORDS, NO LETTERS, NO WATERMARK. Full bleed, no screenshot borders. Same original reference composition adapted wide, not reimagined. No bright lighting glows."
+  }
+]

@@ -41,6 +41,9 @@ public sealed class UIPop : MonoBehaviour
     {
         Capture();
         transform.DOKill();
+        // Yeniden dağıtılan eleman yeni içeriktir: önceki tıklamadan kalan seçim taşınmasın (12 Kasım 2026, level kartı hatası).
+        var events = UnityEngine.EventSystems.EventSystem.current;
+        if (events != null && events.currentSelectedGameObject == gameObject) events.SetSelectedGameObject(null);
         transform.localScale = Vector3.zero;
         transform.localRotation = restRotation * Quaternion.Euler(0f, 0f, fromAngle);
         SetInputBlocked(lockInput);

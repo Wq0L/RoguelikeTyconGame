@@ -1,0 +1,66 @@
+[
+  {
+    "id": "main",
+    "width": 1232,
+    "height": 706,
+    "box": [
+      48,
+      43,
+      600,
+      300
+    ],
+    "stacked": true,
+    "source": "source/main-art.png",
+    "font": "Assets/Art/UI/ComicToon/Fonts/Bungee-Regular.ttf",
+    "prompt": "Create a professional hand-inked indie game Steam capsule illustration BACKGROUND, with NO lettering. Use the supplied reference ONLY to preserve Eri's exact identity and the established palette, NOT its old composition. Eri is a cream seed-like face with exactly TWO BLACK OVAL EYES, NO mouth, NO third dot, NO mole, NO spots. Two olive leaves and one curled tendril above the face, all inside an intact round clear glass dome containing soil. Squat petrol-blue robot planter, cream edge trim, vermilion circular joints, chunky boots and small mechanical claw. Eri is a mascot watching the harvest, NOT a weapon-wielding fighter. Universe: science-fiction farming on alien rock, octagonal grey metal planters with brown soil and oversized crops, chain harvest effects. STYLE: authored graphic comic illustration with confident irregular thick ink contours, angular broad 2-3-tone cel-shaded shapes, intentional asymmetric composition, limited detail, matte printed poster look. Palette restricted to deep midnight navy #0b1b29, vermilion orange #ff5026, warm cream #ffebbb, dusty petrol blue #326879, olive green #91a33a, muted plum shadows #332035. Color hierarchy navy base, orange focal accent, cream highlights, green crops. NO glossy 3D plastic, NO photorealism, NO bloom, NO neon fog, NO lens effects, NO random particles, NO generic magical ornaments, NO swirly filler, NO repeated decorative clutter, NO UI screenshots, NO words, NO letters, NO numbers, NO watermark. Full bleed image with no borders. Only one coherent harvest effect, readable at thumbnail size, not many competing effects. Match the reference character's recognizability exactly, but give this poster a deliberately new composition. MAIN LANDSCAPE capsule, exact aspect 1232:706, preferably 2464x1412. Scene-focused illustration with a strong diagonal: a small floating FARM PLATFORM crosses the LOWER HALF from lower left to mid-right, made of a compact 3-by-3 arrangement of clipped-corner octagonal metal planting beds. Several beds have chunky ripe maize, carrots and broad-leaf plants, limited to THREE simple crop clusters, not a busy huge farm. Eri stands on the RIGHT third, full body, roughly 58% of image height, watching harvest, tilted energetically. A single bold flat cream-and-petrol angular lightning/harvest stroke links THREE beds, carrying a handful of cut leaves towards lower right; no glow, no floating weapon. A huge partial cracked vermilion planet sits in the far back RIGHT, giving a graphic halo behind Eri. LEFT UPPER area x=5%-55%,y=8%-49% is calm midnight navy with no objects, reserved for title. Foreground crops slightly overlap the platform edge to give depth. Broad chunky silhouettes, clear negative space around title, not symmetrical.",
+    "lettering": "Actual Bungee outlines with hand-positioned E/G fractures and detached fragments"
+  },
+  {
+    "id": "header",
+    "width": 920,
+    "height": 430,
+    "box": [
+      32,
+      38,
+      490,
+      224
+    ],
+    "stacked": true,
+    "source": "source/header-art.png",
+    "font": "Assets/Art/UI/ComicToon/Fonts/Bungee-Regular.ttf",
+    "prompt": "Create a professional hand-inked indie game Steam capsule illustration BACKGROUND, with NO lettering. Use the supplied reference ONLY to preserve Eri's exact identity and the established palette, NOT its old composition. Eri is a cream seed-like face with exactly TWO BLACK OVAL EYES, NO mouth, NO third dot, NO mole, NO spots. Two olive leaves and one curled tendril above the face, all inside an intact round clear glass dome containing soil. Squat petrol-blue robot planter, cream edge trim, vermilion circular joints, chunky boots and small mechanical claw. Eri is a mascot watching the harvest, NOT a weapon-wielding fighter. Universe: science-fiction farming on alien rock, octagonal grey metal planters with brown soil and oversized crops, chain harvest effects. STYLE: authored graphic comic illustration with confident irregular thick ink contours, angular broad 2-3-tone cel-shaded shapes, intentional asymmetric composition, limited detail, matte printed poster look. Palette restricted to deep midnight navy #0b1b29, vermilion orange #ff5026, warm cream #ffebbb, dusty petrol blue #326879, olive green #91a33a, muted plum shadows #332035. Color hierarchy navy base, orange focal accent, cream highlights, green crops. NO glossy 3D plastic, NO photorealism, NO bloom, NO neon fog, NO lens effects, NO random particles, NO generic magical ornaments, NO swirly filler, NO repeated decorative clutter, NO UI screenshots, NO words, NO letters, NO numbers, NO watermark. Full bleed image with no borders. Only one coherent harvest effect, readable at thumbnail size, not many competing effects. Match the reference character's recognizability exactly, but give this poster a deliberately new composition. HEADER WIDE capsule, exact aspect 920:430 (2.1395:1), preferably1840x860. Bold close-up composition: Eri's intact glass dome, expressive TWO-EYES face and shoulder/robot base on RIGHT 38%, close enough to recognize the face. Three broad leaves/maize silhouettes in two octagonal planters sweep across the BOTTOM quarter as a diagonal foreground, with one long angular cream harvest swoosh leading from far lower left towards Eri. This is a clean iconic harvesting vignette, not a panoramic landscape. Broken vermilion planet fragment behind Eri at far upper right, graphic navy background. Reserve LEFT x=5%-62%,y=12%-69% as uninterrupted quiet navy for title. No decorative rocks in title area. Tight framing on RIGHT mascot; left remains readable. Strong asymmetric hand-inked poster, no glossy render.",
+    "lettering": "Actual Bungee outlines with hand-positioned E/G fractures and detached fragments"
+  },
+  {
+    "id": "small",
+    "width": 462,
+    "height": 174,
+    "box": [
+      151,
+      31,
+      294,
+      111
+    ],
+    "stacked": false,
+    "source": "source/small-art.png",
+    "font": "Assets/Art/UI/ComicToon/Fonts/Bungee-Regular.ttf",
+    "prompt": "Reuse approved original-style small art unchanged; add Bungee ERIGONE with custom vector fractures on E and G.",
+    "lettering": "Actual Bungee outlines with hand-positioned E/G fractures and detached fragments"
+  },
+  {
+    "id": "vertical",
+    "width": 748,
+    "height": 896,
+    "box": [
+      90,
+      20,
+      568,
+      223
+    ],
+    "stacked": true,
+    "source": "source/vertical-art.png",
+    "font": "Assets/Art/UI/ComicToon/Fonts/Bungee-Regular.ttf",
+    "prompt": "Create a professional hand-inked indie game Steam capsule illustration BACKGROUND, with NO lettering. Use the supplied reference ONLY to preserve Eri's exact identity and the established palette, NOT its old composition. Eri is a cream seed-like face with exactly TWO BLACK OVAL EYES, NO mouth, NO third dot, NO mole, NO spots. Two olive leaves and one curled tendril above the face, all inside an intact round clear glass dome containing soil. Squat petrol-blue robot planter, cream edge trim, vermilion circular joints, chunky boots and small mechanical claw. Eri is a mascot watching the harvest, NOT a weapon-wielding fighter. Universe: science-fiction farming on alien rock, octagonal grey metal planters with brown soil and oversized crops, chain harvest effects. STYLE: authored graphic comic illustration with confident irregular thick ink contours, angular broad 2-3-tone cel-shaded shapes, intentional asymmetric composition, limited detail, matte printed poster look. Palette restricted to deep midnight navy #0b1b29, vermilion orange #ff5026, warm cream #ffebbb, dusty petrol blue #326879, olive green #91a33a, muted plum shadows #332035. Color hierarchy navy base, orange focal accent, cream highlights, green crops. NO glossy 3D plastic, NO photorealism, NO bloom, NO neon fog, NO lens effects, NO random particles, NO generic magical ornaments, NO swirly filler, NO repeated decorative clutter, NO UI screenshots, NO words, NO letters, NO numbers, NO watermark. Full bleed image with no borders. Only one coherent harvest effect, readable at thumbnail size, not many competing effects. Match the reference character's recognizability exactly, but give this poster a deliberately new composition. VERTICAL PORTRAIT capsule, exact aspect748:896 (0.8348:1), preferably1496x1792. A graphic vertical illustrated poster, bold composition: Eri large and central in LOWER TWO THIRDS, body angled slightly left, two feet planted on the edge of one broad octagonal planting platform. Surround Eri's LOWER legs with just two oversized foreground crops: cream-and-olive maize on left and chunky orange carrot with green leaves at right, both growing from clearly visible metal octagonal beds with brown soil. ONE simple flat jagged petrol-blue and cream harvest energy ribbon crosses lower planters, no glow. The cropped broken orange planet forms an asymmetric arc behind the dome. TOP 29% pure calm navy reserved for title; planet begins below that. Eri's dome and leaves must not enter the title area. Character occupies x=20%-83%,y=32%-89%. Simplify foreground terrain into three big graphic planes. This should feel like a distinctive crafted comic cover, not a collage of tiny objects.",
+    "lettering": "Actual Bungee outlines with hand-positioned E/G fractures and detached fragments"
+  }
+]

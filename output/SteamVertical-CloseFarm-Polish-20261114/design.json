@@ -1,0 +1,15 @@
+[
+  {
+    "id": "vertical",
+    "width": 748,
+    "height": 896,
+    "source": "source/vertical.png",
+    "prompt": "Precisely retouch this existing ERIGONE portrait game cover, preserving the composition and character completely. Keep the dark navy upper sky, large continuous close-up farm extending beyond both side edges, and huge centered two-line ERI / GONE lettering with cream upper row orange lower row and fractured first E and G. Keep Eri EXACTLY the same identity, proportions, tilted glass dome, olive leaves, face with two oval eyes, narrow petrol blue robot bowl, short legs, boots, pose on the final orange E. Do not redesign.\nOnly polish two issues:\n1. The farmland soil looks too perfect and repetitively scalloped. Replace the identical rounded clumps with restrained, hand-drawn irregular earth: uneven sizes of flatter and angular clods, a few shallow broken furrows, intermittent flat soil patches, modest asymmetry. Retain the broad brown/orange palette and bold clean comic shapes. A few tiny chips in the metal planter rim are enough; do not damage or clutter everything. No procedural noise, no photoreal dirt, no excessive grit.\n2. Make the lettering convincingly occupy the scene instead of a pasted graphic. Preserve the exact lettering shapes and placement. Ground the bottom orange letters on the purple foreground surface through carefully shaped tight contact shadows at their bases, coherent directional cast shadows consistent with upper-left lighting, subtle purple reflected shading in the lower letter side faces and a restrained warm reflection on nearby floor. Eri's boots must have convincing small contact shadows on the orange E. Avoid a generic oval drop shadow. Keep the floor simple and readable, with at most a few small angular soil crumbs beside the letter bases.\nKeep the original cartoon ink style, strong silhouette and readable title. Do not add a planet, extra text, border, stars or new objects. Portrait artwork, full bleed."
+  },
+  {
+    "id": "vertical_high",
+    "width": 1496,
+    "height": 1792,
+    "source": "source/vertical.png"
+  }
+]
