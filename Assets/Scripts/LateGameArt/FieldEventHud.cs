@@ -44,9 +44,12 @@ public sealed class FieldEventHud : MonoBehaviour
         plate.layer = root.gameObject.layer;
         var rect = (RectTransform)plate.transform;
         rect.SetParent(root, false);
-        rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0f, 1f);
-        // Left margin below the quota panel; leaves the far field corner and target crowns clear.
-        rect.anchoredPosition = new Vector2(24f, -250f);
+        // Sağ alt köşe, Lv / XP kartının üstü; plaka yukarı doğru uzar (20 Kasım 2026). Önce kota kartının altındaydı: tarlanın sol üst
+        // kenarındaki koordinat harfleri kartın hemen altından geçtiği için 16:9'da büyük gridlerde harfe değiyor, 4:3'te harflerin
+        // üstüne biniyordu; sol alt köşede de Eri'nin küçük konuşma kutusu açılıyor. Sağ altta tarla kenarında harf yok; kota listesi
+        // Tab ile açılınca da plakayla çakışmaz (QuotaRewardsListVerification, 3–11 grid × 4 ekran oranı).
+        rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(1f, 0f);
+        rect.anchoredPosition = new Vector2(-ComicHud.Margin, ComicHud.LevelCardBottom + ComicHud.LevelCardHeight + 14f);
         rect.sizeDelta = new Vector2(430f, 106f);
         AddPlate(rect, "Ink", Ink, 0f);
         AddPlate(rect, "Face", new Color32(255, 244, 214, 245), 3f);
@@ -131,7 +134,6 @@ public sealed class FieldEventHud : MonoBehaviour
             return;
         }
         if (!plate.activeSelf) plate.SetActive(true);
-        PlaceBelowQuota();
         ShowLegend(current.Kind == FieldEventKind.GraftedShell);
         bool bountyShown=current is WanderingBountyEvent;
         bountyProgress.gameObject.SetActive(false);
@@ -172,21 +174,6 @@ public sealed class FieldEventHud : MonoBehaviour
         float over = label.textBounds.size.y - label.rectTransform.rect.height;
         textExtra = over > .5f ? Mathf.Ceil(over) + 4f : 0f;
         if (textExtra > 0f) rect.sizeDelta = new Vector2(430f, baseHeight + textExtra);
-    }
-
-    // Kota kartının gerçek alt kenarının altında durur (20 Kasım 2026: kart ödül listesiyle uzayınca plaka üstüne biniyordu).
-    // Kart görünmüyorsa eski sabit yer. Yalnız değer değişince yazar (bellek ayırmaz).
-    private const float DefaultTop = -250f, QuotaGap = 14f;
-    public void PlaceBelowQuota()
-    {
-        var rect = (RectTransform)plate.transform;
-        float y = DefaultTop;
-        if (QuotaHUD.TryGetBottom(out Vector3 bottom) && rect.parent is RectTransform parent)
-        {
-            Vector3 local = parent.InverseTransformPoint(bottom);
-            y = local.y - parent.rect.yMax - QuotaGap;
-        }
-        if (Mathf.Abs(rect.anchoredPosition.y - y) > .5f) rect.anchoredPosition = new Vector2(24f, y);
     }
 
     private void ShowLegend(bool show)

@@ -15,6 +15,8 @@ using UnityEngine.UI;
 public static class ComicHud
 {
     public const float Margin = 24f, DisplayScale = .82f;
+    // Sağ alttaki Lv / XP kartı: alt boşluğu ve yüksekliği (kapris plakası bunun üstüne yerleşir).
+    public const float LevelCardBottom = 22f, LevelCardHeight = 70f;
     private const string Kit = "HudKit/hud_";
 
     // Kurulduğu sahnedeki RoundUI: sahne yeniden yüklenince (yeni run) nesne yok olur, HUD yeniden kurulur.
@@ -179,8 +181,8 @@ public static class ComicHud
         group.gameObject.layer = root.gameObject.layer;
         group.SetParent(root, false);
         group.anchorMin = group.anchorMax = group.pivot = new Vector2(1f, 0f);
-        group.anchoredPosition = new Vector2(-Margin, 22f);
-        group.sizeDelta = new Vector2(380f, 70f);
+        group.anchoredPosition = new Vector2(-Margin, LevelCardBottom);
+        group.sizeDelta = new Vector2(380f, LevelCardHeight);
         // Çubuk: boş çerçeve (Simple, doğal oran) + aynı dikdörtgende yatay Filled dolgu.
         RectTransform bar = Piece(group, "XP Bar", "bar_blue_frame", new Vector2(1f, .5f), new Vector2(0f, 0f), new Vector2(286f, 59f));
         Slider slider = root.GetComponentInChildren<Slider>(true);

@@ -15,6 +15,8 @@ using UnityEngine.Rendering;
 // Kota kartındaki boss ödülleri listesi + kapris plakası (20 Kasım 2026). Kullanıcı istekleri:
 //  - "taşıyor, belli bir boyutu olsun, tuşla (Tab) aç kapa, yazılar düzgün sığsın; uzun yazılar aşmamalı"
 //  - "kaprisler gelince soldaki plaka kota kartının üstüne biniyor"; kart ve plaka tarla harflerinin (A–J, 1–10) önünde dursun
+//    → plaka sağ alta (Lv / XP kartının üstü) taşındı: kota kartıyla ve Lv kartıyla hiçbir durumda çakışmaz, tarlaya / harflere
+//      Tab açık ya da kapalı DEĞMEZ (sert kural).
 //  - "fare üstündeyken tekerlekle kaydırma"; "11×11, 7×7, 5×5, 3×3 hepsinde düzgün durduğunu kontrol et"
 //  - "güçlüler farklı renkte en üstte, sonra normaller (orta), en altta erken; alış sırasıyla; renkli başlıklar"
 // Gerçek GameScene + Mechanics Test Lab oturumu, 1920×1080 çekim (kamera ve arayüz aynı dokuya, HudFramingCapture yöntemi).
@@ -23,13 +25,17 @@ using UnityEngine.Rendering;
 // Akış: ödüller kurulur → sıralama / renk → her grid boyunda (3, 5, 7, 9, 11) kapris + açık / kapalı liste ölçülür ve çekilir →
 // sanal fareyle tekerlek (listenin üstünde kaydırır, dışında kaydırmaz) → İngilizce (uzun satırlar).
 // Not: Tab tuşunun kendisi (eski Input) toplu kipte basılamaz; liste Tab'ın çağırdığı QuotaHUD.ToggleRewards ile açılır.
-// Görüntüler: Logs/QuotaRewards/*.png, sonuç Logs/QuotaRewardsListVerification.txt.
+// SERT KURAL (kullanıcı, 20 Kasım): Tab KAPALIYKEN kart ve kapris plakası hiçbir grid boyunda tarlaya (açık karolar + görünen kilitli
+// halka) ve koordinat harflerine DEĞMEZ — tam geometriyle (ekrana izdüşen karo alanı ve harf plakaları), en yakın boşluk piksel
+// olarak yazılır. Tab açıkken üste gelmesi kabul (yalnız bilgi satırı).
+// Ekran oranları: RunBatch 1920×1080 (16:9), RunWide 2560×1080 (21:9), Run16x10 1920×1200, Run4x3 1440×1080.
+// Görüntüler: Logs/QuotaRewards/<en>x<boy>/*.png, sonuç Logs/QuotaRewardsListVerification_<en>x<boy>.txt.
 // Çalıştırma: Tools/run-isolated-verification.ps1 -Method QuotaRewardsListVerification.RunBatch -Full
 [InitializeOnLoad]
 public static class QuotaRewardsListVerification
 {
-    const string Key = "QuotaRewardsListVerification";
-    const int W = 1920, H = 1080;
+    const string Key = "QuotaRewardsListVerification", ResKey = "QuotaRewardsListVerification.Res";
+    static int W = 1920, H = 1080;
     const float MaxList = 180f, TextRight = 36f, CardWidth = 440f;
     static readonly int[] Sizes = { 3, 5, 7, 9, 11 };
     static readonly List<string> lines = new();
@@ -40,9 +46,15 @@ public static class QuotaRewardsListVerification
     static float scrollBefore;
     static QuotaRewardsListVerification() { EditorApplication.update += Tick; }
 
-    public static void RunBatch()
+    public static void RunBatch() => Begin(1920, 1080);
+    public static void RunWide() => Begin(2560, 1080);
+    public static void Run16x10() => Begin(1920, 1200);
+    public static void Run4x3() => Begin(1440, 1080);
+
+    static void Begin(int w, int h)
     {
         if (!Application.dataPath.Contains("VerificationProject")) throw new Exception("isolated only");
+        SessionState.SetString(ResKey, w + "x" + h);
         EditorUtility.audioMasterMute = true;
         var pipeline = AssetDatabase.LoadAssetAtPath<RenderPipelineAsset>("Assets/Settings/PC_RPAsset.asset");
         GraphicsSettings.defaultRenderPipeline = pipeline; QualitySettings.renderPipeline = pipeline;
@@ -83,6 +95,8 @@ public static class QuotaRewardsListVerification
                     Check(quotaCanvas.renderMode == RenderMode.ScreenSpaceOverlay && eventCanvas.renderMode == RenderMode.ScreenSpaceOverlay,
                         "oyunda kota kartı ve kapris plakası Screen Space Overlay tuvalde: 3B dünyanın (tarla harfleri dahil) her zaman önünde çizilir",
                         $"{quotaCanvas.name}: {quotaCanvas.renderMode}, {eventCanvas.name}: {eventCanvas.renderMode}");
+                    string[] res = SessionState.GetString(ResKey, "1920x1080").Split('x');
+                    W = int.Parse(res[0]); H = int.Parse(res[1]);
                     target = new RenderTexture(W, H, 24, RenderTextureFormat.ARGB32); target.Create();
                     cam.targetTexture = target;
                     foreach (Canvas c in UnityEngine.Object.FindObjectsByType<Canvas>(FindObjectsInactive.Include, FindObjectsSortMode.None).Where(c => c.isRootCanvas && c.renderMode == RenderMode.ScreenSpaceOverlay))
@@ -95,7 +109,8 @@ public static class QuotaRewardsListVerification
                     mouse.MakeCurrent();
                     RoundManager.Instance.EditorAddRoundTime(600f);
                     QuotaHUD.SetRewardsOpen(false);
-                    lines.Add($"INFO çekim {W}×{H}, HUD kurulu {ComicHud.Installed}, durum {GameManager.Instance.CurrentState}, kota {RoundManager.Instance.QuotaEnabled}");
+                    lines.Add($"INFO çekim {W}×{H}, HUD kurulu {ComicHud.Installed}, durum {GameManager.Instance.CurrentState}, kota {RoundManager.Instance.QuotaEnabled}, " +
+                              $"arayüz ölçeği {Hud.GetComponentInParent<Canvas>().rootCanvas.scaleFactor:0.###} (mesafeler çekim pikseli)");
                     Check(!QuotaHUD.RewardsOpen, "liste varsayılan olarak kapalı");
                     Check(Hud.RewardHeaderText == null, "ödül yokken başlık satırı yok", Hud.RewardHeaderText);
                     phase = 1; next = now + 1; return;
@@ -232,9 +247,26 @@ public static class QuotaRewardsListVerification
                     Check(Hud.RewardHeaderText != null && Hud.RewardHeaderText.Contains("to hide"), "İngilizce başlık", Hud.RewardHeaderText);
                     Measure(cam, true, "en");
                     Capture("11x11_en_acik.png");
+                    QuotaHUD.SetRewardsOpen(false);
+                    phase = 32; next = now + .5; return;
+                }
+                case 32:
+                    Measure(cam, false, "en");
+                    Capture("11x11_en_kapali.png");
+                    // Sahte uzun dil (qps: ~%35 uzun, aksanlı; ComicKitVerification'ın kullandığı): uzun çevirilerde de taşma / değme yok.
+                    GameText.Language = GameText.PseudoLanguage;
+                    QuotaHUD.SetRewardsOpen(true);
+                    phase = 33; next = now + 1.2; return;
+                case 33:
+                    Measure(cam, true, "qps");
+                    Capture("11x11_qps_acik.png");
+                    QuotaHUD.SetRewardsOpen(false);
+                    phase = 34; next = now + .5; return;
+                case 34:
+                    Measure(cam, false, "qps");
+                    Capture("11x11_qps_kapali.png");
                     GameText.Language = "tr";
                     Finish(lines.Any(l => l.StartsWith("FAIL")) ? 1 : 0); return;
-                }
             }
         }
         catch (Exception e) { lines.Add("FAIL phase " + phase + ": " + e); Finish(1); }
@@ -270,76 +302,119 @@ public static class QuotaRewardsListVerification
         if (events.IsShown)
         {
             var plate = (RectTransform)events.transform.Find("Plate");
-            var parent = (RectTransform)plate.parent;
-            var corners = new Vector3[4];
-            plate.GetWorldCorners(corners);
-            float plateTop = parent.InverseTransformPoint(corners[1]).y;
-            QuotaHUD.TryGetBottom(out Vector3 bottom);
-            float gap = parent.InverseTransformPoint(bottom).y - plateTop;
-            Check(gap > 0f && gap < 40f, $"{at} kapris plakası kartın altında", $"boşluk {gap:0.0}");
+            Vector2[] plateBox = Box(ScreenRect(plate, cam));
+            float toCard = Gap(plateBox, Box(ScreenRect(card, cam)));
+            var level = UnityEngine.Object.FindAnyObjectByType<XpUI>().transform.Find("Level Card") as RectTransform;
+            float toLevel = level != null ? Gap(plateBox, Box(ScreenRect(level, cam))) : -1f;
+            Check(toCard > 0f && toLevel > 0f, $"{at} kapris plakası kota kartıyla ve Lv kartıyla çakışmıyor", $"kota kartına {toCard:0.#} px, Lv kartına {toLevel:0.#} px");
             TMP_Text label = plate.GetComponentsInChildren<TMP_Text>(false).First(t => t.name == "Label");
             label.ForceMeshUpdate();
             Bounds b = label.textBounds;
             Rect r = label.rectTransform.rect;
             Check(b.size.y <= r.height + 1f && b.size.x <= r.width + 1f, $"{at} kapris yazısı plakaya sığıyor",
                 $"yazı {b.size.x:0}×{b.size.y:0} / kutu {r.width:0}×{r.height:0}, ek yükseklik {events.TextExtra:0}");
-            Check(ViewportBottom(plate, cam) > .02f, $"{at} plaka ekranın içinde", ViewportBottom(plate, cam).ToString("0.000"));
-            lines.Add($"INFO {at} kart {Overlap(card, cam):0}% · plaka {Overlap(plate, cam):0}% açık tarlanın üstünde; örttüğü harf: {Letters(card, plate, cam)}");
+            Rect plateScreen = ScreenRect(plate, cam);
+            Check(plateScreen.xMin > 0f && plateScreen.yMin > 0f && plateScreen.xMax < W && plateScreen.yMax < H, $"{at} plaka ekranın içinde",
+                $"{plateScreen.xMin:0}–{plateScreen.xMax:0} × {plateScreen.yMin:0}–{plateScreen.yMax:0}");
+            Clearance(at, "kapris plakası", plate, cam, false);   // plaka listeden bağımsız: her durumda sert kural
         }
-        else lines.Add($"INFO {at} kapris yok; kart {Overlap(card, cam):0}% açık tarlanın üstünde; örttüğü harf: {Letters(card, null, cam)}");
+        else lines.Add($"INFO {at} kapris plakası yok (bu boyda olay kurulamadı)");
+        Clearance(at, "kota kartı", card, cam, open);
     }
 
-    // Açık tarla alanının (eşkenar dörtgen) kartın / plakanın ne kadarının altında kaldığı (örnekleme, %).
-    static float Overlap(RectTransform rect, Camera cam)
+    // Arayüz parçası ile tarla arasındaki en yakın boşluk (çekim pikseli; eksi: üstünde). Tab kapalıyken SERT kural: değmez.
+    static void Clearance(string at, string what, RectTransform rect, Camera cam, bool open)
+    {
+        Vector2[] box = Box(ScreenRect(rect, cam));
+        int framed = CameraFeel.Instance != null ? CameraFeel.Instance.FramedCells(Size, GridManager.Instance.GetWidth()) : Size;
+        float field = Gap(box, FieldQuad(cam, Size)), ring = Gap(box, FieldQuad(cam, framed));
+        float letter = float.MaxValue;
+        string nearest = "-";
+        foreach ((string name, Vector2[] plate) in LetterPlates(cam))
+        {
+            float gap = Gap(box, plate);
+            if (gap < letter) { letter = gap; nearest = name; }
+        }
+        string detail = $"tarla {field:0.#} px · görünen halka ({framed}×{framed}) {ring:0.#} px · en yakın harf {nearest} {letter:0.#} px";
+        if (open) lines.Add($"INFO {at} {what} (Tab açık, üste gelmesi kabul): {detail}");
+        else Check(field > 0f && ring > 0f && letter > 0f, $"{at} {what} tarlaya / kilitli halkaya / harflere değmiyor", detail);
+    }
+
+    static Rect ScreenRect(RectTransform rect, Camera cam)
+    {
+        var c = new Vector3[4];
+        rect.GetWorldCorners(c);
+        Vector2 a = cam.WorldToScreenPoint(c[0]), b = cam.WorldToScreenPoint(c[2]);
+        return Rect.MinMaxRect(Mathf.Min(a.x, b.x), Mathf.Min(a.y, b.y), Mathf.Max(a.x, b.x), Mathf.Max(a.y, b.y));
+    }
+
+    static Vector2[] Box(Rect r) => new[] { new Vector2(r.xMin, r.yMin), new Vector2(r.xMax, r.yMin), new Vector2(r.xMax, r.yMax), new Vector2(r.xMin, r.yMax) };
+
+    // cells × cells karoluk alanın (tarla ortasında) ekrana izdüşümü: dışbükey dörtgen.
+    static Vector2[] FieldQuad(Camera cam, int cells)
     {
         GridSystem system = GridManager.Instance.GetGridSystem();
         float cell = (system.GetWorldPosition(1, 0) - system.GetWorldPosition(0, 0)).magnitude;
         Vector3 center = system.GetWorldPosition(GridManager.Instance.GetWidth() / 2, GridManager.Instance.GetHeight() / 2);
-        float half = (Size / 2 + .5f) * cell;
-        var quad = new Vector2[4];
+        float half = cells * cell * .5f;
         Vector3[] world = { new(-half, 0, -half), new(half, 0, -half), new(half, 0, half), new(-half, 0, half) };
+        var quad = new Vector2[4];
         for (int i = 0; i < 4; i++) quad[i] = cam.WorldToScreenPoint(center + world[i]);
-        var corners = new Vector3[4];
-        rect.GetWorldCorners(corners);
-        Vector2 min = cam.WorldToScreenPoint(corners[0]), max = cam.WorldToScreenPoint(corners[2]);
-        int inside = 0, total = 0;
-        for (int x = 0; x < 24; x++)
-        for (int y = 0; y < 24; y++)
-        {
-            var p = new Vector2(Mathf.Lerp(min.x, max.x, (x + .5f) / 24f), Mathf.Lerp(min.y, max.y, (y + .5f) / 24f));
-            total++;
-            if (InQuad(p, quad)) inside++;
-        }
-        return 100f * inside / total;
+        return quad;
     }
 
-    static bool InQuad(Vector2 p, Vector2[] q)
-    {
-        bool? sign = null;
-        for (int i = 0; i < 4; i++)
-        {
-            Vector2 a = q[i], b = q[(i + 1) % 4];
-            float cross = (b.x - a.x) * (p.y - a.y) - (b.y - a.y) * (p.x - a.x);
-            bool s = cross >= 0f;
-            if (sign == null) sign = s; else if (sign != s) return false;
-        }
-        return true;
-    }
-
-    static string Letters(RectTransform card, RectTransform plate, Camera cam)
+    // Görünen koordinat harflerinin plakaları (dünya sınır kutusunun ekran izdüşümü).
+    static IEnumerable<(string, Vector2[])> LetterPlates(Camera cam)
     {
         var labels = GridCoordinateLabels.Active;
-        if (labels == null) return "-";
-        var hit = new List<string>();
-        foreach (TMP_Text text in labels.GetComponentsInChildren<TMP_Text>(false))
+        if (labels == null) yield break;
+        foreach (Renderer r in labels.GetComponentsInChildren<Renderer>(false))
         {
-            Vector2 p = cam.WorldToScreenPoint(text.transform.position);
-            if (Contains(card, p, cam) || (plate != null && Contains(plate, p, cam))) hit.Add(text.text);
+            if (!r.enabled || r.forceRenderingOff || r is not SpriteRenderer sprite || sprite.sprite == null || r.name != "Plate") continue;
+            Bounds local = sprite.sprite.bounds;
+            var quad = new Vector2[4];
+            Vector3[] corners = { new(local.min.x, local.min.y), new(local.max.x, local.min.y), new(local.max.x, local.max.y), new(local.min.x, local.max.y) };
+            for (int i = 0; i < 4; i++) quad[i] = cam.WorldToScreenPoint(r.transform.TransformPoint(corners[i]));
+            TMP_Text text = r.transform.parent.GetComponentInChildren<TMP_Text>();
+            yield return (text != null ? text.text : r.transform.parent.name, quad);
         }
-        return hit.Count == 0 ? "yok" : string.Join(" ", hit);
     }
 
-    static bool Contains(RectTransform rect, Vector2 screen, Camera cam) => RectTransformUtility.RectangleContainsScreenPoint(rect, screen, cam);
+    // İki dışbükey çokgen arası en yakın mesafe; kesişiyorsa eksi (ayırıcı eksen bulunamadı).
+    static float Gap(Vector2[] a, Vector2[] b)
+    {
+        if (!Separated(a, b) && !Separated(b, a)) return -1f;
+        float best = float.MaxValue;
+        foreach (Vector2 p in a) best = Mathf.Min(best, DistanceTo(p, b));
+        foreach (Vector2 p in b) best = Mathf.Min(best, DistanceTo(p, a));
+        return best;
+    }
+
+    // a'nın kenar normallerinden biri a ile b'yi ayırıyor mu.
+    static bool Separated(Vector2[] a, Vector2[] b)
+    {
+        for (int i = 0; i < a.Length; i++)
+        {
+            Vector2 e = a[(i + 1) % a.Length] - a[i], axis = new(-e.y, e.x);
+            float aMin = float.MaxValue, aMax = float.MinValue, bMin = float.MaxValue, bMax = float.MinValue;
+            foreach (Vector2 p in a) { float d = Vector2.Dot(p, axis); aMin = Mathf.Min(aMin, d); aMax = Mathf.Max(aMax, d); }
+            foreach (Vector2 p in b) { float d = Vector2.Dot(p, axis); bMin = Mathf.Min(bMin, d); bMax = Mathf.Max(bMax, d); }
+            if (aMax < bMin || bMax < aMin) return true;
+        }
+        return false;
+    }
+
+    static float DistanceTo(Vector2 p, Vector2[] poly)
+    {
+        float best = float.MaxValue;
+        for (int i = 0; i < poly.Length; i++)
+        {
+            Vector2 a = poly[i], b = poly[(i + 1) % poly.Length], ab = b - a;
+            float t = Mathf.Clamp01(Vector2.Dot(p - a, ab) / Mathf.Max(1e-6f, ab.sqrMagnitude));
+            best = Mathf.Min(best, Vector2.Distance(p, a + t * ab));
+        }
+        return best;
+    }
 
     // Liste görünümünün altında yarım satır yok (kaydırma 0'dayken): her satır ya tamamen içeride ya tamamen dışarıda.
     static void CheckNoHalfLine(QuotaHUD hud, string at = "")
@@ -422,12 +497,12 @@ public static class QuotaRewardsListVerification
     static void Capture(string name)
     {
         Camera.main.Render();
-        Directory.CreateDirectory("Logs/QuotaRewards");
+        string dir = $"Logs/QuotaRewards/{W}x{H}"; Directory.CreateDirectory(dir);
         RenderTexture old = RenderTexture.active;
         RenderTexture.active = target;
         var image = new Texture2D(W, H, TextureFormat.RGB24, false);
         image.ReadPixels(new Rect(0, 0, W, H), 0, 0); image.Apply();
-        File.WriteAllBytes("Logs/QuotaRewards/" + name, image.EncodeToPNG());
+        File.WriteAllBytes(dir + "/" + name, image.EncodeToPNG());
         RenderTexture.active = old; UnityEngine.Object.DestroyImmediate(image);
     }
 
@@ -436,7 +511,7 @@ public static class QuotaRewardsListVerification
         SessionState.SetBool(Key, false);
         Directory.CreateDirectory("Logs");
         int pass = lines.Count(l => l.StartsWith("PASS")), fail = lines.Count(l => l.StartsWith("FAIL"));
-        File.WriteAllLines("Logs/QuotaRewardsListVerification.txt", new[] { $"{(fail > 0 ? "FAIL" : "DONE")} {pass}/{pass + fail}" }.Concat(lines));
+        File.WriteAllLines($"Logs/QuotaRewardsListVerification_{W}x{H}.txt", new[] { $"{(fail > 0 ? "FAIL" : "DONE")} {pass}/{pass + fail}" }.Concat(lines));
         if (mouse != null) { InputSystem.RemoveDevice(mouse); mouse = null; }
         if (Camera.main != null) Camera.main.targetTexture = null;
         if (target != null) { target.Release(); UnityEngine.Object.DestroyImmediate(target); }

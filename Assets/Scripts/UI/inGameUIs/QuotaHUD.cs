@@ -66,18 +66,6 @@ public sealed class QuotaHUD : MonoBehaviour
         if (active != null) { active.shownState = -1; active.Refresh(); }
     }
 
-    // Kartın alt kenarı (dünya noktası, sol alt köşe). Kart görünmüyorsa false. Kapris plakası bunun altına yerleşir.
-    // Kartın kendi ölçeği hesaba katılmaz: kota dolunca kart "zıplar" (DOPunchScale), altındaki plaka onunla titremesin.
-    public static bool TryGetBottom(out Vector3 bottomLeft)
-    {
-        bottomLeft = default;
-        if (active == null || !active.isActiveAndEnabled || active.group == null || active.group.alpha < .01f) return false;
-        RectTransform card = active.card;
-        Rect rect = card.rect;
-        bottomLeft = card.parent.TransformPoint(card.localPosition + new Vector3(rect.xMin, rect.yMin, 0f));
-        return true;
-    }
-
     private TextMeshProUGUI rewardHeader;
     private RectTransform rewardView, scrollThumb;
     private float listContentHeight, listViewHeight, listLineHeight = 16f, scrollOffset;
