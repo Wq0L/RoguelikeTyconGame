@@ -23,6 +23,7 @@ public class CardUI : MonoBehaviour
 
     private TileCardOffer currentOffer;
     private Action<TileCardOffer> onSelected;
+    private bool capsBound;
 
     public void Setup(TileCardOffer offer, Action<TileCardOffer> callback)
     {
@@ -33,6 +34,7 @@ public class CardUI : MonoBehaviour
         if(tilePreview)tilePreview.color=new Color(tint.r,tint.g,tint.b,1);
         onSelected = callback;
         EnsureBuffText();
+        BindCaps();
         string rarityName = TileBuffText.RarityName(rarityType).ToUpperInvariant();
         if (offer.IsUpgrade)
         {
@@ -118,6 +120,18 @@ public class CardUI : MonoBehaviour
             text.Append(GameText.Format("ui.card.summed", TileBuffText.AmountChange(before, after, colors)));
         }
         return text.ToString();
+    }
+
+    // Kart yazıları Bungee (22 Kasım 2026, prefab: Tools > Comic UI > Kart Seçimi): Bungee küçük harfi de büyük çizer, Türkçede
+    // "i" noktasız "I" çıkmasın (ComicKit.TurkishCaps). Bir kez.
+    private void BindCaps()
+    {
+        if (capsBound) return;
+        capsBound = true;
+        ComicUITheme theme = FeelOverlay.Theme;
+        if (theme == null || theme.displayFont == null) return;
+        foreach (TMP_Text text in GetComponentsInChildren<TMP_Text>(true))
+            if (text.font == theme.displayFont) text.textPreprocessor = ComicKit.TurkishCaps.Instance;
     }
 
     private void EnsureBuffText()

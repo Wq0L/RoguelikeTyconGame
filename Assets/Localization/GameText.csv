@@ -40,7 +40,7 @@ ui.game.planter.size,"Planter shop, detail caption above the planter size (e.g. 
 ui.game.planter_shop,Preparation screen button: opens the planter (pot) shop.,PLANTER SHOP,SAKSI DÜKKÂNI
 ui.game.restart,Run end screen button: starts a new run. <br> is a line break used for layout; keep it.,Restart Game<br>,Yeniden Başla<br>
 ui.game.skill_shop,Preparation screen button: opens the skill tree shop.,SKILL SHOP,YETENEK DÜKKÂNI
-ui.game.skip_cards,Card choice screen button: skip the offered cards.,Skip Cards,Kartları Geç
+ui.game.skip_cards,"Card choice screen button: skip the offered cards (gives a small resource reward). Short, one word if possible; the skips left are shown in a corner badge.",Skip,Atla
 ui.game.skip_cards_count,"Card choice screen button with the skips left this round, e.g. Skip Cards (2). {0} = skips left.",Skip Cards ({0}),Kartları Geç ({0})
 ui.game.start_round,"Preparation screen, main button: starts the next round. Big button, keep short.",START ROUND,ROUND'U BAŞLAT
 ui.menu.options,Main menu button: opens the settings.,Options,Ayarlar
@@ -78,6 +78,8 @@ ui.options.quality.low,Graphics quality value.,Low,Düşük
 ui.options.quality.high,Graphics quality value.,High,Yüksek
 ui.options.background_effects,Settings row title.,Background Effects,Arka Plan Efektleri
 ui.options.background_effects.desc,Settings row help text.,"Animated space background. When off, a plain colour is used; raises the FPS on weak graphics cards.","Hareketli uzay arka planı. Kapatınca düz renk kullanılır; zayıf ekran kartlarında FPS artırır."
+ui.options.sound,Settings row title (audio tab): all sound on / off.,All Sound,Tüm Sesler
+ui.options.sound.desc,Settings row help text.,"Turns all sound on or off; your volume levels are kept. Same setting as the speaker button on the preparation screen.","Bütün sesleri açar ya da kapatır; ses düzeylerin korunur. Hazırlık ekranındaki hoparlör düğmesiyle aynı ayar."
 ui.options.master_volume,Settings row title.,Master Volume,Ana Ses
 ui.options.master_volume.desc,Settings row help text.,Overall level of all game sounds.,Oyundaki tüm seslerin genel seviyesi.
 ui.options.music,Settings row title.,Music,Müzik
@@ -107,6 +109,8 @@ ui.options.ctrl.rotate,Controls tab row title. Planter = pot.,Rotate Planter,Sak
 ui.options.ctrl.rotate.desc,Controls tab help text.,Rotates the planter while placing it.,Yerleştirme sırasında saksıyı döndürür.
 ui.options.ctrl.cancel,Controls tab row title.,Cancel / Back,İptal / Geri
 ui.options.ctrl.cancel.desc,Controls tab help text.,"Cancels placing, leaves the shop and the sell mode.","Yerleştirmeyi iptal eder, shop'tan ve satış modundan çıkar."
+ui.options.ctrl.tab,Controls tab row title (the Tab key).,Preview / Boss Rewards,Önizleme / Boss Ödülleri
+ui.options.ctrl.tab.desc,Controls tab help text for the Tab key.,"Between rounds opens the round preview; during a round shows or hides the boss reward list on the quota card.","Round arasında round önizlemesini açar; round sırasında kota kartındaki boss ödülleri listesini gösterir / gizler."
 ui.options.ctrl.resonance,Controls tab row title. Resonance = a game mechanic (game term).,Resonance Details,Rezonans Detayları
 ui.options.ctrl.resonance.desc,Controls tab help text.,Opens / closes the resonance detail panel while placing.,Yerleştirirken rezonans detay panelini açar / kapatır.
 ui.options.ctrl.perf,Controls tab row title.,Performance Capture,Performans Kaydı
@@ -674,6 +678,17 @@ ui.runend.fail_quota,Run end title: the quota was missed.,QUOTA MISSED,KOTA TUTM
 ui.runend.quota_line,"Run end detail. {0} = round, {1} = segment score / needed quota.",Round {0} · segment score {1} (quota needed),Round {0} · segment skoru {1} (gereken kota)
 ui.runend.boss_met,Run end detail part. {0} / {1} = boss harvest score / target.,boss harvest {0} / {1} (met),boss hasadı {0} / {1} (tamam)
 ui.runend.victory,Run end title when the run is won and the profile has no own title.,RUN COMPLETE,RUN TAMAMLANDI
+ui.runend.over,Run end title when the outcome is unknown (fallback).,RUN OVER,RUN BİTTİ
+ui.runend.score_label,Run end screen: label above the big total score number (short).,HARVEST SCORE,HASAT SKORU
+ui.runend.round_label,Run end screen: stat card label above the round reached (e.g. 13 / 50). Short.,ROUND REACHED,ULAŞILAN ROUND
+ui.runend.rewards_label,Run end screen: stat card label above the number of boss rewards taken. Short.,BOSS REWARDS,BOSS ÖDÜLÜ
+ui.runend.time_label,Run end screen: stat card label above the active play time. Short.,ACTIVE TIME,AKTİF SÜRE
+ui.runend.win_title,Run end screen title when the run is won (big stamp). Short.,VICTORY!,ZAFER!
+ui.runend.stopped_by,Run end screen (lost): heading above what ended the run (boss and missed targets). Short.,STOPPED BY,SENİ DURDURAN
+ui.runend.last_quota_label,Run end screen (won): heading above the final quota and boss harvest bars. Short.,FINAL QUOTA,SON KOTA
+ui.runend.quota_label,Run end screen: label of the quota bar (target vs your score). Short.,QUOTA,KOTA
+ui.runend.boss_label,Run end screen: label of the boss harvest bar (target vs your boss-round score). Short.,BOSS HARVEST,BOSS HASADI
+ui.runend.all_quotas_met,Run end screen (won): shown in the target card when there is no final target to show. Short.,ALL QUOTAS MET,TÜM KOTALAR TUTTU
 ui.runend.last_quota,Run end detail part. {0} = last quota score / target.,last quota {0},son kota {0}
 ui.runend.rounds,Run end detail. {0} = rounds played.,{0:plural:{} round|{} rounds},{0} round
 data.profile.run_tamamlandi_alpha_denge_v1.victory,Run end title of a balance profile (internal version name in it).,RUN COMPLETE · ALPHA BALANCE V1,RUN TAMAMLANDI · ALPHA DENGE V1

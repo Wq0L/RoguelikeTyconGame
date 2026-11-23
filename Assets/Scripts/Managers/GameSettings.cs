@@ -22,6 +22,8 @@ public static class GameSettings
     public static float MusicVolume;
     public static float EffectsVolume;
     public static bool MuteInBackground;
+    // Bütün sesler kapalı (22 Kasım 2026: hazırlık ekranındaki ses karesi ve Ses > Tüm Sesler). Ses düzeyleri korunur.
+    public static bool SoundMuted;
 
     // ---------- Dil ----------
     // Oyuncunun seçtiği dil kodu (en, tr …). Boş: seçilmedi, oyun bilgisayarın diliyle açılır (tabloda yoksa İngilizce). GameText okur.
@@ -74,6 +76,7 @@ public static class GameSettings
         MusicVolume = 0.8f;
         EffectsVolume = 1f;
         MuteInBackground = true;
+        SoundMuted = false;
 
         Language = "";
 
@@ -101,6 +104,7 @@ public static class GameSettings
         MusicVolume = PlayerPrefs.GetFloat(Prefix + "musicVolume", MusicVolume);
         EffectsVolume = PlayerPrefs.GetFloat(Prefix + "effectsVolume", EffectsVolume);
         MuteInBackground = GetBool("muteInBackground", MuteInBackground);
+        SoundMuted = GetBool("soundMuted", SoundMuted);
 
         Language = PlayerPrefs.GetString(Prefix + "language", Language);
 
@@ -130,6 +134,7 @@ public static class GameSettings
         PlayerPrefs.SetFloat(Prefix + "musicVolume", MusicVolume);
         PlayerPrefs.SetFloat(Prefix + "effectsVolume", EffectsVolume);
         SetBool("muteInBackground", MuteInBackground);
+        SetBool("soundMuted", SoundMuted);
 
         PlayerPrefs.SetString(Prefix + "language", Language ?? "");
 

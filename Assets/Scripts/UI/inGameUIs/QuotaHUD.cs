@@ -381,49 +381,10 @@ public sealed class QuotaHUD : MonoBehaviour
         lines = cachedRewardLines = rewardCount = 0;
         cachedRewardText = null;
         if (manager == null || manager.Taken.Count == 0) return null;
-        var text = new System.Text.StringBuilder();
-        BossRewardPoolSO pool = manager.Pool;
-        if (pool != null && pool.IsStaged)
-        {
-            // Güçlüden erkene; aşaması olmayan (varsa) en altta.
-            for (int stage = pool.stages.Count - 1; stage >= -1; stage--) AppendGroup(text, manager, pool, stage, ref lines);
-        }
-        else
-            foreach (BossRewardSO reward in manager.Taken) AppendItem(text, reward, manager, null, ref lines);
         rewardCount = manager.Taken.Count;
+        cachedRewardText = BossRewardText.GroupedList(manager, out lines);
         cachedRewardLines = lines;
-        return cachedRewardText = text.ToString();
-    }
-
-    private static void AppendGroup(System.Text.StringBuilder text, BossRewardManager manager, BossRewardPoolSO pool, int stage, ref int lines)
-    {
-        int count = 0;
-        foreach (BossRewardSO reward in manager.Taken) if (pool.StageIndexOf(reward) == stage) count++;
-        if (count == 0) return;
-        BossRewardStage data = stage >= 0 ? pool.stages[stage] : null;
-        string color = data != null ? ReadableHex(data.color) : "5B4A2E";
-        string name = data != null ? data.DisplayName : GameText.Get("ui.hud.boss_rewards.other");
-        if (lines > 0) text.Append("\n<size=45%> </size>\n");   // gruplar arasında küçük boşluk
-        text.Append("<color=#").Append(color).Append("><cspace=0.05em>").Append(GameText.Format("ui.hud.boss_rewards.group", name, count)).Append("</cspace></color>");
-        lines++;
-        foreach (BossRewardSO reward in manager.Taken)
-            if (pool.StageIndexOf(reward) == stage) AppendItem(text, reward, manager, color, ref lines);
-    }
-
-    private static void AppendItem(System.Text.StringBuilder text, BossRewardSO reward, BossRewardManager manager, string color, ref int lines)
-    {
-        if (lines > 0) text.Append('\n');
-        if (color != null) text.Append("<color=#").Append(color).Append('>');
-        text.Append("·<indent=0.8em>").Append(BossRewardText.ListLine(reward, manager.Stacks(reward))).Append("</indent>");
-        if (color != null) text.Append("</color>");
-        lines++;
-    }
-
-    // Aşama rengi (ödül ekranında koyu zemin için açık ton) krem kâğıtta okunur koyu tona çevrilir; ton aynı kalır.
-    private static string ReadableHex(Color color)
-    {
-        Color.RGBToHSV(color, out float h, out float s, out float _);
-        return ColorUtility.ToHtmlStringRGB(Color.HSVToRGB(h, Mathf.Clamp01(Mathf.Max(s, .5f) + .2f), .5f));
+        return cachedRewardText;
     }
 
     // Satırı yazı alanına sığdırır ve yerleştirir; sıradaki satırın y'sini döner. content null: satır gizli.

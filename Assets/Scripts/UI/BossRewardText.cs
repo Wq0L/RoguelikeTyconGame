@@ -243,6 +243,53 @@ public static class BossRewardText
     }
 
     // Level başına seçim hakkı satırı (HUD ve run sonu): yalnız run'daki bir etki temel hakkı değiştirdiyse yazılır.
+    // Alınan ödüller aşamaya göre gruplu (kota kartı ve run sonu ekranı ortak, 22 Kasım 2026): GÜÇLÜ → ORTA → ERKEN, başlık ve
+    // satırlar aşamanın renginde (ödül ekranındaki aşama renginin krem kâğıtta okunur koyu tonu), grup içinde alınış sırası.
+    // Aşamasız havuzda düz liste. Ödül yoksa null. lines: başlıklar dahil satır sayısı. Yalnız liste değişince çağrılmalı (yazı ayırır).
+    public static string GroupedList(BossRewardManager manager, out int lines)
+    {
+        lines = 0;
+        if (manager == null || manager.Taken.Count == 0) return null;
+        var text = new System.Text.StringBuilder();
+        BossRewardPoolSO pool = manager.Pool;
+        if (pool != null && pool.IsStaged)
+            for (int stage = pool.stages.Count - 1; stage >= -1; stage--) AppendGroup(text, manager, pool, stage, ref lines);
+        else
+            foreach (BossRewardSO reward in manager.Taken) AppendItem(text, reward, manager, null, ref lines);
+        return text.ToString();
+    }
+
+    private static void AppendGroup(System.Text.StringBuilder text, BossRewardManager manager, BossRewardPoolSO pool, int stage, ref int lines)
+    {
+        int count = 0;
+        foreach (BossRewardSO reward in manager.Taken) if (pool.StageIndexOf(reward) == stage) count++;
+        if (count == 0) return;
+        BossRewardStage data = stage >= 0 ? pool.stages[stage] : null;
+        string color = data != null ? ReadableHex(data.color) : "5B4A2E";
+        string name = data != null ? data.DisplayName : GameText.Get("ui.hud.boss_rewards.other");
+        if (lines > 0) text.Append("\n<size=45%> </size>\n");   // gruplar arasında küçük boşluk
+        text.Append("<color=#").Append(color).Append("><cspace=0.05em>").Append(GameText.Format("ui.hud.boss_rewards.group", name, count)).Append("</cspace></color>");
+        lines++;
+        foreach (BossRewardSO reward in manager.Taken)
+            if (pool.StageIndexOf(reward) == stage) AppendItem(text, reward, manager, color, ref lines);
+    }
+
+    private static void AppendItem(System.Text.StringBuilder text, BossRewardSO reward, BossRewardManager manager, string color, ref int lines)
+    {
+        if (lines > 0) text.Append('\n');
+        if (color != null) text.Append("<color=#").Append(color).Append('>');
+        text.Append("·<indent=0.8em>").Append(ListLine(reward, manager.Stacks(reward))).Append("</indent>");
+        if (color != null) text.Append("</color>");
+        lines++;
+    }
+
+    // Aşama rengi (ödül ekranında koyu zemin için açık ton) krem kâğıtta okunur koyu tona çevrilir; ton aynı kalır.
+    public static string ReadableHex(Color color)
+    {
+        Color.RGBToHSV(color, out float h, out float s, out float _);
+        return ColorUtility.ToHtmlStringRGB(Color.HSVToRGB(h, Mathf.Clamp01(Mathf.Max(s, .5f) + .2f), .5f));
+    }
+
     public static string LevelChoiceLine(int choices, int baseChoices) =>
         choices == baseChoices ? null : GameText.Format("ui.reward.level_choice_line", choices, baseChoices);
 

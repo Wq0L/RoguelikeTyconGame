@@ -36,6 +36,10 @@ public static class SkipRightsVerification
         GraphicsSettings.defaultRenderPipeline = pipeline; QualitySettings.renderPipeline = pipeline;
         if (!TestSession.SceneExists) TestSceneBuilder.Build();
         EditorSceneManager.OpenScene(Lab.GameScenePath);
+        // Oyundaki son hâl: ATLA butonu ve rozet kurucuyla kurulur (kopyada; lab GameScene'i diskten yükler).
+        string install = CardSkipButtonInstaller.InstallInOpenScene();
+        if (install != null) throw new Exception("installer: " + install);
+        EditorSceneManager.SaveOpenScenes();
         SessionState.SetBool(Key, true);
         Scenario s = ScenarioPresets.New("Atlama hakkı", "", "", "", 3);
         s.autoAttack = false;
@@ -46,7 +50,15 @@ public static class SkipRightsVerification
     static RoundManager RM => RoundManager.Instance;
     static CardSelectionUI Cards => UnityEngine.Object.FindAnyObjectByType<CardSelectionUI>(FindObjectsInactive.Include);
     static Button SkipButton => (Button)typeof(CardSelectionUI).GetField("skipButton", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(Cards);
-    static string SkipText => SkipButton.GetComponentInChildren<TMP_Text>(true).text;
+    // Kalan hak: rozette (22 Kasım 2026, CardSkipButtonInstaller) ya da eski kurulumda düğme yazısında "(n)".
+    static string SkipText
+    {
+        get
+        {
+            TMP_Text badge = SkipButton.GetComponentsInChildren<TMP_Text>(true).FirstOrDefault(t => t.name == "Count");
+            return badge != null ? "(" + badge.text + ")" : SkipButton.GetComponentInChildren<TMP_Text>(true).text;
+        }
+    }
     static void Call(object target, string method, params object[] args) =>
         target.GetType().GetMethod(method, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Invoke(target, args);
 

@@ -144,7 +144,8 @@ public sealed partial class SoundManager : MonoBehaviour
 
     public void ApplySettings()
     {
-        AudioListener.volume = Mathf.Clamp01(GameSettings.MasterVolume);
+        // Tüm sesler kapalıyken ana ses 0; oyuncunun ses düzeyleri değişmez (açınca eski düzeyle döner).
+        AudioListener.volume = GameSettings.SoundMuted ? 0f : Mathf.Clamp01(GameSettings.MasterVolume);
         AudioListener.pause = GameSettings.MuteInBackground && !Application.isFocused;
         foreach (var voice in voices) voice.ApplyVolume();
     }

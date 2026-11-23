@@ -1,20 +1,190 @@
 using System.Linq;
 using TMPro;
 using UnityEditor;
+using UnityEditor.Events;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-// Ana menüdeki Options panelini kategorili ayarlar ekranı olarak MenuScene'e kurar (ComicUIBuilder stili).
-// Tekrar çalıştırılabilir: önceki kurulumu ve eski dropdown/toggle'ı silip baştan kurar;
-// paneldeki BackGround ve MainMenuUI'ın Back butonu korunur. Kurulan her şey hierarchy'den düzenlenebilir.
+// Ana menüdeki Options panelini kategorili ayarlar ekranı olarak MenuScene'e kurar.
+// 20 Kasım 2026: comic kağıt kitine geçti (Docs/UI-Dili.md): lacivert pencere + başlık şeridi, kâğıt sekmeler (seçili sekme
+// altın kâğıt, dükkânın seçili kartı gibi), krem satır şeritleri (aynı kesik art arda tekrar etmesin diye her ikinci satır aynalı),
+// kare ok butonları, kit çubuğu + altın kare tutamaklı kaydırıcı, lacivert tuş plakaları; GERİ mavi (geri dön), VARSAYILANLAR mor
+// (ikincil eylem). Bütün başlık / buton / değer yazıları Bungee. Hâller Unity'nin SpriteSwap'ı (malzeme yok, karede kod yok).
+// Dil kuralı ("her dilde yazılar cuk otursun"): kutular sabit, yazı kutuya göre küçülür (en küçük 12–16), gerekirse alt satıra
+// geçer, hiçbir zaman kesilmez (Overflow). Doğrulama: OptionsMenuVerification (tr / en / qps dil turu, her yazı kutusuna sığar).
+// Tekrar çalıştırılabilir: önceki kurulumu siler, baştan kurar; paneldeki BackGround ve MainMenuUI'ın Back butonu korunur.
+// Kurulan her şey sahneye kaydedilir, hierarchy'den düzenlenebilir (AGENTS.md editör kuralı).
 public static class OptionsMenuBuilder
 {
     const string MenuScenePath = "Assets/Scenes/MenuScene.unity";
-    const float RowWidth = 1240f, RowHeight = 68f;
-    static readonly Color Ink = new Color(.055f, .075f, .08f);
+    const string Pack = "Assets/Resources/ComicPack/", Art = "Assets/Art/UI/ComicPack/", Hud = "Assets/Resources/HudKit/";
+    const float WindowWidth = 1360f, WindowHeight = 960f;
+    const float RowWidth = 1220f, RowHeight = 72f, RowGap = 8f, Control = 64f, Edge = 34f;
+    static readonly Color Ink = new Color32(54, 39, 54, 255);
+    static readonly Color Cream = new Color32(255, 242, 210, 255);
+    static readonly Color FillGreen = new Color32(98, 176, 74, 255);
     static ComicUITheme theme;
+    static int rowIndex;
+
+    // ---------------------------------------------------------------- oyun içi ayarlar (hazırlık ekranı)
+    // 22 Kasım 2026 (kullanıcı: "round bitince gelen, grid haritalı ekrana küçük kare bir ayarlar simgesi; tıklayınca ayarlar açılsın").
+    // GameScene ve DemoScene: ana tuvalde "Options Panel" (mürekkep rengi karartma + menüdekiyle aynı kit penceresi, aynı BuildInto),
+    // hazırlık ekranının (roundEndUI) sol üst köşesinde lacivert kare dişli butonu (lacivert = pencere / bilgi zemini, ayarlar
+    // penceresiyle aynı aile; açık mavi kare koordinat kutusunun rengi olduğu için kullanılmadı). Dişli: draw_icons.ps1.
+    // Buton paneli açar ve en öne alır; GERİ ve Esc (UIManager) kapatır. Bağlantılar kalıcı olay olarak sahneye yazılır.
+    static readonly string[] GameScenes = { "Assets/Scenes/GameScene.unity", "Assets/Scenes/DemoScene.unity" };
+    static readonly Color Dim = new Color32(30, 21, 32, 200);   // mürekkep (54, 39, 54) koyusu, %78
+
+    [MenuItem("Tools/Comic UI/Oyun İçi Ayarlar (hazırlık ekranı)")]
+    public static void BuildGameScenesMenu()
+    {
+        if (EditorApplication.isPlaying) { EditorUtility.DisplayDialog("Ayarlar", "Play modundan çıkıp tekrar dene.", "Tamam"); return; }
+        Debug.Log("OPTIONS_INGAME_BUILD\n" + BuildGameScenes());
+    }
+
+    // Her oyun sahnesine kurar ve kaydeder; rapor döner ("HATA" içerirse bir sahne kurulamadı).
+    public static string BuildGameScenes()
+    {
+        if (!LoadTheme()) return "HATA: ComicUITheme / kit sprite'ları yok";
+        if (!Application.isBatchMode && !EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return "iptal";
+        string start = EditorSceneManager.GetActiveScene().path;
+        var report = new System.Text.StringBuilder();
+        foreach (string path in GameScenes)
+        {
+            if (AssetDatabase.LoadAssetAtPath<SceneAsset>(path) == null) continue;
+            var scene = EditorSceneManager.OpenScene(path, OpenSceneMode.Single);
+            string error = BuildIntoGameScene();
+            if (error == null) { EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene); report.AppendLine(path + ": kuruldu"); }
+            else report.AppendLine(path + ": HATA " + error);
+        }
+        if (!string.IsNullOrEmpty(start) && EditorSceneManager.GetActiveScene().path != start) EditorSceneManager.OpenScene(start, OpenSceneMode.Single);
+        return report.ToString();
+    }
+
+    static string BuildIntoGameScene()
+    {
+        var ui = Object.FindFirstObjectByType<UIManager>(FindObjectsInactive.Include);
+        if (ui == null) return "UIManager yok";
+        var uiSo = new SerializedObject(ui);
+        var roundEnd = uiSo.FindProperty("roundEndUI").objectReferenceValue as GameObject;
+        if (roundEnd == null) return "roundEndUI yok";
+        Transform canvas = roundEnd.transform.parent;
+
+        // Panel: tam ekran, başta kapalı; karartma tıklamayı tutar (arkadaki harita / butonlar basılmaz).
+        Transform found = canvas.Find("Options Panel");
+        var panel = found != null ? (RectTransform)found : Rect("Options Panel", canvas, Vector2.zero, Vector2.zero);
+        Stretch(panel);
+        Transform dimFound = panel.Find("BackGround");
+        var dim = dimFound != null ? dimFound.GetComponent<Image>() : Rect("BackGround", panel, Vector2.zero, Vector2.zero).gameObject.AddComponent<Image>();
+        Stretch(dim.rectTransform);
+        dim.sprite = null;
+        dim.color = Dim;
+        dim.raycastTarget = true;
+        var options = panel.GetComponent<OptionsUI>() ?? panel.gameObject.AddComponent<OptionsUI>();
+        Transform backFound = panel.GetComponentsInChildren<Button>(true).FirstOrDefault(b => b.name == "Back Button")?.transform;
+        Button back;
+        if (backFound != null) back = backFound.GetComponent<Button>();
+        else
+        {
+            var image = Rect("Back Button", panel, Vector2.zero, new Vector2(360f, 80f)).gameObject.AddComponent<Image>();
+            back = image.gameObject.AddComponent<Button>();
+            back.targetGraphic = image;
+            Label("Label", image.transform, "ui.options.back", Vector2.zero, Vector2.zero, 32f, 14f, true, Color.white, TextAlignmentOptions.Center, true);
+        }
+        BuildInto(options, back);
+        ClearPersistent(back.onClick);
+        UnityEventTools.AddBoolPersistentListener(back.onClick, panel.gameObject.SetActive, false);
+        panel.gameObject.SetActive(false);
+        panel.SetAsLastSibling();
+
+        // Hazırlık ekranının sol üst köşesi: lacivert kare + krem dişli.
+        Transform buttonFound = roundEnd.transform.Find("Settings Button");
+        Image square = buttonFound != null ? buttonFound.GetComponent<Image>() : Rect("Settings Button", roundEnd.transform, Vector2.zero, Vector2.zero).gameObject.AddComponent<Image>();
+        var rect = square.rectTransform;
+        rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0f, 1f);
+        rect.anchoredPosition = new Vector2(24f, -24f);   // ComicHud.Margin
+        rect.sizeDelta = new Vector2(IconSquare, IconSquare);   // kullanıcı, 22 Kasım: "kare biraz daha küçük"; dişli sıkı oturur
+        square.sprite = Sprite(Art + "slot_button_navy_normal.png");
+        square.type = Image.Type.Sliced;
+        square.pixelsPerUnitMultiplier = square.sprite.rect.height / IconSquare;
+        square.raycastTarget = true;
+        var button = square.GetComponent<Button>() ?? square.gameObject.AddComponent<Button>();
+        button.targetGraphic = square;
+        button.transition = Selectable.Transition.SpriteSwap;
+        button.spriteState = new SpriteState
+        {
+            highlightedSprite = Sprite(Art + "slot_button_navy_hover.png"),
+            pressedSprite = Sprite(Art + "slot_button_navy_pressed.png"),
+            selectedSprite = square.sprite,
+            disabledSprite = Sprite(Art + "slot_button_navy_disabled.png"),
+        };
+        Transform iconFound = square.transform.Find("Icon");
+        var icon = iconFound != null ? iconFound.GetComponent<Image>() : Rect("Icon", square.transform, Vector2.zero, Vector2.zero).gameObject.AddComponent<Image>();
+        icon.sprite = Sprite(Art + "icon_gear.png");
+        icon.type = Image.Type.Simple;
+        icon.preserveAspect = true;
+        icon.raycastTarget = false;
+        Inset(icon.rectTransform, 5f, 5f, 8f, 3f);   // dişli kareyi doldurur; altta karenin 3B kenarı kadar pay
+        if (square.GetComponent<ComicHoverMotion>() == null) square.gameObject.AddComponent<ComicHoverMotion>().hoverScale = 1.1f;
+        ClearPersistent(button.onClick);
+        UnityEventTools.AddBoolPersistentListener(button.onClick, panel.gameObject.SetActive, true);
+        UnityEventTools.AddVoidPersistentListener(button.onClick, panel.SetAsLastSibling);
+
+        SoundSquare(roundEnd.transform);
+
+        uiSo.FindProperty("optionsPanel").objectReferenceValue = panel.gameObject;
+        uiSo.ApplyModifiedPropertiesWithoutUndo();
+        EditorUtility.SetDirty(ui);
+        return null;
+    }
+
+    const float IconSquare = 56f, IconGap = 8f;
+
+    // Ayarlar karesinin sağında ses karesi: açıkken lacivert + krem hoparlör, kapalıyken gri + gri hoparlör + kırmızı çizgi.
+    static void SoundSquare(Transform roundEnd)
+    {
+        Transform found = roundEnd.Find("Sound Button");
+        Image square = found != null ? found.GetComponent<Image>() : Rect("Sound Button", roundEnd, Vector2.zero, Vector2.zero).gameObject.AddComponent<Image>();
+        var rect = square.rectTransform;
+        rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0f, 1f);
+        rect.anchoredPosition = new Vector2(24f + IconSquare + IconGap, -24f);
+        rect.sizeDelta = new Vector2(IconSquare, IconSquare);
+        square.sprite = Sprite(Art + "slot_button_navy_normal.png");
+        square.type = Image.Type.Sliced;
+        square.pixelsPerUnitMultiplier = square.sprite.rect.height / IconSquare;
+        square.raycastTarget = true;
+        var button = square.GetComponent<Button>() ?? square.gameObject.AddComponent<Button>();
+        button.targetGraphic = square;
+        button.transition = Selectable.Transition.SpriteSwap;
+        SpriteState States(string colour) => new SpriteState
+        {
+            highlightedSprite = Sprite($"{Art}slot_button_{colour}_hover.png"),
+            pressedSprite = Sprite($"{Art}slot_button_{colour}_pressed.png"),
+            selectedSprite = Sprite($"{Art}slot_button_{colour}_normal.png"),
+            disabledSprite = Sprite($"{Art}slot_button_{colour}_disabled.png"),
+        };
+        button.spriteState = States("navy");
+        Transform iconFound = square.transform.Find("Icon");
+        var icon = iconFound != null ? iconFound.GetComponent<Image>() : Rect("Icon", square.transform, Vector2.zero, Vector2.zero).gameObject.AddComponent<Image>();
+        icon.sprite = Sprite(Art + "icon_sound.png");
+        icon.type = Image.Type.Simple;
+        icon.preserveAspect = true;
+        icon.raycastTarget = false;
+        Inset(icon.rectTransform, 5f, 5f, 8f, 3f);
+        if (square.GetComponent<ComicHoverMotion>() == null) square.gameObject.AddComponent<ComicHoverMotion>().hoverScale = 1.1f;
+        ClearPersistent(button.onClick);   // tıklamayı SoundToggleButton bağlar (Awake)
+        var toggle = square.GetComponent<SoundToggleButton>() ?? square.gameObject.AddComponent<SoundToggleButton>();
+        toggle.SetSprites(button, icon, Sprite(Art + "slot_button_navy_normal.png"), States("navy"), Sprite(Art + "slot_button_grey_normal.png"), States("grey"),
+            Sprite(Art + "icon_sound.png"), Sprite(Art + "icon_sound_off.png"));
+        EditorUtility.SetDirty(toggle);
+    }
+
+    static void ClearPersistent(UnityEngine.Events.UnityEventBase evt)
+    {
+        for (int i = evt.GetPersistentEventCount() - 1; i >= 0; i--) UnityEventTools.RemovePersistentListener(evt, i);
+    }
 
     [MenuItem("Tools/Comic UI/Build Options Menu")]
     public static void Build()
@@ -26,7 +196,7 @@ public static class OptionsMenuBuilder
         }
         if (!LoadTheme())
         {
-            EditorUtility.DisplayDialog("Options Menu", "Assets/Resources/ComicUITheme.asset bulunamadı.", "Tamam");
+            EditorUtility.DisplayDialog("Options Menu", "ComicUITheme (Bungee fontuyla) ya da comic kit sprite'ları bulunamadı.", "Tamam");
             return;
         }
 
@@ -56,13 +226,16 @@ public static class OptionsMenuBuilder
     public static bool LoadTheme()
     {
         theme = AssetDatabase.LoadAssetAtPath<ComicUITheme>("Assets/Resources/ComicUITheme.asset");
-        return theme != null;
+        return theme != null && theme.displayFont != null && Sprite(Pack + "window_navy.png") != null && Sprite(Art + "tab_gold.png") != null;
     }
+
+    static Sprite Sprite(string path) => AssetDatabase.LoadAssetAtPath<Sprite>(path);
 
     // Sahneden bağımsız kurulum (doğrulama testi de bunu kullanır). Önce LoadTheme çağrılmalı.
     public static RectTransform BuildInto(OptionsUI options, Button back)
     {
         Transform panel = options.transform;
+        rowIndex = 0;
 
         // Önceki kurulumu ve eski kontrolleri kaldır; Back butonu ve arka plan kalır.
         if (back != null) back.transform.SetParent(panel, false);
@@ -72,32 +245,43 @@ public static class OptionsMenuBuilder
             Object.DestroyImmediate(child.gameObject);
         }
 
-        // ---------- Pencere ----------
-        var window = Rect("Options Window", panel, Vector2.zero, new Vector2(1320, 900));
-        var frame = Pic("Frame", window, theme.cardSprite, Vector2.zero, new Vector2(1320, 900));
-        frame.color = new Color(.1f, .12f, .14f, .97f);
-        frame.raycastTarget = true;
-        Pic("Header", window, theme.buttonSprite, new Vector2(0, 395), new Vector2(1320, 100));
-        Loc(Text("Title", window, GameText.Get("ui.options.title"), new Vector2(0, 402), new Vector2(900, 70), 56, true), "ui.options.title");
+        // ---------- Pencere + başlık şeridi ----------
+        var window = Rect("Options Window", panel, Vector2.zero, new Vector2(WindowWidth, WindowHeight));
+        var frame = Sliced("Frame", window, Pack + "window_navy.png", Vector2.zero, new Vector2(WindowWidth, WindowHeight), 1.15f);
+        frame.raycastTarget = true;   // arkadaki menüye tıklanmasın
+        var header = Sliced("Header", window, Pack + "header_navy.png", new Vector2(0f, WindowHeight * .5f - 8f), new Vector2(720f, 112f), 0f);
+        Loc(Label("Title", header.transform, "ui.options.title", new Vector2(0f, 6f), new Vector2(620f, 78f), 54f, 24f, true, Color.white, TextAlignmentOptions.Center, false), "ui.options.title");
 
-        // ---------- Sekmeler ----------
+        // ---------- Sekmeler (seçili sekme altın kâğıt; OptionsUI hâlleri değiştirir) ----------
         // Nesne adları sabit (sahne yolları değişmesin); yazılar çeviri anahtarından (LocalizedText).
         string[] tabNames = { "GÖRÜNTÜ", "SES", "OYNANIŞ", "KONTROLLER" };
         string[] tabKeys = { "ui.options.tab.display", "ui.options.tab.audio", "ui.options.tab.gameplay", "ui.options.tab.controls" };
         var tabButtons = new Button[tabNames.Length];
+        const float tabWidth = 286f, tabGap = 18f;
+        float firstTab = -(tabNames.Length - 1) * (tabWidth + tabGap) * .5f;
         for (int i = 0; i < tabNames.Length; i++)
         {
-            tabButtons[i] = Button("Tab " + tabNames[i], window, GameText.Get(tabKeys[i]), new Vector2(-480 + i * 320, 298), new Vector2(300, 76), "blue", 30);
-            Loc(tabButtons[i].GetComponentInChildren<TMP_Text>(true), tabKeys[i]);
+            var image = Sliced("Tab " + tabNames[i], window, Art + "tab_blue.png", new Vector2(firstTab + i * (tabWidth + tabGap), 330f), new Vector2(tabWidth, 76f), 0f);
+            image.raycastTarget = true;
+            var button = image.gameObject.AddComponent<Button>();
+            button.targetGraphic = image;
+            button.transition = Selectable.Transition.SpriteSwap;
+            button.spriteState = TabStates(false);
+            var label = Label("Label", image.transform, tabKeys[i], Vector2.zero, Vector2.zero, 28f, 13f, false, Ink, TextAlignmentOptions.Center, true);
+            Inset(label.rectTransform, 18f, 18f, 16f, 8f);   // altta sekmenin renk şeridi
+            Loc(label, tabKeys[i]);
+            image.gameObject.AddComponent<ComicHoverMotion>();
+            tabButtons[i] = button;
         }
 
-        var pages = Rect("Pages", window, new Vector2(0, -28), new Vector2(RowWidth, 560));
+        var pages = Rect("Pages", window, new Vector2(0f, -2f), new Vector2(RowWidth, 7 * RowHeight + 6 * RowGap));
         var display = Page(pages, "Görüntü Page");
         var audio = Page(pages, "Ses Page");
         var gameplay = Page(pages, "Oynanış Page");
         var controls = Page(pages, "Kontroller Page");
 
         // ---------- Görüntü (en üstte dil: her dilden oyuncu bulabilsin diye iki dilde) ----------
+        rowIndex = 0;
         var language = Stepper(display, "ui.options.language");
         var resolution = Stepper(display, "ui.options.resolution");
         var windowMode = Stepper(display, "ui.options.window_mode");
@@ -107,12 +291,15 @@ public static class OptionsMenuBuilder
         var backgroundEffects = Toggle(display, "ui.options.background_effects");
 
         // ---------- Ses ----------
+        rowIndex = 0;
+        var sound = Toggle(audio, "ui.options.sound");
         var masterVolume = Slider(audio, "ui.options.master_volume");
         var musicVolume = Slider(audio, "ui.options.music");
         var effectsVolume = Slider(audio, "ui.options.effects");
         var muteInBackground = Toggle(audio, "ui.options.mute_background");
 
         // ---------- Oynanış ----------
+        rowIndex = 0;
         var screenShake = Slider(gameplay, "ui.options.screen_shake");
         var cameraMotion = Toggle(gameplay, "ui.options.camera_motion");
         var damageNumbers = Toggle(gameplay, "ui.options.damage_numbers");
@@ -122,37 +309,33 @@ public static class OptionsMenuBuilder
         var screenFlashes = Toggle(gameplay, "ui.options.screen_flashes");
 
         // ---------- Kontroller ----------
+        rowIndex = 0;
         Info(controls, "ui.options.ctrl.harvest", "ui.options.key.cursor");
         Info(controls, "ui.options.ctrl.rotate", "R");
         Info(controls, "ui.options.ctrl.cancel", "ESC");
+        Info(controls, "ui.options.ctrl.tab", "TAB");
         Info(controls, "ui.options.ctrl.resonance", "ALT");
         Info(controls, "ui.options.ctrl.perf", "F9");
 
-        // ---------- Alt kısım ----------
-        var description = Text("Description", window, "", new Vector2(0, -345), new Vector2(1100, 56), 26);
-        description.color = new Color(.85f, .9f, .85f);
-        var reset = Button("Reset Defaults", window, GameText.Get("ui.options.defaults"), new Vector2(430, -405), new Vector2(330, 72), "gold", 30);
-        Loc(reset.GetComponentInChildren<TMP_Text>(true), "ui.options.defaults");
+        // ---------- Alt kısım: açıklama satırı, GERİ (mavi), VARSAYILANLAR (mor) ----------
+        var description = Label("Description", window, null, new Vector2(0f, -318f), new Vector2(RowWidth - 20f, 64f), 24f, 14f, false, Cream, TextAlignmentOptions.Center, true);
+        description.font = theme.bodyFont;
+        description.fontSharedMaterial = theme.bodyFont.material;
+        var reset = KitButton("Reset Defaults", window, "ui.options.defaults", new Vector2(420f, -408f), new Vector2(360f, 80f), "purple", 32f);
         if (back != null)
         {
             back.transform.SetParent(window, false);
             var rect = (RectTransform)back.transform;
             rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(.5f, .5f);
-            rect.anchoredPosition = new Vector2(-430, -405);
-            rect.sizeDelta = new Vector2(330, 72);
-            theme.StyleButton(back, "red");
+            rect.anchoredPosition = new Vector2(-420f, -408f);
+            rect.sizeDelta = new Vector2(360f, 80f);
+            rect.localScale = Vector3.one;
+            foreach (var old in back.GetComponents<ComicButtonVisual>()) Object.DestroyImmediate(old);
             var label = back.GetComponentInChildren<TMP_Text>(true);
-            if (label != null)
-            {
-                label.text = GameText.Get("ui.options.back");
-                Loc(label, "ui.options.back");
-                label.alignment = TextAlignmentOptions.Center;
-                label.margin = Vector4.zero;
-                label.rectTransform.anchorMin = Vector2.zero;
-                label.rectTransform.anchorMax = Vector2.one;
-                label.rectTransform.offsetMin = new Vector2(10, 6);
-                label.rectTransform.offsetMax = new Vector2(-10, -6);
-            }
+            if (label == null) label = Label("Label", back.transform, null, Vector2.zero, Vector2.zero, 32f, 14f, true, Color.white, TextAlignmentOptions.Center, true);
+            Loc(label, "ui.options.back");
+            StyleKitButton(back, "blue", label, 32f);
+            if (back.GetComponent<ComicHoverMotion>() == null) back.gameObject.AddComponent<ComicHoverMotion>();
         }
 
         // ---------- Bağlantılar ----------
@@ -173,14 +356,32 @@ public static class OptionsMenuBuilder
         Set(so, "language", language);
         Set(so, "resolution", resolution); Set(so, "windowMode", windowMode); Set(so, "vSync", vSync);
         Set(so, "fpsLimit", fpsLimit); Set(so, "quality", quality); Set(so, "backgroundEffects", backgroundEffects);
-        Set(so, "masterVolume", masterVolume); Set(so, "musicVolume", musicVolume); Set(so, "effectsVolume", effectsVolume);
+        Set(so, "sound", sound); Set(so, "masterVolume", masterVolume); Set(so, "musicVolume", musicVolume); Set(so, "effectsVolume", effectsVolume);
         Set(so, "muteInBackground", muteInBackground);
         Set(so, "screenShake", screenShake); Set(so, "cameraMotion", cameraMotion); Set(so, "damageNumbers", damageNumbers);
         Set(so, "gridCoordinates", gridCoordinates); Set(so, "rarityAuras", rarityAuras);
         Set(so, "roundEndSlowMotion", roundEndSlowMotion); Set(so, "screenFlashes", screenFlashes);
         so.ApplyModifiedPropertiesWithoutUndo();
+        options.SetKitSprites(Sprite(Art + "tab_blue.png"), TabStates(false), Sprite(Art + "tab_gold.png"), TabStates(true));
+        EditorUtility.SetDirty(options);
         return window;
     }
+
+    static SpriteState TabStates(bool selected)
+    {
+        Sprite gold = Sprite(Art + "tab_gold.png"), normal = Sprite(Art + "tab_blue.png");
+        return selected
+            ? new SpriteState { highlightedSprite = gold, pressedSprite = gold, selectedSprite = gold, disabledSprite = gold }
+            : new SpriteState { highlightedSprite = Sprite(Art + "tab_blue_hover.png"), pressedSprite = Sprite(Art + "tab_blue_pressed.png"), selectedSprite = normal, disabledSprite = normal };
+    }
+
+    static SpriteState ButtonStates(string colour) => new SpriteState
+    {
+        highlightedSprite = Sprite($"{Pack}button_{colour}_hover.png"),
+        pressedSprite = Sprite($"{Pack}button_{colour}_pressed.png"),
+        selectedSprite = Sprite($"{Pack}button_{colour}_normal.png"),   // tıklanınca "seçili" kalıp parlamasın
+        disabledSprite = Sprite($"{Pack}button_{colour}_disabled.png"),
+    };
 
     // ---------- Satırlar ----------
 
@@ -191,7 +392,7 @@ public static class OptionsMenuBuilder
         page.anchorMax = Vector2.one;
         page.offsetMin = page.offsetMax = Vector2.zero;
         var layout = page.gameObject.AddComponent<VerticalLayoutGroup>();
-        layout.spacing = 10;
+        layout.spacing = RowGap;
         layout.childAlignment = TextAnchor.UpperCenter;
         layout.childControlWidth = true;
         layout.childControlHeight = false;
@@ -201,15 +402,22 @@ public static class OptionsMenuBuilder
     }
 
     // key: satır başlığının çeviri anahtarı; açıklama "<key>.desc". Nesne adı anahtardır (editörün diline göre değişmesin).
-    static T Row<T>(RectTransform page, string key) where T : OptionRow
+    // controlWidth: sağdaki denetimin kapladığı genişlik; başlık kalan alana sığar (küçülür, gerekirse iki satır).
+    static T Row<T>(RectTransform page, string key, float controlWidth) where T : OptionRow
     {
-        var background = Pic(key, page, theme.cardSprite, Vector2.zero, new Vector2(RowWidth, RowHeight));
-        background.raycastTarget = true;
-        var label = Loc(Text("Label", background.transform, GameText.Get(key), Vector2.zero, new Vector2(560, 56), 32), key);
-        label.font = theme.headingFont;
-        label.alignment = TextAlignmentOptions.MidlineLeft;
-        AnchorSide(label.rectTransform, 0f, 36f);
-        var row = background.gameObject.AddComponent<T>();
+        var root = Rect(key, page, Vector2.zero, new Vector2(RowWidth, RowHeight));
+        // Krem şerit ayrı nesnede: her ikinci satırda aynalanır (aynı kesik art arda tekrar etmesin), yazılar aynalanmaz.
+        var paper = Sliced("Paper", root, Pack + "label_cream.png", Vector2.zero, Vector2.zero, 0f);
+        Stretch(paper.rectTransform);
+        paper.pixelsPerUnitMultiplier = paper.sprite.rect.height / RowHeight;
+        paper.raycastTarget = true;   // üzerine gelince açıklama (olay satıra çıkar)
+        if (rowIndex++ % 2 == 1) paper.rectTransform.localScale = new Vector3(-1f, 1f, 1f);
+
+        float labelWidth = RowWidth - 34f - controlWidth - 28f;
+        var label = Label("Label", root, key, Vector2.zero, new Vector2(labelWidth, RowHeight - 10f), 28f, 14f, false, Ink, TextAlignmentOptions.MidlineLeft, true);
+        AnchorSide(label.rectTransform, 0f, 34f, 3f);
+        Loc(label, key);
+        var row = root.gameObject.AddComponent<T>();
         var so = new SerializedObject(row);
         Set(so, "label", label);
         so.FindProperty("description").stringValue = key + ".desc";
@@ -217,27 +425,33 @@ public static class OptionsMenuBuilder
         return row;
     }
 
+    const float ValueWidth = 300f;
+
     static OptionStepper Stepper(RectTransform page, string key)
     {
-        var row = Row<OptionStepper>(page, key);
-        var next = Button("Next", row.transform, ">", Vector2.zero, new Vector2(64, 54), "blue", 36);
-        AnchorSide((RectTransform)next.transform, 1f, -30f);
-        var value = Text("Value", row.transform, "-", Vector2.zero, new Vector2(320, 54), 30);
-        value.font = theme.headingFont;
-        AnchorSide(value.rectTransform, 1f, -104f);
-        var previous = Button("Previous", row.transform, "<", Vector2.zero, new Vector2(64, 54), "blue", 36);
-        AnchorSide((RectTransform)previous.transform, 1f, -434f);
+        var row = Row<OptionStepper>(page, key, 2 * Control + ValueWidth + 16f);
+        var next = SquareButton("Next", row.transform, ">");
+        AnchorSide((RectTransform)next.transform, 1f, -Edge, 0f);
+        var value = Label("Value", row.transform, null, Vector2.zero, new Vector2(ValueWidth, Control - 6f), 28f, 13f, false, Ink, TextAlignmentOptions.Center, true);
+        value.text = "-";
+        AnchorSide(value.rectTransform, 1f, -Edge - Control - 8f, 3f);
+        var previous = SquareButton("Previous", row.transform, "<");
+        AnchorSide((RectTransform)previous.transform, 1f, -Edge - Control - 16f - ValueWidth, 0f);
         var so = new SerializedObject(row);
         Set(so, "previous", previous); Set(so, "next", next); Set(so, "value", value);
         so.ApplyModifiedPropertiesWithoutUndo();
         return row;
     }
 
+    const float SwitchWidth = 230f;
+
     static OptionToggle Toggle(RectTransform page, string key)
     {
-        var row = Row<OptionToggle>(page, key);
-        var button = Button("Switch", row.transform, GameText.Get("ui.options.on"), Vector2.zero, new Vector2(240, 54), "green", 30);
-        AnchorSide((RectTransform)button.transform, 1f, -30f);
+        var row = Row<OptionToggle>(page, key, SwitchWidth);
+        var button = KitButton("Switch", row.transform, "ui.options.on", Vector2.zero, new Vector2(SwitchWidth, Control), "green", 28f);
+        // Yazıyı OptionToggle yazar (AÇIK / KAPALI): sabit çeviri bağı olmasın.
+        Object.DestroyImmediate(button.GetComponentInChildren<LocalizedText>(true));
+        AnchorSide((RectTransform)button.transform, 1f, -Edge, 0f);
         var so = new SerializedObject(row);
         Set(so, "button", button);
         Set(so, "state", button.GetComponentInChildren<TMP_Text>(true));
@@ -245,60 +459,119 @@ public static class OptionsMenuBuilder
         so.FindProperty("onText").stringValue = "ui.options.on";
         so.FindProperty("offText").stringValue = "ui.options.off";
         so.ApplyModifiedPropertiesWithoutUndo();
+        row.SetKitSprites(Sprite(Pack + "button_green_normal.png"), ButtonStates("green"), Sprite(Pack + "button_red_normal.png"), ButtonStates("red"));
+        EditorUtility.SetDirty(row);
         return row;
     }
 
+    const float SliderWidth = 380f, PercentWidth = 112f;
+
     static OptionSlider Slider(RectTransform page, string key)
     {
-        var row = Row<OptionSlider>(page, key);
-        var value = Text("Value", row.transform, "100%", Vector2.zero, new Vector2(110, 54), 30);
-        value.font = theme.headingFont;
-        value.alignment = TextAlignmentOptions.MidlineRight;
-        AnchorSide(value.rectTransform, 1f, -30f);
+        var row = Row<OptionSlider>(page, key, SliderWidth + 20f + PercentWidth);
+        var value = Label("Value", row.transform, null, Vector2.zero, new Vector2(PercentWidth, Control - 6f), 28f, 13f, false, Ink, TextAlignmentOptions.MidlineRight, false);
+        value.text = "100%";
+        AnchorSide(value.rectTransform, 1f, -Edge, 3f);
 
-        var resources = new DefaultControls.Resources
-        {
-            standard = AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/UISprite.psd"),
-            background = AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/Background.psd"),
-            knob = AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/Knob.psd")
-        };
-        var sliderObject = DefaultControls.CreateSlider(resources);
-        sliderObject.name = "Slider";
-        SetLayerRecursive(sliderObject, 5);
-        var sliderRect = (RectTransform)sliderObject.transform;
-        sliderRect.SetParent(row.transform, false);
-        sliderRect.sizeDelta = new Vector2(360, 30);
-        AnchorSide(sliderRect, 1f, -160f);
-        var slider = sliderObject.GetComponent<Slider>();
+        // Kit çubuğu: bar_track ve bar_fill aynı dikdörtgen ve aynı 9-dilim ölçeğinde (dolgu tam içine oturur), dolgu Slider'ın
+        // çapasıyla uzar; tutamak altın kare (slot_gold), çubuğun ortasında, kendi boyunda.
+        var root = Rect("Slider", row.transform, Vector2.zero, new Vector2(SliderWidth, Control));
+        AnchorSide(root, 1f, -Edge - PercentWidth - 20f, 0f);
+        const float trackHeight = 34f, knob = 44f;
+        float multiplier = 116f / trackHeight;
+        var track = Sliced("Track", root, Art + "bar_track.png", Vector2.zero, new Vector2(SliderWidth, trackHeight), multiplier);
+        var fillArea = Rect("Fill Area", root, Vector2.zero, new Vector2(SliderWidth, trackHeight));
+        var fill = Sliced("Fill", fillArea, Art + "bar_fill.png", Vector2.zero, Vector2.zero, multiplier);
+        Stretch(fill.rectTransform);
+        fill.color = FillGreen;
+        var handleArea = Rect("Handle Slide Area", root, Vector2.zero, new Vector2(SliderWidth - knob, knob));
+        var handle = Sliced("Handle", handleArea, Pack + "slot_gold.png", Vector2.zero, new Vector2(knob, knob), 256f / knob);
+        handle.rectTransform.sizeDelta = new Vector2(knob, 0f);   // Slider dikeyde alanı doldurur: yükseklik = alan (knob)
+        handle.raycastTarget = true;
+        track.raycastTarget = true;
+        var slider = root.gameObject.AddComponent<Slider>();
+        slider.fillRect = fill.rectTransform;
+        slider.handleRect = handle.rectTransform;
+        slider.targetGraphic = handle;
+        slider.transition = Selectable.Transition.None;
+        slider.direction = UnityEngine.UI.Slider.Direction.LeftToRight;
         slider.minValue = 0f;
         slider.maxValue = 1f;
         slider.value = 1f;
-        foreach (var image in sliderObject.GetComponentsInChildren<Image>(true))
-        {
-            if (image.name == "Background") image.color = new Color(.2f, .22f, .25f);
-            else if (image.name == "Fill") image.color = new Color(.36f, .82f, .45f);
-            // Tutamaç yüksekliği = bar alanı (30) + 8 → 38x38 yuvarlak.
-            else if (image.name == "Handle") { image.color = new Color(1f, .95f, .82f); ((RectTransform)image.transform).sizeDelta = new Vector2(38, 8); }
-        }
+        handle.gameObject.AddComponent<ComicHoverMotion>().hoverScale = 1.12f;
         var so = new SerializedObject(row);
         Set(so, "slider", slider); Set(so, "value", value);
         so.ApplyModifiedPropertiesWithoutUndo();
         return row;
     }
 
-    // badgeText: tuş adı (R, ESC …; çevrilmez) ya da çeviri anahtarı ("ui." ile başlar: İMLEÇ gibi).
+    const float BadgeWidth = 230f;
+
+    // badgeText: tuş adı (R, ESC …; çevrilmez) ya da çeviri anahtarı ("ui." ile başlar: İMLEÇ gibi). Lacivert HUD plakası.
     static void Info(RectTransform page, string key, string badgeText)
     {
-        var row = Row<OptionInfo>(page, key);
-        var badge = Pic("Key", row.transform, theme.buttonSprite, Vector2.zero, new Vector2(240, 54));
-        badge.material = theme.blue != null && theme.blue.Length > 0 ? theme.blue[0] : null;
-        AnchorSide(badge.rectTransform, 1f, -30f);
+        var row = Row<OptionInfo>(page, key, BadgeWidth);
+        var badge = Sliced("Key", row.transform, Hud + "hud_plate_navy.png", Vector2.zero, new Vector2(BadgeWidth, 58f), 0f);
+        AnchorSide(badge.rectTransform, 1f, -Edge, 0f);
         bool localized = badgeText.StartsWith("ui.");
-        var keyLabel = Text("Key Label", badge.transform, localized ? GameText.Get(badgeText) : badgeText, new Vector2(0, 3), new Vector2(210, 40), 30, true);
-        if (localized) Loc(keyLabel, badgeText);
+        var keyLabel = Label("Key Label", badge.transform, localized ? badgeText : null, Vector2.zero, Vector2.zero, 26f, 12f, true, Color.white, TextAlignmentOptions.Center, false);
+        Inset(keyLabel.rectTransform, 22f, 22f, 10f, 8f);
+        if (localized) Loc(keyLabel, badgeText); else keyLabel.text = badgeText;
     }
 
-    // ---------- Yardımcılar (ComicUIBuilder ile aynı stil) ----------
+    // ---------- Yapı taşları ----------
+
+    static Button KitButton(string name, Transform parent, string key, Vector2 position, Vector2 size, string colour, float fontSize)
+    {
+        var image = Simple(name, parent, $"{Pack}button_{colour}_normal.png", position, size);
+        image.raycastTarget = true;
+        var button = image.gameObject.AddComponent<Button>();
+        button.targetGraphic = image;
+        var label = Label("Label", image.transform, key, Vector2.zero, Vector2.zero, fontSize, 13f, true, Color.white, TextAlignmentOptions.Center, true);
+        Loc(label, key);
+        StyleKitButton(button, colour, label, fontSize);
+        image.gameObject.AddComponent<ComicHoverMotion>();
+        return button;
+    }
+
+    // Kit butonu: 9-dilim (dikeyde 1:1), SpriteSwap hâlleri; yazı sprite'ın üst ~%80'inde (alt şerit 3B kenar).
+    static void StyleKitButton(Button button, string colour, TMP_Text label, float fontSize)
+    {
+        var image = (Image)button.targetGraphic;
+        image.material = null;
+        image.color = Color.white;
+        image.sprite = Sprite($"{Pack}button_{colour}_normal.png");
+        image.type = Image.Type.Sliced;
+        image.pixelsPerUnitMultiplier = image.sprite.rect.height / ((RectTransform)button.transform).sizeDelta.y;
+        button.transition = Selectable.Transition.SpriteSwap;
+        button.spriteState = ButtonStates(colour);
+        Display(label, true, Color.white, fontSize, 13f, true);
+        label.margin = Vector4.zero;
+        label.alignment = TextAlignmentOptions.Center;
+        Inset(label.rectTransform, 22f, 22f, ((RectTransform)button.transform).sizeDelta.y * .2f, 8f);
+    }
+
+    // Kare ok butonu (mavi kare, dört hâl aynı silüetten).
+    static Button SquareButton(string name, Transform parent, string glyph)
+    {
+        var image = Sliced(name, parent, Art + "slot_button_blue_normal.png", Vector2.zero, new Vector2(Control, Control), 0f);
+        image.raycastTarget = true;
+        var button = image.gameObject.AddComponent<Button>();
+        button.targetGraphic = image;
+        button.transition = Selectable.Transition.SpriteSwap;
+        button.spriteState = new SpriteState
+        {
+            highlightedSprite = Sprite(Art + "slot_button_blue_hover.png"),
+            pressedSprite = Sprite(Art + "slot_button_blue_pressed.png"),
+            selectedSprite = image.sprite,
+            disabledSprite = Sprite(Art + "slot_button_blue_disabled.png"),
+        };
+        var label = Label("Label", image.transform, null, Vector2.zero, Vector2.zero, 34f, 20f, true, Color.white, TextAlignmentOptions.Center, false);
+        Inset(label.rectTransform, 6f, 10f, 10f, 6f);
+        label.text = glyph;
+        image.gameObject.AddComponent<ComicHoverMotion>().hoverScale = 1.1f;
+        return button;
+    }
 
     static RectTransform Rect(string name, Transform parent, Vector2 position, Vector2 size)
     {
@@ -310,16 +583,23 @@ public static class OptionsMenuBuilder
         return rect;
     }
 
-    static Image Pic(string name, Transform parent, Sprite sprite, Vector2 position, Vector2 size)
+    // 9-dilim; multiplier 0: dikeyde 1:1 (sprite yüksekliği / hedef yükseklik), yatayda orta parça uzar.
+    static Image Sliced(string name, Transform parent, string sprite, Vector2 position, Vector2 size, float multiplier)
     {
         var image = Rect(name, parent, position, size).gameObject.AddComponent<Image>();
-        image.sprite = sprite;
+        image.sprite = Sprite(sprite);
+        image.type = Image.Type.Sliced;
+        image.pixelsPerUnitMultiplier = multiplier > 0f ? multiplier : image.sprite != null && size.y > 1f ? image.sprite.rect.height / size.y : 1f;
         image.raycastTarget = false;
-        if (sprite == theme.cardSprite || sprite == theme.buttonSprite)
-        {
-            image.type = Image.Type.Sliced;
-            image.pixelsPerUnitMultiplier = 4;
-        }
+        return image;
+    }
+
+    static Image Simple(string name, Transform parent, string sprite, Vector2 position, Vector2 size)
+    {
+        var image = Rect(name, parent, position, size).gameObject.AddComponent<Image>();
+        image.sprite = Sprite(sprite);
+        image.type = Image.Type.Simple;
+        image.raycastTarget = false;
         return image;
     }
 
@@ -335,49 +615,56 @@ public static class OptionsMenuBuilder
         return label;
     }
 
-    static TMP_Text Text(string name, Transform parent, string text, Vector2 position, Vector2 size, float fontSize, bool title = false)
+    // Bungee yazı (outlined: koyu zeminde beyaz + mürekkep kontur; değilse krem zeminde koyu mürekkep). Kutuya göre küçülür,
+    // wrap: gerekirse alt satıra geçer; hiçbir zaman kesilmez. Türkçe büyük İ: OptionsUI.Awake TurkishCaps bağlar.
+    static TMP_Text Label(string name, Transform parent, string key, Vector2 position, Vector2 size, float max, float min, bool outlined, Color color, TextAlignmentOptions alignment, bool wrap)
     {
         var label = Rect(name, parent, position, size).gameObject.AddComponent<TextMeshProUGUI>();
-        label.text = text;
-        label.font = title ? theme.headingFont : theme.bodyFont;
-        label.fontSize = fontSize;
-        label.color = title ? Color.white : Ink;
-        label.alignment = TextAlignmentOptions.Center;
+        label.text = key != null ? GameText.Get(key) : "";
+        Display(label, outlined, color, max, min, wrap);
+        label.alignment = alignment;
         label.raycastTarget = false;
-        label.enableAutoSizing = true;
-        label.fontSizeMin = fontSize * .7f;
-        label.fontSizeMax = fontSize;
-        label.textWrappingMode = TextWrappingModes.Normal;
-        label.overflowMode = TextOverflowModes.Ellipsis;
-        if (title) label.fontSharedMaterial = theme.outlinedText;
         return label;
     }
 
-    static Button Button(string name, Transform parent, string caption, Vector2 position, Vector2 size, string palette, float fontSize)
+    static void Display(TMP_Text label, bool outlined, Color color, float max, float min, bool wrap)
     {
-        var image = Pic(name, parent, theme.buttonSprite, position, size);
-        image.raycastTarget = true;
-        var button = image.gameObject.AddComponent<Button>();
-        button.targetGraphic = image;
-        var label = Text("Label", image.transform, caption, new Vector2(0, 3), size - new Vector2(20, 12), fontSize, true);
-        theme.StyleButton(button, palette);
-        // Tema buton yazısına kenar boşluğu ekler; 54 px'lik küçük butonlarda yazı sığmayıp hiç çizilmiyordu.
-        label.margin = Vector4.zero;
-        image.gameObject.AddComponent<ComicHoverMotion>();
-        return button;
+        label.font = theme.displayFont;
+        label.fontSharedMaterial = outlined && theme.displayOutline != null ? theme.displayOutline : theme.displayFont.material;
+        label.fontStyle = FontStyles.Normal;
+        label.color = color;
+        label.fontSize = max;
+        label.enableAutoSizing = true;
+        label.fontSizeMax = max;
+        label.fontSizeMin = min;
+        label.textWrappingMode = wrap ? TextWrappingModes.Normal : TextWrappingModes.NoWrap;
+        label.overflowMode = TextOverflowModes.Overflow;
+        label.extraPadding = true;
     }
 
-    // Satır içinde sola (side 0) veya sağa (side 1) yaslar; x kenardan uzaklık.
-    static void AnchorSide(RectTransform rect, float side, float x)
+    static void Stretch(RectTransform rect)
+    {
+        rect.anchorMin = Vector2.zero;
+        rect.anchorMax = Vector2.one;
+        rect.offsetMin = rect.offsetMax = Vector2.zero;
+    }
+
+    // Ebeveyni doldurur, kenarlardan içe: sol, sağ, alt, üst.
+    static void Inset(RectTransform rect, float left, float right, float bottom, float top)
+    {
+        rect.anchorMin = Vector2.zero;
+        rect.anchorMax = Vector2.one;
+        rect.pivot = new Vector2(.5f, .5f);
+        rect.offsetMin = new Vector2(left, bottom);
+        rect.offsetMax = new Vector2(-right, -top);
+    }
+
+    // Satır içinde sola (side 0) veya sağa (side 1) yaslar; x kenardan uzaklık, y dikey kaydırma (şeridin alt 3B kenarı için).
+    static void AnchorSide(RectTransform rect, float side, float x, float y)
     {
         rect.anchorMin = rect.anchorMax = new Vector2(side, .5f);
         rect.pivot = new Vector2(side, .5f);
-        rect.anchoredPosition = new Vector2(x, 0f);
-    }
-
-    static void SetLayerRecursive(GameObject root, int layer)
-    {
-        foreach (Transform child in root.GetComponentsInChildren<Transform>(true)) child.gameObject.layer = layer;
+        rect.anchoredPosition = new Vector2(x, y);
     }
 
     static void Set(SerializedObject so, string name, Object value) => so.FindProperty(name).objectReferenceValue = value;

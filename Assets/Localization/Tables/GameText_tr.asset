@@ -189,7 +189,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 148337727393807
-    m_Localized: "Kartlar\u0131 Ge\xE7"
+    m_Localized: Atla
     m_Metadata:
       m_Items: []
   - m_Id: 148337727393808
@@ -3150,6 +3150,77 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 5609442645921792
     m_Localized: "Boss \xF6d\xFClleri ({0}) \xB7 {1} ile gizle"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5622503402393600
+    m_Localized: '{0} ({1})'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5622503410782208
+    m_Localized: "D\u0130\u011EER"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5627776087117824
+    m_Localized: "\xD6nizleme / Boss \xD6d\xFClleri"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5627776108089344
+    m_Localized: "Round aras\u0131nda round \xF6nizlemesini a\xE7ar; round s\u0131ras\u0131nda
+      kota kart\u0131ndaki boss \xF6d\xFClleri listesini g\xF6sterir / gizler."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318183146082304
+    m_Localized: "T\xFCm Sesler"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318183179636736
+    m_Localized: "B\xFCt\xFCn sesleri a\xE7ar ya da kapat\u0131r; ses d\xFCzeylerin
+      korunur. Haz\u0131rl\u0131k ekran\u0131ndaki hoparl\xF6r d\xFC\u011Fmesiyle
+      ayn\u0131 ayar."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318183192219648
+    m_Localized: "RUN B\u0130TT\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318183192219649
+    m_Localized: HASAT SKORU
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318183192219650
+    m_Localized: "ULA\u015EILAN ROUND"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318183192219651
+    m_Localized: "BOSS \xD6D\xDCL\xDC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318183192219652
+    m_Localized: "AKT\u0130F S\xDCRE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318918508236800
+    m_Localized: ZAFER!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318918520819712
+    m_Localized: "SEN\u0130 DURDURAN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318918520819713
+    m_Localized: SON KOTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318918520819714
+    m_Localized: KOTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318918520819715
+    m_Localized: BOSS HASADI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6322087216828416
+    m_Localized: "T\xDCM KOTALAR TUTTU"
     m_Metadata:
       m_Items: []
   references:

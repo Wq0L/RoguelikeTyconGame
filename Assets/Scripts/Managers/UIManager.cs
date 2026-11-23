@@ -21,6 +21,9 @@ public class UIManager : MonoBehaviour
     private Button exitSellButton;
     private Button exitSkillButton;
     private RoundPreviewUI roundPreview;
+    // Oyun içi ayarlar paneli (hazırlık ekranındaki dişli butonu açar; kurulum: Tools > Comic UI > Oyun İçi Ayarlar). Esc kapatır.
+    [SerializeField] private GameObject optionsPanel;
+    private bool OptionsOpen => optionsPanel != null && optionsPanel.activeSelf;
     private SpecializationPanelUI specializationPanel;
     private BossRewardPanelUI bossRewardPanel;
     private RewardPlacementUI rewardPlacementPanel;
@@ -100,7 +103,7 @@ public class UIManager : MonoBehaviour
             HandleEscape();
         // Tab: hazırlıkta (round sonu / run başı) round önizlemesi, eskisi gibi; öteki her durumda (round, level kartları...)
         // kota kartındaki boss ödülleri listesini açar / kapar (20 Kasım 2026).
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) && !OptionsOpen)
         {
             GameStates state = GameManager.Instance.CurrentState;
             bool previewOpen = roundPreview != null && currentPanel == roundPreview.gameObject;
@@ -137,6 +140,8 @@ public class UIManager : MonoBehaviour
 
     private void HandleEscape()
     {
+        // Ayarlar açıksa Esc önce onu kapatır (altındaki ekran yerinde kalır).
+        if (OptionsOpen) { optionsPanel.SetActive(false); return; }
         switch (GameManager.Instance.CurrentState)
         {
             case GameStates.Shop:

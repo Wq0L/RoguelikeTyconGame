@@ -191,7 +191,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 148337727393807
-    m_Localized: Skip Cards
+    m_Localized: Skip
     m_Metadata:
       m_Items: []
   - m_Id: 148337727393808
@@ -3135,6 +3135,76 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 5609442645921792
     m_Localized: "Boss rewards ({0}) \xB7 {1} to hide"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5622503402393600
+    m_Localized: '{0} ({1})'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5622503410782208
+    m_Localized: OTHER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5627776087117824
+    m_Localized: Preview / Boss Rewards
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5627776108089344
+    m_Localized: Between rounds opens the round preview; during a round shows or
+      hides the boss reward list on the quota card.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318183146082304
+    m_Localized: All Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318183179636736
+    m_Localized: Turns all sound on or off; your volume levels are kept. Same setting
+      as the speaker button on the preparation screen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318183192219648
+    m_Localized: RUN OVER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318183192219649
+    m_Localized: HARVEST SCORE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318183192219650
+    m_Localized: ROUND REACHED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318183192219651
+    m_Localized: BOSS REWARDS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318183192219652
+    m_Localized: ACTIVE TIME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318918508236800
+    m_Localized: VICTORY!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318918520819712
+    m_Localized: STOPPED BY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318918520819713
+    m_Localized: FINAL QUOTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318918520819714
+    m_Localized: QUOTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6318918520819715
+    m_Localized: BOSS HARVEST
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6322087216828416
+    m_Localized: ALL QUOTAS MET
     m_Metadata:
       m_Items: []
   references:

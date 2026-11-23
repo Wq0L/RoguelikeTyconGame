@@ -11,7 +11,13 @@
 #   - blue button: the green button's paint rotated in hue (the pack has no blue button).
 #   - sidebar_navy: the blurred erased-text smudge near the top is painted over with the panel's navy.
 #   - bar_fill: the bar track's interior as a white, tintable fill (same rectangle as bar_track).
-param([string]$Pack = '')
+#   - tab_gold (20 Nov 2026, settings window): the selected tab. The blue tab's paper warmed to gold like the shop card's
+#     selected state, its blue underline rotated to gold (not multiplied: blue x yellow would turn green).
+#   - slot_button_blue: the blue square as a small button (settings arrows) with the same derived states as the buttons.
+#   - slot_button_navy: the navy square as a small icon button (prep-screen settings: navy = window / info, like the settings window).
+#   - slot_button_grey: the navy square greyed (grey = passive) with its own states: the prep-screen sound button while muted.
+# -Only name1,name2: writes only those items (the others keep their files untouched).
+param([string]$Pack = '', [string[]]$Only = @())
 $ErrorActionPreference = 'Stop'
 $repo = Split-Path (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent) -Parent
 if ($Pack -eq '') { $Pack = Join-Path $repo 'output\ComicPaperUI-Pack-v2' }
@@ -113,6 +119,21 @@ public static class ComicPack
         {
             if (o.P[i + 3] == 0) continue; float t = Paint(s.P, i) * amount;
             for (int c = 0; c < 3; c++) { float v = s.P[i + c]; o.P[i + c] = (byte)Math.Max(0, Math.Min(255, v + (v * tint[c] / 255f - v) * t + .5f)); }
+        }
+        return o;
+    }
+    // Selected tab: low-saturation paint (the paper) tinted toward warm gold, saturated paint (the underline) hue-rotated to gold;
+    // blended by the source saturation so the edge between the two stays soft. Ink and alpha untouched.
+    public static Img TabSelected(Img s)
+    {
+        Img paper = Tint(s, 255, 206, 96, .58f), line = Hue(s, -158f, 1.10f, 1.02f);
+        var o = new Img { W = s.W, H = s.H, P = (byte[])s.P.Clone() };
+        for (int i = 0; i < o.P.Length; i += 4)
+        {
+            if (o.P[i + 3] == 0) continue;
+            float r = s.P[i + 2] / 255f, g = s.P[i + 1] / 255f, b = s.P[i] / 255f, mx = Math.Max(r, Math.Max(g, b)), mn = Math.Min(r, Math.Min(g, b));
+            float sat = mx <= 0 ? 0 : (mx - mn) / mx, w = Smooth(.24f, .44f, sat);
+            for (int c = 0; c < 3; c++) o.P[i + c] = (byte)Math.Max(0, Math.Min(255, paper.P[i + c] + (line.P[i + c] - paper.P[i + c]) * w + .5f));
         }
         return o;
     }
@@ -221,6 +242,10 @@ $items = @(
   @{ n='tab_blue';         s='HUD/tab-blue-normal.png';  d='A'; w=512; b=@(.12,.30,.12,.30); op='' }
   @{ n='tab_blue_hover';   s='HUD/tab-blue-hover.png';   d='A'; w=512; b=@(.12,.30,.12,.30); op='' }
   @{ n='tab_blue_pressed'; s='HUD/tab-blue-pressed.png'; d='A'; w=512; b=@(.12,.30,.12,.30); op='' }
+  @{ n='tab_gold';         s='HUD/tab-blue-normal.png';  d='A'; w=512; b=@(.12,.30,.12,.30); op='tab_selected' }
+  @{ n='slot_button_blue'; s='Slots/square-blue-normal.png'; d='A'; w=256; b=@(.22,.22,.22,.22); op='states' }
+  @{ n='slot_button_navy'; s='Slots/grid-square-navy.png'; d='A'; w=256; b=@(.22,.22,.22,.22); op='states' }
+  @{ n='slot_button_grey'; s='Slots/grid-square-navy.png'; d='A'; w=256; b=@(.22,.22,.22,.22); op='grey' }
   # parts
   @{ n='bar_track'; s='Parts/bar-track-empty.png';  d='A'; w=768; b=@(.06,.30,.06,.30); op='bar' }
   @{ n='divider';   s='Parts/divider-horizontal.png'; d='A'; w=768; b=@(.04,0,.04,0); op='' }
@@ -247,6 +272,7 @@ $dirs = @{ R = Join-Path $repo 'Assets\Resources\ComicPack'; A = Join-Path $repo
 foreach ($d in $dirs.Values) { New-Item -ItemType Directory -Force $d | Out-Null; Folder-Meta $d }
 
 foreach ($it in $items) {
+  if ($Only.Count -gt 0 -and $Only -notcontains $it.n) { continue }
   $src = Join-Path $Pack $it.s
   $img = [ComicPack]::Crop([ComicPack]::Load($src), 6)
   if ($it.op -eq 'sidebar') {
@@ -260,7 +286,9 @@ foreach ($it in $items) {
   $dir = $dirs[$it.d]
   if ($it.op -eq 'blue') { $img = [ComicPack]::Hue($img, 46, 1.30, 1.10) }
   if ($it.op -eq 'green') { $img = [ComicPack]::Hue($img, -52, 1.35, 1.02) }
-  if ($it.op -eq 'states' -or $it.op -eq 'blue') {
+  if ($it.op -eq 'tab_selected') { $img = [ComicPack]::TabSelected($img) }
+  if ($it.op -eq 'grey') { $img = [ComicPack]::State($img, 'disabled') }
+  if ($it.op -eq 'states' -or $it.op -eq 'blue' -or $it.op -eq 'grey') {
     Write-Output ("{0}_normal: {1}" -f $it.n, (Write-Sprite $img (Join-Path $dir ($it.n + '_normal.png')) $it.b))
     foreach ($m in 'hover', 'pressed', 'disabled') { $null = Write-Sprite ([ComicPack]::State($img, $m)) (Join-Path $dir ("{0}_{1}.png" -f $it.n, $m)) $it.b }
   } else {

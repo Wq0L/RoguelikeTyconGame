@@ -100,6 +100,7 @@ Kullanıcının kuralı: "yazılar değişse de her şey düzgün gözüksün".
   - Kitteki her yazı kutusuna sığmalı ve çizilmeli; yoksa FAIL.
   - Diğer yazılar taşarsa WARN satırı yazılır.
   - Yeni bir ekran kite geçince o ekran dil turuna eklenir.
+  - Ayarlar penceresinin kendi dil turu var (`OptionsMenuVerification`, 20 Kasım): her sekmede her yazı, adımlayıcıların bütün değerleri, AÇIK / KAPALI ve her açıklama satırı kutusuna sığmalı (FAIL).
 
 ## 6. Ölçü ve yerleşim
 
@@ -110,6 +111,7 @@ Kullanıcının kuralı: "yazılar değişse de her şey düzgün gözüksün".
   - Kenar payları meta dosyalarında tanımlı (betik yazar).
 - **Butonlar:**
   - En az 64 px yükseklik.
+  - İstisna: yazısız kare ikon butonları 56×56 (kullanıcının seçimi, 22 Kasım: hazırlık ekranında ayarlar ve ses kareleri). İkon kareye sıkı oturur, altta karenin 3B kenarı kadar pay kalır.
   - Yazı, sprite'ın üst yaklaşık %80'ine yerleşir; alt şerit 3B kenardır.
 - **Üst HUD:** tarla, ekran yüksekliğinin %5'i kadar aşağıda durur (`GridUnlockFeel.HudTopRoom`). Round kartı en üst koordinat rozetini örtmez.
 - **Harita:**

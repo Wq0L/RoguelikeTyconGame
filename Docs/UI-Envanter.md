@@ -35,6 +35,11 @@
 | `slot_navy` | R | OYUNDA (kullanıcının korunmasını istediği eski lacivert kare) | skill düğümü: profil kapalı | koyu yuva |
 | `slot_green` | R | OYUNDA · **Türetildi** (`slot_blue`'dan renk döndürme) | skill düğümü: tamamlandı | onaylı / bitti durumu |
 | `pip_gold`, `pip_empty` | R | OYUNDA · küçük kareler (40 px) | skill kademe noktaları, ağacın başlangıç noktası | sayfa / adım göstergesi |
+| `slot_button_blue_*` (normal / hover / pressed / disabled) | A | OYUNDA · **Türetildi** (20 Kasım: `slot_blue`'nun dört hâli, butonlar gibi) | ayarlarda < > ok butonları | küçük kare ikon butonu (kapat, geri) |
+| `slot_button_navy_*` (normal / hover / pressed / disabled) | A | OYUNDA · **Türetildi** (22 Kasım: `slot_navy`'nin dört hâli) | hazırlık ekranında ayarlar butonu (lacivert = pencere / bilgi; açık mavi kare koordinat kutusu olduğu için kullanılmadı) | küçük kare ikon butonu |
+| `slot_button_grey_*` (normal / hover / pressed / disabled) | A | OYUNDA · **Türetildi** (22 Kasım: `slot_navy` griye çevrildi (gri = pasif), dört hâli bundan) | hazırlık ekranında ses kapalıyken ses karesi | kapalı / pasif kare buton |
+| `icon_sound`, `icon_sound_off` | A | OYUNDA · **betikle çizildi** (22 Kasım, `draw_icons.ps1`; dış kaynak yok) | ses karesi: açıkken krem hoparlör + dalgalar, kapalıyken gri hoparlör + kırmızı çapraz çizgi (kırmızı = kapalı) | ses simgesi her yerde |
+| `icon_gear` | A | OYUNDA · **betikle çizildi** (22 Kasım, `Tools/Art/ComicPack/draw_icons.ps1`, System.Drawing geometrisi: dişli çokgen + daireler; dış kaynak, ikon paketi ya da AI çıktısı yok → üçüncü taraf lisansı gerekmez) | ayarlar butonunun dişlisi (krem gövde, mürekkep kontur, sağ altta sert gölge) | ayarlar simgesi her yerde |
 
 Paketin kare hover/pressed görselleri tutarlı ama alınmadı. Hareketli bir kare gerekince butonlar gibi betikle türetilir.
 
@@ -57,14 +62,15 @@ Paketin kare hover/pressed görselleri tutarlı ama alınmadı. Hareketli bir ka
 | `header_navy` | 768×144 | R | OYUNDA | hazırlık kartı başlığı, dükkânın iki başlığı | pencere ve panel başlığı, sayfa başlığı |
 | `label_cream` | 768×176 | R | OYUNDA | yeni tile'lar kartı başlığı (sarıya boyalı) | renkle boyanan durum başlıkları, etiket |
 | `resource_navy` | 640×160 | A | HAZIR | — | koyu sayaç (skor, kota), dükkânda bakiye |
-| `tab_blue`, `_hover`, `_pressed` | 512×192 | A | HAZIR (paketin üç hâli tutarlı) | — | ayarlar sekmeleri, skill ağacı sekmeleri, lab dışı sekmeler |
+| `tab_blue`, `_hover`, `_pressed` | 512×192 | A | OYUNDA (paketin üç hâli tutarlı; sahneden referansla build'e girer) | ayarlar sekmeleri (seçili olmayan) | skill ağacı sekmeleri |
+| `tab_gold` | 512×192 | A | OYUNDA · **Türetildi** (20 Kasım: tab_blue'nun kâğıdı altına boyandı, mavi şerit altına döndürüldü; dükkânın seçili kartı gibi) | ayarlarda seçili sekme | her türlü seçili sekme |
 
 ### Parçalar
 
 | Parça | Ölçü | Yer | Durum | Bugün | Kullanılabilir |
 |---|---|---|---|---|---|
-| `bar_track` | 768×116 | A | HAZIR | — | boss canı, kota ilerlemesi, yükleme |
-| `bar_fill` | 768×116 | A | HAZIR · **Türetildi** (beyaz, boyanabilir; bar_track'in içi, aynı dikdörtgen) | — | `bar_track` ile Filled görsel olarak |
+| `bar_track` | 768×116 | A | OYUNDA | ayarlar kaydırıcısının çubuğu (9-dilim, 34 px) | boss canı, kota ilerlemesi, yükleme |
+| `bar_fill` | 768×116 | A | OYUNDA · **Türetildi** (beyaz, boyanabilir; bar_track'in içi, aynı dikdörtgen) | ayarlar kaydırıcısının yeşil dolgusu (aynı 9-dilim ölçeği, çapayla uzar) | kota / can dolguları |
 | `divider` | 768×24 | A | HAZIR | — | kartlarda bölüm ayırıcı |
 | `line_cream` | 512×16 | R | OYUNDA (divider'ın küçüğü) | yetenek ağacı bağlantıları ve okları | çizgi / bağlantı |
 
@@ -108,13 +114,18 @@ HudKit `Resources` altında olduğu için kullanılmayan parçaları da build'e 
 | Saksı dükkânı (pencere, başlıklar, kartlar, detay, istatistikler, Satın al / Temizle, Sat, GERİ) | **kite geçti** |
 | Koordinat kutuları (harita + tarla) | **kite geçti** |
 | Yetenek ağacı (düğümler, noktalar, bağlantılar, etiket, GERİ, pano zemini, sıkı yerleşim, his) | **kite geçti** (ayrıntı §7) |
-| Ana menü (Oyna / Ayarlar / Çıkış) | **kite geçti** (ayarlar penceresi eski) |
+| Ana menü (Oyna / Ayarlar / Çıkış) | **kite geçti** |
 | Çiftçi / tırpan seçim ekranı | **kite geçti** |
 | Boss ödülü seçimi (kare item kutusu + görsel yuvası) | **kite geçti** (item görselleri yok; yer tutucu ikon) |
 | Tooltip'ler (yetenek, tile, yerleştirme — ortak ComicPopupView) | **kite geçti** |
-| Kart seçimi, boss ödülü, uzmanlaşma paneli | eski görünüm (kartların kendi ComicCard sistemi var; uyum kontrol edilmeli) |
+| Kart seçimi: ATLA butonu (mor kit butonu + köşede altın kare hak rozeti) ve KALAN SEÇİM plakası (krem kit şeridi, Bungee) | **kite geçti** (22 Kasım; editörde kurulur: Tools > Comic UI > Kart Seçimi: ATLA + Kalan Seçim → GameScene + DemoScene; dil turu `CardSkipButtonVerification`) |
+| Kart seçimi kartlarının yazıları | **Bungee** (22 Kasım; `Grid Mutation Card.prefab`, aynı araç; açık yazı konturlu, koyu yazı düz mürekkep; tr / en / qps'te sığıyor). Grid dolu iken çıkan yükseltme kartının eski → yeni satırı test edilmedi |
+| Kartların çizimi, boss ödülü, uzmanlaşma paneli | eski görünüm (kartların kendi ComicCard sistemi var; uyum kontrol edilmeli). Kart yazılarında açık çeviri sorunları: iç adlar ("Explosive-ExplosionChance"), İngilizcede Türkçe kalan alt başlık ve "puan", Türkçede İngilizce nadirlik adları, ondalık nokta (TR'de virgül olmalı) |
 | Önizleme ekranı (Tab) | eski görünüm |
-| Ayarlar penceresi (sekmeler, satırlar), duraklat, run sonu | eski görünüm |
+| Ayarlar penceresi (sekmeler, satırlar, ok butonları, AÇIK / KAPALI, kaydırıcı, tuş plakaları, GERİ / VARSAYILANLAR) | **kite geçti** (20 Kasım; editörde kurulur: Tools > Comic UI > Build Options Menu → MenuScene; dil turu `OptionsMenuVerification`) |
+| Oyun içi ayarlar (hazırlık ekranının sol üstünde 56 px lacivert kare dişli → menüdekiyle aynı kit ayarlar penceresi; GERİ / Esc kapatır) + yanında ses karesi (bütün sesler aç / kapa, `GameSettings.SoundMuted`; pencerede Ses > Tüm Sesler aynı ayar) | **kite geçti** (22 Kasım; editörde kurulur: Tools > Comic UI > Oyun İçi Ayarlar (hazırlık ekranı) → GameScene + DemoScene; `RoundEndSettingsVerification`) |
+| Run sonu (ölüm / zafer) ekranı v3: kenarlardan tram kararması (`HalftoneVignette` shader + `RunEndVignette`; kayıp koyu bordo, zafer altın), tek `window_navy` panel, damga plakası (kayıp kırmızı `hud_plate_red` "RUN BİTTİ", zafer altın `hud_panel_yellow` "ZAFER!"), solda `panel_cream` neden kartı (SENİ DURDURAN / SON KOTA, `hud_plate_navy` boss rozeti boss renginde, KOTA ve BOSS HASADI `bar_track` / `bar_fill` hedef çubukları: tutmayan kırmızı, tutan yeşil), sağda 4 satır `label_cream` tablo (skor, round, boss ödülü, süre), panel içinde TEKRAR mavi / ANA MENÜ kırmızı; açıklama cümlesi yok | **kite geçti** (22 Kasım; editörde kurulur: Tools > Comic UI > Run Sonu Ekranı → GameScene + DemoScene; `RunEndScreenVerification` kayıp + zafer × tr / en / qps) |
+| Duraklat | eski görünüm |
 | Diyalog kutusu | eski görünüm (kendi onaylı çizimi var; dokunulmamalı) |
 
 ## 5. Eksikler

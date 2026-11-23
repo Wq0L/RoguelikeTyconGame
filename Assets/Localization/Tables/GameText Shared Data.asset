@@ -3780,6 +3780,91 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 221145235358220362
+  - m_Id: 5622503402393600
+    m_Key: ui.hud.boss_rewards.group
+    m_Metadata:
+      m_Items:
+      - rid: 221145235358220379
+  - m_Id: 5622503410782208
+    m_Key: ui.hud.boss_rewards.other
+    m_Metadata:
+      m_Items:
+      - rid: 221145235358220380
+  - m_Id: 5627776087117824
+    m_Key: ui.options.ctrl.tab
+    m_Metadata:
+      m_Items:
+      - rid: 221145235358220408
+  - m_Id: 5627776108089344
+    m_Key: ui.options.ctrl.tab.desc
+    m_Metadata:
+      m_Items:
+      - rid: 221145235358220409
+  - m_Id: 6318183146082304
+    m_Key: ui.options.sound
+    m_Metadata:
+      m_Items:
+      - rid: 221145278688526431
+  - m_Id: 6318183179636736
+    m_Key: ui.options.sound.desc
+    m_Metadata:
+      m_Items:
+      - rid: 221145278688526432
+  - m_Id: 6318183192219648
+    m_Key: ui.runend.over
+    m_Metadata:
+      m_Items:
+      - rid: 221145278688526433
+  - m_Id: 6318183192219649
+    m_Key: ui.runend.score_label
+    m_Metadata:
+      m_Items:
+      - rid: 221145278688526434
+  - m_Id: 6318183192219650
+    m_Key: ui.runend.round_label
+    m_Metadata:
+      m_Items:
+      - rid: 221145278688526435
+  - m_Id: 6318183192219651
+    m_Key: ui.runend.rewards_label
+    m_Metadata:
+      m_Items:
+      - rid: 221145278688526436
+  - m_Id: 6318183192219652
+    m_Key: ui.runend.time_label
+    m_Metadata:
+      m_Items:
+      - rid: 221145278688526437
+  - m_Id: 6318918508236800
+    m_Key: ui.runend.win_title
+    m_Metadata:
+      m_Items:
+      - rid: 221145278688526442
+  - m_Id: 6318918520819712
+    m_Key: ui.runend.stopped_by
+    m_Metadata:
+      m_Items:
+      - rid: 221145278688526443
+  - m_Id: 6318918520819713
+    m_Key: ui.runend.last_quota_label
+    m_Metadata:
+      m_Items:
+      - rid: 221145278688526444
+  - m_Id: 6318918520819714
+    m_Key: ui.runend.quota_label
+    m_Metadata:
+      m_Items:
+      - rid: 221145278688526445
+  - m_Id: 6318918520819715
+    m_Key: ui.runend.boss_label
+    m_Metadata:
+      m_Items:
+      - rid: 221145278688526446
+  - m_Id: 6322087216828416
+    m_Key: ui.runend.all_quotas_met
+    m_Metadata:
+      m_Items:
+      - rid: 221145278688526450
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
@@ -3990,7 +4075,9 @@ MonoBehaviour:
     - rid: 221144893936369761
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_CommentText: 'Card choice screen button: skip the offered cards.'
+        m_CommentText: 'Card choice screen button: skip the offered cards (gives
+          a small resource reward). Short, one word if possible; the skips left are
+          shown in a corner badge.'
     - rid: 221144893936369762
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
@@ -7050,3 +7137,81 @@ MonoBehaviour:
       data:
         m_CommentText: Same line while the list is open. {0} = number of rewards,
           {1} = the Tab key icon (keep it).
+    - rid: 221145235358220379
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Group heading inside the boss reward list (quota card). {0}
+          = reward stage name in capitals (EARLY / MID / STRONG), {1} = rewards taken
+          from that stage.
+    - rid: 221145235358220380
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Group heading for boss rewards that belong to no stage (capitals).
+    - rid: 221145235358220408
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Controls tab row title (the Tab key).
+    - rid: 221145235358220409
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Controls tab help text for the Tab key.
+    - rid: 221145278688526431
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Settings row title (audio tab): all sound on / off.'
+    - rid: 221145278688526432
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Settings row help text.
+    - rid: 221145278688526433
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Run end title when the outcome is unknown (fallback).
+    - rid: 221145278688526434
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Run end screen: label above the big total score number (short).'
+    - rid: 221145278688526435
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Run end screen: stat card label above the round reached (e.g.
+          13 / 50). Short.'
+    - rid: 221145278688526436
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Run end screen: stat card label above the number of boss
+          rewards taken. Short.'
+    - rid: 221145278688526437
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Run end screen: stat card label above the active play time.
+          Short.'
+    - rid: 221145278688526442
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Run end screen title when the run is won (big stamp). Short.
+    - rid: 221145278688526443
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Run end screen (lost): heading above what ended the run (boss
+          and missed targets). Short.'
+    - rid: 221145278688526444
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Run end screen (won): heading above the final quota and boss
+          harvest bars. Short.'
+    - rid: 221145278688526445
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Run end screen: label of the quota bar (target vs your score).
+          Short.'
+    - rid: 221145278688526446
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Run end screen: label of the boss harvest bar (target vs
+          your boss-round score). Short.'
+    - rid: 221145278688526450
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Run end screen (won): shown in the target card when there
+          is no final target to show. Short.'

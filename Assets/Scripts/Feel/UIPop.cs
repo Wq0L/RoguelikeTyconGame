@@ -23,7 +23,8 @@ public sealed class UIPop : MonoBehaviour
     {
         if (captured) return;
         TryGetComponent(out hover);
-        if (hover != null && gameObject.activeInHierarchy)
+        // Hover henüz uyanmadıysa dinlenme boyu 0'dır: pop öğeyi görünmez bırakmasın (22 Kasım 2026).
+        if (hover != null && gameObject.activeInHierarchy && hover.RestScale != Vector3.zero)
         {
             restScale = hover.RestScale;
             restRotation = hover.RestRotation;

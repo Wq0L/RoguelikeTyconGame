@@ -8,7 +8,13 @@ public class CardSelectionUI : MonoBehaviour
     [SerializeField] private List<TileModifierSO> allModifiers; // tüm SO'lar buraya
     [SerializeField] private List<CardUI> cardSlots;            // 3 kart slotu
     [SerializeField] private Button skipButton;
-    private TMP_Text skipLabel;   // düğme yazısı: kalan hak ile ("Kartları Geç (2)")
+    // Kalan atlama hakkı rozeti (22 Kasım 2026, comic kit: mor ATLA butonu + köşede altın kare rozet). Kurulum: Tools > Comic UI >
+    // Kart Seçimi: ATLA Butonu (sahneye kaydeder). Boşsa eski yol: hak sayısı düğme yazısında ("Kartları Geç (2)").
+    [SerializeField] private TMP_Text skipCount;
+    // Kalan seçim plakasının yazısı (sahnede: krem kit şeridi + Bungee; aynı kurucu). Boşsa eski yol: plaka çalışma anında kurulur.
+    [SerializeField] private TextMeshProUGUI remainingLabel;
+    private TMP_Text skipLabel;
+    private bool skipCapsBound;
 
     // Tip ağırlıkları — sabit
     private Dictionary<TileModifierType, float> typeWeights = new()
@@ -95,12 +101,28 @@ public class CardSelectionUI : MonoBehaviour
             // Kalan hak düğmede (12 Kasım 2026, kullanıcı: "kalan hak sayısı gözüksün"): "Kartları Geç (2)". Hak bitince düğme kapanır.
             if (canSkip)
             {
-                if (skipLabel == null) skipLabel = skipButton.GetComponentInChildren<TMP_Text>(true);
-                LocalizedText.Bind(skipLabel, "ui.game.skip_cards_count", skipsLeft);
+                BindSkipCaps();
+                if (skipCount != null) skipCount.text = skipsLeft.ToString();   // yalnız teklif yenilenince (karede değil)
+                else
+                {
+                    if (skipLabel == null) skipLabel = skipButton.GetComponentInChildren<TMP_Text>(true);
+                    LocalizedText.Bind(skipLabel, "ui.game.skip_cards_count", skipsLeft);
+                }
             }
         }
 
         DealCards();
+    }
+
+    // Bungee küçük harfi de büyük çizer: Türkçede "i" noktasız "I" çıkmasın (ComicKit.TurkishCaps). Bir kez.
+    private void BindSkipCaps()
+    {
+        if (skipCapsBound || skipButton == null) return;
+        skipCapsBound = true;
+        ComicUITheme theme = FeelOverlay.Theme;
+        if (theme == null || theme.displayFont == null) return;
+        foreach (TMP_Text text in skipButton.GetComponentsInChildren<TMP_Text>(true))
+            if (text.font == theme.displayFont) text.textPreprocessor = ComicKit.TurkishCaps.Instance;
     }
 
     // Kartlar sırayla, hafif dönerek masaya "dağıtılır". Pop'un ilk yarısında tıklama kapalı:
@@ -312,6 +334,12 @@ public class CardSelectionUI : MonoBehaviour
             if (remaining != null) remaining.transform.parent.gameObject.SetActive(false);
             return;
         }
+        if (remaining == null && remainingLabel != null)
+        {
+            remaining = remainingLabel;
+            ComicUITheme theme = FeelOverlay.Theme;
+            if (theme != null && remaining.font == theme.displayFont) remaining.textPreprocessor = ComicKit.TurkishCaps.Instance;
+        }
         if (remaining == null)
         {
             var plate = new GameObject("Remaining Choices", typeof(RectTransform), typeof(LayoutElement));
@@ -422,8 +450,18 @@ public class CardSelectionUI : MonoBehaviour
     }
 
 
+    // Dil değişince kalan seçim yazısı hemen yeni dilde (22 Kasım 2026: önceden yalnız seçim yapılınca yazılıyordu; Türkçe kalıyordu).
+    // ATLA yazısı LocalizedText ile, rozetteki sayı dilden bağımsız.
+    private void OnEnable() => GameText.Changed += OnLanguageChanged;
+
+    private void OnLanguageChanged()
+    {
+        if (ShownRemaining > 0 && remaining != null) SetRemaining(ShownRemaining);
+    }
+
     private void OnDisable()
     {
+        GameText.Changed -= OnLanguageChanged;
         if (skipButton != null)
             skipButton.gameObject.SetActive(false);
     }

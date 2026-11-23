@@ -7,6 +7,8 @@ using UnityEngine.UI;
 // Kategorili ayarlar paneli (Görüntü / Ses / Oynanış / Kontroller). Görseller sahnede durur;
 // kurmak/yenilemek için: Tools > Comic UI > Build Options Menu. Değerler GameSettings'te tutulur:
 // her değişiklik anında uygulanır, panel kapanınca diske yazılır.
+// Comic kiti (20 Kasım 2026): seçili sekme altın kâğıt (tab_gold), ötekiler kâğıt sekme (tab_blue); hâller SpriteSwap.
+// Sprite'ları kurucu yazar (SetKitSprites); boşsa eski palet görünümü (ComicButtonVisual) kullanılır.
 public class OptionsUI : MonoBehaviour
 {
     [Serializable]
@@ -22,6 +24,19 @@ public class OptionsUI : MonoBehaviour
     // Çeviri anahtarı (eski sahnelerde düz yazı da olabilir: GameText.Resolve).
     [SerializeField, TextArea] private string defaultDescription = "ui.options.hint";
     [SerializeField] private Button resetButton;
+    [Header("Kit görünümü (kurucu yazar)")]
+    [SerializeField] private Sprite tabSprite;
+    [SerializeField] private Sprite activeTabSprite;
+    [SerializeField] private SpriteState tabStates;
+    [SerializeField] private SpriteState activeTabStates;
+
+#if UNITY_EDITOR
+    // Kurucu (OptionsMenuBuilder) için: sekmenin normal ve seçili hâlleri.
+    public void SetKitSprites(Sprite tab, SpriteState states, Sprite active, SpriteState activeStates)
+    {
+        tabSprite = tab; tabStates = states; activeTabSprite = active; activeTabStates = activeStates;
+    }
+#endif
 
     [Header("Dil")]
     [SerializeField] private OptionStepper language;
@@ -35,6 +50,7 @@ public class OptionsUI : MonoBehaviour
     [SerializeField] private OptionToggle backgroundEffects;
 
     [Header("Ses")]
+    [SerializeField] private OptionToggle sound;   // Tüm Sesler (AÇIK = ses açık; hazırlık ekranındaki ses karesiyle aynı ayar)
     [SerializeField] private OptionSlider masterVolume;
     [SerializeField] private OptionSlider musicVolume;
     [SerializeField] private OptionSlider effectsVolume;
@@ -70,6 +86,10 @@ public class OptionsUI : MonoBehaviour
         }
         if (resetButton != null) resetButton.onClick.AddListener(ResetToDefaults);
         foreach (OptionRow row in GetComponentsInChildren<OptionRow>(true)) row.HoverChanged = ShowDescription;
+        // Bungee küçük harfi de büyük çizer: Türkçede "i" noktasız "I" çıkmasın (ComicKit.TurkishCaps). Bir kez, kurulumda.
+        if (theme != null && theme.displayFont != null)
+            foreach (TMP_Text text in GetComponentsInChildren<TMP_Text>(true))
+                if (text.font == theme.displayFont) text.textPreprocessor = ComicKit.TurkishCaps.Instance;
         Bind();
     }
 
@@ -119,6 +139,7 @@ public class OptionsUI : MonoBehaviour
         Step(quality, i => GameSettings.QualityLevel = i);
         Toggle(backgroundEffects, on => GameSettings.BackgroundEffects = on);
 
+        Toggle(sound, on => GameSettings.SoundMuted = !on);
         Slide(masterVolume, v => GameSettings.MasterVolume = v);
         Slide(musicVolume, v => GameSettings.MusicVolume = v);
         Slide(effectsVolume, v => GameSettings.EffectsVolume = v);
@@ -194,6 +215,7 @@ public class OptionsUI : MonoBehaviour
         }
         backgroundEffects?.Setup(GameSettings.BackgroundEffects);
 
+        sound?.Setup(!GameSettings.SoundMuted);
         masterVolume?.Setup(GameSettings.MasterVolume);
         musicVolume?.Setup(GameSettings.MusicVolume);
         effectsVolume?.Setup(GameSettings.EffectsVolume);
@@ -222,9 +244,26 @@ public class OptionsUI : MonoBehaviour
         for (int i = 0; i < tabs.Count; i++)
         {
             if (tabs[i].page != null) tabs[i].page.SetActive(i == selectedTab);
-            if (theme != null) SetPalette(tabs[i].button, i == selectedTab ? theme.green : theme.blue);
+            if (tabSprite != null && activeTabSprite != null) SetTabLook(tabs[i].button, i == selectedTab);
+            else if (theme != null) SetPalette(tabs[i].button, i == selectedTab ? theme.green : theme.blue);
         }
         ShowDescription(null);
+    }
+
+    private void SetTabLook(Button button, bool active)
+    {
+        if (button == null || button.targetGraphic is not Image image) return;
+        image.sprite = active ? activeTabSprite : tabSprite;
+        button.spriteState = active ? activeTabStates : tabStates;
+        RefreshState(button);
+    }
+
+    // SpriteSwap'ın gösterdiği hâli yeni sprite'larla yeniler (üzerindeyken / basılıyken değişen sekme eski hâlde kalmasın).
+    public static void RefreshState(Selectable selectable)
+    {
+        if (!selectable.interactable || !selectable.isActiveAndEnabled) return;
+        selectable.interactable = false;
+        selectable.interactable = true;
     }
 
     private static void SetPalette(Button button, Material[] palette)
