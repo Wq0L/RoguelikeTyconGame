@@ -119,7 +119,7 @@ public static class OdulAsamalariV1Verification
     static object Call(object o, string n, params object[] a) => o.GetType().GetMethod(n, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public).Invoke(o, a);
     static void SetP(object o, string n, object v) => o.GetType().GetProperty(n).GetSetMethod(true).Invoke(o, new[] { v });
     static string Strip(string s) => s == null ? null : System.Text.RegularExpressions.Regex.Replace(s, "<.*?>", "").Replace("\n", " / ");
-    static bool MentionsRound(string s) => s != null && System.Text.RegularExpressions.Regex.IsMatch(s, @"Round \d+");
+    static bool MentionsRound(string s) => s != null && System.Text.RegularExpressions.Regex.IsMatch(s, @"Round \d+|\d+\. turdaki Sınama");
     static string N(long v) => HarvestQuota.Format(v);
     static RoundManager RM => RoundManager.Instance;
     static BossRewardManager Boss => BossRewardManager.Instance;
@@ -149,7 +149,7 @@ public static class OdulAsamalariV1Verification
     static string EndText()
     {
         var panel = F<GameObject>(Object.FindFirstObjectByType<UIManager>(), "runCompletePanel");
-        return Strip(panel.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Harvest Score")));
+        return Strip(panel.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Hasat skoru")));
     }
 
     static int ResolveCards(Func<List<TileCardOffer>, TileCardOffer> choose = null)
@@ -599,16 +599,16 @@ public static class OdulAsamalariV1Verification
         var offer = Boss.Offer.ToList();
         Call(panel, "Fill");
         bool last = r >= RM.MaxRounds;
-        Must(panel.gameObject.activeInHierarchy && Boss.OfferStage == pool.stages[stage] && panel.TitleText == StageNames[stage] + " AŞAMA · BOSS ÖDÜLÜ" && panel.ShownCards == offer.Count,
+        Must(panel.gameObject.activeInHierarchy && Boss.OfferStage == pool.stages[stage] && panel.TitleText == StageNames[stage] + " AŞAMA · SINAMA ÖDÜLÜ" && panel.ShownCards == offer.Count,
             $"R{r}: panel title \"{panel.TitleText}\" / {panel.ShownCards} cards, expected {StageNames[stage]} AŞAMA · BOSS ÖDÜLÜ / {offer.Count}");
         if (offer.Count > 0)
-            Must(panel.SubtitleText == (last ? "Son boss geçildi · yalnız biri alınır · run burada biter · ödül run sonu listesine yazılır"
-                                              : $"Boss geçildi · yalnız biri alınır · run sonuna kadar geçerli · etkisi Round {r + 1} ve sonrası"), $"R{r}: subtitle \"{panel.SubtitleText}\"");
+            Must(panel.SubtitleText == (last ? "Son Sınama geçildi · yalnız biri alınır · deneme burada biter · ödül deneme sonu listesine yazılır"
+                                              : $"Sınama geçildi · yalnız biri alınır · deneme sonuna kadar geçerli · etkisi Tur {r + 1} ve sonrası"), $"R{r}: subtitle \"{panel.SubtitleText}\"");
         for (int i = 0; i < offer.Count; i++)
         {
             int s = pool.StageIndexOf(offer[i]);
-            string tag = $"{StageNames[s]} AŞAMA · Round {StageFirstBoss[s]} boss'undan itibaren";
-            Must(panel.StageTagText(i) == tag && panel.NoteText(i) == pool.NoteFor(offer[i]) && !MentionsRound(panel.NoteText(i)),
+            string tag = $"{StageNames[s]} AŞAMA · {StageFirstBoss[s]}. turdaki Sınamadan itibaren";
+            Must(panel.StageTagText(i) == tag && panel.NoteText(i) == offer[i].TranslateNote(pool.NoteFor(offer[i])) && !MentionsRound(panel.NoteText(i)),
                 $"R{r}: card {i} ({offer[i].displayName}) tag \"{panel.StageTagText(i)}\" / note \"{panel.NoteText(i)}\"");
             string fit = FitProblem(panel, i);
             Must(fit == null, $"R{r}: card {i} ({offer[i].displayName}): {fit}");
@@ -739,7 +739,7 @@ public static class OdulAsamalariV1Verification
     static double Victory()
     {
         string end = EndText();
-        Require(headers.Count == 15 && headers.Take(3).All(h => h.EndsWith("ERKEN AŞAMA · BOSS ÖDÜLÜ")) && headers.Skip(3).Take(3).All(h => h.EndsWith("ORTA AŞAMA · BOSS ÖDÜLÜ")) && headers.Skip(6).All(h => h.EndsWith("GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ")),
+        Require(headers.Count == 15 && headers.Take(3).All(h => h.EndsWith("ERKEN AŞAMA · SINAMA ÖDÜLÜ")) && headers.Skip(3).Take(3).All(h => h.EndsWith("ORTA AŞAMA · SINAMA ÖDÜLÜ")) && headers.Skip(6).All(h => h.EndsWith("GÜÇLÜ AŞAMA · SINAMA ÖDÜLÜ")),
             "Whole run R1–50 in order: the reward screen header followed the stage at all 15 bosses — " + string.Join(" · ", headers));
         Require(headers[2].StartsWith("R10") && headers[3].StartsWith("R13") && headers[5].StartsWith("R20") && headers[6].StartsWith("R23"),
             "Transitions on screen: R10 ERKEN → R13 ORTA, R20 ORTA → R23 GÜÇLÜ");
@@ -791,10 +791,10 @@ public static class OdulAsamalariV1Verification
         if (r == 13)
         {
             var offer = CheckPanel(r);
-            Must(offer.Count == 3 && offer.All(x => pool.StageIndexOf(x) == 0) && panel.TitleText == "ORTA AŞAMA · BOSS ÖDÜLÜ" && Eligible(1).Count == 0,
+            Must(offer.Count == 3 && offer.All(x => pool.StageIndexOf(x) == 0) && panel.TitleText == "ORTA AŞAMA · SINAMA ÖDÜLÜ" && Eligible(1).Count == 0,
                 $"R13: with the orta stage exhausted the cards should all be erken ({Ids(offer)})");
-            Require(Enumerable.Range(0, 3).All(i => panel.StageTagText(i) == "ERKEN AŞAMA · Round 3 boss'undan itibaren"),
-                "İkinci run · R13, current stage exhausted: header \"ORTA AŞAMA · BOSS ÖDÜLÜ\", three erken cards, each tagged \"ERKEN AŞAMA · Round 3 boss'undan itibaren\"");
+            Require(Enumerable.Range(0, 3).All(i => panel.StageTagText(i) == "ERKEN AŞAMA · 3. turdaki Sınamadan itibaren"),
+                "İkinci run · R13, current stage exhausted: header \"ORTA AŞAMA · SINAMA ÖDÜLÜ\", three erken cards, each tagged \"ERKEN AŞAMA · 3. turdaki Sınamadan itibaren\"");
             Take(r, offer);
             return .05;
         }
@@ -950,13 +950,13 @@ public static class OdulAsamalariV1Verification
         Must(State == GameStates.RoundChoice && r == 5, $"legacy: reward selection expected at R5 ({State})");
         var panel = Panel; var offer = Boss.Offer.ToList();
         Call(panel, "Fill");
-        Must(offer.Count == 3 && Boss.OfferStage == null && panel.TitleText == "BOSS GEÇİLDİ · ÖDÜL SEÇ" && panel.SubtitleText == "Yalnız biri alınır · run sonuna kadar geçerli · etkisi Round 6 ve sonrası" &&
+        Must(offer.Count == 3 && Boss.OfferStage == null && panel.TitleText == "SINAMA GEÇİLDİ · ÖDÜL SEÇ" && panel.SubtitleText == "Yalnız biri alınır · deneme sonuna kadar geçerli · etkisi Tur 6 ve sonrası" &&
              Enumerable.Range(0, 3).All(i => panel.StageTagText(i) == null && panel.NoteText(i) == offer[i].note && FitProblem(panel, i) == null), "legacy panel texts changed");
         // Eski profilde açıklama asset'teki metindir: Canavar Kesimi kartı eski kuralını (R25) söyler ve eski kural da öyle çalışır.
         var list = F<List<BossRewardSO>>(Boss, "offer"); var real = list.ToList();
         list.Clear(); list.Add(R("canavar_kesimi")); list.Add(R("bilgi_filizi")); list.Add(R("hasat_ritmi"));
         Call(panel, "Fill");
-        Require(panel.NoteText(0).Contains("Round 25 boss'undan sonra çıkar") && panel.NoteText(1).Contains("Round 30 boss'undan sonra çıkmaz") && panel.StageTagText(0) == null &&
+        Require(panel.NoteText(0).Contains("25. turdaki Sınamadan sonra çıkar") && panel.NoteText(1).Contains("30. turdaki Sınamadan sonra çıkmaz") && panel.StageTagText(0) == null &&
                 Enumerable.Range(0, 3).All(i => FitProblem(panel, i) == null),
             "Old profile (Kırılma V1): header \"BOSS GEÇİLDİ · ÖDÜL SEÇ\", no stage tag; cards show the asset's own note, which matches the old rule (\"Round 25 boss'undan sonra çıkar\")");
         InsertNext(("görüntü eski profil", () => { Capture("T373_06_EskiProfil_KirilmaV1"); return .05; }), ("eski profil teklif geri", () =>

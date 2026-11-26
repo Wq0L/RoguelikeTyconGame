@@ -48,9 +48,10 @@ public class SkillNodeSO : ScriptableObject
     [Header("Mekanik Açma (opsiyonel, max seviyede tetiklenir)")]
     public UnlockType unlockType = UnlockType.None;
 
-    // Oyuncuya görünen ad: çeviri tablosundan. Sondaki sıra eki (" – 1", " - 2") çevrilmez; adın gövdesi anahtarı verir
-    // ("Keskin Başlangıç – 1" → data.skill.keskin_baslangic.name + " – 1"). İki denge sürümündeki aynı adlı düğüm tek satırdır.
-    // Anahtar yoksa asset'teki yazı.
+    // Oyuncuya görünen ad: çeviri tablosundan. Sondaki sıra eki (" – 1", " - 2") yalnız asset'te kalan iç sıra numarasıdır,
+    // oyuncuya gösterilmez (26 Kasım 2026, kullanıcı: "Bileme III ise direkt Bileme III"). Adın gövdesi anahtarı verir
+    // ("Keskin Başlangıç – 1" → data.skill.keskin_baslangic.name → "Bileme I"). İki denge sürümündeki aynı adlı düğüm tek satırdır.
+    // Anahtar yoksa asset'teki yazının gövdesi.
     public string DisplayName
     {
         get
@@ -58,8 +59,7 @@ public class SkillNodeSO : ScriptableObject
             if (string.IsNullOrEmpty(nodeName)) return nodeName;
             int cut = OrderSuffixStart(nodeName);
             string stem = cut < 0 ? nodeName : nodeName.Substring(0, cut);
-            string name = GameText.Data(NameKey(stem), stem);
-            return cut < 0 ? name : name + nodeName.Substring(cut);
+            return GameText.Data(NameKey(stem), stem);
         }
     }
 

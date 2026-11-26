@@ -146,7 +146,7 @@ public static class TakvimV1Verification
     static string EndText()
     {
         var panel = F<GameObject>(Object.FindFirstObjectByType<UIManager>(), "runCompletePanel");
-        return Strip(panel.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Harvest Score")));
+        return Strip(panel.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Hasat skoru")));
     }
 
     static string ZoneKey(SegmentEventRuntime e) => string.Join(";", e.ZoneCells.OrderBy(c => c.x * 100 + c.z).Select(c => c.x + "," + c.z));
@@ -507,14 +507,14 @@ public static class TakvimV1Verification
 
         // Round özeti / hazırlık bildirimi: doğru yaklaşan boss round'u ve kalan hazırlık.
         string notice = Strip(SegmentEventText.Notice(Events, r - 1));
-        Must(notice != null && notice.Contains(up.Data.displayName) && (boss ? notice.Contains("SON HAZIRLIK") : notice.Contains($"Round {B}")) &&
-             (boss || r == first && r > 1 || notice.Contains($"{B - r} round hazırlık")), $"R{r}: summary notice does not name the boss round {B}: {notice}");
+        Must(notice != null && notice.Contains(up.Data.displayName) && (boss ? notice.Contains("SON HAZIRLIK") : notice.Contains($"Tur {B}")) &&
+             (boss || r == first && r > 1 || notice.Contains($"{B - r} tur hazırlık")), $"R{r}: summary notice does not name the boss round {B}: {notice}");
         string quotaNotice = Strip(RoundSummaryUI.QuotaNotice(RM, r - 1, out _));
         int length = B - first + 1;
-        if (r == 1) Must(quotaNotice.Contains($"İlk kota: {N(Q[0])} · {length} round") && quotaNotice.Contains("boss round'unun sonunda"), "R1 quota notice: " + quotaNotice);
-        else if (r == first) Must(quotaNotice.Contains("KOTA TAMAM") && quotaNotice.Contains($"Sıradaki kota: {N(Q[p - 1])} · {length} round"), $"R{r} quota notice: {quotaNotice}");
-        else if (!boss) Must(quotaNotice.Contains($"{B - r + 1} round kaldı") && quotaNotice.Contains($"{B}. round sonunda"), $"R{r} quota notice: {quotaNotice}");
-        else Must(quotaNotice.Contains("SON ROUND"), $"R{r} quota notice: {quotaNotice}");
+        if (r == 1) Must(quotaNotice.Contains($"İlk kota: {N(Q[0])} · {length} tur") && quotaNotice.Contains("Sınama turunun sonunda"), "R1 quota notice: " + quotaNotice);
+        else if (r == first) Must(quotaNotice.Contains("KOTA TAMAM") && quotaNotice.Contains($"Sıradaki kota: {N(Q[p - 1])} · {length} tur"), $"R{r} quota notice: {quotaNotice}");
+        else if (!boss) Must(quotaNotice.Contains($"{B - r + 1} tur kaldı") && quotaNotice.Contains($"{B}. tur sonunda"), $"R{r} quota notice: {quotaNotice}");
+        else Must(quotaNotice.Contains("SON TUR"), $"R{r} quota notice: {quotaNotice}");
         if (S.Detailed && r == first)
         {
             var map = Object.FindFirstObjectByType<RoundMapUI>(FindObjectsInactive.Include);
@@ -545,7 +545,7 @@ public static class TakvimV1Verification
         if (S.Detailed && r == first && r > 1)
             Require(Events.LastEnded != null && Events.LastEnded.StartRound == r - 1 && Events.LastEnded.IsFinished,
                 $"Geçiş R{r - 1}→R{r}: {Events.LastEnded.Data.displayName} bitti; yeni dönem {first}–{B} ({B - first + 1} round) dönem skoru 0'dan başladı, kota {N(Q[p - 1])}; " +
-                $"toplam skor {N(Total)} korundu; önizleme {previewData.displayName} · Round {B} (boss hasadı hedefi {N(BT[p - 1])})");
+                $"toplam skor {N(Total)} korundu; önizleme {previewData.displayName} · Tur {B} (Sınama hasadı hedefi {N(BT[p - 1])})");
         Markers.SendMessage("LateUpdate"); Weather.SendMessage("LateUpdate");
         Must(Markers.ShowsActive == (boss && OpenZoneCount(previewed) > 0) && Weather.CurrentWeather == BossWeatherOverlay.Resolve(Events.Active, true) &&
              (boss && !(previewData is NoRuleBossSO)) == (Weather.CurrentWeather != BossWeatherOverlay.Weather.None), $"R{r}: zone / weather state wrong ({Weather.CurrentWeather})");
@@ -557,14 +557,14 @@ public static class TakvimV1Verification
         // HUD: kalan round dönemin uzunluğuna göre, yaklaşan boss'un round'u, boss hedefi; kâğıt yalnız boss aktifken boyanır.
         var hud = HudTexts();
         long progress = RM.QuotaProgress;
-        Must(hud["Label"] == (boss ? "SEGMENT KOTASI · SON ROUND" : $"SEGMENT KOTASI · {B - r + 1} ROUND") && hud["Value"] == $"{N(progress)} / {N(Q[p - 1])}", $"R{r}: HUD quota line {hud["Label"]} {hud["Value"]}");
-        Must(boss ? hud["Event"].StartsWith(previewData.displayName + ":") && hud["Boss"] == $"BOSS HASADI: 0 / {N(BT[p - 1])}"
-                  : hud["Event"].StartsWith($"Yaklaşan boss: {previewData.displayName} · Round {B}") && hud["Boss"] == $"Boss hasadı hedefi (Round {B}): {N(BT[p - 1])}",
+        Must(hud["Label"] == (boss ? "DÖNEM KOTASI · SON TUR" : $"DÖNEM KOTASI · {B - r + 1} TUR") && hud["Value"] == $"{N(progress)} / {N(Q[p - 1])}", $"R{r}: HUD quota line {hud["Label"]} {hud["Value"]}");
+        Must(boss ? hud["Event"].StartsWith(previewData.displayName + ":") && hud["Boss"] == $"SINAMA HASADI: 0 / {N(BT[p - 1])}"
+                  : hud["Event"].StartsWith($"Yaklaşan Sınama: {previewData.displayName} · Tur {B}") && hud["Boss"] == $"Sınama hasadı hedefi (Tur {B}): {N(BT[p - 1])}",
             $"R{r}: HUD boss lines: {hud["Event"]} | {hud["Boss"]}");
         Must(Same(Hud.PaperColor, BossTheme.Paper(boss ? previewData : null)) && Same(Hud.EventLineColor, BossTheme.Ink(previewData)), $"R{r}: HUD colors");
         string intro = GameFeelDirector.QuotaIntro(RM), eventIntro = SegmentEventText.Intro(Events, RM);
-        if (r == first) Must(intro == $"KOTA {N(Q[p - 1])} · {length} ROUND", $"R{r}: quota intro {intro}");
-        if (boss) Must(eventIntro == $"BOSS: {previewData.displayName} · HASAT HEDEFİ {N(BT[p - 1])}", $"R{r}: boss intro {eventIntro}");
+        if (r == first) Must(intro == $"KOTA {N(Q[p - 1])} · {length} TUR", $"R{r}: quota intro {intro}");
+        if (boss) Must(eventIntro == $"SINAMA: {previewData.displayName} · HASAT HEDEFİ {N(BT[p - 1])}", $"R{r}: boss intro {eventIntro}");
         if (r == first && r > 1) Must(eventIntro != null && eventIntro.Contains("GEÇTİ") && eventIntro.EndsWith($"· KOTA {N(Q[p - 1])}"), $"R{r}: intro after boss {eventIntro}");
 
         // Skor: dönemin ilk round'unda (kota − boss hedefi), boss round'unda tam boss hedefi → iki koşul da tam eşitlikle tutar.
@@ -579,7 +579,7 @@ public static class TakvimV1Verification
             if (!failing)
             {
                 hud = HudTexts();
-                Must(hud["Label"] == "SEGMENT KOTASI TAMAM" && hud["Boss"] == $"BOSS HASADI: {N(BT[p - 1])} / {N(BT[p - 1])} · TAMAM", $"R{r}: HUD at exact targets: {hud["Label"]} | {hud["Boss"]}");
+                Must(hud["Label"] == "DÖNEM KOTASI TAMAM" && hud["Boss"] == $"SINAMA HASADI: {N(BT[p - 1])} / {N(BT[p - 1])} · TAMAM", $"R{r}: HUD at exact targets: {hud["Label"]} | {hud["Boss"]}");
             }
         }
         if (S.LevelRounds.Contains(r))
@@ -588,7 +588,7 @@ public static class TakvimV1Verification
             Must(RM.PendingCardSelections == RM.ChoicesPerLevel && RM.ChoicesPerLevel == 3, $"R{r}: one level should queue 3 card choices");
         }
         if (S.Detailed || boss)
-            Require(true, $"{S.Name} · R{r} (dönem {p}: {first}–{B}{(boss ? ", BOSS " + previewData.displayName : ", hazırlık")}): önizleme Round {B}, HUD \"{hud["Label"]}\", " +
+            Require(true, $"{S.Name} · R{r} (dönem {p}: {first}–{B}{(boss ? ", BOSS " + previewData.displayName : ", hazırlık")}): önizleme Tur {B}, HUD \"{hud["Label"]}\", " +
                           $"dönem skoru {N(RM.QuotaProgress)} / {N(Q[p - 1])}{(boss ? $", boss hasadı {N(RM.BossProgress)} / {N(BT[p - 1])}" : "")}, toplam {N(Total)}");
         return .05;
     }
@@ -642,10 +642,10 @@ public static class TakvimV1Verification
         Must(!Markers.ShowsActive && Weather.CurrentWeather == BossWeatherOverlay.Weather.None && NoBossEffect(), $"R{r}: zone / weather / boss rule still active after the boss");
         Must(!Markers.ShowsCurtain, $"R{r}: curtain still shown after the boss");
         string notice = Strip(SegmentEventText.Notice(Events, r));
-        Must(notice.Contains(previewData.displayName + " GEÇTİ") && notice.Contains($"boss hasadı {N(BT[p - 1])} / {N(BT[p - 1])}") && notice.Contains($"Sıradaki boss: {next.Data.displayName} (Round {D[p]})"),
+        Must(notice.Contains(previewData.displayName + " GEÇTİ") && notice.Contains($"Sınama hasadı {N(BT[p - 1])} / {N(BT[p - 1])}") && notice.Contains($"Sıradaki Sınama: {next.Data.displayName} (Tur {D[p]})"),
             $"R{r}: summary after the boss: {notice}");
-        Require(true, $"{S.Name} · R{r} boss geçildi: kota {N(RM.LastQuotaScore)} / {N(RM.LastQuotaTarget)} (eşit), boss hasadı {N(RM.LastBossScore)} / {N(RM.LastBossTarget)} (eşit)" +
-                      $"{(cards ? ", önce 3 kart" : "")}, ödül: {rewardName ?? "uygun ödül yok"}; etkiler temizlendi; sıradaki boss {next.Data.displayName} Round {D[p]}");
+        Require(true, $"{S.Name} · R{r} boss geçildi: kota {N(RM.LastQuotaScore)} / {N(RM.LastQuotaTarget)} (eşit), Sınama hasadı {N(RM.LastBossScore)} / {N(RM.LastBossTarget)} (eşit)" +
+                      $"{(cards ? ", önce 3 kart" : "")}, ödül: {rewardName ?? "uygun ödül yok"}; etkiler temizlendi; sıradaki boss {next.Data.displayName} Tur {D[p]}");
         return .05;
     }
 
@@ -686,14 +686,14 @@ public static class TakvimV1Verification
         RM.StartNextRound();
         Must(RM.CurrentRound == r && State == GameStates.RunComplete && !RM.IsRoundActive, $"R{r}: a round started after the loss");
         string end = EndText();
-        string title = quota && bossFail ? "KOTA VE BOSS HASADI TUTMADI" : quota ? "KOTA TUTMADI" : "BOSS HASADI TUTMADI";
+        string title = quota && bossFail ? "KOTA VE SINAMA HASADI TUTMADI" : quota ? "KOTA TUTMADI" : "SINAMA HASADI TUTMADI";
         string q = $"{N(Q[p - 1] - S.QuotaShort)} / {N(Q[p - 1])}", b = $"{N(BT[p - 1] - S.BossShort)} / {N(BT[p - 1])}";
-        bool text = end.StartsWith(title) && end.Contains($"Round {r}") &&
-            (quota && !bossFail ? end.Contains($"segment skoru {q} (gereken kota)") && end.Contains($"boss hasadı {b} (tamam)")
-             : !quota ? end.Contains($"boss hasadı {b} (eksik)") && end.Contains($"segment kotası {q} (tamam)")
-             : end.Contains($"boss hasadı {b} (eksik)") && end.Contains($"segment kotası {q} (eksik)"));
+        bool text = end.StartsWith(title) && end.Contains($"Tur {r}") &&
+            (quota && !bossFail ? end.Contains($"dönem skoru {q} (gereken kota)") && end.Contains($"Sınama hasadı {b} (tamam)")
+             : !quota ? end.Contains($"Sınama hasadı {b} (eksik)") && end.Contains($"dönem kotası {q} (tamam)")
+             : end.Contains($"Sınama hasadı {b} (eksik)") && end.Contains($"dönem kotası {q} (eksik)"));
         Require(text && activeRounds.SequenceEqual(D.Where(d => d <= r)),
-            $"{S.Name}: kota {q}, boss hasadı {b} → {RM.Outcome}; bekleyen kart seçimi ve ödül açılmadı ({(S.LevelRounds.Contains(r) ? "bir level bekliyordu" : "level yoktu")}), " +
+            $"{S.Name}: kota {q}, Sınama hasadı {b} → {RM.Outcome}; bekleyen kart seçimi ve ödül açılmadı ({(S.LevelRounds.Contains(r) ? "bir level bekliyordu" : "level yoktu")}), " +
             $"sonraki round başlamadı; ekran: {end}");
         return .3;
     }
@@ -725,8 +725,8 @@ public static class TakvimV1Verification
         var panel = Object.FindFirstObjectByType<BossRewardPanelUI>(FindObjectsInactive.Include);
         string Own(string name) => panel.GetComponentsInChildren<TextMeshProUGUI>(true).Where(t => t.transform.parent == panel.transform && t.name == name).Select(t => t.text).FirstOrDefault();
         string title = Own("Title"), subtitle = Own("Subtitle");
-        Require(panel.gameObject.activeInHierarchy && title == "SON BOSS GEÇİLDİ · ÖDÜL SEÇ" && subtitle != null && subtitle.Contains("run burada biter") && !subtitle.Contains("Round 51"),
-            $"R50 reward panel: \"{title}\" / \"{subtitle}\" (does not promise a Round 51)");
+        Require(panel.gameObject.activeInHierarchy && title == "SON SINAMA GEÇİLDİ · ÖDÜL SEÇ" && subtitle != null && subtitle.Contains("deneme burada biter") && !subtitle.Contains("Tur 51"),
+            $"R50 reward panel: \"{title}\" / \"{subtitle}\" (does not promise a Tur 51)");
         RM.StartNextRound();
         Must(RM.CurrentRound == 50 && State == GameStates.RoundChoice, "R50: a round started before the final reward was chosen");
         int before = TotalStacks;
@@ -746,7 +746,7 @@ public static class TakvimV1Verification
         string end = EndText();
         // Tam sürüm sonuç ekranı ödülleri başlık + satır başına bir madde olarak listeler (6 Ekim düzeni; eski tek satırlık
         // "Boss ödülleri: …" biçimi yalnız demo'da kaldı). Aynı beklenti: liste var ve R50'de alınan ödül kendi satırında.
-        Require(end.StartsWith("RUN TAMAMLANDI · TAKVİM V1") && end.Contains("50 round") && end.Contains("BOSS ÖDÜLLERİ / • ") && end.Contains("• " + finalReward),
+        Require(end.StartsWith("RUN TAMAMLANDI · TAKVİM V1") && end.Contains("50 tur") && end.Contains("SINAMA ÖDÜLLERİ / • ") && end.Contains("• " + finalReward),
             "Victory screen lists the rewards of the run, including the one taken at R50: " + end);
         RM.StartNextRound();
         Weather.SendMessage("LateUpdate"); Markers.SendMessage("LateUpdate");
@@ -832,7 +832,7 @@ public static class TakvimV1Verification
             "Right after the calendar runs, Kırılma V1 still runs its old rhythm in the scene: 5-round segments, first boss at R5, quota 45, boss target 8, no boss at R50");
         RM.StartNextRound();
         var hud = HudTexts();
-        Require(State == GameStates.Round && hud["Label"] == "SEGMENT KOTASI · 5 ROUND" && hud["Event"].StartsWith($"Yaklaşan boss: {up.Data.displayName} · Round 5") && hud["Boss"] == "Boss hasadı hedefi (Round 5): 8",
+        Require(State == GameStates.Round && hud["Label"] == "DÖNEM KOTASI · 5 TUR" && hud["Event"].StartsWith($"Yaklaşan Sınama: {up.Data.displayName} · Tur 5") && hud["Boss"] == "Sınama hasadı hedefi (Tur 5): 8",
             $"Kırılma V1 HUD unchanged: \"{hud["Label"]}\" / \"{hud["Event"]}\" / \"{hud["Boss"]}\"");
         return .05;
     }

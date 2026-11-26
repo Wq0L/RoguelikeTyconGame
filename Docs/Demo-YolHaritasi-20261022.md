@@ -158,7 +158,14 @@ Hepsi 1.0'da kalacak; amaç görsel olarak sorunsuz ve net anlaşılır olmalar�
 - Her iki perdede referans Gezgin Bereket perdesi; bitkiler ve darbeler örtülmemeli.
 - Sis: yeni değişiklik talebi yok.
 
+- [ ] **S2 · Sınırsız mod:** henüz yapılmadı, yapılacak (kullanıcı, 26 Kasım). Plan ve açık maddeler
+  `Docs/TODO-Run50-Endless-20261002.md` P10'da: R50 sonrası tamamla / devam seçimi, R55 ve her 5 round'da boss,
+  ayrı ödül havuzu, round süresi, büyük sayı modeli (int değerler 2,1 milyarda doyuyor).
+
 ### HUD / UI
+
+> **26 Kasım notu:** H1–H9 comic kit HUD'u (6–11 Kasım) ve kota kartı işiyle (20 Kasım) büyük ölçüde yapıldı; işaretler
+> o zaman güncellenmedi. Kullanıcı 26 Kasım'da o döneme ait, Play bekleyen işlerin hepsini onayladı.
 
 - [ ] **H1 ·** Level/XP barı; level yazısının boyutu ve hizası.
 - [ ] **H2 ·** Round yazısı üst ortaya; süreyle çakışmasın.
@@ -169,7 +176,8 @@ Hepsi 1.0'da kalacak; amaç görsel olarak sorunsuz ve net anlaşılır olmalar�
 - [ ] **H7 ·** Hover'da hafif büyüme, çıkışta normale dönüş.
 - [ ] **H8 ·** Kota, olay ve diğer HUD panelleri çakışmaz.
 - [ ] **H9 ·** En büyük gridde de paneller tarlayı ve koordinatları örtmez.
-- [ ] **H10 ·** Eri yüksek çözünürlükte bulanık (4 Kasım; 2K monitörde oynayan bir oyuncu bildirdi).
+- [x] **H10 ·** Eri yüksek çözünürlükte bulanık (4 Kasım; 2K monitörde oynayan bir oyuncu bildirdi).
+  - **26 Kasım: kullanıcı çözüldüğünü bildirdi.**
   - Neden (ölçüldü): `Resources/GreenhouseMascotFrames.png` 1254 px ve 16 kareden oluşuyor; bir kare yaklaşık 300 px boyunda. Diyalog kutusunda Eri yaklaşık 333 birim boyunda çiziliyor (`DialogueBox.BigEri` 350 × 0,95).
   - Ekranda gerilme: 1080p'de 1,1 kat (hafif yumuşak), 1440p'de 1,47 kat (bulanık), 4K'da 2,2 kat. Yazılar keskin kalıyor, çünkü TextMeshPro ölçeklenince bulanıklaşmıyor.
   - İçe aktarma ayarı sorun değil: sıkıştırmasız, bilinear, en büyük boyut 2048.

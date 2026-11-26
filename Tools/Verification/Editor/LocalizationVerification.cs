@@ -338,7 +338,11 @@ public static class LocalizationVerification
         Check(enName == "Merchant" && enCard.Contains("Harvest resources ×1.25") && enCard.Contains("Harvest Score ×0.90") && !enCard.Any(c => "çğıöşüÇĞİÖŞÜ".IndexOf(c) >= 0),
             "English start card: name and effects in English, decimal point (Harvest resources ×1.25)");
         Check(trName == "Tüccar" && trCard.Contains("Hasat kaynağı ×1,25") && trCard.Contains("Hasat skoru ×0,90"), "Turkish start card unchanged (Hasat kaynağı ×1,25)");
-        Check(enNode == "Sharp Start" + suffix && trNode == node.nodeName, $"skill node name: the stem is translated, the order number stays ({enNode} / {trNode})");
+        // 26 Kasım: Türkçe ad da tablodan gelir ("Bileme I"), asset adı ("Keskin Başlangıç") değil. Sıra eki (" – 2") oyuncuya
+        // gösterilmez (kullanıcı: "Bileme III ise direkt Bileme III").
+        string trStem = GameText.Get(node.DisplayNameKey);
+        Check(enNode == "Honing I" && trNode == trStem && trNode == "Bileme I" && !enNode.Contains(suffix.Trim()),
+            $"skill node name: translated, without the order number ({enNode} / {trNode}; asset suffix '{suffix.Trim()}')");
         Check(enStat == "Crit chance" && enRarity == "Epic", "stat and rarity names come from the list");
         Check(enQuota == "12,345" && trQuota == "12.345", $"thousands separator follows the language (en {enQuota}, tr {trQuota})");
     }

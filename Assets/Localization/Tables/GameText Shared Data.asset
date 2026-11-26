@@ -3865,6 +3865,86 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 221145278688526450
+  - m_Id: 6861648518991872
+    m_Key: ui.options.background_effects.off
+    m_Metadata:
+      m_Items:
+      - rid: 221145313623408640
+  - m_Id: 6861648544157696
+    m_Key: ui.options.background_effects.fixed
+    m_Metadata:
+      m_Items:
+      - rid: 221145313623408641
+  - m_Id: 6861648544157697
+    m_Key: ui.options.background_effects.power
+    m_Metadata:
+      m_Items:
+      - rid: 221145313623408642
+  - m_Id: 7052901512663040
+    m_Key: ui.card.info.idle_title
+    m_Metadata:
+      m_Items:
+      - rid: 221145325576388608
+  - m_Id: 7052901554606080
+    m_Key: ui.card.info.idle
+    m_Metadata:
+      m_Items:
+      - rid: 221145325576388609
+  - m_Id: 7052901554606085
+    m_Key: ui.card.desc.fertile
+    m_Metadata:
+      m_Items:
+      - rid: 221145325576388614
+  - m_Id: 7052901554606086
+    m_Key: ui.card.desc.water
+    m_Metadata:
+      m_Items:
+      - rid: 221145325576388615
+  - m_Id: 7052901554606087
+    m_Key: ui.card.desc.crystal
+    m_Metadata:
+      m_Items:
+      - rid: 221145325576388616
+  - m_Id: 7052901554606088
+    m_Key: ui.card.desc.energy
+    m_Metadata:
+      m_Items:
+      - rid: 221145325576388617
+  - m_Id: 7052901554606089
+    m_Key: ui.card.desc.explosive
+    m_Metadata:
+      m_Items:
+      - rid: 221145325576388618
+  - m_Id: 7052901554606090
+    m_Key: ui.card.desc.duplicate
+    m_Metadata:
+      m_Items:
+      - rid: 221145325576388619
+  - m_Id: 7052901554606091
+    m_Key: ui.card.desc.damage
+    m_Metadata:
+      m_Items:
+      - rid: 221145325576388620
+  - m_Id: 7052901554606092
+    m_Key: ui.card.desc.tornado
+    m_Metadata:
+      m_Items:
+      - rid: 221145325576388621
+  - m_Id: 7052901554606093
+    m_Key: ui.card.desc.boomerang
+    m_Metadata:
+      m_Items:
+      - rid: 221145325576388622
+  - m_Id: 7052901554606094
+    m_Key: ui.card.desc.electric
+    m_Metadata:
+      m_Items:
+      - rid: 221145325576388623
+  - m_Id: 7052901554606095
+    m_Key: ui.card.desc.spawn_floor
+    m_Metadata:
+      m_Items:
+      - rid: 221145325576388624
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
@@ -4222,7 +4302,8 @@ MonoBehaviour:
     - rid: 221144893936369804
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_CommentText: Settings row help text.
+        m_CommentText: Settings row help text. The three values are Off / Fixed /
+          By Power.
     - rid: 221144893936369805
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
@@ -5282,18 +5363,15 @@ MonoBehaviour:
     - rid: 221144893936370080
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_CommentText: 'Tile card name (Crystal: rarity bonus). The Turkish cell
-          still holds the internal name.'
+        m_CommentText: 'Tile card name (Crystal: rarity bonus).'
     - rid: 221144893936370081
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_CommentText: 'Tile card name (Focus: direct hit damage). The Turkish cell
-          still holds the internal name.'
+        m_CommentText: 'Tile card name (Focus: direct hit damage).'
     - rid: 221144893936370082
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_CommentText: 'Tile card name (Duplicate: double reward chance). The Turkish
-          cell still holds the internal name.'
+        m_CommentText: 'Tile card name (Duplicate: double reward chance).'
     - rid: 221144893936370083
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
@@ -5301,18 +5379,15 @@ MonoBehaviour:
     - rid: 221144893936370084
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_CommentText: 'Tile card name (Energy: Harvest Score). The Turkish cell
-          still holds the internal name.'
+        m_CommentText: 'Tile card name (Energy: Harvest Score).'
     - rid: 221144893936370085
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_CommentText: 'Tile card name (Explosive: explosion chance). The Turkish
-          cell still holds the internal name.'
+        m_CommentText: 'Tile card name (Explosive: explosion chance).'
     - rid: 221144893936370086
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_CommentText: 'Tile card name (Fertile: faster spawns). The Turkish cell
-          still holds the internal name.'
+        m_CommentText: 'Tile card name (Fertile: faster spawns).'
     - rid: 221144893936370087
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
@@ -5320,8 +5395,7 @@ MonoBehaviour:
     - rid: 221144893936370088
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_CommentText: 'Tile card name (Water: XP gain). The Turkish cell still holds
-          the internal name.'
+        m_CommentText: 'Tile card name (Water: XP gain).'
     - rid: 221144893936370089
       type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
@@ -7215,3 +7289,73 @@ MonoBehaviour:
       data:
         m_CommentText: 'Run end screen (won): shown in the target card when there
           is no final target to show. Short.'
+    - rid: 221145313623408640
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Background setting value: no animated background (plain colour).'
+    - rid: 221145313623408641
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Background setting value: the sky always keeps the same colours.'
+    - rid: 221145313623408642
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Background setting value: the sky changes colour as the player
+          gets stronger. Keep short.'
+    - rid: 221145325576388608
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Card choice: title of the info box above the cards before
+          the player points at a card. Short, capitals.'
+    - rid: 221145325576388609
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: Card choice info box, before pointing at a card. Explains
+          what a tile card does.
+    - rid: 221145325576388614
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Card choice info box: what the Fertile tile does. ''Planter
+          on top'' = the planter placed over this tile.'
+    - rid: 221145325576388615
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Card choice info box: what the Water tile does.'
+    - rid: 221145325576388616
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Card choice info box: what the Crystal tile does.'
+    - rid: 221145325576388617
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Card choice info box: what the Energy tile does.'
+    - rid: 221145325576388618
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Card choice info box: what the Explosive tile does.'
+    - rid: 221145325576388619
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Card choice info box: what the Duplicate tile does.'
+    - rid: 221145325576388620
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Card choice info box: what the Focus tile does. ''Direct
+          hits'' = the player''s own scythe hits, not behaviors.'
+    - rid: 221145325576388621
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Card choice info box: what the Tornado tile does.'
+    - rid: 221145325576388622
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Card choice info box: what the Boomerang Scythe tile does.'
+    - rid: 221145325576388623
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Card choice info box: what the Cross Electric tile does.'
+    - rid: 221145325576388624
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 'Card choice info box: the planters already spawn at top speed,
+          so extra speed turns into rarity.'

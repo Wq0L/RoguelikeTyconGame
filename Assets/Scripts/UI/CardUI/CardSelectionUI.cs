@@ -13,6 +13,17 @@ public class CardSelectionUI : MonoBehaviour
     [SerializeField] private TMP_Text skipCount;
     // Kalan seçim plakasının yazısı (sahnede: krem kit şeridi + Bungee; aynı kurucu). Boşsa eski yol: plaka çalışma anında kurulur.
     [SerializeField] private TextMeshProUGUI remainingLabel;
+    // Kartların üstündeki bilgi kutusu (24 Kasım 2026, test geri bildirimi: "mouse kartın üstüne gelince kartın özelliği yazmalı").
+    // Sahnede kurulur: Tools > Comic UI > Kart Seçimi (CardSkipButtonInstaller). Fare bir kartın üstündeyse o kartı anlatır;
+    // değilse ekranın ne yaptığını. Yalnız yeni tile kartlarında görünür: yükseltme ve Temel güç kartlarında kutu kapalı ve eski
+    // "GRİD DOLU" şeridi de kurulmaz (kullanıcı, 24 Kasım: "onlarda üstteki şey çıkmasın").
+    // Boşsa eski yol: tarla dolu şeridi çalışma anında kurulur, açıklama gösterilmez.
+    [SerializeField] private TMP_Text infoTitle;
+    [SerializeField] private TMP_Text infoBody;
+    private enum InfoMode { NewTile, GridFull, AllMax }
+    private InfoMode infoMode;
+    private CardUI hoveredCard;
+    private bool infoCapsBound;
     private TMP_Text skipLabel;
     private bool skipCapsBound;
 
@@ -71,6 +82,7 @@ public class CardSelectionUI : MonoBehaviour
         ProgressionManager progression = ProgressionManager.Instance;
         bool gridFull = progression != null && !progression.HasEligibleCell();
         List<GroundCell> upgrades = gridFull ? progression.GetUpgradeCandidates(cardSlots.Count) : null;
+        infoMode = !gridFull ? InfoMode.NewTile : upgrades.Count > 0 ? InfoMode.GridFull : InfoMode.AllMax;
         SetBanner(!gridFull ? null : upgrades.Count > 0
             ? GameText.Get("ui.card.grid_full")
             : GameText.Get("ui.card.all_max"));
@@ -90,6 +102,8 @@ public class CardSelectionUI : MonoBehaviour
             currentCards.Add(offer);
             cardSlots[i].Setup(offer, OnCardSelected);
         }
+        // Fare yeni dağıtılan kartlardan birinin üstünde kalmış olabilir (giriş olayı yeniden gelmez): kutu o kartın yeni teklifini yazar.
+        ShowInfo();
 
         if(skipButton != null)
         {
@@ -281,6 +295,8 @@ public class CardSelectionUI : MonoBehaviour
     // Kart ekranının üstünde, grid dolduğunda kartların ne yaptığını söyleyen şerit. Kart dizilimine girmez.
     private void SetBanner(string text)
     {
+        // Bilgi kutusu kuruluysa tarla dolu / en üst seviye durumunu o söyler (aynı yerde iki kutu olmasın).
+        if (infoTitle != null && infoBody != null) text = null;
         if (string.IsNullOrEmpty(text))
         {
             if (banner != null) banner.transform.parent.gameObject.SetActive(false);
@@ -457,11 +473,64 @@ public class CardSelectionUI : MonoBehaviour
     private void OnLanguageChanged()
     {
         if (ShownRemaining > 0 && remaining != null) SetRemaining(ShownRemaining);
+        ShowInfo();
+    }
+
+    // Kart, farenin üstüne girdiğini / çıktığını bildirir. Kutu, fare kartlar arasındaki boşluktan geçerken boşa dönüp
+    // titremesin diye son kartı yazmaya devam eder; yalnız yeni dağıtımda (fare kartta değilse) ekranın açıklamasına döner.
+    public void CardHovered(CardUI card, bool inside)
+    {
+        if (inside) { hoveredCard = card; ShowInfo(card); }
+        else if (hoveredCard == card) hoveredCard = null;
+    }
+
+    public string InfoTitleText => infoTitle != null ? infoTitle.text : null;
+    public string InfoBodyText => infoBody != null ? infoBody.text : null;
+    public bool HasInfoBox => infoTitle != null && infoBody != null;
+    // Kutunun kendi açık / kapalı hâli (panel kapalıyken de doğru sonucu verir).
+    public bool InfoBoxShown => HasInfoBox && infoBody.transform.parent.gameObject.activeSelf;
+
+    private void ShowInfo(CardUI card = null)
+    {
+        if (infoTitle == null || infoBody == null) return;
+        // Kutu yalnız yeni tile kartlarında (yükseltme / Temel güç kartlarında kapalı). Gövdenin ebeveyni kutunun kendisi.
+        GameObject box = infoBody.transform.parent.gameObject;
+        bool show = infoMode == InfoMode.NewTile;
+        if (box.activeSelf != show) box.SetActive(show);
+        if (!show) return;
+        if (!infoCapsBound)
+        {
+            infoCapsBound = true;
+            ComicUITheme theme = FeelOverlay.Theme;
+            if (theme != null && infoTitle.font == theme.displayFont) infoTitle.textPreprocessor = ComicKit.TurkishCaps.Instance;
+        }
+        if (card == null && hoveredCard != null && hoveredCard.isActiveAndEnabled) card = hoveredCard;
+        string title = "", body = "";
+        if (card == null || !Describe(card.Offer, card.ShowsSpawnFloor, out title, out body))
+        {
+            title = GameText.Get("ui.card.info.idle_title");
+            body = GameText.Get("ui.card.info.idle");
+        }
+        infoTitle.text = title;
+        infoBody.text = body;
+    }
+
+    // Bilgi kutusunun yazısı (yalnız yeni tile kartı): başlık kartın adı, gövde tile'ın ne yaptığı (sade cümle). Sayılar kartın
+    // kendisinde kalır. Yükseltme / Temel güç kartı ya da boş teklif: false (kutu onlarda gösterilmez).
+    public static bool Describe(TileCardOffer offer, bool spawnFloor, out string title, out string body)
+    {
+        title = body = "";
+        if (offer == null || offer.IsUpgrade || offer.IsBaseStat || offer.Tile == null) return false;
+        title = offer.Tile.DisplayName;
+        body = spawnFloor ? GameText.Get("ui.card.desc.spawn_floor")
+            : GameText.Get("ui.card.desc." + offer.Tile.modifierType.ToString().ToLowerInvariant());
+        return true;
     }
 
     private void OnDisable()
     {
         GameText.Changed -= OnLanguageChanged;
+        hoveredCard = null;
         if (skipButton != null)
             skipButton.gameObject.SetActive(false);
     }

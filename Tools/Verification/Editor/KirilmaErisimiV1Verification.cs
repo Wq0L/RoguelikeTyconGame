@@ -716,7 +716,7 @@ public static class KirilmaErisimiV1Verification
         Call(panel, "Fill");
         for (int i = 0; i < list.Count; i++) { string fit = FitProblem(panel, i); Must(fit == null, $"card {i} ({list[i].displayName}): {fit}"); }
         string effects = string.Join(" | ", Enumerable.Range(0, list.Count).Select(i => Strip(panel.CardTexts(i).First(t => t.name == "Effect").text)));
-        Require(panel.TitleText == "ERKEN AŞAMA · BOSS ÖDÜLÜ" && effects.Contains("yarıçap ×" + BossRewardText.Number(Artci.echoRadius)) && (Cifte == null || effects.Contains($"çaprazda {Cifte.echoReach} hücre")),
+        Require(panel.TitleText == "ERKEN AŞAMA · SINAMA ÖDÜLÜ" && effects.Contains("yarıçap ×" + BossRewardText.Number(Artci.echoRadius)) && (Cifte == null || effects.Contains($"çaprazda {Cifte.echoReach} hücre")),
             $"Reward cards of the variants (placed on the screen by the test): no text is cut or leaves its area — {effects}");
         InsertNext(("görüntü kartlar", () => { Capture("T375_01_ErisimKartlari"); return .05; }), ("teklif geri", () =>
         {

@@ -304,7 +304,7 @@ public static class StartLoadoutVerification
         Require(farmers.Select(c => c.option).SequenceEqual(new StartOptionSO[] { Bahcivan, Tuccar, Secici }) && scythes.Select(c => c.option).SequenceEqual(new StartOptionSO[] { Standart, DarKesim }),
             "Cards: Bahçıvan, Tüccar, Seçici Yetiştirici | Standart, Dar Kesim");
         var sec = farmers[2];
-        Require(!sec.button.interactable && sec.cover.activeSelf && Strip(sec.lockText).StartsWith("KİLİTLİ · GÖREV/Tek run'da 5 Legendary bitki hasat et") && Strip(sec.lockText).Contains("En iyi run: 0 / 5"),
+        Require(!sec.button.interactable && sec.cover.activeSelf && Strip(sec.lockText).StartsWith("KİLİTLİ · GÖREV/Tek denemede 5 Efsanevi bitki hasat et") && Strip(sec.lockText).Contains("En iyi deneme: 0 / 5"),
             "Locked card shows the quest and progress: " + Strip(sec.lockText));
         sec.button.onClick.Invoke();
         Require(!panel.Select(Secici) && panel.SelectedFarmer == Tuccar, "Locked card cannot be selected (click and direct request)");
@@ -515,7 +515,7 @@ public static class StartLoadoutVerification
         if (n == 1)
         {
             var complete = F<GameObject>(Object.FindFirstObjectByType<UIManager>(), "runCompletePanel");
-            string text = Strip(complete.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Harvest Score")));
+            string text = Strip(complete.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Hasat skoru")));
             Require(text.StartsWith("KOTA TUTMADI") && text.Contains("Başlangıç: Tüccar · Dar Kesim") && text.Contains("Kalıcı olarak açıldı: Seçici Yetiştirici"), "Run end screen: " + text);
             Screenshot("RunEnd_Unlocked");
             Object.FindFirstObjectByType<RunCompleteUI>(FindObjectsInactive.Include).OnRestartPressed();

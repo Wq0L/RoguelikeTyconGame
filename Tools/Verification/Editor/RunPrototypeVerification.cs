@@ -216,8 +216,8 @@ public static class RunPrototypeVerification
         Call(summary, "Fill", new object[] { null });
         var texts = summary.GetComponentsInChildren<TextMeshProUGUI>(true).Where(t => t.gameObject.activeInHierarchy).ToDictionary(t => t.name, t => t.text);
         Require(texts.TryGetValue("Title", out var title) && title == "HAZIRLIK", "Setup card title HAZIRLIK");
-        Require(texts.TryGetValue("Quota Notice", out var q) && Strip(q).StartsWith("İlk kota: 40 · 5 round"), "Setup shows the first quota: " + Strip(q));
-        Require(texts.TryGetValue("Event Notice", out var e) && Strip(e).StartsWith("Yaklaşan: DON CEPHESİ · Round 6–10") && Strip(e).Contains("5 round hazırlık"), "Setup announces the event: " + Strip(e));
+        Require(texts.TryGetValue("Quota Notice", out var q) && Strip(q).StartsWith("İlk kota: 40 · 5 tur"), "Setup shows the first quota: " + Strip(q));
+        Require(texts.TryGetValue("Event Notice", out var e) && Strip(e).StartsWith("Yaklaşan: DON CEPHESİ · Tur 6–10") && Strip(e).Contains("5 tur hazırlık"), "Setup announces the event: " + Strip(e));
         PlantField();
         var spawners = Spawners();
         Require(spawners.Count == 9, "9 production points planted (one 2×2 + five 1×1): " + spawners.Count);
@@ -232,7 +232,7 @@ public static class RunPrototypeVerification
     static double SegmentOne()
     {
         RM.StartNextRound();
-        Require(RM.CurrentRound == 1 && GameFeelDirector.QuotaIntro(RM) == "KOTA 40 · 5 ROUND" && Events.Active == null, "Round 1: quota 40 announced, no event active");
+        Require(RM.CurrentRound == 1 && GameFeelDirector.QuotaIntro(RM) == "KOTA 40 · 5 TUR" && Events.Active == null, "Round 1: quota 40 announced, no event active");
         ProgressionManager.Instance.AddXP(ProgressionManager.Instance.XPToNextLevel + 1);
         Call(RM, "EndRound");
         Require(GameManager.Instance.CurrentState == GameStates.CardSelection, "Level-up opens card selection");
@@ -261,9 +261,9 @@ public static class RunPrototypeVerification
         Require(Events.Active == null && Frost.IsPrepared, "Event still upcoming after round 5");
         Flush();
         string quota = RoundSummaryUI.QuotaNotice(RM, 5, out var tone);
-        Require(Strip(quota).StartsWith("KOTA TAMAM · 40 / 40") && quota.Contains("Sıradaki boss kotası: 200") && tone == RoundSummaryUI.QuotaTone.Done, "Round 5 summary: " + Strip(quota));
+        Require(Strip(quota).StartsWith("KOTA TAMAM · 40 / 40") && quota.Contains("Sıradaki Sınama kotası: 200") && tone == RoundSummaryUI.QuotaTone.Done, "Round 5 summary: " + Strip(quota));
         string ev = SegmentEventText.Notice(Events, 5);
-        Require(Strip(ev).StartsWith("SON HAZIRLIK · DON CEPHESİ sonraki round"), "Last preparation is flagged: " + Strip(ev));
+        Require(Strip(ev).StartsWith("SON HAZIRLIK · DON CEPHESİ sonraki tur"), "Last preparation is flagged: " + Strip(ev));
         return .3;
     }
 
@@ -299,7 +299,7 @@ public static class RunPrototypeVerification
         var hud = Object.FindFirstObjectByType<QuotaHUD>(FindObjectsInactive.Include);
         Call(hud, "Refresh");
         var hudTexts = hud.GetComponentsInChildren<TextMeshProUGUI>(true).Where(t => t.gameObject.activeInHierarchy).ToDictionary(t => t.name, t => t.text);
-        Require(hudTexts["Label"] == "BOSS KOTASI · 5 ROUND" && hudTexts["Event"].StartsWith("DON CEPHESİ: ") && hudTexts["Event"].Contains("üretim ×1,5 yavaş"), $"HUD: {hudTexts["Label"]} | {hudTexts["Event"]}");
+        Require(hudTexts["Label"] == "SINAMA KOTASI · 5 TUR" && hudTexts["Event"].StartsWith("DON CEPHESİ: ") && hudTexts["Event"].Contains("üretim ×1,5 yavaş"), $"HUD: {hudTexts["Label"]} | {hudTexts["Event"]}");
         var markers = Object.FindAnyObjectByType<FrostZoneMarkers>();
         markers.SendMessage("LateUpdate");
         Require(markers.ShowsActive && markers.ShownCells.All(c => previewZone.Any(p => p.x == c.x && p.z == c.z)), "World band switches to active (same cells)");
@@ -357,9 +357,9 @@ public static class RunPrototypeVerification
     // Round 7 bitti: round sonu ekranı (harita ve özet) Don Cephesi aktifken.
     static double BossRoundEndShot()
     {
-        Require(GameManager.Instance.CurrentState == GameStates.RoundEnd, "Round 7 end screen open");
+        Require(GameManager.Instance.CurrentState == GameStates.RoundEnd, "Tur 7 end screen open");
         string ev = SegmentEventText.Notice(Events, RM.CurrentRound);
-        Require(Strip(ev).StartsWith("DON CEPHESİ AKTİF · 3 round kaldı"), "Round 7 summary: " + Strip(ev));
+        Require(Strip(ev).StartsWith("DON CEPHESİ AKTİF · 3 tur kaldı"), "Round 7 summary: " + Strip(ev));
         var map = Object.FindFirstObjectByType<RoundMapUI>(FindObjectsInactive.Include);
         Require(map.GetComponentsInChildren<TileCellUI>(false).Count(t => t.InEventZone) == 3, "Round map marks the active band");
         var summary = Object.FindFirstObjectByType<RoundSummaryUI>(FindObjectsInactive.Include);
@@ -375,7 +375,7 @@ public static class RunPrototypeVerification
             RM.StartNextRound(); Call(RM, "EndRound");
             Flush();
         }
-        Require(Events.Active == Frost && SegmentEventText.Notice(Events, 9).StartsWith("DON CEPHESİ AKTİF · 1 round kaldı"), "Round 9 summary: event active, 1 round left");
+        Require(Events.Active == Frost && SegmentEventText.Notice(Events, 9).StartsWith("DON CEPHESİ AKTİF · 1 tur kaldı"), "Round 9 summary: event active, 1 round left");
         RM.StartNextRound();
         long start = HarvestScoreManager.Instance.TotalScore - RM.QuotaProgress;
         SetScore(start + 260);
@@ -388,8 +388,8 @@ public static class RunPrototypeVerification
         Require(markers.ShownCells.Count == 0, "World band hidden after the run");
         Require(!markers.ShowsCurtain, "A1: curtain hidden after the run");
         var complete = F<GameObject>(Object.FindFirstObjectByType<UIManager>(), "runCompletePanel");
-        var text = complete.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Harvest Score"));
-        Require(text != null && Strip(text).StartsWith("PROTOTİP TAMAMLANDI") && Strip(text).Contains("10 round · son kota 260 / 200"), "Victory screen: " + Strip(text));
+        var text = complete.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Hasat skoru"));
+        Require(text != null && Strip(text).StartsWith("PROTOTİP TAMAMLANDI") && Strip(text).Contains("10 tur · son kota 260 / 200"), "Victory screen: " + Strip(text));
         return 1.5;
     }
 
@@ -472,8 +472,8 @@ public static class RunPrototypeVerification
         Require(RM.EndedByQuota && RM.Outcome == RunOutcome.QuotaFailed && GameManager.Instance.CurrentState == GameStates.RunComplete, "150 / 200 at round 10 → run lost");
         Require(Events.Active == null && Spawners().All(s => SegmentEventDirector.SpawnIntervalMultiplier(s.GridObject.GetGridPosition()) == 1f), "Defeat clears the event");
         var complete = F<GameObject>(Object.FindFirstObjectByType<UIManager>(), "runCompletePanel");
-        var text = complete.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Harvest Score"));
-        Require(text != null && Strip(text).StartsWith("KOTA TUTMADI") && Strip(text).Contains("Round 10 · segment skoru 150 / 200"), "Defeat screen: " + Strip(text));
+        var text = complete.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Hasat skoru"));
+        Require(text != null && Strip(text).StartsWith("KOTA TUTMADI") && Strip(text).Contains("Tur 10 · dönem skoru 150 / 200"), "Defeat screen: " + Strip(text));
         return 1.5;
     }
 

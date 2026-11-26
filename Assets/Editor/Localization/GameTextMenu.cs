@@ -23,6 +23,24 @@ public static class GameTextMenu
             $"Ana liste: {GameText.MasterCsvPath}", "Tamam");
     }
 
+    // Editör kapalıyken listeyi tablolara aktarmak için (batch): "Kurulum ve listeyi tabloya aktar" ile aynı iş, pencere açmaz.
+    //   Unity.exe -batchmode -projectPath <proje> -executeMethod GameTextMenu.ImportBatch -logFile <log>
+    public static void ImportBatch()
+    {
+        try
+        {
+            LocalizationSetup.ImportReport r = LocalizationSetup.Run();
+            AssetDatabase.SaveAssets();
+            Debug.Log($"GAMETEXT_IMPORT diller {string.Join(", ", r.Languages)} · {r.Added} yeni, {r.Updated} değişen, {r.Removed} silinen, {r.Unchanged} aynı");
+            EditorApplication.Exit(0);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("GAMETEXT_IMPORT hata: " + e.Message);
+            EditorApplication.Exit(1);
+        }
+    }
+
     [MenuItem(Root + "Listeyi denetle", priority = 1)]
     private static void Audit()
     {

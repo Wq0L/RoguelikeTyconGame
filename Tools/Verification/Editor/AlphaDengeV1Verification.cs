@@ -570,7 +570,7 @@ public static class AlphaDengeV1Verification
         var ui = Object.FindFirstObjectByType<RunCompleteUI>(FindObjectsInactive.Include);
         string text = F<TextMeshProUGUI>(ui, "scoreText").text;
         string line = RunCompleteUI.TimeLine(Clock);
-        Require(line != null && text.Contains(line) && line.StartsWith("Aktif oynanış " + RunClock.Format(Clock.ActiveGameSeconds)) && line.Contains("seçimler ") && line.Contains("mağaza ve hazırlık ") &&
+        Require(line != null && text.Contains(line) && line.StartsWith("Aktif oynanış " + RunClock.Format(Clock.ActiveGameSeconds)) && line.Contains("seçimler ") && line.Contains("dükkân ve hazırlık ") &&
                 line.Contains("seviye hesaplama "),
             $"Run end screen shows the separate times: \"{line}\" (three rounds were played to the end here: 45 + 55 + 65 s)");
         Capture("T378_01_RunSonu_SureSatiri");

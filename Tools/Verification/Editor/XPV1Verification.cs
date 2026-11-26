@@ -185,6 +185,12 @@ public static class XPV1Verification
     static void Pick(TileCardOffer offer) => Call(Cards, "OnCardSelected", offer);
     static TextMeshProUGUI Banner => F<TextMeshProUGUI>(Cards, "banner");
     static string BannerText => Banner != null && Banner.transform.parent.gameObject.activeSelf ? Banner.text : null;
+    // 24 Kasım 2026: kart ekranının bilgi kutusu kuruluysa kutu yalnız yeni tile kartlarında görünür; yükseltme / Temel güç
+    // kartlarında kutu da eski şerit de yok (kullanıcı: "onlarda üstteki şey çıkmasın"). Kutu yoksa eski şerit kontrol edilir.
+    static bool TopShows(string legacyBanner) => Cards.HasInfoBox
+        ? Cards.InfoBoxShown == (legacyBanner == null) && BannerText == null
+        : legacyBanner == null ? BannerText == null : BannerText != null && BannerText.StartsWith(legacyBanner);
+    static string TopState => Cards.HasInfoBox ? $"bilgi kutusu {(Cards.InfoBoxShown ? "açık" : "kapalı")}, şerit {(BannerText ?? "yok")}" : $"banner \"{BannerText}\"";
     // Teklifler yeniden atılır; koşulu sağlayan ilk teklif döner (yoksa null).
     static TileCardOffer Roll(Func<TileCardOffer, bool> wanted, int tries = 200)
     {
@@ -431,7 +437,7 @@ public static class XPV1Verification
         Must(Progress.FirstBehaviorCardRound == 0, "no behavior card yet");
         Cards.RefreshCards();
         var first = Offers.ToList();
-        Require(first.Count == 3 && first.All(o => !o.IsUpgrade && !o.IsBaseStat && o.Tile != null && o.Tile.IsAvailableInCardPool) && BannerText == null &&
+        Require(first.Count == 3 && first.All(o => !o.IsUpgrade && !o.IsBaseStat && o.Tile != null && o.Tile.IsAvailableInCardPool) && TopShows(null) &&
                 Cards.GuaranteedBehaviorOffer != null && RunBalanceSO.IsFirstBehaviorType(Cards.GuaranteedBehaviorOffer.Tile.modifierType),
             "Open empty cells: the three offers are new tile cards from the unlocked pool, no banner; one slot is the early behavior offer (explosion / electric) while no behavior card has been taken");
         bool locked = false;
@@ -440,16 +446,16 @@ public static class XPV1Verification
         FillTiles(0);
         Cards.RefreshCards();
         var upgrades = Offers.ToList();
-        Require(upgrades.All(o => o.IsUpgrade && o.UpgradeTarget.CanUpgrade && o.LevelGain >= 1) && upgrades[0].UpgradeTarget.Planter != null && BannerText != null && BannerText.StartsWith("GRİD DOLU"),
-            $"Grid full: the offers are upgrades of existing tiles (the tile under a planter first), banner \"{BannerText}\"");
+        Require(upgrades.All(o => o.IsUpgrade && o.UpgradeTarget.CanUpgrade && o.LevelGain >= 1) && upgrades[0].UpgradeTarget.Planter != null && TopShows("TARLA DOLU"),
+            $"Grid full: the offers are upgrades of existing tiles (the tile under a planter first), {TopState}");
         int taken = RM.CardsTaken; var target = upgrades[0].UpgradeTarget; int before = target.Level;
         Pick(upgrades[0]);
         Require(target.Level == before + upgrades[0].LevelGain && RM.CardsTaken == taken + 1 && State == GameStates.CardSelection, "Taking an upgrade card raises that tile's level and the next choice is offered in the same screen");
         FillTiles(GroundCell.MaxLevel);
         Cards.RefreshCards();
         var bases = Offers.ToList();
-        Require(bases.All(o => o.IsBaseStat && o.Modifiers.Count >= 1 && o.Modifiers.All(m => m.operation == ModifierOperation.MorePercent)) && BannerText != null && BannerText.StartsWith("TÜM TILE'LAR MAX"),
-            $"Every tile at max level: the offers are permanent base-power cards, banner \"{BannerText}\"");
+        Require(bases.All(o => o.IsBaseStat && o.Modifiers.Count >= 1 && o.Modifiers.All(m => m.operation == ModifierOperation.MorePercent)) && TopShows("BÜTÜN PARSELLER EN ÜST SEVİYEDE"),
+            $"Every tile at max level: the offers are permanent base-power cards, {TopState}");
         return .02;
     }
 
@@ -582,7 +588,7 @@ public static class XPV1Verification
     static double StatusResult()
     {
         if (State == GameStates.Round) return Again;
-        Require(statusSeen && statusText.StartsWith(LevelWorkStatusUI.Title) && statusText.Contains("Level ") && !Status.IsShown,
+        Require(statusSeen && statusText.StartsWith(LevelWorkStatusUI.Title) && statusText.Contains("Seviye ") && !Status.IsShown,
             $"While the round end waits for pending level work the player sees \"{statusText.Replace("\n", " / ").Replace("<size=70%>", "").Replace("</size>", "")}\"; it disappears when the work is done");
         Require(State == GameStates.CardSelection && Progress.CurrentLevel == statusLevel0 + StatusLevels && RM.PendingCardSelections == StatusLevels * 3 && !Progress.HasPendingLevels &&
                 Cards.RemainingText == $"KALAN SEÇİM: {StatusLevels * 3}",

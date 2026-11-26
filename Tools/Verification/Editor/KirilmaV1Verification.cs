@@ -604,7 +604,7 @@ public static class KirilmaV1Verification
         // HUD: yaklaşan boss satırı boss'un kendi renginde; kâğıt henüz boyanmaz.
         StartRound(1);
         RefreshHud();
-        Require(Hud.EventLineText != null && Hud.EventLineText.Contains(firstBoss.displayName) && Same(Hud.EventLineColor, BossTheme.Ink(firstBoss)) && Same(Hud.PaperColor, BossTheme.Paper(null)),
+        Require(Hud.EventLineText != null && Hud.EventLineText.Contains(firstBoss.DisplayName) && Same(Hud.EventLineColor, BossTheme.Ink(firstBoss)) && Same(Hud.PaperColor, BossTheme.Paper(null)),
             $"HUD preview line \"{Hud.EventLineText}\" uses the boss identity color {Hex(Hud.EventLineColor)}; the card paper stays neutral until the boss is active");
         Require(SegmentEventText.IntroSubject(Events, RM) == firstBoss, "Round intro text takes its color from the same boss identity");
         return .3;
@@ -737,7 +737,7 @@ public static class KirilmaV1Verification
         RefreshHud();
         Color paper = Hud.PaperColor;
         Require(Same(paper, BossTheme.Paper(firstBoss)) && Same(Hud.EventLineColor, BossTheme.Ink(firstBoss)) && (firstBoss is HardShellSO ? paper.r > paper.b + .05f : paper.b > paper.r + .05f) &&
-                Hud.EventLineText.StartsWith(firstBoss.displayName),
+                Hud.EventLineText.StartsWith(firstBoss.DisplayName),
             $"Boss HUD: paper {Hex(paper)} and rule line {Hex(Hud.EventLineColor)} derive from {firstBoss.displayName} ({(firstBoss is HardShellSO ? "amber, not ice blue" : "ice blue")})");
         var texts = Hud.GetComponentsInChildren<TextMeshProUGUI>(true).Where(t => t.gameObject.activeSelf).ToDictionary(t => t.name, t => t.text);
         Require(texts.ContainsKey("Boss") && texts["Boss"].Contains("#B4530A"), "Status color kept (boss harvest not reached yet): " + Strip(texts["Boss"]));
@@ -791,20 +791,20 @@ public static class KirilmaV1Verification
         var summary = Object.FindFirstObjectByType<RoundSummaryUI>(FindObjectsInactive.Include);
         var notice = F<TextMeshProUGUI>(summary, "eventNotice");
         // Özet bildirimi: anlattığı boss'un renginde. Biten round verildiğinde biten boss'u, verilmediğinde yaklaşanı anlatır.
-        Require(SegmentEventText.NoticeSubject(Events, 5) == firstBoss && SegmentEventText.Notice(Events, 5).Contains(firstBoss.displayName) &&
-                SegmentEventText.NoticeSubject(Events, 0) == next.Data && SegmentEventText.Notice(Events, 0).Contains(next.Data.displayName),
+        Require(SegmentEventText.NoticeSubject(Events, 5) == firstBoss && SegmentEventText.Notice(Events, 5).Contains(firstBoss.DisplayName) &&
+                SegmentEventText.NoticeSubject(Events, 0) == next.Data && SegmentEventText.Notice(Events, 0).Contains(next.Data.DisplayName),
             "Round summary notice and its color subject agree: the finished boss right after its round, otherwise the upcoming boss");
         Call(summary, "RefreshNotices");
         var filled = F<object>(summary, "filled");
         int finished = filled != null ? (int)filled.GetType().GetField("Round").GetValue(filled) : 0;
         var subject = SegmentEventText.NoticeSubject(Events, finished);
-        Require(notice.gameObject.activeSelf && Same(notice.color, BossTheme.Ink(subject)) && Strip(notice.text).Contains(subject.displayName) &&
+        Require(notice.gameObject.activeSelf && Same(notice.color, BossTheme.Ink(subject)) && Strip(notice.text).Contains(subject.DisplayName) &&
                 !Same(BossTheme.Ink(firstBoss), BossTheme.Ink(next.Data)),
             $"Round summary on screen: \"{Strip(notice.text).Split('\n')[0]}\" in the color of the boss it talks about ({Hex(notice.color)})");
         StartRound(6);
         RefreshHud();
         Require(Same(Hud.PaperColor, BossTheme.Paper(null)) && Same(Hud.EventLineColor, BossTheme.Ink(next.Data)) && !Same(Hud.EventLineColor, BossTheme.Ink(firstBoss)) &&
-                Hud.EventLineText.Contains(next.Data.displayName),
+                Hud.EventLineText.Contains(next.Data.DisplayName),
             $"Next round: paper back to neutral, line in the new boss's color {Hex(Hud.EventLineColor)} (the old {Hex(BossTheme.Ink(firstBoss))} is gone)");
         return .2;
     }
@@ -1494,12 +1494,12 @@ public static class KirilmaV1Verification
         var shown = new List<GameObject>();
         var tipStart = Tooltip(sExp, new Vector2(690f, 285f), shown); var tipBuy = Tooltip(sTor, new Vector2(690f, -25f), shown); var tipDone = Tooltip(sP13, new Vector2(690f, -335f), shown);
         var startLines = Lines(tipStart); var buyLines = Lines(tipBuy);
-        Require(Caption(tipStart) == SkillNodeUI.StartingAccessLabel && startLines.Contains("ERİŞİM") && startLines.Any(l => l.Contains("başlangıçtan açık")) && startLines.Any(l => l.Contains("satın alınmadı")) &&
+        Require(Caption(tipStart) == SkillNodeUI.StartingAccessLabel && startLines.Contains("ERİŞİM") && startLines.Any(l => l.Contains("başlangıçtan açık")) && startLines.Any(l => l.Contains(GameText.Get("ui.skill.granted.desc"))) &&
                 !startLines.Any(l => l.Contains("MALİYET") || l.Contains("KADEME")),
             "Tooltip of a starting node: caption \"" + Caption(tipStart) + "\", says it was not bought, no tier and no cost section — " + string.Join(" / ", startLines).Replace((char)10, (char)32));
-        Require(Caption(tipBuy).Contains("0 / 1") && buyLines.Contains("YÜKSELTME MALİYETİ") && buyLines.Contains($"{tornado.tiers[0].cost} {tornado.tiers[0].costType}") && !buyLines.Any(l => l.Contains("başlangıçtan")),
+        Require(Caption(tipBuy).Contains("0 / 1") && buyLines.Contains("YÜKSELTME MALİYETİ") && buyLines.Contains($"{tornado.tiers[0].cost} {TileBuffText.ResourceName(tornado.tiers[0].costType)}") && !buyLines.Any(l => l.Contains("başlangıçtan")),
             "Tooltip of a purchasable node: tier 0 / 1 and its price — " + string.Join(" / ", buyLines).Replace((char)10, (char)32));
-        Require(Caption(tipDone).Contains("MAX") && !Lines(tipDone).Any(l => l.Contains("başlangıçtan")), "Tooltip of a completed node: " + Caption(tipDone));
+        Require(Caption(tipDone).Contains("EN ÜST SEVİYE") && !Lines(tipDone).Any(l => l.Contains("başlangıçtan")), "Tooltip of a completed node: " + Caption(tipDone));
         Canvas.ForceUpdateCanvases();
         Capture("K371_Agac_KirilmaV1_Tooltip", true);
         foreach (var go in shown) Object.DestroyImmediate(go);
@@ -1535,7 +1535,7 @@ public static class KirilmaV1Verification
                 spare.gameObject.activeSelf && spare.ShowsStartingAccess && Same(Face(spare), Buyable) && ActiveDots(spare) == 2 && FilledDots(spare) == 0 && Clickable(spare),
             "Mixed node (test data): access is from the start, but its stat tiers stay purchasable — label shown together with tier dots, clickable, not drawn as a finished starting node");
         var tipMixed = Tooltip(spare, new Vector2(690f, 285f), shown = new List<GameObject>());
-        Require(Caption(tipMixed).Contains("0 / 2") && Lines(tipMixed).Contains("10 Gold") && Lines(tipMixed).Any(l => l.Contains("başlangıçtan açık")) && !Lines(tipMixed).Any(l => l.Contains("Son seviyede")),
+        Require(Caption(tipMixed).Contains("0 / 2") && Lines(tipMixed).Contains($"10 {TileBuffText.ResourceName(ResourceType.Gold)}") && Lines(tipMixed).Any(l => l.Contains("başlangıçtan açık")) && !Lines(tipMixed).Any(l => l.Contains("Son seviyede")),
             "Mixed node tooltip: tier 0 / 2 with its price; the card access is described as open from the start, not as something the last tier adds — " + string.Join(" / ", Lines(tipMixed)).Replace((char)10, (char)32));
         FocusTree(new Vector2(9.6f, 2.6f), 1f);
         Capture("K371_Agac_KarmaDugum_TestVerisi", true);
@@ -1668,7 +1668,7 @@ public static class KirilmaV1Verification
         FocusTree(new Vector2(9.6f, 2.6f), 1f);
         var shown = new List<GameObject>();
         var tip = Tooltip(sExp, new Vector2(690f, 285f), shown);
-        Require(Caption(tip).Contains("MAX") && Lines(tip).Any(l => l.Contains("seçim havuzuna eklendi")) && !Lines(tip).Any(l => l.Contains("başlangıçtan")),
+        Require(Caption(tip).Contains("EN ÜST SEVİYE") && Lines(tip).Any(l => l.Contains("seçim havuzuna eklendi")) && !Lines(tip).Any(l => l.Contains("başlangıçtan")),
             "DengeV1 tooltip of the bought node: completed purchase text, no 'başlangıçtan açık' wording — " + string.Join(" / ", Lines(tip)).Replace((char)10, (char)32));
         Canvas.ForceUpdateCanvases();
         Capture("K371_Agac_DengeV1", true);

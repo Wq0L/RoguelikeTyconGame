@@ -31,48 +31,52 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 969691137
-    m_Localized: "Oh! Bir gemi! Uzun zamand\u0131r kimse d\xFC\u015Fmemi\u015Fti\u2026
-      yani, gelmemi\u015Fti."
+    m_Localized: "Aa, bir gemi! Uzun zamand\u0131r buraya kimse d\xFC\u015Fmemi\u015Fti.
+      Pardon, gelmemi\u015Fti demek istedim."
     m_Metadata:
       m_Items: []
   - m_Id: 969691138
-    m_Localized: Ben Eri. Bu gezegen benim; toprak benim, eller sizin.
+    m_Localized: "Ben Eri, bu gezegen de benim. Burada kalacaksan tarlam\u0131 sen
+      ekip bi\xE7eceksin, anla\u015Ft\u0131k m\u0131?"
     m_Metadata:
       m_Items: []
   - m_Id: 969691139
-    m_Localized: "Bir \xE7ift\xE7i ve bir t\u0131rpan se\xE7. Gerisini birlikte hallederiz."
+    m_Localized: "\xD6nce bir \xE7ift\xE7i ve bir t\u0131rpan se\xE7melisin. Gerisini
+      birlikte hallederiz."
     m_Metadata:
       m_Items: []
   - m_Id: 969691140
-    m_Localized: "Tarla bombo\u015F\u2026 \xD6nce d\xFCkk\xE2ndan bir saks\u0131
-      al, sonra round'u ba\u015Flat."
+    m_Localized: "Tarla bombo\u015F! \xD6nce d\xFCkk\xE2ndan bir saks\u0131 almal\u0131s\u0131n,
+      sonra turu ba\u015Flatabilirsin."
     m_Metadata:
       m_Items: []
   - m_Id: 969691141
-    m_Localized: "Bo\u015F bir yere t\u0131kla, saks\u0131 oraya oturur. R ile d\xF6nd\xFCrebilirsin."
+    m_Localized: "Saks\u0131y\u0131 koymak i\xE7in bo\u015F bir yere t\u0131klamal\u0131s\u0131n.
+      R tu\u015Fuyla da d\xF6nd\xFCrebilirsin."
     m_Metadata:
       m_Items: []
   - m_Id: 969691142
-    m_Localized: "Hasat bilmiyor musun? \u0130mleci bitkilerin \xFCst\xFCnde tut,
-      t\u0131rpan kendi vurur."
+    m_Localized: "Hasat etmeyi bilmiyor musun? \u0130mleci bitkilerin \xFCst\xFCnde
+      tutman yeterli, t\u0131rpan kendisi vurur."
     m_Metadata:
       m_Items: []
   - m_Id: 969691143
-    m_Localized: "D\xFCnya'da otomatik t\u0131rpan yok muydu? Var diye hat\u0131rl\u0131yordum\u2026"
+    m_Localized: "Hmm, D\xFCnya'da otomatik t\u0131rpan yok mu? Ben var san\u0131yordum."
     m_Metadata:
       m_Items: []
   - m_Id: 969691144
-    m_Localized: "Sol \xFCstteki pay benim Adak'\u0131m. D\xF6nem bitmeden dolsun,
-      olur mu?"
+    m_Localized: "Sol \xFCstteki pay benim Ada\u011F\u0131m. D\xF6nem bitmeden onu
+      doldurmal\u0131s\u0131n, tamam m\u0131?"
     m_Metadata:
       m_Items: []
   - m_Id: 969691145
-    m_Localized: "B\xFCy\xFCyorsun! Birini se\xE7; bu hasat boyunca seninle kal\u0131r."
+    m_Localized: "Seviye atlad\u0131n! \u015Eimdi bir kart se\xE7melisin, deneme
+      bitene kadar seninle kalacak."
     m_Metadata:
       m_Items: []
   - m_Id: 969691146
-    m_Localized: "D\xF6nemin son round'u. Adak'\u0131m h\xE2l\xE2 eksik\u2026 acele
-      et."
+    m_Localized: "Bu d\xF6nemin son turu ve Ada\u011F\u0131m h\xE2l\xE2 eksik. Acele
+      etmelisin!"
     m_Metadata:
       m_Items: []
   - m_Id: 969691147
@@ -80,40 +84,41 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 969691148
-    m_Localized: "\u015Eimdilik. Bir sonraki pay\u0131m biraz daha b\xFCy\xFCk olacak."
+    m_Localized: "\u015Eimdilik doydum. Ama bir dahaki sefere daha fazlas\u0131n\u0131
+      isteyece\u011Fim."
     m_Metadata:
       m_Items: []
   - m_Id: 969691149
-    m_Localized: "Bu round bir S\u0131nama! Soldaki hedefi bu round i\xE7inde doldur."
+    m_Localized: "Bu tur bir S\u0131nama! Soldaki hedefi tur bitmeden doldurmal\u0131s\u0131n."
     m_Metadata:
       m_Items: []
   - m_Id: 969691150
-    m_Localized: "Tohumlar\u0131mdan biri azd\u0131! Ne yapt\u0131\u011F\u0131 solda
-      yaz\u0131yor."
+    m_Localized: "Tohumlar\u0131mdan biri azd\u0131! Ne yapt\u0131\u011F\u0131n\u0131
+      soldaki yaz\u0131dan okuyabilirsin."
     m_Metadata:
       m_Items: []
   - m_Id: 969691151
-    m_Localized: "Adak eksik kald\u0131. A\xE7l\u0131k\u2026 beklemez."
+    m_Localized: "Ada\u011F\u0131m\u0131 dolduramad\u0131n. Ben a\xE7 bekleyemem."
     m_Metadata:
       m_Items: []
   - m_Id: 969691152
-    m_Localized: "Yeniden ba\u015Flar\u0131z. Toprak hep burada."
+    m_Localized: "Neyse, ba\u015Ftan ba\u015Flar\u0131z. Ben bir yere gitmiyorum."
     m_Metadata:
       m_Items: []
   - m_Id: 969691153
-    m_Localized: "S\u0131nama'y\u0131 ge\xE7emedin\u2026 Ben de bekleyemem."
+    m_Localized: "S\u0131namay\u0131 ge\xE7emedin. Ben de daha fazla bekleyemem."
     m_Metadata:
       m_Items: []
   - m_Id: 969691154
-    m_Localized: Yine geleceksin, biliyorum.
+    m_Localized: Ama yine geleceksin, biliyorum.
     m_Metadata:
       m_Items: []
   - m_Id: 969691155
-    m_Localized: "Doydum. Bu sefer ger\xE7ekten."
+    m_Localized: "Mmm! Doydum. Bu sefer ger\xE7ekten doydum."
     m_Metadata:
       m_Items: []
   - m_Id: 969691156
-    m_Localized: "\u2026Uzun s\xFCrmez ama."
+    m_Localized: "Ama bu tokluk \xE7ok s\xFCrmez."
     m_Metadata:
       m_Items: []
   - m_Id: 969691157
@@ -129,7 +134,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 148337727393792
-    m_Localized: "TILE ETK\u0130S\u0130"
+    m_Localized: "PARSEL ETK\u0130S\u0130"
     m_Metadata:
       m_Items: []
   - m_Id: 148337727393793
@@ -193,7 +198,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 148337727393808
-    m_Localized: "ROUND'U BA\u015ELAT"
+    m_Localized: "TURU BA\u015ELAT"
     m_Metadata:
       m_Items: []
   - m_Id: 148337727393809
@@ -254,8 +259,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719561
-    m_Localized: "Oyunun dili. \u0130lk a\xE7\u0131l\u0131\u015Fta bilgisayar\u0131n
-      dili se\xE7ilir; o dil yoksa \u0130ngilizce."
+    m_Localized: "Oyunun dili. \u0130lk a\xE7\u0131l\u0131\u015Fta bilgisayar\u0131n\u0131n
+      dili se\xE7ilir, o dil yoksa \u0130ngilizce."
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719562
@@ -334,8 +339,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719580
-    m_Localized: "Hareketli uzay arka plan\u0131. Kapat\u0131nca d\xFCz renk kullan\u0131l\u0131r;
-      zay\u0131f ekran kartlar\u0131nda FPS art\u0131r\u0131r."
+    m_Localized: "Hareketli uzay arka plan\u0131. G\xFCce g\xF6re: sen g\xFC\xE7lendik\xE7e
+      g\xF6ky\xFCz\xFC m\xFCzikle birlikte renk de\u011Fi\u015Ftirir. Sabit: g\xF6ky\xFCz\xFC
+      hep ayn\u0131 kal\u0131r. Kapal\u0131: d\xFCz renk, zay\u0131f ekran kartlar\u0131nda
+      FPS'i art\u0131r\u0131r."
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719581
@@ -375,7 +382,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719590
-    m_Localized: "Patlama, crit ve round sonu sars\u0131nt\u0131lar\u0131n\u0131n
+    m_Localized: "Patlama, kritik vuru\u015F ve tur sonu sars\u0131nt\u0131lar\u0131n\u0131n
       g\xFCc\xFC."
     m_Metadata:
       m_Items: []
@@ -396,24 +403,25 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719595
-    m_Localized: "Grid Koordinatlar\u0131"
+    m_Localized: "Tarla Koordinatlar\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719596
-    m_Localized: "Grid kenar\u0131ndaki A-K / 1-11 etiketleri; haritadaki koordinatlarla
-      ayn\u0131."
+    m_Localized: "Tarla kenar\u0131ndaki A-K ve 1-11 etiketleri. Haritadaki koordinatlarla
+      ayn\u0131d\u0131r."
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719597
-    m_Localized: "Rarity Auralar\u0131"
+    m_Localized: "Nadirlik Halkalar\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719598
-    m_Localized: "Bitkilerin alt\u0131ndaki, rarity'sini g\xF6steren renkli halka."
+    m_Localized: "Bitkilerin alt\u0131ndaki, nadirli\u011Fini g\xF6steren renkli
+      halka."
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719599
-    m_Localized: "Round Sonu Yava\u015Flama"
+    m_Localized: "Tur Sonu Yava\u015Flama"
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719600
@@ -425,7 +433,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719602
-    m_Localized: "Round sonundaki beyaz ekran fla\u015F\u0131. I\u015F\u0131\u011Fa
+    m_Localized: "Tur sonundaki beyaz ekran fla\u015F\u0131. I\u015F\u0131\u011Fa
       hassassan kapat."
     m_Metadata:
       m_Items: []
@@ -434,7 +442,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719604
-    m_Localized: "\u0130mleci bitkilerin \xFCzerinde gezdir; t\u0131rpan otomatik
+    m_Localized: "\u0130mleci bitkilerin \xFCzerinde gezdir, t\u0131rpan kendili\u011Finden
       keser."
     m_Metadata:
       m_Items: []
@@ -455,8 +463,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719609
-    m_Localized: "Yerle\u015Ftirmeyi iptal eder, shop'tan ve sat\u0131\u015F modundan
-      \xE7\u0131kar."
+    m_Localized: "Yerle\u015Ftirmeyi iptal eder, d\xFCkk\xE2ndan ve sat\u0131\u015F
+      modundan \xE7\u0131kar."
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719610
@@ -481,20 +489,20 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 158100917866496
-    m_Localized: "YEN\u0130 RUN \xB7 BA\u015ELANGI\xC7"
+    m_Localized: "YEN\u0130 DENEME"
     m_Metadata:
       m_Items: []
   - m_Id: 158100917866497
-    m_Localized: "Bir \xE7ift\xE7i ve bir t\u0131rpan se\xE7 \xB7 etkiler bu run
-      boyunca ge\xE7erli \xB7 yeni run'da yeniden uygulan\u0131r"
+    m_Localized: "Bir \xE7ift\xE7i ve bir t\u0131rpan se\xE7. Se\xE7imin bu deneme
+      boyunca ge\xE7erli."
     m_Metadata:
       m_Items: []
   - m_Id: 158100917866498
-    m_Localized: "\xC7\u0130FT\xC7\u0130 \xB7 genel yakla\u015F\u0131m"
+    m_Localized: "\xC7\u0130FT\xC7\u0130 \xB7 nas\u0131l oynayaca\u011F\u0131n"
     m_Metadata:
       m_Items: []
   - m_Id: 158100917866499
-    m_Localized: "TIRPAN \xB7 hasat bi\xE7imi"
+    m_Localized: "TIRPAN \xB7 nas\u0131l kesece\u011Fin"
     m_Metadata:
       m_Items: []
   - m_Id: 158100917866500
@@ -502,7 +510,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 158100917866501
-    m_Localized: "RUN'I BA\u015ELAT"
+    m_Localized: "DENEMEY\u0130 BA\u015ELAT"
     m_Metadata:
       m_Items: []
   - m_Id: 158100917866502
@@ -526,15 +534,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 158100917866507
-    m_Localized: 'En iyi run: {0} / {1}'
+    m_Localized: 'En iyi deneme: {0} / {1}'
     m_Metadata:
       m_Items: []
   - m_Id: 158100917866508
-    m_Localized: "N\xF6tr \xB7 avantaj ve bedel yok"
+    m_Localized: "Art\u0131s\u0131 da eksisi de yok"
     m_Metadata:
       m_Items: []
   - m_Id: 158100917866509
-    m_Localized: oyunun kendi dengesi
+    m_Localized: "her \u015Fey oldu\u011Fu gibi"
     m_Metadata:
       m_Items: []
   - m_Id: 158100917866510
@@ -550,7 +558,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060802
-    m_Localized: "yaln\u0131z hasattan gelen Gold \xB7 Iron \xB7 Stone"
+    m_Localized: "sadece hasattan gelen Alt\u0131n, Demir ve Ta\u015F"
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060803
@@ -606,7 +614,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060816
-    m_Localized: "Referans \xE7ift\xE7i: oyunun kendi dengesi."
+    m_Localized: "\u0130lk deneme i\xE7in iyi bir ba\u015Flang\u0131\xE7."
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060817
@@ -614,7 +622,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060818
-    m_Localized: "Ekonomiyle a\u011Faca erken ula\u015F; skor biraz geride kal\u0131r."
+    m_Localized: "Daha \xE7ok kaynak toplar, yetenek a\u011Fac\u0131na erken ula\u015F\u0131rs\u0131n.
+      Skorun biraz geride kal\u0131r."
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060819
@@ -622,7 +631,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060820
-    m_Localized: "Aura'ya bak\u0131p de\u011Ferli bitkiyi se\xE7."
+    m_Localized: "Halkaya bak\u0131p de\u011Ferli bitkiyi se\xE7."
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060821
@@ -630,7 +639,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060822
-    m_Localized: "Mevcut vuru\u015F: hasar ve yar\u0131\xE7ap oldu\u011Fu gibi."
+    m_Localized: "Al\u0131\u015F\u0131k oldu\u011Fun vuru\u015F."
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060823
@@ -638,12 +647,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060824
-    m_Localized: "Dar ama a\u011F\u0131r vuru\u015F: de\u011Ferli ve sert bitkiyi
+    m_Localized: "Alan\u0131 dar ama a\u011F\u0131r vurur. De\u011Ferli ve sert bitkileri
       hedefle."
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060825
-    m_Localized: Tek run'da 5 Legendary bitki hasat et
+    m_Localized: Tek denemede 5 Efsanevi bitki hasat et
     m_Metadata:
       m_Items: []
   - m_Id: 161690688442368
@@ -651,7 +660,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690696830976
-    m_Localized: "ROUND {0} \xD6ZET\u0130"
+    m_Localized: "TUR {0} \xD6ZET\u0130"
     m_Metadata:
       m_Items: []
   - m_Id: 161690696830977
@@ -671,11 +680,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690696830981
-    m_Localized: XP
+    m_Localized: TP
     m_Metadata:
       m_Items: []
   - m_Id: 161690696830982
-    m_Localized: Level
+    m_Localized: Seviye
     m_Metadata:
       m_Items: []
   - m_Id: 161690696830983
@@ -687,19 +696,21 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690696830985
-    m_Localized: "\u0130lk kota: {0} \xB7 {1} round"
+    m_Localized: "\u0130lk kota: {0} \xB7 {1} tur"
     m_Metadata:
       m_Items: []
   - m_Id: 161690701025280
-    m_Localized: "\u0130lk boss kotas\u0131: {0} \xB7 {1} round"
+    m_Localized: "\u0130lk S\u0131nama kotas\u0131: {0} \xB7 {1} tur"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219584
-    m_Localized: Kota her boss round'unun sonunda kontrol edilir; tutmazsa run biter
+    m_Localized: "Her S\u0131nama turunun sonunda kotaya bak\u0131l\u0131r. Tutturamazsan
+      deneme biter."
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219585
-    m_Localized: Kota her {0} round'da kontrol edilir; tutmazsa run biter
+    m_Localized: "Kotaya her {0} turda bir bak\u0131l\u0131r. Tutturamazsan deneme
+      biter."
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219586
@@ -707,15 +718,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219587
-    m_Localized: "BOSS KOTASI TAMAM \xB7 {0} / {1}"
+    m_Localized: "SINAMA KOTASI TAMAM \xB7 {0} / {1}"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219588
-    m_Localized: "S\u0131radaki kota: {0} \xB7 {1} round"
+    m_Localized: "S\u0131radaki kota: {0} \xB7 {1} tur"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219589
-    m_Localized: "S\u0131radaki boss kotas\u0131: {0} \xB7 {1} round"
+    m_Localized: "S\u0131radaki S\u0131nama kotas\u0131: {0} \xB7 {1} tur"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219590
@@ -723,7 +734,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219591
-    m_Localized: "Boss kotas\u0131"
+    m_Localized: "S\u0131nama kotas\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219592
@@ -731,43 +742,43 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219593
-    m_Localized: "Segment {0}. round sonunda kapan\u0131r"
+    m_Localized: "D\xF6nem {0}. turun sonunda biter"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219594
-    m_Localized: "SON ROUND \xB7 kotaya {0} kald\u0131"
+    m_Localized: "SON TUR \xB7 kotaya {0} kald\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219595
-    m_Localized: "{0} {1} \xB7 tutmazsa run biter"
+    m_Localized: '{0} {1}. Tutturamazsan deneme biter.'
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219596
-    m_Localized: "{0} {1} \xB7 {2} round kald\u0131"
+    m_Localized: "{0} {1} \xB7 {2} tur kald\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219597
-    m_Localized: Tutmazsa run {0}. round sonunda biter
+    m_Localized: Tutturamazsan deneme {0}. turun sonunda biter
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219598
-    m_Localized: "boss hasad\u0131 hedefi {0}"
+    m_Localized: "S\u0131nama hasad\u0131 hedefi {0}"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219599
-    m_Localized: "boss hasad\u0131 hedefi yok"
+    m_Localized: "S\u0131nama hasad\u0131 hedefi yok"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219600
-    m_Localized: "Yakla\u015Fan boss: {0} \xB7 Round {1}"
+    m_Localized: "Yakla\u015Fan S\u0131nama: {0} \xB7 Tur {1}"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219601
-    m_Localized: "Yakla\u015Fan: {0} \xB7 Round {1}"
+    m_Localized: "Yakla\u015Fan: {0} \xB7 Tur {1}"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219602
-    m_Localized: "{0} AKT\u0130F \xB7 {1} round kald\u0131"
+    m_Localized: "{0} AKT\u0130F \xB7 {1} tur kald\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219603
@@ -775,31 +786,31 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219604
-    m_Localized: "SON HAZIRLIK \xB7 {0} sonraki round"
+    m_Localized: "SON HAZIRLIK \xB7 {0} sonraki tur"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219605
-    m_Localized: "Round {0}\u2013{1}"
+    m_Localized: "Tur {0}\u2013{1}"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219606
-    m_Localized: "Yakla\u015Fan: {0} \xB7 Round {1}\u2013{2}"
+    m_Localized: "Yakla\u015Fan: {0} \xB7 Tur {1}\u2013{2}"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219607
-    m_Localized: "{0} round haz\u0131rl\u0131k"
+    m_Localized: "{0} tur haz\u0131rl\u0131k"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219608
-    m_Localized: "boss hasad\u0131 {0} / {1}"
+    m_Localized: "S\u0131nama hasad\u0131 {0} / {1}"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219609
-    m_Localized: "S\u0131radaki boss: {0} (Round {1})"
+    m_Localized: "S\u0131radaki S\u0131nama: {0} (Tur {1})"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219610
-    m_Localized: "SON HAZIRLIK \xB7 boss {0} sonraki round"
+    m_Localized: "SON HAZIRLIK \xB7 S\u0131nama {0} sonraki tur"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219611
@@ -811,15 +822,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219613
-    m_Localized: "BOSS: {0} \xB7 HASAT HEDEF\u0130 {1}"
+    m_Localized: "SINAMA: {0} \xB7 HASAT HEDEF\u0130 {1}"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219614
-    m_Localized: 'BOSS: {0}'
+    m_Localized: 'SINAMA: {0}'
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219615
-    m_Localized: "{0} SONRAK\u0130 ROUND"
+    m_Localized: "{0} SONRAK\u0130 TUR"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219616
@@ -851,17 +862,17 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219623
-    m_Localized: "vuru\u015F alan\u0131 bir basamak dar: en iyi ni\u015Fanda {0}
-      \u2192 {1} bitki"
+    m_Localized: "vuru\u015F alan\u0131n k\xFC\xE7\xFCld\xFC: en iyi at\u0131\u015Fta
+      {0} yerine {1} bitki"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219624
-    m_Localized: "vuru\u015F alan\u0131 bir basamak daral\u0131r"
+    m_Localized: "vuru\u015F alan\u0131n biraz k\xFC\xE7\xFCl\xFCr"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219625
-    m_Localized: "vuru\u015F alan\u0131 bir basamak daral\u0131r: en iyi ni\u015Fanda
-      {0} \u2192 {1} bitki"
+    m_Localized: "vuru\u015F alan\u0131n k\xFC\xE7\xFClecek: en iyi at\u0131\u015Fta
+      {0} yerine {1} bitki"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219626
@@ -901,7 +912,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219635
-    m_Localized: Boss round'u bitti
+    m_Localized: "S\u0131nama turu bitti"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219636
@@ -909,11 +920,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219637
-    m_Localized: SEGMENT KOTASI
+    m_Localized: "D\xD6NEM KOTASI"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219638
-    m_Localized: BOSS KOTASI
+    m_Localized: SINAMA KOTASI
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219639
@@ -921,27 +932,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219640
-    m_Localized: "{0} \xB7 SON ROUND"
+    m_Localized: "{0} \xB7 SON TUR"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219641
-    m_Localized: "{0} \xB7 {1} ROUND"
+    m_Localized: "{0} \xB7 {1} TUR"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219642
-    m_Localized: "Boss hasad\u0131 hedefi (Round {0}): {1}"
+    m_Localized: "S\u0131nama hasad\u0131 hedefi (Tur {0}): {1}"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219643
-    m_Localized: 'Boss round''u: Round {0}'
+    m_Localized: "S\u0131nama turu: Tur {0}"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219644
-    m_Localized: 'BOSS HASADI: hedef yok'
+    m_Localized: 'SINAMA HASADI: hedef yok'
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219645
-    m_Localized: 'BOSS HASADI: {0} / {1}'
+    m_Localized: 'SINAMA HASADI: {0} / {1}'
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219646
@@ -957,11 +968,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219649
-    m_Localized: "Boss \xF6d\xFClleri"
+    m_Localized: "S\u0131nama \xF6d\xFClleri"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219650
-    m_Localized: Round {0} / {1}
+    m_Localized: Tur {0} / {1}
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219651
@@ -969,15 +980,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219652
-    m_Localized: "SEV\u0130YE KAZANIMLARI HESAPLANIYOR"
+    m_Localized: "SEV\u0130YE ATLIYORSUN"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219653
-    m_Localized: Level {0}
+    m_Localized: Seviye {0}
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219654
-    m_Localized: "SONRAK\u0130 ROUND"
+    m_Localized: "SONRAK\u0130 TUR"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219655
@@ -989,12 +1000,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219657
-    m_Localized: "Tile'\u0131n \xFCst\xFCne gel: detay  \xB7  {0} / {1}: geri d\xF6n"
+    m_Localized: "Parselin \xFCst\xFCne gel: detay  \xB7  {0} / {1}: geri d\xF6n"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219658
-    m_Localized: "Hen\xFCz aktif rezonans yok \xB7 ayn\u0131 tipteki tile'lar\u0131
-      bir saks\u0131n\u0131n alt\u0131nda topla"
+    m_Localized: "Hen\xFCz rezonans yok. Ayn\u0131 t\xFCrden parselleri bir saks\u0131n\u0131n
+      alt\u0131nda toplarsan olu\u015Fur."
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219659
@@ -1002,15 +1013,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219660
-    m_Localized: BU ROUND'UN KARTI
+    m_Localized: BU TURUN KARTI
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219661
-    m_Localized: BU ROUND'UN KARTLARI ({0})
+    m_Localized: BU TURUN KARTLARI ({0})
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219662
-    m_Localized: "+{0} tile daha \xB7 haritada parl\u0131yor"
+    m_Localized: "+{0} parsel daha, haritada parl\u0131yorlar"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219663
@@ -1034,15 +1045,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219668
-    m_Localized: Gold / Iron / Stone {0}
+    m_Localized: "Alt\u0131n / Demir / Ta\u015F {0}"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219669
-    m_Localized: Rare+ Harvest Score {0}
+    m_Localized: Nadir+ hasat skoru {0}
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219670
-    m_Localized: "Elektrik \xF6ld\xFCrmesi XP {0}"
+    m_Localized: "Elektrik \xF6ld\xFCrmesi TP {0}"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219671
@@ -1058,7 +1069,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219674
-    m_Localized: Tornado
+    m_Localized: "Kas\u0131rga"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219675
@@ -1070,39 +1081,39 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219677
-    m_Localized: Common
+    m_Localized: "S\u0131radan"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219678
-    m_Localized: Uncommon
+    m_Localized: Seyrek
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219679
-    m_Localized: Rare
+    m_Localized: Nadir
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219680
-    m_Localized: Epic
+    m_Localized: "Destans\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219681
-    m_Localized: Legendary
+    m_Localized: Efsanevi
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219682
-    m_Localized: Gold
+    m_Localized: "Alt\u0131n"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219683
-    m_Localized: Iron
+    m_Localized: Demir
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219684
-    m_Localized: Stone
+    m_Localized: "Ta\u015F"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219685
-    m_Localized: "Saks\u0131 hasar stat\u0131"
+    m_Localized: "Saks\u0131 hasar\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219686
@@ -1110,7 +1121,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219687
-    m_Localized: "Atak aral\u0131\u011F\u0131"
+    m_Localized: "Sald\u0131r\u0131 aral\u0131\u011F\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219688
@@ -1130,23 +1141,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219692
-    m_Localized: "Gold kazanc\u0131"
+    m_Localized: "Alt\u0131n kazanc\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219693
-    m_Localized: "Iron kazanc\u0131"
+    m_Localized: "Demir kazanc\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219694
-    m_Localized: "Stone kazanc\u0131"
+    m_Localized: "Ta\u015F kazanc\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219695
-    m_Localized: "XP kazanc\u0131"
+    m_Localized: "TP kazanc\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219696
-    m_Localized: Harvest Score
+    m_Localized: Hasat skoru
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219697
@@ -1154,15 +1165,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219698
-    m_Localized: Grid
+    m_Localized: Tarla boyutu
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219699
-    m_Localized: "Round s\xFCresi"
+    m_Localized: "Tur s\xFCresi"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219700
-    m_Localized: "Ba\u015Flang\u0131\xE7 Gold'u"
+    m_Localized: "Ba\u015Flang\u0131\xE7 alt\u0131n\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219701
@@ -1194,7 +1205,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219708
-    m_Localized: "Tornado \u015Fans\u0131"
+    m_Localized: "Kas\u0131rga \u015Fans\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219709
@@ -1206,7 +1217,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219711
-    m_Localized: "TAMAMLANDI  \xB7  MAX"
+    m_Localized: "EN \xDCST SEV\u0130YEDE"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219712
@@ -1247,16 +1258,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219721
-    m_Localized: "Bu d\xFC\u011F\xFCm sat\u0131n al\u0131nmad\u0131; bu profilde
-      \xFCcret \xF6denmez."
+    m_Localized: "Bu yetenek ba\u015Ftan a\xE7\u0131k, sat\u0131n alman gerekmez."
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219722
-    m_Localized: "Bu deneyde round s\xFCresi sabit ({0} sn)."
+    m_Localized: "Bu modda tur s\xFCresi sabit: {0} sn."
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219723
-    m_Localized: "Bu node etkisiz ve sat\u0131n al\u0131namaz."
+    m_Localized: "Bu yetenek burada i\u015Fe yaramaz, sat\u0131n al\u0131namaz."
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219724
@@ -1268,23 +1278,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219726
-    m_Localized: "{0} (taban \xB7 fazlas\u0131 nadirli\u011Fe)"
+    m_Localized: "{0} (en h\u0131zl\u0131s\u0131, fazlas\u0131 nadirli\u011Fe d\xF6n\xFC\u015F\xFCr)"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219727
-    m_Localized: "Epic+ {0} \xB7 Leg {1}"
+    m_Localized: "Destans\u0131+ {0} \xB7 Efsanevi {1}"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219728
-    m_Localized: "{0} saks\u0131 ba\u015Flang\u0131\xE7tan a\xE7\u0131k (ma\u011Fazada)."
+    m_Localized: "{0} saks\u0131 ba\u015Flang\u0131\xE7tan a\xE7\u0131k (d\xFCkk\xE2nda)."
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219729
-    m_Localized: "{0} saks\u0131 ma\u011Fazada a\xE7\u0131k."
+    m_Localized: "{0} saks\u0131 d\xFCkk\xE2nda a\xE7\u0131k."
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219730
-    m_Localized: "{0} saks\u0131y\u0131 ma\u011Fazada a\xE7ar."
+    m_Localized: "{0} saks\u0131y\u0131 d\xFCkk\xE2nda a\xE7ar."
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219731
@@ -1296,7 +1306,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219733
-    m_Localized: Tornado
+    m_Localized: "Kas\u0131rga"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219734
@@ -1308,8 +1318,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219736
-    m_Localized: "{0} kartlar\u0131 ba\u015Flang\u0131\xE7tan a\xE7\u0131k: run ba\u015F\u0131ndan
-      beri se\xE7im havuzunda."
+    m_Localized: "{0} kartlar\u0131 ba\u015Flang\u0131\xE7tan a\xE7\u0131k, ilk turdan
+      itibaren \xE7\u0131kabilir."
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219737
@@ -1321,7 +1331,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219739
-    m_Localized: "DON CEPHES\u0130"
+    m_Localized: AYAZ
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219740
@@ -1333,7 +1343,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219742
-    m_Localized: KURALSIZ BOSS
+    m_Localized: KURALSIZ SINAMA
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219743
@@ -1341,15 +1351,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219744
-    m_Localized: Crystal-RareSpawnChance
+    m_Localized: Kristal
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219745
-    m_Localized: Odak-Hasar
+    m_Localized: Odak
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219746
-    m_Localized: Duplicate-DuplicateChance
+    m_Localized: "\xC7o\u011Faltma"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219747
@@ -1357,27 +1367,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219748
-    m_Localized: Energy-HarvestScoreMultiplier
+    m_Localized: Enerji
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219749
-    m_Localized: Explosive-ExplosionChance
+    m_Localized: "Patlay\u0131c\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219750
-    m_Localized: Fertile-PlantSpawnRate
+    m_Localized: Verimli
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219751
-    m_Localized: Tornado
+    m_Localized: "Kas\u0131rga"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219752
-    m_Localized: Water-XPGain
+    m_Localized: Su
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219753
-    m_Localized: Damage Upgrade
+    m_Localized: "Hasar Art\u0131\u015F\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219754
@@ -1393,7 +1403,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219757
-    m_Localized: "A\u011F\u0131r Kesim"
+    m_Localized: Bileme III
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219758
@@ -1425,35 +1435,35 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219765
-    m_Localized: "D\xFCzenli \xDCretim"
+    m_Localized: Sulama
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219766
-    m_Localized: "Geni\u015F S\xFCp\xFCr\xFC\u015F"
+    m_Localized: Uzun Sap
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219767
-    m_Localized: "Geni\u015F Tarama"
+    m_Localized: "Geni\u015F A\u011F\u0131z"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219768
-    m_Localized: "Grid Geni\u015Fleme I"
+    m_Localized: "Tarla Geni\u015Flemesi I"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219769
-    m_Localized: "Grid Geni\u015Fleme II"
+    m_Localized: "Tarla Geni\u015Flemesi II"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219770
-    m_Localized: "G\xFC\xE7l\xFC Kesim"
+    m_Localized: Bileme II
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219771
-    m_Localized: Hasat Deneyimi I
+    m_Localized: "Tecr\xFCbe I"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219772
-    m_Localized: Hasat Deneyimi II
+    m_Localized: "Tecr\xFCbe II"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219773
@@ -1465,35 +1475,35 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219775
-    m_Localized: "\u0130kinci Vazge\xE7i\u015F"
+    m_Localized: "Atlama Hakk\u0131 II"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219776
-    m_Localized: "\u0130lk Vazge\xE7i\u015F"
+    m_Localized: "Atlama Hakk\u0131 I"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219777
-    m_Localized: Kart Sezgisi
+    m_Localized: "Kart \u015Eans\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219778
-    m_Localized: "Kesim Tekni\u011Fi"
+    m_Localized: "Al\u0131\u015Fk\u0131n El I"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219779
-    m_Localized: "Kesim Ustal\u0131\u011F\u0131"
+    m_Localized: "Al\u0131\u015Fk\u0131n El II"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219780
-    m_Localized: "Keskin Ba\u015Flang\u0131\xE7"
+    m_Localized: Bileme I
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219781
-    m_Localized: "Kritik G\xFC\xE7"
+    m_Localized: "Sa\u011Flam Vuru\u015F"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219782
-    m_Localized: Kritik Odak
+    m_Localized: "Dikkatli G\xF6z"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219783
@@ -1509,11 +1519,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219786
-    m_Localized: "Tornado Kartlar\u0131"
+    m_Localized: "Kas\u0131rga Kartlar\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219787
-    m_Localized: "Verimli \xDCretim"
+    m_Localized: "G\xFCbre"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219788
@@ -1521,11 +1531,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219789
-    m_Localized: "A\u015F\u0131r\u0131 G\xFC\xE7 I"
+    m_Localized: Ek Bileme I
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219790
-    m_Localized: "A\u015F\u0131r\u0131 G\xFC\xE7 II"
+    m_Localized: Ek Bileme II
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219791
@@ -1533,23 +1543,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219792
-    m_Localized: Hasat Zirvesi
+    m_Localized: "Al\u0131\u015Fk\u0131n El IV"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219793
-    m_Localized: "\u0130leri Ustal\u0131k"
+    m_Localized: "Al\u0131\u015Fk\u0131n El III"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219794
-    m_Localized: Plazma Kesim
+    m_Localized: Bileme V
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219795
-    m_Localized: "Seri \xDCretim"
+    m_Localized: Sera
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219796
-    m_Localized: Son Vardiya
+    m_Localized: Fazla Mesai
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219797
@@ -1557,11 +1567,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219798
-    m_Localized: "Y\u0131ld\u0131r\u0131m Kesim"
+    m_Localized: Seri Kesim
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219799
-    m_Localized: "Y\u0131ld\u0131z Kesim"
+    m_Localized: Bileme IV
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219800
@@ -1573,7 +1583,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219802
-    m_Localized: "\xDCretim tabanda \u2192 Nadirlik"
+    m_Localized: "En h\u0131zl\u0131 \xFCretim \u2192 Nadirlik"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219803
@@ -1589,12 +1599,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219806
-    m_Localized: "GR\u0130D DOLU \xB7 kart, se\xE7ti\u011Fin tile'\u0131 seviye atlat\u0131r"
+    m_Localized: "TARLA DOLU \xB7 kart, se\xE7ti\u011Fin parseli y\xFCkseltir"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219807
-    m_Localized: "T\xDCM TILE'LAR MAX \xB7 kart kal\u0131c\u0131 Temel g\xFC\xE7
-      verir"
+    m_Localized: "B\xDCT\xDCN PARSELLER EN \xDCST SEV\u0130YEDE \xB7 kart kal\u0131c\u0131
+      Temel g\xFC\xE7 verir"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219808
@@ -1602,7 +1612,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219809
-    m_Localized: "Atak aral\u0131\u011F\u0131"
+    m_Localized: "Sald\u0131r\u0131 aral\u0131\u011F\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219810
@@ -1614,7 +1624,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219812
-    m_Localized: "XP kazanc\u0131"
+    m_Localized: "TP kazanc\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219813
@@ -1638,19 +1648,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219818
-    m_Localized: "Bo\u015F tile"
+    m_Localized: "Bo\u015F parsel"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219819
-    m_Localized: "Bu round'un kart\u0131 bu tile'\u0131 y\xFCkseltti."
+    m_Localized: "Bu turun kart\u0131 bu parseli y\xFCkseltti."
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219820
-    m_Localized: "Bu round'un kart\u0131 buraya geldi."
+    m_Localized: "Bu turun kart\u0131 buraya geldi."
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219821
-    m_Localized: BU TILE
+    m_Localized: BU PARSEL
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219822
@@ -1666,8 +1676,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219825
-    m_Localized: "\xDCretim tabanda ({0} sn): fazlas\u0131 nadirli\u011Fe \xB7 saks\u0131ya
-      {1} nadirlik"
+    m_Localized: "\xDCretim en h\u0131zl\u0131da ({0} sn). Fazla h\u0131z nadirli\u011Fe
+      d\xF6n\xFC\u015Ft\xFC: saks\u0131ya {1} nadirlik."
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219826
@@ -1679,7 +1689,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219828
-    m_Localized: "{0} tile \xB7 {1} rezonans"
+    m_Localized: "{0} parsel \xB7 {1} rezonans"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219829
@@ -1691,7 +1701,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219831
-    m_Localized: "SAKSININ ALTINDAK\u0130 TILE\u2019LAR"
+    m_Localized: "SAKSININ ALTINDAK\u0130 PARSELLER"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219832
@@ -1715,7 +1725,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219837
-    m_Localized: Bilgelik
+    m_Localized: "Su Ba\u015F\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219838
@@ -1723,7 +1733,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219839
-    m_Localized: "G\xFC\xE7lendirilmi\u015F Hasat"
+    m_Localized: Keskin Odak
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219840
@@ -1735,7 +1745,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219842
-    m_Localized: Elektrik Bilgisi
+    m_Localized: "Su Kanal\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219843
@@ -1783,9 +1793,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898114
-    m_Localized: "patlaman\u0131n d\u0131\u015F\u0131ndan {0} h\xFCcre yay\u0131lan
-      art\xE7\u0131 \xB7 ad\u0131m ba\u015F\u0131na {1} sn \xB7 ilk patlaman\u0131n
-      {2} hasar\u0131"
+    m_Localized: "patlaman\u0131n d\u0131\u015F\u0131na {0} h\xFCcre yay\u0131l\u0131r.
+      Her ad\u0131m {1} sn s\xFCrer, ilk patlaman\u0131n {2} hasar\u0131n\u0131 verir"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898115
@@ -1801,7 +1810,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898118
-    m_Localized: "her {0} do\u011Frudan hasatta bir: hasar \xD7{1} \xB7 yar\u0131\xE7ap
+    m_Localized: "her {0} do\u011Frudan hasatta bir: hasar \xD7{1}, yar\u0131\xE7ap
       \xD7{2}"
     m_Metadata:
       m_Items: []
@@ -1810,12 +1819,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898120
-    m_Localized: "\u015Fans {0} \xB7 hasar {1}"
+    m_Localized: "\u015Fans {0}, hasar {1}"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898121
     m_Localized: "davran\u0131\u015F hasatlar\u0131 ba\u015Fka saks\u0131lar\u0131n
-      davran\u0131\u015Flar\u0131n\u0131 tetikler \xB7 en \xE7ok {0} ek nesil \xB7
+      davran\u0131\u015Flar\u0131n\u0131 da tetikler. En fazla {0} halka, her halkada
       {1}"
     m_Metadata:
       m_Items: []
@@ -1844,15 +1853,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898128
-    m_Localized: "Gelecekteki her level: {0} \u2192 {1} se\xE7im"
+    m_Localized: "Gelecekteki her seviye: {0} \u2192 {1} se\xE7im"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898129
-    m_Localized: "Level se\xE7imi {0}"
+    m_Localized: "Seviye se\xE7imi {0}"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898130
-    m_Localized: "level ba\u015F\u0131na se\xE7im {0}"
+    m_Localized: "seviye ba\u015F\u0131na se\xE7im {0}"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898131
@@ -1868,16 +1877,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898134
-    m_Localized: "Level ba\u015F\u0131na se\xE7im: {0} (temel {1}) \xB7 yeni kazan\u0131lan
-      level'lar"
+    m_Localized: "Seviye ba\u015F\u0131na se\xE7im: {0} (normalde {1}). Bundan sonra
+      kazan\u0131lan seviyelerde ge\xE7erli."
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898135
-    m_Localized: "{0} A\u015EAMA \xB7 BOSS \xD6D\xDCL\xDC"
+    m_Localized: "{0} A\u015EAMA \xB7 SINAMA \xD6D\xDCL\xDC"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898136
-    m_Localized: "{0} A\u015EAMA \xB7 Round {1} boss'undan itibaren"
+    m_Localized: "{0} A\u015EAMA \xB7 {1}. turdaki S\u0131namadan itibaren"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898137
@@ -1889,8 +1898,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898139
-    m_Localized: "B\xFCt\xFCn \xF6d\xFCller s\u0131n\u0131r\u0131nda ya da \u015Fu
-      an bir \u015Fey de\u011Fi\u015Ftirmiyor"
+    m_Localized: "\xD6d\xFCllerin hepsi ya al\u0131nd\u0131 ya da \u015Fu an i\u015Fe
+      yaram\u0131yor"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898140
@@ -1898,43 +1907,41 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898141
-    m_Localized: "BOSS GE\xC7\u0130LD\u0130 \xB7 \xD6D\xDCL SE\xC7"
+    m_Localized: "SINAMA GE\xC7\u0130LD\u0130 \xB7 \xD6D\xDCL SE\xC7"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898142
-    m_Localized: "SON BOSS GE\xC7\u0130LD\u0130 \xB7 \xD6D\xDCL SE\xC7"
+    m_Localized: "SON SINAMA GE\xC7\u0130LD\u0130 \xB7 \xD6D\xDCL SE\xC7"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898143
-    m_Localized: "Bu boss i\xE7in sunulabilecek \xF6d\xFCl yok"
+    m_Localized: "Bu S\u0131nama i\xE7in sunulabilecek \xF6d\xFCl yok"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898144
-    m_Localized: "Yaln\u0131z biri al\u0131n\u0131r \xB7 run sonuna kadar ge\xE7erli
-      \xB7 etkisi Round {0} ve sonras\u0131"
+    m_Localized: "Birini se\xE7. {0}. turdan itibaren deneme sonuna kadar ge\xE7erli."
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898145
-    m_Localized: "yaln\u0131z biri al\u0131n\u0131r \xB7 run sonuna kadar ge\xE7erli
-      \xB7 etkisi Round {0} ve sonras\u0131"
+    m_Localized: "Birini se\xE7. {0}. turdan itibaren deneme sonuna kadar ge\xE7erli."
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898146
-    m_Localized: "Yaln\u0131z biri al\u0131n\u0131r \xB7 run burada biter \xB7 \xF6d\xFCl
-      run sonu listesine yaz\u0131l\u0131r"
+    m_Localized: "Birini se\xE7. Deneme burada bitiyor, \xF6d\xFCl sonu\xE7 ekran\u0131na
+      yaz\u0131l\u0131r."
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898147
-    m_Localized: "yaln\u0131z biri al\u0131n\u0131r \xB7 run burada biter \xB7 \xF6d\xFCl
-      run sonu listesine yaz\u0131l\u0131r"
+    m_Localized: "Birini se\xE7. Deneme burada bitiyor, \xF6d\xFCl sonu\xE7 ekran\u0131na
+      yaz\u0131l\u0131r."
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898148
-    m_Localized: "Boss ge\xE7ildi \xB7 {0}"
+    m_Localized: "S\u0131namay\u0131 ge\xE7tin. {0}"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898149
-    m_Localized: "Son boss ge\xE7ildi \xB7 {0}"
+    m_Localized: "Son S\u0131namay\u0131 ge\xE7tin. {0}"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898150
@@ -1962,7 +1969,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898156
-    m_Localized: "Al\u0131nan boss \xF6d\xFClleri"
+    m_Localized: "Al\u0131nan S\u0131nama \xF6d\xFClleri"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898157
@@ -1970,19 +1977,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898158
-    m_Localized: "Tarlan\u0131n kenar\u0131nda bir konum se\xE7 \xB7 anten i\xE7eri
-      bakar"
+    m_Localized: "Tarlan\u0131n kenar\u0131nda bir yer se\xE7. Anten tarlaya do\u011Fru
+      bakar."
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898159
-    m_Localized: "kenardaki anten, bakt\u0131\u011F\u0131 y\xF6ndeki ilk {0} h\xFCcreye
-      {1} sn'de bir vurur \xB7 hasat hasar\u0131n\u0131n %{2}'i"
+    m_Localized: "{1} sn'de bir, bakt\u0131\u011F\u0131 y\xF6ndeki ilk {0} h\xFCcreye
+      hasat hasar\u0131n\u0131n %{2}'i kadar vurur"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898160
-    m_Localized: "hat, davran\u0131\u015Fl\u0131 saks\u0131n\u0131n bitkisini hasat
-      ederse o saks\u0131n\u0131n davran\u0131\u015F \u015Fans\u0131yla ek hat vuru\u015Fu
-      \xB7 hasar\u0131n %{0}'i \xB7 bekleme {1} sn"
+    m_Localized: "hat, davran\u0131\u015F\u0131 olan bir saks\u0131n\u0131n bitkisini
+      hasat ederse o saks\u0131n\u0131n \u015Fans\u0131yla bir kez daha vurur (hasar\u0131n
+      %{0}'i, {1} sn bekleme)"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898161
@@ -1994,70 +2001,74 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898163
-    m_Localized: "ayn\u0131 hizada kar\u015F\u0131 kenara ikinci anten \xB7 iki anten
-      aras\u0131ndaki h\xFCcrelere {0} sn'de bir hat vuru\u015Fu \xB7 hasat hasar\u0131n\u0131n
-      %{1}'i"
+    m_Localized: "kar\u015F\u0131 kenara, ayn\u0131 hizaya ikinci bir anten kurulur.
+      \u0130ki anten aras\u0131ndaki h\xFCcrelere {0} sn'de bir, hasat hasar\u0131n\u0131n
+      %{1}'i kadar vurur"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898164
-    m_Localized: "her {0} do\u011Frudan bitki isabetinde fareden hilal \xB7 rastgele
-      ana y\xF6nde en fazla {1} birim \xB7 hasat hasar\u0131n\u0131n %{2}'i"
+    m_Localized: "her {0} do\u011Frudan isabette imle\xE7ten bir hilal f\u0131rlar.
+      Rastgele bir y\xF6ne en fazla {1} birim gider, hasat hasar\u0131n\u0131n %{2}'i
+      kadar vurur"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898165
-    m_Localized: "her {0} ge\xE7erli vuru\u015Fta bir hilal \xB7 {1} h\xFCcre ilerler
-      \xB7 hasat hasar\u0131n\u0131n %{2}'i"
+    m_Localized: "her {0} vuru\u015Fta bir hilal f\u0131rlar. {1} h\xFCcre gider,
+      hasat hasar\u0131n\u0131n %{2}'i kadar vurur"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898166
-    m_Localized: "kritik vuru\u015F, {0} h\xFCcre i\xE7indeki ba\u015Fka bir bitkiye
-      ark s\u0131\xE7rat\u0131r \xB7 kritik hasar\u0131n %{1}'i \xB7 vuru\u015F ba\u015F\u0131na
-      en \xE7ok {2}"
+    m_Localized: "kritik vuru\u015F, {0} h\xFCcre yak\u0131ndaki ba\u015Fka bir bitkiye
+      s\u0131\xE7rar. Kritik hasar\u0131n %{1}'i kadar vurur, vuru\u015F ba\u015F\u0131na
+      en fazla {2} kez"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898167
-    m_Localized: "tek vuru\u015Fta {0}+ bitkiye kritik: merkezde ek alan vuru\u015Fu
-      \xB7 hasat hasar\u0131 \xD7 kritik \xE7arpan\u0131n\u0131n %{1}'i"
+    m_Localized: "tek vuru\u015Fta {0} ya da daha fazla bitkiye kritik yaparsan ortada
+      bir alan vuru\u015Fu daha patlar. G\xFCc\xFC: hasat hasar\u0131 \xD7 kritik
+      \xE7arpan\u0131n\u0131n %{1}'i"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898168
-    m_Localized: "her ana hilalle mouse halkas\u0131ndan bir b\xFCy\xFCk ek hilal
-      \xB7 ana hilalden farkl\u0131 rastgele y\xF6n \xB7 taban hasar\u0131n %{0}'i
-      \xB7 bedel: {1} sn vuru\u015F duraklamas\u0131"
+    m_Localized: "her ana hilalle birlikte imle\xE7 halkas\u0131ndan b\xFCy\xFCk
+      bir hilal daha \xE7\u0131kar ve ba\u015Fka bir y\xF6ne gider. Taban hasar\u0131n
+      %{0}'i kadar vurur. Kar\u015F\u0131l\u0131\u011F\u0131nda vuru\u015Flar\u0131n
+      {1} sn durur"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898169
-    m_Localized: "tek vuru\u015Fta {0}+ hasat: s\u0131radaki vuru\u015Fun hasar\u0131
-      \xD7{1} \xB7 tek hedefe vurursan hak kaybolur"
+    m_Localized: "tek vuru\u015Fta {0} ya da daha fazla bitki hasat edersen s\u0131radaki
+      vuru\u015Fun \xD7{1} hasar verir. Tek bitkiye vurursan bu hak kaybolur"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898170
-    m_Localized: "hilal menzili +{0} birim \xB7 hasatla b\xFCy\xFCr: hasar +%{1}
-      (en \xE7ok {2} kez), cephe {3} h\xFCcre \xB7 hasats\u0131z ad\u0131m s\u0131f\u0131rlar"
+    m_Localized: "hilal {0} birim daha uza\u011Fa gider. Hasat ettik\xE7e b\xFCy\xFCr:
+      her seferinde hasar\u0131 %{1} artar (en fazla {2} kez), \xF6n\xFC {3} h\xFCcre
+      geni\u015Fler. Hasat etmeden ge\xE7en bir ad\u0131m b\xFCy\xFCmeyi s\u0131f\u0131rlar"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898171
-    m_Localized: "tek vuru\u015Fta {0}+ hasat: kesilen h\xFCcrelerin tarlan\u0131n
-      ortas\u0131na g\xF6re simetri\u011Fine meteor (en \xE7ok {1} h\xFCcre) \xB7
-      hasat hasar\u0131n\u0131n %{2}'i \xB7 bekleme {3} sn"
+    m_Localized: "tek vuru\u015Fta {0} ya da daha fazla hasat yaparsan, kesti\u011Fin
+      h\xFCcrelerin, tarlan\u0131n ortas\u0131na g\xF6re tam kar\u015F\u0131s\u0131na
+      g\xF6kta\u015F\u0131 d\xFC\u015Fer (en fazla {1} h\xFCcre). Hasat hasar\u0131n\u0131n
+      %{2}'i kadar vurur, {3} sn bekleme"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898172
-    m_Localized: "\xF6ld\xFCren vuru\u015Fun artan hasar\u0131n\u0131n %{0}'i yandaki
-      bitkiye ge\xE7er \xB7 en \xE7ok {1} aktar\u0131m \xB7 her aktar\u0131mda %{2}
-      kay\u0131p"
+    m_Localized: "\xF6ld\xFCren vuru\u015Ftan artan hasar\u0131n %{0}'i yandaki bitkiye
+      ge\xE7er. En fazla {1} kez aktar\u0131l\u0131r, her seferinde %{2} azal\u0131r"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898173
-    m_Localized: "tetiklenen saks\u0131 davran\u0131\u015F\u0131 {0} sn sonra bir
-      kez daha \xE7al\u0131\u015F\u0131r \xB7 hasar\u0131n %{1}'i \xB7 saks\u0131
-      + davran\u0131\u015F ba\u015F\u0131na {2} sn bekleme"
+    m_Localized: "tetiklenen bir saks\u0131 davran\u0131\u015F\u0131 {0} sn sonra,
+      hasar\u0131n %{1}'i kadar bir kez daha \xE7al\u0131\u015F\u0131r. Ayn\u0131
+      saks\u0131 ve davran\u0131\u015F i\xE7in {2} sn bekleme var"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898174
-    m_Localized: "{0} ve \xFCst\xFC bitkiyi kendi vuru\u015Funla hasat edince {1}
-      sn mevcut davran\u0131\u015F \u015Fanslar\u0131 \xD7{2} \xB7 birikmez, s\xFCre
-      yenilenir"
+    m_Localized: "{0} ya da daha nadir bir bitkiyi kendi vuru\u015Funla hasat edince
+      davran\u0131\u015F \u015Fanslar\u0131n {1} sn boyunca \xD7{2} olur. \xDCst
+      \xFCste binmez, s\xFCre ba\u015Ftan ba\u015Flar"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898175
@@ -2073,20 +2084,21 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898178
-    m_Localized: Hasattan gelen XP.
+    m_Localized: Hasattan gelen TP.
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898179
-    m_Localized: "Yaln\u0131z kendi vuru\u015Fun. Bir kez al\u0131n\u0131r."
+    m_Localized: "Sadece kendi vuru\u015Funu etkiler. Bir kez al\u0131nabilir."
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898180
-    m_Localized: "Bir kez al\u0131n\u0131r. Taban 0,10 sn."
+    m_Localized: "Bir kez al\u0131nabilir. Vuru\u015F aras\u0131 0,10 saniyenin alt\u0131na
+      inmez."
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898181
-    m_Localized: "Her saks\u0131 ve davran\u0131\u015F\u0131 bir sald\u0131r\u0131n\u0131n
-      zincirinde bir kez denenir. Art\xE7\u0131 ve ikinci dalga zincire kat\u0131lmaz."
+    m_Localized: "Bir zincirde her saks\u0131n\u0131n davran\u0131\u015F\u0131 en
+      fazla bir kez tetiklenir. Art\xE7\u0131 ve ikinci dalga zincire kat\u0131lmaz."
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898182
@@ -2098,10 +2110,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898184
-    m_Localized: "Yaln\u0131z kendi vuru\u015Funla yapt\u0131\u011F\u0131n hasatlar
-      say\u0131l\u0131r. Hak haz\u0131r olunca s\u0131radaki vuru\u015Fun g\xFC\xE7lenir
-      (imle\xE7 halkas\u0131 b\xFCy\xFCr). Ek sald\u0131r\u0131 \xFCretmez; davran\u0131\u015Flara
-      ge\xE7mez."
+    m_Localized: "Sadece kendi vuru\u015Funla yapt\u0131\u011F\u0131n hasatlar say\u0131l\u0131r.
+      Saya\xE7 dolunca s\u0131radaki vuru\u015Fun g\xFC\xE7lenir ve imle\xE7 halkas\u0131
+      b\xFCy\xFCr. Ek vuru\u015F \xE7\u0131karmaz, davran\u0131\u015Flar\u0131 etkilemez."
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898185
@@ -2113,7 +2124,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898187
-    m_Localized: "Bereketli \xD6\u011Frenim"
+    m_Localized: "Bol Se\xE7enek"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898188
@@ -2121,12 +2132,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898189
-    m_Localized: "Davran\u0131\u015Fa Adan\u0131\u015F"
+    m_Localized: "Saks\u0131lara G\xFCven"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898190
-    m_Localized: "Patlama \xB7 elektrik \xB7 kas\u0131rga \xB7 bumerang. Kendi vuru\u015Fun
-      de\u011Fi\u015Fmez."
+    m_Localized: "Patlama, elektrik, kas\u0131rga ve bumerang\u0131 g\xFC\xE7lendirir.
+      Kendi vuru\u015Fun de\u011Fi\u015Fmez."
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898191
@@ -2138,20 +2149,20 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898193
-    m_Localized: "Yaln\u0131z kendi vuru\u015Fun kriti\u011Fi."
+    m_Localized: "Sadece kendi vuru\u015Funun kritiklerini g\xFC\xE7lendirir."
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898194
-    m_Localized: "Alt\u0131n Hedef"
+    m_Localized: "Nadir Avc\u0131s\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898195
-    m_Localized: "Rare ve \xFCst\xFC bitkiye do\u011Frudan hasar"
+    m_Localized: "Nadir ve \xFCst\xFC bitkiye do\u011Frudan hasar"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898196
-    m_Localized: "Yaln\u0131z kendi vuru\u015Fun; Common ve Uncommon de\u011Fi\u015Fmez.
-      Davran\u0131\u015F hasar\u0131 de\u011Fi\u015Fmez."
+    m_Localized: "Sadece kendi vuru\u015Funu etkiler. S\u0131radan ve Seyrek bitkiler
+      ile davran\u0131\u015F hasar\u0131 de\u011Fi\u015Fmez."
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898197
@@ -2167,25 +2178,25 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898200
-    m_Localized: "B\xFCt\xFCn saks\u0131lar. Yaln\u0131z tarlan bo\u015Fal\u0131yorsa
-      \xE7\u0131kar (son round ortalama doluluk %65'in alt\u0131nda). Taban 0,50
-      sn."
+    m_Localized: "B\xFCt\xFCn saks\u0131larda ge\xE7erli. Sadece tarlan bo\u015F
+      kal\u0131yorsa \xE7\u0131kar. \xDCretim s\xFCresi 0,50 saniyenin alt\u0131na
+      inmez."
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898201
-    m_Localized: Bilgi Filizi
+    m_Localized: "Tecr\xFCbe Tohumu"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898202
-    m_Localized: "Kazan\u0131lan XP"
+    m_Localized: "Kazan\u0131lan TP"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898203
-    m_Localized: "Hasattan gelen XP. Round 30 boss'undan sonra \xE7\u0131kmaz."
+    m_Localized: "Hasattan gelen TP. 30. turdaki S\u0131namadan sonra \xE7\u0131kmaz."
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898204
-    m_Localized: Canavar Kesimi
+    m_Localized: "Dev T\u0131rpan"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898205
@@ -2193,12 +2204,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898206
-    m_Localized: "Yaln\u0131z kendi vuru\u015Fun. Round 25 boss'undan sonra \xE7\u0131kar;
-      bir kez al\u0131n\u0131r."
+    m_Localized: "Sadece kendi vuru\u015Funu etkiler. 25. turdaki S\u0131namadan
+      sonra \xE7\u0131kar, bir kez al\u0131nabilir."
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898207
-    m_Localized: "F\u0131rt\u0131na Bile\u011Fi"
+    m_Localized: "\xC7evik Bilek"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898208
@@ -2210,8 +2221,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092416
-    m_Localized: "Round 25 boss'undan sonra \xE7\u0131kar; bir kez al\u0131n\u0131r.
-      Taban 0,10 sn."
+    m_Localized: "25. turdaki S\u0131namadan sonra \xE7\u0131kar, bir kez al\u0131nabilir.
+      Vuru\u015F aras\u0131 0,10 saniyenin alt\u0131na inmez."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092417
@@ -2223,8 +2234,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092419
-    m_Localized: "Yaln\u0131z kendi vuru\u015Fun. \u0130mle\xE7 halkas\u0131 b\xFCy\xFCr;
-      davran\u0131\u015F alan\u0131 de\u011Fi\u015Fmez."
+    m_Localized: "Sadece kendi vuru\u015Funu etkiler: imle\xE7 halkas\u0131 b\xFCy\xFCr.
+      Davran\u0131\u015Flar\u0131n alan\u0131 de\u011Fi\u015Fmez."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092420
@@ -2240,8 +2251,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092423
-    m_Localized: "Vuru\u015Flar aras\u0131 s\xFCre k\u0131sal\u0131r. Taban 0,10
-      sn."
+    m_Localized: "Vuru\u015Flar\u0131n aras\u0131 k\u0131sal\u0131r, ama 0,10 saniyenin
+      alt\u0131na inmez."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092424
@@ -2253,12 +2264,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092426
-    m_Localized: "Yaln\u0131z kendi vuru\u015Fun. Davran\u0131\u015F hasar\u0131
-      de\u011Fi\u015Fmez."
+    m_Localized: "Sadece kendi vuru\u015Funu g\xFC\xE7lendirir. Davran\u0131\u015F
+      hasar\u0131 de\u011Fi\u015Fmez."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092427
-    m_Localized: "K\u0131v\u0131lc\u0131m"
+    m_Localized: Kolay Tetik
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092428
@@ -2266,8 +2277,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092429
-    m_Localized: "Patlama \xB7 kas\u0131rga \xB7 bumerang \xB7 elektrik. \u015Eans\u0131
-      olmayan saks\u0131ya \u015Fans vermez; en \xE7ok %100."
+    m_Localized: "Patlama, kas\u0131rga, bumerang ve elektrik \u015Fans\u0131n\u0131
+      art\u0131r\u0131r. \u015Eans\u0131 hi\xE7 olmayan saks\u0131ya \u015Fans vermez.
+      En fazla %100."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092430
@@ -2279,7 +2291,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092432
-    m_Localized: "Yaln\u0131z kendi vuru\u015Fun. Y\xFCzde puan\u0131 olarak eklenir."
+    m_Localized: "Sadece kendi vuru\u015Funu etkiler. \u015Eansa y\xFCzde puan olarak
+      eklenir."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092433
@@ -2291,12 +2304,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092435
-    m_Localized: "B\xFCt\xFCn saks\u0131lar. Y\xFCzde puan\u0131 olarak eklenir;
-      en \xE7ok 95 puan."
+    m_Localized: "B\xFCt\xFCn saks\u0131larda ge\xE7erli. Y\xFCzde puan olarak eklenir,
+      en fazla 95 puan."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092436
-    m_Localized: "Y\u0131k\u0131m G\xFCc\xFC"
+    m_Localized: "G\xFC\xE7l\xFC Saks\u0131lar"
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092437
@@ -2304,8 +2317,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092438
-    m_Localized: "Patlama \xB7 kas\u0131rga \xB7 bumerang \xB7 elektrik. Kendi vuru\u015Fun
-      de\u011Fi\u015Fmez."
+    m_Localized: "Patlama, kas\u0131rga, bumerang ve elektri\u011Fi g\xFC\xE7lendirir.
+      Kendi vuru\u015Fun de\u011Fi\u015Fmez."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092439
@@ -2317,21 +2330,22 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092441
-    m_Localized: "Bo\u015F savuru\u015F hakk\u0131 harcamaz. G\xFC\xE7lenen vuru\u015F
-      yeni hak kazand\u0131rmaz. Davran\u0131\u015Flara ge\xE7mez."
+    m_Localized: "Bo\u015Fa savurmak hakk\u0131 harcamaz. G\xFC\xE7lenmi\u015F vuru\u015F
+      yeni hak kazand\u0131rmaz. Davran\u0131\u015Flar\u0131 etkilemez."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092442
-    m_Localized: "A\u015F\u0131r\u0131 Y\xFCkleme"
+    m_Localized: "\xC7ifte Tetik"
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092443
-    m_Localized: "Y\xFCkleme:"
+    m_Localized: 'Tekrar:'
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092444
-    m_Localized: "Ek proc zincire kat\u0131lmaz ve yeni zar atmaz. Kas\u0131rga /
-      bumerang aktif s\u0131n\u0131r\u0131 a\u015F\u0131lmaz."
+    m_Localized: "Tekrar eden davran\u0131\u015F zincir ba\u015Flatmaz, yeni \u015Fans
+      da atmaz. Ayn\u0131 anda olabilecek kas\u0131rga ve bumerang say\u0131s\u0131
+      a\u015F\u0131lmaz."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092445
@@ -2343,10 +2357,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092447
-    m_Localized: "Hilal menzili 1 birim artar: 3 \u2192 4. Ana hilal do\u011Fdu\u011Fu
-      andan yok olana kadar ilerledi\u011Fi mesafeyle orant\u0131l\u0131 b\xFCy\xFCr;
-      ilk hasad\u0131 beklemez. Hasar b\xFCy\xFCmesi ger\xE7ek hasatlara ba\u011Fl\u0131d\u0131r.
-      Dolunay ba\u015Ftan b\xFCy\xFCk ve sabittir."
+    m_Localized: "Hilal 3 yerine 4 birim gider ve ilerledik\xE7e b\xFCy\xFCr. Hasar\u0131
+      ise sadece ger\xE7ekten hasat ettik\xE7e artar. Dolunay ba\u015Ftan b\xFCy\xFCkt\xFCr,
+      b\xFCy\xFCmez."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092448
@@ -2358,10 +2371,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092450
-    m_Localized: "Her ana hilalin yan\u0131nda yaln\u0131z bir b\xFCy\xFCk ek hilal
-      \xE7\u0131kar; hasat ko\u015Fulu yoktur. Mouse halkas\u0131ndan do\u011Fdu\u011Fu
-      anda, ana hilalden farkl\u0131 rastgele y\xF6nde ilerler. Ba\u015Ftan b\xFCy\xFCkt\xFCr
-      ve yeniden Dolunay \xFCretmez."
+    m_Localized: "Her ana hilalle birlikte b\xFCy\xFCk bir hilal daha \xE7\u0131kar,
+      hasat \u015Fart\u0131 yok. \u0130mle\xE7 halkas\u0131ndan ba\u015Fka bir y\xF6ne
+      gider. Dolunaydan yeni Dolunay \xE7\u0131kmaz."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092451
@@ -2373,26 +2385,26 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092453
-    m_Localized: "Anten tarlan\u0131n kenar\u0131nda durur; saks\u0131 ve tile yeri
-      kaplamaz. Vuru\u015Fu senin vuru\u015Fun say\u0131lmaz: kritik atmaz, davran\u0131\u015F
+    m_Localized: "Anten tarlan\u0131n kenar\u0131nda durur, saks\u0131lara yer kaplamaz.
+      Vuru\u015Fu senin vuru\u015Fun say\u0131lmaz: kritik yapmaz, davran\u0131\u015F
       tetiklemez."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092454
-    m_Localized: "Hasat Yank\u0131s\u0131"
+    m_Localized: "Ayna G\xF6kta\u015F\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092455
-    m_Localized: "Yank\u0131:"
+    m_Localized: "G\xF6kta\u015F\u0131:"
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092456
-    m_Localized: "Yaln\u0131z kendi vuru\u015Funla yapt\u0131\u011F\u0131n hasatlar
-      say\u0131l\u0131r. Yank\u0131 yeni yank\u0131 do\u011Furmaz."
+    m_Localized: "Sadece kendi vuru\u015Funla yapt\u0131\u011F\u0131n hasatlar say\u0131l\u0131r.
+      G\xF6kta\u015F\u0131ndan yeni g\xF6kta\u015F\u0131 \xE7\u0131kmaz."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092457
-    m_Localized: Hilal Darbesi
+    m_Localized: Hilal
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092458
@@ -2400,9 +2412,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092459
-    m_Localized: "Hilal mouse halkas\u0131n\u0131n kenar\u0131ndan rastgele bir ana
-      y\xF6nde \xE7\u0131kar. H\u0131z 8 birim/sn; temel menzil 3, B\xFCy\xFCyen
-      Ay ile 4 birimdir."
+    m_Localized: "Hilal, imle\xE7 halkas\u0131n\u0131n kenar\u0131ndan rastgele bir
+      y\xF6ne f\u0131rlar. Normalde 3 birim gider, B\xFCy\xFCyen Ay ile 4."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092460
@@ -2414,7 +2425,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092462
-    m_Localized: "\u0130kinci antenin yerini sen se\xE7ersin; hat kurulamayan konum
+    m_Localized: "\u0130kinci antenin yerini sen se\xE7ersin. Hat kurulamayan yerler
       se\xE7ilemez. Hat vuru\u015Fu senin vuru\u015Fun say\u0131lmaz."
     m_Metadata:
       m_Items: []
@@ -2427,34 +2438,35 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092465
-    m_Localized: "Ek vuru\u015F kendini yeniden ba\u015Flatamaz. Davran\u0131\u015F\u0131
-      olan saks\u0131 yoksa \xE7al\u0131\u015Fmaz."
+    m_Localized: "Ek hat vuru\u015Fu yeni ek vuru\u015F ba\u015Flatmaz. Davran\u0131\u015F\u0131
+      olan saks\u0131 yoksa i\u015Fe yaramaz."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092466
-    m_Localized: Kritik Ark
+    m_Localized: "S\u0131\xE7rayan Kritik"
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092467
-    m_Localized: 'Ark:'
+    m_Localized: "S\u0131\xE7rama:"
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092468
-    m_Localized: "Ark, vuru\u015Funun de\u011Fmedi\u011Fi bir bitkiye gider. Kritik
-      atmaz, yeni ark do\u011Furmaz."
+    m_Localized: "Kritik, vuru\u015Funun de\u011Fmedi\u011Fi bir bitkiye s\u0131\xE7rar.
+      S\u0131\xE7rayan vuru\u015F kritik yapmaz, yeniden s\u0131\xE7ramaz."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092469
-    m_Localized: "Nadir Reakt\xF6r"
+    m_Localized: "Nadir Heyecan\u0131"
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092470
-    m_Localized: "Reakt\xF6r:"
+    m_Localized: 'Heyecan:'
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092471
-    m_Localized: "Patlama \xB7 kas\u0131rga \xB7 bumerang \xB7 elektrik. \u015Eans\u0131
-      olmayan saks\u0131ya \u015Fans vermez; en \xE7ok %100."
+    m_Localized: "Patlama, kas\u0131rga, bumerang ve elektrik \u015Fans\u0131n\u0131
+      art\u0131r\u0131r. \u015Eans\u0131 hi\xE7 olmayan saks\u0131ya \u015Fans vermez.
+      En fazla %100."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092472
@@ -2466,8 +2478,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092474
-    m_Localized: "Yaln\u0131z kendi vuru\u015Funun \xF6ld\xFCrd\xFC\u011F\xFC bitkiden
-      ba\u015Flar. Aktar\u0131m kritik atmaz."
+    m_Localized: "Sadece kendi vuru\u015Funla \xF6ld\xFCrd\xFC\u011F\xFCn bitkiden
+      ba\u015Flar. Aktar\u0131lan hasar kritik yapmaz."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092475
@@ -2479,9 +2491,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092477
-    m_Localized: "Patlaman\u0131n d\u0131\u015F s\u0131n\u0131r\u0131ndan \xFC\xE7
-      ad\u0131m yay\u0131l\u0131r. Ayn\u0131 h\xFCcreye bir kez vurur; kilitli h\xFCcrelerden
-      ge\xE7mez. Art\xE7\u0131 yeni art\xE7\u0131 veya zincir ba\u015Flatmaz."
+    m_Localized: "Patlaman\u0131n d\u0131\u015F kenar\u0131ndan \xFC\xE7 ad\u0131m
+      yay\u0131l\u0131r. Her h\xFCcreye bir kez vurur, kilitli h\xFCcrelerden ge\xE7mez.
+      Art\xE7\u0131dan yeni art\xE7\u0131 ya da zincir \xE7\u0131kmaz."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092478
@@ -2493,12 +2505,13 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092480
-    m_Localized: "\u015Eans\u0131 tutan her normal elektrikten sonra ayn\u0131 saks\u0131dan
-      ikinci bir dalga. Yeni \u015Fans at\u0131lmaz; ikinci dalga zincir ba\u015Flatmaz."
+    m_Localized: "\u015Eans\u0131 tutan her elektrikten sonra ayn\u0131 saks\u0131dan
+      ikinci bir dalga \xE7\u0131kar. Bunun i\xE7in yeni \u015Fans at\u0131lmaz,
+      ikinci dalga zincir ba\u015Flatmaz."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092481
-    m_Localized: SON ROUND!
+    m_Localized: SON TUR!
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092482
@@ -2506,23 +2519,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092483
-    m_Localized: ROUND {0}
+    m_Localized: TUR {0}
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092484
-    m_Localized: "KOTA {0} \xB7 {1} ROUND"
+    m_Localized: "KOTA {0} \xB7 {1} TUR"
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092485
-    m_Localized: "SON ROUND \xB7 KOTAYA {0} KALDI"
+    m_Localized: "SON TUR \xB7 KOTAYA {0} KALDI"
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092486
-    m_Localized: LEVEL UP!
+    m_Localized: "SEV\u0130YE ATLADIN!"
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092487
-    m_Localized: Lv. {0}
+    m_Localized: Sv {0}
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092488
@@ -2542,16 +2555,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092492
-    m_Localized: "BOSS GE\xC7\u0130LD\u0130 \xB7 UZMANLA\u015EMA SE\xC7"
+    m_Localized: "SINAMA GE\xC7\u0130LD\u0130 \xB7 UZMANLA\u015EMA SE\xC7"
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092493
-    m_Localized: "Yaln\u0131z biri al\u0131n\u0131r \xB7 run sonuna kadar ge\xE7erli
-      \xB7 geri al\u0131namaz \xB7 etkisi Round {0} ve sonras\u0131"
+    m_Localized: "Birini se\xE7. {0}. turdan itibaren deneme sonuna kadar ge\xE7erli,
+      geri al\u0131namaz."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092494
-    m_Localized: Bonus yok, ceza yok
+    m_Localized: "Art\u0131s\u0131 da eksisi de yok"
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092495
@@ -2567,7 +2580,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092498
-    m_Localized: "patlama \xB7 kas\u0131rga \xB7 bumerang \xB7 elektrik"
+    m_Localized: "patlama, kas\u0131rga, bumerang ve elektrik"
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092499
@@ -2575,7 +2588,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092500
-    m_Localized: "hasattan gelen Gold \xB7 Iron \xB7 Stone"
+    m_Localized: "hasattan gelen Alt\u0131n, Demir ve Ta\u015F"
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092501
@@ -2583,15 +2596,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092502
-    m_Localized: "DAVRANI\u015E USTASI"
+    m_Localized: SAKSICI
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092503
-    m_Localized: "MEVCUT D\xDCZEN\u0130 KORU"
+    m_Localized: "OLDU\u011EU G\u0130B\u0130 KALSIN"
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092504
-    m_Localized: "USTA B\u0130\xC7\u0130C\u0130"
+    m_Localized: TIRPANCI
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092505
@@ -2603,7 +2616,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092507
-    m_Localized: "SE\xC7. EK. B\xDCY\xDCT."
+    m_Localized: "Saks\u0131n\u0131 se\xE7, tarlana yerle\u015Ftir."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092508
@@ -2648,7 +2661,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092518
-    m_Localized: "Saks\u0131 ayar\u0131 eksik."
+    m_Localized: "Bu saks\u0131 \u015Fu an sat\u0131n al\u0131nam\u0131yor."
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092519
@@ -2712,7 +2725,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092534
-    m_Localized: 'Harvest Score: {0}'
+    m_Localized: 'Hasat skoru: {0}'
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092535
@@ -2724,20 +2737,20 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286720
-    m_Localized: "BOSS \xD6D\xDCLLER\u0130"
+    m_Localized: "SINAMA \xD6D\xDCLLER\u0130"
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286721
-    m_Localized: "Boss \xF6d\xFClleri: {0}"
+    m_Localized: "S\u0131nama \xF6d\xFClleri: {0}"
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286722
-    m_Localized: "Aktif oynan\u0131\u015F {0} \xB7 se\xE7imler {1} \xB7 ma\u011Faza
+    m_Localized: "Aktif oynan\u0131\u015F {0} \xB7 se\xE7imler {1} \xB7 d\xFCkk\xE2n
       ve haz\u0131rl\u0131k {2}"
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286723
-    m_Localized: seviye hesaplama {0}
+    m_Localized: seviye atlama {0}
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286724
@@ -2745,23 +2758,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286725
-    m_Localized: KOTA VE BOSS HASADI TUTMADI
+    m_Localized: KOTA VE SINAMA HASADI TUTMADI
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286726
-    m_Localized: BOSS HASADI TUTMADI
+    m_Localized: SINAMA HASADI TUTMADI
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286727
-    m_Localized: "segment kotas\u0131 {0} (eksik)"
+    m_Localized: "d\xF6nem kotas\u0131 {0} (eksik)"
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286728
-    m_Localized: "segment kotas\u0131 {0} (tamam)"
+    m_Localized: "d\xF6nem kotas\u0131 {0} (tamam)"
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286729
-    m_Localized: "Round {0} \xB7 boss hasad\u0131 {1} (eksik) \xB7 {2}"
+    m_Localized: "Tur {0} \xB7 S\u0131nama hasad\u0131 {1} (eksik) \xB7 {2}"
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286730
@@ -2769,15 +2782,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286731
-    m_Localized: "Round {0} \xB7 segment skoru {1} (gereken kota)"
+    m_Localized: "Tur {0} \xB7 d\xF6nem skoru {1} (gereken kota)"
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286732
-    m_Localized: "boss hasad\u0131 {0} / {1} (tamam)"
+    m_Localized: "S\u0131nama hasad\u0131 {0} / {1} (tamam)"
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286733
-    m_Localized: RUN TAMAMLANDI
+    m_Localized: DENEME TAMAMLANDI
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286734
@@ -2785,15 +2798,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286735
-    m_Localized: '{0} round'
+    m_Localized: '{0} tur'
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286736
-    m_Localized: "RUN TAMAMLANDI \xB7 ALPHA DENGE V1"
+    m_Localized: DENEME TAMAMLANDI
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286737
-    m_Localized: "RUN TAMAMLANDI \xB7 GE\xC7 OYUN V1"
+    m_Localized: DENEME TAMAMLANDI
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286738
@@ -2801,13 +2814,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286739
-    m_Localized: "A\u015EILI KABUK"
+    m_Localized: "\u0130K\u0130 YOL"
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286740
-    m_Localized: "\u0130ki b\xF6lgeden biri kapanacak \xB7 bir d\xFC\u011F\xFCm\xFC
-      k\u0131r: onun b\xF6lgesi kurtulur, di\u011Feri kapan\u0131r \xB7 se\xE7mezsen
-      A kapan\u0131r"
+    m_Localized: "\u0130ki b\xF6lgeden biri kapanacak. Hangi d\xFC\u011F\xFCm\xFC
+      k\u0131rarsan onun b\xF6lgesi kurtulur. Hi\xE7birini k\u0131rmazsan A kapan\u0131r."
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286741
@@ -2844,8 +2856,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286749
-    m_Localized: "Filiz \xE7\u0131k\u0131yor \xB7 yay\u0131ld\u0131\u011F\u0131 h\xFCcrelerde
-      \xFCretim yava\u015Flar \xB7 ana filizi kendi vuru\u015Funla k\u0131r"
+    m_Localized: "Bir filiz \xE7\u0131k\u0131yor. Yay\u0131ld\u0131\u011F\u0131 h\xFCcrelerde
+      \xFCretim yava\u015Flar. Ana filizi kendi vuru\u015Funla k\u0131r."
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286750
@@ -2854,11 +2866,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286751
-    m_Localized: "Ana filiz k\u0131r\u0131ld\u0131 \xB7 \xFCretim normale d\xF6nd\xFC"
+    m_Localized: "Ana filizi k\u0131rd\u0131n, \xFCretim normale d\xF6nd\xFC."
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286752
-    m_Localized: "Filiz kurudu \xB7 \xFCretim normale d\xF6nd\xFC"
+    m_Localized: "Filiz kurudu, \xFCretim normale d\xF6nd\xFC."
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286753
@@ -2866,8 +2878,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286754
-    m_Localized: "\u0130\u015Faretli {0} h\xFCcrede \xFCretim duracak \xB7 k\xF6kleri
-      kendi vuru\u015Funla k\u0131r"
+    m_Localized: "\u0130\u015Faretli {0} h\xFCcrede \xFCretim duracak. K\xF6kleri
+      kendi vuru\u015Funla k\u0131r."
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286755
@@ -2875,11 +2887,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286756
-    m_Localized: "K\xF6kler k\u0131r\u0131ld\u0131 \xB7 b\xF6lge a\xE7\u0131ld\u0131"
+    m_Localized: "K\xF6kleri k\u0131rd\u0131n, b\xF6lge a\xE7\u0131ld\u0131."
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286757
-    m_Localized: "Dikenler \xE7ekildi \xB7 b\xF6lge a\xE7\u0131ld\u0131"
+    m_Localized: "Dikenler \xE7ekildi, b\xF6lge a\xE7\u0131ld\u0131."
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286758
@@ -2887,15 +2899,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286759
-    m_Localized: "Bereket geliyor: kaynak ve XP \xD72 \xB7 \xFCretim \xD72 h\u0131zl\u0131"
+    m_Localized: "Bereket geliyor: kaynak ve TP iki kat\u0131, \xFCretim iki kat
+      h\u0131zl\u0131."
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286760
-    m_Localized: "Kaynak \xD72 \xB7 XP \xD72"
+    m_Localized: "Kaynak \xD72 \xB7 TP \xD72"
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286761
-    m_Localized: "Bo\u015F yuvalar \xD72 h\u0131zl\u0131 dolar \xB7 round boyunca"
+    m_Localized: "Tur boyunca bo\u015F yuvalar iki kat h\u0131zl\u0131 dolar"
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286762
@@ -2903,7 +2916,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286763
-    m_Localized: "Bereket bitti \xB7 {0} bonuslu hasat"
+    m_Localized: 'Bereket bitti: {0} bereketli hasat'
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286764
@@ -2935,12 +2948,13 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 298375912902656
-    m_Localized: "Bir S\u0131nama'y\u0131 ge\xE7tin! K\xF6klerime kadar bir titreme
-      indi."
+    m_Localized: "Bir S\u0131namay\u0131 ge\xE7tin! Sevin\xE7ten yapraklar\u0131m
+      titriyor."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845696
-    m_Localized: "Gemin nereden geliyordu? D\xFCnya m\u0131? \u2026Hi\xE7 duymad\u0131m."
+    m_Localized: "Senin gemin nereden gelmi\u015Fti? D\xFCnya m\u0131? H\u0131mm\u2026
+      hi\xE7 duymad\u0131m."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845697
@@ -2948,7 +2962,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845698
-    m_Localized: "Bana g\xFCvendi\u011Fin i\xE7in sa\u011F ol."
+    m_Localized: "Bana g\xFCvendi\u011Fin i\xE7in te\u015Fekk\xFCr ederim."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845699
@@ -2961,34 +2975,36 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845701
-    m_Localized: "\xC7ok g\xFC\xE7lenme ama\u2026 G\xFC\xE7l\xFC \xE7ift\xE7iler
-      bir g\xFCn hep gider."
+    m_Localized: "Ama \xE7ok da g\xFC\xE7lenme, olur mu? G\xFC\xE7l\xFC \xE7ift\xE7iler
+      bir g\xFCn hep \xE7ekip gidiyor."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845702
-    m_Localized: "O \xF6d\xFCl\xFC sana tarla verdi. Tarla seni seviyor."
+    m_Localized: "Bu \xF6d\xFCl\xFC sana tarla verdi. Bence tarla seni \xE7ok sevdi."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845703
-    m_Localized: "Ben de seviyorum. G\xFC\xE7l\xFC eller \xE7ok k\u0131ymetli."
+    m_Localized: "Ben de seni sevdim. Senin gibi \xE7al\u0131\u015Fkan ellere ihtiyac\u0131m
+      var."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845704
-    m_Localized: "Be\u015F round oldu bile! Fena de\u011Filsin, \xE7ift\xE7i."
+    m_Localized: "Be\u015F tur oldu bile! Fena de\u011Filsin, \xE7ift\xE7i."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845705
-    m_Localized: "Sen \xE7al\u0131\u015Ft\u0131k\xE7a ben b\xFCy\xFCr\xFCm. Adil
-      bir anla\u015Fma, de\u011Fil mi?"
+    m_Localized: "Sen \xE7al\u0131\u015Ft\u0131k\xE7a ben b\xFCy\xFCyorum. Bence
+      ikimiz i\xE7in de iyi bir anla\u015Fma."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845706
-    m_Localized: "Adak'\u0131 neden mi istiyorum? B\xFCy\xFCmek i\xE7in."
+    m_Localized: "Ada\u011F\u0131 neden mi istiyorum? B\xFCy\xFCmek i\xE7in tabii
+      ki."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845707
-    m_Localized: "Ne kadar \xE7ok verirsen o kadar b\xFCy\xFCr\xFCm. Sen de b\xFCy\xFCmek
-      istemez misin?"
+    m_Localized: "Sen bana ne kadar verirsen ben o kadar b\xFCy\xFCr\xFCm. Sen de
+      b\xFCy\xFCmek istiyorsun, biliyorum."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845708
@@ -2996,29 +3012,30 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845709
-    m_Localized: "Sonra\u2026 gittiler. Evet. Gittiler."
+    m_Localized: "Sonra\u2026 gittiler. Evet, hepsi gitti."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845710
     m_Localized: "Gemin neden d\xFC\u015Ft\xFC, hi\xE7 d\xFC\u015F\xFCnd\xFCn m\xFC?
-      Yak\u0131t\u0131n vard\u0131, motorun sa\u011Flamd\u0131."
+      Yak\u0131t\u0131n vard\u0131, motorun da sa\u011Flamd\u0131."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845711
-    m_Localized: "\u2026Bo\u015F ver. Burada mutlusun, de\u011Fil mi?"
+    m_Localized: "Neyse, bo\u015F ver bunu. Burada mutlusun i\u015Fte."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845712
-    m_Localized: "Bu kadar uza\u011Fa gelece\u011Fini d\xFC\u015F\xFCnmemi\u015Ftim\u2026"
+    m_Localized: "Bu kadar ileri gidece\u011Fini hi\xE7 d\xFC\u015F\xFCnmemi\u015Ftim\u2026"
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845713
-    m_Localized: "Biraz soldum, de\u011Fil mi? Sen g\xFC\xE7lendik\xE7e ben korkuyorum."
+    m_Localized: "Biraz soldum, fark ettin mi? Sen g\xFC\xE7lendik\xE7e korkmaya
+      ba\u015Flad\u0131m."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845714
     m_Localized: "Seninle biraz daha oynamak isterdim. Ama yak\u0131nda soru sormaya
-      ba\u015Flars\u0131n."
+      ba\u015Flayacaks\u0131n."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845715
@@ -3026,7 +3043,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845716
-    m_Localized: "\u2026Bo\u015F ver. Hasat et."
+    m_Localized: "Hi\xE7. Sen hasad\u0131na bakmal\u0131s\u0131n."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845717
@@ -3038,17 +3055,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845719
-    m_Localized: "Eskiden mavi, kocaman bir tarlam vard\u0131. Topra\u011F\u0131
-      \xE7ekirde\u011Fine kadar s\u0131cakt\u0131."
+    m_Localized: "Eskiden kocaman, mavi bir tarlam vard\u0131. \xC7ekirde\u011Fi
+      s\u0131cac\u0131kt\u0131."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845720
-    m_Localized: "Onu bitirdim. Tad\u0131 h\xE2l\xE2 dama\u011F\u0131mda."
+    m_Localized: "Hepsini yedim. Mmm\u2026 tad\u0131 h\xE2l\xE2 dama\u011F\u0131mda."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845721
-    m_Localized: "\xD6nceki \xE7ift\xE7iler gitmedi. Ben onlar\u0131\u2026 hasat
-      ettim."
+    m_Localized: "\xD6nceki \xE7ift\xE7iler gitmedi. Onlar\u0131 ben hasat ettim."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845722
@@ -3056,7 +3072,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845723
-    m_Localized: "Gemiler kendili\u011Finden d\xFC\u015Fmez. Senin gemini ben \xE7ektim."
+    m_Localized: "Gemiler kendi kendine d\xFC\u015Fmez. Seninkini ben a\u015Fa\u011F\u0131
+      \xE7ektim."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845724
@@ -3073,20 +3090,20 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845727
-    m_Localized: "Son S\u0131nama. Ge\xE7ersen beni yenmi\u015F olursun."
+    m_Localized: "Bu son S\u0131nama. Ge\xE7ersen beni yenmi\u015F olacaks\u0131n."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845728
-    m_Localized: "Ge\xE7emezsen yine buradas\u0131n. \u0130kisi de benim i\u015Fime
-      yarar."
+    m_Localized: "Ge\xE7emezsen yine burada kalacaks\u0131n. \u0130ki t\xFCrl\xFC
+      de ben kazan\u0131r\u0131m."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845729
-    m_Localized: "Kazand\u0131n. Sona geldin\u2026"
+    m_Localized: "Kazand\u0131n. Sonuna kadar geldin\u2026"
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845730
-    m_Localized: "O zaman oyun bitti. Saklanmama gerek kalmad\u0131."
+    m_Localized: "O zaman oyun bitti. Art\u0131k saklanmama gerek yok."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845731
@@ -3095,33 +3112,35 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845732
-    m_Localized: "Bana g\xFCvenmi\u015Ftin. En tatl\u0131s\u0131 buydu."
+    m_Localized: "Bana g\xFCvendin. En \xE7ok da bunu sevdim."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845733
-    m_Localized: "Benden \u015F\xFCphelenmi\u015Ftin. Hakl\u0131yd\u0131n, ama yine
-      de kald\u0131n."
+    m_Localized: "Benden \u015F\xFCphelendin, hakl\u0131yd\u0131n da. Ama yine de
+      kald\u0131n."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845734
-    m_Localized: "\xDCzg\xFCn de\u011Fildim, \xE7ift\xE7i. Hi\xE7 olmad\u0131m. Sadece
-      a\xE7t\u0131m."
+    m_Localized: "Hi\xE7 \xFCz\xFClmedim, \xE7ift\xE7i. Sadece a\xE7t\u0131m."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845735
-    m_Localized: "Hasat et. Bir sonraki gezegen i\xE7in g\xFC\xE7lenmem laz\u0131m."
+    m_Localized: "Hadi, hasada devam et. Bir sonraki gezegen i\xE7in g\xFC\xE7lenmem
+      laz\u0131m."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845736
-    m_Localized: "Art\u0131k birbirimizi tan\u0131yoruz. Adak'\u0131m bekliyor."
+    m_Localized: "Art\u0131k birbirimizi tan\u0131yoruz. Hadi, Ada\u011F\u0131m seni
+      bekliyor."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845737
-    m_Localized: "Ka\xE7amazs\u0131n. Gemin yok, D\xFCnya'n yok. Sadece ben var\u0131m."
+    m_Localized: "Ka\xE7amazs\u0131n. Ne gemin var ne de D\xFCnya'n. Burada bir tek
+      ben var\u0131m."
     m_Metadata:
       m_Items: []
   - m_Id: 530164191350784
-    m_Localized: ROUND
+    m_Localized: TUR
     m_Metadata:
       m_Items: []
   - m_Id: 530164224905216
@@ -3145,11 +3164,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5609442599784448
-    m_Localized: "Boss \xF6d\xFClleri ({0}) \xB7 {1} ile g\xF6ster"
+    m_Localized: "S\u0131nama \xF6d\xFClleri ({0}) \xB7 {1} ile g\xF6ster"
     m_Metadata:
       m_Items: []
   - m_Id: 5609442645921792
-    m_Localized: "Boss \xF6d\xFClleri ({0}) \xB7 {1} ile gizle"
+    m_Localized: "S\u0131nama \xF6d\xFClleri ({0}) \xB7 {1} ile gizle"
     m_Metadata:
       m_Items: []
   - m_Id: 5622503402393600
@@ -3161,12 +3180,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5627776087117824
-    m_Localized: "\xD6nizleme / Boss \xD6d\xFClleri"
+    m_Localized: "\xD6nizleme / S\u0131nama \xD6d\xFClleri"
     m_Metadata:
       m_Items: []
   - m_Id: 5627776108089344
-    m_Localized: "Round aras\u0131nda round \xF6nizlemesini a\xE7ar; round s\u0131ras\u0131nda
-      kota kart\u0131ndaki boss \xF6d\xFClleri listesini g\xF6sterir / gizler."
+    m_Localized: "Turlar aras\u0131nda tur \xF6nizlemesini a\xE7ar. Tur s\u0131ras\u0131nda
+      kota kart\u0131ndaki S\u0131nama \xF6d\xFClleri listesini a\xE7\u0131p kapat\u0131r."
     m_Metadata:
       m_Items: []
   - m_Id: 6318183146082304
@@ -3174,13 +3193,13 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6318183179636736
-    m_Localized: "B\xFCt\xFCn sesleri a\xE7ar ya da kapat\u0131r; ses d\xFCzeylerin
-      korunur. Haz\u0131rl\u0131k ekran\u0131ndaki hoparl\xF6r d\xFC\u011Fmesiyle
-      ayn\u0131 ayar."
+    m_Localized: "B\xFCt\xFCn sesleri a\xE7ar ya da kapat\u0131r. Ses d\xFCzeylerin
+      oldu\u011Fu gibi kal\u0131r. Haz\u0131rl\u0131k ekran\u0131ndaki hoparl\xF6r
+      d\xFC\u011Fmesiyle ayn\u0131 ayar."
     m_Metadata:
       m_Items: []
   - m_Id: 6318183192219648
-    m_Localized: "RUN B\u0130TT\u0130"
+    m_Localized: "DENEME B\u0130TT\u0130"
     m_Metadata:
       m_Items: []
   - m_Id: 6318183192219649
@@ -3188,11 +3207,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6318183192219650
-    m_Localized: "ULA\u015EILAN ROUND"
+    m_Localized: "ULA\u015EILAN TUR"
     m_Metadata:
       m_Items: []
   - m_Id: 6318183192219651
-    m_Localized: "BOSS \xD6D\xDCL\xDC"
+    m_Localized: "SINAMA \xD6D\xDCL\xDC"
     m_Metadata:
       m_Items: []
   - m_Id: 6318183192219652
@@ -3216,11 +3235,86 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6318918520819715
-    m_Localized: BOSS HASADI
+    m_Localized: SINAMA HASADI
     m_Metadata:
       m_Items: []
   - m_Id: 6322087216828416
     m_Localized: "T\xDCM KOTALAR TUTTU"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6861648518991872
+    m_Localized: "Kapal\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6861648544157696
+    m_Localized: Sabit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6861648544157697
+    m_Localized: "G\xFCce G\xF6re"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901512663040
+    m_Localized: "B\u0130R KART SE\xC7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606080
+    m_Localized: "Kart, tarlaya yeni bir parsel koyar. Parsel, \xFCst\xFCne koydu\u011Fun
+      saks\u0131y\u0131 g\xFC\xE7lendirir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606085
+    m_Localized: "\xDCst\xFCndeki saks\u0131 bitkileri daha s\u0131k \xE7\u0131kar\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606086
+    m_Localized: "\xDCst\xFCndeki saks\u0131n\u0131n bitkilerinden daha \xE7ok TP
+      gelir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606087
+    m_Localized: "\xDCst\xFCndeki saks\u0131dan nadir bitki \xE7\u0131kma \u015Fans\u0131
+      artar."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606088
+    m_Localized: "\xDCst\xFCndeki saks\u0131n\u0131n bitkileri daha \xE7ok hasat
+      skoru verir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606089
+    m_Localized: "\xDCst\xFCndeki saks\u0131n\u0131n bitkisi hasat edilince bazen
+      patlar ve \xE7evresine vurur."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606090
+    m_Localized: "\xDCst\xFCndeki saks\u0131n\u0131n bitkisini hasat edince \xF6d\xFCl
+      bazen iki kat gelir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606091
+    m_Localized: "\xDCst\xFCndeki saks\u0131n\u0131n bitkilerine do\u011Frudan vuru\u015Fun
+      daha \xE7ok hasar verir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606092
+    m_Localized: "\xDCst\xFCndeki saks\u0131n\u0131n bitkisi hasat edilince bazen
+      tarlada dola\u015Fan bir kas\u0131rga \xE7\u0131kar."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606093
+    m_Localized: "\xDCst\xFCndeki saks\u0131n\u0131n bitkisi hasat edilince bazen
+      gidip geri d\xF6nen bir orak f\u0131rlar."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606094
+    m_Localized: "\xDCst\xFCndeki saks\u0131n\u0131n bitkisi hasat edilince bazen
+      \xE7apraz y\xF6nlere elektrik s\u0131\xE7rar."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606095
+    m_Localized: "\xDCretim zaten en h\u0131zl\u0131da. Fazla h\u0131z nadirli\u011Fe
+      d\xF6n\xFC\u015F\xFCr."
     m_Metadata:
       m_Items: []
   references:

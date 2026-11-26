@@ -192,6 +192,18 @@ public static class HoverOpenVerification
                 {
                     var shop = UnityEngine.Object.FindAnyObjectByType<PlanterShopPanelUI>(FindObjectsInactive.Include);
                     Info($"after clicking the 1x2 card: selected object '{EventSystem.current.currentSelectedGameObject?.name ?? "-"}'");
+                    // Seçim değişimi (26 Kasım 2026): açılışta 1x1 kendiliğinden seçili; 1x2'ye tıklanınca yalnız 1x2 altın kalmalı.
+                    // Kodun koyduğu sprite sayılır (fare 1x2'nin üstünde, düğmenin hover görünüşü overrideSprite'ta).
+                    var shopCards = Field<System.Collections.IList>(shop, "cards");
+                    var chosen = new List<int>();
+                    for (int i = 0; i < shopCards.Count; i++)
+                    {
+                        var im = Field<Image>(shopCards[i], "background");
+                        if (im.sprite != null && im.sprite.name.EndsWith("_selected")) chosen.Add(i);
+                    }
+                    Info($"chosen (golden) cards after switching 1x1 → 1x2: [{string.Join(", ", chosen)}], selectedIndex {Field<int>(shop, "selectedIndex")}");
+                    Check(chosen.Count == 1 && chosen[0] == 1 && Field<int>(shop, "selectedIndex") == 1,
+                        "switching from the auto-chosen 1x1 to 1x2: only 1x2 is golden (1x1 returns to normal)");
                     shop.gameObject.SetActive(false);   // dükkân kapanır
                     Move(away);
                     phase = 18; next = now + .4; return;

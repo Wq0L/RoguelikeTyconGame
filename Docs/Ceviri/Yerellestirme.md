@@ -174,6 +174,27 @@ Bilerek değiştirilen Türkçe: saksı dükkânı (eskiden İngilizceydi: "SATI
 - **Oyun terimleri** (çevirmen notunda "translate consistently" yazar):
   - Adak = **Offering**
   - Sınama = **Trial**
+- **Türkçe oyun terimleri** (kullanıcı kararı, 24 Kasım 2026; Türkçe sütunda her yerde aynı kelime, İngilizce değişmedi):
+
+  | İngilizce | Türkçe | Not |
+  |---|---|---|
+  | run | deneme | Steam sayfasıyla aynı |
+  | round | tur | "TUR 5", "SON TUR!", "turu başlat" |
+  | boss (round) | Sınama | "SINAMA GEÇİLDİ", "Sınama kotası"; kesmesiz: "Sınamadan", "Sınamayı" |
+  | tile | parsel | "Boş parsel", "PARSEL ETKİSİ" |
+  | XP | TP (tecrübe puanı) | |
+  | level / Lv | seviye / Sv | oyuncu ve parsel için aynı; "SEVİYE ATLADIN!" |
+  | Gold / Iron / Stone | Altın / Demir / Taş | |
+  | Common / Uncommon / Rare / Epic / Legendary | Sıradan / Seyrek / Nadir / Destansı / Efsanevi | büyük harf dilin kendi kuralıyla (NADİR) |
+  | grid | tarla | |
+  | Harvest Score | hasat skoru | |
+  | segment | dönem | Adak dönemi |
+  | shop | dükkân | |
+  | mouse (imleç halkası) | imleç | cihazın adı gerekiyorsa: fare |
+  | crit | kritik | |
+  | Tornado | Kasırga | |
+  | attack interval | saldırı aralığı | |
+  | MAX | en üst seviye | |
 
 ## Nasıl kullanılır
 - **Metni değiştirmek:** CSV'yi düzenle ve kaydet. Play açıksa yazılar o anda değişir (açık konuşma kutusu dahil).

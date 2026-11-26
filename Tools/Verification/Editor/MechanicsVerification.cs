@@ -131,7 +131,13 @@ public static class MechanicsVerification
         var offers = Offers();
         Require(offers.Count == 3 && offers.All(o => o.IsUpgrade), "Grid full: all three cards are upgrades");
         var banner = cardPanel.GetComponentsInChildren<TextMeshProUGUI>(true).FirstOrDefault(t => t.transform.parent.name == "Grid Full Banner");
-        Require(banner != null && banner.transform.parent.gameObject.activeInHierarchy && banner.text.StartsWith("GRİD DOLU"), "Grid full banner shown: " + banner?.text);
+        // 24 Kasım 2026: bilgi kutusu kuruluysa yükseltme kartlarında kutu da eski şerit de yok (kullanıcı: "onlarda üstteki şey
+        // çıkmasın"). Kutu yoksa eski şerit kontrol edilir.
+        var cardsUI = cardPanel.GetComponentInChildren<CardSelectionUI>(true) ?? cardPanel.GetComponentInParent<CardSelectionUI>(true);
+        bool infoBox = cardsUI != null && cardsUI.HasInfoBox;
+        bool bannerShown = banner != null && banner.transform.parent.gameObject.activeInHierarchy;
+        Require(infoBox ? !cardsUI.InfoBoxShown && !bannerShown : bannerShown && banner.text.StartsWith("TARLA DOLU"),
+            infoBox ? "Grid full: no info box and no banner above the upgrade cards" : "Grid full banner shown: " + banner?.text);
         foreach (var o in offers)
             Require(o.LevelGain == Math.Min(GroundCell.LevelsFor(o.Rarity), GroundCell.MaxLevel - o.UpgradeTarget.Level), $"Level gain follows rarity {o.Rarity} → +{o.LevelGain}");
         foreach (var cardUI in cardPanel.GetComponentsInChildren<CardUI>())
@@ -173,7 +179,7 @@ public static class MechanicsVerification
         Require(!Vignette.gameObject.activeInHierarchy, "Vignette only while choosing cards: gone on the round end screen");
         Require(GameFeelDirector.Instance.LastRound.Xp == 605 + 609 + 601 + 1, "Round summary counts XP earned: " + GameFeelDirector.Instance.LastRound.Xp);
         var summary = Object.FindFirstObjectByType<RoundSummaryUI>(FindObjectsInactive.Include);
-        Require(summary != null && summary.GetComponentsInChildren<TextMeshProUGUI>().Any(t => t.text == "XP"), "Round summary shows an XP row");
+        Require(summary != null && summary.GetComponentsInChildren<TextMeshProUGUI>().Any(t => t.text == GameText.Get("ui.summary.xp")), "Round summary shows an XP row");
         string arrow = "→";
         string levelText = $"Sv {levelBefore} {arrow} {upgradedCell.Level}", valueText = arrow + " " + TileBuffText.Amount(upgradedCell.RolledModifiers[0]);
         var upgradeRow = rows.FirstOrDefault(t => t.Contains(levelText) && t.Contains(valueText));
@@ -256,7 +262,7 @@ public static class MechanicsVerification
         Require(Mathf.Abs(low / (float)n - .10f) < .01f && Mathf.Abs(legend / (float)n - .48f) < .015f, $"Live rolls with full tree: Common+Rare {low * 100f / n:0.0}%, Legendary {legend * 100f / n:0.0}%");
         string label = (string)typeof(SkillNodeUI).GetMethod("FormatStat", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { StatType.MutationLuck, treeLuck });
         string start = (string)typeof(SkillNodeUI).GetMethod("FormatStat", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { StatType.MutationLuck, 0f });
-        Require(label == "Epic+ %90 · Leg %48" && start == "Epic+ %15 · Leg %3" && TileBuffText.Name(StatType.MutationLuck) == "Kart nadirliği", $"Skill tooltip: Kart nadirliği {start} → {label}");
+        Require(label == "Destansı+ %90 · Efsanevi %48" && start == "Destansı+ %15 · Efsanevi %3" && TileBuffText.Name(StatType.MutationLuck) == "Kart nadirliği", $"Skill tooltip: Kart nadirliği {start} → {label}");
     }
 
     static double Tempo()
@@ -292,7 +298,7 @@ public static class MechanicsVerification
         rm.StartNextRound();
         segmentStart = Score.TotalScore;
         Require(rm.CurrentRound == 6 && rm.QuotaSegment == 2 && rm.QuotaTarget == 15 && rm.QuotaProgress == 0, "Round 6 opens segment 2 with quota 15 and zero progress");
-        Require(GameFeelDirector.QuotaIntro(rm) == "KOTA 15 · 5 ROUND", "Segment start intro: " + GameFeelDirector.QuotaIntro(rm));
+        Require(GameFeelDirector.QuotaIntro(rm) == "KOTA 15 · 5 TUR", "Segment start intro: " + GameFeelDirector.QuotaIntro(rm));
         SetScore(segmentStart + 8);
         return .6;
     }
@@ -304,7 +310,7 @@ public static class MechanicsVerification
         Require(hud != null && hud.gameObject.activeInHierarchy, "Quota HUD attached under the round HUD");
         Call(hud, "Refresh");
         var texts = hud.GetComponentsInChildren<TextMeshProUGUI>(true).ToDictionary(t => t.name, t => t.text);
-        Require(texts["Label"] == "KOTA · 5 ROUND" && texts["Value"] == $"{HarvestQuota.Format(rm.QuotaProgress)} / 15", $"HUD: {texts["Label"]} | {texts["Value"]}");
+        Require(texts["Label"] == "KOTA · 5 TUR" && texts["Value"] == $"{HarvestQuota.Format(rm.QuotaProgress)} / 15", $"HUD: {texts["Label"]} | {texts["Value"]}");
         Save("QuotaHUD");
         SetScore(segmentStart + 8);
         Call(rm, "EndRound");
@@ -313,7 +319,7 @@ public static class MechanicsVerification
         Require(GameFeelDirector.Instance.LastRound.Round == 6, "Round 6 summary data recorded");
         Call(Object.FindFirstObjectByType<RoundSummaryUI>(FindObjectsInactive.Include), "Fill", GameFeelDirector.Instance.LastRound);
         var notice = roundEndUI.GetComponentsInChildren<TextMeshProUGUI>(true).FirstOrDefault(t => t.name == "Quota Notice");
-        Require(notice != null && notice.gameObject.activeInHierarchy && Strip(notice.text).StartsWith("Kota 8 / 15 · 4 round kaldı"), "Round summary shows segment progress: " + notice?.text.Replace((char)10, (char)47));
+        Require(notice != null && notice.gameObject.activeInHierarchy && Strip(notice.text).StartsWith("Kota 8 / 15 · 4 tur kaldı"), "Round summary shows segment progress: " + notice?.text.Replace((char)10, (char)47));
         return 1.2;
     }
 
@@ -322,9 +328,9 @@ public static class MechanicsVerification
         Save("QuotaSummary");
         var rm = RoundManager.Instance;
         string last = RoundSummaryUI.QuotaNotice(rm, 9, out var tone);
-        Require(last != null && Strip(last).StartsWith("SON ROUND · kotaya 7 kaldı") && tone == RoundSummaryUI.QuotaTone.Danger, "Round 9 summary warns: " + last?.Replace((char)10, (char)47));
+        Require(last != null && Strip(last).StartsWith("SON TUR · kotaya 7 kaldı") && tone == RoundSummaryUI.QuotaTone.Danger, "Round 9 summary warns: " + last?.Replace((char)10, (char)47));
         SetP(rm, "CurrentRound", 10);
-        Require(GameFeelDirector.QuotaIntro(rm) == "SON ROUND · KOTAYA 7 KALDI", "Round 10 intro: " + GameFeelDirector.QuotaIntro(rm));
+        Require(GameFeelDirector.QuotaIntro(rm) == "SON TUR · KOTAYA 7 KALDI", "Tur 10 intro: " + GameFeelDirector.QuotaIntro(rm));
         SetP(rm, "CurrentRound", 9);
         GameFeelDirector.Instance.LastRound.Round = 9;
         Call(Object.FindFirstObjectByType<RoundSummaryUI>(FindObjectsInactive.Include), "Fill", GameFeelDirector.Instance.LastRound);
@@ -346,14 +352,14 @@ public static class MechanicsVerification
         var rm = RoundManager.Instance;
         rm.StartNextRound();
         long start = Score.TotalScore;
-        Require(rm.CurrentRound == 11 && rm.QuotaTarget == 20 && rm.QuotaProgress == 0 && GameFeelDirector.QuotaIntro(rm) == "KOTA 20 · 5 ROUND", "Round 11 resets progress, quota 20");
+        Require(rm.CurrentRound == 11 && rm.QuotaTarget == 20 && rm.QuotaProgress == 0 && GameFeelDirector.QuotaIntro(rm) == "KOTA 20 · 5 TUR", "Round 11 resets progress, quota 20");
         SetP(rm, "CurrentRound", 15);
         SetScore(start + 12);
         Call(rm, "EndRound");
         Require(rm.EndedByQuota && GameManager.Instance.CurrentState == GameStates.RunComplete, "12 / 20 at round 15 ends the run");
         var complete = F<GameObject>(ui, "runCompletePanel");
-        var text = complete.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Harvest Score"));
-        Require(text != null && Strip(text).StartsWith("KOTA TUTMADI") && Strip(text).Contains("Round 15 · segment skoru 12 / 20"), "Run complete shows the reason: " + Strip(text).Replace((char)10, (char)47));
+        var text = complete.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Hasat skoru"));
+        Require(text != null && Strip(text).StartsWith("KOTA TUTMADI") && Strip(text).Contains("Tur 15 · dönem skoru 12 / 20"), "Run complete shows the reason: " + Strip(text).Replace((char)10, (char)47));
         return 1.2;
     }
 

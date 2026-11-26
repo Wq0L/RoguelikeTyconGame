@@ -121,7 +121,7 @@ public static class Run50ReferenceVerification
     static string RunEndText()
     {
         var complete = F<GameObject>(Object.FindFirstObjectByType<UIManager>(), "runCompletePanel");
-        return Strip(complete.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Harvest Score")));
+        return Strip(complete.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Hasat skoru")));
     }
 
     static double Run(int i)
@@ -224,7 +224,7 @@ public static class Run50ReferenceVerification
                 if (RM.QuotaSegment != seg || RM.QuotaProgress != 0 || RM.QuotaTarget != Expected[seg - 1] || RM.QuotaSegmentEnd != seg * 5)
                     throw new Exception($"segment {seg} start: segment {RM.QuotaSegment}, progress {RM.QuotaProgress}, target {RM.QuotaTarget}, end {RM.QuotaSegmentEnd}");
                 string intro = GameFeelDirector.QuotaIntro(RM);
-                if (intro != $"KOTA {HarvestQuota.Format(Expected[seg - 1])} · 5 ROUND") throw new Exception($"round {r} intro: {intro}");
+                if (intro != $"KOTA {HarvestQuota.Format(Expected[seg - 1])} · 5 TUR") throw new Exception($"round {r} intro: {intro}");
             }
             if (Events.Active != null || Events.Upcoming != null || RM.IsRoundChoicePending) throw new Exception($"round {r}: unexpected event or round choice");
             if (r % 5 == 0) SetScore(Score - RM.QuotaProgress + Expected[seg - 1]); // eşitlik geçer
@@ -250,7 +250,7 @@ public static class Run50ReferenceVerification
     static double VictoryScreen()
     {
         string text = RunEndText();
-        Require(text.StartsWith("REFERANS RUN TAMAMLANDI") && text.Contains("50 round · son kota 280 / 280"), "Victory screen: " + text);
+        Require(text.StartsWith("REFERANS RUN TAMAMLANDI") && text.Contains("50 tur · son kota 280 / 280"), "Victory screen: " + text);
         Object.FindFirstObjectByType<RunCompleteUI>(FindObjectsInactive.Include).OnRestartPressed();
         return 3;
     }
@@ -275,7 +275,7 @@ public static class Run50ReferenceVerification
     static double DefeatScreen()
     {
         string text = RunEndText();
-        Require(text.StartsWith("KOTA TUTMADI") && text.Contains("Round 20 · segment skoru 29 / 30"), "Defeat screen: " + text);
+        Require(text.StartsWith("KOTA TUTMADI") && text.Contains("Tur 20 · dönem skoru 29 / 30"), "Defeat screen: " + text);
         Object.FindFirstObjectByType<RunCompleteUI>(FindObjectsInactive.Include).OnMainMenuPressed();
         return 3;
     }

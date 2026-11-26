@@ -288,7 +288,8 @@ public static class OptionsMenuBuilder
         var vSync = Toggle(display, "ui.options.vsync");
         var fpsLimit = Stepper(display, "ui.options.fps_limit");
         var quality = Stepper(display, "ui.options.quality");
-        var backgroundEffects = Toggle(display, "ui.options.background_effects");
+        // Arka plan: Kapalı / Sabit / Güce göre (23 Kasım 2026: gökyüzü müzik gücüyle renk değiştirir; sayfa 7 satırla dolu, ayrı satır yerine üç seçenek).
+        var backgroundEffects = Stepper(display, "ui.options.background_effects");
 
         // ---------- Ses ----------
         rowIndex = 0;

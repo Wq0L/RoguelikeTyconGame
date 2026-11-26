@@ -47,7 +47,7 @@ public class OptionsUI : MonoBehaviour
     [SerializeField] private OptionToggle vSync;
     [SerializeField] private OptionStepper fpsLimit;
     [SerializeField] private OptionStepper quality;
-    [SerializeField] private OptionToggle backgroundEffects;
+    [SerializeField] private OptionStepper backgroundEffects;   // Kapalı / Sabit / Güce göre
 
     [Header("Ses")]
     [SerializeField] private OptionToggle sound;   // Tüm Sesler (AÇIK = ses açık; hazırlık ekranındaki ses karesiyle aynı ayar)
@@ -67,6 +67,8 @@ public class OptionsUI : MonoBehaviour
 
     private static readonly FullScreenMode[] WindowModes =
         { FullScreenMode.ExclusiveFullScreen, FullScreenMode.FullScreenWindow, FullScreenMode.Windowed };
+    // Arka plan seçenekleri: 0 kapalı (düz renk), 1 sabit mor toon gökyüzü, 2 güce göre renk değiştiren gökyüzü.
+    private static readonly string[] BackgroundKeys = { "ui.options.background_effects.off", "ui.options.background_effects.fixed", "ui.options.background_effects.power" };
     private static readonly string[] WindowModeKeys = { "ui.options.window_mode.fullscreen", "ui.options.window_mode.borderless", "ui.options.window_mode.windowed" };
 
     private List<Vector2Int> resolutions = new List<Vector2Int>();
@@ -137,7 +139,11 @@ public class OptionsUI : MonoBehaviour
         Toggle(vSync, on => GameSettings.VSync = on);
         Step(fpsLimit, i => GameSettings.FpsLimit = GameSettings.FpsOptions[Mathf.Clamp(i, 0, GameSettings.FpsOptions.Length - 1)]);
         Step(quality, i => GameSettings.QualityLevel = i);
-        Toggle(backgroundEffects, on => GameSettings.BackgroundEffects = on);
+        Step(backgroundEffects, i =>
+        {
+            GameSettings.BackgroundEffects = i > 0;
+            if (i > 0) GameSettings.PowerSky = i == 2;
+        });
 
         Toggle(sound, on => GameSettings.SoundMuted = !on);
         Slide(masterVolume, v => GameSettings.MasterVolume = v);
@@ -213,7 +219,7 @@ public class OptionsUI : MonoBehaviour
             for (int i = 0; i < names.Length; i++) shown[i] = QualityName(names[i]);
             quality.Setup(shown, GameSettings.QualityLevel);
         }
-        backgroundEffects?.Setup(GameSettings.BackgroundEffects);
+        backgroundEffects?.Setup(Array.ConvertAll(BackgroundKeys, GameText.Get), !GameSettings.BackgroundEffects ? 0 : GameSettings.PowerSky ? 2 : 1);
 
         sound?.Setup(!GameSettings.SoundMuted);
         masterVolume?.Setup(GameSettings.MasterVolume);

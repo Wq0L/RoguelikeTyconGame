@@ -1,9 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class CardUI : MonoBehaviour
+// Fare kartın üstüne gelince kart seçim ekranının bilgi kutusu bu kartı anlatır (24 Kasım 2026, test geri bildirimi:
+// "kartın özelliği yazmalı"). Kutu CardSelectionUI'da; kart yalnız üstüne gelindiğini bildirir.
+public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI rarityText; // yeni
@@ -24,10 +27,20 @@ public class CardUI : MonoBehaviour
     private TileCardOffer currentOffer;
     private Action<TileCardOffer> onSelected;
     private bool capsBound;
+    private CardSelectionUI owner;
+
+    public TileCardOffer Offer => currentOffer;
+    // Yeni tile kartı, üretim tabanındaki saksılar yüzünden hız yerine nadirlik gösteriyor (bilgi kutusu da bunu söyler).
+    public bool ShowsSpawnFloor { get; private set; }
+
+    public void OnPointerEnter(PointerEventData eventData) => Owner?.CardHovered(this, true);
+    public void OnPointerExit(PointerEventData eventData) => Owner?.CardHovered(this, false);
+    private CardSelectionUI Owner => owner != null ? owner : owner = GetComponentInParent<CardSelectionUI>(true);
 
     public void Setup(TileCardOffer offer, Action<TileCardOffer> callback)
     {
         currentOffer = offer;
+        ShowsSpawnFloor = false;
         TileModifierSO mod = offer.Tile;
         TileRarity rarityType = offer.Rarity;
         Color tint = mod != null ? mod.tileColor : new Color(1f, .82f, .32f);
@@ -35,7 +48,8 @@ public class CardUI : MonoBehaviour
         onSelected = callback;
         EnsureBuffText();
         BindCaps();
-        string rarityName = TileBuffText.RarityName(rarityType).ToUpperInvariant();
+        // Dilin kendi büyük harfiyle (24 Kasım: nadirlik adları Türkçe oldu; ToUpperInvariant "Nadir"i "NADIR" yapıyordu).
+        string rarityName = TileBuffText.RarityName(rarityType).ToUpper(GameText.Culture);
         if (offer.IsUpgrade)
         {
             // Grid dolu: kart, üç rastgele adaydan birini seviye atlatır.
@@ -72,6 +86,7 @@ public class CardUI : MonoBehaviour
             float floorRarity = TileBuffText.SpawnRarityAtFloor(offer.Modifiers);
             if (floorRarity > 0f && ProgressionManager.Instance != null && ProgressionManager.Instance.AllPlantersAtSpawnFloor())
             {
+                ShowsSpawnFloor = true;
                 buffText.text = TileBuffText.Points(floorRarity) + " " + GameText.Get("ui.card.rarity_word");
                 if(effectNameText) effectNameText.text=GameText.Get("ui.card.spawn_floor");
             }

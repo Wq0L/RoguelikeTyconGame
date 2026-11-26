@@ -25,7 +25,9 @@ public static class FeelBootstrap
         if (camera == null) return;
 
         if (!camera.TryGetComponent(out CameraFeel _)) camera.gameObject.AddComponent<CameraFeel>();
-        if (Object.FindAnyObjectByType<SpaceBackground>() == null) camera.gameObject.AddComponent<SpaceBackground>();
+        // Oyunun gökyüzü toon paletiyle (güce göre renk / sabit mor; Resources/SpaceSkyPalette). Sahneye kurulmuşsa oradaki ayar geçerlidir.
+        if (Object.FindAnyObjectByType<SpaceBackground>() == null)
+            camera.gameObject.AddComponent<SpaceBackground>().SetSkyPalette(Resources.Load<SpaceSkyPaletteSO>(SpaceSkyPaletteSO.ResourcePath));
         if (Object.FindAnyObjectByType<GameFeelDirector>() == null) new GameObject("Game Feel Director").AddComponent<GameFeelDirector>();
         if (Object.FindAnyObjectByType<GridCoordinateLabels>() == null) new GameObject("Grid Coordinates").AddComponent<GridCoordinateLabels>();
         if (Object.FindAnyObjectByType<GridUnlockFeel>() == null) new GameObject("Grid Unlock Feel").AddComponent<GridUnlockFeel>();

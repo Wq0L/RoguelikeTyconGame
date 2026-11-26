@@ -256,7 +256,7 @@ public static class SpecializationVerification
         var texts = PanelTexts(panel);
         Require(texts.Any(t => t == "USTA BİÇİCİ") && texts.Any(t => t == "DAVRANIŞ USTASI") && texts.Any(t => t == "MEVCUT DÜZENİ KORU"), "Three options shown");
         Require(texts.Contains("Doğrudan hasar ×1,25") && texts.Any(t => t.StartsWith("Davranış hasarı ×0,85")) && texts.Any(t => t.StartsWith("Davranış hasarı ×1,25")) &&
-                texts.Any(t => t.StartsWith("Hasat kaynağı ×0,90/hasattan gelen Gold · Iron · Stone")) && !texts.Any(t => t.StartsWith("Doğrudan hasar ×0,")),
+                texts.Any(t => t.StartsWith("Hasat kaynağı ×0,90/hasattan gelen Altın · Demir · Taş")) && !texts.Any(t => t.StartsWith("Doğrudan hasar ×0,")),
             "Gains and costs visible before choosing (Davranış Ustası: cost is harvest resources, no direct penalty)");
         Require(texts.Contains("Bonus yok, ceza yok") && texts.Contains("Hasar ve hasat geliri olduğu gibi kalır"), "Keep-current option is explicit");
         // Metin asset değerinden üretilir: değer değişince kart yazısı da değişir.
@@ -499,7 +499,7 @@ public static class SpecializationVerification
         }
         Require(RM.Outcome == RunOutcome.Victory && State == GameStates.RunComplete && choiceScreens == 1 && !SM.IsPending, "Round 20 passed: victory, still one choice");
         var complete = F<GameObject>(Object.FindFirstObjectByType<UIManager>(), "runCompletePanel");
-        var text = complete.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Harvest Score"));
+        var text = complete.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Hasat skoru"));
         Require(text != null && Strip(text).StartsWith("UZMANLAŞMA TESTİ TAMAMLANDI") && Strip(text).Contains("Uzmanlaşma: USTA BİÇİCİ"), "Victory screen: " + Strip(text));
         return 1.5;
     }

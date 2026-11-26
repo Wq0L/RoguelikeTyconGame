@@ -216,7 +216,10 @@ public class PlanterShopPanelUI : MonoBehaviour
     {
         if (animating || index < 0 || index >= cards.Count || cards[index].data == null || !cards[index].data.IsUnlocked) return;
         selectedIndex = index;
-        cards[index].background.sprite = selectedCard;
+        // Yalnız seçilen kart altın: açılışta kendiliğinden seçilen 1x1 başka karta geçince normale döner
+        // (26 Kasım 2026, kullanıcı: 1x2'ye tıklayınca iki altın kart).
+        for (int i = 0; i < cards.Count; i++)
+            cards[i].background.sprite = i == index ? selectedCard : normalCard;
         heading.text = GameText.Get("ui.shop.heading");
         summary.text = GameText.Get("ui.shop.tagline");
         backButton.gameObject.SetActive(true);

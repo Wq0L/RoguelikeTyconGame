@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: XP +20%
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 404b2d578f83a5b4d88295a467c66f15, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 4b0eda120a7d2b04f852831033f52f50, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fb443dcf4c9b4d24cb9b8879b4e6b919, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 0f613401628515c4689b7b67ca5523da, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -92,12 +92,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 46
+  m_fontSize: 40
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 29.9
-  m_fontSizeMax: 46
+  m_fontSizeMin: 12
+  m_fontSizeMax: 40
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -116,7 +116,7 @@ MonoBehaviour:
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
   m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
+  m_enableExtraPadding: 1
   checkPaddingRequired: 0
   m_isRichText: 1
   m_EmojiFallbackSupport: 1
@@ -204,8 +204,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "ETK\u0130"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 404b2d578f83a5b4d88295a467c66f15, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 4b0eda120a7d2b04f852831033f52f50, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fb443dcf4c9b4d24cb9b8879b4e6b919, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 0f613401628515c4689b7b67ca5523da, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -229,12 +229,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 21
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 15.599999
-  m_fontSizeMax: 24
+  m_fontSizeMin: 12
+  m_fontSizeMax: 21
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -253,7 +253,7 @@ MonoBehaviour:
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
   m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
+  m_enableExtraPadding: 1
   checkPaddingRequired: 0
   m_isRichText: 1
   m_EmojiFallbackSupport: 1
@@ -406,8 +406,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 100%
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 404b2d578f83a5b4d88295a467c66f15, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 4b0eda120a7d2b04f852831033f52f50, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fb443dcf4c9b4d24cb9b8879b4e6b919, type: 2}
+  m_sharedMaterial: {fileID: 6394898909699449903, guid: fb443dcf4c9b4d24cb9b8879b4e6b919, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -431,12 +431,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 32
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 23.4
-  m_fontSizeMax: 36
+  m_fontSizeMin: 12
+  m_fontSizeMax: 32
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -455,7 +455,7 @@ MonoBehaviour:
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
   m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
+  m_enableExtraPadding: 1
   checkPaddingRequired: 0
   m_isRichText: 1
   m_EmojiFallbackSupport: 1
@@ -544,8 +544,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "TILE ETK\u0130S\u0130"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 404b2d578f83a5b4d88295a467c66f15, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 4b0eda120a7d2b04f852831033f52f50, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fb443dcf4c9b4d24cb9b8879b4e6b919, type: 2}
+  m_sharedMaterial: {fileID: 6394898909699449903, guid: fb443dcf4c9b4d24cb9b8879b4e6b919, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -569,12 +569,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
+  m_fontSize: 22
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 16.25
-  m_fontSizeMax: 25
+  m_fontSizeMin: 12
+  m_fontSizeMax: 22
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -593,7 +593,7 @@ MonoBehaviour:
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
   m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
+  m_enableExtraPadding: 1
   checkPaddingRequired: 0
   m_isRichText: 1
   m_EmojiFallbackSupport: 1
@@ -760,8 +760,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u2192"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 404b2d578f83a5b4d88295a467c66f15, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 4b0eda120a7d2b04f852831033f52f50, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fb443dcf4c9b4d24cb9b8879b4e6b919, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 0f613401628515c4689b7b67ca5523da, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -785,12 +785,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
+  m_fontSize: 28
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 20.8
-  m_fontSizeMax: 32
+  m_fontSizeMin: 12
+  m_fontSizeMax: 28
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -809,7 +809,7 @@ MonoBehaviour:
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
   m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
+  m_enableExtraPadding: 1
   checkPaddingRequired: 0
   m_isRichText: 1
   m_EmojiFallbackSupport: 1
@@ -897,8 +897,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: More Damage
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 404b2d578f83a5b4d88295a467c66f15, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 4b0eda120a7d2b04f852831033f52f50, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fb443dcf4c9b4d24cb9b8879b4e6b919, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 0f613401628515c4689b7b67ca5523da, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -922,12 +922,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 32
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 23.4
-  m_fontSizeMax: 36
+  m_fontSizeMin: 12
+  m_fontSizeMax: 32
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -946,7 +946,7 @@ MonoBehaviour:
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
   m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
+  m_enableExtraPadding: 1
   checkPaddingRequired: 0
   m_isRichText: 1
   m_EmojiFallbackSupport: 1
@@ -1034,8 +1034,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: More Damage
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 404b2d578f83a5b4d88295a467c66f15, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 4b0eda120a7d2b04f852831033f52f50, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fb443dcf4c9b4d24cb9b8879b4e6b919, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 0f613401628515c4689b7b67ca5523da, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1059,12 +1059,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
+  m_fontSize: 26
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 19.5
-  m_fontSizeMax: 30
+  m_fontSizeMin: 12
+  m_fontSizeMax: 26
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1083,7 +1083,7 @@ MonoBehaviour:
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
   m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
+  m_enableExtraPadding: 1
   checkPaddingRequired: 0
   m_isRichText: 1
   m_EmojiFallbackSupport: 1
@@ -1171,8 +1171,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 112%
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 404b2d578f83a5b4d88295a467c66f15, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 4b0eda120a7d2b04f852831033f52f50, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fb443dcf4c9b4d24cb9b8879b4e6b919, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 0f613401628515c4689b7b67ca5523da, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1196,12 +1196,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 32
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 23.4
-  m_fontSizeMax: 36
+  m_fontSizeMin: 12
+  m_fontSizeMax: 32
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1220,7 +1220,7 @@ MonoBehaviour:
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
   m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
+  m_enableExtraPadding: 1
   checkPaddingRequired: 0
   m_isRichText: 1
   m_EmojiFallbackSupport: 1
@@ -1440,6 +1440,9 @@ MonoBehaviour:
   hoverScale: 1.035
   tilt: -0.6
   duration: 0.13
+  breathe: 0
+  breathePeriod: 2.8
+  breathePhase: 0
 --- !u!114 &3345050753364013327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1523,8 +1526,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "TEMEL \u2192 KARTLA  \xB7  \xD6RNEK"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 404b2d578f83a5b4d88295a467c66f15, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 4b0eda120a7d2b04f852831033f52f50, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fb443dcf4c9b4d24cb9b8879b4e6b919, type: 2}
+  m_sharedMaterial: {fileID: 6394898909699449903, guid: fb443dcf4c9b4d24cb9b8879b4e6b919, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1548,12 +1551,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
+  m_fontSize: 12
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 9.099999
-  m_fontSizeMax: 14
+  m_fontSizeMin: 12
+  m_fontSizeMax: 12
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1572,7 +1575,7 @@ MonoBehaviour:
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
   m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
+  m_enableExtraPadding: 1
   checkPaddingRequired: 0
   m_isRichText: 1
   m_EmojiFallbackSupport: 1

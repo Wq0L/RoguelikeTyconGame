@@ -31,6 +31,11 @@ public class SpaceBackground : MonoBehaviour
     [Header("Motion")]
     [SerializeField, Range(0f, 1f)] private float parallax = 0.35f;
 
+    [Header("Toon Sky")]
+    [Tooltip("Atanırsa oyunun toon gökyüzü (SpaceToonBackground) çizilir ve renkler bu paletten gelir: ayarlara göre güce göre renk merdiveni " +
+             "ya da sabit mor. Boşsa eski uzay (menü).")]
+    [SerializeField] private SpaceSkyPaletteSO skyPalette;
+
     [Header("Scene Integration")]
     [Tooltip("Fog rengini uzay tonuna çeker; ada arka planla kaynaşır. Kapatınca sahnedeki orijinal renk kalır.")]
     [SerializeField] private bool tintFog = true;
@@ -53,6 +58,36 @@ public class SpaceBackground : MonoBehaviour
     private static readonly int ParallaxId = Shader.PropertyToID("_Parallax");
     private static readonly int SpaceViewId = Shader.PropertyToID("_SpaceView");
     private static readonly int SpaceOffsetId = Shader.PropertyToID("_SpaceOffset");
+
+    private static readonly int SkyDeepId = Shader.PropertyToID("_SkyDeep");
+    private static readonly int SkyMidId = Shader.PropertyToID("_SkyMid");
+    private static readonly int SkyGlowId = Shader.PropertyToID("_SkyGlow");
+    private static readonly int SkyNebulaAId = Shader.PropertyToID("_SkyNebulaA");
+    private static readonly int SkyNebulaBId = Shader.PropertyToID("_SkyNebulaB");
+    private static readonly int SkyLitId = Shader.PropertyToID("_SkyLit");
+    private static readonly int SkyBreathId = Shader.PropertyToID("_SkyBreath");
+
+    // Gökyüzü renk durumu: gösterilen, geçişin başı / hedefi. Hedef anahtarı: güce göre ise aşama indeksi, sabit ise −1.
+    private SpaceSkyPaletteSO.SkyColors skyShown, skyFrom, skyTo;
+    private int skyKey = int.MinValue;
+    private float skyBlendStart = -1f;
+    private bool skyPowerSetting;
+
+    public SpaceSkyPaletteSO SkyPalette => skyPalette;
+    public SpaceSkyPaletteSO.SkyColors ShownSky => skyShown;
+    public bool SkyTransitioning => skyBlendStart >= 0f;
+    public bool UsesToonSky => quad != null && skyPalette != null;
+
+    // Oyunun müzik gücü: müzik parçası da bu değerle seçilir (SoundManager.MusicPower), gökyüzü onunla birlikte ilerler.
+    public static int Power => BossRewardManager.Instance != null ? BossRewardManager.Instance.MusicPower : 0;
+
+    // Çalışma zamanında eklenen bileşen için (FeelBootstrap): paleti atar ve gökyüzünü yeniden kurar.
+    public void SetSkyPalette(SpaceSkyPaletteSO palette)
+    {
+        if (skyPalette == palette) return;
+        skyPalette = palette;
+        if (isActiveAndEnabled) { enabled = false; enabled = true; }
+    }
 
     private Camera cam;
     private Material material;
@@ -92,7 +127,8 @@ public class SpaceBackground : MonoBehaviour
             cam.backgroundColor = deepColor;
             return;
         }
-        var shader = Resources.Load<Shader>("SpaceBackground");
+        Shader shader = skyPalette != null ? Resources.Load<Shader>("SpaceToonBackground") : null;
+        if (shader == null || !shader.isSupported) shader = Resources.Load<Shader>("SpaceBackground");
         if (shader == null || !shader.isSupported)
         {
             Debug.LogWarning("SpaceBackground shader bulunamadı veya desteklenmiyor; düz arka plan kullanılıyor.", this);
@@ -114,8 +150,64 @@ public class SpaceBackground : MonoBehaviour
         meshRenderer.allowOcclusionWhenDynamic = false;
         quad = quadObject.transform;
 
+        // Gökyüzü açılışta hedef renkte başlar (geçiş yok); sonraki değişimler LateUpdate'te yumuşak geçer.
+        skyKey = int.MinValue;
+        skyBlendStart = -1f;
+        if (skyPalette != null && material.shader.name == "ClickerGame/SpaceToonBackground")
+        {
+            skyPowerSetting = GameSettings.PowerSky;
+            skyKey = SkyKey();
+            skyShown = skyFrom = skyTo = SkyTarget(skyKey);
+        }
+
         ApplyProperties();
         LateUpdate();
+    }
+
+    private int SkyKey() => GameSettings.PowerSky && skyPalette.stages.Count > 0 ? skyPalette.StageIndexFor(Power) : -1;
+
+    private SpaceSkyPaletteSO.SkyColors SkyTarget(int key) => key < 0 ? skyPalette.fixedPalette : skyPalette.stages[key].colors;
+
+    // Güç ya da ayar değişince yeni renge geçiş. Güç (boss ödülü) round arasında değişir; geçiş yeni round başlarken başlar, round ortasında
+    // ve ödül ekranının arkasında renk kaymaz. Ayar değişikliği her an uygulanır. Ölçeksiz zaman: duraklatmada da tamamlanır. Kare başı ayırma yok.
+    private void UpdateSky()
+    {
+        if (skyPalette == null) return;
+        bool settingChanged = skyPowerSetting != GameSettings.PowerSky;
+        bool canShift = settingChanged || RoundManager.Instance == null || RoundManager.Instance.IsRoundActive;
+        if (canShift)
+        {
+            skyPowerSetting = GameSettings.PowerSky;
+            int key = SkyKey();
+            if (key != skyKey)
+            {
+                skyKey = key;
+                skyFrom = skyShown;
+                skyTo = SkyTarget(key);
+                skyBlendStart = Time.unscaledTime;
+            }
+        }
+        if (skyBlendStart < 0f) return;
+        float t = (Time.unscaledTime - skyBlendStart) / Mathf.Max(0.1f, skyPalette.transitionSeconds);
+        if (t >= 1f)
+        {
+            skyShown = skyTo;
+            skyBlendStart = -1f;
+        }
+        else skyShown = SpaceSkyPaletteSO.Blend(skyFrom, skyTo, Mathf.SmoothStep(0f, 1f, t));
+        ApplySky();
+    }
+
+    private void ApplySky()
+    {
+        if (skyPalette == null || material == null) return;
+        material.SetVector(SkyDeepId, skyShown.deep);
+        material.SetVector(SkyMidId, skyShown.mid);
+        material.SetVector(SkyGlowId, skyShown.glow);
+        material.SetVector(SkyNebulaAId, skyShown.nebulaA);
+        material.SetVector(SkyNebulaBId, skyShown.nebulaB);
+        material.SetVector(SkyLitId, skyShown.lit);
+        material.SetFloat(SkyBreathId, skyPalette.breath);
     }
 
     private void OnDisable()
@@ -127,6 +219,8 @@ public class SpaceBackground : MonoBehaviour
         quad = null;
         material = null;
         mesh = null;
+        skyKey = int.MinValue;
+        skyBlendStart = -1f;
         // Sadece gerçekten değiştirdiysek geri yükle (yarıda kapanınca kamerayı siyaha çevirmesin).
         if (sceneChanged && cam != null)
         {
@@ -167,12 +261,18 @@ public class SpaceBackground : MonoBehaviour
 
         cam.backgroundColor = deepColor;
         RenderSettings.fogColor = tintFog ? fogColor : originalFogColor;
+        if (skyKey != int.MinValue) ApplySky();
     }
 
     private void LateUpdate()
     {
         if (quad == null) return;
-        SpaceNoiseBaker.Bind(material);
+        if (skyKey != int.MinValue)
+        {
+            SpaceToonNoiseBaker.Bind(material);
+            UpdateSky();
+        }
+        else SpaceNoiseBaker.Bind(material);
 
         float viewHeight = cam.orthographic
             ? cam.orthographicSize * 2f

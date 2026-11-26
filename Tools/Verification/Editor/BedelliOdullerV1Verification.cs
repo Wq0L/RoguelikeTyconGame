@@ -165,7 +165,7 @@ public static class BedelliOdullerV1Verification
     static string EndText()
     {
         var panel = F<GameObject>(Object.FindFirstObjectByType<UIManager>(), "runCompletePanel");
-        return Strip(panel.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Harvest Score")));
+        return Strip(panel.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Hasat skoru")));
     }
 
     // Bekleyen kart seçimlerini çözer: her ekranda aday sayısını denetler, ilk kartı alır. Dönen: yapılan seçim sayısı.
@@ -331,7 +331,7 @@ public static class BedelliOdullerV1Verification
         return .05;
     }
 
-    static bool MentionsRound(string s) => s != null && System.Text.RegularExpressions.Regex.IsMatch(s, @"Round \d+");
+    static bool MentionsRound(string s) => s != null && System.Text.RegularExpressions.Regex.IsMatch(s, @"Round \d+|\d+\. turdaki Sınama");
 
     static double Menu()
     {
@@ -907,12 +907,12 @@ public static class BedelliOdullerV1Verification
         var pool = Boss.Pool; var panel = Panel; int stage = pool.StageIndexAt(r);
         var offer = Boss.Offer.ToList();
         Call(panel, "Fill");
-        Must(panel.gameObject.activeInHierarchy && Boss.OfferStage == pool.stages[stage] && panel.TitleText == StageNames[stage] + " AŞAMA · BOSS ÖDÜLÜ" && panel.ShownCards == offer.Count,
+        Must(panel.gameObject.activeInHierarchy && Boss.OfferStage == pool.stages[stage] && panel.TitleText == StageNames[stage] + " AŞAMA · SINAMA ÖDÜLÜ" && panel.ShownCards == offer.Count,
             $"R{r}: panel title \"{panel.TitleText}\" / {panel.ShownCards} cards, expected {StageNames[stage]} AŞAMA · BOSS ÖDÜLÜ / {offer.Count}");
         for (int i = 0; i < offer.Count; i++)
         {
             int s = pool.StageIndexOf(offer[i]);
-            string tag = $"{StageNames[s]} AŞAMA · Round {StageFirstBoss[s]} boss'undan itibaren";
+            string tag = $"{StageNames[s]} AŞAMA · {StageFirstBoss[s]}. turdaki Sınamadan itibaren";
             Must(panel.StageTagText(i) == tag, $"R{r}: card {i} ({offer[i].displayName}) tag \"{panel.StageTagText(i)}\"");
             string fit = FitProblem(panel, i, BossRewardText.IsTrade(offer[i]));
             Must(fit == null, $"R{r}: card {i} ({offer[i].displayName}): {fit}");
@@ -980,9 +980,9 @@ public static class BedelliOdullerV1Verification
         if (r == 23)
         {
             var panel = Panel; int io = offer.IndexOf(og), ia = offer.IndexOf(ad);
-            CheckTradeCard(panel, io, og, "Gelecekteki her level: 3 → 4 seçim", "Doğrudan vuruş hasarı ×0,80", "Davranışa Adanış");
-            CheckTradeCard(panel, ia, ad, "Davranış hasarı ×1,50", "Gelecekteki her level: 3 → 2 seçim", "Bereketli Öğrenim");
-            Require(panel.TitleText == "GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ" && panel.SubtitleText == "Boss geçildi · yalnız biri alınır · run sonuna kadar geçerli · etkisi Round 24 ve sonrası",
+            CheckTradeCard(panel, io, og, "Gelecekteki her seviye: 3 → 4 seçim", "Doğrudan vuruş hasarı ×0,80", "Davranışa Adanış");
+            CheckTradeCard(panel, ia, ad, "Davranış hasarı ×1,50", "Gelecekteki her seviye: 3 → 2 seçim", "Bereketli Öğrenim");
+            Require(panel.TitleText == "GÜÇLÜ AŞAMA · SINAMA ÖDÜLÜ" && panel.SubtitleText == "Sınama geçildi · yalnız biri alınır · deneme sonuna kadar geçerli · etkisi Tur 24 ve sonrası",
                 $"R23 reward screen: \"{panel.TitleText}\" / \"{panel.SubtitleText}\" — cards: {Ids(offer)}");
             Require(true, $"Bereketli Öğrenim card: \"{Strip(TextOf(panel, io, "Effect"))}\" · \"{TextOf(panel, io, "Note")}\" · \"{Strip(TextOf(panel, io, "Stack"))}\"");
             Require(true, $"Davranışa Adanış card: \"{Strip(TextOf(panel, ia, "Effect"))}\" · \"{TextOf(panel, ia, "Note")}\" · \"{Strip(TextOf(panel, ia, "Stack"))}\"");
@@ -1011,8 +1011,8 @@ public static class BedelliOdullerV1Verification
             // HUD ve alınan ödül listesi.
             Call(Hud, "Refresh");
             object line1 = Call(Hud, "ChoiceLine", RM), line2 = Call(Hud, "ChoiceLine", RM);
-            Require(Hud.ChoiceText == "Level başına seçim: 4 (temel 3) · yeni kazanılan level'lar" && ReferenceEquals(line1, line2) &&
-                    Hud.RewardListText.Contains("Bereketli Öğrenim 1/1 · Level seçimi +1 · Doğrudan ×0,80"),
+            Require(Hud.ChoiceText == "Seviye başına seçim: 4 (temel 3) · yeni kazanılan seviyeler" && ReferenceEquals(line1, line2) &&
+                    Hud.RewardListText.Contains("Bereketli Öğrenim 1/1 · Seviye seçimi +1 · Doğrudan ×0,80"),
                 $"HUD: \"{Hud.ChoiceText}\" and reward list line \"Bereketli Öğrenim 1/1 · Level seçimi +1 · Doğrudan ×0,80\"; the line text is built once and reused until the value changes");
         }
         else
@@ -1038,13 +1038,13 @@ public static class BedelliOdullerV1Verification
     static double Victory()
     {
         string end = EndText();
-        Require(headers.Count == 15 && headers.Take(3).All(h => h.EndsWith("ERKEN AŞAMA · BOSS ÖDÜLÜ")) && headers.Skip(3).Take(3).All(h => h.EndsWith("ORTA AŞAMA · BOSS ÖDÜLÜ")) &&
-                headers.Skip(6).All(h => h.EndsWith("GÜÇLÜ AŞAMA · BOSS ÖDÜLÜ")),
+        Require(headers.Count == 15 && headers.Take(3).All(h => h.EndsWith("ERKEN AŞAMA · SINAMA ÖDÜLÜ")) && headers.Skip(3).Take(3).All(h => h.EndsWith("ORTA AŞAMA · SINAMA ÖDÜLÜ")) &&
+                headers.Skip(6).All(h => h.EndsWith("GÜÇLÜ AŞAMA · SINAMA ÖDÜLÜ")),
             "Whole run R1–50: the reward screen header named the stage at all 15 bosses — " + string.Join(" · ", headers));
         Require(levels == 4 && RM.LevelsGained == 4 && granted == 3 + 4 + 4 + 4 && RM.CardChoicesGranted == granted && RM.CardsTaken == granted && RM.PendingCardSelections == 0,
             $"Levels in the run: R23 (before the reward) 3 choices; R24, R30 and R50 (after it) 4 choices each — {RM.LevelsGained} levels, {RM.CardChoicesGranted} choices granted, {RM.CardsTaken} cards taken, 0 pending");
         Require(State == GameStates.RunComplete && RM.Outcome == RunOutcome.Victory && end.StartsWith("RUN TAMAMLANDI · BEDELLİ ÖDÜLLER V1") && end.Contains(finalReward) &&
-                end.Contains("Bereketli Öğrenim → kazanç: level başına seçim +1 · bedel: doğrudan vuruş hasarı ×0,80") && end.Contains("Level başına seçim: 4 (temel 3)") && rewardsTaken == TotalStacks,
+                end.Contains("Bereketli Öğrenim → kazanç: seviye başına seçim +1 · bedel: doğrudan vuruş hasarı ×0,80") && end.Contains("Seviye başına seçim: 4 (temel 3)") && rewardsTaken == TotalStacks,
             $"Run end screen lists the rewards and spells out the gain and the cost: {end}");
         InsertNext(("görüntü run sonu", () => { Capture("T374_04_RunSonu_KazancBedel"); return .05; }));
         return .7;
@@ -1085,14 +1085,14 @@ public static class BedelliOdullerV1Verification
             return .05;
         }
         var panel = Panel; int ia = offer.IndexOf(ad);
-        CheckTradeCard(panel, ia, ad, "Davranış hasarı ×1,50", "Gelecekteki her level: 3 → 2 seçim", "Bereketli Öğrenim");
+        CheckTradeCard(panel, ia, ad, "Davranış hasarı ×1,50", "Gelecekteki her seviye: 3 → 2 seçim", "Bereketli Öğrenim");
         int stacks = TotalStacks;
         Must(Boss.Choose(ad) && !Boss.Choose(ad) && TotalStacks == stacks + 1, "R23: Adanış should be taken exactly once");
         rewardsTaken++;
         Call(Hud, "Refresh");
         Require(RM.ChoicesPerLevel == 2 && BossRewardManager.LevelChoiceDelta == -1 && Near(BossRewardManager.BehaviorDamageMultiplier, 1.5f * Product(x => x.behaviorDamageMultiplier, ad)) &&
-                Hud.ChoiceText == "Level başına seçim: 2 (temel 3) · yeni kazanılan level'lar" && Hud.RewardListText.Contains("Davranışa Adanış 1/1 · Davranış ×1,50 · Level seçimi −1"),
-            $"İkinci run · R23: Davranışa Adanış taken once; a level now gives 2 choices; HUD: \"{Hud.ChoiceText}\" and \"Davranışa Adanış 1/1 · Davranış ×1,50 · Level seçimi −1\"");
+                Hud.ChoiceText == "Seviye başına seçim: 2 (temel 3) · yeni kazanılan seviyeler" && Hud.RewardListText.Contains("Davranışa Adanış 1/1 · Davranış ×1,50 · Seviye seçimi −1"),
+            $"İkinci run · R23: Davranışa Adanış taken once; a level now gives 2 choices; HUD: \"{Hud.ChoiceText}\" and \"Davranışa Adanış 1/1 · Davranış ×1,50 · Seviye seçimi −1\"");
         Must(State == GameStates.RoundEnd, "R23: round summary expected");
         return .05;
     }

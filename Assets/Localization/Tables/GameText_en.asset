@@ -32,49 +32,53 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 969691137
-    m_Localized: "Oh! A ship! Nobody has crashed here in ages\u2026 I mean, come
-      here."
+    m_Localized: Oh, a ship! Nobody has crashed here in ages. Sorry, I mean nobody
+      has come here.
     m_Metadata:
       m_Items: []
   - m_Id: 969691138
-    m_Localized: 'I''m Eri. This planet is mine: the soil is mine, the hands are
-      yours.'
+    m_Localized: I'm Eri, and this planet is mine. If you're staying, you'll be the
+      one working my field. Deal?
     m_Metadata:
       m_Items: []
   - m_Id: 969691139
-    m_Localized: Pick a farmer and a scythe. We'll handle the rest together.
+    m_Localized: First you need to pick a farmer and a scythe. We'll handle the rest
+      together.
     m_Metadata:
       m_Items: []
   - m_Id: 969691140
-    m_Localized: "The field is empty\u2026 Buy a planter from the shop first, then
-      start the round."
+    m_Localized: The field is empty! First you need to buy a planter from the shop,
+      then you can start the round.
     m_Metadata:
       m_Items: []
   - m_Id: 969691141
-    m_Localized: Click an empty spot and the planter settles in. Press R to rotate
-      it.
+    m_Localized: Click an empty spot to place the planter. You can rotate it with
+      R.
     m_Metadata:
       m_Items: []
   - m_Id: 969691142
-    m_Localized: Don't know how to harvest? Keep the cursor over the plants; the
-      scythe swings by itself.
+    m_Localized: Don't know how to harvest? Just keep the cursor over the plants
+      and the scythe swings by itself.
     m_Metadata:
       m_Items: []
   - m_Id: 969691143
-    m_Localized: "Didn't Earth have automatic scythes? I could have sworn it did\u2026"
+    m_Localized: Hmm, don't they have automatic scythes on Earth? I was sure they
+      did.
     m_Metadata:
       m_Items: []
   - m_Id: 969691144
-    m_Localized: That share at the top left is my Offering. Fill it before the period
-      ends, okay?
+    m_Localized: That share at the top left is my Offering. You need to fill it before
+      the period ends, okay?
     m_Metadata:
       m_Items: []
   - m_Id: 969691145
-    m_Localized: You're growing! Pick one; it stays with you for this harvest.
+    m_Localized: You leveled up! Now pick a card. It stays with you until the run
+      ends.
     m_Metadata:
       m_Items: []
   - m_Id: 969691146
-    m_Localized: "Last round of the period. My Offering is still short\u2026 hurry."
+    m_Localized: This is the last round of the period and my Offering is still short.
+      You need to hurry!
     m_Metadata:
       m_Items: []
   - m_Id: 969691147
@@ -82,40 +86,41 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 969691148
-    m_Localized: For now. My next share will be a little bigger.
+    m_Localized: For now, anyway. Next time I'll want a bit more.
     m_Metadata:
       m_Items: []
   - m_Id: 969691149
-    m_Localized: This round is a Trial! Reach the target on the left within this
-      round.
+    m_Localized: This round is a Trial! You need to fill the target on the left before
+      the round ends.
     m_Metadata:
       m_Items: []
   - m_Id: 969691150
-    m_Localized: One of my seeds has gone wild! What it does is written on the left.
+    m_Localized: One of my seeds has gone wild! You can read what it does on the
+      left.
     m_Metadata:
       m_Items: []
   - m_Id: 969691151
-    m_Localized: "The Offering fell short. Hunger\u2026 doesn't wait."
+    m_Localized: You didn't fill my Offering. I can't wait around hungry.
     m_Metadata:
       m_Items: []
   - m_Id: 969691152
-    m_Localized: We'll start again. The soil is always here.
+    m_Localized: Oh well, we'll start over. I'm not going anywhere.
     m_Metadata:
       m_Items: []
   - m_Id: 969691153
-    m_Localized: "You didn't pass the Trial\u2026 And I can't wait either."
+    m_Localized: You didn't pass the Trial. I can't wait any longer either.
     m_Metadata:
       m_Items: []
   - m_Id: 969691154
-    m_Localized: You'll be back. I know it.
+    m_Localized: But you'll be back. I know you will.
     m_Metadata:
       m_Items: []
   - m_Id: 969691155
-    m_Localized: I'm full. Really, this time.
+    m_Localized: Mmm! I'm full. Really full this time.
     m_Metadata:
       m_Items: []
   - m_Id: 969691156
-    m_Localized: "\u2026It won't last, though."
+    m_Localized: But it won't last long.
     m_Metadata:
       m_Items: []
   - m_Id: 969691157
@@ -131,7 +136,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 148337727393792
-    m_Localized: TILE EFFECT
+    m_Localized: PLOT EFFECT
     m_Metadata:
       m_Items: []
   - m_Id: 148337727393793
@@ -255,8 +260,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719561
-    m_Localized: Game language. On first start the computer's language is used; English
-      if it is not available.
+    m_Localized: Game language. On first start your computer's language is used,
+      or English if it isn't available.
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719562
@@ -334,8 +339,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719580
-    m_Localized: Animated space background. When off, a plain colour is used; raises
-      the FPS on weak graphics cards.
+    m_Localized: 'Animated space background. By Power: as you grow stronger, the
+      sky changes colour along with the music. Fixed: the sky always stays the same.
+      Off: a plain colour, which raises the FPS on weak graphics cards.'
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719581
@@ -395,12 +401,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719595
-    m_Localized: Grid Coordinates
+    m_Localized: Field Coordinates
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719596
-    m_Localized: "A\u2013K / 1\u201311 labels on the grid edge; the same as on the
-      map."
+    m_Localized: The A-K and 1-11 labels on the field edge. They match the coordinates
+      on the map.
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719597
@@ -433,7 +439,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719604
-    m_Localized: Move the cursor over the plants; the scythe cuts by itself.
+    m_Localized: Move the cursor over the plants and the scythe cuts by itself.
     m_Metadata:
       m_Items: []
   - m_Id: 151479533719605
@@ -477,20 +483,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 158100917866496
-    m_Localized: "NEW RUN \xB7 LOADOUT"
+    m_Localized: NEW RUN
     m_Metadata:
       m_Items: []
   - m_Id: 158100917866497
-    m_Localized: "Pick a farmer and a scythe \xB7 effects last for this run \xB7
-      applied again in each new run"
+    m_Localized: Pick a farmer and a scythe. Your choice lasts for this run.
     m_Metadata:
       m_Items: []
   - m_Id: 158100917866498
-    m_Localized: "FARMER \xB7 overall approach"
+    m_Localized: "FARMER \xB7 how you'll play"
     m_Metadata:
       m_Items: []
   - m_Id: 158100917866499
-    m_Localized: "SCYTHE \xB7 harvest style"
+    m_Localized: "SCYTHE \xB7 how you'll cut"
     m_Metadata:
       m_Items: []
   - m_Id: 158100917866500
@@ -526,11 +531,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 158100917866508
-    m_Localized: "Neutral \xB7 no advantage, no cost"
+    m_Localized: No upside, no downside
     m_Metadata:
       m_Items: []
   - m_Id: 158100917866509
-    m_Localized: the game's own balance
+    m_Localized: everything as it is
     m_Metadata:
       m_Items: []
   - m_Id: 158100917866510
@@ -546,7 +551,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060802
-    m_Localized: "only Gold \xB7 Iron \xB7 Stone from harvests"
+    m_Localized: only Gold, Iron and Stone from harvests
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060803
@@ -602,7 +607,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060816
-    m_Localized: 'Reference farmer: the game''s own balance.'
+    m_Localized: A good start for your first run.
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060817
@@ -610,7 +615,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060818
-    m_Localized: Use the economy to reach the skill tree early; score trails a little.
+    m_Localized: You gather more resources and reach the skill tree early. Your score
+      trails a little.
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060819
@@ -618,7 +624,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060820
-    m_Localized: Read the aura and pick the valuable plant.
+    m_Localized: Watch the rings and pick the valuable plants.
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060821
@@ -626,7 +632,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060822
-    m_Localized: 'Default hit: damage and radius as they are.'
+    m_Localized: The hit you're used to.
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060823
@@ -634,7 +640,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060824
-    m_Localized: 'Narrow but heavy hit: aim for valuable, tough plants.'
+    m_Localized: A narrow area but a heavy hit. Aim for valuable, tough plants.
     m_Metadata:
       m_Items: []
   - m_Id: 158100922060825
@@ -687,18 +693,18 @@ MonoBehaviour:
       m_Items:
       - rid: 221144893936370180
   - m_Id: 161690701025280
-    m_Localized: "First boss quota: {0} \xB7 {1:plural:{} round|{} rounds}"
+    m_Localized: "First Trial quota: {0} \xB7 {1:plural:{} round|{} rounds}"
     m_Metadata:
       m_Items:
       - rid: 221144893936370180
   - m_Id: 161690705219584
-    m_Localized: The quota is checked at the end of every boss round; miss it and
-      the run ends
+    m_Localized: Your quota is checked at the end of every Trial round. Miss it and
+      the run ends.
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219585
-    m_Localized: The quota is checked every {0:plural:round|{} rounds}; miss it and
-      the run ends
+    m_Localized: Your quota is checked every {0:plural:round|{} rounds}. Miss it
+      and the run ends.
     m_Metadata:
       m_Items:
       - rid: 221144893936370180
@@ -707,7 +713,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219587
-    m_Localized: "BOSS QUOTA MET \xB7 {0} / {1}"
+    m_Localized: "TRIAL QUOTA MET \xB7 {0} / {1}"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219588
@@ -716,7 +722,7 @@ MonoBehaviour:
       m_Items:
       - rid: 221144893936370180
   - m_Id: 161690705219589
-    m_Localized: "Next boss quota: {0} \xB7 {1:plural:{} round|{} rounds}"
+    m_Localized: "Next Trial quota: {0} \xB7 {1:plural:{} round|{} rounds}"
     m_Metadata:
       m_Items:
       - rid: 221144893936370180
@@ -725,7 +731,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219591
-    m_Localized: Boss quota
+    m_Localized: Trial quota
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219592
@@ -733,7 +739,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219593
-    m_Localized: The segment closes at the end of round {0}
+    m_Localized: The period ends at the end of round {0}
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219594
@@ -741,7 +747,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219595
-    m_Localized: "{0} {1} \xB7 miss it and the run ends"
+    m_Localized: '{0} {1}. Miss it and the run ends.'
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219596
@@ -754,15 +760,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219598
-    m_Localized: boss harvest target {0}
+    m_Localized: Trial harvest target {0}
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219599
-    m_Localized: no boss harvest target
+    m_Localized: no Trial harvest target
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219600
-    m_Localized: "Upcoming boss: {0} \xB7 Round {1}"
+    m_Localized: "Upcoming Trial: {0} \xB7 Round {1}"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219601
@@ -796,15 +802,15 @@ MonoBehaviour:
       m_Items:
       - rid: 221144893936370180
   - m_Id: 161690705219608
-    m_Localized: boss harvest {0} / {1}
+    m_Localized: Trial harvest {0} / {1}
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219609
-    m_Localized: 'Next boss: {0} (Round {1})'
+    m_Localized: 'Next Trial: {0} (Round {1})'
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219610
-    m_Localized: "FINAL PREP \xB7 boss {0} next round"
+    m_Localized: "FINAL PREP \xB7 Trial {0} next round"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219611
@@ -816,11 +822,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219613
-    m_Localized: "BOSS: {0} \xB7 HARVEST TARGET {1}"
+    m_Localized: "TRIAL: {0} \xB7 HARVEST TARGET {1}"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219614
-    m_Localized: 'BOSS: {0}'
+    m_Localized: 'TRIAL: {0}'
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219615
@@ -856,16 +862,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219623
-    m_Localized: "hit area one step smaller: {0} \u2192 {1} plants on the best aim"
+    m_Localized: 'your hit area shrank: {1} plants instead of {0} with the best aim'
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219624
-    m_Localized: hit area shrinks by one step
+    m_Localized: your hit area shrinks a little
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219625
-    m_Localized: "hit area shrinks by one step: {0} \u2192 {1} plants on the best
-      aim"
+    m_Localized: 'your hit area will shrink: {1} plants instead of {0} with the best
+      aim'
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219626
@@ -905,7 +911,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219635
-    m_Localized: Boss round over
+    m_Localized: Trial round over
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219636
@@ -913,11 +919,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219637
-    m_Localized: SEGMENT QUOTA
+    m_Localized: PERIOD QUOTA
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219638
-    m_Localized: BOSS QUOTA
+    m_Localized: TRIAL QUOTA
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219639
@@ -934,19 +940,19 @@ MonoBehaviour:
       m_Items:
       - rid: 221144893936370180
   - m_Id: 161690705219642
-    m_Localized: 'Boss harvest target (Round {0}): {1}'
+    m_Localized: 'Trial harvest target (Round {0}): {1}'
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219643
-    m_Localized: 'Boss round: Round {0}'
+    m_Localized: 'Trial round: Round {0}'
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219644
-    m_Localized: 'BOSS HARVEST: no target'
+    m_Localized: 'TRIAL HARVEST: no target'
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219645
-    m_Localized: 'BOSS HARVEST: {0} / {1}'
+    m_Localized: 'TRIAL HARVEST: {0} / {1}'
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219646
@@ -962,7 +968,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219649
-    m_Localized: Boss rewards
+    m_Localized: Trial rewards
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219650
@@ -974,7 +980,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219652
-    m_Localized: CALCULATING LEVEL REWARDS
+    m_Localized: LEVELING UP
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219653
@@ -994,11 +1000,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219657
-    m_Localized: "Hover a tile: details  \xB7  {0} / {1}: back"
+    m_Localized: "Hover a plot: details  \xB7  {0} / {1}: back"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219658
-    m_Localized: "No active resonance yet \xB7 gather same-type tiles under one planter"
+    m_Localized: No resonance yet. Gather plots of the same type under one planter
+      to make one.
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219659
@@ -1014,7 +1021,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219662
-    m_Localized: "+{0} more tiles \xB7 glowing on the map"
+    m_Localized: +{0} more plots, glowing on the map
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219663
@@ -1106,7 +1113,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219685
-    m_Localized: Planter damage stat
+    m_Localized: Planter damage
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219686
@@ -1158,7 +1165,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219698
-    m_Localized: Grid
+    m_Localized: Field size
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219699
@@ -1210,7 +1217,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219711
-    m_Localized: "COMPLETED  \xB7  MAX"
+    m_Localized: MAXED OUT
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219712
@@ -1250,15 +1257,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219721
-    m_Localized: This node wasn't bought; this profile charges nothing for it.
+    m_Localized: This skill is open from the start. You don't need to buy it.
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219722
-    m_Localized: Round time is fixed in this experiment ({0} s).
+    m_Localized: 'Round time is fixed in this mode: {0} s.'
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219723
-    m_Localized: This node has no effect and can't be bought.
+    m_Localized: This skill does nothing here and can't be bought.
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219724
@@ -1270,7 +1277,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219726
-    m_Localized: "{0} (floor \xB7 the rest becomes rarity)"
+    m_Localized: '{0} (fastest, the rest turns into rarity)'
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219727
@@ -1310,8 +1317,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219736
-    m_Localized: '{0} cards open from the start: in the choice pool since the run
-      began.'
+    m_Localized: '{0} cards open from the start, they can show up from the first
+      round.'
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219737
@@ -1323,7 +1330,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219739
-    m_Localized: FROST FRONT
+    m_Localized: FROST
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219740
@@ -1335,7 +1342,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219742
-    m_Localized: RULELESS BOSS
+    m_Localized: RULELESS TRIAL
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219743
@@ -1395,7 +1402,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219757
-    m_Localized: Heavy Cut
+    m_Localized: Honing III
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219758
@@ -1427,35 +1434,35 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219765
-    m_Localized: Steady Production
+    m_Localized: Watering
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219766
-    m_Localized: Wide Sweep
+    m_Localized: Long Handle
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219767
-    m_Localized: Wide Scan
+    m_Localized: Wide Blade
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219768
-    m_Localized: Grid Expansion I
+    m_Localized: Field Expansion I
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219769
-    m_Localized: Grid Expansion II
+    m_Localized: Field Expansion II
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219770
-    m_Localized: Strong Cut
+    m_Localized: Honing II
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219771
-    m_Localized: Harvest Experience I
+    m_Localized: Experience I
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219772
-    m_Localized: Harvest Experience II
+    m_Localized: Experience II
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219773
@@ -1467,35 +1474,35 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219775
-    m_Localized: Second Skip
+    m_Localized: Extra Skip II
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219776
-    m_Localized: First Skip
+    m_Localized: Extra Skip I
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219777
-    m_Localized: Card Intuition
+    m_Localized: Card Luck
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219778
-    m_Localized: Cutting Technique
+    m_Localized: Practiced Hand I
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219779
-    m_Localized: Cutting Mastery
+    m_Localized: Practiced Hand II
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219780
-    m_Localized: Sharp Start
+    m_Localized: Honing I
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219781
-    m_Localized: Critical Power
+    m_Localized: Solid Hit
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219782
-    m_Localized: Critical Focus
+    m_Localized: Keen Eye
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219783
@@ -1515,7 +1522,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219787
-    m_Localized: Fruitful Production
+    m_Localized: Fertilizer
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219788
@@ -1523,11 +1530,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219789
-    m_Localized: Overpower I
+    m_Localized: Extra Honing I
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219790
-    m_Localized: Overpower II
+    m_Localized: Extra Honing II
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219791
@@ -1535,23 +1542,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219792
-    m_Localized: Harvest Peak
+    m_Localized: Practiced Hand IV
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219793
-    m_Localized: Advanced Mastery
+    m_Localized: Practiced Hand III
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219794
-    m_Localized: Plasma Cut
+    m_Localized: Honing V
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219795
-    m_Localized: Mass Production
+    m_Localized: Greenhouse
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219796
-    m_Localized: Last Shift
+    m_Localized: Overtime
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219797
@@ -1559,11 +1566,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219798
-    m_Localized: Lightning Cut
+    m_Localized: Rapid Cuts
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219799
-    m_Localized: Star Cut
+    m_Localized: Honing IV
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219800
@@ -1576,7 +1583,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219802
-    m_Localized: "Spawn at floor \u2192 Rarity"
+    m_Localized: "Fastest spawn \u2192 Rarity"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219803
@@ -1592,11 +1599,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219806
-    m_Localized: "GRID FULL \xB7 the card levels up the tile you pick"
+    m_Localized: "FIELD FULL \xB7 the card levels up the plot you pick"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219807
-    m_Localized: "ALL TILES MAX \xB7 the card gives permanent Base power"
+    m_Localized: "ALL PLOTS MAXED \xB7 the card gives permanent Base power"
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219808
@@ -1640,11 +1647,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219818
-    m_Localized: Empty tile
+    m_Localized: Empty plot
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219819
-    m_Localized: This round's card upgraded this tile.
+    m_Localized: This round's card upgraded this plot.
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219820
@@ -1652,7 +1659,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219821
-    m_Localized: THIS TILE
+    m_Localized: THIS PLOT
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219822
@@ -1669,8 +1676,8 @@ MonoBehaviour:
       m_Items:
       - rid: 221144893936370180
   - m_Id: 161690705219825
-    m_Localized: "Spawn at its floor ({0} s): extra speed turns into rarity \xB7
-      {1} rarity to the planter"
+    m_Localized: 'Spawning at top speed ({0} s). The extra speed turned into rarity:
+      {1} rarity to the planter.'
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219826
@@ -1682,7 +1689,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219828
-    m_Localized: "{0:plural:{} tile|{} tiles} \xB7 {1:plural:{} resonance|{} resonances}"
+    m_Localized: "{0:plural:{} plot|{} plots} \xB7 {1:plural:{} resonance|{} resonances}"
     m_Metadata:
       m_Items:
       - rid: 221144893936370180
@@ -1695,7 +1702,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219831
-    m_Localized: TILES UNDER THE PLANTER
+    m_Localized: PLOTS UNDER THE PLANTER
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219832
@@ -1719,7 +1726,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219837
-    m_Localized: Wisdom
+    m_Localized: Wellspring
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219838
@@ -1727,7 +1734,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219839
-    m_Localized: Empowered Harvest
+    m_Localized: Sharp Focus
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219840
@@ -1739,7 +1746,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219842
-    m_Localized: Electric Lore
+    m_Localized: Water Channel
     m_Metadata:
       m_Items: []
   - m_Id: 161690705219843
@@ -1787,8 +1794,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898114
-    m_Localized: "aftershock spreading {0:plural:{} cell|{} cells} beyond the explosion
-      \xB7 {1} s per step \xB7 {2} of the first explosion's damage"
+    m_Localized: spreads {0:plural:{} cell|{} cells} beyond the explosion. Each step
+      takes {1} s and deals {2} of the first explosion's damage
     m_Metadata:
       m_Items:
       - rid: 221144893936370180
@@ -1806,7 +1813,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898118
-    m_Localized: "once every {0} direct harvests: damage \xD7{1} \xB7 radius \xD7{2}"
+    m_Localized: "once every {0} direct harvests: damage \xD7{1}, radius \xD7{2}"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898119
@@ -1814,12 +1821,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898120
-    m_Localized: "chance {0} \xB7 damage {1}"
+    m_Localized: chance {0}, damage {1}
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898121
-    m_Localized: "behavior harvests trigger other planters' behaviors \xB7 up to
-      {0:plural:{} extra generation|{} extra generations} \xB7 {1}"
+    m_Localized: behavior harvests also trigger other planters' behaviors. Up to
+      {0:plural:{} link|{} links}, {1} per link
     m_Metadata:
       m_Items:
       - rid: 221144893936370180
@@ -1872,15 +1879,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898134
-    m_Localized: "Choices per level: {0} (base {1}) \xB7 for newly gained levels"
+    m_Localized: 'Choices per level: {0} (normally {1}). Applies to levels gained
+      from now on.'
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898135
-    m_Localized: "{0} STAGE \xB7 BOSS REWARD"
+    m_Localized: "{0} STAGE \xB7 TRIAL REWARD"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898136
-    m_Localized: "{0} STAGE \xB7 from the Round {1} boss on"
+    m_Localized: "{0} STAGE \xB7 from the Round {1} Trial on"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898137
@@ -1892,7 +1900,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898139
-    m_Localized: Every reward is at its limit or changes nothing right now
+    m_Localized: Every reward is either taken or useless right now
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898140
@@ -1900,43 +1908,41 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898141
-    m_Localized: "BOSS CLEARED \xB7 PICK A REWARD"
+    m_Localized: "TRIAL PASSED \xB7 PICK A REWARD"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898142
-    m_Localized: "FINAL BOSS CLEARED \xB7 PICK A REWARD"
+    m_Localized: "FINAL TRIAL PASSED \xB7 PICK A REWARD"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898143
-    m_Localized: No reward can be offered for this boss
+    m_Localized: No reward can be offered for this Trial
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898144
-    m_Localized: "Take only one \xB7 lasts until the end of the run \xB7 applies
-      from Round {0} on"
+    m_Localized: Pick one. It lasts from round {0} until the end of the run.
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898145
-    m_Localized: "take only one \xB7 lasts until the end of the run \xB7 applies
-      from Round {0} on"
+    m_Localized: Pick one. It lasts from round {0} until the end of the run.
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898146
-    m_Localized: "Take only one \xB7 the run ends here \xB7 the reward goes on the
-      run end list"
+    m_Localized: Pick one. The run ends here, and the reward goes on the results
+      screen.
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898147
-    m_Localized: "take only one \xB7 the run ends here \xB7 the reward goes on the
-      run end list"
+    m_Localized: Pick one. The run ends here, and the reward goes on the results
+      screen.
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898148
-    m_Localized: "Boss cleared \xB7 {0}"
+    m_Localized: You passed the Trial. {0}
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898149
-    m_Localized: "Final boss cleared \xB7 {0}"
+    m_Localized: You passed the final Trial. {0}
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898150
@@ -1964,7 +1970,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898156
-    m_Localized: Boss rewards taken
+    m_Localized: Trial rewards taken
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898157
@@ -1972,19 +1978,18 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898158
-    m_Localized: "Pick a spot on the field edge \xB7 the antenna faces inward"
+    m_Localized: Pick a spot on the field edge. The antenna faces the field.
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898159
-    m_Localized: "the edge antenna hits the first {0:plural:{} cell|{} cells} it
-      faces every {1} s \xB7 {2}% of harvest damage"
+    m_Localized: every {1} s, hits the first {0:plural:{} cell|{} cells} it faces
+      for {2}% of harvest damage
     m_Metadata:
       m_Items:
       - rid: 221144893936370180
   - m_Id: 227725751898160
-    m_Localized: "if the line harvests a plant of a planter with a behavior, an extra
-      line hit at that planter's behavior chance \xB7 {0}% of the damage \xB7 cooldown
-      {1} s"
+    m_Localized: if the line harvests a plant from a planter with a behavior, it
+      hits once more at that planter's chance ({0}% of the damage, {1} s cooldown)
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898161
@@ -1996,67 +2001,72 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898163
-    m_Localized: "a second antenna on the opposite edge, in line \xB7 line hits on
-      the cells between the antennas every {0} s \xB7 {1}% of harvest damage"
+    m_Localized: a second antenna goes on the opposite edge, in line. Every {0} s
+      it hits the cells between the antennas for {1}% of harvest damage
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898164
-    m_Localized: "every {0} direct plant hits, a crescent from the cursor \xB7 random
-      main direction, up to {1} units \xB7 {2}% of harvest damage"
+    m_Localized: every {0} direct hits, a crescent flies from the cursor. It travels
+      up to {1:plural:{} unit|{} units} in a random direction and hits for {2}% of
+      harvest damage
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 221144893936370180
   - m_Id: 227725751898165
-    m_Localized: "a crescent every {0} valid hits \xB7 travels {1:plural:{} cell|{}
-      cells} \xB7 {2}% of harvest damage"
+    m_Localized: every {0} hits, a crescent flies out. It travels {1:plural:{} cell|{}
+      cells} and hits for {2}% of harvest damage
     m_Metadata:
       m_Items:
       - rid: 221144893936370180
   - m_Id: 227725751898166
-    m_Localized: "a crit arcs to another plant within {0:plural:{} cell|{} cells}
-      \xB7 {1}% of crit damage \xB7 up to {2} per hit"
+    m_Localized: a crit jumps to another plant within {0:plural:{} cell|{} cells}.
+      It hits for {1}% of crit damage, up to {2:plural:once|{} times} per hit
     m_Metadata:
       m_Items:
       - rid: 221144893936370180
   - m_Id: 227725751898167
-    m_Localized: "crit on {0}+ plants in one hit: extra area hit at the center \xB7
-      {1}% of harvest damage \xD7 crit multiplier"
+    m_Localized: "crit {0} or more plants in one hit and another area hit bursts
+      in the middle. Power: {1}% of harvest damage \xD7 crit multiplier"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898168
-    m_Localized: "each main crescent sends a big extra crescent from the cursor ring
-      \xB7 random direction, not the main one \xB7 {0}% of base damage \xB7 cost:
-      {1} s hit pause"
+    m_Localized: each main crescent comes with a big extra crescent from the cursor
+      ring, going another way. It hits for {0}% of base damage. In return, your hits
+      pause for {1} s
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898169
-    m_Localized: "{0}+ harvests in one hit: next hit's damage \xD7{1} \xB7 hit a
-      single target and the charge is lost"
+    m_Localized: "harvest {0} or more plants in one hit and your next hit deals \xD7{1}
+      damage. Hit a single plant and you lose the charge"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898170
-    m_Localized: "crescent range +{0} units \xB7 grows with harvests: damage +{1}%
-      (up to {2} times), front {3} cells \xB7 a step without a harvest resets it"
+    m_Localized: 'the crescent flies {0:plural:{} unit|{} units} further. It grows
+      as you harvest: +{1}% damage each time (up to {2:plural:once|{} times}) and
+      a {3}-cell front. A step without a harvest resets the growth'
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 221144893936370180
   - m_Id: 227725751898171
-    m_Localized: "{0}+ harvests in one hit: meteors on the cells mirrored across
-      the field center (up to {1}) \xB7 {2}% of harvest damage \xB7 cooldown {3}
-      s"
+    m_Localized: harvest {0} or more in one hit and meteors fall on the cells opposite
+      yours across the field center (up to {1} cells). They hit for {2}% of harvest
+      damage, {3} s cooldown
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898172
-    m_Localized: "{0}% of a killing hit's leftover damage passes to the next plant
-      \xB7 up to {1} transfers \xB7 {2}% lost per transfer"
+    m_Localized: '{0}% of a killing hit''s leftover damage passes to the next plant.
+      Up to {1:plural:{} transfer|{} transfers}, {2}% less each time'
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 221144893936370180
   - m_Id: 227725751898173
-    m_Localized: "a triggered planter behavior runs once more {0} s later \xB7 {1}%
-      of the damage \xB7 {2} s cooldown per planter + behavior"
+    m_Localized: a triggered planter behavior runs once more {0} s later, at {1}%
+      of the damage. Each planter and behavior has a {2} s cooldown
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898174
-    m_Localized: "harvest a {0}-or-better plant with your own hit: current behavior
-      chances \xD7{2} for {1} s \xB7 doesn't stack, the timer refreshes"
+    m_Localized: "harvest a {0}-or-rarer plant with your own hit and your behavior
+      chances are \xD7{2} for {1} s. Doesn't stack, the timer restarts"
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898175
@@ -2076,15 +2086,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898179
-    m_Localized: Only your own hit. Taken once.
+    m_Localized: Only affects your own hit. Can be taken once.
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898180
-    m_Localized: Taken once. Floor 0.10 s.
+    m_Localized: Can be taken once. The time between hits never drops below 0.10
+      s.
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898181
-    m_Localized: Each planter and behavior is tried once per attack chain. Aftershocks
+    m_Localized: In one chain, each planter's behavior triggers at most once. Aftershocks
       and second waves don't join the chain.
     m_Metadata:
       m_Items: []
@@ -2097,9 +2108,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898184
-    m_Localized: Only harvests from your own hits count. When the charge is ready
-      your next hit is stronger (the cursor ring grows). No extra attacks; doesn't
-      carry over to behaviors.
+    m_Localized: Only harvests from your own hits count. When the counter fills,
+      your next hit gets stronger and the cursor ring grows. No extra hits, behaviors
+      aren't affected.
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898185
@@ -2111,7 +2122,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898187
-    m_Localized: Fruitful Learning
+    m_Localized: More Choices
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898188
@@ -2119,12 +2130,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898189
-    m_Localized: Devoted to Behaviors
+    m_Localized: Trust the Planters
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898190
-    m_Localized: "Explosion \xB7 electric \xB7 tornado \xB7 boomerang. Your own hit
-      is unchanged."
+    m_Localized: Boosts explosion, electric, tornado and boomerang. Your own hit
+      stays the same.
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898191
@@ -2136,11 +2147,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898193
-    m_Localized: Only crits of your own hit.
+    m_Localized: Only boosts the crits of your own hit.
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898194
-    m_Localized: Golden Target
+    m_Localized: Rare Hunter
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898195
@@ -2148,8 +2159,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898196
-    m_Localized: Only your own hit; Common and Uncommon unchanged. Behavior damage
-      unchanged.
+    m_Localized: Only affects your own hit. Common and Uncommon plants and behavior
+      damage stay the same.
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898197
@@ -2165,12 +2176,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898200
-    m_Localized: All planters. Offered only if your field is emptying (last round's
-      average fill below 65%). Floor 0.50 s.
+    m_Localized: Works on all planters. Only offered if your field is running empty.
+      Spawn time never drops below 0.50 s.
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898201
-    m_Localized: Sprout of Knowledge
+    m_Localized: Experience Seed
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898202
@@ -2178,11 +2189,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898203
-    m_Localized: XP from harvests. Not offered after the Round 30 boss.
+    m_Localized: XP from harvests. Not offered after the Round 30 Trial.
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898204
-    m_Localized: Monster Cut
+    m_Localized: Giant Scythe
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898205
@@ -2190,11 +2201,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898206
-    m_Localized: Only your own hit. Offered after the Round 25 boss; taken once.
+    m_Localized: Only affects your own hit. Offered after the Round 25 Trial, can
+      be taken once.
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898207
-    m_Localized: Storm Wrist
+    m_Localized: Nimble Wrist
     m_Metadata:
       m_Items: []
   - m_Id: 227725751898208
@@ -2206,7 +2218,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092416
-    m_Localized: Offered after the Round 25 boss; taken once. Floor 0.10 s.
+    m_Localized: Offered after the Round 25 Trial, can be taken once. The time between
+      hits never drops below 0.10 s.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092417
@@ -2218,7 +2231,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092419
-    m_Localized: Only your own hit. The cursor ring grows; behavior area unchanged.
+    m_Localized: 'Only affects your own hit: the cursor ring grows. Behavior areas
+      stay the same.'
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092420
@@ -2234,7 +2248,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092423
-    m_Localized: Shorter time between hits. Floor 0.10 s.
+    m_Localized: Shortens the time between hits, but never below 0.10 s.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092424
@@ -2246,11 +2260,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092426
-    m_Localized: Only your own hit. Behavior damage unchanged.
+    m_Localized: Only boosts your own hit. Behavior damage stays the same.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092427
-    m_Localized: Spark
+    m_Localized: Hair Trigger
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092428
@@ -2258,8 +2272,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092429
-    m_Localized: "Explosion \xB7 tornado \xB7 boomerang \xB7 electric. Gives no chance
-      to a planter that has none; up to 100%."
+    m_Localized: Raises explosion, tornado, boomerang and electric chances. A planter
+      with no chance gets none. Up to 100%.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092430
@@ -2271,7 +2285,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092432
-    m_Localized: Only your own hit. Added as percentage points.
+    m_Localized: Only affects your own hit. Added to the chance as percentage points.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092433
@@ -2283,11 +2297,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092435
-    m_Localized: All planters. Added as percentage points; up to 95 points.
+    m_Localized: Works on all planters. Added as percentage points, up to 95 points.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092436
-    m_Localized: Destructive Force
+    m_Localized: Strong Planters
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092437
@@ -2295,8 +2309,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092438
-    m_Localized: "Explosion \xB7 tornado \xB7 boomerang \xB7 electric. Your own hit
-      is unchanged."
+    m_Localized: Boosts explosion, tornado, boomerang and electric. Your own hit
+      stays the same.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092439
@@ -2308,21 +2322,21 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092441
-    m_Localized: An empty swing doesn't spend the charge. The powered hit doesn't
-      earn a new charge. Doesn't carry over to behaviors.
+    m_Localized: An empty swing doesn't use the charge. The powered hit doesn't earn
+      a new one. Behaviors aren't affected.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092442
-    m_Localized: Overload
+    m_Localized: Double Trigger
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092443
-    m_Localized: 'Load:'
+    m_Localized: 'Repeat:'
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092444
-    m_Localized: The extra proc doesn't join the chain or roll again. The tornado
-      / boomerang active limit isn't exceeded.
+    m_Localized: The repeated behavior starts no chain and rolls no new chance. The
+      limit on tornadoes and boomerangs at once still holds.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092445
@@ -2334,10 +2348,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092447
-    m_Localized: "Crescent range +1 unit: 3 \u2192 4. The main crescent grows with
-      the distance it travels, from birth until it fades; it doesn't wait for the
-      first harvest. Damage growth depends on real harvests. Full Moon is big from
-      the start and stays that size."
+    m_Localized: The crescent travels 4 units instead of 3 and grows as it goes.
+      Its damage only grows with real harvests. Full Moon is big from the start and
+      doesn't grow.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092448
@@ -2349,10 +2362,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092450
-    m_Localized: Each main crescent comes with exactly one big extra crescent; no
-      harvest needed. It starts from the cursor ring and moves in a random direction
-      other than the main one. It is big from the start and makes no further Full
-      Moons.
+    m_Localized: Each main crescent comes with one more big crescent, no harvest
+      needed. It leaves the cursor ring in another direction. A Full Moon makes no
+      new Full Moon.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092451
@@ -2364,24 +2376,24 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092453
-    m_Localized: 'The antenna stands on the field edge; it takes no planter or tile
-      space. Its hit doesn''t count as yours: no crits, no behavior triggers.'
+    m_Localized: 'The antenna stands on the field edge and takes no planter space.
+      Its hit doesn''t count as yours: no crits, no behavior triggers.'
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092454
-    m_Localized: Harvest Echo
+    m_Localized: Mirror Meteor
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092455
-    m_Localized: 'Echo:'
+    m_Localized: 'Meteor:'
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092456
-    m_Localized: Only harvests from your own hits count. An echo makes no new echo.
+    m_Localized: Only harvests from your own hits count. A meteor makes no new meteor.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092457
-    m_Localized: Crescent Strike
+    m_Localized: Crescent
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092458
@@ -2389,8 +2401,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092459
-    m_Localized: The crescent leaves the cursor ring's edge in a random main direction.
-      Speed 8 units/s; base range 3, 4 with Growing Moon.
+    m_Localized: The crescent leaves the cursor ring's edge in a random direction.
+      It normally travels 3 units, 4 with Growing Moon.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092460
@@ -2402,8 +2414,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092462
-    m_Localized: You choose where the second antenna goes; spots where no line can
-      form can't be chosen. Line hits don't count as yours.
+    m_Localized: You choose where the second antenna goes. Spots where no line can
+      form can't be picked. Line hits don't count as yours.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092463
@@ -2415,34 +2427,34 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092465
-    m_Localized: The extra hit can't restart itself. Does nothing without a planter
-      that has a behavior.
+    m_Localized: The extra line hit starts no further extra hits. Does nothing without
+      a planter that has a behavior.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092466
-    m_Localized: Critical Arc
+    m_Localized: Jumping Crit
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092467
-    m_Localized: 'Arc:'
+    m_Localized: 'Jump:'
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092468
-    m_Localized: The arc goes to a plant your hit didn't touch. It doesn't crit or
-      make new arcs.
+    m_Localized: The crit jumps to a plant your hit didn't touch. The jump doesn't
+      crit or jump again.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092469
-    m_Localized: Rare Reactor
+    m_Localized: Rare Thrill
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092470
-    m_Localized: 'Reactor:'
+    m_Localized: 'Thrill:'
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092471
-    m_Localized: "Explosion \xB7 tornado \xB7 boomerang \xB7 electric. Gives no chance
-      to a planter that has none; up to 100%."
+    m_Localized: Raises explosion, tornado, boomerang and electric chances. A planter
+      with no chance gets none. Up to 100%.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092472
@@ -2454,8 +2466,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092474
-    m_Localized: Starts only from a plant killed by your own hit. Transfers don't
-      crit.
+    m_Localized: Only starts from a plant you killed with your own hit. Passed-on
+      damage doesn't crit.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092475
@@ -2468,8 +2480,8 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 227725756092477
     m_Localized: Spreads three steps from the explosion's outer edge. Hits each cell
-      once; doesn't pass locked cells. An aftershock starts no new aftershock or
-      chain.
+      once and doesn't pass locked cells. An aftershock starts no new aftershock
+      or chain.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092478
@@ -2481,8 +2493,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092480
-    m_Localized: After every normal electric that procs, a second wave from the same
-      planter. No new roll; the second wave starts no chain.
+    m_Localized: After every electric that triggers, a second wave comes from the
+      same planter. No new chance is rolled, and the second wave starts no chain.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092481
@@ -2531,16 +2543,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092492
-    m_Localized: "BOSS CLEARED \xB7 PICK A SPECIALIZATION"
+    m_Localized: "TRIAL PASSED \xB7 PICK A SPECIALIZATION"
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092493
-    m_Localized: "Take only one \xB7 lasts until the end of the run \xB7 can't be
-      undone \xB7 applies from Round {0} on"
+    m_Localized: Pick one. It lasts from round {0} until the end of the run and can't
+      be undone.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092494
-    m_Localized: No bonus, no penalty
+    m_Localized: No upside, no downside
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092495
@@ -2556,7 +2568,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092498
-    m_Localized: "explosion \xB7 tornado \xB7 boomerang \xB7 electric"
+    m_Localized: explosion, tornado, boomerang and electric
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092499
@@ -2564,7 +2576,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092500
-    m_Localized: "Gold \xB7 Iron \xB7 Stone from harvests"
+    m_Localized: Gold, Iron and Stone from harvests
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092501
@@ -2572,15 +2584,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092502
-    m_Localized: BEHAVIOR MASTER
+    m_Localized: GREEN THUMB
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092503
-    m_Localized: KEEP THE CURRENT ORDER
+    m_Localized: LEAVE IT AS IS
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092504
-    m_Localized: MASTER REAPER
+    m_Localized: REAPER
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092505
@@ -2592,7 +2604,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092507
-    m_Localized: PICK IT. PLANT IT. GROW BIG.
+    m_Localized: Pick a planter, put it in your field.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092508
@@ -2636,7 +2648,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092518
-    m_Localized: Planter setup is incomplete.
+    m_Localized: This planter can't be bought right now.
     m_Metadata:
       m_Items: []
   - m_Id: 227725756092519
@@ -2712,11 +2724,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286720
-    m_Localized: BOSS REWARDS
+    m_Localized: TRIAL REWARDS
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286721
-    m_Localized: 'Boss rewards: {0}'
+    m_Localized: 'Trial rewards: {0}'
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286722
@@ -2724,7 +2736,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286723
-    m_Localized: level calculation {0}
+    m_Localized: leveling up {0}
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286724
@@ -2732,23 +2744,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286725
-    m_Localized: QUOTA AND BOSS HARVEST MISSED
+    m_Localized: QUOTA AND TRIAL HARVEST MISSED
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286726
-    m_Localized: BOSS HARVEST MISSED
+    m_Localized: TRIAL HARVEST MISSED
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286727
-    m_Localized: segment quota {0} (short)
+    m_Localized: period quota {0} (short)
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286728
-    m_Localized: segment quota {0} (met)
+    m_Localized: period quota {0} (met)
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286729
-    m_Localized: "Round {0} \xB7 boss harvest {1} (short) \xB7 {2}"
+    m_Localized: "Round {0} \xB7 Trial harvest {1} (short) \xB7 {2}"
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286730
@@ -2756,11 +2768,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286731
-    m_Localized: "Round {0} \xB7 segment score {1} (quota needed)"
+    m_Localized: "Round {0} \xB7 period score {1} (quota needed)"
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286732
-    m_Localized: boss harvest {0} / {1} (met)
+    m_Localized: Trial harvest {0} / {1} (met)
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286733
@@ -2777,11 +2789,11 @@ MonoBehaviour:
       m_Items:
       - rid: 221144893936370180
   - m_Id: 227725760286736
-    m_Localized: "RUN COMPLETE \xB7 ALPHA BALANCE V1"
+    m_Localized: RUN COMPLETE
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286737
-    m_Localized: "RUN COMPLETE \xB7 LATE GAME V1"
+    m_Localized: RUN COMPLETE
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286738
@@ -2789,12 +2801,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286739
-    m_Localized: GRAFTED SHELL
+    m_Localized: TWO PATHS
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286740
-    m_Localized: "One of two zones will close \xB7 break a node: its zone is saved,
-      the other closes \xB7 choose nothing and A closes"
+    m_Localized: One of two zones will close. Break a node and its zone is saved.
+      Break neither and A closes.
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286741
@@ -2831,8 +2843,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286749
-    m_Localized: "A sprout is coming \xB7 production slows where it spreads \xB7
-      break the main sprout with your own hit"
+    m_Localized: A sprout is coming. Production slows wherever it spreads. Break
+      the main sprout with your own hit.
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286750
@@ -2842,11 +2854,11 @@ MonoBehaviour:
       m_Items:
       - rid: 221144893936370180
   - m_Id: 227725760286751
-    m_Localized: "Main sprout broken \xB7 production back to normal"
+    m_Localized: You broke the main sprout, production is back to normal.
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286752
-    m_Localized: "The sprout withered \xB7 production back to normal"
+    m_Localized: The sprout withered, production is back to normal.
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286753
@@ -2854,8 +2866,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286754
-    m_Localized: "Production will stop on {0:plural:{} marked cell|{} marked cells}
-      \xB7 break the roots with your own hit"
+    m_Localized: Production will stop on {0:plural:{} marked cell|{} marked cells}.
+      Break the roots with your own hit.
     m_Metadata:
       m_Items:
       - rid: 221144893936370180
@@ -2865,11 +2877,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286756
-    m_Localized: "Roots broken \xB7 zone reopened"
+    m_Localized: You broke the roots, the zone is open again.
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286757
-    m_Localized: "The thorns withdrew \xB7 zone reopened"
+    m_Localized: The thorns pulled back, the zone is open again.
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286758
@@ -2877,7 +2889,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286759
-    m_Localized: "Bounty incoming: resources and XP \xD72 \xB7 production \xD72 faster"
+    m_Localized: 'A bounty is coming: double resources and XP, production twice as
+      fast.'
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286760
@@ -2885,7 +2898,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286761
-    m_Localized: "Empty slots fill \xD72 faster \xB7 for the whole round"
+    m_Localized: Empty slots fill twice as fast for the whole round
     m_Metadata:
       m_Items: []
   - m_Id: 227725760286762
@@ -2895,7 +2908,7 @@ MonoBehaviour:
       m_Items:
       - rid: 221144893936370180
   - m_Id: 227725760286763
-    m_Localized: "Bounty over \xB7 {0:plural:{} bonus harvest|{} bonus harvests}"
+    m_Localized: 'Bounty over: {0:plural:{} bountiful harvest|{} bountiful harvests}'
     m_Metadata:
       m_Items:
       - rid: 221144893936370180
@@ -2929,11 +2942,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 298375912902656
-    m_Localized: You passed a Trial! A shiver ran all the way down to my roots.
+    m_Localized: You passed a Trial! My leaves are shaking with joy.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845696
-    m_Localized: "Where did your ship come from? Earth? \u2026Never heard of it."
+    m_Localized: "Where did your ship come from again? Earth? Hmm\u2026 never heard
+      of it."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845697
@@ -2941,7 +2955,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845698
-    m_Localized: Thanks for trusting me.
+    m_Localized: Thank you for trusting me.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845699
@@ -2953,16 +2967,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845701
-    m_Localized: "Don't get too strong, though\u2026 Strong farmers always leave
-      one day."
+    m_Localized: But don't get too strong, okay? Strong farmers always end up leaving
+      one day.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845702
-    m_Localized: The field gave you that reward. The field loves you.
+    m_Localized: The field gave you that reward. I think the field really likes you.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845703
-    m_Localized: So do I. Strong hands are so precious.
+    m_Localized: I like you too. I need hard-working hands like yours.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845704
@@ -2970,15 +2984,17 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845705
-    m_Localized: The more you work, the more I grow. Fair deal, right?
+    m_Localized: The more you work, the more I grow. I'd say that's a good deal for
+      both of us.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845706
-    m_Localized: Why do I want the Offering? To grow.
+    m_Localized: Why do I want the Offering? To grow, of course.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845707
-    m_Localized: The more you give, the bigger I get. Don't you want to grow too?
+    m_Localized: The more you give me, the bigger I get. You want to grow too, I
+      know it.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845708
@@ -2986,25 +3002,25 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845709
-    m_Localized: "Then\u2026 they left. Yes. They left."
+    m_Localized: "Then\u2026 they left. Yes, they all left."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845710
-    m_Localized: Ever wondered why your ship crashed? You had fuel, your engine was
-      fine.
+    m_Localized: Ever wondered why your ship crashed? You had fuel, and your engine
+      was fine.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845711
-    m_Localized: "\u2026Never mind. You're happy here, aren't you?"
+    m_Localized: Anyway, never mind that. You're happy here.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845712
-    m_Localized: "I didn't think you'd make it this far\u2026"
+    m_Localized: "I never thought you'd make it this far\u2026"
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845713
-    m_Localized: I've wilted a little, haven't I? The stronger you get, the more
-      scared I am.
+    m_Localized: I've wilted a little, have you noticed? The stronger you get, the
+      more scared I am.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845714
@@ -3017,7 +3033,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845716
-    m_Localized: "\u2026Never mind. Harvest."
+    m_Localized: Nothing. You should mind your harvest.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845717
@@ -3029,16 +3045,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845719
-    m_Localized: I used to have a huge blue field. Its soil was warm all the way
-      to the core.
+    m_Localized: I used to have a huge blue field. Its core was so warm.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845720
-    m_Localized: I finished it. I can still taste it.
+    m_Localized: "I ate all of it. Mmm\u2026 I can still taste it."
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845721
-    m_Localized: "The other farmers didn't leave. I\u2026 harvested them."
+    m_Localized: The other farmers didn't leave. I harvested them.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845722
@@ -3046,7 +3061,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845723
-    m_Localized: Ships don't just fall. I pulled yours down.
+    m_Localized: Ships don't just fall out of the sky. I pulled yours down.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845724
@@ -3062,19 +3077,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845727
-    m_Localized: The last Trial. Pass it and you've beaten me.
+    m_Localized: This is the last Trial. Pass it and you'll have beaten me.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845728
-    m_Localized: Fail it and you're still here. Either way works for me.
+    m_Localized: Fail it and you'll stay here. Either way, I win.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845729
-    m_Localized: "You won. You reached the end\u2026"
+    m_Localized: "You won. You made it all the way to the end\u2026"
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845730
-    m_Localized: Then the game is over. No need to hide anymore.
+    m_Localized: Then the game is over. I don't need to hide anymore.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845731
@@ -3082,27 +3097,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845732
-    m_Localized: You trusted me. That was the sweetest part.
+    m_Localized: You trusted me. That's the part I loved most.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845733
-    m_Localized: You suspected me. You were right, and you stayed anyway.
+    m_Localized: You suspected me, and you were right. But you stayed anyway.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845734
-    m_Localized: I was never sad, farmer. Not once. Just hungry.
+    m_Localized: I was never sad, farmer. I was just hungry.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845735
-    m_Localized: Harvest. I need to get stronger for the next planet.
+    m_Localized: Come on, keep harvesting. I need to get stronger for the next planet.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845736
-    m_Localized: We know each other now. My Offering is waiting.
+    m_Localized: We know each other now. Come on, my Offering is waiting for you.
     m_Metadata:
       m_Items: []
   - m_Id: 298375954845737
-    m_Localized: You can't run. No ship, no Earth. There's only me.
+    m_Localized: You can't run. You have no ship and no Earth. There's only me here.
     m_Metadata:
       m_Items: []
   - m_Id: 530164191350784
@@ -3130,11 +3145,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5609442599784448
-    m_Localized: "Boss rewards ({0}) \xB7 {1} to show"
+    m_Localized: "Trial rewards ({0}) \xB7 {1} to show"
     m_Metadata:
       m_Items: []
   - m_Id: 5609442645921792
-    m_Localized: "Boss rewards ({0}) \xB7 {1} to hide"
+    m_Localized: "Trial rewards ({0}) \xB7 {1} to hide"
     m_Metadata:
       m_Items: []
   - m_Id: 5622503402393600
@@ -3146,12 +3161,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5627776087117824
-    m_Localized: Preview / Boss Rewards
+    m_Localized: Preview / Trial Rewards
     m_Metadata:
       m_Items: []
   - m_Id: 5627776108089344
-    m_Localized: Between rounds opens the round preview; during a round shows or
-      hides the boss reward list on the quota card.
+    m_Localized: Between rounds, opens the round preview. During a round, opens or
+      closes the Trial reward list on the quota card.
     m_Metadata:
       m_Items: []
   - m_Id: 6318183146082304
@@ -3159,8 +3174,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6318183179636736
-    m_Localized: Turns all sound on or off; your volume levels are kept. Same setting
-      as the speaker button on the preparation screen.
+    m_Localized: Turns all sound on or off. Your volume levels stay as they are.
+      Same setting as the speaker button on the preparation screen.
     m_Metadata:
       m_Items: []
   - m_Id: 6318183192219648
@@ -3176,7 +3191,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6318183192219651
-    m_Localized: BOSS REWARDS
+    m_Localized: TRIAL REWARD
     m_Metadata:
       m_Items: []
   - m_Id: 6318183192219652
@@ -3200,11 +3215,82 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6318918520819715
-    m_Localized: BOSS HARVEST
+    m_Localized: TRIAL HARVEST
     m_Metadata:
       m_Items: []
   - m_Id: 6322087216828416
     m_Localized: ALL QUOTAS MET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6861648518991872
+    m_Localized: Off
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6861648544157696
+    m_Localized: Fixed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6861648544157697
+    m_Localized: By Power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901512663040
+    m_Localized: PICK A CARD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606080
+    m_Localized: The card places a new plot on the field. A plot boosts the planter
+      you put on top of it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606085
+    m_Localized: The planter on top grows plants more often.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606086
+    m_Localized: Plants from the planter on top give more XP.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606087
+    m_Localized: The planter on top grows rare plants more often.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606088
+    m_Localized: Plants from the planter on top give more Harvest Score.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606089
+    m_Localized: When a plant from the planter on top is harvested, it sometimes
+      explodes and hits its neighbors.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606090
+    m_Localized: Harvesting a plant from the planter on top sometimes pays double.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606091
+    m_Localized: Your direct hits deal more damage to plants from the planter on
+      top.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606092
+    m_Localized: Harvesting a plant from the planter on top sometimes spawns a tornado
+      that roams the field.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606093
+    m_Localized: Harvesting a plant from the planter on top sometimes throws a scythe
+      that flies out and comes back.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606094
+    m_Localized: Harvesting a plant from the planter on top sometimes sends electricity
+      out in a cross.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7052901554606095
+    m_Localized: Spawning is already at top speed, so the extra speed turns into
+      rarity.
     m_Metadata:
       m_Items: []
   references:
@@ -3240,3 +3326,6 @@ MonoBehaviour:
         - id: 227725760286762
         - id: 227725760286763
         - id: 227725760286764
+        - id: 227725751898164
+        - id: 227725751898170
+        - id: 227725751898172

@@ -48,6 +48,28 @@ public static class RunEndScreenInstaller
         Debug.Log("RUN_END_INSTALL\n" + report);
     }
 
+    // Komut satırı (Unity kapalıyken): -batchmode -executeMethod RunEndScreenInstaller.InstallScenesBatch. Hata varsa çıkış kodu 1.
+    public static void InstallScenesBatch()
+    {
+        try
+        {
+            int failed = 0;
+            var report = new System.Text.StringBuilder();
+            foreach (string path in Scenes)
+            {
+                if (AssetDatabase.LoadAssetAtPath<SceneAsset>(path) == null) continue;
+                Scene scene = EditorSceneManager.OpenScene(path, OpenSceneMode.Single);
+                string error = InstallInOpenScene();
+                if (error == null) { EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene); report.AppendLine(path + ": kuruldu"); }
+                else { failed++; report.AppendLine(path + ": HATA " + error); }
+            }
+            AssetDatabase.SaveAssets();
+            Debug.Log("RUN_END_INSTALL\n" + report);
+            EditorApplication.Exit(failed == 0 ? 0 : 1);
+        }
+        catch (System.Exception e) { Debug.LogError("RUN_END_INSTALL hata: " + e); EditorApplication.Exit(1); }
+    }
+
     // Açık sahnenin run sonu panelini kurar. Başarıda null. Sahneyi kaydetmez (kararma malzemesi yoksa asset olarak oluşturur).
     public static string InstallInOpenScene()
     {
@@ -62,6 +84,12 @@ public static class RunEndScreenInstaller
         var screen = panelObject.GetComponentInChildren<RunCompleteUI>(true);
         if (screen == null) return "RunCompleteUI yok";
         Transform panel = screen.transform;
+
+        // TEKRAR / ANA MENÜ önceki kurulumda panelin içine taşınmıştı: konteyner silinmeden önce dışarı alınır (26 Kasım 2026:
+        // ikinci çalıştırma iki butonu da siliyordu). Butonlar aşağıda yeniden panele yerleşir; bağlantıları ve yazıları korunur.
+        foreach (Button button in panel.GetComponentsInChildren<Button>(true))
+            if (button.GetComponent<RestartButtonUI>() != null || button.GetComponent<MainMenuButtonUI>() != null)
+                button.transform.SetParent(panel, false);
 
         // Önceki kit kurulumu ve eski çalışma anı yerleşimi kalkar; eski yazı kapanır (alan eski yol için kalır).
         foreach (string name in new[] { "Backdrop", "Result Window", "Result Content", "Result Panel", "Result backdrop", "Result paper", "Result scrollbar" })
@@ -123,10 +151,10 @@ public static class RunEndScreenInstaller
             rowRect.anchorMin = rowRect.anchorMax = new Vector2(.5f, 1f); rowRect.pivot = new Vector2(.5f, 1f);
             rowRect.anchoredPosition = new Vector2(-4f, y);
             var label = Label("Label", rowRect, 24f, 12f, false, Ink, TextAlignmentOptions.MidlineLeft, false);
-            Top(label.rectTransform, 0f, 200f, 0f, 38f);
+            Top(label.rectTransform, 0f, 230f, 0f, 38f);    // etiket 0–190, sayı 200–420: iki kutu ayrık (26 Kasım: üst üste biniyordu)
             Loc(label, key);
             var value = Label("Value", rowRect, 34f, 14f, false, Ink, TextAlignmentOptions.MidlineRight, false);
-            Top(value.rectTransform, 160f, 0f, -4f, 44f);
+            Top(value.rectTransform, 200f, 0f, -4f, 44f);
             var track = Sliced("Track", rowRect, Art + "bar_track.png", Vector2.zero, Vector2.zero, 116f / 46f);
             Top(track.rectTransform, 0f, 0f, 52f, 46f);
             var fillRect = Rect("Fill", track.transform, Vector2.zero, Vector2.zero);
@@ -155,10 +183,10 @@ public static class RunEndScreenInstaller
             if (i % 2 == 1) strip.rectTransform.localScale = new Vector3(-1f, 1f, 1f);   // aynı kesik art arda tekrar etmesin
             var row = Rect("Row " + i, window, new Vector2(282f, 190f - i * 104f), new Vector2(520f, 88f));
             var label = Label("Label", row, 22f, 11f, false, Ink, TextAlignmentOptions.MidlineLeft, true);
-            Inset(label.rectTransform, 34f, 250f, 14f, 8f);
+            Inset(label.rectTransform, 34f, 264f, 14f, 8f);   // etiket 34–256, sayı 264–480: ayrık
             Loc(label, statKeys[i]);
             var value = Label("Value", row, 44f, 16f, false, Ink, TextAlignmentOptions.MidlineRight, false);
-            Inset(value.rectTransform, 260f, 40f, 12f, 6f);
+            Inset(value.rectTransform, 264f, 40f, 12f, 6f);
             value.text = "0";
             values[i] = value;
         }

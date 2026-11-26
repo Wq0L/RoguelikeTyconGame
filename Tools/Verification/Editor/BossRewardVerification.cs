@@ -209,7 +209,7 @@ public static class BossRewardVerification
     static string RunEndText()
     {
         var complete = F<GameObject>(Object.FindFirstObjectByType<UIManager>(), "runCompletePanel");
-        return Strip(complete.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Harvest Score")));
+        return Strip(complete.GetComponentsInChildren<TextMeshProUGUI>(true).Select(t => t.text).FirstOrDefault(t => t.Contains("Hasat skoru")));
     }
 
     static List<GridPosition> OpenZone(SegmentEventRuntime e) => e.ZoneCells.Where(p => { var g = Grid.GetGridObject(p)?.GetGroundCellCached(); return g != null && !g.IsLocked; })
@@ -330,7 +330,7 @@ public static class BossRewardVerification
         previewBoss = e.Data; previewZone = OpenZone(e); previewName = e.Data.displayName;
         Require(previewZone.Count == 3, "Zone covers 3 of the 9 open cells (never the whole field)");
         string notice = Strip(SegmentEventText.Notice(Events, 0));
-        Require(notice.StartsWith($"Yaklaşan boss: {previewName} · Round 5/") && notice.Contains(e.RuleSummary) && notice.Contains("boss hasadı hedefi 15") && notice.Contains("4 round hazırlık"),
+        Require(notice.StartsWith($"Yaklaşan Sınama: {previewName} · Tur 5/") && notice.Contains(e.RuleSummary) && notice.Contains("Sınama hasadı hedefi 15") && notice.Contains("4 tur hazırlık"),
             "Preparation notice (name, rule, target, rounds left): " + notice);
         var markers = Object.FindAnyObjectByType<FrostZoneMarkers>(); markers.SendMessage("LateUpdate");
         Require(!markers.ShowsActive && markers.ShownCells.OrderBy(c => c.x * 100 + c.z).SequenceEqual(previewZone), "World markers show the previewed zone (not active yet)");
@@ -369,14 +369,14 @@ public static class BossRewardVerification
             if (r == 2 && checkHud)
             {
                 var hud = HudTexts();
-                Require(hud["Label"] == "SEGMENT KOTASI TAMAM" && hud["Value"] == "500 / 10" && hud["Boss"] == "Boss hasadı hedefi (Round 5): 15" &&
-                        hud["Event"].StartsWith($"Yaklaşan boss: {previewName} · Round 5"), $"Preparation HUD: {hud["Label"]} {hud["Value"]} | {hud["Boss"]} | {hud["Event"]}");
+                Require(hud["Label"] == "DÖNEM KOTASI TAMAM" && hud["Value"] == "500 / 10" && hud["Boss"] == "Sınama hasadı hedefi (Tur 5): 15" &&
+                        hud["Event"].StartsWith($"Yaklaşan Sınama: {previewName} · Tur 5"), $"Preparation HUD: {hud["Label"]} {hud["Value"]} | {hud["Boss"]} | {hud["Event"]}");
             }
             EndRound(); Flush();
             if (State != GameStates.RoundEnd || RM.RunFailed) throw new Exception($"round {r} end: {State}");
         }
         string last = Strip(SegmentEventText.Notice(Events, 4));
-        if (!last.StartsWith($"SON HAZIRLIK · boss {previewName} sonraki round")) throw new Exception("round 4 notice: " + last);
+        if (!last.StartsWith($"SON HAZIRLIK · Sınama {previewName} sonraki tur")) throw new Exception("round 4 notice: " + last);
         RM.StartNextRound();
     }
 
@@ -388,7 +388,7 @@ public static class BossRewardVerification
         var active = Events.Active;
         Require(RM.CurrentRound == 5 && active != null && active.Data == previewBoss && active.IsActive && OpenZone(active).SequenceEqual(previewZone), "Round 5: the previewed boss is active on the previewed zone");
         Require(RM.IsBossRound(5) && RM.BossTarget == 15 && RM.BossProgress == 0 && RM.QuotaProgress >= 500, "Boss counter starts at 0 although the segment quota is already met (500 / 10)");
-        Require(SegmentEventText.Intro(Events, RM) == $"BOSS: {previewName} · HASAT HEDEFİ 15", "Boss start intro: " + SegmentEventText.Intro(Events, RM));
+        Require(SegmentEventText.Intro(Events, RM) == $"SINAMA: {previewName} · HASAT HEDEFİ 15", "Boss start intro: " + SegmentEventText.Intro(Events, RM));
         var inZone = Spawners().Where(s => active.Covers(s.GridObject.GetGridPosition())).ToList();
         var outZone = Spawners().Where(s => !active.Covers(s.GridObject.GetGridPosition())).ToList();
         if (previewBoss == Don)
@@ -401,7 +401,7 @@ public static class BossRewardVerification
         Require(markers.ShowsActive, "World markers switch to active");
         AddScore(9);
         var hud = HudTexts();
-        Require(hud["Label"] == "SEGMENT KOTASI TAMAM" && hud["Boss"] == "BOSS HASADI: 9 / 15" && hud["Event"].StartsWith(previewName + ": "), $"Boss HUD separates the two conditions: {hud["Label"]} {hud["Value"]} | {hud["Boss"]} | {hud["Event"]}");
+        Require(hud["Label"] == "DÖNEM KOTASI TAMAM" && hud["Boss"] == "SINAMA HASADI: 9 / 15" && hud["Event"].StartsWith(previewName + ": "), $"Boss HUD separates the two conditions: {hud["Label"]} {hud["Value"]} | {hud["Boss"]} | {hud["Event"]}");
         Screenshot("Boss_HUD_Active");
         AddScore(5); // 14 / 15
         long remaining = (long)RM.RemainingTime;
@@ -416,7 +416,7 @@ public static class BossRewardVerification
     static double FailScreen()
     {
         string text = RunEndText();
-        Require(text.StartsWith("BOSS HASADI TUTMADI") && text.Contains("Round 5 · boss hasadı 14 / 15 (eksik) · segment kotası 514 / 10 (tamam)"), "Failure screen names the missing condition: " + text);
+        Require(text.StartsWith("SINAMA HASADI TUTMADI") && text.Contains("Tur 5 · Sınama hasadı 14 / 15 (eksik) · dönem kotası 514 / 10 (tamam)"), "Failure screen names the missing condition: " + text);
         Require(Events.Active == null && Events.Events.Count == 0 && Spawners().All(s => SegmentEventDirector.SpawnIntervalMultiplier(s.GridObject.GetGridPosition()) == 1f &&
                 SegmentEventDirector.SpawnHealthMultiplier(s.GridObject.GetGridPosition()) == 1f), "Run end clears the boss");
         Screenshot("Boss_Fail");
@@ -495,12 +495,12 @@ public static class BossRewardVerification
         var next = Events.Upcoming;
         Require(next != null && next.Segment == 2 && next.StartRound == 10 && next.Data != previewBoss && Events.LastEnded != null && Events.LastEnded.Data == previewBoss,
             "Next boss announced right after the boss round and differs from the previous one: " + next.Data.displayName);
-        Require(notice.StartsWith($"{previewName} GEÇTİ · boss hasadı 15 / 15/Sıradaki boss: {next.Data.displayName} (Round 10)") && notice.Contains("boss hasadı hedefi 40"), "Summary after the boss: " + notice);
+        Require(notice.StartsWith($"{previewName} GEÇTİ · Sınama hasadı 15 / 15/Sıradaki Sınama: {next.Data.displayName} (Tur 10)") && notice.Contains("Sınama hasadı hedefi 40"), "Summary after the boss: " + notice);
         RM.StartNextRound();
         Require(RM.CurrentRound == 6 && State == GameStates.Round && Events.Active == null, "Round 6 starts after the choice; no boss active");
         var hud = HudTexts();
         // 20 Kasım 2026: başlık ayrı satırda (sayı + Tab ipucu), liste Tab ile açılır; liste yazısı kapalıyken de günceldir.
-        Require(hud.ContainsKey("Rewards Header") && hud["Rewards Header"].StartsWith("Boss ödülleri (1) · ") && hud.ContainsKey("Rewards") &&
+        Require(hud.ContainsKey("Rewards Header") && hud["Rewards Header"].StartsWith("Sınama ödülleri (1) · ") && hud.ContainsKey("Rewards") &&
                 hud["Rewards"].Contains("·" + chosen.displayName + " 1/3 · "),
             "HUD lists the taken reward: " + hud.GetValueOrDefault("Rewards Header") + " | " + hud.GetValueOrDefault("Rewards"));
         Screenshot("Boss_HUD_Rewards");
@@ -649,7 +649,7 @@ public static class BossRewardVerification
     {
         string text = RunEndText();
         Require(text.StartsWith("BOSS PROTOTİPİ TAMAMLANDI") && text.Contains("Başlangıç: Bahçıvan · Standart") &&
-                text.Contains("BOSS ÖDÜLLERİ/• Keskin Bıçak ×3/• Hızlı Bilek ×3/• Bereketli Toprak ×3/• Bilgi Filizi ×3/• Nadir Tohum ×3"), "Result screen lists each reward and stack on its own line: " + text);
+                text.Contains("SINAMA ÖDÜLLERİ/• Keskin Bıçak ×3/• Hızlı Bilek ×3/• Bereketli Toprak ×3/• Bilgi Filizi ×3/• Nadir Tohum ×3"), "Result screen lists each reward and stack on its own line: " + text);
         Screenshot("Boss_RunEnd");
         Object.FindFirstObjectByType<RunCompleteUI>(FindObjectsInactive.Include).OnRestartPressed();
         return 3;
@@ -796,7 +796,7 @@ public static class BossRewardVerification
         var e = Events.Upcoming;
         Require(e != null && e.Data is NoRuleBossSO && Events.LastPickNote == "yedek" && RM.BossTargetFor(1) == 15, "Pool with only Sis at radius 1,00: nothing eligible → visible fallback 'KURALSIZ BOSS', boss target still 15");
         string notice = Strip(SegmentEventText.Notice(Events, 0));
-        Require(notice.StartsWith("Yaklaşan boss: KURALSIZ BOSS · Round 5") && notice.Contains("boss hasadı hedefi 15"), "Fallback is shown to the player: " + notice);
+        Require(notice.StartsWith("Yaklaşan Sınama: KURALSIZ SINAMA · Tur 5") && notice.Contains("Sınama hasadı hedefi 15"), "Fallback is shown to the player: " + notice);
         // Yarıçapı 1,3'e çıkar (Geniş Süpürüş gibi): ikinci boss için Sis uygun olur.
         TestMod(Mod(StatType.AreaRadius, StatTarget.Player, 0.3f, ModifierOperation.AddPercent));
         for (int x = -1; x <= 1; x++) for (int z = -1; z <= 1; z++) Place(PlanterAsset("1x1"), x, z);
@@ -829,7 +829,7 @@ public static class BossRewardVerification
     {
         var next = Events.Upcoming;
         Require(next != null && next.Data == Fog && next.StartRound == 10 && Events.LastPickNote == null && next.ZoneCells.Count == 0, "Radius 1,30 ≥ 1,2: Sis chosen for round 10 (no zone)");
-        Require(Strip(SegmentEventText.Notice(Events, 5)).Contains("Sıradaki boss: SİS (Round 10) · Vuruş yarıçapı ×0,85 · boss hasadı hedefi 40"), "Sis preview text: " + Strip(SegmentEventText.Notice(Events, 5)));
+        Require(Strip(SegmentEventText.Notice(Events, 5)).Contains("Sıradaki Sınama: SİS (Tur 10) · Vuruş yarıçapı ×0,85 · Sınama hasadı hedefi 40"), "Sis preview text: " + Strip(SegmentEventText.Notice(Events, 5)));
         for (int r = 6; r <= 8; r++) { RM.StartNextRound(); if (!Near(Stats.GetFinalStat(StatType.AreaRadius, StatTarget.Player), 1.3f)) throw new Exception("radius changed in preparation"); EndRound(); Flush(); }
         TestMod(Mod(StatType.HarvestDamage, StatTarget.Player, 1f, ModifierOperation.Set));
         TestMod(Mod(StatType.CritChance, StatTarget.Player, 0f, ModifierOperation.Set));

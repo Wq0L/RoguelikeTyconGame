@@ -22,9 +22,13 @@ public static class FeelSceneSetup
             Undo.AddComponent<CameraFeel>(camera.gameObject);
             changed = true;
         }
-        if (!camera.TryGetComponent(out SpaceBackground _))
+        if (!camera.TryGetComponent(out SpaceBackground space))
         {
-            Undo.AddComponent<SpaceBackground>(camera.gameObject);
+            space = Undo.AddComponent<SpaceBackground>(camera.gameObject);
+            // Oyun sahnesinin gökyüzü toon paletiyle kurulur (çalışma zamanındaki FeelBootstrap ile aynı).
+            var so = new SerializedObject(space);
+            so.FindProperty("skyPalette").objectReferenceValue = Resources.Load<SpaceSkyPaletteSO>(SpaceSkyPaletteSO.ResourcePath);
+            so.ApplyModifiedProperties();
             changed = true;
         }
         if (Object.FindAnyObjectByType<GameFeelDirector>() == null)

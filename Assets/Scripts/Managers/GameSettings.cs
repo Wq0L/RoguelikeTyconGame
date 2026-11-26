@@ -16,6 +16,8 @@ public static class GameSettings
     public static int FpsLimit;          // 0: sınırsız (VSync kapalıyken geçerli)
     public static int QualityLevel;
     public static bool BackgroundEffects;
+    // Oyun gökyüzü güce (müzik gücü) göre renk değiştirir; kapalıysa sabit mor toon gökyüzü (23 Kasım 2026). Arka plan efektleri kapalıyken etkisiz.
+    public static bool PowerSky;
 
     // ---------- Ses ----------
     public static float MasterVolume;
@@ -71,6 +73,7 @@ public static class GameSettings
         FpsLimit = 0;
         QualityLevel = QualitySettings.GetQualityLevel();
         BackgroundEffects = true;
+        PowerSky = true;
 
         MasterVolume = 1f;
         MusicVolume = 0.8f;
@@ -99,6 +102,7 @@ public static class GameSettings
         FpsLimit = PlayerPrefs.GetInt(Prefix + "fpsLimit", FpsLimit);
         QualityLevel = PlayerPrefs.GetInt(Prefix + "quality", QualityLevel);
         BackgroundEffects = GetBool("backgroundEffects", BackgroundEffects);
+        PowerSky = GetBool("powerSky", PowerSky);
 
         MasterVolume = PlayerPrefs.GetFloat(Prefix + "masterVolume", MasterVolume);
         MusicVolume = PlayerPrefs.GetFloat(Prefix + "musicVolume", MusicVolume);
@@ -129,6 +133,7 @@ public static class GameSettings
         PlayerPrefs.SetInt(Prefix + "fpsLimit", FpsLimit);
         PlayerPrefs.SetInt(Prefix + "quality", QualityLevel);
         SetBool("backgroundEffects", BackgroundEffects);
+        SetBool("powerSky", PowerSky);
 
         PlayerPrefs.SetFloat(Prefix + "masterVolume", MasterVolume);
         PlayerPrefs.SetFloat(Prefix + "musicVolume", MusicVolume);

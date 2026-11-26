@@ -27,7 +27,7 @@ public static class CardSkipButtonInstaller
     const float Badge = 46f;
     static readonly Color Ink = new Color32(54, 39, 54, 255);
 
-    [MenuItem("Tools/Comic UI/Kart Seçimi: Kartlar + ATLA + Kalan Seçim")]
+    [MenuItem("Tools/Comic UI/Kart Seçimi: Kartlar + ATLA + Kalan Seçim + Bilgi Kutusu")]
     public static void InstallAll()
     {
         if (EditorApplication.isPlaying) { EditorUtility.DisplayDialog("Kart seçimi", "Play modundan çıkıp tekrar dene.", "Tamam"); return; }
@@ -45,6 +45,25 @@ public static class CardSkipButtonInstaller
         }
         if (!string.IsNullOrEmpty(start) && SceneManager.GetActiveScene().path != start) EditorSceneManager.OpenScene(start, OpenSceneMode.Single);
         Debug.Log("CARD_SKIP_INSTALL\n" + report);
+    }
+
+    // Editör kapalıyken ana projeye uygulamak için (batch): yalnız iki sahne (ATLA + kalan seçim + bilgi kutusu); kart prefab'ına
+    // dokunmaz. Hata olursa 1 ile çıkar.
+    //   Unity.exe -batchmode -projectPath <proje> -executeMethod CardSkipButtonInstaller.InstallScenesBatch -logFile <log>
+    public static void InstallScenesBatch()
+    {
+        bool ok = true;
+        var report = new System.Text.StringBuilder();
+        foreach (string path in Scenes)
+        {
+            if (AssetDatabase.LoadAssetAtPath<SceneAsset>(path) == null) { report.AppendLine(path + ": yok"); continue; }
+            Scene scene = EditorSceneManager.OpenScene(path, OpenSceneMode.Single);
+            string result = InstallInOpenScene();
+            if (result == null) { EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene); report.AppendLine(path + ": kuruldu"); }
+            else { ok = false; report.AppendLine(path + ": " + result); }
+        }
+        Debug.Log("CARD_SKIP_INSTALL\n" + report);
+        EditorApplication.Exit(ok ? 0 : 1);
     }
 
     // Açık sahnedeki CardSelectionUI'ın ATLA butonunu kurar. Başarıda null, yoksa nedenini döner. Sahneyi kaydetmez.
@@ -123,6 +142,9 @@ public static class CardSkipButtonInstaller
 
         so.FindProperty("skipCount").objectReferenceValue = count;
         so.FindProperty("remainingLabel").objectReferenceValue = RemainingPlate((RectTransform)cards.transform, theme);
+        InfoBox((RectTransform)cards.transform, theme, out TextMeshProUGUI infoTitle, out TextMeshProUGUI infoBody);
+        so.FindProperty("infoTitle").objectReferenceValue = infoTitle;
+        so.FindProperty("infoBody").objectReferenceValue = infoBody;
         so.ApplyModifiedPropertiesWithoutUndo();
         EditorUtility.SetDirty(button);
         EditorUtility.SetDirty(cards);
@@ -161,6 +183,82 @@ public static class CardSkipButtonInstaller
         Inset(label.rectTransform, 28f, 34f, 10f, 6f);   // şeridin sağ kesiği ve alt 3B kenarı
         plate.gameObject.SetActive(false);
         return label;
+    }
+
+    // Kartların üstündeki bilgi kutusu (24 Kasım 2026, test geri bildirimi: "kartın adı üstte yazmalı, mouse üstüne gelince kartın
+    // özelliği yazmalı"). Yalnız yeni tile kartlarında görünür; yükseltme ve Temel güç kartlarında oyun kutuyu kapatır (kullanıcı,
+    // 24 Kasım). Tooltip'lerle aynı dil (Docs/UI-Dili.md): krem panel + amber şerit, başlık Bungee koyu mürekkep, gövde
+    // tooltip yazısı. Kart dizilimine girmez; kart sırasının ortasına bağlı (ekran oranı değişince kartlarla birlikte kalır), alt kenarı
+    // kartların üst kenarının üstünde. Tıklamayı ve fareyi engellemez. Editörde boş ekran yazısıyla görünür; oyun yalnız yazıyı değiştirir.
+    // Ölçüler (24 Kasım, 9 ekran boyutunda ölçüldü): fare üstündeki kart %3,5 büyür, alanının üstü ortadan ~321 birim yukarıda; kutunun
+    // altı 334'te (≈ 13 birim boşluk). Üstü 458'de: 21:9'da (tuval ~935 birim boy) tepede ~10 birim pay kalır.
+    public const float InfoWidth = 920f, InfoHeight = 124f, InfoLift = 334f, InfoHeader = 52f, InfoBodyTop = 51f, InfoBodyBottom = 23f;
+    static readonly Color Amber = new Color32(247, 192, 93, 255);
+
+    static void InfoBox(RectTransform parent, ComicUITheme theme, out TextMeshProUGUI title, out TextMeshProUGUI body)
+    {
+        var box = Child(parent, "Card Info", typeof(Image), typeof(LayoutElement));
+        box.GetComponent<LayoutElement>().ignoreLayout = true;
+        box.anchorMin = box.anchorMax = new Vector2(.5f, .5f);
+        box.pivot = new Vector2(.5f, 0f);
+        box.anchoredPosition = new Vector2(0f, InfoLift);
+        box.sizeDelta = new Vector2(InfoWidth, InfoHeight);
+        box.localRotation = Quaternion.identity;
+        box.localScale = Vector3.one;
+        Kit(box.GetComponent<Image>(), "panel_cream", Color.white, 1.6f);
+
+        var header = Child(box, "Header", typeof(Image));
+        header.anchorMin = new Vector2(0f, 1f);
+        header.anchorMax = Vector2.one;
+        header.pivot = new Vector2(.5f, 1f);
+        header.offsetMin = new Vector2(7f, -InfoHeader);
+        header.offsetMax = new Vector2(-7f, -7f);
+        Kit(header.GetComponent<Image>(), "label_cream", Amber, 2.2f);
+
+        title = Child(header, "Title", typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
+        Display(title, theme, false, Ink, 26f, 14f, false);
+        title.alignment = TextAlignmentOptions.Center;
+        title.margin = Vector4.zero;
+        title.text = GameText.Get("ui.card.info.idle_title");
+        Inset(title.rectTransform, 28f, 34f, 9f, 5f);   // şeridin sağ kesiği ve alt 3B kenarı
+
+        body = Child(box, "Body", typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
+        theme.StylePopupText(body);
+        body.color = Ink;
+        body.fontSize = 24f;
+        body.enableAutoSizing = true;
+        body.fontSizeMax = 24f;
+        body.fontSizeMin = 16f;
+        body.textWrappingMode = TextWrappingModes.Normal;
+        body.overflowMode = TextOverflowModes.Overflow;
+        body.alignment = TextAlignmentOptions.Center;
+        body.margin = Vector4.zero;
+        body.raycastTarget = false;
+        body.text = GameText.Get("ui.card.info.idle");
+        // Gövde, şeridin altı ile panelin iç çizgisi arasındaki krem alanda dikeyde ortalı (24 Kasım, kullanıcı: "yazı biraz alta
+        // kalmış"; çekimden ölçüldü: krem alan kutunun üstünden 51–117 px, alttaki iç çizgi + 3B kenar ~23 px).
+        Inset(body.rectTransform, 34f, 40f, InfoBodyBottom, InfoBodyTop);
+    }
+
+    // Adıyla bulunan ya da yeni kurulan çocuk (tekrar çalışınca çoğalmaz); eksik bileşen eklenir.
+    static RectTransform Child(Transform parent, string name, params System.Type[] components)
+    {
+        Transform found = parent.Find(name);
+        GameObject go = found != null ? found.gameObject : new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer));
+        go.layer = parent.gameObject.layer;
+        go.transform.SetParent(parent, false);
+        foreach (System.Type type in components)
+            if (go.GetComponent(type) == null) go.AddComponent(type);
+        return (RectTransform)go.transform;
+    }
+
+    static void Kit(Image image, string sprite, Color color, float multiplier)
+    {
+        image.sprite = Sprite(sprite);
+        image.type = Image.Type.Sliced;
+        image.pixelsPerUnitMultiplier = multiplier;
+        image.color = color;
+        image.raycastTarget = false;
     }
 
     public const string CardPrefab = "Assets/Prefabs/UI/Grid Mutation Card.prefab";

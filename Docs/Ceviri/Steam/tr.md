@@ -49,5 +49,5 @@ Erigone, doymak bilmeyen Eri’yi beslediğin bir hasat roguelite’ı. Saksıla
 
 - **dönem / aşama:** uzun metinde "Her dönem", kısa metinde "Her aşamada" yazıyor. Oyunun içinde **dönem** kullanılıyor ("Dönemin son round'u").
 - **hasat alanı:** uzun metinde "hasat alanını farenle yönlendir", kısa metinde "hasadı farenle yönlendir" yazıyor.
-- **deneme / run:** mağaza metni "deneme" diyor, oyunun Türkçesi ise "run" ("YENİ RUN", "RUN'I BAŞLAT").
+- ~~**deneme / run:**~~ karar verildi (24 Kasım 2026): oyunun Türkçesi de "deneme" ("YENİ DENEME", "DENEMEYİ BAŞLAT"). Ayrıca round → tur, boss → Sınama. Liste: `Docs/Ceviri/Yerellestirme.md` > Türkçe oyun terimleri.
 - **Oyun içi yazım (ayrı iş):** `GameText.csv` Türkçe sütununda "Adak'ım" ve "Sınama'yı" gibi kesmeli yazımlar var. Doğrusu "Adağım" ve "Sınamayı".

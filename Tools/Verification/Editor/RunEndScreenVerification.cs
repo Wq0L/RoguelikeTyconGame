@@ -202,11 +202,11 @@ public static class RunEndScreenVerification
         TMP_Text bossName = badge?.Find("Name")?.GetComponent<TMP_Text>();
         if (!win)
             Check(bossRow != null && bossRow.gameObject.activeSelf && badge != null && badge.gameObject.activeSelf && bossName != null && bossName.text.Length > 0,
-                "kayıp: boss round'unda BOSS HASADI çubuğu ve 'seni durduran' boss rozeti", bossName?.text);
+                "kayıp: boss round'unda SINAMA HASADI çubuğu ve 'seni durduran' boss rozeti", bossName?.text);
         string[] gone = { "Reason", "Details", "Times", "Rewards Card" };
         Check(gone.All(n => Screen.GetComponentsInChildren<Transform>(true).All(t => t.name != n)), "açıklama cümlesi, başlangıç ve süre satırları yok");
         var title = Screen.transform.Find("Result Content/Title Plate/Title")?.GetComponent<TMP_Text>();
-        Check(title != null && title.text == GameText.Get(win ? "ui.runend.win_title" : "ui.runend.over"), win ? "başlık ZAFER!" : "başlık RUN BİTTİ", title?.text);
+        Check(title != null && title.text == GameText.Get(win ? "ui.runend.win_title" : "ui.runend.over"), win ? "başlık ZAFER!" : "başlık DENEME BİTTİ", title?.text);
         var dim = Screen.transform.Find("Backdrop")?.GetComponent<Image>();
         Material m = dim != null ? dim.materialForRendering : null;
         Check(m != null && m.GetFloat("_Power") > 1f && m.GetFloat("_Cells") > 5f && m.GetFloat("_Feather") > .01f && m.GetFloat("_BaseDim") < .6f,
@@ -217,6 +217,36 @@ public static class RunEndScreenVerification
 
     // Görünen her yazı kutusuna sığar (kaydırılan liste dışında: o kendi görünümünde kaydırılır, yalnız genişlik denetlenir).
     static void Fit(string language)
+    {
+        FitCheck(language, "");
+        Overlaps(language, "");
+        WorstCase(language);
+    }
+
+    // En uzun sayılarla da (dokuz basamaklı skor ve hedef; HarvestQuota.Format kısaltmaz) yazılar sığar ve birbirine binmez.
+    static void WorstCase(string language)
+    {
+        var changed = new List<(TMP_Text text, string old)>();
+        void Put(string row, string value)
+        {
+            foreach (Transform t in Screen.GetComponentsInChildren<Transform>(false))
+                if (t.name == row && t.Find("Value")?.GetComponent<TMP_Text>() is TMP_Text text)
+                { changed.Add((text, text.text)); text.text = value; text.ForceMeshUpdate(); }
+        }
+        string big = HarvestQuota.Format(987654321), target = HarvestQuota.Format(123456789);
+        Put("Quota Row", big + " / " + target);
+        Put("Boss Row", big + " / " + target);
+        Put("Row 0", big);
+        Put("Row 1", "50 / 50");
+        Put("Row 2", "15");
+        Put("Row 3", "1:23:45");
+        Check(changed.Count >= 4, $"[{language}] en uzun sayılar yazıldı ({changed.Count} kutu)");
+        FitCheck(language, " (en uzun sayılar)");
+        Overlaps(language, " (en uzun sayılar)");
+        foreach (var (text, old) in changed) { text.text = old; text.ForceMeshUpdate(); }
+    }
+
+    static void FitCheck(string language, string tag)
     {
         var bad = new List<string>();
         foreach (TMP_Text text in Screen.GetComponentsInChildren<TMP_Text>(false))
@@ -232,7 +262,60 @@ public static class RunEndScreenVerification
             if (!fitsX || !fitsY) bad.Add($"{text.transform.parent.name}/{text.name} {b.size.x:0}×{b.size.y:0} / {r.width:0}×{r.height:0}");
             if (text.fontSize < 11.9f) bad.Add($"{text.name} {text.fontSize:0.#} pt");
         }
-        Check(bad.Count == 0, $"[{language}] run sonu yazıları kutularına sığıyor", string.Join(" | ", bad.Take(5)));
+        Check(bad.Count == 0, $"[{language}] run sonu yazıları kutularına sığıyor{tag}", string.Join(" | ", bad.Take(5)));
+    }
+
+    // Kardeş yazılar birbirine binmez (26 Kasım 2026: "SINAMA HASADI" etiketi sayının üstüne biniyordu; her yazı kendi kutusuna
+    // sığdığı için sığma ölçümü bunu görmüyordu). Çizilen yazı alanları ortak ebeveynin uzayında karşılaştırılır; satırlarda
+    // etiket ile sayı kutularının kendisi de ayrık olmalı (sayı uzayınca çakışma başka bir koşuda ortaya çıkmasın).
+    static void Overlaps(string language, string tag)
+    {
+        var bad = new List<string>();
+        var texts = Screen.GetComponentsInChildren<TMP_Text>(false)
+            .Where(t => t.textInfo.characterCount > 0 && !string.IsNullOrWhiteSpace(t.text)).ToList();
+        for (int i = 0; i < texts.Count; i++)
+            for (int j = i + 1; j < texts.Count; j++)
+            {
+                TMP_Text a = texts[i], b = texts[j];
+                if (a.transform.parent != b.transform.parent) continue;
+                Transform parent = a.transform.parent;
+                Rect ra = Drawn(a, parent), rb = Drawn(b, parent);
+                float x = Mathf.Min(ra.xMax, rb.xMax) - Mathf.Max(ra.xMin, rb.xMin);
+                float y = Mathf.Min(ra.yMax, rb.yMax) - Mathf.Max(ra.yMin, rb.yMin);
+                if (x > 1f && y > 1f) bad.Add($"{parent.name}: {a.name} ↔ {b.name} ({x:0}×{y:0} px)");
+            }
+        Check(bad.Count == 0, $"[{language}] run sonu yazıları birbirine binmiyor{tag}", string.Join(" | ", bad.Take(5)));
+
+        var boxes = new List<string>();
+        foreach (Transform row in Screen.GetComponentsInChildren<Transform>(true))
+        {
+            var label = row.Find("Label") as RectTransform;
+            var value = row.Find("Value") as RectTransform;
+            if (label == null || value == null) continue;
+            Rect rl = Box(label, row), rv = Box(value, row);
+            float x = Mathf.Min(rl.xMax, rv.xMax) - Mathf.Max(rl.xMin, rv.xMin);
+            float y = Mathf.Min(rl.yMax, rv.yMax) - Mathf.Max(rl.yMin, rv.yMin);
+            if (x > 0.5f && y > 0.5f) boxes.Add($"{row.name} {x:0} px");
+        }
+        if (tag.Length == 0) Check(boxes.Count == 0, $"[{language}] satırlarda etiket ile sayı kutuları ayrık", string.Join(" | ", boxes.Take(5)));
+    }
+
+    // Yazının çizilen alanı (textBounds) ebeveyn uzayında.
+    static Rect Drawn(TMP_Text text, Transform space)
+    {
+        Bounds b = text.textBounds;
+        Vector3 min = space.InverseTransformPoint(text.transform.TransformPoint(b.min));
+        Vector3 max = space.InverseTransformPoint(text.transform.TransformPoint(b.max));
+        return Rect.MinMaxRect(Mathf.Min(min.x, max.x), Mathf.Min(min.y, max.y), Mathf.Max(min.x, max.x), Mathf.Max(min.y, max.y));
+    }
+
+    // Kutunun kendisi ebeveyn uzayında.
+    static Rect Box(RectTransform rect, Transform space)
+    {
+        var corners = new Vector3[4];
+        rect.GetWorldCorners(corners);
+        Vector3 a = space.InverseTransformPoint(corners[0]), c = space.InverseTransformPoint(corners[2]);
+        return Rect.MinMaxRect(Mathf.Min(a.x, c.x), Mathf.Min(a.y, c.y), Mathf.Max(a.x, c.x), Mathf.Max(a.y, c.y));
     }
 
     static void Check(bool ok, string what, string detail = null) => lines.Add($"{(ok ? "PASS" : "FAIL")} {what}{(string.IsNullOrEmpty(detail) ? "" : " — " + detail)}");
